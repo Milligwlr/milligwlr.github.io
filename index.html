@@ -29,12 +29,20 @@
         body { font-family: var(--sans); color: var(--text); background: var(--white); overflow-x: hidden; margin: 0; -webkit-font-smoothing: antialiased; }
         h1, h2, h3, h4, .text-accent { font-weight: 700; color: var(--royal); }
 
-        /* TOP BAR */
+        /* ===== TOP BAR ===== */
         .top-bar-legal { background: var(--navy); color: rgba(255,255,255,0.6); font-size: 0.72rem; padding: 8px 0; letter-spacing: 0.5px; font-weight: 500; }
 
-        /* NAVBAR */
-        .navbar { background: rgba(255,255,255,0.85); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(0,0,0,0.06); padding: 15px 0; transition: padding 0.4s var(--ease), box-shadow 0.4s; }
-        .navbar.scrolled { padding: 8px 0; box-shadow: 0 1px 30px rgba(0,0,0,0.06); }
+        /* ===== NAVBAR — FIX #3: z-index alto + fondo sólido en mobile ===== */
+        .navbar {
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            padding: 12px 0;
+            transition: padding 0.4s var(--ease), box-shadow 0.4s;
+            z-index: 1050 !important;
+        }
+        .navbar.scrolled { padding: 8px 0; box-shadow: 0 1px 30px rgba(0,0,0,0.06); background: rgba(255,255,255,0.97); }
         .navbar-brand { font-weight: 700; color: var(--royal) !important; font-size: 1.5rem; }
         .nav-link { font-weight: 600; color: var(--text) !important; margin: 0 10px; transition: color 0.3s; position: relative; }
         .nav-link::after { content:''; position:absolute; bottom:-2px; left:50%; width:0; height:2px; background:var(--electric); transition: width 0.3s var(--ease), left 0.3s var(--ease); border-radius:1px; }
@@ -43,7 +51,7 @@
         .social-icons a { color: var(--royal); font-size: 1.8rem; margin-left: 20px; transition: all 0.3s var(--ease); }
         .social-icons a:hover { color: var(--electric); transform: translateY(-2px); }
 
-        /* HERO */
+        /* ===== HERO ===== */
         .hero { position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden; background:var(--navy); }
         .hero__bg { position:absolute; inset:0; z-index:0; }
         .hero__bg::before { content:''; position:absolute; top:-30%; right:-20%; width:80vw; height:80vw; border-radius:50%; background:radial-gradient(circle, rgba(9,132,227,0.15) 0%, transparent 70%); animation: breathe 8s ease-in-out infinite alternate; }
@@ -54,11 +62,14 @@
         .hero__tag { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:100px; padding:8px 20px; font-size:0.82rem; font-weight:600; color:var(--sky); letter-spacing:0.5px; margin-bottom:32px; backdrop-filter:blur(10px); opacity:0; transform:translateY(20px); }
         .hero__tag .dot { width:6px; height:6px; border-radius:50%; background:var(--electric); animation:pulse-dot 2s ease-in-out infinite; }
         @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.5)} }
-        .hero__headline { font-weight:700; font-size:clamp(2.8rem,6.5vw,4.5rem); line-height:1.1; color:var(--white); margin-bottom:28px; }
+
+        /* FIX #1: headline responsive — no se corta en mobile */
+        .hero__headline { font-weight:700; font-size:clamp(2.2rem,6vw,4.5rem); line-height:1.12; color:var(--white); margin-bottom:28px; word-break: normal; overflow-wrap: break-word; }
         .hero__headline em { font-style:italic; color:var(--sky); }
         .hero__headline .line { display:block; overflow:hidden; }
         .hero__headline .line-inner { display:block; opacity:0; transform:translateY(100%); }
-        .hero__sub { font-size:clamp(1rem,2vw,1.15rem); line-height:1.7; color:rgba(255,255,255,0.55); max-width:600px; margin:0 auto 44px; opacity:0; transform:translateY(30px); }
+
+        .hero__sub { font-size:clamp(0.95rem,2vw,1.15rem); line-height:1.7; color:rgba(255,255,255,0.55); max-width:600px; margin:0 auto 44px; opacity:0; transform:translateY(30px); }
         .hero__cta { display:inline-flex; align-items:center; gap:10px; background:var(--electric); color:var(--white)!important; text-decoration:none; padding:16px 36px; border-radius:8px; font-weight:bold; font-size:1rem; border:none; transition:all 0.3s var(--ease); opacity:0; transform:translateY(30px); }
         .hero__cta:hover { background:var(--royal); transform:translateY(-2px)!important; box-shadow:0 5px 15px rgba(9,132,227,0.3); color:var(--white)!important; }
         .hero__cta i { transition:transform 0.3s; }
@@ -68,12 +79,12 @@
         .scroll-line { width:1px; height:40px; background:linear-gradient(to bottom,rgba(255,255,255,0.4),transparent); animation:scroll-anim 2s ease-in-out infinite; }
         @keyframes scroll-anim { 0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}50.1%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom} }
 
-        /* REVEAL ANIMATION */
-        .reveal { opacity:0; transform:translateY(40px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+        /* ===== REVEAL — FIX #2: más rápido, menos desplazamiento ===== */
+        .reveal { opacity:0; transform:translateY(24px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
         .reveal.visible { opacity:1; transform:translateY(0); }
-        .reveal-d1 { transition-delay:0.1s; } .reveal-d2 { transition-delay:0.2s; } .reveal-d3 { transition-delay:0.3s; } .reveal-d4 { transition-delay:0.4s; } .reveal-d5 { transition-delay:0.5s; }
+        .reveal-d1 { transition-delay:0.08s; } .reveal-d2 { transition-delay:0.16s; } .reveal-d3 { transition-delay:0.24s; } .reveal-d4 { transition-delay:0.32s; } .reveal-d5 { transition-delay:0.4s; }
 
-        /* ABOUT */
+        /* ===== ABOUT ===== */
         .about__inner { display:flex; min-height:100vh; }
         .about__visual { flex:0 0 45%; position:sticky; top:0; height:100vh; display:flex; align-items:center; justify-content:center; padding:60px; overflow:hidden; }
         .about__photo-frame { position:relative; width:100%; max-width:400px; aspect-ratio:3/4; border-radius:24px; overflow:hidden; background:linear-gradient(135deg,var(--cloud) 0%,#e8ecf1 100%); box-shadow:0 25px 60px rgba(10,22,40,0.08),0 4px 16px rgba(10,22,40,0.04); display:flex; flex-direction:column; align-items:center; justify-content:center; border:1px solid rgba(0,0,0,0.04); }
@@ -93,61 +104,145 @@
         .credential-chip:hover { border-color:var(--electric); color:var(--electric); transform:translateY(-2px); box-shadow:0 4px 12px rgba(9,132,227,0.1); }
         .credential-chip i { font-size:0.9rem; color:var(--electric); }
 
-        /* SECTIONS */
+        /* ===== SECTION HEADERS ===== */
         .section-label { font-size:0.78rem; font-weight:700; color:var(--electric); text-transform:uppercase; letter-spacing:3px; margin-bottom:8px; }
         .section-title { font-size:clamp(1.8rem,3.5vw,2.5rem); font-weight:700; color:var(--navy); margin-bottom:12px; }
         .section-sub { color:var(--text-muted); max-width:550px; margin:0 auto; }
 
-        /* SERVICES */
-        .list-group-item { font-weight:600; padding:15px 20px; border-radius:10px!important; margin-bottom:10px; border:1px solid #eee; transition:all 0.3s; cursor:pointer; color:var(--text); }
-        .list-group-item:hover { background:var(--cloud); }
-        .list-group-item.active { background:var(--royal)!important; color:white!important; border-color:var(--royal)!important; }
-        .service-image-box { background:var(--cloud); border-radius:15px; height:100%; min-height:380px; display:flex; flex-direction:column; align-items:center; justify-content:center; border:1px solid #eee; padding:40px; text-align:center; }
+        /* ===== SERVICES — FIX #4: tarjetas expandibles, funciona en mobile y desktop ===== */
+        .service-card {
+            border: 1px solid #f1f2f6;
+            border-radius: 16px;
+            background: var(--white);
+            overflow: hidden;
+            transition: all 0.4s var(--ease);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        .service-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.06); }
 
-        /* DISEASES */
+        .service-card__header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 24px 28px;
+            cursor: pointer;
+            transition: background 0.3s;
+            user-select: none;
+        }
+        .service-card__header:hover { background: var(--cloud); }
+
+        .service-card__icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(9,132,227,0.08), rgba(30,55,153,0.08));
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.3rem;
+            color: var(--electric);
+            transition: all 0.3s var(--ease);
+        }
+        .service-card.active .service-card__icon {
+            background: var(--royal);
+            color: var(--white);
+        }
+
+        .service-card__title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text);
+            flex: 1;
+            margin: 0;
+        }
+
+        .service-card__arrow {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            transition: transform 0.3s var(--ease);
+            flex-shrink: 0;
+        }
+        .service-card.active .service-card__arrow { transform: rotate(180deg); color: var(--electric); }
+
+        .service-card__body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s var(--ease), padding 0.3s;
+            padding: 0 28px;
+        }
+        .service-card.active .service-card__body {
+            max-height: 400px;
+            padding: 0 28px 28px;
+        }
+
+        .service-card__body p {
+            color: var(--text-muted);
+            line-height: 1.75;
+            font-size: 0.95rem;
+            margin: 0;
+            padding-top: 4px;
+            border-top: 1px solid #f1f2f6;
+            padding-top: 20px;
+        }
+
+        /* ===== DISEASES ===== */
         .condition-card { border:1px solid #f1f2f6; border-radius:15px; padding:30px; background:white; transition:all 0.4s var(--ease); height:100%; box-shadow:0 5px 15px rgba(0,0,0,0.02); }
         .condition-card:hover { transform:translateY(-5px); box-shadow:0 10px 30px rgba(0,0,0,0.05); border-color:var(--electric); }
         .condition-icon { font-size:3rem; color:var(--electric)!important; margin-bottom:20px; display:block; }
         svg.condition-icon { width:3rem; height:3rem; margin:0 auto 20px auto; display:block; fill:var(--electric); }
 
-        /* PAYMENTS */
+        /* ===== PAYMENTS ===== */
         .payment-icon { font-size:2.5rem; color:var(--royal); }
 
-        /* CTA BAND */
+        /* ===== CTA BAND ===== */
         .cta-band { background:var(--royal); }
         .cta-band .btn { transition:all 0.3s var(--ease); }
         .cta-band .btn:hover { transform:translateY(-2px); box-shadow:0 8px 25px rgba(0,0,0,0.2); }
 
-        /* CONTACT */
+        /* ===== CONTACT ===== */
         .map-wrapper { position:relative; padding-bottom:75%; height:0; overflow:hidden; border-radius:12px; border:1px solid #ddd; }
         .map-wrapper iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
 
-        /* WHATSAPP FLOTANTE */
-        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; color: #FFF !important; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 6px 24px rgba(37, 211, 102, 0.35); z-index: 9999; text-decoration: none; transition: all 0.3s ease; }
-        .whatsapp-float:hover { background-color: #128c7e; color: #FFF !important; transform: translateY(-3px) scale(1.05); }
+        /* ===== WHATSAPP ===== */
+        .whatsapp-float {
+            position:fixed; bottom:30px; right:30px;
+            background:#25d366; color:white!important;
+            width: 56px; height: 56px; border-radius: 50%;
+            font-size: 1.6rem;
+            box-shadow:0 6px 24px rgba(37,211,102,0.35); z-index:1000;
+            text-decoration:none; transition:all 0.3s var(--ease);
+            display:flex; align-items:center; justify-content: center;
+        }
+        .whatsapp-float:hover { background:#128c7e; color:white!important; transform:translateY(-3px); }
 
-        /* FOOTER */
+        /* ===== FOOTER ===== */
         footer { background:var(--navy); color:rgba(255,255,255,0.8); padding:40px 0 20px; }
 
-        /* RESPONSIVE */
+        /* ===== RESPONSIVE ===== */
         @media(max-width:991px){
             .about__inner{flex-direction:column}
-            .about__visual{position:relative;height:auto;min-height:50vh;flex:none;padding:60px 24px}
-            .about__text{padding:60px 24px 80px;max-width:100%}
+            .about__visual{position:relative;height:auto;min-height:auto;flex:none;padding:60px 24px}
+            .about__text{padding:40px 24px 80px;max-width:100%}
             .about__badge{bottom:-12px;right:8px}
         }
         @media(max-width:576px){
-            .hero__headline{font-size:2.4rem}
-            .about__photo-frame{max-width:280px}
+            .hero__headline { font-size: 2rem; }
+            .hero__tag { font-size: 0.72rem; padding: 6px 14px; margin-bottom: 24px; }
+            .hero__cta { padding: 14px 28px; font-size: 0.95rem; }
+            .about__photo-frame{max-width:260px}
+            .hero__scroll-hint { bottom: 20px; }
+            .service-card__header { padding: 18px 20px; gap: 12px; }
+            .service-card.active .service-card__body { padding: 0 20px 20px; }
+            .condition-card { padding: 24px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- TOP BAR -->
     <div class="top-bar-legal text-center fw-semibold">
         <div class="container">Aviso Cofepris: XXXXXXXX &nbsp;|&nbsp; Céd. Prof: XXXXXXX &nbsp;|&nbsp; Céd. Esp: XXXXXXX</div>
     </div>
 
+    <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#"><i class="bi bi-lungs-fill fs-2 me-2 text-accent"></i> ALVEOS</a>
@@ -167,9 +262,8 @@
         </div>
     </nav>
 
-   <a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20cita" target="_blank" class="whatsapp-float" aria-label="Agendar por WhatsApp">
-    <i class="bi bi-whatsapp"></i>
-    </a>
+    <!-- WHATSAPP (solo ícono) -->
+    <a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20cita" target="_blank" class="whatsapp-float" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
 
     <!-- HERO -->
     <section class="hero" id="hero">
@@ -213,63 +307,74 @@
         </div>
     </section>
 
-    <!-- SERVICIOS -->
-    <section id="servicios" class="container my-5 py-5" style="border-top:1px solid rgba(0,0,0,0.04);">
-        <div class="mb-5 text-center">
-            <p class="section-label reveal">Servicios</p>
-            <h2 class="section-title reveal">Servicios y estudios especializados<br>en salud respiratoria</h2>
-            <p class="section-sub reveal">Conoce las evaluaciones y procedimientos que realizamos para cuidar tu salud respiratoria.</p>
-        </div>
-        <div class="row g-4">
-            <div class="col-md-5 reveal">
-                <div class="list-group list-group-flush gap-2" id="list-tab" role="tablist">
-                    <a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#list-checkup" role="tab"><i class="bi bi-clipboard2-pulse me-3"></i>Check up respiratorio</a>
-                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#list-espiro" role="tab"><i class="bi bi-lungs me-3"></i>Espirometría simple y con broncodilatador</a>
-                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#list-fumar" role="tab"><i class="bi bi-bandaid me-3"></i>Tratamiento para dejar de fumar</a>
-                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#list-asma" role="tab"><i class="bi bi-activity me-3"></i>Seguimiento de asma y EPOC</a>
-                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#list-derrames" role="tab"><i class="bi bi-droplet me-3"></i>Manejo de derrames pleurales</a>
-                </div>
+    <!-- SERVICIOS — FIX #4: tarjetas expandibles (accordion) -->
+    <section id="servicios" class="py-5" style="border-top:1px solid rgba(0,0,0,0.04); background: var(--cloud);">
+        <div class="container my-5">
+            <div class="mb-5 text-center">
+                <p class="section-label reveal">Servicios</p>
+                <h2 class="section-title reveal">Servicios y estudios especializados<br>en salud respiratoria</h2>
+                <p class="section-sub reveal">Conoce las evaluaciones y procedimientos que realizamos para cuidar tu salud respiratoria.</p>
             </div>
-            <div class="col-md-7 reveal reveal-d2">
-                <div class="tab-content">
-                    <div class="tab-pane fade show active" id="list-checkup" role="tabpanel">
-                        <div class="service-image-box">
-                            <i class="bi bi-clipboard2-pulse text-accent mb-3" style="font-size:3rem;"></i>
-                            <h4 class="fw-bold text-dark">Check up respiratorio</h4>
-                            <p class="text-muted">Evaluación médica integral preventiva para conocer el estado funcional de tus pulmones, ideal para detectar anomalías en etapas tempranas antes de que presenten síntomas severos.</p>
-                            <div class="w-100 mt-4 rounded d-flex align-items-center justify-content-center" style="height:150px;background:#e9ecef;border:1px dashed #ccc;"><span class="text-muted small"><i class="bi bi-image me-2"></i>Aquí irá una imagen representativa</span></div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Servicio 1 -->
+                    <div class="service-card mb-3 reveal active" data-service>
+                        <div class="service-card__header" onclick="toggleService(this)">
+                            <div class="service-card__icon"><i class="bi bi-clipboard2-pulse"></i></div>
+                            <h4 class="service-card__title">Check up respiratorio</h4>
+                            <i class="bi bi-chevron-down service-card__arrow"></i>
+                        </div>
+                        <div class="service-card__body">
+                            <p>Evaluación médica integral preventiva para conocer el estado funcional de tus pulmones, ideal para detectar anomalías en etapas tempranas antes de que presenten síntomas severos.</p>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="list-espiro" role="tabpanel">
-                        <div class="service-image-box">
-                            <i class="bi bi-lungs text-accent mb-3" style="font-size:3rem;"></i>
-                            <h4 class="fw-bold text-dark">Espirometría</h4>
-                            <p class="text-muted">Prueba fundamental de función pulmonar que mide la cantidad y velocidad del aire que puedes inhalar y exhalar. Esencial para el diagnóstico preciso de asma y EPOC.</p>
-                            <div class="w-100 mt-4 rounded d-flex align-items-center justify-content-center" style="height:150px;background:#e9ecef;border:1px dashed #ccc;"><span class="text-muted small"><i class="bi bi-image me-2"></i>Aquí irá una imagen representativa</span></div>
+
+                    <!-- Servicio 2 -->
+                    <div class="service-card mb-3 reveal reveal-d1" data-service>
+                        <div class="service-card__header" onclick="toggleService(this)">
+                            <div class="service-card__icon"><i class="bi bi-lungs"></i></div>
+                            <h4 class="service-card__title">Espirometría simple y con broncodilatador</h4>
+                            <i class="bi bi-chevron-down service-card__arrow"></i>
+                        </div>
+                        <div class="service-card__body">
+                            <p>Prueba fundamental de función pulmonar que mide la cantidad y velocidad del aire que puedes inhalar y exhalar. Esencial para el diagnóstico preciso de asma y EPOC.</p>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="list-fumar" role="tabpanel">
-                        <div class="service-image-box">
-                            <i class="bi bi-bandaid text-accent mb-3" style="font-size:3rem;"></i>
-                            <h4 class="fw-bold text-dark">Cesación Tabáquica</h4>
-                            <p class="text-muted">Acompañamiento médico experto y estrategias terapéuticas efectivas para ayudarte a superar la dependencia al tabaco, reduciendo significativamente tus riesgos de salud.</p>
-                            <div class="w-100 mt-4 rounded d-flex align-items-center justify-content-center" style="height:150px;background:#e9ecef;border:1px dashed #ccc;"><span class="text-muted small"><i class="bi bi-image me-2"></i>Aquí irá una imagen representativa</span></div>
+
+                    <!-- Servicio 3 -->
+                    <div class="service-card mb-3 reveal reveal-d2" data-service>
+                        <div class="service-card__header" onclick="toggleService(this)">
+                            <div class="service-card__icon"><i class="bi bi-bandaid"></i></div>
+                            <h4 class="service-card__title">Tratamiento para dejar de fumar</h4>
+                            <i class="bi bi-chevron-down service-card__arrow"></i>
+                        </div>
+                        <div class="service-card__body">
+                            <p>Acompañamiento médico experto y estrategias terapéuticas efectivas para ayudarte a superar la dependencia al tabaco, reduciendo significativamente tus riesgos de salud.</p>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="list-asma" role="tabpanel">
-                        <div class="service-image-box">
-                            <i class="bi bi-activity text-accent mb-3" style="font-size:3rem;"></i>
-                            <h4 class="fw-bold text-dark">Control de Asma y EPOC</h4>
-                            <p class="text-muted">Monitoreo continuo y ajuste de tratamientos para enfermedades crónicas. Nuestro objetivo es minimizar las crisis y asegurar que mantengas tu ritmo de vida sin limitaciones respiratorias.</p>
-                            <div class="w-100 mt-4 rounded d-flex align-items-center justify-content-center" style="height:150px;background:#e9ecef;border:1px dashed #ccc;"><span class="text-muted small"><i class="bi bi-image me-2"></i>Aquí irá una imagen representativa</span></div>
+
+                    <!-- Servicio 4 -->
+                    <div class="service-card mb-3 reveal reveal-d3" data-service>
+                        <div class="service-card__header" onclick="toggleService(this)">
+                            <div class="service-card__icon"><i class="bi bi-activity"></i></div>
+                            <h4 class="service-card__title">Seguimiento de asma y EPOC</h4>
+                            <i class="bi bi-chevron-down service-card__arrow"></i>
+                        </div>
+                        <div class="service-card__body">
+                            <p>Monitoreo continuo y ajuste de tratamientos para enfermedades crónicas. Nuestro objetivo es minimizar las crisis y asegurar que mantengas tu ritmo de vida sin limitaciones respiratorias.</p>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="list-derrames" role="tabpanel">
-                        <div class="service-image-box">
-                            <i class="bi bi-droplet text-accent mb-3" style="font-size:3rem;"></i>
-                            <h4 class="fw-bold text-dark">Manejo de Derrames Pleurales</h4>
-                            <p class="text-muted">Evaluación, diagnóstico y manejo especializado de la acumulación anormal de líquido alrededor de los pulmones, aliviando la dificultad para respirar mediante abordajes seguros.</p>
-                            <div class="w-100 mt-4 rounded d-flex align-items-center justify-content-center" style="height:150px;background:#e9ecef;border:1px dashed #ccc;"><span class="text-muted small"><i class="bi bi-image me-2"></i>Aquí irá una imagen representativa</span></div>
+
+                    <!-- Servicio 5 -->
+                    <div class="service-card mb-3 reveal reveal-d4" data-service>
+                        <div class="service-card__header" onclick="toggleService(this)">
+                            <div class="service-card__icon"><i class="bi bi-droplet"></i></div>
+                            <h4 class="service-card__title">Manejo de derrames pleurales</h4>
+                            <i class="bi bi-chevron-down service-card__arrow"></i>
+                        </div>
+                        <div class="service-card__body">
+                            <p>Evaluación, diagnóstico y manejo especializado de la acumulación anormal de líquido alrededor de los pulmones, aliviando la dificultad para respirar mediante abordajes seguros.</p>
                         </div>
                     </div>
                 </div>
@@ -278,7 +383,7 @@
     </section>
 
     <!-- ENFERMEDADES -->
-    <section id="enfermedades" class="bg-light py-5" style="border-top:1px solid rgba(0,0,0,0.04);">
+    <section id="enfermedades" class="py-5 bg-white" style="border-top:1px solid rgba(0,0,0,0.04);">
         <div class="container my-5">
             <div class="mb-5 text-center">
                 <p class="section-label reveal">Enfermedades</p>
@@ -297,7 +402,7 @@
     </section>
 
     <!-- PAGOS -->
-    <section class="py-5 bg-white">
+    <section class="py-5" style="background: var(--cloud); border-top:1px solid rgba(0,0,0,0.04);">
         <div class="container text-center">
             <h4 class="mb-4 text-dark fw-bold reveal">Métodos de pago aceptados</h4>
             <div class="d-flex justify-content-center gap-5 flex-wrap reveal reveal-d1">
@@ -366,6 +471,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script>
+    // Accordion de servicios
+    function toggleService(header) {
+        var card = header.parentElement;
+        var wasActive = card.classList.contains('active');
+
+        // Cerrar todas
+        document.querySelectorAll('.service-card').forEach(function(c) {
+            c.classList.remove('active');
+        });
+
+        // Abrir la clickeada (si no estaba abierta)
+        if (!wasActive) {
+            card.classList.add('active');
+        }
+    }
+
     (function(){
         'use strict';
 
@@ -391,23 +512,22 @@
             gsap.to('.hero__bg',{ yPercent:30, ease:'none', scrollTrigger:{ trigger:'.hero', start:'top top', end:'bottom top', scrub:true }});
             gsap.to('.hero__content',{ opacity:0, y:-60, ease:'none', scrollTrigger:{ trigger:'.hero', start:'60% top', end:'bottom top', scrub:true }});
 
-            // All .reveal elements
+            // FIX #2: trigger más temprano (top 94%) y animación más corta
             gsap.utils.toArray('.reveal').forEach(function(el){
                 gsap.to(el,{
-                    opacity:1, y:0, duration:0.9, ease:'power3.out',
-                    scrollTrigger:{ trigger:el, start:'top 88%', toggleActions:'play none none reverse' }
+                    opacity:1, y:0, duration:0.6, ease:'power3.out',
+                    scrollTrigger:{ trigger:el, start:'top 94%', toggleActions:'play none none none' }
                 });
             });
 
         } else {
-            // Fallback: show hero immediately
+            // Fallback
             document.querySelectorAll('.hero__tag,.hero__headline .line-inner,.hero__sub,.hero__cta,.hero__scroll-hint').forEach(function(el){
                 el.style.opacity='1'; el.style.transform='none';
             });
-            // IntersectionObserver for reveals
             var obs = new IntersectionObserver(function(entries){
                 entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });
-            },{ threshold:0.1 });
+            },{ threshold:0.05 });
             document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
         }
     })();
