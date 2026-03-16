@@ -13,15 +13,15 @@
         h1, h2, h3, h4, .text-accent { font-weight: 700; color: #1e3799; }
         
         /* Top Bar Legal */
-        .top-bar-legal { background-color: #a68b5c; color: white; font-size: 0.8rem; padding: 5px 0; }
+        .top-bar-legal { background-color: #1e3799; color: white; font-size: 0.8rem; padding: 8px 0; }
         
         /* Navbar */
         .navbar { background: white; border-bottom: 1px solid #eee; padding: 15px 0; }
         .navbar-brand { font-weight: 700; color: #1e3799; font-size: 1.5rem; }
         .nav-link { font-weight: 600; color: #2d3436; margin: 0 10px; transition: 0.3s; }
         .nav-link:hover { color: #0984e3; }
-        .social-icons a { color: #a68b5c; font-size: 1.2rem; margin-left: 15px; transition: 0.3s; }
-        .social-icons a:hover { color: #1e3799; }
+        .social-icons a { color: #1e3799; font-size: 1.8rem; margin-left: 20px; transition: 0.3s; }
+        .social-icons a:hover { color: #0984e3; transform: scale(1.1); }
         
         /* Hero Section */
         .hero-section { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 120px 0; }
@@ -40,21 +40,22 @@
         .condition-icon { font-size: 3rem; color: #0984e3; margin-bottom: 20px; display: block; }
         
         /* Lista de Servicios Interactiva */
-        .list-group-item-action { font-weight: 600; padding: 15px 20px; border-radius: 10px !important; margin-bottom: 10px; border: 1px solid #eee; transition: 0.3s; }
-        .list-group-item-action:hover, .list-group-item-action.active { background-color: #1e3799; color: white; border-color: #1e3799; }
-        .service-image-box { background-color: #f8f9fa; border-radius: 15px; height: 100%; min-height: 300px; display: flex; align-items: center; justify-content: center; border: 1px solid #eee; }
+        .list-group-item { font-weight: 600; padding: 15px 20px; border-radius: 10px !important; margin-bottom: 10px; border: 1px solid #eee; transition: 0.3s; cursor: pointer; color: #2d3436; }
+        .list-group-item:hover { background-color: #f8f9fa; }
+        .list-group-item.active { background-color: #1e3799 !important; color: white !important; border-color: #1e3799 !important; }
+        .service-image-box { background-color: #f8f9fa; border-radius: 15px; height: 100%; min-height: 380px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid #eee; padding: 40px; text-align: center; }
 
         /* Pagos y Ubicacion */
         .payment-icon { font-size: 2.5rem; color: #1e3799; }
-        .map-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin-bottom: 20px; border: 1px solid #ddd; }
+        .map-wrapper { position: relative; padding-bottom: 75%; height: 0; overflow: hidden; border-radius: 12px; border: 1px solid #ddd; }
         .map-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-        footer { background: #2d3436; color: rgba(255,255,255,0.8); padding: 50px 0 20px; }
+        footer { background: #2d3436; color: rgba(255,255,255,0.8); padding: 40px 0 20px; }
     </style>
 </head>
 <body>
 
-    <div class="top-bar-legal text-center">
+    <div class="top-bar-legal text-center fw-semibold">
         <div class="container">
             Aviso Cofepris: XXXXXXXX | Céd. Prof: XXXXXXX | Céd. Esp: XXXXXXX
         </div>
@@ -70,15 +71,15 @@
             </button>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-link"><a class="nav-link" href="#">Inicio</a></li>
-                    <li class="nav-link"><a class="nav-link" href="#servicios">Servicios</a></li>
-                    <li class="nav-link"><a class="nav-link" href="#enfermedades">Enfermedades</a></li>
-                    <li class="nav-link"><a class="nav-link" href="#ubicacion">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#enfermedades">Enfermedades</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto-final">Contacto</a></li>
                 </ul>
             </div>
             <div class="social-icons d-none d-lg-flex align-items-center">
                 <a href="https://www.instagram.com/dr.williamlara/" target="_blank"><i class="bi bi-instagram"></i></a>
-                <a href="#ubicacion"><i class="bi bi-geo-alt-fill"></i></a>
+                <a href="#contacto-final"><i class="bi bi-geo-alt-fill"></i></a>
             </div>
         </div>
     </nav>
@@ -98,21 +99,18 @@
     <section class="container my-5 py-5" id="sobre-mi">
         <div class="row g-5 align-items-center">
             <div class="col-md-7">
-                <h2 class="mb-4">Dr. William César Lara Vázquez</h2>
+                <h3 class="text-accent mb-2 fs-5 text-uppercase" style="letter-spacing: 2px;">¿Quién soy?</h3>
+                <h2 class="mb-4 fw-bold">Dr. William César Lara Vázquez</h2>
                 <p class="lead text-muted mb-4">Neumólogo formado en el INER. Alta Especialidad en EPOC.</p>
                 <p>Me gradué del <strong>Instituto Nacional de Enfermedades Respiratorias (INER)</strong>. Actualmente curso la alta especialidad en EPOC en la misma institución, profundizando en el manejo avanzado de patologías complejas.</p>
                 <p>Mi práctica clínica está profundamente comprometida con el avance científico y la innovación. Tengo un gran interés en el campo de la Inteligencia Artificial; actualmente aprendo y exploro estas herramientas, ya que considero que son habilidades sumamente útiles para el futuro de la medicina y para optimizar la atención de mis pacientes.</p>
             </div>
             <div class="col-md-5">
-                <div class="p-5 text-center bg-light border rounded-5">
-                    <i class="bi bi-heart-pulse condition-icon"></i>
-                    <h4>Enfoque Clínico</h4>
-                    <ul class="list-unstyled mt-3 text-start small text-muted">
-                        <li class="mb-2">✓ Manejo avanzado de EPOC y Asma.</li>
-                        <li class="mb-2">✓ Fisiología respiratoria avanzada.</li>
-                        <li class="mb-2">✓ Tecnologías aplicadas al monitoreo pulmonar.</li>
-                        <li class="mb-2">✓ Atención especializada en Ciudad de México.</li>
-                    </ul>
+                <div class="text-center bg-light rounded-5 d-flex align-items-center justify-content-center shadow-sm" style="min-height: 420px; border: 2px dashed #b2bec3 !important;">
+                    <div class="text-muted">
+                        <i class="bi bi-camera fs-1"></i>
+                        <p class="mt-3 fw-semibold">Espacio reservado para<br>fotografía clínica</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -121,117 +119,228 @@
     <section id="servicios" class="container my-5 py-5 border-top">
         <div class="mb-5">
             <h2 class="text-accent mb-2">SERVICIOS</h2>
-            <h3 class="fw-bold display-6">Servicios y estudios especializados en salud respiratoria</h3>
+            <h3 class="fw-bold display-6">Servicios y estudios especializados</h3>
         </div>
         <div class="row g-4">
             <div class="col-md-5">
-                <div class="list-group list-group-flush gap-2">
-                    <div class="list-group-item list-group-item-action active"><i class="bi bi-clipboard2-pulse me-3"></i>Check up respiratorio</div>
-                    <div class="list-group-item list-group-item-action"><i class="bi bi-lungs me-3"></i>Espirometría simple y con broncodilatador</div>
-                    <div class="list-group-item list-group-item-action"><i class="bi bi-bandaid me-3"></i>Tratamiento para dejar de fumar</div>
-                    <div class="list-group-item list-group-item-action"><i class="bi bi-activity me-3"></i>Seguimiento de asma y EPOC</div>
-                    <div class="list-group-item list-group-item-action"><i class="bi bi-search me-3"></i>Diagnóstico pulmonar avanzado</div>
-                    <div class="list-group-item list-group-item-action"><i class="bi bi-droplet me-3"></i>Manejo de derrames pleurales</div>
+                <div class="list-group list-group-flush gap-2" id="list-tab" role="tablist">
+                    <a class="list-group-item list-group-item-action active" id="list-checkup-list" data-bs-toggle="list" href="#list-checkup" role="tab">
+                        <i class="bi bi-clipboard2-pulse me-3"></i>Check up respiratorio
+                    </a>
+                    <a class="list-group-item list-group-item-action" id="list-espiro-list" data-bs-toggle="list" href="#list-espiro" role="tab">
+                        <i class="bi bi-lungs me-3"></i>Espirometría simple y con broncodilatador
+                    </a>
+                    <a class="list-group-item list-group-item-action" id="list-fumar-list" data-bs-toggle="list" href="#list-fumar" role="tab">
+                        <i class="bi bi-bandaid me-3"></i>Tratamiento para dejar de fumar
+                    </a>
+                    <a class="list-group-item list-group-item-action" id="list-asma-list" data-bs-toggle="list" href="#list-asma" role="tab">
+                        <i class="bi bi-activity me-3"></i>Seguimiento de asma y EPOC
+                    </a>
+                    <a class="list-group-item list-group-item-action" id="list-diag-list" data-bs-toggle="list" href="#list-diag" role="tab">
+                        <i class="bi bi-search me-3"></i>Diagnóstico pulmonar avanzado
+                    </a>
+                    <a class="list-group-item list-group-item-action" id="list-derrames-list" data-bs-toggle="list" href="#list-derrames" role="tab">
+                        <i class="bi bi-droplet me-3"></i>Manejo de derrames pleurales
+                    </a>
                 </div>
             </div>
+            
             <div class="col-md-7">
-                <div class="service-image-box text-muted">
-                    <div class="text-center p-4">
-                        <i class="bi bi-image fs-1 mb-3 text-muted"></i>
-                        <h5>Imágenes Próximamente</h5>
-                        <p class="small">Evaluación completa de la salud pulmonar para detectar problemas a tiempo.</p>
+                <div class="tab-content" id="nav-tabContent">
+                    
+                    <div class="tab-pane fade show active" id="list-checkup" role="tabpanel">
+                        <div class="service-image-box">
+                            <i class="bi bi-clipboard2-pulse text-accent mb-3" style="font-size: 3rem;"></i>
+                            <h4 class="fw-bold text-dark">Check up respiratorio</h4>
+                            <p class="text-muted">Evaluación médica integral preventiva para conocer el estado funcional de tus pulmones, ideal para detectar anomalías en etapas tempranas antes de que presenten síntomas severos.</p>
+                            <div class="w-100 mt-4 rounded d-flex align-items-center justify-content-center" style="height: 150px; background-color: #e9ecef; border: 1px dashed #ccc;">
+                                <span class="text-muted small"><i class="bi bi-image me-2"></i>Aquí irá una imagen representativa</span>
+                            </div>
+                        </div>
                     </div>
+                    
+                    <div class="tab-pane fade" id="list-espiro" role="tabpanel">
+                        <div class="service-image-box">
+                            <i class="bi bi-lungs text-accent mb-3" style="font-size: 3rem;"></i>
+                            <h4 class="fw-bold text-dark">Espirometría</h4>
+                            <p class="text-muted">Prueba fundamental de función pulmonar que mide la cantidad y velocidad del aire que puedes inhalar y exhalar. Esencial para el diagnóstico preciso de asma y EPOC.</p>
+                            <div class="w-100 mt-4 rounded d-flex align-items-center justify-content-center" style="height: 150px; background-color: #e9ecef; border: 1px dashed #ccc;">
+                                <span class="text-muted small"><i class="bi bi-image me-2"></i>Aquí irá una imagen representativa</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="list-fumar" role="tabpanel">
+                        <div class="service-image-box">
+                            <i class="bi bi-bandaid text-accent mb-3" style="font-size: 3rem;"></i>
+                            <h4 class="fw-bold text-dark">Cesación Tabáquica</h4>
+                            <p class="text-muted">Acompañamiento médico experto y estrategias terapéuticas efectivas para ayudarte a superar la dependencia al tabaco, reduciendo significativamente tus riesgos de salud.</p>
+                            <div class="w-100 mt-4 rounded d-flex align-items-center justify-content-center" style="height: 150px; background-color: #e9ecef; border: 1px dashed #ccc;">
+                                <span class="text-muted small"><i class="bi bi-image me-2"></i>Aquí irá una imagen representativa</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="list-asma" role="tabpanel">
+                        <div class="service-image-box">
+                            <i class="bi bi-activity text-accent mb-3" style="font-size: 3rem;"></i>
+                            <h4 class="fw-bold text-dark">Control de Asma y EPOC</h4>
+                            <p class="text-muted">Monitoreo continuo y ajuste de tratamientos para enfermedades crónicas. Nuestro objetivo es minimizar las crisis y asegurar que mantengas tu ritmo de vida sin limitaciones respiratorias.</p>
+                            <div class="w-100 mt-4 rounded d-flex align-items-center justify-content-center" style="height: 150px; background-color: #e9ecef; border: 1px dashed #ccc;">
+                                <span class="text-muted small"><i class="bi bi-image me-2"></i>Aquí irá una imagen representativa</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="list-diag" role="tabpanel">
+                        <div class="service-image-box">
+                            <i class="bi bi-search text-accent mb-3" style="font-size: 3rem;"></i>
+                            <h4 class="fw-bold text-dark">Diagnóstico Pulmonar</h4>
+                            <p class="text-muted">Abordaje clínico exhaustivo de síntomas como tos crónica, falta de aire o silbidos, apoyado en la interpretación precisa de radiografías, tomografías y pruebas de laboratorio.</p>
+                            <div class="w-100 mt-4 rounded d-flex align-items-center justify-content-center" style="height: 150px; background-color: #e9ecef; border: 1px dashed #ccc;">
+                                <span class="text-muted small"><i class="bi bi-image me-2"></i>Aquí irá una imagen representativa</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="list-derrames" role="tabpanel">
+                        <div class="service-image-box">
+                            <i class="bi bi-droplet text-accent mb-3" style="font-size: 3rem;"></i>
+                            <h4 class="fw-bold text-dark">Manejo de Derrames Pleurales</h4>
+                            <p class="text-muted">Evaluación, diagnóstico y manejo especializado de la acumulación anormal de líquido alrededor de los pulmones, aliviando la dificultad para respirar mediante abordajes seguros.</p>
+                            <div class="w-100 mt-4 rounded d-flex align-items-center justify-content-center" style="height: 150px; background-color: #e9ecef; border: 1px dashed #ccc;">
+                                <span class="text-muted small"><i class="bi bi-image me-2"></i>Aquí irá una imagen representativa</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="enfermedades" class="bg-light py-5">
+    <section id="enfermedades" class="bg-light py-5 border-top">
         <div class="container my-5">
             <div class="mb-5 text-center">
                 <h2 class="text-accent mb-2">ENFERMEDADES</h2>
                 <h3 class="fw-bold display-6">Conoce qué enfermedades tratamos</h3>
-                <p class="text-muted">Conoce las principales condiciones que tratamos, siempre con el objetivo de que respires mejor.</p>
+                <p class="text-muted">Atención médica fundamentada en rigor científico, explicada de forma clara y centrada en recuperar tu bienestar.</p>
             </div>
             <div class="row g-4">
+                
                 <div class="col-md-4">
                     <div class="condition-card text-center">
                         <i class="bi bi-droplet-half condition-icon"></i>
                         <h4>Asma</h4>
-                        <p class="text-muted small">Enfermedad respiratoria crónica que inflama y estrecha las vías respiratorias.</p>
+                        <p class="text-muted small">Inflamación crónica de las vías respiratorias que causa episodios de silbidos, falta de aire y tos. Controlarla adecuadamente te permite vivir sin limitaciones.</p>
                     </div>
                 </div>
+                
                 <div class="col-md-4">
                     <div class="condition-card text-center">
                         <i class="bi bi-lungs condition-icon"></i>
                         <h4>EPOC</h4>
-                        <p class="text-muted small">Enfermedad pulmonar obstructiva crónica, progresiva y que dificulta la respiración.</p>
+                        <p class="text-muted small">Daño pulmonar progresivo, comúnmente asociado al humo, que dificulta el paso del aire. Un manejo médico experto ralentiza su avance y mejora tu energía diaria.</p>
                     </div>
                 </div>
+                
                 <div class="col-md-4">
                     <div class="condition-card text-center">
                         <i class="bi bi-virus condition-icon"></i>
                         <h4>Neumonía</h4>
-                        <p class="text-muted small">Infección pulmonar que inflama los sacos de aire, requiriendo atención médica oportuna.</p>
+                        <p class="text-muted small">Infección aguda en los pulmones que requiere diagnóstico preciso y tratamiento médico inmediato para asegurar una recuperación total y evitar complicaciones.</p>
                     </div>
                 </div>
+                
                 <div class="col-md-4">
                     <div class="condition-card text-center">
-                        <i class="bi bi-wind condition-icon"></i>
-                        <h4>Bronquitis crónica</h4>
-                        <p class="text-muted small">Inflamación persistente de los bronquios, causando tos crónica.</p>
+                        <i class="bi bi-moon-stars condition-icon"></i>
+                        <h4>Apnea Obstructiva del Sueño</h4>
+                        <p class="text-muted small">Pausas en la respiración mientras duermes. Su diagnóstico y tratamiento elimina ronquidos, fatiga diurna crónica y protege tu salud cardiovascular.</p>
                     </div>
                 </div>
+                
                 <div class="col-md-4">
                     <div class="condition-card text-center">
                         <i class="bi bi-moisture condition-icon"></i>
                         <h4>Derrames Pleurales</h4>
-                        <p class="text-muted small">Acumulación de líquido entre los tejidos que recubren los pulmones y el tórax.</p>
+                        <p class="text-muted small">Acumulación anormal de líquido alrededor del pulmón que causa dolor torácico o sensación de ahogo. Requiere estudio especializado y, en ocasiones, drenaje.</p>
                     </div>
                 </div>
+                
                 <div class="col-md-4">
                     <div class="condition-card text-center">
                         <i class="bi bi-bandaid condition-icon"></i>
                         <h4>Tabaquismo</h4>
-                        <p class="text-muted small">Evaluación de daño pulmonar y estrategias de cesación del hábito tabáquico.</p>
+                        <p class="text-muted small">Dependencia que daña directamente tu sistema respiratorio. Te acompañamos con estrategias médicas efectivas para dejar de fumar y evaluar tu función pulmonar actual.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-5 border-bottom">
+    <section class="py-5 bg-white">
         <div class="container text-center">
-            <h4 class="mb-4">Métodos de pago aceptados</h4>
+            <h4 class="mb-4 text-dark fw-bold">Métodos de pago aceptados</h4>
             <div class="d-flex justify-content-center gap-5 flex-wrap">
                 <div>
                     <i class="bi bi-cash-coin payment-icon"></i>
-                    <p class="mt-2 fw-bold">Efectivo</p>
+                    <p class="mt-2 fw-bold text-muted">Efectivo</p>
                 </div>
                 <div>
                     <i class="bi bi-credit-card payment-icon"></i>
-                    <p class="mt-2 fw-bold">Tarjeta</p>
+                    <p class="mt-2 fw-bold text-muted">Tarjeta</p>
                 </div>
                 <div>
                     <i class="bi bi-bank payment-icon"></i>
-                    <p class="mt-2 fw-bold">Transferencia</p>
+                    <p class="mt-2 fw-bold text-muted">Transferencia</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="ubicacion" class="bg-light py-5">
-        <div class="container my-5">
-            <div class="row justify-content-center g-4">
-                <div class="col-md-8 text-center">
-                    <h2 class="fw-bold mb-4">Nuestra Ubicación</h2>
-                    <h4 class="mb-3 text-accent"><i class="bi bi-geo-alt-fill me-2"></i>Col. San José Insurgentes</h4>
-                    <p class="mb-4"><strong>Saturnino Herrán 59</strong>, <br> Benito Juárez, 03900 Ciudad de México, CDMX</p>
+    <section class="py-5 text-center" style="background-color: #1e3799;">
+        <div class="container my-3">
+            <h2 class="fw-bold mb-3 text-white">¿Listo para respirar mejor?</h2>
+            <p class="lead mb-4 text-white-50">Agenda tu consulta y da el primer paso hacia una mejor salud respiratoria.</p>
+            <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="btn btn-light text-primary fw-bold px-4 py-3 rounded-pill shadow">Agenda tu cita hoy <i class="bi bi-calendar-check ms-2"></i></a>
+        </div>
+    </section>
+
+    <section id="contacto-final" class="bg-light py-5">
+        <div class="container my-4">
+            <div class="row g-5 align-items-center">
+                
+                <div class="col-lg-4">
+                    <h5 class="fw-bold text-dark mb-4"><i class="bi bi-geo-alt-fill text-danger me-2"></i> Hospital Santa Coleta</h5>
+                    <p class="text-muted mb-1">Saturnino Herrán 59</p>
+                    <p class="text-muted mb-1">San José Insurgentes, Benito Juárez,</p>
+                    <p class="text-muted mb-3">03900 Ciudad de México, CDMX</p>
+                    <p class="text-dark fw-bold mb-4">Consultorio 507</p>
                     
+                    <div class="p-3 bg-white rounded border mb-4 shadow-sm">
+                        <p class="text-dark small fw-bold mb-2"><i class="bi bi-clock me-2"></i>Horarios de atención:</p>
+                        <p class="text-muted small mb-1">Lunes a viernes: 16:00 a 20:30 hrs</p>
+                        <p class="text-muted small mb-2">Sábado y domingo: 12:00 a 16:00 hrs</p>
+                        <span class="badge bg-secondary">Previa Cita</span>
+                    </div>
+
+                    <p class="mb-1 fw-bold"><i class="bi bi-telephone-fill me-2 text-accent"></i> <a href="tel:5591708334" class="text-decoration-none text-dark">55 9170 8334</a></p>
+                </div>
+                
+                <div class="col-lg-4 border-start border-end px-lg-4">
+                    <h5 class="fw-bold text-dark mb-3">¿Tienes dudas?</h5>
+                    <p class="text-muted mb-4">Contáctame por WhatsApp o correo:</p>
+                    <a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20cita" target="_blank" class="btn btn-outline-success w-100 mb-4 py-2 fw-bold"><i class="bi bi-whatsapp me-2"></i> Escríbeme por WhatsApp</a>
+                    <p class="text-muted mb-0 small"><i class="bi bi-envelope-fill me-2 text-accent"></i> <a href="mailto:drwilliam.neumocare@gmail.com" class="text-decoration-none text-muted">drwilliam.neumocare@gmail.com</a></p>
+                </div>
+                
+                <div class="col-lg-4">
                     <div class="map-wrapper shadow-sm">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.513476214068!2d-99.1849186!3d19.3664719!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1fffae2ec1ad1%3A0xc3f8e6e58b9f7c0!2sSaturnino%20Herr%C3%A1n%2059%2C%20San%20Jos%C3%A9%20Insurgentes%2C%20Benito%20Ju%C3%A1rez%2C%2003900%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1710550000000!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="http://googleusercontent.com/maps.google.com/7" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -240,7 +349,7 @@
         <div class="container text-center">
             <h5 class="text-white mb-3 fw-bold">ALVEOS</h5>
             <p class="small mb-4 text-white-50">Innovación y Vanguardia en Salud Respiratoria</p>
-            <p class="mb-4"><a href="https://www.instagram.com/dr.williamlara/" target="_blank" class="text-white text-decoration-none"><i class="bi bi-instagram me-2"></i>@dr.williamlara</a></p>
+            <p class="mb-4"><a href="https://www.instagram.com/dr.williamlara/" target="_blank" class="text-white text-decoration-none fs-5"><i class="bi bi-instagram"></i></a></p>
             <p class="small mb-1 text-white-50">Dr. William César Lara Vázquez. Neumólogo formado en el INER.</p>
             <p class="small mb-0 text-white-50">Todos los derechos reservados © 2026.</p>
         </div>
