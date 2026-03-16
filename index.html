@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alveos | Dr. William César Lara Vázquez | Neumología</title>
+    <title>Alveos | Dr. William César Lara Vázquez | Neumología en CDMX</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; color: #2d3436; background-color: #ffffff; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; color: #2d3436; background-color: #ffffff; scroll-behavior: smooth; }
         h1, h2, h3, h4, .navbar-brand { font-weight: 700; color: #1e3799; }
         
         /* Navbar */
@@ -17,13 +17,14 @@
         .text-accent { color: #0984e3; }
         
         /* Hero Section */
-        .hero-section { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 140px 0; }
+        .hero-section { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 160px 0; }
         
         /* Botones */
-        .btn-primary-custom { background-color: #0984e3; color: white; padding: 12px 30px; border-radius: 8px; font-weight: bold; text-decoration: none; transition: 0.3s; border: none; display: inline-block; }
-        .btn-primary-custom:hover { background-color: #74b9ff; color: white; transform: translateY(-2px); }
+        .btn-primary-custom { background-color: #0984e3; color: white !important; padding: 12px 30px; border-radius: 8px; font-weight: bold; text-decoration: none; transition: 0.3s; border: none; display: inline-block; }
+        .btn-primary-custom:hover { background-color: #74b9ff; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(9, 132, 227, 0.3); }
+        
         .btn-outline-primary-custom { color: #0984e3; border: 2px solid #0984e3; padding: 10px 25px; border-radius: 8px; font-weight: bold; text-decoration: none; transition: 0.3s; }
-        .btn-outline-primary-custom:hover { background-color: #0984e3; color: white; }
+        .btn-outline-primary-custom:hover { background-color: #0984e3; color: white !important; }
 
         /* Tarjetas de Padecimientos */
         .condition-card { border: 1px solid #f1f2f6; border-radius: 15px; padding: 30px; background: white; transition: 0.3s; height: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.02); }
@@ -31,16 +32,19 @@
         .condition-icon { font-size: 3rem; color: #0984e3; margin-bottom: 20px; display: block; }
         
         /* Servicios y Estudios */
-        .service-list-item { padding: 15px 0; border-bottom: 1px solid #eee; }
-        .service-list-item i { color: #0984e3; margin-right: 10px; }
+        .service-list-item { padding: 15px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; }
+        .service-list-item i { color: #0984e3; margin-right: 15px; font-size: 1.2rem; }
         
         /* Ubicaciones */
-        .location-box { background-color: #f8f9fa; border-radius: 15px; padding: 30px; border: 1px solid #eee; height: 100%; }
-        .map-placeholder { background-color: #dfe6e9; color: #636e72; border-radius: 10px; height: 250px; display: flex; align-items: center; justify-content: center; font-style: italic; margin-bottom: 15px; }
+        .location-box { background-color: #f8f9fa; border-radius: 15px; padding: 40px; border: 1px solid #eee; height: 100%; }
+        .map-wrapper { position: relative; padding-bottom: 56.25%; /* Ratio 16:9 */ height: 0; overflow: hidden; border-radius: 12px; margin-bottom: 20px; border: 1px solid #ddd; }
+        .map-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
         /* Footer */
         footer { background: #2d3436; color: rgba(255,255,255,0.8); padding: 60px 0 20px; }
         footer h5 { color: white; }
+        footer a { color: rgba(255,255,255,0.8); text-decoration: none; transition: 0.3s; }
+        footer a:hover { color: #74b9ff; }
     </style>
 </head>
 <body>
@@ -48,10 +52,12 @@
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                ALVEOS <span class="fw-light fs-6">Neumología</span>
+                ALVEOS <span class="fw-light fs-6">Neumología CDMX</span>
             </a>
-            <div class="d-flex ms-auto">
-                <a href="#contacto" class="btn btn-outline-primary-custom btn-sm">Contacto</a>
+            <div class="d-flex ms-auto align-items-center">
+                <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="btn btn-outline-primary-custom btn-sm d-none d-sm-block me-2">Agenda Digital</a>
+                <a href="https://www.instagram.com/dr.williamlara/" target="_blank" class="text-accent fs-5 me-2"><i class="bi bi-instagram"></i></a>
+                <a href="tel:5591708334" class="text-accent fs-5"><i class="bi bi-telephone-fill"></i></a>
             </div>
         </div>
     </nav>
@@ -59,31 +65,32 @@
     <header class="hero-section text-center">
         <div class="container">
             <h1 class="display-3 fw-bold mb-4">Salud Respiratoria a la <span class="text-accent">Vanguardia</span></h1>
-            <p class="lead mb-5 mx-auto text-muted" style="max-width: 700px;">Atención médica especializada con un enfoque en innovación científica y calidez humana.</p>
-            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                <a href="https://wa.me/tu-numero-placeholder" class="btn-primary-custom">Agenda tu cita hoy</a>
-                <a href="#ubicaciones" class="btn btn-link text-decoration-none">Ver Ubicaciones</a>
+            <p class="lead mb-5 mx-auto text-muted" style="max-width: 700px;">Atención médica especializada por el Dr. William César Lara Vázquez, neumólogo formado en el INER, enfocado en innovación científica y medicina personalizada.</p>
+            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center mb-4">
+                <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="btn-primary-custom">Agendar Cita en Línea</a>
+                <a href="#ubicacion" class="btn btn-link text-decoration-none">Ver Mapa y Dirección</a>
             </div>
+            <p class="small text-muted"><i class="bi bi-telephone me-2"></i>Citas telefónicas: <strong>55 9170 8334</strong></p>
         </div>
     </header>
 
-    <section class="container my-5 py-5">
+    <section class="container my-5 py-5" id="sobre-mi">
         <div class="row g-5 align-items-center">
             <div class="col-md-7">
                 <h2 class="mb-4">Dr. William César Lara Vázquez</h2>
-                <p class="lead text-muted mb-4">Neumólogo formado en el INER.</p>
-                <p>Me gradué del <strong>Instituto Nacional de Enfermedades Respiratorias (INER)</strong>. Actualmente curso la alta especialidad en EPOC en la misma institución, profundizando en el manejo de patologías complejas.</p>
+                <p class="lead text-muted mb-4">Neumólogo formado en el INER. Alta Especialidad en EPOC.</p>
+                <p>Me gradué del <strong>Instituto Nacional de Enfermedades Respiratorias (INER)</strong>. Actualmente curso la alta especialidad en EPOC en la misma institución, profundizando en el manejo avanzado de patologías complejas.</p>
                 <p>Mi práctica clínica está profundamente comprometida con el avance científico y la innovación. Tengo un gran interés en el campo de la Inteligencia Artificial; actualmente aprendo y exploro estas herramientas, ya que considero que son habilidades sumamente útiles para el futuro de la medicina y para optimizar la atención de mis pacientes.</p>
             </div>
             <div class="col-md-5">
                 <div class="p-5 text-center bg-light border rounded-5">
-                    <i class="bi bi-person-badge condition-icon"></i>
+                    <i class="bi bi-heart-pulse condition-icon"></i>
                     <h4>Enfoque Clínico</h4>
                     <ul class="list-unstyled mt-3 text-start small text-muted">
                         <li class="mb-2">✓ Manejo avanzado de EPOC y Asma.</li>
                         <li class="mb-2">✓ Fisiología respiratoria avanzada.</li>
                         <li class="mb-2">✓ Tecnologías aplicadas al monitoreo pulmonar.</li>
-                        <li class="mb-2">✓ Atención en Ciudad de México.</li>
+                        <li class="mb-2">✓ Atención especializada en Ciudad de México.</li>
                     </ul>
                 </div>
             </div>
@@ -101,7 +108,7 @@
                     <div class="condition-card text-center">
                         <i class="bi bi-droplet-half condition-icon"></i>
                         <h4>Asma</h4>
-                        <p class="text-muted small">Evaluación y control para mejorar tu calidad de vida a largo plazo.</p>
+                        <p class="text-muted small">Evaluación, control y tratamiento avanzado para mejorar tu calidad de vida.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -115,7 +122,7 @@
                     <div class="condition-card text-center">
                         <i class="bi bi-shield-exclamation condition-icon"></i>
                         <h4>Neumonía</h4>
-                        <p class="text-muted small">Diagnóstico oportuno y tratamiento eficaz de infecciones respiratorias.</p>
+                        <p class="text-muted small">Diagnóstico oportuno y tratamiento eficaz de infecciones respiratorias complejas.</p>
                     </div>
                 </div>
             </div>
@@ -125,38 +132,51 @@
     <section id="servicios" class="container my-5 py-5">
         <div class="text-center mb-5">
             <h2>Estudios y Servicios</h2>
-            <p class="text-muted">Tecnología aplicada al diagnóstico pulmonar.</p>
+            <p class="text-muted">Tecnología aplicada al diagnóstico pulmonar en CDMX.</p>
         </div>
         <div class="row g-5">
             <div class="col-md-6">
-                <div class="service-list-item"><i class="bi bi-check-circle-fill"></i> Consulta de Especialidad en Neumología</div>
-                <div class="service-list-item"><i class="bi bi-check-circle-fill"></i> Espirometría (Lenta y Forzada)</div>
-                <div class="service-list-item"><i class="bi bi-check-circle-fill"></i> Oximetría de Pulso</div>
-                <div class="service-list-item"><i class="bi bi-check-circle-fill"></i> Check-up Respiratorio Básico</div>
+                <div class="service-list-item"><i class="bi bi-clipboard2-pulse"></i> Consulta de Especialidad en Neumología</div>
+                <div class="service-list-item"><i class="bi bi-lungs"></i> Espirometría (Lenta y Forzada)</div>
+                <div class="service-list-item"><i class="bi bi-activity"></i> Oximetría de Pulso Avanzada</div>
+                <div class="service-list-item"><i class="bi bi-shield-check"></i> Check-up Respiratorio Básico y Avanzado</div>
             </div>
             <div class="col-md-6">
-                <div class="service-list-item"><i class="bi bi-check-circle-fill"></i> Valoración Neumológica Preoperatoria</div>
-                <div class="service-list-item"><i class="bi bi-check-circle-fill"></i> Manejo de Tos Crónica</div>
-                <div class="service-list-item"><i class="bi bi-check-circle-fill"></i> Estudios de Fisiología Respiratoria</div>
+                <div class="service-list-item"><i class="bi bi-hospital"></i> Valoración Neumológica Preoperatoria</div>
+                <div class="service-list-item"><i class="bi bi-chat-left-dots"></i> Diagnóstico y Manejo de Tos Crónica</div>
+                <div class="service-list-item"><i class="bi bi-diagram-3"></i> Estudios Completos de Fisiología Respiratoria</div>
             </div>
         </div>
     </section>
 
-    <section id="ubicaciones" class="bg-light py-5">
+    <section id="ubicacion" class="bg-light py-5">
         <div class="container my-5">
             <div class="text-center mb-5">
                 <h2>Nuestra Ubicación</h2>
-                <p class="text-muted">Atención especializada en CDMX.</p>
+                <p class="text-muted">Encuentra nuestro consultorio en la Ciudad de México.</p>
             </div>
             <div class="row justify-content-center g-4">
-                <div class="col-md-8">
+                <div class="col-md-10">
                     <div class="location-box text-center">
-                        <h4 class="mb-3 text-accent"><i class="bi bi-geo-alt-fill me-2"></i>Ciudad de México</h4>
-                        <p class="text-muted">Dirección en CDMX (Por definir)</p>
-                        <div class="map-placeholder">
-                            <span>Mapa CDMX - Próximamente</span>
+                        <h4 class="mb-3 text-accent"><i class="bi bi-geo-alt-fill me-2"></i>Col. San José Insurgentes</h4>
+                        <p class="mb-4"><strong>Saturnino Herrán 59</strong>, <br> Benito Juárez, 03900 Ciudad de México, CDMX</p>
+                        
+                        <div class="map-wrapper shadow-sm">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.792348560123!2d-99.1868472!3d19.3781292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff89304918ef%3A0x7d6c5c8ff79a6d0c!2sSaturnino%20Herr%C3%A1n%2059%2C%20San%20Jos%C3%A9%20Insurgentes%2C%20Benito%20Ju%C3%A1rez%2C%2003900%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses-419!2smx!4v1711111111111!5m2!1ses-419!2smx" 
+                                width="600" 
+                                height="450" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
                         </div>
-                        <p class="small mb-1"><strong>Horario:</strong> Lunes a Viernes</p>
+                        
+                        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
+                            <a href="https://maps.app.goo.gl/tu-link-de-google-maps-real" target="_blank" class="btn btn-sm btn-outline-primary-custom mb-2">Abrir en Google Maps</a>
+                            <p class="small text-muted ms-sm-3"><strong>Horario:</strong> Lunes a Viernes (Previa Cita)</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -164,18 +184,22 @@
     </section>
 
     <section id="contacto" class="py-5 text-center">
-        <div class="container my-4">
-            <h3 class="fw-bold mb-4">¿Listo para respirar mejor?</h3>
-            <a href="https://wa.me/tu-numero-placeholder" class="btn-primary-custom">Agenda tu cita hoy</a>
+        <div class="container my-5">
+            <i class="bi bi-calendar-check condition-icon fs-1 text-accent mb-4"></i>
+            <h2 class="fw-bold mb-4">Agenda tu cita hoy</h2>
+            <p class="lead text-muted mb-5 mx-auto" style="max-width: 600px;">Optimiza tu salud respiratoria con atención de alta especialidad. Selecciona el horario que mejor te convenga en nuestra agenda digital.</p>
+            <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="btn-primary-custom">Agendar Cita en Línea (Cal.com)</a>
         </div>
     </section>
 
     <footer>
         <div class="container text-center">
             <h5 class="navbar-brand text-white mb-3">ALVEOS</h5>
-            <p class="small mb-4">Innovación y Vanguardia en Salud Respiratoria</p>
-            <p class="mb-1">Dr. William César Lara Vázquez. Neumólogo.</p>
-            <p class="mb-0">Todos los derechos reservados © 2026.</p>
+            <p class="small mb-4 text-white-50">Innovación y Vanguardia en Salud Respiratoria</p>
+            <p class="mb-2"><i class="bi bi-telephone-fill me-2"></i>55 9170 8334</p>
+            <p class="mb-4"><a href="https://www.instagram.com/dr.williamlara/" target="_blank"><i class="bi bi-instagram me-2"></i>@dr.williamlara</a></p>
+            <p class="small mb-1 text-white-50">Dr. William César Lara Vázquez. Neumólogo formada en el INER.</p>
+            <p class="small mb-0 text-white-50">Todos los derechos reservados © 2026.</p>
         </div>
     </footer>
 
