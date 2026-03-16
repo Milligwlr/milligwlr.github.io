@@ -123,8 +123,8 @@
         .map-wrapper iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
 
         /* WHATSAPP */
-        .whatsapp-float { position:fixed; bottom:30px; right:30px; background:#25d366; color:white!important; border-radius:50px; padding:12px 20px; font-size:1.2rem; font-weight:bold; box-shadow:0 6px 24px rgba(37,211,102,0.35); z-index:1000; text-decoration:none; transition:all 0.3s var(--ease); display:flex; align-items:center; gap:10px; }
-        .whatsapp-float:hover { background:#128c7e; color:white!important; transform:translateY(-3px); }
+        .whatsapp-float { position:fixed; bottom:30px; right:30px; background:#25d366; color:white!important; border-radius:50%; width:60px; height:60px; font-size:1.8rem; box-shadow:0 6px 24px rgba(37,211,102,0.35); z-index:1000; text-decoration:none; transition:all 0.3s var(--ease); display:flex; align-items:center; justify-content:center; }
+        .whatsapp-float:hover { background:#128c7e; color:white!important; transform:translateY(-3px) scale(1.05); }
 
         /* FOOTER */
         footer { background:var(--navy); color:rgba(255,255,255,0.8); padding:40px 0 20px; }
@@ -167,8 +167,8 @@
         </div>
     </nav>
 
-    <a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20cita" target="_blank" class="whatsapp-float"><i class="bi bi-whatsapp"></i> Agenda tu cita hoy</a>
-
+    <a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20cita" target="_blank" class="whatsapp-float"><i class="bi bi-whatsapp"></i></a>
+    
     <!-- HERO -->
     <section class="hero" id="hero">
         <div class="hero__bg"></div>
