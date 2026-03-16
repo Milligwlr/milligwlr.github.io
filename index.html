@@ -10,67 +10,88 @@
     
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; color: #2d3436; background-color: #ffffff; scroll-behavior: smooth; }
-        h1, h2, h3, h4, .navbar-brand { font-weight: 700; color: #1e3799; }
+        h1, h2, h3, h4, .text-accent { font-weight: 700; color: #1e3799; }
+        
+        /* Top Bar Legal */
+        .top-bar-legal { background-color: #a68b5c; color: white; font-size: 0.8rem; padding: 5px 0; }
         
         /* Navbar */
-        .navbar { background: rgba(255, 255, 255, 0.95); border-bottom: 1px solid #eee; backdrop-filter: blur(5px); }
-        .text-accent { color: #0984e3; }
+        .navbar { background: white; border-bottom: 1px solid #eee; padding: 15px 0; }
+        .navbar-brand { font-weight: 700; color: #1e3799; font-size: 1.5rem; }
+        .nav-link { font-weight: 600; color: #2d3436; margin: 0 10px; transition: 0.3s; }
+        .nav-link:hover { color: #0984e3; }
+        .social-icons a { color: #a68b5c; font-size: 1.2rem; margin-left: 15px; transition: 0.3s; }
+        .social-icons a:hover { color: #1e3799; }
         
         /* Hero Section */
-        .hero-section { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 160px 0; }
+        .hero-section { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 120px 0; }
         
         /* Botones */
         .btn-primary-custom { background-color: #0984e3; color: white !important; padding: 12px 30px; border-radius: 8px; font-weight: bold; text-decoration: none; transition: 0.3s; border: none; display: inline-block; }
-        .btn-primary-custom:hover { background-color: #74b9ff; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(9, 132, 227, 0.3); }
+        .btn-primary-custom:hover { background-color: #1e3799; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(9, 132, 227, 0.3); }
         
-        .btn-outline-primary-custom { color: #0984e3; border: 2px solid #0984e3; padding: 10px 25px; border-radius: 8px; font-weight: bold; text-decoration: none; transition: 0.3s; }
-        .btn-outline-primary-custom:hover { background-color: #0984e3; color: white !important; }
+        /* Floating WhatsApp */
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; color: white; border-radius: 50px; padding: 12px 20px; font-size: 1.2rem; font-weight: bold; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index: 1000; text-decoration: none; transition: 0.3s; display: flex; align-items: center; gap: 10px; }
+        .whatsapp-float:hover { background-color: #128c7e; color: white; transform: translateY(-3px); }
 
         /* Tarjetas de Padecimientos */
         .condition-card { border: 1px solid #f1f2f6; border-radius: 15px; padding: 30px; background: white; transition: 0.3s; height: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.02); }
-        .condition-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .condition-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-color: #0984e3; }
         .condition-icon { font-size: 3rem; color: #0984e3; margin-bottom: 20px; display: block; }
         
-        /* Servicios y Estudios */
-        .service-list-item { padding: 15px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; }
-        .service-list-item i { color: #0984e3; margin-right: 15px; font-size: 1.2rem; }
-        
-        /* Ubicaciones */
-        .location-box { background-color: #f8f9fa; border-radius: 15px; padding: 40px; border: 1px solid #eee; height: 100%; }
-        .map-wrapper { position: relative; padding-bottom: 56.25%; /* Ratio 16:9 */ height: 0; overflow: hidden; border-radius: 12px; margin-bottom: 20px; border: 1px solid #ddd; }
+        /* Lista de Servicios Interactiva */
+        .list-group-item-action { font-weight: 600; padding: 15px 20px; border-radius: 10px !important; margin-bottom: 10px; border: 1px solid #eee; transition: 0.3s; }
+        .list-group-item-action:hover, .list-group-item-action.active { background-color: #1e3799; color: white; border-color: #1e3799; }
+        .service-image-box { background-color: #f8f9fa; border-radius: 15px; height: 100%; min-height: 300px; display: flex; align-items: center; justify-content: center; border: 1px solid #eee; }
+
+        /* Pagos y Ubicacion */
+        .payment-icon { font-size: 2.5rem; color: #1e3799; }
+        .map-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin-bottom: 20px; border: 1px solid #ddd; }
         .map-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-        /* Footer */
-        footer { background: #2d3436; color: rgba(255,255,255,0.8); padding: 60px 0 20px; }
-        footer h5 { color: white; }
-        footer a { color: rgba(255,255,255,0.8); text-decoration: none; transition: 0.3s; }
-        footer a:hover { color: #74b9ff; }
+        footer { background: #2d3436; color: rgba(255,255,255,0.8); padding: 50px 0 20px; }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="top-bar-legal text-center">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                ALVEOS <span class="fw-light fs-6">Neumología CDMX</span>
+            Aviso Cofepris: XXXXXXXX | Céd. Prof: XXXXXXX | Céd. Esp: XXXXXXX
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <i class="bi bi-lungs-fill fs-2 me-2 text-accent"></i> ALVEOS
             </a>
-            <div class="d-flex ms-auto align-items-center">
-                <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="btn btn-outline-primary-custom btn-sm d-none d-sm-block me-2">Agenda Digital</a>
-                <a href="https://www.instagram.com/dr.williamlara/" target="_blank" class="text-accent fs-5 me-2"><i class="bi bi-instagram"></i></a>
-                <a href="tel:5591708334" class="text-accent fs-5"><i class="bi bi-telephone-fill"></i></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-link"><a class="nav-link" href="#">Inicio</a></li>
+                    <li class="nav-link"><a class="nav-link" href="#servicios">Servicios</a></li>
+                    <li class="nav-link"><a class="nav-link" href="#enfermedades">Enfermedades</a></li>
+                    <li class="nav-link"><a class="nav-link" href="#ubicacion">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="social-icons d-none d-lg-flex align-items-center">
+                <a href="https://www.instagram.com/dr.williamlara/" target="_blank"><i class="bi bi-instagram"></i></a>
+                <a href="#ubicacion"><i class="bi bi-geo-alt-fill"></i></a>
             </div>
         </div>
     </nav>
 
+    <a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20cita" target="_blank" class="whatsapp-float">
+        <i class="bi bi-whatsapp"></i> Agenda tu cita hoy
+    </a>
+
     <header class="hero-section text-center">
         <div class="container">
             <h1 class="display-3 fw-bold mb-4">Salud Respiratoria a la <span class="text-accent">Vanguardia</span></h1>
-            <p class="lead mb-5 mx-auto text-muted" style="max-width: 700px;">Atención médica especializada por el Dr. William César Lara Vázquez, neumólogo formado en el INER, enfocado en innovación científica y medicina personalizada.</p>
-            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center mb-4">
-                <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="btn-primary-custom">Agendar Cita en Línea</a>
-                <a href="#ubicacion" class="btn btn-link text-decoration-none">Ver Mapa y Dirección</a>
-            </div>
-            <p class="small text-muted"><i class="bi bi-telephone me-2"></i>Citas telefónicas: <strong>55 9170 8334</strong></p>
+            <p class="lead mb-5 mx-auto text-muted" style="max-width: 700px;">Atención médica especializada por el Dr. William César Lara Vázquez, neumólogo formado en el INER. Innovación científica y medicina personalizada en CDMX.</p>
+            <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="btn-primary-custom fs-5">Agenda tu cita hoy</a>
         </div>
     </header>
 
@@ -97,108 +118,130 @@
         </div>
     </section>
 
-    <section id="padecimientos" class="bg-light py-5">
+    <section id="servicios" class="container my-5 py-5 border-top">
+        <div class="mb-5">
+            <h2 class="text-accent mb-2">SERVICIOS</h2>
+            <h3 class="fw-bold display-6">Servicios y estudios especializados en salud respiratoria</h3>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-5">
+                <div class="list-group list-group-flush gap-2">
+                    <div class="list-group-item list-group-item-action active"><i class="bi bi-clipboard2-pulse me-3"></i>Check up respiratorio</div>
+                    <div class="list-group-item list-group-item-action"><i class="bi bi-lungs me-3"></i>Espirometría simple y con broncodilatador</div>
+                    <div class="list-group-item list-group-item-action"><i class="bi bi-bandaid me-3"></i>Tratamiento para dejar de fumar</div>
+                    <div class="list-group-item list-group-item-action"><i class="bi bi-activity me-3"></i>Seguimiento de asma y EPOC</div>
+                    <div class="list-group-item list-group-item-action"><i class="bi bi-search me-3"></i>Diagnóstico pulmonar avanzado</div>
+                    <div class="list-group-item list-group-item-action"><i class="bi bi-droplet me-3"></i>Manejo de derrames pleurales</div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="service-image-box text-muted">
+                    <div class="text-center p-4">
+                        <i class="bi bi-image fs-1 mb-3 text-muted"></i>
+                        <h5>Imágenes Próximamente</h5>
+                        <p class="small">Evaluación completa de la salud pulmonar para detectar problemas a tiempo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="enfermedades" class="bg-light py-5">
         <div class="container my-5">
-            <div class="text-center mb-5">
-                <h2 class="mb-2">Padecimientos Frecuentes</h2>
-                <p class="text-muted">Atención integral y diagnóstico especializado.</p>
+            <div class="mb-5 text-center">
+                <h2 class="text-accent mb-2">ENFERMEDADES</h2>
+                <h3 class="fw-bold display-6">Conoce qué enfermedades tratamos</h3>
+                <p class="text-muted">Conoce las principales condiciones que tratamos, siempre con el objetivo de que respires mejor.</p>
             </div>
             <div class="row g-4">
                 <div class="col-md-4">
                     <div class="condition-card text-center">
                         <i class="bi bi-droplet-half condition-icon"></i>
                         <h4>Asma</h4>
-                        <p class="text-muted small">Evaluación, control y tratamiento avanzado para mejorar tu calidad de vida.</p>
+                        <p class="text-muted small">Enfermedad respiratoria crónica que inflama y estrecha las vías respiratorias.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="condition-card text-center">
                         <i class="bi bi-lungs condition-icon"></i>
                         <h4>EPOC</h4>
-                        <p class="text-muted small">Manejo de alta especialidad de la Enfermedad Pulmonar Obstructiva Crónica.</p>
+                        <p class="text-muted small">Enfermedad pulmonar obstructiva crónica, progresiva y que dificulta la respiración.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="condition-card text-center">
-                        <i class="bi bi-shield-exclamation condition-icon"></i>
+                        <i class="bi bi-virus condition-icon"></i>
                         <h4>Neumonía</h4>
-                        <p class="text-muted small">Diagnóstico oportuno y tratamiento eficaz de infecciones respiratorias complejas.</p>
+                        <p class="text-muted small">Infección pulmonar que inflama los sacos de aire, requiriendo atención médica oportuna.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="condition-card text-center">
+                        <i class="bi bi-wind condition-icon"></i>
+                        <h4>Bronquitis crónica</h4>
+                        <p class="text-muted small">Inflamación persistente de los bronquios, causando tos crónica.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="condition-card text-center">
+                        <i class="bi bi-moisture condition-icon"></i>
+                        <h4>Derrames Pleurales</h4>
+                        <p class="text-muted small">Acumulación de líquido entre los tejidos que recubren los pulmones y el tórax.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="condition-card text-center">
+                        <i class="bi bi-bandaid condition-icon"></i>
+                        <h4>Tabaquismo</h4>
+                        <p class="text-muted small">Evaluación de daño pulmonar y estrategias de cesación del hábito tabáquico.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="servicios" class="container my-5 py-5">
-        <div class="text-center mb-5">
-            <h2>Estudios y Servicios</h2>
-            <p class="text-muted">Tecnología aplicada al diagnóstico pulmonar en CDMX.</p>
-        </div>
-        <div class="row g-5">
-            <div class="col-md-6">
-                <div class="service-list-item"><i class="bi bi-clipboard2-pulse"></i> Consulta de Especialidad en Neumología</div>
-                <div class="service-list-item"><i class="bi bi-lungs"></i> Espirometría (Lenta y Forzada)</div>
-                <div class="service-list-item"><i class="bi bi-activity"></i> Oximetría de Pulso Avanzada</div>
-                <div class="service-list-item"><i class="bi bi-shield-check"></i> Check-up Respiratorio Básico y Avanzado</div>
-            </div>
-            <div class="col-md-6">
-                <div class="service-list-item"><i class="bi bi-hospital"></i> Valoración Neumológica Preoperatoria</div>
-                <div class="service-list-item"><i class="bi bi-chat-left-dots"></i> Diagnóstico y Manejo de Tos Crónica</div>
-                <div class="service-list-item"><i class="bi bi-diagram-3"></i> Estudios Completos de Fisiología Respiratoria</div>
+    <section class="py-5 border-bottom">
+        <div class="container text-center">
+            <h4 class="mb-4">Métodos de pago aceptados</h4>
+            <div class="d-flex justify-content-center gap-5 flex-wrap">
+                <div>
+                    <i class="bi bi-cash-coin payment-icon"></i>
+                    <p class="mt-2 fw-bold">Efectivo</p>
+                </div>
+                <div>
+                    <i class="bi bi-credit-card payment-icon"></i>
+                    <p class="mt-2 fw-bold">Tarjeta</p>
+                </div>
+                <div>
+                    <i class="bi bi-bank payment-icon"></i>
+                    <p class="mt-2 fw-bold">Transferencia</p>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="ubicacion" class="bg-light py-5">
         <div class="container my-5">
-            <div class="text-center mb-5">
-                <h2>Nuestra Ubicación</h2>
-                <p class="text-muted">Encuentra nuestro consultorio en la Ciudad de México.</p>
-            </div>
             <div class="row justify-content-center g-4">
-                <div class="col-md-10">
-                    <div class="location-box text-center">
-                        <h4 class="mb-3 text-accent"><i class="bi bi-geo-alt-fill me-2"></i>Col. San José Insurgentes</h4>
-                        <p class="mb-4"><strong>Saturnino Herrán 59</strong>, <br> Benito Juárez, 03900 Ciudad de México, CDMX</p>
-                        
-                        <div class="map-wrapper shadow-sm">
-                            <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.792348560123!2d-99.1868472!3d19.3781292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff89304918ef%3A0x7d6c5c8ff79a6d0c!2sSaturnino%20Herr%C3%A1n%2059%2C%20San%20Jos%C3%A9%20Insurgentes%2C%20Benito%20Ju%C3%A1rez%2C%2003900%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses-419!2smx!4v1711111111111!5m2!1ses-419!2smx" 
-                                width="600" 
-                                height="450" 
-                                style="border:0;" 
-                                allowfullscreen="" 
-                                loading="lazy" 
-                                referrerpolicy="no-referrer-when-downgrade">
-                            </iframe>
-                        </div>
-                        
-                        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
-                            <a href="https://maps.app.goo.gl/tu-link-de-google-maps-real" target="_blank" class="btn btn-sm btn-outline-primary-custom mb-2">Abrir en Google Maps</a>
-                            <p class="small text-muted ms-sm-3"><strong>Horario:</strong> Lunes a Viernes (Previa Cita)</p>
-                        </div>
+                <div class="col-md-8 text-center">
+                    <h2 class="fw-bold mb-4">Nuestra Ubicación</h2>
+                    <h4 class="mb-3 text-accent"><i class="bi bi-geo-alt-fill me-2"></i>Col. San José Insurgentes</h4>
+                    <p class="mb-4"><strong>Saturnino Herrán 59</strong>, <br> Benito Juárez, 03900 Ciudad de México, CDMX</p>
+                    
+                    <div class="map-wrapper shadow-sm">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.513476214068!2d-99.1849186!3d19.3664719!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1fffae2ec1ad1%3A0xc3f8e6e58b9f7c0!2sSaturnino%20Herr%C3%A1n%2059%2C%20San%20Jos%C3%A9%20Insurgentes%2C%20Benito%20Ju%C3%A1rez%2C%2003900%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1710550000000!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contacto" class="py-5 text-center">
-        <div class="container my-5">
-            <i class="bi bi-calendar-check condition-icon fs-1 text-accent mb-4"></i>
-            <h2 class="fw-bold mb-4">Agenda tu cita hoy</h2>
-            <p class="lead text-muted mb-5 mx-auto" style="max-width: 600px;">Optimiza tu salud respiratoria con atención de alta especialidad. Selecciona el horario que mejor te convenga en nuestra agenda digital.</p>
-            <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="btn-primary-custom">Agendar Cita en Línea (Cal.com)</a>
-        </div>
-    </section>
-
     <footer>
         <div class="container text-center">
-            <h5 class="navbar-brand text-white mb-3">ALVEOS</h5>
+            <h5 class="text-white mb-3 fw-bold">ALVEOS</h5>
             <p class="small mb-4 text-white-50">Innovación y Vanguardia en Salud Respiratoria</p>
-            <p class="mb-2"><i class="bi bi-telephone-fill me-2"></i>55 9170 8334</p>
-            <p class="mb-4"><a href="https://www.instagram.com/dr.williamlara/" target="_blank"><i class="bi bi-instagram me-2"></i>@dr.williamlara</a></p>
-            <p class="small mb-1 text-white-50">Dr. William César Lara Vázquez. Neumólogo formada en el INER.</p>
+            <p class="mb-4"><a href="https://www.instagram.com/dr.williamlara/" target="_blank" class="text-white text-decoration-none"><i class="bi bi-instagram me-2"></i>@dr.williamlara</a></p>
+            <p class="small mb-1 text-white-50">Dr. William César Lara Vázquez. Neumólogo formado en el INER.</p>
             <p class="small mb-0 text-white-50">Todos los derechos reservados © 2026.</p>
         </div>
     </footer>
