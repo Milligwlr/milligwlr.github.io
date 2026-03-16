@@ -41,8 +41,8 @@
         .hero__cta:hover{background:var(--royal);transform:translateY(-2px)!important;box-shadow:0 5px 15px rgba(9,132,227,.3);color:var(--white)!important}
         .hero__cta i{transition:transform .3s}.hero__cta:hover i{transform:translateX(3px)}
         .hero__scroll-hint{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0}
-        .hero__scroll-hint span{font-size:.7rem;font-weight:600;color:rgba(255,255,255,.3);letter-spacing:2px;text-transform:uppercase}
-        .scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,.4),transparent);animation:scroll-anim 2s ease-in-out infinite}
+        .hero__scroll-hint span{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:3px;text-transform:uppercase;text-shadow:0 0 10px rgba(116,185,255,.3)}
+        .scroll-line{width:2px;height:50px;background:linear-gradient(to bottom,rgba(116,185,255,.8),transparent);border-radius:2px;animation:scroll-anim 2s ease-in-out infinite;box-shadow:0 0 8px rgba(116,185,255,.4)}
         @keyframes scroll-anim{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}50.1%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
         .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
         .reveal.visible{opacity:1;transform:translateY(0)}
@@ -83,7 +83,15 @@
         .service-card__img{width:100%;height:160px;border-radius:12px;background:linear-gradient(135deg,#f0f2f5 0%,#e4e8ec 100%);border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;margin-top:20px;color:var(--text-muted);font-size:.82rem;font-weight:600;gap:8px}
         .condition-card{border:1px solid #f1f2f6;border-radius:15px;padding:30px;background:white;transition:all .4s var(--ease);height:100%;box-shadow:0 5px 15px rgba(0,0,0,.02)}
         .condition-card:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,.05);border-color:var(--electric)}
-        .condition-icon{font-size:3rem;color:var(--electric)!important;margin-bottom:20px;display:block}
+        .condition-icon{font-size:3rem;color:var(--electric)!important;margin-bottom:20px;display:block;transition:transform .4s var(--ease),color .4s}
+        .condition-card:hover .condition-icon{transform:scale(1.15) translateY(-4px);color:var(--royal)!important}
+        .condition-card .condition-icon{animation:icon-float 3s ease-in-out infinite}
+        .condition-card:nth-child(2) .condition-icon{animation-delay:.5s}
+        .condition-card:nth-child(3) .condition-icon{animation-delay:1s}
+        .condition-card:nth-child(4) .condition-icon{animation-delay:1.5s}
+        .condition-card:nth-child(5) .condition-icon{animation-delay:2s}
+        .condition-card:nth-child(6) .condition-icon{animation-delay:2.5s}
+        @keyframes icon-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
         .payment-icon{font-size:2.5rem;color:var(--royal)}
         .cta-band{background:var(--royal)}.cta-band .btn{transition:all .3s var(--ease)}.cta-band .btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.2)}
         .map-wrapper{position:relative;padding-bottom:75%;height:0;overflow:hidden;border-radius:12px;border:1px solid #ddd}
