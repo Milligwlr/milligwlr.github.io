@@ -35,20 +35,21 @@
         .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; color: white; border-radius: 50px; padding: 12px 20px; font-size: 1.2rem; font-weight: bold; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index: 1000; text-decoration: none; transition: 0.3s; display: flex; align-items: center; gap: 10px; }
         .whatsapp-float:hover { background-color: #128c7e; color: white; transform: translateY(-3px); }
 
-        /* Tarjetas de Padecimientos y NUEVO Estilo de Iconos FA */
+        /* Tarjetas de Padecimientos y NUEVO Estilo de Iconos FA/SVG */
         .condition-card { border: 1px solid #f1f2f6; border-radius: 15px; padding: 30px; background: white; transition: 0.3s; height: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.02); }
         .condition-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-color: #0984e3; }
         
-        /* Clase unificada para iconos Bootstrap y FontAwesome en tarjetas */
+        /* Clase unificada para iconos Bootstrap, FontAwesome y SVGs en tarjetas */
         .condition-icon { font-size: 3rem; color: #0984e3 !important; margin-bottom: 20px; display: block; }
-        
+        svg.condition-icon { width: 3rem; height: 3rem; margin: 0 auto 20px auto; display: block; fill: #0984e3; }
+
         /* Lista de Servicios Interactiva */
         .list-group-item { font-weight: 600; padding: 15px 20px; border-radius: 10px !important; margin-bottom: 10px; border: 1px solid #eee; transition: 0.3s; cursor: pointer; color: #2d3436; }
         .list-group-item:hover { background-color: #f8f9fa; }
         .list-group-item.active { background-color: #1e3799 !important; color: white !important; border-color: #1e3799 !important; }
         .service-image-box { background-color: #f8f9fa; border-radius: 15px; height: 100%; min-height: 380px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid #eee; padding: 40px; text-align: center; }
 
-        /* Pagos y Ubicacion Final (Estilo SS Neumólogo en CDMX) */
+        /* Pagos y Ubicacion Final */
         .payment-icon { font-size: 2.5rem; color: #1e3799; }
         
         /* Contenedor del Mapa Real */
@@ -122,8 +123,9 @@
     </section>
 
     <section id="servicios" class="container my-5 py-5 border-top">
-        <div class="mb-5">
+        <div class="mb-5 text-center">
             <h2 class="text-accent mb-2">Servicios</h2>
+            <p class="text-muted">Conoce las evaluaciones y procedimientos que realizamos para cuidar tu salud respiratoria.</p>
         </div>
         <div class="row g-4">
             <div class="col-md-5">
@@ -139,9 +141,6 @@
                     </a>
                     <a class="list-group-item list-group-item-action" id="list-asma-list" data-bs-toggle="list" href="#list-asma" role="tab">
                         <i class="bi bi-activity me-3"></i>Seguimiento de asma y EPOC
-                    </a>
-                    <a class="list-group-item list-group-item-action" id="list-diag-list" data-bs-toggle="list" href="#list-diag" role="tab">
-                        <i class="bi bi-search me-3"></i>Diagnóstico pulmonar avanzado
                     </a>
                     <a class="list-group-item list-group-item-action" id="list-derrames-list" data-bs-toggle="list" href="#list-derrames" role="tab">
                         <i class="bi bi-droplet me-3"></i>Manejo de derrames pleurales
@@ -196,17 +195,6 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane fade" id="list-diag" role="tabpanel">
-                        <div class="service-image-box">
-                            <i class="bi bi-search text-accent mb-3" style="font-size: 3rem;"></i>
-                            <h4 class="fw-bold text-dark">Diagnóstico Pulmonar</h4>
-                            <p class="text-muted">Abordaje clínico exhaustivo de síntomas como tos crónica, falta de aire o silbidos, apoyado en la interpretación precisa de radiografías, tomografías y pruebas de laboratorio.</p>
-                            <div class="w-100 mt-4 rounded d-flex align-items-center justify-content-center" style="height: 150px; background-color: #e9ecef; border: 1px dashed #ccc;">
-                                <span class="text-muted small"><i class="bi bi-image me-2"></i>Aquí irá una imagen representativa</span>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="tab-pane fade" id="list-derrames" role="tabpanel">
                         <div class="service-image-box">
                             <i class="bi bi-droplet text-accent mb-3" style="font-size: 3rem;"></i>
@@ -234,7 +222,9 @@
                 
                 <div class="col-md-4">
                     <div class="condition-card text-center">
-                        <i class="fa-solid fa-lungs condition-icon"></i>
+                        <svg class="condition-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path d="M433.9 119.5c-15.5-25.7-43.5-42.8-74.8-42.8H152.9c-31.3 0-59.3 17.1-74.8 42.8L12.9 228C4.5 241.9 0 258.1 0 274.6V400c0 44.2 35.8 80 80 80h352c44.2 0 80-35.8 80-80V274.6c0-16.5-4.5-32.6-12.9-46.6l-65.2-108.5zM128 352c0-17.7 14.3-32 32-32h192c17.7 0 32 14.3 32 32s-14.3 32-32 32H160c-17.7 0-32-14.3-32-32zm32-160c0-17.7 14.3-32 32-32h128c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32z"/>
+                        </svg>
                         <h4>Asma</h4>
                         <p class="text-muted small">Inflamación crónica de las vías respiratorias que causa episodios de silbidos, falta de aire y tos. Controlarla adecuadamente te permite vivir sin limitaciones.</p>
                     </div>
@@ -242,7 +232,7 @@
                 
                 <div class="col-md-4">
                     <div class="condition-card text-center">
-                        <i class="fa-solid fa-virus-covid condition-icon"></i>
+                        <i class="fa-solid fa-lungs condition-icon"></i>
                         <h4>EPOC</h4>
                         <p class="text-muted small">Daño pulmonar progresivo, comúnmente asociado al humo, que dificulta el paso del aire. Un manejo médico experto ralentiza su avance y mejora tu energía diaria.</p>
                     </div>
@@ -250,7 +240,9 @@
                 
                 <div class="col-md-4">
                     <div class="condition-card text-center">
-                        <i class="fa-solid fa-bacteria condition-icon"></i>
+                        <svg class="condition-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path d="M448 208c0-53-43-96-96-96h-16C336 50.1 285.9 0 224 0S112 50.1 112 112H96C43 112 0 155 0 208s43 96 96 96h16c0 61.9 50.1 112 112 112s112-50.1 112-112h16c53 0 96-43 96-96zm-96-32c17.7 0 32 14.3 32 32s-14.3 32-32 32H320c-17.7 0-32-14.3-32-32s14.3-32 32-32h32zm-128 0c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32h32zm-64 128c-17.7 0-32-14.3-32-32s14.3-32 32-32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H160zM402.6 77.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-22.6 22.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l22.6-22.6zM64 434.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l22.6-22.6c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3L64 434.6z"/>
+                        </svg>
                         <h4>Neumonía</h4>
                         <p class="text-muted small">Infección aguda en los pulmones que requiere diagnóstico preciso y tratamiento médico inmediato para asegurar una recuperación total y evitar complicaciones.</p>
                     </div>
@@ -341,7 +333,7 @@
                 
                 <div class="col-lg-4">
                     <div class="map-wrapper shadow-sm">
-                        <iframe src="http://googleusercontent.com/maps.google.com/9" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.844781446706!2d-99.1834226!3d19.3758368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce0014e7a8dbdd%3A0xc3af1172a396263f!2sSaturnino%20Herr%C3%A1n%2059%2C%20San%20Jos%C3%A9%20Insurgentes%2C%20Benito%20Ju%C3%A1rez%2C%2003900%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1708892400000!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
 
