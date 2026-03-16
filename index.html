@@ -315,21 +315,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script>
     function toggleService(header) {
-        var card = header.parentElement;
-        var wasActive = card.classList.contains('active');
-        document.querySelectorAll('.service-card').forEach(function(c) {
-            c.classList.remove('active');
-        });
-        if (!wasActive) {
-            card.classList.add('active');
-            setTimeout(function() {
-                var navH = document.getElementById('mainNav').offsetHeight || 70;
-                var top = card.getBoundingClientRect().top + window.scrollY;
-                window.scrollTo({ top: top - navH - 20, behavior: 'smooth' });
-            }, 80);
-        }
+    var card = header.parentElement;
+    var wasActive = card.classList.contains('active');
+    document.querySelectorAll('.service-card').forEach(function(c) {
+        c.classList.remove('active');
+    });
+    if (!wasActive) {
+        card.classList.add('active');
+        setTimeout(function() {
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 350);
     }
-
+}
     (function(){
         'use strict';
         window.addEventListener('scroll', function(){
