@@ -2,12 +2,12 @@
 <html lang="es">
 <head>
     
-    <!-- =====================================================
-     BLOQUE SEO COMPLETO PARA ALVEOS
+   <!-- =====================================================
+     BLOQUE SEO DEFINITIVO PARA ALVEOS
+     Versión final con las 9 brechas del análisis Gemini resueltas
      
-     INSTRUCCIONES: Reemplaza todo lo que está entre
-     <head> y el primer <link> en tu index.html con este bloque.
-     Es decir, quita las líneas 4-6 originales y pon esto.
+     INSTRUCCIONES: Reemplaza todo entre <head> y el primer <link>
+     de Bootstrap con este bloque completo.
      ===================================================== -->
 
     <meta charset="UTF-8">
@@ -20,21 +20,21 @@
     <meta name="author" content="Dr. William César Lara Vázquez">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     
-    <!-- ===== URL CANÓNICA — evita contenido duplicado ===== -->
+    <!-- ===== URL CANÓNICA ===== -->
     <link rel="canonical" href="https://alveos.mx/">
     
     <!-- ===== IDIOMA ===== -->
     <meta http-equiv="content-language" content="es-MX">
     <link rel="alternate" hreflang="es-mx" href="https://alveos.mx/">
     
-    <!-- ===== OPEN GRAPH (Facebook, WhatsApp, iMessage) ===== -->
+    <!-- ===== OPEN GRAPH ===== -->
     <meta property="og:title" content="Dr. William Lara Vázquez | Neumólogo de Alta Especialidad en CDMX">
     <meta property="og:description" content="Neumólogo formado en el INER. Experto en EPOC, Asma, Apnea del Sueño y enfermedades respiratorias. Agenda tu cita en Hospital Santa Coleta, CDMX.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://alveos.mx/">
     <meta property="og:site_name" content="Alveos - Neumología de Vanguardia">
     <meta property="og:locale" content="es_MX">
-    <!-- IMPORTANTE: Cuando tengas tu logo/foto, descomenta y actualiza esta línea: -->
+    <!-- Descomenta cuando tengas la imagen OG: -->
     <!-- <meta property="og:image" content="https://alveos.mx/img/og-alveos.jpg"> -->
     <!-- <meta property="og:image:width" content="1200"> -->
     <!-- <meta property="og:image:height" content="630"> -->
@@ -44,15 +44,19 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Dr. William Lara Vázquez | Neumólogo en CDMX">
     <meta name="twitter:description" content="Neumólogo formado en el INER. Especialista en EPOC, Asma y enfermedades respiratorias. CDMX.">
-    <!-- <meta name="twitter:image" content="https://alveos.mx/img/og-alveos.jpg"> -->
     
-    <!-- ===== GEO TAGS — SEO local para CDMX ===== -->
+    <!-- ===== GEO TAGS ===== -->
     <meta name="geo.region" content="MX-CMX">
     <meta name="geo.placename" content="Ciudad de México">
     <meta name="geo.position" content="19.3758368;-99.1834226">
     <meta name="ICBM" content="19.3758368, -99.1834226">
+
+    <!-- ===== BRECHA 5: PRECONNECT para LCP (Gemini Sección 3.1) ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
-    <!-- ===== SCHEMA MARKUP — JSON-LD (lo que leen los robots de Google) ===== -->
+    <!-- ===== SCHEMA 1: Physician con hasCredential (Gemini Sección 4.1) ===== -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -79,31 +83,31 @@
           "name": "Instituto Nacional de Enfermedades Respiratorias (INER)"
         }
       ],
-      "knowsAbout": [
+      "hasCredential": [
         {
-          "@type": "MedicalCondition",
-          "name": "EPOC (Enfermedad Pulmonar Obstructiva Crónica)"
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Cédula Profesional de Médico Cirujano",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "Dirección General de Profesiones, SEP, México"
+          }
         },
         {
-          "@type": "MedicalCondition",
-          "name": "Asma"
-        },
-        {
-          "@type": "MedicalCondition",
-          "name": "Neumonía"
-        },
-        {
-          "@type": "MedicalCondition",
-          "name": "Apnea Obstructiva del Sueño"
-        },
-        {
-          "@type": "MedicalCondition",
-          "name": "Derrames Pleurales"
-        },
-        {
-          "@type": "MedicalCondition",
-          "name": "Tabaquismo"
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Cédula de Especialidad en Neumología",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "Dirección General de Profesiones, SEP, México"
+          }
         }
+      ],
+      "knowsAbout": [
+        {"@type": "MedicalCondition", "name": "EPOC (Enfermedad Pulmonar Obstructiva Crónica)"},
+        {"@type": "MedicalCondition", "name": "Asma"},
+        {"@type": "MedicalCondition", "name": "Neumonía"},
+        {"@type": "MedicalCondition", "name": "Apnea Obstructiva del Sueño"},
+        {"@type": "MedicalCondition", "name": "Derrames Pleurales"},
+        {"@type": "MedicalCondition", "name": "Tabaquismo"}
       ],
       "url": "https://alveos.mx",
       "telephone": "+525591708334",
@@ -139,22 +143,10 @@
         }
       ],
       "availableService": [
-        {
-          "@type": "MedicalTest",
-          "name": "Espirometría simple y con broncodilatador"
-        },
-        {
-          "@type": "MedicalProcedure",
-          "name": "Check up respiratorio"
-        },
-        {
-          "@type": "MedicalTherapy",
-          "name": "Tratamiento para dejar de fumar"
-        },
-        {
-          "@type": "MedicalProcedure",
-          "name": "Manejo de derrames pleurales"
-        }
+        {"@type": "MedicalTest", "name": "Espirometría simple y con broncodilatador"},
+        {"@type": "MedicalProcedure", "name": "Check up respiratorio"},
+        {"@type": "MedicalTherapy", "name": "Tratamiento para dejar de fumar"},
+        {"@type": "MedicalProcedure", "name": "Manejo de derrames pleurales"}
       ],
       "hospitalAffiliation": {
         "@type": "Hospital",
@@ -172,7 +164,7 @@
     }
     </script>
     
-    <!-- ===== SCHEMA: WebSite — habilita el sitelinks search box ===== -->
+    <!-- ===== SCHEMA 2: WebSite ===== -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -180,36 +172,72 @@
       "name": "Alveos - Neumología de Vanguardia",
       "url": "https://alveos.mx",
       "description": "Sitio web oficial del Dr. William César Lara Vázquez, neumólogo de alta especialidad en la Ciudad de México.",
-      "publisher": {
-        "@type": "Person",
-        "@id": "https://alveos.mx/#physician"
-      }
+      "publisher": {"@type": "Person", "@id": "https://alveos.mx/#physician"}
     }
     </script>
 
-    <!-- ===== SCHEMA: BreadcrumbList — navegación estructurada ===== -->
+    <!-- ===== SCHEMA 3: BreadcrumbList ===== -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://alveos.mx/"}
+      ]
+    }
+    </script>
+
+    <!-- ===== BRECHA 3: SCHEMA 4 — FAQPage para Servicios (Gemini Sección 4.3) ===== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
         {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Inicio",
-          "item": "https://alveos.mx/"
+          "@type": "Question",
+          "name": "¿En qué consiste un check up respiratorio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evaluación médica integral preventiva para conocer el estado funcional de tus pulmones, ideal para detectar anomalías en etapas tempranas antes de que presenten síntomas severos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Para qué sirve una espirometría con broncodilatador?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Prueba fundamental de función pulmonar que mide la cantidad y velocidad del aire que puedes inhalar y exhalar. Esencial para el diagnóstico preciso de asma y EPOC."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿En qué consiste el tratamiento médico para dejar de fumar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Acompañamiento médico experto y estrategias terapéuticas efectivas para ayudarte a superar la dependencia al tabaco, reduciendo significativamente tus riesgos de salud."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo es el seguimiento médico de asma y EPOC?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Monitoreo continuo y ajuste de tratamientos para enfermedades crónicas. El objetivo es minimizar las crisis y asegurar que mantengas tu ritmo de vida sin limitaciones respiratorias."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué es el manejo de derrames pleurales?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evaluación, diagnóstico y manejo especializado de la acumulación anormal de líquido alrededor de los pulmones, aliviando la dificultad para respirar mediante abordajes seguros."
+          }
         }
       ]
     }
     </script>
 
-
-<!-- =====================================================
-     FIN DEL BLOQUE SEO
-     
-     Después de este bloque continúan tus <link> normales:
-     Bootstrap CSS, Google Fonts, Font Awesome, etc.
-     ===================================================== -->
+<!-- ===== FIN DEL BLOQUE SEO DEFINITIVO ===== -->
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
