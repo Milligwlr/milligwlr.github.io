@@ -11,7 +11,7 @@
     <link rel="canonical" href="https://alveos.mx/">
     <meta http-equiv="content-language" content="es-MX">
     <link rel="alternate" hreflang="es-mx" href="https://alveos.mx/">
-    
+
     <meta property="og:title" content="Dr. William Lara Vázquez | Neumólogo de Alta Especialidad en CDMX">
     <meta property="og:description" content="¿Tos persistente o dificultad para respirar? El Dr. William Lara, neumólogo formado en el INER, te ayuda a recuperar tu calidad de vida. Agenda tu cita en CDMX.">
     <meta property="og:type" content="website">
@@ -21,7 +21,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Dr. William Lara Vázquez | Neumólogo en CDMX">
     <meta name="twitter:description" content="¿Tos persistente o dificultad para respirar? Neumólogo formado en el INER. Especialista en EPOC, Asma y enfermedades respiratorias en CDMX.">
-    
+
     <meta name="geo.region" content="MX-CMX">
     <meta name="geo.placename" content="Ciudad de México">
     <meta name="geo.position" content="19.3758368;-99.1834226">
@@ -34,7 +34,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&display=swap">
 
     <script type="application/ld+json">
     {
@@ -116,10 +116,10 @@
     }
     </script>
 
-     <script type="application/ld+json">
+    <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://alveos.mx/"}]}
     </script>
-    
+
     <script type="application/ld+json">
     {
       "@context":"https://schema.org",
@@ -135,25 +135,37 @@
     </script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    
+
     <style>
+        /* =============================================
+           DESIGN TOKENS
+        ============================================= */
         :root {
-            --navy: #0a1628;
-            --royal: #1e3799;
-            --electric: #0984e3;
-            --sky: #74b9ff;
-            --cloud: #f8f9fb;
-            --white: #fff;
-            --text: #2d3436;
-            --text-muted: #636e72;
-            --sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
-            --ease: cubic-bezier(.16,1,.3,1);
+            --navy:       #0a1628;
+            --navy-mid:   #122040;
+            --royal:      #1e3799;
+            --electric:   #0984e3;
+            --sky:        #74b9ff;
+            --cloud:      #f0f6ff;
+            --cloud-alt:  #f8faff;
+            --white:      #ffffff;
+            --text:       #0f1d30;
+            --text-muted: #64748b;
+            --border:     rgba(0,0,0,.08);
+            --sans:       'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --ease:       cubic-bezier(.16,1,.3,1);
+            --ease-in:    cubic-bezier(.4,0,1,1);
+            --shadow-xs:  0 1px 6px rgba(10,22,40,.05);
+            --shadow-sm:  0 2px 14px rgba(10,22,40,.07);
+            --shadow-md:  0 6px 32px rgba(10,22,40,.09);
+            --shadow-lg:  0 16px 60px rgba(10,22,40,.12);
+            --shadow-blue:0 8px 32px rgba(9,132,227,.22);
         }
-        
+
         *, *::before, *::after { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
@@ -163,246 +175,1265 @@
             overflow-x: hidden;
             margin: 0;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        h1,h2,h3,h4 { font-weight: 800; color: var(--navy); letter-spacing: -.02em; }
+        .text-accent { color: var(--electric); }
+        .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0; }
+
+        /* =============================================
+           TOP BAR
+        ============================================= */
+        .top-bar-legal {
+            background: var(--navy);
+            color: rgba(255,255,255,.38);
+            font-size: .7rem;
+            padding: 7px 0;
+            letter-spacing: .6px;
+            font-weight: 600;
         }
 
-        h1, h2, h3, h4, .text-accent { font-weight: 700; color: var(--royal); }
-
-        /* Accesibilidad visual para SEO H1 */
-        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
-
-        /* Navegación */
-        .top-bar-legal { background: rgba(0,0,0,.3); color: rgba(255,255,255,.4); font-size: .72rem; padding: 8px 0; letter-spacing: .5px; font-weight: 500; }
-        .navbar { background: rgba(5,10,21,.7); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); border-bottom: 1px solid rgba(255,255,255,.05); padding: 12px 0; transition: padding .4s var(--ease), box-shadow .4s, background .4s; z-index: 1050 !important; }
-        .navbar.scrolled { padding: 8px 0; box-shadow: 0 1px 30px rgba(0,0,0,.3); background: rgba(5,10,21,.95); }
-        .navbar-brand { font-weight: 700; color: #fff !important; font-size: 1.5rem; }
-        .nav-link { font-weight: 600; color: rgba(255,255,255,.6) !important; margin: 0 10px; transition: color .3s; position: relative; }
-        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 50%; width: 0; height: 2px; background: var(--sky); transition: width .3s var(--ease), left .3s var(--ease); border-radius: 1px; }
+        /* =============================================
+           NAVBAR — white, clean
+        ============================================= */
+        .navbar {
+            background: rgba(255,255,255,.88);
+            backdrop-filter: blur(28px) saturate(200%);
+            -webkit-backdrop-filter: blur(28px) saturate(200%);
+            border-bottom: 1px solid rgba(0,0,0,.06);
+            padding: 14px 0;
+            transition: padding .4s var(--ease), box-shadow .4s, background .4s;
+            z-index: 1050 !important;
+        }
+        .navbar.scrolled {
+            padding: 9px 0;
+            box-shadow: 0 1px 28px rgba(0,0,0,.09);
+            background: rgba(255,255,255,.97);
+        }
+        .navbar-brand {
+            font-weight: 800;
+            color: var(--navy) !important;
+            font-size: 1.5rem;
+            letter-spacing: -.03em;
+        }
+        .nav-link {
+            font-weight: 600;
+            color: var(--text-muted) !important;
+            margin: 0 8px;
+            font-size: .88rem;
+            transition: color .3s;
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 50%;
+            width: 0; height: 2px;
+            background: var(--electric);
+            transition: width .3s var(--ease), left .3s var(--ease);
+            border-radius: 1px;
+        }
         .nav-link:hover::after { width: 100%; left: 0; }
-        .nav-link:hover { color: var(--sky) !important; }
-        .social-icons a { color: rgba(255,255,255,.5); font-size: 1.8rem; margin-left: 20px; transition: all .3s var(--ease); }
-        .social-icons a:hover { color: var(--sky); transform: translateY(-2px); }
-        .navbar-toggler { border-color: rgba(255,255,255,.1); }
-        .navbar-toggler-icon { filter: invert(1); }
+        .nav-link:hover { color: var(--electric) !important; }
+        .social-icons a {
+            color: var(--text-muted);
+            font-size: 1.55rem;
+            margin-left: 18px;
+            transition: all .3s var(--ease);
+        }
+        .social-icons a:hover { color: var(--electric); transform: translateY(-2px); }
+        .navbar-toggler {
+            border-color: rgba(0,0,0,.1);
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2810%2C22%2C40%2C0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+        .navbar-toggler-icon { display: none; }
+        /* Logo glow pulse */
+        .navbar-logo {
+            height: 36px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 7px rgba(9,132,227,.55)) drop-shadow(0 0 18px rgba(9,132,227,.28));
+            animation: logo-glow 3s ease-in-out infinite;
+            transition: transform .3s var(--ease);
+        }
+        .navbar-logo:hover { transform: scale(1.08) rotate(-4deg); }
+        @keyframes logo-glow {
+            0%,100% { filter: drop-shadow(0 0 6px rgba(9,132,227,.5))  drop-shadow(0 0 16px rgba(9,132,227,.22)); }
+            50%      { filter: drop-shadow(0 0 12px rgba(9,132,227,.8)) drop-shadow(0 0 32px rgba(9,132,227,.4)) drop-shadow(0 0 60px rgba(9,132,227,.15)); }
+        }
+        /* Brand text gradient */
+        .brand-name {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--royal) 70%, var(--electric) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            letter-spacing: -.03em;
+        }
 
-        /* Hero Section */
-        .hero { position: relative; min-height: 100dvh; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #050a15; }
+        /* =============================================
+           HERO — white / light blue
+        ============================================= */
+        .hero {
+            position: relative;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        /* Gradient orb blobs */
         .hero__bg { position: absolute; inset: 0; z-index: 0; }
-        .hero__bg::before { content: ''; position: absolute; top: -25%; right: -15%; width: 75vw; height: 75vw; border-radius: 50%; background: radial-gradient(circle, rgba(9,132,227,.18) 0%, rgba(9,132,227,.05) 40%, transparent 65%); animation: breathe 8s ease-in-out infinite alternate; will-change: transform; }
-        .hero__bg::after { content: ''; position: absolute; bottom: -35%; left: -10%; width: 60vw; height: 60vw; border-radius: 50%; background: radial-gradient(circle, rgba(30,55,153,.22) 0%, rgba(30,55,153,.06) 40%, transparent 65%); animation: breathe 10s ease-in-out infinite alternate-reverse; will-change: transform; }
-        .hero__orb3 { position: absolute; top: 35%; left: 55%; width: 50vw; height: 50vw; border-radius: 50%; background: radial-gradient(circle, rgba(116,185,255,.07) 0%, transparent 55%); animation: breathe 12s ease-in-out infinite alternate; z-index: 0; will-change: transform; }
-        @keyframes breathe { from { transform: scale(1); opacity: .6; } to { transform: scale(1.18) translate(3%,-4%); opacity: 1; } }
-        .hero__grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px); background-size: 60px 60px; z-index: 1; }
-        .hero__noise { position: absolute; inset: 0; z-index: 1; opacity: .035; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-repeat: repeat; background-size: 128px 128px; }
-        .hero__content { position: relative; z-index: 2; text-align: center; max-width: 900px; padding: 0 24px 110px; }
+        .hero__bg::before {
+            content: '';
+            position: absolute;
+            top: -18%; right: -8%;
+            width: 72vw; height: 72vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(9,132,227,.07) 0%, rgba(30,55,153,.04) 40%, transparent 65%);
+            animation: breathe 9s ease-in-out infinite alternate;
+            will-change: transform;
+        }
+        .hero__bg::after {
+            content: '';
+            position: absolute;
+            bottom: -22%; left: -6%;
+            width: 55vw; height: 55vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(116,185,255,.065) 0%, transparent 65%);
+            animation: breathe 11s ease-in-out infinite alternate-reverse;
+            will-change: transform;
+        }
+        .hero__orb3 {
+            position: absolute;
+            top: 28%; left: 52%;
+            width: 44vw; height: 44vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(9,132,227,.04) 0%, transparent 55%);
+            animation: breathe 13s ease-in-out infinite alternate;
+            z-index: 0;
+            will-change: transform;
+        }
+        @keyframes breathe {
+            from { transform: scale(1); opacity: .7; }
+            to   { transform: scale(1.16) translate(3%,-4%); opacity: 1; }
+        }
 
-        .hero__tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 100px; padding: 8px 20px; font-size: .8rem; font-weight: 600; color: var(--sky); letter-spacing: .5px; margin-bottom: 36px; backdrop-filter: blur(10px); }
-        .hero__tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--electric); animation: pulse-dot 2s ease-in-out infinite; }
-        @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(1.5); } }
+        /* Aurora rotating gradient */
+        .hero__aurora {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 140vmax; height: 140vmax;
+            transform: translate(-50%, -50%);
+            background: conic-gradient(
+                from 0deg,
+                rgba(9,132,227,.07) 0deg,
+                rgba(30,55,153,.05) 60deg,
+                rgba(116,185,255,.06) 120deg,
+                transparent 180deg,
+                rgba(9,132,227,.04) 240deg,
+                rgba(30,55,153,.06) 300deg,
+                rgba(116,185,255,.05) 360deg
+            );
+            animation: aurora-spin 18s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+            filter: blur(60px);
+        }
+        @keyframes aurora-spin {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to   { transform: translate(-50%, -50%) rotate(360deg); }
+        }
 
-        .hero__headline { font-weight: 800; font-size: clamp(2.8rem, 8vw, 5.5rem); line-height: .95; letter-spacing: -0.03em; color: var(--white); margin: 0 0 28px; word-break: normal; overflow-wrap: break-word; }
-        .hero__headline em { font-style: normal; background: linear-gradient(135deg, var(--sky) 0%, var(--electric) 50%, #a29bfe 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .hero__headline .line { display: block; overflow: hidden; }
+        /* Sparkle canvas overlay */
+        .hero__sparkle-canvas {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Dot grid pattern */
+        .hero__grid {
+            position: absolute; inset: 0;
+            background-image: radial-gradient(circle, rgba(10,22,40,.055) 1px, transparent 1px);
+            background-size: 28px 28px;
+            z-index: 1;
+        }
+        .hero__noise { display: none; }
+
+        /* Content */
+        .hero__content {
+            position: relative; z-index: 2;
+            text-align: center;
+            max-width: 940px;
+            padding: 0 24px 110px;
+        }
+
+        /* Badge pill */
+        .hero__tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(9,132,227,.06);
+            border: 1px solid rgba(9,132,227,.16);
+            border-radius: 100px;
+            padding: 9px 24px;
+            font-size: .78rem;
+            font-weight: 700;
+            color: var(--electric);
+            letter-spacing: .6px;
+            text-transform: uppercase;
+            margin-bottom: 36px;
+        }
+        .hero__tag .dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--electric);
+            animation: pulse-dot 2s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+        @keyframes pulse-dot {
+            0%,100% { opacity:1; transform:scale(1); }
+            50%      { opacity:.4; transform:scale(1.6); }
+        }
+
+        /* Headline */
+        .hero__headline {
+            font-weight: 800;
+            font-size: clamp(2.9rem, 8vw, 5.6rem);
+            line-height: .95;
+            letter-spacing: -0.035em;
+            color: var(--navy);
+            margin: 0 0 28px;
+        }
+        .hero__headline em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--electric) 0%, var(--royal) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero__headline .line       { display: block; overflow: hidden; padding-bottom: .15em; }
         .hero__headline .line-inner { display: block; }
 
-        .hero__sub { font-size: clamp(.92rem, 1.8vw, 1.1rem); line-height: 1.7; color: rgba(255,255,255,.5); max-width: 560px; margin: 0 auto 32px; }
-        .hero__conditions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 40px; }
-        .hero__pill { display: inline-flex; align-items: center; gap: 5px; padding: 6px 16px; border-radius: 100px; font-size: .75rem; font-weight: 600; color: rgba(255,255,255,.45); border: 1px solid rgba(255,255,255,.07); background: rgba(255,255,255,.03); backdrop-filter: blur(4px); transition: all .3s var(--ease); letter-spacing: .3px; }
-        .hero__pill:hover { border-color: rgba(116,185,255,.25); color: var(--sky); }
-        .hero__cta-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; }
-        .hero__cta { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--electric) 0%, var(--royal) 100%); color: var(--white) !important; text-decoration: none; padding: 16px 36px; border-radius: 100px; font-weight: 700; font-size: 1rem; border: none; transition: all .3s var(--ease); box-shadow: 0 4px 24px rgba(9,132,227,.3), inset 0 1px 0 rgba(255,255,255,.12); }
-        .hero__cta:hover { transform: translateY(-2px) !important; box-shadow: 0 8px 32px rgba(9,132,227,.45), inset 0 1px 0 rgba(255,255,255,.18); color: var(--white) !important; }
+        /* Sub */
+        .hero__sub {
+            font-size: clamp(.92rem, 1.8vw, 1.08rem);
+            line-height: 1.78;
+            color: var(--text-muted);
+            max-width: 540px;
+            margin: 0 auto 32px;
+        }
+
+        /* Condition pills */
+        .hero__conditions {
+            display: flex; flex-wrap: wrap;
+            gap: 8px; justify-content: center;
+            margin-bottom: 40px;
+        }
+        .hero__pill {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 6px 18px;
+            border-radius: 100px;
+            font-size: .74rem; font-weight: 600;
+            color: var(--text-muted);
+            border: 1px solid rgba(0,0,0,.09);
+            background: rgba(255,255,255,.9);
+            backdrop-filter: blur(4px);
+            transition: all .3s var(--ease);
+            letter-spacing: .2px;
+        }
+        .hero__pill:hover {
+            border-color: rgba(9,132,227,.28);
+            color: var(--electric);
+            background: rgba(9,132,227,.05);
+        }
+
+        /* CTA row */
+        .hero__cta-row {
+            display: flex; align-items: center;
+            gap: 12px; flex-wrap: wrap;
+            justify-content: center;
+        }
+        .hero__cta {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--navy);
+            color: var(--white) !important;
+            text-decoration: none;
+            padding: 16px 38px;
+            border-radius: 100px;
+            font-weight: 700; font-size: 1rem;
+            border: none;
+            transition: all .3s var(--ease);
+            box-shadow: 0 4px 20px rgba(10,22,40,.22), inset 0 1px 0 rgba(255,255,255,.07);
+        }
+        .hero__cta:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 10px 36px rgba(10,22,40,.3), inset 0 1px 0 rgba(255,255,255,.1);
+            background: #13223f;
+            color: var(--white) !important;
+        }
         .hero__cta i { transition: transform .3s; }
-        .hero__cta:hover i { transform: translateX(3px); }
-        .hero__cta-secondary { display: inline-flex; align-items: center; gap: 8px; color: rgba(255,255,255,.55) !important; text-decoration: none; padding: 16px 24px; font-weight: 600; font-size: .9rem; transition: all .3s var(--ease); border: 1px solid rgba(255,255,255,.1); border-radius: 100px; }
-        .hero__cta-secondary:hover { color: var(--white) !important; border-color: rgba(255,255,255,.25); }
-        .hero__cta-wa { display: inline-flex; align-items: center; gap: 8px; background: rgba(37,211,102,.1); border: 1px solid rgba(37,211,102,.2); color: #25d366 !important; text-decoration: none; padding: 16px 24px; border-radius: 100px; font-weight: 600; font-size: .9rem; transition: all .3s var(--ease); }
-        .hero__cta-wa:hover { background: rgba(37,211,102,.18); border-color: rgba(37,211,102,.35); color: #25d366 !important; }
-        .hero__trust { display: flex; align-items: center; gap: 14px; margin-top: 48px; flex-wrap: wrap; justify-content: center; }
-        .hero__trust-item { display: flex; align-items: center; gap: 6px; font-size: .8rem; font-weight: 700; color: rgba(255,255,255,.35); letter-spacing: .5px; }
-        .hero__trust-item i { color: rgba(116,185,255,.5); font-size: .9rem; }
-        .hero__trust-sep { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,.15); }
-        
-        .hero__scroll-hint { position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 14px; }
-        .hero__scroll-hint span { font-size: .75rem; font-weight: 600; color: rgba(255,255,255,.45); letter-spacing: 2px; text-transform: uppercase; }
-        .scroll-mouse { width: 28px; height: 46px; border: 2px solid rgba(255,255,255,.35); border-radius: 14px; position: relative; display: flex; justify-content: center; box-shadow: 0 0 15px rgba(116,185,255,.15); }
-        .scroll-mouse__wheel { width: 4px; height: 10px; border-radius: 4px; background: var(--sky); margin-top: 8px; animation: mouse-scroll 2s ease-in-out infinite; box-shadow: 0 0 8px rgba(116,185,255,.6); }
-        @keyframes mouse-scroll { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(16px); } }
+        .hero__cta:hover i { transform: translateX(4px); }
 
-        /* Estados ocultos por JS para animaciones */
-        body.js-enabled .hero__tag { opacity: 0; transform: translateY(20px); }
-        body.js-enabled .hero__headline .line-inner { opacity: 0; transform: translateY(100%); }
-        body.js-enabled .hero__sub { opacity: 0; transform: translateY(30px); }
-        body.js-enabled .hero__conditions { opacity: 0; transform: translateY(20px); }
-        body.js-enabled .hero__cta-row { opacity: 0; transform: translateY(30px); }
-        body.js-enabled .hero__trust { opacity: 0; transform: translateY(20px); }
-        body.js-enabled .hero__scroll-hint { opacity: 0; }
-
-        .reveal { transition: opacity .6s var(--ease), transform .6s var(--ease); }
-        body.js-enabled .reveal { opacity: 0; transform: translateY(24px); }
-        .reveal.visible { opacity: 1 !important; transform: translateY(0) !important; }
-        .reveal-d1 { transition-delay: .08s; } 
-        .reveal-d2 { transition-delay: .16s; } 
-        .reveal-d3 { transition-delay: .24s; } 
-        .reveal-d4 { transition-delay: .32s; } 
-        .reveal-d5 { transition-delay: .4s; }
-
-        /* Sobre Mí */
-        .about { background: #050a15; }
-        .about__inner { display: flex; min-height: 100vh; }
-        .about__visual { flex: 0 0 45%; position: sticky; top: 0; height: 100vh; display: flex; align-items: center; justify-content: center; padding: 60px; overflow: hidden; }
-        .about__photo-frame { position: relative; width: 100%; max-width: 400px; aspect-ratio: 3/4; border-radius: 24px; overflow: hidden; background: linear-gradient(135deg, rgba(255,255,255,.04) 0%, rgba(255,255,255,.02) 100%); box-shadow: 0 25px 60px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.2); display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.06); }
-        .about__photo-frame .placeholder-icon { font-size: 3rem; color: rgba(255,255,255,.15); opacity: 1; margin-bottom: 16px; }
-        .about__photo-frame .placeholder-text { font-size: .85rem; color: rgba(255,255,255,.25); opacity: 1; font-weight: 600; text-align: center; line-height: 1.5; }
-        .about__badge { position: absolute; bottom: -16px; right: -16px; background: var(--royal); color: var(--white); padding: 14px 22px; border-radius: 16px; font-size: .78rem; font-weight: 700; box-shadow: 0 8px 30px rgba(30,55,153,.35); display: flex; align-items: center; gap: 8px; z-index: 2; }
-        .about__badge i { font-size: 1.1rem; }
-        .about__text { flex: 1; padding: 120px 60px 120px 40px; display: flex; flex-direction: column; justify-content: center; max-width: 600px; }
-        .about__label { display: inline-flex; align-items: center; gap: 10px; font-size: .78rem; font-weight: 700; color: var(--electric); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 16px; }
-        .about__label::before { content: ''; width: 28px; height: 2px; background: var(--electric); border-radius: 1px; }
-        .about__name { font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.1; color: #fff; margin-bottom: 8px; }
-        .about__specialty { font-size: 1.05rem; color: var(--electric); font-weight: 600; margin-bottom: 36px; }
-        .about__paragraph { font-size: 1.02rem; line-height: 1.85; color: rgba(255,255,255,.5); margin-bottom: 24px; }
-        .about__paragraph strong { color: rgba(255,255,255,.85); font-weight: 600; }
-        .about__credentials { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-        .credential-chip { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 100px; font-size: .78rem; font-weight: 600; background: rgba(255,255,255,.04); color: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.06); transition: all .3s var(--ease); }
-        .credential-chip:hover { border-color: rgba(116,185,255,.25); color: var(--sky); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.3); }
-        .credential-chip i { font-size: .9rem; color: var(--sky); }
-        
-        .section-label { font-size: .78rem; font-weight: 700; color: var(--electric); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px; }
-        .section-title { font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 700; color: var(--navy); margin-bottom: 12px; }
-        .section-sub { color: var(--text-muted); max-width: 550px; margin: 0 auto; }
-        
-        /* Servicios */
-        .service-card { border: 1px solid #f1f2f6; border-radius: 16px; background: var(--white); overflow: hidden; transition: all .4s var(--ease); box-shadow: 0 4px 12px rgba(0,0,0,.02); }
-        .service-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,.06); }
-        .service-card__header { display: flex; align-items: center; gap: 16px; padding: 24px 28px; cursor: pointer; transition: background .3s; user-select: none; }
-        .service-card__header:hover { background: var(--cloud); }
-        .service-card__icon { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(9,132,227,.08), rgba(30,55,153,.08)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.3rem; color: var(--electric); transition: all .3s var(--ease); }
-        .service-card.active .service-card__icon { background: var(--royal); color: var(--white); }
-        .service-card__title { font-weight: 700; font-size: 1rem; color: var(--text); flex: 1; margin: 0; line-height: 1.4; }
-        .condition-card h3 { font-size: 1.15rem; margin-bottom: 12px; }
-        .service-card__arrow { font-size: 1.2rem; color: var(--text-muted); transition: transform .3s var(--ease); flex-shrink: 0; }
-        .service-card.active .service-card__arrow { transform: rotate(180deg); color: var(--electric); }
-        .service-card__body { max-height: 0; overflow: hidden; transition: max-height .5s var(--ease), padding .3s; padding: 0 28px; }
-        .service-card.active .service-card__body { max-height: 600px; padding: 0 28px 28px; }
-        .service-card__body p { color: var(--text-muted); line-height: 1.75; font-size: .95rem; margin: 0; border-top: 1px solid #f1f2f6; padding-top: 20px; }
-        .service-card__img { width: 100%; height: 160px; border-radius: 12px; background: linear-gradient(135deg, #f0f2f5 0%, #e4e8ec 100%); border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; margin-top: 20px; color: var(--text-muted); font-size: .82rem; font-weight: 600; gap: 8px; }
-        
-        /* Padecimientos */
-        .condition-card { border: 1px solid #f1f2f6; border-radius: 15px; padding: 30px; background: white; transition: all .4s var(--ease); height: 100%; box-shadow: 0 5px 15px rgba(0,0,0,.02); }
-        .condition-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,.05); border-color: var(--electric); }
-        .condition-icon { font-size: 3rem; color: var(--electric) !important; margin-bottom: 20px; display: block; transition: transform .4s var(--ease), color .4s; }
-        .condition-card:hover .condition-icon { transform: scale(1.15) translateY(-4px); color: var(--royal) !important; }
-
-        /* Animaciones Padecimientos */
-        .col-md-4:nth-child(1) .condition-icon { animation: float-y 3s ease-in-out infinite; }
-        .col-md-4:nth-child(2) .condition-icon { animation: float-rotate 4s ease-in-out infinite; }
-        .col-md-4:nth-child(3) .condition-icon { animation: float-x 3.5s ease-in-out infinite; }
-        .col-md-4:nth-child(4) .condition-icon { animation: float-pulse 3s ease-in-out infinite; }
-        .col-md-4:nth-child(5) .condition-icon { animation: float-diagonal 4s ease-in-out infinite; }
-        .col-md-4:nth-child(6) .condition-icon { animation: float-rock 3.5s ease-in-out infinite; }
-        @keyframes float-y { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-        @keyframes float-rotate { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(8deg) translateY(-4px); } }
-        @keyframes float-x { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
-        @keyframes float-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
-        @keyframes float-diagonal { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(5px,-6px); } }
-        @keyframes float-rock { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-5deg); } 75% { transform: rotate(5deg); } }
-
-        .payment-icon { font-size: 2.5rem; color: var(--royal); }
-        .cta-band { background: linear-gradient(135deg, var(--navy) 0%, var(--royal) 50%, var(--electric) 100%); }
-        .cta-band .btn { transition: all .3s var(--ease); }
-        .cta-band .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,.2); }
-        .map-wrapper { position: relative; padding-bottom: 75%; height: 0; overflow: hidden; border-radius: 12px; border: 1px solid #ddd; }
-        .map-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-        
-        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white !important; width: 56px; height: 56px; border-radius: 50%; font-size: 1.6rem; box-shadow: 0 6px 24px rgba(37,211,102,.35); z-index: 1000; text-decoration: none; transition: all .3s var(--ease); display: flex; align-items: center; justify-content: center; }
-        .whatsapp-float:hover { background: #128c7e; color: white !important; transform: translateY(-3px); }
-        footer { background: var(--navy); color: rgba(255,255,255,.8); padding: 40px 0 20px; }
-        
-        @media(max-width:991px) { 
-            .about__inner { flex-direction: column; } 
-            .about__visual { position: relative; height: auto; min-height: auto; flex: none; padding: 60px 24px; } 
-            .about__text { padding: 40px 24px 80px; max-width: 100%; } 
-            .about__badge { bottom: -12px; right: 8px; } 
+        .hero__cta-secondary {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--text-muted) !important;
+            text-decoration: none;
+            padding: 16px 26px;
+            font-weight: 600; font-size: .9rem;
+            transition: all .3s var(--ease);
+            border: 1px solid rgba(0,0,0,.11);
+            border-radius: 100px;
         }
-        @media(max-width:768px) {
-            .hero__cta-row { flex-direction: column; gap: 10px; width: 100%; max-width: 320px; margin: 0 auto; }
-            .hero__cta, .hero__cta-secondary, .hero__cta-wa { width: 100%; justify-content: center; min-height: 48px; }
-            .hero__conditions { gap: 6px; }
-            .hero__pill { padding: 5px 12px; font-size: .7rem; }
-            .hero__trust { gap: 8px; }
-            .hero__trust-item { font-size: .72rem; }
-            .section-title { font-size: 1.6rem; }
-            .section-sub { font-size: .9rem; }
-            .condition-card h3 { font-size: .95rem; }
-            .cta-band h2 { font-size: 1.4rem; }
-            .cta-band .lead { font-size: .95rem; }
-            .cta-band .btn { width: 100%; max-width: 320px; }
-            footer { padding: 32px 0 16px; }
+        .hero__cta-secondary:hover {
+            color: var(--navy) !important;
+            border-color: rgba(0,0,0,.24);
+            background: rgba(0,0,0,.02);
         }
-        @media(max-width:576px) {
-            .hero__headline { font-size: 2.4rem; }
-            .hero__tag { font-size: .7rem; padding: 6px 14px; margin-bottom: 24px; }
-            .hero__cta { padding: 14px 28px; font-size: .95rem; }
-            .hero__sub { font-size: .88rem; margin-bottom: 24px; }
-            .about__photo-frame { max-width: 260px; }
-            .hero__scroll-hint { bottom: 20px; }
-            .service-card__header { padding: 18px 20px; gap: 12px; }
-            .service-card.active .service-card__body { padding: 0 20px 20px; }
-            .condition-card { padding: 24px; }
-            .top-bar-legal { font-size: .62rem; padding: 6px 0; }
-            .navbar-brand { font-size: 1.25rem; }
-            .navbar-logo { height: 30px !important; width: 30px !important; }
-            .whatsapp-float { bottom: 20px; right: 16px; width: 52px; height: 52px; font-size: 1.4rem; }
+        .hero__cta-wa {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(37,211,102,.07);
+            border: 1px solid rgba(37,211,102,.22);
+            color: #1aa34a !important;
+            text-decoration: none;
+            padding: 16px 26px;
+            border-radius: 100px;
+            font-weight: 600; font-size: .9rem;
+            transition: all .3s var(--ease);
         }
-        @media(prefers-reduced-motion: reduce) {
-            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+        .hero__cta-wa:hover {
+            background: rgba(37,211,102,.13);
+            border-color: rgba(37,211,102,.38);
+            color: #158a3e !important;
         }
 
-        /* Navbar logo */
-        .navbar-logo { height: 38px; width: auto; object-fit: contain; filter: drop-shadow(0 0 10px rgba(255,255,255,.25)) drop-shadow(0 0 20px rgba(255,255,255,.1)); }
+        /* (trust bar removed) */
 
-        /* Service image placeholder mejorado */
-        .service-card__img {
-            width: 100%; height: 190px; border-radius: 12px;
-            background: linear-gradient(135deg, rgba(9,132,227,.06) 0%, rgba(30,55,153,.1) 100%);
-            border: 1px solid rgba(9,132,227,.1);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            margin-top: 20px; gap: 10px; transition: all .4s var(--ease);
-        }
-        .service-card__img i { font-size: 3.2rem; color: var(--electric); opacity: .35; transition: all .4s var(--ease); }
-        .service-card__img span { font-size: .7rem; font-weight: 700; color: var(--text-muted); letter-spacing: 1.5px; text-transform: uppercase; opacity: .5; }
-        .service-card.active .service-card__img i { opacity: .55; transform: scale(1.1); }
-
-        /* Testimonios */
-        .testimonial-summary-score { font-size: 3.8rem; font-weight: 800; color: var(--navy); line-height: 1; }
-        .testimonial-card {
-            background: var(--white); border: 1px solid rgba(0,0,0,.06);
-            border-radius: 16px; padding: 28px;
-            box-shadow: 0 4px 24px rgba(0,0,0,.04);
-            height: 100%; transition: all .4s var(--ease);
+        /* Scroll hint — animated chevrons */
+        .hero__scroll-hint {
+            position: absolute; bottom: 32px; left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
             display: flex; flex-direction: column;
+            align-items: center;
         }
-        .testimonial-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.09); transform: translateY(-4px); border-color: rgba(9,132,227,.15); }
-        .testimonial-stars { display: flex; gap: 3px; }
-        .testimonial-date { font-size: .71rem; color: var(--text-muted); font-weight: 500; }
-        .testimonial-text { font-size: .94rem; line-height: 1.72; color: var(--text); font-style: italic; flex: 1; margin: 16px 0 20px; }
-        .testimonial-author { display: flex; align-items: center; gap: 12px; margin-top: auto; }
-        .testimonial-avatar {
-            width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
-            background: linear-gradient(135deg, var(--electric), var(--royal));
-            color: var(--white); font-weight: 700; font-size: 1.1rem;
+        .scroll-chevrons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+        .scroll-chevrons i {
+            font-size: 1.4rem;
+            color: var(--electric);
+            animation: chevron-bounce 2s ease-in-out infinite;
+            line-height: .7;
+        }
+        .chevron-1 { animation-delay: 0s; opacity: .3; }
+        .chevron-2 { animation-delay: .15s; opacity: .55; }
+        .chevron-3 { animation-delay: .3s; opacity: .85; }
+        @keyframes chevron-bounce {
+            0%,100% { transform: translateY(0); opacity: .25; }
+            50%     { transform: translateY(6px); opacity: 1; }
+        }
+
+        /* GSAP hidden states */
+        body.js-enabled .hero__tag              { opacity:0; transform:translateY(20px); }
+        body.js-enabled .hero__headline .line-inner { opacity:0; transform:translateY(100%); }
+        body.js-enabled .hero__sub              { opacity:0; transform:translateY(30px); }
+        body.js-enabled .hero__conditions       { opacity:0; transform:translateY(20px); }
+        body.js-enabled .hero__cta-row          { opacity:0; transform:translateY(30px); }
+        body.js-enabled .hero__scroll-hint      { opacity:0; }
+
+        .reveal { transition: opacity .65s var(--ease), transform .65s var(--ease); }
+        body.js-enabled .reveal { opacity:0; transform:translateY(28px); }
+        .reveal.visible { opacity:1 !important; transform:translateY(0) !important; }
+        .reveal-d1 { transition-delay:.08s; }
+        .reveal-d2 { transition-delay:.16s; }
+        .reveal-d3 { transition-delay:.24s; }
+        .reveal-d4 { transition-delay:.32s; }
+        .reveal-d5 { transition-delay:.40s; }
+
+        /* =============================================
+           MARQUEE STRIP
+        ============================================= */
+        .marquee-strip {
+            background: var(--navy);
+            border-top: 1px solid rgba(255,255,255,.06);
+            border-bottom: 1px solid rgba(255,255,255,.06);
+            overflow: hidden;
+            padding: 14px 0;
+            user-select: none;
+        }
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee-scroll 28s linear infinite;
+        }
+        .marquee-track:hover { animation-play-state: paused; }
+        .marquee-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 0 28px;
+            font-size: .72rem;
+            font-weight: 700;
+            color: rgba(255,255,255,.32);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .marquee-item .marquee-dot {
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: var(--electric);
+            opacity: .7;
+            flex-shrink: 0;
+        }
+        @keyframes marquee-scroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* =============================================
+           STATS STRIP — dark navy band
+        ============================================= */
+        .stats-strip {
+            background: var(--navy);
+            overflow: hidden;
+            position: relative;
+        }
+        .stats-strip::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(9,132,227,.06) 0%, rgba(30,55,153,.08) 50%, transparent 100%);
+            pointer-events: none;
+        }
+        .stats-strip__inner {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        .stat-item {
+            flex: 1 1 180px;
+            max-width: 300px;
+            text-align: center;
+            padding: 40px 28px;
+            position: relative;
+            transition: background .3s;
+        }
+        .stat-item:hover { background: rgba(255,255,255,.03); }
+        .stat-item::after {
+            content: '';
+            position: absolute;
+            right: 0; top: 20%; height: 60%;
+            width: 1px;
+            background: rgba(255,255,255,.07);
+        }
+        .stat-item:last-child::after { display: none; }
+        .stat-num {
+            display: block;
+            font-size: 2.4rem; font-weight: 800;
+            color: var(--white);
+            letter-spacing: -.04em;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .stat-num .stat-accent { color: var(--sky); }
+        .stat-label {
+            font-size: .72rem; font-weight: 600;
+            color: rgba(255,255,255,.38);
+            letter-spacing: .9px;
+            text-transform: uppercase;
+            line-height: 1.45;
+        }
+
+        /* =============================================
+           SECTION SHARED
+        ============================================= */
+        .section-label {
+            font-size: .75rem; font-weight: 700;
+            color: var(--electric);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .section-title {
+            font-size: clamp(1.85rem, 3.5vw, 2.6rem);
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 14px;
+            letter-spacing: -.025em;
+            line-height: 1.1;
+        }
+        .section-sub {
+            color: var(--text-muted);
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.75;
+            font-size: 1rem;
+        }
+
+        /* =============================================
+           ABOUT
+        ============================================= */
+        .about { background: var(--white); }
+        .about__inner { display: flex; min-height: 90vh; }
+        .about__visual {
+            flex: 0 0 45%;
+            position: sticky; top: 0;
+            height: 100vh;
             display: flex; align-items: center; justify-content: center;
+            padding: 60px;
+            overflow: hidden;
         }
-        .testimonial-name { font-weight: 700; font-size: .88rem; color: var(--navy); margin: 0; }
-        .testimonial-verified { font-size: .7rem; color: var(--text-muted); margin: 2px 0 0; }
+        .about__photo-frame {
+            position: relative;
+            width: 100%; max-width: 400px;
+            aspect-ratio: 3/4;
+            border-radius: 28px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--cloud) 0%, #d8e8f8 100%);
+            box-shadow: 0 32px 80px rgba(10,22,40,.1), 0 4px 20px rgba(10,22,40,.05);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            border: 1px solid rgba(9,132,227,.1);
+        }
+        .about__photo-frame .placeholder-icon {
+            font-size: 3rem;
+            color: var(--electric);
+            opacity: .28;
+            margin-bottom: 16px;
+        }
+        .about__photo-frame .placeholder-text {
+            font-size: .85rem;
+            color: var(--text-muted);
+            opacity: .55;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.5;
+        }
+        .about__badge {
+            position: absolute; bottom: -16px; right: -16px;
+            background: var(--navy);
+            color: var(--white);
+            padding: 14px 22px;
+            border-radius: 18px;
+            font-size: .78rem; font-weight: 700;
+            box-shadow: 0 10px 36px rgba(10,22,40,.28);
+            display: flex; align-items: center; gap: 8px;
+            z-index: 2;
+        }
+        .about__badge i { font-size: 1.1rem; color: var(--sky); }
+        .about__text {
+            flex: 1;
+            padding: 120px 60px 120px 40px;
+            display: flex; flex-direction: column; justify-content: center;
+            max-width: 600px;
+        }
+        .about__label {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-size: .75rem; font-weight: 700;
+            color: var(--electric);
+            text-transform: uppercase; letter-spacing: 3px;
+            margin-bottom: 16px;
+        }
+        .about__label::before {
+            content: '';
+            width: 28px; height: 2px;
+            background: var(--electric);
+            border-radius: 1px;
+        }
+        .about__name {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            line-height: 1.05;
+            color: var(--navy);
+            margin-bottom: 8px;
+            letter-spacing: -.03em;
+        }
+        .about__specialty {
+            font-size: 1rem;
+            color: var(--electric);
+            font-weight: 600;
+            margin-bottom: 36px;
+        }
+        .about__paragraph {
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+        .about__paragraph strong { color: var(--text); font-weight: 700; }
+        .about__credentials { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+        .credential-chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 9px 18px;
+            border-radius: 100px;
+            font-size: .78rem; font-weight: 600;
+            background: var(--cloud);
+            color: var(--text-muted);
+            border: 1px solid rgba(9,132,227,.1);
+            transition: all .3s var(--ease);
+        }
+        .credential-chip:hover {
+            border-color: var(--electric);
+            color: var(--electric);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px rgba(9,132,227,.12);
+        }
+        .credential-chip i { font-size: .88rem; color: var(--electric); }
+
+        /* =============================================
+           SERVICES
+        ============================================= */
+        .services { background: var(--cloud); }
+        .services__wrap { display: flex; gap: 60px; position: relative; }
+        .services__nav {
+            flex: 0 0 320px;
+            position: sticky; top: 120px;
+            height: fit-content;
+            align-self: flex-start;
+        }
+        .services__nav-item {
+            display: flex; align-items: center; gap: 16px;
+            padding: 18px 20px;
+            border-radius: 18px;
+            cursor: pointer;
+            transition: all .4s var(--ease);
+            margin-bottom: 6px;
+            border: 1px solid transparent;
+        }
+        .services__nav-item:hover { background: rgba(9,132,227,.04); }
+        .services__nav-item.active {
+            background: var(--white);
+            border-color: rgba(9,132,227,.12);
+            box-shadow: 0 4px 22px rgba(9,132,227,.08);
+        }
+        .services__nav-icon {
+            width: 46px; height: 46px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(9,132,227,.07), rgba(30,55,153,.07));
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+            color: var(--electric);
+            transition: all .4s var(--ease);
+        }
+        .services__nav-item.active .services__nav-icon {
+            background: linear-gradient(135deg, var(--electric), var(--royal));
+            color: var(--white);
+            box-shadow: 0 4px 18px rgba(9,132,227,.32);
+        }
+        .services__nav-title {
+            font-weight: 700; font-size: .9rem;
+            color: var(--text-muted);
+            transition: color .3s; margin: 0;
+        }
+        .services__nav-item.active .services__nav-title { color: var(--navy); }
+        .services__panels { flex: 1; min-width: 0; }
+        .services__panel {
+            min-height: 70vh;
+            display: flex; align-items: center;
+            padding: 60px 0;
+        }
+        .services__panel-inner {
+            background: var(--white);
+            border-radius: 28px;
+            padding: 52px;
+            border: 1px solid rgba(0,0,0,.05);
+            box-shadow: 0 8px 40px rgba(0,0,0,.04);
+            width: 100%;
+            opacity: .4; transform: translateY(20px);
+            transition: opacity .5s var(--ease), transform .5s var(--ease);
+            position: relative; overflow: hidden;
+        }
+        /* Top accent line that slides in on active */
+        .services__panel-inner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--electric), var(--royal));
+            border-radius: 28px 28px 0 0;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .55s var(--ease);
+        }
+        .services__panel-inner.active { opacity:1; transform:translateY(0); }
+        .services__panel-inner.active::before { transform: scaleX(1); }
+        .services__panel-title {
+            font-size: 1.65rem; font-weight: 800;
+            color: var(--navy); margin-bottom: 16px;
+            letter-spacing: -.025em;
+        }
+        .services__panel-text {
+            font-size: 1.02rem; line-height: 1.82;
+            color: var(--text-muted); margin-bottom: 28px;
+        }
+        .services__panel-img {
+            width: 100%; height: 200px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(9,132,227,.04), rgba(30,55,153,.08));
+            border: 1px solid rgba(9,132,227,.1);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 10px;
+        }
+        .services__panel-img i {
+            font-size: 3rem;
+            color: var(--electric);
+            opacity: .22;
+        }
+        .services__panel-img span {
+            font-size: .68rem; font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 1.5px; text-transform: uppercase;
+            opacity: .42;
+        }
+        .condition-card h3 { font-size: 1.15rem; margin-bottom: 12px; }
+
+        @media(max-width:991px) {
+            .services__wrap { flex-direction: column; gap: 0; }
+            .services__nav {
+                position: relative; top: auto; flex: none;
+                display: flex; overflow-x: auto;
+                gap: 8px; padding-bottom: 16px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            .services__nav::-webkit-scrollbar { display: none; }
+            .services__nav-item { flex-shrink: 0; padding: 12px 16px; margin-bottom: 0; }
+            .services__panel { min-height: auto; padding: 20px 0; }
+            .services__panel-inner { padding: 28px; opacity:1; transform:none; }
+        }
+
+        /* =============================================
+           FRAMER-STYLE SECTION EYEBROW
+        ============================================= */
+        .section-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .section-num {
+            font-size: .68rem;
+            font-weight: 800;
+            color: var(--electric);
+            border: 1px solid rgba(9,132,227,.25);
+            border-radius: 6px;
+            padding: 3px 9px;
+            letter-spacing: .5px;
+            background: rgba(9,132,227,.05);
+        }
+
+        /* =============================================
+           BENTO GRID — Diseases / Enfermedades
+        ============================================= */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+        /* Alternating wide/narrow pattern */
+        .bento-grid > :nth-child(1) { grid-column: 1 / 3; }
+        .bento-grid > :nth-child(2) { grid-column: 3 / 4; }
+        .bento-grid > :nth-child(3) { grid-column: 1 / 2; }
+        .bento-grid > :nth-child(4) { grid-column: 2 / 4; }
+        .bento-grid > :nth-child(5) { grid-column: 1 / 3; }
+        .bento-grid > :nth-child(6) { grid-column: 3 / 4; }
+
+        .bento-link {
+            display: block;
+            text-decoration: none;
+            height: 100%;
+        }
+        .bento-card {
+            position: relative;
+            background: var(--white);
+            border: 1px solid #e4eaf3;
+            border-radius: 22px;
+            padding: 40px;
+            height: 100%;
+            min-height: 220px;
+            overflow: hidden;
+            transition: all .45s var(--ease);
+            display: flex;
+            flex-direction: column;
+        }
+        /* Gradient top-line reveal */
+        .bento-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--electric), var(--royal));
+            border-radius: 22px 22px 0 0;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .45s var(--ease);
+        }
+        /* Large decorative background icon */
+        .bento-card__bg-icon {
+            position: absolute;
+            right: -8px; bottom: -16px;
+            font-size: 7rem;
+            color: var(--electric);
+            opacity: .04;
+            transition: opacity .45s, transform .45s var(--ease);
+            line-height: 1;
+            pointer-events: none;
+        }
+        .bento-link:hover .bento-card {
+            border-color: rgba(9,132,227,.18);
+            box-shadow: 0 20px 60px rgba(9,132,227,.1);
+        }
+        .bento-link:hover .bento-card::before { transform: scaleX(1); }
+        .bento-link:hover .bento-card__bg-icon {
+            opacity: .07;
+            transform: scale(1.12) translateY(-6px);
+        }
+        /* Icon container */
+        .bento-icon-wrap {
+            display: inline-flex;
+            align-items: center; justify-content: center;
+            width: 60px; height: 60px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(9,132,227,.08), rgba(30,55,153,.06));
+            border: 1px solid rgba(9,132,227,.1);
+            margin-bottom: 20px;
+            flex-shrink: 0;
+            transition: all .45s var(--ease);
+        }
+        .bento-link:hover .bento-icon-wrap {
+            background: linear-gradient(135deg, var(--electric), var(--royal));
+            border-color: transparent;
+            box-shadow: 0 6px 20px rgba(9,132,227,.3);
+        }
+        .bento-icon {
+            font-size: 1.6rem;
+            color: var(--electric) !important;
+            transition: color .45s;
+            line-height: 1;
+        }
+        .bento-link:hover .bento-icon { color: var(--white) !important; }
+        /* Wide card: horizontal layout on desktop */
+        .bento-wide-inner {
+            display: flex;
+            align-items: flex-start;
+            gap: 28px;
+        }
+        .bento-wide-inner .bento-text { flex: 1; }
+        .bento-card h3 {
+            font-size: 1.22rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 10px;
+            letter-spacing: -.01em;
+        }
+        .bento-card p {
+            font-size: .95rem;
+            line-height: 1.75;
+            color: var(--text-muted);
+            margin: 0;
+        }
+        .bento-card__cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: .85rem;
+            font-weight: 700;
+            color: var(--electric);
+            margin-top: 18px;
+            transition: gap .3s;
+        }
+        .bento-link:hover .bento-card__cta { gap: 9px; }
+
+        @media(max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+            .bento-grid > :nth-child(n) { grid-column: 1 / -1; }
+            .bento-wide-inner { flex-direction: column; gap: 0; }
+        }
+
+        /* =============================================
+           CONDITION CARDS
+        ============================================= */
+        .condition-card {
+            position: relative;
+            border: 1px solid #e4eaf3;
+            border-radius: 22px;
+            padding: 36px 28px;
+            background: white;
+            transition: all .4s var(--ease);
+            height: 100%;
+            box-shadow: 0 2px 12px rgba(10,22,40,.04);
+            overflow: hidden;
+        }
+        /* Top accent line on hover */
+        .condition-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--electric), var(--royal));
+            border-radius: 22px 22px 0 0;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .4s var(--ease);
+        }
+        a:hover .condition-card::before { transform: scaleX(1); }
+        a:hover .condition-card {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 52px rgba(9,132,227,.1);
+            border-color: rgba(9,132,227,.18);
+        }
+
+        /* Icon container */
+        .condition-icon-wrap {
+            display: inline-flex;
+            align-items: center; justify-content: center;
+            width: 62px; height: 62px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(9,132,227,.08), rgba(30,55,153,.06));
+            border: 1px solid rgba(9,132,227,.1);
+            margin-bottom: 20px;
+            transition: all .4s var(--ease);
+        }
+        a:hover .condition-icon-wrap {
+            background: linear-gradient(135deg, var(--electric), var(--royal));
+            border-color: transparent;
+            box-shadow: 0 8px 26px rgba(9,132,227,.32);
+            transform: scale(1.06) translateY(-2px);
+        }
+        .condition-icon {
+            font-size: 1.6rem;
+            color: var(--electric) !important;
+            transition: all .4s var(--ease);
+            display: block;
+            line-height: 1;
+        }
+        a:hover .condition-icon { color: var(--white) !important; }
+        .condition-card h3 {
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+        .condition-card p {
+            font-size: .88rem;
+            line-height: 1.72;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* =============================================
+           TESTIMONIALS — 3-column vertical scroll
+        ============================================= */
+        .testimonials-section {
+            background: var(--cloud);
+            overflow: hidden;
+        }
+        .testimonial-summary-score {
+            font-size: 4.2rem; font-weight: 800;
+            color: var(--navy); line-height: 1;
+            letter-spacing: -.04em;
+        }
         .testimonial-source-badge {
             display: inline-flex; align-items: center; gap: 6px;
-            background: #f0f8ff; border: 1px solid #c8e4fb; border-radius: 100px;
-            padding: 5px 14px; font-size: .72rem; font-weight: 700; color: #0984e3;
+            background: rgba(9,132,227,.07);
+            border: 1px solid rgba(9,132,227,.16);
+            border-radius: 100px;
+            padding: 6px 18px;
+            font-size: .72rem; font-weight: 700;
+            color: var(--electric);
+        }
+        .testimonial-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            height: 520px;
+            overflow: hidden;
+            position: relative;
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+        }
+        .testimonial-col {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            animation: testimonial-scroll-up var(--speed, 32s) linear infinite;
+            will-change: transform;
+        }
+        .testimonial-col:nth-child(2) { --speed: 28s; animation-direction: reverse; }
+        .testimonial-col:nth-child(3) { --speed: 35s; }
+        .testimonial-col:hover { animation-play-state: paused; }
+        @keyframes testimonial-scroll-up {
+            0%   { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+        .testi-card {
+            background: var(--white);
+            border: 1px solid rgba(0,0,0,.06);
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 2px 12px rgba(10,22,40,.04);
+            transition: all .4s var(--ease);
+            flex-shrink: 0;
+        }
+        .testi-card:hover {
+            box-shadow: 0 12px 40px rgba(10,22,40,.09);
+            border-color: rgba(9,132,227,.15);
+        }
+        .testi-stars { display: flex; gap: 2px; margin-bottom: 12px; }
+        .testi-stars i { color: #f59e0b; font-size: .82rem; }
+        .testi-text {
+            font-size: .88rem; line-height: 1.7;
+            color: var(--text);
+            font-style: italic;
+            margin: 0 0 16px;
+        }
+        .testi-author {
+            display: flex; align-items: center; gap: 10px;
+        }
+        .testi-avatar {
+            width: 38px; height: 38px;
+            border-radius: 50%; flex-shrink: 0;
+            background: linear-gradient(135deg, var(--electric), var(--royal));
+            color: var(--white); font-weight: 700; font-size: .95rem;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .testi-name { font-weight: 700; font-size: .82rem; color: var(--navy); margin: 0; }
+        .testi-badge { font-size: .68rem; color: var(--text-muted); margin: 1px 0 0; }
+        @media(max-width:768px) {
+            .testimonial-columns {
+                grid-template-columns: 1fr 1fr;
+                height: 420px;
+            }
+            .testimonial-columns > :nth-child(3) { display: none; }
+        }
+        @media(max-width:480px) {
+            .testimonial-columns {
+                grid-template-columns: 1fr;
+                height: 380px;
+            }
+            .testimonial-columns > :nth-child(2) { display: none; }
+        }
+
+        /* =============================================
+           PAYMENTS
+        ============================================= */
+        .payment-icon { font-size: 2.2rem; color: var(--electric); }
+        .payment-item {
+            text-align: center;
+            padding: 24px 20px;
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            background: var(--cloud-alt);
+            transition: all .3s var(--ease);
+        }
+        .payment-item:hover {
+            border-color: rgba(9,132,227,.18);
+            box-shadow: var(--shadow-sm);
+            transform: translateY(-3px);
+        }
+
+        /* =============================================
+           CTA BAND — with sparkle canvas
+        ============================================= */
+        .cta-band {
+            background: var(--navy);
+            position: relative; overflow: hidden;
+        }
+        .cta-band__canvas {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .cta-band__glow-line {
+            position: absolute;
+            top: 50%; left: 10%; right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(9,132,227,.5) 20%, rgba(116,185,255,.6) 50%, rgba(9,132,227,.5) 80%, transparent 100%);
+            filter: blur(1px);
+            z-index: 0;
+            opacity: .6;
+            animation: glow-pulse 4s ease-in-out infinite;
+        }
+        @keyframes glow-pulse {
+            0%,100% { opacity:.4; filter: blur(1px); }
+            50%     { opacity:.8; filter: blur(2px); }
+        }
+        .cta-band-content { position: relative; z-index: 1; }
+        .cta-band__btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--white);
+            color: var(--navy) !important;
+            text-decoration: none;
+            padding: 18px 44px;
+            border-radius: 100px;
+            font-weight: 800; font-size: 1.05rem;
+            letter-spacing: -.01em;
+            transition: all .35s var(--ease);
+            box-shadow: 0 4px 24px rgba(255,255,255,.15), 0 0 60px rgba(9,132,227,.12);
+        }
+        .cta-band__btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 40px rgba(255,255,255,.22), 0 0 80px rgba(9,132,227,.2);
+            color: var(--royal) !important;
+        }
+
+        /* =============================================
+           CONTACT / MAP
+        ============================================= */
+        .map-wrapper {
+            position: relative; padding-bottom: 75%; height: 0;
+            overflow: hidden; border-radius: 18px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 24px rgba(0,0,0,.06);
+        }
+        .map-wrapper iframe {
+            position: absolute; top:0; left:0;
+            width:100%; height:100%; border:0;
+        }
+        .contact-info-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow-xs);
+        }
+        .hours-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--cloud);
+            border: 1px solid rgba(9,132,227,.12);
+            border-radius: 100px;
+            padding: 4px 14px;
+            font-size: .72rem; font-weight: 700;
+            color: var(--electric);
+        }
+
+        /* =============================================
+           WHATSAPP FLOAT
+        ============================================= */
+        .whatsapp-float {
+            position: fixed; bottom: 28px; right: 28px;
+            background: #25d366;
+            color: white !important;
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            font-size: 1.6rem;
+            box-shadow: 0 6px 26px rgba(37,211,102,.38);
+            z-index: 1000;
+            text-decoration: none;
+            transition: all .3s var(--ease);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .whatsapp-float:hover {
+            background: #1da851;
+            color: white !important;
+            transform: translateY(-3px) scale(1.06);
+            box-shadow: 0 12px 36px rgba(37,211,102,.44);
+        }
+
+        /* =============================================
+           FOOTER
+        ============================================= */
+        footer {
+            background: var(--navy);
+            color: rgba(255,255,255,.65);
+            padding: 52px 0 28px;
+        }
+        .footer-logo-text {
+            font-size: 1.45rem; font-weight: 800;
+            color: #fff; letter-spacing: -.03em;
+        }
+        .footer-tagline {
+            font-size: .82rem;
+            color: rgba(255,255,255,.32);
+            margin-top: 4px; margin-bottom: 24px;
+        }
+        .footer-social a {
+            color: rgba(255,255,255,.38);
+            font-size: 1.35rem;
+            margin: 0 10px;
+            transition: all .3s var(--ease);
+            text-decoration: none;
+        }
+        .footer-social a:hover { color: var(--sky); transform: translateY(-2px); }
+        .footer-divider {
+            border-color: rgba(255,255,255,.07);
+            margin: 24px 0;
+        }
+        .footer-meta { font-size: .78rem; color: rgba(255,255,255,.22); }
+        .footer-meta a {
+            color: rgba(255,255,255,.3);
+            text-decoration: none;
+            transition: color .3s;
+        }
+        .footer-meta a:hover { color: rgba(255,255,255,.65); }
+
+        /* =============================================
+           RESPONSIVE
+        ============================================= */
+        @media(max-width:991px) {
+            .about__inner   { flex-direction: column; }
+            .about__visual  { position: relative; height: auto; min-height: auto; flex: none; padding: 60px 24px; }
+            .about__text    { padding: 40px 24px 80px; max-width: 100%; }
+            .about__badge   { bottom: -12px; right: 8px; }
+            .stat-item      { flex: 1 1 140px; max-width: 50%; padding: 28px 16px; }
+            .stat-item::after { display: none; }
+            .stats-strip__inner::after {
+                content: '';
+                display: block;
+                width: 100%;
+                height: 1px;
+                background: rgba(255,255,255,.06);
+                order: 2;
+            }
+        }
+        @media(max-width:768px) {
+            .hero__cta-row  { flex-direction: column; gap: 10px; width: 100%; max-width: 320px; margin: 0 auto; }
+            .hero__cta, .hero__cta-secondary, .hero__cta-wa { width: 100%; justify-content: center; min-height: 48px; }
+            .hero__conditions { gap: 6px; }
+            .hero__pill     { padding: 5px 12px; font-size: .7rem; }
+            .hero__trust    { gap: 8px; }
+            .section-title  { font-size: 1.72rem; }
+            .section-sub    { font-size: .9rem; }
         }
         @media(max-width:576px) {
-            .testimonial-card { padding: 20px; }
-            .testimonial-summary-score { font-size: 3rem; }
+            .hero__headline { font-size: 2.45rem; }
+            .hero__tag      { font-size: .7rem; padding: 7px 16px; margin-bottom: 24px; }
+            .hero__sub      { font-size: .88rem; }
+            .hero__scroll-hint { bottom: 18px; }
+            .services__panel-inner { padding: 22px; }
+            .condition-card { padding: 28px 22px; }
+            .top-bar-legal  { font-size: .62rem; padding: 6px 0; }
+            .navbar-brand   { font-size: 1.25rem; }
+            .navbar-logo    { height: 28px !important; }
+            .whatsapp-float { bottom: 20px; right: 16px; width: 50px; height: 50px; font-size: 1.4rem; }
+            .stat-num       { font-size: 1.9rem; }
+            .stat-item      { flex: 1 1 120px; padding: 24px 12px; }
+            .testimonial-summary-score { font-size: 3.2rem; }
+        }
+        @media(prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
         }
     </style>
 </head>
@@ -410,13 +1441,18 @@
     <script>document.body.classList.add('js-enabled');</script>
 
     <div class="top-bar-legal text-center fw-semibold">
-        <div class="container">Aviso Cofepris: XXXXXXXX  |  Céd. Prof: XXXXXXX  |  Céd. Esp: XXXXXXX</div>
+        <div class="container">Aviso Cofepris: XXXXXXXX &nbsp;|&nbsp; Céd. Prof: XXXXXXX &nbsp;|&nbsp; Céd. Esp: XXXXXXX</div>
     </div>
 
     <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="#"><img src="favicon.png" alt="" class="navbar-logo me-2" width="38" height="38"> ALVEOS</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <img src="favicon.png" alt="Logo Alveos" class="navbar-logo" width="36" height="36">
+                <span class="brand-name">ALVEOS</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Menú">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
@@ -432,19 +1468,26 @@
         </div>
     </nav>
 
-    <a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20cita" target="_blank" class="whatsapp-float" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+    <a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20cita" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+        <i class="bi bi-whatsapp" aria-hidden="true"></i>
+    </a>
 
     <main>
+        <!-- ===== HERO ===== -->
         <section class="hero" id="hero">
             <div class="hero__bg"></div>
+            <div class="hero__aurora"></div>
             <div class="hero__orb3"></div>
-            <div class="hero__noise"></div>
+            <canvas class="hero__sparkle-canvas" id="heroSparkles"></canvas>
             <div class="hero__grid"></div>
             <div class="hero__content">
-                <div class="hero__tag"><span class="dot"></span> Neumología de Alta Especialidad en CDMX</div>
+                <div class="hero__tag">
+                    <span class="dot"></span>
+                    Neumología de Alta Especialidad en CDMX
+                </div>
                 <h1 class="hero__headline">
-                    <span class="line"><span class="line-inner">Neumólogo Especialista</span></span>
-                    <span class="line"><span class="line-inner">en <em>Ciudad de México</em></span></span>
+                    <span class="line"><span class="line-inner">Salud Respiratoria</span></span>
+                    <span class="line"><span class="line-inner">de <em>Vanguardia</em> en CDMX</span></span>
                 </h1>
                 <p class="hero__sub">¿Tos persistente, dificultad para respirar o problemas pulmonares? El Dr. William Lara, formado en el INER, te ayuda a recuperar tu calidad de vida con un diagnóstico preciso.</p>
                 <div class="hero__conditions">
@@ -455,31 +1498,89 @@
                     <span class="hero__pill">Tabaquismo</span>
                 </div>
                 <div class="hero__cta-row">
-                    <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="hero__cta">Agendar cita <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
-                    <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20quiero%20agendar%20una%20cita" target="_blank" class="hero__cta-wa"><i class="bi bi-whatsapp" aria-hidden="true"></i> WhatsApp</a>
-                    <a href="tel:5591708334" class="hero__cta-secondary"><i class="bi bi-telephone-fill" aria-hidden="true"></i> Llamar</a>
-                </div>
-                <div class="hero__trust">
-                    <div class="hero__trust-item"><i class="bi bi-hospital-fill" aria-hidden="true"></i> INER</div>
-                    <span class="hero__trust-sep"></span>
-                    <div class="hero__trust-item"><i class="bi bi-mortarboard-fill" aria-hidden="true"></i> UNAM</div>
-                    <span class="hero__trust-sep"></span>
-                    <div class="hero__trust-item"><i class="bi bi-mortarboard-fill" aria-hidden="true"></i> BUAP</div>
+                    <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="hero__cta">
+                        Agendar cita <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20quiero%20agendar%20una%20cita" target="_blank" class="hero__cta-wa">
+                        <i class="bi bi-whatsapp" aria-hidden="true"></i> WhatsApp
+                    </a>
+                    <a href="tel:5591708334" class="hero__cta-secondary">
+                        <i class="bi bi-telephone-fill" aria-hidden="true"></i> Llamar
+                    </a>
                 </div>
             </div>
             <div class="hero__scroll-hint">
-                <div class="scroll-mouse"><div class="scroll-mouse__wheel"></div></div>
-                <span>Desliza hacia abajo</span>
+                <div class="scroll-chevrons">
+                    <i class="bi bi-chevron-down chevron-1"></i>
+                    <i class="bi bi-chevron-down chevron-2"></i>
+                    <i class="bi bi-chevron-down chevron-3"></i>
+                </div>
             </div>
         </section>
 
+        <!-- ===== MARQUEE STRIP ===== -->
+        <div class="marquee-strip" aria-hidden="true">
+            <div class="marquee-track">
+                <span class="marquee-item"><span class="marquee-dot"></span>Neumología de Alta Especialidad</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>EPOC</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>Asma</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>Apnea del Sueño</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>Espirometría</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>Dejar de Fumar</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>Derrames Pleurales</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>Fibrosis Pulmonar</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>Neumonía</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>Hospital Santa Coleta</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>INER · UNAM · BUAP</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>Check Up Respiratorio</span>
+                <!-- duplicate for seamless loop -->
+                <span class="marquee-item"><span class="marquee-dot"></span>Neumología de Alta Especialidad</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>EPOC</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>Asma</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>Apnea del Sueño</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>Espirometría</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>Dejar de Fumar</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>Derrames Pleurales</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>Fibrosis Pulmonar</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>Neumonía</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>Hospital Santa Coleta</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>INER · UNAM · BUAP</span>
+                <span class="marquee-item"><span class="marquee-dot"></span>Check Up Respiratorio</span>
+            </div>
+        </div>
+
+        <!-- ===== STATS STRIP ===== -->
+        <section class="stats-strip" aria-label="Métricas clave">
+            <div class="stats-strip__inner">
+                <div class="stat-item reveal">
+                    <span class="stat-num"><span class="count-up" data-target="5000">0</span><span class="stat-accent">+</span></span>
+                    <span class="stat-label">Pacientes atendidos</span>
+                </div>
+                <div class="stat-item reveal reveal-d1">
+                    <span class="stat-num"><span class="count-up count-decimal" data-target="48">0</span><span class="stat-accent">★</span></span>
+                    <span class="stat-label">Calificación promedio</span>
+                </div>
+                <div class="stat-item reveal reveal-d2">
+                    <span class="stat-num">UNAM</span>
+                    <span class="stat-label">Formación de excelencia</span>
+                </div>
+                <div class="stat-item reveal reveal-d3">
+                    <span class="stat-num"><span class="stat-accent">7</span> días</span>
+                    <span class="stat-label">Atención de lunes a domingo</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SOBRE MÍ ===== -->
         <section class="about" id="sobre-mi">
             <div class="about__inner">
                 <div class="about__visual">
                     <div class="about__photo-frame reveal">
                         <i class="bi bi-camera placeholder-icon" aria-hidden="true"></i>
                         <span class="placeholder-text">Espacio reservado para<br>fotografía clínica</span>
-                        <div class="about__badge"><i class="bi bi-patch-check-fill" aria-hidden="true"></i> Formado en el INER</div>
+                        <div class="about__badge">
+                            <i class="bi bi-patch-check-fill" aria-hidden="true"></i> Formado en el INER
+                        </div>
                     </div>
                 </div>
                 <div class="about__text">
@@ -487,79 +1588,79 @@
                     <h2 class="about__name reveal">Dr. William César<br>Lara Vázquez</h2>
                     <p class="about__specialty reveal">Neumólogo formado en el INER · Especialista en EPOC y enfermedades respiratorias</p>
                     <p class="about__paragraph reveal">Me formé en el <strong>Instituto Nacional de Enfermedades Respiratorias (INER)</strong>, la institución de referencia en México para enfermedades pulmonares. Actualmente curso la alta especialidad en EPOC, lo que me permite ofrecerte el tratamiento más actualizado y efectivo.</p>
-                    <p class="about__paragraph reveal">Mi compromiso es que entiendas tu diagnóstico con claridad, que conozcas tus opciones y que tomes decisiones informadas sobre tu salud. Cada paciente es diferente, y tu tratamiento también debe serlo.</p>
-                    <div class="about__credentials reveal">
-                        <span class="credential-chip"><i class="bi bi-hospital-fill" aria-hidden="true"></i> INER</span>
-                        <span class="credential-chip"><i class="bi bi-mortarboard-fill" aria-hidden="true"></i> UNAM</span>
-                        <span class="credential-chip"><i class="bi bi-mortarboard-fill" aria-hidden="true"></i> BUAP</span>
-                    </div>
+                    <p class="about__paragraph reveal">Mi compromiso es que recuperes tu salud respiratoria, que entiendas tu diagnóstico con claridad, que conozcas tus opciones y que tomes decisiones informadas. Cada paciente es diferente, y tu tratamiento también debe serlo.</p>
                 </div>
             </div>
         </section>
 
-        <div style="height:180px;background:linear-gradient(#050a15,var(--cloud))"></div>
-        <section id="servicios" class="py-5" style="background:var(--cloud)">
+        <!-- ===== SERVICIOS ===== -->
+        <section id="servicios" class="services py-5">
             <div class="container my-5">
                 <div class="mb-5 text-center">
-                    <p class="section-label reveal">Servicios</p>
+                    <div class="section-eyebrow justify-content-center reveal">
+                        <span class="section-num">01</span>
+                        <span class="section-label mb-0">Servicios</span>
+                    </div>
                     <h2 class="section-title reveal">¿Cómo puedo ayudarte?</h2>
                     <p class="section-sub reveal">Estudios y tratamientos diseñados para darte respuestas claras sobre tu salud respiratoria.</p>
                 </div>
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="service-card mb-3 reveal active" data-service>
-                            <div class="service-card__header" onclick="toggleService(this)" role="button" aria-expanded="true" tabindex="0">
-                                <div class="service-card__icon"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i></div>
-                                <h3 class="service-card__title">Check up respiratorio</h3>
-                                <i class="bi bi-chevron-down service-card__arrow" aria-hidden="true"></i>
-                            </div>
-                            <div class="service-card__body">
-                                <p>¿Quieres saber cómo están tus pulmones? Este estudio completo evalúa tu función respiratoria para detectar problemas antes de que se conviertan en algo serio. Ideal si fumas, tienes tos frecuente o simplemente quieres asegurarte de que todo está bien.</p>
-                                <div class="service-card__img"><i class="bi bi-clipboard2-pulse-fill" aria-hidden="true"></i><span>Imagen próximamente</span></div>
+                <div class="services__wrap">
+                    <nav class="services__nav" aria-label="Servicios">
+                        <div class="services__nav-item active" data-service-nav="0">
+                            <div class="services__nav-icon"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i></div>
+                            <h3 class="services__nav-title">Check up respiratorio</h3>
+                        </div>
+                        <div class="services__nav-item" data-service-nav="1">
+                            <div class="services__nav-icon"><i class="bi bi-lungs" aria-hidden="true"></i></div>
+                            <h3 class="services__nav-title">Espirometría</h3>
+                        </div>
+                        <div class="services__nav-item" data-service-nav="2">
+                            <div class="services__nav-icon"><i class="bi bi-bandaid" aria-hidden="true"></i></div>
+                            <h3 class="services__nav-title">Dejar de fumar</h3>
+                        </div>
+                        <div class="services__nav-item" data-service-nav="3">
+                            <div class="services__nav-icon"><i class="bi bi-activity" aria-hidden="true"></i></div>
+                            <h3 class="services__nav-title">Seguimiento asma y EPOC</h3>
+                        </div>
+                        <div class="services__nav-item" data-service-nav="4">
+                            <div class="services__nav-icon"><i class="bi bi-droplet" aria-hidden="true"></i></div>
+                            <h3 class="services__nav-title">Derrames pleurales</h3>
+                        </div>
+                    </nav>
+                    <div class="services__panels">
+                        <div class="services__panel" data-service-panel="0">
+                            <div class="services__panel-inner active">
+                                <h3 class="services__panel-title">Check up respiratorio</h3>
+                                <p class="services__panel-text">¿Quieres saber cómo están tus pulmones? Este estudio completo evalúa tu función respiratoria para detectar problemas antes de que se conviertan en algo serio. Ideal si fumas, tienes tos frecuente o simplemente quieres asegurarte de que todo está bien.</p>
+                                <div class="services__panel-img"><i class="bi bi-clipboard2-pulse-fill" aria-hidden="true"></i><span>Imagen próximamente</span></div>
                             </div>
                         </div>
-                        <div class="service-card mb-3 reveal reveal-d1" data-service>
-                            <div class="service-card__header" onclick="toggleService(this)" role="button" aria-expanded="false" tabindex="0">
-                                <div class="service-card__icon"><i class="bi bi-lungs" aria-hidden="true"></i></div>
-                                <h3 class="service-card__title">Espirometría simple y con broncodilatador</h3>
-                                <i class="bi bi-chevron-down service-card__arrow" aria-hidden="true"></i>
-                            </div>
-                            <div class="service-card__body">
-                                <p>Una prueba rápida y sin dolor que mide qué tan bien respiras. Tú soplas en un dispositivo y obtenemos datos precisos sobre la capacidad de tus pulmones. Es el estudio clave para saber si tienes asma, EPOC o algún problema respiratorio oculto.</p>
-                                <div class="service-card__img"><i class="bi bi-lungs-fill" aria-hidden="true"></i><span>Imagen próximamente</span></div>
+                        <div class="services__panel" data-service-panel="1">
+                            <div class="services__panel-inner">
+                                <h3 class="services__panel-title">Espirometría simple y con broncodilatador</h3>
+                                <p class="services__panel-text">Una prueba rápida y sin dolor que mide qué tan bien respiras. Tú soplas en un dispositivo y obtenemos datos precisos sobre la capacidad de tus pulmones. Es el estudio clave para saber si tienes asma, EPOC o algún problema respiratorio oculto.</p>
+                                <div class="services__panel-img"><i class="bi bi-lungs-fill" aria-hidden="true"></i><span>Imagen próximamente</span></div>
                             </div>
                         </div>
-                        <div class="service-card mb-3 reveal reveal-d2" data-service>
-                            <div class="service-card__header" onclick="toggleService(this)" role="button" aria-expanded="false" tabindex="0">
-                                <div class="service-card__icon"><i class="bi bi-bandaid" aria-hidden="true"></i></div>
-                                <h3 class="service-card__title">Tratamiento para dejar de fumar</h3>
-                                <i class="bi bi-chevron-down service-card__arrow" aria-hidden="true"></i>
-                            </div>
-                            <div class="service-card__body">
-                                <p>Dejar de fumar es difícil, pero no tienes que hacerlo solo. Te ofrezco un plan médico personalizado con herramientas que realmente funcionan para que dejes el cigarro de forma definitiva y empieces a notar la diferencia en tu respiración.</p>
-                                <div class="service-card__img"><i class="fa-solid fa-ban-smoking" aria-hidden="true"></i><span>Imagen próximamente</span></div>
+                        <div class="services__panel" data-service-panel="2">
+                            <div class="services__panel-inner">
+                                <h3 class="services__panel-title">Tratamiento para dejar de fumar</h3>
+                                <p class="services__panel-text">Dejar de fumar es difícil, pero no tienes que hacerlo solo. Te ofrezco un plan médico personalizado con herramientas que realmente funcionan para que dejes el cigarro de forma definitiva y empieces a notar la diferencia en tu respiración.</p>
+                                <div class="services__panel-img"><i class="fa-solid fa-ban-smoking" aria-hidden="true"></i><span>Imagen próximamente</span></div>
                             </div>
                         </div>
-                        <div class="service-card mb-3 reveal reveal-d3" data-service>
-                            <div class="service-card__header" onclick="toggleService(this)" role="button" aria-expanded="false" tabindex="0">
-                                <div class="service-card__icon"><i class="bi bi-activity" aria-hidden="true"></i></div>
-                                <h3 class="service-card__title">Seguimiento de asma y EPOC</h3>
-                                <i class="bi bi-chevron-down service-card__arrow" aria-hidden="true"></i>
-                            </div>
-                            <div class="service-card__body">
-                                <p>Si ya te diagnosticaron asma o EPOC, el seguimiento es clave. Juntos revisamos cómo vas, ajustamos tu tratamiento si es necesario y trabajamos para que tengas menos crisis y más días sin que tu respiración te limite.</p>
-                                <div class="service-card__img"><i class="bi bi-heart-pulse-fill" aria-hidden="true"></i><span>Imagen próximamente</span></div>
+                        <div class="services__panel" data-service-panel="3">
+                            <div class="services__panel-inner">
+                                <h3 class="services__panel-title">Seguimiento de asma y EPOC</h3>
+                                <p class="services__panel-text">Si ya te diagnosticaron asma o EPOC, el seguimiento es clave. Juntos revisamos cómo vas, ajustamos tu tratamiento si es necesario y trabajamos para que tengas menos crisis y más días sin que tu respiración te limite.</p>
+                                <div class="services__panel-img"><i class="bi bi-heart-pulse-fill" aria-hidden="true"></i><span>Imagen próximamente</span></div>
                             </div>
                         </div>
-                        <div class="service-card mb-3 reveal reveal-d4" data-service>
-                            <div class="service-card__header" onclick="toggleService(this)" role="button" aria-expanded="false" tabindex="0">
-                                <div class="service-card__icon"><i class="bi bi-droplet" aria-hidden="true"></i></div>
-                                <h3 class="service-card__title">Manejo de derrames pleurales</h3>
-                                <i class="bi bi-chevron-down service-card__arrow" aria-hidden="true"></i>
-                            </div>
-                            <div class="service-card__body">
-                                <p>Cuando se acumula líquido alrededor de tus pulmones, respirar se vuelve difícil y preocupante. Te diagnostico la causa, te explico qué está pasando y aplico el tratamiento adecuado para que vuelvas a respirar con normalidad.</p>
-                                <div class="service-card__img"><i class="bi bi-droplet-fill" aria-hidden="true"></i><span>Imagen próximamente</span></div>
+                        <div class="services__panel" data-service-panel="4">
+                            <div class="services__panel-inner">
+                                <h3 class="services__panel-title">Manejo de derrames pleurales</h3>
+                                <p class="services__panel-text">Cuando se acumula líquido alrededor de tus pulmones, respirar se vuelve difícil y preocupante. Te diagnostico la causa, te explico qué está pasando y aplico el tratamiento adecuado para que vuelvas a respirar con normalidad.</p>
+                                <div class="services__panel-img"><i class="bi bi-droplet-fill" aria-hidden="true"></i><span>Imagen próximamente</span></div>
                             </div>
                         </div>
                     </div>
@@ -567,29 +1668,122 @@
             </div>
         </section>
 
+        <!-- ===== ENFERMEDADES — BENTO GRID ===== -->
         <section id="enfermedades" class="py-5" style="background:#fff">
             <div class="container my-5">
                 <div class="mb-5 text-center">
-                    <p class="section-label reveal">Enfermedades</p>
+                    <div class="section-eyebrow justify-content-center reveal">
+                        <span class="section-num">02</span>
+                        <span class="section-label mb-0">Enfermedades</span>
+                    </div>
                     <h2 class="section-title reveal">¿Reconoces alguno de estos problemas?</h2>
                     <p class="section-sub reveal">Si algo de esto te suena familiar, puedo ayudarte. Haz clic en cualquiera para saber más.</p>
                 </div>
-                <div class="row g-4">
-                    <div class="col-md-4"><a href="/enfermedades/asma/" class="text-decoration-none"><div class="condition-card text-center reveal"><i class="fa-solid fa-wind condition-icon" aria-hidden="true"></i><h3>Asma</h3><p class="text-muted small">¿Sientes silbidos al respirar, falta de aire o tos que no se quita? Con el tratamiento correcto, puedes hacer ejercicio, dormir bien y vivir sin que el asma te detenga.</p></div></a></div>
-                    <div class="col-md-4"><a href="/enfermedades/epoc/" class="text-decoration-none"><div class="condition-card text-center reveal reveal-d1"><i class="fa-solid fa-lungs condition-icon" aria-hidden="true"></i><h3>EPOC</h3><p class="text-muted small">¿Te cansas al caminar, subir escaleras o hacer actividades que antes eran fáciles? La EPOC avanza en silencio, pero con el manejo adecuado se puede frenar y recuperar tu energía.</p></div></a></div>
-                    <div class="col-md-4"><a href="/enfermedades/neumonia/" class="text-decoration-none"><div class="condition-card text-center reveal reveal-d2"><i class="fa-solid fa-bacterium condition-icon" aria-hidden="true"></i><h3>Neumonía</h3><p class="text-muted small">Fiebre alta, tos con flema y dolor al respirar son señales de alarma. La neumonía necesita atención rápida y un tratamiento preciso para que te recuperes por completo.</p></div></a></div>
-                    <div class="col-md-4"><a href="/enfermedades/apnea-del-sueno/" class="text-decoration-none"><div class="condition-card text-center reveal reveal-d3"><i class="bi bi-moon-stars condition-icon" aria-hidden="true"></i><h3>Apnea Obstructiva del Sueño</h3><p class="text-muted small">¿Roncas fuerte, te despiertas cansado o te da sueño durante el día? Podrías dejar de respirar mientras duermes sin saberlo. Diagnosticarlo a tiempo protege tu corazón y tu calidad de vida.</p></div></a></div>
-                    <div class="col-md-4"><a href="/enfermedades/derrames-pleurales/" class="text-decoration-none"><div class="condition-card text-center reveal reveal-d4"><i class="bi bi-moisture condition-icon" aria-hidden="true"></i><h3>Derrames Pleurales</h3><p class="text-muted small">¿Sientes dolor en el pecho o te falta el aire de forma repentina? La acumulación de líquido alrededor de tus pulmones necesita diagnóstico y tratamiento especializado para aliviar tus síntomas.</p></div></a></div>
-                    <div class="col-md-4"><a href="/enfermedades/tabaquismo/" class="text-decoration-none"><div class="condition-card text-center reveal reveal-d5"><i class="fa-solid fa-ban-smoking condition-icon" aria-hidden="true"></i><h3>Tabaquismo</h3><p class="text-muted small">Sabemos que dejarlo es difícil. Por eso te ofrezco un plan médico real, con herramientas probadas, para que dejes de fumar de forma definitiva y veamos juntos cómo están tus pulmones hoy.</p></div></a></div>
+
+                <div class="bento-grid">
+
+                    <!-- 1: WIDE — Asma -->
+                    <a href="/enfermedades/asma/" class="bento-link reveal">
+                        <div class="bento-card">
+                            <div class="bento-wide-inner">
+                                <div class="bento-icon-wrap flex-shrink-0">
+                                    <i class="fa-solid fa-wind bento-icon" aria-hidden="true"></i>
+                                </div>
+                                <div class="bento-text">
+                                    <h3>Asma</h3>
+                                    <p>¿Sientes silbidos al respirar, falta de aire o tos que no se quita? Con el tratamiento correcto, puedes hacer ejercicio, dormir bien y vivir sin que el asma te detenga.</p>
+                                    <span class="bento-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                                </div>
+                            </div>
+                            <span class="bento-card__bg-icon" aria-hidden="true"><i class="fa-solid fa-wind"></i></span>
+                        </div>
+                    </a>
+
+                    <!-- 2: NARROW — EPOC -->
+                    <a href="/enfermedades/epoc/" class="bento-link reveal reveal-d1">
+                        <div class="bento-card">
+                            <div class="bento-icon-wrap">
+                                <i class="fa-solid fa-lungs bento-icon" aria-hidden="true"></i>
+                            </div>
+                            <h3>EPOC</h3>
+                            <p>¿Te cansas al caminar o subir escaleras? La EPOC avanza en silencio, pero con el manejo adecuado se puede frenar.</p>
+                            <span class="bento-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                            <span class="bento-card__bg-icon" aria-hidden="true"><i class="fa-solid fa-lungs"></i></span>
+                        </div>
+                    </a>
+
+                    <!-- 3: NARROW — Neumonía -->
+                    <a href="/enfermedades/neumonia/" class="bento-link reveal reveal-d1">
+                        <div class="bento-card">
+                            <div class="bento-icon-wrap">
+                                <i class="fa-solid fa-bacterium bento-icon" aria-hidden="true"></i>
+                            </div>
+                            <h3>Neumonía</h3>
+                            <p>Fiebre alta, tos con flema y dolor al respirar son señales de alarma que requieren atención rápida.</p>
+                            <span class="bento-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                            <span class="bento-card__bg-icon" aria-hidden="true"><i class="fa-solid fa-bacterium"></i></span>
+                        </div>
+                    </a>
+
+                    <!-- 4: WIDE — Apnea -->
+                    <a href="/enfermedades/apnea-del-sueno/" class="bento-link reveal reveal-d2">
+                        <div class="bento-card">
+                            <div class="bento-wide-inner">
+                                <div class="bento-icon-wrap flex-shrink-0">
+                                    <i class="bi bi-moon-stars bento-icon" aria-hidden="true"></i>
+                                </div>
+                                <div class="bento-text">
+                                    <h3>Apnea Obstructiva del Sueño</h3>
+                                    <p>¿Roncas fuerte y te despiertas cansado? Podrías dejar de respirar mientras duermes sin saberlo. Diagnosticarlo a tiempo protege tu corazón y tu calidad de vida.</p>
+                                    <span class="bento-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                                </div>
+                            </div>
+                            <span class="bento-card__bg-icon" aria-hidden="true"><i class="bi bi-moon-stars"></i></span>
+                        </div>
+                    </a>
+
+                    <!-- 5: WIDE — Derrames Pleurales -->
+                    <a href="/enfermedades/derrames-pleurales/" class="bento-link reveal reveal-d3">
+                        <div class="bento-card">
+                            <div class="bento-wide-inner">
+                                <div class="bento-icon-wrap flex-shrink-0">
+                                    <i class="bi bi-moisture bento-icon" aria-hidden="true"></i>
+                                </div>
+                                <div class="bento-text">
+                                    <h3>Derrames Pleurales</h3>
+                                    <p>¿Sientes dolor en el pecho o falta de aire repentina? La acumulación de líquido alrededor de tus pulmones necesita diagnóstico y tratamiento especializado.</p>
+                                    <span class="bento-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                                </div>
+                            </div>
+                            <span class="bento-card__bg-icon" aria-hidden="true"><i class="bi bi-moisture"></i></span>
+                        </div>
+                    </a>
+
+                    <!-- 6: NARROW — Tabaquismo -->
+                    <a href="/enfermedades/tabaquismo/" class="bento-link reveal reveal-d3">
+                        <div class="bento-card">
+                            <div class="bento-icon-wrap">
+                                <i class="fa-solid fa-ban-smoking bento-icon" aria-hidden="true"></i>
+                            </div>
+                            <h3>Tabaquismo</h3>
+                            <p>Un plan médico real, con herramientas probadas, para que dejes de fumar de forma definitiva.</p>
+                            <span class="bento-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                            <span class="bento-card__bg-icon" aria-hidden="true"><i class="fa-solid fa-ban-smoking"></i></span>
+                        </div>
+                    </a>
+
                 </div>
             </div>
         </section>
 
-        <!-- TESTIMONIOS -->
-        <section id="testimonios" class="py-5" style="background:var(--cloud)">
+        <!-- ===== TESTIMONIOS — 3 columnas animadas ===== -->
+        <section id="testimonios" class="testimonials-section py-5">
             <div class="container my-5">
                 <div class="mb-5 text-center">
-                    <p class="section-label reveal">Testimonios</p>
+                    <div class="section-eyebrow justify-content-center reveal">
+                        <span class="section-num">03</span>
+                        <span class="section-label mb-0">Testimonios</span>
+                    </div>
                     <h2 class="section-title reveal">Personas reales, resultados reales</h2>
                     <p class="section-sub reveal">Conoce la experiencia de pacientes que confiaron en nosotros para mejorar su respiración.</p>
                 </div>
@@ -598,7 +1792,7 @@
                 <div class="text-center mb-5 reveal">
                     <div class="d-inline-flex flex-column align-items-center gap-2">
                         <span class="testimonial-summary-score">4.8</span>
-                        <div class="testimonial-stars">
+                        <div class="d-flex gap-1">
                             <i class="bi bi-star-fill text-warning fs-5"></i>
                             <i class="bi bi-star-fill text-warning fs-5"></i>
                             <i class="bi bi-star-fill text-warning fs-5"></i>
@@ -611,176 +1805,233 @@
                     </div>
                 </div>
 
-                <!-- Cards -->
-                <div class="row g-4">
-
-                    <div class="col-md-6 col-lg-4 reveal">
-                        <div class="testimonial-card">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="testimonial-stars">
-                                    <i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i>
-                                </div>
-                                <span class="testimonial-date">hace 2 semanas</span>
-                            </div>
-                            <p class="testimonial-text">"El Dr. Lara me diagnosticó asma bronquial después de meses buscando respuestas. Me explicó todo con una paciencia increíble. Por primera vez entendí mi condición y el tratamiento ha sido muy efectivo. Ya puedo hacer ejercicio sin ahogarme."</p>
-                            <div class="testimonial-author">
-                                <div class="testimonial-avatar">M</div>
-                                <div>
-                                    <p class="testimonial-name">María G.</p>
-                                    <p class="testimonial-verified"><i class="bi bi-patch-check-fill text-primary me-1"></i>Paciente verificado · Asma</p>
-                                </div>
-                            </div>
+                <!-- 3-Column animated scroll -->
+                <div class="testimonial-columns reveal">
+                    <!-- Column 1 — scrolls up -->
+                    <div class="testimonial-col">
+                        <div class="testi-card">
+                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            <p class="testi-text">"El Dr. Lara me diagnosticó asma bronquial después de meses buscando respuestas. Me explicó todo con una paciencia increíble. Ya puedo hacer ejercicio sin ahogarme."</p>
+                            <div class="testi-author"><div class="testi-avatar">M</div><div><p class="testi-name">María G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Asma</p></div></div>
+                        </div>
+                        <div class="testi-card">
+                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            <p class="testi-text">"Me realizó la espirometría y me explicó cada valor del resultado con claridad total. Es de los pocos médicos que realmente se toman el tiempo para que entiendas lo que pasa."</p>
+                            <div class="testi-author"><div class="testi-avatar">C</div><div><p class="testi-name">Carlos H.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Espirometría</p></div></div>
+                        </div>
+                        <div class="testi-card">
+                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            <p class="testi-text">"Excelente trato y muy profesional. Me ayudó con mi problema de apnea del sueño y ahora duermo mucho mejor. Totalmente recomendado."</p>
+                            <div class="testi-author"><div class="testi-avatar">P</div><div><p class="testi-name">Patricia D.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Apnea del sueño</p></div></div>
+                        </div>
+                        <!-- Duplicados para loop seamless -->
+                        <div class="testi-card">
+                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            <p class="testi-text">"El Dr. Lara me diagnosticó asma bronquial después de meses buscando respuestas. Me explicó todo con una paciencia increíble. Ya puedo hacer ejercicio sin ahogarme."</p>
+                            <div class="testi-author"><div class="testi-avatar">M</div><div><p class="testi-name">María G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Asma</p></div></div>
+                        </div>
+                        <div class="testi-card">
+                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            <p class="testi-text">"Me realizó la espirometría y me explicó cada valor del resultado con claridad total. Es de los pocos médicos que realmente se toman el tiempo para que entiendas lo que pasa."</p>
+                            <div class="testi-author"><div class="testi-avatar">C</div><div><p class="testi-name">Carlos H.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Espirometría</p></div></div>
+                        </div>
+                        <div class="testi-card">
+                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            <p class="testi-text">"Excelente trato y muy profesional. Me ayudó con mi problema de apnea del sueño y ahora duermo mucho mejor. Totalmente recomendado."</p>
+                            <div class="testi-author"><div class="testi-avatar">P</div><div><p class="testi-name">Patricia D.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Apnea del sueño</p></div></div>
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-4 reveal reveal-d1">
-                        <div class="testimonial-card">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="testimonial-stars">
-                                    <i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i>
-                                </div>
-                                <span class="testimonial-date">hace 1 mes</span>
-                            </div>
-                            <p class="testimonial-text">"Me detectaron EPOC y el Dr. Lara nos explicó a detalle qué significa y cómo manejarlo. Muy profesional y humano en su trato. Lo único que mejoraría es la disponibilidad de horarios, pero en general muy satisfecho."</p>
-                            <div class="testimonial-author">
-                                <div class="testimonial-avatar">R</div>
-                                <div>
-                                    <p class="testimonial-name">Roberto M.</p>
-                                    <p class="testimonial-verified"><i class="bi bi-patch-check-fill text-primary me-1"></i>Paciente verificado · EPOC</p>
-                                </div>
-                            </div>
+                    <!-- Column 2 — scrolls down (reverse) -->
+                    <div class="testimonial-col">
+                        <div class="testi-card">
+                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div>
+                            <p class="testi-text">"Me detectaron EPOC y el Dr. Lara nos explicó a detalle qué significa y cómo manejarlo. Muy profesional y humano en su trato."</p>
+                            <div class="testi-author"><div class="testi-avatar">R</div><div><p class="testi-name">Roberto M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>EPOC</p></div></div>
+                        </div>
+                        <div class="testi-card">
+                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            <p class="testi-text">"Fumé por 15 años y con el apoyo del Dr. Lara llevo ya 5 meses sin un cigarro. El tratamiento médico fue clave, nunca me sentí solo en el proceso. 100% recomendado."</p>
+                            <div class="testi-author"><div class="testi-avatar">L</div><div><p class="testi-name">Lupita R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Cesación tabáquica</p></div></div>
+                        </div>
+                        <div class="testi-card">
+                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            <p class="testi-text">"Gracias al Dr. Lara pude entender mi diagnóstico de fibrosis pulmonar. Me dio un plan claro y siempre resolvió mis dudas con mucha paciencia."</p>
+                            <div class="testi-author"><div class="testi-avatar">E</div><div><p class="testi-name">Elena S.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Fibrosis pulmonar</p></div></div>
+                        </div>
+                        <!-- Duplicados para loop seamless -->
+                        <div class="testi-card">
+                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div>
+                            <p class="testi-text">"Me detectaron EPOC y el Dr. Lara nos explicó a detalle qué significa y cómo manejarlo. Muy profesional y humano en su trato."</p>
+                            <div class="testi-author"><div class="testi-avatar">R</div><div><p class="testi-name">Roberto M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>EPOC</p></div></div>
+                        </div>
+                        <div class="testi-card">
+                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            <p class="testi-text">"Fumé por 15 años y con el apoyo del Dr. Lara llevo ya 5 meses sin un cigarro. El tratamiento médico fue clave, nunca me sentí solo en el proceso. 100% recomendado."</p>
+                            <div class="testi-author"><div class="testi-avatar">L</div><div><p class="testi-name">Lupita R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Cesación tabáquica</p></div></div>
+                        </div>
+                        <div class="testi-card">
+                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            <p class="testi-text">"Gracias al Dr. Lara pude entender mi diagnóstico de fibrosis pulmonar. Me dio un plan claro y siempre resolvió mis dudas con mucha paciencia."</p>
+                            <div class="testi-author"><div class="testi-avatar">E</div><div><p class="testi-name">Elena S.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Fibrosis pulmonar</p></div></div>
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-4 reveal reveal-d2">
-                        <div class="testimonial-card">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="testimonial-stars">
-                                    <i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i>
-                                </div>
-                                <span class="testimonial-date">hace 3 meses</span>
-                            </div>
-                            <p class="testimonial-text">"Fui por un check up respiratorio de rutina. El consultorio está bien equipado y el doctor es detallado en sus explicaciones. Tardé un poco en encontrar estacionamiento cerca, pero la consulta en sí fue muy buena."</p>
-                            <div class="testimonial-author">
-                                <div class="testimonial-avatar">A</div>
-                                <div>
-                                    <p class="testimonial-name">Alejandra V.</p>
-                                    <p class="testimonial-verified"><i class="bi bi-patch-check-fill text-primary me-1"></i>Paciente verificado · Check up</p>
-                                </div>
-                            </div>
+                    <!-- Column 3 — scrolls up -->
+                    <div class="testimonial-col">
+                        <div class="testi-card">
+                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div>
+                            <p class="testi-text">"Fui por un check up respiratorio de rutina. El consultorio está bien equipado y el doctor es detallado en sus explicaciones. Muy buena consulta."</p>
+                            <div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Alejandra V.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Check up</p></div></div>
+                        </div>
+                        <div class="testi-card">
+                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            <p class="testi-text">"Mi papá tiene EPOC avanzado y el Dr. Lara ha sido un médico excepcional. Desde el primer día le dio seguimiento personalizado. Infinitamente agradecido."</p>
+                            <div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">Jorge A.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>EPOC</p></div></div>
+                        </div>
+                        <div class="testi-card">
+                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            <p class="testi-text">"Después de años con problemas de neumonía recurrente, el Dr. Lara encontró el origen y me dio un tratamiento definitivo. Un doctor de primera."</p>
+                            <div class="testi-author"><div class="testi-avatar">F</div><div><p class="testi-name">Fernando T.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Neumonía</p></div></div>
+                        </div>
+                        <!-- Duplicados para loop seamless -->
+                        <div class="testi-card">
+                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div>
+                            <p class="testi-text">"Fui por un check up respiratorio de rutina. El consultorio está bien equipado y el doctor es detallado en sus explicaciones. Muy buena consulta."</p>
+                            <div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Alejandra V.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Check up</p></div></div>
+                        </div>
+                        <div class="testi-card">
+                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            <p class="testi-text">"Mi papá tiene EPOC avanzado y el Dr. Lara ha sido un médico excepcional. Desde el primer día le dio seguimiento personalizado. Infinitamente agradecido."</p>
+                            <div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">Jorge A.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>EPOC</p></div></div>
+                        </div>
+                        <div class="testi-card">
+                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            <p class="testi-text">"Después de años con problemas de neumonía recurrente, el Dr. Lara encontró el origen y me dio un tratamiento definitivo. Un doctor de primera."</p>
+                            <div class="testi-author"><div class="testi-avatar">F</div><div><p class="testi-name">Fernando T.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Neumonía</p></div></div>
                         </div>
                     </div>
-
-                    <div class="col-md-6 col-lg-4 reveal reveal-d1">
-                        <div class="testimonial-card">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="testimonial-stars">
-                                    <i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i>
-                                </div>
-                                <span class="testimonial-date">hace 2 semanas</span>
-                            </div>
-                            <p class="testimonial-text">"Me realizó la espirometría y me explicó cada valor del resultado con claridad total. Es de los pocos médicos que realmente se toman el tiempo para que entiendas lo que está pasando. Excelente atención."</p>
-                            <div class="testimonial-author">
-                                <div class="testimonial-avatar">C</div>
-                                <div>
-                                    <p class="testimonial-name">Carlos H.</p>
-                                    <p class="testimonial-verified"><i class="bi bi-patch-check-fill text-primary me-1"></i>Paciente verificado · Espirometría</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 reveal reveal-d2">
-                        <div class="testimonial-card">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="testimonial-stars">
-                                    <i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i>
-                                </div>
-                                <span class="testimonial-date">hace 4 meses</span>
-                            </div>
-                            <p class="testimonial-text">"Fumé por 15 años y con el apoyo del Dr. Lara llevo ya 5 meses sin un cigarro. El tratamiento médico fue clave, nunca me sentí solo en el proceso. 100% recomendado si quieres dejar de fumar de verdad."</p>
-                            <div class="testimonial-author">
-                                <div class="testimonial-avatar">L</div>
-                                <div>
-                                    <p class="testimonial-name">Lupita R.</p>
-                                    <p class="testimonial-verified"><i class="bi bi-patch-check-fill text-primary me-1"></i>Paciente verificado · Cesación tabáquica</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 reveal reveal-d3">
-                        <div class="testimonial-card">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="testimonial-stars">
-                                    <i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i>
-                                </div>
-                                <span class="testimonial-date">hace 1 semana</span>
-                            </div>
-                            <p class="testimonial-text">"Mi papá tiene EPOC avanzado y el Dr. Lara ha sido un médico excepcional. Desde el primer día le dio seguimiento personalizado, ajustó el tratamiento con criterio y los resultados han sido notables. Infinitamente agradecido."</p>
-                            <div class="testimonial-author">
-                                <div class="testimonial-avatar">J</div>
-                                <div>
-                                    <p class="testimonial-name">Jorge A.</p>
-                                    <p class="testimonial-verified"><i class="bi bi-patch-check-fill text-primary me-1"></i>Paciente verificado · EPOC</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-
             </div>
         </section>
 
+        <!-- ===== MÉTODOS DE PAGO ===== -->
         <section class="py-5" style="background:#fff">
-            <div class="container text-center">
-                <h2 class="mb-4 text-dark fw-bold reveal" style="font-size:1.4rem">Métodos de pago aceptados</h2>
-                <div class="d-flex justify-content-center gap-5 flex-wrap reveal reveal-d1">
-                    <div><i class="bi bi-cash-coin payment-icon" aria-hidden="true"></i><p class="mt-2 fw-bold text-muted">Efectivo</p></div>
-                    <div><i class="bi bi-credit-card payment-icon" aria-hidden="true"></i><p class="mt-2 fw-bold text-muted">Tarjeta</p></div>
-                    <div><i class="bi bi-bank payment-icon" aria-hidden="true"></i><p class="mt-2 fw-bold text-muted">Transferencia</p></div>
+            <div class="container py-3">
+                <h2 class="mb-4 text-center fw-bold reveal" style="font-size:1.35rem;color:var(--navy)">Métodos de pago aceptados</h2>
+                <div class="row g-3 justify-content-center reveal reveal-d1" style="max-width:600px;margin:0 auto">
+                    <div class="col-4">
+                        <div class="payment-item">
+                            <i class="bi bi-cash-coin payment-icon" aria-hidden="true"></i>
+                            <p class="mt-2 mb-0 fw-bold small text-muted">Efectivo</p>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="payment-item">
+                            <i class="bi bi-credit-card payment-icon" aria-hidden="true"></i>
+                            <p class="mt-2 mb-0 fw-bold small text-muted">Tarjeta</p>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="payment-item">
+                            <i class="bi bi-bank payment-icon" aria-hidden="true"></i>
+                            <p class="mt-2 mb-0 fw-bold small text-muted">Transferencia</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="cta-band py-5 text-center">
-            <div class="container my-3 reveal">
-                <h2 class="fw-bold mb-3 text-white">Tu respiración no debería ser una limitación</h2>
-                <p class="lead mb-4 text-white-50">Da el primer paso. Agenda tu consulta y descubre qué está pasando con tu salud respiratoria.</p>
-                <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="btn btn-light text-primary fw-bold px-4 py-3 rounded-pill shadow">Agendar mi cita ahora <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i></a>
+        <!-- ===== CTA BAND with sparkles ===== -->
+        <section class="cta-band text-center" style="padding:80px 0">
+            <canvas class="cta-band__canvas" id="ctaSparkles"></canvas>
+            <div class="cta-band__glow-line"></div>
+            <div class="container cta-band-content reveal">
+                <p class="mb-3" style="color:rgba(116,185,255,.7);font-size:.82rem;font-weight:700;letter-spacing:3px;text-transform:uppercase">No esperes a que empeore</p>
+                <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-.03em;line-height:1.15">Tu respiración no debería<br>ser una limitación</h2>
+                <p class="mb-5 mx-auto" style="color:rgba(255,255,255,.5);font-size:1.08rem;max-width:520px;line-height:1.75">Miles de pacientes ya recuperaron su calidad de vida. Una consulta puede ser el inicio de la tuya.</p>
+                <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="cta-band__btn">
+                    Agendar mi cita ahora <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
+                </a>
             </div>
         </section>
 
-        <section id="contacto-final" class="bg-light py-5">
-            <div class="container my-4">
-                <div class="row g-5 align-items-center">
-                    <div class="col-lg-4 reveal">
-                        <h2 class="fw-bold text-dark mb-4" style="font-size:1.25rem"><i class="bi bi-geo-alt-fill text-danger me-2" aria-hidden="true"></i> Hospital Santa Coleta</h2>
-                        <address>
-                            <p class="text-muted mb-1">Saturnino Herrán 59</p>
-                            <p class="text-muted mb-1">San José Insurgentes, Benito Juárez,</p>
-                            <p class="text-muted mb-3">03900 Ciudad de México, CDMX</p>
-                            <p class="text-dark fw-bold mb-2">Consultorio 507</p>
-                            <p class="text-muted small mb-4" style="line-height:1.6"><i class="bi bi-signpost-2 text-accent me-1" aria-hidden="true"></i> A dos cuadras del Teatro de los Insurgentes, con fácil acceso desde Av. Insurgentes Sur y Metrobús Olivo.</p>
-                        </address>
-                        <div class="p-3 bg-white rounded border mb-4 shadow-sm">
-                            <p class="text-dark small fw-bold mb-2"><i class="bi bi-clock me-2" aria-hidden="true"></i>Horarios de atención:</p>
-                            <p class="text-muted small mb-1">Lunes a viernes: 16:00 a 20:30 hrs</p>
-                            <p class="text-muted small mb-2">Sábado y domingo: 12:00 a 16:00 hrs</p>
-                            <span class="badge bg-secondary">Previa Cita</span>
-                        </div>
-                        <p class="mb-1 fw-bold"><i class="bi bi-telephone-fill me-2 text-accent" aria-hidden="true"></i> <a href="tel:5591708334" class="text-decoration-none text-dark">55 9170 8334</a></p>
+        <!-- ===== CONTACTO — Redesigned ===== -->
+        <section id="contacto-final" class="py-5" style="background:var(--cloud-alt)">
+            <div class="container" style="padding-top:40px;padding-bottom:40px">
+                <div class="text-center mb-5">
+                    <div class="section-eyebrow justify-content-center reveal">
+                        <span class="section-num">04</span>
+                        <span class="section-label mb-0">Contacto</span>
                     </div>
-                    <div class="col-lg-4 border-start border-end px-lg-4 reveal reveal-d1">
-                        <h3 class="fw-bold text-dark mb-3">¿Tienes dudas?</h3>
-                        <p class="text-muted mb-4">Contáctame por WhatsApp o correo:</p>
-                        <a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20cita" target="_blank" class="btn btn-outline-success w-100 mb-4 py-2 fw-bold"><i class="bi bi-whatsapp me-2" aria-hidden="true"></i> Escríbeme por WhatsApp</a>
-                        <p class="text-muted mb-0 small"><i class="bi bi-envelope-fill me-2 text-accent" aria-hidden="true"></i> <a href="mailto:drwilliam.neumocare@gmail.com" class="text-decoration-none text-muted">drwilliam.neumocare@gmail.com</a></p>
-                    </div>
-                    <div class="col-lg-4 reveal reveal-d2">
-                        <div class="map-wrapper shadow-sm">
+                    <h2 class="section-title reveal">Encuéntrame aquí</h2>
+                    <p class="section-sub reveal">Hospital Santa Coleta · Consultorio 507 · Ciudad de México</p>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Map — full width top on mobile, right on desktop -->
+                    <div class="col-lg-7 reveal">
+                        <div class="map-wrapper" style="padding-bottom:58%;border-radius:22px;box-shadow:0 8px 40px rgba(10,22,40,.08)">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.844781446706!2d-99.1834226!3d19.3758368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce0014e7a8dbdd%3A0xc3af1172a396263f!2sSaturnino%20Herr%C3%A1n%2059%2C%20San%20Jos%C3%A9%20Insurgentes%2C%20Benito%20Ju%C3%A1rez%2C%2003900%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1708892400000!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Info cards stack -->
+                    <div class="col-lg-5">
+                        <!-- Location card -->
+                        <div class="contact-card reveal" style="background:var(--white);border:1px solid var(--border);border-radius:20px;padding:28px 30px;margin-bottom:16px;box-shadow:0 2px 14px rgba(10,22,40,.04)">
+                            <div class="d-flex align-items-start gap-14" style="gap:14px">
+                                <div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,rgba(9,132,227,.08),rgba(30,55,153,.06));display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                                    <i class="bi bi-geo-alt-fill" style="font-size:1.2rem;color:var(--electric)"></i>
+                                </div>
+                                <div>
+                                    <h3 style="font-size:1.05rem;font-weight:700;color:var(--navy);margin:0 0 6px">Hospital Santa Coleta</h3>
+                                    <p style="font-size:.9rem;color:var(--text-muted);margin:0;line-height:1.65">Saturnino Herrán 59, Consultorio 507<br>San José Insurgentes, Benito Juárez<br>03900 Ciudad de México, CDMX</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hours card -->
+                        <div class="contact-card reveal reveal-d1" style="background:var(--white);border:1px solid var(--border);border-radius:20px;padding:28px 30px;margin-bottom:16px;box-shadow:0 2px 14px rgba(10,22,40,.04)">
+                            <div class="d-flex align-items-start gap-14" style="gap:14px">
+                                <div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,rgba(9,132,227,.08),rgba(30,55,153,.06));display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                                    <i class="bi bi-clock-fill" style="font-size:1.2rem;color:var(--electric)"></i>
+                                </div>
+                                <div>
+                                    <h3 style="font-size:1.05rem;font-weight:700;color:var(--navy);margin:0 0 6px">Horarios de atención</h3>
+                                    <p style="font-size:.9rem;color:var(--text-muted);margin:0 0 4px;line-height:1.65">Lunes a viernes: 16:00 — 20:30 hrs</p>
+                                    <p style="font-size:.9rem;color:var(--text-muted);margin:0 0 10px;line-height:1.65">Sábado y domingo: 12:00 — 16:00 hrs</p>
+                                    <span class="hours-badge">Previa Cita</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact actions -->
+                        <div class="contact-card reveal reveal-d2" style="background:var(--white);border:1px solid var(--border);border-radius:20px;padding:28px 30px;box-shadow:0 2px 14px rgba(10,22,40,.04)">
+                            <h3 style="font-size:1.05rem;font-weight:700;color:var(--navy);margin:0 0 16px">¿Listo para agendar?</h3>
+                            <div class="d-flex flex-column gap-3">
+                                <a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20cita" target="_blank" style="display:flex;align-items:center;gap:12px;padding:14px 20px;border-radius:14px;background:rgba(37,211,102,.06);border:1px solid rgba(37,211,102,.2);text-decoration:none;transition:all .3s var(--ease)">
+                                    <i class="bi bi-whatsapp" style="font-size:1.3rem;color:#25d366"></i>
+                                    <div>
+                                        <p style="font-size:.88rem;font-weight:700;color:var(--navy);margin:0">Escríbeme por WhatsApp</p>
+                                        <p style="font-size:.75rem;color:var(--text-muted);margin:0">Respuesta rápida</p>
+                                    </div>
+                                </a>
+                                <a href="mailto:drwilliam.neumocare@gmail.com" style="display:flex;align-items:center;gap:12px;padding:14px 20px;border-radius:14px;background:rgba(9,132,227,.05);border:1px solid rgba(9,132,227,.15);text-decoration:none;transition:all .3s var(--ease)">
+                                    <i class="bi bi-envelope-fill" style="font-size:1.3rem;color:var(--electric)"></i>
+                                    <div>
+                                        <p style="font-size:.88rem;font-weight:700;color:var(--navy);margin:0">Envíame un correo</p>
+                                        <p style="font-size:.75rem;color:var(--text-muted);margin:0">drwilliam.neumocare@gmail.com</p>
+                                    </div>
+                                </a>
+                                <a href="tel:5591708334" style="display:flex;align-items:center;gap:12px;padding:14px 20px;border-radius:14px;background:rgba(10,22,40,.03);border:1px solid rgba(10,22,40,.08);text-decoration:none;transition:all .3s var(--ease)">
+                                    <i class="bi bi-telephone-fill" style="font-size:1.3rem;color:var(--navy)"></i>
+                                    <div>
+                                        <p style="font-size:.88rem;font-weight:700;color:var(--navy);margin:0">Llamar ahora</p>
+                                        <p style="font-size:.75rem;color:var(--text-muted);margin:0">55 9170 8334</p>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -788,18 +2039,24 @@
         </section>
     </main>
 
+    <!-- ===== FOOTER ===== -->
     <footer>
         <div class="container text-center">
-            <p class="text-white mb-2 fw-bold" style="font-size:1.3rem;letter-spacing:-.01em">ALVEOS</p>
-            <p class="small mb-3" style="color:rgba(255,255,255,.4)">Neumología de Vanguardia en Ciudad de México</p>
-            <div class="d-flex justify-content-center gap-3 mb-4">
-                <a href="https://www.instagram.com/dr.williamlara/" target="_blank" class="text-white-50 text-decoration-none fs-5" aria-label="Instagram" style="transition:color .3s"><i class="bi bi-instagram" aria-hidden="true"></i></a>
-                <a href="https://wa.me/5215591708334" target="_blank" class="text-white-50 text-decoration-none fs-5" aria-label="WhatsApp" style="transition:color .3s"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
-                <a href="tel:5591708334" class="text-white-50 text-decoration-none fs-5" aria-label="Teléfono" style="transition:color .3s"><i class="bi bi-telephone-fill" aria-hidden="true"></i></a>
+            <div class="footer-logo-text">ALVEOS</div>
+            <div class="footer-tagline">Neumología de Vanguardia · Ciudad de México</div>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/dr.williamlara/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+                <a href="https://wa.me/5215591708334" target="_blank" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+                <a href="tel:5591708334" aria-label="Teléfono"><i class="bi bi-telephone-fill" aria-hidden="true"></i></a>
             </div>
-            <p class="small mb-1" style="color:rgba(255,255,255,.35)">Dr. William César Lara Vázquez · Neumólogo formado en el INER</p>
-            <p class="small mb-2"><a href="/aviso-de-privacidad" class="text-decoration-none" style="color:rgba(255,255,255,.3)">Aviso de Privacidad</a> <span style="color:rgba(255,255,255,.15)">·</span> <a href="/informacion-regulatoria" class="text-decoration-none" style="color:rgba(255,255,255,.3)">Información Regulatoria</a></p>
-            <p class="small mb-0" style="color:rgba(255,255,255,.2)">© 2026 ALVEOS. Todos los derechos reservados.</p>
+            <hr class="footer-divider">
+            <p class="footer-meta mb-1">Dr. William César Lara Vázquez · Neumólogo formado en el INER</p>
+            <p class="footer-meta mb-2">
+                <a href="/aviso-de-privacidad">Aviso de Privacidad</a>
+                <span style="color:rgba(255,255,255,.1);margin:0 8px">·</span>
+                <a href="/informacion-regulatoria">Información Regulatoria</a>
+            </p>
+            <p class="footer-meta mb-0">© 2026 ALVEOS. Todos los derechos reservados.</p>
         </div>
     </footer>
 
@@ -807,60 +2064,206 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script>
-    function toggleService(header) {
-        var card = header.parentElement;
-        var wasActive = card.classList.contains('active');
-        document.querySelectorAll('.service-card').forEach(function(c) {
-            c.classList.remove('active');
-            c.querySelector('.service-card__header').setAttribute('aria-expanded', 'false');
-        });
-        if (!wasActive) {
-            card.classList.add('active');
-            header.setAttribute('aria-expanded', 'true');
-            setTimeout(function() {
-                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 350);
-        }
-    }
-
     (function(){
         'use strict';
+
+        /* Navbar scroll */
         window.addEventListener('scroll', function(){
             document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 80);
         }, { passive: true });
+
+        /* ── Animated counters ── */
+        function animateCount(el, target, isDecimal, duration) {
+            var start = null;
+            var from = 0;
+            function step(ts) {
+                if (!start) start = ts;
+                var progress = Math.min((ts - start) / duration, 1);
+                var eased = 1 - Math.pow(1 - progress, 3);
+                var current = from + (target - from) * eased;
+                el.textContent = isDecimal
+                    ? (current / 10).toFixed(1)
+                    : Math.floor(current);
+                if (progress < 1) requestAnimationFrame(step);
+                else el.textContent = isDecimal ? (target / 10).toFixed(1) : target;
+            }
+            requestAnimationFrame(step);
+        }
+        var countersStarted = false;
+        var statsEl = document.querySelector('.stats-strip');
+        if (statsEl) {
+            var cObs = new IntersectionObserver(function(entries) {
+                if (entries[0].isIntersecting && !countersStarted) {
+                    countersStarted = true;
+                    document.querySelectorAll('.count-up').forEach(function(el) {
+                        var target = parseInt(el.getAttribute('data-target'), 10);
+                        var isDecimal = el.classList.contains('count-decimal');
+                        animateCount(el, target, isDecimal, 1400);
+                    });
+                }
+            }, { threshold: 0.5 });
+            cObs.observe(statsEl);
+        }
+
+        /* ── 3D tilt on bento cards ── */
+        document.querySelectorAll('.bento-card').forEach(function(card) {
+            var parent = card.closest('.bento-link');
+            if (!parent) return;
+            parent.addEventListener('mousemove', function(e) {
+                var rect = card.getBoundingClientRect();
+                var x = (e.clientX - rect.left) / rect.width  - 0.5;
+                var y = (e.clientY - rect.top)  / rect.height - 0.5;
+                card.style.transform =
+                    'perspective(900px) rotateX(' + (-y * 9) + 'deg) rotateY(' + (x * 9) + 'deg) translateY(-6px)';
+            });
+            parent.addEventListener('mouseleave', function() {
+                card.style.transform = '';
+            });
+        });
+
+        /* Services nav click */
+        document.querySelectorAll('.services__nav-item').forEach(function(item){
+            item.addEventListener('click', function(){
+                var idx = this.getAttribute('data-service-nav');
+                var panel = document.querySelector('[data-service-panel="'+idx+'"]');
+                if(panel) panel.scrollIntoView({ behavior:'smooth', block:'center' });
+            });
+        });
 
         var hasGSAP = (typeof gsap !== 'undefined') && (typeof ScrollTrigger !== 'undefined');
 
         if (hasGSAP) {
             gsap.registerPlugin(ScrollTrigger);
 
+            /* Hero entrance */
             var tl = gsap.timeline({ defaults:{ ease:'power4.out' } });
-            tl.to('.hero__tag',{ opacity:1, y:0, duration:0.8, delay:0.3 })
-              .to('.hero__headline .line-inner',{ opacity:1, y:0, duration:1.2, stagger:0.15 },'-=0.4')
-              .to('.hero__sub',{ opacity:1, y:0, duration:0.9 },'-=0.7')
-              .to('.hero__conditions',{ opacity:1, y:0, duration:0.7 },'-=0.5')
-              .to('.hero__cta-row',{ opacity:1, y:0, duration:0.9 },'-=0.5')
-              .to('.hero__trust',{ opacity:1, y:0, duration:0.8 },'-=0.4')
-              .to('.hero__scroll-hint',{ opacity:1, duration:1 },'-=0.3');
+            tl.to('.hero__tag',               { opacity:1, y:0, duration:0.8,  delay:0.3 })
+              .to('.hero__headline .line-inner',{ opacity:1, y:0, duration:1.2, stagger:0.15 }, '-=0.4')
+              .to('.hero__sub',                { opacity:1, y:0, duration:0.9 }, '-=0.7')
+              .to('.hero__conditions',         { opacity:1, y:0, duration:0.7 }, '-=0.5')
+              .to('.hero__cta-row',            { opacity:1, y:0, duration:0.9 }, '-=0.5')
+              .to('.hero__scroll-hint',        { opacity:1, duration:1 },        '-=0.3');
 
-            gsap.to('.hero__bg',{ yPercent:30, ease:'none', scrollTrigger:{ trigger:'.hero', start:'top top', end:'bottom top', scrub:true }});
-            gsap.to('.hero__content',{ opacity:0, y:-60, ease:'none', scrollTrigger:{ trigger:'.hero', start:'60% top', end:'bottom top', scrub:true }});
+            /* Hero parallax */
+            gsap.to('.hero__bg', {
+                yPercent: 22, ease:'none',
+                scrollTrigger:{ trigger:'.hero', start:'top top', end:'bottom top', scrub:true }
+            });
+            gsap.to('.hero__content', {
+                opacity:0, y:-50, ease:'none',
+                scrollTrigger:{ trigger:'.hero', start:'55% top', end:'bottom top', scrub:true }
+            });
 
+            /* Services scroll-driven activation */
+            var navItems = document.querySelectorAll('.services__nav-item');
+            var panels   = document.querySelectorAll('.services__panel');
+            panels.forEach(function(panel, i){
+                ScrollTrigger.create({
+                    trigger: panel,
+                    start: 'top 60%', end: 'bottom 40%',
+                    onEnter:     function(){ activateService(i); },
+                    onEnterBack: function(){ activateService(i); }
+                });
+            });
+            function activateService(idx){
+                navItems.forEach(function(n){ n.classList.remove('active'); });
+                document.querySelectorAll('.services__panel-inner').forEach(function(p){ p.classList.remove('active'); });
+                if(navItems[idx]) navItems[idx].classList.add('active');
+                var ap = document.querySelector('[data-service-panel="'+idx+'"] .services__panel-inner');
+                if(ap) ap.classList.add('active');
+            }
+
+            /* Reveal animations */
             gsap.utils.toArray('.reveal').forEach(function(el){
-                gsap.to(el,{
-                    opacity:1, y:0, duration:0.6, ease:'power3.out',
+                gsap.to(el, {
+                    opacity:1, y:0, duration:0.65, ease:'power3.out',
                     scrollTrigger:{ trigger:el, start:'top 94%', toggleActions:'play none none none' }
                 });
             });
+
         } else {
-            document.querySelectorAll('.hero__tag,.hero__headline .line-inner,.hero__sub,.hero__conditions,.hero__cta-row,.hero__trust,.hero__scroll-hint').forEach(function(el){
+            /* Fallback (no GSAP) */
+            document.querySelectorAll('.hero__tag,.hero__headline .line-inner,.hero__sub,.hero__conditions,.hero__cta-row,.hero__scroll-hint').forEach(function(el){
                 el.style.opacity='1'; el.style.transform='none';
             });
+            document.querySelectorAll('.services__panel-inner').forEach(function(p){ p.classList.add('active'); });
             var obs = new IntersectionObserver(function(entries){
                 entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });
-            },{ threshold:0.05 });
+            }, { threshold:0.05 });
             document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
         }
+
+        /* ── Sparkle canvas system (runs always) ── */
+        function initSparkles(canvasId, particleCount) {
+            var canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var particles = [];
+            var raf = null;
+
+            function resize() {
+                var rect = canvas.parentElement.getBoundingClientRect();
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            for (var i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2 + 0.5,
+                    speedY: (Math.random() - 0.5) * 0.3,
+                    speedX: (Math.random() - 0.5) * 0.2,
+                    opacity: Math.random(),
+                    fadeSpeed: 0.003 + Math.random() * 0.008,
+                    fadeDir: 1
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (var j = 0; j < particles.length; j++) {
+                    var p = particles[j];
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+                    p.opacity += p.fadeSpeed * p.fadeDir;
+                    if (p.opacity >= 1) { p.opacity = 1; p.fadeDir = -1; }
+                    if (p.opacity <= 0) { p.opacity = 0; p.fadeDir = 1; p.x = Math.random() * canvas.width; p.y = Math.random() * canvas.height; }
+                    if (p.x < 0) p.x = canvas.width;
+                    if (p.x > canvas.width) p.x = 0;
+                    if (p.y < 0) p.y = canvas.height;
+                    if (p.y > canvas.height) p.y = 0;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(116,185,255,' + (p.opacity * 0.6) + ')';
+                    ctx.fill();
+
+                    if (p.size > 1.2) {
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size * 2.5, 0, Math.PI * 2);
+                        ctx.fillStyle = 'rgba(9,132,227,' + (p.opacity * 0.08) + ')';
+                        ctx.fill();
+                    }
+                }
+                raf = requestAnimationFrame(draw);
+            }
+
+            var sparkleObs = new IntersectionObserver(function(entries) {
+                if (entries[0].isIntersecting) {
+                    if (!raf) draw();
+                } else {
+                    if (raf) { cancelAnimationFrame(raf); raf = null; }
+                }
+            }, { threshold: 0 });
+            sparkleObs.observe(canvas.parentElement);
+        }
+
+        initSparkles('heroSparkles', 55);
+        initSparkles('ctaSparkles', 40);
+
     })();
     </script>
 </body>
