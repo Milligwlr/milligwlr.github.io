@@ -436,13 +436,32 @@
         .hero__headline .line       { display: block; overflow: hidden; padding-bottom: .15em; }
         .hero__headline .line-inner { display: block; }
 
-        /* Sub */
+        /* Sub — glass card style */
         .hero__sub {
-            font-size: clamp(.95rem, 1.8vw, 1.12rem);
-            line-height: 1.78;
-            color: var(--text-muted);
-            max-width: 540px;
-            margin: 0 auto 32px;
+            font-size: clamp(.95rem, 1.8vw, 1.1rem);
+            line-height: 1.82;
+            color: var(--text);
+            max-width: 580px;
+            margin: 0 auto 36px;
+            background: rgba(255,255,255,.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(9,132,227,.1);
+            border-radius: 20px;
+            padding: 24px 32px;
+            box-shadow: 0 4px 24px rgba(10,22,40,.06);
+            position: relative;
+        }
+        .hero__sub::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 24px; right: 24px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(9,132,227,.2), transparent);
+        }
+        .hero__sub strong {
+            color: var(--electric);
+            font-weight: 700;
         }
 
         /* Condition pills */
@@ -755,6 +774,40 @@
             margin-bottom: 24px;
         }
         .about__paragraph strong { color: var(--text); font-weight: 700; }
+        /* Commitment block — styled quote */
+        .about__commitment {
+            position: relative;
+            background: linear-gradient(135deg, rgba(9,132,227,.04) 0%, rgba(0,206,201,.03) 100%);
+            border: 1px solid rgba(9,132,227,.12);
+            border-radius: 20px;
+            padding: 32px 32px 32px 40px;
+            margin-top: 12px;
+            margin-bottom: 24px;
+            font-size: 1.08rem;
+            line-height: 1.85;
+            color: var(--text);
+            font-weight: 500;
+        }
+        .about__commitment::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 16px; bottom: 16px;
+            width: 4px;
+            border-radius: 2px;
+            background: linear-gradient(180deg, var(--electric), var(--cyan));
+        }
+        .about__commitment strong {
+            color: var(--electric);
+            font-weight: 700;
+        }
+        .about__commitment em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--cyan), var(--electric));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
         .about__credentials { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
         .credential-chip {
             display: inline-flex; align-items: center; gap: 6px;
@@ -797,16 +850,27 @@
             min-width: 300px;
             background: var(--white);
             border-radius: 24px;
-            padding: 40px 32px;
-            border: 1px solid rgba(0,0,0,.06);
+            padding: 44px 34px 38px;
+            border: 1px solid rgba(9,132,227,.08);
             box-shadow: 0 4px 24px rgba(10,22,40,.05);
-            transition: all .4s var(--ease);
+            transition: all .45s var(--ease);
             display: flex;
             flex-direction: column;
             position: relative;
             overflow: hidden;
         }
+        /* Decorative corner glow */
         .services-carousel__card::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 140px; height: 140px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(9,132,227,.08) 0%, transparent 70%);
+            transition: all .5s var(--ease);
+            pointer-events: none;
+        }
+        .services-carousel__card::after {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0;
@@ -815,58 +879,76 @@
             border-radius: 24px 24px 0 0;
             transform: scaleX(0);
             transform-origin: left;
-            transition: transform .4s var(--ease);
+            transition: transform .45s var(--ease);
         }
         .services-carousel__card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 60px rgba(9,132,227,.12);
-            border-color: rgba(9,132,227,.18);
+            transform: translateY(-8px);
+            box-shadow: 0 24px 64px rgba(9,132,227,.14), 0 0 0 1px rgba(9,132,227,.12);
+            border-color: rgba(9,132,227,.2);
         }
-        .services-carousel__card:hover::before { transform: scaleX(1); }
+        .services-carousel__card:hover::before {
+            top: -40px; right: -40px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(9,132,227,.12) 0%, transparent 70%);
+        }
+        .services-carousel__card:hover::after { transform: scaleX(1); }
         .services-carousel__icon {
-            width: 60px; height: 60px;
-            border-radius: 18px;
-            background: linear-gradient(135deg, rgba(9,132,227,.08), rgba(30,55,153,.06));
+            width: 68px; height: 68px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(9,132,227,.06), rgba(0,206,201,.06));
             border: 1px solid rgba(9,132,227,.1);
             display: flex; align-items: center; justify-content: center;
             margin-bottom: 24px;
-            transition: all .4s var(--ease);
+            transition: all .45s var(--ease);
+            position: relative;
         }
         .services-carousel__card:hover .services-carousel__icon {
-            background: linear-gradient(135deg, var(--electric), var(--royal));
+            background: linear-gradient(135deg, var(--electric), var(--cyan));
             border-color: transparent;
-            box-shadow: 0 6px 20px rgba(9,132,227,.3);
+            box-shadow: 0 8px 28px rgba(9,132,227,.32);
+            transform: scale(1.08);
         }
         .services-carousel__icon i {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--electric);
-            transition: color .4s;
+            transition: color .45s;
         }
         .services-carousel__card:hover .services-carousel__icon i { color: var(--white); }
         .services-carousel__card h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 1.25rem;
+            font-weight: 800;
             color: var(--navy);
             margin-bottom: 12px;
+            letter-spacing: -.015em;
         }
         .services-carousel__card p {
-            font-size: .92rem;
-            line-height: 1.72;
+            font-size: .93rem;
+            line-height: 1.75;
             color: var(--text-muted);
-            margin: 0 0 24px;
+            margin: 0 0 28px;
             flex: 1;
         }
         .services-carousel__link {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            font-size: .88rem;
+            font-size: .9rem;
             font-weight: 700;
             color: var(--electric);
             text-decoration: none;
-            transition: gap .3s;
+            transition: all .3s var(--ease);
+            padding: 10px 20px;
+            border-radius: 100px;
+            background: rgba(9,132,227,.06);
+            border: 1px solid rgba(9,132,227,.12);
         }
-        .services-carousel__link:hover { gap: 10px; color: var(--royal); }
+        .services-carousel__link:hover {
+            gap: 10px;
+            background: var(--electric);
+            color: var(--white);
+            border-color: var(--electric);
+            box-shadow: 0 4px 16px rgba(9,132,227,.25);
+        }
         .services-carousel__nav {
             display: flex;
             align-items: center;
@@ -940,64 +1022,82 @@
             flex-shrink: 0;
             width: 320px;
             background: var(--white);
-            border: 1px solid #e4eaf3;
-            border-radius: 20px;
-            padding: 32px 28px;
-            transition: all .4s var(--ease);
+            border: 1px solid rgba(9,132,227,.08);
+            border-radius: 22px;
+            padding: 34px 28px 30px;
+            transition: all .45s var(--ease);
             text-decoration: none;
             display: flex;
             flex-direction: column;
             position: relative;
             overflow: hidden;
         }
+        /* Background decorative glow */
         .disease-card::before {
+            content: '';
+            position: absolute;
+            bottom: -40px; left: -40px;
+            width: 120px; height: 120px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(9,132,227,.06) 0%, transparent 70%);
+            transition: all .5s var(--ease);
+            pointer-events: none;
+        }
+        .disease-card::after {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 3px;
             background: linear-gradient(90deg, var(--electric), var(--cyan));
-            border-radius: 20px 20px 0 0;
+            border-radius: 22px 22px 0 0;
             transform: scaleX(0);
             transform-origin: left;
-            transition: transform .4s var(--ease);
+            transition: transform .45s var(--ease);
         }
         .disease-card:hover {
             border-color: rgba(9,132,227,.2);
-            box-shadow: 0 16px 48px rgba(9,132,227,.1);
-            transform: translateY(-4px);
+            box-shadow: 0 20px 56px rgba(9,132,227,.13), 0 0 0 1px rgba(9,132,227,.08);
+            transform: translateY(-6px);
         }
-        .disease-card:hover::before { transform: scaleX(1); }
+        .disease-card:hover::before {
+            width: 160px; height: 160px;
+            bottom: -30px; left: -30px;
+            background: radial-gradient(circle, rgba(9,132,227,.1) 0%, transparent 70%);
+        }
+        .disease-card:hover::after { transform: scaleX(1); }
         .disease-card__icon {
-            width: 52px; height: 52px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, rgba(9,132,227,.08), rgba(30,55,153,.06));
+            width: 56px; height: 56px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(9,132,227,.06), rgba(0,206,201,.05));
             border: 1px solid rgba(9,132,227,.1);
             display: flex; align-items: center; justify-content: center;
-            margin-bottom: 16px;
-            transition: all .4s var(--ease);
+            margin-bottom: 18px;
+            transition: all .45s var(--ease);
         }
         .disease-card:hover .disease-card__icon {
-            background: linear-gradient(135deg, var(--electric), var(--royal));
+            background: linear-gradient(135deg, var(--electric), var(--cyan));
             border-color: transparent;
-            box-shadow: 0 6px 18px rgba(9,132,227,.28);
+            box-shadow: 0 8px 22px rgba(9,132,227,.3);
+            transform: scale(1.06);
         }
         .disease-card__icon i {
-            font-size: 1.3rem;
+            font-size: 1.35rem;
             color: var(--electric);
-            transition: color .4s;
+            transition: color .45s;
         }
         .disease-card:hover .disease-card__icon i { color: var(--white); }
         .disease-card h3 {
-            font-size: 1.05rem;
-            font-weight: 700;
+            font-size: 1.1rem;
+            font-weight: 800;
             color: var(--navy);
             margin-bottom: 8px;
+            letter-spacing: -.01em;
         }
         .disease-card p {
-            font-size: .85rem;
-            line-height: 1.65;
+            font-size: .86rem;
+            line-height: 1.68;
             color: var(--text-muted);
-            margin: 0 0 16px;
+            margin: 0 0 18px;
             flex: 1;
         }
         .disease-card__cta {
@@ -1007,9 +1107,12 @@
             font-size: .82rem;
             font-weight: 700;
             color: var(--electric);
-            transition: gap .3s;
+            transition: all .3s var(--ease);
         }
-        .disease-card:hover .disease-card__cta { gap: 9px; }
+        .disease-card:hover .disease-card__cta {
+            gap: 9px;
+            color: var(--cyan);
+        }
 
         /* =============================================
            TESTIMONIALS
@@ -1155,33 +1258,197 @@
         }
 
         /* =============================================
-           CONTACT / MAP
+           CONTACT — Immersive redesign
         ============================================= */
-        .map-wrapper {
-            position: relative; padding-bottom: 75%; height: 0;
-            overflow: hidden; border-radius: 18px;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 4px 24px rgba(0,0,0,.06);
+        .contact-section {
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
         }
-        .map-wrapper iframe {
-            position: absolute; top:0; left:0;
-            width:100%; height:100%; border:0;
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: -30%; right: -10%;
+            width: 60vw; height: 60vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(9,132,227,.08) 0%, transparent 60%);
+            pointer-events: none;
         }
-        .contact-info-card {
-            background: var(--white);
-            border: 1px solid var(--border);
+        .contact-section::after {
+            content: '';
+            position: absolute;
+            bottom: -20%; left: -5%;
+            width: 40vw; height: 40vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,206,201,.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .contact-section .section-title { color: var(--white); }
+        .contact-section .section-sub { color: rgba(255,255,255,.5); }
+        .contact-section .section-label { color: var(--cyan); }
+        .contact__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            position: relative;
+            z-index: 1;
+        }
+        .contact__map-card {
+            grid-column: 1 / -1;
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.08);
+            box-shadow: 0 8px 48px rgba(0,0,0,.3);
+            aspect-ratio: 21/9;
+        }
+        .contact__map-card iframe {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%; border: 0;
+        }
+        .contact__card {
+            background: rgba(255,255,255,.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 22px;
+            padding: 32px 28px;
+            transition: all .4s var(--ease);
+            position: relative;
+            overflow: hidden;
+        }
+        .contact__card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(9,132,227,.4), transparent);
+            opacity: 0;
+            transition: opacity .4s;
+        }
+        .contact__card:hover {
+            background: rgba(255,255,255,.07);
+            border-color: rgba(9,132,227,.2);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(9,132,227,.1);
+        }
+        .contact__card:hover::before { opacity: 1; }
+        .contact__card-icon {
+            width: 52px; height: 52px;
             border-radius: 16px;
-            padding: 20px;
-            box-shadow: var(--shadow-xs);
+            background: linear-gradient(135deg, rgba(9,132,227,.12), rgba(0,206,201,.08));
+            border: 1px solid rgba(9,132,227,.15);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 18px;
+            transition: all .4s var(--ease);
+        }
+        .contact__card:hover .contact__card-icon {
+            background: linear-gradient(135deg, var(--electric), var(--cyan));
+            border-color: transparent;
+            box-shadow: 0 6px 20px rgba(9,132,227,.3);
+        }
+        .contact__card-icon i {
+            font-size: 1.3rem;
+            color: var(--sky);
+            transition: color .4s;
+        }
+        .contact__card:hover .contact__card-icon i { color: var(--white); }
+        .contact__card h3 {
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: var(--white);
+            margin: 0 0 8px;
+        }
+        .contact__card p {
+            font-size: .88rem;
+            line-height: 1.65;
+            color: rgba(255,255,255,.45);
+            margin: 0;
+        }
+        .contact__card .hours-detail {
+            font-size: .88rem;
+            color: rgba(255,255,255,.45);
+            line-height: 1.65;
+            margin: 0 0 4px;
+        }
+        .contact__action-card {
+            grid-column: 1 / -1;
+            background: rgba(255,255,255,.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 22px;
+            padding: 36px 32px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+        .contact__action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 28px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: .92rem;
+            transition: all .35s var(--ease);
+            border: 1px solid;
+        }
+        .contact__action-btn--wa {
+            background: rgba(37,211,102,.1);
+            border-color: rgba(37,211,102,.25);
+            color: #25d366 !important;
+        }
+        .contact__action-btn--wa:hover {
+            background: #25d366;
+            color: var(--white) !important;
+            border-color: #25d366;
+            box-shadow: 0 8px 28px rgba(37,211,102,.3);
+            transform: translateY(-2px);
+        }
+        .contact__action-btn--email {
+            background: rgba(9,132,227,.08);
+            border-color: rgba(9,132,227,.2);
+            color: var(--sky) !important;
+        }
+        .contact__action-btn--email:hover {
+            background: var(--electric);
+            color: var(--white) !important;
+            border-color: var(--electric);
+            box-shadow: 0 8px 28px rgba(9,132,227,.3);
+            transform: translateY(-2px);
+        }
+        .contact__action-btn--phone {
+            background: rgba(255,255,255,.05);
+            border-color: rgba(255,255,255,.12);
+            color: rgba(255,255,255,.7) !important;
+        }
+        .contact__action-btn--phone:hover {
+            background: rgba(255,255,255,.12);
+            color: var(--white) !important;
+            border-color: rgba(255,255,255,.25);
+            transform: translateY(-2px);
         }
         .hours-badge {
             display: inline-flex; align-items: center; gap: 6px;
-            background: var(--cloud);
-            border: 1px solid rgba(9,132,227,.12);
+            background: rgba(0,206,201,.1);
+            border: 1px solid rgba(0,206,201,.2);
             border-radius: 100px;
-            padding: 4px 14px;
+            padding: 5px 16px;
             font-size: .72rem; font-weight: 700;
-            color: var(--electric);
+            color: var(--cyan);
+            margin-top: 8px;
+        }
+        @media(max-width:768px) {
+            .contact__grid { grid-template-columns: 1fr; }
+            .contact__map-card { aspect-ratio: 4/3; }
+            .contact__action-card { flex-direction: column; }
+            .contact__action-btn { width: 100%; justify-content: center; }
         }
 
         /* =============================================
@@ -1281,16 +1548,14 @@
             .testimonial-columns > :nth-child(3) { display: none; }
             .services-carousel__card { flex: 0 0 calc(100% - 24px); min-width: 260px; }
             .disease-card { width: 260px; padding: 24px 20px; }
-            /* Disable heavy hero effects on mobile */
-            .hero__aurora { display: none; }
-            .hero__sparkle-canvas { display: none; }
-            .hero__orb3 { display: none; }
+            /* Lighten hero effects on mobile */
+            .hero__aurora { opacity: .5; filter: blur(80px); animation-duration: 30s; }
+            .hero__orb3 { opacity: .4; }
             .hero__bg::before,
             .hero__bg::after {
-                animation: none;
-                opacity: .5;
+                animation-duration: 14s;
+                opacity: .6;
             }
-            .hero__grid { opacity: .4; }
         }
         @media(max-width:576px) {
             .hero__headline { font-size: 2.45rem; }
@@ -1376,7 +1641,7 @@
                     <span class="line"><span class="line-inner">Salud Respiratoria</span></span>
                     <span class="line"><span class="line-inner">de <em>Vanguardia</em></span></span>
                 </h1>
-                <p class="hero__sub">¿Tos persistente, dificultad para respirar o problemas pulmonares? El Dr. William Lara, formado en el INER, te ayuda a recuperar tu calidad de vida con un diagnóstico preciso.</p>
+                <p class="hero__sub">¿Tos que no cede, dificultad para respirar o problemas pulmonares que afectan tu día a día? El <strong>Dr. William Lara</strong>, formado en el <strong>INER</strong>, combina experiencia de alto nivel con un trato cercano para devolverte la tranquilidad de respirar bien.</p>
                 <div class="hero__conditions">
                     <span class="hero__pill">Asma</span>
                     <span class="hero__pill">EPOC</span>
@@ -1465,7 +1730,9 @@
                     <h2 class="about__name reveal">Dr. William César<br>Lara Vázquez</h2>
                     <p class="about__specialty reveal">Neumólogo formado en el INER · Especialista en EPOC y enfermedades respiratorias</p>
                     <p class="about__paragraph reveal">Me formé en el <strong>Instituto Nacional de Enfermedades Respiratorias (INER)</strong>, la institución de referencia en México para enfermedades pulmonares. Actualmente curso la alta especialidad en EPOC, lo que me permite ofrecerte el tratamiento más actualizado y efectivo.</p>
-                    <p class="about__paragraph reveal">Mi compromiso es que recuperes tu salud respiratoria, que entiendas tu diagnóstico con claridad, que conozcas tus opciones y que tomes decisiones informadas. Cada paciente es diferente, y tu tratamiento también debe serlo.</p>
+                    <div class="about__commitment reveal">
+                        Mi compromiso es devolverte la <em>libertad de respirar con plenitud</em>. Te brindo absoluta claridad sobre tu diagnóstico y el <strong>respaldo necesario</strong> para tomar decisiones informadas. Tu cuerpo es único; por ello, tu tratamiento se <strong>diseña a tu medida</strong>.
+                    </div>
                 </div>
             </div>
         </section>
@@ -1872,72 +2139,48 @@
             </div>
         </section>
 
-        <!-- ===== CONTACTO ===== -->
-        <section id="contacto-final" class="py-5" style="background:var(--cloud-alt)">
-            <div class="container" style="padding-top:40px;padding-bottom:40px">
+        <!-- ===== CONTACTO — Immersive dark ===== -->
+        <section id="contacto-final" class="contact-section py-5">
+            <div class="container" style="padding-top:48px;padding-bottom:48px;position:relative;z-index:1">
                 <div class="text-center mb-5">
                     <span class="section-label reveal">Contacto</span>
                     <h2 class="section-title reveal">Encuéntrame aquí</h2>
                     <p class="section-sub reveal">Hospital Santa Coleta · Consultorio 507 · Ciudad de México</p>
                 </div>
 
-                <div class="row g-4">
-                    <div class="col-lg-7 reveal">
-                        <div class="map-wrapper" style="padding-bottom:58%;border-radius:22px;box-shadow:0 8px 40px rgba(10,22,40,.08)">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.844781446706!2d-99.1834226!3d19.3758368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce0014e7a8dbdd%3A0xc3af1172a396263f!2sSaturnino%20Herr%C3%A1n%2059%2C%20San%20Jos%C3%A9%20Insurgentes%2C%20Benito%20Ju%C3%A1rez%2C%2003900%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1708892400000!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
+                <div class="contact__grid">
+                    <!-- Map -->
+                    <div class="contact__map-card reveal">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.844781446706!2d-99.1834226!3d19.3758368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce0014e7a8dbdd%3A0xc3af1172a396263f!2sSaturnino%20Herr%C3%A1n%2059%2C%20San%20Jos%C3%A9%20Insurgentes%2C%20Benito%20Ju%C3%A1rez%2C%2003900%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1708892400000!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
-                    <div class="col-lg-5">
-                        <div class="contact-card reveal" style="background:var(--white);border:1px solid var(--border);border-radius:20px;padding:28px 30px;margin-bottom:16px;box-shadow:0 2px 14px rgba(10,22,40,.04)">
-                            <div class="d-flex align-items-start gap-14" style="gap:14px">
-                                <div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,rgba(9,132,227,.08),rgba(30,55,153,.06));display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                                    <i class="bi bi-geo-alt-fill" style="font-size:1.2rem;color:var(--electric)"></i>
-                                </div>
-                                <div>
-                                    <h3 style="font-size:1.05rem;font-weight:700;color:var(--navy);margin:0 0 6px">Hospital Santa Coleta</h3>
-                                    <p style="font-size:.9rem;color:var(--text-muted);margin:0;line-height:1.65">Saturnino Herrán 59, Consultorio 507<br>San José Insurgentes, Benito Juárez<br>03900 Ciudad de México, CDMX</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="contact-card reveal reveal-d1" style="background:var(--white);border:1px solid var(--border);border-radius:20px;padding:28px 30px;margin-bottom:16px;box-shadow:0 2px 14px rgba(10,22,40,.04)">
-                            <div class="d-flex align-items-start gap-14" style="gap:14px">
-                                <div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,rgba(9,132,227,.08),rgba(30,55,153,.06));display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                                    <i class="bi bi-clock-fill" style="font-size:1.2rem;color:var(--electric)"></i>
-                                </div>
-                                <div>
-                                    <h3 style="font-size:1.05rem;font-weight:700;color:var(--navy);margin:0 0 6px">Horarios de atención</h3>
-                                    <p style="font-size:.9rem;color:var(--text-muted);margin:0 0 4px;line-height:1.65">Lunes a viernes: 16:00 — 20:30 hrs</p>
-                                    <p style="font-size:.9rem;color:var(--text-muted);margin:0 0 10px;line-height:1.65">Sábado y domingo: 12:00 — 16:00 hrs</p>
-                                    <span class="hours-badge">Previa Cita</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="contact-card reveal reveal-d2" style="background:var(--white);border:1px solid var(--border);border-radius:20px;padding:28px 30px;box-shadow:0 2px 14px rgba(10,22,40,.04)">
-                            <h3 style="font-size:1.05rem;font-weight:700;color:var(--navy);margin:0 0 16px">¿Listo para agendar?</h3>
-                            <div class="d-flex flex-column gap-3">
-                                <a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20cita" target="_blank" style="display:flex;align-items:center;gap:12px;padding:14px 20px;border-radius:14px;background:rgba(37,211,102,.06);border:1px solid rgba(37,211,102,.2);text-decoration:none;transition:all .3s var(--ease)">
-                                    <i class="bi bi-whatsapp" style="font-size:1.3rem;color:#25d366"></i>
-                                    <div>
-                                        <p style="font-size:.88rem;font-weight:700;color:var(--navy);margin:0">Escríbeme por WhatsApp</p>
-                                        <p style="font-size:.75rem;color:var(--text-muted);margin:0">Respuesta rápida</p>
-                                    </div>
-                                </a>
-                                <a href="mailto:drwilliam.neumocare@gmail.com" style="display:flex;align-items:center;gap:12px;padding:14px 20px;border-radius:14px;background:rgba(9,132,227,.05);border:1px solid rgba(9,132,227,.15);text-decoration:none;transition:all .3s var(--ease)">
-                                    <i class="bi bi-envelope-fill" style="font-size:1.3rem;color:var(--electric)"></i>
-                                    <div>
-                                        <p style="font-size:.88rem;font-weight:700;color:var(--navy);margin:0">Envíame un correo</p>
-                                        <p style="font-size:.75rem;color:var(--text-muted);margin:0">drwilliam.neumocare@gmail.com</p>
-                                    </div>
-                                </a>
-                                <a href="tel:5591708334" style="display:flex;align-items:center;gap:12px;padding:14px 20px;border-radius:14px;background:rgba(10,22,40,.03);border:1px solid rgba(10,22,40,.08);text-decoration:none;transition:all .3s var(--ease)">
-                                    <i class="bi bi-telephone-fill" style="font-size:1.3rem;color:var(--navy)"></i>
-                                    <div>
-                                        <p style="font-size:.88rem;font-weight:700;color:var(--navy);margin:0">Llamar ahora</p>
-                                        <p style="font-size:.75rem;color:var(--text-muted);margin:0">55 9170 8334</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+
+                    <!-- Location card -->
+                    <div class="contact__card reveal">
+                        <div class="contact__card-icon"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i></div>
+                        <h3>Hospital Santa Coleta</h3>
+                        <p>Saturnino Herrán 59, Consultorio 507<br>San José Insurgentes, Benito Juárez<br>03900 Ciudad de México, CDMX</p>
+                    </div>
+
+                    <!-- Hours card -->
+                    <div class="contact__card reveal reveal-d1">
+                        <div class="contact__card-icon"><i class="bi bi-clock-fill" aria-hidden="true"></i></div>
+                        <h3>Horarios de atención</h3>
+                        <p class="hours-detail">Lunes a viernes: 16:00 — 20:30 hrs</p>
+                        <p class="hours-detail">Sábado y domingo: 12:00 — 16:00 hrs</p>
+                        <span class="hours-badge">Previa Cita</span>
+                    </div>
+
+                    <!-- Action buttons row -->
+                    <div class="contact__action-card reveal reveal-d2">
+                        <a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20cita" target="_blank" class="contact__action-btn contact__action-btn--wa">
+                            <i class="bi bi-whatsapp" style="font-size:1.2rem"></i> WhatsApp
+                        </a>
+                        <a href="mailto:drwilliam.neumocare@gmail.com" class="contact__action-btn contact__action-btn--email">
+                            <i class="bi bi-envelope-fill" style="font-size:1.1rem"></i> Correo
+                        </a>
+                        <a href="tel:5591708334" class="contact__action-btn contact__action-btn--phone">
+                            <i class="bi bi-telephone-fill" style="font-size:1.1rem"></i> 55 9170 8334
+                        </a>
                     </div>
                 </div>
             </div>
@@ -2056,7 +2299,9 @@
 
             function goTo(idx) {
                 var total = getTotalSlides();
-                currentSlide = Math.max(0, Math.min(idx, total - 1));
+                if (idx < 0) idx = total - 1;
+                else if (idx >= total) idx = 0;
+                currentSlide = idx;
                 var card = cards[0];
                 var gap = 24;
                 var cardWidth = card.offsetWidth + gap;
@@ -2138,7 +2383,7 @@
 
         /* ── Sparkle canvas system — desktop only ── */
         function initSparkles(canvasId, particleCount) {
-            if (window.innerWidth <= 768) return;
+            if (window.innerWidth <= 768) particleCount = Math.round(particleCount * 0.35);
             var canvas = document.getElementById(canvasId);
             if (!canvas) return;
             var ctx = canvas.getContext('2d');
