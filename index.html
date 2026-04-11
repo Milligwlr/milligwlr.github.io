@@ -822,11 +822,11 @@
             inset: 0;
             z-index: 0;
             pointer-events: none;
-            opacity: .45;
+            opacity: .55;
             background:
-                radial-gradient(ellipse 80% 60% at 20% 30%, rgba(9,132,227,.06) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 80% at 80% 70%, rgba(0,206,201,.05) 0%, transparent 60%),
-                radial-gradient(ellipse 50% 50% at 50% 50%, rgba(116,185,255,.04) 0%, transparent 50%);
+                radial-gradient(ellipse 80% 60% at 20% 30%, rgba(9,132,227,.07) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 80% at 80% 70%, rgba(0,206,201,.06) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 50% at 50% 50%, rgba(116,185,255,.05) 0%, transparent 50%);
             background-size: 100% 100%;
             animation: mesh-drift 20s ease-in-out infinite alternate;
         }
@@ -834,6 +834,56 @@
             0%   { background-position: 0% 0%, 100% 100%, 50% 50%; }
             50%  { background-position: 30% 20%, 70% 80%, 40% 60%; }
             100% { background-position: 10% 40%, 90% 60%, 60% 30%; }
+        }
+        /* Grain noise overlay for depth */
+        .section-grain {
+            position: absolute; inset: 0;
+            z-index: 0; pointer-events: none;
+            opacity: .28;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
+        }
+        /* Floating decorative rings */
+        .section-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(9,132,227,.06);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .section-ring--1 {
+            width: 280px; height: 280px;
+            top: -60px; right: -80px;
+            border-width: 2px;
+            border-color: rgba(9,132,227,.05);
+            animation: ring-float 18s ease-in-out infinite alternate;
+        }
+        .section-ring--2 {
+            width: 180px; height: 180px;
+            bottom: 40px; left: -40px;
+            border-color: rgba(0,206,201,.06);
+            animation: ring-float 22s ease-in-out infinite alternate-reverse;
+        }
+        .section-ring--3 {
+            width: 120px; height: 120px;
+            top: 30%; right: 8%;
+            border-color: rgba(116,185,255,.07);
+            background: radial-gradient(circle, rgba(9,132,227,.015) 0%, transparent 70%);
+            animation: ring-float 15s ease-in-out infinite alternate;
+        }
+        @keyframes ring-float {
+            0%   { transform: translate(0, 0) rotate(0deg); }
+            50%  { transform: translate(12px, -18px) rotate(8deg); }
+            100% { transform: translate(-8px, 10px) rotate(-5deg); }
+        }
+        /* Gradient accent line — top of each section */
+        .section-accent-line {
+            position: absolute;
+            top: 0; left: 10%; right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(9,132,227,.12) 30%, rgba(0,206,201,.1) 70%, transparent 100%);
+            z-index: 1;
+            pointer-events: none;
         }
         /* Section divider — soft gradient fade between sections */
         .section-divider {
@@ -1045,11 +1095,65 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* Service cards grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+        /* Service carousel per tab */
+        .svc-carousel { position: relative; }
+        .svc-carousel__viewport {
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .svc-carousel__track {
+            display: flex;
             gap: 24px;
+            transition: transform .5s cubic-bezier(.25,.1,.25,1);
+        }
+        .svc-carousel__track .service-card {
+            flex: 0 0 calc(33.333% - 16px);
+            min-width: 0;
+        }
+        .svc-carousel__arrow {
+            position: absolute;
+            top: calc(50% - 24px);
+            transform: translateY(-50%);
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,.08);
+            background: var(--white);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: all .3s var(--ease);
+            color: var(--navy);
+            font-size: 1.1rem;
+            z-index: 2;
+            box-shadow: 0 4px 20px rgba(0,0,0,.06);
+        }
+        .svc-carousel__arrow--prev { left: -24px; }
+        .svc-carousel__arrow--next { right: -24px; }
+        .svc-carousel__arrow:hover {
+            border-color: var(--electric);
+            color: var(--electric);
+            box-shadow: 0 8px 28px rgba(9,132,227,.22);
+            transform: translateY(-50%) scale(1.08);
+        }
+        .svc-carousel__arrow.hidden { display: none; }
+        .svc-carousel__dots {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 28px;
+        }
+        .svc-carousel__dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: rgba(0,0,0,.12);
+            border: none;
+            cursor: pointer;
+            transition: all .3s var(--ease);
+            padding: 0;
+        }
+        .svc-carousel__dot.active {
+            background: var(--electric);
+            width: 24px;
+            border-radius: 4px;
         }
 
         .service-card {
@@ -1678,7 +1782,10 @@
             .about__visual  { position: relative; height: auto; min-height: auto; flex: none; padding: 60px 24px; }
             .about__text    { padding: 40px 24px 80px; max-width: 100%; }
             .about__badge   { bottom: -12px; right: 8px; }
-            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .svc-carousel__track .service-card { flex: 0 0 calc(50% - 12px); }
+            .svc-carousel__arrow--prev { left: -16px; }
+            .svc-carousel__arrow--next { right: -16px; }
+            .svc-carousel__arrow { width: 40px; height: 40px; font-size: 1rem; }
             .services-tabs { gap: 8px; }
             .services-tab { font-size: .82rem; padding: 9px 18px; }
         }
@@ -1700,7 +1807,11 @@
             .services.py-5, .diseases-section.py-5, .testimonials-section.py-5 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
             .services .container.my-5, .diseases-section .container.my-5, .testimonials-section .container.my-5 { margin-top: 1rem !important; margin-bottom: 1rem !important; }
             .services .mb-5, .diseases-section .mb-5, .testimonials-section .mb-5 { margin-bottom: 1.5rem !important; }
-            .services-grid { grid-template-columns: 1fr; gap: 16px; }
+            .svc-carousel__track .service-card { flex: 0 0 100%; }
+            .svc-carousel__track { gap: 16px; }
+            .svc-carousel__arrow { width: 36px; height: 36px; font-size: .9rem; box-shadow: 0 2px 12px rgba(0,0,0,.1); }
+            .svc-carousel__arrow--prev { left: -6px; }
+            .svc-carousel__arrow--next { right: -6px; }
             .service-card { padding: 28px 24px 26px; }
             .services-tabs { gap: 6px; margin-bottom: 28px; }
             .services-tab { font-size: .78rem; padding: 8px 14px; }
@@ -1883,6 +1994,10 @@
         <section class="about section-bg" id="sobre-mi">
             <div class="section-dots"></div>
             <div class="section-mesh"></div>
+            <div class="section-grain"></div>
+            <div class="section-ring section-ring--1"></div>
+            <div class="section-ring section-ring--2"></div>
+            <div class="section-accent-line"></div>
             <div class="about__inner">
                 <div class="about__visual">
                     <div class="about__label about__label--above reveal">Acerca de mí</div>
@@ -1913,6 +2028,10 @@
         <section id="servicios" class="services section-bg py-5">
             <div class="section-dots"></div>
             <div class="section-mesh"></div>
+            <div class="section-grain"></div>
+            <div class="section-ring section-ring--3"></div>
+            <div class="section-ring section-ring--2" style="top:auto;bottom:-30px;left:auto;right:-50px"></div>
+            <div class="section-accent-line"></div>
             <div class="container my-5">
                 <div class="mb-5 text-center">
                     <span class="section-label reveal">Servicios</span>
@@ -1941,7 +2060,7 @@
 
                     <!-- ── Consulta y valoración ── -->
                     <div class="services-panel active" role="tabpanel" data-panel="consulta">
-                        <div class="services-grid">
+                        <div class="svc-carousel"><div class="svc-carousel__viewport"><div class="svc-carousel__track">
                             <div class="service-card">
                                 <div class="service-card__icon"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i></div>
                                 <h3>Consulta neumológica especializada</h3>
@@ -1960,12 +2079,16 @@
                                 <p>Antes de una cirugía, es fundamental saber cómo están tus pulmones. Esta valoración reduce riesgos y te da la tranquilidad de llegar preparado al quirófano.</p>
                                 <span class="service-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
                             </div>
+                        </div></div>
+                        <button class="svc-carousel__arrow svc-carousel__arrow--prev" aria-label="Anterior"><i class="bi bi-chevron-left"></i></button>
+                        <button class="svc-carousel__arrow svc-carousel__arrow--next" aria-label="Siguiente"><i class="bi bi-chevron-right"></i></button>
+                        <div class="svc-carousel__dots"></div>
                         </div>
                     </div>
 
                     <!-- ── Estudios respiratorios ── -->
                     <div class="services-panel" role="tabpanel" data-panel="estudios">
-                        <div class="services-grid">
+                        <div class="svc-carousel"><div class="svc-carousel__viewport"><div class="svc-carousel__track">
                             <div class="service-card">
                                 <div class="service-card__icon"><i class="bi bi-lungs" aria-hidden="true"></i></div>
                                 <h3>Espirometría simple</h3>
@@ -2002,12 +2125,16 @@
                                 <p>Imagen en tiempo real de tus pulmones sin radiación. Permite detectar líquido pleural, consolidaciones y otras alteraciones de forma rápida y segura.</p>
                                 <span class="service-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
                             </div>
+                        </div></div>
+                        <button class="svc-carousel__arrow svc-carousel__arrow--prev" aria-label="Anterior"><i class="bi bi-chevron-left"></i></button>
+                        <button class="svc-carousel__arrow svc-carousel__arrow--next" aria-label="Siguiente"><i class="bi bi-chevron-right"></i></button>
+                        <div class="svc-carousel__dots"></div>
                         </div>
                     </div>
 
                     <!-- ── Procedimientos ── -->
                     <div class="services-panel" role="tabpanel" data-panel="procedimientos">
-                        <div class="services-grid">
+                        <div class="svc-carousel"><div class="svc-carousel__viewport"><div class="svc-carousel__track">
                             <div class="service-card">
                                 <div class="service-card__icon"><i class="bi bi-droplet" aria-hidden="true"></i></div>
                                 <h3>Toracocentesis</h3>
@@ -2032,12 +2159,16 @@
                                 <p>Exploración directa de tus vías respiratorias con una cámara flexible. Permite tomar muestras y diagnosticar lesiones, infecciones o tumores con alta precisión.</p>
                                 <span class="service-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
                             </div>
+                        </div></div>
+                        <button class="svc-carousel__arrow svc-carousel__arrow--prev" aria-label="Anterior"><i class="bi bi-chevron-left"></i></button>
+                        <button class="svc-carousel__arrow svc-carousel__arrow--next" aria-label="Siguiente"><i class="bi bi-chevron-right"></i></button>
+                        <div class="svc-carousel__dots"></div>
                         </div>
                     </div>
 
                     <!-- ── Tratamientos ── -->
                     <div class="services-panel" role="tabpanel" data-panel="tratamientos">
-                        <div class="services-grid">
+                        <div class="svc-carousel"><div class="svc-carousel__viewport"><div class="svc-carousel__track">
                             <div class="service-card">
                                 <div class="service-card__icon"><i class="bi bi-heart-pulse" aria-hidden="true"></i></div>
                                 <h3>Terapia respiratoria</h3>
@@ -2062,6 +2193,10 @@
                                 <p>Asma, EPOC, fibrosis pulmonar — el seguimiento regular es clave. Ajustamos tu tratamiento continuamente para que tengas menos crisis y más días buenos.</p>
                                 <span class="service-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
                             </div>
+                        </div></div>
+                        <button class="svc-carousel__arrow svc-carousel__arrow--prev" aria-label="Anterior"><i class="bi bi-chevron-left"></i></button>
+                        <button class="svc-carousel__arrow svc-carousel__arrow--next" aria-label="Siguiente"><i class="bi bi-chevron-right"></i></button>
+                        <div class="svc-carousel__dots"></div>
                         </div>
                     </div>
 
@@ -2074,6 +2209,10 @@
         <section id="enfermedades" class="diseases-section section-bg py-5">
             <div class="section-dots"></div>
             <div class="section-mesh"></div>
+            <div class="section-grain"></div>
+            <div class="section-ring section-ring--1" style="top:auto;bottom:-40px;right:auto;left:-60px"></div>
+            <div class="section-ring section-ring--3" style="top:15%;right:auto;left:5%"></div>
+            <div class="section-accent-line"></div>
             <div class="container my-5">
                 <div class="mb-5 text-center">
                     <span class="section-label reveal">Enfermedades</span>
@@ -2254,6 +2393,10 @@
         <section id="testimonios" class="testimonials-section section-bg py-5">
             <div class="section-dots"></div>
             <div class="section-mesh"></div>
+            <div class="section-grain"></div>
+            <div class="section-ring section-ring--1" style="top:20%;right:-100px"></div>
+            <div class="section-ring section-ring--2" style="bottom:auto;top:-30px;left:auto;right:15%"></div>
+            <div class="section-accent-line"></div>
             <div class="container my-5">
                 <div class="mb-5 text-center">
                     <span class="section-label reveal">Testimonios</span>
@@ -2458,17 +2601,113 @@
             cObs.observe(statsEl);
         }
 
-        /* ── Services Tabs ── */
+        /* ── Services Tabs + Carousel ── */
         (function() {
             var tabs = document.querySelectorAll('.services-tab');
             var panels = document.querySelectorAll('.services-panel');
             if (!tabs.length) return;
 
+            /* ── Per-panel carousel logic ── */
+            function initCarousel(panel) {
+                var carousel = panel.querySelector('.svc-carousel');
+                if (!carousel) return;
+                var track = carousel.querySelector('.svc-carousel__track');
+                var cards = track.querySelectorAll('.service-card');
+                var prevBtn = carousel.querySelector('.svc-carousel__arrow--prev');
+                var nextBtn = carousel.querySelector('.svc-carousel__arrow--next');
+                var dotsWrap = carousel.querySelector('.svc-carousel__dots');
+                var current = 0;
+
+                function getVisible() {
+                    var w = window.innerWidth;
+                    if (w >= 992) return 3;
+                    if (w >= 768) return 2;
+                    return 1;
+                }
+
+                function getGap() {
+                    return window.innerWidth <= 768 ? 16 : 24;
+                }
+
+                function totalPages() {
+                    return Math.max(1, cards.length - getVisible() + 1);
+                }
+
+                function buildDots() {
+                    dotsWrap.innerHTML = '';
+                    var total = totalPages();
+                    if (total <= 1) { dotsWrap.style.display = 'none'; return; }
+                    dotsWrap.style.display = 'flex';
+                    for (var i = 0; i < total; i++) {
+                        var d = document.createElement('button');
+                        d.className = 'svc-carousel__dot' + (i === current ? ' active' : '');
+                        d.setAttribute('aria-label', 'Página ' + (i + 1));
+                        d.dataset.idx = i;
+                        d.addEventListener('click', function() { goTo(parseInt(this.dataset.idx)); });
+                        dotsWrap.appendChild(d);
+                    }
+                }
+
+                function updateArrows() {
+                    var total = totalPages();
+                    if (total <= 1) {
+                        prevBtn.classList.add('hidden');
+                        nextBtn.classList.add('hidden');
+                    } else {
+                        prevBtn.classList.remove('hidden');
+                        nextBtn.classList.remove('hidden');
+                    }
+                }
+
+                function goTo(idx) {
+                    var total = totalPages();
+                    if (idx < 0) idx = total - 1;
+                    else if (idx >= total) idx = 0;
+                    current = idx;
+                    var card = cards[0];
+                    if (!card) return;
+                    var gap = getGap();
+                    var cardW = card.offsetWidth + gap;
+                    track.style.transform = 'translateX(-' + (current * cardW) + 'px)';
+                    dotsWrap.querySelectorAll('.svc-carousel__dot').forEach(function(d, i) {
+                        d.classList.toggle('active', i === current);
+                    });
+                }
+
+                prevBtn.addEventListener('click', function() { goTo(current - 1); });
+                nextBtn.addEventListener('click', function() { goTo(current + 1); });
+
+                /* Touch swipe */
+                var sx = 0;
+                track.addEventListener('touchstart', function(e) { sx = e.changedTouches[0].screenX; }, { passive: true });
+                track.addEventListener('touchend', function(e) {
+                    var diff = sx - e.changedTouches[0].screenX;
+                    if (Math.abs(diff) > 50) {
+                        if (diff > 0) goTo(current + 1);
+                        else goTo(current - 1);
+                    }
+                }, { passive: true });
+
+                function refresh() {
+                    buildDots();
+                    updateArrows();
+                    goTo(Math.min(current, totalPages() - 1));
+                }
+                refresh();
+                window.addEventListener('resize', refresh);
+                return { refresh: refresh };
+            }
+
+            /* Initialize all panel carousels */
+            var carousels = {};
+            panels.forEach(function(p) {
+                carousels[p.dataset.panel] = initCarousel(p);
+            });
+
+            /* ── Tab switching ── */
             tabs.forEach(function(tab) {
                 tab.addEventListener('click', function() {
                     var target = this.dataset.tab;
-
-                    /* Update tabs */
                     tabs.forEach(function(t) {
                         t.classList.remove('active');
                         t.setAttribute('aria-selected', 'false');
@@ -2476,16 +2715,17 @@
                     this.classList.add('active');
                     this.setAttribute('aria-selected', 'true');
 
-                    /* Switch panels */
-                    panels.forEach(function(p) {
-                        p.classList.remove('active');
-                    });
+                    panels.forEach(function(p) { p.classList.remove('active'); });
                     var activePanel = document.querySelector('[data-panel="' + target + '"]');
-                    if (activePanel) activePanel.classList.add('active');
+                    if (activePanel) {
+                        activePanel.classList.add('active');
+                        /* Refresh carousel after panel becomes visible */
+                        if (carousels[target]) carousels[target].refresh();
+                    }
                 });
             });
 
-            /* Keyboard navigation for tabs */
+            /* Keyboard navigation */
             var tabList = document.querySelector('.services-tabs');
             if (tabList) {
                 tabList.addEventListener('keydown', function(e) {
@@ -2657,22 +2897,24 @@
         initSparkles('heroSparkles', 160);
         initSparkles('ctaSparkles', 110);
 
-        /* ── Testimonial scroll — JS-driven for glitch-free looping ── */
+        /* ── Testimonial scroll — seamless infinite loop ── */
         document.querySelectorAll('.testimonial-col').forEach(function(col, idx) {
-            var speed = [0.65, -0.55, 0.7][idx] || 0.65; // px per frame, negative = reverse
+            var speed = [0.55, -0.45, 0.6][idx] || 0.55;
 
-            /* Ensure enough content for seamless loop by cloning cards if needed */
-            var origCards = col.querySelectorAll('.testi-card');
-            var colHeight = col.offsetHeight;
-            var contentHeight = 0;
-            origCards.forEach(function(c) { contentHeight += c.offsetHeight + 16; });
-            if (contentHeight < colHeight * 2.5) {
-                var frag = document.createDocumentFragment();
-                origCards.forEach(function(c) { frag.appendChild(c.cloneNode(true)); });
-                col.appendChild(frag);
+            /* Clone cards enough times to guarantee seamless wrap (3x the set) */
+            var origCards = Array.from(col.querySelectorAll('.testi-card'));
+            for (var clone = 0; clone < 3; clone++) {
+                origCards.forEach(function(c) {
+                    col.appendChild(c.cloneNode(true));
+                });
             }
 
-            var pos = speed < 0 ? -(col.scrollHeight / 2) : 0;
+            /* Measure one full set height after cloning */
+            var gap = 16;
+            var setHeight = 0;
+            origCards.forEach(function(c) { setHeight += c.offsetHeight + gap; });
+
+            var pos = speed < 0 ? -setHeight : 0;
             var paused = false;
             var raf = null;
 
@@ -2682,10 +2924,10 @@
             function tick() {
                 if (!paused) {
                     pos += speed;
-                    var half = col.scrollHeight / 2;
-                    if (speed > 0 && Math.abs(pos) >= half) pos = 0;
-                    if (speed < 0 && pos >= 0) pos = -half;
-                    col.style.transform = 'translateY(' + pos + 'px)';
+                    /* Seamless wrap: when we've scrolled one full set, snap back */
+                    if (speed > 0 && pos >= setHeight) pos -= setHeight;
+                    if (speed < 0 && pos <= -setHeight * 2) pos += setHeight;
+                    col.style.transform = 'translateY(' + (-pos) + 'px)';
                 }
                 raf = requestAnimationFrame(tick);
             }
