@@ -402,7 +402,8 @@
             color: var(--electric);
             letter-spacing: .6px;
             text-transform: uppercase;
-            margin-bottom: 36px;
+            margin-top: 8px;
+            margin-bottom: 16px;
         }
         .hero__tag .dot {
             width: 6px; height: 6px;
@@ -1817,10 +1818,8 @@
             .services-tab { font-size: .78rem; padding: 8px 14px; }
             .services-tab .tab-count { width: 19px; height: 19px; font-size: .66rem; }
             .testimonial-columns {
-                grid-template-columns: 1fr 1fr;
                 height: 420px;
             }
-            .testimonial-columns > :nth-child(3) { display: none; }
             .disease-card { width: 260px; padding: 24px 20px; }
             .disease-card p { font-size: .92rem; line-height: 1.72; }
             .disease-card h3 { font-size: 1.15rem; }
@@ -1851,9 +1850,17 @@
             .testimonial-summary-score { font-size: 3.2rem; }
             .testimonial-columns {
                 grid-template-columns: 1fr 1fr;
+                gap: 10px;
                 height: 380px;
             }
             .testimonial-columns > :nth-child(3) { display: none; }
+            .testimonial-col { gap: 10px; }
+            .testi-card { padding: 14px; border-radius: 14px; }
+            .testi-text { font-size: .78rem; line-height: 1.6; }
+            .testi-name { font-size: .75rem; }
+            .testi-badge { font-size: .62rem; }
+            .testi-avatar { width: 32px; height: 32px; font-size: .8rem; }
+            .testi-stars i { font-size: .72rem; }
         }
         @media(prefers-reduced-motion: reduce) {
             *, *::before, *::after {
@@ -1896,6 +1903,7 @@
             </div>
             <div class="social-icons d-none d-lg-flex align-items-center">
                 <a href="https://www.instagram.com/dr.williamlara/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+                <a href="https://x.com/Milligw" target="_blank" aria-label="X (Twitter)"><i class="bi bi-twitter-x" aria-hidden="true"></i></a>
                 <a href="#contacto-final" aria-label="Ubicación"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i></a>
             </div>
         </div>
@@ -1916,15 +1924,15 @@
             <div class="hero__grid"></div>
             <div class="hero__content">
                 <img src="favicon.png" alt="Alveos Logo" class="hero__logo">
-                <div class="hero__tag">
-                    <span class="dot"></span>
-                    Neumología de Alta Especialidad en CDMX
-                </div>
                 <h1 class="hero__headline">
                     <span class="line"><span class="line-inner">Salud Respiratoria</span></span>
                     <span class="line"><span class="line-inner">de <em>Vanguardia</em></span></span>
                 </h1>
                 <p class="hero__sub">¿Tos que no cede, dificultad para respirar o problemas pulmonares que afectan tu día a día?<br><br>El <strong>Dr. William Lara</strong> combina experiencia de alto nivel con un <strong>trato cercano</strong> para devolverte la tranquilidad de respirar bien.</p>
+                <div class="hero__tag">
+                    <span class="dot"></span>
+                    Neumología de Alta Especialidad en CDMX
+                </div>
                 <div class="hero__conditions">
                     <span class="hero__pill">Asma</span>
                     <span class="hero__pill">EPOC</span>
@@ -2532,6 +2540,7 @@
             <div class="footer-tagline">Neumología de Vanguardia · Ciudad de México</div>
             <div class="footer-social">
                 <a href="https://www.instagram.com/dr.williamlara/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+                <a href="https://x.com/Milligw" target="_blank" aria-label="X (Twitter)"><i class="bi bi-twitter-x" aria-hidden="true"></i></a>
                 <a href="https://wa.me/5215591708334" target="_blank" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
                 <a href="tel:5591708334" aria-label="Teléfono"><i class="bi bi-telephone-fill" aria-hidden="true"></i></a>
             </div>
@@ -2769,10 +2778,10 @@
             /* Hero entrance — starts after splash */
             var tl = gsap.timeline({ defaults:{ ease:'power4.out' }, delay: 1.3 });
             tl.to('.hero__logo',                { opacity:1, scale:1, duration:1 })
-              .to('.hero__tag',                 { opacity:1, y:0, duration:0.8 }, '-=0.5')
               .to('.hero__headline .line-inner', { opacity:1, y:0, duration:1.2, stagger:0.15 }, '-=0.4')
               .to('.hero__sub',                 { opacity:1, y:0, duration:0.9 }, '-=0.7')
-              .to('.hero__conditions',          { opacity:1, y:0, duration:0.7 }, '-=0.5')
+              .to('.hero__tag',                 { opacity:1, y:0, duration:0.8 }, '-=0.5')
+              .to('.hero__conditions',          { opacity:1, y:0, duration:0.7 }, '-=0.4')
               .to('.hero__cta-row',             { opacity:1, y:0, duration:0.9 }, '-=0.5');
 
             /* Hero parallax — only on desktop */
@@ -2901,20 +2910,22 @@
         document.querySelectorAll('.testimonial-col').forEach(function(col, idx) {
             var speed = [0.55, -0.45, 0.6][idx] || 0.55;
 
-            /* Clone cards enough times to guarantee seamless wrap (3x the set) */
+            /* Clone cards enough times to guarantee seamless wrap (4x the set) */
             var origCards = Array.from(col.querySelectorAll('.testi-card'));
-            for (var clone = 0; clone < 3; clone++) {
+            for (var clone = 0; clone < 4; clone++) {
                 origCards.forEach(function(c) {
                     col.appendChild(c.cloneNode(true));
                 });
             }
 
-            /* Measure one full set height after cloning */
+            /* Measure one full set height */
             var gap = 16;
             var setHeight = 0;
             origCards.forEach(function(c) { setHeight += c.offsetHeight + gap; });
 
-            var pos = speed < 0 ? -setHeight : 0;
+            /* Upward scroll (speed>0): start at 0, move up (translateY goes negative)
+               Downward scroll (speed<0): start mid-content, move down */
+            var pos = speed < 0 ? setHeight : 0;
             var paused = false;
             var raf = null;
 
@@ -2924,9 +2935,9 @@
             function tick() {
                 if (!paused) {
                     pos += speed;
-                    /* Seamless wrap: when we've scrolled one full set, snap back */
+                    /* Seamless wrap */
                     if (speed > 0 && pos >= setHeight) pos -= setHeight;
-                    if (speed < 0 && pos <= -setHeight * 2) pos += setHeight;
+                    if (speed < 0 && pos <= 0) pos += setHeight;
                     col.style.transform = 'translateY(' + (-pos) + 'px)';
                 }
                 raf = requestAnimationFrame(tick);
