@@ -164,6 +164,8 @@
             --shadow-md:  0 6px 32px rgba(10,22,40,.09);
             --shadow-lg:  0 16px 60px rgba(10,22,40,.12);
             --shadow-blue:0 8px 32px rgba(9,132,227,.22);
+            --cyan:       #00cec9;
+            --teal:       #00b894;
         }
 
         *, *::before, *::after { box-sizing: border-box; }
@@ -194,7 +196,7 @@
         }
 
         /* =============================================
-           NAVBAR — white, clean
+           NAVBAR
         ============================================= */
         .navbar {
             background: rgba(255,255,255,.88);
@@ -250,7 +252,6 @@
             background-size: contain;
         }
         .navbar-toggler-icon { display: none; }
-        /* Logo glow pulse */
         .navbar-logo {
             height: 36px;
             width: auto;
@@ -264,7 +265,6 @@
             0%,100% { filter: drop-shadow(0 0 6px rgba(9,132,227,.5))  drop-shadow(0 0 16px rgba(9,132,227,.22)); }
             50%      { filter: drop-shadow(0 0 12px rgba(9,132,227,.8)) drop-shadow(0 0 32px rgba(9,132,227,.4)) drop-shadow(0 0 60px rgba(9,132,227,.15)); }
         }
-        /* Brand text gradient */
         .brand-name {
             background: linear-gradient(135deg, var(--navy) 0%, var(--royal) 70%, var(--electric) 100%);
             -webkit-background-clip: text;
@@ -275,7 +275,7 @@
         }
 
         /* =============================================
-           HERO — white / light blue
+           HERO
         ============================================= */
         .hero {
             position: relative;
@@ -365,7 +365,6 @@
             background-size: 28px 28px;
             z-index: 1;
         }
-        .hero__noise { display: none; }
 
         /* Content */
         .hero__content {
@@ -373,6 +372,20 @@
             text-align: center;
             max-width: 940px;
             padding: 0 24px 110px;
+        }
+
+        /* Hero Logo — large, prominent */
+        .hero__logo {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 32px;
+            filter: drop-shadow(0 0 24px rgba(9,132,227,.55)) drop-shadow(0 0 48px rgba(9,132,227,.25));
+            animation: hero-logo-pulse 4s ease-in-out infinite;
+            object-fit: contain;
+        }
+        @keyframes hero-logo-pulse {
+            0%,100% { filter: drop-shadow(0 0 20px rgba(9,132,227,.5)) drop-shadow(0 0 40px rgba(9,132,227,.2)); transform: scale(1); }
+            50%     { filter: drop-shadow(0 0 32px rgba(9,132,227,.7)) drop-shadow(0 0 64px rgba(9,132,227,.35)) drop-shadow(0 0 90px rgba(9,132,227,.15)); transform: scale(1.04); }
         }
 
         /* Badge pill */
@@ -414,17 +427,18 @@
         }
         .hero__headline em {
             font-style: normal;
-            background: linear-gradient(135deg, var(--electric) 0%, var(--royal) 100%);
+            background: linear-gradient(135deg, var(--cyan) 0%, var(--electric) 40%, #6c5ce7 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            position: relative;
         }
         .hero__headline .line       { display: block; overflow: hidden; padding-bottom: .15em; }
         .hero__headline .line-inner { display: block; }
 
         /* Sub */
         .hero__sub {
-            font-size: clamp(.92rem, 1.8vw, 1.08rem);
+            font-size: clamp(.95rem, 1.8vw, 1.12rem);
             line-height: 1.78;
             color: var(--text-muted);
             max-width: 540px;
@@ -466,9 +480,9 @@
             background: var(--navy);
             color: var(--white) !important;
             text-decoration: none;
-            padding: 16px 38px;
+            padding: 18px 44px;
             border-radius: 100px;
-            font-weight: 700; font-size: 1rem;
+            font-weight: 700; font-size: 1.05rem;
             border: none;
             transition: all .3s var(--ease);
             box-shadow: 0 4px 20px rgba(10,22,40,.22), inset 0 1px 0 rgba(255,255,255,.07);
@@ -482,41 +496,7 @@
         .hero__cta i { transition: transform .3s; }
         .hero__cta:hover i { transform: translateX(4px); }
 
-        .hero__cta-secondary {
-            display: inline-flex; align-items: center; gap: 8px;
-            color: var(--text-muted) !important;
-            text-decoration: none;
-            padding: 16px 26px;
-            font-weight: 600; font-size: .9rem;
-            transition: all .3s var(--ease);
-            border: 1px solid rgba(0,0,0,.11);
-            border-radius: 100px;
-        }
-        .hero__cta-secondary:hover {
-            color: var(--navy) !important;
-            border-color: rgba(0,0,0,.24);
-            background: rgba(0,0,0,.02);
-        }
-        .hero__cta-wa {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(37,211,102,.07);
-            border: 1px solid rgba(37,211,102,.22);
-            color: #1aa34a !important;
-            text-decoration: none;
-            padding: 16px 26px;
-            border-radius: 100px;
-            font-weight: 600; font-size: .9rem;
-            transition: all .3s var(--ease);
-        }
-        .hero__cta-wa:hover {
-            background: rgba(37,211,102,.13);
-            border-color: rgba(37,211,102,.38);
-            color: #158a3e !important;
-        }
-
-        /* (trust bar removed) */
-
-        /* Scroll hint — animated chevrons */
+        /* Scroll hint */
         .hero__scroll-hint {
             position: absolute; bottom: 32px; left: 50%;
             transform: translateX(-50%);
@@ -545,6 +525,7 @@
         }
 
         /* GSAP hidden states */
+        body.js-enabled .hero__logo              { opacity:0; transform:scale(.8); }
         body.js-enabled .hero__tag              { opacity:0; transform:translateY(20px); }
         body.js-enabled .hero__headline .line-inner { opacity:0; transform:translateY(100%); }
         body.js-enabled .hero__sub              { opacity:0; transform:translateY(30px); }
@@ -603,7 +584,7 @@
         }
 
         /* =============================================
-           STATS STRIP — dark navy band
+           STATS STRIP
         ============================================= */
         .stats-strip {
             background: var(--navy);
@@ -620,11 +601,11 @@
             display: flex;
             align-items: stretch;
             justify-content: center;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             position: relative;
         }
         .stat-item {
-            flex: 1 1 180px;
+            flex: 1 1 0;
             max-width: 300px;
             text-align: center;
             padding: 40px 28px;
@@ -794,351 +775,244 @@
         .credential-chip i { font-size: .88rem; color: var(--electric); }
 
         /* =============================================
-           SERVICES
+           SERVICES — Card Carousel
         ============================================= */
         .services { background: var(--cloud); }
-        .services__wrap { display: flex; gap: 60px; position: relative; }
-        .services__nav {
-            flex: 0 0 320px;
-            position: sticky; top: 120px;
-            height: fit-content;
-            align-self: flex-start;
-        }
-        .services__nav-item {
-            display: flex; align-items: center; gap: 16px;
-            padding: 18px 20px;
-            border-radius: 18px;
-            cursor: pointer;
-            transition: all .4s var(--ease);
-            margin-bottom: 6px;
-            border: 1px solid transparent;
-        }
-        .services__nav-item:hover { background: rgba(9,132,227,.04); }
-        .services__nav-item.active {
-            background: var(--white);
-            border-color: rgba(9,132,227,.12);
-            box-shadow: 0 4px 22px rgba(9,132,227,.08);
-        }
-        .services__nav-icon {
-            width: 46px; height: 46px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, rgba(9,132,227,.07), rgba(30,55,153,.07));
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
-            font-size: 1.2rem;
-            color: var(--electric);
-            transition: all .4s var(--ease);
-        }
-        .services__nav-item.active .services__nav-icon {
-            background: linear-gradient(135deg, var(--electric), var(--royal));
-            color: var(--white);
-            box-shadow: 0 4px 18px rgba(9,132,227,.32);
-        }
-        .services__nav-title {
-            font-weight: 700; font-size: .9rem;
-            color: var(--text-muted);
-            transition: color .3s; margin: 0;
-        }
-        .services__nav-item.active .services__nav-title { color: var(--navy); }
-        .services__panels { flex: 1; min-width: 0; }
-        .services__panel {
-            min-height: 70vh;
-            display: flex; align-items: center;
-            padding: 60px 0;
-        }
-        .services__panel-inner {
-            background: var(--white);
-            border-radius: 28px;
-            padding: 52px;
-            border: 1px solid rgba(0,0,0,.05);
-            box-shadow: 0 8px 40px rgba(0,0,0,.04);
-            width: 100%;
-            opacity: .4; transform: translateY(20px);
-            transition: opacity .5s var(--ease), transform .5s var(--ease);
-            position: relative; overflow: hidden;
-        }
-        /* Top accent line that slides in on active */
-        .services__panel-inner::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--electric), var(--royal));
-            border-radius: 28px 28px 0 0;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform .55s var(--ease);
-        }
-        .services__panel-inner.active { opacity:1; transform:translateY(0); }
-        .services__panel-inner.active::before { transform: scaleX(1); }
-        .services__panel-title {
-            font-size: 1.65rem; font-weight: 800;
-            color: var(--navy); margin-bottom: 16px;
-            letter-spacing: -.025em;
-        }
-        .services__panel-text {
-            font-size: 1.02rem; line-height: 1.82;
-            color: var(--text-muted); margin-bottom: 28px;
-        }
-        .services__panel-img {
-            width: 100%; height: 200px;
-            border-radius: 18px;
-            background: linear-gradient(135deg, rgba(9,132,227,.04), rgba(30,55,153,.08));
-            border: 1px solid rgba(9,132,227,.1);
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center; gap: 10px;
-        }
-        .services__panel-img i {
-            font-size: 3rem;
-            color: var(--electric);
-            opacity: .22;
-        }
-        .services__panel-img span {
-            font-size: .68rem; font-weight: 700;
-            color: var(--text-muted);
-            letter-spacing: 1.5px; text-transform: uppercase;
-            opacity: .42;
-        }
-        .condition-card h3 { font-size: 1.15rem; margin-bottom: 12px; }
-
-        @media(max-width:991px) {
-            .services__wrap { flex-direction: column; gap: 0; }
-            .services__nav {
-                position: relative; top: auto; flex: none;
-                display: flex; overflow-x: auto;
-                gap: 8px; padding-bottom: 16px;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none;
-            }
-            .services__nav::-webkit-scrollbar { display: none; }
-            .services__nav-item { flex-shrink: 0; padding: 12px 16px; margin-bottom: 0; }
-            .services__panel { min-height: auto; padding: 20px 0; }
-            .services__panel-inner { padding: 28px; opacity:1; transform:none; }
-        }
-
-        /* =============================================
-           FRAMER-STYLE SECTION EYEBROW
-        ============================================= */
-        .section-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-        .section-num {
-            font-size: .68rem;
-            font-weight: 800;
-            color: var(--electric);
-            border: 1px solid rgba(9,132,227,.25);
-            border-radius: 6px;
-            padding: 3px 9px;
-            letter-spacing: .5px;
-            background: rgba(9,132,227,.05);
-        }
-
-        /* =============================================
-           BENTO GRID — Diseases / Enfermedades
-        ============================================= */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
-        }
-        /* Alternating wide/narrow pattern */
-        .bento-grid > :nth-child(1) { grid-column: 1 / 3; }
-        .bento-grid > :nth-child(2) { grid-column: 3 / 4; }
-        .bento-grid > :nth-child(3) { grid-column: 1 / 2; }
-        .bento-grid > :nth-child(4) { grid-column: 2 / 4; }
-        .bento-grid > :nth-child(5) { grid-column: 1 / 3; }
-        .bento-grid > :nth-child(6) { grid-column: 3 / 4; }
-
-        .bento-link {
-            display: block;
-            text-decoration: none;
-            height: 100%;
-        }
-        .bento-card {
+        .services-carousel {
             position: relative;
-            background: var(--white);
-            border: 1px solid #e4eaf3;
-            border-radius: 22px;
-            padding: 40px;
-            height: 100%;
-            min-height: 220px;
             overflow: hidden;
-            transition: all .45s var(--ease);
+        }
+        .services-carousel__track-wrapper {
+            overflow: hidden;
+            margin: 0 -12px;
+            padding: 16px 12px;
+        }
+        .services-carousel__track {
+            display: flex;
+            gap: 24px;
+            transition: transform .5s var(--ease);
+        }
+        .services-carousel__card {
+            flex: 0 0 calc(33.333% - 16px);
+            min-width: 300px;
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px 32px;
+            border: 1px solid rgba(0,0,0,.06);
+            box-shadow: 0 4px 24px rgba(10,22,40,.05);
+            transition: all .4s var(--ease);
             display: flex;
             flex-direction: column;
-        }
-        /* Gradient top-line reveal */
-        .bento-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--electric), var(--royal));
-            border-radius: 22px 22px 0 0;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform .45s var(--ease);
-        }
-        /* Large decorative background icon */
-        .bento-card__bg-icon {
-            position: absolute;
-            right: -8px; bottom: -16px;
-            font-size: 7rem;
-            color: var(--electric);
-            opacity: .04;
-            transition: opacity .45s, transform .45s var(--ease);
-            line-height: 1;
-            pointer-events: none;
-        }
-        .bento-link:hover .bento-card {
-            border-color: rgba(9,132,227,.18);
-            box-shadow: 0 20px 60px rgba(9,132,227,.1);
-        }
-        .bento-link:hover .bento-card::before { transform: scaleX(1); }
-        .bento-link:hover .bento-card__bg-icon {
-            opacity: .07;
-            transform: scale(1.12) translateY(-6px);
-        }
-        /* Icon container */
-        .bento-icon-wrap {
-            display: inline-flex;
-            align-items: center; justify-content: center;
-            width: 60px; height: 60px;
-            border-radius: 18px;
-            background: linear-gradient(135deg, rgba(9,132,227,.08), rgba(30,55,153,.06));
-            border: 1px solid rgba(9,132,227,.1);
-            margin-bottom: 20px;
-            flex-shrink: 0;
-            transition: all .45s var(--ease);
-        }
-        .bento-link:hover .bento-icon-wrap {
-            background: linear-gradient(135deg, var(--electric), var(--royal));
-            border-color: transparent;
-            box-shadow: 0 6px 20px rgba(9,132,227,.3);
-        }
-        .bento-icon {
-            font-size: 1.6rem;
-            color: var(--electric) !important;
-            transition: color .45s;
-            line-height: 1;
-        }
-        .bento-link:hover .bento-icon { color: var(--white) !important; }
-        /* Wide card: horizontal layout on desktop */
-        .bento-wide-inner {
-            display: flex;
-            align-items: flex-start;
-            gap: 28px;
-        }
-        .bento-wide-inner .bento-text { flex: 1; }
-        .bento-card h3 {
-            font-size: 1.22rem;
-            font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 10px;
-            letter-spacing: -.01em;
-        }
-        .bento-card p {
-            font-size: .95rem;
-            line-height: 1.75;
-            color: var(--text-muted);
-            margin: 0;
-        }
-        .bento-card__cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-size: .85rem;
-            font-weight: 700;
-            color: var(--electric);
-            margin-top: 18px;
-            transition: gap .3s;
-        }
-        .bento-link:hover .bento-card__cta { gap: 9px; }
-
-        @media(max-width: 768px) {
-            .bento-grid {
-                grid-template-columns: 1fr;
-            }
-            .bento-grid > :nth-child(n) { grid-column: 1 / -1; }
-            .bento-wide-inner { flex-direction: column; gap: 0; }
-        }
-
-        /* =============================================
-           CONDITION CARDS
-        ============================================= */
-        .condition-card {
             position: relative;
-            border: 1px solid #e4eaf3;
-            border-radius: 22px;
-            padding: 36px 28px;
-            background: white;
-            transition: all .4s var(--ease);
-            height: 100%;
-            box-shadow: 0 2px 12px rgba(10,22,40,.04);
             overflow: hidden;
         }
-        /* Top accent line on hover */
-        .condition-card::before {
+        .services-carousel__card::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--electric), var(--royal));
-            border-radius: 22px 22px 0 0;
+            background: linear-gradient(90deg, var(--electric), var(--cyan));
+            border-radius: 24px 24px 0 0;
             transform: scaleX(0);
             transform-origin: left;
             transition: transform .4s var(--ease);
         }
-        a:hover .condition-card::before { transform: scaleX(1); }
-        a:hover .condition-card {
+        .services-carousel__card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 18px 52px rgba(9,132,227,.1);
+            box-shadow: 0 20px 60px rgba(9,132,227,.12);
             border-color: rgba(9,132,227,.18);
         }
-
-        /* Icon container */
-        .condition-icon-wrap {
-            display: inline-flex;
-            align-items: center; justify-content: center;
-            width: 62px; height: 62px;
+        .services-carousel__card:hover::before { transform: scaleX(1); }
+        .services-carousel__icon {
+            width: 60px; height: 60px;
             border-radius: 18px;
             background: linear-gradient(135deg, rgba(9,132,227,.08), rgba(30,55,153,.06));
             border: 1px solid rgba(9,132,227,.1);
-            margin-bottom: 20px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 24px;
             transition: all .4s var(--ease);
         }
-        a:hover .condition-icon-wrap {
+        .services-carousel__card:hover .services-carousel__icon {
             background: linear-gradient(135deg, var(--electric), var(--royal));
             border-color: transparent;
-            box-shadow: 0 8px 26px rgba(9,132,227,.32);
-            transform: scale(1.06) translateY(-2px);
+            box-shadow: 0 6px 20px rgba(9,132,227,.3);
         }
-        .condition-icon {
-            font-size: 1.6rem;
-            color: var(--electric) !important;
-            transition: all .4s var(--ease);
-            display: block;
-            line-height: 1;
+        .services-carousel__icon i {
+            font-size: 1.5rem;
+            color: var(--electric);
+            transition: color .4s;
         }
-        a:hover .condition-icon { color: var(--white) !important; }
-        .condition-card h3 {
-            font-size: 1.05rem;
-            margin-bottom: 10px;
+        .services-carousel__card:hover .services-carousel__icon i { color: var(--white); }
+        .services-carousel__card h3 {
+            font-size: 1.2rem;
             font-weight: 700;
             color: var(--navy);
+            margin-bottom: 12px;
         }
-        .condition-card p {
-            font-size: .88rem;
+        .services-carousel__card p {
+            font-size: .92rem;
             line-height: 1.72;
             color: var(--text-muted);
-            margin: 0;
+            margin: 0 0 24px;
+            flex: 1;
+        }
+        .services-carousel__link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: .88rem;
+            font-weight: 700;
+            color: var(--electric);
+            text-decoration: none;
+            transition: gap .3s;
+        }
+        .services-carousel__link:hover { gap: 10px; color: var(--royal); }
+        .services-carousel__nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 40px;
+        }
+        .services-carousel__btn {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,.1);
+            background: var(--white);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: all .3s var(--ease);
+            color: var(--navy);
+            font-size: 1.1rem;
+        }
+        .services-carousel__btn:hover {
+            border-color: var(--electric);
+            color: var(--electric);
+            box-shadow: 0 4px 16px rgba(9,132,227,.15);
+        }
+        .services-carousel__dots {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .services-carousel__dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: rgba(0,0,0,.12);
+            border: none;
+            cursor: pointer;
+            transition: all .3s var(--ease);
+            padding: 0;
+        }
+        .services-carousel__dot.active {
+            background: var(--electric);
+            width: 24px;
+            border-radius: 4px;
         }
 
         /* =============================================
-           TESTIMONIALS — 3-column vertical scroll
+           DISEASES — Counter-scrolling bands
+        ============================================= */
+        .diseases-section { background: var(--white); overflow: hidden; }
+        .disease-bands { padding: 20px 0; }
+        .disease-band {
+            display: flex;
+            gap: 20px;
+            padding: 10px 0;
+            width: max-content;
+        }
+        .disease-band--top {
+            animation: disease-scroll-left 35s linear infinite;
+        }
+        .disease-band--bottom {
+            animation: disease-scroll-right 38s linear infinite;
+        }
+        .disease-band:hover { animation-play-state: paused; }
+        @keyframes disease-scroll-left {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes disease-scroll-right {
+            0%   { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+        .disease-card {
+            flex-shrink: 0;
+            width: 320px;
+            background: var(--white);
+            border: 1px solid #e4eaf3;
+            border-radius: 20px;
+            padding: 32px 28px;
+            transition: all .4s var(--ease);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        .disease-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--electric), var(--cyan));
+            border-radius: 20px 20px 0 0;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .4s var(--ease);
+        }
+        .disease-card:hover {
+            border-color: rgba(9,132,227,.2);
+            box-shadow: 0 16px 48px rgba(9,132,227,.1);
+            transform: translateY(-4px);
+        }
+        .disease-card:hover::before { transform: scaleX(1); }
+        .disease-card__icon {
+            width: 52px; height: 52px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(9,132,227,.08), rgba(30,55,153,.06));
+            border: 1px solid rgba(9,132,227,.1);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 16px;
+            transition: all .4s var(--ease);
+        }
+        .disease-card:hover .disease-card__icon {
+            background: linear-gradient(135deg, var(--electric), var(--royal));
+            border-color: transparent;
+            box-shadow: 0 6px 18px rgba(9,132,227,.28);
+        }
+        .disease-card__icon i {
+            font-size: 1.3rem;
+            color: var(--electric);
+            transition: color .4s;
+        }
+        .disease-card:hover .disease-card__icon i { color: var(--white); }
+        .disease-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+        .disease-card p {
+            font-size: .85rem;
+            line-height: 1.65;
+            color: var(--text-muted);
+            margin: 0 0 16px;
+            flex: 1;
+        }
+        .disease-card__cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: .82rem;
+            font-weight: 700;
+            color: var(--electric);
+            transition: gap .3s;
+        }
+        .disease-card:hover .disease-card__cta { gap: 9px; }
+
+        /* =============================================
+           TESTIMONIALS
         ============================================= */
         .testimonials-section {
             background: var(--cloud);
@@ -1215,20 +1089,6 @@
         }
         .testi-name { font-weight: 700; font-size: .82rem; color: var(--navy); margin: 0; }
         .testi-badge { font-size: .68rem; color: var(--text-muted); margin: 1px 0 0; }
-        @media(max-width:768px) {
-            .testimonial-columns {
-                grid-template-columns: 1fr 1fr;
-                height: 420px;
-            }
-            .testimonial-columns > :nth-child(3) { display: none; }
-        }
-        @media(max-width:480px) {
-            .testimonial-columns {
-                grid-template-columns: 1fr;
-                height: 380px;
-            }
-            .testimonial-columns > :nth-child(2) { display: none; }
-        }
 
         /* =============================================
            PAYMENTS
@@ -1249,7 +1109,7 @@
         }
 
         /* =============================================
-           CTA BAND — with sparkle canvas
+           CTA BAND
         ============================================= */
         .cta-band {
             background: var(--navy);
@@ -1331,9 +1191,9 @@
             position: fixed; bottom: 28px; right: 28px;
             background: #25d366;
             color: white !important;
-            width: 56px; height: 56px;
+            width: 60px; height: 60px;
             border-radius: 50%;
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             box-shadow: 0 6px 26px rgba(37,211,102,.38);
             z-index: 1000;
             text-decoration: none;
@@ -1345,6 +1205,19 @@
             color: white !important;
             transform: translateY(-3px) scale(1.06);
             box-shadow: 0 12px 36px rgba(37,211,102,.44);
+        }
+        /* Pulse ring */
+        .whatsapp-float::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid rgba(37,211,102,.4);
+            animation: wa-ring 2s ease-out infinite;
+        }
+        @keyframes wa-ring {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.4); opacity: 0; }
         }
 
         /* =============================================
@@ -1392,40 +1265,52 @@
             .about__visual  { position: relative; height: auto; min-height: auto; flex: none; padding: 60px 24px; }
             .about__text    { padding: 40px 24px 80px; max-width: 100%; }
             .about__badge   { bottom: -12px; right: 8px; }
-            .stat-item      { flex: 1 1 140px; max-width: 50%; padding: 28px 16px; }
-            .stat-item::after { display: none; }
-            .stats-strip__inner::after {
-                content: '';
-                display: block;
-                width: 100%;
-                height: 1px;
-                background: rgba(255,255,255,.06);
-                order: 2;
-            }
+            .services-carousel__card { flex: 0 0 calc(50% - 12px); min-width: 280px; }
         }
         @media(max-width:768px) {
             .hero__cta-row  { flex-direction: column; gap: 10px; width: 100%; max-width: 320px; margin: 0 auto; }
-            .hero__cta, .hero__cta-secondary, .hero__cta-wa { width: 100%; justify-content: center; min-height: 48px; }
+            .hero__cta      { width: 100%; justify-content: center; min-height: 48px; }
             .hero__conditions { gap: 6px; }
             .hero__pill     { padding: 5px 12px; font-size: .7rem; }
-            .hero__trust    { gap: 8px; }
             .section-title  { font-size: 1.72rem; }
             .section-sub    { font-size: .9rem; }
+            .testimonial-columns {
+                grid-template-columns: 1fr 1fr;
+                height: 420px;
+            }
+            .testimonial-columns > :nth-child(3) { display: none; }
+            .services-carousel__card { flex: 0 0 calc(100% - 24px); min-width: 260px; }
+            .disease-card { width: 260px; padding: 24px 20px; }
+            /* Disable heavy hero effects on mobile */
+            .hero__aurora { display: none; }
+            .hero__sparkle-canvas { display: none; }
+            .hero__orb3 { display: none; }
+            .hero__bg::before,
+            .hero__bg::after {
+                animation: none;
+                opacity: .5;
+            }
+            .hero__grid { opacity: .4; }
         }
         @media(max-width:576px) {
             .hero__headline { font-size: 2.45rem; }
             .hero__tag      { font-size: .7rem; padding: 7px 16px; margin-bottom: 24px; }
             .hero__sub      { font-size: .88rem; }
             .hero__scroll-hint { bottom: 18px; }
-            .services__panel-inner { padding: 22px; }
-            .condition-card { padding: 28px 22px; }
+            .hero__logo     { width: 70px; height: 70px; margin-bottom: 24px; }
             .top-bar-legal  { font-size: .62rem; padding: 6px 0; }
             .navbar-brand   { font-size: 1.25rem; }
             .navbar-logo    { height: 28px !important; }
-            .whatsapp-float { bottom: 20px; right: 16px; width: 50px; height: 50px; font-size: 1.4rem; }
-            .stat-num       { font-size: 1.9rem; }
-            .stat-item      { flex: 1 1 120px; padding: 24px 12px; }
+            .whatsapp-float { bottom: 20px; right: 16px; width: 54px; height: 54px; font-size: 1.5rem; }
+            .stat-num       { font-size: 1.6rem; }
+            .stat-label     { font-size: .62rem; letter-spacing: .5px; }
+            .stat-item      { padding: 24px 10px; }
             .testimonial-summary-score { font-size: 3.2rem; }
+            .testimonial-columns {
+                grid-template-columns: 1fr;
+                height: 380px;
+            }
+            .testimonial-columns > :nth-child(2) { display: none; }
         }
         @media(prefers-reduced-motion: reduce) {
             *, *::before, *::after {
@@ -1468,6 +1353,7 @@
         </div>
     </nav>
 
+    <!-- Floating WhatsApp -->
     <a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20cita" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
         <i class="bi bi-whatsapp" aria-hidden="true"></i>
     </a>
@@ -1481,13 +1367,14 @@
             <canvas class="hero__sparkle-canvas" id="heroSparkles"></canvas>
             <div class="hero__grid"></div>
             <div class="hero__content">
+                <img src="favicon.png" alt="Alveos Logo" class="hero__logo">
                 <div class="hero__tag">
                     <span class="dot"></span>
                     Neumología de Alta Especialidad en CDMX
                 </div>
                 <h1 class="hero__headline">
                     <span class="line"><span class="line-inner">Salud Respiratoria</span></span>
-                    <span class="line"><span class="line-inner">de <em>Vanguardia</em> en CDMX</span></span>
+                    <span class="line"><span class="line-inner">de <em>Vanguardia</em></span></span>
                 </h1>
                 <p class="hero__sub">¿Tos persistente, dificultad para respirar o problemas pulmonares? El Dr. William Lara, formado en el INER, te ayuda a recuperar tu calidad de vida con un diagnóstico preciso.</p>
                 <div class="hero__conditions">
@@ -1500,12 +1387,6 @@
                 <div class="hero__cta-row">
                     <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="hero__cta">
                         Agendar cita <i class="bi bi-arrow-right" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20quiero%20agendar%20una%20cita" target="_blank" class="hero__cta-wa">
-                        <i class="bi bi-whatsapp" aria-hidden="true"></i> WhatsApp
-                    </a>
-                    <a href="tel:5591708334" class="hero__cta-secondary">
-                        <i class="bi bi-telephone-fill" aria-hidden="true"></i> Llamar
                     </a>
                 </div>
             </div>
@@ -1553,7 +1434,7 @@
         <section class="stats-strip" aria-label="Métricas clave">
             <div class="stats-strip__inner">
                 <div class="stat-item reveal">
-                    <span class="stat-num"><span class="count-up" data-target="5000">0</span><span class="stat-accent">+</span></span>
+                    <span class="stat-num"><span class="count-up" data-target="5000" data-format="comma">0</span><span class="stat-accent">+</span></span>
                     <span class="stat-label">Pacientes atendidos</span>
                 </div>
                 <div class="stat-item reveal reveal-d1">
@@ -1561,12 +1442,8 @@
                     <span class="stat-label">Calificación promedio</span>
                 </div>
                 <div class="stat-item reveal reveal-d2">
-                    <span class="stat-num">UNAM</span>
-                    <span class="stat-label">Formación de excelencia</span>
-                </div>
-                <div class="stat-item reveal reveal-d3">
-                    <span class="stat-num"><span class="stat-accent">7</span> días</span>
-                    <span class="stat-label">Atención de lunes a domingo</span>
+                    <span class="stat-num">INER</span>
+                    <span class="stat-label">Formación de referencia nacional</span>
                 </div>
             </div>
         </section>
@@ -1593,197 +1470,244 @@
             </div>
         </section>
 
-        <!-- ===== SERVICIOS ===== -->
+        <!-- ===== SERVICIOS — Card Carousel ===== -->
         <section id="servicios" class="services py-5">
             <div class="container my-5">
                 <div class="mb-5 text-center">
-                    <div class="section-eyebrow justify-content-center reveal">
-                        <span class="section-num">01</span>
-                        <span class="section-label mb-0">Servicios</span>
-                    </div>
+                    <span class="section-label reveal">Servicios</span>
                     <h2 class="section-title reveal">¿Cómo puedo ayudarte?</h2>
                     <p class="section-sub reveal">Estudios y tratamientos diseñados para darte respuestas claras sobre tu salud respiratoria.</p>
                 </div>
-                <div class="services__wrap">
-                    <nav class="services__nav" aria-label="Servicios">
-                        <div class="services__nav-item active" data-service-nav="0">
-                            <div class="services__nav-icon"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i></div>
-                            <h3 class="services__nav-title">Check up respiratorio</h3>
-                        </div>
-                        <div class="services__nav-item" data-service-nav="1">
-                            <div class="services__nav-icon"><i class="bi bi-lungs" aria-hidden="true"></i></div>
-                            <h3 class="services__nav-title">Espirometría</h3>
-                        </div>
-                        <div class="services__nav-item" data-service-nav="2">
-                            <div class="services__nav-icon"><i class="bi bi-bandaid" aria-hidden="true"></i></div>
-                            <h3 class="services__nav-title">Dejar de fumar</h3>
-                        </div>
-                        <div class="services__nav-item" data-service-nav="3">
-                            <div class="services__nav-icon"><i class="bi bi-activity" aria-hidden="true"></i></div>
-                            <h3 class="services__nav-title">Seguimiento asma y EPOC</h3>
-                        </div>
-                        <div class="services__nav-item" data-service-nav="4">
-                            <div class="services__nav-icon"><i class="bi bi-droplet" aria-hidden="true"></i></div>
-                            <h3 class="services__nav-title">Derrames pleurales</h3>
-                        </div>
-                    </nav>
-                    <div class="services__panels">
-                        <div class="services__panel" data-service-panel="0">
-                            <div class="services__panel-inner active">
-                                <h3 class="services__panel-title">Check up respiratorio</h3>
-                                <p class="services__panel-text">¿Quieres saber cómo están tus pulmones? Este estudio completo evalúa tu función respiratoria para detectar problemas antes de que se conviertan en algo serio. Ideal si fumas, tienes tos frecuente o simplemente quieres asegurarte de que todo está bien.</p>
-                                <div class="services__panel-img"><i class="bi bi-clipboard2-pulse-fill" aria-hidden="true"></i><span>Imagen próximamente</span></div>
+                <div class="services-carousel reveal">
+                    <div class="services-carousel__track-wrapper">
+                        <div class="services-carousel__track" id="servicesTrack">
+                            <div class="services-carousel__card">
+                                <div class="services-carousel__icon"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i></div>
+                                <h3>Check up respiratorio</h3>
+                                <p>¿Quieres saber cómo están tus pulmones? Este estudio completo evalúa tu función respiratoria para detectar problemas antes de que se conviertan en algo serio.</p>
+                                <a href="#contacto-final" class="services-carousel__link">Saber más <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                            <div class="services-carousel__card">
+                                <div class="services-carousel__icon"><i class="bi bi-lungs" aria-hidden="true"></i></div>
+                                <h3>Espirometría</h3>
+                                <p>Una prueba rápida y sin dolor que mide qué tan bien respiras. Es el estudio clave para saber si tienes asma, EPOC o algún problema respiratorio oculto.</p>
+                                <a href="#contacto-final" class="services-carousel__link">Saber más <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                            <div class="services-carousel__card">
+                                <div class="services-carousel__icon"><i class="bi bi-bandaid" aria-hidden="true"></i></div>
+                                <h3>Dejar de fumar</h3>
+                                <p>Te ofrezco un plan médico personalizado con herramientas que realmente funcionan para que dejes el cigarro de forma definitiva.</p>
+                                <a href="#contacto-final" class="services-carousel__link">Saber más <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                            <div class="services-carousel__card">
+                                <div class="services-carousel__icon"><i class="bi bi-activity" aria-hidden="true"></i></div>
+                                <h3>Seguimiento asma y EPOC</h3>
+                                <p>Si ya te diagnosticaron asma o EPOC, el seguimiento es clave. Revisamos cómo vas y ajustamos tu tratamiento para que tengas menos crisis.</p>
+                                <a href="#contacto-final" class="services-carousel__link">Saber más <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                            <div class="services-carousel__card">
+                                <div class="services-carousel__icon"><i class="bi bi-droplet" aria-hidden="true"></i></div>
+                                <h3>Derrames pleurales</h3>
+                                <p>Cuando se acumula líquido alrededor de tus pulmones, respirar se vuelve difícil. Te diagnostico la causa y aplico el tratamiento adecuado.</p>
+                                <a href="#contacto-final" class="services-carousel__link">Saber más <i class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
-                        <div class="services__panel" data-service-panel="1">
-                            <div class="services__panel-inner">
-                                <h3 class="services__panel-title">Espirometría simple y con broncodilatador</h3>
-                                <p class="services__panel-text">Una prueba rápida y sin dolor que mide qué tan bien respiras. Tú soplas en un dispositivo y obtenemos datos precisos sobre la capacidad de tus pulmones. Es el estudio clave para saber si tienes asma, EPOC o algún problema respiratorio oculto.</p>
-                                <div class="services__panel-img"><i class="bi bi-lungs-fill" aria-hidden="true"></i><span>Imagen próximamente</span></div>
-                            </div>
-                        </div>
-                        <div class="services__panel" data-service-panel="2">
-                            <div class="services__panel-inner">
-                                <h3 class="services__panel-title">Tratamiento para dejar de fumar</h3>
-                                <p class="services__panel-text">Dejar de fumar es difícil, pero no tienes que hacerlo solo. Te ofrezco un plan médico personalizado con herramientas que realmente funcionan para que dejes el cigarro de forma definitiva y empieces a notar la diferencia en tu respiración.</p>
-                                <div class="services__panel-img"><i class="fa-solid fa-ban-smoking" aria-hidden="true"></i><span>Imagen próximamente</span></div>
-                            </div>
-                        </div>
-                        <div class="services__panel" data-service-panel="3">
-                            <div class="services__panel-inner">
-                                <h3 class="services__panel-title">Seguimiento de asma y EPOC</h3>
-                                <p class="services__panel-text">Si ya te diagnosticaron asma o EPOC, el seguimiento es clave. Juntos revisamos cómo vas, ajustamos tu tratamiento si es necesario y trabajamos para que tengas menos crisis y más días sin que tu respiración te limite.</p>
-                                <div class="services__panel-img"><i class="bi bi-heart-pulse-fill" aria-hidden="true"></i><span>Imagen próximamente</span></div>
-                            </div>
-                        </div>
-                        <div class="services__panel" data-service-panel="4">
-                            <div class="services__panel-inner">
-                                <h3 class="services__panel-title">Manejo de derrames pleurales</h3>
-                                <p class="services__panel-text">Cuando se acumula líquido alrededor de tus pulmones, respirar se vuelve difícil y preocupante. Te diagnostico la causa, te explico qué está pasando y aplico el tratamiento adecuado para que vuelvas a respirar con normalidad.</p>
-                                <div class="services__panel-img"><i class="bi bi-droplet-fill" aria-hidden="true"></i><span>Imagen próximamente</span></div>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="services-carousel__nav">
+                        <button class="services-carousel__btn" id="servicesPrev" aria-label="Anterior">
+                            <i class="bi bi-chevron-left"></i>
+                        </button>
+                        <div class="services-carousel__dots" id="servicesDots"></div>
+                        <button class="services-carousel__btn" id="servicesNext" aria-label="Siguiente">
+                            <i class="bi bi-chevron-right"></i>
+                        </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== ENFERMEDADES — BENTO GRID ===== -->
-        <section id="enfermedades" class="py-5" style="background:#fff">
+        <!-- ===== ENFERMEDADES — Counter-scrolling bands ===== -->
+        <section id="enfermedades" class="diseases-section py-5">
             <div class="container my-5">
                 <div class="mb-5 text-center">
-                    <div class="section-eyebrow justify-content-center reveal">
-                        <span class="section-num">02</span>
-                        <span class="section-label mb-0">Enfermedades</span>
-                    </div>
+                    <span class="section-label reveal">Enfermedades</span>
                     <h2 class="section-title reveal">¿Reconoces alguno de estos problemas?</h2>
                     <p class="section-sub reveal">Si algo de esto te suena familiar, puedo ayudarte. Haz clic en cualquiera para saber más.</p>
                 </div>
-
-                <div class="bento-grid">
-
-                    <!-- 1: WIDE — Asma -->
-                    <a href="/enfermedades/asma/" class="bento-link reveal">
-                        <div class="bento-card">
-                            <div class="bento-wide-inner">
-                                <div class="bento-icon-wrap flex-shrink-0">
-                                    <i class="fa-solid fa-wind bento-icon" aria-hidden="true"></i>
-                                </div>
-                                <div class="bento-text">
-                                    <h3>Asma</h3>
-                                    <p>¿Sientes silbidos al respirar, falta de aire o tos que no se quita? Con el tratamiento correcto, puedes hacer ejercicio, dormir bien y vivir sin que el asma te detenga.</p>
-                                    <span class="bento-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                                </div>
-                            </div>
-                            <span class="bento-card__bg-icon" aria-hidden="true"><i class="fa-solid fa-wind"></i></span>
-                        </div>
+            </div>
+            <div class="disease-bands">
+                <!-- Band 1 — scrolls left -->
+                <div class="disease-band disease-band--top">
+                    <a href="/enfermedades/asma/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-wind" aria-hidden="true"></i></div>
+                        <h3>Asma</h3>
+                        <p>¿Sientes silbidos al respirar, falta de aire o tos que no se quita? Con el tratamiento correcto, puedes vivir sin que el asma te detenga.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
                     </a>
-
-                    <!-- 2: NARROW — EPOC -->
-                    <a href="/enfermedades/epoc/" class="bento-link reveal reveal-d1">
-                        <div class="bento-card">
-                            <div class="bento-icon-wrap">
-                                <i class="fa-solid fa-lungs bento-icon" aria-hidden="true"></i>
-                            </div>
-                            <h3>EPOC</h3>
-                            <p>¿Te cansas al caminar o subir escaleras? La EPOC avanza en silencio, pero con el manejo adecuado se puede frenar.</p>
-                            <span class="bento-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                            <span class="bento-card__bg-icon" aria-hidden="true"><i class="fa-solid fa-lungs"></i></span>
-                        </div>
+                    <a href="/enfermedades/epoc/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-lungs" aria-hidden="true"></i></div>
+                        <h3>EPOC</h3>
+                        <p>¿Te cansas al caminar o subir escaleras? La EPOC avanza en silencio, pero con el manejo adecuado se puede frenar.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
                     </a>
-
-                    <!-- 3: NARROW — Neumonía -->
-                    <a href="/enfermedades/neumonia/" class="bento-link reveal reveal-d1">
-                        <div class="bento-card">
-                            <div class="bento-icon-wrap">
-                                <i class="fa-solid fa-bacterium bento-icon" aria-hidden="true"></i>
-                            </div>
-                            <h3>Neumonía</h3>
-                            <p>Fiebre alta, tos con flema y dolor al respirar son señales de alarma que requieren atención rápida.</p>
-                            <span class="bento-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                            <span class="bento-card__bg-icon" aria-hidden="true"><i class="fa-solid fa-bacterium"></i></span>
-                        </div>
+                    <a href="/enfermedades/neumonia/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-bacterium" aria-hidden="true"></i></div>
+                        <h3>Neumonía</h3>
+                        <p>Fiebre alta, tos con flema y dolor al respirar son señales de alarma que requieren atención rápida.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
                     </a>
-
-                    <!-- 4: WIDE — Apnea -->
-                    <a href="/enfermedades/apnea-del-sueno/" class="bento-link reveal reveal-d2">
-                        <div class="bento-card">
-                            <div class="bento-wide-inner">
-                                <div class="bento-icon-wrap flex-shrink-0">
-                                    <i class="bi bi-moon-stars bento-icon" aria-hidden="true"></i>
-                                </div>
-                                <div class="bento-text">
-                                    <h3>Apnea Obstructiva del Sueño</h3>
-                                    <p>¿Roncas fuerte y te despiertas cansado? Podrías dejar de respirar mientras duermes sin saberlo. Diagnosticarlo a tiempo protege tu corazón y tu calidad de vida.</p>
-                                    <span class="bento-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                                </div>
-                            </div>
-                            <span class="bento-card__bg-icon" aria-hidden="true"><i class="bi bi-moon-stars"></i></span>
-                        </div>
+                    <a href="/enfermedades/apnea-del-sueno/" class="disease-card">
+                        <div class="disease-card__icon"><i class="bi bi-moon-stars" aria-hidden="true"></i></div>
+                        <h3>Apnea del Sueño</h3>
+                        <p>¿Roncas fuerte y te despiertas cansado? Podrías dejar de respirar mientras duermes sin saberlo.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
                     </a>
-
-                    <!-- 5: WIDE — Derrames Pleurales -->
-                    <a href="/enfermedades/derrames-pleurales/" class="bento-link reveal reveal-d3">
-                        <div class="bento-card">
-                            <div class="bento-wide-inner">
-                                <div class="bento-icon-wrap flex-shrink-0">
-                                    <i class="bi bi-moisture bento-icon" aria-hidden="true"></i>
-                                </div>
-                                <div class="bento-text">
-                                    <h3>Derrames Pleurales</h3>
-                                    <p>¿Sientes dolor en el pecho o falta de aire repentina? La acumulación de líquido alrededor de tus pulmones necesita diagnóstico y tratamiento especializado.</p>
-                                    <span class="bento-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                                </div>
-                            </div>
-                            <span class="bento-card__bg-icon" aria-hidden="true"><i class="bi bi-moisture"></i></span>
-                        </div>
+                    <a href="/enfermedades/fibrosis-pulmonar/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-lungs-virus" aria-hidden="true"></i></div>
+                        <h3>Fibrosis Pulmonar</h3>
+                        <p>Cicatrización progresiva del tejido pulmonar que dificulta la respiración. Un diagnóstico temprano es clave.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
                     </a>
-
-                    <!-- 6: NARROW — Tabaquismo -->
-                    <a href="/enfermedades/tabaquismo/" class="bento-link reveal reveal-d3">
-                        <div class="bento-card">
-                            <div class="bento-icon-wrap">
-                                <i class="fa-solid fa-ban-smoking bento-icon" aria-hidden="true"></i>
-                            </div>
-                            <h3>Tabaquismo</h3>
-                            <p>Un plan médico real, con herramientas probadas, para que dejes de fumar de forma definitiva.</p>
-                            <span class="bento-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                            <span class="bento-card__bg-icon" aria-hidden="true"><i class="fa-solid fa-ban-smoking"></i></span>
-                        </div>
+                    <a href="/enfermedades/cancer-de-pulmon/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-ribbon" aria-hidden="true"></i></div>
+                        <h3>Cáncer de Pulmón</h3>
+                        <p>La detección oportuna puede salvar vidas. Si tienes factores de riesgo, una evaluación puede marcar la diferencia.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
                     </a>
-
+                    <a href="/enfermedades/influenza/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-virus" aria-hidden="true"></i></div>
+                        <h3>Influenza</h3>
+                        <p>Más que una gripe: puede complicarse gravemente. Prevención y tratamiento oportuno son fundamentales.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
+                    <!-- Duplicates for seamless loop -->
+                    <a href="/enfermedades/asma/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-wind" aria-hidden="true"></i></div>
+                        <h3>Asma</h3>
+                        <p>¿Sientes silbidos al respirar, falta de aire o tos que no se quita? Con el tratamiento correcto, puedes vivir sin que el asma te detenga.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
+                    <a href="/enfermedades/epoc/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-lungs" aria-hidden="true"></i></div>
+                        <h3>EPOC</h3>
+                        <p>¿Te cansas al caminar o subir escaleras? La EPOC avanza en silencio, pero con el manejo adecuado se puede frenar.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
+                    <a href="/enfermedades/neumonia/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-bacterium" aria-hidden="true"></i></div>
+                        <h3>Neumonía</h3>
+                        <p>Fiebre alta, tos con flema y dolor al respirar son señales de alarma que requieren atención rápida.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
+                    <a href="/enfermedades/apnea-del-sueno/" class="disease-card">
+                        <div class="disease-card__icon"><i class="bi bi-moon-stars" aria-hidden="true"></i></div>
+                        <h3>Apnea del Sueño</h3>
+                        <p>¿Roncas fuerte y te despiertas cansado? Podrías dejar de respirar mientras duermes sin saberlo.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
+                    <a href="/enfermedades/fibrosis-pulmonar/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-lungs-virus" aria-hidden="true"></i></div>
+                        <h3>Fibrosis Pulmonar</h3>
+                        <p>Cicatrización progresiva del tejido pulmonar que dificulta la respiración. Un diagnóstico temprano es clave.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
+                    <a href="/enfermedades/cancer-de-pulmon/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-ribbon" aria-hidden="true"></i></div>
+                        <h3>Cáncer de Pulmón</h3>
+                        <p>La detección oportuna puede salvar vidas. Si tienes factores de riesgo, una evaluación puede marcar la diferencia.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
+                    <a href="/enfermedades/influenza/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-virus" aria-hidden="true"></i></div>
+                        <h3>Influenza</h3>
+                        <p>Más que una gripe: puede complicarse gravemente. Prevención y tratamiento oportuno son fundamentales.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
+                </div>
+                <!-- Band 2 — scrolls right (opposite direction) -->
+                <div class="disease-band disease-band--bottom">
+                    <a href="/enfermedades/derrames-pleurales/" class="disease-card">
+                        <div class="disease-card__icon"><i class="bi bi-moisture" aria-hidden="true"></i></div>
+                        <h3>Derrames Pleurales</h3>
+                        <p>¿Sientes dolor en el pecho o falta de aire repentina? La acumulación de líquido necesita diagnóstico especializado.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
+                    <a href="/enfermedades/tabaquismo/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-ban-smoking" aria-hidden="true"></i></div>
+                        <h3>Tabaquismo</h3>
+                        <p>Un plan médico real, con herramientas probadas, para que dejes de fumar de forma definitiva.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
+                    <a href="/enfermedades/bronquiectasias/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-lungs" aria-hidden="true"></i></div>
+                        <h3>Bronquiectasias</h3>
+                        <p>Daño permanente en los bronquios que causa infecciones recurrentes. El manejo adecuado mejora tu calidad de vida.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
+                    <a href="/enfermedades/hipertension-pulmonar/" class="disease-card">
+                        <div class="disease-card__icon"><i class="bi bi-heart-pulse" aria-hidden="true"></i></div>
+                        <h3>Hipertensión Pulmonar</h3>
+                        <p>Presión alta en las arterias del pulmón que afecta el corazón. Un diagnóstico preciso cambia el pronóstico.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
+                    <a href="/enfermedades/embolia-pulmonar/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-shield-virus" aria-hidden="true"></i></div>
+                        <h3>Embolia Pulmonar</h3>
+                        <p>Un coágulo que bloquea las arterias del pulmón. Es una emergencia médica que requiere atención inmediata.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
+                    <a href="/enfermedades/secuelas-covid/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-virus-covid" aria-hidden="true"></i></div>
+                        <h3>Secuelas COVID</h3>
+                        <p>¿Sigues con tos o falta de aire después del COVID? Evaluamos y tratamos las secuelas respiratorias post-infección.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
+                    <!-- Duplicates for seamless loop -->
+                    <a href="/enfermedades/derrames-pleurales/" class="disease-card">
+                        <div class="disease-card__icon"><i class="bi bi-moisture" aria-hidden="true"></i></div>
+                        <h3>Derrames Pleurales</h3>
+                        <p>¿Sientes dolor en el pecho o falta de aire repentina? La acumulación de líquido necesita diagnóstico especializado.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
+                    <a href="/enfermedades/tabaquismo/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-ban-smoking" aria-hidden="true"></i></div>
+                        <h3>Tabaquismo</h3>
+                        <p>Un plan médico real, con herramientas probadas, para que dejes de fumar de forma definitiva.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
+                    <a href="/enfermedades/bronquiectasias/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-lungs" aria-hidden="true"></i></div>
+                        <h3>Bronquiectasias</h3>
+                        <p>Daño permanente en los bronquios que causa infecciones recurrentes. El manejo adecuado mejora tu calidad de vida.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
+                    <a href="/enfermedades/hipertension-pulmonar/" class="disease-card">
+                        <div class="disease-card__icon"><i class="bi bi-heart-pulse" aria-hidden="true"></i></div>
+                        <h3>Hipertensión Pulmonar</h3>
+                        <p>Presión alta en las arterias del pulmón que afecta el corazón. Un diagnóstico preciso cambia el pronóstico.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
+                    <a href="/enfermedades/embolia-pulmonar/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-shield-virus" aria-hidden="true"></i></div>
+                        <h3>Embolia Pulmonar</h3>
+                        <p>Un coágulo que bloquea las arterias del pulmón. Es una emergencia médica que requiere atención inmediata.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
+                    <a href="/enfermedades/secuelas-covid/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-virus-covid" aria-hidden="true"></i></div>
+                        <h3>Secuelas COVID</h3>
+                        <p>¿Sigues con tos o falta de aire después del COVID? Evaluamos y tratamos las secuelas respiratorias post-infección.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- ===== TESTIMONIOS — 3 columnas animadas ===== -->
+        <!-- ===== TESTIMONIOS ===== -->
         <section id="testimonios" class="testimonials-section py-5">
             <div class="container my-5">
                 <div class="mb-5 text-center">
-                    <div class="section-eyebrow justify-content-center reveal">
-                        <span class="section-num">03</span>
-                        <span class="section-label mb-0">Testimonios</span>
-                    </div>
+                    <span class="section-label reveal">Testimonios</span>
                     <h2 class="section-title reveal">Personas reales, resultados reales</h2>
                     <p class="section-sub reveal">Conoce la experiencia de pacientes que confiaron en nosotros para mejorar su respiración.</p>
                 </div>
@@ -1807,7 +1731,6 @@
 
                 <!-- 3-Column animated scroll -->
                 <div class="testimonial-columns reveal">
-                    <!-- Column 1 — scrolls up -->
                     <div class="testimonial-col">
                         <div class="testi-card">
                             <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
@@ -1824,7 +1747,6 @@
                             <p class="testi-text">"Excelente trato y muy profesional. Me ayudó con mi problema de apnea del sueño y ahora duermo mucho mejor. Totalmente recomendado."</p>
                             <div class="testi-author"><div class="testi-avatar">P</div><div><p class="testi-name">Patricia D.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Apnea del sueño</p></div></div>
                         </div>
-                        <!-- Duplicados para loop seamless -->
                         <div class="testi-card">
                             <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
                             <p class="testi-text">"El Dr. Lara me diagnosticó asma bronquial después de meses buscando respuestas. Me explicó todo con una paciencia increíble. Ya puedo hacer ejercicio sin ahogarme."</p>
@@ -1841,8 +1763,6 @@
                             <div class="testi-author"><div class="testi-avatar">P</div><div><p class="testi-name">Patricia D.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Apnea del sueño</p></div></div>
                         </div>
                     </div>
-
-                    <!-- Column 2 — scrolls down (reverse) -->
                     <div class="testimonial-col">
                         <div class="testi-card">
                             <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div>
@@ -1859,7 +1779,6 @@
                             <p class="testi-text">"Gracias al Dr. Lara pude entender mi diagnóstico de fibrosis pulmonar. Me dio un plan claro y siempre resolvió mis dudas con mucha paciencia."</p>
                             <div class="testi-author"><div class="testi-avatar">E</div><div><p class="testi-name">Elena S.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Fibrosis pulmonar</p></div></div>
                         </div>
-                        <!-- Duplicados para loop seamless -->
                         <div class="testi-card">
                             <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div>
                             <p class="testi-text">"Me detectaron EPOC y el Dr. Lara nos explicó a detalle qué significa y cómo manejarlo. Muy profesional y humano en su trato."</p>
@@ -1876,8 +1795,6 @@
                             <div class="testi-author"><div class="testi-avatar">E</div><div><p class="testi-name">Elena S.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Fibrosis pulmonar</p></div></div>
                         </div>
                     </div>
-
-                    <!-- Column 3 — scrolls up -->
                     <div class="testimonial-col">
                         <div class="testi-card">
                             <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div>
@@ -1894,7 +1811,6 @@
                             <p class="testi-text">"Después de años con problemas de neumonía recurrente, el Dr. Lara encontró el origen y me dio un tratamiento definitivo. Un doctor de primera."</p>
                             <div class="testi-author"><div class="testi-avatar">F</div><div><p class="testi-name">Fernando T.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Neumonía</p></div></div>
                         </div>
-                        <!-- Duplicados para loop seamless -->
                         <div class="testi-card">
                             <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div>
                             <p class="testi-text">"Fui por un check up respiratorio de rutina. El consultorio está bien equipado y el doctor es detallado en sus explicaciones. Muy buena consulta."</p>
@@ -1942,7 +1858,7 @@
             </div>
         </section>
 
-        <!-- ===== CTA BAND with sparkles ===== -->
+        <!-- ===== CTA BAND ===== -->
         <section class="cta-band text-center" style="padding:80px 0">
             <canvas class="cta-band__canvas" id="ctaSparkles"></canvas>
             <div class="cta-band__glow-line"></div>
@@ -1956,29 +1872,22 @@
             </div>
         </section>
 
-        <!-- ===== CONTACTO — Redesigned ===== -->
+        <!-- ===== CONTACTO ===== -->
         <section id="contacto-final" class="py-5" style="background:var(--cloud-alt)">
             <div class="container" style="padding-top:40px;padding-bottom:40px">
                 <div class="text-center mb-5">
-                    <div class="section-eyebrow justify-content-center reveal">
-                        <span class="section-num">04</span>
-                        <span class="section-label mb-0">Contacto</span>
-                    </div>
+                    <span class="section-label reveal">Contacto</span>
                     <h2 class="section-title reveal">Encuéntrame aquí</h2>
                     <p class="section-sub reveal">Hospital Santa Coleta · Consultorio 507 · Ciudad de México</p>
                 </div>
 
                 <div class="row g-4">
-                    <!-- Map — full width top on mobile, right on desktop -->
                     <div class="col-lg-7 reveal">
                         <div class="map-wrapper" style="padding-bottom:58%;border-radius:22px;box-shadow:0 8px 40px rgba(10,22,40,.08)">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.844781446706!2d-99.1834226!3d19.3758368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce0014e7a8dbdd%3A0xc3af1172a396263f!2sSaturnino%20Herr%C3%A1n%2059%2C%20San%20Jos%C3%A9%20Insurgentes%2C%20Benito%20Ju%C3%A1rez%2C%2003900%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1708892400000!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
-
-                    <!-- Info cards stack -->
                     <div class="col-lg-5">
-                        <!-- Location card -->
                         <div class="contact-card reveal" style="background:var(--white);border:1px solid var(--border);border-radius:20px;padding:28px 30px;margin-bottom:16px;box-shadow:0 2px 14px rgba(10,22,40,.04)">
                             <div class="d-flex align-items-start gap-14" style="gap:14px">
                                 <div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,rgba(9,132,227,.08),rgba(30,55,153,.06));display:flex;align-items:center;justify-content:center;flex-shrink:0">
@@ -1990,8 +1899,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Hours card -->
                         <div class="contact-card reveal reveal-d1" style="background:var(--white);border:1px solid var(--border);border-radius:20px;padding:28px 30px;margin-bottom:16px;box-shadow:0 2px 14px rgba(10,22,40,.04)">
                             <div class="d-flex align-items-start gap-14" style="gap:14px">
                                 <div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,rgba(9,132,227,.08),rgba(30,55,153,.06));display:flex;align-items:center;justify-content:center;flex-shrink:0">
@@ -2005,8 +1912,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Contact actions -->
                         <div class="contact-card reveal reveal-d2" style="background:var(--white);border:1px solid var(--border);border-radius:20px;padding:28px 30px;box-shadow:0 2px 14px rgba(10,22,40,.04)">
                             <h3 style="font-size:1.05rem;font-weight:700;color:var(--navy);margin:0 0 16px">¿Listo para agendar?</h3>
                             <div class="d-flex flex-column gap-3">
@@ -2073,7 +1978,10 @@
         }, { passive: true });
 
         /* ── Animated counters ── */
-        function animateCount(el, target, isDecimal, duration) {
+        function formatWithComma(n) {
+            return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        }
+        function animateCount(el, target, isDecimal, hasComma, duration) {
             var start = null;
             var from = 0;
             function step(ts) {
@@ -2081,11 +1989,17 @@
                 var progress = Math.min((ts - start) / duration, 1);
                 var eased = 1 - Math.pow(1 - progress, 3);
                 var current = from + (target - from) * eased;
-                el.textContent = isDecimal
-                    ? (current / 10).toFixed(1)
-                    : Math.floor(current);
+                if (isDecimal) {
+                    el.textContent = (current / 10).toFixed(1);
+                } else if (hasComma) {
+                    el.textContent = formatWithComma(Math.floor(current));
+                } else {
+                    el.textContent = Math.floor(current);
+                }
                 if (progress < 1) requestAnimationFrame(step);
-                else el.textContent = isDecimal ? (target / 10).toFixed(1) : target;
+                else {
+                    el.textContent = isDecimal ? (target / 10).toFixed(1) : (hasComma ? formatWithComma(target) : target);
+                }
             }
             requestAnimationFrame(step);
         }
@@ -2098,38 +2012,84 @@
                     document.querySelectorAll('.count-up').forEach(function(el) {
                         var target = parseInt(el.getAttribute('data-target'), 10);
                         var isDecimal = el.classList.contains('count-decimal');
-                        animateCount(el, target, isDecimal, 1400);
+                        var hasComma = el.hasAttribute('data-format') && el.getAttribute('data-format') === 'comma';
+                        animateCount(el, target, isDecimal, hasComma, 1400);
                     });
                 }
             }, { threshold: 0.5 });
             cObs.observe(statsEl);
         }
 
-        /* ── 3D tilt on bento cards ── */
-        document.querySelectorAll('.bento-card').forEach(function(card) {
-            var parent = card.closest('.bento-link');
-            if (!parent) return;
-            parent.addEventListener('mousemove', function(e) {
-                var rect = card.getBoundingClientRect();
-                var x = (e.clientX - rect.left) / rect.width  - 0.5;
-                var y = (e.clientY - rect.top)  / rect.height - 0.5;
-                card.style.transform =
-                    'perspective(900px) rotateX(' + (-y * 9) + 'deg) rotateY(' + (x * 9) + 'deg) translateY(-6px)';
-            });
-            parent.addEventListener('mouseleave', function() {
-                card.style.transform = '';
-            });
-        });
+        /* ── Services Carousel ── */
+        var track = document.getElementById('servicesTrack');
+        var prevBtn = document.getElementById('servicesPrev');
+        var nextBtn = document.getElementById('servicesNext');
+        var dotsContainer = document.getElementById('servicesDots');
 
-        /* Services nav click */
-        document.querySelectorAll('.services__nav-item').forEach(function(item){
-            item.addEventListener('click', function(){
-                var idx = this.getAttribute('data-service-nav');
-                var panel = document.querySelector('[data-service-panel="'+idx+'"]');
-                if(panel) panel.scrollIntoView({ behavior:'smooth', block:'center' });
-            });
-        });
+        if (track && prevBtn && nextBtn && dotsContainer) {
+            var cards = track.querySelectorAll('.services-carousel__card');
+            var currentSlide = 0;
 
+            function getVisibleCount() {
+                var w = window.innerWidth;
+                if (w >= 992) return 3;
+                if (w >= 768) return 2;
+                return 1;
+            }
+
+            function getTotalSlides() {
+                return Math.max(1, cards.length - getVisibleCount() + 1);
+            }
+
+            function buildDots() {
+                dotsContainer.innerHTML = '';
+                var total = getTotalSlides();
+                for (var i = 0; i < total; i++) {
+                    var dot = document.createElement('button');
+                    dot.className = 'services-carousel__dot' + (i === currentSlide ? ' active' : '');
+                    dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+                    dot.dataset.index = i;
+                    dot.addEventListener('click', function() { goTo(parseInt(this.dataset.index)); });
+                    dotsContainer.appendChild(dot);
+                }
+            }
+
+            function goTo(idx) {
+                var total = getTotalSlides();
+                currentSlide = Math.max(0, Math.min(idx, total - 1));
+                var card = cards[0];
+                var gap = 24;
+                var cardWidth = card.offsetWidth + gap;
+                track.style.transform = 'translateX(-' + (currentSlide * cardWidth) + 'px)';
+                dotsContainer.querySelectorAll('.services-carousel__dot').forEach(function(d, i) {
+                    d.classList.toggle('active', i === currentSlide);
+                });
+            }
+
+            prevBtn.addEventListener('click', function() { goTo(currentSlide - 1); });
+            nextBtn.addEventListener('click', function() { goTo(currentSlide + 1); });
+
+            buildDots();
+            window.addEventListener('resize', function() {
+                buildDots();
+                goTo(Math.min(currentSlide, getTotalSlides() - 1));
+            });
+
+            /* Touch swipe support */
+            var touchStartX = 0;
+            var touchEndX = 0;
+            track.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+            track.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                var diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) goTo(currentSlide + 1);
+                    else goTo(currentSlide - 1);
+                }
+            }, { passive: true });
+        }
+
+        /* ── GSAP Animations ── */
         var hasGSAP = (typeof gsap !== 'undefined') && (typeof ScrollTrigger !== 'undefined');
 
         if (hasGSAP) {
@@ -2137,40 +2097,24 @@
 
             /* Hero entrance */
             var tl = gsap.timeline({ defaults:{ ease:'power4.out' } });
-            tl.to('.hero__tag',               { opacity:1, y:0, duration:0.8,  delay:0.3 })
-              .to('.hero__headline .line-inner',{ opacity:1, y:0, duration:1.2, stagger:0.15 }, '-=0.4')
-              .to('.hero__sub',                { opacity:1, y:0, duration:0.9 }, '-=0.7')
-              .to('.hero__conditions',         { opacity:1, y:0, duration:0.7 }, '-=0.5')
-              .to('.hero__cta-row',            { opacity:1, y:0, duration:0.9 }, '-=0.5')
-              .to('.hero__scroll-hint',        { opacity:1, duration:1 },        '-=0.3');
+            tl.to('.hero__logo',                { opacity:1, scale:1, duration:1, delay:0.2 })
+              .to('.hero__tag',                 { opacity:1, y:0, duration:0.8 }, '-=0.5')
+              .to('.hero__headline .line-inner', { opacity:1, y:0, duration:1.2, stagger:0.15 }, '-=0.4')
+              .to('.hero__sub',                 { opacity:1, y:0, duration:0.9 }, '-=0.7')
+              .to('.hero__conditions',          { opacity:1, y:0, duration:0.7 }, '-=0.5')
+              .to('.hero__cta-row',             { opacity:1, y:0, duration:0.9 }, '-=0.5')
+              .to('.hero__scroll-hint',         { opacity:1, duration:1 },        '-=0.3');
 
-            /* Hero parallax */
-            gsap.to('.hero__bg', {
-                yPercent: 22, ease:'none',
-                scrollTrigger:{ trigger:'.hero', start:'top top', end:'bottom top', scrub:true }
-            });
-            gsap.to('.hero__content', {
-                opacity:0, y:-50, ease:'none',
-                scrollTrigger:{ trigger:'.hero', start:'55% top', end:'bottom top', scrub:true }
-            });
-
-            /* Services scroll-driven activation */
-            var navItems = document.querySelectorAll('.services__nav-item');
-            var panels   = document.querySelectorAll('.services__panel');
-            panels.forEach(function(panel, i){
-                ScrollTrigger.create({
-                    trigger: panel,
-                    start: 'top 60%', end: 'bottom 40%',
-                    onEnter:     function(){ activateService(i); },
-                    onEnterBack: function(){ activateService(i); }
+            /* Hero parallax — only on desktop */
+            if (window.innerWidth > 768) {
+                gsap.to('.hero__bg', {
+                    yPercent: 22, ease:'none',
+                    scrollTrigger:{ trigger:'.hero', start:'top top', end:'bottom top', scrub:true }
                 });
-            });
-            function activateService(idx){
-                navItems.forEach(function(n){ n.classList.remove('active'); });
-                document.querySelectorAll('.services__panel-inner').forEach(function(p){ p.classList.remove('active'); });
-                if(navItems[idx]) navItems[idx].classList.add('active');
-                var ap = document.querySelector('[data-service-panel="'+idx+'"] .services__panel-inner');
-                if(ap) ap.classList.add('active');
+                gsap.to('.hero__content', {
+                    opacity:0, y:-50, ease:'none',
+                    scrollTrigger:{ trigger:'.hero', start:'55% top', end:'bottom top', scrub:true }
+                });
             }
 
             /* Reveal animations */
@@ -2183,18 +2127,18 @@
 
         } else {
             /* Fallback (no GSAP) */
-            document.querySelectorAll('.hero__tag,.hero__headline .line-inner,.hero__sub,.hero__conditions,.hero__cta-row,.hero__scroll-hint').forEach(function(el){
+            document.querySelectorAll('.hero__logo,.hero__tag,.hero__headline .line-inner,.hero__sub,.hero__conditions,.hero__cta-row,.hero__scroll-hint').forEach(function(el){
                 el.style.opacity='1'; el.style.transform='none';
             });
-            document.querySelectorAll('.services__panel-inner').forEach(function(p){ p.classList.add('active'); });
             var obs = new IntersectionObserver(function(entries){
                 entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });
             }, { threshold:0.05 });
             document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
         }
 
-        /* ── Sparkle canvas system (runs always) ── */
+        /* ── Sparkle canvas system — desktop only ── */
         function initSparkles(canvasId, particleCount) {
+            if (window.innerWidth <= 768) return;
             var canvas = document.getElementById(canvasId);
             if (!canvas) return;
             var ctx = canvas.getContext('2d');
