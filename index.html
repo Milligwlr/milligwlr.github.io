@@ -719,7 +719,7 @@
             letter-spacing: -.03em;
             line-height: 1.08;
             position: relative;
-            display: inline-block;
+            display: block;
         }
         .section-title::after {
             content: '';
@@ -948,11 +948,11 @@
             background: linear-gradient(135deg, rgba(9,132,227,.04) 0%, rgba(0,206,201,.03) 100%);
             border: 1px solid rgba(9,132,227,.12);
             border-radius: 20px;
-            padding: 32px 32px 32px 40px;
-            margin-top: 12px;
-            margin-bottom: 24px;
-            font-size: 1.08rem;
-            line-height: 1.85;
+            padding: 24px 28px 24px 36px;
+            margin-top: 8px;
+            margin-bottom: 0;
+            font-size: 1.02rem;
+            line-height: 1.75;
             color: var(--text);
             font-weight: 500;
         }
@@ -996,173 +996,143 @@
         .credential-chip i { font-size: .88rem; color: var(--electric); }
 
         /* =============================================
-           SERVICES — Card Carousel
+           SERVICES — Tabbed Categories
         ============================================= */
         .services { background: var(--cloud); }
-        .services-carousel {
-            position: relative;
-            overflow: hidden;
-        }
-        .services-carousel__track-wrapper {
-            overflow: hidden;
-            margin: 0 -12px;
-            padding: 16px 12px;
-        }
-        .services-carousel__track {
+        /* Tab pills */
+        .services-tabs {
             display: flex;
-            gap: 24px;
-            transition: transform .5s var(--ease);
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
         }
-        .services-carousel__card {
-            flex: 0 0 calc(33.333% - 16px);
-            min-width: 300px;
+        .services-tab {
+            padding: 11px 26px;
+            border-radius: 100px;
+            border: 1px solid rgba(9,132,227,.15);
             background: var(--white);
-            border-radius: 24px;
-            padding: 44px 34px 38px;
-            border: 1px solid rgba(9,132,227,.08);
-            box-shadow: 0 4px 24px rgba(10,22,40,.05);
+            color: var(--text-muted);
+            font-size: .88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .3s var(--ease);
+            white-space: nowrap;
+        }
+        .services-tab:hover {
+            border-color: var(--electric);
+            color: var(--electric);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(9,132,227,.12);
+        }
+        .services-tab.active {
+            background: linear-gradient(135deg, var(--electric), var(--cyan));
+            color: var(--white);
+            border-color: transparent;
+            box-shadow: 0 6px 24px rgba(9,132,227,.3);
+            transform: translateY(-2px);
+        }
+
+        /* Tab panels */
+        .services-panels { position: relative; min-height: 200px; }
+        .services-panel {
+            display: none;
+            animation: svcPanelIn .45s cubic-bezier(.25,.1,.25,1);
+        }
+        .services-panel.active { display: block; }
+        @keyframes svcPanelIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Service cards grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 36px 32px 32px;
+            border: 1px solid rgba(0,0,0,.05);
+            box-shadow: 0 2px 12px rgba(0,0,0,.04);
             transition: all .45s var(--ease);
             display: flex;
             flex-direction: column;
-            position: relative;
-            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
         }
-        /* Decorative corner glow */
-        .services-carousel__card::before {
-            content: '';
-            position: absolute;
-            top: -60px; right: -60px;
-            width: 140px; height: 140px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(9,132,227,.08) 0%, transparent 70%);
-            transition: all .5s var(--ease);
-            pointer-events: none;
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(9,132,227,.12);
+            border-color: rgba(9,132,227,.15);
         }
-        .services-carousel__card::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--electric), var(--cyan));
-            border-radius: 24px 24px 0 0;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform .45s var(--ease);
-        }
-        .services-carousel__card:hover,
-        .services-carousel__card.card-active-glow {
-            transform: translateY(-8px);
-            box-shadow: 0 24px 64px rgba(9,132,227,.14), 0 0 0 1px rgba(9,132,227,.12);
-            border-color: rgba(9,132,227,.2);
-        }
-        .services-carousel__card:hover::before,
-        .services-carousel__card.card-active-glow::before {
-            top: -40px; right: -40px;
-            width: 180px; height: 180px;
-            background: radial-gradient(circle, rgba(9,132,227,.12) 0%, transparent 70%);
-        }
-        .services-carousel__card:hover::after,
-        .services-carousel__card.card-active-glow::after { transform: scaleX(1); }
-        .services-carousel__icon {
-            width: 68px; height: 68px;
-            border-radius: 20px;
+        .service-card__icon {
+            width: 64px; height: 64px;
+            border-radius: 18px;
             background: linear-gradient(135deg, rgba(9,132,227,.06), rgba(0,206,201,.06));
             border: 1px solid rgba(9,132,227,.1);
             display: flex; align-items: center; justify-content: center;
-            margin-bottom: 24px;
+            margin-bottom: 22px;
             transition: all .45s var(--ease);
-            position: relative;
         }
-        .services-carousel__card:hover .services-carousel__icon,
-        .services-carousel__card.card-active-glow .services-carousel__icon {
+        .service-card:hover .service-card__icon {
             background: linear-gradient(135deg, var(--electric), var(--cyan));
             border-color: transparent;
             box-shadow: 0 8px 28px rgba(9,132,227,.32);
             transform: scale(1.08);
         }
-        .services-carousel__icon i {
-            font-size: 1.6rem;
+        .service-card__icon i {
+            font-size: 1.5rem;
             color: var(--electric);
             transition: color .45s;
         }
-        .services-carousel__card:hover .services-carousel__icon i,
-        .services-carousel__card.card-active-glow .services-carousel__icon i { color: var(--white); }
-        .services-carousel__card h3 {
-            font-size: 1.25rem;
+        .service-card:hover .service-card__icon i { color: var(--white); }
+        .service-card h3 {
+            font-size: 1.12rem;
             font-weight: 800;
             color: var(--navy);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             letter-spacing: -.015em;
         }
-        .services-carousel__card p {
-            font-size: .93rem;
-            line-height: 1.75;
+        .service-card p {
+            font-size: .9rem;
+            line-height: 1.72;
             color: var(--text-muted);
-            margin: 0 0 28px;
+            margin: 0;
             flex: 1;
         }
-        .services-carousel__link {
+        .service-card__cta {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            font-size: .9rem;
+            font-size: .84rem;
             font-weight: 700;
             color: var(--electric);
-            text-decoration: none;
-            transition: all .3s var(--ease);
-            padding: 10px 20px;
-            border-radius: 100px;
-            background: rgba(9,132,227,.06);
-            border: 1px solid rgba(9,132,227,.12);
+            margin-top: 18px;
+            transition: gap .3s var(--ease);
         }
-        .services-carousel__link:hover {
-            gap: 10px;
-            background: var(--electric);
-            color: var(--white);
-            border-color: var(--electric);
-            box-shadow: 0 4px 16px rgba(9,132,227,.25);
-        }
-        .services-carousel__nav {
-            display: flex;
+        .service-card:hover .service-card__cta { gap: 10px; }
+
+        /* Category item count badge */
+        .services-tab .tab-count {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            margin-top: 40px;
-        }
-        .services-carousel__btn {
-            width: 48px; height: 48px;
+            width: 22px; height: 22px;
             border-radius: 50%;
-            border: 1px solid rgba(0,0,0,.1);
-            background: var(--white);
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer;
-            transition: all .3s var(--ease);
-            color: var(--navy);
-            font-size: 1.1rem;
-        }
-        .services-carousel__btn:hover {
-            border-color: var(--electric);
+            background: rgba(9,132,227,.1);
+            font-size: .72rem;
+            font-weight: 700;
             color: var(--electric);
-            box-shadow: 0 4px 16px rgba(9,132,227,.15);
-        }
-        .services-carousel__dots {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-        .services-carousel__dot {
-            width: 8px; height: 8px;
-            border-radius: 50%;
-            background: rgba(0,0,0,.12);
-            border: none;
-            cursor: pointer;
+            margin-left: 6px;
             transition: all .3s var(--ease);
-            padding: 0;
         }
-        .services-carousel__dot.active {
-            background: var(--electric);
-            width: 24px;
-            border-radius: 4px;
+        .services-tab.active .tab-count {
+            background: rgba(255,255,255,.25);
+            color: var(--white);
         }
 
         /* =============================================
@@ -1620,11 +1590,11 @@
         }
         @media(max-width:768px) {
             .contact__grid { grid-template-columns: 1fr; }
-            .contact__map-card { aspect-ratio: 4/3; order: 2; grid-column: 1; }
-            .contact__card:first-of-type { order: 1; }
-            .contact__action-card { flex-direction: column; order: 3; grid-column: 1; }
+            .contact__map-card { aspect-ratio: 4/3; order: 2; }
+            .contact__card--location { order: 1; }
+            .contact__action-card { flex-direction: column; order: 3; }
             .contact__action-btn { width: 100%; justify-content: center; }
-            .contact__card:last-of-type { order: 4; }
+            .contact__card--hours { order: 4; }
         }
 
         /* =============================================
@@ -1708,7 +1678,9 @@
             .about__visual  { position: relative; height: auto; min-height: auto; flex: none; padding: 60px 24px; }
             .about__text    { padding: 40px 24px 80px; max-width: 100%; }
             .about__badge   { bottom: -12px; right: 8px; }
-            .services-carousel__card { flex: 0 0 calc(50% - 12px); min-width: 280px; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .services-tabs { gap: 8px; }
+            .services-tab { font-size: .82rem; padding: 9px 18px; }
         }
         @media(max-width:768px) {
             .hero__cta-row  { flex-direction: column; gap: 10px; width: 100%; max-width: 320px; margin: 0 auto; }
@@ -1728,8 +1700,11 @@
             .services.py-5, .diseases-section.py-5, .testimonials-section.py-5 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
             .services .container.my-5, .diseases-section .container.my-5, .testimonials-section .container.my-5 { margin-top: 1rem !important; margin-bottom: 1rem !important; }
             .services .mb-5, .diseases-section .mb-5, .testimonials-section .mb-5 { margin-bottom: 1.5rem !important; }
-            .services-carousel__nav { margin-top: 20px; }
-            .services-carousel__card { flex: 0 0 calc(100% - 24px); min-width: 260px; padding: 32px 26px 30px; }
+            .services-grid { grid-template-columns: 1fr; gap: 16px; }
+            .service-card { padding: 28px 24px 26px; }
+            .services-tabs { gap: 6px; margin-bottom: 28px; }
+            .services-tab { font-size: .78rem; padding: 8px 14px; }
+            .services-tab .tab-count { width: 19px; height: 19px; font-size: .66rem; }
             .testimonial-columns {
                 grid-template-columns: 1fr 1fr;
                 height: 420px;
@@ -1738,8 +1713,8 @@
             .disease-card { width: 260px; padding: 24px 20px; }
             .disease-card p { font-size: .92rem; line-height: 1.72; }
             .disease-card h3 { font-size: 1.15rem; }
-            .services-carousel__card p { font-size: 1rem; line-height: 1.75; }
-            .services-carousel__card h3 { font-size: 1.3rem; }
+            .service-card p { font-size: .92rem; line-height: 1.72; }
+            .service-card h3 { font-size: 1.08rem; }
             .testi-text { font-size: .92rem; }
             /* Lighten hero effects on mobile */
             .hero__aurora { opacity: .5; filter: blur(80px); animation-duration: 30s; }
@@ -1838,7 +1813,7 @@
                     <span class="line"><span class="line-inner">Salud Respiratoria</span></span>
                     <span class="line"><span class="line-inner">de <em>Vanguardia</em></span></span>
                 </h1>
-                <p class="hero__sub">¿Tos que no cede, dificultad para respirar o problemas pulmonares que afectan tu día a día?<br><br>El <strong>Dr. William Lara</strong> combina experiencia de alto nivel con un trato cercano para devolverte la tranquilidad de respirar bien.</p>
+                <p class="hero__sub">¿Tos que no cede, dificultad para respirar o problemas pulmonares que afectan tu día a día?<br><br>El <strong>Dr. William Lara</strong> combina experiencia de alto nivel con un <strong>trato cercano</strong> para devolverte la tranquilidad de respirar bien.</p>
                 <div class="hero__conditions">
                     <span class="hero__pill">Asma</span>
                     <span class="hero__pill">EPOC</span>
@@ -1923,7 +1898,11 @@
                     <h2 class="about__name reveal">Dr. William César<br>Lara Vázquez</h2>
                     <p class="about__paragraph reveal">Me formé en el <strong>Instituto Nacional de Enfermedades Respiratorias (INER)</strong>, la institución de referencia en México para enfermedades pulmonares. Actualmente curso la <span class="about__highlight">Alta Especialidad en EPOC</span>, lo que me permite ofrecerte el tratamiento más actualizado y efectivo.</p>
                     <div class="about__commitment reveal">
-                        Mi compromiso es devolverte la <em>libertad de respirar con plenitud</em>. Te brindo absoluta claridad sobre tu diagnóstico y el respaldo necesario para tomar <strong>decisiones informadas</strong>. Tu cuerpo es único; por ello, tu <strong>tratamiento</strong> se diseña a tu medida.
+                        Mi compromiso es devolverte la <em>libertad de respirar con plenitud</em>. Te brindo absoluta claridad sobre tu diagnóstico y el respaldo necesario para tomar <strong>decisiones informadas</strong>. Tu cuerpo es único; por ello, tu <strong>tratamiento</strong> se diseña <strong>a tu medida</strong>.
+                    </div>
+                    <div class="about__credentials reveal">
+                        <span class="credential-chip"><i class="bi bi-patch-check-fill"></i> Neumólogo certificado por el CNN</span>
+                        <span class="credential-chip"><i class="bi bi-mortarboard-fill"></i> INER · UNAM · BUAP</span>
                     </div>
                 </div>
             </div>
@@ -1937,53 +1916,155 @@
             <div class="container my-5">
                 <div class="mb-5 text-center">
                     <span class="section-label reveal">Servicios</span>
-                    <h2 class="section-title reveal">¿Cómo puedo ayudarte?</h2>
-                    <p class="section-sub reveal">Estudios y tratamientos diseñados para darte respuestas claras sobre tu salud respiratoria.</p>
+                    <h2 class="section-title reveal">Servicios y estudios de Especialidad</h2>
+                    <p class="section-sub reveal">Diagnóstico, tratamiento y seguimiento integral de tu salud respiratoria.</p>
                 </div>
-                <div class="services-carousel reveal">
-                    <div class="services-carousel__track-wrapper">
-                        <div class="services-carousel__track" id="servicesTrack">
-                            <div class="services-carousel__card">
-                                <div class="services-carousel__icon"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i></div>
-                                <h3>Check up respiratorio</h3>
-                                <p>¿Quieres saber cómo están tus pulmones? Este estudio completo evalúa tu función respiratoria para detectar problemas antes de que se conviertan en algo serio.</p>
-                                <a href="#contacto-final" class="services-carousel__link">Saber más <i class="bi bi-arrow-right"></i></a>
+
+                <!-- Tab pills -->
+                <div class="services-tabs reveal" role="tablist">
+                    <button class="services-tab active" role="tab" aria-selected="true" data-tab="consulta">
+                        <i class="bi bi-clipboard2-pulse" aria-hidden="true"></i> Consulta y valoración <span class="tab-count">3</span>
+                    </button>
+                    <button class="services-tab" role="tab" aria-selected="false" data-tab="estudios">
+                        <i class="bi bi-lungs" aria-hidden="true"></i> Estudios respiratorios <span class="tab-count">6</span>
+                    </button>
+                    <button class="services-tab" role="tab" aria-selected="false" data-tab="procedimientos">
+                        <i class="bi bi-scissors" aria-hidden="true"></i> Procedimientos <span class="tab-count">4</span>
+                    </button>
+                    <button class="services-tab" role="tab" aria-selected="false" data-tab="tratamientos">
+                        <i class="bi bi-heart-pulse" aria-hidden="true"></i> Tratamientos <span class="tab-count">4</span>
+                    </button>
+                </div>
+
+                <!-- Tab panels -->
+                <div class="services-panels reveal">
+
+                    <!-- ── Consulta y valoración ── -->
+                    <div class="services-panel active" role="tabpanel" data-panel="consulta">
+                        <div class="services-grid">
+                            <div class="service-card">
+                                <div class="service-card__icon"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i></div>
+                                <h3>Consulta neumológica especializada</h3>
+                                <p>Evaluación completa de tu salud respiratoria con un neumólogo certificado. Revisamos tus síntomas, antecedentes e historial para darte un diagnóstico preciso y un plan de tratamiento claro.</p>
+                                <span class="service-card__cta">Agendar cita <i class="bi bi-arrow-right"></i></span>
                             </div>
-                            <div class="services-carousel__card">
-                                <div class="services-carousel__icon"><i class="bi bi-lungs" aria-hidden="true"></i></div>
-                                <h3>Espirometría</h3>
-                                <p>Una prueba rápida y sin dolor que mide qué tan bien respiras. Es el estudio clave para saber si tienes asma, EPOC o algún problema respiratorio oculto.</p>
-                                <a href="#contacto-final" class="services-carousel__link">Saber más <i class="bi bi-arrow-right"></i></a>
+                            <div class="service-card">
+                                <div class="service-card__icon"><i class="bi bi-house-heart" aria-hidden="true"></i></div>
+                                <h3>Consulta a domicilio</h3>
+                                <p>Si tu condición dificulta el traslado, llevo la atención neumológica a tu hogar. Misma calidad de consulta, misma dedicación, en la comodidad de tu casa.</p>
+                                <span class="service-card__cta">Solicitar visita <i class="bi bi-arrow-right"></i></span>
                             </div>
-                            <div class="services-carousel__card">
-                                <div class="services-carousel__icon"><i class="bi bi-bandaid" aria-hidden="true"></i></div>
-                                <h3>Dejar de fumar</h3>
-                                <p>Te ofrezco un plan médico personalizado con herramientas que realmente funcionan para que dejes el cigarro de forma definitiva.</p>
-                                <a href="#contacto-final" class="services-carousel__link">Saber más <i class="bi bi-arrow-right"></i></a>
-                            </div>
-                            <div class="services-carousel__card">
-                                <div class="services-carousel__icon"><i class="bi bi-activity" aria-hidden="true"></i></div>
-                                <h3>Seguimiento asma y EPOC</h3>
-                                <p>Si ya te diagnosticaron asma o EPOC, el seguimiento es clave. Revisamos cómo vas y ajustamos tu tratamiento para que tengas menos crisis.</p>
-                                <a href="#contacto-final" class="services-carousel__link">Saber más <i class="bi bi-arrow-right"></i></a>
-                            </div>
-                            <div class="services-carousel__card">
-                                <div class="services-carousel__icon"><i class="bi bi-droplet" aria-hidden="true"></i></div>
-                                <h3>Derrames pleurales</h3>
-                                <p>Cuando se acumula líquido alrededor de tus pulmones, respirar se vuelve difícil. Te diagnostico la causa y aplico el tratamiento adecuado.</p>
-                                <a href="#contacto-final" class="services-carousel__link">Saber más <i class="bi bi-arrow-right"></i></a>
+                            <div class="service-card">
+                                <div class="service-card__icon"><i class="bi bi-shield-check" aria-hidden="true"></i></div>
+                                <h3>Valoración preoperatoria pulmonar</h3>
+                                <p>Antes de una cirugía, es fundamental saber cómo están tus pulmones. Esta valoración reduce riesgos y te da la tranquilidad de llegar preparado al quirófano.</p>
+                                <span class="service-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
                             </div>
                         </div>
                     </div>
-                    <div class="services-carousel__nav">
-                        <button class="services-carousel__btn" id="servicesPrev" aria-label="Anterior">
-                            <i class="bi bi-chevron-left"></i>
-                        </button>
-                        <div class="services-carousel__dots" id="servicesDots"></div>
-                        <button class="services-carousel__btn" id="servicesNext" aria-label="Siguiente">
-                            <i class="bi bi-chevron-right"></i>
-                        </button>
+
+                    <!-- ── Estudios respiratorios ── -->
+                    <div class="services-panel" role="tabpanel" data-panel="estudios">
+                        <div class="services-grid">
+                            <div class="service-card">
+                                <div class="service-card__icon"><i class="bi bi-lungs" aria-hidden="true"></i></div>
+                                <h3>Espirometría simple</h3>
+                                <p>Prueba rápida e indolora que mide tu capacidad pulmonar. Es el primer paso para detectar asma, EPOC u otros problemas respiratorios ocultos.</p>
+                                <span class="service-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                            <div class="service-card">
+                                <div class="service-card__icon"><i class="bi bi-activity" aria-hidden="true"></i></div>
+                                <h3>Espirometría con broncodilatador</h3>
+                                <p>Medimos tu función pulmonar antes y después de un broncodilatador para determinar si la obstrucción de tus vías aéreas es reversible — clave para distinguir asma de EPOC.</p>
+                                <span class="service-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                            <div class="service-card">
+                                <div class="service-card__icon"><i class="bi bi-moon-stars" aria-hidden="true"></i></div>
+                                <h3>Poligrafía respiratoria</h3>
+                                <p>Estudio nocturno que detecta apnea del sueño desde tu casa. Registra tu respiración, oxígeno y esfuerzo mientras duermes para un diagnóstico preciso.</p>
+                                <span class="service-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                            <div class="service-card">
+                                <div class="service-card__icon"><i class="fa-solid fa-fan" aria-hidden="true"></i></div>
+                                <h3>Titulación CPAP automático</h3>
+                                <p>Ajustamos la presión óptima de tu equipo CPAP para que funcione perfectamente mientras duermes, eliminando las pausas respiratorias de la apnea del sueño.</p>
+                                <span class="service-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                            <div class="service-card">
+                                <div class="service-card__icon"><i class="fa-solid fa-wind" aria-hidden="true"></i></div>
+                                <h3>Fracción exhalada de óxido nítrico</h3>
+                                <p>Prueba de aliento que mide la inflamación en tus vías respiratorias. Ayuda a diagnosticar y monitorear el asma de forma objetiva y sin molestias.</p>
+                                <span class="service-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                            <div class="service-card">
+                                <div class="service-card__icon"><i class="bi bi-broadcast" aria-hidden="true"></i></div>
+                                <h3>Ultrasonido pulmonar</h3>
+                                <p>Imagen en tiempo real de tus pulmones sin radiación. Permite detectar líquido pleural, consolidaciones y otras alteraciones de forma rápida y segura.</p>
+                                <span class="service-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- ── Procedimientos ── -->
+                    <div class="services-panel" role="tabpanel" data-panel="procedimientos">
+                        <div class="services-grid">
+                            <div class="service-card">
+                                <div class="service-card__icon"><i class="bi bi-droplet" aria-hidden="true"></i></div>
+                                <h3>Toracocentesis</h3>
+                                <p>Procedimiento para drenar líquido acumulado alrededor de tus pulmones. Alivia la dificultad respiratoria y permite analizar el líquido para determinar su causa.</p>
+                                <span class="service-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                            <div class="service-card">
+                                <div class="service-card__icon"><i class="bi bi-bandaid" aria-hidden="true"></i></div>
+                                <h3>Colocación de sonda endopleural</h3>
+                                <p>Cuando el derrame pleural es importante, colocamos una sonda para drenar de forma continua y controlada, devolviendo espacio a tus pulmones para respirar.</p>
+                                <span class="service-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                            <div class="service-card">
+                                <div class="service-card__icon"><i class="bi bi-moisture" aria-hidden="true"></i></div>
+                                <h3>Catéter pleural</h3>
+                                <p>Para derrames recurrentes, este catéter permanente te permite drenar líquido desde casa de forma segura, reduciendo visitas hospitalarias y mejorando tu calidad de vida.</p>
+                                <span class="service-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                            <div class="service-card">
+                                <div class="service-card__icon"><i class="bi bi-search-heart" aria-hidden="true"></i></div>
+                                <h3>Broncoscopía diagnóstica</h3>
+                                <p>Exploración directa de tus vías respiratorias con una cámara flexible. Permite tomar muestras y diagnosticar lesiones, infecciones o tumores con alta precisión.</p>
+                                <span class="service-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── Tratamientos ── -->
+                    <div class="services-panel" role="tabpanel" data-panel="tratamientos">
+                        <div class="services-grid">
+                            <div class="service-card">
+                                <div class="service-card__icon"><i class="bi bi-heart-pulse" aria-hidden="true"></i></div>
+                                <h3>Terapia respiratoria</h3>
+                                <p>Programa de ejercicios y técnicas guiadas para fortalecer tus pulmones, mejorar tu capacidad respiratoria y recuperar tu calidad de vida paso a paso.</p>
+                                <span class="service-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                            <div class="service-card">
+                                <div class="service-card__icon"><i class="bi bi-shield-plus" aria-hidden="true"></i></div>
+                                <h3>Tratamiento para dejar de fumar</h3>
+                                <p>Plan médico personalizado con herramientas que realmente funcionan. Te acompaño en cada paso para que dejes el cigarro de forma definitiva y sin recaídas.</p>
+                                <span class="service-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                            <div class="service-card">
+                                <div class="service-card__icon"><i class="fa-solid fa-ribbon" aria-hidden="true"></i></div>
+                                <h3>Detección de cáncer pulmonar</h3>
+                                <p>Si tienes factores de riesgo, una evaluación temprana puede salvar tu vida. Realizamos estudios de tamizaje y seguimiento de nódulos pulmonares sospechosos.</p>
+                                <span class="service-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                            <div class="service-card">
+                                <div class="service-card__icon"><i class="bi bi-clipboard-check" aria-hidden="true"></i></div>
+                                <h3>Seguimiento de enfermedades crónicas</h3>
+                                <p>Asma, EPOC, fibrosis pulmonar — el seguimiento regular es clave. Ajustamos tu tratamiento continuamente para que tengas menos crisis y más días buenos.</p>
+                                <span class="service-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -2200,127 +2281,41 @@
                 <!-- 3-Column animated scroll -->
                 <div class="testimonial-columns reveal">
                     <div class="testimonial-col">
-                        <div class="testi-card">
-                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                            <p class="testi-text">"El Dr. Lara me diagnosticó asma bronquial después de meses buscando respuestas. Me explicó todo con una paciencia increíble. Ya puedo hacer ejercicio sin ahogarme."</p>
-                            <div class="testi-author"><div class="testi-avatar">M</div><div><p class="testi-name">María G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Asma</p></div></div>
-                        </div>
-                        <div class="testi-card">
-                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                            <p class="testi-text">"Me realizó la espirometría y me explicó cada valor del resultado con claridad total. Es de los pocos médicos que realmente se toman el tiempo para que entiendas lo que pasa."</p>
-                            <div class="testi-author"><div class="testi-avatar">C</div><div><p class="testi-name">Carlos H.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Espirometría</p></div></div>
-                        </div>
-                        <div class="testi-card">
-                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                            <p class="testi-text">"Excelente trato y muy profesional. Me ayudó con mi problema de apnea del sueño y ahora duermo mucho mejor. Totalmente recomendado."</p>
-                            <div class="testi-author"><div class="testi-avatar">P</div><div><p class="testi-name">Patricia D.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Apnea del sueño</p></div></div>
-                        </div>
-                        <div class="testi-card">
-                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                            <p class="testi-text">"El Dr. Lara me diagnosticó asma bronquial después de meses buscando respuestas. Me explicó todo con una paciencia increíble. Ya puedo hacer ejercicio sin ahogarme."</p>
-                            <div class="testi-author"><div class="testi-avatar">M</div><div><p class="testi-name">María G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Asma</p></div></div>
-                        </div>
-                        <div class="testi-card">
-                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                            <p class="testi-text">"Me realizó la espirometría y me explicó cada valor del resultado con claridad total. Es de los pocos médicos que realmente se toman el tiempo para que entiendas lo que pasa."</p>
-                            <div class="testi-author"><div class="testi-avatar">C</div><div><p class="testi-name">Carlos H.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Espirometría</p></div></div>
-                        </div>
-                        <div class="testi-card">
-                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                            <p class="testi-text">"Excelente trato y muy profesional. Me ayudó con mi problema de apnea del sueño y ahora duermo mucho mejor. Totalmente recomendado."</p>
-                            <div class="testi-author"><div class="testi-avatar">P</div><div><p class="testi-name">Patricia D.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Apnea del sueño</p></div></div>
-                        </div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"El Dr. Lara me diagnosticó asma bronquial después de meses buscando respuestas. Me explicó todo con una paciencia increíble. Ya puedo hacer ejercicio sin ahogarme."</p><div class="testi-author"><div class="testi-avatar">M</div><div><p class="testi-name">María G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Asma</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Me realizó la espirometría y me explicó cada valor del resultado con claridad total. Es de los pocos médicos que realmente se toman el tiempo."</p><div class="testi-author"><div class="testi-avatar">C</div><div><p class="testi-name">Carlos H.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Espirometría</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Excelente trato y muy profesional. Me ayudó con mi problema de apnea del sueño y ahora duermo mucho mejor. Totalmente recomendado."</p><div class="testi-author"><div class="testi-avatar">P</div><div><p class="testi-name">Patricia D.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Apnea del sueño</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Mi mamá tenía neumonía recurrente y nadie le daba un diagnóstico claro. El Dr. Lara dio en el clavo desde la primera consulta. Hoy está estable y tranquila."</p><div class="testi-author"><div class="testi-avatar">S</div><div><p class="testi-name">Sandra L.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Neumonía</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div><p class="testi-text">"Me realizó estudios completos y encontró que mi tos crónica era por reflujo. Ningún otro doctor había llegado a ese diagnóstico. Muy agradecida."</p><div class="testi-author"><div class="testi-avatar">D</div><div><p class="testi-name">Diana P.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Tos crónica</p></div></div></div>
+                        <!-- duplicates for loop -->
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"El Dr. Lara me diagnosticó asma bronquial después de meses buscando respuestas. Me explicó todo con una paciencia increíble. Ya puedo hacer ejercicio sin ahogarme."</p><div class="testi-author"><div class="testi-avatar">M</div><div><p class="testi-name">María G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Asma</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Me realizó la espirometría y me explicó cada valor del resultado con claridad total. Es de los pocos médicos que realmente se toman el tiempo."</p><div class="testi-author"><div class="testi-avatar">C</div><div><p class="testi-name">Carlos H.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Espirometría</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Excelente trato y muy profesional. Me ayudó con mi problema de apnea del sueño y ahora duermo mucho mejor. Totalmente recomendado."</p><div class="testi-author"><div class="testi-avatar">P</div><div><p class="testi-name">Patricia D.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Apnea del sueño</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Mi mamá tenía neumonía recurrente y nadie le daba un diagnóstico claro. El Dr. Lara dio en el clavo desde la primera consulta. Hoy está estable y tranquila."</p><div class="testi-author"><div class="testi-avatar">S</div><div><p class="testi-name">Sandra L.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Neumonía</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div><p class="testi-text">"Me realizó estudios completos y encontró que mi tos crónica era por reflujo. Ningún otro doctor había llegado a ese diagnóstico. Muy agradecida."</p><div class="testi-author"><div class="testi-avatar">D</div><div><p class="testi-name">Diana P.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Tos crónica</p></div></div></div>
                     </div>
                     <div class="testimonial-col">
-                        <div class="testi-card">
-                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div>
-                            <p class="testi-text">"Me detectaron EPOC y el Dr. Lara nos explicó a detalle qué significa y cómo manejarlo. Muy profesional y humano en su trato."</p>
-                            <div class="testi-author"><div class="testi-avatar">R</div><div><p class="testi-name">Roberto M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>EPOC</p></div></div>
-                        </div>
-                        <div class="testi-card">
-                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                            <p class="testi-text">"Fumé por 15 años y con el apoyo del Dr. Lara llevo ya 5 meses sin un cigarro. El tratamiento médico fue clave, nunca me sentí solo en el proceso. 100% recomendado."</p>
-                            <div class="testi-author"><div class="testi-avatar">L</div><div><p class="testi-name">Lupita R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Cesación tabáquica</p></div></div>
-                        </div>
-                        <div class="testi-card">
-                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                            <p class="testi-text">"Gracias al Dr. Lara pude entender mi diagnóstico de fibrosis pulmonar. Me dio un plan claro y siempre resolvió mis dudas con mucha paciencia."</p>
-                            <div class="testi-author"><div class="testi-avatar">E</div><div><p class="testi-name">Elena S.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Fibrosis pulmonar</p></div></div>
-                        </div>
-                        <div class="testi-card">
-                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div>
-                            <p class="testi-text">"Me detectaron EPOC y el Dr. Lara nos explicó a detalle qué significa y cómo manejarlo. Muy profesional y humano en su trato."</p>
-                            <div class="testi-author"><div class="testi-avatar">R</div><div><p class="testi-name">Roberto M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>EPOC</p></div></div>
-                        </div>
-                        <div class="testi-card">
-                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                            <p class="testi-text">"Fumé por 15 años y con el apoyo del Dr. Lara llevo ya 5 meses sin un cigarro. El tratamiento médico fue clave, nunca me sentí solo en el proceso. 100% recomendado."</p>
-                            <div class="testi-author"><div class="testi-avatar">L</div><div><p class="testi-name">Lupita R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Cesación tabáquica</p></div></div>
-                        </div>
-                        <div class="testi-card">
-                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                            <p class="testi-text">"Gracias al Dr. Lara pude entender mi diagnóstico de fibrosis pulmonar. Me dio un plan claro y siempre resolvió mis dudas con mucha paciencia."</p>
-                            <div class="testi-author"><div class="testi-avatar">E</div><div><p class="testi-name">Elena S.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Fibrosis pulmonar</p></div></div>
-                        </div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div><p class="testi-text">"Me detectaron EPOC y el Dr. Lara nos explicó a detalle qué significa y cómo manejarlo. Muy profesional y humano en su trato."</p><div class="testi-author"><div class="testi-avatar">R</div><div><p class="testi-name">Roberto M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>EPOC</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Fumé por 15 años y con el apoyo del Dr. Lara llevo ya 5 meses sin un cigarro. El tratamiento médico fue clave, nunca me sentí solo en el proceso. 100% recomendado."</p><div class="testi-author"><div class="testi-avatar">L</div><div><p class="testi-name">Lupita R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Cesación tabáquica</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Gracias al Dr. Lara pude entender mi diagnóstico de fibrosis pulmonar. Me dio un plan claro y siempre resolvió mis dudas con mucha paciencia."</p><div class="testi-author"><div class="testi-avatar">E</div><div><p class="testi-name">Elena S.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Fibrosis pulmonar</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Tenía mucho miedo porque me detectaron un nódulo pulmonar, pero el Dr. Lara me explicó todo paso a paso y resultó ser benigno. Me dio mucha tranquilidad."</p><div class="testi-author"><div class="testi-avatar">G</div><div><p class="testi-name">Gabriela M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Nódulo pulmonar</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"El seguimiento que me da para mi EPOC es impecable. Cada consulta revisa mis estudios, ajusta medicamentos y me explica todo con mucha claridad."</p><div class="testi-author"><div class="testi-avatar">H</div><div><p class="testi-name">Héctor V.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>EPOC</p></div></div></div>
+                        <!-- duplicates for loop -->
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div><p class="testi-text">"Me detectaron EPOC y el Dr. Lara nos explicó a detalle qué significa y cómo manejarlo. Muy profesional y humano en su trato."</p><div class="testi-author"><div class="testi-avatar">R</div><div><p class="testi-name">Roberto M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>EPOC</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Fumé por 15 años y con el apoyo del Dr. Lara llevo ya 5 meses sin un cigarro. El tratamiento médico fue clave, nunca me sentí solo en el proceso. 100% recomendado."</p><div class="testi-author"><div class="testi-avatar">L</div><div><p class="testi-name">Lupita R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Cesación tabáquica</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Gracias al Dr. Lara pude entender mi diagnóstico de fibrosis pulmonar. Me dio un plan claro y siempre resolvió mis dudas con mucha paciencia."</p><div class="testi-author"><div class="testi-avatar">E</div><div><p class="testi-name">Elena S.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Fibrosis pulmonar</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Tenía mucho miedo porque me detectaron un nódulo pulmonar, pero el Dr. Lara me explicó todo paso a paso y resultó ser benigno. Me dio mucha tranquilidad."</p><div class="testi-author"><div class="testi-avatar">G</div><div><p class="testi-name">Gabriela M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Nódulo pulmonar</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"El seguimiento que me da para mi EPOC es impecable. Cada consulta revisa mis estudios, ajusta medicamentos y me explica todo con mucha claridad."</p><div class="testi-author"><div class="testi-avatar">H</div><div><p class="testi-name">Héctor V.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>EPOC</p></div></div></div>
                     </div>
                     <div class="testimonial-col">
-                        <div class="testi-card">
-                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div>
-                            <p class="testi-text">"Fui por un check up respiratorio de rutina. El consultorio está bien equipado y el doctor es detallado en sus explicaciones. Muy buena consulta."</p>
-                            <div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Alejandra V.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Check up</p></div></div>
-                        </div>
-                        <div class="testi-card">
-                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                            <p class="testi-text">"Mi papá tiene EPOC avanzado y el Dr. Lara ha sido un médico excepcional. Desde el primer día le dio seguimiento personalizado. Infinitamente agradecido."</p>
-                            <div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">Jorge A.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>EPOC</p></div></div>
-                        </div>
-                        <div class="testi-card">
-                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                            <p class="testi-text">"Después de años con problemas de neumonía recurrente, el Dr. Lara encontró el origen y me dio un tratamiento definitivo. Un doctor de primera."</p>
-                            <div class="testi-author"><div class="testi-avatar">F</div><div><p class="testi-name">Fernando T.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Neumonía</p></div></div>
-                        </div>
-                        <div class="testi-card">
-                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div>
-                            <p class="testi-text">"Fui por un check up respiratorio de rutina. El consultorio está bien equipado y el doctor es detallado en sus explicaciones. Muy buena consulta."</p>
-                            <div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Alejandra V.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Check up</p></div></div>
-                        </div>
-                        <div class="testi-card">
-                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                            <p class="testi-text">"Mi papá tiene EPOC avanzado y el Dr. Lara ha sido un médico excepcional. Desde el primer día le dio seguimiento personalizado. Infinitamente agradecido."</p>
-                            <div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">Jorge A.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>EPOC</p></div></div>
-                        </div>
-                        <div class="testi-card">
-                            <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                            <p class="testi-text">"Después de años con problemas de neumonía recurrente, el Dr. Lara encontró el origen y me dio un tratamiento definitivo. Un doctor de primera."</p>
-                            <div class="testi-author"><div class="testi-avatar">F</div><div><p class="testi-name">Fernando T.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Neumonía</p></div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== MÉTODOS DE PAGO ===== -->
-        <section class="py-5" style="background:#fff">
-            <div class="container py-3">
-                <h2 class="mb-4 text-center fw-bold reveal" style="font-size:1.35rem;color:var(--navy)">Métodos de pago aceptados</h2>
-                <div class="row g-3 justify-content-center reveal reveal-d1" style="max-width:600px;margin:0 auto">
-                    <div class="col-4">
-                        <div class="payment-item">
-                            <i class="bi bi-cash-coin payment-icon" aria-hidden="true"></i>
-                            <p class="mt-2 mb-0 fw-bold small text-muted">Efectivo</p>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="payment-item">
-                            <i class="bi bi-credit-card payment-icon" aria-hidden="true"></i>
-                            <p class="mt-2 mb-0 fw-bold small text-muted">Tarjeta</p>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="payment-item">
-                            <i class="bi bi-bank payment-icon" aria-hidden="true"></i>
-                            <p class="mt-2 mb-0 fw-bold small text-muted">Transferencia</p>
-                        </div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div><p class="testi-text">"Fui por un check up respiratorio de rutina. El consultorio está bien equipado y el doctor es detallado en sus explicaciones. Muy buena consulta."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Alejandra V.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Check up</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Mi papá tiene EPOC avanzado y el Dr. Lara ha sido un médico excepcional. Desde el primer día le dio seguimiento personalizado. Infinitamente agradecido."</p><div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">Jorge A.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>EPOC</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Después de años con problemas de neumonía recurrente, el Dr. Lara encontró el origen y me dio un tratamiento definitivo. Un doctor de primera."</p><div class="testi-author"><div class="testi-avatar">F</div><div><p class="testi-name">Fernando T.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Neumonía</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Llevaba meses con dificultad para respirar después de COVID. El Dr. Lara me hizo estudios y un plan de rehabilitación. Hoy respiro con normalidad."</p><div class="testi-author"><div class="testi-avatar">I</div><div><p class="testi-name">Irene C.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Secuelas COVID</p></div></div></div>
+                        <!-- duplicates for loop -->
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div><p class="testi-text">"Fui por un check up respiratorio de rutina. El consultorio está bien equipado y el doctor es detallado en sus explicaciones. Muy buena consulta."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Alejandra V.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Check up</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Mi papá tiene EPOC avanzado y el Dr. Lara ha sido un médico excepcional. Desde el primer día le dio seguimiento personalizado. Infinitamente agradecido."</p><div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">Jorge A.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>EPOC</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Después de años con problemas de neumonía recurrente, el Dr. Lara encontró el origen y me dio un tratamiento definitivo. Un doctor de primera."</p><div class="testi-author"><div class="testi-avatar">F</div><div><p class="testi-name">Fernando T.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Neumonía</p></div></div></div>
+                        <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Llevaba meses con dificultad para respirar después de COVID. El Dr. Lara me hizo estudios y un plan de rehabilitación. Hoy respiro con normalidad."</p><div class="testi-author"><div class="testi-avatar">I</div><div><p class="testi-name">Irene C.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Secuelas COVID</p></div></div></div>
                     </div>
                 </div>
             </div>
@@ -2355,14 +2350,14 @@
                     </div>
 
                     <!-- Location card -->
-                    <div class="contact__card reveal">
+                    <div class="contact__card contact__card--location reveal">
                         <div class="contact__card-icon"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i></div>
                         <h3>Hospital Santa Coleta</h3>
                         <p>Saturnino Herrán 59, Consultorio 507<br>San José Insurgentes, Benito Juárez<br>03900 Ciudad de México, CDMX</p>
                     </div>
 
                     <!-- Hours card -->
-                    <div class="contact__card reveal reveal-d1">
+                    <div class="contact__card contact__card--hours reveal reveal-d1">
                         <div class="contact__card-icon"><i class="bi bi-clock-fill" aria-hidden="true"></i></div>
                         <h3>Horarios de atención</h3>
                         <p class="hours-detail">Lunes a viernes: 16:00 — 20:30 hrs</p>
@@ -2463,83 +2458,54 @@
             cObs.observe(statsEl);
         }
 
-        /* ── Services Carousel ── */
-        var track = document.getElementById('servicesTrack');
-        var prevBtn = document.getElementById('servicesPrev');
-        var nextBtn = document.getElementById('servicesNext');
-        var dotsContainer = document.getElementById('servicesDots');
+        /* ── Services Tabs ── */
+        (function() {
+            var tabs = document.querySelectorAll('.services-tab');
+            var panels = document.querySelectorAll('.services-panel');
+            if (!tabs.length) return;
 
-        if (track && prevBtn && nextBtn && dotsContainer) {
-            var cards = track.querySelectorAll('.services-carousel__card');
-            var currentSlide = 0;
+            tabs.forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    var target = this.dataset.tab;
 
-            function getVisibleCount() {
-                var w = window.innerWidth;
-                if (w >= 992) return 3;
-                if (w >= 768) return 2;
-                return 1;
-            }
+                    /* Update tabs */
+                    tabs.forEach(function(t) {
+                        t.classList.remove('active');
+                        t.setAttribute('aria-selected', 'false');
+                    });
+                    this.classList.add('active');
+                    this.setAttribute('aria-selected', 'true');
 
-            function getTotalSlides() {
-                return Math.max(1, cards.length - getVisibleCount() + 1);
-            }
-
-            function buildDots() {
-                dotsContainer.innerHTML = '';
-                var total = getTotalSlides();
-                for (var i = 0; i < total; i++) {
-                    var dot = document.createElement('button');
-                    dot.className = 'services-carousel__dot' + (i === currentSlide ? ' active' : '');
-                    dot.setAttribute('aria-label', 'Slide ' + (i + 1));
-                    dot.dataset.index = i;
-                    dot.addEventListener('click', function() { goTo(parseInt(this.dataset.index)); });
-                    dotsContainer.appendChild(dot);
-                }
-            }
-
-            function updateActiveGlow() {
-                cards.forEach(function(c) { c.classList.remove('card-active-glow'); });
-                if (cards[currentSlide]) cards[currentSlide].classList.add('card-active-glow');
-            }
-
-            function goTo(idx) {
-                var total = getTotalSlides();
-                if (idx < 0) idx = total - 1;
-                else if (idx >= total) idx = 0;
-                currentSlide = idx;
-                var card = cards[0];
-                var gap = 24;
-                var cardWidth = card.offsetWidth + gap;
-                track.style.transform = 'translateX(-' + (currentSlide * cardWidth) + 'px)';
-                dotsContainer.querySelectorAll('.services-carousel__dot').forEach(function(d, i) {
-                    d.classList.toggle('active', i === currentSlide);
+                    /* Switch panels */
+                    panels.forEach(function(p) {
+                        p.classList.remove('active');
+                    });
+                    var activePanel = document.querySelector('[data-panel="' + target + '"]');
+                    if (activePanel) activePanel.classList.add('active');
                 });
-                updateActiveGlow();
-            }
-
-            prevBtn.addEventListener('click', function() { goTo(currentSlide - 1); });
-            nextBtn.addEventListener('click', function() { goTo(currentSlide + 1); });
-
-            buildDots();
-            updateActiveGlow();
-            window.addEventListener('resize', function() {
-                buildDots();
-                goTo(Math.min(currentSlide, getTotalSlides() - 1));
             });
 
-            /* Touch swipe support */
-            var touchStartX = 0;
-            var touchEndX = 0;
-            track.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-            track.addEventListener('touchend', function(e) {
-                touchEndX = e.changedTouches[0].screenX;
-                var diff = touchStartX - touchEndX;
-                if (Math.abs(diff) > 50) {
-                    if (diff > 0) goTo(currentSlide + 1);
-                    else goTo(currentSlide - 1);
-                }
-            }, { passive: true });
-        }
+            /* Keyboard navigation for tabs */
+            var tabList = document.querySelector('.services-tabs');
+            if (tabList) {
+                tabList.addEventListener('keydown', function(e) {
+                    var tabArr = Array.from(tabs);
+                    var idx = tabArr.indexOf(document.activeElement);
+                    if (idx < 0) return;
+                    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        var next = (idx + 1) % tabArr.length;
+                        tabArr[next].focus();
+                        tabArr[next].click();
+                    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        var prev = (idx - 1 + tabArr.length) % tabArr.length;
+                        tabArr[prev].focus();
+                        tabArr[prev].click();
+                    }
+                });
+            }
+        })();
 
         /* ── GSAP Animations ── */
         var hasGSAP = (typeof gsap !== 'undefined') && (typeof ScrollTrigger !== 'undefined');
@@ -2556,14 +2522,12 @@
             });
 
             splashTl
-              .fromTo('#logoSplashImg', { scale: 0.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.7, ease: 'back.out(1.7)' })
-              .to('#logoSplashImg', { scale: 1.12, duration: 0.4, ease: 'power2.inOut' })
-              .to('#logoSplashImg', { scale: 1, duration: 0.3, ease: 'power2.out' })
-              .to('#logoSplashImg', { scale: 0.15, opacity: 0, duration: 0.6, ease: 'power3.in' }, '+=0.25')
-              .to('#logoSplash', { opacity: 0, duration: 0.3 }, '-=0.3');
+              .fromTo('#logoSplashImg', { scale: 0.6, opacity: 0 }, { scale: 1.15, opacity: 1, duration: 0.45, ease: 'power2.out' })
+              .to('#logoSplashImg', { scale: 0.08, opacity: 0, duration: 0.7, ease: 'power3.inOut' }, '+=0.15')
+              .to('#logoSplash', { opacity: 0, duration: 0.2 }, '-=0.25');
 
             /* Hero entrance — starts after splash */
-            var tl = gsap.timeline({ defaults:{ ease:'power4.out' }, delay: 1.9 });
+            var tl = gsap.timeline({ defaults:{ ease:'power4.out' }, delay: 1.3 });
             tl.to('.hero__logo',                { opacity:1, scale:1, duration:1 })
               .to('.hero__tag',                 { opacity:1, y:0, duration:0.8 }, '-=0.5')
               .to('.hero__headline .line-inner', { opacity:1, y:0, duration:1.2, stagger:0.15 }, '-=0.4')
@@ -2690,8 +2654,8 @@
             sparkleObs.observe(canvas.parentElement);
         }
 
-        initSparkles('heroSparkles', 82);
-        initSparkles('ctaSparkles', 55);
+        initSparkles('heroSparkles', 160);
+        initSparkles('ctaSparkles', 110);
 
         /* ── Testimonial scroll — JS-driven for glitch-free looping ── */
         document.querySelectorAll('.testimonial-col').forEach(function(col, idx) {
