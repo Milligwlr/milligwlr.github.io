@@ -555,32 +555,22 @@
         .hero__cta i { transition: transform .3s; position: relative; z-index: 3; }
         .hero__cta:hover i { transform: translateX(5px); }
 
-        /* Scroll hint */
-        .hero__scroll-hint {
-            position: absolute; bottom: 32px; left: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-            display: flex; flex-direction: column;
-            align-items: center;
-        }
-        .scroll-chevrons {
+        /* Logo splash overlay */
+        .logo-splash {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--white);
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 0;
+            justify-content: center;
+            pointer-events: none;
         }
-        .scroll-chevrons i {
-            font-size: 1.4rem;
-            color: var(--electric);
-            animation: chevron-bounce 2s ease-in-out infinite;
-            line-height: .7;
-        }
-        .chevron-1 { animation-delay: 0s; opacity: .3; }
-        .chevron-2 { animation-delay: .15s; opacity: .55; }
-        .chevron-3 { animation-delay: .3s; opacity: .85; }
-        @keyframes chevron-bounce {
-            0%,100% { transform: translateY(0); opacity: .25; }
-            50%     { transform: translateY(6px); opacity: 1; }
+        .logo-splash__img {
+            width: 35vmin;
+            height: 35vmin;
+            object-fit: contain;
+            filter: drop-shadow(0 0 40px rgba(9,132,227,.6)) drop-shadow(0 0 80px rgba(9,132,227,.3));
         }
 
         /* GSAP hidden states */
@@ -590,7 +580,6 @@
         body.js-enabled .hero__sub              { opacity:0; transform:translateY(30px); }
         body.js-enabled .hero__conditions       { opacity:0; transform:translateY(20px); }
         body.js-enabled .hero__cta-row          { opacity:0; transform:translateY(30px); }
-        body.js-enabled .hero__scroll-hint      { opacity:0; }
 
         .reveal { transition: opacity .65s var(--ease), transform .65s var(--ease); }
         body.js-enabled .reveal { opacity:0; transform:translateY(28px); }
@@ -827,6 +816,33 @@
         .diseases-section > .container, .diseases-section > .disease-bands,
         .testimonials-section > .container { position: relative; z-index: 1; }
 
+        /* Animated gradient mesh overlay for sections */
+        .section-mesh {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: .45;
+            background:
+                radial-gradient(ellipse 80% 60% at 20% 30%, rgba(9,132,227,.06) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 80% at 80% 70%, rgba(0,206,201,.05) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 50% at 50% 50%, rgba(116,185,255,.04) 0%, transparent 50%);
+            background-size: 100% 100%;
+            animation: mesh-drift 20s ease-in-out infinite alternate;
+        }
+        @keyframes mesh-drift {
+            0%   { background-position: 0% 0%, 100% 100%, 50% 50%; }
+            50%  { background-position: 30% 20%, 70% 80%, 40% 60%; }
+            100% { background-position: 10% 40%, 90% 60%, 60% 30%; }
+        }
+        /* Section divider — soft gradient fade between sections */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 5%, rgba(9,132,227,.1) 30%, rgba(0,206,201,.08) 70%, transparent 95%);
+            border: none;
+            margin: 0;
+        }
+
         /* =============================================
            ABOUT
         ============================================= */
@@ -837,8 +853,13 @@
             position: sticky; top: 0;
             height: 100vh;
             display: flex; align-items: center; justify-content: center;
+            flex-direction: column;
+            gap: 28px;
             padding: 60px;
             overflow: hidden;
+        }
+        .about__label--above {
+            margin-bottom: 0;
         }
         .about__photo-frame {
             position: relative;
@@ -1599,9 +1620,11 @@
         }
         @media(max-width:768px) {
             .contact__grid { grid-template-columns: 1fr; }
-            .contact__map-card { aspect-ratio: 4/3; }
-            .contact__action-card { flex-direction: column; }
+            .contact__map-card { aspect-ratio: 4/3; order: 2; grid-column: 1; }
+            .contact__card:first-of-type { order: 1; }
+            .contact__action-card { flex-direction: column; order: 3; grid-column: 1; }
             .contact__action-btn { width: 100%; justify-content: center; }
+            .contact__card:last-of-type { order: 4; }
         }
 
         /* =============================================
@@ -1692,15 +1715,32 @@
             .hero__cta      { width: 100%; justify-content: center; min-height: 48px; }
             .hero__conditions { gap: 6px; }
             .hero__pill     { padding: 5px 12px; font-size: .7rem; }
+            .hero__content  { padding: 0 20px 60px; }
+            .hero__sub      { padding: 18px 22px; margin-bottom: 24px; }
+            .hero__logo     { margin-bottom: 20px; }
+            .hero__tag      { margin-bottom: 20px; }
+            .hero__headline { margin-bottom: 20px; }
             .section-title  { font-size: 1.72rem; }
-            .section-sub    { font-size: .9rem; }
+            .section-title::after { margin-top: 10px; width: 44px; height: 3px; }
+            .section-sub    { font-size: .88rem; margin-top: 4px; }
+            .section-label  { font-size: .65rem; padding: 5px 14px; margin-bottom: 8px; }
+            /* Sections fit in viewport */
+            .services.py-5, .diseases-section.py-5, .testimonials-section.py-5 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+            .services .container.my-5, .diseases-section .container.my-5, .testimonials-section .container.my-5 { margin-top: 1rem !important; margin-bottom: 1rem !important; }
+            .services .mb-5, .diseases-section .mb-5, .testimonials-section .mb-5 { margin-bottom: 1.5rem !important; }
+            .services-carousel__nav { margin-top: 20px; }
+            .services-carousel__card { flex: 0 0 calc(100% - 24px); min-width: 260px; padding: 32px 26px 30px; }
             .testimonial-columns {
                 grid-template-columns: 1fr 1fr;
                 height: 420px;
             }
             .testimonial-columns > :nth-child(3) { display: none; }
-            .services-carousel__card { flex: 0 0 calc(100% - 24px); min-width: 260px; }
             .disease-card { width: 260px; padding: 24px 20px; }
+            .disease-card p { font-size: .92rem; line-height: 1.72; }
+            .disease-card h3 { font-size: 1.15rem; }
+            .services-carousel__card p { font-size: 1rem; line-height: 1.75; }
+            .services-carousel__card h3 { font-size: 1.3rem; }
+            .testi-text { font-size: .92rem; }
             /* Lighten hero effects on mobile */
             .hero__aurora { opacity: .5; filter: blur(80px); animation-duration: 30s; }
             .hero__orb3 { opacity: .4; }
@@ -1714,7 +1754,6 @@
             .hero__headline { font-size: 2.45rem; }
             .hero__tag      { font-size: .7rem; padding: 7px 16px; margin-bottom: 24px; }
             .hero__sub      { font-size: .88rem; }
-            .hero__scroll-hint { bottom: 18px; }
             .hero__logo     { width: 160px; height: 160px; margin-bottom: 24px; }
             .top-bar-legal  { font-size: .62rem; padding: 6px 0; }
             .navbar-brand   { font-size: 1.25rem; }
@@ -1742,6 +1781,11 @@
 </head>
 <body>
     <script>document.body.classList.add('js-enabled');</script>
+
+    <!-- Logo Splash Screen -->
+    <div class="logo-splash" id="logoSplash">
+        <img src="favicon.png" alt="" class="logo-splash__img" id="logoSplashImg">
+    </div>
 
     <div class="top-bar-legal text-center fw-semibold">
         <div class="container">Aviso Cofepris: XXXXXXXX &nbsp;|&nbsp; Céd. Prof: XXXXXXX &nbsp;|&nbsp; Céd. Esp: XXXXXXX</div>
@@ -1794,7 +1838,7 @@
                     <span class="line"><span class="line-inner">Salud Respiratoria</span></span>
                     <span class="line"><span class="line-inner">de <em>Vanguardia</em></span></span>
                 </h1>
-                <p class="hero__sub">¿Tos que no cede, dificultad para respirar o problemas pulmonares que afectan tu día a día?<br><br>El <strong>Dr. William Lara</strong>, formado en el <strong>INER</strong>, combina experiencia de alto nivel con un trato cercano para devolverte la tranquilidad de respirar bien.</p>
+                <p class="hero__sub">¿Tos que no cede, dificultad para respirar o problemas pulmonares que afectan tu día a día?<br><br>El <strong>Dr. William Lara</strong> combina experiencia de alto nivel con un trato cercano para devolverte la tranquilidad de respirar bien.</p>
                 <div class="hero__conditions">
                     <span class="hero__pill">Asma</span>
                     <span class="hero__pill">EPOC</span>
@@ -1806,13 +1850,6 @@
                     <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="hero__cta">
                         Agendar cita <i class="bi bi-arrow-right" aria-hidden="true"></i>
                     </a>
-                </div>
-            </div>
-            <div class="hero__scroll-hint">
-                <div class="scroll-chevrons">
-                    <i class="bi bi-chevron-down chevron-1"></i>
-                    <i class="bi bi-chevron-down chevron-2"></i>
-                    <i class="bi bi-chevron-down chevron-3"></i>
                 </div>
             </div>
         </section>
@@ -1867,10 +1904,13 @@
         </section>
 
         <!-- ===== SOBRE MÍ ===== -->
+        <hr class="section-divider">
         <section class="about section-bg" id="sobre-mi">
             <div class="section-dots"></div>
+            <div class="section-mesh"></div>
             <div class="about__inner">
                 <div class="about__visual">
+                    <div class="about__label about__label--above reveal">Acerca de mí</div>
                     <div class="about__photo-frame reveal">
                         <i class="bi bi-camera placeholder-icon" aria-hidden="true"></i>
                         <span class="placeholder-text">Espacio reservado para<br>fotografía clínica</span>
@@ -1880,19 +1920,20 @@
                     </div>
                 </div>
                 <div class="about__text">
-                    <div class="about__label reveal">Acerca de mí</div>
                     <h2 class="about__name reveal">Dr. William César<br>Lara Vázquez</h2>
                     <p class="about__paragraph reveal">Me formé en el <strong>Instituto Nacional de Enfermedades Respiratorias (INER)</strong>, la institución de referencia en México para enfermedades pulmonares. Actualmente curso la <span class="about__highlight">Alta Especialidad en EPOC</span>, lo que me permite ofrecerte el tratamiento más actualizado y efectivo.</p>
                     <div class="about__commitment reveal">
-                        Mi compromiso es devolverte la <em>libertad de respirar con plenitud</em>. Te brindo absoluta claridad sobre tu diagnóstico y el <strong>respaldo necesario</strong> para tomar decisiones informadas. Tu cuerpo es único; por ello, tu tratamiento se <strong>diseña a tu medida</strong>.
+                        Mi compromiso es devolverte la <em>libertad de respirar con plenitud</em>. Te brindo absoluta claridad sobre tu diagnóstico y el respaldo necesario para tomar <strong>decisiones informadas</strong>. Tu cuerpo es único; por ello, tu <strong>tratamiento</strong> se diseña a tu medida.
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- ===== SERVICIOS — Card Carousel ===== -->
+        <hr class="section-divider">
         <section id="servicios" class="services section-bg py-5">
             <div class="section-dots"></div>
+            <div class="section-mesh"></div>
             <div class="container my-5">
                 <div class="mb-5 text-center">
                     <span class="section-label reveal">Servicios</span>
@@ -1948,8 +1989,10 @@
         </section>
 
         <!-- ===== ENFERMEDADES — Counter-scrolling bands ===== -->
+        <hr class="section-divider">
         <section id="enfermedades" class="diseases-section section-bg py-5">
             <div class="section-dots"></div>
+            <div class="section-mesh"></div>
             <div class="container my-5">
                 <div class="mb-5 text-center">
                     <span class="section-label reveal">Enfermedades</span>
@@ -2126,8 +2169,10 @@
         </section>
 
         <!-- ===== TESTIMONIOS ===== -->
+        <hr class="section-divider">
         <section id="testimonios" class="testimonials-section section-bg py-5">
             <div class="section-dots"></div>
+            <div class="section-mesh"></div>
             <div class="container my-5">
                 <div class="mb-5 text-center">
                     <span class="section-label reveal">Testimonios</span>
@@ -2301,7 +2346,6 @@
                 <div class="text-center mb-5">
                     <span class="section-label reveal">Contacto</span>
                     <h2 class="section-title reveal">Encuéntrame aquí</h2>
-                    <p class="section-sub reveal">Hospital Santa Coleta · Consultorio 507 · Ciudad de México</p>
                 </div>
 
                 <div class="contact__grid">
@@ -2503,15 +2547,29 @@
         if (hasGSAP) {
             gsap.registerPlugin(ScrollTrigger);
 
-            /* Hero entrance */
-            var tl = gsap.timeline({ defaults:{ ease:'power4.out' } });
-            tl.to('.hero__logo',                { opacity:1, scale:1, duration:1, delay:0.2 })
+            /* Logo Splash → Hero entrance */
+            var splashTl = gsap.timeline({
+                onComplete: function() {
+                    var splash = document.getElementById('logoSplash');
+                    if (splash) splash.remove();
+                }
+            });
+
+            splashTl
+              .fromTo('#logoSplashImg', { scale: 0.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.7, ease: 'back.out(1.7)' })
+              .to('#logoSplashImg', { scale: 1.12, duration: 0.4, ease: 'power2.inOut' })
+              .to('#logoSplashImg', { scale: 1, duration: 0.3, ease: 'power2.out' })
+              .to('#logoSplashImg', { scale: 0.15, opacity: 0, duration: 0.6, ease: 'power3.in' }, '+=0.25')
+              .to('#logoSplash', { opacity: 0, duration: 0.3 }, '-=0.3');
+
+            /* Hero entrance — starts after splash */
+            var tl = gsap.timeline({ defaults:{ ease:'power4.out' }, delay: 1.9 });
+            tl.to('.hero__logo',                { opacity:1, scale:1, duration:1 })
               .to('.hero__tag',                 { opacity:1, y:0, duration:0.8 }, '-=0.5')
               .to('.hero__headline .line-inner', { opacity:1, y:0, duration:1.2, stagger:0.15 }, '-=0.4')
               .to('.hero__sub',                 { opacity:1, y:0, duration:0.9 }, '-=0.7')
               .to('.hero__conditions',          { opacity:1, y:0, duration:0.7 }, '-=0.5')
-              .to('.hero__cta-row',             { opacity:1, y:0, duration:0.9 }, '-=0.5')
-              .to('.hero__scroll-hint',         { opacity:1, duration:1 },        '-=0.3');
+              .to('.hero__cta-row',             { opacity:1, y:0, duration:0.9 }, '-=0.5');
 
             /* Hero parallax — only on desktop */
             if (window.innerWidth > 768) {
@@ -2525,7 +2583,7 @@
                 });
             }
 
-            /* Scroll-driven parallax for section dot grids */
+            /* Scroll-driven parallax for section dot grids + mesh */
             gsap.utils.toArray('.section-dots').forEach(function(dots) {
                 gsap.to(dots, {
                     backgroundPositionY: '60px',
@@ -2533,18 +2591,28 @@
                     scrollTrigger: { trigger: dots.parentElement, start: 'top bottom', end: 'bottom top', scrub: true }
                 });
             });
+            gsap.utils.toArray('.section-mesh').forEach(function(mesh) {
+                gsap.fromTo(mesh,
+                    { opacity: 0, scale: 1.1 },
+                    { opacity: .45, scale: 1, ease: 'none',
+                      scrollTrigger: { trigger: mesh.parentElement, start: 'top 80%', end: 'top 20%', scrub: true }
+                    }
+                );
+            });
 
-            /* Reveal animations */
+            /* Apple-style reveal animations — smooth, staggered, with subtle scale */
             gsap.utils.toArray('.reveal').forEach(function(el){
-                gsap.to(el, {
-                    opacity:1, y:0, duration:0.65, ease:'power3.out',
-                    scrollTrigger:{ trigger:el, start:'top 94%', toggleActions:'play none none none' }
-                });
+                gsap.fromTo(el,
+                    { opacity: 0, y: 40, scale: 0.97 },
+                    { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: 'power3.out',
+                      scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' }
+                    }
+                );
             });
 
         } else {
             /* Fallback (no GSAP) */
-            document.querySelectorAll('.hero__logo,.hero__tag,.hero__headline .line-inner,.hero__sub,.hero__conditions,.hero__cta-row,.hero__scroll-hint').forEach(function(el){
+            document.querySelectorAll('.hero__logo,.hero__tag,.hero__headline .line-inner,.hero__sub,.hero__conditions,.hero__cta-row').forEach(function(el){
                 el.style.opacity='1'; el.style.transform='none';
             });
             var obs = new IntersectionObserver(function(entries){
@@ -2627,7 +2695,19 @@
 
         /* ── Testimonial scroll — JS-driven for glitch-free looping ── */
         document.querySelectorAll('.testimonial-col').forEach(function(col, idx) {
-            var speed = [0.4, -0.35, 0.45][idx] || 0.4; // px per frame, negative = reverse
+            var speed = [0.65, -0.55, 0.7][idx] || 0.65; // px per frame, negative = reverse
+
+            /* Ensure enough content for seamless loop by cloning cards if needed */
+            var origCards = col.querySelectorAll('.testi-card');
+            var colHeight = col.offsetHeight;
+            var contentHeight = 0;
+            origCards.forEach(function(c) { contentHeight += c.offsetHeight + 16; });
+            if (contentHeight < colHeight * 2.5) {
+                var frag = document.createDocumentFragment();
+                origCards.forEach(function(c) { frag.appendChild(c.cloneNode(true)); });
+                col.appendChild(frag);
+            }
+
             var pos = speed < 0 ? -(col.scrollHeight / 2) : 0;
             var paused = false;
             var raf = null;
