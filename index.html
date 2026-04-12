@@ -412,14 +412,14 @@
             position: relative; z-index: 2;
             text-align: center;
             max-width: 940px;
-            padding: 0 24px 60px;
+            padding: 0 24px 48px;
         }
 
         /* Hero Logo — large, prominent */
         .hero__logo {
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 20px;
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 18px;
             filter: drop-shadow(0 0 24px rgba(9,132,227,.55)) drop-shadow(0 0 48px rgba(9,132,227,.25));
             animation: hero-logo-pulse 4s ease-in-out infinite;
             object-fit: contain;
@@ -444,7 +444,7 @@
             letter-spacing: .6px;
             text-transform: uppercase;
             margin-top: 8px;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
         .hero__tag .dot {
             width: 6px; height: 6px;
@@ -461,11 +461,11 @@
         /* Headline */
         .hero__headline {
             font-weight: 800;
-            font-size: clamp(2.6rem, 7vw, 4.8rem);
+            font-size: clamp(2.6rem, 7vw, 4.6rem);
             line-height: .95;
             letter-spacing: -0.035em;
             color: var(--navy);
-            margin: 0 0 20px;
+            margin: 0 0 18px;
         }
         .hero__headline em {
             font-style: normal;
@@ -478,30 +478,59 @@
         .hero__headline .line       { display: block; overflow: hidden; padding-bottom: .15em; }
         .hero__headline .line-inner { display: block; }
 
-        /* Sub — glass card style */
+        /* Sub — premium glass card */
         .hero__sub {
-            font-size: clamp(.92rem, 1.6vw, 1.05rem);
-            line-height: 1.75;
-            color: var(--text);
-            max-width: 560px;
+            max-width: 540px;
             margin: 0 auto 16px;
-            background: rgba(255,255,255,.3);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(9,132,227,.08);
+            background: rgba(255,255,255,.35);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(9,132,227,.1);
             border-radius: 20px;
-            padding: 20px 28px;
-            box-shadow: 0 4px 24px rgba(10,22,40,.04);
+            padding: 0;
+            box-shadow: 0 8px 32px rgba(10,22,40,.05), inset 0 1px 0 rgba(255,255,255,.5);
             position: relative;
+            overflow: hidden;
         }
         .hero__sub::before {
             content: '';
             position: absolute;
-            top: 0; left: 24px; right: 24px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(9,132,227,.2), transparent);
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 5%, var(--electric) 30%, var(--cyan) 70%, transparent 95%);
+            opacity: .6;
         }
-        .hero__sub strong {
+        .hero__card-q {
+            padding: 18px 28px 14px;
+            font-size: clamp(.85rem, 1.4vw, .95rem);
+            line-height: 1.65;
+            color: var(--text-muted);
+            font-style: italic;
+            position: relative;
+        }
+        .hero__card-q::before {
+            content: '\201C';
+            position: absolute;
+            top: 8px; left: 12px;
+            font-size: 2.2rem;
+            color: rgba(9,132,227,.12);
+            font-style: normal;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .hero__card-divider {
+            height: 1px;
+            margin: 0 28px;
+            background: linear-gradient(90deg, transparent, rgba(9,132,227,.15), transparent);
+        }
+        .hero__card-value {
+            padding: 14px 28px 18px;
+            font-size: clamp(.88rem, 1.5vw, .98rem);
+            line-height: 1.7;
+            color: var(--text);
+            font-weight: 500;
+        }
+        .hero__card-value strong {
             color: var(--electric);
             font-weight: 700;
         }
@@ -510,7 +539,7 @@
         .hero__conditions {
             display: flex; flex-wrap: wrap;
             gap: 8px; justify-content: center;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
         .hero__pill {
             display: inline-flex; align-items: center; gap: 5px;
@@ -538,7 +567,7 @@
         }
         .hero__scroll-hint {
             position: absolute;
-            bottom: 28px;
+            bottom: 14px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -1279,17 +1308,40 @@
             margin: 0;
             flex: 1;
         }
+        .service-card__actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
         .service-card__cta {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            font-size: .84rem;
+            font-size: .8rem;
             font-weight: 700;
             color: var(--electric);
-            margin-top: 18px;
-            transition: gap .3s var(--ease);
+            transition: all .3s var(--ease);
+            text-decoration: none;
+            cursor: pointer;
+            padding: 7px 16px;
+            border-radius: 100px;
+            border: 1.5px solid rgba(9,132,227,.18);
+            background: rgba(9,132,227,.03);
         }
-        .service-card:hover .service-card__cta { gap: 10px; }
+        .service-card__cta:hover { border-color: var(--electric); background: rgba(9,132,227,.08); }
+        .service-card__cta--wa {
+            color: #fff;
+            background: #25d366;
+            border-color: #25d366;
+        }
+        .service-card__cta--wa:hover { background: #1da851; border-color: #1da851; }
+        .service-card.card-highlight {
+            border-color: rgba(9,132,227,.25);
+            box-shadow: 0 12px 40px rgba(9,132,227,.12), 0 0 0 2px rgba(9,132,227,.1);
+            transform: translateY(-4px);
+        }
 
         /* Category item count badge */
         .services-tab .tab-count {
@@ -1418,19 +1470,41 @@
             margin: 0 0 18px;
             flex: 1;
         }
+        .disease-card__actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
         .disease-card__cta {
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            font-size: .82rem;
+            font-size: .76rem;
             font-weight: 700;
             color: var(--electric);
             transition: all .3s var(--ease);
+            text-decoration: none;
+            cursor: pointer;
+            padding: 6px 14px;
+            border-radius: 100px;
+            border: 1.5px solid rgba(9,132,227,.16);
+            background: rgba(9,132,227,.03);
         }
-        .disease-card:hover .disease-card__cta {
-            gap: 9px;
-            color: var(--cyan);
+        .disease-card__cta:hover { border-color: var(--electric); background: rgba(9,132,227,.08); }
+        .disease-card__cta--wa {
+            color: #fff;
+            background: #25d366;
+            border-color: #25d366;
         }
+        .disease-card__cta--wa:hover { background: #1da851; border-color: #1da851; }
+        .disease-card.card-active {
+            border-color: rgba(9,132,227,.25);
+            box-shadow: 0 16px 48px rgba(9,132,227,.16), 0 0 0 2px rgba(9,132,227,.12);
+            transform: translateY(-6px);
+            z-index: 10;
+        }
+        .disease-band.band-paused { animation-play-state: paused !important; }
 
         /* =============================================
            TESTIMONIALS
@@ -1900,11 +1974,17 @@
             .hero__cta      { width: 100%; justify-content: center; min-height: 48px; padding: 14px 32px; font-size: 1rem; }
             .hero__conditions { gap: 6px; }
             .hero__pill     { padding: 5px 12px; font-size: .7rem; }
-            .hero__content  { padding: 0 20px 40px; }
-            .hero__sub      { padding: 16px 20px; margin-bottom: 12px; font-size: .9rem; }
-            .hero__logo     { width: 130px; height: 130px; margin-bottom: 14px; }
-            .hero__tag      { margin-bottom: 12px; font-size: .68rem; padding: 7px 16px; }
-            .hero__headline { margin-bottom: 14px; }
+            .hero__content  { padding: 0 20px 36px; }
+            .hero__logo     { width: 120px; height: 120px; margin-bottom: 14px; }
+            .hero__headline { margin-bottom: 12px; }
+            .hero__card-q   { padding: 14px 20px 10px; font-size: .86rem; }
+            .hero__card-q::before { font-size: 1.6rem; top: 6px; left: 10px; }
+            .hero__card-value { padding: 10px 20px 14px; font-size: .88rem; }
+            .hero__card-divider { margin: 0 20px; }
+            .hero__sub      { margin-bottom: 12px; }
+            .hero__tag      { margin-bottom: 10px; font-size: .66rem; padding: 7px 16px; }
+            .hero__conditions { margin-bottom: 14px; gap: 6px; }
+            .hero__pill     { padding: 5px 12px; font-size: .7rem; }
             .section-title  { font-size: 1.72rem; }
             .section-title::after { margin-top: 10px; width: 44px; height: 3px; }
             .section-sub    { font-size: .88rem; margin-top: 4px; }
@@ -1967,8 +2047,8 @@
             }
         }
         @media(max-width:576px) {
-            .hero__headline { font-size: 2.3rem; }
-            .hero__logo     { width: 110px; height: 110px; margin-bottom: 12px; }
+            .hero__headline { font-size: 2.2rem; }
+            .hero__logo     { width: 100px; height: 100px; margin-bottom: 10px; }
             .top-bar-legal  { font-size: .62rem; padding: 6px 0; }
             .navbar-brand   { font-size: 1.25rem; }
             .navbar-logo    { height: 28px !important; }
@@ -2061,7 +2141,11 @@
                     <span class="line"><span class="line-inner">Salud Respiratoria</span></span>
                     <span class="line"><span class="line-inner">de <em>Vanguardia</em></span></span>
                 </h1>
-                <p class="hero__sub">¿Tos que no cede, dificultad para respirar o problemas pulmonares que afectan tu día a día?<br><br>El <strong>Dr. William Lara</strong> combina experiencia de alto nivel con un <strong>trato cercano</strong> para devolverte la tranquilidad de respirar bien.</p>
+                <div class="hero__sub">
+                    <div class="hero__card-q">¿Tos que no cede, dificultad para respirar o problemas pulmonares que afectan tu día a día?</div>
+                    <div class="hero__card-divider"></div>
+                    <div class="hero__card-value">El <strong>Dr. William Lara</strong> combina experiencia de alto nivel con un <strong>trato cercano</strong> para devolverte la tranquilidad de respirar bien.</div>
+                </div>
                 <div class="hero__tag">
                     <span class="dot"></span>
                     Neumología de Alta Especialidad en CDMX
@@ -2072,6 +2156,8 @@
                     <span class="hero__pill">Apnea del Sueño</span>
                     <span class="hero__pill">Neumonía</span>
                     <span class="hero__pill">Tabaquismo</span>
+                    <span class="hero__pill">Fibrosis Pulmonar</span>
+                    <span class="hero__pill">Derrame Pleural</span>
                 </div>
                 <div class="hero__cta-row">
                     <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="hero__cta">
@@ -2208,7 +2294,7 @@
                         <div class="svc-carousel"><div class="svc-carousel__viewport"><div class="svc-carousel__track">
                             <div class="service-card">
                                 <div class="service-card__icon"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i></div>
-                                <h3>Consulta neumológica especializada</h3>
+                                <h3>Consulta de Neumología</h3>
                                 <p>Evaluación completa de tu salud respiratoria con un neumólogo certificado. Revisamos tus síntomas, antecedentes e historial para darte un diagnóstico preciso y un plan de tratamiento claro.</p>
                                 <span class="service-card__cta">Agendar cita <i class="bi bi-arrow-right"></i></span>
                             </div>
@@ -2660,7 +2746,7 @@
                     </div>
 
                     <!-- Action buttons row -->
-                    <div class="contact__action-card reveal reveal-d2">
+                    <div class="contact__action-card reveal">
                         <a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20cita" target="_blank" class="contact__action-btn contact__action-btn--wa">
                             <i class="bi bi-whatsapp" style="font-size:1.2rem"></i> WhatsApp
                         </a>
@@ -2688,7 +2774,7 @@
                 <a href="tel:5591708334" aria-label="Teléfono"><i class="bi bi-telephone-fill" aria-hidden="true"></i></a>
             </div>
             <hr class="footer-divider">
-            <p class="footer-meta mb-1">Dr. William César Lara Vázquez · Neumólogo formado en el INER</p>
+            <p class="footer-meta mb-1">Dr. William César Lara Vázquez · Neumólogo</p>
             <p class="footer-meta mb-2">
                 <a href="/aviso-de-privacidad">Aviso de Privacidad</a>
                 <span style="color:rgba(255,255,255,.1);margin:0 8px">·</span>
@@ -2968,7 +3054,7 @@
                 gsap.fromTo(el,
                     { opacity: 0, y: 40, scale: 0.97 },
                     { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: 'power3.out',
-                      scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' }
+                      scrollTrigger: { trigger: el, start: 'top 96%', toggleActions: 'play none none none' }
                     }
                 );
             });
@@ -3103,29 +3189,91 @@
             tObs.observe(col);
         });
 
-        /* ── WhatsApp deep-links on service & disease cards ── */
+        /* ── Service cards: dual CTAs + highlight ── */
         var waBase = 'https://wa.me/5215591708334?text=';
+        var calLink = 'https://cal.com/dr-william-lara/agendar-cita';
+        var calServices = ['Consulta de Neumología'];
         document.querySelectorAll('.service-card').forEach(function(card) {
-            card.style.cursor = 'pointer';
+            var title = card.querySelector('h3');
+            var oldCta = card.querySelector('.service-card__cta');
+            if (!title || !oldCta) return;
+            var name = title.textContent.trim();
+            var useCal = calServices.indexOf(name) !== -1;
+            var agendarHref = useCal ? calLink : waBase + encodeURIComponent('Hola Dr., quiero agendar ' + name + '. ¿Podría darme más información?');
+            var agendarIcon = useCal ? '<i class="bi bi-calendar-check"></i>' : '<i class="bi bi-whatsapp"></i>';
+            /* Build dual CTA row */
+            var actions = document.createElement('div');
+            actions.className = 'service-card__actions';
+            actions.innerHTML = '<a class="service-card__cta" href="#" data-service="' + name + '">Saber más <i class="bi bi-arrow-right"></i></a>' +
+                '<a class="service-card__cta service-card__cta--wa" href="' + agendarHref + '" target="_blank">' + agendarIcon + ' Agendar</a>';
+            oldCta.replaceWith(actions);
+            /* Highlight on click (card body, not CTAs) */
             card.addEventListener('click', function(e) {
-                var title = card.querySelector('h3');
-                if (title) {
-                    var msg = encodeURIComponent('Hola Dr., me interesa el servicio de ' + title.textContent.trim() + '. ¿Podría darme más información?');
-                    window.open(waBase + msg, '_blank');
-                }
+                if (e.target.closest('.service-card__cta')) return;
+                document.querySelectorAll('.service-card.card-highlight').forEach(function(c) { c.classList.remove('card-highlight'); });
+                card.classList.add('card-highlight');
             });
         });
+
+        /* ── Disease cards: dual CTAs + mobile stop/highlight ── */
         document.querySelectorAll('.disease-card').forEach(function(card) {
             var title = card.querySelector('h3');
-            if (title) {
-                var msg = encodeURIComponent('Hola Dr., tengo síntomas relacionados con ' + title.textContent.trim() + '. ¿Podría agendar una cita?');
-                card.href = waBase + msg;
-                card.target = '_blank';
-                /* Update CTA text */
-                var cta = card.querySelector('.disease-card__cta');
-                if (cta) cta.innerHTML = '¿Tienes estos síntomas? <i class="bi bi-arrow-right"></i>';
-            }
+            var oldCta = card.querySelector('.disease-card__cta');
+            if (!title || !oldCta) return;
+            var name = title.textContent.trim();
+            var waMsg = encodeURIComponent('Hola Dr., tengo síntomas relacionados con ' + name + '. ¿Podría agendar una cita?');
+            var pageLink = card.getAttribute('href') || '#';
+            /* Remove the <a> default navigation */
+            card.removeAttribute('href');
+            card.style.cursor = 'default';
+            /* Build dual CTA row */
+            var actions = document.createElement('div');
+            actions.className = 'disease-card__actions';
+            actions.innerHTML = '<a class="disease-card__cta" href="' + pageLink + '">Saber más <i class="bi bi-arrow-right"></i></a>' +
+                '<a class="disease-card__cta disease-card__cta--wa" href="' + waBase + waMsg + '" target="_blank"><i class="bi bi-whatsapp"></i> ¿Síntomas? <i class="bi bi-arrow-right"></i></a>';
+            oldCta.replaceWith(actions);
         });
+
+        /* ── Disease bands: mobile tap to stop + highlight + drag ── */
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+            document.querySelectorAll('.disease-band').forEach(function(band) {
+                var startX = 0, startScrollLeft = 0, isDragging = false;
+                band.addEventListener('click', function(e) {
+                    var card = e.target.closest('.disease-card');
+                    if (!card) return;
+                    if (e.target.closest('.disease-card__cta')) return;
+                    e.preventDefault();
+                    /* Toggle band pause */
+                    var wasPaused = band.classList.contains('band-paused');
+                    /* Remove all highlights */
+                    band.querySelectorAll('.card-active').forEach(function(c) { c.classList.remove('card-active'); });
+                    if (wasPaused) {
+                        band.classList.remove('band-paused');
+                    } else {
+                        band.classList.add('band-paused');
+                        card.classList.add('card-active');
+                    }
+                });
+                /* Touch drag to reposition band */
+                band.addEventListener('touchstart', function(e) {
+                    if (!band.classList.contains('band-paused')) return;
+                    startX = e.touches[0].clientX;
+                    var transform = window.getComputedStyle(band).transform;
+                    var matrix = new DOMMatrix(transform);
+                    startScrollLeft = matrix.m41;
+                    isDragging = false;
+                }, { passive: true });
+                band.addEventListener('touchmove', function(e) {
+                    if (!band.classList.contains('band-paused')) return;
+                    var dx = e.touches[0].clientX - startX;
+                    if (Math.abs(dx) > 5) isDragging = true;
+                    if (isDragging) {
+                        band.style.transform = 'translateX(' + (startScrollLeft + dx) + 'px)';
+                    }
+                }, { passive: true });
+                band.addEventListener('touchend', function() { isDragging = false; }, { passive: true });
+            });
+        }
 
         /* ── WhatsApp tooltip auto-show after 5s ── */
         var waFloat = document.querySelector('.whatsapp-float');
