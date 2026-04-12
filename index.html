@@ -1337,6 +1337,12 @@
             border-color: #25d366;
         }
         .service-card__cta--wa:hover { background: #1da851; border-color: #1da851; }
+        .service-card__cta--cal {
+            color: #fff;
+            background: var(--electric);
+            border-color: var(--electric);
+        }
+        .service-card__cta--cal:hover { background: #0770c9; border-color: #0770c9; }
         .service-card.card-highlight {
             border-color: rgba(9,132,227,.25);
             box-shadow: 0 12px 40px rgba(9,132,227,.12), 0 0 0 2px rgba(9,132,227,.1);
@@ -2305,16 +2311,16 @@
                                 <span class="service-card__cta">Solicitar visita <i class="bi bi-arrow-right"></i></span>
                             </div>
                             <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-shield-check" aria-hidden="true"></i></div>
-                                <h3>Valoración preoperatoria pulmonar</h3>
-                                <p>Antes de una cirugía, es fundamental saber cómo están tus pulmones. Esta valoración reduce riesgos y te da la tranquilidad de llegar preparado al quirófano.</p>
-                                <span class="service-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                            <div class="service-card">
                                 <div class="service-card__icon"><i class="bi bi-camera-video" aria-hidden="true"></i></div>
                                 <h3>Teleconsulta</h3>
                                 <p>Consulta neumológica por videollamada desde cualquier lugar. Ideal para seguimientos, segundas opiniones o si te encuentras fuera de la CDMX. Misma atención, sin desplazarte.</p>
                                 <span class="service-card__cta">Agendar teleconsulta <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                            <div class="service-card">
+                                <div class="service-card__icon"><i class="bi bi-shield-check" aria-hidden="true"></i></div>
+                                <h3>Valoración preoperatoria pulmonar</h3>
+                                <p>Antes de una cirugía, es fundamental saber cómo están tus pulmones. Esta valoración reduce riesgos y te da la tranquilidad de llegar preparado al quirófano.</p>
+                                <span class="service-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
                             </div>
                         </div></div>
                         <button class="svc-carousel__arrow svc-carousel__arrow--prev" aria-label="Anterior"><i class="bi bi-chevron-left"></i></button>
@@ -3193,19 +3199,23 @@
         var waBase = 'https://wa.me/5215591708334?text=';
         var calLink = 'https://cal.com/dr-william-lara/agendar-cita';
         var calServices = ['Consulta de Neumología'];
+        var agendarOnly = ['Consulta de Neumología', 'Consulta a domicilio'];
         document.querySelectorAll('.service-card').forEach(function(card) {
             var title = card.querySelector('h3');
             var oldCta = card.querySelector('.service-card__cta');
             if (!title || !oldCta) return;
             var name = title.textContent.trim();
             var useCal = calServices.indexOf(name) !== -1;
+            var onlyAgendar = agendarOnly.indexOf(name) !== -1;
             var agendarHref = useCal ? calLink : waBase + encodeURIComponent('Hola Dr., quiero agendar ' + name + '. ¿Podría darme más información?');
             var agendarIcon = useCal ? '<i class="bi bi-calendar-check"></i>' : '<i class="bi bi-whatsapp"></i>';
-            /* Build dual CTA row */
+            var agendarClass = useCal ? 'service-card__cta service-card__cta--cal' : 'service-card__cta service-card__cta--wa';
+            /* Build CTA row */
             var actions = document.createElement('div');
             actions.className = 'service-card__actions';
-            actions.innerHTML = '<a class="service-card__cta" href="#" data-service="' + name + '">Saber más <i class="bi bi-arrow-right"></i></a>' +
-                '<a class="service-card__cta service-card__cta--wa" href="' + agendarHref + '" target="_blank">' + agendarIcon + ' Agendar</a>';
+            var saberHtml = onlyAgendar ? '' : '<a class="service-card__cta" href="#" data-service="' + name + '">Saber más <i class="bi bi-arrow-right"></i></a>';
+            actions.innerHTML = saberHtml +
+                '<a class="' + agendarClass + '" href="' + agendarHref + '" target="_blank">' + agendarIcon + ' Agendar</a>';
             oldCta.replaceWith(actions);
             /* Highlight on click (card body, not CTAs) */
             card.addEventListener('click', function(e) {
@@ -3230,50 +3240,89 @@
             var actions = document.createElement('div');
             actions.className = 'disease-card__actions';
             actions.innerHTML = '<a class="disease-card__cta" href="' + pageLink + '">Saber más <i class="bi bi-arrow-right"></i></a>' +
-                '<a class="disease-card__cta disease-card__cta--wa" href="' + waBase + waMsg + '" target="_blank"><i class="bi bi-whatsapp"></i> ¿Síntomas? <i class="bi bi-arrow-right"></i></a>';
+                '<a class="disease-card__cta disease-card__cta--wa" href="' + waBase + waMsg + '" target="_blank"><i class="bi bi-whatsapp"></i> Preguntar <i class="bi bi-arrow-right"></i></a>';
             oldCta.replaceWith(actions);
         });
 
-        /* ── Disease bands: mobile tap to stop + highlight + drag ── */
-        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-            document.querySelectorAll('.disease-band').forEach(function(band) {
-                var startX = 0, startScrollLeft = 0, isDragging = false;
-                band.addEventListener('click', function(e) {
-                    var card = e.target.closest('.disease-card');
-                    if (!card) return;
-                    if (e.target.closest('.disease-card__cta')) return;
-                    e.preventDefault();
-                    /* Toggle band pause */
-                    var wasPaused = band.classList.contains('band-paused');
-                    /* Remove all highlights */
-                    band.querySelectorAll('.card-active').forEach(function(c) { c.classList.remove('card-active'); });
-                    if (wasPaused) {
-                        band.classList.remove('band-paused');
-                    } else {
-                        band.classList.add('band-paused');
-                        card.classList.add('card-active');
-                    }
-                });
-                /* Touch drag to reposition band */
-                band.addEventListener('touchstart', function(e) {
-                    if (!band.classList.contains('band-paused')) return;
-                    startX = e.touches[0].clientX;
-                    var transform = window.getComputedStyle(band).transform;
-                    var matrix = new DOMMatrix(transform);
-                    startScrollLeft = matrix.m41;
-                    isDragging = false;
-                }, { passive: true });
-                band.addEventListener('touchmove', function(e) {
-                    if (!band.classList.contains('band-paused')) return;
-                    var dx = e.touches[0].clientX - startX;
-                    if (Math.abs(dx) > 5) isDragging = true;
-                    if (isDragging) {
-                        band.style.transform = 'translateX(' + (startScrollLeft + dx) + 'px)';
-                    }
-                }, { passive: true });
-                band.addEventListener('touchend', function() { isDragging = false; }, { passive: true });
+        /* ── Disease bands: tap to stop + highlight + drag (touch & mouse) ── */
+        document.querySelectorAll('.disease-band').forEach(function(band) {
+            var startX = 0, startScrollLeft = 0, isDragging = false, didDrag = false;
+
+            function getTranslateX() {
+                var transform = window.getComputedStyle(band).transform;
+                if (!transform || transform === 'none') return 0;
+                var matrix = new DOMMatrix(transform);
+                return matrix.m41;
+            }
+
+            /* Click to pause/resume */
+            band.addEventListener('click', function(e) {
+                if (didDrag) { didDrag = false; return; }
+                var card = e.target.closest('.disease-card');
+                if (!card) return;
+                if (e.target.closest('.disease-card__cta')) return;
+                e.preventDefault();
+                var wasPaused = band.classList.contains('band-paused');
+                band.querySelectorAll('.card-active').forEach(function(c) { c.classList.remove('card-active'); });
+                if (wasPaused) {
+                    band.classList.remove('band-paused');
+                    band.style.transform = '';
+                } else {
+                    band.classList.add('band-paused');
+                    band.style.transform = 'translateX(' + getTranslateX() + 'px)';
+                    card.classList.add('card-active');
+                }
             });
-        }
+
+            /* ── Touch drag ── */
+            band.addEventListener('touchstart', function(e) {
+                if (!band.classList.contains('band-paused')) return;
+                startX = e.touches[0].clientX;
+                startScrollLeft = getTranslateX();
+                isDragging = false;
+                band.style.transition = 'none';
+            }, { passive: true });
+            band.addEventListener('touchmove', function(e) {
+                if (!band.classList.contains('band-paused')) return;
+                var dx = e.touches[0].clientX - startX;
+                if (Math.abs(dx) > 5) isDragging = true;
+                if (isDragging) {
+                    band.style.transform = 'translateX(' + (startScrollLeft + dx) + 'px)';
+                }
+            }, { passive: true });
+            band.addEventListener('touchend', function() {
+                if (isDragging) {
+                    band.style.transition = 'transform .3s ease';
+                    setTimeout(function() { band.style.transition = 'none'; }, 350);
+                }
+                isDragging = false;
+            }, { passive: true });
+
+            /* ── Mouse drag (desktop) ── */
+            band.addEventListener('mousedown', function(e) {
+                if (!band.classList.contains('band-paused')) return;
+                e.preventDefault();
+                startX = e.clientX;
+                startScrollLeft = getTranslateX();
+                isDragging = true;
+                didDrag = false;
+                band.style.transition = 'none';
+                band.style.cursor = 'grabbing';
+            });
+            document.addEventListener('mousemove', function(e) {
+                if (!isDragging) return;
+                var dx = e.clientX - startX;
+                if (Math.abs(dx) > 3) didDrag = true;
+                band.style.transform = 'translateX(' + (startScrollLeft + dx) + 'px)';
+            });
+            document.addEventListener('mouseup', function() {
+                if (!isDragging) return;
+                isDragging = false;
+                band.style.cursor = '';
+                band.style.transition = 'transform .3s ease';
+                setTimeout(function() { band.style.transition = 'none'; }, 350);
+            });
+        });
 
         /* ── WhatsApp tooltip auto-show after 5s ── */
         var waFloat = document.querySelector('.whatsapp-float');
