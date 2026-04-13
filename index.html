@@ -777,6 +777,22 @@
             margin-bottom: 8px;
         }
         .stat-num .stat-accent { color: var(--sky); }
+        .stat-cnn-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 64px; height: 64px;
+            border-radius: 18px;
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(116,185,255,.18);
+            box-shadow: 0 0 20px rgba(9,132,227,.15), inset 0 1px 0 rgba(255,255,255,.08);
+            margin-bottom: 2px;
+        }
+        .stat-cnn-logo {
+            width: 44px; height: 44px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 6px rgba(116,185,255,.4));
+        }
         .stat-label {
             font-size: .72rem; font-weight: 600;
             color: rgba(255,255,255,.38);
@@ -2454,7 +2470,11 @@
                     <span class="stat-label">Calificación promedio</span>
                 </div>
                 <div class="stat-item reveal reveal-d2">
-                    <span class="stat-num"><svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto 4px"><circle cx="24" cy="24" r="22" stroke="rgba(116,185,255,.5)" stroke-width="2" fill="none"/><path d="M24 10 L28 18 L37 19.5 L30.5 26 L32 35 L24 30.5 L16 35 L17.5 26 L11 19.5 L20 18 Z" fill="rgba(116,185,255,.7)"/><circle cx="24" cy="24" r="10" stroke="rgba(116,185,255,.5)" stroke-width="1.5" fill="none"/><text x="24" y="28" text-anchor="middle" font-size="9" font-weight="800" fill="white" font-family="system-ui">CNN</text></svg></span>
+                    <span class="stat-num">
+                        <span class="stat-cnn-badge">
+                            <img src="images/CNN.png" alt="CNN" class="stat-cnn-logo">
+                        </span>
+                    </span>
                     <span class="stat-label">Especialista certificado</span>
                 </div>
             </div>
