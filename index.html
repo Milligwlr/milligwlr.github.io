@@ -1186,7 +1186,86 @@
         .creds-header { text-align: center; margin-bottom: 20px; }
         .creds-header__title { display: none; }
 
-        /* ── Single unified marquee for everything ── */
+        /* ── Static cards row: cédulas + CNN ── */
+        .creds-cards-row {
+            display: flex; gap: 16px; justify-content: center;
+            max-width: 960px; margin: 0 auto 28px; padding: 0 24px;
+        }
+        .cred-card {
+            flex: 1; max-width: 310px;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2d4a 40%, #0d2137 100%);
+            border-radius: 18px;
+            display: flex; flex-direction: column;
+            position: relative; overflow: hidden;
+            transition: all .5s var(--ease);
+            border: 1px solid rgba(116,185,255,.15);
+        }
+        .cred-card::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(105deg, transparent 20%, rgba(116,185,255,.07) 35%, rgba(0,206,201,.06) 45%, transparent 60%);
+            background-size: 200% 100%;
+            animation: cedula-shimmer 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes cedula-shimmer {
+            0%   { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .cred-card::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--electric), var(--cyan), #6c5ce7, var(--electric));
+            background-size: 300% 100%;
+            animation: cedula-accent-flow 3s linear infinite;
+        }
+        @keyframes cedula-accent-flow {
+            0%   { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+        .cred-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(9,132,227,.25), 0 0 30px rgba(9,132,227,.1);
+            border-color: rgba(116,185,255,.3);
+        }
+        .cred-card__inner {
+            position: relative; z-index: 2;
+            padding: 22px 24px 20px;
+            display: flex; align-items: center; gap: 16px;
+            flex: 1;
+        }
+        .cred-card__logo-wrap {
+            width: 56px; height: 56px;
+            border-radius: 14px;
+            background: #fff;
+            box-shadow: 0 0 16px rgba(255,255,255,.6), 0 0 32px rgba(255,255,255,.2);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .cred-card__logo {
+            width: 40px; height: 40px;
+            object-fit: contain;
+        }
+        .cred-card__info { flex: 1; min-width: 0; position: relative; z-index: 1; }
+        .cred-card__type {
+            font-size: .58rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1.5px; color: rgba(116,185,255,.7); margin-bottom: 3px;
+        }
+        .cred-card__number {
+            font-size: 1.05rem; font-weight: 800; color: #fff;
+            letter-spacing: 1.5px; line-height: 1.3;
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+        }
+        .cred-card__text {
+            font-size: .82rem; font-weight: 700; color: #fff;
+            line-height: 1.3;
+        }
+        .cred-card__source {
+            font-size: .64rem; color: rgba(255,255,255,.4); font-weight: 500;
+            margin-top: 2px;
+        }
+
+        /* ── Marquee for societies ── */
         .creds-marquee-wrapper {
             position: relative;
             width: 100%;
@@ -1210,88 +1289,13 @@
         .creds-marquee-track {
             display: flex; align-items: stretch;
             width: max-content;
-            animation: creds-scroll 30s linear infinite;
+            animation: creds-scroll 22s linear infinite;
         }
-        .creds-marquee-track:hover {
-            animation-play-state: paused;
-        }
+        .creds-marquee-track:hover { animation-play-state: paused; }
         @keyframes creds-scroll {
             0%   { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
-
-        /* ── Credential card (cédulas inside marquee) ── */
-        .creds-marquee-cedula {
-            flex-shrink: 0;
-            background: linear-gradient(135deg, #0a1628 0%, #1a2d4a 40%, #0d2137 100%);
-            border-radius: 18px;
-            margin: 0 10px;
-            display: flex; align-items: center; gap: 18px;
-            padding: 22px 28px;
-            position: relative; overflow: hidden;
-            border: 1px solid rgba(116,185,255,.15);
-            min-width: 320px;
-            transition: all .4s var(--ease);
-        }
-        .creds-marquee-cedula::before {
-            content: '';
-            position: absolute; inset: 0;
-            background: linear-gradient(105deg, transparent 20%, rgba(116,185,255,.07) 35%, rgba(0,206,201,.06) 45%, transparent 60%);
-            background-size: 200% 100%;
-            animation: cedula-shimmer 4s ease-in-out infinite;
-            pointer-events: none;
-        }
-        @keyframes cedula-shimmer {
-            0%   { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-        .creds-marquee-cedula::after {
-            content: '';
-            position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, var(--electric), var(--cyan), #6c5ce7, var(--electric));
-            background-size: 300% 100%;
-            animation: cedula-accent-flow 3s linear infinite;
-        }
-        @keyframes cedula-accent-flow {
-            0%   { background-position: 0% 50%; }
-            100% { background-position: 300% 50%; }
-        }
-        .creds-marquee-cedula:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 16px 48px rgba(9,132,227,.2);
-            border-color: rgba(116,185,255,.3);
-        }
-        .creds-marquee-cedula__logo-wrap {
-            width: 60px; height: 60px;
-            border-radius: 14px;
-            background: #fff;
-            box-shadow: 0 0 16px rgba(255,255,255,.6), 0 0 32px rgba(255,255,255,.2);
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
-            position: relative; z-index: 1;
-        }
-        .creds-marquee-cedula__logo {
-            width: 44px; height: 44px;
-            object-fit: contain;
-        }
-        .creds-marquee-cedula__info {
-            position: relative; z-index: 1;
-        }
-        .creds-marquee-cedula__type {
-            font-size: .58rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1.5px; color: rgba(116,185,255,.7); margin-bottom: 3px;
-        }
-        .creds-marquee-cedula__number {
-            font-size: 1.1rem; font-weight: 800; color: #fff;
-            letter-spacing: 1.5px; line-height: 1.3;
-            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
-        }
-        .creds-marquee-cedula__source {
-            font-size: .64rem; color: rgba(255,255,255,.4); font-weight: 500;
-            margin-top: 2px;
-        }
-
-        /* ── Institution card (logos inside marquee) ── */
         .creds-marquee-item {
             flex-shrink: 0;
             display: flex; flex-direction: column; align-items: center;
@@ -1304,8 +1308,6 @@
             border-radius: 18px;
             transition: all .4s var(--ease);
             cursor: default;
-            position: relative;
-            overflow: hidden;
         }
         .creds-marquee-item:hover {
             transform: translateY(-4px) scale(1.03);
@@ -1317,13 +1319,10 @@
             object-fit: contain;
             transition: all .4s var(--ease);
         }
-        .creds-marquee-item:hover .creds-marquee-item__logo {
-            transform: scale(1.08);
-        }
+        .creds-marquee-item:hover .creds-marquee-item__logo { transform: scale(1.08); }
         .creds-marquee-item__name {
             font-size: .66rem; font-weight: 600; color: var(--text-muted);
-            text-align: center; line-height: 1.3;
-            max-width: 140px;
+            text-align: center; line-height: 1.3; max-width: 140px;
         }
         .creds-marquee-item__tag {
             font-size: .56rem; font-weight: 700; text-transform: uppercase;
@@ -1331,7 +1330,10 @@
             background: rgba(9,132,227,.06);
             padding: 3px 10px; border-radius: 100px;
         }
-        /* ALAT/ATS bigger logos */
+        /* ALAT extra large */
+        .creds-marquee-item--xl .creds-marquee-item__logo {
+            width: 130px; height: 130px;
+        }
         .creds-marquee-item--lg .creds-marquee-item__logo {
             width: 100px; height: 100px;
         }
@@ -1589,8 +1591,8 @@
         .disease-card {
             flex-shrink: 0;
             width: 320px;
-            background: var(--white);
-            border: 1px solid rgba(9,132,227,.08);
+            background: linear-gradient(160deg, #ffffff 0%, #f4f8ff 60%, #eaf2ff 100%);
+            border: 1px solid rgba(9,132,227,.1);
             border-radius: 22px;
             padding: 34px 28px 30px;
             transition: all .45s var(--ease);
@@ -1600,17 +1602,18 @@
             position: relative;
             overflow: hidden;
         }
-        /* Background decorative glow */
+        /* Corner mesh pattern */
         .disease-card::before {
             content: '';
             position: absolute;
-            bottom: -40px; left: -40px;
-            width: 120px; height: 120px;
+            top: -30px; right: -30px;
+            width: 140px; height: 140px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(9,132,227,.06) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(9,132,227,.08) 0%, rgba(0,206,201,.04) 50%, transparent 70%);
             transition: all .5s var(--ease);
             pointer-events: none;
         }
+        /* Top accent line */
         .disease-card::after {
             content: '';
             position: absolute;
@@ -1623,25 +1626,38 @@
             transition: transform .45s var(--ease);
         }
         .disease-card:hover {
-            border-color: rgba(9,132,227,.2);
-            box-shadow: 0 20px 56px rgba(9,132,227,.13), 0 0 0 1px rgba(9,132,227,.08);
+            background: linear-gradient(160deg, #ffffff 0%, #eef5ff 40%, #e0edff 100%);
+            border-color: rgba(9,132,227,.22);
+            box-shadow: 0 20px 56px rgba(9,132,227,.15), 0 0 0 1px rgba(9,132,227,.08);
             transform: translateY(-6px);
         }
         .disease-card:hover::before {
-            width: 160px; height: 160px;
-            bottom: -30px; left: -30px;
-            background: radial-gradient(circle, rgba(9,132,227,.1) 0%, transparent 70%);
+            width: 180px; height: 180px;
+            top: -20px; right: -20px;
+            background: radial-gradient(circle, rgba(9,132,227,.12) 0%, rgba(0,206,201,.06) 50%, transparent 70%);
         }
         .disease-card:hover::after { transform: scaleX(1); }
         .disease-card__icon {
             width: 56px; height: 56px;
             border-radius: 16px;
-            background: linear-gradient(135deg, rgba(9,132,227,.06), rgba(0,206,201,.05));
-            border: 1px solid rgba(9,132,227,.1);
+            background: linear-gradient(135deg, rgba(9,132,227,.08), rgba(0,206,201,.06));
+            border: 1px solid rgba(9,132,227,.12);
             display: flex; align-items: center; justify-content: center;
             margin-bottom: 18px;
             transition: all .45s var(--ease);
+            position: relative;
         }
+        /* Subtle glow behind icon */
+        .disease-card__icon::after {
+            content: '';
+            position: absolute; inset: -4px;
+            border-radius: 20px;
+            background: radial-gradient(circle, rgba(9,132,227,.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity .45s var(--ease);
+            z-index: -1;
+        }
+        .disease-card:hover .disease-card__icon::after { opacity: 1; }
         .disease-card:hover .disease-card__icon {
             background: linear-gradient(135deg, var(--electric), var(--cyan));
             border-color: transparent;
@@ -2240,10 +2256,13 @@
             .about__credentials-section { padding: 36px 0 28px; }
             .creds-header { margin-bottom: 20px; }
             .about__portrait-glow { inset: -12px; }
-            .creds-marquee-cedula { min-width: 280px; padding: 18px 20px; gap: 14px; }
-            .creds-marquee-cedula__logo-wrap { width: 50px; height: 50px; }
-            .creds-marquee-cedula__logo { width: 36px; height: 36px; }
-            .creds-marquee-cedula__number { font-size: .95rem; }
+            .creds-cards-row { flex-direction: column; align-items: center; gap: 12px; padding: 0 16px; }
+            .cred-card { max-width: 100%; width: 100%; }
+            .cred-card__inner { padding: 18px 18px 16px; gap: 14px; }
+            .cred-card__logo-wrap { width: 48px; height: 48px; }
+            .cred-card__logo { width: 34px; height: 34px; }
+            .cred-card__number { font-size: .95rem; }
+            .cred-card__text { font-size: .78rem; }
             .creds-marquee-item { padding: 16px 24px; }
             .creds-marquee-item__logo { width: 68px; height: 68px; }
             .creds-marquee-item__name { font-size: .64rem; max-width: 120px; }
@@ -2262,13 +2281,13 @@
         @media(max-width:576px) {
             .hero__headline { font-size: 2.2rem; }
             .hero__logo     { width: 100px; height: 100px; margin-bottom: 10px; }
-            .accred-logo    { width: 48px; height: 48px; font-size: .75rem; }
-            .accred-card    { padding: 20px 16px; }
-            .accred-name    { font-size: .82rem; }
-            .accred-detail  { font-size: .74rem; }
-            .society-chip__name { display: none; }
-            .society-chip   { padding: 6px 12px; }
-            .society-chip__abbr { width: 30px; height: 30px; font-size: .58rem; }
+            .cred-card__inner { padding: 16px 14px 14px; gap: 12px; }
+            .cred-card__logo-wrap { width: 44px; height: 44px; }
+            .cred-card__logo { width: 30px; height: 30px; }
+            .cred-card__type { font-size: .54rem; }
+            .cred-card__number { font-size: .88rem; }
+            .cred-card__text { font-size: .74rem; }
+            .cred-card__source { font-size: .58rem; }
             .about__name    { font-size: 1.8rem; }
             .top-bar-legal  { font-size: .62rem; padding: 6px 0; }
             .navbar-brand   { font-size: 1.25rem; }
@@ -2479,48 +2498,62 @@
                         <span class="section-label reveal">Respaldo</span>
                     </div>
 
+                    <!-- Static cards: Cédulas + CNN -->
+                    <div class="creds-cards-row reveal">
+                        <div class="cred-card">
+                            <div class="cred-card__inner">
+                                <div class="cred-card__logo-wrap">
+                                    <img src="images/buap.png" alt="BUAP" class="cred-card__logo">
+                                </div>
+                                <div class="cred-card__info">
+                                    <div class="cred-card__type">Céd. Profesional</div>
+                                    <div class="cred-card__number">12588976</div>
+                                    <div class="cred-card__source">Benemérita Universidad Autónoma de Puebla</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cred-card">
+                            <div class="cred-card__inner">
+                                <div class="cred-card__logo-wrap">
+                                    <img src="images/UNAM.png" alt="UNAM" class="cred-card__logo">
+                                </div>
+                                <div class="cred-card__info">
+                                    <div class="cred-card__type">Céd. Especialidad</div>
+                                    <div class="cred-card__number">xxxxx</div>
+                                    <div class="cred-card__source">Universidad Nacional Autónoma de México</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cred-card">
+                            <div class="cred-card__inner">
+                                <div class="cred-card__logo-wrap">
+                                    <img src="images/CNN.png" alt="CNN" class="cred-card__logo">
+                                </div>
+                                <div class="cred-card__info">
+                                    <div class="cred-card__type">Certificación</div>
+                                    <div class="cred-card__text">Certificado por el Consejo Nacional de Neumología</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div><!-- /container -->
 
-                <!-- Single unified infinite marquee -->
+                <!-- Marquee: INER + Societies -->
                 <div class="creds-marquee-wrapper">
                     <div class="creds-marquee-track">
                         <!-- Set 1 -->
-                        <div class="creds-marquee-cedula">
-                            <div class="creds-marquee-cedula__logo-wrap">
-                                <img src="images/buap.png" alt="BUAP" class="creds-marquee-cedula__logo">
-                            </div>
-                            <div class="creds-marquee-cedula__info">
-                                <div class="creds-marquee-cedula__type">Céd. Profesional</div>
-                                <div class="creds-marquee-cedula__number">12588976</div>
-                                <div class="creds-marquee-cedula__source">Benemérita Universidad Autónoma de Puebla</div>
-                            </div>
-                        </div>
                         <div class="creds-marquee-item">
                             <img src="images/iner.png" alt="INER" class="creds-marquee-item__logo">
                             <span class="creds-marquee-item__name">Instituto Nacional de Enfermedades Respiratorias</span>
                             <span class="creds-marquee-item__tag">Formación</span>
-                        </div>
-                        <div class="creds-marquee-cedula">
-                            <div class="creds-marquee-cedula__logo-wrap">
-                                <img src="images/UNAM.png" alt="UNAM" class="creds-marquee-cedula__logo">
-                            </div>
-                            <div class="creds-marquee-cedula__info">
-                                <div class="creds-marquee-cedula__type">Céd. Especialidad</div>
-                                <div class="creds-marquee-cedula__number">xxxxx</div>
-                                <div class="creds-marquee-cedula__source">Universidad Nacional Autónoma de México</div>
-                            </div>
-                        </div>
-                        <div class="creds-marquee-item">
-                            <img src="images/CNN.png" alt="CNN" class="creds-marquee-item__logo">
-                            <span class="creds-marquee-item__name">Consejo Nacional de Neumología</span>
-                            <span class="creds-marquee-item__tag">Certificación</span>
                         </div>
                         <div class="creds-marquee-item">
                             <img src="images/Logo-SMNyCT.png" alt="SMNyCT" class="creds-marquee-item__logo">
                             <span class="creds-marquee-item__name">Soc. Mexicana de Neumología y Cirugía de Tórax</span>
                             <span class="creds-marquee-item__tag">Miembro</span>
                         </div>
-                        <div class="creds-marquee-item creds-marquee-item--lg">
+                        <div class="creds-marquee-item creds-marquee-item--xl">
                             <img src="images/alat.png" alt="ALAT" class="creds-marquee-item__logo">
                             <span class="creds-marquee-item__name">Asoc. Latinoamericana de Tórax</span>
                             <span class="creds-marquee-item__tag">Miembro</span>
@@ -2530,43 +2563,18 @@
                             <span class="creds-marquee-item__name">American Thoracic Society</span>
                             <span class="creds-marquee-item__tag">Miembro</span>
                         </div>
-                        <!-- Set 2 (duplicate for seamless loop) -->
-                        <div class="creds-marquee-cedula">
-                            <div class="creds-marquee-cedula__logo-wrap">
-                                <img src="images/buap.png" alt="BUAP" class="creds-marquee-cedula__logo">
-                            </div>
-                            <div class="creds-marquee-cedula__info">
-                                <div class="creds-marquee-cedula__type">Céd. Profesional</div>
-                                <div class="creds-marquee-cedula__number">12588976</div>
-                                <div class="creds-marquee-cedula__source">Benemérita Universidad Autónoma de Puebla</div>
-                            </div>
-                        </div>
+                        <!-- Set 2 (duplicate) -->
                         <div class="creds-marquee-item">
                             <img src="images/iner.png" alt="INER" class="creds-marquee-item__logo">
                             <span class="creds-marquee-item__name">Instituto Nacional de Enfermedades Respiratorias</span>
                             <span class="creds-marquee-item__tag">Formación</span>
-                        </div>
-                        <div class="creds-marquee-cedula">
-                            <div class="creds-marquee-cedula__logo-wrap">
-                                <img src="images/UNAM.png" alt="UNAM" class="creds-marquee-cedula__logo">
-                            </div>
-                            <div class="creds-marquee-cedula__info">
-                                <div class="creds-marquee-cedula__type">Céd. Especialidad</div>
-                                <div class="creds-marquee-cedula__number">xxxxx</div>
-                                <div class="creds-marquee-cedula__source">Universidad Nacional Autónoma de México</div>
-                            </div>
-                        </div>
-                        <div class="creds-marquee-item">
-                            <img src="images/CNN.png" alt="CNN" class="creds-marquee-item__logo">
-                            <span class="creds-marquee-item__name">Consejo Nacional de Neumología</span>
-                            <span class="creds-marquee-item__tag">Certificación</span>
                         </div>
                         <div class="creds-marquee-item">
                             <img src="images/Logo-SMNyCT.png" alt="SMNyCT" class="creds-marquee-item__logo">
                             <span class="creds-marquee-item__name">Soc. Mexicana de Neumología y Cirugía de Tórax</span>
                             <span class="creds-marquee-item__tag">Miembro</span>
                         </div>
-                        <div class="creds-marquee-item creds-marquee-item--lg">
+                        <div class="creds-marquee-item creds-marquee-item--xl">
                             <img src="images/alat.png" alt="ALAT" class="creds-marquee-item__logo">
                             <span class="creds-marquee-item__name">Asoc. Latinoamericana de Tórax</span>
                             <span class="creds-marquee-item__tag">Miembro</span>
@@ -3386,24 +3394,13 @@
                 );
             });
 
-            /* Accreditation cards — staggered 3D reveal */
-            gsap.utils.toArray('.accred-card').forEach(function(card, i) {
+            /* Credential cards — staggered 3D reveal */
+            gsap.utils.toArray('.cred-card').forEach(function(card, i) {
                 gsap.fromTo(card,
-                    { opacity: 0, y: 60, rotateY: 8 },
-                    { opacity: 1, y: 0, rotateY: 0, duration: 0.9,
+                    { opacity: 0, y: 50, rotateY: 6 },
+                    { opacity: 1, y: 0, rotateY: 0, duration: 0.8,
                       delay: i * 0.15, ease: 'power3.out',
                       scrollTrigger: { trigger: card, start: 'top 92%' }
-                    }
-                );
-            });
-
-            /* Society chips — elastic scale-in */
-            gsap.utils.toArray('.society-chip').forEach(function(chip, i) {
-                gsap.fromTo(chip,
-                    { opacity: 0, scale: 0.85, y: 10 },
-                    { opacity: 1, scale: 1, y: 0, duration: 0.6,
-                      delay: i * 0.08, ease: 'back.out(1.4)',
-                      scrollTrigger: { trigger: chip, start: 'top 95%' }
                     }
                 );
             });
