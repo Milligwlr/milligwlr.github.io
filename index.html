@@ -1248,18 +1248,17 @@
             flex: 1;
         }
         .cedula-card__logo-wrap {
-            width: 56px; height: 56px;
-            border-radius: 14px;
-            background: rgba(255,255,255,.1);
-            border: 1px solid rgba(255,255,255,.12);
+            width: 64px; height: 64px;
+            border-radius: 16px;
+            background: #fff;
+            box-shadow: 0 0 20px rgba(255,255,255,.55), 0 0 40px rgba(255,255,255,.2);
+            border: 1px solid rgba(255,255,255,.9);
             display: flex; align-items: center; justify-content: center;
             flex-shrink: 0;
-            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
         }
         .cedula-card__logo {
-            width: 38px; height: 38px;
+            width: 46px; height: 46px;
             object-fit: contain;
-            filter: brightness(0) invert(1) opacity(.85);
         }
         .cedula-card__info { flex: 1; min-width: 0; }
         .cedula-card__type {
@@ -1292,21 +1291,22 @@
             position: relative;
             width: 100%;
             padding: 4px 0;
+            overflow: hidden;
         }
-        /* Fade edges — solid to transparent */
+        /* Fade edges — hardcoded color to avoid any variable/transparency issues */
         .creds-marquee-wrapper::before,
         .creds-marquee-wrapper::after {
             content: '';
-            position: absolute; top: 0; bottom: 0; width: 100px;
-            z-index: 2; pointer-events: none;
+            position: absolute; top: 0; bottom: 0; width: 120px;
+            z-index: 10; pointer-events: none;
         }
         .creds-marquee-wrapper::before {
             left: 0;
-            background: linear-gradient(to right, var(--cloud) 0%, var(--cloud) 10%, transparent 100%);
+            background: linear-gradient(to right, #f0f6ff 0%, #f0f6ff 20%, rgba(240,246,255,0) 100%);
         }
         .creds-marquee-wrapper::after {
             right: 0;
-            background: linear-gradient(to left, var(--cloud) 0%, var(--cloud) 10%, transparent 100%);
+            background: linear-gradient(to left, #f0f6ff 0%, #f0f6ff 20%, rgba(240,246,255,0) 100%);
         }
         .creds-marquee-track {
             display: flex;
@@ -1359,6 +1359,10 @@
             letter-spacing: 1px; color: var(--electric);
             background: rgba(9,132,227,.06);
             padding: 3px 10px; border-radius: 100px;
+        }
+        /* Bigger logos for ALAT and ATS */
+        .creds-marquee-item--lg .creds-marquee-item__logo {
+            width: 110px; height: 110px;
         }
 
         /* =============================================
@@ -2276,6 +2280,7 @@
             .creds-marquee-item__name { font-size: .64rem; max-width: 120px; }
             .creds-marquee-wrapper::before,
             .creds-marquee-wrapper::after { width: 60px; }
+            .creds-marquee-item--lg .creds-marquee-item__logo { width: 90px; height: 90px; }
             /* Lighten hero effects on mobile */
             .hero__aurora { opacity: .5; filter: blur(80px); animation-duration: 30s; }
             .hero__orb3 { opacity: .4; }
@@ -2535,8 +2540,10 @@
                         </div>
                     </div>
 
-                    <!-- Animated logo marquee -->
-                    <div class="creds-marquee-wrapper">
+                </div><!-- /container -->
+
+                <!-- Animated logo marquee — FULL WIDTH, fuera del container para que el fade llegue a los bordes -->
+                <div class="creds-marquee-wrapper">
                         <div class="creds-marquee-track">
                             <!-- Set 1 -->
                             <div class="creds-marquee-item">
@@ -2554,12 +2561,12 @@
                                 <span class="creds-marquee-item__name">Soc. Mexicana de Neumología y Cirugía de Tórax</span>
                                 <span class="creds-marquee-item__tag">Miembro</span>
                             </div>
-                            <div class="creds-marquee-item">
+                            <div class="creds-marquee-item creds-marquee-item--lg">
                                 <img src="images/alat.png" alt="ALAT" class="creds-marquee-item__logo">
                                 <span class="creds-marquee-item__name">Asoc. Latinoamericana de Tórax</span>
                                 <span class="creds-marquee-item__tag">Miembro</span>
                             </div>
-                            <div class="creds-marquee-item">
+                            <div class="creds-marquee-item creds-marquee-item--lg">
                                 <img src="images/ats.png" alt="ATS" class="creds-marquee-item__logo">
                                 <span class="creds-marquee-item__name">American Thoracic Society</span>
                                 <span class="creds-marquee-item__tag">Miembro</span>
@@ -2580,20 +2587,19 @@
                                 <span class="creds-marquee-item__name">Soc. Mexicana de Neumología y Cirugía de Tórax</span>
                                 <span class="creds-marquee-item__tag">Miembro</span>
                             </div>
-                            <div class="creds-marquee-item">
+                            <div class="creds-marquee-item creds-marquee-item--lg">
                                 <img src="images/alat.png" alt="ALAT" class="creds-marquee-item__logo">
                                 <span class="creds-marquee-item__name">Asoc. Latinoamericana de Tórax</span>
                                 <span class="creds-marquee-item__tag">Miembro</span>
                             </div>
-                            <div class="creds-marquee-item">
+                            <div class="creds-marquee-item creds-marquee-item--lg">
                                 <img src="images/ats.png" alt="ATS" class="creds-marquee-item__logo">
                                 <span class="creds-marquee-item__name">American Thoracic Society</span>
                                 <span class="creds-marquee-item__tag">Miembro</span>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                </div><!-- /creds-marquee-wrapper -->
+            </div><!-- /about__credentials-section -->
         </section>
 
         <!-- ===== SERVICIOS — Card Carousel ===== -->
