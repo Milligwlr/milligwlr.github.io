@@ -412,7 +412,7 @@
             position: relative; z-index: 2;
             text-align: center;
             max-width: 940px;
-            padding: 0 24px 48px;
+            padding: 48px 24px 48px;
         }
 
         /* Hero Logo — large, prominent */
@@ -1036,18 +1036,7 @@
             text-align: center;
             line-height: 1.5;
         }
-        .about__badge {
-            position: absolute; bottom: -16px; right: -16px;
-            background: var(--navy);
-            color: var(--white);
-            padding: 14px 22px;
-            border-radius: 18px;
-            font-size: .78rem; font-weight: 700;
-            box-shadow: 0 10px 36px rgba(10,22,40,.28);
-            display: flex; align-items: center; gap: 8px;
-            z-index: 2;
-        }
-        .about__badge i { font-size: 1.1rem; color: var(--sky); }
+        /* badge removed */
         .about__text {
             flex: 1;
             padding: 120px 60px 120px 40px;
@@ -1182,9 +1171,10 @@
         }
 
         /* ── About: Credentials unified section ── */
+        /* ── Credentials Section — Condensed Bento ── */
         .about__credentials-section {
             background: var(--cloud);
-            padding: 72px 0 64px;
+            padding: 56px 0 48px;
             position: relative; z-index: 1;
         }
         .about__credentials-section::before {
@@ -1192,115 +1182,134 @@
             position: absolute; top: 0; left: 10%; right: 10%; height: 1px;
             background: linear-gradient(90deg, transparent, rgba(9,132,227,.12), rgba(0,206,201,.1), transparent);
         }
-        .creds-header { text-align: center; margin-bottom: 40px; }
+        .creds-header { text-align: center; margin-bottom: 32px; }
         .creds-header__title {
             font-size: clamp(1.3rem, 2.5vw, 1.8rem);
             font-weight: 800; color: var(--navy);
             letter-spacing: -.02em; margin-top: 12px;
         }
 
-        /* ── Bento grid: 3 accred cards + 4 society pills ── */
+        /* Bento grid */
         .creds-bento {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: auto auto;
-            gap: 20px;
-            max-width: 960px; margin: 0 auto; padding: 0 24px;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto auto;
+            gap: 16px;
+            max-width: 840px; margin: 0 auto; padding: 0 24px;
         }
 
-        /* Accreditation cards — compact horizontal layout */
-        .accred-card {
-            background: rgba(255,255,255,.92);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border-radius: 18px;
+        /* ── Row 1: Cédulas ── */
+        .cedula-card {
+            background: var(--white);
+            border-radius: 16px;
             border: 1px solid rgba(9,132,227,.08);
-            padding: 24px 20px;
-            display: flex; flex-direction: column; align-items: center; text-align: center;
+            padding: 20px;
+            display: flex; align-items: center; gap: 16px;
             transition: all .4s var(--ease);
             position: relative; overflow: hidden;
         }
-        .accred-card::after {
+        .cedula-card::before {
             content: '';
             position: absolute; top: 0; left: 0; right: 0; height: 3px;
             background: linear-gradient(90deg, var(--electric), var(--cyan));
             transform: scaleX(0); transform-origin: left;
             transition: transform .4s var(--ease);
         }
-        .accred-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 36px rgba(9,132,227,.12);
-            border-color: rgba(9,132,227,.15);
+        .cedula-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(9,132,227,.1); }
+        .cedula-card:hover::before { transform: scaleX(1); }
+        .cedula-card__logo {
+            width: 48px; height: 48px; border-radius: 12px;
+            object-fit: contain; flex-shrink: 0;
+            background: #f8fafc; padding: 4px;
         }
-        .accred-card:hover::after { transform: scaleX(1); }
-
-        .accred-logo {
-            width: 56px; height: 56px; border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: 14px; font-weight: 800; font-size: .85rem;
-            letter-spacing: .5px; transition: transform .4s var(--ease);
-            flex-shrink: 0;
+        .cedula-card__info { flex: 1; min-width: 0; }
+        .cedula-card__type {
+            font-size: .65rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1.2px; color: var(--electric); margin-bottom: 2px;
         }
-        .accred-card:hover .accred-logo { transform: scale(1.08); }
-        .accred-logo--iner { background: var(--navy); color: var(--white); box-shadow: 0 4px 14px rgba(10,22,40,.18); }
-        .accred-logo--unam { background: #002855; color: #C5A848; box-shadow: 0 4px 14px rgba(0,40,85,.18); }
-        .accred-logo--cnn  { background: linear-gradient(135deg, var(--electric), var(--cyan)); color: var(--white); box-shadow: 0 4px 14px rgba(9,132,227,.22); font-size: 1.3rem; }
-
-        .accred-name {
-            font-size: .85rem; font-weight: 700; color: var(--navy);
-            margin-bottom: 4px; line-height: 1.3;
+        .cedula-card__number {
+            font-size: .95rem; font-weight: 800; color: var(--navy);
+            letter-spacing: .5px; line-height: 1.3;
         }
-        .accred-detail {
-            font-size: .78rem; color: var(--text-muted);
-            line-height: 1.5; margin: 0;
+        .cedula-card__source {
+            font-size: .72rem; color: var(--text-muted); font-weight: 500;
         }
 
-        /* Society strip — spans full width below accreditations */
-        .society-strip {
+        /* ── Row 2: Acreditaciones ── */
+        .accred-row {
             grid-column: 1 / -1;
-            display: flex; justify-content: center; align-items: center;
-            gap: 12px; flex-wrap: wrap;
-            padding: 20px 0 0;
+            display: flex; gap: 16px; justify-content: center;
         }
-        .society-strip__label {
-            font-size: .72rem; font-weight: 700;
+        .accred-chip {
+            flex: 1; max-width: 380px;
+            background: var(--white);
+            border-radius: 16px;
+            border: 1px solid rgba(9,132,227,.08);
+            padding: 20px 24px;
+            display: flex; align-items: center; gap: 16px;
+            transition: all .4s var(--ease);
+            position: relative; overflow: hidden;
+        }
+        .accred-chip::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--electric), var(--cyan));
+            transform: scaleX(0); transform-origin: left;
+            transition: transform .4s var(--ease);
+        }
+        .accred-chip:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(9,132,227,.1); }
+        .accred-chip:hover::after { transform: scaleX(1); }
+        .accred-chip__logo {
+            width: 52px; height: 52px; border-radius: 14px;
+            object-fit: contain; flex-shrink: 0;
+            background: #f8fafc; padding: 4px;
+        }
+        .accred-chip__info { flex: 1; }
+        .accred-chip__name {
+            font-size: .88rem; font-weight: 700; color: var(--navy);
+            line-height: 1.3; margin-bottom: 2px;
+        }
+        .accred-chip__detail {
+            font-size: .74rem; color: var(--text-muted); line-height: 1.4; margin: 0;
+        }
+
+        /* ── Row 3: Sociedades ── */
+        .society-row {
+            grid-column: 1 / -1;
+            display: flex; align-items: center; justify-content: center;
+            gap: 16px; flex-wrap: wrap;
+            padding: 8px 0 0;
+        }
+        .society-row__label {
+            font-size: .68rem; font-weight: 700;
             color: var(--text-muted); text-transform: uppercase;
-            letter-spacing: 2px; margin-right: 8px;
+            letter-spacing: 2px; margin-right: 4px;
             white-space: nowrap;
         }
-        .society-chip {
-            display: inline-flex; align-items: center; gap: 8px;
+        .society-badge {
+            display: flex; align-items: center; gap: 10px;
             padding: 10px 18px;
             border-radius: 100px;
-            background: rgba(255,255,255,.85);
-            backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+            background: var(--white);
             border: 1px solid rgba(9,132,227,.08);
             transition: all .35s var(--ease);
             cursor: default;
         }
-        .society-chip:hover {
+        .society-badge:hover {
             border-color: var(--electric);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(9,132,227,.1);
         }
-        .society-chip__abbr {
-            width: 32px; height: 32px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            background: linear-gradient(135deg, rgba(9,132,227,.08), rgba(0,206,201,.06));
-            font-weight: 800; font-size: .6rem;
-            color: var(--electric); letter-spacing: .3px;
-            flex-shrink: 0;
-            transition: all .35s var(--ease);
+        .society-badge__logo {
+            width: 28px; height: 28px;
+            object-fit: contain; flex-shrink: 0;
         }
-        .society-chip:hover .society-chip__abbr {
-            background: linear-gradient(135deg, var(--electric), var(--cyan));
-            color: var(--white);
-        }
-        .society-chip__name {
+        .society-badge__name {
             font-size: .76rem; font-weight: 600;
             color: var(--text-muted); line-height: 1.3;
             transition: color .35s var(--ease);
         }
-        .society-chip:hover .society-chip__name { color: var(--electric); }
+        .society-badge:hover .society-badge__name { color: var(--electric); }
 
         /* =============================================
            SERVICES — Tabbed Categories
@@ -2125,11 +2134,8 @@
             .about__hero-inner { flex-direction: column; gap: 40px; }
             .about__portrait   { flex: none; max-width: 360px; margin: 0 auto; }
             .about__bio        { padding: 0 24px; max-width: 100%; }
-            .about__badge      { bottom: -12px; right: 8px; }
-            .creds-bento       { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
-            .society-strip     { justify-content: center; }
-            .society-chip__name { display: none; }
-            .society-chip      { padding: 8px 14px; }
+            .creds-bento       { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+            .accred-row        { flex-direction: column; }
             .svc-carousel__track .service-card { flex: 0 0 calc(50% - 12px); }
             .svc-carousel__arrow--prev { left: -16px; }
             .svc-carousel__arrow--next { right: -16px; }
@@ -2142,7 +2148,7 @@
             .hero__cta      { width: 100%; justify-content: center; min-height: 48px; padding: 14px 32px; font-size: 1rem; }
             .hero__conditions { gap: 6px; }
             .hero__pill     { padding: 5px 12px; font-size: .7rem; }
-            .hero__content  { padding: 0 20px 36px; }
+            .hero__content  { padding: 36px 20px 36px; }
             .hero__logo     { width: 120px; height: 120px; margin-bottom: 14px; }
             .hero__headline { margin-bottom: 12px; }
             .hero__card-q   { padding: 14px 20px 10px; font-size: .86rem; }
@@ -2207,14 +2213,20 @@
             .testi-text { font-size: .92rem; }
             /* About responsive */
             .about__hero { padding: 60px 0 40px; }
-            .about__credentials-section { padding: 48px 0 40px; }
+            .about__credentials-section { padding: 40px 0 32px; }
             .creds-header__title { font-size: 1.3rem; }
-            .creds-header { margin-bottom: 32px; }
+            .creds-header { margin-bottom: 24px; }
             .about__portrait-glow { inset: -12px; }
-            .society-chip__name { display: block; font-size: .7rem; }
-            .society-strip { gap: 8px; }
-            .society-chip { padding: 8px 12px; gap: 6px; }
-            .society-chip__abbr { width: 28px; height: 28px; font-size: .55rem; }
+            .creds-bento { gap: 12px; padding: 0 16px; }
+            .cedula-card { padding: 16px; gap: 12px; }
+            .cedula-card__logo { width: 40px; height: 40px; }
+            .accred-row { flex-direction: column; gap: 12px; }
+            .accred-chip { padding: 16px; gap: 12px; }
+            .accred-chip__logo { width: 44px; height: 44px; }
+            .society-badge__name { display: none; }
+            .society-badge { padding: 8px 12px; }
+            .society-badge__logo { width: 24px; height: 24px; }
+            .society-row { gap: 10px; }
             /* Lighten hero effects on mobile */
             .hero__aurora { opacity: .5; filter: blur(80px); animation-duration: 30s; }
             .hero__orb3 { opacity: .4; }
@@ -2442,41 +2454,57 @@
                 <div class="container">
                     <div class="creds-header">
                         <span class="section-label reveal">Respaldo</span>
-                        <h3 class="creds-header__title reveal">Formación y Sociedades Médicas</h3>
+                        <h3 class="creds-header__title reveal">Acreditaciones y Sociedades</h3>
                     </div>
                     <div class="creds-bento">
-                        <div class="accred-card reveal">
-                            <div class="accred-logo accred-logo--iner">INER</div>
-                            <h4 class="accred-name">Instituto Nacional de Enfermedades Respiratorias</h4>
-                            <p class="accred-detail">Especialidad en Neumología y Medicina Interna</p>
-                        </div>
-                        <div class="accred-card reveal reveal-d1">
-                            <div class="accred-logo accred-logo--unam">UNAM</div>
-                            <h4 class="accred-name">Universidad Nacional Autónoma de México</h4>
-                            <p class="accred-detail">Cédula de Especialidad en Neumología</p>
-                        </div>
-                        <div class="accred-card reveal reveal-d2">
-                            <div class="accred-logo accred-logo--cnn"><i class="bi bi-shield-check"></i></div>
-                            <h4 class="accred-name">Consejo Nacional de Neumología</h4>
-                            <p class="accred-detail">Neumólogo certificado</p>
-                        </div>
-                        <div class="society-strip reveal reveal-d3">
-                            <span class="society-strip__label">Miembro de</span>
-                            <div class="society-chip">
-                                <span class="society-chip__abbr">SMN</span>
-                                <span class="society-chip__name">Soc. Mexicana de Neumología</span>
+                        <!-- Row 1: Cédulas -->
+                        <div class="cedula-card reveal">
+                            <img src="images/buap.png" alt="BUAP" class="cedula-card__logo">
+                            <div class="cedula-card__info">
+                                <div class="cedula-card__type">Céd. Profesional</div>
+                                <div class="cedula-card__number">12588976</div>
+                                <div class="cedula-card__source">Benemérita Universidad Autónoma de Puebla</div>
                             </div>
-                            <div class="society-chip">
-                                <span class="society-chip__abbr">ALAT</span>
-                                <span class="society-chip__name">Asoc. Latinoamericana de Tórax</span>
+                        </div>
+                        <div class="cedula-card reveal reveal-d1">
+                            <img src="images/UNAM.png" alt="UNAM" class="cedula-card__logo">
+                            <div class="cedula-card__info">
+                                <div class="cedula-card__type">Céd. Especialidad</div>
+                                <div class="cedula-card__number">xxxxx</div>
+                                <div class="cedula-card__source">Universidad Nacional Autónoma de México</div>
                             </div>
-                            <div class="society-chip">
-                                <span class="society-chip__abbr">ERS</span>
-                                <span class="society-chip__name">European Respiratory Society</span>
+                        </div>
+                        <!-- Row 2: Acreditaciones -->
+                        <div class="accred-row reveal reveal-d2">
+                            <div class="accred-chip">
+                                <img src="images/iner.png" alt="INER" class="accred-chip__logo">
+                                <div class="accred-chip__info">
+                                    <h4 class="accred-chip__name">Instituto Nacional de Enfermedades Respiratorias</h4>
+                                    <p class="accred-chip__detail">Especialidad en Neumología</p>
+                                </div>
                             </div>
-                            <div class="society-chip">
-                                <span class="society-chip__abbr">ATS</span>
-                                <span class="society-chip__name">American Thoracic Society</span>
+                            <div class="accred-chip">
+                                <img src="images/CNN.png" alt="CNN" class="accred-chip__logo">
+                                <div class="accred-chip__info">
+                                    <h4 class="accred-chip__name">Consejo Nacional de Neumología</h4>
+                                    <p class="accred-chip__detail">Neumólogo certificado</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Row 3: Sociedades -->
+                        <div class="society-row reveal reveal-d3">
+                            <span class="society-row__label">Miembro de</span>
+                            <div class="society-badge">
+                                <img src="images/Logo-SMNyCT.png" alt="SMNyCT" class="society-badge__logo">
+                                <span class="society-badge__name">Soc. Mexicana de Neumología y Cirugía de Tórax</span>
+                            </div>
+                            <div class="society-badge">
+                                <img src="images/alat.png" alt="ALAT" class="society-badge__logo">
+                                <span class="society-badge__name">Asoc. Latinoamericana de Tórax</span>
+                            </div>
+                            <div class="society-badge">
+                                <img src="images/ats.png" alt="ATS" class="society-badge__logo">
+                                <span class="society-badge__name">American Thoracic Society</span>
                             </div>
                         </div>
                     </div>
@@ -3509,11 +3537,15 @@
                 if (e.target.closest('.disease-card__cta')) return;
                 e.preventDefault();
                 var wasPaused = band.classList.contains('band-paused');
+                var currentActive = band.querySelector('.card-active');
                 band.querySelectorAll('.card-active').forEach(function(c) { c.classList.remove('card-active'); });
-                if (wasPaused) {
-                    /* Resume: remove inline transform and restore animation */
+                if (wasPaused && currentActive === card) {
+                    /* Resume only if tapping the SAME active card */
                     band.style.transform = '';
                     band.classList.remove('band-paused');
+                } else if (wasPaused) {
+                    /* Tapping a DIFFERENT card while paused: highlight the new card */
+                    card.classList.add('card-active');
                 } else {
                     /* Pause: capture current position, kill animation, set inline transform */
                     var currentX = getTranslateX();
@@ -3524,18 +3556,36 @@
             });
 
             /* ── Touch drag ── */
+            var touchStartY = 0;
+            var isHorizontalSwipe = null;
             band.addEventListener('touchstart', function(e) {
-                if (!band.classList.contains('band-paused')) return;
                 startX = e.touches[0].clientX;
-                startScrollLeft = getTranslateX();
-                isDragging = false;
-                band.style.transition = 'none';
+                touchStartY = e.touches[0].clientY;
+                isHorizontalSwipe = null;
+                if (band.classList.contains('band-paused')) {
+                    startScrollLeft = getTranslateX();
+                    isDragging = false;
+                    band.style.transition = 'none';
+                } else {
+                    /* Auto-pause on touch for mobile usability */
+                    var currentX = getTranslateX();
+                    band.classList.add('band-paused');
+                    band.style.transform = 'translateX(' + currentX + 'px)';
+                    startScrollLeft = currentX;
+                    isDragging = false;
+                    band.style.transition = 'none';
+                }
             }, { passive: true });
             band.addEventListener('touchmove', function(e) {
                 if (!band.classList.contains('band-paused')) return;
                 var dx = e.touches[0].clientX - startX;
-                if (Math.abs(dx) > 5) isDragging = true;
-                if (isDragging) {
+                var dy = e.touches[0].clientY - touchStartY;
+                /* Determine swipe direction on first significant move */
+                if (isHorizontalSwipe === null && (Math.abs(dx) > 8 || Math.abs(dy) > 8)) {
+                    isHorizontalSwipe = Math.abs(dx) > Math.abs(dy);
+                }
+                if (isHorizontalSwipe) {
+                    isDragging = true;
                     band.style.transform = 'translateX(' + (startScrollLeft + dx) + 'px)';
                 }
             }, { passive: true });
@@ -3545,6 +3595,7 @@
                     setTimeout(function() { band.style.transition = 'none'; }, 350);
                 }
                 isDragging = false;
+                isHorizontalSwipe = null;
             }, { passive: true });
 
             /* ── Mouse drag (desktop) ── */
