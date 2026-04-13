@@ -1144,6 +1144,164 @@
         }
         .credential-chip i { font-size: .88rem; color: var(--electric); }
 
+        /* ── About: Zone structure ── */
+        .about__hero { padding: 100px 0 60px; position: relative; z-index: 1; }
+        .about__hero-inner {
+            display: flex; align-items: center; gap: 60px;
+            max-width: 1140px; margin: 0 auto; padding: 0 24px;
+        }
+        .about__portrait {
+            flex: 0 0 42%; position: relative;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .about__portrait-glow {
+            position: absolute; inset: -18px;
+            border-radius: 36px;
+            border: 2px solid transparent;
+            background: conic-gradient(from 0deg, rgba(9,132,227,.12), rgba(0,206,201,.10), rgba(116,185,255,.08), rgba(9,132,227,.12)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: glow-spin 20s linear infinite;
+            pointer-events: none; z-index: 0;
+        }
+        @keyframes glow-spin {
+            to { transform: rotate(360deg); }
+        }
+        .about__bio {
+            flex: 1; max-width: 560px;
+            display: flex; flex-direction: column;
+        }
+        .about__subtitle {
+            font-size: .85rem; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 2.5px;
+            background: linear-gradient(135deg, var(--cyan), var(--electric));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        /* ── About: Credentials unified section ── */
+        .about__credentials-section {
+            background: var(--cloud);
+            padding: 72px 0 64px;
+            position: relative; z-index: 1;
+        }
+        .about__credentials-section::before {
+            content: '';
+            position: absolute; top: 0; left: 10%; right: 10%; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(9,132,227,.12), rgba(0,206,201,.1), transparent);
+        }
+        .creds-header { text-align: center; margin-bottom: 40px; }
+        .creds-header__title {
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            font-weight: 800; color: var(--navy);
+            letter-spacing: -.02em; margin-top: 12px;
+        }
+
+        /* ── Bento grid: 3 accred cards + 4 society pills ── */
+        .creds-bento {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto auto;
+            gap: 20px;
+            max-width: 960px; margin: 0 auto; padding: 0 24px;
+        }
+
+        /* Accreditation cards — compact horizontal layout */
+        .accred-card {
+            background: rgba(255,255,255,.92);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border-radius: 18px;
+            border: 1px solid rgba(9,132,227,.08);
+            padding: 24px 20px;
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+            transition: all .4s var(--ease);
+            position: relative; overflow: hidden;
+        }
+        .accred-card::after {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--electric), var(--cyan));
+            transform: scaleX(0); transform-origin: left;
+            transition: transform .4s var(--ease);
+        }
+        .accred-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 36px rgba(9,132,227,.12);
+            border-color: rgba(9,132,227,.15);
+        }
+        .accred-card:hover::after { transform: scaleX(1); }
+
+        .accred-logo {
+            width: 56px; height: 56px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 14px; font-weight: 800; font-size: .85rem;
+            letter-spacing: .5px; transition: transform .4s var(--ease);
+            flex-shrink: 0;
+        }
+        .accred-card:hover .accred-logo { transform: scale(1.08); }
+        .accred-logo--iner { background: var(--navy); color: var(--white); box-shadow: 0 4px 14px rgba(10,22,40,.18); }
+        .accred-logo--unam { background: #002855; color: #C5A848; box-shadow: 0 4px 14px rgba(0,40,85,.18); }
+        .accred-logo--cnn  { background: linear-gradient(135deg, var(--electric), var(--cyan)); color: var(--white); box-shadow: 0 4px 14px rgba(9,132,227,.22); font-size: 1.3rem; }
+
+        .accred-name {
+            font-size: .85rem; font-weight: 700; color: var(--navy);
+            margin-bottom: 4px; line-height: 1.3;
+        }
+        .accred-detail {
+            font-size: .78rem; color: var(--text-muted);
+            line-height: 1.5; margin: 0;
+        }
+
+        /* Society strip — spans full width below accreditations */
+        .society-strip {
+            grid-column: 1 / -1;
+            display: flex; justify-content: center; align-items: center;
+            gap: 12px; flex-wrap: wrap;
+            padding: 20px 0 0;
+        }
+        .society-strip__label {
+            font-size: .72rem; font-weight: 700;
+            color: var(--text-muted); text-transform: uppercase;
+            letter-spacing: 2px; margin-right: 8px;
+            white-space: nowrap;
+        }
+        .society-chip {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 18px;
+            border-radius: 100px;
+            background: rgba(255,255,255,.85);
+            backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(9,132,227,.08);
+            transition: all .35s var(--ease);
+            cursor: default;
+        }
+        .society-chip:hover {
+            border-color: var(--electric);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(9,132,227,.1);
+        }
+        .society-chip__abbr {
+            width: 32px; height: 32px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, rgba(9,132,227,.08), rgba(0,206,201,.06));
+            font-weight: 800; font-size: .6rem;
+            color: var(--electric); letter-spacing: .3px;
+            flex-shrink: 0;
+            transition: all .35s var(--ease);
+        }
+        .society-chip:hover .society-chip__abbr {
+            background: linear-gradient(135deg, var(--electric), var(--cyan));
+            color: var(--white);
+        }
+        .society-chip__name {
+            font-size: .76rem; font-weight: 600;
+            color: var(--text-muted); line-height: 1.3;
+            transition: color .35s var(--ease);
+        }
+        .society-chip:hover .society-chip__name { color: var(--electric); }
+
         /* =============================================
            SERVICES — Tabbed Categories
         ============================================= */
@@ -1510,7 +1668,7 @@
             transform: translateY(-6px);
             z-index: 10;
         }
-        .disease-band.band-paused { animation-play-state: paused !important; }
+        .disease-band.band-paused { animation: none !important; }
 
         /* =============================================
            TESTIMONIALS
@@ -1964,10 +2122,14 @@
            RESPONSIVE
         ============================================= */
         @media(max-width:991px) {
-            .about__inner   { flex-direction: column; }
-            .about__visual  { position: relative; height: auto; min-height: auto; flex: none; padding: 60px 24px; }
-            .about__text    { padding: 40px 24px 80px; max-width: 100%; }
-            .about__badge   { bottom: -12px; right: 8px; }
+            .about__hero-inner { flex-direction: column; gap: 40px; }
+            .about__portrait   { flex: none; max-width: 360px; margin: 0 auto; }
+            .about__bio        { padding: 0 24px; max-width: 100%; }
+            .about__badge      { bottom: -12px; right: 8px; }
+            .creds-bento       { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            .society-strip     { justify-content: center; }
+            .society-chip__name { display: none; }
+            .society-chip      { padding: 8px 14px; }
             .svc-carousel__track .service-card { flex: 0 0 calc(50% - 12px); }
             .svc-carousel__arrow--prev { left: -16px; }
             .svc-carousel__arrow--next { right: -16px; }
@@ -2043,6 +2205,16 @@
             .service-card p { font-size: .92rem; line-height: 1.72; }
             .service-card h3 { font-size: 1.08rem; }
             .testi-text { font-size: .92rem; }
+            /* About responsive */
+            .about__hero { padding: 60px 0 40px; }
+            .about__credentials-section { padding: 48px 0 40px; }
+            .creds-header__title { font-size: 1.3rem; }
+            .creds-header { margin-bottom: 32px; }
+            .about__portrait-glow { inset: -12px; }
+            .society-chip__name { display: block; font-size: .7rem; }
+            .society-strip { gap: 8px; }
+            .society-chip { padding: 8px 12px; gap: 6px; }
+            .society-chip__abbr { width: 28px; height: 28px; font-size: .55rem; }
             /* Lighten hero effects on mobile */
             .hero__aurora { opacity: .5; filter: blur(80px); animation-duration: 30s; }
             .hero__orb3 { opacity: .4; }
@@ -2055,6 +2227,14 @@
         @media(max-width:576px) {
             .hero__headline { font-size: 2.2rem; }
             .hero__logo     { width: 100px; height: 100px; margin-bottom: 10px; }
+            .accred-logo    { width: 48px; height: 48px; font-size: .75rem; }
+            .accred-card    { padding: 20px 16px; }
+            .accred-name    { font-size: .82rem; }
+            .accred-detail  { font-size: .74rem; }
+            .society-chip__name { display: none; }
+            .society-chip   { padding: 6px 12px; }
+            .society-chip__abbr { width: 30px; height: 30px; font-size: .58rem; }
+            .about__name    { font-size: 1.8rem; }
             .top-bar-legal  { font-size: .62rem; padding: 6px 0; }
             .navbar-brand   { font-size: 1.25rem; }
             .navbar-logo    { height: 28px !important; }
@@ -2235,26 +2415,74 @@
             <div class="section-ring section-ring--1"></div>
             <div class="section-ring section-ring--2"></div>
             <div class="section-accent-line"></div>
-            <div class="about__inner">
-                <div class="about__visual">
-                    <div class="about__label about__label--above reveal">Acerca de mí</div>
-                    <div class="about__photo-frame reveal">
-                        <i class="bi bi-camera placeholder-icon" aria-hidden="true"></i>
-                        <span class="placeholder-text">Espacio reservado para<br>fotografía clínica</span>
-                        <div class="about__badge">
-                            <i class="bi bi-patch-check-fill" aria-hidden="true"></i> Formado en el INER
+
+            <!-- ZONA 1 — Bio Hero -->
+            <div class="about__hero">
+                <div class="about__hero-inner">
+                    <div class="about__portrait reveal">
+                        <div class="about__portrait-glow"></div>
+                        <div class="about__photo-frame">
+                            <i class="bi bi-camera placeholder-icon" aria-hidden="true"></i>
+                            <span class="placeholder-text">Espacio reservado para<br>fotografía clínica</span>
+                            <div class="about__badge">
+                                <i class="bi bi-patch-check-fill" aria-hidden="true"></i> Formado en el INER
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about__bio">
+                        <span class="about__label reveal">Acerca de mí</span>
+                        <h2 class="about__name reveal">Dr. William César<br>Lara Vázquez</h2>
+                        <p class="about__subtitle reveal">Neumólogo de Alta Especialidad</p>
+                        <p class="about__paragraph reveal">Me formé en el <strong>Instituto Nacional de Enfermedades Respiratorias (INER)</strong>, la institución de referencia en México para enfermedades pulmonares. Actualmente curso la <span class="about__highlight">Alta Especialidad en EPOC</span>, lo que me permite ofrecerte el tratamiento más actualizado y efectivo.</p>
+                        <div class="about__commitment reveal">
+                            Mi compromiso es devolverte la <em>libertad de respirar con plenitud</em>. Te brindo absoluta claridad sobre tu diagnóstico y el respaldo necesario para tomar <strong>decisiones informadas</strong>. Tu cuerpo es único; por ello, tu <strong>tratamiento</strong> se diseña <strong>a tu medida</strong>.
                         </div>
                     </div>
                 </div>
-                <div class="about__text">
-                    <h2 class="about__name reveal">Dr. William César<br>Lara Vázquez</h2>
-                    <p class="about__paragraph reveal">Me formé en el <strong>Instituto Nacional de Enfermedades Respiratorias (INER)</strong>, la institución de referencia en México para enfermedades pulmonares. Actualmente curso la <span class="about__highlight">Alta Especialidad en EPOC</span>, lo que me permite ofrecerte el tratamiento más actualizado y efectivo.</p>
-                    <div class="about__commitment reveal">
-                        Mi compromiso es devolverte la <em>libertad de respirar con plenitud</em>. Te brindo absoluta claridad sobre tu diagnóstico y el respaldo necesario para tomar <strong>decisiones informadas</strong>. Tu cuerpo es único; por ello, tu <strong>tratamiento</strong> se diseña <strong>a tu medida</strong>.
+            </div>
+
+            <!-- Credentials unified section -->
+            <div class="about__credentials-section">
+                <div class="container">
+                    <div class="creds-header">
+                        <span class="section-label reveal">Respaldo</span>
+                        <h3 class="creds-header__title reveal">Formación y Sociedades Médicas</h3>
                     </div>
-                    <div class="about__credentials reveal">
-                        <span class="credential-chip"><i class="bi bi-patch-check-fill"></i> Neumólogo certificado por el CNN</span>
-                        <span class="credential-chip"><i class="bi bi-mortarboard-fill"></i> INER · UNAM · BUAP</span>
+                    <div class="creds-bento">
+                        <div class="accred-card reveal">
+                            <div class="accred-logo accred-logo--iner">INER</div>
+                            <h4 class="accred-name">Instituto Nacional de Enfermedades Respiratorias</h4>
+                            <p class="accred-detail">Especialidad en Neumología y Medicina Interna</p>
+                        </div>
+                        <div class="accred-card reveal reveal-d1">
+                            <div class="accred-logo accred-logo--unam">UNAM</div>
+                            <h4 class="accred-name">Universidad Nacional Autónoma de México</h4>
+                            <p class="accred-detail">Cédula de Especialidad en Neumología</p>
+                        </div>
+                        <div class="accred-card reveal reveal-d2">
+                            <div class="accred-logo accred-logo--cnn"><i class="bi bi-shield-check"></i></div>
+                            <h4 class="accred-name">Consejo Nacional de Neumología</h4>
+                            <p class="accred-detail">Neumólogo certificado</p>
+                        </div>
+                        <div class="society-strip reveal reveal-d3">
+                            <span class="society-strip__label">Miembro de</span>
+                            <div class="society-chip">
+                                <span class="society-chip__abbr">SMN</span>
+                                <span class="society-chip__name">Soc. Mexicana de Neumología</span>
+                            </div>
+                            <div class="society-chip">
+                                <span class="society-chip__abbr">ALAT</span>
+                                <span class="society-chip__name">Asoc. Latinoamericana de Tórax</span>
+                            </div>
+                            <div class="society-chip">
+                                <span class="society-chip__abbr">ERS</span>
+                                <span class="society-chip__name">European Respiratory Society</span>
+                            </div>
+                            <div class="society-chip">
+                                <span class="society-chip__abbr">ATS</span>
+                                <span class="society-chip__name">American Thoracic Society</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -3065,6 +3293,28 @@
                 );
             });
 
+            /* Accreditation cards — staggered 3D reveal */
+            gsap.utils.toArray('.accred-card').forEach(function(card, i) {
+                gsap.fromTo(card,
+                    { opacity: 0, y: 60, rotateY: 8 },
+                    { opacity: 1, y: 0, rotateY: 0, duration: 0.9,
+                      delay: i * 0.15, ease: 'power3.out',
+                      scrollTrigger: { trigger: card, start: 'top 92%' }
+                    }
+                );
+            });
+
+            /* Society chips — elastic scale-in */
+            gsap.utils.toArray('.society-chip').forEach(function(chip, i) {
+                gsap.fromTo(chip,
+                    { opacity: 0, scale: 0.85, y: 10 },
+                    { opacity: 1, scale: 1, y: 0, duration: 0.6,
+                      delay: i * 0.08, ease: 'back.out(1.4)',
+                      scrollTrigger: { trigger: chip, start: 'top 95%' }
+                    }
+                );
+            });
+
         } else {
             /* Fallback (no GSAP) */
             document.querySelectorAll('.hero__logo,.hero__tag,.hero__headline .line-inner,.hero__sub,.hero__conditions,.hero__cta-row').forEach(function(el){
@@ -3265,11 +3515,14 @@
                 var wasPaused = band.classList.contains('band-paused');
                 band.querySelectorAll('.card-active').forEach(function(c) { c.classList.remove('card-active'); });
                 if (wasPaused) {
-                    band.classList.remove('band-paused');
+                    /* Resume: remove inline transform and restore animation */
                     band.style.transform = '';
+                    band.classList.remove('band-paused');
                 } else {
+                    /* Pause: capture current position, kill animation, set inline transform */
+                    var currentX = getTranslateX();
                     band.classList.add('band-paused');
-                    band.style.transform = 'translateX(' + getTranslateX() + 'px)';
+                    band.style.transform = 'translateX(' + currentX + 'px)';
                     card.classList.add('card-active');
                 }
             });
