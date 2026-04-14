@@ -798,16 +798,51 @@
         .footer-meta a:hover { color: rgba(255,255,255,.65); }
 
         /* =============================================
+           DISEASES STRIP
+        ============================================= */
+        .diseases-strip {
+            display: flex; align-items: center; gap: 20px;
+            padding: 16px 24px; margin-bottom: 32px;
+            background: var(--cloud-alt); border: 1px solid rgba(9,132,227,.09);
+            border-radius: 18px; overflow: hidden;
+        }
+        .diseases-strip__label {
+            font-size: .65rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 2.5px; color: var(--electric); white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .diseases-strip__nav {
+            display: flex; flex-wrap: wrap; gap: 6px;
+        }
+        .diseases-strip__nav a {
+            display: inline-flex; align-items: center;
+            padding: 5px 14px; border-radius: 100px;
+            font-size: .78rem; font-weight: 600;
+            color: var(--text-muted); text-decoration: none;
+            background: transparent; border: 1px solid transparent;
+            transition: all .25s var(--ease);
+        }
+        .diseases-strip__nav a:hover {
+            color: var(--electric); background: rgba(9,132,227,.06);
+            border-color: rgba(9,132,227,.15);
+        }
+        .diseases-strip__nav a.active {
+            color: #fff; background: var(--electric);
+            border-color: var(--electric);
+            box-shadow: 0 3px 12px rgba(9,132,227,.28);
+        }
+
+        /* =============================================
            BENTO GRID DASHBOARD
         ============================================= */
         .bento-grid {
             display: grid;
-            grid-template-columns: 3fr 2fr;
+            grid-template-columns: 2fr 1.4fr 1.6fr;
             grid-template-areas:
-                "what    causes"
-                "symp    symp"
-                "comp    risk"
-                "treat   treat";
+                "what    causes  causes"
+                "symp    symp    symp"
+                "comp    comp    risk"
+                "treat   treat   treat";
             gap: 20px;
             margin-bottom: 48px;
         }
@@ -836,6 +871,10 @@
             border: 1px solid rgba(9,132,227,.1);
         }
         .bento-card--causes:hover { box-shadow: 0 24px 64px rgba(9,132,227,.1); border-color: rgba(9,132,227,.22); }
+        /* causes spans 2 cols → horizontal list */
+        .bento-card--causes .bento-cause-list { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+        .bento-card--causes .bento-cause-item { flex-direction: column; align-items: center; text-align: center; padding: 16px 10px; }
+        .bento-card--causes .bento-cause-item:hover { transform: translateY(-3px) translateX(0); box-shadow: 0 8px 24px rgba(9,132,227,.1); }
 
         .bento-card--symp {
             grid-area: symp;
@@ -1104,27 +1143,29 @@
         /* =============================================
            RESPONSIVE
         ============================================= */
-        @media(max-width:991px) {
-            .disease-sidebar { position: relative; top: 0; }
-            .disease-content { padding: 48px 0; }
-            .disease-hero { padding: 110px 0 60px; }
-            .disease-hero__visual { margin-top: 40px; }
+        @media(max-width:1199px) {
             .bento-grid {
                 grid-template-columns: 1fr 1fr;
                 grid-template-areas:
                     "what    what"
                     "causes  causes"
                     "symp    symp"
-                    "comp    comp"
-                    "risk    risk"
+                    "comp    risk"
                     "treat   treat";
             }
+            .bento-card--causes .bento-cause-list { grid-template-columns: repeat(5,1fr); }
             .bento-sym-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        @media(max-width:991px) {
+            .disease-content { padding: 48px 0; }
+            .disease-hero { padding: 110px 0 60px; }
+            .disease-hero__visual { margin-top: 40px; }
             .bento-steps::before { display: none; }
-            .bento-steps { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .bento-steps { grid-template-columns: 1fr 1fr; gap: 14px; }
             .bento-step { padding: 0; }
-            .bento-what-body { flex-direction: column; gap: 24px; }
+            .bento-what-body { flex-direction: column; gap: 20px; }
             .bento-what-ahi { flex: auto; width: 100%; }
+            .diseases-strip { flex-direction: column; align-items: flex-start; gap: 12px; }
         }
         @media(max-width:768px) {
             .disease-hero { padding: 100px 0 50px; }
@@ -1138,6 +1179,8 @@
             .contact__card--hours { order: 4; }
             .bento-sym-grid { grid-template-columns: repeat(2, 1fr); }
             .bento-comp-grid { grid-template-columns: repeat(2, 1fr); }
+            .bento-card--causes .bento-cause-list { grid-template-columns: 1fr 1fr; }
+            .bento-card--causes .bento-cause-item { flex-direction: row; text-align: left; }
             .bento-what-stats { flex-wrap: wrap; }
             .bento-card { padding: 28px 22px; }
         }
@@ -1146,7 +1189,12 @@
             .disease-hero__stat { font-size: .72rem; padding: 6px 12px; }
             .cta-inline__btns { flex-direction: column; }
             .cta-inline__btn { justify-content: center; }
-            .bento-grid { grid-template-columns: 1fr; }
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-template-areas: "what" "causes" "symp" "comp" "risk" "treat";
+            }
+            .bento-card--causes .bento-cause-list { grid-template-columns: 1fr; }
+            .bento-card--causes .bento-cause-item { flex-direction: row; text-align: left; }
             .bento-sym-grid { grid-template-columns: repeat(2, 1fr); }
             .bento-comp-grid { grid-template-columns: repeat(2, 1fr); }
             .bento-steps { grid-template-columns: 1fr 1fr; }
@@ -1246,24 +1294,6 @@
                         <h4>¿Qué ocurre mientras duermes?</h4>
                         <p>La garganta se cierra repetidamente durante la noche, cortando tu respiración por segundos. Eso baja el oxígeno en tu sangre y rompe tu descanso, aunque no lo recuerdes al despertar.</p>
                     </div>
-                    <div class="ahi-meter">
-                        <div class="ahi-meter__title">Índice Apnea-Hipopnea (IAH)</div>
-                        <div class="ahi-row">
-                            <span class="ahi-label">Leve</span>
-                            <div class="ahi-bar-wrap"><div class="ahi-bar ahi-bar--leve"></div></div>
-                            <span class="ahi-val">5–15</span>
-                        </div>
-                        <div class="ahi-row">
-                            <span class="ahi-label">Moderada</span>
-                            <div class="ahi-bar-wrap"><div class="ahi-bar ahi-bar--mod"></div></div>
-                            <span class="ahi-val">15–30</span>
-                        </div>
-                        <div class="ahi-row">
-                            <span class="ahi-label">Severa</span>
-                            <div class="ahi-bar-wrap"><div class="ahi-bar ahi-bar--severo"></div></div>
-                            <span class="ahi-val">&gt;30</span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1276,10 +1306,30 @@
         <div class="section-mesh"></div>
         <div class="section-accent-line"></div>
         <div class="container">
+            <!-- ── Diseases strip ── -->
+            <div class="diseases-strip reveal">
+                <span class="diseases-strip__label">Enfermedades que tratamos</span>
+                <nav class="diseases-strip__nav">
+                    <a href="/enfermedades/asma/">Asma</a>
+                    <a href="/enfermedades/epoc/">EPOC</a>
+                    <a href="/enfermedades/neumonia/">Neumonía</a>
+                    <a href="/enfermedades/apnea-del-sueno/" class="active">Apnea del Sueño</a>
+                    <a href="/enfermedades/derrames-pleurales/">Derrames Pleurales</a>
+                    <a href="/enfermedades/tabaquismo/">Tabaquismo</a>
+                    <a href="/enfermedades/cancer-de-pulmon/">Cáncer de Pulmón</a>
+                    <a href="/enfermedades/fibrosis-pulmonar/">Fibrosis Pulmonar</a>
+                    <a href="/enfermedades/bronquiectasias/">Bronquiectasias</a>
+                    <a href="/enfermedades/embolia-pulmonar/">Embolia Pulmonar</a>
+                    <a href="/enfermedades/hipertension-pulmonar/">Hipertensión Pulmonar</a>
+                    <a href="/enfermedades/secuelas-covid/">Secuelas COVID-19</a>
+                    <a href="/enfermedades/influenza/">Influenza</a>
+                </nav>
+            </div>
+
             <div class="row g-5">
 
-                <!-- ── Main column ── -->
-                <div class="col-lg-8">
+                <!-- ── Main column full width ── -->
+                <div class="col-12">
                     <article>
 
                         <!-- BENTO GRID -->
@@ -1457,33 +1507,6 @@
                         </div>
 
                     </article>
-                </div>
-
-                <!-- ── Sidebar ── -->
-                <div class="col-lg-4">
-                    <aside class="disease-sidebar reveal reveal-d1">
-
-                        <!-- Navigation -->
-                        <div class="sidebar-card reveal reveal-d1">
-                            <div class="sidebar-card__header">Enfermedades que tratamos</div>
-                            <ul class="sidebar-nav">
-                                <li><a href="/enfermedades/asma/"><span class="num">1</span> Asma</a></li>
-                                <li><a href="/enfermedades/epoc/"><span class="num">2</span> EPOC</a></li>
-                                <li><a href="/enfermedades/neumonia/"><span class="num">3</span> Neumonía</a></li>
-                                <li><a href="/enfermedades/apnea-del-sueno/" class="active"><span class="num">4</span> Apnea del Sueño</a></li>
-                                <li><a href="/enfermedades/derrames-pleurales/"><span class="num">5</span> Derrames Pleurales</a></li>
-                                <li><a href="/enfermedades/tabaquismo/"><span class="num">6</span> Tabaquismo</a></li>
-                                <li><a href="/enfermedades/cancer-de-pulmon/"><span class="num">7</span> Cáncer de Pulmón</a></li>
-                                <li><a href="/enfermedades/fibrosis-pulmonar/"><span class="num">8</span> Fibrosis Pulmonar</a></li>
-                                <li><a href="/enfermedades/bronquiectasias/"><span class="num">9</span> Bronquiectasias</a></li>
-                                <li><a href="/enfermedades/embolia-pulmonar/"><span class="num">10</span> Embolia Pulmonar</a></li>
-                                <li><a href="/enfermedades/hipertension-pulmonar/"><span class="num">11</span> Hipertensión Pulmonar</a></li>
-                                <li><a href="/enfermedades/secuelas-covid/"><span class="num">12</span> Secuelas COVID-19</a></li>
-                                <li><a href="/enfermedades/influenza/"><span class="num">13</span> Influenza</a></li>
-                            </ul>
-                        </div>
-
-                    </aside>
                 </div>
 
             </div>
