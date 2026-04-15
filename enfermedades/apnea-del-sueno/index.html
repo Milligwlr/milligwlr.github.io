@@ -766,20 +766,28 @@
            CTA BAND
         ============================================= */
         .cta-band { background: var(--navy); position: relative; overflow: hidden; }
-        .cta-band::before {
-            content: ''; position: absolute; top: 50%; left: 10%; right: 10%; height: 1px;
+        .cta-band__canvas {
+            position: absolute; inset: 0; z-index: 0; pointer-events: none;
+        }
+        .cta-band__glow-line {
+            position: absolute; top: 50%; left: 10%; right: 10%; height: 1px;
             background: linear-gradient(90deg, transparent 0%, rgba(9,132,227,.5) 20%, rgba(116,185,255,.6) 50%, rgba(9,132,227,.5) 80%, transparent 100%);
             filter: blur(1px); z-index: 0; opacity: .6;
+            animation: cta-glow-pulse 4s ease-in-out infinite;
+        }
+        @keyframes cta-glow-pulse {
+            0%,100% { opacity:.4; filter: blur(1px); }
+            50%     { opacity:.9; filter: blur(2px); }
         }
         .cta-band__inner { position: relative; z-index: 1; }
         .cta-band__btn {
             display: inline-flex; align-items: center; gap: 8px;
             background: var(--white); color: var(--navy) !important;
-            text-decoration: none; padding: 16px 40px; border-radius: 100px;
-            font-weight: 800; font-size: 1rem; transition: all .35s var(--ease);
-            box-shadow: 0 4px 24px rgba(255,255,255,.15);
+            text-decoration: none; padding: 18px 44px; border-radius: 100px;
+            font-weight: 800; font-size: 1.05rem; transition: all .35s var(--ease);
+            box-shadow: 0 4px 24px rgba(255,255,255,.15), 0 0 60px rgba(9,132,227,.12);
         }
-        .cta-band__btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 10px 40px rgba(255,255,255,.22); color: var(--royal) !important; }
+        .cta-band__btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 10px 40px rgba(255,255,255,.22), 0 0 80px rgba(9,132,227,.2); color: var(--royal) !important; }
 
         /* =============================================
            FOOTER
@@ -877,7 +885,7 @@
         /* ── Base card ── */
         .bento-card {
             border-radius: 24px;
-            padding: 36px 32px;
+            padding: 44px 40px;
             position: relative;
             overflow: hidden;
             transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s;
@@ -968,8 +976,8 @@
 
         /* ── Labels ── */
         .bento-label {
-            font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3.5px;
-            margin-bottom: 14px; display: inline-flex; align-items: center; gap: 8px;
+            font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px;
+            margin-bottom: 16px; display: inline-flex; align-items: center; gap: 8px;
         }
         .bento-card--what   .bento-label,
         .bento-card--causes .bento-label  { color: var(--electric); }
@@ -987,7 +995,7 @@
 
         /* ── Titles ── */
         .bento-title {
-            font-size: 1.25rem; font-weight: 800; margin-bottom: 22px;
+            font-size: 1.45rem; font-weight: 800; margin-bottom: 24px;
             letter-spacing: -.03em; line-height: 1.15;
         }
         .bento-card--what   .bento-title,
@@ -1000,34 +1008,39 @@
         /* ── ¿Qué es? — layout con stats prominentes ── */
         .bento-what-body { display: flex; gap: 24px; align-items: flex-start; }
         .bento-what-copy { flex: 1; min-width: 0; }
-        .bento-what-copy p { font-size: .92rem; color: var(--text-muted); line-height: 1.75; margin: 0 0 24px; }
-        .bento-what-stats { display: flex; gap: 14px; flex-wrap: wrap; }
+        .bento-what-copy p { font-size: 1rem; color: var(--text-muted); line-height: 1.75; margin: 0 0 28px; }
+        .bento-what-stats { display: flex; gap: 16px; flex-wrap: wrap; }
         .bento-stat-pill {
-            display: flex; align-items: center; gap: 8px;
-            padding: 10px 16px; border-radius: 14px;
+            display: flex; align-items: center; gap: 12px;
+            padding: 14px 20px; border-radius: 16px;
             background: rgba(9,132,227,.06); border: 1px solid rgba(9,132,227,.12);
             transition: all .3s var(--ease);
         }
         .bento-stat-pill:hover { background: rgba(9,132,227,.1); border-color: rgba(9,132,227,.22); }
-        .bento-stat-pill__val { font-size: 1.4rem; font-weight: 800; color: var(--navy); letter-spacing: -.03em; line-height: 1; }
-        .bento-stat-pill__lbl { font-size: .7rem; font-weight: 600; color: var(--text-muted); line-height: 1.3; }
-        .bento-stat-pill i { font-size: 1.1rem; color: var(--electric); }
-        .bento-what-ahi { flex: 0 0 200px; }
-        .bento-ahi-ttl {
-            font-size: .62rem; font-weight: 700; color: var(--electric);
-            text-transform: uppercase; letter-spacing: 3px; margin-bottom: 14px;
-            display: flex; align-items: center; gap: 7px;
+        .bento-stat-pill__val { font-size: 1.75rem; font-weight: 800; color: var(--navy); letter-spacing: -.03em; line-height: 1; }
+        .bento-stat-pill__lbl { font-size: .78rem; font-weight: 600; color: var(--text-muted); line-height: 1.3; }
+        .bento-stat-pill i { font-size: 1.3rem; color: var(--electric); }
+        .bento-what-ahi {
+            flex: 0 0 185px; min-width: 0;
+            border-left: 1px solid rgba(9,132,227,.12);
+            padding-left: 20px;
         }
-        .bento-what-ahi .ahi-row { margin-bottom: 12px; }
-        .bento-what-ahi .ahi-label { font-size: .72rem; color: var(--text-muted); width: 60px; }
-        .bento-what-ahi .ahi-bar-wrap { height: 7px; border-radius: 4px; }
-        .bento-what-ahi .ahi-val { font-size: .68rem; color: var(--text-muted); }
+        .bento-ahi-ttl {
+            font-size: .6rem; font-weight: 700; color: var(--electric);
+            text-transform: uppercase; letter-spacing: 1.8px; margin-bottom: 14px;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .bento-what-ahi .ahi-row { margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .bento-what-ahi .ahi-label { font-size: .7rem; color: var(--text-muted); width: 56px; flex-shrink: 0; }
+        .bento-what-ahi .ahi-bar-wrap { flex: 1; height: 6px; border-radius: 3px; background: rgba(9,132,227,.08); overflow: hidden; }
+        .bento-what-ahi .ahi-bar { height: 100%; border-radius: 3px; animation: ahi-grow 1.6s var(--ease) both; }
+        .bento-what-ahi .ahi-val { font-size: .65rem; color: var(--text-muted); width: 32px; text-align: right; flex-shrink: 0; }
 
         /* ── Síntomas — icon cards con respiro ── */
-        .bento-sym-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+        .bento-sym-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
         .bento-sym-item {
             display: flex; flex-direction: column; align-items: center;
-            text-align: center; padding: 28px 16px 22px;
+            text-align: center; padding: 32px 18px 26px;
             border-radius: 18px;
             background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
             cursor: default; transition: all .35s var(--ease);
@@ -1037,20 +1050,20 @@
             transform: translateY(-4px); box-shadow: 0 12px 36px rgba(9,132,227,.18);
         }
         .bento-sym-icon {
-            width: 56px; height: 56px; border-radius: 16px;
+            width: 68px; height: 68px; border-radius: 20px;
             background: linear-gradient(135deg, rgba(9,132,227,.16), rgba(0,206,201,.1));
             border: 1px solid rgba(9,132,227,.22);
             display: flex; align-items: center; justify-content: center;
-            margin-bottom: 14px; transition: all .4s var(--ease);
+            margin-bottom: 16px; transition: all .4s var(--ease);
         }
         .bento-sym-item:hover .bento-sym-icon {
             background: linear-gradient(135deg, var(--electric), var(--cyan));
             border-color: transparent; box-shadow: 0 8px 26px rgba(9,132,227,.4);
             transform: scale(1.06);
         }
-        .bento-sym-icon i { font-size: 1.35rem; color: var(--sky); transition: color .35s; }
+        .bento-sym-icon i { font-size: 1.65rem; color: var(--sky); transition: color .35s; }
         .bento-sym-item:hover .bento-sym-icon i { color: #fff; }
-        .bento-sym-item span { font-size: .8rem; font-weight: 600; color: rgba(255,255,255,.58); line-height: 1.35; }
+        .bento-sym-item span { font-size: .88rem; font-weight: 600; color: rgba(255,255,255,.58); line-height: 1.35; }
         .bento-sym-item:hover span { color: rgba(255,255,255,.92); }
 
         /* ── Causas — filas con íconos medianos ── */
@@ -1066,7 +1079,7 @@
             transform: translateX(6px); box-shadow: 4px 0 20px rgba(9,132,227,.08);
         }
         .bento-cause-icon {
-            width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+            width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
             background: linear-gradient(135deg, rgba(9,132,227,.1), rgba(0,206,201,.07));
             border: 1px solid rgba(9,132,227,.14);
             display: flex; align-items: center; justify-content: center;
@@ -1076,9 +1089,9 @@
             background: linear-gradient(135deg, var(--electric), var(--cyan));
             border-color: transparent; box-shadow: 0 5px 16px rgba(9,132,227,.28);
         }
-        .bento-cause-icon i { font-size: 1.05rem; color: var(--electric); transition: color .35s; }
+        .bento-cause-icon i { font-size: 1.3rem; color: var(--electric); transition: color .35s; }
         .bento-cause-item:hover .bento-cause-icon i { color: #fff; }
-        .bento-cause-item span { font-size: .88rem; font-weight: 600; color: var(--text-muted); }
+        .bento-cause-item span { font-size: .95rem; font-weight: 600; color: var(--text-muted); }
         .bento-cause-item:hover span { color: var(--text); }
 
         /* ── Complicaciones — cards centradas ── */
@@ -1097,26 +1110,26 @@
         .bento-comp-item:hover::after { transform: scaleX(1); }
         .bento-comp-item:hover { border-color: rgba(214,48,49,.25); transform: translateY(-4px); box-shadow: 0 14px 36px rgba(214,48,49,.12); }
         .bento-comp-icon {
-            width: 52px; height: 52px; border-radius: 15px;
+            width: 62px; height: 62px; border-radius: 18px;
             background: rgba(214,48,49,.08); border: 1px solid rgba(214,48,49,.12);
             display: flex; align-items: center; justify-content: center;
-            margin-bottom: 12px; transition: all .35s var(--ease);
+            margin-bottom: 14px; transition: all .35s var(--ease);
         }
         .bento-comp-item:hover .bento-comp-icon {
             background: linear-gradient(135deg, #e17055, #d63031);
             border-color: transparent; box-shadow: 0 6px 20px rgba(214,48,49,.28);
             transform: scale(1.06);
         }
-        .bento-comp-icon i { font-size: 1.2rem; color: #d63031; transition: color .35s; }
+        .bento-comp-icon i { font-size: 1.5rem; color: #d63031; transition: color .35s; }
         .bento-comp-item:hover .bento-comp-icon i { color: #fff; }
-        .bento-comp-item span { font-size: .82rem; font-weight: 700; color: var(--navy); line-height: 1.3; }
+        .bento-comp-item span { font-size: .92rem; font-weight: 700; color: var(--navy); line-height: 1.3; }
 
         /* ── Factores de riesgo ── */
         .bento-chips { display: flex; flex-wrap: wrap; gap: 9px; }
         .bento-chip {
-            display: inline-flex; align-items: center; gap: 7px;
-            padding: 10px 16px; border-radius: 100px;
-            font-size: .81rem; font-weight: 600;
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 11px 20px; border-radius: 100px;
+            font-size: .9rem; font-weight: 600;
             background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
             color: rgba(255,255,255,.65); transition: all .3s var(--ease);
         }
@@ -1144,18 +1157,18 @@
             padding: 0 12px 0; position: relative; z-index: 1;
         }
         .bento-step__num {
-            width: 60px; height: 60px; border-radius: 18px;
+            width: 72px; height: 72px; border-radius: 22px;
             background: linear-gradient(135deg, var(--electric), var(--cyan));
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 16px;
+            font-size: 1.3rem; font-weight: 800; color: #fff; margin-bottom: 18px;
             box-shadow: 0 8px 24px rgba(9,132,227,.35);
             transition: all .4s var(--ease);
         }
         .bento-step:hover .bento-step__num {
             transform: scale(1.1); box-shadow: 0 12px 32px rgba(9,132,227,.5);
         }
-        .bento-step__title { font-size: .9rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
-        .bento-step__desc { font-size: .77rem; color: rgba(255,255,255,.42); line-height: 1.55; }
+        .bento-step__title { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+        .bento-step__desc { font-size: .86rem; color: rgba(255,255,255,.45); line-height: 1.55; }
 
         /* =============================================
            REVEAL ANIMATIONS
@@ -1191,8 +1204,9 @@
             .bento-steps { grid-template-columns: 1fr 1fr; gap: 14px; }
             .bento-step { padding: 0; }
             .bento-what-body { flex-direction: column; gap: 20px; }
-            .bento-what-ahi { flex: auto; width: 100%; }
-            .diseases-strip { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .bento-what-ahi { flex: auto; width: 100%; border-left: none; padding-left: 0; border-top: 1px solid rgba(9,132,227,.12); padding-top: 20px; }
+            .diseases-strip__nav { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
+            .diseases-strip__nav a { padding: 13px 8px; }
         }
         @media(max-width:768px) {
             .disease-hero { padding: 100px 0 50px; }
@@ -1335,21 +1349,62 @@
         <div class="container">
             <!-- ── Diseases strip ── -->
             <div class="diseases-strip reveal">
-                <span class="diseases-strip__label">Enfermedades que tratamos</span>
-                <nav class="diseases-strip__nav">
-                    <a href="/enfermedades/asma/">Asma</a>
-                    <a href="/enfermedades/epoc/">EPOC</a>
-                    <a href="/enfermedades/neumonia/">Neumonía</a>
-                    <a href="/enfermedades/apnea-del-sueno/" class="active">Apnea del Sueño</a>
-                    <a href="/enfermedades/derrames-pleurales/">Derrames Pleurales</a>
-                    <a href="/enfermedades/tabaquismo/">Tabaquismo</a>
-                    <a href="/enfermedades/cancer-de-pulmon/">Cáncer de Pulmón</a>
-                    <a href="/enfermedades/fibrosis-pulmonar/">Fibrosis Pulmonar</a>
-                    <a href="/enfermedades/bronquiectasias/">Bronquiectasias</a>
-                    <a href="/enfermedades/embolia-pulmonar/">Embolia Pulmonar</a>
-                    <a href="/enfermedades/hipertension-pulmonar/">Hipertensión Pulmonar</a>
-                    <a href="/enfermedades/secuelas-covid/">Secuelas COVID-19</a>
-                    <a href="/enfermedades/influenza/">Influenza</a>
+                <div class="diseases-strip__header">
+                    <span class="diseases-strip__label">Enfermedades que tratamos</span>
+                </div>
+                <nav class="diseases-strip__nav" aria-label="Enfermedades respiratorias">
+                    <a href="/enfermedades/asma/">
+                        <div class="ds-icon"><i class="bi bi-wind" aria-hidden="true"></i></div>
+                        <span>Asma</span>
+                    </a>
+                    <a href="/enfermedades/epoc/">
+                        <div class="ds-icon"><i class="bi bi-activity" aria-hidden="true"></i></div>
+                        <span>EPOC</span>
+                    </a>
+                    <a href="/enfermedades/neumonia/">
+                        <div class="ds-icon"><i class="bi bi-thermometer-high" aria-hidden="true"></i></div>
+                        <span>Neumonía</span>
+                    </a>
+                    <a href="/enfermedades/apnea-del-sueno/" class="active" aria-current="page">
+                        <div class="ds-icon"><i class="bi bi-moon-stars-fill" aria-hidden="true"></i></div>
+                        <span>Apnea del Sueño</span>
+                    </a>
+                    <a href="/enfermedades/derrames-pleurales/">
+                        <div class="ds-icon"><i class="bi bi-droplet-fill" aria-hidden="true"></i></div>
+                        <span>Derrames Pleurales</span>
+                    </a>
+                    <a href="/enfermedades/tabaquismo/">
+                        <div class="ds-icon"><i class="bi bi-slash-circle-fill" aria-hidden="true"></i></div>
+                        <span>Tabaquismo</span>
+                    </a>
+                    <a href="/enfermedades/cancer-de-pulmon/">
+                        <div class="ds-icon"><i class="bi bi-hospital-fill" aria-hidden="true"></i></div>
+                        <span>Cáncer de Pulmón</span>
+                    </a>
+                    <a href="/enfermedades/fibrosis-pulmonar/">
+                        <div class="ds-icon"><i class="bi bi-layers-fill" aria-hidden="true"></i></div>
+                        <span>Fibrosis Pulmonar</span>
+                    </a>
+                    <a href="/enfermedades/bronquiectasias/">
+                        <div class="ds-icon"><i class="bi bi-diagram-3-fill" aria-hidden="true"></i></div>
+                        <span>Bronquiectasias</span>
+                    </a>
+                    <a href="/enfermedades/embolia-pulmonar/">
+                        <div class="ds-icon"><i class="bi bi-arrow-repeat" aria-hidden="true"></i></div>
+                        <span>Embolia Pulmonar</span>
+                    </a>
+                    <a href="/enfermedades/hipertension-pulmonar/">
+                        <div class="ds-icon"><i class="bi bi-speedometer2" aria-hidden="true"></i></div>
+                        <span>Hipertensión Pulmonar</span>
+                    </a>
+                    <a href="/enfermedades/secuelas-covid/">
+                        <div class="ds-icon"><i class="bi bi-virus2" aria-hidden="true"></i></div>
+                        <span>Secuelas COVID-19</span>
+                    </a>
+                    <a href="/enfermedades/influenza/">
+                        <div class="ds-icon"><i class="bi bi-thermometer-half" aria-hidden="true"></i></div>
+                        <span>Influenza</span>
+                    </a>
                 </nav>
             </div>
 
@@ -1393,11 +1448,27 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- IAH meter -->
                                     <div class="bento-what-ahi">
-                                        <div class="bento-ahi-ttl"><i class="bi bi-bar-chart-fill"></i> Índice IAH</div>
-                                        <div class="ahi-row"><span class="ahi-label">Leve</span><div class="ahi-bar-wrap"><div class="ahi-bar ahi-bar--leve"></div></div><span class="ahi-val">5–15</span></div>
-                                        <div class="ahi-row"><span class="ahi-label">Moderada</span><div class="ahi-bar-wrap"><div class="ahi-bar ahi-bar--mod"></div></div><span class="ahi-val">15–30</span></div>
-                                        <div class="ahi-row"><span class="ahi-label">Severa</span><div class="ahi-bar-wrap"><div class="ahi-bar ahi-bar--severo"></div></div><span class="ahi-val">&gt;30</span></div>
+                                        <div class="bento-ahi-ttl">
+                                            <i class="bi bi-bar-chart-fill" aria-hidden="true"></i>
+                                            Índice AHI
+                                        </div>
+                                        <div class="ahi-row">
+                                            <span class="ahi-label">Leve</span>
+                                            <div class="ahi-bar-wrap"><div class="ahi-bar ahi-bar--leve"></div></div>
+                                            <span class="ahi-val">5–14</span>
+                                        </div>
+                                        <div class="ahi-row">
+                                            <span class="ahi-label">Moderada</span>
+                                            <div class="ahi-bar-wrap"><div class="ahi-bar ahi-bar--mod"></div></div>
+                                            <span class="ahi-val">15–29</span>
+                                        </div>
+                                        <div class="ahi-row">
+                                            <span class="ahi-label">Severa</span>
+                                            <div class="ahi-bar-wrap"><div class="ahi-bar ahi-bar--severo"></div></div>
+                                            <span class="ahi-val">≥30</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1541,8 +1612,10 @@
     </section>
 
     <!-- ===== CTA BAND ===== -->
-    <section class="cta-band text-center py-5">
-        <div class="container py-3 cta-band__inner reveal">
+    <section class="cta-band text-center" style="padding:80px 0">
+        <canvas class="cta-band__canvas" id="ctaSparkles"></canvas>
+        <div class="cta-band__glow-line"></div>
+        <div class="container cta-band__inner reveal">
             <p style="color:rgba(116,185,255,.7);font-size:.82rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">No esperes a que empeore</p>
             <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.03em;line-height:1.15">Recupera el control de tu respiración</h2>
             <p class="mb-5 mx-auto" style="color:rgba(255,255,255,.45);font-size:1rem;max-width:500px;line-height:1.75">Atención médica de alta especialidad para brindarte un diagnóstico preciso y tranquilidad desde la primera consulta.</p>
@@ -1657,6 +1730,76 @@
         }, { threshold: 0.05 });
         document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
     }
+
+    /* ── Sparkle canvas — lucecitas flotantes ── */
+    function initSparkles(canvasId, particleCount) {
+        if (window.innerWidth <= 768) particleCount = Math.round(particleCount * 0.35);
+        var canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+        var ctx = canvas.getContext('2d');
+        var particles = [];
+        var raf = null;
+
+        function resize() {
+            var rect = canvas.parentElement.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        for (var i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2 + 0.5,
+                speedY: (Math.random() - 0.5) * 0.3,
+                speedX: (Math.random() - 0.5) * 0.2,
+                opacity: Math.random(),
+                fadeSpeed: 0.003 + Math.random() * 0.008,
+                fadeDir: 1
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (var j = 0; j < particles.length; j++) {
+                var p = particles[j];
+                p.x += p.speedX;
+                p.y += p.speedY;
+                p.opacity += p.fadeSpeed * p.fadeDir;
+                if (p.opacity >= 1) { p.opacity = 1; p.fadeDir = -1; }
+                if (p.opacity <= 0) { p.opacity = 0; p.fadeDir = 1; p.x = Math.random() * canvas.width; p.y = Math.random() * canvas.height; }
+                if (p.x < 0) p.x = canvas.width;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height;
+                if (p.y > canvas.height) p.y = 0;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(116,185,255,' + (p.opacity * 0.6) + ')';
+                ctx.fill();
+
+                if (p.size > 1.2) {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size * 2.5, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(9,132,227,' + (p.opacity * 0.08) + ')';
+                    ctx.fill();
+                }
+            }
+            raf = requestAnimationFrame(draw);
+        }
+
+        var sparkleObs = new IntersectionObserver(function(entries) {
+            if (entries[0].isIntersecting) {
+                if (!raf) draw();
+            } else {
+                if (raf) { cancelAnimationFrame(raf); raf = null; }
+            }
+        }, { threshold: 0 });
+        sparkleObs.observe(canvas.parentElement);
+    }
+    initSparkles('ctaSparkles', 160);
 
     /* Auto-close mobile nav on link click */
     var navCollapse = document.getElementById('navbarNav');
