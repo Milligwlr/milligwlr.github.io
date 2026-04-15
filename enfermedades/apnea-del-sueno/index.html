@@ -369,11 +369,12 @@
         }
         .disease-hero__visual { display: flex; flex-direction: column; gap: 16px; position: relative; z-index: 2; }
         .sleep-visual-card {
-            background: rgba(255,255,255,.05);
+            background: rgba(255,255,255,.12);
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,.1);
+            border: 1px solid rgba(255,255,255,.28);
             border-radius: 22px; padding: 34px 30px;
             position: relative; overflow: hidden; transition: all .4s var(--ease);
+            box-shadow: 0 8px 40px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.15);
         }
         .sleep-visual-card::before {
             content: '';
@@ -1038,8 +1039,8 @@
         /* causes en columna vertical — vertical list */
         .bento-card--causes .bento-title { margin-bottom: 16px; }
         .bento-card--causes .bento-cause-list { flex: 1; }
-        .bento-card--causes .bento-cause-icon { width: 46px; height: 46px; border-radius: 13px; }
-        .bento-card--causes .bento-cause-icon i { font-size: 1.08rem; }
+        .bento-card--causes .bento-cause-icon { width: 54px; height: 54px; border-radius: 14px; }
+        .bento-card--causes .bento-cause-icon i { font-size: 1.3rem; }
 
         .bento-card--symp {
             grid-area: symp;
@@ -1125,7 +1126,7 @@
 
         /* ── Titles ── */
         .bento-title {
-            font-size: 1.25rem; font-weight: 800; margin-bottom: 22px;
+            font-size: 1.4rem; font-weight: 800; margin-bottom: 22px;
             letter-spacing: -.03em; line-height: 1.15;
         }
         .bento-card--what   .bento-title,
@@ -1138,7 +1139,7 @@
         /* ── ¿Qué es? — layout con stats prominentes ── */
         .bento-what-body { display: flex; gap: 24px; align-items: flex-start; }
         .bento-what-copy { flex: 1; min-width: 0; }
-        .bento-what-copy p { font-size: .92rem; color: var(--text-muted); line-height: 1.75; margin: 0 0 24px; }
+        .bento-what-copy p { font-size: 1rem; color: var(--text-muted); line-height: 1.75; margin: 0 0 24px; }
         .bento-what-stats { display: flex; gap: 14px; flex-wrap: wrap; }
         .bento-stat-pill {
             display: flex; align-items: center; gap: 8px;
@@ -1148,7 +1149,7 @@
         }
         .bento-stat-pill:hover { background: rgba(9,132,227,.1); border-color: rgba(9,132,227,.22); }
         .bento-stat-pill__val { font-size: 1.4rem; font-weight: 800; color: var(--navy); letter-spacing: -.03em; line-height: 1; }
-        .bento-stat-pill__lbl { font-size: .7rem; font-weight: 600; color: var(--text-muted); line-height: 1.3; }
+        .bento-stat-pill__lbl { font-size: .78rem; font-weight: 600; color: var(--text-muted); line-height: 1.3; }
         .bento-stat-pill i { font-size: 1.1rem; color: var(--electric); }
         .bento-what-ahi { flex: 0 0 210px; }
         .bento-ahi-ttl {
@@ -1216,7 +1217,7 @@
         }
         .bento-cause-icon i { font-size: 1.05rem; color: var(--electric); transition: color .35s; }
         .bento-cause-item:hover .bento-cause-icon i { color: #fff; }
-        .bento-cause-item span { font-size: .88rem; font-weight: 600; color: var(--text-muted); }
+        .bento-cause-item span { font-size: 1rem; font-weight: 600; color: var(--text-muted); }
         .bento-cause-item:hover span { color: var(--text); }
 
         /* ── Complicaciones — cards centradas ── */
@@ -1478,28 +1479,28 @@
                         <!-- Set 1 -->
                         <a href="/enfermedades/asma/" role="listitem"><div class="ds-icon"><i class="bi bi-wind" aria-hidden="true"></i></div><span>Asma</span></a>
                         <a href="/enfermedades/epoc/" role="listitem"><div class="ds-icon"><i class="bi bi-lungs-fill" aria-hidden="true"></i></div><span>EPOC</span></a>
-                        <a href="/enfermedades/neumonia/" role="listitem"><div class="ds-icon"><i class="bi bi-thermometer-half" aria-hidden="true"></i></div><span>Neumonía</span></a>
+                        <a href="/enfermedades/neumonia/" role="listitem"><div class="ds-icon"><i class="fa-solid fa-bacteria" aria-hidden="true"></i></div><span>Neumonía</span></a>
                         <a href="/enfermedades/apnea-del-sueno/" class="active" role="listitem"><div class="ds-icon"><i class="bi bi-moon-stars-fill" aria-hidden="true"></i></div><span>Apnea del Sueño</span></a>
                         <a href="/enfermedades/derrames-pleurales/" role="listitem"><div class="ds-icon"><i class="bi bi-droplet-fill" aria-hidden="true"></i></div><span>Derrames Pleurales</span></a>
-                        <a href="/enfermedades/tabaquismo/" role="listitem"><div class="ds-icon"><i class="bi bi-slash-circle-fill" aria-hidden="true"></i></div><span>Tabaquismo</span></a>
+                        <a href="/enfermedades/tabaquismo/" role="listitem"><div class="ds-icon"><i class="fa-solid fa-smoking" aria-hidden="true"></i></div><span>Tabaquismo</span></a>
                         <a href="/enfermedades/cancer-de-pulmon/" role="listitem"><div class="ds-icon"><i class="bi bi-radioactive" aria-hidden="true"></i></div><span>Cáncer de Pulmón</span></a>
-                        <a href="/enfermedades/fibrosis-pulmonar/" role="listitem"><div class="ds-icon"><i class="bi bi-layers-fill" aria-hidden="true"></i></div><span>Fibrosis Pulmonar</span></a>
-                        <a href="/enfermedades/bronquiectasias/" role="listitem"><div class="ds-icon"><i class="bi bi-bezier2" aria-hidden="true"></i></div><span>Bronquiectasias</span></a>
-                        <a href="/enfermedades/embolia-pulmonar/" role="listitem"><div class="ds-icon"><i class="bi bi-activity" aria-hidden="true"></i></div><span>Embolia Pulmonar</span></a>
+                        <a href="/enfermedades/fibrosis-pulmonar/" role="listitem"><div class="ds-icon"><i class="fa-solid fa-lungs" aria-hidden="true"></i></div><span>Fibrosis Pulmonar</span></a>
+                        <a href="/enfermedades/bronquiectasias/" role="listitem"><div class="ds-icon"><i class="fa-solid fa-lungs-virus" aria-hidden="true"></i></div><span>Bronquiectasias</span></a>
+                        <a href="/enfermedades/embolia-pulmonar/" role="listitem"><div class="ds-icon"><i class="fa-solid fa-heart-crack" aria-hidden="true"></i></div><span>Embolia Pulmonar</span></a>
                         <a href="/enfermedades/hipertension-pulmonar/" role="listitem"><div class="ds-icon"><i class="bi bi-heart-pulse-fill" aria-hidden="true"></i></div><span>Hipertensión Pulmonar</span></a>
                         <a href="/enfermedades/secuelas-covid/" role="listitem"><div class="ds-icon"><i class="bi bi-virus2" aria-hidden="true"></i></div><span>Secuelas COVID-19</span></a>
                         <a href="/enfermedades/influenza/" role="listitem"><div class="ds-icon"><i class="bi bi-thermometer-high" aria-hidden="true"></i></div><span>Influenza</span></a>
                         <!-- Set 2 — duplicate for seamless infinite loop -->
                         <a href="/enfermedades/asma/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-wind"></i></div><span>Asma</span></a>
                         <a href="/enfermedades/epoc/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-lungs-fill"></i></div><span>EPOC</span></a>
-                        <a href="/enfermedades/neumonia/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-thermometer-half"></i></div><span>Neumonía</span></a>
+                        <a href="/enfermedades/neumonia/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-bacteria"></i></div><span>Neumonía</span></a>
                         <a href="/enfermedades/apnea-del-sueno/" class="active" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-moon-stars-fill"></i></div><span>Apnea del Sueño</span></a>
                         <a href="/enfermedades/derrames-pleurales/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-droplet-fill"></i></div><span>Derrames Pleurales</span></a>
-                        <a href="/enfermedades/tabaquismo/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-slash-circle-fill"></i></div><span>Tabaquismo</span></a>
+                        <a href="/enfermedades/tabaquismo/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-smoking"></i></div><span>Tabaquismo</span></a>
                         <a href="/enfermedades/cancer-de-pulmon/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-radioactive"></i></div><span>Cáncer de Pulmón</span></a>
-                        <a href="/enfermedades/fibrosis-pulmonar/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-layers-fill"></i></div><span>Fibrosis Pulmonar</span></a>
-                        <a href="/enfermedades/bronquiectasias/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-bezier2"></i></div><span>Bronquiectasias</span></a>
-                        <a href="/enfermedades/embolia-pulmonar/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-activity"></i></div><span>Embolia Pulmonar</span></a>
+                        <a href="/enfermedades/fibrosis-pulmonar/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-lungs"></i></div><span>Fibrosis Pulmonar</span></a>
+                        <a href="/enfermedades/bronquiectasias/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-lungs-virus"></i></div><span>Bronquiectasias</span></a>
+                        <a href="/enfermedades/embolia-pulmonar/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-heart-crack"></i></div><span>Embolia Pulmonar</span></a>
                         <a href="/enfermedades/hipertension-pulmonar/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-heart-pulse-fill"></i></div><span>Hipertensión Pulmonar</span></a>
                         <a href="/enfermedades/secuelas-covid/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-virus2"></i></div><span>Secuelas COVID-19</span></a>
                         <a href="/enfermedades/influenza/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-thermometer-high"></i></div><span>Influenza</span></a>
@@ -1562,10 +1563,10 @@
                                 <div class="bento-title">¿Por qué ocurre?</div>
                                 <div class="bento-cause-list">
                                     <div class="bento-cause-item"><div class="bento-cause-icon"><i class="bi bi-speedometer2"></i></div><span>Sobrepeso</span></div>
-                                    <div class="bento-cause-item"><div class="bento-cause-icon"><i class="bi bi-diagram-3-fill"></i></div><span>Anatomía estrecha</span></div>
+                                    <div class="bento-cause-item"><div class="bento-cause-icon"><i class="fa-solid fa-compress"></i></div><span>Anatomía estrecha</span></div>
                                     <div class="bento-cause-item"><div class="bento-cause-icon"><i class="bi bi-wind"></i></div><span>Nariz tapada crónica</span></div>
                                     <div class="bento-cause-item"><div class="bento-cause-icon"><i class="bi bi-cup-fill"></i></div><span>Alcohol o sedantes</span></div>
-                                    <div class="bento-cause-item"><div class="bento-cause-icon"><i class="bi bi-activity"></i></div><span>Cambios hormonales</span></div>
+                                    <div class="bento-cause-item"><div class="bento-cause-icon"><i class="fa-solid fa-dna"></i></div><span>Cambios hormonales</span></div>
                                 </div>
                             </div>
 
@@ -1742,8 +1743,8 @@
     </section>
 
     <!-- ===== CONTACTO ===== -->
-    <section id="contacto-final" class="contact-section py-5">
-        <div class="container" style="padding-top:48px;padding-bottom:48px;position:relative;z-index:1">
+    <section id="contacto-final" class="contact-section pt-3 pb-5">
+        <div class="container" style="padding-bottom:48px;position:relative;z-index:1">
             <div class="text-center mb-5">
                 <span class="section-label reveal">Contacto</span>
                 <h2 class="section-title reveal" style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.03em;color:#fff;margin-top:16px">Encuéntrame aquí</h2>
