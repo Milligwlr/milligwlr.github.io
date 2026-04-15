@@ -372,7 +372,7 @@
             background: rgba(255,255,255,.05);
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255,255,255,.1);
-            border-radius: 22px; padding: 28px 24px;
+            border-radius: 22px; padding: 34px 30px;
             position: relative; overflow: hidden; transition: all .4s var(--ease);
         }
         .sleep-visual-card::before {
@@ -397,8 +397,8 @@
         }
         .sleep-visual-card__icon i { font-size: 1.3rem; color: var(--sky); transition: color .4s; }
         .sleep-visual-card:hover .sleep-visual-card__icon i { color: #fff; }
-        .sleep-visual-card h4 { font-size: .92rem; font-weight: 700; color: #fff; margin: 0 0 6px; letter-spacing: -.01em; }
-        .sleep-visual-card p { font-size: .8rem; color: rgba(255,255,255,.42); margin: 0; line-height: 1.55; }
+        .sleep-visual-card h4 { font-size: 1.12rem; font-weight: 800; color: #fff; margin: 0 0 12px; letter-spacing: -.02em; line-height: 1.2; }
+        .sleep-visual-card p { font-size: .95rem; color: rgba(255,255,255,.78); margin: 0; line-height: 1.68; }
         .ahi-meter {
             background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09);
             border-radius: 22px; padding: 24px; position: relative; overflow: hidden;
@@ -567,36 +567,75 @@
         .treatment-step__text h5 { font-size: .9rem; font-weight: 700; color: #fff; margin: 0 0 3px; }
         .treatment-step__text p { font-size: .8rem; color: rgba(255,255,255,.4); margin: 0; line-height: 1.5; }
 
-        /* Inline CTA */
+        /* Inline CTA — sección de impacto oscura */
         .cta-inline {
-            background: linear-gradient(160deg, var(--cloud) 0%, #e8f2ff 100%);
-            border-radius: 24px; padding: 44px 36px; text-align: center;
-            border: 1px solid rgba(9,132,227,.1); position: relative; overflow: hidden;
+            background: linear-gradient(150deg, #0c1e38 0%, var(--navy) 55%, #071020 100%);
+            border-radius: 28px; padding: 64px 56px;
+            border: 1px solid rgba(9,132,227,.18); position: relative; overflow: hidden;
         }
         .cta-inline::before {
             content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
             background: linear-gradient(90deg, transparent 5%, var(--electric) 30%, var(--cyan) 70%, transparent 95%);
         }
-        .cta-inline__icon {
-            width: 64px; height: 64px; border-radius: 20px; margin: 0 auto 18px;
-            background: linear-gradient(135deg, rgba(9,132,227,.12), rgba(0,206,201,.08));
-            border: 1px solid rgba(9,132,227,.15);
-            display: flex; align-items: center; justify-content: center;
+        .cta-inline::after {
+            content: ''; position: absolute;
+            top: -40%; right: -8%; width: 55vw; height: 55vw; border-radius: 50%;
+            background: radial-gradient(circle, rgba(9,132,227,.1) 0%, transparent 65%);
+            pointer-events: none;
         }
-        .cta-inline__icon i { font-size: 1.6rem; color: var(--electric); }
-        .cta-inline__title { font-size: 1.25rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; letter-spacing: -.02em; }
-        .cta-inline__sub { color: var(--text-muted); font-size: .92rem; margin-bottom: 26px; line-height: 1.65; max-width: 380px; margin-left: auto; margin-right: auto; }
-        .cta-inline__btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-        .cta-inline__btn {
+        .cta-inline__inner { position: relative; z-index: 1; }
+        .cta-inline__badge {
             display: inline-flex; align-items: center; gap: 8px;
-            padding: 13px 28px; border-radius: 100px;
-            font-weight: 700; font-size: .88rem;
+            background: rgba(0,206,201,.1); border: 1px solid rgba(0,206,201,.22);
+            border-radius: 100px; padding: 7px 20px;
+            font-size: .72rem; font-weight: 700;
+            color: var(--cyan); letter-spacing: 2px; text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        .cta-inline__badge::before {
+            content: ''; width: 6px; height: 6px; border-radius: 50%;
+            background: var(--cyan); animation: pulse-dot 2s ease-in-out infinite; flex-shrink: 0;
+        }
+        .cta-inline__headline {
+            font-size: clamp(1.85rem, 3.5vw, 2.9rem);
+            font-weight: 800; color: #fff;
+            letter-spacing: -.035em; line-height: 1.1;
+            margin-bottom: 32px; max-width: 720px;
+        }
+        .cta-inline__headline em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--cyan) 0%, var(--electric) 60%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .cta-inline__triggers {
+            display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px;
+        }
+        .cta-inline__trigger {
+            display: flex; align-items: center; gap: 10px;
+            background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+            border-radius: 100px; padding: 11px 22px;
+            font-size: .91rem; font-weight: 600; color: rgba(255,255,255,.82);
+            transition: all .3s var(--ease);
+        }
+        .cta-inline__trigger:hover { background: rgba(9,132,227,.18); border-color: rgba(9,132,227,.35); color: #fff; }
+        .cta-inline__trigger i { color: var(--cyan); font-size: .98rem; flex-shrink: 0; }
+        .cta-inline__urgency {
+            color: rgba(255,255,255,.52); font-size: .98rem; line-height: 1.72;
+            margin-bottom: 38px; max-width: 560px;
+        }
+        .cta-inline__urgency strong { color: rgba(255,255,255,.84); font-weight: 700; }
+        .cta-inline__btns { display: flex; gap: 14px; flex-wrap: wrap; }
+        .cta-inline__btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 34px; border-radius: 100px;
+            font-weight: 700; font-size: .97rem;
             text-decoration: none; transition: all .35s var(--ease); border: 1.5px solid;
         }
         .cta-inline__btn--wa { background: #25d366; border-color: #25d366; color: #fff !important; }
-        .cta-inline__btn--wa:hover { background: #1da851; border-color: #1da851; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,.3); color: #fff !important; }
-        .cta-inline__btn--cal { background: var(--electric); border-color: var(--electric); color: #fff !important; }
-        .cta-inline__btn--cal:hover { background: #0773c5; border-color: #0773c5; transform: translateY(-2px); box-shadow: var(--shadow-blue); color: #fff !important; }
+        .cta-inline__btn--wa:hover { background: #1da851; border-color: #1da851; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37,211,102,.38); color: #fff !important; }
+        .cta-inline__btn--cal { background: rgba(9,132,227,.16); border-color: rgba(9,132,227,.38); color: var(--sky) !important; }
+        .cta-inline__btn--cal:hover { background: var(--electric); border-color: var(--electric); color: #fff !important; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(9,132,227,.38); }
 
         /* =============================================
            SIDEBAR
@@ -798,25 +837,51 @@
         .footer-meta a:hover { color: rgba(255,255,255,.65); }
 
         /* =============================================
-           DISEASES STRIP — Cards con ícono
+           DISEASES STRIP — Horizontal Scroll Dinámico
         ============================================= */
-        .diseases-strip { margin-bottom: 44px; }
+        .diseases-strip { margin-bottom: 48px; }
         .diseases-strip__header {
-            display: flex; align-items: center; gap: 10px; margin-bottom: 18px;
+            display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; gap: 12px;
         }
         .diseases-strip__label {
             font-size: .72rem; font-weight: 700; text-transform: uppercase;
             letter-spacing: 2.5px; color: var(--electric);
         }
-        .diseases-strip__nav {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
-            gap: 10px;
+        .diseases-strip__scroll-hint {
+            font-size: .7rem; font-weight: 600; color: var(--text-muted);
+            display: flex; align-items: center; gap: 6px; opacity: .65;
+            white-space: nowrap;
         }
+        .diseases-strip__scroll-hint i { font-size: .85rem; color: var(--electric); }
+        /* Scroll wrap con fade derecho */
+        .diseases-strip__nav-wrap { position: relative; }
+        .diseases-strip__nav-wrap::after {
+            content: '';
+            position: absolute; top: 0; right: 0; bottom: 12px; width: 90px;
+            background: linear-gradient(to left, var(--white) 20%, transparent 100%);
+            pointer-events: none; z-index: 1;
+        }
+        /* Nav scrollable */
+        .diseases-strip__nav {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(9,132,227,.22) transparent;
+            -webkit-overflow-scrolling: touch;
+            scroll-snap-type: x mandatory;
+        }
+        .diseases-strip__nav::-webkit-scrollbar { height: 4px; }
+        .diseases-strip__nav::-webkit-scrollbar-track { background: rgba(9,132,227,.05); border-radius: 2px; }
+        .diseases-strip__nav::-webkit-scrollbar-thumb { background: rgba(9,132,227,.28); border-radius: 2px; }
         .diseases-strip__nav a {
+            flex: 0 0 auto;
+            min-width: 138px;
+            scroll-snap-align: start;
             display: flex; flex-direction: column; align-items: center;
-            text-align: center; gap: 9px; padding: 16px 10px;
-            border-radius: 16px; font-size: .8rem; font-weight: 600;
+            text-align: center; gap: 10px; padding: 22px 16px 18px;
+            border-radius: 20px; font-size: .83rem; font-weight: 600;
             color: var(--text-muted); text-decoration: none;
             background: var(--cloud-alt);
             border: 1.5px solid rgba(9,132,227,.07);
@@ -830,31 +895,31 @@
         }
         .diseases-strip__nav a:hover {
             color: var(--electric); border-color: rgba(9,132,227,.22);
-            transform: translateY(-4px);
-            box-shadow: 0 10px 28px rgba(9,132,227,.12);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(9,132,227,.13);
         }
         .diseases-strip__nav a:hover::after { opacity: 1; }
         .diseases-strip__nav a.active {
             color: #fff;
             background: linear-gradient(135deg, var(--electric) 0%, var(--royal) 100%);
             border-color: transparent;
-            box-shadow: 0 8px 24px rgba(9,132,227,.35);
-            transform: translateY(-4px);
+            box-shadow: 0 10px 28px rgba(9,132,227,.38);
+            transform: translateY(-5px);
         }
         .ds-icon {
-            width: 42px; height: 42px; border-radius: 13px;
+            width: 48px; height: 48px; border-radius: 14px;
             background: rgba(9,132,227,.1); border: 1px solid rgba(9,132,227,.14);
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.1rem; color: var(--electric);
+            font-size: 1.22rem; color: var(--electric);
             transition: all .28s var(--ease); flex-shrink: 0;
             position: relative; z-index: 1;
         }
         .diseases-strip__nav a:hover:not(.active) .ds-icon {
-            background: rgba(9,132,227,.16); border-color: rgba(9,132,227,.3);
+            background: rgba(9,132,227,.16); border-color: rgba(9,132,227,.32);
             transform: scale(1.1);
         }
         .diseases-strip__nav a.active .ds-icon {
-            background: rgba(255,255,255,.2); border-color: rgba(255,255,255,.3);
+            background: rgba(255,255,255,.22); border-color: rgba(255,255,255,.32);
             color: #fff;
         }
         .diseases-strip__nav a span { position: relative; z-index: 1; line-height: 1.3; }
@@ -896,12 +961,17 @@
             grid-area: causes;
             background: linear-gradient(145deg, #fff 0%, rgba(9,132,227,.04) 100%);
             border: 1px solid rgba(9,132,227,.1);
+            display: flex; flex-direction: column;
         }
         .bento-card--causes:hover { box-shadow: 0 24px 64px rgba(9,132,227,.1); border-color: rgba(9,132,227,.22); }
-        /* causes spans 2 cols → horizontal list */
-        .bento-card--causes .bento-cause-list { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
-        .bento-card--causes .bento-cause-item { flex-direction: column; align-items: center; text-align: center; padding: 16px 10px; }
+        /* causes spans 2 cols → horizontal list que llena el espacio */
+        .bento-card--causes .bento-title { margin-bottom: 16px; }
+        .bento-card--causes .bento-cause-list { flex: 1; display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; align-items: stretch; }
+        .bento-card--causes .bento-cause-item { flex-direction: column; align-items: center; text-align: center; padding: 26px 10px; justify-content: center; }
         .bento-card--causes .bento-cause-item:hover { transform: translateY(-3px) translateX(0); box-shadow: 0 8px 24px rgba(9,132,227,.1); }
+        .bento-card--causes .bento-cause-icon { width: 52px; height: 52px; border-radius: 14px; }
+        .bento-card--causes .bento-cause-icon i { font-size: 1.2rem; }
+        .bento-card--causes .bento-cause-item span { font-size: .86rem; font-weight: 700; color: var(--text); margin-top: 4px; }
 
         .bento-card--symp {
             grid-area: symp;
@@ -1012,16 +1082,16 @@
         .bento-stat-pill__val { font-size: 1.4rem; font-weight: 800; color: var(--navy); letter-spacing: -.03em; line-height: 1; }
         .bento-stat-pill__lbl { font-size: .7rem; font-weight: 600; color: var(--text-muted); line-height: 1.3; }
         .bento-stat-pill i { font-size: 1.1rem; color: var(--electric); }
-        .bento-what-ahi { flex: 0 0 200px; }
+        .bento-what-ahi { flex: 0 0 250px; }
         .bento-ahi-ttl {
-            font-size: .62rem; font-weight: 700; color: var(--electric);
-            text-transform: uppercase; letter-spacing: 3px; margin-bottom: 14px;
-            display: flex; align-items: center; gap: 7px;
+            font-size: .7rem; font-weight: 700; color: var(--electric);
+            text-transform: uppercase; letter-spacing: 2.5px; margin-bottom: 18px;
+            display: flex; align-items: center; gap: 8px;
         }
-        .bento-what-ahi .ahi-row { margin-bottom: 12px; }
-        .bento-what-ahi .ahi-label { font-size: .72rem; color: var(--text-muted); width: 60px; }
-        .bento-what-ahi .ahi-bar-wrap { height: 7px; border-radius: 4px; }
-        .bento-what-ahi .ahi-val { font-size: .68rem; color: var(--text-muted); }
+        .bento-what-ahi .ahi-row { margin-bottom: 16px; }
+        .bento-what-ahi .ahi-label { font-size: .8rem; color: var(--text-muted); width: 70px; font-weight: 600; }
+        .bento-what-ahi .ahi-bar-wrap { height: 9px; border-radius: 5px; }
+        .bento-what-ahi .ahi-val { font-size: .76rem; color: var(--text); font-weight: 700; width: 48px; }
 
         /* ── Síntomas — icon cards con respiro ── */
         .bento-sym-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
@@ -1197,7 +1267,7 @@
         @media(max-width:768px) {
             .disease-hero { padding: 100px 0 50px; }
             .disease-hero__title { font-size: 2.2rem; }
-            .cta-inline { padding: 32px 22px; }
+            .cta-inline { padding: 44px 28px; }
             .contact__grid { grid-template-columns: 1fr; }
             .contact__map-card { aspect-ratio: 4/3; order: 2; }
             .contact__card--location { order: 1; }
@@ -1335,22 +1405,68 @@
         <div class="container">
             <!-- ── Diseases strip ── -->
             <div class="diseases-strip reveal">
-                <span class="diseases-strip__label">Enfermedades que tratamos</span>
-                <nav class="diseases-strip__nav">
-                    <a href="/enfermedades/asma/">Asma</a>
-                    <a href="/enfermedades/epoc/">EPOC</a>
-                    <a href="/enfermedades/neumonia/">Neumonía</a>
-                    <a href="/enfermedades/apnea-del-sueno/" class="active">Apnea del Sueño</a>
-                    <a href="/enfermedades/derrames-pleurales/">Derrames Pleurales</a>
-                    <a href="/enfermedades/tabaquismo/">Tabaquismo</a>
-                    <a href="/enfermedades/cancer-de-pulmon/">Cáncer de Pulmón</a>
-                    <a href="/enfermedades/fibrosis-pulmonar/">Fibrosis Pulmonar</a>
-                    <a href="/enfermedades/bronquiectasias/">Bronquiectasias</a>
-                    <a href="/enfermedades/embolia-pulmonar/">Embolia Pulmonar</a>
-                    <a href="/enfermedades/hipertension-pulmonar/">Hipertensión Pulmonar</a>
-                    <a href="/enfermedades/secuelas-covid/">Secuelas COVID-19</a>
-                    <a href="/enfermedades/influenza/">Influenza</a>
-                </nav>
+                <div class="diseases-strip__header">
+                    <span class="diseases-strip__label">Enfermedades que tratamos</span>
+                    <span class="diseases-strip__scroll-hint d-none d-md-flex">
+                        <i class="bi bi-mouse2" aria-hidden="true"></i> Desliza para ver más
+                    </span>
+                </div>
+                <div class="diseases-strip__nav-wrap">
+                    <nav class="diseases-strip__nav" aria-label="Enfermedades que tratamos">
+                        <a href="/enfermedades/asma/">
+                            <div class="ds-icon"><i class="bi bi-wind" aria-hidden="true"></i></div>
+                            <span>Asma</span>
+                        </a>
+                        <a href="/enfermedades/epoc/">
+                            <div class="ds-icon"><i class="bi bi-lungs-fill" aria-hidden="true"></i></div>
+                            <span>EPOC</span>
+                        </a>
+                        <a href="/enfermedades/neumonia/">
+                            <div class="ds-icon"><i class="bi bi-thermometer-half" aria-hidden="true"></i></div>
+                            <span>Neumonía</span>
+                        </a>
+                        <a href="/enfermedades/apnea-del-sueno/" class="active">
+                            <div class="ds-icon"><i class="bi bi-moon-stars-fill" aria-hidden="true"></i></div>
+                            <span>Apnea del Sueño</span>
+                        </a>
+                        <a href="/enfermedades/derrames-pleurales/">
+                            <div class="ds-icon"><i class="bi bi-droplet-fill" aria-hidden="true"></i></div>
+                            <span>Derrames Pleurales</span>
+                        </a>
+                        <a href="/enfermedades/tabaquismo/">
+                            <div class="ds-icon"><i class="bi bi-slash-circle-fill" aria-hidden="true"></i></div>
+                            <span>Tabaquismo</span>
+                        </a>
+                        <a href="/enfermedades/cancer-de-pulmon/">
+                            <div class="ds-icon"><i class="bi bi-radioactive" aria-hidden="true"></i></div>
+                            <span>Cáncer de Pulmón</span>
+                        </a>
+                        <a href="/enfermedades/fibrosis-pulmonar/">
+                            <div class="ds-icon"><i class="bi bi-layers-fill" aria-hidden="true"></i></div>
+                            <span>Fibrosis Pulmonar</span>
+                        </a>
+                        <a href="/enfermedades/bronquiectasias/">
+                            <div class="ds-icon"><i class="bi bi-bezier2" aria-hidden="true"></i></div>
+                            <span>Bronquiectasias</span>
+                        </a>
+                        <a href="/enfermedades/embolia-pulmonar/">
+                            <div class="ds-icon"><i class="bi bi-activity" aria-hidden="true"></i></div>
+                            <span>Embolia Pulmonar</span>
+                        </a>
+                        <a href="/enfermedades/hipertension-pulmonar/">
+                            <div class="ds-icon"><i class="bi bi-heart-pulse-fill" aria-hidden="true"></i></div>
+                            <span>Hipertensión Pulmonar</span>
+                        </a>
+                        <a href="/enfermedades/secuelas-covid/">
+                            <div class="ds-icon"><i class="bi bi-virus2" aria-hidden="true"></i></div>
+                            <span>Secuelas COVID-19</span>
+                        </a>
+                        <a href="/enfermedades/influenza/">
+                            <div class="ds-icon"><i class="bi bi-thermometer-high" aria-hidden="true"></i></div>
+                            <span>Influenza</span>
+                        </a>
+                    </nav>
+                </div>
             </div>
 
             <div class="row g-5">
@@ -1518,18 +1634,29 @@
 
                         </div><!-- /bento-grid -->
 
-                        <!-- Inline CTA -->
+                        <!-- Inline CTA — impacto visual -->
                         <div class="cta-inline reveal">
-                            <div class="cta-inline__icon"><i class="bi bi-moon-stars-fill"></i></div>
-                            <div class="cta-inline__title">¿Roncas mucho o te sientes agotado al despertar?</div>
-                            <p class="cta-inline__sub">La apnea del sueño tiene solución. Da el primer paso hoy.</p>
-                            <div class="cta-inline__btns">
-                                <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20agendar%20una%20cita%20por%20posible%20apnea%20del%20sue%C3%B1o" target="_blank" class="cta-inline__btn cta-inline__btn--wa">
-                                    <i class="bi bi-whatsapp"></i> Escribir por WhatsApp
-                                </a>
-                                <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="cta-inline__btn cta-inline__btn--cal">
-                                    <i class="bi bi-calendar-check"></i> Agendar cita
-                                </a>
+                            <div class="cta-inline__inner">
+                                <div class="cta-inline__badge">¿Te identificas?</div>
+                                <h2 class="cta-inline__headline">
+                                    ¿<em>Roncas</em> fuerte, despiertas <em>agotado</em><br>
+                                    o sientes que nunca descansas de verdad?
+                                </h2>
+                                <div class="cta-inline__triggers">
+                                    <div class="cta-inline__trigger"><i class="bi bi-check-circle-fill"></i> Ronquidos que interrumpen el sueño de tu pareja</div>
+                                    <div class="cta-inline__trigger"><i class="bi bi-check-circle-fill"></i> Cansancio que no desaparece aunque duermas 8 horas</div>
+                                    <div class="cta-inline__trigger"><i class="bi bi-check-circle-fill"></i> Te dicen que dejas de respirar mientras duermes</div>
+                                    <div class="cta-inline__trigger"><i class="bi bi-check-circle-fill"></i> Somnolencia intensa o "apagones" durante el día</div>
+                                </div>
+                                <p class="cta-inline__urgency"><strong>Esto no es normal, y tiene solución.</strong> La apnea del sueño se diagnostica con un estudio sencillo en casa. El primer paso es una consulta.</p>
+                                <div class="cta-inline__btns">
+                                    <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20agendar%20una%20cita%20por%20posible%20apnea%20del%20sue%C3%B1o" target="_blank" class="cta-inline__btn cta-inline__btn--wa">
+                                        <i class="bi bi-whatsapp"></i> Escribir por WhatsApp
+                                    </a>
+                                    <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="cta-inline__btn cta-inline__btn--cal">
+                                        <i class="bi bi-calendar-check"></i> Agendar cita
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
