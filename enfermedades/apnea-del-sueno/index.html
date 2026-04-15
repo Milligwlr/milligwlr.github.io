@@ -933,22 +933,17 @@
             right: 0;
             background: linear-gradient(to left, var(--white) 20%, transparent 100%);
         }
-        /* Auto-scroll track */
+        /* Auto-scroll track — posición manejada por JS (RAF) */
         .diseases-strip__track {
             display: flex;
             gap: 12px;
             width: max-content;
             padding: 6px 0 14px;
-            animation: ds-scroll 36s linear infinite;
             cursor: grab;
             user-select: none;
+            will-change: transform;
         }
         .diseases-strip__track:active { cursor: grabbing; }
-        .diseases-strip__track.ds-paused { animation-play-state: paused; }
-        @keyframes ds-scroll {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
         /* Individual cards inside track */
         .diseases-strip__track a {
             flex: 0 0 auto;
@@ -1601,11 +1596,11 @@
                                         <span>Cefalea matutina</span>
                                     </div>
                                     <div class="bento-sym-item">
-                                        <div class="bento-sym-icon"><i class="bi bi-droplet-fill"></i></div>
-                                        <span>Boca seca</span>
+                                        <div class="bento-sym-icon"><i class="bi bi-moon-fill"></i></div>
+                                        <span>Despertar al baño</span>
                                     </div>
                                     <div class="bento-sym-item">
-                                        <div class="bento-sym-icon"><i class="bi bi-brain"></i></div>
+                                        <div class="bento-sym-icon"><i class="fa-solid fa-brain"></i></div>
                                         <span>Memoria baja</span>
                                     </div>
                                     <div class="bento-sym-item">
@@ -1621,7 +1616,7 @@
                                 <div class="bento-title">¿Qué puede pasar si lo ignoras?</div>
                                 <div class="bento-comp-grid">
                                     <div class="bento-comp-item"><div class="bento-comp-icon"><i class="bi bi-heart-fill"></i></div><span>Presión alta</span></div>
-                                    <div class="bento-comp-item"><div class="bento-comp-icon"><i class="bi bi-activity"></i></div><span>Arritmias</span></div>
+                                    <div class="bento-comp-item"><div class="bento-comp-icon"><i class="bi bi-heart-fill"></i></div><span>Infartos</span></div>
                                     <div class="bento-comp-item"><div class="bento-comp-icon"><i class="bi bi-lightning-charge-fill"></i></div><span>Derrame cerebral</span></div>
                                     <div class="bento-comp-item"><div class="bento-comp-icon"><i class="bi bi-capsule-pill"></i></div><span>Diabetes tipo 2</span></div>
                                     <div class="bento-comp-item"><div class="bento-comp-icon"><i class="bi bi-car-front-fill"></i></div><span>Accidentes</span></div>
@@ -1697,16 +1692,8 @@
                                         </div>
                                         <p class="cta-inline__urgency"><strong>Esto no es normal, y tiene solución.</strong> La apnea del sueño se diagnostica con un estudio sencillo en casa. El primer paso es una consulta.</p>
                                     </div>
-                                    <!-- Columna derecha: stat + botones -->
+                                    <!-- Columna derecha: botones -->
                                     <div class="cta-inline__right">
-                                        <div class="cta-inline__stat">
-                                            <div class="cta-inline__stat-val">80%</div>
-                                            <div class="cta-inline__stat-lbl">de casos no<br>están diagnosticados</div>
-                                        </div>
-                                        <div class="cta-inline__stat">
-                                            <div class="cta-inline__stat-val">3×</div>
-                                            <div class="cta-inline__stat-lbl">mayor riesgo<br>cardiovascular</div>
-                                        </div>
                                         <div class="cta-inline__btns">
                                             <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20agendar%20una%20cita%20por%20posible%20apnea%20del%20sue%C3%B1o" target="_blank" class="cta-inline__btn cta-inline__btn--wa">
                                                 <i class="bi bi-whatsapp"></i> WhatsApp
@@ -1776,7 +1763,7 @@
                 </div>
 
                 <!-- Hours card -->
-                <div class="contact__card contact__card--hours reveal reveal-d1">
+                <div class="contact__card contact__card--hours reveal">
                     <div class="contact__card-icon"><i class="bi bi-clock-fill" aria-hidden="true"></i></div>
                     <h3>Horarios de atención</h3>
                     <p class="hours-detail">Lunes a viernes: 16:00 — 20:30 hrs</p>
@@ -1870,107 +1857,109 @@
         });
     });
 
-    /* ── Diseases strip: auto-scroll + drag + pause on interaction ── */
+    /* ── Diseases strip: RAF auto-scroll + drag + pause on interaction ── */
     (function() {
         var track = document.getElementById('dsTrack');
         if (!track) return;
 
-        var isPaused = false, isMouseDragging = false, didDrag = false;
-        var dragStartX = 0, dragCurrentX = 0;
+        var offset    = 0;
+        var speed     = 0.45;        /* px por frame a 60 fps */
+        var halfW     = 0;
+        var isPaused  = false;
+        var isMouseDown = false, isTouchActive = false;
+        var didDrag   = false;
+        var startX    = 0;
         var resumeTimer = null;
 
-        function getTranslateX() {
-            var t = window.getComputedStyle(track).transform;
-            if (!t || t === 'none') return 0;
-            return new DOMMatrix(t).m41;
+        function getHalfW() {
+            if (!halfW) halfW = track.scrollWidth / 2;
+            return halfW;
         }
 
-        function pause() {
-            if (isPaused) return;
-            dragCurrentX = getTranslateX();
-            track.style.transform = 'translateX(' + dragCurrentX + 'px)';
-            track.classList.add('ds-paused');
-            isPaused = true;
+        function wrapOffset() {
+            var hw = getHalfW();
+            if (!hw) return;
+            while (offset > 0)   offset -= hw;
+            while (offset < -hw) offset += hw;
         }
 
-        function resume() {
+        /* RAF loop — siempre corre; isPaused sólo congela el incremento */
+        (function tick() {
+            if (!isPaused) {
+                offset -= speed;
+                wrapOffset();
+                track.style.transform = 'translateX(' + offset + 'px)';
+            }
+            requestAnimationFrame(tick);
+        })();
+
+        function pause() { isPaused = true; clearTimeout(resumeTimer); }
+        function resume() { isPaused = false; }
+        function scheduleResume(ms) {
             clearTimeout(resumeTimer);
-            /* Snap back to nearest half-width boundary for seamless loop */
-            var halfW = track.scrollWidth / 2;
-            var snapped = ((dragCurrentX % halfW) + halfW) % halfW * -1;
-            /* Just re-enable animation — browser picks up from current CSS transform */
-            track.style.transform = '';
-            track.classList.remove('ds-paused');
-            isPaused = false;
-        }
-
-        function scheduleResume(delay) {
-            clearTimeout(resumeTimer);
-            resumeTimer = setTimeout(resume, delay || 3000);
+            resumeTimer = setTimeout(resume, ms || 3000);
         }
 
         /* ── Touch ── */
-        var touchStartY = 0, isHorizontal = null;
+        var touchStartY = 0, isHoriz = null;
         track.addEventListener('touchstart', function(e) {
-            dragStartX = e.touches[0].clientX;
+            startX = e.touches[0].clientX;
             touchStartY = e.touches[0].clientY;
-            isHorizontal = null; didDrag = false;
-            clearTimeout(resumeTimer);
+            isHoriz = null; didDrag = false; isTouchActive = true;
             pause();
         }, { passive: true });
 
         track.addEventListener('touchmove', function(e) {
-            var dx = e.touches[0].clientX - dragStartX;
+            if (!isTouchActive) return;
+            var dx = e.touches[0].clientX - startX;
             var dy = e.touches[0].clientY - touchStartY;
-            if (isHorizontal === null && (Math.abs(dx) > 6 || Math.abs(dy) > 6)) {
-                isHorizontal = Math.abs(dx) > Math.abs(dy);
-            }
-            if (isHorizontal) {
+            if (isHoriz === null && (Math.abs(dx) > 5 || Math.abs(dy) > 5))
+                isHoriz = Math.abs(dx) > Math.abs(dy);
+            if (isHoriz) {
                 didDrag = true;
-                dragCurrentX = getTranslateX();
-                track.style.transform = 'translateX(' + (dragCurrentX + dx) + 'px)';
-                dragStartX = e.touches[0].clientX; /* incremental drag */
+                offset += dx;
+                wrapOffset();
+                track.style.transform = 'translateX(' + offset + 'px)';
+                startX = e.touches[0].clientX;
             }
         }, { passive: true });
 
         track.addEventListener('touchend', function() {
-            isHorizontal = null;
-            scheduleResume(3200);
+            isTouchActive = false; isHoriz = null;
+            scheduleResume(3000);
         }, { passive: true });
 
-        /* ── Mouse drag ── */
+        /* ── Mouse ── */
         track.addEventListener('mousedown', function(e) {
-            dragStartX = e.clientX;
-            didDrag = false; isMouseDragging = true;
-            clearTimeout(resumeTimer);
+            startX = e.clientX; didDrag = false; isMouseDown = true;
             pause();
             track.style.cursor = 'grabbing';
             e.preventDefault();
         });
 
         document.addEventListener('mousemove', function(e) {
-            if (!isMouseDragging) return;
-            var dx = e.clientX - dragStartX;
-            if (Math.abs(dx) > 4) didDrag = true;
-            dragCurrentX = getTranslateX();
-            track.style.transform = 'translateX(' + (dragCurrentX + dx) + 'px)';
-            dragStartX = e.clientX;
+            if (!isMouseDown) return;
+            var dx = e.clientX - startX;
+            if (Math.abs(dx) > 3) didDrag = true;
+            offset += dx;
+            wrapOffset();
+            track.style.transform = 'translateX(' + offset + 'px)';
+            startX = e.clientX;
         });
 
         document.addEventListener('mouseup', function() {
-            if (!isMouseDragging) return;
-            isMouseDragging = false;
+            if (!isMouseDown) return;
+            isMouseDown = false;
             track.style.cursor = 'grab';
             scheduleResume(3000);
         });
 
-        /* ── Click → navigate (only if no drag happened) ── */
+        /* ── Click → navegar (sólo si no hubo drag) ── */
         track.addEventListener('click', function(e) {
             if (didDrag) { didDrag = false; e.preventDefault(); return; }
             var link = e.target.closest('a[href]');
-            if (link && !link.hasAttribute('tabindex')) { /* real items only */
+            if (link && link.getAttribute('tabindex') !== '-1')
                 window.location.href = link.getAttribute('href');
-            }
         });
     })();
 
