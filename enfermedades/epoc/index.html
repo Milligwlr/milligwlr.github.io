@@ -50,11 +50,17 @@
     .epoc-anatomy__left{position:relative;z-index:1}
     .epoc-anatomy__copy{font-size:1.02rem;color:#3a4a5c;line-height:1.7;margin:18px 0 26px}
     .epoc-anatomy__copy strong{color:var(--navy);background:linear-gradient(180deg,transparent 60%,rgba(9,132,227,.15) 60%);padding:0 2px}
-    .epoc-anatomy__svg{width:100%;max-width:340px;margin:0 auto;display:block}
-    .epoc-anatomy__svg .bronqui{stroke:var(--electric);stroke-width:2.2;fill:none;opacity:.85}
-    .epoc-anatomy__svg .alveoli{fill:var(--cyan);opacity:.7;animation:alvBreathe 3.5s ease-in-out infinite}
-    .epoc-anatomy__svg .alveoli--bad{fill:#ef6c6c;animation-delay:.8s}
-    @keyframes alvBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+    .epoc-anatomy__svg{width:100%;max-width:380px;margin:0 auto;display:block}
+    .epoc-anatomy__svg .alv-healthy{transform-origin:center;transform-box:fill-box;animation:alvBreathe 3.8s ease-in-out infinite}
+    .epoc-anatomy__svg .alv-healthy:nth-child(2n){animation-delay:.3s}
+    .epoc-anatomy__svg .alv-healthy:nth-child(3n){animation-delay:.6s}
+    @keyframes alvBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+    .epoc-anatomy__svg .trapped-ring{animation:trappedPulse 2.8s ease-in-out infinite}
+    @keyframes trappedPulse{0%,100%{opacity:.35}50%{opacity:.75}}
+    .epoc-anatomy__caption{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px;text-align:center}
+    .epoc-anatomy__cap{font-size:.72rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:8px 10px;border-radius:10px}
+    .epoc-anatomy__cap--ok{color:#2ca589;background:rgba(71,215,172,.1);border:1px solid rgba(71,215,172,.25)}
+    .epoc-anatomy__cap--bad{color:#b53d3d;background:rgba(239,108,108,.08);border:1px solid rgba(239,108,108,.2)}
     .gold-scale{margin-top:28px;background:#fff;border:1px solid rgba(9,132,227,.12);border-radius:18px;padding:22px 24px}
     .gold-scale__lbl{font-size:.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--electric);margin-bottom:14px;display:flex;align-items:center;gap:8px}
     .gold-scale__track{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px}
@@ -338,33 +344,130 @@
                         </div>
                     </div>
                     <div class="epoc-anatomy__right">
-                        <svg class="epoc-anatomy__svg" viewBox="0 0 320 340" aria-hidden="true">
-                            <!-- Tráquea -->
-                            <path class="bronqui" d="M160 20 L160 90"/>
-                            <!-- Bronquios principales -->
-                            <path class="bronqui" d="M160 90 Q120 100 100 140 Q85 190 95 260"/>
-                            <path class="bronqui" d="M160 90 Q200 100 220 140 Q235 190 225 260"/>
-                            <!-- Ramificaciones izq -->
-                            <path class="bronqui" d="M100 140 Q80 160 70 200"/>
-                            <path class="bronqui" d="M100 140 Q110 170 115 210"/>
-                            <path class="bronqui" d="M95 260 Q80 270 75 290"/>
-                            <!-- Ramificaciones der -->
-                            <path class="bronqui" d="M220 140 Q240 160 250 200"/>
-                            <path class="bronqui" d="M220 140 Q210 170 205 210"/>
-                            <path class="bronqui" d="M225 260 Q240 270 245 290"/>
-                            <!-- Alvéolos sanos (superior) -->
-                            <circle class="alveoli" cx="70" cy="200" r="9"/>
-                            <circle class="alveoli" cx="250" cy="200" r="9"/>
-                            <circle class="alveoli" cx="115" cy="210" r="8"/>
-                            <circle class="alveoli" cx="205" cy="210" r="8"/>
-                            <!-- Alvéolos destruidos (inferior) -->
-                            <circle class="alveoli alveoli--bad" cx="75" cy="290" r="13"/>
-                            <circle class="alveoli alveoli--bad" cx="245" cy="290" r="13"/>
-                            <circle class="alveoli alveoli--bad" cx="100" cy="310" r="10"/>
-                            <circle class="alveoli alveoli--bad" cx="220" cy="310" r="10"/>
-                            <!-- Contorno pulmones suave -->
-                            <path d="M60 180 Q40 240 55 310 Q80 340 130 320 L130 90" fill="rgba(9,132,227,.04)" stroke="rgba(9,132,227,.15)" stroke-width="1.5"/>
-                            <path d="M260 180 Q280 240 265 310 Q240 340 190 320 L190 90" fill="rgba(9,132,227,.04)" stroke="rgba(9,132,227,.15)" stroke-width="1.5"/>
+                        <svg class="epoc-anatomy__svg" viewBox="0 0 380 360" role="img" aria-label="Comparación anatómica: pulmón sano vs pulmón con EPOC">
+                            <defs>
+                                <linearGradient id="lungHealthy" x1="50%" y1="0%" x2="50%" y2="100%">
+                                    <stop offset="0%" stop-color="#b8e0ff" stop-opacity=".5"/>
+                                    <stop offset="100%" stop-color="#74b9ff" stop-opacity=".12"/>
+                                </linearGradient>
+                                <linearGradient id="lungEpoc" x1="50%" y1="0%" x2="50%" y2="100%">
+                                    <stop offset="0%" stop-color="#f8c2c2" stop-opacity=".45"/>
+                                    <stop offset="100%" stop-color="#ef6c6c" stop-opacity=".12"/>
+                                </linearGradient>
+                                <radialGradient id="alvGood" cx="35%" cy="35%">
+                                    <stop offset="0%" stop-color="#74f0dd" stop-opacity="1"/>
+                                    <stop offset="60%" stop-color="#00ceca" stop-opacity=".95"/>
+                                    <stop offset="100%" stop-color="#2ca589" stop-opacity=".8"/>
+                                </radialGradient>
+                                <radialGradient id="alvBad" cx="35%" cy="35%">
+                                    <stop offset="0%" stop-color="#f8a8a8" stop-opacity=".95"/>
+                                    <stop offset="60%" stop-color="#ef6c6c" stop-opacity=".9"/>
+                                    <stop offset="100%" stop-color="#b53d3d" stop-opacity=".75"/>
+                                </radialGradient>
+                                <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="3" in="SourceAlpha"/>
+                                    <feOffset dy="4"/>
+                                    <feComponentTransfer><feFuncA type="linear" slope="0.15"/></feComponentTransfer>
+                                    <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+                                </filter>
+                            </defs>
+
+                            <!-- ==================== LEFT: HEALTHY LUNG ==================== -->
+                            <g filter="url(#softShadow)">
+                                <!-- Silueta pulmón sano (con lóbulo inferior redondeado) -->
+                                <path d="M95 55 Q55 62 38 118 Q22 190 40 268 Q65 310 115 300 Q145 280 148 220 Q150 160 148 105 Q142 68 128 58 Q110 50 95 55 Z"
+                                      fill="url(#lungHealthy)" stroke="#74b9ff" stroke-width="1.8" opacity=".95"/>
+                                <!-- Fisura horizontal -->
+                                <path d="M42 168 Q90 175 146 162" stroke="#74b9ff" stroke-width="1.2" fill="none" opacity=".5" stroke-linecap="round"/>
+                                <!-- Fisura oblicua -->
+                                <path d="M60 240 Q100 225 145 215" stroke="#74b9ff" stroke-width="1" fill="none" opacity=".4" stroke-linecap="round"/>
+                                <!-- Bronquio principal -->
+                                <path d="M130 72 Q112 88 100 110" stroke="#0984e3" stroke-width="3" fill="none" stroke-linecap="round" opacity=".9"/>
+                                <!-- Ramificaciones secundarias -->
+                                <path d="M100 110 Q82 125 72 150" stroke="#0984e3" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".85"/>
+                                <path d="M100 110 Q112 130 112 158" stroke="#0984e3" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".85"/>
+                                <!-- Ramificaciones terciarias -->
+                                <path d="M72 150 Q62 178 58 210" stroke="#0984e3" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".75"/>
+                                <path d="M72 150 Q82 178 78 210" stroke="#0984e3" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".75"/>
+                                <path d="M112 158 Q105 185 98 218" stroke="#0984e3" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".75"/>
+                                <path d="M112 158 Q122 185 122 218" stroke="#0984e3" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".75"/>
+                                <!-- Terminales -->
+                                <path d="M58 210 L55 232" stroke="#0984e3" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".65"/>
+                                <path d="M78 210 L80 232" stroke="#0984e3" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".65"/>
+                                <path d="M98 218 L95 240" stroke="#0984e3" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".65"/>
+                                <path d="M122 218 L125 240" stroke="#0984e3" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".65"/>
+
+                                <!-- Racimos de alvéolos sanos (pequeños, uniformes, como uvas) -->
+                                <g>
+                                    <circle class="alv-healthy" cx="48" cy="245" r="4.5" fill="url(#alvGood)"/>
+                                    <circle class="alv-healthy" cx="58" cy="252" r="5" fill="url(#alvGood)"/>
+                                    <circle class="alv-healthy" cx="68" cy="248" r="4.5" fill="url(#alvGood)"/>
+                                    <circle class="alv-healthy" cx="52" cy="262" r="4" fill="url(#alvGood)"/>
+                                    <circle class="alv-healthy" cx="64" cy="263" r="4.5" fill="url(#alvGood)"/>
+                                </g>
+                                <g>
+                                    <circle class="alv-healthy" cx="75" cy="248" r="4" fill="url(#alvGood)"/>
+                                    <circle class="alv-healthy" cx="85" cy="255" r="5" fill="url(#alvGood)"/>
+                                    <circle class="alv-healthy" cx="82" cy="268" r="4.5" fill="url(#alvGood)"/>
+                                    <circle class="alv-healthy" cx="72" cy="270" r="4" fill="url(#alvGood)"/>
+                                </g>
+                                <g>
+                                    <circle class="alv-healthy" cx="92" cy="250" r="4.5" fill="url(#alvGood)"/>
+                                    <circle class="alv-healthy" cx="103" cy="258" r="5" fill="url(#alvGood)"/>
+                                    <circle class="alv-healthy" cx="113" cy="252" r="4" fill="url(#alvGood)"/>
+                                    <circle class="alv-healthy" cx="98" cy="268" r="4.5" fill="url(#alvGood)"/>
+                                    <circle class="alv-healthy" cx="110" cy="270" r="5" fill="url(#alvGood)"/>
+                                </g>
+                                <g>
+                                    <circle class="alv-healthy" cx="122" cy="250" r="4.5" fill="url(#alvGood)"/>
+                                    <circle class="alv-healthy" cx="132" cy="258" r="4" fill="url(#alvGood)"/>
+                                    <circle class="alv-healthy" cx="125" cy="268" r="4" fill="url(#alvGood)"/>
+                                </g>
+                            </g>
+
+                            <!-- Divider central -->
+                            <line x1="190" y1="40" x2="190" y2="322" stroke="#d4dde8" stroke-width="1" stroke-dasharray="5 5"/>
+
+                            <!-- ==================== RIGHT: EPOC LUNG ==================== -->
+                            <g transform="translate(190,0)" filter="url(#softShadow)">
+                                <!-- Silueta pulmón hiperinsuflado (más ensanchado) -->
+                                <path d="M95 50 Q48 58 28 118 Q10 195 32 275 Q60 315 118 305 Q150 282 155 218 Q158 155 155 100 Q147 65 132 55 Q112 46 95 50 Z"
+                                      fill="url(#lungEpoc)" stroke="#ef6c6c" stroke-width="1.8" opacity=".95"/>
+                                <!-- Fisura apenas visible -->
+                                <path d="M34 175 Q92 180 154 168" stroke="#ef6c6c" stroke-width="1" fill="none" opacity=".3" stroke-linecap="round"/>
+                                <!-- Bronquio principal engrosado/inflamado -->
+                                <path d="M130 70 Q108 88 96 112" stroke="#b53d3d" stroke-width="4.5" fill="none" stroke-linecap="round" opacity=".85"/>
+                                <!-- Ramificaciones secundarias engrosadas -->
+                                <path d="M96 112 Q78 130 68 156" stroke="#b53d3d" stroke-width="3.2" fill="none" stroke-linecap="round" opacity=".75"/>
+                                <path d="M96 112 Q110 132 108 160" stroke="#b53d3d" stroke-width="3.2" fill="none" stroke-linecap="round" opacity=".75"/>
+                                <!-- Ramificaciones terciarias escasas -->
+                                <path d="M68 156 Q58 180 60 210" stroke="#b53d3d" stroke-width="2" fill="none" stroke-linecap="round" opacity=".6"/>
+                                <path d="M108 160 Q110 188 100 218" stroke="#b53d3d" stroke-width="2" fill="none" stroke-linecap="round" opacity=".6"/>
+
+                                <!-- Indicador de "aire atrapado" -->
+                                <circle class="trapped-ring" cx="85" cy="155" r="28" fill="none" stroke="#ef6c6c" stroke-width="1.2" stroke-dasharray="3 4" opacity=".45"/>
+                                <text x="85" y="158" text-anchor="middle" font-family="Plus Jakarta Sans, system-ui, sans-serif" font-size="8" font-weight="700" fill="#b53d3d" opacity=".7" letter-spacing=".5">aire atrapado</text>
+
+                                <!-- Alvéolos destruidos (enfisema): ensanchados, fusionados, irregulares -->
+                                <g>
+                                    <ellipse cx="52" cy="248" rx="11" ry="9" fill="url(#alvBad)"/>
+                                    <ellipse cx="72" cy="256" rx="14" ry="10" fill="url(#alvBad)"/>
+                                    <ellipse cx="60" cy="270" rx="9" ry="7" fill="url(#alvBad)"/>
+                                </g>
+                                <g>
+                                    <ellipse cx="96" cy="252" rx="13" ry="10" fill="url(#alvBad)"/>
+                                    <ellipse cx="115" cy="260" rx="11" ry="8" fill="url(#alvBad)"/>
+                                    <ellipse cx="105" cy="275" rx="10" ry="8" fill="url(#alvBad)"/>
+                                </g>
+                                <g>
+                                    <ellipse cx="132" cy="258" rx="9" ry="7" fill="url(#alvBad)"/>
+                                    <ellipse cx="125" cy="273" rx="8" ry="6" fill="url(#alvBad)"/>
+                                </g>
+                            </g>
+
+                            <!-- Etiquetas inferiores -->
+                            <text x="95" y="340" text-anchor="middle" font-family="Plus Jakarta Sans, system-ui, sans-serif" font-size="10" font-weight="800" letter-spacing="2.5" fill="#2ca589">PULMÓN SANO</text>
+                            <text x="285" y="340" text-anchor="middle" font-family="Plus Jakarta Sans, system-ui, sans-serif" font-size="10" font-weight="800" letter-spacing="2.5" fill="#b53d3d">CON EPOC</text>
                         </svg>
                     </div>
                 </div>
