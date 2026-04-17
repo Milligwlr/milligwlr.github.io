@@ -286,6 +286,56 @@
   .tab-signal__item{padding:28px 24px}
   .tab-signal__n{font-size:4rem}
 }
+
+/* ─── Dependency 2x2 grid redesign ─── */
+.tab-addiction--grid{padding:0!important}
+.tab-dep-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.07);border-radius:23px;overflow:hidden;height:100%}
+.tab-dep-cell{background:rgba(255,255,255,.025);padding:26px 24px;display:flex;flex-direction:column;gap:10px;transition:background .3s var(--ease)}
+.tab-dep-cell:hover{background:rgba(9,132,227,.08)}
+.tab-dep-cell__head{display:flex;align-items:center;justify-content:space-between}
+.tab-dep-cell__icon{width:38px;height:38px;border-radius:10px;background:rgba(9,132,227,.14);border:1px solid rgba(9,132,227,.22);display:flex;align-items:center;justify-content:center;color:var(--sky);font-size:1rem;flex-shrink:0}
+.tab-dep-cell__pct{font-size:2.1rem;font-weight:800;background:linear-gradient(135deg,#fff 0%,var(--sky) 60%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;letter-spacing:-1.5px;filter:drop-shadow(0 0 10px rgba(9,132,227,.35))}
+.tab-dep-cell__name{font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--sky)}
+.tab-dep-cell__desc{font-size:.81rem;color:rgba(255,255,255,.52);line-height:1.62;margin:0;flex:1}
+.tab-dep-cell__bar{height:3px;border-radius:3px;background:rgba(255,255,255,.09);overflow:hidden;margin-top:4px}
+.tab-dep-cell__fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--electric),var(--cyan));box-shadow:0 0 8px rgba(9,132,227,.4)}
+@media(max-width:767px){.tab-dep-grid{grid-template-columns:1fr 1fr}}
+
+/* ─── Fix 4: Falla respiratoria (nth-child 6, rail es hijo 1) ─── */
+.tab-domino__item:nth-child(6){background:linear-gradient(135deg,#fff0ee,#ffe8e8);border-left-color:#6c0d0d}
+.tab-domino__item:nth-child(6):hover{transform:translateX(8px);box-shadow:0 6px 28px rgba(108,13,13,.12)}
+.tab-domino__item:nth-child(6) .tab-domino__dot{background:linear-gradient(135deg,#a80000,#6c0d0d);box-shadow:0 4px 16px rgba(108,13,13,.3)}
+
+/* ─── Fix 3: Señales tempranas — rediseño impactante ─── */
+.tab-signal{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px;border-radius:0;overflow:visible;border:none;box-shadow:none}
+.tab-signal__item{padding:0!important;border-radius:22px;overflow:hidden;border:1px solid rgba(9,132,227,.15);box-shadow:0 8px 32px rgba(9,132,227,.08);background:#fff;transition:all .4s var(--ease);display:flex;flex-direction:column;position:relative}
+.tab-signal__item:nth-child(1),.tab-signal__item:nth-child(2){border-bottom:1px solid rgba(9,132,227,.15)}
+.tab-signal__item:nth-child(1),.tab-signal__item:nth-child(3){border-right:1px solid rgba(9,132,227,.15)}
+.tab-signal__item:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(9,132,227,.15)}
+.tab-signal__top{background:linear-gradient(135deg,#0d2040 0%,#0a1628 100%);padding:22px 26px 18px;display:flex;align-items:flex-start;gap:14px;position:relative;overflow:hidden}
+.tab-signal__top::after{content:'';position:absolute;top:-40%;right:-10%;width:55%;padding-bottom:55%;border-radius:50%;background:radial-gradient(circle,rgba(9,132,227,.18) 0%,transparent 65%);pointer-events:none}
+.tab-signal__n{position:static!important;font-size:2.8rem!important;font-weight:800;line-height:1;background:linear-gradient(135deg,var(--electric),var(--cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-3px;flex-shrink:0;user-select:none;filter:drop-shadow(0 0 10px rgba(9,132,227,.5))}
+.tab-signal__meta{display:flex;flex-direction:column;gap:6px}
+.tab-signal__badge{display:inline-flex;align-items:center;gap:5px;font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.55)!important;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);border-radius:100px;padding:4px 12px;margin-bottom:0!important}
+.tab-signal__badge::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--sky);flex-shrink:0;animation:pulse-dot 2s ease-in-out infinite}
+.tab-signal__clinical{font-size:.85rem;font-weight:700;color:var(--sky);line-height:1.3}
+.tab-signal__body{padding:22px 26px 24px;display:flex;flex-direction:column;gap:12px;flex:1}
+.tab-signal__quote{font-size:1rem;font-weight:700;font-style:italic;color:var(--navy);line-height:1.45;margin:0!important;padding:0!important;border:none!important}
+.tab-signal__exp{font-size:.84rem;color:var(--text-muted);line-height:1.62;margin:0;padding-top:0!important;border-top:none!important}
+.tab-signal__stat{font-size:.79rem;color:var(--electric);font-weight:600;background:rgba(9,132,227,.06);border:1px solid rgba(9,132,227,.13);border-radius:8px;padding:8px 14px;margin-top:auto}
+.tab-signal__stat strong{font-weight:800}
+
+/* ─── Fix 7: CTA inline stat — diseño premium ─── */
+.cta-inline__stat{background:linear-gradient(150deg,#0d2040 0%,#0a1628 55%,#071018 100%)!important;border:1px solid rgba(9,132,227,.25)!important;border-radius:22px;padding:28px 24px!important;box-shadow:0 16px 52px rgba(9,132,227,.2),0 4px 20px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.07)!important;position:relative;overflow:hidden}
+.cta-inline__stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(9,132,227,.8),rgba(0,206,201,.55),transparent)}
+.cta-inline__stat::after{content:'';position:absolute;top:-40%;right:-20%;width:70%;padding-bottom:70%;border-radius:50%;background:radial-gradient(circle,rgba(9,132,227,.16) 0%,transparent 65%);pointer-events:none}
+.cta-inline__stat-val{font-size:clamp(3.2rem,5vw,4rem)!important;font-weight:800!important;background:linear-gradient(135deg,#fff 0%,var(--sky) 50%,var(--electric) 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;letter-spacing:-2px!important;line-height:1!important;filter:drop-shadow(0 0 18px rgba(9,132,227,.55));position:relative;z-index:1}
+.cta-inline__stat-lbl{font-size:.78rem!important;font-weight:600!important;color:rgba(255,255,255,.55)!important;margin-top:10px!important;line-height:1.4!important;position:relative;z-index:1}
+
+@media(max-width:767px){
+  .tab-signal{grid-template-columns:1fr!important}
+  .tab-signal__item{border:1px solid rgba(9,132,227,.15)!important}
+}
 </style>
 </head>
 <body>
@@ -293,7 +343,7 @@
 
 <div class="top-bar-legal text-center fw-semibold"><div class="container">Aviso Cofepris: XXXXXXXX &nbsp;|&nbsp; Céd. Prof: XXXXXXX &nbsp;|&nbsp; Céd. Esp: XXXXXXX</div></div>
 
-<nav class="navbar navbar-expand-lg sticky-top" id="mainNav"><div class="container"><a class="navbar-brand d-flex align-items-center" href="/"><i class="bi bi-lungs-fill fs-2 me-2 text-accent" aria-hidden="true"></i> ALVEOS</a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse justify-content-center" id="navbarNav"><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="/">Inicio</a></li><li class="nav-item"><a class="nav-link" href="/#servicios">Servicios</a></li><li class="nav-item"><a class="nav-link active" href="/#enfermedades">Enfermedades</a></li><li class="nav-item"><a class="nav-link" href="/#contacto-final">Contacto</a></li></ul></div><div class="social-icons d-none d-lg-flex align-items-center"><a href="https://www.instagram.com/dr.williamlara/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a><a href="/#contacto-final" aria-label="Ubicación"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i></a></div></div></nav>
+<nav class="navbar navbar-expand-lg sticky-top" id="mainNav"><div class="container"><a class="navbar-brand d-flex align-items-center gap-2" href="/"><img src="/favicon.png" alt="Logo Alveos" class="navbar-logo" width="36" height="36"><span class="brand-name">ALVEOS</span></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse justify-content-center" id="navbarNav"><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="/">Inicio</a></li><li class="nav-item"><a class="nav-link" href="/#servicios">Servicios</a></li><li class="nav-item"><a class="nav-link active" href="/#enfermedades">Enfermedades</a></li><li class="nav-item"><a class="nav-link" href="/#contacto-final">Contacto</a></li></ul></div><div class="social-icons d-none d-lg-flex align-items-center"><a href="https://www.instagram.com/dr.williamlara/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a><a href="/#contacto-final" aria-label="Ubicación"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i></a></div></div></nav>
 
 <a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20cita" target="_blank" class="whatsapp-float" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
 
@@ -320,7 +370,7 @@
                 <p class="disease-hero__sub">Dejar de fumar no es cuestión de fuerza de voluntad: es una enfermedad adictiva con tratamiento médico. Te acompaño con farmacoterapia y seguimiento estructurado para triplicar tus probabilidades de éxito.</p>
                 <div class="disease-hero__stats">
                     <span class="disease-hero__stat"><i class="fa-solid fa-smoking"></i> Adicción neurobiológica</span>
-                    <span class="disease-hero__stat"><i class="fa-solid fa-capsules"></i> Vareniclina · Bupropión · TRN</span>
+                    <span class="disease-hero__stat"><i class="fa-solid fa-capsules"></i> Bupropión · Parches · Pastillas</span>
                     <span class="disease-hero__stat"><i class="fa-solid fa-heart-pulse"></i> Beneficios desde los 20 min</span>
                 </div>
             </div>
@@ -412,66 +462,52 @@
             <h2 class="content-block__title">Los cuatro frentes de la dependencia</h2>
             <p>Fumar no es una sola adicción: son cuatro mecanismos que refuerzan el hábito a la vez. Un buen tratamiento ataca todos, no solo la parte química.</p>
             <div class="tab-addiction-layout">
-                <div class="tab-addiction">
-                    <div class="tab-addiction__row">
-                        <div class="tab-addiction__name"><i class="fa-solid fa-brain"></i> Química</div>
-                        <div class="tab-addiction__bar"><div class="tab-addiction__fill" data-v="92"></div></div>
-                        <div class="tab-addiction__val">92%</div>
-                    </div>
-                    <div class="tab-addiction__row">
-                        <div class="tab-addiction__name"><i class="fa-solid fa-clock-rotate-left"></i> Conductual</div>
-                        <div class="tab-addiction__bar"><div class="tab-addiction__fill" data-v="85"></div></div>
-                        <div class="tab-addiction__val">85%</div>
-                    </div>
-                    <div class="tab-addiction__row">
-                        <div class="tab-addiction__name"><i class="fa-solid fa-face-tired"></i> Emocional</div>
-                        <div class="tab-addiction__bar"><div class="tab-addiction__fill" data-v="70"></div></div>
-                        <div class="tab-addiction__val">70%</div>
-                    </div>
-                    <div class="tab-addiction__row">
-                        <div class="tab-addiction__name"><i class="fa-solid fa-users"></i> Social</div>
-                        <div class="tab-addiction__bar"><div class="tab-addiction__fill" data-v="55"></div></div>
-                        <div class="tab-addiction__val">55%</div>
+                <div class="tab-addiction tab-addiction--grid">
+                    <div class="tab-dep-grid">
+                        <div class="tab-dep-cell">
+                            <div class="tab-dep-cell__head">
+                                <div class="tab-dep-cell__icon"><i class="fa-solid fa-brain"></i></div>
+                                <div class="tab-dep-cell__pct">92%</div>
+                            </div>
+                            <div class="tab-dep-cell__name">Química</div>
+                            <p class="tab-dep-cell__desc">La nicotina activa el sistema dopaminérgico de recompensa más rápido que cualquier otra droga.</p>
+                            <div class="tab-dep-cell__bar"><div class="tab-dep-cell__fill" style="width:92%"></div></div>
+                        </div>
+                        <div class="tab-dep-cell">
+                            <div class="tab-dep-cell__head">
+                                <div class="tab-dep-cell__icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                                <div class="tab-dep-cell__pct">85%</div>
+                            </div>
+                            <div class="tab-dep-cell__name">Conductual</div>
+                            <p class="tab-dep-cell__desc">El cigarro queda asociado a rutinas diarias: el café, el estrés, los descansos.</p>
+                            <div class="tab-dep-cell__bar"><div class="tab-dep-cell__fill" style="width:85%"></div></div>
+                        </div>
+                        <div class="tab-dep-cell">
+                            <div class="tab-dep-cell__head">
+                                <div class="tab-dep-cell__icon"><i class="fa-solid fa-face-tired"></i></div>
+                                <div class="tab-dep-cell__pct">70%</div>
+                            </div>
+                            <div class="tab-dep-cell__name">Emocional</div>
+                            <p class="tab-dep-cell__desc">Nicotina como regulador de ansiedad, estrés e irritabilidad — una muleta emocional.</p>
+                            <div class="tab-dep-cell__bar"><div class="tab-dep-cell__fill" style="width:70%"></div></div>
+                        </div>
+                        <div class="tab-dep-cell">
+                            <div class="tab-dep-cell__head">
+                                <div class="tab-dep-cell__icon"><i class="fa-solid fa-users"></i></div>
+                                <div class="tab-dep-cell__pct">55%</div>
+                            </div>
+                            <div class="tab-dep-cell__name">Social</div>
+                            <p class="tab-dep-cell__desc">El entorno de fumadores y los rituales sociales refuerzan el hábito fuera del plano químico.</p>
+                            <div class="tab-dep-cell__bar"><div class="tab-dep-cell__fill" style="width:55%"></div></div>
+                        </div>
                     </div>
                 </div>
                 <div class="tab-addiction-img">
-                    <img src="/images/tabaco.png" alt="Tabaco y dependencia a la nicotina" loading="lazy">
+                    <img src="../../images/tabaco.png" alt="Tabaco y dependencia a la nicotina" loading="lazy">
                 </div>
             </div>
         </div>
 
-        <!-- Conversational síntomas -->
-        <div class="content-block reveal">
-            <div class="content-block__label">Señales tempranas</div>
-            <h2 class="content-block__title">¿Tu cuerpo te avisa así?</h2>
-            <p>Antes del gran diagnóstico, el tabaco deja pistas discretas. Reconocerlas a tiempo es la diferencia entre recuperarse y arrastrar una enfermedad el resto de la vida.</p>
-            <div class="tab-signal">
-                <div class="tab-signal__item">
-                    <span class="tab-signal__n" aria-hidden="true">01</span>
-                    <div class="tab-signal__badge">Por las mañanas</div>
-                    <blockquote class="tab-signal__quote">"Despierto tosiendo y tengo que carraspear para hablar"</blockquote>
-                    <p class="tab-signal__exp">La "tos del fumador": tu pulmón limpia durante la noche lo que no pudo filtrar de día.</p>
-                </div>
-                <div class="tab-signal__item">
-                    <span class="tab-signal__n" aria-hidden="true">02</span>
-                    <div class="tab-signal__badge">Al subir escaleras</div>
-                    <blockquote class="tab-signal__quote">"Antes subía dos pisos fácil, hoy me falta el aire"</blockquote>
-                    <p class="tab-signal__exp">Disnea de esfuerzo: tus alvéolos están perdiendo superficie para oxigenar la sangre.</p>
-                </div>
-                <div class="tab-signal__item">
-                    <span class="tab-signal__n" aria-hidden="true">03</span>
-                    <div class="tab-signal__badge">A los 30 min de despertar</div>
-                    <blockquote class="tab-signal__quote">"Si no fumo al despertar, no puedo concentrarme"</blockquote>
-                    <p class="tab-signal__exp">Marcador clásico de dependencia severa — el que mejor predice dificultad para dejarlo solo.</p>
-                </div>
-                <div class="tab-signal__item">
-                    <span class="tab-signal__n" aria-hidden="true">04</span>
-                    <div class="tab-signal__badge">Al final del día</div>
-                    <blockquote class="tab-signal__quote">"Siento el pecho apretado y me canso más rápido"</blockquote>
-                    <p class="tab-signal__exp">Inflamación bronquial crónica: el paso previo al diagnóstico de EPOC si no se interviene.</p>
-                </div>
-            </div>
-        </div>
 
         <!-- Dominó complicaciones -->
         <div class="content-block reveal">
@@ -512,7 +548,7 @@
                 <div class="tab-dx__card"><div class="tab-dx__icon"><i class="fa-solid fa-clipboard-list"></i></div><div><div class="tab-dx__h">Test de Fagerström</div><p class="tab-dx__p">Cuantifica tu nivel real de dependencia para elegir fármaco y dosis.</p></div></div>
                 <div class="tab-dx__card"><div class="tab-dx__icon"><i class="fa-solid fa-wind"></i></div><div><div class="tab-dx__h">Cooximetría</div><p class="tab-dx__p">Mide el monóxido de carbono en tu aliento: evidencia objetiva del daño y de tus avances.</p></div></div>
                 <div class="tab-dx__card"><div class="tab-dx__icon"><i class="fa-solid fa-chart-line"></i></div><div><div class="tab-dx__h">Espirometría</div><p class="tab-dx__p">Revisa si ya hay daño pulmonar y ayuda a prevenir EPOC establecida.</p></div></div>
-                <div class="tab-dx__card"><div class="tab-dx__icon"><i class="fa-solid fa-capsules"></i></div><div><div class="tab-dx__h">Farmacoterapia</div><p class="tab-dx__p">Vareniclina, bupropión o reemplazo de nicotina: reducen la abstinencia y el deseo intenso.</p></div></div>
+                <div class="tab-dx__card"><div class="tab-dx__icon"><i class="fa-solid fa-capsules"></i></div><div><div class="tab-dx__h">Farmacoterapia</div><p class="tab-dx__p">Bupropión o terapia de reemplazo de nicotina (parches, chicles, pastillas): reducen la abstinencia y el deseo intenso de fumar.</p></div></div>
                 <div class="tab-dx__card"><div class="tab-dx__icon"><i class="fa-solid fa-comments"></i></div><div><div class="tab-dx__h">Consejería estructurada</div><p class="tab-dx__p">Estrategias prácticas para manejar disparadores, ansiedad y recaídas sin culpa.</p></div></div>
                 <div class="tab-dx__card"><div class="tab-dx__icon"><i class="fa-solid fa-calendar-check"></i></div><div><div class="tab-dx__h">Seguimiento a 12 meses</div><p class="tab-dx__p">Consultas breves para ajustar dosis, celebrar avances y blindar el resultado.</p></div></div>
             </div>
@@ -526,7 +562,8 @@
                 <div class="cta-inline__layout">
                     <div class="cta-inline__left">
                         <h2 class="cta-inline__headline">
-                            Dejar de fumar no es <em>fuerza de voluntad</em><br>
+                            Dejar de fumar<br>
+                            no es solo <em>fuerza de voluntad</em><br>
                             es <em>cuestión de tratamiento</em>
                         </h2>
                         <div class="cta-inline__triggers">
