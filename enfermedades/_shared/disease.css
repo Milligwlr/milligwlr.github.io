@@ -835,18 +835,23 @@ h1,h2,h3,h4 { font-weight: 800; color: var(--navy); letter-spacing: -.02em; }
 .cta-band__btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 10px 40px rgba(255,255,255,.22); color: var(--royal) !important; }
 
 /* Partículas flotantes CTA */
-.cta-band__particles { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.cta-band__particles { position: absolute; inset: 0; pointer-events: none; z-index: 2; overflow: visible; }
 .cta-band__p {
-    position: absolute; bottom: -12px; border-radius: 50%;
-    animation: p-rise linear infinite;
+    position: absolute; border-radius: 50%;
+    animation: p-drift-1 linear infinite;
     opacity: 0;
 }
-@keyframes p-rise {
-    0%   { transform: translateY(0) scale(1);   opacity: 0; }
-    8%   { opacity: 1; }
-    88%  { opacity: .7; }
-    100% { transform: translateY(-160px) scale(.3); opacity: 0; }
-}
+/* 8 direcciones aleatorias — JS asigna p-drift-1…8 por partícula */
+@keyframes p-drift-1 { 0%{transform:translate(0,0);opacity:0} 10%{opacity:.85} 90%{opacity:.3} 100%{transform:translate(50px,-80px);opacity:0} }
+@keyframes p-drift-2 { 0%{transform:translate(0,0);opacity:0} 10%{opacity:.75} 90%{opacity:.25} 100%{transform:translate(-55px,-65px);opacity:0} }
+@keyframes p-drift-3 { 0%{transform:translate(0,0);opacity:0} 10%{opacity:.85} 90%{opacity:.3}  100%{transform:translate(65px,70px);opacity:0} }
+@keyframes p-drift-4 { 0%{transform:translate(0,0);opacity:0} 10%{opacity:.7}  90%{opacity:.2}  100%{transform:translate(-45px,80px);opacity:0} }
+@keyframes p-drift-5 { 0%{transform:translate(0,0);opacity:0} 10%{opacity:.8}  90%{opacity:.28} 100%{transform:translate(90px,10px);opacity:0} }
+@keyframes p-drift-6 { 0%{transform:translate(0,0);opacity:0} 10%{opacity:.7}  90%{opacity:.22} 100%{transform:translate(-85px,-35px);opacity:0} }
+@keyframes p-drift-7 { 0%{transform:translate(0,0);opacity:0} 10%{opacity:.85} 90%{opacity:.3}  100%{transform:translate(20px,95px);opacity:0} }
+@keyframes p-drift-8 { 0%{transform:translate(0,0);opacity:0} 10%{opacity:.72} 90%{opacity:.24} 100%{transform:translate(-90px,35px);opacity:0} }
+/* Legado — páginas pre-rediseño */
+@keyframes p-rise { 0%{transform:translateY(0) scale(1);opacity:0} 8%{opacity:1} 88%{opacity:.7} 100%{transform:translateY(-160px) scale(.3);opacity:0} }
 
 /* =============================================
    FOOTER
