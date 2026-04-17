@@ -36,14 +36,16 @@
 </script>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/enfermedades/_shared/disease.css">
 <style>
 /* CTA band stray line fix */
 .cta-band{border:none!important}
+.cta-band::before{display:none!important}
+.cta-band .cta-band__inner{border:none!important}
 .cta-band .reveal::before,.cta-band .reveal::after{display:none!important}
 
 /* BIG STAT callout */
@@ -55,30 +57,30 @@
 .tab-megastat__txt{font-size:.95rem;color:rgba(255,255,255,.72);line-height:1.65;margin-top:10px;margin-bottom:0}
 
 /* Adicción bars */
-.tab-addiction{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:22px;padding:34px;box-shadow:0 10px 40px rgba(10,22,40,.04)}
+.tab-addiction{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:22px;padding:34px;box-shadow:0 10px 40px rgba(10,22,40,.04);margin-top:20px}
 .tab-addiction__row{display:grid;grid-template-columns:160px 1fr 54px;gap:18px;align-items:center;padding:14px 0;border-bottom:1px dashed #eef1f5}
 .tab-addiction__row:last-child{border-bottom:none}
 .tab-addiction__name{font-weight:700;color:#0a1628;font-size:.95rem;display:flex;align-items:center;gap:10px}
 .tab-addiction__name i{color:#0984e3;font-size:1.05rem}
 .tab-addiction__bar{height:10px;border-radius:5px;background:#eef1f5;overflow:hidden;position:relative}
-.tab-addiction__fill{height:100%;border-radius:5px;background:linear-gradient(90deg,#0984e3,#74b9ff);width:0;transition:width 1.2s cubic-bezier(.16,1,.3,1)}
-.visible .tab-addiction__fill[data-v="92"]{width:92%}
-.visible .tab-addiction__fill[data-v="85"]{width:85%}
-.visible .tab-addiction__fill[data-v="70"]{width:70%}
-.visible .tab-addiction__fill[data-v="55"]{width:55%}
+.tab-addiction__fill{height:100%;border-radius:5px;background:linear-gradient(90deg,#0984e3,#74b9ff);transition:width 1.2s cubic-bezier(.16,1,.3,1)}
+.tab-addiction__fill[data-v="92"]{width:92%}
+.tab-addiction__fill[data-v="85"]{width:85%}
+.tab-addiction__fill[data-v="70"]{width:70%}
+.tab-addiction__fill[data-v="55"]{width:55%}
 .tab-addiction__val{text-align:right;font-weight:800;color:#1e3799;font-size:.95rem;font-variant-numeric:tabular-nums}
 
 /* Conversational cards */
-.tab-conv{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.tab-conv{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:20px}
 .tab-conv__card{background:#fff;border:1px solid #eef1f5;border-radius:18px;padding:24px;position:relative;transition:all .35s cubic-bezier(.16,1,.3,1);overflow:hidden}
 .tab-conv__card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#0984e3,#74b9ff);border-radius:4px 0 0 4px;opacity:.7}
 .tab-conv__card:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(10,22,40,.09);border-color:rgba(9,132,227,.3)}
 .tab-conv__q{font-size:.72rem;font-weight:700;color:#0984e3;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
 .tab-conv__body{font-size:1rem;color:#0a1628;font-weight:600;line-height:1.45}
-.tab-conv__hint{font-size:.85rem;color:#636e72;margin-top:8px;line-height:1.5}
+.tab-conv__hint{font-size:.85rem;color:#636e72;margin-top:8px;line-height:1.5;margin-bottom:0}
 
 /* Domino chain complications */
-.tab-domino{position:relative;padding:16px 0}
+.tab-domino{position:relative;padding:16px 0;margin-top:20px}
 .tab-domino__rail{position:absolute;left:26px;top:30px;bottom:30px;width:2px;background:linear-gradient(180deg,#fab1a0,#d63031,#6c0d0d)}
 .tab-domino__item{position:relative;padding:14px 0 14px 70px;display:grid;gap:4px}
 .tab-domino__dot{position:absolute;left:10px;top:18px;width:34px;height:34px;border-radius:50%;background:#fff;border:3px solid #d63031;display:flex;align-items:center;justify-content:center;color:#d63031;font-weight:800;font-size:.85rem;box-shadow:0 4px 14px rgba(214,48,49,.22);z-index:1}
@@ -89,25 +91,31 @@
 .tab-domino__name{font-weight:700;color:#0a1628;font-size:1.02rem}
 .tab-domino__desc{font-size:.9rem;color:#636e72;line-height:1.55}
 
+/* Risk checklist */
+.tab-risk{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:20px;padding:0;list-style:none}
+.tab-risk li{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid #eef1f5;border-radius:14px;padding:16px 18px;font-size:.95rem;color:#0a1628;font-weight:500;line-height:1.45}
+.tab-risk li i{color:#0984e3;flex-shrink:0;margin-top:3px;font-size:.95rem}
+
 /* Radial timeline benefits */
 .tab-benefits{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:20px}
 .tab-benefits__step{background:linear-gradient(160deg,#fff 0%,#f8fbff 100%);border:1px solid #e8eef6;border-radius:18px;padding:22px 16px;text-align:center;position:relative;transition:all .35s cubic-bezier(.16,1,.3,1)}
 .tab-benefits__step:hover{transform:translateY(-6px);border-color:#0984e3;box-shadow:0 14px 36px rgba(9,132,227,.14)}
 .tab-benefits__time{display:inline-block;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;padding:5px 10px;border-radius:999px;background:rgba(9,132,227,.1);color:#0984e3;margin-bottom:12px}
 .tab-benefits__icon{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#0984e3,#1e3799);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:1.2rem;box-shadow:0 6px 18px rgba(9,132,227,.3)}
-.tab-benefits__txt{font-size:.88rem;color:#0a1628;font-weight:600;line-height:1.45}
+.tab-benefits__txt{font-size:.88rem;color:#0a1628;font-weight:600;line-height:1.45;margin-bottom:0}
 .tab-benefits__step:nth-child(1) .tab-benefits__icon{background:linear-gradient(135deg,#00b894,#0984e3)}
 .tab-benefits__step:nth-child(5) .tab-benefits__icon{background:linear-gradient(135deg,#6c5ce7,#1e3799)}
 
 /* Diagnosis strip */
 .tab-dx{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
-.tab-dx__card{background:#fff;border:1px solid #eef1f5;border-radius:16px;padding:22px;display:flex;gap:14px;align-items:flex-start}
+.tab-dx__card{background:#fff;border:1px solid #eef1f5;border-radius:16px;padding:22px;display:flex;gap:14px;align-items:flex-start;transition:all .35s cubic-bezier(.16,1,.3,1)}
+.tab-dx__card:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(10,22,40,.08);border-color:rgba(9,132,227,.25)}
 .tab-dx__icon{flex-shrink:0;width:42px;height:42px;border-radius:12px;background:rgba(9,132,227,.1);color:#0984e3;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
 .tab-dx__h{font-weight:700;color:#0a1628;font-size:.98rem;margin-bottom:4px}
 .tab-dx__p{font-size:.85rem;color:#636e72;line-height:1.5;margin:0}
 
 @media(max-width:767px){
-.tab-megastat,.tab-conv,.tab-dx{grid-template-columns:1fr}
+.tab-megastat,.tab-conv,.tab-dx,.tab-risk{grid-template-columns:1fr}
 .tab-benefits{grid-template-columns:repeat(2,1fr)}
 .tab-addiction__row{grid-template-columns:130px 1fr 44px;gap:10px}
 }
@@ -124,65 +132,104 @@
 
 <main>
 
+<!-- ===== HERO ===== -->
 <section class="disease-hero">
+    <div class="disease-hero__bg"></div>
+    <div class="disease-hero__aurora"></div>
     <div class="disease-hero__grid"></div>
     <div class="container">
-        <nav class="disease-hero__breadcrumb" aria-label="Breadcrumb"><a href="/">Inicio</a><span>/</span><a href="/#enfermedades">Enfermedades</a><span>/</span><span class="current">Tabaquismo</span></nav>
         <div class="row align-items-center g-5">
-            <div class="col-lg-7">
-                <div class="disease-hero__tag"><span class="disease-hero__dot"></span> Clínica de cesación tabáquica · CDMX</div>
+            <div class="col-lg-7 disease-hero__content">
+                <nav class="disease-hero__breadcrumb" aria-label="Breadcrumb">
+                    <a href="/">Inicio</a><span class="sep">›</span>
+                    <a href="/#enfermedades">Enfermedades</a><span class="sep">›</span>
+                    <span class="current">Tabaquismo</span>
+                </nav>
+                <div class="disease-hero__tag">
+                    <span class="dot"></span>
+                    Clínica de cesación tabáquica · CDMX
+                </div>
                 <h1 class="disease-hero__title">Dependencia al <em>tabaco</em></h1>
                 <p class="disease-hero__sub">Dejar de fumar no es cuestión de fuerza de voluntad: es una enfermedad adictiva con tratamiento médico. Te acompaño con farmacoterapia y seguimiento estructurado para triplicar tus probabilidades de éxito.</p>
-                <div class="disease-hero__chips">
-                    <span class="disease-hero__chip"><i class="fa-solid fa-smoking" aria-hidden="true"></i> Adicción neurobiológica</span>
-                    <span class="disease-hero__chip"><i class="fa-solid fa-capsules" aria-hidden="true"></i> Vareniclina · Bupropión · TRN</span>
-                    <span class="disease-hero__chip"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i> Beneficios desde los 20 min</span>
+                <div class="disease-hero__stats">
+                    <span class="disease-hero__stat"><i class="fa-solid fa-smoking"></i> Adicción neurobiológica</span>
+                    <span class="disease-hero__stat"><i class="fa-solid fa-capsules"></i> Vareniclina · Bupropión · TRN</span>
+                    <span class="disease-hero__stat"><i class="fa-solid fa-heart-pulse"></i> Beneficios desde los 20 min</span>
                 </div>
             </div>
-            <div class="col-lg-5">
+            <div class="col-lg-5 disease-hero__visual">
                 <div class="disease-visual-card">
-                    <div class="disease-visual-card__label">El dato que lo cambia todo</div>
-                    <div class="disease-visual-card__value">7,000<span>+ químicos por bocanada</span></div>
-                    <p class="disease-visual-card__txt">Al menos <strong>70 son carcinógenos</strong> comprobados. Tu cuerpo procesa esta carga en cada cigarrillo — y empieza a repararse <strong>20 minutos</strong> después del último.</p>
+                    <div class="disease-visual-card__icon"><i class="fa-solid fa-smoking"></i></div>
+                    <h4>7,000+ químicos por bocanada</h4>
+                    <p>Al menos <strong>70 son carcinógenos</strong> comprobados. Tu cuerpo procesa esta carga en cada cigarrillo — y empieza a repararse <strong>20 minutos</strong> después del último.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="disease-carousel">
-    <div class="container">
-        <div class="disease-carousel__track">
-            <a class="disease-carousel__item" href="/enfermedades/asma/"><i class="fa-solid fa-wind"></i> Asma</a>
-            <a class="disease-carousel__item" href="/enfermedades/epoc/"><i class="fa-solid fa-lungs"></i> EPOC</a>
-            <a class="disease-carousel__item" href="/enfermedades/neumonia/"><i class="fa-solid fa-virus"></i> Neumonía</a>
-            <a class="disease-carousel__item" href="/enfermedades/apnea-del-sueno/"><i class="fa-solid fa-bed"></i> Apnea del Sueño</a>
-            <a class="disease-carousel__item" href="/enfermedades/derrames-pleurales/"><i class="fa-solid fa-droplet"></i> Derrames Pleurales</a>
-            <a class="disease-carousel__item active" href="/enfermedades/tabaquismo/"><i class="fa-solid fa-smoking"></i> Tabaquismo</a>
-            <a class="disease-carousel__item" href="/enfermedades/cancer-de-pulmon/"><i class="fa-solid fa-ribbon"></i> Cáncer de Pulmón</a>
-            <a class="disease-carousel__item" href="/enfermedades/fibrosis-pulmonar/"><i class="fa-solid fa-hand-holding-medical"></i> Fibrosis Pulmonar</a>
-            <a class="disease-carousel__item" href="/enfermedades/bronquiectasias/"><i class="fa-solid fa-tree"></i> Bronquiectasias</a>
-            <a class="disease-carousel__item" href="/enfermedades/embolia-pulmonar/"><i class="fa-solid fa-bolt"></i> Embolia Pulmonar</a>
-            <a class="disease-carousel__item" href="/enfermedades/hipertension-pulmonar/"><i class="fa-solid fa-heart-pulse"></i> Hipertensión Pulmonar</a>
-            <a class="disease-carousel__item" href="/enfermedades/secuelas-covid/"><i class="fa-solid fa-virus-covid"></i> Secuelas COVID-19</a>
-            <a class="disease-carousel__item" href="/enfermedades/influenza/"><i class="fa-solid fa-head-side-cough"></i> Influenza</a>
-        </div>
-    </div>
-</section>
+<hr class="section-divider">
 
-<section class="disease-body">
+<section class="disease-content section-bg">
+    <div class="section-dots"></div>
+    <div class="section-mesh"></div>
+    <div class="section-accent-line"></div>
     <div class="container">
+
+        <!-- Diseases strip -->
+        <div class="diseases-strip reveal">
+            <div class="diseases-strip__header">
+                <span class="diseases-strip__label">Enfermedades que tratamos</span>
+                <span class="diseases-strip__scroll-hint d-none d-md-flex">
+                    <i class="bi bi-hand-index-thumb" aria-hidden="true"></i> Arrastra para explorar
+                </span>
+            </div>
+            <div class="diseases-strip__nav-wrap">
+                <div class="diseases-strip__track" id="dsTrack" role="list" aria-label="Enfermedades que tratamos">
+                    <!-- Set 1 -->
+                    <a href="/enfermedades/asma/" role="listitem"><div class="ds-icon"><i class="bi bi-wind" aria-hidden="true"></i></div><span>Asma</span></a>
+                    <a href="/enfermedades/epoc/" role="listitem"><div class="ds-icon"><i class="bi bi-lungs-fill" aria-hidden="true"></i></div><span>EPOC</span></a>
+                    <a href="/enfermedades/neumonia/" role="listitem"><div class="ds-icon"><i class="fa-solid fa-bacteria" aria-hidden="true"></i></div><span>Neumonía</span></a>
+                    <a href="/enfermedades/apnea-del-sueno/" role="listitem"><div class="ds-icon"><i class="bi bi-moon-stars-fill" aria-hidden="true"></i></div><span>Apnea del Sueño</span></a>
+                    <a href="/enfermedades/derrames-pleurales/" role="listitem"><div class="ds-icon"><i class="bi bi-droplet-fill" aria-hidden="true"></i></div><span>Derrames Pleurales</span></a>
+                    <a href="/enfermedades/tabaquismo/" class="active" role="listitem"><div class="ds-icon"><i class="fa-solid fa-smoking" aria-hidden="true"></i></div><span>Tabaquismo</span></a>
+                    <a href="/enfermedades/cancer-de-pulmon/" role="listitem"><div class="ds-icon"><i class="bi bi-radioactive" aria-hidden="true"></i></div><span>Cáncer de Pulmón</span></a>
+                    <a href="/enfermedades/fibrosis-pulmonar/" role="listitem"><div class="ds-icon"><i class="fa-solid fa-lungs" aria-hidden="true"></i></div><span>Fibrosis Pulmonar</span></a>
+                    <a href="/enfermedades/bronquiectasias/" role="listitem"><div class="ds-icon"><i class="fa-solid fa-lungs-virus" aria-hidden="true"></i></div><span>Bronquiectasias</span></a>
+                    <a href="/enfermedades/embolia-pulmonar/" role="listitem"><div class="ds-icon"><i class="fa-solid fa-heart-crack" aria-hidden="true"></i></div><span>Embolia Pulmonar</span></a>
+                    <a href="/enfermedades/hipertension-pulmonar/" role="listitem"><div class="ds-icon"><i class="bi bi-heart-pulse-fill" aria-hidden="true"></i></div><span>Hipertensión Pulmonar</span></a>
+                    <a href="/enfermedades/secuelas-covid/" role="listitem"><div class="ds-icon"><i class="bi bi-virus2" aria-hidden="true"></i></div><span>Secuelas COVID-19</span></a>
+                    <a href="/enfermedades/influenza/" role="listitem"><div class="ds-icon"><i class="bi bi-thermometer-high" aria-hidden="true"></i></div><span>Influenza</span></a>
+                    <!-- Set 2 — duplicate for seamless infinite loop -->
+                    <a href="/enfermedades/asma/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-wind"></i></div><span>Asma</span></a>
+                    <a href="/enfermedades/epoc/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-lungs-fill"></i></div><span>EPOC</span></a>
+                    <a href="/enfermedades/neumonia/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-bacteria"></i></div><span>Neumonía</span></a>
+                    <a href="/enfermedades/apnea-del-sueno/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-moon-stars-fill"></i></div><span>Apnea del Sueño</span></a>
+                    <a href="/enfermedades/derrames-pleurales/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-droplet-fill"></i></div><span>Derrames Pleurales</span></a>
+                    <a href="/enfermedades/tabaquismo/" class="active" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-smoking"></i></div><span>Tabaquismo</span></a>
+                    <a href="/enfermedades/cancer-de-pulmon/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-radioactive"></i></div><span>Cáncer de Pulmón</span></a>
+                    <a href="/enfermedades/fibrosis-pulmonar/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-lungs"></i></div><span>Fibrosis Pulmonar</span></a>
+                    <a href="/enfermedades/bronquiectasias/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-lungs-virus"></i></div><span>Bronquiectasias</span></a>
+                    <a href="/enfermedades/embolia-pulmonar/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-heart-crack"></i></div><span>Embolia Pulmonar</span></a>
+                    <a href="/enfermedades/hipertension-pulmonar/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-heart-pulse-fill"></i></div><span>Hipertensión Pulmonar</span></a>
+                    <a href="/enfermedades/secuelas-covid/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-virus2"></i></div><span>Secuelas COVID-19</span></a>
+                    <a href="/enfermedades/influenza/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-thermometer-high"></i></div><span>Influenza</span></a>
+                </div>
+            </div>
+        </div>
+
+        <article>
 
         <!-- ¿Qué es? + megastat -->
-        <section class="content-section reveal">
-            <div class="content-section__label">¿Qué es realmente?</div>
-            <h2 class="content-section__title">Una enfermedad crónica, no un mal hábito</h2>
-            <p>El tabaquismo es reconocido por la OMS como una <strong>enfermedad adictiva crónica</strong>. La nicotina engancha al cerebro con la misma fuerza que otras drogas duras: por eso “echarle ganas” casi nunca alcanza. Con tratamiento médico, las probabilidades de éxito se triplican.</p>
+        <div class="content-block reveal">
+            <div class="content-block__label">¿Qué es realmente?</div>
+            <h2 class="content-block__title">Una enfermedad crónica, no un mal hábito</h2>
+            <p>El tabaquismo es reconocido por la OMS como una <strong>enfermedad adictiva crónica</strong>. La nicotina engancha al cerebro con la misma fuerza que otras drogas duras: por eso "echarle ganas" casi nunca alcanza. Con tratamiento médico, las probabilidades de éxito se triplican.</p>
             <div class="tab-megastat">
                 <div class="tab-megastat__card">
                     <div class="tab-megastat__num">10 s</div>
                     <div class="tab-megastat__label">Del humo al cerebro</div>
-                    <p class="tab-megastat__txt">La nicotina llega a tus neuronas y libera dopamina más rápido que una inyección intravenosa. Por eso el cigarro “calma” — y por eso engancha.</p>
+                    <p class="tab-megastat__txt">La nicotina llega a tus neuronas y libera dopamina más rápido que una inyección intravenosa. Por eso el cigarro "calma" — y por eso engancha.</p>
                 </div>
                 <div class="tab-megastat__card">
                     <div class="tab-megastat__num">×3</div>
@@ -190,12 +237,12 @@
                     <p class="tab-megastat__txt">Comparado con intentarlo solo, el acompañamiento médico con farmacoterapia y consejería multiplica por tres las probabilidades de dejar de fumar a largo plazo.</p>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Adicción bars -->
-        <section class="content-section reveal">
-            <div class="content-section__label">¿Por qué engancha tanto?</div>
-            <h2 class="content-section__title">Los cuatro frentes de la dependencia</h2>
+        <div class="content-block reveal">
+            <div class="content-block__label">¿Por qué engancha tanto?</div>
+            <h2 class="content-block__title">Los cuatro frentes de la dependencia</h2>
             <p>Fumar no es una sola adicción: son cuatro mecanismos que refuerzan el hábito a la vez. Un buen tratamiento ataca todos, no solo la parte química.</p>
             <div class="tab-addiction">
                 <div class="tab-addiction__row">
@@ -219,51 +266,51 @@
                     <div class="tab-addiction__val">55%</div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Conversational síntomas -->
-        <section class="content-section reveal">
-            <div class="content-section__label">Señales tempranas</div>
-            <h2 class="content-section__title">¿Tu cuerpo te avisa así?</h2>
+        <div class="content-block reveal">
+            <div class="content-block__label">Señales tempranas</div>
+            <h2 class="content-block__title">¿Tu cuerpo te avisa así?</h2>
             <p>Antes del gran diagnóstico, el tabaco deja pistas discretas. Reconocerlas a tiempo es la diferencia entre recuperarse y arrastrar una enfermedad el resto de la vida.</p>
             <div class="tab-conv">
                 <div class="tab-conv__card">
                     <div class="tab-conv__q">Por las mañanas</div>
-                    <div class="tab-conv__body">“Despierto tosiendo y tengo que carraspear para hablar”</div>
-                    <p class="tab-conv__hint">La “tos del fumador”: tu pulmón limpia durante la noche lo que no pudo filtrar de día.</p>
+                    <div class="tab-conv__body">"Despierto tosiendo y tengo que carraspear para hablar"</div>
+                    <p class="tab-conv__hint">La "tos del fumador": tu pulmón limpia durante la noche lo que no pudo filtrar de día.</p>
                 </div>
                 <div class="tab-conv__card">
                     <div class="tab-conv__q">Al subir escaleras</div>
-                    <div class="tab-conv__body">“Antes subía dos pisos fácil, hoy me falta el aire”</div>
+                    <div class="tab-conv__body">"Antes subía dos pisos fácil, hoy me falta el aire"</div>
                     <p class="tab-conv__hint">Disnea de esfuerzo: tus alvéolos están perdiendo superficie para oxigenar la sangre.</p>
                 </div>
                 <div class="tab-conv__card">
                     <div class="tab-conv__q">En temporada de frío</div>
-                    <div class="tab-conv__body">“Cada gripa me dura tres semanas y baja al pecho”</div>
+                    <div class="tab-conv__body">"Cada gripa me dura tres semanas y baja al pecho"</div>
                     <p class="tab-conv__hint">Infecciones respiratorias frecuentes: el humo paraliza los cilios que defienden la vía aérea.</p>
                 </div>
                 <div class="tab-conv__card">
                     <div class="tab-conv__q">A los 30 minutos</div>
-                    <div class="tab-conv__body">“Si no fumo al despertar, no puedo concentrarme”</div>
+                    <div class="tab-conv__body">"Si no fumo al despertar, no puedo concentrarme"</div>
                     <p class="tab-conv__hint">Marcador clásico de dependencia severa a la nicotina — el que mejor predice dificultad para dejarlo solo.</p>
                 </div>
                 <div class="tab-conv__card">
                     <div class="tab-conv__q">Al comer</div>
-                    <div class="tab-conv__body">“La comida ya no me sabe como antes”</div>
+                    <div class="tab-conv__body">"La comida ya no me sabe como antes"</div>
                     <p class="tab-conv__hint">Pérdida de gusto y olfato: el humo quema las papilas y la mucosa nasal. Se recupera al dejar de fumar.</p>
                 </div>
                 <div class="tab-conv__card">
                     <div class="tab-conv__q">Al final del día</div>
-                    <div class="tab-conv__body">“Siento el pecho apretado y me canso más rápido”</div>
+                    <div class="tab-conv__body">"Siento el pecho apretado y me canso más rápido"</div>
                     <p class="tab-conv__hint">Inflamación bronquial crónica: el paso previo al diagnóstico de EPOC si no se interviene.</p>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Dominó complicaciones -->
-        <section class="content-section reveal">
-            <div class="content-section__label">El precio de esperar</div>
-            <h2 class="content-section__title">La cadena de daño cuando no se trata</h2>
+        <div class="content-block reveal">
+            <div class="content-block__label">El precio de esperar</div>
+            <h2 class="content-block__title">La cadena de daño cuando no se trata</h2>
             <p>El tabaco no ataca un solo órgano: activa un efecto dominó. Cada ficha que cae empuja a la siguiente.</p>
             <div class="tab-domino">
                 <div class="tab-domino__rail"></div>
@@ -273,13 +320,13 @@
                 <div class="tab-domino__item"><div class="tab-domino__dot">4</div><div class="tab-domino__name">Cáncer de pulmón y otros</div><div class="tab-domino__desc">El tabaco causa el 85% de los cánceres de pulmón y aumenta el riesgo de cáncer de boca, vejiga, riñón y páncreas.</div></div>
                 <div class="tab-domino__item"><div class="tab-domino__dot">5</div><div class="tab-domino__name">Falla respiratoria</div><div class="tab-domino__desc">Dependencia de oxígeno domiciliario, reducción severa de la autonomía y esperanza de vida acortada 10 años en promedio.</div></div>
             </div>
-        </section>
+        </div>
 
         <!-- Factores de riesgo -->
-        <section class="content-section reveal">
-            <div class="content-section__label">¿Marcas más de 3?</div>
-            <h2 class="content-section__title">Perfil de mayor dependencia</h2>
-            <ul class="disease-checklist">
+        <div class="content-block reveal">
+            <div class="content-block__label">¿Marcas más de 3?</div>
+            <h2 class="content-block__title">Perfil de mayor dependencia</h2>
+            <ul class="tab-risk">
                 <li><i class="fa-solid fa-check"></i> Comenzaste a fumar antes de los 18 años</li>
                 <li><i class="fa-solid fa-check"></i> Fumas más de 10 cigarrillos al día</li>
                 <li><i class="fa-solid fa-check"></i> El primer cigarro es dentro de los 30 min de despertar</li>
@@ -288,12 +335,12 @@
                 <li><i class="fa-solid fa-check"></i> Convives a diario con otros fumadores</li>
                 <li><i class="fa-solid fa-check"></i> Tienes antecedentes de ansiedad, depresión o insomnio</li>
             </ul>
-        </section>
+        </div>
 
         <!-- Benefits timeline -->
-        <section class="content-section reveal">
-            <div class="content-section__label">Tu cuerpo sana así</div>
-            <h2 class="content-section__title">Lo que pasa cuando apagas el último cigarro</h2>
+        <div class="content-block reveal">
+            <div class="content-block__label">Tu cuerpo sana así</div>
+            <h2 class="content-block__title">Lo que pasa cuando apagas el último cigarro</h2>
             <p>La recuperación empieza en minutos y se acumula durante años. Este reloj no miente: cada día sin fumar es una ganancia medible.</p>
             <div class="tab-benefits">
                 <div class="tab-benefits__step"><div class="tab-benefits__time">20 min</div><div class="tab-benefits__icon"><i class="fa-solid fa-heart-pulse"></i></div><p class="tab-benefits__txt">Presión arterial y frecuencia cardiaca regresan a valores normales.</p></div>
@@ -302,12 +349,12 @@
                 <div class="tab-benefits__step"><div class="tab-benefits__time">1 año</div><div class="tab-benefits__icon"><i class="fa-solid fa-heart"></i></div><p class="tab-benefits__txt">Tu riesgo de infarto cae a la mitad respecto a un fumador activo.</p></div>
                 <div class="tab-benefits__step"><div class="tab-benefits__time">10 años</div><div class="tab-benefits__icon"><i class="fa-solid fa-shield-heart"></i></div><p class="tab-benefits__txt">Riesgo de cáncer de pulmón reducido a la mitad. Expectativa de vida casi equiparada.</p></div>
             </div>
-        </section>
+        </div>
 
         <!-- Diagnóstico y tratamiento -->
-        <section class="content-section reveal">
-            <div class="content-section__label">Tu plan para dejarlo</div>
-            <h2 class="content-section__title">Así detenemos la dependencia, paso a paso</h2>
+        <div class="content-block reveal">
+            <div class="content-block__label">Tu plan para dejarlo</div>
+            <h2 class="content-block__title">Así detenemos la dependencia, paso a paso</h2>
             <p>La primera cita mide qué tan fuerte es tu dependencia, qué tanto ha afectado ya a tus pulmones y qué tratamiento se ajusta mejor a tu historia. A partir de ahí armamos un plan realista, con fecha de corte y seguimiento.</p>
             <div class="tab-dx">
                 <div class="tab-dx__card"><div class="tab-dx__icon"><i class="fa-solid fa-clipboard-list"></i></div><div><div class="tab-dx__h">Test de Fagerström</div><p class="tab-dx__p">Cuantifica tu nivel real de dependencia para elegir fármaco y dosis.</p></div></div>
@@ -317,78 +364,147 @@
                 <div class="tab-dx__card"><div class="tab-dx__icon"><i class="fa-solid fa-comments"></i></div><div><div class="tab-dx__h">Consejería estructurada</div><p class="tab-dx__p">Estrategias prácticas para manejar disparadores, ansiedad y recaídas sin culpa.</p></div></div>
                 <div class="tab-dx__card"><div class="tab-dx__icon"><i class="fa-solid fa-calendar-check"></i></div><div><div class="tab-dx__h">Seguimiento a 12 meses</div><p class="tab-dx__p">Consultas breves para ajustar dosis, celebrar avances y blindar el resultado.</p></div></div>
             </div>
-        </section>
+        </div>
 
         <!-- CTA inline -->
         <div class="cta-inline reveal">
-            <div class="cta-inline__grid">
-                <div>
-                    <div class="cta-inline__label">Da el primer paso hoy</div>
-                    <h3 class="cta-inline__title">Dejar de fumar no es cuestión de voluntad: es cuestión de tratamiento.</h3>
-                    <p class="cta-inline__sub">Agenda una evaluación y salimos de la consulta con un plan concreto, una fecha de corte y el fármaco adecuado para tu nivel de dependencia.</p>
-                    <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20quiero%20agendar%20una%20cita%20para%20dejar%20de%20fumar" target="_blank" class="cta-inline__btn"><i class="bi bi-whatsapp" aria-hidden="true"></i> Agenda tu valoración</a>
-                </div>
-                <div class="cta-inline__stat">
-                    <div class="cta-inline__stat-num">×3</div>
-                    <div class="cta-inline__stat-label">Probabilidad de éxito con acompañamiento médico frente a intentarlo solo.</div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<section class="cta-band py-5 text-center position-relative overflow-hidden">
-    <div class="cta-band__particles" aria-hidden="true">
-        <span></span><span></span><span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span><span></span><span></span>
-    </div>
-    <div class="container my-3 reveal position-relative">
-        <h2 class="fw-bold mb-3 text-white">Recupera tu respiración, un día a la vez</h2>
-        <p class="lead mb-4 text-white-50">Tratamiento médico de cesación tabáquica con fecha de corte, medicación ajustada a tu dependencia y seguimiento real.</p>
-        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="btn btn-light text-primary fw-bold px-4 py-3 rounded-pill shadow">Agenda tu cita hoy <i class="bi bi-calendar-check ms-2" aria-hidden="true"></i></a>
-    </div>
-</section>
-
-<section id="contacto-final" class="disease-contact">
-    <div class="container">
-        <div class="row g-4 align-items-center">
-            <div class="col-lg-6">
-                <div class="disease-contact__label">Consultorio</div>
-                <h2 class="disease-contact__title">Hospital Santa Coleta — Consultorio 507</h2>
-                <p class="disease-contact__txt">Atención neumológica con el Dr. William César Lara Vázquez. Formación INER. Valoración integral, espirometría en sitio y plan de cesación tabáquica personalizado.</p>
-                <div class="disease-contact__grid">
-                    <a class="disease-contact__item" href="https://wa.me/5215591708334"><i class="bi bi-whatsapp"></i><span><strong>WhatsApp</strong>+52 55 9170 8334</span></a>
-                    <a class="disease-contact__item" href="mailto:drwilliam.neumocare@gmail.com"><i class="bi bi-envelope-fill"></i><span><strong>Email</strong>drwilliam.neumocare@gmail.com</span></a>
-                    <a class="disease-contact__item" href="https://cal.com/dr-william-lara/agendar-cita" target="_blank"><i class="bi bi-calendar-check-fill"></i><span><strong>Agenda en línea</strong>cal.com/dr-william-lara</span></a>
-                    <a class="disease-contact__item" href="https://www.instagram.com/dr.williamlara/" target="_blank"><i class="bi bi-instagram"></i><span><strong>Instagram</strong>@dr.williamlara</span></a>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="disease-contact__card">
-                    <div class="disease-contact__card-label">Primera visita</div>
-                    <h3 class="disease-contact__card-title">¿Qué incluye tu valoración?</h3>
-                    <ul class="disease-contact__list">
-                        <li><i class="fa-solid fa-check"></i> Historia clínica y test de Fagerström</li>
-                        <li><i class="fa-solid fa-check"></i> Cooximetría de CO espirado</li>
-                        <li><i class="fa-solid fa-check"></i> Espirometría si hay síntomas respiratorios</li>
-                        <li><i class="fa-solid fa-check"></i> Plan farmacológico individualizado</li>
-                        <li><i class="fa-solid fa-check"></i> Fecha de corte y consejería inicial</li>
-                        <li><i class="fa-solid fa-check"></i> Seguimiento estructurado a 12 meses</li>
-                    </ul>
+            <div class="cta-inline__orb-left" aria-hidden="true"></div>
+            <div class="cta-inline__inner">
+                <div class="cta-inline__badge">Da el primer paso hoy</div>
+                <div class="cta-inline__layout">
+                    <div class="cta-inline__left">
+                        <h2 class="cta-inline__headline">
+                            Dejar de fumar no es <em>fuerza de voluntad</em><br>
+                            es <em>cuestión de tratamiento</em>
+                        </h2>
+                        <div class="cta-inline__triggers">
+                            <div class="cta-inline__trigger"><i class="bi bi-check-circle-fill"></i> Fumas todos los días y has intentado dejarlo solo</div>
+                            <div class="cta-inline__trigger"><i class="bi bi-check-circle-fill"></i> El primer cigarro es dentro de los 30 min de despertar</div>
+                            <div class="cta-inline__trigger"><i class="bi bi-check-circle-fill"></i> Ya notas tos matutina o te falta el aire al subir escaleras</div>
+                            <div class="cta-inline__trigger"><i class="bi bi-check-circle-fill"></i> Quieres un plan concreto con fecha de corte</div>
+                        </div>
+                        <p class="cta-inline__urgency"><strong>Con acompañamiento médico las probabilidades se triplican.</strong> Salimos de la consulta con un plan, una fecha de corte y el fármaco adecuado para tu nivel de dependencia.</p>
+                    </div>
+                    <div class="cta-inline__right">
+                        <div class="cta-inline__btns">
+                            <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20quiero%20agendar%20una%20cita%20para%20dejar%20de%20fumar" target="_blank" class="cta-inline__btn cta-inline__btn--wa">
+                                <i class="bi bi-whatsapp"></i> WhatsApp
+                            </a>
+                            <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="cta-inline__btn cta-inline__btn--cal">
+                                <i class="bi bi-calendar-check"></i> Agendar cita
+                            </a>
+                        </div>
+                        <div class="cta-inline__stat">
+                            <div class="cta-inline__stat-val">×3</div>
+                            <div class="cta-inline__stat-lbl">Probabilidad de éxito con acompañamiento médico</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        </article>
     </div>
 </section>
 
+<!-- ===== CTA BAND ===== -->
+<section class="cta-band text-center py-5">
+    <div class="cta-band__particles" id="ctaParticles" aria-hidden="true"></div>
+    <div class="container py-3 cta-band__inner reveal">
+        <p style="color:rgba(116,185,255,.7);font-size:.82rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">Un día a la vez</p>
+        <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.03em;line-height:1.15">Recupera tu respiración</h2>
+        <p class="mb-5 mx-auto" style="color:rgba(255,255,255,.45);font-size:1rem;max-width:520px;line-height:1.75">Tratamiento médico de cesación tabáquica con fecha de corte, medicación ajustada a tu dependencia y seguimiento real.</p>
+        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="cta-band__btn">
+            Agendar mi cita ahora <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
+        </a>
+    </div>
+</section>
+
+<!-- ===== CONTACTO ===== -->
+<section id="contacto-final" class="contact-section pt-3 pb-5">
+    <div class="container" style="padding-bottom:48px;position:relative;z-index:1">
+        <div class="text-center mb-5">
+            <span class="section-label reveal">Contacto</span>
+            <h2 class="section-title reveal" style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.03em;color:#fff;margin-top:16px">Encuéntrame aquí</h2>
+        </div>
+        <div class="contact__grid">
+            <div class="contact__map-card reveal">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.844781446706!2d-99.1834226!3d19.3758368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce0014e7a8dbdd%3A0xc3af1172a396263f!2sSaturnino%20Herr%C3%A1n%2059%2C%20San%20Jos%C3%A9%20Insurgentes%2C%20Benito%20Ju%C3%A1rez%2C%2003900%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1708892400000!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="contact__card contact__card--location reveal">
+                <div class="contact__card-icon"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i></div>
+                <h3>Hospital Santa Coleta</h3>
+                <p>Saturnino Herrán 59, Consultorio 507<br>San José Insurgentes, Benito Juárez<br>03900 Ciudad de México, CDMX</p>
+            </div>
+            <div class="contact__card contact__card--hours reveal">
+                <div class="contact__card-icon"><i class="bi bi-clock-fill" aria-hidden="true"></i></div>
+                <h3>Horarios de atención</h3>
+                <p class="hours-detail">Lunes a viernes: 16:00 — 20:30 hrs</p>
+                <p class="hours-detail">Sábado y domingo: 12:00 — 16:00 hrs</p>
+                <span class="hours-badge">Previa Cita</span>
+            </div>
+            <div class="contact__action-card reveal">
+                <a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20cita%20para%20dejar%20de%20fumar" target="_blank" class="contact__action-btn contact__action-btn--wa">
+                    <i class="bi bi-whatsapp" style="font-size:1.2rem"></i> WhatsApp
+                </a>
+                <a href="mailto:drwilliam.neumocare@gmail.com" class="contact__action-btn contact__action-btn--email">
+                    <i class="bi bi-envelope-fill" style="font-size:1.1rem"></i> Correo
+                </a>
+                <a href="tel:5591708334" class="contact__action-btn contact__action-btn--phone">
+                    <i class="bi bi-telephone-fill" style="font-size:1.1rem"></i> 55 9170 8334
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 </main>
 
-<footer><div class="container text-center"><h5 class="text-white mb-3 fw-bold">ALVEOS</h5><p class="small mb-4 text-white-50">Innovación y Vanguardia en Salud Respiratoria</p><p class="mb-4"><a href="https://www.instagram.com/dr.williamlara/" target="_blank" class="text-white text-decoration-none fs-5" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a></p><p class="small mb-1 text-white-50">Dr. William César Lara Vázquez. Neumólogo formado en el INER.</p><p class="small mb-2"><a href="/aviso-de-privacidad" class="text-white-50 text-decoration-none">Aviso de Privacidad</a> · <a href="/informacion-regulatoria" class="text-white-50 text-decoration-none">Información Regulatoria</a></p><p class="small mb-0 text-white-50">Todos los derechos reservados © 2026.</p></div></footer>
+<!-- FOOTER -->
+<footer>
+    <div class="container text-center">
+        <div class="footer-logo-text">ALVEOS</div>
+        <div class="footer-tagline">Neumología de Vanguardia · Ciudad de México</div>
+        <div class="footer-social">
+            <a href="https://www.instagram.com/dr.williamlara/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+            <a href="https://x.com/Milligw" target="_blank" aria-label="X (Twitter)"><i class="bi bi-twitter-x" aria-hidden="true"></i></a>
+            <a href="https://wa.me/5215591708334" target="_blank" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+            <a href="tel:5591708334" aria-label="Teléfono"><i class="bi bi-telephone-fill" aria-hidden="true"></i></a>
+        </div>
+        <hr class="footer-divider">
+        <p class="footer-meta mb-1">Dr. William César Lara Vázquez · Neumólogo formado en el INER</p>
+        <p class="footer-meta mb-2">
+            <a href="/aviso-de-privacidad">Aviso de Privacidad</a>
+            <span style="color:rgba(255,255,255,.1);margin:0 8px">·</span>
+            <a href="/informacion-regulatoria">Información Regulatoria</a>
+        </p>
+        <p class="footer-meta mb-0">© 2026 ALVEOS. Todos los derechos reservados.</p>
+    </div>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script defer src="/enfermedades/_shared/disease.js"></script>
+<script src="/enfermedades/_shared/disease.js" defer></script>
+<script>
+// Floating particles para la cta-band
+(function(){
+    var c=document.getElementById('ctaParticles');
+    if(!c)return;
+    var cols=['rgba(9,132,227,','rgba(116,185,255,','rgba(0,206,201,','rgba(52,152,219,','rgba(74,144,226,'];
+    var anims=['p-drift-1','p-drift-2','p-drift-3','p-drift-4','p-drift-5','p-drift-6','p-drift-7','p-drift-8'];
+    var r=Math.random;
+    for(var i=0;i<75;i++){
+        var s=document.createElement('span');
+        var sz=(r()*5+2).toFixed(1)+'px';
+        var col=cols[Math.floor(r()*cols.length)];
+        var op=(r()*.55+.45).toFixed(2);
+        s.className='cta-band__p';
+        s.style.cssText='width:'+sz+';height:'+sz+';background:'+col+op+');'
+            +'top:'+Math.floor(r()*100)+'%;left:'+Math.floor(r()*100)+'%;'
+            +'animation:'+anims[Math.floor(r()*anims.length)]+' '+(r()*9+5).toFixed(1)+'s '+(r()*7).toFixed(1)+'s linear infinite;';
+        c.appendChild(s);
+    }
+})();
+</script>
 </body>
 </html>
