@@ -52,3 +52,11 @@
 - Dominó vertical de complicaciones (gradiente rojo progresivo, 5 fichas numeradas)
 - Timeline radial de beneficios temporales (20min → 12h → 2-12sem → 1año → 10años)
 - Diagnóstico grid 3×2 con icono+titulo+descripción
+
+## Patrones usados en Bronquiectasias (para no repetir)
+
+- Split anatómico SVG pareado "bronquio sano vs bronquio dilatado" (dark cards, SVG con gradientes + moco atrapado en bolsas)
+- Ciclo vicioso horizontal 4 pasos (moco → infección → inflamación → daño) con flechas chevron entre steps y loop badge giratorio abajo
+- Mega-stat dark cards pareadas reutilizado (1 de 3 / +40%) — OK porque la mitad de las enfermedades necesitarán números hero; evitar usarlo más de 2 veces más en todo el set
+- Mitos vs Realidades en 2 columnas contrastadas (rojo false / azul true, con X/check circulares y slide en hover hacia afuera/adentro)
+- Stepper vertical de tratamiento con línea gradient + dots cuadrados grandes + pill metadata a la derecha (4 pilares)
