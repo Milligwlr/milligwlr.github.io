@@ -232,22 +232,36 @@
 <script>document.body.classList.add('js-enabled');</script>
 <div class="top-bar-legal text-center fw-semibold"><div class="container">Aviso Cofepris: XXXXXXXX &nbsp;|&nbsp; Céd. Prof: XXXXXXX &nbsp;|&nbsp; Céd. Esp: XXXXXXX</div></div>
 <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
-  <div class="container">
-    <a class="navbar-brand d-flex align-items-center" href="/"><i class="bi bi-lungs-fill fs-2 me-2 text-accent"></i> ALVEOS</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="/#servicios">Servicios</a></li>
-        <li class="nav-item"><a class="nav-link active" href="/#enfermedades">Enfermedades</a></li>
-        <li class="nav-item"><a class="nav-link" href="/#contacto-final">Contacto</a></li>
-      </ul>
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+            <img src="/favicon.png" alt="Logo Alveos" class="navbar-logo" width="36" height="36">
+            <span class="brand-name">ALVEOS</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Menú">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="/#servicios">Servicios</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/#enfermedades">Enfermedades</a></li>
+                <li class="nav-item"><a class="nav-link" href="/#contacto-final">Contacto</a></li>
+            </ul>
+        </div>
+        <div class="social-icons d-flex align-items-center">
+            <a href="https://www.instagram.com/dr.williamlara/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+            <a href="https://x.com/Milligw" target="_blank" aria-label="X (Twitter)"><i class="bi bi-twitter-x" aria-hidden="true"></i></a>
+            <a href="/#contacto-final" aria-label="Ubicación"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i></a>
+        </div>
+        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="navbar-cta d-none d-lg-inline-flex">
+            Agendar cita <i class="bi bi-arrow-right"></i>
+        </a>
     </div>
-    <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="navbar-cta btn btn-primary d-none d-lg-inline-flex align-items-center gap-2"><i class="bi bi-calendar-check"></i> Agendar cita</a>
-  </div>
 </nav>
-<a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20agendar%20una%20cita%20por%20derrame%20pleural" target="_blank" class="whatsapp-float" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-<div class="wa-tooltip">¿Líquido en el pulmón? Escríbeme</div>
+<a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20cita%20por%20Derrame%20Pleural" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="bi bi-whatsapp" aria-hidden="true"></i>
+    <span class="wa-tooltip">¿Necesitas ayuda? Escríbeme</span>
+</a>
 
 <main>
 
@@ -280,40 +294,52 @@
   </div>
 </section>
 
-<section class="diseases-strip">
-  <div class="diseases-strip__label">También atiendo</div>
-  <div class="diseases-strip__track">
-    <a href="/enfermedades/epoc/" class="diseases-strip__item"><i class="fa-solid fa-lungs"></i> EPOC</a>
-    <a href="/enfermedades/asma/" class="diseases-strip__item"><i class="fa-solid fa-wind"></i> Asma</a>
-    <a href="/enfermedades/neumonia/" class="diseases-strip__item"><i class="fa-solid fa-virus"></i> Neumonía</a>
-    <a href="/enfermedades/apnea-del-sueno/" class="diseases-strip__item"><i class="fa-solid fa-moon"></i> Apnea del Sueño</a>
-    <a href="/enfermedades/tabaquismo/" class="diseases-strip__item"><i class="fa-solid fa-smoking"></i> Tabaquismo</a>
-    <a href="/enfermedades/cancer-de-pulmon/" class="diseases-strip__item"><i class="fa-solid fa-ribbon"></i> Cáncer de Pulmón</a>
-    <a href="/enfermedades/bronquiectasias/" class="diseases-strip__item"><i class="fa-solid fa-diagram-project"></i> Bronquiectasias</a>
-    <a href="/enfermedades/embolia-pulmonar/" class="diseases-strip__item"><i class="fa-solid fa-heart-crack"></i> Embolia Pulmonar</a>
-    <a href="/enfermedades/fibrosis-pulmonar/" class="diseases-strip__item"><i class="fa-solid fa-network-wired"></i> Fibrosis Pulmonar</a>
-    <a href="/enfermedades/hipertension-pulmonar/" class="diseases-strip__item"><i class="fa-solid fa-gauge-high"></i> Hipertensión Pulmonar</a>
-    <a href="/enfermedades/derrames-pleurales/" class="diseases-strip__item active"><i class="fa-solid fa-droplet"></i> Derrames Pleurales</a>
-    <a href="/enfermedades/secuelas-covid/" class="diseases-strip__item"><i class="fa-solid fa-virus-covid"></i> Secuelas COVID</a>
-    <a href="/enfermedades/influenza/" class="diseases-strip__item"><i class="fa-solid fa-head-side-cough"></i> Influenza</a>
-    <a href="/enfermedades/epoc/" class="diseases-strip__item"><i class="fa-solid fa-lungs"></i> EPOC</a>
-    <a href="/enfermedades/asma/" class="diseases-strip__item"><i class="fa-solid fa-wind"></i> Asma</a>
-    <a href="/enfermedades/neumonia/" class="diseases-strip__item"><i class="fa-solid fa-virus"></i> Neumonía</a>
-    <a href="/enfermedades/apnea-del-sueno/" class="diseases-strip__item"><i class="fa-solid fa-moon"></i> Apnea del Sueño</a>
-    <a href="/enfermedades/tabaquismo/" class="diseases-strip__item"><i class="fa-solid fa-smoking"></i> Tabaquismo</a>
-    <a href="/enfermedades/cancer-de-pulmon/" class="diseases-strip__item"><i class="fa-solid fa-ribbon"></i> Cáncer de Pulmón</a>
-    <a href="/enfermedades/bronquiectasias/" class="diseases-strip__item"><i class="fa-solid fa-diagram-project"></i> Bronquiectasias</a>
-    <a href="/enfermedades/embolia-pulmonar/" class="diseases-strip__item"><i class="fa-solid fa-heart-crack"></i> Embolia Pulmonar</a>
-    <a href="/enfermedades/fibrosis-pulmonar/" class="diseases-strip__item"><i class="fa-solid fa-network-wired"></i> Fibrosis Pulmonar</a>
-    <a href="/enfermedades/hipertension-pulmonar/" class="diseases-strip__item"><i class="fa-solid fa-gauge-high"></i> Hipertensión Pulmonar</a>
-    <a href="/enfermedades/derrames-pleurales/" class="diseases-strip__item active"><i class="fa-solid fa-droplet"></i> Derrames Pleurales</a>
-    <a href="/enfermedades/secuelas-covid/" class="diseases-strip__item"><i class="fa-solid fa-virus-covid"></i> Secuelas COVID</a>
-    <a href="/enfermedades/influenza/" class="diseases-strip__item"><i class="fa-solid fa-head-side-cough"></i> Influenza</a>
-  </div>
-</section>
+<hr class="section-divider">
+<section class="disease-content section-bg">
+    <div class="section-dots"></div>
+    <div class="section-mesh"></div>
+    <div class="section-accent-line"></div>
+    <div class="container">
 
-<section class="disease-content">
-  <div class="container">
+        <!-- Diseases strip -->
+        <div class="diseases-strip reveal">
+            <div class="diseases-strip__header">
+                <span class="diseases-strip__label">Enfermedades que tratamos</span>
+                <span class="diseases-strip__scroll-hint d-none d-md-flex">
+                    <i class="bi bi-hand-index-thumb" aria-hidden="true"></i> Arrastra para explorar
+                </span>
+            </div>
+            <div class="diseases-strip__nav-wrap">
+                <div class="diseases-strip__track" id="dsTrack" role="list" aria-label="Enfermedades que tratamos">
+                    <a href="/enfermedades/asma/" role="listitem"><div class="ds-icon"><i class="bi bi-wind"></i></div><span>Asma</span></a>
+                    <a href="/enfermedades/epoc/" role="listitem"><div class="ds-icon"><i class="bi bi-lungs-fill"></i></div><span>EPOC</span></a>
+                    <a href="/enfermedades/neumonia/" role="listitem"><div class="ds-icon"><i class="fa-solid fa-bacteria"></i></div><span>Neumonía</span></a>
+                    <a href="/enfermedades/apnea-del-sueno/" role="listitem"><div class="ds-icon"><i class="bi bi-moon-stars-fill"></i></div><span>Apnea del Sueño</span></a>
+                    <a href="/enfermedades/derrames-pleurales/" class="active" role="listitem"><div class="ds-icon"><i class="bi bi-droplet-fill"></i></div><span>Derrames Pleurales</span></a>
+                    <a href="/enfermedades/tabaquismo/" role="listitem"><div class="ds-icon"><i class="fa-solid fa-smoking"></i></div><span>Tabaquismo</span></a>
+                    <a href="/enfermedades/cancer-de-pulmon/" role="listitem"><div class="ds-icon"><i class="bi bi-radioactive"></i></div><span>Cáncer de Pulmón</span></a>
+                    <a href="/enfermedades/fibrosis-pulmonar/" role="listitem"><div class="ds-icon"><i class="fa-solid fa-lungs"></i></div><span>Fibrosis Pulmonar</span></a>
+                    <a href="/enfermedades/bronquiectasias/" role="listitem"><div class="ds-icon"><i class="fa-solid fa-lungs-virus"></i></div><span>Bronquiectasias</span></a>
+                    <a href="/enfermedades/embolia-pulmonar/" role="listitem"><div class="ds-icon"><i class="fa-solid fa-heart-crack"></i></div><span>Embolia Pulmonar</span></a>
+                    <a href="/enfermedades/hipertension-pulmonar/" role="listitem"><div class="ds-icon"><i class="bi bi-heart-pulse-fill"></i></div><span>Hipertensión Pulmonar</span></a>
+                    <a href="/enfermedades/secuelas-covid/" role="listitem"><div class="ds-icon"><i class="bi bi-virus2"></i></div><span>Secuelas COVID-19</span></a>
+                    <a href="/enfermedades/influenza/" role="listitem"><div class="ds-icon"><i class="bi bi-thermometer-high"></i></div><span>Influenza</span></a>
+                    <a href="/enfermedades/asma/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-wind"></i></div><span>Asma</span></a>
+                    <a href="/enfermedades/epoc/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-lungs-fill"></i></div><span>EPOC</span></a>
+                    <a href="/enfermedades/neumonia/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-bacteria"></i></div><span>Neumonía</span></a>
+                    <a href="/enfermedades/apnea-del-sueno/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-moon-stars-fill"></i></div><span>Apnea del Sueño</span></a>
+                    <a href="/enfermedades/derrames-pleurales/" class="active" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-droplet-fill"></i></div><span>Derrames Pleurales</span></a>
+                    <a href="/enfermedades/tabaquismo/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-smoking"></i></div><span>Tabaquismo</span></a>
+                    <a href="/enfermedades/cancer-de-pulmon/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-radioactive"></i></div><span>Cáncer de Pulmón</span></a>
+                    <a href="/enfermedades/fibrosis-pulmonar/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-lungs"></i></div><span>Fibrosis Pulmonar</span></a>
+                    <a href="/enfermedades/bronquiectasias/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-lungs-virus"></i></div><span>Bronquiectasias</span></a>
+                    <a href="/enfermedades/embolia-pulmonar/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-heart-crack"></i></div><span>Embolia Pulmonar</span></a>
+                    <a href="/enfermedades/hipertension-pulmonar/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-heart-pulse-fill"></i></div><span>Hipertensión Pulmonar</span></a>
+                    <a href="/enfermedades/secuelas-covid/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-virus2"></i></div><span>Secuelas COVID-19</span></a>
+                    <a href="/enfermedades/influenza/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-thermometer-high"></i></div><span>Influenza</span></a>
+                </div>
+            </div>
+        </div>
 
     <!-- PLEURA CAVITY SVG -->
     <div class="content-section reveal">
@@ -551,76 +577,99 @@
   </div>
 </section>
 
-<!-- CTA BAND -->
-<section class="cta-band" style="background:linear-gradient(135deg,var(--royal) 0%,var(--navy) 100%);padding:80px 0;text-align:center;position:relative;overflow:hidden">
-  <div class="container position-relative">
-    <div class="reveal">
-      <div class="cta-band__eyebrow">Neumología de vanguardia · INER</div>
-      <h2 class="cta-band__title">Recupera tu capacidad respiratoria</h2>
-      <p class="cta-band__sub">Si tu radiografía mostró líquido en el pulmón o llevas semanas con disnea progresiva, agenda una consulta con el Dr. William Lara Vázquez para un diagnóstico claro y un plan de manejo a la medida.</p>
-      <div class="cta-band__actions">
-        <a href="https://cal.com/dr-william-lara/agendar-cita" class="btn-primary-lg" target="_blank"><i class="bi bi-calendar-check"></i> Agendar cita</a>
-        <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20informaci%C3%B3n%20sobre%20derrame%20pleural" class="btn-ghost-lg" target="_blank"><i class="bi bi-whatsapp"></i> WhatsApp</a>
-      </div>
+<section class="cta-band text-center py-5">
+    <div class="cta-band__particles" id="ctaParticles" aria-hidden="true"></div>
+    <div class="container py-3 cta-band__inner reveal">
+        <p style="color:rgba(116,185,255,.7);font-size:.82rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">Diagnóstico oportuno</p>
+        <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.03em;line-height:1.15">El líquido en el pulmón tiene solución — actúa hoy</h2>
+        <p class="mb-5 mx-auto" style="color:rgba(255,255,255,.45);font-size:1rem;max-width:520px;line-height:1.75">Diagnóstico por ultrasonido pleural, toracocentesis guiada y estudio de la causa de fondo.</p>
+        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="cta-band__btn">
+            Agendar mi cita ahora <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
+        </a>
     </div>
-  </div>
 </section>
 
-<!-- CONTACTO FINAL -->
-<section class="contacto-final-section" id="contacto-final">
-  <div class="container">
-    <div class="contacto-final-section__header reveal">
-      <h2 class="contacto-final-section__title">Cómo llegar a la consulta</h2>
-      <p class="contacto-final-section__sub">Consultorio privado en el sur de la CDMX, con atención personalizada y procedimientos guiados por ultrasonido en cama.</p>
+<section id="contacto-final" class="contact-section pt-3 pb-5">
+    <div class="container" style="padding-bottom:48px;position:relative;z-index:1">
+        <div class="text-center mb-5">
+            <span class="section-label reveal">Contacto</span>
+            <h2 class="section-title reveal" style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.03em;color:#fff;margin-top:16px">Encuéntrame aquí</h2>
+        </div>
+        <div class="contact__grid">
+            <div class="contact__map-card reveal">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.844781446706!2d-99.1834226!3d19.3758368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce0014e7a8dbdd%3A0xc3af1172a396263f!2sSaturnino%20Herr%C3%A1n%2059%2C%20San%20Jos%C3%A9%20Insurgentes%2C%20Benito%20Ju%C3%A1rez%2C%2003900%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1708892400000!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="contact__card contact__card--location reveal">
+                <div class="contact__card-icon"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i></div>
+                <h3>Hospital Santa Coleta</h3>
+                <p>Saturnino Herrán 59, Consultorio 507<br>San José Insurgentes, Benito Juárez<br>03900 Ciudad de México, CDMX</p>
+            </div>
+            <div class="contact__card contact__card--hours reveal">
+                <div class="contact__card-icon"><i class="bi bi-clock-fill" aria-hidden="true"></i></div>
+                <h3>Horarios de atención</h3>
+                <p class="hours-detail">Lunes a viernes: 16:00 — 20:30 hrs</p>
+                <p class="hours-detail">Sábado y domingo: 12:00 — 16:00 hrs</p>
+                <span class="hours-badge">Previa Cita</span>
+            </div>
+            <div class="contact__action-card reveal">
+                <a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20cita%20por%20Derrame%20Pleural" target="_blank" class="contact__action-btn contact__action-btn--wa">
+                    <i class="bi bi-whatsapp" style="font-size:1.2rem"></i> WhatsApp
+                </a>
+                <a href="mailto:drwilliam.neumocare@gmail.com" class="contact__action-btn contact__action-btn--email">
+                    <i class="bi bi-envelope-fill" style="font-size:1.1rem"></i> Correo
+                </a>
+                <a href="tel:5591708334" class="contact__action-btn contact__action-btn--phone">
+                    <i class="bi bi-telephone-fill" style="font-size:1.1rem"></i> 55 9170 8334
+                </a>
+            </div>
+        </div>
     </div>
-    <div class="contacto-final-section__grid reveal">
-      <div class="contacto-final-section__map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.5!2d-99.1834!3d19.3758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDIyJzMzLjAiTiA5OcKwMTEnMDAuMyJX!5e0!3m2!1ses!2smx!4v1234567890" width="100%" height="100%" style="border:0" allowfullscreen="" loading="lazy" title="Ubicación del consultorio"></iframe>
-      </div>
-      <div class="contacto-final-section__cards">
-        <a href="https://maps.google.com/?q=Hospital+Santa+Coleta+CDMX" target="_blank" class="contacto-final-section__card">
-          <div class="contacto-final-section__card-icon"><i class="bi bi-geo-alt-fill"></i></div>
-          <div><h4>Consultorio</h4><p>Hospital Santa Coleta, Consultorio 507, CDMX</p></div>
-        </a>
-        <a href="https://wa.me/5215591708334" target="_blank" class="contacto-final-section__card">
-          <div class="contacto-final-section__card-icon"><i class="bi bi-whatsapp"></i></div>
-          <div><h4>WhatsApp</h4><p>+52 55 9170 8334</p></div>
-        </a>
-        <a href="mailto:drwilliam.neumocare@gmail.com" class="contacto-final-section__card">
-          <div class="contacto-final-section__card-icon"><i class="bi bi-envelope-fill"></i></div>
-          <div><h4>Correo</h4><p>drwilliam.neumocare@gmail.com</p></div>
-        </a>
-      </div>
-    </div>
-  </div>
 </section>
 
 </main>
 
-<!-- FOOTER -->
-<footer class="site-footer">
-  <div class="container">
-    <div class="site-footer__top">
-      <div class="site-footer__logo"><i class="bi bi-lungs-fill"></i><span class="site-footer__brand">ALVEOS</span></div>
-      <div class="site-footer__socials">
-        <a href="https://www.instagram.com/dr.williamlara/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-        <a href="https://x.com/Milligw" target="_blank" aria-label="X / Twitter"><i class="bi bi-twitter-x"></i></a>
-        <a href="https://wa.me/5215591708334" target="_blank" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-        <a href="mailto:drwilliam.neumocare@gmail.com" aria-label="Correo"><i class="bi bi-envelope-fill"></i></a>
-      </div>
+<footer>
+    <div class="container text-center">
+        <div class="footer-logo-text">ALVEOS</div>
+        <div class="footer-tagline">Neumología de Vanguardia · Ciudad de México</div>
+        <div class="footer-social">
+            <a href="https://www.instagram.com/dr.williamlara/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+            <a href="https://x.com/Milligw" target="_blank" aria-label="X (Twitter)"><i class="bi bi-twitter-x" aria-hidden="true"></i></a>
+            <a href="https://wa.me/5215591708334" target="_blank" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+            <a href="tel:5591708334" aria-label="Teléfono"><i class="bi bi-telephone-fill" aria-hidden="true"></i></a>
+        </div>
+        <hr class="footer-divider">
+        <p class="footer-meta mb-1">Dr. William César Lara Vázquez · Neumólogo · Especialista en Enfermedades Respiratorias</p>
+        <p class="footer-meta mb-2">
+            <a href="/aviso-de-privacidad">Aviso de Privacidad</a>
+            <span style="color:rgba(255,255,255,.1);margin:0 8px">·</span>
+            <a href="/informacion-regulatoria">Información Regulatoria</a>
+        </p>
+        <p class="footer-meta mb-0">© 2026 ALVEOS. Todos los derechos reservados.</p>
     </div>
-    <div class="site-footer__links">
-      <a href="/">Inicio</a>
-      <a href="/#servicios">Servicios</a>
-      <a href="/#enfermedades">Enfermedades</a>
-      <a href="/#contacto-final">Contacto</a>
-      <a href="/aviso-privacidad/">Aviso de privacidad</a>
-    </div>
-    <div class="site-footer__bottom">&copy; 2026 Dr. William César Lara Vázquez · Neumólogo · CDMX</div>
-  </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/enfermedades/_shared/disease.js"></script>
+<script>
+(function(){
+    var c=document.getElementById('ctaParticles');
+    if(!c)return;
+    var cols=['rgba(9,132,227,','rgba(116,185,255,','rgba(0,206,201,','rgba(52,152,219,','rgba(74,144,226,'];
+    var anims=['p-drift-1','p-drift-2','p-drift-3','p-drift-4','p-drift-5','p-drift-6','p-drift-7','p-drift-8'];
+    var r=Math.random;
+    for(var i=0;i<75;i++){
+        var s=document.createElement('span');
+        var sz=(r()*5+2).toFixed(1)+'px';
+        var col=cols[Math.floor(r()*cols.length)];
+        var op=(r()*.55+.45).toFixed(2);
+        s.className='cta-band__p';
+        s.style.cssText='width:'+sz+';height:'+sz+';background:'+col+op+');'
+            +'top:'+Math.floor(r()*100)+'%;left:'+Math.floor(r()*100)+'%;'
+            +'animation:'+anims[Math.floor(r()*anims.length)]+' '+(r()*9+5).toFixed(1)+'s '+(r()*7).toFixed(1)+'s linear infinite;';
+        c.appendChild(s);
+    }
+})();
+</script>
 </body>
 </html>
