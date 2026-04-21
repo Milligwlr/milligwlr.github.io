@@ -177,6 +177,27 @@
 .pn-dx__card-h{font-size:.98rem;font-weight:800;color:var(--navy);margin:0 0 6px;letter-spacing:-.01em}
 .pn-dx__card-p{font-size:.84rem;color:var(--text-muted);line-height:1.5;margin:0}
 @media(max-width:991px){.pn-dx{grid-template-columns:1fr}}
+
+/* ─── 48h stat card mejorado ─── */
+.cta-inline__stat{background:linear-gradient(155deg,#0d2040 0%,#0a1628 100%)!important;border:1px solid rgba(9,132,227,.3)!important;padding:26px 22px!important;position:relative;overflow:hidden;box-shadow:0 12px 36px rgba(9,132,227,.18)}
+.cta-inline__stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(0,206,201,.8),rgba(9,132,227,.8),transparent)}
+.cta-inline__stat::after{content:'';position:absolute;top:-40%;right:-20%;width:60%;padding-bottom:60%;border-radius:50%;background:radial-gradient(circle,rgba(0,206,201,.18) 0%,transparent 65%);pointer-events:none}
+.cta-inline__stat-val{font-size:3.4rem!important;font-weight:800!important;background:linear-gradient(135deg,#00cec9 0%,#74b9ff 50%,#0984e3 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent!important;letter-spacing:-.04em!important;line-height:1!important;display:inline-block;position:relative;z-index:1}
+.cta-inline__stat-lbl{font-size:.82rem!important;color:rgba(255,255,255,.72)!important;margin-top:10px!important;line-height:1.5!important;font-weight:500!important;position:relative;z-index:1}
+.cta-inline__stat-lbl strong{color:#fff;font-weight:700}
+
+/* ─── Timeline mejorada ─── */
+.pn-timeline{padding-top:36px}
+.pn-timeline__rail{height:3px;opacity:.55;filter:blur(.3px);box-shadow:0 0 14px rgba(9,132,227,.25)}
+.pn-timeline__bubble{width:64px;height:64px;font-size:.92rem;border-width:2px;box-shadow:0 10px 28px rgba(0,0,0,.1),inset 0 1px 0 rgba(255,255,255,.8);position:relative}
+.pn-timeline__bubble::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:1px dashed currentColor;opacity:.25;animation:pn-ring 6s linear infinite}
+@keyframes pn-ring{to{transform:rotate(360deg)}}
+.pn-timeline__step--a .pn-timeline__bubble{background:linear-gradient(160deg,#fff7e6 0%,#fff 100%);box-shadow:0 10px 28px rgba(253,203,110,.25),inset 0 1px 0 #fff}
+.pn-timeline__step--b .pn-timeline__bubble{background:linear-gradient(160deg,#ffecec 0%,#fff 100%);box-shadow:0 10px 28px rgba(214,48,49,.22),inset 0 1px 0 #fff}
+.pn-timeline__step--c .pn-timeline__bubble{background:linear-gradient(160deg,#e8f3ff 0%,#fff 100%);box-shadow:0 10px 28px rgba(9,132,227,.22),inset 0 1px 0 #fff}
+.pn-timeline__step--d .pn-timeline__bubble{background:linear-gradient(160deg,#e6faf7 0%,#fff 100%);box-shadow:0 10px 28px rgba(0,184,148,.22),inset 0 1px 0 #fff}
+.pn-timeline__step:hover .pn-timeline__bubble{transform:translateY(-6px) scale(1.1)}
+.pn-timeline__step:hover .pn-timeline__bubble::after{animation-duration:2s;opacity:.5}
 </style>
 </head>
 <body>
@@ -236,19 +257,19 @@
                     <span class="dot"></span>
                     Infección pulmonar aguda · CDMX
                 </div>
-                <h1 class="disease-hero__title">Neumonía <em>(NAC)</em></h1>
-                <p class="disease-hero__sub">No toda fiebre con tos es lo mismo. Identificar si es bacteriana, viral o atípica decide el antibiótico correcto — y puede acortar la recuperación semanas. Diagnóstico preciso para una recuperación completa sin secuelas.</p>
+                <h1 class="disease-hero__title">Neumonía</h1>
+                <p class="disease-hero__sub">No toda fiebre con tos es lo mismo. Saber si tu neumonía es <strong>bacteriana, viral o atípica</strong> decide qué tratamiento funciona — y puede acortar tu recuperación varias semanas. Diagnóstico preciso para que regreses a tu vida sin secuelas.</p>
                 <div class="disease-hero__stats">
-                    <span class="disease-hero__stat"><i class="fa-solid fa-bacteria"></i> Germen causal dirigido</span>
-                    <span class="disease-hero__stat"><i class="fa-solid fa-x-ray"></i> Radiografía + oximetría</span>
-                    <span class="disease-hero__stat"><i class="fa-solid fa-shield-heart"></i> Sin secuelas si se trata a tiempo</span>
+                    <span class="disease-hero__stat"><i class="fa-solid fa-bacteria"></i> Identificamos el germen exacto</span>
+                    <span class="disease-hero__stat"><i class="fa-solid fa-x-ray"></i> Radiografía + oxígeno en sangre</span>
+                    <span class="disease-hero__stat"><i class="fa-solid fa-shield-heart"></i> Recuperación sin secuelas</span>
                 </div>
             </div>
             <div class="col-lg-5 disease-hero__visual">
                 <div class="disease-visual-card">
                     <div class="disease-visual-card__icon"><i class="fa-solid fa-lungs"></i></div>
-                    <h4>Inflamación en los alvéolos</h4>
-                    <p>Los sacos de aire se llenan de <strong>líquido o pus</strong> y deja de llegar oxígeno suficiente a la sangre. Un antibiótico elegido al azar puede tardar semanas — uno dirigido por clínica y radiografía cambia el panorama en <strong>48–72 horas</strong>.</p>
+                    <h4>¿Qué pasa dentro de tus pulmones?</h4>
+                    <p>Los pequeños sacos de aire donde respiras se llenan de <strong>líquido o pus</strong>, y por eso te cuesta trabajo respirar y te sientes agotado. Un antibiótico al azar puede tardar semanas en hacer efecto — uno elegido con radiografía y análisis te mejora en <strong>48 a 72 horas</strong>.</p>
                 </div>
             </div>
         </div>
@@ -309,35 +330,35 @@
         <div class="content-block reveal">
             <div class="content-block__label">No todas son iguales</div>
             <h2 class="content-block__title">Cuatro tipos de neumonía, cuatro tratamientos distintos</h2>
-            <p>El primer paso no es "qué antibiótico". Es <strong>qué tipo de neumonía</strong>. La historia clínica, el patrón de síntomas y la radiografía orientan el diagnóstico en la primera consulta y evitan semanas de tratamientos que no van a funcionar.</p>
+            <p>Antes de pensar en "qué antibiótico tomar" necesitamos saber <strong>qué tipo de neumonía tienes</strong>. Tus síntomas, tu historia y una radiografía nos lo dicen desde la primera consulta — y así evitamos semanas tomando medicamentos que no te van a curar.</p>
             <div class="pn-types">
                 <div class="pn-type pn-type--bact">
                     <div class="pn-type__icon"><i class="fa-solid fa-bacterium"></i></div>
                     <span class="pn-type__tag">Tipo 1</span>
                     <h3 class="pn-type__h">Bacteriana</h3>
-                    <p class="pn-type__p">La más frecuente en adultos. Inicio súbito, fiebre alta, flema amarilla-verdosa y dolor pleurítico bien localizado.</p>
+                    <p class="pn-type__p">La más común en adultos. Empieza de golpe, con fiebre alta, flema amarilla o verdosa y dolor punzante en el pecho al respirar.</p>
                     <span class="pn-type__chip">S. pneumoniae</span>
                 </div>
                 <div class="pn-type pn-type--viral">
                     <div class="pn-type__icon"><i class="bi bi-virus2"></i></div>
                     <span class="pn-type__tag">Tipo 2</span>
                     <h3 class="pn-type__h">Viral</h3>
-                    <p class="pn-type__p">Suele empezar como un "cuadro gripal" que empeora en 3–5 días. Influenza, COVID-19 y VSR son las causas más comunes.</p>
+                    <p class="pn-type__p">Empieza como una gripa fuerte que en lugar de mejorar, empeora a los 3–5 días. Influenza y COVID-19 son las causas más frecuentes.</p>
                     <span class="pn-type__chip">Influenza · COVID</span>
                 </div>
                 <div class="pn-type pn-type--atyp">
                     <div class="pn-type__icon"><i class="fa-solid fa-wave-square"></i></div>
                     <span class="pn-type__tag">Tipo 3</span>
                     <h3 class="pn-type__h">Atípica</h3>
-                    <p class="pn-type__p">Fiebre baja, tos seca persistente y malestar general. Frecuente en jóvenes y adolescentes; pasa desapercibida varias semanas.</p>
+                    <p class="pn-type__p">Fiebre baja, tos seca que no se quita y un cansancio raro que no explicas. Frecuente en jóvenes — se disfraza de gripa por semanas.</p>
                     <span class="pn-type__chip">Mycoplasma · Legionella</span>
                 </div>
                 <div class="pn-type pn-type--asp">
                     <div class="pn-type__icon"><i class="fa-solid fa-glass-water-droplet"></i></div>
                     <span class="pn-type__tag">Tipo 4</span>
                     <h3 class="pn-type__h">Por aspiración</h3>
-                    <p class="pn-type__p">Ocurre en adultos mayores o tras eventos de atragantamiento y reflujo. Requiere antibióticos con cobertura específica para anaerobios.</p>
-                    <span class="pn-type__chip">Anaerobios</span>
+                    <p class="pn-type__p">Aparece en adultos mayores, personas con reflujo o después de un atragantamiento. Necesita antibióticos específicos, no los "comunes".</p>
+                    <span class="pn-type__chip">Por reflujo o atragantamiento</span>
                 </div>
             </div>
         </div>
@@ -345,8 +366,8 @@
         <!-- CURB-65 severity -->
         <div class="content-block reveal">
             <div class="content-block__label">¿En casa o en hospital?</div>
-            <h2 class="content-block__title">La escala CURB-65: decidir con números, no con miedo</h2>
-            <p>No toda neumonía necesita hospitalización, pero algunas sí — y la diferencia la marca una escala clínica validada a nivel mundial. Sumamos un punto por cada criterio presente y decidimos juntos el plan adecuado.</p>
+            <h2 class="content-block__title">Decidimos con números, no con miedo</h2>
+            <p>No toda neumonía necesita hospital — pero algunas sí. Usamos una escala internacional (CURB-65) que revisa 5 datos tuyos y nos dice con claridad si puedes recuperarte en casa o si necesitas estar bajo vigilancia. Así decidimos juntos, sin sobresaltos.</p>
             <div class="pn-curb">
                 <div class="pn-curb__head">
                     <div class="pn-curb__title">Severidad según CURB-65</div>
@@ -380,11 +401,11 @@
                     </div>
                 </div>
                 <div class="pn-curb__criteria">
-                    <div class="pn-curb__crit"><div class="pn-curb__crit-k">C</div><p class="pn-curb__crit-p">Confusión de inicio reciente (desorientación)</p></div>
-                    <div class="pn-curb__crit"><div class="pn-curb__crit-k">U</div><p class="pn-curb__crit-p">Urea elevada en sangre (>7 mmol/L)</p></div>
-                    <div class="pn-curb__crit"><div class="pn-curb__crit-k">R</div><p class="pn-curb__crit-p">Respiración rápida (≥30 por minuto)</p></div>
-                    <div class="pn-curb__crit"><div class="pn-curb__crit-k">B</div><p class="pn-curb__crit-p">Presión baja (sistólica &lt;90 o diastólica ≤60)</p></div>
-                    <div class="pn-curb__crit"><div class="pn-curb__crit-k">65</div><p class="pn-curb__crit-p">Edad igual o mayor a 65 años</p></div>
+                    <div class="pn-curb__crit"><div class="pn-curb__crit-k">C</div><p class="pn-curb__crit-p">Confusión o desorientación repentina</p></div>
+                    <div class="pn-curb__crit"><div class="pn-curb__crit-k">U</div><p class="pn-curb__crit-p">Urea alta en los análisis de sangre</p></div>
+                    <div class="pn-curb__crit"><div class="pn-curb__crit-k">R</div><p class="pn-curb__crit-p">Respiración muy rápida (30 o más por minuto)</p></div>
+                    <div class="pn-curb__crit"><div class="pn-curb__crit-k">B</div><p class="pn-curb__crit-p">Presión arterial baja</p></div>
+                    <div class="pn-curb__crit"><div class="pn-curb__crit-k">65</div><p class="pn-curb__crit-p">Tener 65 años o más</p></div>
                 </div>
             </div>
         </div>
@@ -425,7 +446,7 @@
                         <div class="pn-timeline__bubble">1–3</div>
                         <div class="pn-timeline__phase-sub">Primeros días</div>
                         <div class="pn-timeline__phase">Inicio</div>
-                        <p class="pn-timeline__desc">Fiebre, escalofríos, tos y malestar general. Aquí es cuando la mayoría se automedica antes de consultar.</p>
+                        <p class="pn-timeline__desc">Fiebre, escalofríos, tos y un cansancio que no se quita. Muchos esperan creyendo que es una gripa que pasará sola.</p>
                     </div>
                     <div class="pn-timeline__step pn-timeline__step--b">
                         <div class="pn-timeline__bubble">3–7</div>
@@ -452,7 +473,7 @@
         <!-- Diagnóstico asimétrico -->
         <div class="content-block reveal">
             <div class="content-block__label">Cómo confirmamos el diagnóstico</div>
-            <h2 class="content-block__title">El mínimo indispensable antes del antibiótico</h2>
+            <h2 class="content-block__title">Los 3 estudios que cambian tu tratamiento</h2>
             <p>Tratar sin confirmar la neumonía es jugar a la ruleta. Con tres estudios básicos en una sola consulta quedamos con un diagnóstico sólido, una severidad medida y un tratamiento dirigido al germen más probable.</p>
             <div class="pn-dx">
                 <div class="pn-dx__main">
@@ -468,8 +489,8 @@
                     <div class="pn-dx__card">
                         <div class="pn-dx__card-icon"><i class="fa-solid fa-vial"></i></div>
                         <div>
-                            <h3 class="pn-dx__card-h">Biometría + PCR</h3>
-                            <p class="pn-dx__card-p">Orienta hacia causa bacteriana vs viral y mide la respuesta inflamatoria.</p>
+                            <h3 class="pn-dx__card-h">Análisis de sangre</h3>
+                            <p class="pn-dx__card-p">Nos dice si la infección es por bacteria o por virus, y qué tan fuerte está la inflamación.</p>
                         </div>
                     </div>
                     <div class="pn-dx__card">
