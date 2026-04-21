@@ -163,11 +163,15 @@
 .cta-inline__check{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
 .cta-inline__check i{color:#1a6e3d;margin-top:3px}
 .cta-inline__check span{font-size:.95rem;color:var(--text);font-weight:600}
-.cta-inline__right{background:#fff;border-radius:18px;padding:28px;box-shadow:0 10px 30px rgba(9,132,227,.08)}
+.cta-inline__right{background:linear-gradient(155deg,#0d2040 0%,#0a1628 100%);border-radius:18px;padding:28px;box-shadow:0 12px 36px rgba(9,132,227,.18);border:1px solid rgba(0,184,217,.28);position:relative;overflow:hidden}
+.cta-inline__right::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(0,184,217,.8),rgba(9,132,227,.8),transparent)}
+.cta-inline__right::after{content:'';position:absolute;top:-40%;right:-20%;width:60%;padding-bottom:60%;border-radius:50%;background:radial-gradient(circle,rgba(0,184,217,.18) 0%,transparent 65%);pointer-events:none}
+.cta-inline__right > *{position:relative;z-index:1}
+.cta-inline__right .cta-inline__eyebrow{color:#74d9ff!important}
 .cta-inline__eyebrow{font-size:.72rem;font-weight:800;color:var(--electric);text-transform:uppercase;letter-spacing:3px;margin-bottom:8px}
 .cta-inline__title{font-size:1.3rem;font-weight:800;color:var(--navy);margin-bottom:8px;letter-spacing:-.01em}
-.cta-inline__stat-value{font-size:2.2rem;font-weight:800;line-height:1;margin:8px 0 4px;background:linear-gradient(135deg,var(--electric),#00b8d9);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.cta-inline__stat-label{font-size:.82rem;color:var(--text-muted);margin-bottom:18px}
+.cta-inline__stat-value{font-size:3.4rem;font-weight:800;line-height:1;margin:8px 0 10px;background:linear-gradient(135deg,#00cec9 0%,#74b9ff 50%,#0984e3 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-.04em;display:inline-block}
+.cta-inline__stat-label{font-size:.85rem;color:rgba(255,255,255,.72);margin-bottom:18px;line-height:1.5}
 .cta-inline__actions{display:flex;flex-direction:column;gap:10px}
 .btn-wa,.btn-cal{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 18px;border-radius:10px;font-weight:700;text-decoration:none;font-size:.92rem;transition:all .3s var(--ease)}
 .btn-wa{background:#25d366;color:#fff!important}.btn-wa:hover{background:#128c7e;transform:translateY(-2px)}
@@ -271,22 +275,22 @@
     <nav class="disease-hero__breadcrumb" aria-label="Breadcrumb"><a href="/">Inicio</a><span>/</span><a href="/#enfermedades">Enfermedades</a><span>/</span><span class="current">Derrames Pleurales</span></nav>
     <div class="row g-5 align-items-center">
       <div class="col-lg-7">
-        <div class="disease-hero__tag"><span class="dot"></span> Toracocentesis · Criterios de Light · Drenaje pleural</div>
-        <h1 class="disease-hero__title">Derrames <em>Pleurales</em></h1>
-        <p class="disease-hero__sub">Un pulmón necesita espacio para expandirse. Cuando el líquido invade la cavidad que rodea al pulmón, cada respiración se vuelve más difícil — y te lo notas: subir unos escalones pesa distinto. El derrame no es una enfermedad en sí: es el mensaje de algo más. Nuestro trabajo es leer ese mensaje con precisión y aliviarte de inmediato.</p>
+        <div class="disease-hero__tag"><span class="dot"></span> Líquido alrededor del pulmón · Diagnóstico y alivio</div>
+        <h1 class="disease-hero__title">Derrame <em>Pleural</em></h1>
+        <p class="disease-hero__sub">Tu pulmón necesita <strong>espacio para expandirse</strong>. Cuando se acumula líquido alrededor, cada respiración cuesta más — y lo notas subiendo escaleras o al dormir acostado. El derrame no es la enfermedad: es una <strong>señal de que algo más está pasando</strong>. Nuestro trabajo es encontrar la causa y aliviarte el mismo día.</p>
         <div class="disease-hero__chips">
-          <span class="chip"><i class="fa-solid fa-droplet"></i> Trasudado / Exudado</span>
-          <span class="chip"><i class="fa-solid fa-syringe"></i> Toracocentesis</span>
-          <span class="chip"><i class="fa-solid fa-wave-square"></i> USG pleural en cama</span>
-          <span class="chip"><i class="fa-solid fa-flask"></i> Análisis de Light</span>
+          <span class="chip"><i class="fa-solid fa-droplet"></i> Analizamos el líquido</span>
+          <span class="chip"><i class="fa-solid fa-syringe"></i> Drenaje ambulatorio</span>
+          <span class="chip"><i class="fa-solid fa-wave-square"></i> Ultrasonido en consultorio</span>
+          <span class="chip"><i class="fa-solid fa-shield-heart"></i> Alivio el mismo día</span>
         </div>
       </div>
       <div class="col-lg-5">
         <div class="disease-hero__visual">
           <div class="disease-hero__visual-text">
             <div class="disease-hero__visual-icon"><i class="fa-solid fa-droplet"></i></div>
-            <div class="kpi">&gt;10 mL</div>
-            <div class="kpi-label">Volumen de líquido pleural suficiente para ser visible en ultrasonido. En una radiografía se requieren ~200 mL para verse. Por eso el USG pleural es tu mejor aliado.</div>
+            <div class="kpi">10 mL</div>
+            <div class="kpi-label">Con tan solo <strong style="color:#fff">10 mL</strong> el ultrasonido ya detecta el líquido. La radiografía común necesita 20 veces más para verlo — por eso <strong style="color:#fff">usamos ultrasonido desde el primer día</strong>.</div>
           </div>
         </div>
       </div>
@@ -343,20 +347,20 @@
 
     <!-- PLEURA CAVITY SVG -->
     <div class="content-section reveal">
-      <div class="content-section__label">Anatomía del problema</div>
-      <h2 class="content-section__title">Qué está pasando en tu espacio pleural</h2>
-      <p class="section-lead">Entre tu pulmón y la pared torácica hay una cavidad virtual con apenas unos mililitros de líquido que lubrica el deslizamiento. Cuando ese líquido se acumula — por fuga de capilares, inflamación, obstrucción linfática o invasión tumoral — el pulmón pierde espacio para expandirse y tú pierdes aire.</p>
+      <div class="content-section__label">Qué está pasando</div>
+      <h2 class="content-section__title">¿Por qué hay líquido alrededor de tu pulmón?</h2>
+      <p class="section-lead">Entre tu pulmón y las costillas hay un espacio pequeñito con <strong>apenas unas gotas de líquido</strong> que sirve de lubricante para que tu pulmón se deslice al respirar. Cuando ese líquido se acumula — por problemas del corazón, infecciones, inflamación o cáncer — el pulmón <strong>pierde espacio para inflarse</strong> y tú pierdes aire.</p>
 
       <div class="dp-pleura">
         <div class="dp-pleura__text">
-          <div class="dp-pleura__eyebrow">Corte coronal del tórax derecho</div>
-          <h3 class="dp-pleura__title">El líquido se acumula por gravedad</h3>
-          <p class="dp-pleura__desc">Por eso los derrames pequeños se ven primero en la base pulmonar, borrando el seno costofrénico en la radiografía. El ultrasonido pleural lo detecta desde volúmenes de apenas 10 mL — mucho antes que cualquier placa.</p>
+          <div class="dp-pleura__eyebrow">Vista desde adelante del tórax</div>
+          <h3 class="dp-pleura__title">El líquido se va al fondo por gravedad</h3>
+          <p class="dp-pleura__desc">Por eso los derrames pequeños aparecen primero en la <strong>base del pulmón</strong>. Una radiografía común puede no verlo al inicio — el ultrasonido, en cambio, lo detecta desde el primer momento y sin radiación.</p>
           <div class="dp-pleura__legend">
-            <div class="dp-legend"><span class="dp-legend__chip lung"></span><span class="dp-legend__txt">Pulmón (comprimido por el líquido)</span></div>
-            <div class="dp-legend"><span class="dp-legend__chip pleura"></span><span class="dp-legend__txt">Pleuras visceral y parietal</span></div>
-            <div class="dp-legend"><span class="dp-legend__chip fluid"></span><span class="dp-legend__txt">Líquido pleural acumulado</span></div>
-            <div class="dp-legend"><span class="dp-legend__chip rib"></span><span class="dp-legend__txt">Parrilla costal</span></div>
+            <div class="dp-legend"><span class="dp-legend__chip lung"></span><span class="dp-legend__txt">Pulmón (aplastado por el líquido)</span></div>
+            <div class="dp-legend"><span class="dp-legend__chip pleura"></span><span class="dp-legend__txt">Capas que envuelven al pulmón</span></div>
+            <div class="dp-legend"><span class="dp-legend__chip fluid"></span><span class="dp-legend__txt">Líquido acumulado</span></div>
+            <div class="dp-legend"><span class="dp-legend__chip rib"></span><span class="dp-legend__txt">Costillas</span></div>
           </div>
         </div>
         <div class="dp-pleura__viz" aria-hidden="true">
@@ -406,126 +410,126 @@
 
     <!-- TRASUDADO VS EXUDADO -->
     <div class="content-section reveal">
-      <div class="content-section__label">La primera pregunta clínica</div>
-      <h2 class="content-section__title">Trasudado o exudado: dos mundos diagnósticos</h2>
-      <p class="section-lead">Todo derrame empieza con esta división. Un trasudado nace de un desequilibrio de presiones (tu corazón, tu hígado, tu riñón). Un exudado viene de un proceso inflamatorio, infeccioso o maligno en la pleura misma. Cada uno lleva al estudio por un camino completamente distinto — y el criterio de Light es la bifurcación del camino.</p>
+      <div class="content-section__label">La primera pregunta que resolvemos</div>
+      <h2 class="content-section__title">¿Por qué apareció el líquido? Hay dos grandes causas</h2>
+      <p class="section-lead">Todo empieza aquí. El líquido puede venir de un <strong>problema fuera de tu pulmón</strong> (corazón, hígado, riñón) o de un <strong>problema dentro del mismo pulmón/pleura</strong> (infección, inflamación o cáncer). Cada caso se estudia y se trata distinto — y el primer análisis del líquido nos dice cuál es cuál.</p>
 
       <div class="dp-vs">
         <div class="dp-vs__card dp-vs__card--tras">
-          <span class="dp-vs__tag">Sistémico</span>
+          <span class="dp-vs__tag">Viene de fuera</span>
           <h3 class="dp-vs__title">Trasudado</h3>
-          <p class="dp-vs__desc">El problema no está en la pleura, está en la presión. El líquido es claro, pobre en proteínas y responde al tratamiento de la enfermedad de base.</p>
-          <div class="dp-vs__label">Causas frecuentes</div>
+          <p class="dp-vs__desc">El pulmón está sano. El problema es de <strong>presión</strong> en otro órgano (corazón, hígado, riñón) que empuja líquido al pulmón. El líquido es claro y mejora al tratar la causa de fondo.</p>
+          <div class="dp-vs__label">Causas más comunes</div>
           <ul class="dp-vs__list">
-            <li><i class="fa-solid fa-check-circle"></i> Insuficiencia cardíaca (la #1)</li>
-            <li><i class="fa-solid fa-check-circle"></i> Cirrosis hepática con hidrotórax</li>
-            <li><i class="fa-solid fa-check-circle"></i> Síndrome nefrótico</li>
-            <li><i class="fa-solid fa-check-circle"></i> Hipoalbuminemia severa</li>
+            <li><i class="fa-solid fa-check-circle"></i> Insuficiencia del corazón (la más frecuente)</li>
+            <li><i class="fa-solid fa-check-circle"></i> Problemas del hígado (cirrosis)</li>
+            <li><i class="fa-solid fa-check-circle"></i> Enfermedad renal</li>
+            <li><i class="fa-solid fa-check-circle"></i> Proteínas muy bajas en sangre</li>
           </ul>
         </div>
         <div class="dp-vs__divider">
           <div class="dp-vs__divider-line"></div>
-          <div class="dp-vs__divider-badge">Light</div>
+          <div class="dp-vs__divider-badge">vs</div>
           <div class="dp-vs__divider-line"></div>
         </div>
         <div class="dp-vs__card dp-vs__card--exu">
-          <span class="dp-vs__tag">Pleural</span>
+          <span class="dp-vs__tag">Viene de dentro</span>
           <h3 class="dp-vs__title">Exudado</h3>
-          <p class="dp-vs__desc">La pleura está inflamada, infectada o infiltrada. El líquido es rico en proteínas y exige un estudio exhaustivo para encontrar la causa.</p>
-          <div class="dp-vs__label">Causas frecuentes</div>
+          <p class="dp-vs__desc">La <strong>pleura misma está inflamada, infectada o afectada</strong> por otra enfermedad. El líquido es más espeso, con más proteínas, y requiere estudio detallado para encontrar la causa.</p>
+          <div class="dp-vs__label">Causas más comunes</div>
           <ul class="dp-vs__list">
-            <li><i class="fa-solid fa-check-circle"></i> Neumonía paraneumónica / empiema</li>
-            <li><i class="fa-solid fa-check-circle"></i> Malignidad (pulmón, mama, linfoma)</li>
-            <li><i class="fa-solid fa-check-circle"></i> Tuberculosis pleural</li>
-            <li><i class="fa-solid fa-check-circle"></i> Embolia pulmonar, colagenopatías</li>
+            <li><i class="fa-solid fa-check-circle"></i> Neumonía complicada (con infección en la pleura)</li>
+            <li><i class="fa-solid fa-check-circle"></i> Cáncer (pulmón, mama, linfoma)</li>
+            <li><i class="fa-solid fa-check-circle"></i> Tuberculosis</li>
+            <li><i class="fa-solid fa-check-circle"></i> Coágulos en el pulmón o enfermedades autoinmunes</li>
           </ul>
         </div>
       </div>
 
       <div class="dp-light">
-        <div class="dp-light__title">Criterios de Light · 1972</div>
-        <p class="dp-light__desc">Basta con que se cumpla UNO de los tres criterios para clasificar el líquido como exudado. Es una regla con más de 50 años de validación y sensibilidad cercana al 98%.</p>
+        <div class="dp-light__title">Así diferenciamos uno del otro</div>
+        <p class="dp-light__desc">Comparamos tres valores del líquido con los mismos valores en tu sangre. Es una regla con <strong>más de 50 años de uso</strong> y una precisión cercana al 98%: basta que <strong>uno</strong> de los tres dé positivo para saber que es un exudado.</p>
         <div class="dp-light__criteria">
           <div class="dp-light__crit">
             <div class="dp-light__crit-num">1</div>
-            <div class="dp-light__crit-eq">Proteínas LP / sérica &gt; 0.5</div>
-            <div class="dp-light__crit-desc">Relación de proteínas entre líquido pleural y suero</div>
+            <div class="dp-light__crit-eq">Proteínas</div>
+            <div class="dp-light__crit-desc">Proteínas del líquido comparadas con las de tu sangre</div>
           </div>
           <div class="dp-light__crit">
             <div class="dp-light__crit-num">2</div>
-            <div class="dp-light__crit-eq">LDH LP / sérica &gt; 0.6</div>
-            <div class="dp-light__crit-desc">Relación de lactato deshidrogenasa</div>
+            <div class="dp-light__crit-eq">Enzima LDH</div>
+            <div class="dp-light__crit-desc">Una enzima que aumenta cuando hay inflamación</div>
           </div>
           <div class="dp-light__crit">
             <div class="dp-light__crit-num">3</div>
-            <div class="dp-light__crit-eq">LDH LP &gt; 2/3 límite sérico</div>
-            <div class="dp-light__crit-desc">LDH pleural sobre el límite alto normal del suero</div>
+            <div class="dp-light__crit-eq">LDH alta</div>
+            <div class="dp-light__crit-desc">Si la LDH del líquido está muy por encima de lo normal</div>
           </div>
         </div>
-        <div class="dp-light__rule">Si cumple 1+ criterios → exudado. Si no cumple ninguno → trasudado.</div>
+        <div class="dp-light__rule">Si cumple 1 o más → exudado (problema dentro del pulmón). Si no cumple ninguno → trasudado (problema de otro órgano).</div>
       </div>
     </div>
 
     <!-- ASPECTO DEL LÍQUIDO -->
     <div class="content-section reveal">
-      <div class="content-section__label">Lo que ves en la jeringa importa</div>
-      <h2 class="content-section__title">El color y la textura del líquido cuentan una historia</h2>
-      <p class="section-lead">En cuanto sacamos el líquido, ya estamos leyéndolo. Cada aspecto orienta hacia etiologías diferentes, y guía qué estudios pedir en cada muestra. Esta fotografía visual te explica lo que el Dr. Lara interpreta en segundos.</p>
+      <div class="content-section__label">El líquido habla por sí solo</div>
+      <h2 class="content-section__title">El color y el aspecto nos dan las primeras pistas</h2>
+      <p class="section-lead">En cuanto sacamos el líquido con la aguja, ya estamos leyendo información. El color y la textura apuntan hacia causas distintas y nos indican qué estudios pedir. Esto es lo que interpretamos en segundos al verlo:</p>
 
       <div class="dp-fluids">
         <div class="dp-fluid dp-fluid--clear">
           <div class="dp-fluid__tube" aria-hidden="true"></div>
-          <div class="dp-fluid__tag">Claro · Ámbar</div>
-          <h3 class="dp-fluid__title">Seroso</h3>
-          <p class="dp-fluid__desc">Típico de trasudados (ICC) y algunos exudados virales o por TEP.</p>
+          <div class="dp-fluid__tag">Claro · Color ámbar</div>
+          <h3 class="dp-fluid__title">Transparente</h3>
+          <p class="dp-fluid__desc">Típico de problemas del corazón o infecciones virales. Buena noticia: suele ser lo menos complicado.</p>
         </div>
         <div class="dp-fluid dp-fluid--cloudy">
           <div class="dp-fluid__tube" aria-hidden="true"></div>
           <div class="dp-fluid__tag">Turbio · Amarillo</div>
-          <h3 class="dp-fluid__title">Purulento</h3>
-          <p class="dp-fluid__desc">Empiema. Urgencia: requiere drenaje inmediato y antibióticos dirigidos.</p>
+          <h3 class="dp-fluid__title">Con pus</h3>
+          <p class="dp-fluid__desc">Hay infección en la pleura. Es <strong>urgente</strong>: necesita drenaje el mismo día y antibióticos dirigidos.</p>
         </div>
         <div class="dp-fluid dp-fluid--bloody">
           <div class="dp-fluid__tube" aria-hidden="true"></div>
           <div class="dp-fluid__tag">Rojo oscuro</div>
-          <h3 class="dp-fluid__title">Hemorrágico</h3>
-          <p class="dp-fluid__desc">Sospecha de malignidad, embolia pulmonar o trauma. Hematocrito pleural es clave.</p>
+          <h3 class="dp-fluid__title">Con sangre</h3>
+          <p class="dp-fluid__desc">Sospecha de cáncer, coágulo en el pulmón o un golpe previo. Merece estudio completo sin retrasos.</p>
         </div>
         <div class="dp-fluid dp-fluid--milky">
           <div class="dp-fluid__tube" aria-hidden="true"></div>
           <div class="dp-fluid__tag">Blanco lechoso</div>
-          <h3 class="dp-fluid__title">Quiloso</h3>
-          <p class="dp-fluid__desc">Triglicéridos &gt;110. Lesión del conducto torácico o linfoma subyacente.</p>
+          <h3 class="dp-fluid__title">Tipo leche</h3>
+          <p class="dp-fluid__desc">Es líquido linfático (grasa). Indica lesión de un vaso linfático o posible linfoma. Poco común, pero importante identificarlo.</p>
         </div>
       </div>
     </div>
 
     <!-- TORACOCENTESIS STEPPER -->
     <div class="content-section reveal">
-      <div class="content-section__label">El procedimiento que lo resuelve</div>
-      <h2 class="content-section__title">Toracocentesis guiada por ultrasonido: así se hace</h2>
-      <p class="section-lead">Es el procedimiento neumológico por excelencia para el derrame pleural. Diagnóstico (para analizar el líquido) y terapéutico (para aliviarte la disnea) al mismo tiempo. En manos expertas y guiado por ultrasonido, es rápido, seguro y ambulatorio en la mayoría de los casos.</p>
+      <div class="content-section__label">Cómo sacamos el líquido</div>
+      <h2 class="content-section__title">Drenaje guiado por ultrasonido: así te vamos a aliviar</h2>
+      <p class="section-lead">Es el procedimiento clave para el derrame pleural. Nos sirve para <strong>analizar el líquido</strong> y, al mismo tiempo, <strong>quitarte la sensación de ahogo</strong>. Con guía por ultrasonido es rápido, seguro, con anestesia local y en la mayoría de los casos te vas caminando a casa ese mismo día.</p>
 
       <div class="dp-steps">
         <div class="dp-step">
           <div class="dp-step__num">1</div>
-          <h3 class="dp-step__title">Ultrasonido a la cabecera</h3>
-          <p class="dp-step__desc">Localizo el líquido, mido profundidad y marco el punto seguro de punción, evitando vasos y pulmón.</p>
+          <h3 class="dp-step__title">Ubicamos con ultrasonido</h3>
+          <p class="dp-step__desc">Localizo el líquido en tiempo real y marco el punto exacto, seguro, evitando tu pulmón y tus vasos sanguíneos.</p>
         </div>
         <div class="dp-step">
           <div class="dp-step__num">2</div>
-          <h3 class="dp-step__title">Asepsia y anestesia local</h3>
-          <p class="dp-step__desc">Limpieza estricta, campo estéril y lidocaína infiltrada hasta la pleura parietal. Tú estás consciente y cómodo.</p>
+          <h3 class="dp-step__title">Limpieza y anestesia local</h3>
+          <p class="dp-step__desc">Zona estéril y anestesia con lidocaína — la misma del dentista. Tú estás despierto, cómodo y sin dolor.</p>
         </div>
         <div class="dp-step">
           <div class="dp-step__num">3</div>
-          <h3 class="dp-step__title">Extracción controlada</h3>
-          <p class="dp-step__desc">Aguja fina con catéter flexible. Se extrae el volumen suficiente para análisis y para aliviar la disnea (hasta ~1.5 L por sesión).</p>
+          <h3 class="dp-step__title">Sacamos el líquido</h3>
+          <p class="dp-step__desc">Aguja muy delgada con un catéter flexible. Extraigo lo necesario para analizar y para que <strong>respires mejor al instante</strong> (hasta 1.5 L por sesión).</p>
         </div>
         <div class="dp-step">
           <div class="dp-step__num">4</div>
-          <h3 class="dp-step__title">Envío al laboratorio</h3>
-          <p class="dp-step__desc">Muestras pareadas: Light, citoquímico, citología, cultivo y ADA según sospecha. La clave está en pedir lo correcto.</p>
+          <h3 class="dp-step__title">Análisis del líquido</h3>
+          <p class="dp-step__desc">Enviamos la muestra al laboratorio con los estudios exactos según lo que sospechamos. Así sabemos la causa real, no solo el síntoma.</p>
         </div>
       </div>
     </div>
@@ -536,15 +540,15 @@
         <div class="cta-inline__left">
           <div class="cta-inline__eyebrow">Tu vía rápida</div>
           <h3 class="cta-inline__title" style="font-size:1.5rem;margin-bottom:16px">Cuando respirar cuesta, cada día importa</h3>
-          <div class="cta-inline__check"><i class="fa-solid fa-check-circle"></i><span>Evaluación el mismo día con ultrasonido pleural en consultorio</span></div>
-          <div class="cta-inline__check"><i class="fa-solid fa-check-circle"></i><span>Toracocentesis diagnóstica y terapéutica con técnica ecoguiada</span></div>
-          <div class="cta-inline__check"><i class="fa-solid fa-check-circle"></i><span>Solicitud de estudios del líquido orientados a tu sospecha clínica</span></div>
-          <div class="cta-inline__check"><i class="fa-solid fa-check-circle"></i><span>Coordinación con cirugía de tórax u oncología si se requiere</span></div>
+          <div class="cta-inline__check"><i class="fa-solid fa-check-circle"></i><span>Valoración el mismo día con ultrasonido en consultorio</span></div>
+          <div class="cta-inline__check"><i class="fa-solid fa-check-circle"></i><span>Drenaje del líquido para diagnóstico y alivio inmediato</span></div>
+          <div class="cta-inline__check"><i class="fa-solid fa-check-circle"></i><span>Análisis del líquido orientado a encontrar la causa real</span></div>
+          <div class="cta-inline__check"><i class="fa-solid fa-check-circle"></i><span>Coordinación con cirugía de tórax u oncología si lo necesitas</span></div>
         </div>
         <div class="cta-inline__right">
           <div class="cta-inline__eyebrow">Primera consulta</div>
           <div class="cta-inline__stat-value">48 h</div>
-          <div class="cta-inline__stat-label">Mi compromiso: te valoro dentro de 48 horas de que me contactes. La disnea no espera.</div>
+          <div class="cta-inline__stat-label">Mi compromiso: <strong style="color:#fff">te valoro en menos de 48 horas</strong> desde que me contactas. La falta de aire no espera.</div>
           <div class="cta-inline__actions">
             <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20consulta%20por%20derrame%20pleural" class="btn-wa" target="_blank"><i class="bi bi-whatsapp"></i> WhatsApp directo</a>
             <a href="https://cal.com/dr-william-lara/agendar-cita" class="btn-cal" target="_blank"><i class="bi bi-calendar-check"></i> Agendar en línea</a>
@@ -558,17 +562,17 @@
       <div class="dp-urgency">
         <div class="dp-urgency__badge"><i class="fa-solid fa-triangle-exclamation"></i></div>
         <div class="dp-urgency__content">
-          <h3 class="dp-urgency__title">Señales que exigen valoración urgente</h3>
-          <p class="dp-urgency__sub">Un derrame pleural puede evolucionar rápido. Estas situaciones obligan a buscar atención especializada hoy mismo, sin esperar a que "pase solo":</p>
+          <h3 class="dp-urgency__title">Señales que no deben esperar</h3>
+          <p class="dp-urgency__sub">Un derrame puede crecer rápido. Si tienes alguna de estas señales, busca valoración <strong>hoy mismo</strong> — no esperes a que "se quite solo":</p>
           <ul class="dp-urgency__list">
-            <li><i class="fa-solid fa-circle"></i> Disnea que empeora en horas o días</li>
-            <li><i class="fa-solid fa-circle"></i> Dolor torácico pleurítico persistente</li>
-            <li><i class="fa-solid fa-circle"></i> Fiebre &gt; 38.5 °C con dolor al respirar</li>
-            <li><i class="fa-solid fa-circle"></i> Tos con esputo purulento asociado</li>
-            <li><i class="fa-solid fa-circle"></i> Pérdida de peso no explicada</li>
-            <li><i class="fa-solid fa-circle"></i> Antecedente de cáncer conocido</li>
-            <li><i class="fa-solid fa-circle"></i> Imposibilidad de dormir acostado</li>
-            <li><i class="fa-solid fa-circle"></i> Saturación &lt; 92% en reposo</li>
+            <li><i class="fa-solid fa-circle"></i> Falta de aire que empeora en horas o pocos días</li>
+            <li><i class="fa-solid fa-circle"></i> Dolor punzante en el pecho al respirar</li>
+            <li><i class="fa-solid fa-circle"></i> Fiebre mayor a 38.5 °C con dolor al respirar</li>
+            <li><i class="fa-solid fa-circle"></i> Tos con flema espesa y de color raro</li>
+            <li><i class="fa-solid fa-circle"></i> Pérdida de peso sin explicación</li>
+            <li><i class="fa-solid fa-circle"></i> Antecedente de cáncer</li>
+            <li><i class="fa-solid fa-circle"></i> No poder dormir acostado (solo sentado)</li>
+            <li><i class="fa-solid fa-circle"></i> Oxígeno en sangre bajo (&lt;92%) en reposo</li>
           </ul>
         </div>
       </div>
