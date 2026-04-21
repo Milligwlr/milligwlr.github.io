@@ -224,6 +224,13 @@
 .flu-truth:hover{transform:translateX(6px)}
 @media(max-width:991px){.flu-compare{grid-template-columns:1fr;border-radius:16px}.flu-compare__head,.flu-compare__cell{border-right:none!important}.flu-compare__head{padding:14px 16px;font-size:.74rem;flex-direction:row;justify-content:center;gap:10px}.flu-compare__head i{font-size:1.1rem}.flu-compare__cell{justify-content:flex-start;padding:12px 18px;font-size:.85rem;text-align:left}.flu-compare__cell.label{background:#f0f3f7;font-size:.82rem;padding:10px 18px;text-transform:uppercase;letter-spacing:.8px;color:var(--text-muted)}.flu-window__grid{grid-template-columns:1fr;gap:32px}.flu-window__clock{width:180px;height:180px}.flu-body{grid-template-columns:1fr;text-align:center;gap:28px}.flu-body__svg{max-width:220px;margin:0 auto}.flu-body__item{text-align:left}.flu-vax__months{grid-template-columns:repeat(6,1fr)}.flu-myths{grid-template-columns:1fr}.flu-myth:hover,.flu-truth:hover{transform:none}}
 @media(max-width:576px){.flu-window{padding:32px 22px}.flu-body{padding:28px 20px}.flu-vax{padding:32px 22px}.flu-vax__months{grid-template-columns:repeat(4,1fr)}.flu-window__bar{grid-template-columns:70px 1fr 60px;gap:10px}.flu-window__bar-label{font-size:.68rem}}
+
+/* ─── 48h stat card mejorado ─── */
+.cta-inline__stat{background:linear-gradient(155deg,#0d2040 0%,#0a1628 100%)!important;border:1px solid rgba(230,69,69,.3)!important;padding:26px 22px!important;position:relative;overflow:hidden;box-shadow:0 12px 36px rgba(230,69,69,.16);border-radius:18px}
+.cta-inline__stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(240,168,48,.8),rgba(230,69,69,.8),transparent)}
+.cta-inline__stat::after{content:'';position:absolute;top:-40%;right:-20%;width:60%;padding-bottom:60%;border-radius:50%;background:radial-gradient(circle,rgba(240,168,48,.18) 0%,transparent 65%);pointer-events:none}
+.cta-inline__stat-value{font-size:3.4rem!important;font-weight:800!important;background:linear-gradient(135deg,#f0a830 0%,#e64545 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent!important;letter-spacing:-.04em!important;line-height:1!important;display:inline-block;position:relative;z-index:1}
+.cta-inline__stat-label{font-size:.82rem!important;color:rgba(255,255,255,.72)!important;margin-top:10px!important;line-height:1.5!important;position:relative;z-index:1}
 </style>
 </head>
 <body>
@@ -265,8 +272,8 @@
 <div class="disease-hero__tag"><span class="dot"></span> Ventana antiviral de 48h</div>
 <div class="row align-items-center g-5">
 <div class="col-lg-7">
-<h1 class="disease-hero__title">Influenza <em>(gripe estacional)</em></h1>
-<p class="disease-hero__sub">No es "solo una gripita". La influenza puede tumbarte en cama una semana y complicarse con neumonía. Con antiviral oportuno y vacunación a tiempo, la recuperación cambia por completo.</p>
+<h1 class="disease-hero__title">Influenza <em>(la gripe "fuerte")</em></h1>
+<p class="disease-hero__sub">No es "solo una gripita". La influenza te puede dejar en cama una semana entera y, si se complica, convertirse en neumonía. Con el <strong>antiviral a tiempo</strong> y la <strong>vacuna anual</strong>, tu recuperación es completamente distinta.</p>
 <div class="disease-hero__chips">
 <div class="chip"><i class="bi bi-thermometer-high"></i> Fiebre súbita 39-40°C</div>
 <div class="chip"><i class="bi bi-hourglass-split"></i> Antivirales &lt; 48h</div>
@@ -345,10 +352,10 @@
 <div class="flu-compare__head"><i class="fa-solid fa-head-side-cough"></i> Resfriado</div>
 <div class="flu-compare__head"><i class="fa-solid fa-viruses"></i> COVID-19</div>
 
-<div class="flu-compare__cell label">Inicio</div>
-<div class="flu-compare__cell flu">Súbito en horas</div>
-<div class="flu-compare__cell cold">Gradual en 1-3 días</div>
-<div class="flu-compare__cell covid">Variable, a menudo gradual</div>
+<div class="flu-compare__cell label">Cómo empieza</div>
+<div class="flu-compare__cell flu">De golpe, en horas</div>
+<div class="flu-compare__cell cold">Poco a poco, en 1-3 días</div>
+<div class="flu-compare__cell covid">Variable, casi siempre gradual</div>
 
 <div class="flu-compare__cell label">Fiebre</div>
 <div class="flu-compare__cell flu"><span class="dot hi"></span>Alta 39-40°C</div>
@@ -375,17 +382,17 @@
 <div class="flu-compare__cell cold"><span class="dot lo"></span>Leve</div>
 <div class="flu-compare__cell covid"><span class="dot hi"></span>Puede prolongarse</div>
 
-<div class="flu-compare__cell label">Tratamiento específico</div>
-<div class="flu-compare__cell flu">Antiviral oseltamivir</div>
-<div class="flu-compare__cell cold">Sintomático y reposo</div>
-<div class="flu-compare__cell covid">Antiviral en casos de riesgo</div>
+<div class="flu-compare__cell label">Tratamiento</div>
+<div class="flu-compare__cell flu">Antiviral (oseltamivir)</div>
+<div class="flu-compare__cell cold">Reposo y medicamentos para síntomas</div>
+<div class="flu-compare__cell covid">Antiviral en personas de riesgo</div>
 </div>
 </div>
 
 <div class="content-section reveal">
 <div class="content-section__label">Ventana crítica</div>
 <h2 class="content-section__title">Las primeras 48 horas lo cambian todo</h2>
-<p class="section-lead">El antiviral para influenza tiene fecha de caducidad biológica. Lo que decida hacer un paciente en las primeras dos jornadas determina si se recupera en casa o termina hospitalizado. Este es el impacto real según cuándo inicia el tratamiento.</p>
+<p class="section-lead">El antiviral contra la influenza tiene <strong>fecha de caducidad biológica</strong>: funciona mucho mejor si se toma dentro de las primeras 48 horas. Lo que hagas en esos dos primeros días decide si te recuperas en casa o terminas en el hospital.</p>
 
 <div class="flu-window reveal">
 <div class="flu-window__grid">
@@ -427,7 +434,7 @@
 <div class="flu-window__bar-track"><div class="flu-window__bar-fill bad"></div></div>
 <div class="flu-window__bar-val">Limitado</div>
 </div>
-<p class="mt-2 mb-0" style="font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.55">Dentro de las primeras 48 horas, el oseltamivir reduce la duración, la severidad y el riesgo de hospitalización. Después, sigue usándose en pacientes graves, pero el beneficio baja.</p>
+<p class="mt-2 mb-0" style="font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.55">Si se toma en las primeras 48 horas, el antiviral <strong style="color:#fff">acorta los días de enfermedad</strong>, baja la severidad y reduce el riesgo de terminar en el hospital. Después sigue sirviendo en casos graves, pero el beneficio es menor.</p>
 </div>
 </div>
 </div>
@@ -478,11 +485,11 @@
 </svg>
 </div>
 <div class="flu-body__list">
-<div class="flu-body__item active" data-zone="head"><div class="flu-body__item-icon"><i class="bi bi-brightness-high"></i></div><div class="flu-body__item-text"><strong>Cabeza y ojos</strong><span>Cefalea frontal intensa, dolor detrás de los ojos, sensibilidad a la luz</span></div></div>
-<div class="flu-body__item" data-zone="throat"><div class="flu-body__item-icon"><i class="bi bi-mic-mute"></i></div><div class="flu-body__item-text"><strong>Garganta y nariz</strong><span>Dolor al tragar, voz áspera, congestión nasal leve</span></div></div>
-<div class="flu-body__item" data-zone="chest"><div class="flu-body__item-icon"><i class="fa-solid fa-lungs"></i></div><div class="flu-body__item-text"><strong>Pecho</strong><span>Tos seca que rasga, opresión, a veces dolor al respirar profundo</span></div></div>
-<div class="flu-body__item" data-zone="muscle"><div class="flu-body__item-icon"><i class="fa-solid fa-person-falling"></i></div><div class="flu-body__item-text"><strong>Espalda y brazos</strong><span>Dolor muscular profundo "como si me hubieran golpeado"</span></div></div>
-<div class="flu-body__item" data-zone="joint"><div class="flu-body__item-icon"><i class="bi bi-emoji-dizzy"></i></div><div class="flu-body__item-text"><strong>Piernas y articulaciones</strong><span>Fatiga extrema, rodillas adoloridas, dificultad para levantarse</span></div></div>
+<div class="flu-body__item active" data-zone="head"><div class="flu-body__item-icon"><i class="bi bi-brightness-high"></i></div><div class="flu-body__item-text"><strong>Cabeza y ojos</strong><span>Dolor de cabeza fuerte en la frente, molestia detrás de los ojos y la luz te lastima</span></div></div>
+<div class="flu-body__item" data-zone="throat"><div class="flu-body__item-icon"><i class="bi bi-mic-mute"></i></div><div class="flu-body__item-text"><strong>Garganta y nariz</strong><span>Dolor al tragar, voz ronca y algo de congestión nasal</span></div></div>
+<div class="flu-body__item" data-zone="chest"><div class="flu-body__item-icon"><i class="fa-solid fa-lungs"></i></div><div class="flu-body__item-text"><strong>Pecho</strong><span>Tos seca que raspa, sensación de pecho apretado y a veces dolor al respirar hondo</span></div></div>
+<div class="flu-body__item" data-zone="muscle"><div class="flu-body__item-icon"><i class="fa-solid fa-person-falling"></i></div><div class="flu-body__item-text"><strong>Espalda y brazos</strong><span>Dolor muscular profundo: "como si me hubieran apaleado"</span></div></div>
+<div class="flu-body__item" data-zone="joint"><div class="flu-body__item-icon"><i class="bi bi-emoji-dizzy"></i></div><div class="flu-body__item-text"><strong>Piernas y articulaciones</strong><span>Cansancio extremo, rodillas adoloridas y cuesta trabajo levantarte</span></div></div>
 </div>
 </div>
 </div>
@@ -544,11 +551,11 @@
 <div class="flu-myth"><div class="flu-myth__badge"><i class="bi bi-x-lg"></i></div><h4>"Si ya me dio el año pasado, ya estoy protegido."</h4><p>Los virus de influenza cambian cada año y la inmunidad adquirida no protege contra las nuevas cepas. Por eso la vacuna se reformula y se aplica anualmente.</p></div>
 <div class="flu-truth"><div class="flu-truth__badge"><i class="bi bi-check-lg"></i></div><h4>La vacuna se aplica cada año por diseño.</h4><p>La composición se actualiza cada temporada según las cepas circulantes. Vacunarte un año no sustituye la vacuna del siguiente.</p></div>
 
-<div class="flu-myth"><div class="flu-myth__badge"><i class="bi bi-x-lg"></i></div><h4>"Con antibiótico me la quito rápido."</h4><p>La influenza es viral: los antibióticos no la tocan. Sólo se usan si aparece sobreinfección bacteriana, y esa decisión corresponde al médico, no a la farmacia.</p></div>
-<div class="flu-truth"><div class="flu-truth__badge"><i class="bi bi-check-lg"></i></div><h4>El antiviral sí funciona, pero con ventana.</h4><p>Oseltamivir actúa sobre el virus de influenza si se inicia en las primeras 48 horas. Automedicarse con antibióticos retrasa justo el momento en que el antiviral haría la diferencia.</p></div>
+<div class="flu-myth"><div class="flu-myth__badge"><i class="bi bi-x-lg"></i></div><h4>"Con antibiótico me la quito rápido."</h4><p>La influenza es causada por un virus y los antibióticos <strong>no sirven contra virus</strong>. Solo se usan si se suma una infección bacteriana — y esa decisión la toma el médico, no la farmacia.</p></div>
+<div class="flu-truth"><div class="flu-truth__badge"><i class="bi bi-check-lg"></i></div><h4>El antiviral sí funciona — pero con ventana.</h4><p>El antiviral ataca al virus de la influenza si se toma en las primeras 48 horas. Automedicarse con antibióticos te hace perder justo el momento en que sí había algo que ayudaba.</p></div>
 
-<div class="flu-myth"><div class="flu-myth__badge"><i class="bi bi-x-lg"></i></div><h4>"Es solo una gripita, se me pasa sola."</h4><p>En grupos de riesgo, la influenza puede desencadenar neumonía, miocarditis o descompensación grave de enfermedades crónicas en pocos días.</p></div>
-<div class="flu-truth"><div class="flu-truth__badge"><i class="bi bi-check-lg"></i></div><h4>Evaluar temprano evita complicaciones.</h4><p>Una consulta oportuna permite decidir si necesitas antiviral, radiografía o solo manejo en casa. No es sobrecuidado, es evitar el hospital.</p></div>
+<div class="flu-myth"><div class="flu-myth__badge"><i class="bi bi-x-lg"></i></div><h4>"Es solo una gripita, se me pasa sola."</h4><p>En personas de riesgo, la influenza puede complicarse en pocos días con neumonía, inflamación del corazón o descontrol de enfermedades como diabetes o EPOC.</p></div>
+<div class="flu-truth"><div class="flu-truth__badge"><i class="bi bi-check-lg"></i></div><h4>Una consulta a tiempo evita el hospital.</h4><p>Valorarte temprano permite decidir si necesitas antiviral, radiografía o solo cuidados en casa. No es "ser exagerado": es evitar complicaciones.</p></div>
 </div>
 </div>
 
