@@ -704,6 +704,7 @@
             display: flex;
             width: max-content;
             animation: marquee-scroll 28s linear infinite;
+            animation-delay: -14s;
         }
         .marquee-track:hover { animation-play-state: paused; }
         .marquee-item {
@@ -781,10 +782,11 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 72px; height: 72px;
-            border-radius: 18px;
-            background: transparent;
-            margin-bottom: 2px;
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: rgba(116,185,255,.06);
+            box-shadow: 0 0 0 2px rgba(116,185,255,.28), 0 0 28px rgba(116,185,255,.20);
+            margin-bottom: 6px;
         }
         .stat-cnn-logo {
             width: 68px; height: 68px;
@@ -1031,11 +1033,11 @@
             aspect-ratio: 3/4;
             border-radius: 28px;
             overflow: hidden;
-            background: linear-gradient(135deg, var(--cloud) 0%, #d8e8f8 100%);
-            box-shadow: 0 32px 80px rgba(10,22,40,.1), 0 4px 20px rgba(10,22,40,.05);
+            background: linear-gradient(170deg, #ddeeff 0%, #b8d8f5 30%, #9ac5f0 60%, #7fb3e8 100%);
+            box-shadow: 0 40px 100px rgba(9,132,227,.22), 0 8px 30px rgba(9,132,227,.12), inset 0 0 60px rgba(116,185,255,.08);
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
-            border: 1px solid rgba(9,132,227,.1);
+            border: 1px solid rgba(116,185,255,.25);
         }
         .about__photo-frame .placeholder-icon {
             font-size: 3rem;
@@ -1162,11 +1164,11 @@
             position: absolute; inset: -18px;
             border-radius: 36px;
             border: 2px solid transparent;
-            background: conic-gradient(from 0deg, rgba(9,132,227,.12), rgba(0,206,201,.10), rgba(116,185,255,.08), rgba(9,132,227,.12)) border-box;
+            background: conic-gradient(from 0deg, rgba(9,132,227,.45), rgba(0,206,201,.35), rgba(116,185,255,.55), rgba(9,132,227,.45)) border-box;
             -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
-            animation: glow-spin 20s linear infinite;
+            animation: glow-spin 12s linear infinite;
             pointer-events: none; z-index: 0;
         }
         @keyframes glow-spin {
@@ -2502,9 +2504,9 @@
                         <span class="about__label reveal">Acerca de mí</span>
                         <h2 class="about__name reveal">Dr. William César<br>Lara Vázquez</h2>
                         <p class="about__subtitle reveal">Neumólogo de Alta Especialidad</p>
-                        <p class="about__paragraph reveal">Me formé en el <strong>Instituto Nacional de Enfermedades Respiratorias (INER)</strong>, la institución de referencia en México para enfermedades pulmonares. Actualmente curso la <span class="about__highlight">Alta Especialidad en EPOC</span>, lo que me permite ofrecerte el tratamiento más actualizado y efectivo.</p>
+                        <p class="about__paragraph reveal">Formado en el <strong>Instituto Nacional de Enfermedades Respiratorias (INER)</strong> — el centro de mayor prestigio en México para enfermedades pulmonares — y con la <span class="about__highlight">Alta Especialidad en EPOC</span> en curso, pongo a tu alcance diagnósticos de vanguardia en un entorno de atención <strong>cercana y personalizada</strong>: el nivel que antes solo existía en los grandes hospitales.</p>
                         <div class="about__commitment reveal">
-                            Mi compromiso es devolverte la <em>libertad de respirar con plenitud</em>. Te brindo absoluta claridad sobre tu diagnóstico y el respaldo necesario para tomar <strong>decisiones informadas</strong>. Tu cuerpo es único; por ello, tu <strong>tratamiento</strong> se diseña <strong>a tu medida</strong>.
+                            Más de <strong>5,000 pacientes</strong> han encontrado claridad y alivio con mi acompañamiento. Mi promesa es la misma para ti: diagnóstico preciso, explicación sin tecnicismos y un plan de tratamiento construido <em>únicamente para tu cuerpo y tu vida</em> — porque mereces más que una receta genérica.
                         </div>
                     </div>
                 </div>
@@ -2668,7 +2670,7 @@
                                 <div class="service-card__icon"><i class="bi bi-shield-check" aria-hidden="true"></i></div>
                                 <h3>Valoración preoperatoria pulmonar</h3>
                                 <p>Antes de una cirugía, es fundamental saber cómo están tus pulmones. Esta valoración reduce riesgos y te da la tranquilidad de llegar preparado al quirófano.</p>
-                                
+                                <span class="service-card__cta">Agendar <i class="bi bi-arrow-right"></i></span>
                             </div>
                         </div></div>
                         <button class="svc-carousel__arrow svc-carousel__arrow--prev" aria-label="Anterior"><i class="bi bi-chevron-left"></i></button>
@@ -2730,25 +2732,25 @@
                                 <div class="service-card__icon"><i class="bi bi-droplet" aria-hidden="true"></i></div>
                                 <h3>Toracocentesis</h3>
                                 <p>Procedimiento para drenar líquido acumulado alrededor de tus pulmones. Alivia la dificultad respiratoria y permite analizar el líquido para determinar su causa.</p>
-                                
+                                <span class="service-card__cta">Agendar <i class="bi bi-arrow-right"></i></span>
                             </div>
                             <div class="service-card">
                                 <div class="service-card__icon"><i class="bi bi-bandaid" aria-hidden="true"></i></div>
                                 <h3>Colocación de sonda endopleural</h3>
                                 <p>Cuando el derrame pleural es importante, colocamos una sonda para drenar de forma continua y controlada, devolviendo espacio a tus pulmones para respirar.</p>
-                                
+                                <span class="service-card__cta">Agendar <i class="bi bi-arrow-right"></i></span>
                             </div>
                             <div class="service-card">
                                 <div class="service-card__icon"><i class="bi bi-moisture" aria-hidden="true"></i></div>
                                 <h3>Catéter pleural</h3>
                                 <p>Para derrames recurrentes, este catéter permanente te permite drenar líquido desde casa de forma segura, reduciendo visitas hospitalarias y mejorando tu calidad de vida.</p>
-                                
+                                <span class="service-card__cta">Agendar <i class="bi bi-arrow-right"></i></span>
                             </div>
                             <div class="service-card">
                                 <div class="service-card__icon"><i class="bi bi-search-heart" aria-hidden="true"></i></div>
                                 <h3>Broncoscopía diagnóstica</h3>
                                 <p>Exploración directa de tus vías respiratorias con una cámara flexible. Permite tomar muestras y diagnosticar lesiones, infecciones o tumores con alta precisión.</p>
-                                
+                                <span class="service-card__cta">Agendar <i class="bi bi-arrow-right"></i></span>
                             </div>
                         </div></div>
                         <button class="svc-carousel__arrow svc-carousel__arrow--prev" aria-label="Anterior"><i class="bi bi-chevron-left"></i></button>
@@ -2764,25 +2766,25 @@
                                 <div class="service-card__icon"><i class="bi bi-heart-pulse" aria-hidden="true"></i></div>
                                 <h3>Terapia respiratoria</h3>
                                 <p>Programa de ejercicios y técnicas guiadas para fortalecer tus pulmones, mejorar tu capacidad respiratoria y recuperar tu calidad de vida paso a paso.</p>
-                                
+                                <span class="service-card__cta">Agendar <i class="bi bi-arrow-right"></i></span>
                             </div>
                             <div class="service-card">
                                 <div class="service-card__icon"><i class="bi bi-shield-plus" aria-hidden="true"></i></div>
                                 <h3>Tratamiento para dejar de fumar</h3>
                                 <p>Plan médico personalizado con herramientas que realmente funcionan. Te acompaño en cada paso para que dejes el cigarro de forma definitiva y sin recaídas.</p>
-                                
+                                <span class="service-card__cta">Agendar <i class="bi bi-arrow-right"></i></span>
                             </div>
                             <div class="service-card">
                                 <div class="service-card__icon"><i class="fa-solid fa-ribbon" aria-hidden="true"></i></div>
                                 <h3>Detección de cáncer pulmonar</h3>
                                 <p>Si tienes factores de riesgo, una evaluación temprana puede salvar tu vida. Realizamos estudios de tamizaje y seguimiento de nódulos pulmonares sospechosos.</p>
-                                
+                                <span class="service-card__cta">Agendar <i class="bi bi-arrow-right"></i></span>
                             </div>
                             <div class="service-card">
                                 <div class="service-card__icon"><i class="bi bi-clipboard-check" aria-hidden="true"></i></div>
                                 <h3>Seguimiento de enfermedades crónicas</h3>
                                 <p>Asma, EPOC, fibrosis pulmonar — el seguimiento regular es clave. Ajustamos tu tratamiento continuamente para que tengas menos crisis y más días buenos.</p>
-                                
+                                <span class="service-card__cta">Agendar <i class="bi bi-arrow-right"></i></span>
                             </div>
                         </div></div>
                         <button class="svc-carousel__arrow svc-carousel__arrow--prev" aria-label="Anterior"><i class="bi bi-chevron-left"></i></button>
@@ -3344,6 +3346,36 @@
                     }
                 });
             }
+        })();
+
+        /* ── Service cards: WhatsApp / Cal CTAs ── */
+        (function() {
+            var waBase = 'https://wa.me/5215591708334?text=';
+            var calLink = 'https://cal.com/dr-william-lara/agendar-cita';
+            var calServices = ['Consulta de Neumología'];
+            var agendarOnly = ['Consulta de Neumología', 'Consulta a domicilio'];
+            document.querySelectorAll('.service-card').forEach(function(card) {
+                var title = card.querySelector('h3');
+                var oldCta = card.querySelector('.service-card__cta');
+                if (!title || !oldCta) return;
+                var name = title.textContent.trim();
+                var useCal = calServices.indexOf(name) !== -1;
+                var onlyAgendar = agendarOnly.indexOf(name) !== -1;
+                var agendarHref = useCal ? calLink : waBase + encodeURIComponent('Hola Dr., quiero agendar ' + name + '. ¿Podría darme más información?');
+                var agendarIcon = useCal ? '<i class="bi bi-calendar-check"></i>' : '<i class="bi bi-whatsapp"></i>';
+                var agendarClass = useCal ? 'service-card__cta service-card__cta--cal' : 'service-card__cta service-card__cta--wa';
+                var actions = document.createElement('div');
+                actions.className = 'service-card__actions';
+                var saberHtml = onlyAgendar ? '' : '<a class="service-card__cta" href="#" data-service="' + name + '">Saber más <i class="bi bi-arrow-right"></i></a>';
+                actions.innerHTML = saberHtml +
+                    '<a class="' + agendarClass + '" href="' + agendarHref + '" target="_blank">' + agendarIcon + ' Agendar</a>';
+                oldCta.replaceWith(actions);
+                card.addEventListener('click', function(e) {
+                    if (e.target.closest('.service-card__cta')) return;
+                    document.querySelectorAll('.service-card.card-highlight').forEach(function(c) { c.classList.remove('card-highlight'); });
+                    card.classList.add('card-highlight');
+                });
+            });
         })();
 
         /* ── GSAP Animations ── */
