@@ -1307,6 +1307,7 @@
             display: flex; align-items: stretch;
             width: max-content;
             animation: creds-scroll 22s linear infinite;
+            animation-delay: -11s;
         }
         .creds-marquee-track:hover { animation-play-state: paused; }
         @keyframes creds-scroll {
@@ -1523,7 +1524,8 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-top: 18px;
+            margin-top: auto;
+            padding-top: 18px;
             flex-wrap: wrap;
         }
         .service-card__cta {
@@ -3353,23 +3355,23 @@
             var waBase = 'https://wa.me/5215591708334?text=';
             var calLink = 'https://cal.com/dr-william-lara/agendar-cita';
             var calServices = ['Consulta de Neumología'];
-            var agendarOnly = ['Consulta de Neumología', 'Consulta a domicilio'];
             document.querySelectorAll('.service-card').forEach(function(card) {
                 var title = card.querySelector('h3');
                 var oldCta = card.querySelector('.service-card__cta');
                 if (!title || !oldCta) return;
                 var name = title.textContent.trim();
                 var useCal = calServices.indexOf(name) !== -1;
-                var onlyAgendar = agendarOnly.indexOf(name) !== -1;
-                var agendarHref = useCal ? calLink : waBase + encodeURIComponent('Hola Dr., quiero agendar ' + name + '. ¿Podría darme más información?');
-                var agendarIcon = useCal ? '<i class="bi bi-calendar-check"></i>' : '<i class="bi bi-whatsapp"></i>';
-                var agendarClass = useCal ? 'service-card__cta service-card__cta--cal' : 'service-card__cta service-card__cta--wa';
-                var actions = document.createElement('div');
-                actions.className = 'service-card__actions';
-                var saberHtml = onlyAgendar ? '' : '<a class="service-card__cta" href="#" data-service="' + name + '">Saber más <i class="bi bi-arrow-right"></i></a>';
-                actions.innerHTML = saberHtml +
-                    '<a class="' + agendarClass + '" href="' + agendarHref + '" target="_blank">' + agendarIcon + ' Agendar</a>';
-                oldCta.replaceWith(actions);
+                var href = useCal ? calLink : waBase + encodeURIComponent('Hola Dr., me interesa el servicio: ' + name + '. ¿Podría darme más información?');
+                var btn = document.createElement('a');
+                btn.className = useCal ? 'service-card__cta service-card__cta--cal' : 'service-card__cta service-card__cta--wa';
+                btn.href = href;
+                btn.target = '_blank';
+                btn.rel = 'noopener';
+                btn.innerHTML = (useCal ? '<i class="bi bi-calendar-check"></i>' : '<i class="bi bi-whatsapp"></i>') + ' Agendar';
+                var wrap = document.createElement('div');
+                wrap.className = 'service-card__actions';
+                wrap.appendChild(btn);
+                oldCta.replaceWith(wrap);
                 card.addEventListener('click', function(e) {
                     if (e.target.closest('.service-card__cta')) return;
                     document.querySelectorAll('.service-card.card-highlight').forEach(function(c) { c.classList.remove('card-highlight'); });
