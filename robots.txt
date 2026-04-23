@@ -1,0 +1,61 @@
+# robots.txt — alveos.mx
+# Política: misma visibilidad en buscadores tradicionales y motores de IA generativa.
+
+# === OpenAI / ChatGPT ===
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+
+# === Anthropic / Claude ===
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: Claude-Web
+Allow: /
+
+# === Google Gemini ===
+User-agent: Google-Extended
+Allow: /
+
+# === Perplexity ===
+User-agent: PerplexityBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+
+# === Apple Intelligence ===
+User-agent: Applebot-Extended
+Allow: /
+
+# === Meta AI ===
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# === Otros crawlers de IA ===
+User-agent: CCBot
+Allow: /
+User-agent: cohere-ai
+Allow: /
+User-agent: Amazonbot
+Allow: /
+User-agent: MistralAI-User
+Allow: /
+User-agent: DuckAssistBot
+Allow: /
+
+# === Buscadores tradicionales y genérico ===
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /drafts/
+Disallow: /*?preview=true
+
+Sitemap: https://alveos.mx/sitemap.xml
