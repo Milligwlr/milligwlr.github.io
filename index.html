@@ -28,6 +28,15 @@
     <meta name="ICBM" content="19.3758368, -99.1834226">
 
     <meta name="theme-color" content="#0a1628">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
+    <!-- End Google Tag Manager -->
+
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="favicon.png">
 
@@ -61,7 +70,8 @@
           ],
           "hasCredential":[
             {"@type":"EducationalOccupationalCredential","credentialCategory":"Cédula Profesional de Médico Cirujano","identifier":"12588976","recognizedBy":{"@type":"GovernmentOrganization","name":"Dirección General de Profesiones, SEP, México"}},
-            {"@type":"EducationalOccupationalCredential","credentialCategory":"Cédula de Especialidad en Neumología","identifier":"15595809","recognizedBy":{"@type":"GovernmentOrganization","name":"Dirección General de Profesiones, SEP, México"}}
+            {"@type":"EducationalOccupationalCredential","credentialCategory":"Cédula de Especialidad en Neumología","identifier":"15595809","recognizedBy":{"@type":"GovernmentOrganization","name":"Dirección General de Profesiones, SEP, México"}},
+            {"@type":"EducationalOccupationalCredential","credentialCategory":"Certificación del Consejo Nacional de Neumología","identifier":"CNN-2102","recognizedBy":{"@type":"MedicalOrganization","name":"Consejo Nacional de Neumología A.C.","url":"https://www.consejoneumologia.org.mx/"}}
           ],
           "memberOf":[
             {"@type":"MedicalOrganization","name":"Sociedad Mexicana de Neumología y Cirugía de Tórax","alternateName":"SMNyCT","url":"https://www.smnyct.org.mx/"},
@@ -478,7 +488,25 @@
             50%     { filter: drop-shadow(0 0 32px rgba(9,132,227,.7)) drop-shadow(0 0 64px rgba(9,132,227,.35)) drop-shadow(0 0 90px rgba(9,132,227,.15)); transform: scale(1.04); }
         }
 
-        /* Badge pill */
+        /* Tagline subtitle (formerly second line of H1) */
+        .hero__tagline {
+            font-size: clamp(1.25rem, 2.4vw, 1.85rem);
+            font-weight: 700;
+            letter-spacing: -.02em;
+            color: var(--navy);
+            margin: 14px 0 18px;
+            line-height: 1.25;
+        }
+        .hero__tagline em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--cyan) 0%, var(--electric) 40%, #6c5ce7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        /* Badge pill (legacy, unused) */
         .hero__tag {
             display: inline-flex;
             align-items: center;
@@ -599,6 +627,8 @@
             border: 1px solid rgba(0,0,0,.09);
             background: rgba(255,255,255,.9);
             backdrop-filter: blur(4px);
+            text-decoration: none;
+            cursor: pointer;
             transition: all .3s var(--ease);
             letter-spacing: .2px;
         }
@@ -707,6 +737,7 @@
            Chrome descalifica opacity:0 como LCP; 0.01 es imperceptible pero elegible. */
         body.js-enabled .hero__logo              { opacity:.01; transform:scale(.8); }
         body.js-enabled .hero__tag              { opacity:0; transform:translateY(20px); }
+        body.js-enabled .hero__tagline          { opacity:0; transform:translateY(20px); }
         body.js-enabled .hero__headline .line-inner { opacity:.01; transform:translateY(100%); }
         body.js-enabled .hero__sub              { opacity:0; transform:translateY(30px); }
         body.js-enabled .hero__conditions       { opacity:0; transform:translateY(20px); }
@@ -814,17 +845,16 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 80px; height: 80px;
+            width: 72px; height: 72px;
             border-radius: 50%;
-            background: rgba(116,185,255,.06);
-            box-shadow: 0 0 0 2px rgba(116,185,255,.28), 0 0 28px rgba(116,185,255,.20);
+            background: #fff;
+            box-shadow: 0 0 0 2px rgba(116,185,255,.40), 0 0 24px rgba(116,185,255,.28);
             margin-bottom: 6px;
+            padding: 8px;
         }
         .stat-cnn-logo {
-            width: 68px; height: 68px;
+            width: 100%; height: 100%;
             object-fit: contain;
-            mix-blend-mode: screen;
-            filter: drop-shadow(0 0 8px rgba(116,185,255,.5)) brightness(1.15);
         }
         .stat-label {
             font-size: .72rem; font-weight: 600;
@@ -1337,14 +1367,15 @@
         }
         .creds-marquee-track {
             display: flex; align-items: stretch;
+            gap: 20px;
             width: max-content;
-            animation: creds-scroll 22s linear infinite;
-            animation-delay: -11s;
+            animation: creds-scroll 32s linear infinite;
+            will-change: transform;
         }
         .creds-marquee-track:hover { animation-play-state: paused; }
         @keyframes creds-scroll {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            from { transform: translate3d(0, 0, 0); }
+            to   { transform: translate3d(calc(-50% - 10px), 0, 0); }
         }
         .creds-marquee-item {
             flex-shrink: 0;
@@ -1352,15 +1383,13 @@
             justify-content: center;
             gap: 10px;
             padding: 20px 32px;
-            margin: 0 10px;
             background: rgba(255,255,255,.92);
             border: 1px solid rgba(9,132,227,.06);
             border-radius: 18px;
-            transition: all .4s var(--ease);
+            transition: box-shadow .4s var(--ease), border-color .4s var(--ease);
             cursor: default;
         }
         .creds-marquee-item:hover {
-            transform: translateY(-4px) scale(1.03);
             box-shadow: 0 16px 48px rgba(9,132,227,.14);
             border-color: rgba(9,132,227,.2);
         }
@@ -2373,10 +2402,14 @@
     </style>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG8Z6FKF"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <script>document.body.classList.add('js-enabled');</script>
 
     <div class="top-bar-legal text-center fw-semibold">
-        <div class="container">Aviso Cofepris: 2609142002A00265 &nbsp;|&nbsp; Céd. Prof: 12588976 &nbsp;|&nbsp; Céd. Esp: 15595809</div>
+        <div class="container">Aviso Cofepris: 2609142002A00265 &nbsp;|&nbsp; Céd. Prof: 12588976 &nbsp;|&nbsp; Céd. Esp: 15595809 &nbsp;|&nbsp; CNN-2102</div>
     </div>
 
     <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
@@ -2425,25 +2458,21 @@
                 <img src="favicon.png" alt="Alveos Logo" class="hero__logo">
                 <h1 class="hero__headline">
                     <span class="line"><span class="line-inner">Neumólogo en CDMX</span></span>
-                    <span class="line"><span class="line-inner">Salud Respiratoria <em>de Vanguardia</em></span></span>
                 </h1>
                 <div class="hero__sub">
                     <div class="hero__card-q">¿Tos que no cede, dificultad para respirar o problemas pulmonares que afectan tu día a día?</div>
                     <div class="hero__card-divider"></div>
                     <div class="hero__card-value">El <strong>Dr. William Lara</strong> combina experiencia de alto nivel con un <strong>trato cercano</strong> para devolverte la tranquilidad de respirar bien.</div>
                 </div>
-                <div class="hero__tag">
-                    <span class="dot"></span>
-                    Neumología de Alta Especialidad en CDMX
-                </div>
+                <p class="hero__tagline">Salud Respiratoria <em>de Vanguardia</em></p>
                 <div class="hero__conditions">
-                    <span class="hero__pill">Asma</span>
-                    <span class="hero__pill">EPOC</span>
-                    <span class="hero__pill">Apnea del Sueño</span>
-                    <span class="hero__pill">Neumonía</span>
-                    <span class="hero__pill">Tabaquismo</span>
-                    <span class="hero__pill">Fibrosis Pulmonar</span>
-                    <span class="hero__pill">Derrame Pleural</span>
+                    <a class="hero__pill" href="/enfermedades/asma/">Asma</a>
+                    <a class="hero__pill" href="/enfermedades/epoc/">EPOC</a>
+                    <a class="hero__pill" href="/enfermedades/apnea-del-sueno/">Apnea del Sueño</a>
+                    <a class="hero__pill" href="/enfermedades/neumonia/">Neumonía</a>
+                    <a class="hero__pill" href="/enfermedades/tabaquismo/">Tabaquismo</a>
+                    <a class="hero__pill" href="/enfermedades/fibrosis-pulmonar/">Fibrosis Pulmonar</a>
+                    <a class="hero__pill" href="/enfermedades/derrames-pleurales/">Derrame Pleural</a>
                 </div>
                 <div class="hero__cta-row">
                     <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener" class="hero__cta">
@@ -2492,8 +2521,8 @@
         <section class="stats-strip" aria-label="Métricas clave">
             <div class="stats-strip__inner">
                 <div class="stat-item reveal">
-                    <span class="stat-num"><span class="count-up" data-target="5000" data-format="comma">0</span><span class="stat-accent">+</span></span>
-                    <span class="stat-label">Pacientes atendidos</span>
+                    <span class="stat-num">5.0<span class="stat-accent">★</span></span>
+                    <span class="stat-label">Calificación en Google</span>
                 </div>
                 <div class="stat-item reveal reveal-d1">
                     <span class="stat-num"><span class="stat-accent">+</span>5</span>
@@ -2533,9 +2562,9 @@
                         <span class="about__label reveal">Acerca de mí</span>
                         <h2 class="about__name reveal">Dr. William César<br>Lara Vázquez</h2>
                         <p class="about__subtitle reveal">Neumólogo de Alta Especialidad</p>
-                        <p class="about__paragraph reveal">Formado en el <strong>Instituto Nacional de Enfermedades Respiratorias (INER)</strong> — el centro de mayor prestigio en México para enfermedades pulmonares — y con la <span class="about__highlight">Alta Especialidad en EPOC</span> en curso, pongo a tu alcance diagnósticos de vanguardia en un entorno de atención <strong>cercana y personalizada</strong>: el nivel que antes solo existía en los grandes hospitales.</p>
+                        <p class="about__paragraph reveal">Mi formación en el <strong>Instituto Nacional de Enfermedades Respiratorias (INER)</strong> y la <span class="about__highlight">Alta Especialidad en EPOC</span> me permiten ofrecerte un diagnóstico riguroso y actualizado, en un consultorio donde cada paciente recibe el tiempo y la atención que necesita.</p>
                         <div class="about__commitment reveal">
-                            Más de <strong>5,000 pacientes</strong> han encontrado claridad y alivio con mi acompañamiento. Mi promesa es la misma para ti: diagnóstico preciso, explicación sin tecnicismos y un plan de tratamiento construido <em>únicamente para tu cuerpo y tu vida</em> — porque mereces más que una receta genérica.
+                            Mi compromiso contigo es claro: <strong>escucharte sin prisa</strong>, explicarte sin tecnicismos y construir un plan de tratamiento adaptado a <em>tu vida y tu ritmo</em>. Porque cada respiración cuenta — y cada paciente es único.
                         </div>
                     </div>
                 </div>
@@ -2581,7 +2610,8 @@
                                 </div>
                                 <div class="cred-card__info">
                                     <div class="cred-card__type">Certificación</div>
-                                    <div class="cred-card__text">Certificado por el Consejo Nacional de Neumología</div>
+                                    <div class="cred-card__number">CNN-2102</div>
+                                    <div class="cred-card__source">Consejo Nacional de Neumología</div>
                                 </div>
                             </div>
                         </div>
@@ -3050,20 +3080,10 @@
                     <p class="section-sub reveal">Conoce la experiencia de pacientes que confiaron en nosotros para mejorar su respiración.</p>
                 </div>
 
-                <!-- Score global -->
+                <!-- Verified badge -->
                 <div class="text-center mb-5 reveal">
-                    <div class="d-inline-flex flex-column align-items-center gap-2">
-                        <span class="testimonial-summary-score">4.8</span>
-                        <div class="d-flex gap-1">
-                            <i class="bi bi-star-fill text-warning fs-5"></i>
-                            <i class="bi bi-star-fill text-warning fs-5"></i>
-                            <i class="bi bi-star-fill text-warning fs-5"></i>
-                            <i class="bi bi-star-fill text-warning fs-5"></i>
-                            <i class="bi bi-star-half text-warning fs-5"></i>
-                        </div>
-                        <div class="testimonial-source-badge">
-                            <i class="bi bi-patch-check-fill"></i> Opiniones de pacientes verificados
-                        </div>
+                    <div class="testimonial-source-badge">
+                        <i class="bi bi-patch-check-fill"></i> Opiniones de pacientes verificados
                     </div>
                 </div>
 
@@ -3141,8 +3161,8 @@
                     <!-- Location card -->
                     <div class="contact__card contact__card--location reveal">
                         <div class="contact__card-icon"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i></div>
-                        <h3>Hospital Santa Coleta</h3>
-                        <p>Saturnino Herrán 59, Consultorio 507<br>San José Insurgentes, Benito Juárez<br>03900 Ciudad de México, CDMX</p>
+                        <h3>Hospital Santa Coleta — Consultorio 507</h3>
+                        <p>Saturnino Herrán 59<br>San José Insurgentes, Benito Juárez<br>03900 Ciudad de México, CDMX</p>
                     </div>
 
                     <!-- Hours card -->
@@ -3200,7 +3220,6 @@
                 <p style="margin:0 0 4px;">Cédula Profesional SEP: <strong style="color:rgba(255,255,255,.78);">12588976</strong> (BUAP) · Cédula de Especialidad SEP: <strong style="color:rgba(255,255,255,.78);">15595809</strong> (UNAM / INER)</p>
                 <p style="margin:0 0 4px;">Certificado vigente por el Consejo Nacional de Neumología A.C. (CNN)</p>
                 <p style="margin:0 0 4px;">Consultorio: Saturnino Herrán 59, Cons. 507, Hospital Santa Coleta, San José Insurgentes, Benito Juárez, CDMX 03900</p>
-                <p style="margin:8px 0 0;font-style:italic;color:rgba(255,255,255,.45);">Aviso médico: la información de este sitio tiene fines educativos e informativos, no sustituye la consulta médica ni crea una relación médico-paciente. En urgencias respiratorias, llame al 911.</p>
             </div>
 
             <p class="footer-meta mb-2">
@@ -3461,7 +3480,7 @@
             tl.to('.hero__logo',                { opacity:1, scale:1, duration:1 })
               .to('.hero__headline .line-inner', { opacity:1, y:0, duration:1.2, stagger:0.15 }, '-=0.4')
               .to('.hero__sub',                 { opacity:1, y:0, duration:0.9 }, '-=0.7')
-              .to('.hero__tag',                 { opacity:1, y:0, duration:0.8 }, '-=0.5')
+              .to('.hero__tagline',             { opacity:1, y:0, duration:0.8 }, '-=0.7')
               .to('.hero__conditions',          { opacity:1, y:0, duration:0.7 }, '-=0.4')
               .to('.hero__cta-row',             { opacity:1, y:0, duration:0.9 }, '-=0.5');
 
@@ -3517,7 +3536,7 @@
 
         } else {
             /* Fallback (no GSAP) */
-            document.querySelectorAll('.hero__logo,.hero__tag,.hero__headline .line-inner,.hero__sub,.hero__conditions,.hero__cta-row').forEach(function(el){
+            document.querySelectorAll('.hero__logo,.hero__tagline,.hero__headline .line-inner,.hero__sub,.hero__conditions,.hero__cta-row').forEach(function(el){
                 el.style.opacity='1'; el.style.transform='none';
             });
             var obs = new IntersectionObserver(function(entries){
