@@ -295,6 +295,7 @@
             border-radius: 1px;
         }
         .nav-link:hover::after { width: 100%; left: 0; }
+        .nav-link.dropdown-toggle::after { display: none; }
         .nav-link:hover { color: var(--electric) !important; }
         .social-icons a {
             color: var(--text-muted);
@@ -1193,6 +1194,16 @@
             background-clip: text;
             font-weight: 800;
         }
+        .about__cta-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            margin-top: 28px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--electric), var(--cyan));
+            color: #fff; font-weight: 600; font-size: .95rem;
+            border-radius: 50px; text-decoration: none;
+            transition: opacity .25s, transform .25s;
+        }
+        .about__cta-btn:hover { opacity: .88; transform: translateY(-2px); color: #fff; }
         .about__credentials { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
         .credential-chip {
             display: inline-flex; align-items: center; gap: 6px;
@@ -2437,7 +2448,7 @@
                             <li><a class="dropdown-item fw-bold" href="#servicios">Ver todos</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="/servicios/espirometria/">Espirometría</a></li>
-                            <li><a class="dropdown-item" href="/servicios/polisomnografia/">Polisomnografía</a></li>
+
                             <li><a class="dropdown-item" href="/servicios/poligrafia-respiratoria/">Poligrafía respiratoria</a></li>
                             <li><a class="dropdown-item" href="/servicios/titulacion-presion-positiva/">Titulación CPAP/BiPAP</a></li>
                             <li><a class="dropdown-item" href="/servicios/feno/">FeNO</a></li>
@@ -2591,6 +2602,7 @@
                         <div class="about__commitment reveal">
                             Mi compromiso contigo es claro: <strong>escucharte sin prisa</strong>, explicarte sin tecnicismos y construir un plan de tratamiento adaptado a <em>tu vida y tu ritmo</em>. Porque cada respiración cuenta — y cada paciente es único.
                         </div>
+                        <a href="/sobre-el-doctor/" class="about__cta-btn reveal">Conoce mi trayectoria <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -3698,8 +3710,7 @@
             'Teleconsulta': '/servicios/teleconsulta/',
             'Espirometría simple': '/servicios/espirometria/',
             'Espirometría con broncodilatador': '/servicios/espirometria/',
-            'Polisomnografía': '/servicios/polisomnografia/',
-            'Poligrafía respiratoria': '/servicios/poligrafia-respiratoria/',
+'Poligrafía respiratoria': '/servicios/poligrafia-respiratoria/',
             'Titulación CPAP automático': '/servicios/titulacion-presion-positiva/',
             'Fracción exhalada de óxido nítrico': '/servicios/feno/',
             'Toracocentesis': '/servicios/toracocentesis/',
@@ -3710,9 +3721,12 @@
         };
         document.querySelectorAll('.service-card').forEach(function(card) {
             var title = card.querySelector('h3');
-            var oldCta = card.querySelector('.service-card__cta');
-            if (!title || !oldCta) return;
+            if (!title) return;
             var name = title.textContent.trim();
+            var pageHref = servicePages[name];
+            var oldCta = card.querySelector('.service-card__cta');
+            /* Cards with no existing CTA and no page link — skip */
+            if (!oldCta && !pageHref) return;
             var useCal = calServices.indexOf(name) !== -1;
             var onlyAgendar = agendarOnly.indexOf(name) !== -1;
             var agendarHref = useCal ? calLink : waBase + encodeURIComponent('Hola Dr., quiero agendar ' + name + '. ¿Podría darme más información?');
@@ -3721,13 +3735,12 @@
             /* Build CTA row */
             var actions = document.createElement('div');
             actions.className = 'service-card__actions';
-            var pageHref = servicePages[name];
             var saberHtml = pageHref
                 ? '<a class="service-card__cta service-card__cta--more" href="' + pageHref + '"><i class="bi bi-info-circle"></i> Saber más</a>'
                 : '';
             actions.innerHTML = saberHtml +
                 '<a class="' + agendarClass + '" href="' + agendarHref + '" target="_blank" rel="noopener">' + agendarIcon + ' Agendar</a>';
-            oldCta.replaceWith(actions);
+            if (oldCta) { oldCta.replaceWith(actions); } else { card.appendChild(actions); }
             /* Highlight on click (card body, not CTAs) */
             card.addEventListener('click', function(e) {
                 if (e.target.closest('.service-card__cta')) return;
