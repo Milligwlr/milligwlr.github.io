@@ -18,9 +18,15 @@
     <meta property="og:url" content="https://alveos.mx/">
     <meta property="og:site_name" content="Alveos - Neumología de Vanguardia">
     <meta property="og:locale" content="es_MX">
+    <meta property="og:image" content="https://alveos.mx/images/dr-william-lara.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Dr. William César Lara Vázquez, neumólogo en CDMX">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Dr. William Lara Vázquez | Neumólogo en CDMX">
     <meta name="twitter:description" content="¿Tos persistente o dificultad para respirar? Neumólogo formado en el INER. Especialista en EPOC, Asma y enfermedades respiratorias en CDMX.">
+    <meta name="twitter:image" content="https://alveos.mx/images/dr-william-lara.png">
+    <meta name="twitter:image:alt" content="Dr. William César Lara Vázquez, neumólogo en CDMX">
 
     <meta name="geo.region" content="MX-CMX">
     <meta name="geo.placename" content="Ciudad de México">
@@ -52,8 +58,59 @@
       "@context":"https://schema.org",
       "@graph":[
         {
+          "@type":"WebSite",
+          "@id":"https://alveos.mx/#website",
+          "url":"https://alveos.mx/",
+          "name":"Alveos - Neumología de Vanguardia",
+          "description":"Sitio web oficial del Dr. William César Lara Vázquez, neumólogo de alta especialidad en la Ciudad de México.",
+          "inLanguage":"es-MX",
+          "publisher":{"@id":"https://alveos.mx/#physician"}
+        },
+        {
+          "@type":"MedicalWebPage",
+          "@id":"https://alveos.mx/#webpage",
+          "url":"https://alveos.mx/",
+          "name":"Neumólogo en CDMX - Dr. William Lara Vázquez",
+          "description":"Neumólogo formado en el INER. Diagnóstico y tratamiento de EPOC, Asma, Apnea del Sueño, Neumonía y enfermedades respiratorias en CDMX.",
+          "inLanguage":"es-MX",
+          "isPartOf":{"@id":"https://alveos.mx/#website"},
+          "primaryImageOfPage":"https://alveos.mx/images/dr-william-lara.png",
+          "datePublished":"2026-04-01",
+          "dateModified":"2026-04-25",
+          "lastReviewed":"2026-04-25",
+          "reviewedBy":{"@id":"https://alveos.mx/#physician"},
+          "author":{"@id":"https://alveos.mx/#physician"},
+          "about":{"@id":"https://alveos.mx/#physician"},
+          "specialty":"https://schema.org/Pulmonary",
+          "audience":{"@type":"MedicalAudience","audienceType":"Patient"}
+        },
+        {
+          "@type":"BreadcrumbList",
+          "@id":"https://alveos.mx/#breadcrumb",
+          "itemListElement":[
+            {"@type":"ListItem","position":1,"name":"Inicio","item":"https://alveos.mx/"}
+          ]
+        },
+        {
+          "@type":"FAQPage",
+          "@id":"https://alveos.mx/#faq",
+          "inLanguage":"es-MX",
+          "isPartOf":{"@id":"https://alveos.mx/#webpage"},
+          "mainEntity":[
+            {"@type":"Question","name":"¿En qué consiste un check up respiratorio?","acceptedAnswer":{"@type":"Answer","text":"Es un estudio completo que evalúa cómo funcionan tus pulmones. Es ideal si fumas, tienes tos frecuente o quieres asegurarte de que tu salud respiratoria está bien. Permite detectar problemas antes de que se vuelvan serios."}},
+            {"@type":"Question","name":"¿Para qué sirve una espirometría con broncodilatador?","acceptedAnswer":{"@type":"Answer","text":"Es una prueba rápida y sin dolor en la que soplas en un dispositivo para medir la capacidad de tus pulmones. Es el estudio clave para diagnosticar asma, EPOC u otros problemas respiratorios ocultos."}},
+            {"@type":"Question","name":"¿En qué consiste el tratamiento médico para dejar de fumar?","acceptedAnswer":{"@type":"Answer","text":"Te ofrezco un plan médico personalizado con herramientas probadas para dejar el cigarro de forma definitiva. No tienes que hacerlo solo: te acompaño durante todo el proceso hasta que lo logres."}},
+            {"@type":"Question","name":"¿Cómo es el seguimiento médico de asma y EPOC?","acceptedAnswer":{"@type":"Answer","text":"Revisamos juntos cómo vas, ajustamos tu tratamiento si es necesario y trabajamos para que tengas menos crisis respiratorias. El objetivo es que tu enfermedad no limite tu día a día."}},
+            {"@type":"Question","name":"¿Qué es el manejo de derrames pleurales?","acceptedAnswer":{"@type":"Answer","text":"Cuando se acumula líquido alrededor de tus pulmones, respirar se vuelve difícil. Te diagnostico la causa, te explico qué está pasando y aplico el tratamiento adecuado para que vuelvas a respirar con normalidad."}},
+            {"@type":"Question","name":"¿Dónde puedo encontrar un neumólogo cerca de Perisur, Roma o sur de CDMX?","acceptedAnswer":{"@type":"Answer","text":"El Dr. William Lara Vázquez atiende en el Hospital Santa Coleta, ubicado en San José Insurgentes, a 10-15 minutos en coche desde Perisur, Pedregal, San Ángel, Coyoacán, Del Valle, Roma y Condesa. Puedes agendar tu cita por WhatsApp o en línea."}},
+            {"@type":"Question","name":"¿Qué enfermedades trata un neumólogo del INER en CDMX?","acceptedAnswer":{"@type":"Answer","text":"Un neumólogo formado en el INER trata EPOC, Asma, Apnea del Sueño, Neumonía, Fibrosis Pulmonar, Derrames Pleurales, Hipertensión Pulmonar, Embolia Pulmonar, Bronquiectasias y secuelas de COVID-19."}},
+            {"@type":"Question","name":"¿Cuánto cuesta la consulta con un neumólogo en el Hospital Santa Coleta?","acceptedAnswer":{"@type":"Answer","text":"La consulta con el Dr. William Lara en Hospital Santa Coleta tiene un costo accesible. Para conocer el precio actualizado y disponibilidad, escríbenos por WhatsApp al 55 9170 8334."}}
+          ]
+        },
+        {
           "@type":["Physician","Person"],
           "@id":"https://alveos.mx/#physician",
+          "publishingPrinciples":"https://alveos.mx/informacion-regulatoria/",
           "name":"Dr. William César Lara Vázquez",
           "givenName":"William César",
           "familyName":"Lara Vázquez",
@@ -143,52 +200,6 @@
             {"@type":"MedicalProcedure","name":"Manejo de derrames pleurales"}
           ]
         }
-      ]
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context":"https://schema.org",
-      "@type":"WebSite",
-      "name":"Alveos - Neumología de Vanguardia",
-      "url":"https://alveos.mx",
-      "description":"Sitio web oficial del Dr. William César Lara Vázquez, neumólogo de alta especialidad en la Ciudad de México.",
-      "publisher":{"@type":"Person","@id":"https://alveos.mx/#physician"}
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://alveos.mx/"}]}
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context":"https://schema.org",
-      "@type":"MedicalWebPage",
-      "name":"Neumólogo en CDMX - Dr. William Lara Vázquez",
-      "url":"https://alveos.mx/",
-      "description":"Neumólogo formado en el INER. Diagnóstico y tratamiento de EPOC, Asma, Apnea del Sueño, Neumonía y enfermedades respiratorias en CDMX.",
-      "inLanguage":"es-MX",
-      "author":{"@type":"Physician","@id":"https://alveos.mx/#physician"},
-      "lastReviewed":"2026-04-23",
-      "reviewedBy":{"@type":"Physician","@id":"https://alveos.mx/#physician"}
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context":"https://schema.org",
-      "@type":"FAQPage",
-      "mainEntity":[
-        {"@type":"Question","name":"¿En qué consiste un check up respiratorio?","acceptedAnswer":{"@type":"Answer","text":"Es un estudio completo que evalúa cómo funcionan tus pulmones. Es ideal si fumas, tienes tos frecuente o quieres asegurarte de que tu salud respiratoria está bien. Permite detectar problemas antes de que se vuelvan serios."}},
-        {"@type":"Question","name":"¿Para qué sirve una espirometría con broncodilatador?","acceptedAnswer":{"@type":"Answer","text":"Es una prueba rápida y sin dolor en la que soplas en un dispositivo para medir la capacidad de tus pulmones. Es el estudio clave para diagnosticar asma, EPOC u otros problemas respiratorios ocultos."}},
-        {"@type":"Question","name":"¿En qué consiste el tratamiento médico para dejar de fumar?","acceptedAnswer":{"@type":"Answer","text":"Te ofrezco un plan médico personalizado con herramientas probadas para dejar el cigarro de forma definitiva. No tienes que hacerlo solo: te acompaño durante todo el proceso hasta que lo logres."}},
-        {"@type":"Question","name":"¿Cómo es el seguimiento médico de asma y EPOC?","acceptedAnswer":{"@type":"Answer","text":"Revisamos juntos cómo vas, ajustamos tu tratamiento si es necesario y trabajamos para que tengas menos crisis respiratorias. El objetivo es que tu enfermedad no limite tu día a día."}},
-        {"@type":"Question","name":"¿Qué es el manejo de derrames pleurales?","acceptedAnswer":{"@type":"Answer","text":"Cuando se acumula líquido alrededor de tus pulmones, respirar se vuelve difícil. Te diagnostico la causa, te explico qué está pasando y aplico el tratamiento adecuado para que vuelvas a respirar con normalidad."}},
-        {"@type":"Question","name":"¿Dónde puedo encontrar un neumólogo cerca de Perisur, Roma o sur de CDMX?","acceptedAnswer":{"@type":"Answer","text":"El Dr. William Lara Vázquez atiende en el Hospital Santa Coleta, ubicado en San José Insurgentes, a 10-15 minutos en coche desde Perisur, Pedregal, San Ángel, Coyoacán, Del Valle, Roma y Condesa. Puedes agendar tu cita por WhatsApp o en línea."}},
-        {"@type":"Question","name":"¿Qué enfermedades trata un neumólogo del INER en CDMX?","acceptedAnswer":{"@type":"Answer","text":"Un neumólogo formado en el INER trata EPOC, Asma, Apnea del Sueño, Neumonía, Fibrosis Pulmonar, Derrames Pleurales, Hipertensión Pulmonar, Embolia Pulmonar, Bronquiectasias y secuelas de COVID-19."}},
-        {"@type":"Question","name":"¿Cuánto cuesta la consulta con un neumólogo en el Hospital Santa Coleta?","acceptedAnswer":{"@type":"Answer","text":"La consulta con el Dr. William Lara en Hospital Santa Coleta tiene un costo accesible. Para conocer el precio actualizado y disponibilidad, escríbenos por WhatsApp al 55 9170 8334."}}
       ]
     }
     </script>
@@ -3084,9 +3095,17 @@
           <div class="container">
             <div class="row align-items-center g-4">
               <div class="col-lg-8">
-                <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(214,48,49,.2);border:1px solid rgba(214,48,49,.4);color:#ff9995;padding:6px 16px;border-radius:999px;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px">
-                  <span style="width:8px;height:8px;border-radius:50%;background:#ff4d4d;box-shadow:0 0 10px rgba(255,77,77,.8);animation:contingenciaPulse 1.6s ease-in-out infinite;flex-shrink:0"></span>
-                  Temporada de contingencias · feb–jun
+                <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:14px">
+                  <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(214,48,49,.2);border:1px solid rgba(214,48,49,.4);color:#ff9995;padding:6px 16px;border-radius:999px;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase">
+                    <span style="width:8px;height:8px;border-radius:50%;background:#ff4d4d;box-shadow:0 0 10px rgba(255,77,77,.8);animation:contingenciaPulse 1.6s ease-in-out infinite;flex-shrink:0"></span>
+                    Temporada de contingencias · feb–jun
+                  </div>
+                  <a id="aqiLiveWidget" href="https://aqicn.org/city/mexico/" target="_blank" rel="noopener" aria-label="Calidad del aire en CDMX en tiempo real (AQICN)" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;padding:6px 14px;border-radius:999px;font-size:.75rem;font-weight:700;letter-spacing:.04em;text-decoration:none;transition:all .3s">
+                    <span id="aqiDot" style="width:8px;height:8px;border-radius:50%;background:#9ca3af;flex-shrink:0;transition:background .3s"></span>
+                    <span style="opacity:.75">AQI CDMX:</span>
+                    <span id="aqiValue" style="font-weight:800">cargando…</span>
+                    <span id="aqiLabel" style="opacity:.85"></span>
+                  </a>
                 </div>
                 <h3 style="color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:clamp(22px,3vw,30px);margin:0 0 10px;letter-spacing:-.02em">¿Tienes asma, EPOC o alguna enfermedad respiratoria?</h3>
                 <p style="color:rgba(255,255,255,.78);margin:0;font-size:1rem;line-height:1.6;max-width:640px">Los días con mala calidad del aire en CDMX son los más peligrosos para tus pulmones. Aprende a leer el IMECA, cuándo quedarte en casa y qué hacer si empiezas con síntomas.</p>
@@ -3100,6 +3119,48 @@
           </div>
         </div>
         <style>@keyframes contingenciaPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.3)}}</style>
+        <script>
+        (function(){
+          // AQI live widget — Open-Meteo Air Quality API (libre, sin token)
+          // Coordenadas: Hospital Santa Coleta, Benito Juárez, CDMX
+          var url = 'https://air-quality-api.open-meteo.com/v1/air-quality?latitude=19.3758&longitude=-99.1834&current=us_aqi&timezone=America%2FMexico_City';
+          function aqiCategory(v){
+            if(v<=50)  return {label:'Buena',         color:'#10b981'};
+            if(v<=100) return {label:'Moderada',      color:'#f59e0b'};
+            if(v<=150) return {label:'Mala (sensibles)', color:'#f97316'};
+            if(v<=200) return {label:'Mala',          color:'#ef4444'};
+            if(v<=300) return {label:'Muy mala',      color:'#a21caf'};
+            return       {label:'Peligrosa',          color:'#7f1d1d'};
+          }
+          function render(v){
+            var cat = aqiCategory(v);
+            var el = document.getElementById('aqiValue');
+            var lbl = document.getElementById('aqiLabel');
+            var dot = document.getElementById('aqiDot');
+            if(!el) return;
+            el.textContent = Math.round(v);
+            lbl.textContent = '· ' + cat.label;
+            dot.style.background = cat.color;
+            dot.style.boxShadow = '0 0 10px ' + cat.color + 'aa';
+          }
+          function fail(){
+            var el = document.getElementById('aqiValue');
+            var lbl = document.getElementById('aqiLabel');
+            if(!el) return;
+            el.textContent = 'sin datos';
+            lbl.textContent = '';
+          }
+          if('fetch' in window){
+            fetch(url, {cache:'no-store'})
+              .then(function(r){return r.ok ? r.json() : Promise.reject();})
+              .then(function(d){
+                var v = d && d.current && d.current.us_aqi;
+                if(typeof v === 'number') render(v); else fail();
+              })
+              .catch(fail);
+          } else { fail(); }
+        })();
+        </script>
 
         <!-- ===== TESTIMONIOS ===== -->
         <hr class="section-divider">
