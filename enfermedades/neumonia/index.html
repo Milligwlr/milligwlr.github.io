@@ -211,6 +211,22 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <!-- End Google Tag Manager -->
+    <style>
+/* FAQ block — minimal, native <details> */
+.faq-block{max-width:880px;margin:48px auto;padding:0 20px}
+.faq-block__title{font-size:clamp(1.6rem,3.2vw,2.2rem);font-weight:800;color:var(--navy,#0a1628);letter-spacing:-.02em;margin:0 0 8px;text-align:center}
+.faq-block__sub{color:#5a6b7d;text-align:center;margin:0 0 28px;font-size:1rem}
+.faq-item{background:#fff;border:1px solid rgba(9,132,227,.14);border-radius:14px;margin-bottom:12px;overflow:hidden;transition:box-shadow .25s ease}
+.faq-item[open]{box-shadow:0 8px 28px -10px rgba(9,44,84,.18);border-color:rgba(9,132,227,.28)}
+.faq-item summary{cursor:pointer;padding:18px 22px;font-weight:700;color:var(--navy,#0a1628);font-size:1.02rem;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";color:#0984e3;font-size:1.5rem;font-weight:400;line-height:1;transition:transform .25s ease;flex-shrink:0}
+.faq-item[open] summary::after{content:"−"}
+.faq-item__answer{padding:0 22px 20px;color:#3a4a5c;line-height:1.7;font-size:.97rem}
+</style>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/enfermedades/neumonia/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Cuánto dura una neumonía?","acceptedAnswer":{"@type":"Answer","text":"La fase aguda de una neumonía adquirida en la comunidad suele durar 7 a 10 días con tratamiento antibiótico adecuado. La tos residual y la fatiga pueden persistir 4 a 6 semanas. La radiografía puede tardar hasta 6-8 semanas en normalizarse, por lo que se recomienda un control radiológico tardío."}},{"@type":"Question","name":"¿Cuándo es grave una neumonía?","acceptedAnswer":{"@type":"Answer","text":"Una neumonía es grave si aparece dificultad respiratoria importante, frecuencia respiratoria mayor a 30 por minuto, oxigenación menor a 90%, presión arterial baja, confusión o si afecta a adultos mayores con enfermedades crónicas. En estos casos se requiere hospitalización."}},{"@type":"Question","name":"¿Se puede prevenir la neumonía?","acceptedAnswer":{"@type":"Answer","text":"Sí. La vacunación antineumocócica y antiinfluenza son las medidas más efectivas, especialmente en mayores de 60 años, fumadores y pacientes con EPOC, asma, diabetes o inmunosupresión. También ayudan dejar de fumar y el lavado frecuente de manos."}},{"@type":"Question","name":"¿Cuánto cuesta una consulta por neumonía en CDMX?","acceptedAnswer":{"@type":"Answer","text":"El costo varía según el plan elegido. Si tienes síntomas, escríbenos por WhatsApp al 55 9170 8334 para agendar cita prioritaria."}}]}
+    </script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -602,6 +618,27 @@
 </section>
 
 <!-- ===== CONTACTO ===== -->
+
+    <section id="preguntas-frecuentes-neumonia" class="faq-block" aria-labelledby="faq-h-neumonia">
+      <h2 id="faq-h-neumonia" class="faq-block__title">Preguntas frecuentes sobre neumonía</h2>
+      <p class="faq-block__sub">Resuelve dudas habituales sobre diagnóstico, tratamiento y seguimiento.</p>
+      <details class="faq-item">
+        <summary>¿Cuánto dura una neumonía?</summary>
+        <div class="faq-item__answer"><p>La fase aguda de una neumonía adquirida en la comunidad suele durar 7 a 10 días con tratamiento antibiótico adecuado. La tos residual y la fatiga pueden persistir 4 a 6 semanas. La radiografía puede tardar hasta 6-8 semanas en normalizarse, por lo que se recomienda un control radiológico tardío.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Cuándo es grave una neumonía?</summary>
+        <div class="faq-item__answer"><p>Una neumonía es grave si aparece dificultad respiratoria importante, frecuencia respiratoria mayor a 30 por minuto, oxigenación menor a 90%, presión arterial baja, confusión o si afecta a adultos mayores con enfermedades crónicas. En estos casos se requiere hospitalización.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Se puede prevenir la neumonía?</summary>
+        <div class="faq-item__answer"><p>Sí. La vacunación antineumocócica y antiinfluenza son las medidas más efectivas, especialmente en mayores de 60 años, fumadores y pacientes con EPOC, asma, diabetes o inmunosupresión. También ayudan dejar de fumar y el lavado frecuente de manos.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Cuánto cuesta una consulta por neumonía en CDMX?</summary>
+        <div class="faq-item__answer"><p>El costo varía según el plan elegido. Si tienes síntomas, escríbenos por WhatsApp al 55 9170 8334 para agendar cita prioritaria.</p></div>
+      </details>
+    </section>
 <section id="contacto-final" class="contact-section pt-3 pb-5">
     <div class="container" style="padding-bottom:48px;position:relative;z-index:1">
         <div class="text-center mb-5">

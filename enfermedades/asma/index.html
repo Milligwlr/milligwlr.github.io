@@ -441,6 +441,22 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <!-- End Google Tag Manager -->
+    <style>
+/* FAQ block — minimal, native <details> */
+.faq-block{max-width:880px;margin:48px auto;padding:0 20px}
+.faq-block__title{font-size:clamp(1.6rem,3.2vw,2.2rem);font-weight:800;color:var(--navy,#0a1628);letter-spacing:-.02em;margin:0 0 8px;text-align:center}
+.faq-block__sub{color:#5a6b7d;text-align:center;margin:0 0 28px;font-size:1rem}
+.faq-item{background:#fff;border:1px solid rgba(9,132,227,.14);border-radius:14px;margin-bottom:12px;overflow:hidden;transition:box-shadow .25s ease}
+.faq-item[open]{box-shadow:0 8px 28px -10px rgba(9,44,84,.18);border-color:rgba(9,132,227,.28)}
+.faq-item summary{cursor:pointer;padding:18px 22px;font-weight:700;color:var(--navy,#0a1628);font-size:1.02rem;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";color:#0984e3;font-size:1.5rem;font-weight:400;line-height:1;transition:transform .25s ease;flex-shrink:0}
+.faq-item[open] summary::after{content:"−"}
+.faq-item__answer{padding:0 22px 20px;color:#3a4a5c;line-height:1.7;font-size:.97rem}
+</style>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/enfermedades/asma/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Cómo se diagnostica el asma?","acceptedAnswer":{"@type":"Answer","text":"El diagnóstico de asma se basa en síntomas compatibles (sibilancias, tos, opresión torácica, disnea) más la demostración de obstrucción reversible mediante espirometría con broncodilatador. En casos seleccionados se complementa con FeNO (óxido nítrico exhalado) y pruebas de alergia."}},{"@type":"Question","name":"¿El asma se cura?","acceptedAnswer":{"@type":"Answer","text":"El asma no se cura, pero se controla. Con el tratamiento adecuado según las guías GINA, la mayoría de pacientes pueden tener una vida completamente normal, sin crisis y sin limitaciones en la actividad física."}},{"@type":"Question","name":"¿Qué hacer en una crisis de asma?","acceptedAnswer":{"@type":"Answer","text":"Usar el inhalador de rescate (salbutamol) cada 20 minutos durante la primera hora, mantener la calma y respirar por la nariz. Si los síntomas no mejoran, los labios se ponen morados o aparece dificultad para hablar, acudir a urgencias inmediatamente."}},{"@type":"Question","name":"¿Cuánto cuesta una consulta de asma en CDMX?","acceptedAnswer":{"@type":"Answer","text":"El costo de la consulta de neumología en el Hospital Santa Coleta varía según el plan elegido. Escríbenos por WhatsApp al 55 9170 8334 para conocer precios actualizados."}}]}
+    </script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -839,7 +855,28 @@
     </section>
 
     <!-- ===== CONTACTO ===== -->
-    <section id="contacto-final" class="contact-section pt-3 pb-5">
+    
+    <section id="preguntas-frecuentes-asma" class="faq-block" aria-labelledby="faq-h-asma">
+      <h2 id="faq-h-asma" class="faq-block__title">Preguntas frecuentes sobre asma</h2>
+      <p class="faq-block__sub">Resuelve dudas habituales sobre diagnóstico, tratamiento y seguimiento.</p>
+      <details class="faq-item">
+        <summary>¿Cómo se diagnostica el asma?</summary>
+        <div class="faq-item__answer"><p>El diagnóstico de asma se basa en síntomas compatibles (sibilancias, tos, opresión torácica, disnea) más la demostración de obstrucción reversible mediante espirometría con broncodilatador. En casos seleccionados se complementa con FeNO (óxido nítrico exhalado) y pruebas de alergia.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>¿El asma se cura?</summary>
+        <div class="faq-item__answer"><p>El asma no se cura, pero se controla. Con el tratamiento adecuado según las guías GINA, la mayoría de pacientes pueden tener una vida completamente normal, sin crisis y sin limitaciones en la actividad física.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Qué hacer en una crisis de asma?</summary>
+        <div class="faq-item__answer"><p>Usar el inhalador de rescate (salbutamol) cada 20 minutos durante la primera hora, mantener la calma y respirar por la nariz. Si los síntomas no mejoran, los labios se ponen morados o aparece dificultad para hablar, acudir a urgencias inmediatamente.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Cuánto cuesta una consulta de asma en CDMX?</summary>
+        <div class="faq-item__answer"><p>El costo de la consulta de neumología en el Hospital Santa Coleta varía según el plan elegido. Escríbenos por WhatsApp al 55 9170 8334 para conocer precios actualizados.</p></div>
+      </details>
+    </section>
+<section id="contacto-final" class="contact-section pt-3 pb-5">
         <div class="container" style="padding-bottom:48px;position:relative;z-index:1">
             <div class="text-center mb-5">
                 <span class="section-label reveal">Contacto</span>
