@@ -1617,6 +1617,12 @@
             border-color: var(--electric);
         }
         .service-card__cta--cal:hover { background: #0770c9; border-color: #0770c9; }
+        .service-card__cta--more {
+            color: var(--electric);
+            background: rgba(9,132,227,.06);
+            border-color: rgba(9,132,227,.25);
+        }
+        .service-card__cta--more:hover { background: rgba(9,132,227,.12); border-color: var(--electric); color: var(--electric); }
         .service-card.card-highlight {
             border-color: rgba(9,132,227,.25);
             box-shadow: 0 12px 40px rgba(9,132,227,.12), 0 0 0 2px rgba(9,132,227,.1);
@@ -3688,6 +3694,20 @@
         var calLink = 'https://cal.com/dr-william-lara/agendar-cita';
         var calServices = ['Consulta de Neumología'];
         var agendarOnly = ['Consulta de Neumología', 'Consulta a domicilio'];
+        var servicePages = {
+            'Teleconsulta': '/servicios/teleconsulta/',
+            'Espirometría simple': '/servicios/espirometria/',
+            'Espirometría con broncodilatador': '/servicios/espirometria/',
+            'Polisomnografía': '/servicios/polisomnografia/',
+            'Poligrafía respiratoria': '/servicios/poligrafia-respiratoria/',
+            'Titulación CPAP automático': '/servicios/titulacion-presion-positiva/',
+            'Fracción exhalada de óxido nítrico': '/servicios/feno/',
+            'Toracocentesis': '/servicios/toracocentesis/',
+            'Catéter pleural': '/servicios/cateter-pleural-multiproposito/',
+            'Broncoscopía diagnóstica': '/servicios/broncoscopia/',
+            'Tratamiento para dejar de fumar': '/servicios/tratamiento-dejar-de-fumar/',
+            'Seguimiento de enfermedades crónicas': '/servicios/seguimiento-enfermedades-cronicas/'
+        };
         document.querySelectorAll('.service-card').forEach(function(card) {
             var title = card.querySelector('h3');
             var oldCta = card.querySelector('.service-card__cta');
@@ -3701,7 +3721,10 @@
             /* Build CTA row */
             var actions = document.createElement('div');
             actions.className = 'service-card__actions';
-            var saberHtml = '';
+            var pageHref = servicePages[name];
+            var saberHtml = pageHref
+                ? '<a class="service-card__cta service-card__cta--more" href="' + pageHref + '"><i class="bi bi-info-circle"></i> Saber más</a>'
+                : '';
             actions.innerHTML = saberHtml +
                 '<a class="' + agendarClass + '" href="' + agendarHref + '" target="_blank" rel="noopener">' + agendarIcon + ' Agendar</a>';
             oldCta.replaceWith(actions);
