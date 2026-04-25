@@ -1367,15 +1367,14 @@
         }
         .creds-marquee-track {
             display: flex; align-items: stretch;
-            gap: 20px;
             width: max-content;
             animation: creds-scroll 32s linear infinite;
             will-change: transform;
         }
         .creds-marquee-track:hover { animation-play-state: paused; }
         @keyframes creds-scroll {
-            from { transform: translate3d(0, 0, 0); }
-            to   { transform: translate3d(calc(-50% - 10px), 0, 0); }
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
         }
         .creds-marquee-item {
             flex-shrink: 0;
@@ -1383,6 +1382,7 @@
             justify-content: center;
             gap: 10px;
             padding: 20px 32px;
+            margin: 0 10px;
             background: rgba(255,255,255,.92);
             border: 1px solid rgba(9,132,227,.06);
             border-radius: 18px;
