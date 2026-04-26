@@ -3100,11 +3100,16 @@
                     <span style="width:8px;height:8px;border-radius:50%;background:#ff4d4d;box-shadow:0 0 10px rgba(255,77,77,.8);animation:contingenciaPulse 1.6s ease-in-out infinite;flex-shrink:0"></span>
                     Temporada de contingencias · feb–jun
                   </div>
-                  <a id="aqiLiveWidget" href="https://aqicn.org/city/mexico/" target="_blank" rel="noopener" aria-label="Calidad del aire en CDMX en tiempo real (AQICN)" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;padding:6px 14px;border-radius:999px;font-size:.75rem;font-weight:700;letter-spacing:.04em;text-decoration:none;transition:all .3s">
-                    <span id="aqiDot" style="width:8px;height:8px;border-radius:50%;background:#9ca3af;flex-shrink:0;transition:background .3s"></span>
-                    <span style="opacity:.75">AQI CDMX:</span>
+                  <a id="aqiLiveWidget" href="https://aqicn.org/city/mexico/" target="_blank" rel="noopener" aria-label="Calidad del aire en CDMX en tiempo real (AQICN)" class="aqi-live-chip" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;padding:6px 14px;border-radius:999px;font-size:.75rem;font-weight:700;letter-spacing:.04em;text-decoration:none;transition:all .3s;position:relative">
+                    <span class="aqi-live-pulse" aria-hidden="true" style="display:inline-flex;align-items:center;gap:5px;padding:2px 7px 2px 6px;border-radius:999px;background:rgba(16,185,129,.18);border:1px solid rgba(16,185,129,.42);font-size:.6rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#34d399;line-height:1">
+                        <span style="width:6px;height:6px;border-radius:50%;background:#10b981;box-shadow:0 0 8px rgba(16,185,129,.85);animation:aqiLivePulse 1.4s ease-in-out infinite;flex-shrink:0"></span>
+                        Live
+                    </span>
+                    <span id="aqiDot" style="width:8px;height:8px;border-radius:50%;background:#9ca3af;flex-shrink:0;transition:background .3s,box-shadow .3s"></span>
+                    <span style="opacity:.85">AQI CDMX ahora:</span>
                     <span id="aqiValue" style="font-weight:800">cargando…</span>
                     <span id="aqiLabel" style="opacity:.85"></span>
+                    <span id="aqiUpdated" style="opacity:.55;font-size:.66rem;font-weight:600;letter-spacing:.02em;margin-left:2px"></span>
                   </a>
                 </div>
                 <h3 style="color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:clamp(22px,3vw,30px);margin:0 0 10px;letter-spacing:-.02em">¿Tienes asma, EPOC o alguna enfermedad respiratoria?</h3>
@@ -3118,7 +3123,11 @@
             </div>
           </div>
         </div>
-        <style>@keyframes contingenciaPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.3)}}</style>
+        <style>
+        @keyframes contingenciaPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.3)}}
+        @keyframes aqiLivePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(1.4)}}
+        .aqi-live-chip:hover{background:rgba(255,255,255,.14)!important;border-color:rgba(255,255,255,.32)!important;transform:translateY(-1px)}
+        </style>
         <script>
         (function(){
           // AQI live widget — Open-Meteo Air Quality API (libre, sin token)
@@ -3137,18 +3146,27 @@
             var el = document.getElementById('aqiValue');
             var lbl = document.getElementById('aqiLabel');
             var dot = document.getElementById('aqiDot');
+            var upd = document.getElementById('aqiUpdated');
             if(!el) return;
             el.textContent = Math.round(v);
             lbl.textContent = '· ' + cat.label;
             dot.style.background = cat.color;
             dot.style.boxShadow = '0 0 10px ' + cat.color + 'aa';
+            if (upd) {
+              var now = new Date();
+              var hh = String(now.getHours()).padStart(2,'0');
+              var mm = String(now.getMinutes()).padStart(2,'0');
+              upd.textContent = '· ' + hh + ':' + mm + ' hrs';
+            }
           }
           function fail(){
             var el = document.getElementById('aqiValue');
             var lbl = document.getElementById('aqiLabel');
+            var upd = document.getElementById('aqiUpdated');
             if(!el) return;
             el.textContent = 'sin datos';
             lbl.textContent = '';
+            if (upd) upd.textContent = '';
           }
           if('fetch' in window){
             fetch(url, {cache:'no-store'})
