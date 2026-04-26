@@ -4119,6 +4119,15 @@
                 if (!card) return;
                 if (e.target.closest('.disease-card__cta')) return;
                 e.preventDefault();
+                /* Resume any OTHER paused band so only one is ever stopped at a time */
+                document.querySelectorAll('.disease-band').forEach(function(other) {
+                    if (other === band) return;
+                    other.querySelectorAll('.card-active').forEach(function(c) { c.classList.remove('card-active'); });
+                    if (other.classList.contains('band-paused')) {
+                        other.style.transform = '';
+                        other.classList.remove('band-paused');
+                    }
+                });
                 var wasPaused = band.classList.contains('band-paused');
                 var currentActive = band.querySelector('.card-active');
                 band.querySelectorAll('.card-active').forEach(function(c) { c.classList.remove('card-active'); });
