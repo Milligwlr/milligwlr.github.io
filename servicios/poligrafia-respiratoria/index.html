@@ -135,45 +135,277 @@
     </section>
 
     <section class="disease-content section-bg">
+        <div class="section-dots"></div>
+        <div class="section-mesh"></div>
+        <div class="section-accent-line"></div>
         <div class="container">
-            <div class="disease-blk reveal">
-                <div class="disease-blk__label"><i class="bi bi-question-circle-fill"></i> Qué registra</div>
-                <h2 class="disease-blk__title">Lo que <em>mide</em> el equipo</h2>
-                <div class="svc-bento">
-                    <div class="svc-card"><div class="svc-card__icon"><i class="bi bi-wind"></i></div><h3 class="svc-card__title">Flujo aéreo</h3><p class="svc-card__copy">Cánula nasal y termistor para detectar apneas e hipopneas a lo largo de la noche.</p></div>
-                    <div class="svc-card"><div class="svc-card__icon"><i class="bi bi-heart-pulse"></i></div><h3 class="svc-card__title">Esfuerzo y oximetría</h3><p class="svc-card__copy">Bandas torácica y abdominal + saturación continua para clasificar tipo de evento.</p></div>
-                    <div class="svc-card"><div class="svc-card__icon"><i class="bi bi-arrow-repeat"></i></div><h3 class="svc-card__title">Posición y ronquido</h3><p class="svc-card__copy">Sensor de posición y micrófono para correlacionar eventos con decúbito y ronquido.</p></div>
-                </div>
-            </div>
+            <article>
 
-            <div class="reveal" style="margin-top:48px">
-                <div class="disease-blk__label"><i class="bi bi-list-check"></i> Cómo es el proceso</div>
-                <h2 class="disease-blk__title">4 pasos · diagnóstico en 48 horas</h2>
-                <div class="steps-grid">
-                    <div class="step-card"><div class="step-card__num">01</div><h3 class="step-card__title">Consulta</h3><p class="step-card__copy">Evaluación clínica con cuestionarios STOP-Bang y Epworth para validar indicación.</p></div>
-                    <div class="step-card"><div class="step-card__num">02</div><h3 class="step-card__title">Entrega de equipo</h3><p class="step-card__copy">Te enseño a colocarte sensores en menos de 10 minutos. Llevas el equipo a casa.</p></div>
-                    <div class="step-card"><div class="step-card__num">03</div><h3 class="step-card__title">Noche en casa</h3><p class="step-card__copy">Duermes con el equipo conectado. Sin cables a hospital, sin estrés de cuarto ajeno.</p></div>
-                    <div class="step-card"><div class="step-card__num">04</div><h3 class="step-card__title">Reporte</h3><p class="step-card__copy">Devuelves equipo, descargo datos y agendamos lectura con plan terapéutico.</p></div>
-                </div>
-            </div>
+                <div class="bento-grid reveal">
 
-            <div class="cta-inline reveal" style="margin-top:48px">
-                <h3>¿Roncas fuerte o te despiertas cansado?</h3>
-                <p>La poligrafía en casa puede confirmar o descartar apnea en una sola noche, sin internamiento.</p>
-                <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener" class="cta-band__btn">Agendar poligrafía <i class="bi bi-arrow-right ms-2"></i></a>
-            </div>
+                    <div class="bento-card bento-card--what">
+                        <div class="bento-label">¿Qué es?</div>
+                        <div class="bento-title">Un estudio de sueño que haces en tu propia cama</div>
+                        <div class="bento-what-body">
+                            <div class="bento-what-copy">
+                                <p>La <strong>poligrafía respiratoria domiciliaria</strong> es un estudio nivel III validado por la AASM. Te entrego un equipo portátil, te enseño a colocarlo en 10 minutos y duermes en casa con tus sensores. Al día siguiente lo devuelves y obtengo todos los datos para confirmar o descartar apnea del sueño — <strong>sin pasar la noche en hospital</strong>.</p>
+                                <div class="bento-what-stats">
+                                    <div class="bento-stat-pill"><i class="bi bi-house-door"></i><div><div class="bento-stat-pill__val">En casa</div><div class="bento-stat-pill__lbl">tu cama,<br>tu rutina</div></div></div>
+                                    <div class="bento-stat-pill"><i class="bi bi-piggy-bank"></i><div><div class="bento-stat-pill__val">≈40%</div><div class="bento-stat-pill__lbl">menos costo<br>vs PSG</div></div></div>
+                                    <div class="bento-stat-pill"><i class="bi bi-graph-up"></i><div><div class="bento-stat-pill__val">IAH</div><div class="bento-stat-pill__lbl">índice apnea<br>hipopnea</div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="reveal" style="margin-top:48px">
-                <div class="disease-blk__label"><i class="bi bi-link-45deg"></i> Relacionado</div>
-                <h2 class="disease-blk__title" style="margin-bottom:18px">Otros temas y servicios</h2>
-                <div class="d-flex flex-wrap gap-2">
-                    <a class="hero__pill" href="/enfermedades/apnea-del-sueno/">Apnea del sueño</a>
-                    
-                    <a class="hero__pill" href="/servicios/titulacion-presion-positiva/">Titulación CPAP</a>
+                    <div class="bento-card bento-card--causes">
+                        <div class="bento-label">Qué registra</div>
+                        <div class="bento-title">Los 6 canales que medimos toda la noche</div>
+                        <div class="bento-cause-list">
+                            <div class="bento-cause-item"><div class="bento-cause-icon"><i class="bi bi-wind"></i></div><span>Flujo aéreo nasal (cánula + termistor)</span></div>
+                            <div class="bento-cause-item"><div class="bento-cause-icon"><i class="fa-solid fa-lungs"></i></div><span>Esfuerzo torácico y abdominal</span></div>
+                            <div class="bento-cause-item"><div class="bento-cause-icon"><i class="bi bi-droplet-half"></i></div><span>Saturación de oxígeno (SpO₂)</span></div>
+                            <div class="bento-cause-item"><div class="bento-cause-icon"><i class="bi bi-heart-pulse"></i></div><span>Frecuencia cardiaca continua</span></div>
+                            <div class="bento-cause-item"><div class="bento-cause-icon"><i class="bi bi-arrow-repeat"></i></div><span>Posición corporal y ronquido</span></div>
+                        </div>
+                    </div>
+
+                    <div class="bento-card bento-card--symp">
+                        <div class="bento-orb"></div>
+                        <div class="bento-label">Síntomas que la justifican</div>
+                        <div class="bento-title">¿Te suena familiar alguno?</div>
+                        <div class="bento-sym-grid">
+                            <div class="bento-sym-item"><div class="bento-sym-icon"><i class="fa-solid fa-volume-high"></i></div><span>Ronquido fuerte y diario</span></div>
+                            <div class="bento-sym-item"><div class="bento-sym-icon"><i class="bi bi-pause-circle-fill"></i></div><span>Pausas respiratorias atestiguadas</span></div>
+                            <div class="bento-sym-item"><div class="bento-sym-icon"><i class="bi bi-emoji-dizzy-fill"></i></div><span>Despertar agitado o ahogado</span></div>
+                            <div class="bento-sym-item"><div class="bento-sym-icon"><i class="bi bi-cup-hot-fill"></i></div><span>Cansancio diurno y siestas frecuentes</span></div>
+                            <div class="bento-sym-item"><div class="bento-sym-icon"><i class="bi bi-headphones"></i></div><span>Cefalea matutina</span></div>
+                            <div class="bento-sym-item"><div class="bento-sym-icon"><i class="bi bi-droplet-fill"></i></div><span>Levantarte a orinar 2+ veces</span></div>
+                            <div class="bento-sym-item"><div class="bento-sym-icon"><i class="fa-solid fa-car"></i></div><span>Sueño al manejar</span></div>
+                            <div class="bento-sym-item"><div class="bento-sym-icon"><i class="bi bi-emoji-frown-fill"></i></div><span>Irritabilidad o falta de concentración</span></div>
+                        </div>
+                    </div>
+
+                    <div class="bento-card bento-card--comp">
+                        <div class="bento-label">Si la postergas</div>
+                        <div class="bento-title">Lo que la apnea sin tratar provoca</div>
+                        <div class="bento-comp-grid">
+                            <div class="bento-comp-item"><div class="bento-comp-icon"><i class="bi bi-heart-pulse-fill"></i></div><span>Hipertensión refractaria</span></div>
+                            <div class="bento-comp-item"><div class="bento-comp-icon"><i class="bi bi-activity"></i></div><span>Arritmias y fibrilación auricular</span></div>
+                            <div class="bento-comp-item"><div class="bento-comp-icon"><i class="fa-solid fa-heart-crack"></i></div><span>Infarto y ACV (riesgo 2–3×)</span></div>
+                            <div class="bento-comp-item"><div class="bento-comp-icon"><i class="fa-solid fa-droplet"></i></div><span>Diabetes tipo 2 acelerada</span></div>
+                            <div class="bento-comp-item"><div class="bento-comp-icon"><i class="fa-solid fa-car"></i></div><span>7× más riesgo de accidente vial</span></div>
+                            <div class="bento-comp-item"><div class="bento-comp-icon"><i class="bi bi-emoji-frown"></i></div><span>Depresión y deterioro cognitivo</span></div>
+                        </div>
+                    </div>
+
+                    <div class="bento-card bento-card--risk">
+                        <div class="bento-orb"></div>
+                        <div class="bento-label">Cómo prepararte</div>
+                        <div class="bento-title">Para que la noche sea representativa</div>
+                        <div class="bento-chips">
+                            <span class="bento-chip"><i class="bi bi-cup-straw"></i> Sin alcohol 24 h antes</span>
+                            <span class="bento-chip"><i class="bi bi-x-circle"></i> Sin sedantes o hipnóticos</span>
+                            <span class="bento-chip"><i class="bi bi-cup-hot"></i> Sin café 6 h antes</span>
+                            <span class="bento-chip"><i class="bi bi-house-heart"></i> Cena ligera en casa</span>
+                            <span class="bento-chip"><i class="bi bi-moon"></i> Hora habitual de dormir</span>
+                            <span class="bento-chip"><i class="bi bi-bandaid"></i> Piel limpia, sin cremas</span>
+                            <span class="bento-chip"><i class="bi bi-water"></i> Pelo seco al colocar sensores</span>
+                            <span class="bento-chip"><i class="bi bi-clipboard-data"></i> Lista de medicamentos</span>
+                        </div>
+                    </div>
+
+                    <div class="bento-card bento-card--treat">
+                        <div class="bento-orb"></div>
+                        <div class="bento-label">Cómo se hace</div>
+                        <div class="bento-title">4 pasos · diagnóstico en 48 horas</div>
+                        <div class="bento-steps">
+                            <div class="bento-step"><div class="bento-step__num">1</div><div class="bento-step__title">Consulta inicial</div><div class="bento-step__desc">Cuestionarios STOP-Bang y Epworth para validar indicación</div></div>
+                            <div class="bento-step"><div class="bento-step__num">2</div><div class="bento-step__title">Entrega de equipo</div><div class="bento-step__desc">Te enseño a colocar los sensores en menos de 10 min</div></div>
+                            <div class="bento-step"><div class="bento-step__num">3</div><div class="bento-step__title">Noche en casa</div><div class="bento-step__desc">Duermes con el equipo, sin estrés de cuarto ajeno</div></div>
+                            <div class="bento-step"><div class="bento-step__num">4</div><div class="bento-step__title">Lectura y plan</div><div class="bento-step__desc">Reporte con IAH, severidad y siguiente paso terapéutico</div></div>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
+
+                <!-- ===== SELF-CHECK STOP-Bang simplificado ===== -->
+                <div class="sym-check reveal" id="symCheck" style="margin-top:48px">
+                    <div class="sym-check__head">
+                        <div class="sym-check__ttl-wrap">
+                            <div class="disease-blk__label disease-blk__label--dark"><i class="bi bi-clipboard2-pulse-fill"></i> ¿Tienes riesgo de apnea?</div>
+                            <h2 class="disease-blk__title disease-blk__title--dark">Test rápido tipo STOP-Bang</h2>
+                            <p class="disease-blk__lead disease-blk__lead--dark">Marca las que apliquen. 3 o más sugiere riesgo elevado — la poligrafía en casa lo confirma o descarta.</p>
+                        </div>
+                        <div class="sym-check__counter" aria-live="polite">
+                            <div class="sym-check__counter-val"><span id="symCount">0</span> <span style="font-size:1rem;opacity:.5">/ 8</span></div>
+                            <div class="sym-check__counter-lbl">Factores positivos</div>
+                            <div class="sym-check__counter-msg" id="symMsg">Marca las que te apliquen</div>
+                        </div>
+                    </div>
+                    <div class="sym-check__grid">
+                        <label class="sym-check__item"><input type="checkbox" data-sym><span class="sym-check__box"><i class="bi bi-check-lg"></i></span><span class="sym-check__sym">Ronco fuerte (se oye desde otro cuarto)</span></label>
+                        <label class="sym-check__item"><input type="checkbox" data-sym><span class="sym-check__box"><i class="bi bi-check-lg"></i></span><span class="sym-check__sym">Me siento cansado o adormilado de día</span></label>
+                        <label class="sym-check__item"><input type="checkbox" data-sym><span class="sym-check__box"><i class="bi bi-check-lg"></i></span><span class="sym-check__sym">Me han visto pausas respiratorias al dormir</span></label>
+                        <label class="sym-check__item"><input type="checkbox" data-sym><span class="sym-check__box"><i class="bi bi-check-lg"></i></span><span class="sym-check__sym">Tengo presión alta (tratada o no)</span></label>
+                        <label class="sym-check__item"><input type="checkbox" data-sym><span class="sym-check__box"><i class="bi bi-check-lg"></i></span><span class="sym-check__sym">Tengo IMC mayor a 35</span></label>
+                        <label class="sym-check__item"><input type="checkbox" data-sym><span class="sym-check__box"><i class="bi bi-check-lg"></i></span><span class="sym-check__sym">Tengo más de 50 años</span></label>
+                        <label class="sym-check__item"><input type="checkbox" data-sym><span class="sym-check__box"><i class="bi bi-check-lg"></i></span><span class="sym-check__sym">Cuello grueso (más de 40 cm de circunferencia)</span></label>
+                        <label class="sym-check__item"><input type="checkbox" data-sym><span class="sym-check__box"><i class="bi bi-check-lg"></i></span><span class="sym-check__sym">Soy hombre (riesgo basal mayor)</span></label>
+                    </div>
+                </div>
+
+                <!-- ===== PERSONAS ===== -->
+                <div class="reveal" style="margin-top:32px">
+                    <div class="disease-blk__label"><i class="fa-solid fa-user-group"></i> Para quién</div>
+                    <h2 class="disease-blk__title">Pacientes que <em>se benefician</em> de la poligrafía en casa</h2>
+                    <p class="disease-blk__lead">No todo paciente con sospecha de apnea necesita ir al hospital. Estos perfiles típicamente se diagnostican bien con el estudio domiciliario.</p>
+                    <div class="persona-grid">
+                        <div class="persona-card">
+                            <div class="persona-card__avatar"><i class="fa-solid fa-volume-high"></i></div>
+                            <div class="persona-card__name">Sr. Eduardo</div>
+                            <div class="persona-card__age">52 AÑOS · CDMX</div>
+                            <div class="persona-card__exposure">Su esposa lleva años quejándose del ronquido. Ya lo grabó. Quiere confirmar antes de gastar en CPAP.</div>
+                            <span class="persona-card__tag"><i class="fa-solid fa-volume-high"></i> Roncador fuerte</span>
+                        </div>
+                        <div class="persona-card">
+                            <div class="persona-card__avatar"><i class="fa-solid fa-car"></i></div>
+                            <div class="persona-card__name">Lic. Verónica</div>
+                            <div class="persona-card__age">46 AÑOS · CDMX</div>
+                            <div class="persona-card__exposure">Profesional que viaja en coche todos los días. Ha cabeceado al volante. Necesita certeza para evitar un accidente.</div>
+                            <span class="persona-card__tag"><i class="bi bi-cup-hot"></i> Sueño diurno</span>
+                        </div>
+                        <div class="persona-card">
+                            <div class="persona-card__avatar"><i class="bi bi-heart-pulse-fill"></i></div>
+                            <div class="persona-card__name">Don Javier</div>
+                            <div class="persona-card__age">61 AÑOS · EDOMEX</div>
+                            <div class="persona-card__exposure">Hipertensión que no baja con tres medicamentos. Su cardiólogo le pidió descartar apnea como causa.</div>
+                            <span class="persona-card__tag"><i class="bi bi-heart-pulse"></i> HTA refractaria</span>
+                        </div>
+                        <div class="persona-card">
+                            <div class="persona-card__avatar"><i class="fa-solid fa-weight-scale"></i></div>
+                            <div class="persona-card__name">Sra. Mariana</div>
+                            <div class="persona-card__age">58 AÑOS · CDMX</div>
+                            <div class="persona-card__exposure">IMC 34, despierta con cefalea y se queda dormida en juntas. Quiere un estudio sin internarse.</div>
+                            <span class="persona-card__tag"><i class="fa-solid fa-weight-scale"></i> Obesidad + cansancio</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== ÁRBOL: poligrafía vs polisomnografía ===== -->
+                <div class="svc-tree reveal">
+                    <div class="svc-tree__head">
+                        <div class="disease-blk__label disease-blk__label--dark" style="justify-content:center"><i class="bi bi-diagram-3-fill"></i> Tu mejor opción</div>
+                        <h2 class="disease-blk__title disease-blk__title--dark">¿Poligrafía en casa o polisomnografía hospitalaria?</h2>
+                        <p class="disease-blk__lead disease-blk__lead--dark" style="margin:0 auto 28px">Ambas son válidas. La diferencia es a quién le sirve cada una. Esto es lo que decidimos juntos en consulta:</p>
+                        <div class="svc-tree__root"><i class="bi bi-house-door-fill"></i> Sospecha clínica de apnea</div>
+                    </div>
+                    <div class="svc-tree__branches">
+                        <div class="svc-tree__branch">
+                            <span class="svc-tree__stage" style="background:rgba(71,215,172,.18);color:#6fe5c1">Poligrafía</span>
+                            <div class="svc-tree__sev">Sospecha alta y caso simple</div>
+                            <p class="svc-tree__tx"><strong>Estudio en casa.</strong> Indicado si STOP-Bang ≥3, sin enfermedad cardiopulmonar grave ni sospecha de apnea central. Diagnóstico rápido y económico.</p>
+                        </div>
+                        <div class="svc-tree__branch">
+                            <span class="svc-tree__stage" style="background:rgba(242,201,76,.18);color:#f5d77a">Borderline</span>
+                            <div class="svc-tree__sev">Resultado dudoso</div>
+                            <p class="svc-tree__tx"><strong>Si la poligrafía no concluye.</strong> Cuando síntomas no coinciden con IAH, o el estudio doméstico es de mala calidad, escalamos a polisomnografía.</p>
+                        </div>
+                        <div class="svc-tree__branch">
+                            <span class="svc-tree__stage" style="background:rgba(240,132,86,.18);color:#ff9d75">PSG</span>
+                            <div class="svc-tree__sev">Casos complejos</div>
+                            <p class="svc-tree__tx"><strong>Polisomnografía completa.</strong> Si hay insomnio, comorbilidad cardiopulmonar grave, sospecha de apnea central o trastorno del movimiento.</p>
+                        </div>
+                        <div class="svc-tree__branch">
+                            <span class="svc-tree__stage" style="background:rgba(116,185,255,.22);color:#9ec5ff">Titulación</span>
+                            <div class="svc-tree__sev">Tras el diagnóstico</div>
+                            <p class="svc-tree__tx"><strong>Titulación CPAP/BiPAP.</strong> Si se confirma apnea moderada-severa, se ajusta la presión óptima en una segunda noche con manómetro.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== INLINE CTA ===== -->
+                <div class="cta-inline reveal">
+                    <div class="cta-inline__orb-left" aria-hidden="true"></div>
+                    <div class="cta-inline__inner">
+                        <div class="cta-inline__badge">Diagnóstico en una noche</div>
+                        <div class="cta-inline__layout">
+                            <div class="cta-inline__left">
+                                <h2 class="cta-inline__headline">
+                                    <em>Una noche en tu cama</em><br>
+                                    puede confirmar o descartar <em>apnea del sueño</em>
+                                </h2>
+                                <div class="cta-inline__triggers">
+                                    <div class="cta-inline__trigger"><i class="bi bi-check-circle-fill"></i> Marcaste 3 o más factores arriba</div>
+                                    <div class="cta-inline__trigger"><i class="bi bi-check-circle-fill"></i> Tu pareja te grabó pausas respiratorias</div>
+                                    <div class="cta-inline__trigger"><i class="bi bi-check-circle-fill"></i> Tienes presión alta difícil de controlar</div>
+                                    <div class="cta-inline__trigger"><i class="bi bi-check-circle-fill"></i> Te quedas dormido al manejar o en juntas</div>
+                                </div>
+                                <p class="cta-inline__urgency"><strong>Sin internamiento, sin cables a hospital, sin cuarto extraño.</strong> Duermes en casa y al día siguiente regresas el equipo. Lectura por neumólogo y plan terapéutico claro.</p>
+                            </div>
+                            <div class="cta-inline__right">
+                                <div class="cta-inline__btns">
+                                    <a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20poligraf%C3%ADa%20respiratoria" target="_blank" class="cta-inline__btn cta-inline__btn--wa">
+                                        <i class="bi bi-whatsapp"></i> WhatsApp
+                                    </a>
+                                    <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="cta-inline__btn cta-inline__btn--cal">
+                                        <i class="bi bi-calendar-check"></i> Agendar cita
+                                    </a>
+                                </div>
+                                <div class="cta-inline__stat">
+                                    <div class="cta-inline__stat-val">AASM nivel III</div>
+                                    <div class="cta-inline__stat-lbl">Estudio validado<br>internacionalmente</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal" style="margin-top:48px">
+                    <div class="disease-blk__label"><i class="bi bi-link-45deg"></i> Relacionado</div>
+                    <h2 class="disease-blk__title" style="margin-bottom:18px">Otros temas y servicios</h2>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a class="hero__pill" href="/enfermedades/apnea-del-sueno/">Apnea del sueño</a>
+                        <a class="hero__pill" href="/servicios/polisomnografia/">Polisomnografía</a>
+                        <a class="hero__pill" href="/servicios/titulacion-presion-positiva/">Titulación CPAP/BiPAP</a>
+                        <a class="hero__pill" href="/enfermedades/hipertension-pulmonar/">Hipertensión pulmonar</a>
+                    </div>
+                </div>
+
+            </article>
         </div>
     </section>
+
+    <!-- ===== FAQ ===== -->
+    <section id="preguntas-frecuentes-poligrafia" class="faq-block" aria-labelledby="faq-h-pol">
+        <h2 id="faq-h-pol" class="faq-block__title">Preguntas frecuentes sobre poligrafía respiratoria</h2>
+        <p class="faq-block__sub">Lo que más preguntan los pacientes que dudan entre estudio en casa o en hospital.</p>
+        <details class="faq-item"><summary>¿Es lo mismo que una polisomnografía?</summary><div class="faq-item__answer"><p>No. La <strong>poligrafía</strong> es un estudio nivel III que mide flujo, esfuerzo, oxígeno y posición — suficiente para confirmar apnea obstructiva en casos típicos. La <strong>polisomnografía</strong> agrega EEG, EOG y EMG, necesarios cuando hay insomnio, sospecha de apnea central u otro trastorno del sueño.</p></div></details>
+        <details class="faq-item"><summary>¿Y si no logro dormir con el equipo?</summary><div class="faq-item__answer"><p>Es normal sentir el equipo al inicio. La cánula nasal y bandas son ligeras y la mayoría se acostumbra en 30 minutos. Si la noche resulta insuficiente, se repite sin costo adicional o se escala a polisomnografía.</p></div></details>
+        <details class="faq-item"><summary>¿Qué incluye el resultado?</summary><div class="faq-item__answer"><p>Reporte con índice de apnea-hipopnea (IAH), severidad (leve/moderada/severa), tiempo con SpO₂ &lt;90%, ronquidos por hora, posición predominante de eventos. Te lo explico en consulta y definimos plan: dispositivos posicionales, mandibular o CPAP/BiPAP.</p></div></details>
+        <details class="faq-item"><summary>¿Necesito traer algo o tener equipo en casa?</summary><div class="faq-item__answer"><p>Solo tu cama habitual. El equipo es portátil con batería propia, sin internet ni instalación. Te lo entrego en consultorio y lo regresas al día siguiente.</p></div></details>
+        <details class="faq-item"><summary>¿Quién no es candidato a poligrafía en casa?</summary><div class="faq-item__answer"><p>Pacientes con insuficiencia cardiaca avanzada, EPOC severo con O₂ domiciliario, sospecha de apnea central, parasomnias o insomnio crónico. En esos casos vamos directo a polisomnografía.</p></div></details>
+        <details class="faq-item"><summary>¿Cuánto cuesta el estudio en CDMX?</summary><div class="faq-item__answer"><p>El costo es significativamente menor al de una polisomnografía hospitalaria. Para precios actualizados, escribe por WhatsApp al 55 9170 8334.</p></div></details>
+    </section>
+
+    <script>
+    (function(){
+      var boxes=document.querySelectorAll('#symCheck input[data-sym]');
+      var count=document.getElementById('symCount');
+      var msg=document.getElementById('symMsg');
+      if(!boxes.length||!count||!msg)return;
+      function update(){
+        var n=0;boxes.forEach(function(b){if(b.checked)n++;});
+        count.textContent=n;
+        msg.classList.remove('is-warn','is-alert');
+        if(n===0)msg.textContent='Marca las que te apliquen';
+        else if(n<=2){msg.textContent='Riesgo bajo — vigila si aparecen más síntomas';}
+        else if(n<=4){msg.textContent='Riesgo intermedio — conviene poligrafía';msg.classList.add('is-warn');}
+        else{msg.textContent='Riesgo alto — agenda lo antes posible';msg.classList.add('is-alert');}
+      }
+      boxes.forEach(function(b){b.addEventListener('change',update);});
+    })();
+    </script>
 
     <section class="cta-band text-center py-5">
         <div class="container py-3 cta-band__inner reveal">
