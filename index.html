@@ -1687,7 +1687,7 @@
         .disease-band--bottom {
             animation: disease-scroll-right 38s linear infinite;
         }
-        .disease-band:hover { animation-play-state: paused; }
+        /* disease-band pauses only on click, not hover */
         @keyframes disease-scroll-left {
             0%   { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -2471,7 +2471,26 @@
                             <li><a class="dropdown-item" href="/servicios/teleconsulta/">Teleconsulta</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="#enfermedades">Enfermedades</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#enfermedades" role="button" data-bs-toggle="dropdown" aria-expanded="false">Enfermedades</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item fw-bold" href="#enfermedades">Ver todas</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/enfermedades/epoc/">EPOC</a></li>
+                            <li><a class="dropdown-item" href="/enfermedades/asma/">Asma</a></li>
+                            <li><a class="dropdown-item" href="/enfermedades/apnea-del-sueno/">Apnea del sueño</a></li>
+                            <li><a class="dropdown-item" href="/enfermedades/neumonia/">Neumonía</a></li>
+                            <li><a class="dropdown-item" href="/enfermedades/fibrosis-pulmonar/">Fibrosis pulmonar</a></li>
+                            <li><a class="dropdown-item" href="/enfermedades/cancer-de-pulmon/">Cáncer de pulmón</a></li>
+                            <li><a class="dropdown-item" href="/enfermedades/derrames-pleurales/">Derrames pleurales</a></li>
+                            <li><a class="dropdown-item" href="/enfermedades/bronquiectasias/">Bronquiectasias</a></li>
+                            <li><a class="dropdown-item" href="/enfermedades/hipertension-pulmonar/">Hipertensión pulmonar</a></li>
+                            <li><a class="dropdown-item" href="/enfermedades/embolia-pulmonar/">Embolia pulmonar</a></li>
+                            <li><a class="dropdown-item" href="/enfermedades/tabaquismo/">Tabaquismo</a></li>
+                            <li><a class="dropdown-item" href="/enfermedades/secuelas-covid/">Secuelas post-COVID</a></li>
+                            <li><a class="dropdown-item" href="/enfermedades/influenza/">Influenza</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="/preguntas-frecuentes/">FAQ</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contacto-final">Contacto</a></li>
                 </ul>
@@ -3088,46 +3107,133 @@
             </div>
         </section>
 
-        <!-- ===== BANNER CONTINGENCIA ===== -->
-        <div style="background:linear-gradient(135deg,#0a1628 0%,#1e3799 100%);padding:48px 0;position:relative;overflow:hidden;" aria-label="Recurso: contingencia ambiental">
-          <div style="position:absolute;top:-60px;left:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(214,48,49,.22) 0%,transparent 65%);pointer-events:none;filter:blur(30px)"></div>
-          <div style="position:absolute;bottom:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(253,203,110,.18) 0%,transparent 65%);pointer-events:none;filter:blur(25px)"></div>
+        <!-- ===== BANNER CONTINGENCIA — Premium redesign ===== -->
+        <div class="cont-section" aria-label="Recurso: contingencia ambiental">
+          <div class="cont-orb cont-orb--red"></div>
+          <div class="cont-orb cont-orb--amber"></div>
+          <div class="cont-grid-bg"></div>
           <div class="container">
-            <div class="row align-items-center g-4">
-              <div class="col-lg-8">
-                <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:14px">
-                  <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(214,48,49,.2);border:1px solid rgba(214,48,49,.4);color:#ff9995;padding:6px 16px;border-radius:999px;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase">
-                    <span style="width:8px;height:8px;border-radius:50%;background:#ff4d4d;box-shadow:0 0 10px rgba(255,77,77,.8);animation:contingenciaPulse 1.6s ease-in-out infinite;flex-shrink:0"></span>
-                    Temporada de contingencias · feb–jun
-                  </div>
-                  <a id="aqiLiveWidget" href="https://aqicn.org/city/mexico/" target="_blank" rel="noopener" aria-label="Calidad del aire en CDMX en tiempo real (AQICN)" class="aqi-live-chip" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;padding:6px 14px;border-radius:999px;font-size:.75rem;font-weight:700;letter-spacing:.04em;text-decoration:none;transition:all .3s;position:relative">
-                    <span class="aqi-live-pulse" aria-hidden="true" style="display:inline-flex;align-items:center;gap:5px;padding:2px 7px 2px 6px;border-radius:999px;background:rgba(16,185,129,.18);border:1px solid rgba(16,185,129,.42);font-size:.6rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#34d399;line-height:1">
-                        <span style="width:6px;height:6px;border-radius:50%;background:#10b981;box-shadow:0 0 8px rgba(16,185,129,.85);animation:aqiLivePulse 1.4s ease-in-out infinite;flex-shrink:0"></span>
-                        Live
-                    </span>
-                    <span id="aqiDot" style="width:8px;height:8px;border-radius:50%;background:#9ca3af;flex-shrink:0;transition:background .3s,box-shadow .3s"></span>
-                    <span style="opacity:.85">AQI CDMX ahora:</span>
-                    <span id="aqiValue" style="font-weight:800">cargando…</span>
-                    <span id="aqiLabel" style="opacity:.85"></span>
-                    <span id="aqiUpdated" style="opacity:.55;font-size:.66rem;font-weight:600;letter-spacing:.02em;margin-left:2px"></span>
-                  </a>
+            <div class="cont-layout">
+
+              <!-- AQI Widget Panel -->
+              <div class="cont-aqi-side">
+                <div class="cont-alert-chip">
+                  <span class="cont-pulse-dot" style="background:#ff4d4d;box-shadow:0 0 10px rgba(255,77,77,.8);animation:contingenciaPulse 1.6s ease-in-out infinite"></span>
+                  Temporada de contingencias · feb–jun
                 </div>
-                <h3 style="color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:clamp(22px,3vw,30px);margin:0 0 10px;letter-spacing:-.02em">¿Tienes asma, EPOC o alguna enfermedad respiratoria?</h3>
-                <p style="color:rgba(255,255,255,.78);margin:0;font-size:1rem;line-height:1.6;max-width:640px">Los días con mala calidad del aire en CDMX son los más peligrosos para tus pulmones. Aprende a leer el IMECA, cuándo quedarte en casa y qué hacer si empiezas con síntomas.</p>
-              </div>
-              <div class="col-lg-4 text-lg-end">
-                <a href="/contingencia-ambiental-cdmx/" style="display:inline-flex;align-items:center;gap:8px;background:#0984e3;color:#fff;padding:15px 26px;border-radius:100px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;text-decoration:none;font-size:.96rem;box-shadow:0 8px 24px rgba(9,132,227,.4);transition:all .3s" onmouseover="this.style.background='#0773c5';this.style.transform='translateY(-3px)'" onmouseout="this.style.background='#0984e3';this.style.transform='translateY(0)'">
-                  <i class="fas fa-wind"></i> Leer guía completa
+                <a id="aqiLiveWidget" href="https://aqicn.org/city/mexico/" target="_blank" rel="noopener" aria-label="Calidad del aire en CDMX en tiempo real (AQICN)" class="cont-aqi-card">
+                  <div class="cont-aqi-card__header">
+                    <span class="aqi-live-pulse" aria-hidden="true" style="display:inline-flex;align-items:center;gap:5px;padding:2px 8px 2px 6px;border-radius:999px;background:rgba(16,185,129,.18);border:1px solid rgba(16,185,129,.42);font-size:.6rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#34d399;line-height:1;flex-shrink:0">
+                      <span style="width:6px;height:6px;border-radius:50%;background:#10b981;box-shadow:0 0 8px rgba(16,185,129,.85);animation:aqiLivePulse 1.4s ease-in-out infinite;flex-shrink:0"></span>Live
+                    </span>
+                    <span class="cont-aqi-card__loc">AQI · CDMX</span>
+                    <span id="aqiUpdated" class="cont-aqi-card__time"></span>
+                  </div>
+                  <div class="cont-aqi-card__body">
+                    <span id="aqiDot" class="cont-aqi-dot"></span>
+                    <span id="aqiValue" class="cont-aqi-num">--</span>
+                  </div>
+                  <div class="cont-aqi-card__cat">
+                    <span id="aqiLabel" class="cont-aqi-label">cargando…</span>
+                  </div>
+                  <div class="cont-scale">
+                    <div class="cont-scale__bar">
+                      <span style="background:#10b981;flex:50"></span>
+                      <span style="background:#f59e0b;flex:50"></span>
+                      <span style="background:#f97316;flex:50"></span>
+                      <span style="background:#ef4444;flex:50"></span>
+                      <span style="background:#a21caf;flex:100"></span>
+                    </div>
+                    <div class="cont-scale__labels"><span>0</span><span>50</span><span>100</span><span>150</span><span>200</span><span>300+</span></div>
+                  </div>
+                  <div class="cont-aqi-card__footer">Ver fuente en AQICN <i class="bi bi-arrow-up-right"></i></div>
                 </a>
               </div>
+
+              <!-- Divider -->
+              <div class="cont-divider" aria-hidden="true"></div>
+
+              <!-- Copy + CTA Panel -->
+              <div class="cont-copy-side">
+                <div class="cont-icon-wrap" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none" width="28" height="28">
+                    <path d="M24 7C24 7 24 15 20 19C16 23 10 23 8 27C6 31 8 39 14 39C20 39 22 33 24 33" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M24 7C24 7 24 15 28 19C32 23 38 23 40 27C42 31 40 39 34 39C28 39 26 33 24 33" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="24" y1="7" x2="24" y2="33" stroke="currentColor" stroke-width="1.8" stroke-dasharray="3 3" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <h3 class="cont-title">El aire en CDMX hoy puede <em>afectar tu respiración</em></h3>
+                <p class="cont-desc">Si tienes asma, EPOC o bronquiectasias, los días de mala calidad del aire pueden disparar síntomas. Aprende a leer el AQI, cuándo quedarte en casa y cómo protegerte.</p>
+                <a href="/contingencia-ambiental-cdmx/" class="cont-cta">
+                  <i class="bi bi-shield-fill-check"></i>
+                  Ver guía de protección
+                  <i class="bi bi-arrow-right cont-cta__arrow"></i>
+                </a>
+                <p class="cont-source"><i class="bi bi-patch-check-fill" style="color:#10b981"></i> Datos: Open-Meteo Air Quality · CDMX</p>
+              </div>
+
             </div>
           </div>
         </div>
         <style>
+        /* --- Banner Contingencia Premium --- */
+        .cont-section{position:relative;padding:64px 0;background:linear-gradient(150deg,#04091a 0%,#0a1628 48%,#0d2040 100%);overflow:hidden}
+        .cont-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(9,132,227,.55),rgba(0,206,201,.22),transparent);pointer-events:none}
+        .cont-section::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(9,132,227,.18),transparent);pointer-events:none}
+        .cont-orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(65px)}
+        .cont-orb--red{top:-80px;left:-80px;width:380px;height:380px;background:radial-gradient(circle,rgba(220,38,38,.2) 0%,transparent 65%)}
+        .cont-orb--amber{bottom:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(245,158,11,.14) 0%,transparent 65%)}
+        .cont-grid-bg{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(116,185,255,.048) 1px,transparent 1px);background-size:32px 32px;pointer-events:none}
+        .cont-layout{display:grid;grid-template-columns:auto 1px 1fr;gap:0 56px;align-items:center;position:relative;z-index:1}
+        /* alert chip */
+        .cont-alert-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(220,38,38,.14);border:1px solid rgba(220,38,38,.36);color:#fca5a5;padding:6px 16px;border-radius:999px;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+        .cont-pulse-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+        /* AQI card */
+        .cont-aqi-card{display:block;width:272px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:20px 22px 16px;text-decoration:none;color:#fff;transition:background .3s,border-color .3s,transform .3s;cursor:pointer}
+        .cont-aqi-card:hover{background:rgba(255,255,255,.07);border-color:rgba(9,132,227,.35);transform:translateY(-3px);color:#fff}
+        .cont-aqi-card__header{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+        .cont-aqi-card__loc{font-size:.68rem;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.14em;text-transform:uppercase}
+        .cont-aqi-card__time{font-size:.64rem;font-weight:600;color:rgba(255,255,255,.35);letter-spacing:.03em;margin-left:auto}
+        .cont-aqi-card__body{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+        .cont-aqi-dot{width:18px;height:18px;border-radius:50%;background:#9ca3af;flex-shrink:0;transition:background .4s,box-shadow .4s;margin-top:4px}
+        .cont-aqi-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(4.5rem,8vw,6rem);font-weight:800;line-height:1;letter-spacing:-.05em;color:#fff;transition:color .4s}
+        .cont-aqi-card__cat{margin-bottom:20px;padding-left:2px}
+        .cont-aqi-label{font-size:1rem;font-weight:700;color:rgba(255,255,255,.6);transition:color .4s;letter-spacing:-.01em}
+        /* scale */
+        .cont-scale__bar{display:flex;height:5px;border-radius:5px;overflow:hidden;gap:2px;margin-bottom:5px}
+        .cont-scale__bar span{border-radius:2px;height:100%}
+        .cont-scale__labels{display:flex;justify-content:space-between;font-size:.58rem;color:rgba(255,255,255,.26);font-weight:600;letter-spacing:.04em}
+        .cont-aqi-card__footer{margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.07);font-size:.72rem;font-weight:700;color:rgba(9,132,227,.8);display:flex;align-items:center;gap:5px;letter-spacing:.03em}
+        /* divider */
+        .cont-divider{height:220px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.1),transparent)}
+        /* copy side */
+        .cont-icon-wrap{width:52px;height:52px;border-radius:14px;background:rgba(9,132,227,.12);border:1px solid rgba(9,132,227,.25);display:flex;align-items:center;justify-content:center;color:#74b9ff;margin-bottom:20px}
+        .cont-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.5rem,2.8vw,2rem);font-weight:800;color:#fff;line-height:1.2;letter-spacing:-.03em;margin:0 0 14px;max-width:480px}
+        .cont-title em{font-style:italic;background:linear-gradient(135deg,#f59e0b 0%,#fcd34d 55%,#fb923c 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+        .cont-desc{font-size:.96rem;color:rgba(255,255,255,.56);line-height:1.7;margin:0 0 26px;max-width:440px}
+        .cont-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#059669 0%,#10b981 100%);color:#fff;padding:14px 28px;border-radius:100px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.97rem;text-decoration:none;box-shadow:0 8px 28px rgba(16,185,129,.35);transition:transform .3s,box-shadow .3s;cursor:pointer}
+        .cont-cta:hover{transform:translateY(-3px);box-shadow:0 14px 38px rgba(16,185,129,.5);color:#fff}
+        .cont-cta__arrow{transition:transform .3s}
+        .cont-cta:hover .cont-cta__arrow{transform:translateX(4px)}
+        .cont-source{font-size:.7rem;color:rgba(255,255,255,.3);margin:14px 0 0;font-weight:600;letter-spacing:.03em;display:flex;align-items:center;gap:6px}
+        /* responsive */
+        @media(max-width:991px){.cont-layout{grid-template-columns:1fr;gap:32px 0}.cont-aqi-card{width:100%;max-width:320px}.cont-divider{display:none}}
+        @media(max-width:575px){.cont-section{padding:48px 0}.cont-aqi-num{font-size:4.5rem}}
         @keyframes contingenciaPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.3)}}
         @keyframes aqiLivePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(1.4)}}
-        .aqi-live-chip:hover{background:rgba(255,255,255,.14)!important;border-color:rgba(255,255,255,.32)!important;transform:translateY(-1px)}
+        @media(prefers-reduced-motion:reduce){.cont-pulse-dot,.aqi-live-pulse span{animation:none!important}.cont-cta:hover,.cont-aqi-card:hover{transform:none}}
         </style>
+        <script>
+        /* Sync AQI number + label color with the dot color set by the main AQI script */
+        (function(){
+          var dot=document.getElementById('aqiDot'),num=document.getElementById('aqiValue'),lbl=document.getElementById('aqiLabel');
+          if(!dot||!num) return;
+          new MutationObserver(function(){
+            var c=dot.style.background||'';
+            if(c){num.style.color=c;if(lbl)lbl.style.color=c;}
+          }).observe(dot,{attributes:true,attributeFilter:['style']});
+        })();
+        </script>
         <script>
         (function(){
           // AQI live widget — Open-Meteo Air Quality API (libre, sin token)
