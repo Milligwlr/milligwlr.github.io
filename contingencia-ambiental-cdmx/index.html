@@ -251,7 +251,7 @@ footer.site-footer p{margin:4px 0}
   <div class="container">
     <a class="navbar-brand" href="/">
       <img src="/favicon.png" alt="Alveos" loading="lazy" decoding="async">
-      <span class="brand-name">alveos</span>
+      <span class="brand-name">ALVEOS</span>
     </a>
     <a class="nav-back" href="/"><i class="fas fa-arrow-left me-2"></i>Volver al inicio</a>
   </div>
@@ -278,8 +278,88 @@ footer.site-footer p{margin:4px 0}
         </div>
       </div>
     </div>
+
+    <!-- AQI live widget — Open-Meteo (sin token) -->
+    <div class="hero__aqi-wrap">
+      <a id="aqiLiveWidget" href="https://aqicn.org/city/mexico/" target="_blank" rel="noopener" aria-label="Calidad del aire en CDMX en tiempo real (AQICN)" class="aqi-card">
+        <div class="aqi-card__header">
+          <span class="aqi-live-pulse" aria-hidden="true"><span class="aqi-live-pulse__dot"></span>Live</span>
+          <span class="aqi-card__loc">AQI · CDMX</span>
+          <span id="aqiUpdated" class="aqi-card__time"></span>
+        </div>
+        <div class="aqi-card__body">
+          <span id="aqiDot" class="aqi-dot"></span>
+          <span id="aqiValue" class="aqi-num">--</span>
+        </div>
+        <div class="aqi-card__cat"><span id="aqiLabel" class="aqi-label">cargando…</span></div>
+        <div class="aqi-scale">
+          <div class="aqi-scale__bar">
+            <span style="background:#10b981;flex:50"></span>
+            <span style="background:#f59e0b;flex:50"></span>
+            <span style="background:#f97316;flex:50"></span>
+            <span style="background:#ef4444;flex:50"></span>
+            <span style="background:#a21caf;flex:100"></span>
+          </div>
+          <div class="aqi-scale__labels"><span>0</span><span>50</span><span>100</span><span>150</span><span>200</span><span>300+</span></div>
+        </div>
+        <div class="aqi-card__footer">Ver fuente en AQICN <i class="fas fa-arrow-up-right-from-square"></i></div>
+      </a>
+    </div>
   </div>
 </section>
+
+<style>
+.hero__aqi-wrap{position:absolute;top:50%;right:max(24px,calc((100vw - 1140px)/2 + 24px));transform:translateY(-50%);z-index:3;pointer-events:none}
+.hero__aqi-wrap .aqi-card{pointer-events:auto}
+.aqi-card{display:block;width:280px;background:linear-gradient(155deg,rgba(20,18,28,.74) 0%,rgba(28,22,32,.62) 100%);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:20px 22px 16px;text-decoration:none;color:#fff;transition:transform .3s,box-shadow .3s,border-color .3s;box-shadow:0 18px 50px -20px rgba(0,0,0,.6)}
+.aqi-card:hover{transform:translateY(-3px);border-color:rgba(255,200,150,.30);box-shadow:0 24px 60px -20px rgba(0,0,0,.7);color:#fff}
+.aqi-card__header{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.aqi-live-pulse{display:inline-flex;align-items:center;gap:5px;padding:2px 8px 2px 6px;border-radius:999px;background:rgba(16,185,129,.18);border:1px solid rgba(16,185,129,.42);font-size:.6rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#34d399;line-height:1;flex-shrink:0}
+.aqi-live-pulse__dot{width:6px;height:6px;border-radius:50%;background:#10b981;box-shadow:0 0 8px rgba(16,185,129,.85);animation:aqiLivePulse 1.4s ease-in-out infinite;flex-shrink:0}
+.aqi-card__loc{font-size:.7rem;font-weight:700;color:rgba(255,255,255,.92);letter-spacing:.14em;text-transform:uppercase}
+.aqi-card__time{font-size:.66rem;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:.03em;margin-left:auto}
+.aqi-card__body{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.aqi-dot{width:18px;height:18px;border-radius:50%;background:#9ca3af;flex-shrink:0;transition:background .4s,box-shadow .4s;margin-top:4px}
+.aqi-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(4.5rem,8vw,6rem);font-weight:800;line-height:1;letter-spacing:-.05em;color:#fff;transition:color .4s}
+.aqi-card__cat{margin-bottom:20px;padding-left:2px}
+.aqi-label{font-size:1rem;font-weight:700;color:rgba(255,255,255,.6);transition:color .4s;letter-spacing:-.01em}
+.aqi-scale__bar{display:flex;height:5px;border-radius:5px;overflow:hidden;gap:2px;margin-bottom:5px}
+.aqi-scale__bar span{border-radius:2px;height:100%}
+.aqi-scale__labels{display:flex;justify-content:space-between;font-size:.62rem;color:rgba(255,255,255,.7);font-weight:700;letter-spacing:.04em}
+.aqi-card__footer{margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.14);font-size:.74rem;font-weight:700;color:#74b9ff;display:flex;align-items:center;gap:6px;letter-spacing:.03em}
+@keyframes aqiLivePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(1.4)}}
+@media(max-width:991px){
+  .hero__aqi-wrap{position:static;transform:none;margin:32px auto 0;display:flex;justify-content:center}
+  .aqi-card{width:100%;max-width:340px}
+}
+@media(prefers-reduced-motion:reduce){.aqi-live-pulse__dot{animation:none}}
+</style>
+<script>
+(function(){
+  var url='https://air-quality-api.open-meteo.com/v1/air-quality?latitude=19.3758&longitude=-99.1834&current=us_aqi&timezone=America%2FMexico_City';
+  function cat(v){
+    if(v<=50)  return {l:'Buena',c:'#10b981'};
+    if(v<=100) return {l:'Moderada',c:'#f59e0b'};
+    if(v<=150) return {l:'Mala (sensibles)',c:'#f97316'};
+    if(v<=200) return {l:'Mala',c:'#ef4444'};
+    if(v<=300) return {l:'Muy mala',c:'#a21caf'};
+    return     {l:'Peligrosa',c:'#7f1d1d'};
+  }
+  function $(id){return document.getElementById(id)}
+  function render(v){
+    var k=cat(v),el=$('aqiValue'),lbl=$('aqiLabel'),dot=$('aqiDot'),upd=$('aqiUpdated');
+    if(!el)return;
+    el.textContent=Math.round(v);el.style.color=k.c;
+    lbl.textContent='· '+k.l;lbl.style.color=k.c;
+    dot.style.background=k.c;dot.style.boxShadow='0 0 10px '+k.c+'aa';
+    if(upd){var n=new Date();upd.textContent='· '+String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+' hrs'}
+  }
+  function fail(){var el=$('aqiValue'),lbl=$('aqiLabel'),upd=$('aqiUpdated');if(!el)return;el.textContent='sin datos';if(lbl)lbl.textContent='';if(upd)upd.textContent=''}
+  if('fetch' in window){
+    fetch(url,{cache:'no-store'}).then(function(r){return r.ok?r.json():Promise.reject()}).then(function(d){var v=d&&d.current&&d.current.us_aqi;if(typeof v==='number')render(v);else fail()}).catch(fail);
+  } else fail();
+})();
+</script>
 
 <!-- TOC STICKY -->
 <nav class="toc-nav" aria-label="Tabla de contenidos">
