@@ -112,35 +112,49 @@
 
     @media(max-width:1024px){.doc-hero{padding:108px 0 64px}.doc-hero__layout{grid-template-columns:1fr;gap:48px}.doc-hero__portrait{width:min(340px,80%);margin:0 auto}.doc-hero__title{text-align:center}.doc-hero__quote-card{margin-left:auto;margin-right:auto}.doc-hero__cta-row{justify-content:center}.doc-hero__tag{display:inline-flex}.doc-hero__inner > div:first-child{text-align:center}.doc-hero__badge{right:-8px;bottom:8px}}
 
-    /* ========== WALL OF TRUST — Holographic credentials ========== */
-    .trust-wall{position:relative;padding:96px 0;background:#fff;overflow:hidden}
-    .trust-wall__bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 30%,rgba(9,132,227,.05) 0%,transparent 70%);pointer-events:none}
+    /* ========== WALL OF TRUST — Premium dark credentials ========== */
+    .trust-wall{position:relative;padding:96px 0;background:linear-gradient(160deg,#060f1e 0%,#0a1628 50%,#0d2240 100%);overflow:hidden}
+    .trust-wall::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(9,132,227,.5),rgba(0,206,201,.3),transparent);pointer-events:none}
+    .trust-wall::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(9,132,227,.2),transparent);pointer-events:none}
+    .trust-wall__bg{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(116,185,255,.055) 1px,transparent 1px);background-size:36px 36px;pointer-events:none}
+    .trust-wall__orb-l{position:absolute;top:-20%;left:-12%;width:55vw;height:55vw;border-radius:50%;background:radial-gradient(circle,rgba(9,132,227,.13) 0%,transparent 60%);filter:blur(55px);pointer-events:none}
+    .trust-wall__orb-r{position:absolute;bottom:-15%;right:-10%;width:42vw;height:42vw;border-radius:50%;background:radial-gradient(circle,rgba(0,206,201,.09) 0%,transparent 60%);filter:blur(45px);pointer-events:none}
     .trust-wall__head{text-align:center;max-width:680px;margin:0 auto 56px;position:relative;z-index:1}
-    .trust-wall__label{display:inline-flex;align-items:center;gap:10px;font-size:.7rem;font-weight:800;letter-spacing:.32em;text-transform:uppercase;color:var(--electric);background:rgba(9,132,227,.08);border:1px solid rgba(9,132,227,.16);border-radius:100px;padding:7px 20px;margin-bottom:18px}
-    .trust-wall__title{font-size:clamp(2rem,4vw,2.8rem);font-weight:800;letter-spacing:-.03em;color:var(--navy);line-height:1.15;margin:0 0 14px}
+    .trust-wall__label{display:inline-flex;align-items:center;gap:10px;font-size:.7rem;font-weight:800;letter-spacing:.32em;text-transform:uppercase;color:#74b9ff;background:rgba(9,132,227,.12);border:1px solid rgba(9,132,227,.25);border-radius:100px;padding:7px 20px;margin-bottom:18px}
+    .trust-wall__title{font-size:clamp(2rem,4vw,2.8rem);font-weight:800;letter-spacing:-.03em;color:#fff;line-height:1.15;margin:0 0 14px}
     .trust-wall__title em{font-style:italic;font-family:var(--serif);font-weight:700;background:linear-gradient(135deg,var(--cyan),var(--electric),var(--accent-purple));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .trust-wall__sub{font-size:1.02rem;color:#5a6b7d;line-height:1.7;max-width:560px;margin:0 auto}
+    .trust-wall__sub{font-size:1.02rem;color:rgba(255,255,255,.48);line-height:1.7;max-width:560px;margin:0 auto}
 
     .trust-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;position:relative;z-index:1}
-    .trust-card{position:relative;padding:32px 28px 28px;background:linear-gradient(140deg,#fff 0%,#fafdff 100%);border-radius:22px;border:1px solid rgba(9,132,227,.1);box-shadow:0 14px 50px -22px rgba(10,22,40,.18);overflow:hidden;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
-    .trust-card::before{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.55) 45%,rgba(0,206,201,.18) 50%,rgba(108,92,231,.18) 55%,transparent 70%);opacity:0;transition:opacity .8s var(--ease);pointer-events:none;mix-blend-mode:overlay}
-    .trust-card::after{content:'';position:absolute;top:-1px;left:-1px;right:-1px;bottom:-1px;border-radius:22px;padding:1px;background:linear-gradient(135deg,transparent 30%,var(--electric) 50%,var(--cyan) 60%,var(--accent-purple) 70%,transparent 90%);background-size:300% 300%;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;animation:trust-holo 6s linear infinite;transition:opacity .5s var(--ease);pointer-events:none}
-    @keyframes trust-holo{0%{background-position:0% 50%}100%{background-position:300% 50%}}
-    .trust-card:hover{transform:translateY(-6px) scale(1.015);box-shadow:0 28px 70px -20px rgba(9,44,84,.24)}
-    .trust-card:hover::before{opacity:1}
+    .trust-card{position:relative;background:rgba(255,255,255,.03);border-radius:22px;border:1px solid rgba(255,255,255,.07);overflow:hidden;transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s var(--ease)}
+    .trust-card:hover{transform:translateY(-7px);border-color:rgba(9,132,227,.32);box-shadow:0 28px 65px rgba(0,0,0,.45),0 0 0 1px rgba(9,132,227,.18),inset 0 1px 0 rgba(255,255,255,.06)}
+    .trust-card--cnn:hover{border-color:rgba(245,158,11,.38);box-shadow:0 28px 65px rgba(0,0,0,.45),0 0 0 1px rgba(245,158,11,.2),inset 0 1px 0 rgba(255,255,255,.06)}
+    .trust-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% -10%,rgba(9,132,227,.1) 0%,transparent 55%);opacity:0;transition:opacity .5s var(--ease);pointer-events:none}
     .trust-card:hover::after{opacity:1}
+    .trust-card--cnn::after{background:radial-gradient(circle at 50% -10%,rgba(245,158,11,.12) 0%,transparent 55%)}
 
+    .trust-card__stripe{display:block;height:3px;width:100%}
+    .trust-card--buap .trust-card__stripe{background:linear-gradient(90deg,#0984e3 0%,#74b9ff 50%,#00cec9 100%)}
+    .trust-card--unam .trust-card__stripe{background:linear-gradient(90deg,#00cec9 0%,#74b9ff 50%,#0984e3 100%)}
+    .trust-card--cnn .trust-card__stripe{background:linear-gradient(90deg,#d97706 0%,#fcd34d 50%,#f59e0b 100%)}
+    .trust-card__inner{padding:28px 28px 26px}
     .trust-card__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
-    .trust-card__logo-wrap{width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,#f4f9ff,#e9f3ff);display:flex;align-items:center;justify-content:center;border:1px solid rgba(9,132,227,.1);padding:8px}
+    .trust-card__logo-wrap{width:50px;height:50px;border-radius:13px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.1);padding:8px}
     .trust-card__logo{max-width:100%;max-height:100%;object-fit:contain}
-    .trust-card__type{font-size:.62rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--electric);background:rgba(9,132,227,.08);padding:5px 11px;border-radius:100px}
-    .trust-card__number{font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:1.7rem;font-weight:700;color:var(--navy);letter-spacing:-.02em;line-height:1;margin:6px 0 14px;display:flex;align-items:baseline;gap:10px}
-    .trust-card__number small{font-size:.7rem;font-weight:600;color:#94a3b8;letter-spacing:.1em;text-transform:uppercase;font-family:var(--sans)}
-    .trust-card__institution{font-size:.95rem;font-weight:700;color:var(--navy);line-height:1.35;margin:0 0 6px}
-    .trust-card__detail{font-size:.82rem;color:#64748b;line-height:1.55;margin:0 0 18px}
-    .trust-card__verify{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;font-weight:700;color:var(--electric);text-decoration:none;padding:7px 12px;border-radius:8px;background:rgba(9,132,227,.06);border:1px solid rgba(9,132,227,.14);transition:all .25s var(--ease)}
-    .trust-card__verify:hover{background:var(--electric);color:#fff;border-color:var(--electric);transform:translateX(3px)}
-    .trust-card__watermark{position:absolute;right:-18px;bottom:-22px;font-size:7rem;font-weight:900;color:rgba(9,132,227,.04);font-family:'JetBrains Mono',monospace;line-height:1;letter-spacing:-.05em;pointer-events:none}
+    .trust-card__type{font-size:.6rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);background:rgba(255,255,255,.05);padding:5px 12px;border-radius:100px;border:1px solid rgba(255,255,255,.08)}
+    .trust-card__number{font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:2rem;font-weight:700;line-height:1;margin:4px 0 6px;display:flex;align-items:baseline;gap:10px;letter-spacing:.02em;background:linear-gradient(135deg,#fff 0%,#74b9ff 60%,#00cec9 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .trust-card--cnn .trust-card__number{background:linear-gradient(135deg,#fcd34d 0%,#fff 50%,#f59e0b 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .trust-card__number small{font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-family:var(--sans);-webkit-text-fill-color:rgba(255,255,255,.3)}
+    .trust-card__divider{height:1px;background:linear-gradient(90deg,rgba(255,255,255,.08),transparent);margin:14px 0 16px}
+    .trust-card__verified{display:flex;align-items:center;gap:7px;font-size:.68rem;font-weight:700;color:rgba(0,206,201,.75);letter-spacing:.06em;margin-bottom:14px}
+    .trust-card__verified i{font-size:.8rem}
+    .trust-card--cnn .trust-card__verified{color:rgba(252,211,77,.8)}
+    .trust-card__institution{font-size:.95rem;font-weight:700;color:#fff;line-height:1.35;margin:0 0 6px}
+    .trust-card__detail{font-size:.8rem;color:rgba(255,255,255,.38);line-height:1.55;margin:0 0 20px}
+    .trust-card__verify{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;font-weight:700;color:rgba(116,185,255,.8);text-decoration:none;padding:8px 14px;border-radius:9px;background:rgba(9,132,227,.08);border:1px solid rgba(9,132,227,.2);transition:all .25s var(--ease)}
+    .trust-card--cnn .trust-card__verify{color:rgba(252,211,77,.75);background:rgba(245,158,11,.06);border-color:rgba(245,158,11,.2)}
+    .trust-card__verify:hover{background:var(--electric);color:#fff;border-color:var(--electric)}
+    .trust-card--cnn .trust-card__verify:hover{background:#d97706;color:#fff;border-color:#d97706}
 
     @media(max-width:900px){.trust-cards{grid-template-columns:1fr;gap:18px}.trust-wall{padding:72px 0}}
 
@@ -209,31 +223,6 @@
 
     @media(max-width:768px){.timeline-section{padding:72px 0}.timeline-flow{max-width:100%}.timeline-flow__line{left:23px}.tl-item{grid-template-columns:46px 1fr;gap:18px;margin-bottom:28px}.tl-item__node{grid-column:1}.tl-item__card,.tl-item--left .tl-item__card,.tl-item--right .tl-item__card{grid-column:2;text-align:left;padding:20px 22px}}
 
-    /* ========== DIFERENCIAL CLÍNICO — Feature Triad ========== */
-    .triad-section{position:relative;padding:104px 0;background:#fff;overflow:hidden}
-    .triad-section::before{content:'';position:absolute;top:50%;left:-15%;width:50vw;height:50vw;border-radius:50%;background:radial-gradient(circle,rgba(108,92,231,.06) 0%,transparent 60%);transform:translateY(-50%);pointer-events:none}
-    .triad-head{text-align:center;max-width:680px;margin:0 auto 64px;position:relative;z-index:1}
-    .triad-head__label{display:inline-flex;align-items:center;gap:10px;font-size:.7rem;font-weight:800;letter-spacing:.32em;text-transform:uppercase;color:var(--accent-purple);background:rgba(108,92,231,.08);border:1px solid rgba(108,92,231,.18);border-radius:100px;padding:7px 20px;margin-bottom:18px}
-    .triad-head__title{font-size:clamp(2rem,4.4vw,2.8rem);font-weight:800;letter-spacing:-.03em;color:var(--navy);line-height:1.1;margin:0 0 12px}
-    .triad-head__title em{font-style:italic;font-family:var(--serif);font-weight:700;background:linear-gradient(135deg,var(--electric),var(--accent-purple));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .triad-head__sub{font-size:1.02rem;color:#5a6b7d;line-height:1.7}
-
-    .triad-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;position:relative;z-index:1}
-    .triad-card{position:relative;padding:38px 30px 32px;background:#fff;border:1px solid rgba(9,132,227,.1);border-radius:22px;overflow:hidden;transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .45s var(--ease)}
-    .triad-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--electric),var(--cyan),var(--accent-purple));transform:scaleX(0);transform-origin:left;transition:transform .55s var(--ease)}
-    .triad-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(9,132,227,.04) 0%,transparent 50%);opacity:0;transition:opacity .45s var(--ease);pointer-events:none}
-    .triad-card:hover{transform:translateY(-8px);box-shadow:0 30px 60px -22px rgba(9,44,84,.18);border-color:rgba(9,132,227,.22)}
-    .triad-card:hover::before{transform:scaleX(1)}
-    .triad-card:hover::after{opacity:1}
-    .triad-card__num{position:absolute;top:18px;right:22px;font-family:var(--serif);font-style:italic;font-size:5.5rem;font-weight:700;color:rgba(9,132,227,.06);line-height:1;letter-spacing:-.05em;pointer-events:none;transition:color .45s var(--ease)}
-    .triad-card:hover .triad-card__num{color:rgba(108,92,231,.1)}
-    .triad-card__icon-wrap{width:62px;height:62px;border-radius:18px;background:linear-gradient(135deg,var(--electric),var(--cyan));display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.55rem;margin-bottom:22px;box-shadow:0 12px 28px -10px rgba(9,132,227,.5);position:relative}
-    .triad-card__icon-wrap::after{content:'';position:absolute;inset:-6px;border-radius:22px;border:1px dashed rgba(9,132,227,.3);animation:doc-ring-spin 12s linear infinite}
-    .triad-card__title{font-size:1.18rem;font-weight:800;color:var(--navy);margin:0 0 10px;letter-spacing:-.01em;position:relative;z-index:1}
-    .triad-card__desc{font-size:.94rem;color:#5a6b7d;line-height:1.65;margin:0 0 16px;position:relative;z-index:1}
-    .triad-card__line{height:1px;background:linear-gradient(90deg,rgba(9,132,227,.18),transparent);margin-top:auto}
-
-    @media(max-width:900px){.triad-section{padding:72px 0}.triad-grid{grid-template-columns:1fr;gap:18px}}
 
     /* ========== LO QUE TRATO — Bento Grid ========== */
     .bento-section{position:relative;padding:104px 0;background:linear-gradient(180deg,#fff 0%,#f4f9ff 100%);overflow:hidden}
@@ -482,10 +471,12 @@
     </section>
 
     <!-- ============================================================
-         2 · WALL OF TRUST — Holographic credentials
+         2 · WALL OF TRUST — Premium dark credentials
     ============================================================ -->
     <section class="trust-wall">
         <div class="trust-wall__bg"></div>
+        <div class="trust-wall__orb-l"></div>
+        <div class="trust-wall__orb-r"></div>
         <div class="container">
             <div class="trust-wall__head">
                 <span class="trust-wall__label reveal">Credenciales verificables</span>
@@ -493,38 +484,50 @@
                 <p class="trust-wall__sub reveal reveal-d2">Todas las cédulas son verificables públicamente en los registros oficiales de la SEP y el Consejo Nacional de Neumología.</p>
             </div>
             <div class="trust-cards">
-                <article class="trust-card reveal">
-                    <div class="trust-card__top">
-                        <div class="trust-card__logo-wrap"><img src="/images/buap.png" alt="BUAP" class="trust-card__logo" loading="lazy" width="38" height="38"></div>
-                        <span class="trust-card__type">Médico Cirujano</span>
+                <article class="trust-card trust-card--buap reveal">
+                    <span class="trust-card__stripe"></span>
+                    <div class="trust-card__inner">
+                        <div class="trust-card__top">
+                            <div class="trust-card__logo-wrap"><img src="/images/buap.png" alt="BUAP" class="trust-card__logo" loading="lazy" width="38" height="38"></div>
+                            <span class="trust-card__type">Médico Cirujano</span>
+                        </div>
+                        <div class="trust-card__number">12588976 <small>SEP</small></div>
+                        <div class="trust-card__divider"></div>
+                        <p class="trust-card__verified"><i class="bi bi-patch-check-fill"></i> Verificado públicamente</p>
+                        <h3 class="trust-card__institution">Benemérita Universidad Autónoma de Puebla</h3>
+                        <p class="trust-card__detail">Cédula Profesional · Título de Médico Cirujano</p>
+                        <a href="https://www.cedulaprofesional.sep.gob.mx/" target="_blank" rel="noopener" class="trust-card__verify">Verificar en SEP <i class="bi bi-arrow-up-right"></i></a>
                     </div>
-                    <div class="trust-card__number">12588976 <small>SEP</small></div>
-                    <h3 class="trust-card__institution">Benemérita Universidad Autónoma de Puebla</h3>
-                    <p class="trust-card__detail">Cédula Profesional · Título de Médico Cirujano</p>
-                    <a href="https://www.cedulaprofesional.sep.gob.mx/" target="_blank" rel="noopener" class="trust-card__verify">Verificar en SEP <i class="bi bi-arrow-up-right"></i></a>
-                    <span class="trust-card__watermark" aria-hidden="true">01</span>
                 </article>
-                <article class="trust-card reveal reveal-d2">
-                    <div class="trust-card__top">
-                        <div class="trust-card__logo-wrap"><img src="/images/UNAM.png" alt="UNAM" class="trust-card__logo" loading="lazy" width="38" height="38"></div>
-                        <span class="trust-card__type">Especialidad</span>
+                <article class="trust-card trust-card--unam reveal reveal-d2">
+                    <span class="trust-card__stripe"></span>
+                    <div class="trust-card__inner">
+                        <div class="trust-card__top">
+                            <div class="trust-card__logo-wrap"><img src="/images/UNAM.png" alt="UNAM" class="trust-card__logo" loading="lazy" width="38" height="38"></div>
+                            <span class="trust-card__type">Especialidad</span>
+                        </div>
+                        <div class="trust-card__number">15595809 <small>SEP</small></div>
+                        <div class="trust-card__divider"></div>
+                        <p class="trust-card__verified"><i class="bi bi-patch-check-fill"></i> Verificado públicamente</p>
+                        <h3 class="trust-card__institution">Universidad Nacional Autónoma de México</h3>
+                        <p class="trust-card__detail">Cédula de Especialidad en Neumología · INER</p>
+                        <a href="https://www.cedulaprofesional.sep.gob.mx/" target="_blank" rel="noopener" class="trust-card__verify">Verificar en SEP <i class="bi bi-arrow-up-right"></i></a>
                     </div>
-                    <div class="trust-card__number">15595809 <small>SEP</small></div>
-                    <h3 class="trust-card__institution">Universidad Nacional Autónoma de México</h3>
-                    <p class="trust-card__detail">Cédula de Especialidad en Neumología · INER</p>
-                    <a href="https://www.cedulaprofesional.sep.gob.mx/" target="_blank" rel="noopener" class="trust-card__verify">Verificar en SEP <i class="bi bi-arrow-up-right"></i></a>
-                    <span class="trust-card__watermark" aria-hidden="true">02</span>
                 </article>
-                <article class="trust-card reveal reveal-d4">
-                    <div class="trust-card__top">
-                        <div class="trust-card__logo-wrap"><img src="/images/CNN.png" alt="CNN" class="trust-card__logo" loading="lazy" width="38" height="38"></div>
-                        <span class="trust-card__type">Certificación</span>
+                <article class="trust-card trust-card--cnn reveal reveal-d4">
+                    <span class="trust-card__stripe"></span>
+                    <div class="trust-card__inner">
+                        <div class="trust-card__top">
+                            <div class="trust-card__logo-wrap"><img src="/images/CNN.png" alt="CNN" class="trust-card__logo" loading="lazy" width="38" height="38"></div>
+                            <span class="trust-card__type">Certificación</span>
+                        </div>
+                        <div class="trust-card__number">CNN-2102</div>
+                        <div class="trust-card__divider"></div>
+                        <p class="trust-card__verified"><i class="bi bi-patch-check-fill"></i> Certificación vigente</p>
+                        <h3 class="trust-card__institution">Consejo Nacional de Neumología A.C.</h3>
+                        <p class="trust-card__detail">Competencia clínica auditada · Actualización continua</p>
+                        <a href="https://www.consejoneumologia.org.mx/" target="_blank" rel="noopener" class="trust-card__verify">Verificar en CNN <i class="bi bi-arrow-up-right"></i></a>
                     </div>
-                    <div class="trust-card__number">CNN-2102</div>
-                    <h3 class="trust-card__institution">Consejo Nacional de Neumología A.C.</h3>
-                    <p class="trust-card__detail">Certificación vigente · Competencia clínica auditada</p>
-                    <a href="https://www.consejoneumologia.org.mx/" target="_blank" rel="noopener" class="trust-card__verify">Verificar en CNN <i class="bi bi-arrow-up-right"></i></a>
-                    <span class="trust-card__watermark" aria-hidden="true">03</span>
                 </article>
             </div>
         </div>
@@ -544,10 +547,8 @@
             <h2 class="editorial__title reveal reveal-d1">Diagnóstico <em>preciso</em>,<br>plan <em>claro</em>, vida <em>libre</em>.</h2>
             <div class="editorial__body">
                 <div class="editorial__article reveal reveal-d2">
-                    <p>Soy neumólogo formado en el <strong>Instituto Nacional de Enfermedades Respiratorias (INER)</strong>, el centro de referencia nacional en patología pulmonar. Como neumólogo atiendo todo el espectro de enfermedades respiratorias del adulto: asma, neumonía, apnea del sueño, fibrosis pulmonar, hipertensión pulmonar, cáncer pulmonar, derrames pleurales y secuelas post-COVID.</p>
-                    <p>Adicionalmente, mi <span class="marker">Alta Especialidad se centra en enfermedades obstructivas</span> —principalmente <strong>EPOC</strong>, bronquiectasias y bronquiolitis— con tratamiento experto para dejar de fumar.</p>
-                    <p>Trabajo con un objetivo simple: <strong>que entiendas qué tienes, por qué lo tienes y qué vamos a hacer.</strong> Cada plan se construye sobre evidencia y se adapta a tu vida real — no al revés.</p>
-                    <p>En consulta, tomo el tiempo necesario para escuchar tu historia respiratoria completa, revisar estudios previos sin prisa y proponer una ruta clínica realista que puedas mantener. Sin tecnicismos innecesarios, sin recetas genéricas.</p>
+                    <p>Soy neumólogo formado en el <strong>INER</strong> —el centro de referencia nacional en enfermedades respiratorias— con Alta Especialidad en EPOC. Atiendo el espectro completo de patología pulmonar del adulto: asma, EPOC, apnea del sueño, fibrosis pulmonar, cáncer de pulmón, derrames pleurales y secuelas post-COVID.</p>
+                    <p>En cada consulta me tomo el tiempo necesario para escuchar tu historia, revisar lo que ya traes y darte un plan concreto. <strong>Mi objetivo es simple: que salgas sabiendo exactamente qué tienes, por qué lo tienes y qué vamos a hacer.</strong> <span class="marker">Sin tecnicismos. Sin recetas genéricas.</span> Un plan construido sobre evidencia y pensado para tu vida real.</p>
                 </div>
                 <aside class="editorial__quote reveal reveal-d3">
                     <p class="editorial__quote-text">"Mi prioridad es brindarte una atención experta y humana para cuidar tu salud pulmonar."</p>
@@ -624,41 +625,6 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         5 · DIFERENCIAL CLÍNICO — Feature Triad
-    ============================================================ -->
-    <section class="triad-section">
-        <div class="container">
-            <div class="triad-head">
-                <span class="triad-head__label reveal"><i class="bi bi-stars"></i> Mi diferencial</span>
-                <h2 class="triad-head__title reveal reveal-d1">Por qué <em>aquí</em>, por qué <em>ahora</em></h2>
-                <p class="triad-head__sub reveal reveal-d2">Tres pilares que diferencian la consulta y aseguran que cada plan clínico esté respaldado por la mejor evidencia disponible.</p>
-            </div>
-            <div class="triad-grid">
-                <article class="triad-card reveal">
-                    <span class="triad-card__num">01</span>
-                    <div class="triad-card__icon-wrap"><i class="bi bi-mortarboard-fill"></i></div>
-                    <h3 class="triad-card__title">Formación INER</h3>
-                    <p class="triad-card__desc">Especialidad de neumología en el centro de referencia nacional, con Alta Especialidad en EPOC en proceso.</p>
-                    <div class="triad-card__line"></div>
-                </article>
-                <article class="triad-card reveal reveal-d2">
-                    <span class="triad-card__num">02</span>
-                    <div class="triad-card__icon-wrap" style="background:linear-gradient(135deg,var(--cyan),var(--electric))"><i class="bi bi-patch-check-fill"></i></div>
-                    <h3 class="triad-card__title">CNN-2102 vigente</h3>
-                    <p class="triad-card__desc">Certificación activa por el Consejo Nacional de Neumología — competencia clínica auditada y verificable.</p>
-                    <div class="triad-card__line"></div>
-                </article>
-                <article class="triad-card reveal reveal-d4">
-                    <span class="triad-card__num">03</span>
-                    <div class="triad-card__icon-wrap" style="background:linear-gradient(135deg,var(--accent-purple),var(--electric))"><i class="bi bi-journal-medical"></i></div>
-                    <h3 class="triad-card__title">Guías internacionales</h3>
-                    <p class="triad-card__desc">Cada decisión basada en GOLD, GINA, ATS/ERS, AASM y evidencia revisada por pares.</p>
-                    <div class="triad-card__line"></div>
-                </article>
-            </div>
-        </div>
-    </section>
 
     <!-- ============================================================
          6 · LO QUE TRATO — Bento Grid
