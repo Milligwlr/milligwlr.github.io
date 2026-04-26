@@ -73,9 +73,12 @@ body{
 .brand__halo::after{content:"";position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(108,92,231,.20) 0%,rgba(9,132,227,.14) 40%,rgba(0,206,201,.08) 60%,transparent 75%);filter:blur(28px);z-index:-1;animation:glow 5s ease-in-out infinite;transform:translateZ(-2px)}
 .brand__halo img{width:160px;height:160px;display:block;position:relative;filter:drop-shadow(0 12px 24px rgba(30,53,90,.28));background:transparent;transform:translateZ(0)}
 .ring{position:absolute;border-style:solid;border-width:2px;pointer-events:none;transform-style:preserve-3d;mix-blend-mode:screen}
-.ring--1{inset:-6px;border-color:rgba(9,132,227,.65);border-radius:42% 58% 53% 47% / 51% 47% 53% 49%;animation:orbit1 9s linear infinite}
-.ring--2{inset:-18px;border-width:1.5px;border-color:rgba(108,92,231,.55);border-radius:53% 47% 38% 62% / 49% 56% 44% 51%;animation:orbit2 13s linear infinite}
-.ring--3{inset:-32px;border-width:1.5px;border-color:rgba(0,206,201,.50);border-radius:58% 42% 47% 53% / 41% 53% 47% 59%;animation:orbit3 17s linear infinite}
+.ring--1{inset:-6px;border-color:rgba(9,132,227,.70);border-radius:32% 68% 60% 40% / 65% 35% 65% 35%;animation:orbit1 9s linear infinite,morph1 8s ease-in-out infinite}
+.ring--2{inset:-20px;border-width:1.5px;border-color:rgba(108,92,231,.60);border-radius:65% 35% 28% 72% / 38% 70% 30% 62%;animation:orbit2 13s linear infinite,morph2 11s ease-in-out infinite}
+.ring--3{inset:-36px;border-width:1.5px;border-color:rgba(0,206,201,.55);border-radius:70% 30% 55% 45% / 30% 65% 35% 70%;animation:orbit3 17s linear infinite,morph3 14s ease-in-out infinite}
+@keyframes morph1{0%,100%{border-radius:32% 68% 60% 40% / 65% 35% 65% 35%}50%{border-radius:62% 38% 30% 70% / 35% 70% 30% 65%}}
+@keyframes morph2{0%,100%{border-radius:65% 35% 28% 72% / 38% 70% 30% 62%}50%{border-radius:30% 70% 65% 35% / 70% 30% 70% 30%}}
+@keyframes morph3{0%,100%{border-radius:70% 30% 55% 45% / 30% 65% 35% 70%}50%{border-radius:35% 65% 40% 60% / 65% 30% 65% 35%}}
 @keyframes orbit1{0%{transform:rotateY(0) rotateZ(0)}100%{transform:rotateY(360deg) rotateZ(360deg)}}
 @keyframes orbit2{0%{transform:rotateY(0) rotateZ(0)}100%{transform:rotateY(-360deg) rotateZ(-180deg)}}
 @keyframes orbit3{0%{transform:rotateY(0) rotateZ(0)}100%{transform:rotateY(360deg) rotateZ(-360deg)}}
@@ -257,9 +260,9 @@ body{
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
-  <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Hospital+Santa+Coleta+Saturnino+Herr%C3%A1n+59+San+Jos%C3%A9+Insurgentes+Benito+Ju%C3%A1rez+CDMX" rel="noopener" target="_blank">
-   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-   <span class="btn__lbl">Ubicación del consultorio<span class="btn__sub">Hospital Santa Coleta · Cons. 507</span></span>
+  <a class="btn" href="https://alveos.mx/?utm_source=qr-receta&utm_medium=qr&utm_campaign=home" rel="noopener">
+   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+   <span class="btn__lbl">Sitio web oficial<span class="btn__sub">alveos.mx</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
@@ -295,11 +298,6 @@ body{
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
-  <a class="btn" href="https://alveos.mx/?utm_source=qr-receta&utm_medium=qr&utm_campaign=home" rel="noopener">
-   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
-   <span class="btn__lbl">Sitio web oficial<span class="btn__sub">alveos.mx</span></span>
-   <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-  </a>
  </nav>
 
  <footer class="foot">
