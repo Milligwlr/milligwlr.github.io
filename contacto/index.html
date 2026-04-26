@@ -69,23 +69,41 @@ body{
 
 /* Brand block */
 .brand{display:flex;flex-direction:column;align-items:center;gap:14px;margin:6px 0 4px;text-align:center}
-.brand__halo{position:relative;width:180px;height:180px;display:grid;place-items:center;perspective:1000px;transform-style:preserve-3d}
-.brand__halo::after{content:"";position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(108,92,231,.20) 0%,rgba(9,132,227,.14) 40%,rgba(0,206,201,.08) 60%,transparent 75%);filter:blur(28px);z-index:-1;animation:glow 5s ease-in-out infinite;transform:translateZ(-2px)}
-.brand__halo img{width:160px;height:160px;display:block;position:relative;filter:drop-shadow(0 12px 24px rgba(30,53,90,.28));background:transparent;transform:translateZ(0)}
-.rings{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;transform-style:preserve-3d}
-.rings svg{position:absolute;inset:-30px;width:calc(100% + 60px);height:calc(100% + 60px);overflow:visible;mix-blend-mode:screen;transform-style:preserve-3d}
-.rings svg path{fill:none;stroke-linejoin:round;stroke-linecap:round}
-.rings .s1{animation:orbit1 11s linear infinite}
-.rings .s2{animation:orbit2 15s linear infinite}
-.rings .s3{animation:orbit3 19s linear infinite}
-.rings .s1 path{stroke:rgba(9,132,227,.85);stroke-width:1.6}
-.rings .s2 path{stroke:rgba(108,92,231,.78);stroke-width:1.4}
-.rings .s3 path{stroke:rgba(0,206,201,.72);stroke-width:1.3}
-@keyframes orbit1{0%{transform:rotateY(0) rotateZ(0)}100%{transform:rotateY(360deg) rotateZ(360deg)}}
-@keyframes orbit2{0%{transform:rotateY(0) rotateZ(0)}100%{transform:rotateY(-360deg) rotateZ(-180deg)}}
-@keyframes orbit3{0%{transform:rotateY(0) rotateZ(0)}100%{transform:rotateY(360deg) rotateZ(-360deg)}}
-@media (prefers-color-scheme:dark){.rings svg{mix-blend-mode:plus-lighter}}
-@keyframes glow{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+.brand__halo{position:relative;width:220px;height:220px;display:grid;place-items:center;isolation:isolate}
+/* AI conic aura */
+.brand__halo::before{content:"";position:absolute;inset:-18px;border-radius:50%;background:conic-gradient(from 0deg,rgba(0,206,201,.0) 0deg,rgba(0,206,201,.55) 60deg,rgba(9,132,227,.55) 140deg,rgba(108,92,231,.55) 220deg,rgba(0,206,201,.0) 300deg,rgba(0,206,201,.0) 360deg);filter:blur(20px);opacity:.75;z-index:-2;animation:auraSpin 9s linear infinite}
+/* soft outer glow */
+.brand__halo::after{content:"";position:absolute;inset:-40px;border-radius:50%;background:radial-gradient(circle,rgba(108,92,231,.22) 0%,rgba(9,132,227,.16) 35%,rgba(0,206,201,.10) 60%,transparent 78%);filter:blur(34px);z-index:-3;animation:glow 5s ease-in-out infinite}
+@keyframes auraSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.brand__halo img{width:148px;height:148px;display:block;position:relative;z-index:2;filter:drop-shadow(0 10px 28px rgba(9,132,227,.45)) drop-shadow(0 0 18px rgba(0,206,201,.35));background:transparent}
+/* inner glassy disc behind logo */
+.brand__core{position:absolute;width:172px;height:172px;border-radius:50%;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.65) 0%,rgba(255,255,255,.08) 35%,rgba(9,132,227,.06) 70%,transparent 100%);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:1;box-shadow:inset 0 0 32px rgba(9,132,227,.18),inset 0 0 1px rgba(255,255,255,.6)}
+
+/* Concentric AI rings — SVG dasharray neural style */
+.rings{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.rings svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.rings svg circle{fill:none;stroke-linecap:round;transform-origin:center;transform-box:fill-box}
+.ring-r1{stroke:url(#ringGrad1);stroke-width:1.4;stroke-dasharray:2 7;animation:ringSpinA 22s linear infinite}
+.ring-r2{stroke:url(#ringGrad2);stroke-width:1.2;stroke-dasharray:18 8 3 8;animation:ringSpinB 30s linear infinite}
+.ring-r3{stroke:url(#ringGrad3);stroke-width:1;stroke-dasharray:1 5;opacity:.85;animation:ringSpinA 40s linear infinite reverse}
+.ring-r4{stroke:rgba(255,255,255,.18);stroke-width:.8;stroke-dasharray:1 3}
+@keyframes ringSpinA{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes ringSpinB{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+
+/* Orbiting nodes */
+.orbit{position:absolute;inset:0;animation:orbitSpin 14s linear infinite}
+.orbit--rev{animation:orbitSpin 18s linear infinite reverse}
+.orbit__node{position:absolute;width:8px;height:8px;border-radius:50%;background:radial-gradient(circle,#fff 0%,var(--cyan) 60%,transparent 100%);box-shadow:0 0 12px var(--cyan),0 0 4px #fff;top:50%;left:50%;margin:-4px 0 0 -4px;transform-origin:center}
+.orbit__node--p{background:radial-gradient(circle,#fff 0%,var(--purple) 60%,transparent 100%);box-shadow:0 0 12px var(--purple),0 0 4px #fff}
+.orbit__node--e{background:radial-gradient(circle,#fff 0%,var(--electric) 60%,transparent 100%);box-shadow:0 0 12px var(--electric),0 0 4px #fff}
+.n1{transform:translate(96px,0)}
+.n2{transform:rotate(120deg) translate(96px,0)}
+.n3{transform:rotate(240deg) translate(96px,0)}
+.n4{transform:rotate(60deg) translate(110px,0)}
+.n5{transform:rotate(200deg) translate(110px,0)}
+@keyframes orbitSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+@keyframes glow{0%,100%{opacity:.65;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
 
 .tag{display:inline-flex;align-items:center;gap:8px;background:rgba(9,132,227,.07);border:1px solid rgba(9,132,227,.20);border-radius:100px;padding:7px 14px;font-size:.66rem;font-weight:700;color:var(--electric);letter-spacing:.18em;text-transform:uppercase}
 .tag .dot{width:6px;height:6px;border-radius:50%;background:var(--electric);box-shadow:0 0 0 4px rgba(9,132,227,.18);animation:pulse 2.4s ease-in-out infinite}
@@ -147,6 +165,16 @@ body{
 /* Telemedicina accent */
 .btn--tele .btn__ic{background:linear-gradient(135deg,#ede9fe 0%,#ddd6fe 100%);color:var(--purple)}
 .btn--tele::before{background:linear-gradient(180deg,var(--purple),var(--electric))}
+
+/* Instagram accent */
+.btn--ig .btn__ic{background:linear-gradient(135deg,#feda75 0%,#fa7e1e 35%,#d62976 65%,#962fbf 100%);color:#fff}
+.btn--ig::before{background:linear-gradient(180deg,#fa7e1e,#d62976,#962fbf)}
+.btn--ig:hover{border-color:rgba(214,41,118,.30)}
+
+/* X (Twitter) accent */
+.btn--x .btn__ic{background:linear-gradient(135deg,#1a1a1a 0%,#000 100%);color:#fff}
+.btn--x::before{background:linear-gradient(180deg,#1a1a1a,#000)}
+.btn--x:hover{border-color:rgba(0,0,0,.35)}
 
 /* Section divider */
 .divider{display:flex;align-items:center;gap:12px;width:100%;margin:14px 0 2px;color:var(--soft);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700}
@@ -219,13 +247,41 @@ body{
  <header class="brand">
   <div class="brand__halo">
    <div class="rings" aria-hidden="true">
-    <svg class="s3" viewBox="-150 -150 300 300"><path d="M129.8,0.0 L129.9,4.5 L129.1,9.0 L127.5,13.4 L125.1,17.6 L122.1,21.5 L118.6,25.2 L114.9,28.6 L111.0,31.8 L107.2,34.8 L103.6,37.7 L100.4,40.6 L97.6,43.5 L95.4,46.5 L93.7,49.8 L92.4,53.4 L91.7,57.3 L91.2,61.5 L90.9,66.1 L90.7,70.9 L90.4,75.9 L89.9,80.9 L89.0,85.9 L87.6,90.7 L85.6,95.1 L83.1,99.0 L80.0,102.4 L76.3,105.1 L72.2,107.0 L67.7,108.3 L62.8,108.8 L57.8,108.8 L52.8,108.3 L47.8,107.4 L42.9,106.3 L38.3,105.2 L33.9,104.3 L29.7,103.6 L25.8,103.4 L22.0,103.7 L18.4,104.6 L14.9,106.0 L11.3,108.0 L7.7,110.4 L3.9,113.1 L0.0,116.0 L-4.1,118.8 L-8.5,121.5 L-13.0,123.7 L-17.6,125.4 L-22.3,126.5 L-26.9,126.7 L-31.4,126.1 L-35.8,124.7 L-39.8,122.5 L-43.5,119.5 L-46.8,115.9 L-49.8,111.9 L-52.4,107.5 L-54.8,103.0 L-56.9,98.6 L-59.0,94.3 L-61.0,90.4 L-63.1,86.9 L-65.5,83.8 L-68.1,81.2 L-71.2,79.0 L-74.6,77.3 L-78.5,75.8 L-82.7,74.5 L-87.3,73.2 L-92.0,71.9 L-96.9,70.4 L-101.6,68.5 L-106.1,66.3 L-110.2,63.6 L-113.7,60.5 L-116.6,56.9 L-118.8,52.9 L-120.1,48.5 L-120.6,43.9 L-120.4,39.1 L-119.5,34.3 L-118.1,29.4 L-116.2,24.7 L-114.1,20.1 L-112.0,15.7 L-110.0,11.6 L-108.3,7.6 L-107.0,3.7 L-106.2,0.0 L-106.0,-3.7 L-106.3,-7.4 L-107.3,-11.3 L-108.6,-15.3 L-110.3,-19.5 L-112.2,-23.9 L-114.1,-28.5 L-115.9,-33.2 L-117.3,-38.1 L-118.2,-43.0 L-118.4,-47.9 L-118.0,-52.5 L-116.7,-56.9 L-114.7,-61.0 L-111.9,-64.6 L-108.5,-67.8 L-104.5,-70.5 L-100.0,-72.6 L-95.2,-74.4 L-90.4,-75.8 L-85.5,-77.0 L-80.8,-78.0 L-76.4,-79.1 L-72.3,-80.3 L-68.6,-81.7 L-65.3,-83.6 L-62.4,-85.9 L-59.8,-88.6 L-57.4,-91.9 L-55.2,-95.5 L-52.9,-99.6 L-50.7,-103.9 L-48.2,-108.2 L-45.5,-112.5 L-42.4,-116.6 L-39.0,-120.2 L-35.3,-123.2 L-31.3,-125.6 L-27.0,-127.1 L-22.5,-127.8 L-17.9,-127.7 L-13.3,-126.7 L-8.7,-125.0 L-4.3,-122.8 L-0.0,-120.0 L4.1,-117.0 L8.0,-114.0 L11.7,-111.0 L15.2,-108.3 L18.7,-106.0 L22.1,-104.1 L25.6,-102.9 L29.3,-102.2 L33.1,-102.0 L37.2,-102.3 L41.6,-102.9 L46.2,-103.7 L51.0,-104.6 L56.0,-105.3 L61.1,-105.8 L66.1,-105.8 L71.0,-105.2 L75.6,-104.1 L79.8,-102.2 L83.6,-99.6 L86.7,-96.3 L89.3,-92.5 L91.3,-88.1 L92.7,-83.4 L93.5,-78.5 L93.9,-73.4 L94.1,-68.4 L94.1,-63.4 L94.1,-58.8 L94.2,-54.4 L94.6,-50.3 L95.5,-46.6 L96.8,-43.1 L98.7,-39.9 L101.1,-36.8 L104.0,-33.8 L107.4,-30.8 L110.9,-27.7 L114.6,-24.4 L118.3,-20.9 L121.7,-17.1 L124.7,-13.1 L127.2,-8.9 L128.9,-4.5 Z"/></svg>
-    <svg class="s2" viewBox="-150 -150 300 300"><path d="M111.6,0.0 L114.1,4.0 L115.9,8.1 L116.8,12.3 L116.8,16.4 L115.9,20.4 L114.1,24.3 L111.5,27.8 L108.1,31.0 L104.2,33.8 L99.7,36.3 L95.0,38.4 L90.2,40.1 L85.4,41.6 L80.8,43.0 L76.6,44.2 L72.8,45.5 L69.5,46.9 L66.8,48.5 L64.6,50.5 L63.0,52.9 L61.9,55.8 L61.2,59.1 L60.8,63.0 L60.5,67.2 L60.3,71.9 L60.0,76.9 L59.5,81.9 L58.7,87.0 L57.5,92.0 L55.8,96.6 L53.6,100.8 L50.9,104.4 L47.8,107.3 L44.2,109.4 L40.3,110.6 L36.1,111.0 L31.7,110.5 L27.2,109.1 L22.8,107.1 L18.4,104.5 L14.3,101.5 L10.3,98.2 L6.6,94.8 L3.2,91.5 L0.0,88.4 L-3.0,85.7 L-5.8,83.6 L-8.6,82.1 L-11.4,81.2 L-14.3,81.0 L-17.3,81.5 L-20.6,82.6 L-24.1,84.1 L-28.0,86.1 L-32.1,88.2 L-36.5,90.4 L-41.2,92.5 L-46.0,94.4 L-50.9,95.8 L-55.8,96.6 L-60.5,96.9 L-65.0,96.3 L-69.0,95.0 L-72.6,93.0 L-75.7,90.2 L-78.1,86.7 L-79.8,82.7 L-80.9,78.1 L-81.4,73.3 L-81.3,68.2 L-80.7,63.1 L-79.9,58.0 L-78.8,53.1 L-77.6,48.5 L-76.6,44.2 L-75.8,40.3 L-75.3,36.7 L-75.4,33.6 L-76.0,30.7 L-77.3,28.1 L-79.2,25.7 L-81.8,23.5 L-84.9,21.2 L-88.5,18.8 L-92.4,16.3 L-96.6,13.6 L-100.7,10.6 L-104.7,7.3 L-108.4,3.8 L-111.6,0.0 L-114.1,-4.0 L-115.9,-8.1 L-116.8,-12.3 L-116.8,-16.4 L-115.9,-20.4 L-114.1,-24.3 L-111.5,-27.8 L-108.1,-31.0 L-104.2,-33.8 L-99.7,-36.3 L-95.0,-38.4 L-90.2,-40.1 L-85.4,-41.6 L-80.8,-43.0 L-76.6,-44.2 L-72.8,-45.5 L-69.5,-46.9 L-66.8,-48.5 L-64.6,-50.5 L-63.0,-52.9 L-61.9,-55.8 L-61.2,-59.1 L-60.8,-63.0 L-60.5,-67.2 L-60.3,-71.9 L-60.0,-76.9 L-59.5,-81.9 L-58.7,-87.0 L-57.5,-92.0 L-55.8,-96.6 L-53.6,-100.8 L-50.9,-104.4 L-47.8,-107.3 L-44.2,-109.4 L-40.3,-110.6 L-36.1,-111.0 L-31.7,-110.5 L-27.2,-109.1 L-22.8,-107.1 L-18.4,-104.5 L-14.3,-101.5 L-10.3,-98.2 L-6.6,-94.8 L-3.2,-91.5 L-0.0,-88.4 L3.0,-85.7 L5.8,-83.6 L8.6,-82.1 L11.4,-81.2 L14.3,-81.0 L17.3,-81.5 L20.6,-82.6 L24.1,-84.1 L28.0,-86.1 L32.1,-88.2 L36.5,-90.4 L41.2,-92.5 L46.0,-94.4 L50.9,-95.8 L55.8,-96.6 L60.5,-96.9 L65.0,-96.3 L69.0,-95.0 L72.6,-93.0 L75.7,-90.2 L78.1,-86.7 L79.8,-82.7 L80.9,-78.1 L81.4,-73.3 L81.3,-68.2 L80.7,-63.1 L79.9,-58.0 L78.8,-53.1 L77.6,-48.5 L76.6,-44.2 L75.8,-40.3 L75.3,-36.7 L75.4,-33.6 L76.0,-30.7 L77.3,-28.1 L79.2,-25.7 L81.8,-23.5 L84.9,-21.2 L88.5,-18.8 L92.4,-16.3 L96.6,-13.6 L100.7,-10.6 L104.7,-7.3 L108.4,-3.8 Z"/></svg>
-    <svg class="s1" viewBox="-150 -150 300 300"><path d="M82.0,0.0 L84.7,3.0 L87.3,6.1 L89.5,9.4 L91.4,12.8 L92.8,16.4 L93.8,19.9 L94.2,23.5 L94.0,26.9 L93.2,30.3 L91.9,33.4 L90.0,36.3 L87.6,39.0 L84.7,41.3 L81.5,43.3 L77.9,45.0 L74.2,46.4 L70.3,47.4 L66.3,48.2 L62.4,48.8 L58.6,49.2 L55.0,49.5 L51.6,49.8 L48.4,50.2 L45.6,50.6 L43.0,51.3 L40.8,52.2 L38.8,53.4 L37.0,54.9 L35.5,56.8 L34.1,59.0 L32.7,61.6 L31.4,64.5 L30.1,67.6 L28.7,71.0 L27.1,74.4 L25.3,78.0 L23.4,81.5 L21.2,84.9 L18.7,88.0 L16.0,90.9 L13.1,93.3 L10.0,95.3 L6.8,96.8 L3.4,97.7 L0.0,98.0 L-3.4,97.7 L-6.8,96.8 L-10.0,95.3 L-13.1,93.3 L-16.0,90.9 L-18.7,88.0 L-21.2,84.9 L-23.4,81.5 L-25.3,78.0 L-27.1,74.4 L-28.7,71.0 L-30.1,67.6 L-31.4,64.5 L-32.7,61.6 L-34.1,59.0 L-35.5,56.8 L-37.0,54.9 L-38.8,53.4 L-40.8,52.2 L-43.0,51.3 L-45.6,50.6 L-48.4,50.2 L-51.6,49.8 L-55.0,49.5 L-58.6,49.2 L-62.4,48.8 L-66.3,48.2 L-70.3,47.4 L-74.2,46.4 L-77.9,45.0 L-81.5,43.3 L-84.7,41.3 L-87.6,39.0 L-90.0,36.3 L-91.9,33.4 L-93.2,30.3 L-94.0,26.9 L-94.2,23.5 L-93.8,19.9 L-92.8,16.4 L-91.4,12.8 L-89.5,9.4 L-87.3,6.1 L-84.7,3.0 L-82.0,0.0 L-79.2,-2.8 L-76.3,-5.3 L-73.6,-7.7 L-71.0,-10.0 L-68.7,-12.1 L-66.7,-14.2 L-65.0,-16.2 L-63.7,-18.3 L-62.8,-20.4 L-62.2,-22.7 L-62.1,-25.1 L-62.3,-27.7 L-62.7,-30.6 L-63.3,-33.7 L-64.1,-37.0 L-64.9,-40.6 L-65.7,-44.3 L-66.3,-48.2 L-66.8,-52.2 L-67.0,-56.2 L-66.9,-60.2 L-66.4,-64.1 L-65.5,-67.8 L-64.1,-71.2 L-62.4,-74.3 L-60.2,-77.0 L-57.6,-79.3 L-54.7,-81.0 L-51.4,-82.3 L-47.9,-83.0 L-44.3,-83.2 L-40.5,-82.9 L-36.6,-82.2 L-32.8,-81.1 L-29.0,-79.7 L-25.3,-78.0 L-21.8,-76.2 L-18.5,-74.3 L-15.4,-72.4 L-12.5,-70.6 L-9.7,-69.1 L-7.1,-67.8 L-4.7,-66.8 L-2.3,-66.2 L-0.0,-66.0 L2.3,-66.2 L4.7,-66.8 L7.1,-67.8 L9.7,-69.1 L12.5,-70.6 L15.4,-72.4 L18.5,-74.3 L21.8,-76.2 L25.3,-78.0 L29.0,-79.7 L32.8,-81.1 L36.6,-82.2 L40.5,-82.9 L44.3,-83.2 L47.9,-83.0 L51.4,-82.3 L54.7,-81.0 L57.6,-79.3 L60.2,-77.0 L62.4,-74.3 L64.1,-71.2 L65.5,-67.8 L66.4,-64.1 L66.9,-60.2 L67.0,-56.2 L66.8,-52.2 L66.3,-48.2 L65.7,-44.3 L64.9,-40.6 L64.1,-37.0 L63.3,-33.7 L62.7,-30.6 L62.3,-27.7 L62.1,-25.1 L62.2,-22.7 L62.8,-20.4 L63.7,-18.3 L65.0,-16.2 L66.7,-14.2 L68.7,-12.1 L71.0,-10.0 L73.6,-7.7 L76.3,-5.3 L79.2,-2.8 Z"/></svg>
+    <svg viewBox="-110 -110 220 220">
+     <defs>
+      <linearGradient id="ringGrad1" x1="0" y1="0" x2="1" y2="1">
+       <stop offset="0%" stop-color="#00cec9" stop-opacity=".95"/>
+       <stop offset="50%" stop-color="#0984e3" stop-opacity=".9"/>
+       <stop offset="100%" stop-color="#6c5ce7" stop-opacity=".95"/>
+      </linearGradient>
+      <linearGradient id="ringGrad2" x1="1" y1="0" x2="0" y2="1">
+       <stop offset="0%" stop-color="#6c5ce7" stop-opacity=".9"/>
+       <stop offset="100%" stop-color="#00cec9" stop-opacity=".75"/>
+      </linearGradient>
+      <linearGradient id="ringGrad3" x1="0" y1="1" x2="1" y2="0">
+       <stop offset="0%" stop-color="#74b9ff" stop-opacity=".75"/>
+       <stop offset="100%" stop-color="#a78bfa" stop-opacity=".7"/>
+      </linearGradient>
+     </defs>
+     <circle class="ring-r4" cx="0" cy="0" r="78"/>
+     <circle class="ring-r3" cx="0" cy="0" r="92"/>
+     <circle class="ring-r2" cx="0" cy="0" r="100"/>
+     <circle class="ring-r1" cx="0" cy="0" r="106"/>
+    </svg>
+    <div class="orbit">
+     <span class="orbit__node n1"></span>
+     <span class="orbit__node orbit__node--p n2"></span>
+     <span class="orbit__node orbit__node--e n3"></span>
+    </div>
+    <div class="orbit orbit--rev">
+     <span class="orbit__node orbit__node--e n4"></span>
+     <span class="orbit__node orbit__node--p n5"></span>
+    </div>
    </div>
+   <div class="brand__core" aria-hidden="true"></div>
    <picture>
     <source srcset="logo.webp" type="image/webp">
-    <img src="logo.png" alt="ALVEOS" width="160" height="160" decoding="async" fetchpriority="high">
+    <img src="logo.png" alt="ALVEOS" width="148" height="148" decoding="async" fetchpriority="high">
    </picture>
   </div>
   <span class="tag"><span class="dot"></span>ALVEOS · Neumología</span>
@@ -284,15 +340,27 @@ body{
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
-  <a class="btn" href="https://alveos.mx/servicios/?utm_source=qr-receta&utm_medium=qr&utm_campaign=servicios" rel="noopener">
+  <a class="btn" href="https://alveos.mx/?utm_source=qr-receta&utm_medium=qr&utm_campaign=servicios#servicios" rel="noopener">
    <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg></span>
    <span class="btn__lbl">Servicios y estudios<span class="btn__sub">Espirometría, polisomnografía, broncoscopía</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
-  <a class="btn" href="https://alveos.mx/enfermedades/?utm_source=qr-receta&utm_medium=qr&utm_campaign=enfermedades" rel="noopener">
+  <a class="btn" href="https://alveos.mx/?utm_source=qr-receta&utm_medium=qr&utm_campaign=enfermedades#enfermedades" rel="noopener">
    <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></span>
    <span class="btn__lbl">Enfermedades respiratorias<span class="btn__sub">EPOC, asma, apnea, fibrosis y más</span></span>
+   <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+  </a>
+
+  <a class="btn btn--ig" href="https://www.instagram.com/dr.williamlara/" rel="noopener" target="_blank">
+   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span>
+   <span class="btn__lbl">Instagram profesional<span class="btn__sub">@dr.williamlara · contenido médico</span></span>
+   <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+  </a>
+
+  <a class="btn btn--x" href="https://x.com/Milligw" rel="noopener" target="_blank">
+   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
+   <span class="btn__lbl">Cuenta en X (Twitter)<span class="btn__sub">@Milligw · artículos médicos recientes</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 

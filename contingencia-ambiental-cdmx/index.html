@@ -226,6 +226,43 @@ footer.site-footer p{margin:4px 0}
 
 /* TOC active state logic */
 .toc-nav a{transition:all .3s}
+
+/* ===== HERO POLISH ===== */
+.hero{padding:90px 0 90px}
+.hero__particles{position:absolute;inset:0;z-index:1;pointer-events:none;background-image:radial-gradient(circle at 18% 30%,rgba(116,185,255,.18) 0,transparent 1.2px),radial-gradient(circle at 72% 65%,rgba(116,185,255,.12) 0,transparent 1.4px),radial-gradient(circle at 42% 80%,rgba(255,255,255,.10) 0,transparent 1.2px),radial-gradient(circle at 88% 20%,rgba(255,153,149,.16) 0,transparent 1.4px);background-size:280px 280px,360px 360px,420px 420px,520px 520px;animation:particlesDrift 28s linear infinite;opacity:.85;mix-blend-mode:screen}
+@keyframes particlesDrift{from{background-position:0 0,0 0,0 0,0 0}to{background-position:280px 140px,-360px 220px,420px -180px,-520px -260px}}
+.hero h1 em{position:relative;background-size:200% 200%;animation:gradientShift 6s ease-in-out infinite}
+@keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.hero__particles,.hero__aurora,.hero__smog{animation:none!important}}
+
+/* ===== SECTION DIVIDER ===== */
+.sect-div{position:absolute;left:0;right:0;height:48px;pointer-events:none;z-index:1}
+.sect-div--top{top:-1px;background:linear-gradient(180deg,currentColor 0%,transparent 100%);opacity:.5}
+.sect-div--bot{bottom:-1px;background:linear-gradient(0deg,currentColor 0%,transparent 100%);opacity:.5}
+
+/* ===== ENHANCED CARD HOVER ===== */
+.fase-card,.stat-card,.plan-panel,.alert-urgent{will-change:transform}
+.fase-card::after,.stat-card::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),rgba(9,132,227,.08),transparent 40%);opacity:0;transition:opacity .4s var(--ease);pointer-events:none}
+.fase-card:hover::after,.stat-card:hover::after{opacity:1}
+
+/* ===== ENFERMEDAD CARD GLOW ===== */
+#enfermedades .col-md-6 > div{position:relative;overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+#enfermedades .col-md-6 > div::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent 40%,rgba(9,132,227,.05) 50%,transparent 60%);background-size:200% 200%;background-position:200% 200%;transition:background-position .9s var(--ease);pointer-events:none}
+#enfermedades .col-md-6 > div:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+#enfermedades .col-md-6 > div:hover::before{background-position:-50% -50%}
+
+/* ===== IMECA SCALE LIFT ===== */
+.imeca-level{transition:transform .35s var(--ease),filter .35s var(--ease)}
+.imeca-level:hover{transform:translateY(-4px);filter:brightness(1.08)}
+
+/* ===== PLAN TABS PILL ===== */
+.plan-tab{border-radius:100px;transition:background .3s,color .3s,transform .3s}
+.plan-tab:hover{background:rgba(9,132,227,.06)}
+.plan-tab.active{background:rgba(9,132,227,.10)}
 </style>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -261,9 +298,10 @@ footer.site-footer p{margin:4px 0}
 <section class="hero">
   <div class="hero__smog"></div>
   <div class="hero__aurora"></div>
+  <div class="hero__particles"></div>
   <div class="container">
-    <div class="row">
-      <div class="col-lg-10 hero__content">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7 hero__content">
         <div class="hero__badge"><span class="dot"></span> Guía actualizada · Temporada 2026</div>
         <h1>Contingencia ambiental en CDMX: qué hacer si tienes <em>asma, EPOC o problemas respiratorios</em></h1>
         <p class="hero__lead">Plan clínico por enfermedad, umbrales IMECA oficiales y señales de alarma explicadas por un neumólogo formado en el INER. Información basada en datos oficiales de CAMe, SEDEMA y guías internacionales GOLD/GINA.</p>
@@ -277,11 +315,9 @@ footer.site-footer p{margin:4px 0}
           <a class="btn-ghost-cta" href="https://cal.com/" target="_blank" rel="noopener"><i class="far fa-calendar"></i> Agendar consulta preventiva</a>
         </div>
       </div>
-    </div>
-
-    <!-- AQI live widget — Open-Meteo (sin token) -->
-    <div class="hero__aqi-wrap">
-      <a id="aqiLiveWidget" href="https://aqicn.org/city/mexico/" target="_blank" rel="noopener" aria-label="Calidad del aire en CDMX en tiempo real (AQICN)" class="aqi-card">
+      <div class="col-lg-5 hero__aqi-col">
+        <!-- AQI live widget — Open-Meteo (sin token) -->
+        <a id="aqiLiveWidget" href="https://aqicn.org/city/mexico/" target="_blank" rel="noopener" aria-label="Calidad del aire en CDMX en tiempo real (AQICN)" class="aqi-card">
         <div class="aqi-card__header">
           <span class="aqi-live-pulse" aria-hidden="true"><span class="aqi-live-pulse__dot"></span>Live</span>
           <span class="aqi-card__loc">AQI · CDMX</span>
@@ -309,9 +345,8 @@ footer.site-footer p{margin:4px 0}
 </section>
 
 <style>
-.hero__aqi-wrap{position:absolute;top:50%;right:max(24px,calc((100vw - 1140px)/2 + 24px));transform:translateY(-50%);z-index:3;pointer-events:none}
-.hero__aqi-wrap .aqi-card{pointer-events:auto}
-.aqi-card{display:block;width:280px;background:linear-gradient(155deg,rgba(20,18,28,.74) 0%,rgba(28,22,32,.62) 100%);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:20px 22px 16px;text-decoration:none;color:#fff;transition:transform .3s,box-shadow .3s,border-color .3s;box-shadow:0 18px 50px -20px rgba(0,0,0,.6)}
+.hero__aqi-col{position:relative;z-index:3;display:flex;justify-content:center}
+.aqi-card{display:block;width:100%;max-width:320px;background:linear-gradient(155deg,rgba(20,18,28,.78) 0%,rgba(28,22,32,.66) 100%);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:20px 22px 16px;text-decoration:none;color:#fff;transition:transform .3s,box-shadow .3s,border-color .3s;box-shadow:0 22px 60px -20px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.04) inset}
 .aqi-card:hover{transform:translateY(-3px);border-color:rgba(255,200,150,.30);box-shadow:0 24px 60px -20px rgba(0,0,0,.7);color:#fff}
 .aqi-card__header{display:flex;align-items:center;gap:10px;margin-bottom:18px}
 .aqi-live-pulse{display:inline-flex;align-items:center;gap:5px;padding:2px 8px 2px 6px;border-radius:999px;background:rgba(16,185,129,.18);border:1px solid rgba(16,185,129,.42);font-size:.6rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#34d399;line-height:1;flex-shrink:0}
@@ -329,8 +364,8 @@ footer.site-footer p{margin:4px 0}
 .aqi-card__footer{margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.14);font-size:.74rem;font-weight:700;color:#74b9ff;display:flex;align-items:center;gap:6px;letter-spacing:.03em}
 @keyframes aqiLivePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(1.4)}}
 @media(max-width:991px){
-  .hero__aqi-wrap{position:static;transform:none;margin:32px auto 0;display:flex;justify-content:center}
-  .aqi-card{width:100%;max-width:340px}
+  .hero__aqi-col{margin-top:8px}
+  .aqi-card{max-width:360px}
 }
 @media(prefers-reduced-motion:reduce){.aqi-live-pulse__dot{animation:none}}
 </style>
@@ -941,6 +976,16 @@ function updateTOC() {
 }
 window.addEventListener('scroll', updateTOC, {passive:true});
 updateTOC();
+
+// Scroll reveal
+document.querySelectorAll('.section-title, .section-lead, .stat-card, .fase-card, .imeca-scale, .plan-tabs, .plan-panel, .alert-urgent, .cta-banner, #enfermedades .col-md-6 > div, #prevencion .col-md-6 > div').forEach(el=>el.classList.add('reveal'));
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -10% 0px',threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Pointer-tracked card glow
+document.querySelectorAll('.fase-card, .stat-card').forEach(card=>{
+  card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect();card.style.setProperty('--mx',(e.clientX-r.left)+'px');card.style.setProperty('--my',(e.clientY-r.top)+'px')});
+});
 </script>
 </body>
 </html>
