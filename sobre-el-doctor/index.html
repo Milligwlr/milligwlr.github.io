@@ -326,10 +326,10 @@
     .gcard:hover::before{transform:scaleX(1)}
     .gcard__head{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px dashed rgba(9,132,227,.14)}
     .gcard__icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#f4f9ff,#e9f3ff);display:flex;align-items:center;justify-content:center;color:var(--electric);font-size:.95rem;flex-shrink:0;border:1px solid rgba(9,132,227,.14)}
-    .gcard__cat{font-size:.7rem;font-weight:800;color:var(--navy);letter-spacing:.05em;line-height:1.25}
-    .gcard__cat-sub{font-size:.62rem;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:.16em;margin-top:2px}
+    .gcard__cat{font-size:.8rem;font-weight:800;color:var(--navy);letter-spacing:.05em;line-height:1.25}
+    .gcard__cat-sub{font-size:.7rem;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:.16em;margin-top:2px}
     .gcard__list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px}
-    .gcard__list li{display:flex;align-items:center;gap:8px;font-size:.78rem;color:#3a4a5c;font-weight:600;line-height:1.35}
+    .gcard__list li{display:flex;align-items:center;gap:8px;font-size:.86rem;color:#3a4a5c;font-weight:600;line-height:1.35}
     .gcard__list li::before{content:'';width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,var(--electric),var(--cyan));flex-shrink:0;box-shadow:0 0 0 2px rgba(9,132,227,.1)}
     .gcard__list li strong{color:var(--navy);font-weight:800}
 
@@ -544,7 +544,7 @@
             <h2 class="editorial__title reveal reveal-d1">Diagnóstico <em>preciso</em>,<br>plan <em>claro</em>, vida <em>libre</em>.</h2>
             <div class="editorial__body">
                 <div class="editorial__article reveal reveal-d2">
-                    <p>Soy neumólogo formado en el <strong>Instituto Nacional de Enfermedades Respiratorias (INER)</strong>, el centro de referencia nacional en patología pulmonar. Como neumólogo atiendo todo el espectro de enfermedades respiratorias del adulto: asma, neumonía, apnea del sueño, fibrosis pulmonar, hipertensión pulmonar, cáncer broncogénico, derrames pleurales y secuelas pos-COVID.</p>
+                    <p>Soy neumólogo formado en el <strong>Instituto Nacional de Enfermedades Respiratorias (INER)</strong>, el centro de referencia nacional en patología pulmonar. Como neumólogo atiendo todo el espectro de enfermedades respiratorias del adulto: asma, neumonía, apnea del sueño, fibrosis pulmonar, hipertensión pulmonar, cáncer pulmonar, derrames pleurales y secuelas post-COVID.</p>
                     <p>Adicionalmente, mi <span class="marker">Alta Especialidad se centra en enfermedades obstructivas</span> —principalmente <strong>EPOC</strong>, bronquiectasias y bronquiolitis— con tratamiento experto para dejar de fumar.</p>
                     <p>Trabajo con un objetivo simple: <strong>que entiendas qué tienes, por qué lo tienes y qué vamos a hacer.</strong> Cada plan se construye sobre evidencia y se adapta a tu vida real — no al revés.</p>
                     <p>En consulta, tomo el tiempo necesario para escuchar tu historia respiratoria completa, revisar estudios previos sin prisa y proponer una ruta clínica realista que puedas mantener. Sin tecnicismos innecesarios, sin recetas genéricas.</p>
@@ -578,7 +578,7 @@
 
                 <article class="tl-item tl-item--left reveal">
                     <div class="tl-item__card">
-                        <div class="tl-item__year">UNAM · BUAP</div>
+                        <div class="tl-item__year">BUAP</div>
                         <h3 class="tl-item__title">Médico Cirujano</h3>
                         <p class="tl-item__org">Formación de pregrado con título por la Benemérita Universidad Autónoma de Puebla y cédula profesional por la SEP.</p>
                     </div>
@@ -607,8 +607,8 @@
                     <div class="tl-item__node"><div class="tl-item__dot tl-item__dot--epoc"><i class="bi bi-lungs-fill"></i></div></div>
                     <div class="tl-item__card tl-item__card--epoc">
                         <div class="tl-item__year">INER · Alta Especialidad</div>
-                        <h3 class="tl-item__title"><span class="tl-epoc-glow">EPOC</span> y enf. obstructivas <span style="font-weight:500;color:rgba(255,255,255,.5);font-size:.86rem;display:block;margin-top:2px">(en formación)</span></h3>
-                        <p class="tl-item__org">Núcleo en <strong style="color:#fff">EPOC</strong>, con manejo experto también de <strong style="color:#fff">bronquiectasias</strong> y <strong style="color:#fff">bronquiolitis</strong>. Incluye tratamiento médico avanzado para dejar de fumar y rehabilitación pulmonar bajo guías GOLD.</p>
+                        <h3 class="tl-item__title"><span class="tl-epoc-glow">EPOC</span> y enfermedades obstructivas <span style="font-weight:500;color:rgba(255,255,255,.5);font-size:.86rem;display:block;margin-top:2px">(en formación)</span></h3>
+                        <p class="tl-item__org">Núcleo en <strong style="color:#fff">EPOC</strong>, con manejo experto de <strong style="color:#fff">bronquiectasias</strong> y <strong style="color:#fff">bronquiolitis</strong>. Enfocado en casos difíciles o raros que requieren una evaluación especializada de tercer nivel.</p>
                     </div>
                 </article>
 
@@ -755,6 +755,13 @@
                     <span class="bento-tile__arrow"><i class="bi bi-arrow-up-right"></i></span>
                     <h3 class="bento-tile__name">Derrame pleural</h3>
                     <p class="bento-tile__hint">Diagnóstico, drenaje y catéter pleural.</p>
+                </a>
+
+                <a class="bento-tile" href="/enfermedades/bronquiectasias/" data-tilt>
+                    <span class="bento-tile__icon"><i class="bi bi-arrow-repeat"></i></span>
+                    <span class="bento-tile__arrow"><i class="bi bi-arrow-up-right"></i></span>
+                    <h3 class="bento-tile__name">Bronquiectasias</h3>
+                    <p class="bento-tile__hint">Manejo experto de vía aérea crónica dilatada.</p>
                 </a>
             </div>
 
@@ -953,9 +960,9 @@
          8 · CTA BAND (idéntico a landing)
     ============================================================ -->
     <section class="cta-band text-center" style="padding:80px 0">
-        <canvas class="cta-band__canvas" id="ctaSparkles"></canvas>
+        <canvas class="cta-band__canvas" id="ctaSparkles" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0"></canvas>
         <div class="cta-band__glow-line"></div>
-        <div class="container cta-band-content reveal">
+        <div class="container cta-band-content reveal" style="position:relative;z-index:1">
             <p class="mb-3" style="color:rgba(116,185,255,.7);font-size:.82rem;font-weight:700;letter-spacing:3px;text-transform:uppercase">No esperes a que empeore</p>
             <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-.03em;line-height:1.15">Tu respiración no debería<br>ser una limitación</h2>
             <p class="mb-5 mx-auto" style="color:rgba(255,255,255,.5);font-size:1.08rem;max-width:520px;line-height:1.75">Miles de pacientes ya recuperaron su calidad de vida. Una consulta puede ser el inicio de la tuya.</p>
