@@ -74,7 +74,12 @@ h1,h2,h3,h4{font-weight:800;color:var(--navy);letter-spacing:-.02em}
 .nav-back:hover{color:var(--electric)}
 
 /* ===== HERO ===== */
-.hero{position:relative;min-height:78vh;display:flex;align-items:center;overflow:hidden;background:linear-gradient(135deg,#0a1628 0%,#122040 50%,#1e3799 100%);color:#fff;padding:80px 0 60px}
+.hero{position:relative;min-height:78vh;display:flex;align-items:center;overflow:hidden;color:#fff;padding:80px 0 60px;
+  background:
+    radial-gradient(ellipse 95% 80% at 50% 115%, rgba(16,185,129,.30) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 60% at 85% -10%, rgba(110,231,183,.18) 0%, transparent 55%),
+    linear-gradient(180deg, #3a5670 0%, #4a5872 50%, #3d6450 100%)}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:55%;pointer-events:none;z-index:0;background:linear-gradient(180deg,transparent 0%,rgba(234,88,12,.12) 45%,rgba(180,60,40,.20) 80%,rgba(120,40,30,.30) 100%);mix-blend-mode:soft-light}
 .hero__smog{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5}
 .hero__smog::before{content:"";position:absolute;top:10%;left:-10%;width:60vw;height:60vw;border-radius:50%;background:radial-gradient(circle,rgba(214,48,49,.25) 0%,transparent 60%);animation:smogDrift 14s ease-in-out infinite alternate;filter:blur(40px)}
 .hero__smog::after{content:"";position:absolute;bottom:-20%;right:-10%;width:55vw;height:55vw;border-radius:50%;background:radial-gradient(circle,rgba(253,203,110,.2) 0%,transparent 60%);animation:smogDrift 18s ease-in-out infinite alternate-reverse;filter:blur(40px)}
@@ -407,7 +412,6 @@ footer.site-footer p{margin:4px 0}
       <a href="#enfermedades">Cómo te afecta</a>
       <a href="#plan-accion">Plan por enfermedad</a>
       <a href="#alarma">Señales de alarma</a>
-      <a href="#prevencion">Prevención</a>
     </div>
   </div>
 </nav>
@@ -805,45 +809,9 @@ footer.site-footer p{margin:4px 0}
   </div>
 </section>
 
-<!-- ============ PREVENCIÓN ============ -->
-<section class="section-light" id="prevencion">
+<!-- ============ CTA preventiva ============ -->
+<section class="section-light" id="cta-preventiva">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-9">
-        <span class="eyebrow">Preparación</span>
-        <h2 class="section-title">Prevención todo el año, no solo en contingencia</h2>
-        <p class="section-lead">La contingencia es el momento agudo, pero la protección se construye antes:</p>
-      </div>
-    </div>
-
-    <div class="row mt-4 g-4">
-      <div class="col-md-6">
-        <div style="padding:28px;background:var(--cloud-alt);border-radius:18px;height:100%">
-          <h4 style="font-size:1.1rem;margin-bottom:12px"><i class="fas fa-check-circle text-accent me-2"></i>Diagnóstico temprano</h4>
-          <p style="color:var(--text-muted);margin:0;line-height:1.7">Si tienes tos crónica, disnea al subir escaleras o exposición a humo de leña/tabaco, no esperes a una contingencia para descubrir una EPOC no diagnosticada. Una espirometría anual es clave.</p>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div style="padding:28px;background:var(--cloud-alt);border-radius:18px;height:100%">
-          <h4 style="font-size:1.1rem;margin-bottom:12px"><i class="fas fa-check-circle text-accent me-2"></i>Plan de acción personalizado</h4>
-          <p style="color:var(--text-muted);margin:0;line-height:1.7">Cada paciente necesita un plan escrito por zonas. En consulta, definimos tus umbrales de síntomas, medicamentos de rescate y cuándo contactar al médico.</p>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div style="padding:28px;background:var(--cloud-alt);border-radius:18px;height:100%">
-          <h4 style="font-size:1.1rem;margin-bottom:12px"><i class="fas fa-check-circle text-accent me-2"></i>Vacunación anual</h4>
-          <p style="color:var(--text-muted);margin:0;line-height:1.7">Influenza (anual), neumococo (según edad y condición) y COVID al día. La combinación de contingencia + infección viral es la causa más frecuente de hospitalización.</p>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div style="padding:28px;background:var(--cloud-alt);border-radius:18px;height:100%">
-          <h4 style="font-size:1.1rem;margin-bottom:12px"><i class="fas fa-check-circle text-accent me-2"></i>Dejar de fumar</h4>
-          <p style="color:var(--text-muted);margin:0;line-height:1.7">El tabaco multiplica el daño de la contaminación ambiental. Si fumas, la primera medida de protección es un programa formal de cesación. <a href="/enfermedades/tabaquismo" style="color:var(--electric)">Ver cómo ayudo con cesación →</a></p>
-        </div>
-      </div>
-    </div>
-
-    <!-- CTA -->
     <div class="cta-banner">
       <div class="cta-banner__content">
         <h3>Agenda una consulta preventiva antes de la próxima contingencia</h3>
@@ -978,7 +946,7 @@ window.addEventListener('scroll', updateTOC, {passive:true});
 updateTOC();
 
 // Scroll reveal
-document.querySelectorAll('.section-title, .section-lead, .stat-card, .fase-card, .imeca-scale, .plan-tabs, .plan-panel, .alert-urgent, .cta-banner, #enfermedades .col-md-6 > div, #prevencion .col-md-6 > div').forEach(el=>el.classList.add('reveal'));
+document.querySelectorAll('.section-title, .section-lead, .stat-card, .fase-card, .imeca-scale, .plan-tabs, .plan-panel, .alert-urgent, .cta-banner, #enfermedades .col-md-6 > div').forEach(el=>el.classList.add('reveal'));
 const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -10% 0px',threshold:.08});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
