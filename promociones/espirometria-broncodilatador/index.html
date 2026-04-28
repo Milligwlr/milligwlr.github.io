@@ -661,6 +661,7 @@ document.addEventListener('click',function(e){
         {avatar:'CM',name:'Carlos M.',msg:'Enviado por su neumóloga',time:'hace 4 horas'},
         {avatar:'SP',name:'Sofía P.',msg:'Espirometría con broncodilatador',time:'hace 5 horas'},
     ];
+    for(var i=notifications.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=notifications[i];notifications[i]=notifications[j];notifications[j]=t;}
     var idx=0,popup=document.getElementById('spPopup');
     function show(){
         var n=notifications[idx%notifications.length];

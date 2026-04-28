@@ -1081,6 +1081,7 @@ document.addEventListener('click',function(e){
         {avatar:'CE',name:'Claudia E.',msg:'Ronquidos y somnolencia · agendó estudio',time:'hace 4 horas'},
         {avatar:'OM',name:'Oscar M.',msg:'Poligrafía respiratoria domiciliaria',time:'hace 5 horas'},
     ];
+    for(var i=notifications.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=notifications[i];notifications[i]=notifications[j];notifications[j]=t;}
     var idx=0,popup=document.getElementById('spPopup');
     function show(){
         var n=notifications[idx%notifications.length];
