@@ -299,6 +299,98 @@
     @keyframes waPulse{0%,100%{box-shadow:0 8px 24px rgba(37,211,102,.45)}50%{box-shadow:0 8px 30px rgba(37,211,102,.75)}}
     .wa-float:hover{color:#fff;transform:scale(1.08)}
     @media(min-width:992px){.wa-float{display:flex}}
+
+    /* ============ HERO PREMIUM EFFECTS ============ */
+    .hero{background:linear-gradient(135deg,#061a30 0%,#0a2540 35%,#0e3a6b 70%,#0984e3 100%)}
+    .hero::before{content:'';position:absolute;inset:-20%;background:
+        radial-gradient(600px 300px at 15% 20%,rgba(0,206,201,.28),transparent 60%),
+        radial-gradient(500px 280px at 85% 80%,rgba(9,132,227,.35),transparent 55%),
+        radial-gradient(400px 240px at 70% 15%,rgba(127,255,230,.18),transparent 60%);
+        animation:heroOrbs 18s ease-in-out infinite;pointer-events:none;z-index:1}
+    .hero::after{content:'';position:absolute;inset:0;background-image:
+        radial-gradient(circle at 20% 35%,rgba(255,255,255,.04) 0,transparent 1.5px),
+        radial-gradient(circle at 70% 65%,rgba(255,255,255,.03) 0,transparent 1.5px),
+        radial-gradient(circle at 45% 85%,rgba(255,255,255,.04) 0,transparent 1.5px);
+        background-size:40px 40px,60px 60px,80px 80px;
+        opacity:.5;pointer-events:none;z-index:1;
+        mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.4) 100%)}
+    @keyframes heroOrbs{
+        0%,100%{transform:translate(0,0) scale(1)}
+        33%{transform:translate(2%,-1%) scale(1.04)}
+        66%{transform:translate(-2%,1%) scale(.98)}
+    }
+    .hero__content,.hero .col-lg-5{position:relative;z-index:2}
+    /* Glow sutil al borde del hero card */
+    .hero__card{box-shadow:0 30px 80px -30px rgba(0,206,201,.25),inset 0 1px 0 rgba(255,255,255,.08)}
+
+    /* ============ PRICE HIGHLIGHT ELEGANTE ============ */
+    .price-highlight{display:inline-flex;align-items:baseline;gap:10px;background:linear-gradient(135deg,rgba(0,206,201,.18),rgba(127,255,230,.08));border:1px solid rgba(127,255,230,.35);border-radius:14px;padding:10px 18px;margin:6px 0 18px;backdrop-filter:blur(8px);box-shadow:0 8px 24px -12px rgba(0,206,201,.4)}
+    .price-highlight__from{font-size:.75rem;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:1px}
+    .price-highlight__old{font-size:.95rem;color:rgba(255,255,255,.5);text-decoration:line-through;font-weight:600}
+    .price-highlight__new{font-size:1.85rem;font-weight:800;background:linear-gradient(120deg,#7fffe6,#00cec9);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;letter-spacing:-.02em;line-height:1}
+    .price-highlight__save{font-size:.7rem;font-weight:800;background:#ff7a45;color:#fff;padding:3px 8px;border-radius:6px;letter-spacing:.5px;text-transform:uppercase;align-self:center}
+    @media(max-width:480px){
+        .price-highlight{padding:8px 14px;gap:8px;flex-wrap:wrap}
+        .price-highlight__new{font-size:1.5rem}
+    }
+    .promo-banner .price-new{background:#fff;color:#e64a19;padding:2px 10px;border-radius:8px;font-size:1.1rem;letter-spacing:-.01em}
+
+    /* ============ QUIZ COMPACTO (2 columnas en ≥768px) ============ */
+    @media(min-width:768px){
+        .sb-quiz{grid-template-columns:1fr 1fr;gap:10px}
+        .sb-question#sbq-b{grid-column:1 / -1}
+    }
+    .sb-question{padding:12px 14px}
+    .sb-question__top{margin-bottom:6px}
+    .sb-letter{width:26px;height:26px;font-size:.78rem;border-radius:7px}
+    .sb-category{font-size:.8rem}
+    .sb-question__text{font-size:.9rem;margin:0 0 9px;line-height:1.4}
+    .sb-btns{gap:6px}
+    .sb-btn{padding:7px 0;font-size:.86rem}
+
+    /* ============ MOBILE OPTIMIZATION GENERAL ============ */
+    @media(max-width:768px){
+        section.block{padding:40px 0}
+        .block__head{margin-bottom:26px}
+        .block__lead{font-size:.96rem}
+        .hero{padding:32px 0 40px}
+        section.hero h1{font-size:1.7rem;line-height:1.15;margin-bottom:10px}
+        .hero__sub{font-size:.97rem;margin-bottom:16px}
+        .hero__bullets{margin-bottom:18px}
+        .hero__bullets li{font-size:.93rem}
+        .hero__card{padding:20px;border-radius:18px}
+        .hero__card h3{font-size:1.1rem}
+        .hero__card-list li{font-size:.88rem}
+        .hero__card-list i{font-size:1.15rem}
+        .partner-section{padding:36px 0}
+        .partner-card{padding:22px 18px;border-radius:16px}
+        .benefit{padding:20px}
+        .benefit h3{font-size:1rem}
+        .benefit p{font-size:.9rem}
+        .cta-inline{padding:34px 22px;border-radius:18px}
+        .cta-inline h2{font-size:1.4rem}
+        .cta-inline p{font-size:.95rem;margin-bottom:20px}
+        .doc-card{padding:22px}
+        .doc-card h3{font-size:1.12rem}
+        .testimonial-card{padding:18px}
+        .faq-item summary{padding:14px 16px;font-size:.95rem}
+        .faq-item__answer{padding:0 16px 16px;font-size:.9rem}
+        .btn-wa,.btn-cal{padding:13px 18px;font-size:.95rem;min-width:0;width:100%}
+        .hero__cta{flex-direction:column;gap:10px}
+        .hero__cta a{width:100%}
+        .cta-inline__btns{flex-direction:column}
+        .cta-inline__btns a{width:100%}
+        /* Compare strip vertical en mobile */
+        .compare-strip{grid-template-columns:1fr;margin-bottom:18px}
+        .compare-col--vs{writing-mode:horizontal-tb;padding:6px;font-size:.7rem;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1)}
+        .compare-col--alveos{border-left:none;border-top:2px solid rgba(0,206,201,.45)}
+    }
+    @media(max-width:480px){
+        section.hero h1{font-size:1.5rem}
+        .block__title{font-size:1.45rem}
+        .hero__trust{font-size:.78rem;gap:10px}
+        .hero__badge{font-size:.74rem;padding:5px 12px}
+    }
     </style>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
 </head>
@@ -314,7 +406,7 @@
 <div class="promo-banner">
     <div class="container promo-banner__inner">
         <span class="tag"><i class="bi bi-stars"></i> Promoción</span>
-        <span>Valoración + poligrafía con <strong>neumólogo INER</strong> <span class="price-old">$6,000</span> <span class="price-new">$4,500</span></span>
+        <span>Valoración + poligrafía con <strong>neumólogo egresado del INER</strong> <span class="price-old">$6,000</span> <span class="price-new">$4,500</span></span>
         <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google%20y%20quiero%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20a%20%244%2C500" target="_blank" rel="noopener" data-cta="promo-banner"><i class="bi bi-whatsapp"></i> Apartar</a>
     </div>
 </div>
@@ -341,7 +433,14 @@
                 <!-- Badge con INER visible en el primer viewport en mobile y desktop -->
                 <div class="hero__badge"><span class="dot"></span> Egresado INER &middot; Estudio en casa &middot; Sin internamiento</div>
                 <h1>Estudio de apnea del sueño <em>en tu casa</em> — $4,500</h1>
-                <p class="hero__sub">Con valoración por neumólogo INER incluida. Una sola noche, en tu propia cama.</p>
+                <p class="hero__sub">Con valoración por neumólogo egresado del INER incluida. Una sola noche, en tu propia cama.</p>
+
+                <div class="price-highlight" role="text" aria-label="Precio promocional 4500 pesos, antes 6000">
+                    <span class="price-highlight__from">Desde</span>
+                    <span class="price-highlight__new">$4,500</span>
+                    <span class="price-highlight__old">$6,000</span>
+                    <span class="price-highlight__save">Ahorra $1,500</span>
+                </div>
 
                 <!-- Comparación implícita: laboratorio típico vs. ALVEOS -->
                 <div class="compare-strip" role="region" aria-label="Comparación de precios">
@@ -368,7 +467,7 @@
 
                 <ul class="hero__bullets">
                     <li><i class="bi bi-house-heart-fill"></i> En tu cama, una sola noche</li>
-                    <li><i class="bi bi-person-badge-fill"></i> Lectura personal por neumólogo INER</li>
+                    <li><i class="bi bi-person-badge-fill"></i> Lectura personal por neumólogo egresado del INER</li>
                     <li><i class="bi bi-stopwatch-fill"></i> Reporte y plan en 48 horas</li>
                 </ul>
                 <div class="hero__cta">
@@ -392,7 +491,7 @@
                     <ul class="hero__card-list">
                         <li><i class="bi bi-house-door-fill"></i><div><strong>Equipo a domicilio</strong>El equipo te lo entrego en consulta o se coordina por mensajería.</div></li>
                         <li><i class="bi bi-moon-stars-fill"></i><div><strong>Una noche en casa</strong>Duermes con tus sensores en tu cama, sin estrés de cuarto ajeno.</div></li>
-                        <li><i class="bi bi-clipboard2-pulse-fill"></i><div><strong>Reporte por neumólogo INER</strong>IAH, severidad, oximetría, posición — interpretado por médico, no por software.</div></li>
+                        <li><i class="bi bi-clipboard2-pulse-fill"></i><div><strong>Reporte por neumólogo egresado del INER</strong>IAH, severidad, oximetría, posición — interpretado por médico, no por software.</div></li>
                         <li><i class="bi bi-arrow-right-circle-fill"></i><div><strong>Plan terapéutico claro</strong>Te explico opciones (CPAP, dispositivos, cambios) sin tecnicismos.</div></li>
                     </ul>
                 </div>
@@ -603,7 +702,7 @@
             <div class="benefit"><div class="benefit__icon"><i class="bi bi-house-heart-fill"></i></div><h3>Duermes en tu cama</h3><p>Sin cuarto de hospital, sin cambiar tu rutina. Tu noche real, tu diagnóstico real.</p></div>
             <div class="benefit"><div class="benefit__icon"><i class="bi bi-piggy-bank-fill"></i></div><h3>Hasta 40% más barato</h3><p>Significativamente menos costoso que una polisomnografía hospitalaria, sin sacrificar precisión diagnóstica en casos típicos.</p></div>
             <div class="benefit"><div class="benefit__icon"><i class="bi bi-stopwatch-fill"></i></div><h3>Resultados en 48 horas</h3><p>Recoges el equipo, duermes una noche, lo regresas. Tu reporte y plan terapéutico listos en dos días.</p></div>
-            <div class="benefit"><div class="benefit__icon"><i class="bi bi-person-badge-fill"></i></div><h3>Lectura por neumólogo INER</h3><p>No es un reporte automatizado. Yo personalmente reviso e interpreto cada estudio, con criterio clínico.</p></div>
+            <div class="benefit"><div class="benefit__icon"><i class="bi bi-person-badge-fill"></i></div><h3>Lectura por neumólogo egresado del INER</h3><p>No es un reporte automatizado. Yo personalmente reviso e interpreto cada estudio, con criterio clínico.</p></div>
             <div class="benefit"><div class="benefit__icon"><i class="bi bi-shield-fill-check"></i></div><h3>Equipo certificado</h3><p>Tecnología validada internacionalmente, calibrada y con consumibles nuevos por paciente.</p></div>
             <div class="benefit"><div class="benefit__icon"><i class="bi bi-chat-heart-fill"></i></div><h3>Acompañamiento real</h3><p>Te resuelvo dudas por WhatsApp antes y después. No te dejo solo con un PDF.</p></div>
         </div>
@@ -641,20 +740,6 @@
                 <h3 class="tl-step__title">Reporte y plan</h3>
                 <p class="tl-step__desc">Recibes reporte interpretado y plan terapéutico claro: CPAP, dispositivo, hábitos o seguimiento.</p>
                 <span class="tl-step__time">48 hrs</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ============ CTA INLINE ============ -->
-<section class="block" style="padding-top:0">
-    <div class="container">
-        <div class="cta-inline">
-            <h2>¿Listo para dormir tranquilo?</h2>
-            <p>Una conversación de 2 minutos por WhatsApp es suficiente para resolver dudas, conocer disponibilidad y agendar tu estudio.</p>
-            <div class="cta-inline__btns">
-                <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20estuve%20leyendo%20sobre%20la%20poligraf%C3%ADa%20respiratoria%20y%20quiero%20agendar%20la%20evaluaci%C3%B3n%20a%20%244%2C500." target="_blank" rel="noopener" class="btn-wa" data-cta="mid-wa"><i class="bi bi-whatsapp"></i> Hablar por WhatsApp</a>
-                <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener" class="btn-cal" data-cta="mid-cal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
             </div>
         </div>
     </div>
@@ -732,6 +817,20 @@
     </div>
 </section>
 
+<!-- ============ CTA INLINE (después de testimonios) ============ -->
+<section class="block" style="padding-top:0">
+    <div class="container">
+        <div class="cta-inline">
+            <h2>¿Listo para dormir tranquilo?</h2>
+            <p>Una conversación de 2 minutos por WhatsApp es suficiente para resolver dudas, conocer disponibilidad y agendar tu estudio.</p>
+            <div class="cta-inline__btns">
+                <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20estuve%20leyendo%20sobre%20la%20poligraf%C3%ADa%20respiratoria%20y%20quiero%20agendar%20la%20evaluaci%C3%B3n%20a%20%244%2C500." target="_blank" rel="noopener" class="btn-wa" data-cta="mid-wa"><i class="bi bi-whatsapp"></i> Hablar por WhatsApp</a>
+                <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener" class="btn-cal" data-cta="mid-cal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ============ DOCTOR / E-E-A-T ============ -->
 <section class="block benefits">
     <div class="container">
@@ -763,10 +862,10 @@
             <span class="block__kicker">Dudas frecuentes</span>
             <h2 class="block__title">Lo que más preguntan <em>antes de agendar</em></h2>
         </div>
-        <details class="faq-item" open><summary>¿Cuánto cuesta y qué incluye?</summary><div class="faq-item__answer">La mayoría de laboratorios cobra <strong>$3,000–$4,000 solo por el equipo</strong> y un reporte automatizado, sin que ningún médico revise tu caso.<br><br>Por internet tenemos promoción especial: <strong>valoración neumológica + equipo + poligrafía + interpretación por neumólogo egresado del INER = $4,500</strong> (precio normal del paquete: $6,000). Por $500 más que el laboratorio sin médico, obtienes diagnóstico real con criterio clínico. <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google%20y%20quiero%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20a%20%244%2C500" target="_blank" rel="noopener" style="color:#e64a19;font-weight:700" data-cta="faq-wa">Mándame mensaje por WhatsApp</a> para apartar la promoción.</div></details>
+        <details class="faq-item" open><summary>¿Cuánto cuesta y qué incluye?</summary><div class="faq-item__answer"><strong>$4,500</strong> (normal $6,000) incluye: valoración neumológica, equipo, poligrafía e interpretación por neumólogo egresado del INER. La mayoría de laboratorios cobra $3,000–$4,000 solo por el equipo, sin médico. <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google%20y%20quiero%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20a%20%244%2C500" target="_blank" rel="noopener" style="color:#e64a19;font-weight:700" data-cta="faq-wa">Apartar por WhatsApp</a>.</div></details>
         <details class="faq-item"><summary>¿Es realmente válido un estudio en casa?</summary><div class="faq-item__answer">Sí. La poligrafía respiratoria es un estudio tipo III validado por la American Academy of Sleep Medicine (AASM) para diagnóstico de apnea obstructiva en pacientes con alta sospecha clínica y sin enfermedad cardiopulmonar grave. Para la mayoría de personas con ronquidos y síntomas típicos, es suficiente para confirmar o descartar el diagnóstico.</div></details>
         <details class="faq-item"><summary>¿Y si no logro dormir con el equipo?</summary><div class="faq-item__answer">El equipo es ligero y la mayoría se acostumbra en 30 minutos. Si la noche no fue suficiente para un estudio válido, repetimos sin costo adicional.</div></details>
-        <details class="faq-item"><summary>¿Cuándo recibo los resultados?</summary><div class="faq-item__answer">El reporte se entrega en consulta dentro de las 48 horas siguientes a la devolución del equipo, con explicación clara y plan terapéutico: CPAP, dispositivos de avance mandibular, cambios de posición y hábitos, o seguimiento si no hay apnea.</div></details>
+        <details class="faq-item"><summary>¿Cuándo recibo los resultados?</summary><div class="faq-item__answer">El reporte se entrega en consulta dentro de las 48 horas siguientes a la devolución del equipo, con explicación clara y plan terapéutico.</div></details>
         <details class="faq-item"><summary>¿Aceptan tarjeta o transferencia?</summary><div class="faq-item__answer">Sí: efectivo, transferencia, tarjeta de crédito y débito. Por WhatsApp te confirmamos la modalidad de pago antes de la cita.</div></details>
         <details class="faq-item"><summary>¿Dónde están ubicados?</summary><div class="faq-item__answer">Hospital Santa Coleta, Saturnino Herrán 59, San José Insurgentes, Benito Juárez, CDMX 03900. A unos minutos del Periférico Sur y con estacionamiento en el hospital.</div></details>
     </div>
@@ -779,7 +878,7 @@
             <h2>Agenda tu poligrafía respiratoria hoy</h2>
             <p>Atención por WhatsApp en horario hábil. Resolvemos dudas y apartamos tu fecha en minutos.</p>
             <div class="cta-inline__btns">
-                <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20quiero%20agendar%20la%20poligraf%C3%ADa%20respiratoria.%20%C2%BFCu%C3%A1les%20son%20sus%20horarios%20disponibles%3F" target="_blank" rel="noopener" class="btn-wa" data-cta="final-wa"><i class="bi bi-whatsapp"></i> WhatsApp 55 9170 8334</a>
+                <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20quiero%20agendar%20la%20poligraf%C3%ADa%20respiratoria.%20%C2%BFCu%C3%A1les%20son%20sus%20horarios%20disponibles%3F" target="_blank" rel="noopener" class="btn-wa" data-cta="final-wa"><i class="bi bi-whatsapp"></i> Hablar por WhatsApp</a>
                 <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener" class="btn-cal" data-cta="final-cal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
             </div>
         </div>
