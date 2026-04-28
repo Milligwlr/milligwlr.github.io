@@ -41,14 +41,13 @@
     <link rel="stylesheet" href="/enfermedades/_shared/disease.css">
 
     <style>
-    /* Banner de promoción destacado */
-    .promo-banner{background:linear-gradient(120deg,#ff7a45 0%,#ff5722 50%,#e64a19 100%);color:#fff;padding:14px 0;text-align:center;font-weight:700;font-size:.95rem;position:relative;overflow:hidden;box-shadow:0 4px 16px rgba(230,74,25,.25)}
-    .promo-banner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 18px,rgba(255,255,255,.06) 18px,rgba(255,255,255,.06) 36px);pointer-events:none}
-    .promo-banner__inner{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 18px}
-    .promo-banner .tag{background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.4);padding:3px 10px;border-radius:999px;font-size:.72rem;letter-spacing:1px;text-transform:uppercase}
-    .promo-banner .price-old{text-decoration:line-through;opacity:.7;margin-left:6px;font-weight:600}
-    .promo-banner .price-new{font-size:1.15rem;font-weight:800}
-    .promo-banner a{background:#fff;color:#e64a19;padding:6px 16px;border-radius:999px;text-decoration:none;font-weight:800;font-size:.85rem;transition:transform .2s}
+    /* Banner de promoción delgado */
+    .promo-banner{background:#e64a19;color:#fff;padding:5px 0;text-align:center;font-weight:700;font-size:.8rem}
+    .promo-banner__inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px}
+    .promo-banner .tag{display:none}
+    .promo-banner .price-old{text-decoration:line-through;opacity:.7;margin-left:4px;font-weight:600}
+    .promo-banner .price-new{font-weight:800}
+    .promo-banner a{background:#fff;color:#e64a19;padding:2px 10px;border-radius:999px;text-decoration:none;font-weight:800;font-size:.76rem;white-space:nowrap;transition:transform .2s;margin-left:6px}
     .promo-banner a:hover{transform:scale(1.05);color:#e64a19}
 
     /* Card de promoción dentro del hero */
@@ -205,11 +204,25 @@
     .indication li i{color:var(--electric);font-size:1.2rem;flex-shrink:0;margin-top:2px}
 
     /* ============ DIAGNÓSTICO INFO ============ */
-    .diag-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:24px}
-    .diag-card{background:#fff;border:1px solid rgba(9,132,227,.12);border-radius:16px;padding:22px}
-    .diag-card h3{font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:8px;display:flex;align-items:center;gap:8px}
-    .diag-card h3 i{color:var(--electric)}
-    .diag-card p{font-size:.92rem;color:var(--muted);margin:0;line-height:1.55}
+    .diag-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:32px}
+    .diag-card{background:#fff;border:1px solid rgba(9,132,227,.1);border-radius:20px;padding:28px 24px;position:relative;overflow:hidden;transition:all .3s var(--ease)}
+    .diag-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--electric),var(--cyan));opacity:0;transition:opacity .3s}
+    .diag-card:hover{transform:translateY(-5px);box-shadow:0 20px 40px -16px rgba(9,44,84,.15);border-color:rgba(9,132,227,.25)}
+    .diag-card:hover::before{opacity:1}
+    .diag-card__num{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;font-weight:800;font-size:.9rem;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+    .diag-card__icon-wrap{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:1.5rem}
+    .diag-card h3{font-size:1.02rem;font-weight:800;color:var(--navy);margin-bottom:10px;line-height:1.3}
+    .diag-card p{font-size:.91rem;color:var(--muted);margin:0 0 12px;line-height:1.6}
+    .diag-card__tag{display:inline-block;font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:999px;letter-spacing:.3px;text-transform:uppercase}
+
+    /* ============ SOCIAL PROOF POPUP ============ */
+    .sp-popup{position:fixed;bottom:90px;left:16px;background:#fff;border:1px solid rgba(9,132,227,.15);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 12px 32px -8px rgba(9,44,84,.2);z-index:80;max-width:280px;transform:translateX(-120%);transition:transform .5s cubic-bezier(.22,.61,.36,1);pointer-events:none}
+    .sp-popup.show{transform:translateX(0)}
+    .sp-popup__avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;font-weight:800;font-size:.88rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .sp-popup__text{font-size:.8rem;line-height:1.4;color:var(--ink)}
+    .sp-popup__text strong{display:block;color:var(--navy);font-size:.82rem}
+    .sp-popup__time{font-size:.7rem;color:var(--muted);margin-top:2px}
+    @media(min-width:992px){.sp-popup{bottom:100px;left:24px;max-width:300px}}
 
     /* ============ CHECKLIST PREPARACIÓN ============ */
     .prep{background:linear-gradient(180deg,#fff7f2 0%,#fff 100%)}
@@ -295,7 +308,7 @@
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-lg-7 hero__content">
-                <div class="hero__badge"><span class="dot"></span> Neumólogo egresado del INER</div>
+                <div class="hero__badge"><span class="dot"></span> Espirometría con broncodilatador</div>
                 <h1>Espirometría con broncodilatador: <em>$1,200</em>, reporte digital en 45 minutos</h1>
                 <p class="hero__sub">Interpretada el mismo día por neumólogo egresado del INER, no por software. Precio publicado, sin sorpresas. Criterios ATS/ERS 2019.</p>
                 <div class="promo-card">
@@ -387,11 +400,31 @@
             <h2 class="block__title">¿Qué puede diagnosticar tu <em>espirometría</em>?</h2>
             <p class="block__lead">Información para entender qué espera ver tu médico — sin tecnicismos. Este estudio no reemplaza la consulta; complementa lo que tu médico ya está evaluando.</p>
         </div>
-        <div class="diag-grid" style="max-width:900px;margin:0 auto">
-            <div class="diag-card"><h3><i class="bi bi-wind"></i> Obstrucción del flujo de aire</h3><p>Mide si el aire sale de tus pulmones con la velocidad esperada. Una obstrucción puede sugerir asma, EPOC u otras condiciones que tu médico evaluará.</p></div>
-            <div class="diag-card"><h3><i class="bi bi-arrow-repeat"></i> Reversibilidad con broncodilatador</h3><p>Repetir la prueba tras inhalar salbutamol permite distinguir obstrucción reversible (típica de asma) de obstrucción fija (típica de EPOC).</p></div>
-            <div class="diag-card"><h3><i class="bi bi-bar-chart-fill"></i> Severidad funcional</h3><p>Cuantifica qué tanto está afectada la función respiratoria comparada con valores esperados para tu edad, sexo y talla.</p></div>
-            <div class="diag-card"><h3><i class="bi bi-journal-medical"></i> Estudio de referencia</h3><p>La espirometría con broncodilatador es el estudio de referencia para diagnóstico de asma y EPOC según guías internacionales (GINA, GOLD, ATS/ERS).</p></div>
+        <div class="diag-grid" style="max-width:960px;margin:0 auto">
+            <div class="diag-card">
+                <div class="diag-card__num">01</div>
+                <h3>Obstrucción del flujo de aire</h3>
+                <p>Mide si el aire sale de tus pulmones con la velocidad esperada. Una obstrucción puede sugerir asma, EPOC u otras condiciones que tu médico evaluará.</p>
+                <span class="diag-card__tag" style="background:rgba(9,132,227,.1);color:var(--electric)">Asma · EPOC · Bronquitis</span>
+            </div>
+            <div class="diag-card">
+                <div class="diag-card__num">02</div>
+                <h3>Reversibilidad con broncodilatador</h3>
+                <p>Repetir la prueba tras inhalar salbutamol distingue obstrucción reversible (típica de asma) de obstrucción fija (típica de EPOC).</p>
+                <span class="diag-card__tag" style="background:rgba(0,206,201,.1);color:#007a77">Diferencia asma vs EPOC</span>
+            </div>
+            <div class="diag-card">
+                <div class="diag-card__num">03</div>
+                <h3>Severidad funcional</h3>
+                <p>Cuantifica qué tanto está afectada la función respiratoria comparada con valores esperados para tu edad, sexo y talla.</p>
+                <span class="diag-card__tag" style="background:rgba(230,74,25,.08);color:#c04010">Leve · Moderada · Grave</span>
+            </div>
+            <div class="diag-card">
+                <div class="diag-card__num">04</div>
+                <h3>Estudio de referencia internacional</h3>
+                <p>Es la prueba estándar para diagnóstico y seguimiento de asma y EPOC según GINA, GOLD y ATS/ERS. El reporte es válido con cualquier especialista.</p>
+                <span class="diag-card__tag" style="background:rgba(9,132,227,.1);color:var(--electric)">Guías GINA · GOLD · ATS/ERS</span>
+            </div>
         </div>
     </div>
 </section>
@@ -624,6 +657,16 @@
     <a href="tel:5591708334" class="sc-cal" data-cta="sticky-call"><i class="bi bi-telephone-fill"></i> Llamar</a>
 </div>
 
+<!-- Social proof popup -->
+<div class="sp-popup" id="spPopup">
+    <div class="sp-popup__avatar" id="spAvatar">MA</div>
+    <div class="sp-popup__text">
+        <strong id="spName">María A. agendó su estudio</strong>
+        <span id="spMsg">Espirometría con broncodilatador · CDMX</span>
+        <div class="sp-popup__time" id="spTime">hace 2 horas</div>
+    </div>
+</div>
+
 <!-- Tracking básico de clicks CTA al dataLayer (para Ads conversion tracking via GTM) -->
 <script>
 document.addEventListener('click',function(e){
@@ -632,6 +675,29 @@ document.addEventListener('click',function(e){
     window.dataLayer=window.dataLayer||[];
     window.dataLayer.push({event:'lp_cta_click',cta_id:el.getAttribute('data-cta'),cta_href:el.getAttribute('href')});
 });
+
+// Social proof popup
+(function(){
+    var notifications=[
+        {avatar:'MA',name:'María A.',msg:'Espirometría con broncodilatador',time:'hace 1 hora'},
+        {avatar:'RG',name:'Roberto G.',msg:'Estudio de control por tos crónica',time:'hace 2 horas'},
+        {avatar:'LV',name:'Laura V.',msg:'Estudio prequirúrgico · reporte mismo día',time:'hace 3 horas'},
+        {avatar:'CM',name:'Carlos M.',msg:'Enviado por su neumóloga',time:'hace 4 horas'},
+        {avatar:'SP',name:'Sofía P.',msg:'Espirometría con broncodilatador',time:'hace 5 horas'},
+    ];
+    var idx=0,popup=document.getElementById('spPopup');
+    function show(){
+        var n=notifications[idx%notifications.length];
+        document.getElementById('spAvatar').textContent=n.avatar;
+        document.getElementById('spName').textContent=n.name+' agendó su estudio';
+        document.getElementById('spMsg').textContent=n.msg;
+        document.getElementById('spTime').textContent=n.time;
+        popup.classList.add('show');
+        setTimeout(function(){popup.classList.remove('show');},4000);
+        idx++;
+    }
+    setTimeout(function(){show();setInterval(show,12000);},3500);
+})();
 </script>
 
 </body>
