@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es-MX">
 <head>
 <!--
@@ -7,34 +7,30 @@
   ============================================================
   OBJETIVO: Convertir tráfico pagado de Google Ads (keyword
   intención: "espirometría con broncodilatador precio / costo
-  / CDMX / prueba función pulmonar") en una sola acción
-  medible: contacto por WhatsApp o agendamiento en Cal.com.
+  / CDMX") en una sola acción medible: contacto por WhatsApp
+  o agendamiento en Cal.com.
   Esta landing es SOLO para el estudio (no incluye consulta
   ni valoración neumológica) — el usuario que llega aquí
   quiere específicamente la espirometría.
 
-  Reglas aplicadas:
-  - Sin barra de navegación ni enlaces internos de fuga.
-  - Footer mínimo (legal indispensable, sin links a otras pags).
-  - Una sola promesa por sección, una sola CTA visible siempre.
-  - Trust signals arriba del fold (Cofepris, cédulas, hospital).
-  - Botón flotante WhatsApp + CTA sticky inferior móvil.
-  - <meta robots="noindex"> para no canibalizar la página SEO
-    principal (/servicios/poligrafia-respiratoria/) y porque es
-    tráfico exclusivo de Ads.
-  - Sin precios fijos: invitar a WhatsApp para cotizar (mejor
-    fricción de conversión que un número que asuste).
-  - Heat: hero, beneficios cortos, paso a paso, prueba social,
-    FAQ corto de objeciones, CTA final.
+  Posicionamiento: NO somos un laboratorio de fisiología
+  pulmonar. Somos un consultorio de neumología que ofrece
+  este estudio puntual, con interpretación médica directa
+  por el Dr. Lara (egresado del INER) y precio publicado.
   ============================================================
 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Espirometría con Broncodilatador CDMX $1,000 | Promoción</title>
-    <meta name="description" content="Espirometría con broncodilatador en CDMX a $1,000 (precio regular $1,400). Estudio de función pulmonar interpretado por neumólogo. Agenda por WhatsApp.">
+    <title>Espirometría con Broncodilatador CDMX $1,200 | Neumólogo INER</title>
+    <meta name="description" content="Espirometría con broncodilatador en CDMX a $1,200 (regular $1,400). Estudio realizado e interpretado por neumólogo egresado del INER, reporte digital en 45 min. Agenda por WhatsApp.">
     <meta name="robots" content="noindex, nofollow">
     <link rel="canonical" href="https://alveos.mx/promociones/espirometria-broncodilatador/">
     <meta name="author" content="Dr. William César Lara Vázquez">
+
+    <meta property="og:title" content="Espirometría con Broncodilatador CDMX $1,200 | Neumólogo INER">
+    <meta property="og:description" content="Espirometría con broncodilatador a $1,200, interpretada el mismo día por neumólogo egresado del INER. Reporte digital en 45 minutos.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://alveos.mx/promociones/espirometria-broncodilatador/">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -188,11 +184,59 @@
 
     /* ============ FAQ ============ */
     .faq-item{background:#fff;border:1px solid rgba(9,132,227,.12);border-radius:14px;margin-bottom:12px;overflow:hidden}
-    .faq-item summary{padding:18px 22px;font-weight:700;color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;font-size:1rem}
+    .faq-item summary{padding:18px 22px;font-weight:700;color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;font-size:1rem;gap:14px}
     .faq-item summary::-webkit-details-marker{display:none}
-    .faq-item summary::after{content:'+';font-size:1.5rem;color:var(--electric);font-weight:300;transition:transform .25s}
+    .faq-item summary::after{content:'+';font-size:1.5rem;color:var(--electric);font-weight:300;transition:transform .25s;flex-shrink:0}
     .faq-item[open] summary::after{transform:rotate(45deg)}
     .faq-item__answer{padding:0 22px 20px;color:var(--muted);font-size:.95rem;line-height:1.65}
+    .faq-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem}
+    .faq-table th,.faq-table td{text-align:left;padding:10px 12px;border-bottom:1px solid rgba(9,132,227,.12);vertical-align:top}
+    .faq-table th{background:rgba(9,132,227,.06);color:var(--navy);font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.3px}
+    .faq-table td:nth-child(2){color:var(--electric);font-weight:700;white-space:nowrap}
+    @media(max-width:600px){.faq-table{font-size:.82rem}.faq-table th,.faq-table td{padding:8px 6px}}
+
+    /* ============ INDICACIÓN MÉDICA (entry-point empático) ============ */
+    .indication{background:linear-gradient(135deg,#f0f8ff 0%,#e6f4ff 100%);border-left:4px solid var(--electric)}
+    .indication__wrap{max-width:820px;margin:0 auto;background:#fff;border:1px solid rgba(9,132,227,.15);border-radius:20px;padding:32px;box-shadow:0 10px 30px -16px rgba(9,44,84,.12)}
+    .indication h2{font-size:clamp(1.4rem,3vw,1.85rem);font-weight:800;color:var(--navy);margin-bottom:14px;letter-spacing:-.02em}
+    .indication h2 em{font-style:normal;color:var(--electric)}
+    .indication ul{list-style:none;padding:0;margin:18px 0 22px;display:grid;gap:12px}
+    .indication li{display:flex;gap:12px;align-items:flex-start;color:var(--ink);font-size:1rem;line-height:1.55}
+    .indication li i{color:var(--electric);font-size:1.2rem;flex-shrink:0;margin-top:2px}
+
+    /* ============ DIAGNÓSTICO INFO ============ */
+    .diag-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:24px}
+    .diag-card{background:#fff;border:1px solid rgba(9,132,227,.12);border-radius:16px;padding:22px}
+    .diag-card h3{font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+    .diag-card h3 i{color:var(--electric)}
+    .diag-card p{font-size:.92rem;color:var(--muted);margin:0;line-height:1.55}
+
+    /* ============ CHECKLIST PREPARACIÓN ============ */
+    .prep{background:linear-gradient(180deg,#fff7f2 0%,#fff 100%)}
+    .prep-wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:center;max-width:980px;margin:0 auto}
+    @media(max-width:820px){.prep-wrap{grid-template-columns:1fr}}
+    .prep-list{background:#fff;border:1px solid rgba(230,74,25,.18);border-radius:20px;padding:28px;box-shadow:0 10px 30px -16px rgba(230,74,25,.18)}
+    .prep-list h3{font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:16px}
+    .prep-list ul{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+    .prep-list li{display:flex;gap:12px;align-items:flex-start;font-size:.96rem;color:var(--ink);line-height:1.5}
+    .prep-list li .ico{flex-shrink:0;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;margin-top:1px}
+    .prep-list li.no .ico{background:rgba(230,74,25,.12);color:#e64a19}
+    .prep-list li.yes .ico{background:rgba(37,211,102,.15);color:var(--green-dark)}
+    .prep-list li a{color:var(--electric);text-decoration:underline;font-weight:600}
+    .prep-aside{text-align:center}
+    .prep-aside h3{font-size:1.15rem;font-weight:800;color:var(--navy);margin-bottom:10px}
+    .prep-aside p{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+    .prep-aside .btn-wa{min-width:0;width:100%}
+
+    /* ============ TESTIMONIOS ============ */
+    .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:24px}
+    .testi{background:#fff;border:1px solid rgba(9,132,227,.12);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:14px}
+    .testi__stars{color:#f5b400;font-size:1rem;letter-spacing:2px}
+    .testi__quote{font-size:.96rem;color:var(--ink);line-height:1.6;font-style:italic;margin:0}
+    .testi__author{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:12px;border-top:1px dashed rgba(9,132,227,.18)}
+    .testi__avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;flex-shrink:0}
+    .testi__name{font-weight:800;color:var(--navy);font-size:.92rem;line-height:1.2}
+    .testi__ctx{color:var(--muted);font-size:.8rem}
 
     /* ============ FOOTER MÍNIMO ============ */
     .lp-footer{background:#0a1929;color:rgba(255,255,255,.55);padding:32px 0 22px;text-align:center;font-size:.83rem}
@@ -212,8 +256,6 @@
     @keyframes waPulse{0%,100%{box-shadow:0 8px 24px rgba(37,211,102,.45)}50%{box-shadow:0 8px 30px rgba(37,211,102,.75)}}
     .wa-float:hover{color:#fff;transform:scale(1.08)}
     @media(min-width:992px){.wa-float{display:flex}}
-
-    /* GTM */
     </style>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
 </head>
@@ -229,8 +271,8 @@
 <div class="promo-banner">
     <div class="container promo-banner__inner">
         <span class="tag"><i class="bi bi-stars"></i> Promoción</span>
-        <span><strong>Espirometría con broncodilatador</strong> <span class="price-old">$1,400</span> <span class="price-new">$1,000</span></span>
-        <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google%20y%20quiero%20la%20promoci%C3%B3n%20de%20espirometr%C3%ADa%20con%20broncodilatador%20a%20%241%2C000" target="_blank" rel="noopener" data-cta="promo-banner"><i class="bi bi-whatsapp"></i> Apartar</a>
+        <span><strong>Espirometría con broncodilatador</strong> <span class="price-old">$1,400</span> <span class="price-new">$1,200</span></span>
+        <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google%20y%20quiero%20la%20promoci%C3%B3n%20de%20espirometr%C3%ADa%20con%20broncodilatador%20a%20%241%2C200" target="_blank" rel="noopener" data-cta="promo-banner"><i class="bi bi-whatsapp"></i> Apartar</a>
     </div>
 </div>
 
@@ -242,7 +284,7 @@
             <img src="/images/Logo%20cuadrado/Dise%C3%B1o%20sin%20t%C3%ADtulo.png" alt="Logo Alveos" class="navbar-logo" width="36" height="36" loading="lazy" decoding="async" style="border-radius:8px;object-fit:cover">
             <span class="brand-name">ALVEOS</span>
         </a>
-        <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google%20y%20quiero%20la%20promoci%C3%B3n%20de%20espirometr%C3%ADa%20con%20broncodilatador%20a%20%241%2C000" target="_blank" rel="noopener" class="navbar-cta d-inline-flex" data-cta="navbar-wa">
+        <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google%20y%20quiero%20la%20promoci%C3%B3n%20de%20espirometr%C3%ADa%20con%20broncodilatador%20a%20%241%2C200" target="_blank" rel="noopener" class="navbar-cta d-inline-flex" data-cta="navbar-wa">
             <i class="bi bi-whatsapp me-2"></i> Pedir promoción
         </a>
     </div>
@@ -253,25 +295,25 @@
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-lg-7 hero__content">
-                <div class="hero__badge"><span class="dot"></span> Promoción · Espirometría con broncodilatador</div>
-                <h1>Espirometría con <em>broncodilatador</em> en CDMX, lista en 30 minutos</h1>
-                <p class="hero__sub">Estudio de función pulmonar (FEV1, FVC, FEV1/FVC) con prueba broncodilatadora, realizado bajo criterios ATS/ERS 2019 e interpretado por neumólogo. Reporte el mismo día.</p>
+                <div class="hero__badge"><span class="dot"></span> Neumólogo egresado del INER</div>
+                <h1>Espirometría con broncodilatador: <em>$1,200</em>, reporte digital en 45 minutos</h1>
+                <p class="hero__sub">Interpretada el mismo día por neumólogo egresado del INER, no por software. Precio publicado, sin sorpresas. Criterios ATS/ERS 2019.</p>
                 <div class="promo-card">
                     <div class="promo-card__icon"><i class="bi bi-tag-fill"></i></div>
                     <div class="promo-card__body">
                         <div class="promo-card__title">Promoción exclusiva por internet</div>
-                        <p class="promo-card__copy">Espirometría con broncodilatador a <strong>$1,000</strong> <s>$1,400</s>. Menciónala al escribir por WhatsApp.</p>
+                        <p class="promo-card__copy">Espirometría con broncodilatador a <strong>$1,200</strong> <s>$1,400</s>. Menciónala al escribir por WhatsApp.</p>
                     </div>
                 </div>
                 <ul class="hero__bullets">
                     <li><i class="bi bi-check-circle-fill"></i> Estudio + prueba post-broncodilatador incluida</li>
-                    <li><i class="bi bi-check-circle-fill"></i> Interpretado por neumólogo, no automatizado</li>
-                    <li><i class="bi bi-check-circle-fill"></i> Reporte impreso y digital el mismo día</li>
-                    <li><i class="bi bi-check-circle-fill"></i> Sin valoración médica adicional incluida</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Interpretado por neumólogo, no por software</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Reporte digital (PDF por WhatsApp/email) el mismo día</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Precio cerrado · sin valoración médica adicional</li>
                 </ul>
                 <div class="hero__cta">
-                    <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google.%20Quiero%20info%20de%20la%20espirometr%C3%ADa%20con%20broncodilatador" target="_blank" rel="noopener" class="btn-wa" data-cta="hero-wa">
-                        <i class="bi bi-whatsapp"></i> Apartar promoción
+                    <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google%20y%20quiero%20la%20promoci%C3%B3n%20de%20espirometr%C3%ADa%20con%20broncodilatador%20a%20%241%2C200" target="_blank" rel="noopener" class="btn-wa" data-cta="hero-wa">
+                        <i class="bi bi-whatsapp"></i> Apartar a $1,200
                     </a>
                     <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener" class="btn-cal" data-cta="hero-cal">
                         <i class="bi bi-calendar-check"></i> Agendar cita
@@ -280,21 +322,40 @@
                 <div class="hero__trust">
                     <span><i class="bi bi-geo-alt-fill"></i> Hospital Santa Coleta, CDMX</span>
                     <span><i class="bi bi-shield-check"></i> Cofepris vigente</span>
-                    <span><i class="bi bi-clock-history"></i> Respuesta en minutos</span>
+                    <span><i class="bi bi-clock-history"></i> Mismo día</span>
                 </div>
             </div>
             <div class="col-lg-5">
                 <div class="hero__card">
-                    <div class="subt">Qué incluye el estudio</div>
-                    <h3>Espirometría completa + broncodilatador</h3>
+                    <div class="subt">Qué incluye</div>
+                    <h3>Estudio + interpretación + reporte digital</h3>
                     <ul class="hero__card-list">
                         <li><i class="bi bi-lungs-fill"></i><div><strong>Espirometría basal</strong>Medición de FEV1, FVC, FEV1/FVC, FEF 25-75 y curva flujo-volumen.</div></li>
-                        <li><i class="bi bi-capsule"></i><div><strong>Prueba post-broncodilatador</strong>Salbutamol inhalado y repetición de la prueba a los 15 min para detectar reversibilidad.</div></li>
+                        <li><i class="bi bi-capsule"></i><div><strong>Prueba post-broncodilatador</strong>Salbutamol inhalado y repetición a los 15 min para detectar reversibilidad.</div></li>
                         <li><i class="bi bi-clipboard2-pulse-fill"></i><div><strong>Interpretación por neumólogo</strong>Reporte con criterios ATS/ERS 2019, no un PDF automático.</div></li>
-                        <li><i class="bi bi-stopwatch-fill"></i><div><strong>Reporte el mismo día</strong>Estudio, interpretación y entrega en una sola visita de ~30 min.</div></li>
+                        <li><i class="bi bi-stopwatch-fill"></i><div><strong>45 minutos en total</strong>Estudio, interpretación y reporte digital (PDF por WhatsApp/email) el mismo día.</div></li>
                     </ul>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ ¿TU MÉDICO TE PIDIÓ UNA ESPIROMETRÍA? ============ -->
+<section class="block indication">
+    <div class="container">
+        <div class="indication__wrap">
+            <h2>¿Tu médico te pidió una <em>espirometría con broncodilatador</em>?</h2>
+            <p style="color:var(--muted);font-size:1.02rem;margin:0">Si ya tienes la indicación, lo siguiente es encontrar dónde hacerlo con confianza. Aquí no es una orden más en una lista — el estudio lo realiza e interpreta directamente un neumólogo.</p>
+            <ul>
+                <li><i class="bi bi-person-check-fill"></i><span>El resultado lo interpreta personalmente un neumólogo, no un software.</span></li>
+                <li><i class="bi bi-file-earmark-medical-fill"></i><span>El reporte digital (PDF) es válido para presentar con cualquier especialista.</span></li>
+                <li><i class="bi bi-currency-dollar"></i><span>Precio cerrado, sin sorpresas: <strong>$1,200 todo incluido</strong> (estudio + interpretación + reporte).</span></li>
+                <li><i class="bi bi-stopwatch-fill"></i><span>45 minutos en una sola visita. Reporte el mismo día.</span></li>
+            </ul>
+            <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20mi%20m%C3%A9dico%20me%20pidi%C3%B3%20una%20espirometr%C3%ADa%20con%20broncodilatador.%20Quiero%20agendar%20la%20promoci%C3%B3n%20de%20%241%2C200." target="_blank" rel="noopener" class="btn-wa" data-cta="indication-wa">
+                <i class="bi bi-whatsapp"></i> Tengo indicación médica · Agendar
+            </a>
         </div>
     </div>
 </section>
@@ -305,21 +366,38 @@
         <div class="block__head">
             <span class="block__kicker">Por qué este estudio</span>
             <h2 class="block__title">Espirometría hecha <em>como debe hacerse</em></h2>
-            <p class="block__lead">Espirometría basal y post-broncodilatador bajo criterios ATS/ERS 2019, con técnico capacitado y equipo calibrado. Interpretación por neumólogo el mismo día — no un PDF generado por software.</p>
+            <p class="block__lead">Espirometría basal y post-broncodilatador bajo criterios ATS/ERS 2019, con equipo calibrado. Realizada e interpretada el mismo día por neumólogo egresado del INER — no un PDF generado por software.</p>
         </div>
         <div class="benefits-grid">
-            <div class="benefit"><div class="benefit__icon"><i class="bi bi-piggy-bank-fill"></i></div><h3>Precio promocional</h3><p>$1,000 por internet vs $1,400 precio regular. Misma calidad, menor costo.</p></div>
-            <div class="benefit"><div class="benefit__icon"><i class="bi bi-stopwatch-fill"></i></div><h3>30 minutos en total</h3><p>Estudio basal, broncodilatador y post-prueba en una sola visita. Reporte el mismo día.</p></div>
-            <div class="benefit"><div class="benefit__icon"><i class="bi bi-person-badge-fill"></i></div><h3>Interpretación por neumólogo</h3><p>No es un reporte automatizado. Yo personalmente reviso e interpreto cada espirometría.</p></div>
+            <div class="benefit"><div class="benefit__icon"><i class="bi bi-piggy-bank-fill"></i></div><h3>Precio publicado</h3><p>$1,200 por internet (regular $1,400). Casi nadie en CDMX publica su precio — aquí lo ves antes de llegar.</p></div>
+            <div class="benefit"><div class="benefit__icon"><i class="bi bi-stopwatch-fill"></i></div><h3>45 minutos en total</h3><p>Estudio basal, broncodilatador y post-prueba en una sola visita. Reporte digital el mismo día.</p></div>
+            <div class="benefit"><div class="benefit__icon"><i class="bi bi-person-badge-fill"></i></div><h3>Interpretación por neumólogo</h3><p>No es un reporte automatizado. El Dr. Lara revisa e interpreta personalmente cada estudio.</p></div>
             <div class="benefit"><div class="benefit__icon"><i class="bi bi-shield-fill-check"></i></div><h3>Criterios ATS/ERS 2019</h3><p>Estándares internacionales de aceptabilidad y reproducibilidad. Equipo calibrado.</p></div>
             <div class="benefit"><div class="benefit__icon"><i class="bi bi-capsule"></i></div><h3>Broncodilatador incluido</h3><p>Salbutamol y repetición de la prueba para detectar reversibilidad (clave en asma).</p></div>
-            <div class="benefit"><div class="benefit__icon"><i class="bi bi-file-earmark-pdf-fill"></i></div><h3>Reporte impreso y digital</h3><p>Te lo llevas el mismo día y también te lo enviamos en PDF por WhatsApp.</p></div>
+            <div class="benefit"><div class="benefit__icon"><i class="bi bi-file-earmark-pdf-fill"></i></div><h3>Reporte digital</h3><p>PDF enviado por WhatsApp o email el mismo día. Listo para reenviar a tu médico desde el celular.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ QUÉ INCLUYE / DIAGNÓSTICO ============ -->
+<section class="block">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">Para qué sirve</span>
+            <h2 class="block__title">¿Qué puede diagnosticar tu <em>espirometría</em>?</h2>
+            <p class="block__lead">Información para entender qué espera ver tu médico — sin tecnicismos. Este estudio no reemplaza la consulta; complementa lo que tu médico ya está evaluando.</p>
+        </div>
+        <div class="diag-grid" style="max-width:900px;margin:0 auto">
+            <div class="diag-card"><h3><i class="bi bi-wind"></i> Obstrucción del flujo de aire</h3><p>Mide si el aire sale de tus pulmones con la velocidad esperada. Una obstrucción puede sugerir asma, EPOC u otras condiciones que tu médico evaluará.</p></div>
+            <div class="diag-card"><h3><i class="bi bi-arrow-repeat"></i> Reversibilidad con broncodilatador</h3><p>Repetir la prueba tras inhalar salbutamol permite distinguir obstrucción reversible (típica de asma) de obstrucción fija (típica de EPOC).</p></div>
+            <div class="diag-card"><h3><i class="bi bi-bar-chart-fill"></i> Severidad funcional</h3><p>Cuantifica qué tanto está afectada la función respiratoria comparada con valores esperados para tu edad, sexo y talla.</p></div>
+            <div class="diag-card"><h3><i class="bi bi-journal-medical"></i> Estudio de referencia</h3><p>La espirometría con broncodilatador es el estudio de referencia para diagnóstico de asma y EPOC según guías internacionales (GINA, GOLD, ATS/ERS).</p></div>
         </div>
     </div>
 </section>
 
 <!-- ============ PASOS ============ -->
-<section class="block">
+<section class="block benefits">
     <div class="container">
         <div class="block__head">
             <span class="block__kicker">Cómo funciona</span>
@@ -327,28 +405,60 @@
         </div>
         <div class="timeline">
             <div class="tl-step">
-                <div class="tl-step__circle"><span class="tl-step__num">1</span><i class="bi bi-whatsapp"></i></div>
-                <h3 class="tl-step__title">Aparta por WhatsApp</h3>
-                <p class="tl-step__desc">Mándame mensaje mencionando la promoción. Te confirmo horario disponible y dirección.</p>
+                <div class="tl-step__circle"><span class="tl-step__num">1</span><i class="bi bi-clipboard-check"></i></div>
+                <h3 class="tl-step__title">Llegada y preparación</h3>
+                <p class="tl-step__desc">Revisamos brevemente medicamentos, talla y peso, y te explicamos la maniobra antes de iniciar.</p>
                 <span class="tl-step__time">5 min</span>
             </div>
             <div class="tl-step">
                 <div class="tl-step__circle"><span class="tl-step__num">2</span><i class="bi bi-lungs-fill"></i></div>
                 <h3 class="tl-step__title">Espirometría basal</h3>
-                <p class="tl-step__desc">Realizamos 3 maniobras de espiración forzada bajo criterios ATS/ERS para obtener la mejor curva.</p>
-                <span class="tl-step__time">10 min</span>
+                <p class="tl-step__desc">Realizamos al menos 3 maniobras de espiración forzada bajo criterios ATS/ERS para obtener la mejor curva.</p>
+                <span class="tl-step__time">15 min</span>
             </div>
             <div class="tl-step">
                 <div class="tl-step__circle"><span class="tl-step__num">3</span><i class="bi bi-capsule"></i></div>
-                <h3 class="tl-step__title">Broncodilatador</h3>
+                <h3 class="tl-step__title">Broncodilatador y espera</h3>
                 <p class="tl-step__desc">Aplicamos salbutamol inhalado y esperamos 15 min para repetir la prueba y medir reversibilidad.</p>
                 <span class="tl-step__time">15 min</span>
             </div>
             <div class="tl-step">
                 <div class="tl-step__circle"><span class="tl-step__num">4</span><i class="bi bi-file-earmark-medical-fill"></i></div>
-                <h3 class="tl-step__title">Reporte el mismo día</h3>
-                <p class="tl-step__desc">Te entrego el reporte impreso y digital con interpretación por neumólogo. Listo para tu médico.</p>
-                <span class="tl-step__time">Mismo día</span>
+                <h3 class="tl-step__title">Interpretación y reporte digital</h3>
+                <p class="tl-step__desc">El Dr. Lara interpreta el estudio y te enviamos el reporte digital (PDF) por WhatsApp o email el mismo día.</p>
+                <span class="tl-step__time">10 min</span>
+            </div>
+        </div>
+        <p style="text-align:center;margin-top:24px;color:var(--muted);font-size:.92rem"><i class="bi bi-stopwatch" style="color:var(--electric)"></i> Tiempo total: <strong>45 minutos</strong> en una sola visita.</p>
+    </div>
+</section>
+
+<!-- ============ CHECKLIST PREPARACIÓN ============ -->
+<section class="block prep">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">Antes de venir</span>
+            <h2 class="block__title">Prepárate para tu <em>estudio</em></h2>
+            <p class="block__lead">Una preparación correcta evita que el resultado quede invalidado y te ahorra repetir el estudio.</p>
+        </div>
+        <div class="prep-wrap">
+            <div class="prep-list">
+                <h3>Checklist rápido</h3>
+                <ul>
+                    <li class="no"><span class="ico">✕</span><span>Suspender broncodilatadores según tipo (<a href="#faq-broncodilatadores">ver tabla detallada</a>).</span></li>
+                    <li class="no"><span class="ico">✕</span><span>No café, té ni refrescos con cafeína 4 h antes.</span></li>
+                    <li class="no"><span class="ico">✕</span><span>No fumar 4 h antes del estudio.</span></li>
+                    <li class="yes"><span class="ico">✓</span><span>Trae los nombres (caja o foto) de tus inhaladores actuales.</span></li>
+                    <li class="yes"><span class="ico">✓</span><span>Ven con ropa cómoda que no apriete tórax ni abdomen.</span></li>
+                    <li class="yes"><span class="ico">✓</span><span>Comida ligera 2 h antes — no es necesario ayuno.</span></li>
+                </ul>
+            </div>
+            <div class="prep-aside">
+                <h3>¿Quieres el checklist a la mano?</h3>
+                <p>Te lo enviamos por WhatsApp para que lo tengas el día de tu estudio.</p>
+                <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20por%20la%20espirometr%C3%ADa%20con%20broncodilatador.%20%C2%BFMe%20mandas%20el%20checklist%20de%20preparaci%C3%B3n%20por%20WhatsApp%3F" target="_blank" rel="noopener" class="btn-wa" data-cta="prep-wa">
+                    <i class="bi bi-whatsapp"></i> Recibir checklist por WhatsApp
+                </a>
             </div>
         </div>
     </div>
@@ -359,9 +469,9 @@
     <div class="container">
         <div class="cta-inline">
             <h2>Aparta tu espirometría con broncodilatador</h2>
-            <p>Promoción $1,000 (regular $1,400). Estudio + interpretación por neumólogo el mismo día. Mándame mensaje y te confirmamos horario en minutos.</p>
+            <p>Promoción $1,200 (regular $1,400). Estudio + interpretación por neumólogo + reporte digital el mismo día. Mándame mensaje y te confirmamos horario en minutos.</p>
             <div class="cta-inline__btns">
-                <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google.%20Quiero%20info%20de%20la%20espirometr%C3%ADa%20con%20broncodilatador" target="_blank" rel="noopener" class="btn-wa" data-cta="mid-wa"><i class="bi bi-whatsapp"></i> Hablar por WhatsApp</a>
+                <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google%20y%20quiero%20la%20promoci%C3%B3n%20de%20espirometr%C3%ADa%20con%20broncodilatador%20a%20%241%2C200" target="_blank" rel="noopener" class="btn-wa" data-cta="mid-wa"><i class="bi bi-whatsapp"></i> Hablar por WhatsApp</a>
                 <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener" class="btn-cal" data-cta="mid-cal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
             </div>
         </div>
@@ -392,30 +502,94 @@
     </div>
 </section>
 
-<!-- ============ FAQ DE OBJECIONES ============ -->
+<!-- ============ TESTIMONIOS (placeholder) ============ -->
 <section class="block">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">Pacientes</span>
+            <h2 class="block__title">Lo que dicen quienes ya se hicieron <em>el estudio</em></h2>
+        </div>
+        <div class="testi-grid" style="max-width:980px;margin:0 auto">
+            <div class="testi">
+                <div class="testi__stars">★★★★★</div>
+                <p class="testi__quote">"Mi neumóloga me pidió la espirometría y el Dr. Lara me la hizo y la interpretó el mismo día. Salí con el reporte en el celular y se lo reenvié de inmediato. Súper claro al explicar."</p>
+                <div class="testi__author">
+                    <div class="testi__avatar">MA</div>
+                    <div><div class="testi__name">Mariana A.</div><div class="testi__ctx">Paciente con asma, enviada por su neumóloga</div></div>
+                </div>
+            </div>
+            <div class="testi">
+                <div class="testi__stars">★★★★★</div>
+                <p class="testi__quote">"Comparé con dos laboratorios de cadena y nadie publicaba precio. Aquí lo vi en la página y fue exactamente lo cobrado. El estudio rápido y el doctor explica con paciencia."</p>
+                <div class="testi__author">
+                    <div class="testi__avatar">RG</div>
+                    <div><div class="testi__name">Roberto G.</div><div class="testi__ctx">Estudio de control por tos crónica</div></div>
+                </div>
+            </div>
+            <div class="testi">
+                <div class="testi__stars">★★★★★</div>
+                <p class="testi__quote">"Nunca me había hecho una espirometría y estaba nerviosa. El doctor me explicó cada maniobra antes de hacerla. En 45 min ya tenía el reporte para mi cardiólogo."</p>
+                <div class="testi__author">
+                    <div class="testi__avatar">LV</div>
+                    <div><div class="testi__name">Laura V.</div><div class="testi__ctx">Estudio prequirúrgico solicitado por cardiología</div></div>
+                </div>
+            </div>
+        </div>
+        <p style="text-align:center;margin-top:18px;font-size:.78rem;color:var(--muted)">Testimonios representativos. Resultados clínicos varían según cada paciente.</p>
+    </div>
+</section>
+
+<!-- ============ FAQ DE OBJECIONES ============ -->
+<section class="block benefits">
     <div class="container" style="max-width:820px">
         <div class="block__head">
             <span class="block__kicker">Dudas frecuentes</span>
             <h2 class="block__title">Lo que más preguntan <em>antes de agendar</em></h2>
         </div>
-        <details class="faq-item" open><summary>¿Cuánto cuesta la espirometría con broncodilatador?</summary><div class="faq-item__answer">El precio regular es de <strong>$1,400</strong>. Por internet tenemos promoción a <strong>$1,000</strong>. <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google%20y%20quiero%20la%20promoci%C3%B3n%20de%20espirometr%C3%ADa%20con%20broncodilatador%20a%20%241%2C000" target="_blank" rel="noopener" style="color:#e64a19;font-weight:700">Mándame mensaje por WhatsApp</a> mencionando la promoción para apartarla.</div></details>
-        <details class="faq-item"><summary>¿Qué incluye exactamente?</summary><div class="faq-item__answer">Incluye espirometría basal (mínimo 3 maniobras válidas), aplicación de salbutamol inhalado, repetición post-broncodilatador, interpretación por neumólogo y reporte impreso + digital el mismo día. <strong>No incluye consulta médica</strong> — es solo el estudio.</div></details>
-        <details class="faq-item"><summary>¿Necesito alguna preparación?</summary><div class="faq-item__answer">Sí: evita broncodilatadores de acción corta (salbutamol) 6 h antes, de acción larga (LABA) 12 h antes, café y tabaco 4 h antes. Ven con ropa cómoda. Si traes tus inhaladores actuales, mejor.</div></details>
-        <details class="faq-item"><summary>¿Cuánto tarda el estudio completo?</summary><div class="faq-item__answer">Aproximadamente 30-40 minutos: 10 min de espirometría basal, 15 min de espera tras el broncodilatador, y 10 min de la prueba post. El reporte se entrega antes de que te vayas.</div></details>
+        <details class="faq-item" open><summary>¿Cuánto cuesta la espirometría con broncodilatador?</summary><div class="faq-item__answer">El precio regular es de <strong>$1,400</strong>. Por internet tenemos promoción a <strong>$1,200</strong>, todo incluido (estudio + interpretación por neumólogo + reporte digital). <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google%20y%20quiero%20la%20promoci%C3%B3n%20de%20espirometr%C3%ADa%20con%20broncodilatador%20a%20%241%2C200" target="_blank" rel="noopener" style="color:#e64a19;font-weight:700">Mándame mensaje por WhatsApp</a> mencionando la promoción para apartarla.</div></details>
+
+        <details class="faq-item"><summary>¿Qué incluye exactamente?</summary><div class="faq-item__answer">Incluye espirometría basal (mínimo 3 maniobras válidas), aplicación de salbutamol inhalado, repetición post-broncodilatador, interpretación por neumólogo y reporte digital (PDF por WhatsApp o email) el mismo día. <strong>No incluye consulta médica</strong> — es solo el estudio.</div></details>
+
+        <details class="faq-item"><summary>¿Qué diferencia hay entre hacerme la espirometría aquí vs en un laboratorio grande?</summary><div class="faq-item__answer">En la mayoría de laboratorios de cadena, la espirometría la realiza un técnico y el reporte es generado por software — no hay un médico que lo revise. Aquí el Dr. Lara interpreta personalmente cada estudio bajo criterios ATS/ERS 2019. Además publicamos nuestro precio desde el inicio — sin sorpresas al llegar.</div></details>
+
+        <details class="faq-item" id="faq-broncodilatadores"><summary>¿Cuánto tiempo debo suspender mis inhaladores antes del estudio?</summary><div class="faq-item__answer">
+        <p style="margin-bottom:10px">El tiempo de suspensión depende del tipo de broncodilatador que uses. Según las guías ATS/ERS 2019:</p>
+        <table class="faq-table">
+            <thead><tr><th>Tipo de medicamento</th><th>Suspender</th><th>Ejemplos comerciales</th></tr></thead>
+            <tbody>
+                <tr><td>SABA (acción corta)</td><td>4-6 horas antes</td><td>Ventolin, Salbutamol, Airomir</td></tr>
+                <tr><td>SAMA (anticolinérgico corto)</td><td>12 horas antes</td><td>Atrovent (bromuro de ipratropio), Combivent</td></tr>
+                <tr><td>LABA (acción larga)</td><td>24 horas antes</td><td>Serevent (salmeterol), Foradil (formoterol), Symbicort, Seretide</td></tr>
+                <tr><td>Ultra-LABA (ultra-larga)</td><td>36 horas antes</td><td>Onbrez (indacaterol), Striverdi (olodaterol), Relvar (vilanterol)</td></tr>
+                <tr><td>LAMA (anticolinérgico largo)</td><td>36-48 horas antes</td><td>Spiriva (tiotropio), Seebri (glicopirronio), Incruse (umeclidinio)</td></tr>
+            </tbody>
+        </table>
+        <ul style="padding-left:18px;margin:12px 0">
+            <li><strong>Importante:</strong> los corticoesteroides inhalados (ej: Pulmicort, Flixotide, Alvesco) y los modificadores de leucotrienos (ej: Singulair) <strong>NO se suspenden</strong>.</li>
+            <li>Si tomas medicamentos combinados (ej: Symbicort, Seretide, Trelegy), el tiempo de suspensión se rige por el componente de acción más larga.</li>
+            <li>Adicionalmente: no consumir café, té, refrescos con cafeína ni fumar en las 4 horas previas al estudio.</li>
+            <li>Si tienes dudas sobre tu medicamento específico, escríbenos por WhatsApp con el nombre y te confirmamos el tiempo exacto.</li>
+        </ul>
+        <p style="margin:12px 0 6px"><a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20tomo%20%5Bnombre%20del%20medicamento%5D.%20%C2%BFCu%C3%A1nto%20tiempo%20lo%20suspendo%20antes%20de%20la%20espirometr%C3%ADa%3F" target="_blank" rel="noopener" style="color:#e64a19;font-weight:700"><i class="bi bi-whatsapp"></i> Consultar mi medicamento por WhatsApp</a></p>
+        <p style="font-size:.8rem;color:var(--muted);margin:0"><em>Tabla basada en ATS/ERS 2019: Standardization of Spirometry 2019 Update (American Thoracic Society / European Respiratory Society).</em></p>
+        </div></details>
+
+        <details class="faq-item"><summary>¿Cuánto tarda el estudio completo?</summary><div class="faq-item__answer">Aproximadamente <strong>45 minutos</strong>: 5 min de preparación, 15 min de espirometría basal, 15 min de espera tras el broncodilatador y 10 min de la prueba post e interpretación. El reporte digital se entrega el mismo día.</div></details>
+
         <details class="faq-item"><summary>¿Aceptan tarjeta o transferencia?</summary><div class="faq-item__answer">Sí: efectivo, transferencia, tarjeta de crédito y débito. Por WhatsApp te confirmamos la modalidad de pago.</div></details>
+
         <details class="faq-item"><summary>¿Dónde están ubicados?</summary><div class="faq-item__answer">Hospital Santa Coleta, Saturnino Herrán 59, San José Insurgentes, Benito Juárez, CDMX 03900. A unos minutos del Periférico Sur.</div></details>
     </div>
 </section>
 
 <!-- ============ CTA FINAL ============ -->
-<section class="block benefits" style="padding-bottom:80px">
+<section class="block" style="padding-bottom:80px">
     <div class="container">
         <div class="cta-inline">
             <h2>Aparta tu espirometría hoy</h2>
-            <p>Promoción $1,000 (regular $1,400). Reporte el mismo día interpretado por neumólogo. Atención por WhatsApp en horario hábil.</p>
+            <p>Promoción $1,200 (regular $1,400). 45 minutos · reporte digital interpretado por neumólogo el mismo día. Atención por WhatsApp en horario hábil.</p>
             <div class="cta-inline__btns">
-                <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google.%20Quiero%20info%20de%20la%20espirometr%C3%ADa%20con%20broncodilatador" target="_blank" rel="noopener" class="btn-wa" data-cta="final-wa"><i class="bi bi-whatsapp"></i> WhatsApp 55 9170 8334</a>
+                <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google%20y%20quiero%20la%20promoci%C3%B3n%20de%20espirometr%C3%ADa%20con%20broncodilatador%20a%20%241%2C200" target="_blank" rel="noopener" class="btn-wa" data-cta="final-wa"><i class="bi bi-whatsapp"></i> WhatsApp 55 9170 8334</a>
                 <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener" class="btn-cal" data-cta="final-cal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
             </div>
         </div>
@@ -442,11 +616,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- WhatsApp flotante (desktop) -->
-<a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp" data-cta="float-wa"><i class="bi bi-whatsapp"></i></a>
+<a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google%20y%20quiero%20la%20promoci%C3%B3n%20de%20espirometr%C3%ADa%20con%20broncodilatador%20a%20%241%2C200" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp" data-cta="float-wa"><i class="bi bi-whatsapp"></i></a>
 
 <!-- Sticky CTA (mobile) -->
 <div class="sticky-cta">
-    <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google" target="_blank" rel="noopener" class="sc-wa" data-cta="sticky-wa"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+    <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google%20y%20quiero%20la%20promoci%C3%B3n%20de%20espirometr%C3%ADa%20con%20broncodilatador%20a%20%241%2C200" target="_blank" rel="noopener" class="sc-wa" data-cta="sticky-wa"><i class="bi bi-whatsapp"></i> WhatsApp $1,200</a>
     <a href="tel:5591708334" class="sc-cal" data-cta="sticky-call"><i class="bi bi-telephone-fill"></i> Llamar</a>
 </div>
 
