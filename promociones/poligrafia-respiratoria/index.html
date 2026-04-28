@@ -1054,5 +1054,47 @@ document.addEventListener('click',function(e){
 })();
 </script>
 
+<!-- Social proof popup -->
+<style>
+.sp-popup{position:fixed;bottom:90px;left:16px;background:#fff;border:1px solid rgba(9,132,227,.15);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 12px 32px -8px rgba(9,44,84,.2);z-index:80;max-width:280px;transform:translateX(-120%);transition:transform .5s cubic-bezier(.22,.61,.36,1);pointer-events:none}
+.sp-popup.show{transform:translateX(0)}
+.sp-popup__avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#0984e3,#00cec9);color:#fff;font-weight:800;font-size:.88rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sp-popup__text{font-size:.8rem;line-height:1.4;color:#1a2238}
+.sp-popup__text strong{display:block;color:#0a2540;font-size:.82rem}
+.sp-popup__time{font-size:.7rem;color:#5a6b7d;margin-top:2px}
+@media(min-width:992px){.sp-popup{bottom:100px;left:24px;max-width:300px}}
+</style>
+<div class="sp-popup" id="spPopup">
+    <div class="sp-popup__avatar" id="spAvatar">JP</div>
+    <div class="sp-popup__text">
+        <strong id="spName">Jorge P. agendó su estudio</strong>
+        <span id="spMsg">Poligrafía respiratoria domiciliaria · CDMX</span>
+        <div class="sp-popup__time" id="spTime">hace 1 hora</div>
+    </div>
+</div>
+<script>
+(function(){
+    var notifications=[
+        {avatar:'JP',name:'Jorge P.',msg:'Poligrafía respiratoria domiciliaria',time:'hace 1 hora'},
+        {avatar:'AN',name:'Ana N.',msg:'Estudio de apnea del sueño en casa',time:'hace 2 horas'},
+        {avatar:'FT',name:'Fernando T.',msg:'Poligrafía domiciliaria · enviado por su médico',time:'hace 3 horas'},
+        {avatar:'CE',name:'Claudia E.',msg:'Ronquidos y somnolencia · agendó estudio',time:'hace 4 horas'},
+        {avatar:'OM',name:'Oscar M.',msg:'Poligrafía respiratoria domiciliaria',time:'hace 5 horas'},
+    ];
+    var idx=0,popup=document.getElementById('spPopup');
+    function show(){
+        var n=notifications[idx%notifications.length];
+        document.getElementById('spAvatar').textContent=n.avatar;
+        document.getElementById('spName').textContent=n.name+' agendó su estudio';
+        document.getElementById('spMsg').textContent=n.msg;
+        document.getElementById('spTime').textContent=n.time;
+        popup.classList.add('show');
+        setTimeout(function(){popup.classList.remove('show');},4000);
+        idx++;
+    }
+    setTimeout(function(){show();setInterval(show,12000);},3500);
+})();
+</script>
+
 </body>
 </html>
