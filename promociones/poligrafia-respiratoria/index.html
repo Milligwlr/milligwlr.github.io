@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es-MX">
 <head>
 <!--
@@ -14,13 +14,11 @@
   - Sin barra de navegación ni enlaces internos de fuga.
   - Footer mínimo (legal indispensable, sin links a otras pags).
   - Una sola promesa por sección, una sola CTA visible siempre.
-  - Trust signals arriba del fold (Cofepris, cédulas, hospital).
+  - Trust signals arriba del fold (Cofepris, cédulas, INER).
   - Botón flotante WhatsApp + CTA sticky inferior móvil.
   - <meta robots="noindex"> para no canibalizar la página SEO
     principal (/servicios/poligrafia-respiratoria/) y porque es
     tráfico exclusivo de Ads.
-  - Sin precios fijos: invitar a WhatsApp para cotizar (mejor
-    fricción de conversión que un número que asuste).
   - Heat: hero, beneficios cortos, paso a paso, prueba social,
     FAQ corto de objeciones, CTA final.
   ============================================================
@@ -28,7 +26,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estudio de Apnea del Sueño en Casa CDMX | Poligrafía Respiratoria</title>
-    <meta name="description" content="Diagnóstico de apnea del sueño en tu casa, sin pasar la noche en hospital. Lectura por neumólogo certificado. Agenda por WhatsApp en CDMX.">
+    <meta name="description" content="Diagnóstico de apnea del sueño en tu casa, sin pasar la noche en hospital. Lectura por neumólogo certificado egresado del INER. Agenda por WhatsApp en CDMX.">
     <meta name="robots" content="noindex, nofollow">
     <link rel="canonical" href="https://alveos.mx/promociones/poligrafia-respiratoria/">
     <meta name="author" content="Dr. William César Lara Vázquez">
@@ -42,24 +40,21 @@
     <link rel="stylesheet" href="/enfermedades/_shared/disease.css">
 
     <style>
-    /* Banner de promoción destacado */
-    .promo-banner{background:linear-gradient(120deg,#ff7a45 0%,#ff5722 50%,#e64a19 100%);color:#fff;padding:14px 0;text-align:center;font-weight:700;font-size:.95rem;position:relative;overflow:hidden;box-shadow:0 4px 16px rgba(230,74,25,.25)}
+    /* ============ PROMO BANNER ============ */
+    .promo-banner{background:linear-gradient(120deg,#ff7a45 0%,#ff5722 50%,#e64a19 100%);color:#fff;padding:12px 0;text-align:center;font-weight:700;font-size:.9rem;position:relative;overflow:hidden;box-shadow:0 4px 16px rgba(230,74,25,.25)}
     .promo-banner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 18px,rgba(255,255,255,.06) 18px,rgba(255,255,255,.06) 36px);pointer-events:none}
-    .promo-banner__inner{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 18px}
-    .promo-banner .tag{background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.4);padding:3px 10px;border-radius:999px;font-size:.72rem;letter-spacing:1px;text-transform:uppercase}
-    .promo-banner .price-old{text-decoration:line-through;opacity:.7;margin-left:6px;font-weight:600}
-    .promo-banner .price-new{font-size:1.15rem;font-weight:800}
-    .promo-banner a{background:#fff;color:#e64a19;padding:6px 16px;border-radius:999px;text-decoration:none;font-weight:800;font-size:.85rem;transition:transform .2s}
+    .promo-banner__inner{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 14px}
+    .promo-banner .tag{background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.4);padding:3px 10px;border-radius:999px;font-size:.7rem;letter-spacing:1px;text-transform:uppercase}
+    .promo-banner .price-old{text-decoration:line-through;opacity:.7;margin-left:4px;font-weight:600}
+    .promo-banner .price-new{font-size:1.1rem;font-weight:800}
+    .promo-banner a{background:#fff;color:#e64a19;padding:6px 14px;border-radius:999px;text-decoration:none;font-weight:800;font-size:.82rem;white-space:nowrap;transition:transform .2s}
     .promo-banner a:hover{transform:scale(1.05);color:#e64a19}
-
-    /* Card de promoción dentro del hero */
-    .promo-card{background:linear-gradient(135deg,#fff7f2 0%,#ffe8db 100%);border:2px dashed #ff5722;border-radius:18px;padding:20px 22px;margin:0 0 22px;display:flex;flex-wrap:wrap;align-items:center;gap:14px}
-    .promo-card__icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#ff7a45,#e64a19);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
-    .promo-card__body{flex:1;min-width:200px}
-    .promo-card__title{font-weight:800;color:#7a2d0a;font-size:1rem;margin-bottom:2px;line-height:1.3}
-    .promo-card__copy{font-size:.88rem;color:#5a3a25;line-height:1.45;margin:0}
-    .promo-card__copy strong{color:#e64a19}
-    .promo-card__copy s{opacity:.65;margin-right:4px}
+    /* Ensure price is always visible on mobile */
+    @media(max-width:480px){
+        .promo-banner .tag{display:none}
+        .promo-banner{font-size:.88rem;padding:10px 0}
+        .promo-banner .price-new{font-size:1.05rem}
+    }
     </style>
 
     <style id="lp-styles">
@@ -95,36 +90,73 @@
     @media(min-width:600px){.lp-header__phone span{display:inline}}
 
     /* ============ HERO ============ */
-    .hero{position:relative;background:linear-gradient(135deg,#0a2540 0%,#0e3a6b 60%,#0984e3 100%);color:#fff;padding:56px 0 64px;overflow:hidden}
+    .hero{position:relative;background:linear-gradient(135deg,#0a2540 0%,#0e3a6b 60%,#0984e3 100%);color:#fff;padding:52px 0 60px;overflow:hidden}
     .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(800px 400px at 80% 10%,rgba(0,206,201,.25),transparent 60%);pointer-events:none}
     .hero__content{position:relative;z-index:2}
-    .hero__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,206,201,.18);border:1px solid rgba(0,206,201,.4);color:#7fffe6;padding:7px 16px;border-radius:999px;font-size:.82rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
+    .hero__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,206,201,.18);border:1px solid rgba(0,206,201,.4);color:#7fffe6;padding:7px 16px;border-radius:999px;font-size:.82rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:16px}
     .hero__badge .dot{width:8px;height:8px;background:#00cec9;border-radius:50%;box-shadow:0 0 12px #00cec9;animation:pulse 2s infinite}
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-    section.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:18px;color:#fff}
+    section.hero h1{font-size:clamp(1.8rem,4.5vw,3rem);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px;color:#fff}
     section.hero h1 em{font-style:normal;background:linear-gradient(120deg,#00cec9,#7fffe6);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
-    .hero__sub{font-size:1.12rem;color:rgba(255,255,255,.85);margin-bottom:24px;max-width:560px;line-height:1.55}
-    .hero__bullets{list-style:none;padding:0;margin:0 0 28px;display:grid;gap:10px}
-    .hero__bullets li{display:flex;align-items:center;gap:10px;font-size:1rem;color:#e8f4ff}
-    .hero__bullets i{color:#7fffe6;font-size:1.15rem;flex-shrink:0}
-    .hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:22px}
-    .btn-wa,.btn-cal{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 26px;border-radius:14px;font-weight:800;font-size:1.05rem;text-decoration:none;transition:all .25s var(--ease);box-shadow:0 10px 30px -8px rgba(0,0,0,.4);min-width:220px}
+    .hero__sub{font-size:1.05rem;color:rgba(255,255,255,.85);margin-bottom:22px;max-width:560px;line-height:1.55}
+
+    /* Comparison strip */
+    .compare-strip{display:grid;grid-template-columns:1fr auto 1fr;gap:0;border-radius:16px;overflow:hidden;margin-bottom:22px;border:1px solid rgba(255,255,255,.15)}
+    .compare-col{padding:14px 16px}
+    .compare-col--other{background:rgba(255,255,255,.05);color:rgba(255,255,255,.7)}
+    .compare-col--vs{display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.04);font-weight:800;font-size:.75rem;color:rgba(255,255,255,.35);padding:6px 8px;writing-mode:vertical-lr;letter-spacing:2px;text-transform:uppercase}
+    .compare-col--alveos{background:rgba(0,206,201,.15);border-left:2px solid rgba(0,206,201,.45)}
+    .compare-col__label{font-size:.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:.65;margin-bottom:4px}
+    .compare-col--alveos .compare-col__label{color:#7fffe6;opacity:1}
+    .compare-col__price{font-size:1.3rem;font-weight:800;margin-bottom:8px;line-height:1}
+    .compare-col--other .compare-col__price{color:rgba(255,255,255,.55)}
+    .compare-col--alveos .compare-col__price{color:#7fffe6}
+    .compare-col__price s{font-size:.78rem;opacity:.5;margin-left:4px;font-weight:600}
+    .compare-col__list{list-style:none;padding:0;margin:0;display:grid;gap:5px;font-size:.8rem;line-height:1.3}
+    .compare-col--other .compare-col__list li{padding-left:18px;position:relative}
+    .compare-col--other .compare-col__list li::before{content:'✗';position:absolute;left:0;color:#e17055;font-weight:700}
+    .compare-col--alveos .compare-col__list li{padding-left:18px;position:relative;color:#e8f4ff}
+    .compare-col--alveos .compare-col__list li::before{content:'✓';position:absolute;left:0;color:#00cec9;font-weight:700}
+    @media(max-width:480px){
+        .compare-col{padding:10px 12px}
+        .compare-col__price{font-size:1.1rem}
+        .compare-col__list{font-size:.76rem}
+        .compare-col--vs{font-size:.65rem;padding:4px 6px}
+    }
+
+    .hero__bullets{list-style:none;padding:0;margin:0 0 24px;display:grid;gap:9px}
+    .hero__bullets li{display:flex;align-items:center;gap:10px;font-size:.97rem;color:#e8f4ff}
+    .hero__bullets i{color:#7fffe6;font-size:1.1rem;flex-shrink:0}
+    .hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+    .btn-wa,.btn-cal{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;border-radius:14px;font-weight:800;font-size:1rem;text-decoration:none;transition:all .25s var(--ease);box-shadow:0 10px 30px -8px rgba(0,0,0,.4);min-width:200px}
     .btn-wa{background:var(--green);color:#fff}
     .btn-wa:hover{background:var(--green-dark);color:#fff;transform:translateY(-2px);box-shadow:0 14px 34px -8px rgba(37,211,102,.5)}
     .btn-cal{background:#fff;color:var(--navy)}
     .btn-cal:hover{background:#e8f4ff;color:var(--navy);transform:translateY(-2px)}
-    .hero__trust{display:flex;flex-wrap:wrap;gap:18px;font-size:.83rem;color:rgba(255,255,255,.7)}
+    .hero__trust{display:flex;flex-wrap:wrap;gap:14px;font-size:.82rem;color:rgba(255,255,255,.7)}
     .hero__trust span{display:inline-flex;align-items:center;gap:6px}
     .hero__trust i{color:#7fffe6}
 
     /* Card visual a la derecha */
     .hero__card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:24px;padding:28px;backdrop-filter:blur(12px);position:relative;z-index:2}
-    .hero__card h3{color:#fff;font-weight:800;font-size:1.3rem;margin-bottom:6px}
-    .hero__card .subt{color:#7fffe6;font-size:.85rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
+    .hero__card h3{color:#fff;font-weight:800;font-size:1.25rem;margin-bottom:6px}
+    .hero__card .subt{color:#7fffe6;font-size:.83rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
     .hero__card-list{list-style:none;padding:0;margin:0;display:grid;gap:14px}
-    .hero__card-list li{display:flex;gap:12px;align-items:flex-start;color:#e8f4ff;font-size:.95rem}
-    .hero__card-list i{color:#00cec9;font-size:1.4rem;flex-shrink:0}
+    .hero__card-list li{display:flex;gap:12px;align-items:flex-start;color:#e8f4ff;font-size:.93rem}
+    .hero__card-list i{color:#00cec9;font-size:1.35rem;flex-shrink:0}
     .hero__card-list strong{color:#fff;display:block;margin-bottom:2px}
+
+    /* ============ PARTNER SECTION ============ */
+    .partner-section{background:linear-gradient(135deg,#f0f8ff 0%,#e8f4ff 100%);border-top:3px solid var(--cyan);padding:56px 0}
+    .partner-card{background:#fff;border-radius:22px;padding:36px 40px;box-shadow:0 8px 32px rgba(9,132,227,.1)}
+    @media(max-width:768px){.partner-card{padding:24px 20px}}
+    .partner-section .block__kicker{background:rgba(0,206,201,.12);color:#007b76}
+    .partner__signs{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:10px}
+    .partner__signs li{display:flex;align-items:flex-start;gap:12px;font-size:.97rem;color:var(--ink);line-height:1.5}
+    .partner__signs li i{color:var(--cyan);font-size:1.1rem;flex-shrink:0;margin-top:2px}
+    .btn-partner-wa{background:var(--green);color:#fff;display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:14px;font-weight:800;font-size:1rem;text-decoration:none;transition:all .25s var(--ease);box-shadow:0 8px 24px rgba(37,211,102,.3)}
+    .btn-partner-wa:hover{color:#fff;background:var(--green-dark);transform:translateY(-2px);box-shadow:0 12px 28px rgba(37,211,102,.4)}
+    .partner-callout{background:linear-gradient(135deg,rgba(0,206,201,.08),rgba(9,132,227,.08));border-left:3px solid var(--cyan);border-radius:0 12px 12px 0;padding:14px 18px;font-size:.93rem;color:var(--muted);font-style:italic;margin-bottom:24px;line-height:1.55}
 
     /* ============ SECCIÓN GENÉRICA ============ */
     section.block{padding:64px 0}
@@ -142,6 +174,47 @@
     .benefit__icon{width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px}
     .benefit h3{font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:8px}
     .benefit p{font-size:.93rem;color:var(--muted);margin:0;line-height:1.55}
+
+    /* ============ STOP-BANG QUIZ ============ */
+    .sb-section{background:var(--bg)}
+    .sb-quiz{display:grid;gap:10px;margin-top:0}
+    .sb-progress{height:6px;background:rgba(9,132,227,.12);border-radius:999px;margin-bottom:18px;overflow:hidden}
+    .sb-progress__bar{height:100%;background:linear-gradient(90deg,var(--electric),var(--cyan));border-radius:999px;transition:width .4s var(--ease);width:0%}
+    .sb-progress__label{font-size:.8rem;color:var(--muted);margin-bottom:6px;font-weight:600}
+    .sb-question{background:#fff;border:2px solid rgba(9,132,227,.1);border-radius:14px;padding:16px 18px;transition:border-color .25s var(--ease)}
+    .sb-question.answered{border-color:rgba(9,132,227,.28)}
+    .sb-question__top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+    .sb-letter{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .sb-category{font-weight:700;color:var(--navy);font-size:.88rem}
+    .sb-question__text{color:var(--ink);font-size:.95rem;margin:0 0 12px;line-height:1.5}
+    .sb-btns{display:flex;gap:8px}
+    .sb-btn{flex:1;padding:9px 0;border-radius:10px;border:2px solid rgba(9,132,227,.18);background:#fff;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .2s var(--ease);color:var(--navy);font-family:inherit}
+    .sb-btn:hover{border-color:var(--electric);background:rgba(9,132,227,.05)}
+    .sb-btn:focus-visible{outline:2px solid var(--electric);outline-offset:2px}
+    .sb-btn.active-si{background:var(--electric);color:#fff;border-color:var(--electric)}
+    .sb-btn.active-no{background:var(--navy);color:#fff;border-color:var(--navy)}
+    /* BMI mini-calculator */
+    .sb-bmi-toggle{background:none;border:none;color:var(--electric);font-size:.82rem;font-weight:700;cursor:pointer;padding:0;margin-bottom:8px;display:inline-flex;align-items:center;gap:4px;text-decoration:underline;text-underline-offset:2px;font-family:inherit}
+    .sb-bmi-panel{display:none;background:rgba(9,132,227,.05);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+    .sb-bmi-panel.open{display:block}
+    .sb-bmi-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+    .sb-bmi-row input{width:100px;padding:7px 10px;border:1.5px solid rgba(9,132,227,.2);border-radius:8px;font-size:.88rem;font-family:inherit;color:var(--ink)}
+    .sb-bmi-row input:focus{outline:none;border-color:var(--electric)}
+    .sb-bmi-calc-btn{padding:7px 14px;background:var(--electric);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:.85rem;cursor:pointer;font-family:inherit}
+    .sb-bmi-result{font-size:.85rem;font-weight:700;color:var(--navy)}
+    /* Result */
+    .sb-result{display:none;border-radius:18px;padding:26px;margin-top:18px;text-align:center}
+    .sb-result--low{background:linear-gradient(135deg,#f0fff8,#e0f9f0);border:2px solid #00b894}
+    .sb-result--mid{background:linear-gradient(135deg,#fffbf0,#fef3cd);border:2px solid #fdcb6e}
+    .sb-result--high{background:linear-gradient(135deg,#fff5f0,#ffe0d5);border:2px solid #e17055}
+    .sb-result__icon{font-size:2rem;margin-bottom:8px}
+    .sb-result__level{font-size:1.45rem;font-weight:800;margin-bottom:2px;color:var(--navy)}
+    .sb-result__score{font-size:.88rem;font-weight:600;color:var(--muted);margin-bottom:12px}
+    .sb-result__message{font-size:.97rem;line-height:1.6;margin-bottom:14px;color:var(--ink);max-width:500px;margin-left:auto;margin-right:auto}
+    .sb-result__disclaimer{font-size:.8rem;color:var(--muted);font-style:italic;margin-bottom:18px;padding:10px 14px;background:rgba(0,0,0,.04);border-radius:8px;line-height:1.5}
+    .sb-result__cta{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:14px;font-weight:800;font-size:1rem;text-decoration:none;background:var(--green);color:#fff;transition:all .25s var(--ease);box-shadow:0 8px 24px rgba(37,211,102,.3)}
+    .sb-result__cta:hover{background:var(--green-dark);color:#fff;transform:translateY(-2px)}
+    .sb-reset-btn{display:block;background:none;border:none;color:var(--muted);font-size:.83rem;cursor:pointer;margin:12px auto 0;text-decoration:underline;text-underline-offset:2px;font-family:inherit}
 
     /* ============ TIMELINE PASOS ============ */
     .timeline{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:20px}
@@ -172,6 +245,23 @@
     .cta-inline h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:12px;letter-spacing:-.02em;color:#fff}
     .cta-inline p{color:rgba(255,255,255,.8);max-width:540px;margin:0 auto 26px;font-size:1.02rem}
     .cta-inline__btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+
+    /* ============ TESTIMONIALS ============ */
+    .testimonials-section{background:#fff}
+    /* Developer notice — only shown in local/staging context via CSS class */
+    .testimonials-placeholder-notice{text-align:center;background:rgba(255,165,0,.08);border:2px dashed rgba(255,150,0,.35);border-radius:12px;padding:11px 18px;font-size:.82rem;color:#7a4a00;margin-bottom:22px;font-weight:600;line-height:1.5}
+    .testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+    .testimonial-card{background:var(--bg);border:1px solid rgba(9,132,227,.1);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:12px}
+    .testimonial-card__header{display:flex;align-items:center;gap:12px}
+    .testimonial-card__avatar{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--electric),var(--cyan));flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:1.1rem;border:2px solid rgba(9,132,227,.15)}
+    .testimonial-card__avatar img{width:100%;height:100%;object-fit:cover}
+    .testimonial-card__name{font-weight:800;color:var(--navy);font-size:.97rem;margin-bottom:2px}
+    .testimonial-card__meta{font-size:.8rem;color:var(--muted)}
+    .testimonial-card__stars{color:#f39c12;letter-spacing:1px;font-size:.88rem}
+    .testimonial-card__text{font-size:.92rem;color:var(--ink);line-height:1.65;flex:1;font-style:italic}
+    /* Google Reviews placeholder */
+    .google-reviews-placeholder{background:rgba(9,132,227,.04);border:2px dashed rgba(9,132,227,.18);border-radius:14px;padding:20px;text-align:center;margin-top:22px;color:var(--muted);font-size:.88rem;line-height:1.6}
+    .google-reviews-placeholder i{font-size:1.5rem;color:rgba(9,132,227,.35);display:block;margin-bottom:6px}
 
     /* ============ TRUST / DOCTOR ============ */
     .doc-card{background:#fff;border:1px solid rgba(9,132,227,.15);border-radius:22px;padding:32px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;box-shadow:0 12px 30px -16px rgba(9,44,84,.15)}
@@ -209,8 +299,6 @@
     @keyframes waPulse{0%,100%{box-shadow:0 8px 24px rgba(37,211,102,.45)}50%{box-shadow:0 8px 30px rgba(37,211,102,.75)}}
     .wa-float:hover{color:#fff;transform:scale(1.08)}
     @media(min-width:992px){.wa-float{display:flex}}
-
-    /* GTM */
     </style>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
 </head>
@@ -222,19 +310,19 @@
     <div class="container">Aviso Cofepris: <a href="https://www.gob.mx/cofepris" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">2609142002A00265</a> &nbsp;|&nbsp; Céd. Prof: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">12588976</a> &nbsp;|&nbsp; Céd. Esp: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">15595809</a> &nbsp;|&nbsp; <a href="https://conacem.org.mx/buscador" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">CNN-2102</a></div>
 </div>
 
-<!-- Banner promoción (CTA principal de Ads) -->
+<!-- Banner promoción (visible y prominente en mobile) -->
 <div class="promo-banner">
     <div class="container promo-banner__inner">
         <span class="tag"><i class="bi bi-stars"></i> Promoción</span>
-        <span>Valoración por neumología <strong>+ poligrafía respiratoria</strong> <span class="price-old">$6,000</span> <span class="price-new">$4,500</span></span>
+        <span>Valoración + poligrafía con <strong>neumólogo INER</strong> <span class="price-old">$6,000</span> <span class="price-new">$4,500</span></span>
         <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google%20y%20quiero%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20a%20%244%2C500" target="_blank" rel="noopener" data-cta="promo-banner"><i class="bi bi-whatsapp"></i> Apartar</a>
     </div>
 </div>
 
-<!-- Navbar oficial (sin menú, solo logo + CTA) para conservar identidad sin fugas -->
+<!-- Navbar: solo logo + CTA, sin fugas de navegación -->
 <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
     <div class="container">
-        <!-- NOTA DESARROLLO: el logo/ALVEOS siempre apunta a "/" (landing page) para no retener al usuario en una promo. Mantener este href en futuras páginas de promociones. -->
+        <!-- NOTA DESARROLLO: el logo/ALVEOS siempre apunta a "/" para no retener al usuario en una promo. Mantener este href en futuras páginas de promociones. -->
         <a class="navbar-brand d-flex align-items-center gap-2" href="/">
             <img src="/images/Logo%20cuadrado/Dise%C3%B1o%20sin%20t%C3%ADtulo.png" alt="Logo Alveos" class="navbar-logo" width="36" height="36" loading="lazy" decoding="async" style="border-radius:8px;object-fit:cover">
             <span class="brand-name">ALVEOS</span>
@@ -250,25 +338,43 @@
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-lg-7 hero__content">
-                <div class="hero__badge"><span class="dot"></span> Estudio en casa · Sin internamiento</div>
-                <h1>Diagnóstico de <em>apnea del sueño</em> en tu propia cama, en una sola noche</h1>
-                <p class="hero__sub">Poligrafía respiratoria domiciliaria con interpretación por neumólogo certificado. Recoges el equipo, duermes en casa, lo regresas al día siguiente. Tu diagnóstico claro en 48 horas.</p>
-                <div class="promo-card">
-                    <div class="promo-card__icon"><i class="bi bi-tag-fill"></i></div>
-                    <div class="promo-card__body">
-                        <div class="promo-card__title">Promoción exclusiva por internet</div>
-                        <p class="promo-card__copy">Valoración por neumología <strong>+ poligrafía respiratoria</strong> a <strong>$4,500</strong> <s>$6,000</s>. Menciónala al escribir por WhatsApp.</p>
+                <!-- Badge con INER visible en el primer viewport en mobile y desktop -->
+                <div class="hero__badge"><span class="dot"></span> Egresado INER &middot; Estudio en casa &middot; Sin internamiento</div>
+                <h1>Poligrafía respiratoria con <em>neumólogo INER</em> incluido — $4,500</h1>
+                <p class="hero__sub">La competencia cobra $3,000–$4,000 solo por el equipo y un reporte automatizado, sin médico real. Aquí el precio incluye valoración, lectura e interpretación clínica completa.</p>
+
+                <!-- Comparación implícita: laboratorio típico vs. ALVEOS -->
+                <div class="compare-strip" role="region" aria-label="Comparación de precios">
+                    <div class="compare-col compare-col--other">
+                        <div class="compare-col__label">Laboratorio típico</div>
+                        <div class="compare-col__price">~$4,000</div>
+                        <ul class="compare-col__list">
+                            <li>Solo el equipo + PDF</li>
+                            <li>Reporte automatizado</li>
+                            <li>Sin consulta médica</li>
+                        </ul>
+                    </div>
+                    <div class="compare-col compare-col--vs" aria-hidden="true">VS</div>
+                    <div class="compare-col compare-col--alveos">
+                        <div class="compare-col__label">ALVEOS · Esta promo</div>
+                        <div class="compare-col__price">$4,500 <s>$6,000</s></div>
+                        <ul class="compare-col__list">
+                            <li>Valoración neumológica</li>
+                            <li>Egresado del INER</li>
+                            <li>Lectura personal + plan</li>
+                        </ul>
                     </div>
                 </div>
+
                 <ul class="hero__bullets">
-                    <li><i class="bi bi-check-circle-fill"></i> Sin pasar la noche en hospital</li>
-                    <li><i class="bi bi-check-circle-fill"></i> Lectura por neumólogo, no por técnico</li>
-                    <li><i class="bi bi-check-circle-fill"></i> Más económico que la polisomnografía</li>
-                    <li><i class="bi bi-check-circle-fill"></i> Resultado y plan terapéutico en 48 h</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Neumólogo egresado del INER — uno de los pocos en CDMX que incluye consulta</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Sin pasar la noche en hospital — duermes en tu propia cama</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Lectura personal, no un algoritmo — interpretada caso por caso</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Reporte y plan terapéutico en 48 horas</li>
                 </ul>
                 <div class="hero__cta">
-                    <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google.%20Quiero%20info%20de%20la%20poligraf%C3%ADa%20respiratoria" target="_blank" rel="noopener" class="btn-wa" data-cta="hero-wa">
-                        <i class="bi bi-whatsapp"></i> Cotizar por WhatsApp
+                    <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20me%20interesa%20la%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500.%20%C2%BFTienen%20disponibilidad%20esta%20semana%3F" target="_blank" rel="noopener" class="btn-wa" data-cta="hero-wa">
+                        <i class="bi bi-whatsapp"></i> Agendar por WhatsApp
                     </a>
                     <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener" class="btn-cal" data-cta="hero-cal">
                         <i class="bi bi-calendar-check"></i> Agendar cita
@@ -287,9 +393,47 @@
                     <ul class="hero__card-list">
                         <li><i class="bi bi-house-door-fill"></i><div><strong>Equipo a domicilio</strong>El equipo te lo entrego en consulta o se coordina por mensajería.</div></li>
                         <li><i class="bi bi-moon-stars-fill"></i><div><strong>Una noche en casa</strong>Duermes con tus sensores en tu cama, sin estrés de cuarto ajeno.</div></li>
-                        <li><i class="bi bi-clipboard2-pulse-fill"></i><div><strong>Reporte por neumólogo</strong>IAH, severidad, oximetría, posición — interpretado por médico, no por software.</div></li>
+                        <li><i class="bi bi-clipboard2-pulse-fill"></i><div><strong>Reporte por neumólogo INER</strong>IAH, severidad, oximetría, posición — interpretado por médico, no por software.</div></li>
                         <li><i class="bi bi-arrow-right-circle-fill"></i><div><strong>Plan terapéutico claro</strong>Te explico opciones (CPAP, dispositivos, cambios) sin tecnicismos.</div></li>
                     </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ SECCIÓN PAREJA ============ -->
+<!-- Dirigida a mujeres 35-44 que investigan por su pareja que ronca -->
+<section class="partner-section" id="para-la-pareja" aria-label="Para la pareja del paciente">
+    <div class="container">
+        <div class="partner-card">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <span class="block__kicker">¿Eres la pareja?</span>
+                    <h2 class="block__title" style="text-align:left;margin-bottom:14px">¿Llevas noches <em>sin dormir</em> por sus ronquidos?</h2>
+                    <div class="partner-callout">
+                        "Escuchas que deja de respirar por unos segundos y luego hace un ruido fuerte. Te despiertas asustada. Y él ni se entera."
+                    </div>
+                    <ul class="partner__signs">
+                        <li><i class="bi bi-check-circle-fill"></i> Has notado pausas en su respiración mientras duerme</li>
+                        <li><i class="bi bi-check-circle-fill"></i> Sus ronquidos interrumpen tu descanso con frecuencia</li>
+                        <li><i class="bi bi-check-circle-fill"></i> Durante el día se le ve cansado, incluso después de dormir</li>
+                        <li><i class="bi bi-check-circle-fill"></i> Quieres ayudarle pero no sabes por dónde empezar</li>
+                    </ul>
+                    <p style="font-size:.97rem;color:var(--muted);margin-bottom:20px;line-height:1.6">El estudio es <strong style="color:var(--navy)">completamente no invasivo</strong>: solo sensores pequeños que se colocan antes de dormir. Se hace en casa, en su propia cama. Pueden agendarlo juntos — en un solo mensaje.</p>
+                    <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20mi%20pareja%20ronca%20y%20tiene%20pausas%20en%20la%20respiraci%C3%B3n%20al%20dormir.%20Me%20gustar%C3%ADa%20agendarle%20una%20valoraci%C3%B3n%20y%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500." target="_blank" rel="noopener" class="btn-partner-wa" data-cta="partner-wa">
+                        <i class="bi bi-whatsapp"></i> Agendar para mi pareja
+                    </a>
+                </div>
+                <div class="col-lg-4 text-center d-none d-lg-block">
+                    <div style="background:linear-gradient(135deg,rgba(0,206,201,.1),rgba(9,132,227,.08));border-radius:20px;padding:28px 20px">
+                        <i class="bi bi-moon-stars" style="font-size:3rem;color:var(--electric);display:block;margin-bottom:12px"></i>
+                        <p style="font-size:.93rem;color:var(--navy);font-weight:600;margin-bottom:4px">Estudio no invasivo</p>
+                        <p style="font-size:.85rem;color:var(--muted);margin-bottom:18px">Solo sensores en casa, una noche</p>
+                        <i class="bi bi-house-heart" style="font-size:3rem;color:var(--cyan);display:block;margin-bottom:12px"></i>
+                        <p style="font-size:.93rem;color:var(--navy);font-weight:600;margin-bottom:4px">En su propia cama</p>
+                        <p style="font-size:.85rem;color:var(--muted);margin:0">Sin hospital, sin internamiento</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -308,9 +452,162 @@
             <div class="benefit"><div class="benefit__icon"><i class="bi bi-house-heart-fill"></i></div><h3>Duermes en tu cama</h3><p>Sin cuarto de hospital, sin cambiar tu rutina. Tu noche real, tu diagnóstico real.</p></div>
             <div class="benefit"><div class="benefit__icon"><i class="bi bi-piggy-bank-fill"></i></div><h3>Hasta 40% más barato</h3><p>Significativamente menos costoso que una polisomnografía hospitalaria, sin sacrificar precisión diagnóstica en casos típicos.</p></div>
             <div class="benefit"><div class="benefit__icon"><i class="bi bi-stopwatch-fill"></i></div><h3>Resultados en 48 horas</h3><p>Recoges el equipo, duermes una noche, lo regresas. Tu reporte y plan terapéutico listos en dos días.</p></div>
-            <div class="benefit"><div class="benefit__icon"><i class="bi bi-person-badge-fill"></i></div><h3>Lectura por neumólogo</h3><p>No es un reporte automatizado. Yo personalmente reviso e interpreto cada estudio.</p></div>
+            <div class="benefit"><div class="benefit__icon"><i class="bi bi-person-badge-fill"></i></div><h3>Lectura por neumólogo INER</h3><p>No es un reporte automatizado. Yo personalmente reviso e interpreto cada estudio, con criterio clínico.</p></div>
             <div class="benefit"><div class="benefit__icon"><i class="bi bi-shield-fill-check"></i></div><h3>Equipo certificado</h3><p>Tecnología validada internacionalmente, calibrada y con consumibles nuevos por paciente.</p></div>
             <div class="benefit"><div class="benefit__icon"><i class="bi bi-chat-heart-fill"></i></div><h3>Acompañamiento real</h3><p>Te resuelvo dudas por WhatsApp antes y después. No te dejo solo con un PDF.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ CUESTIONARIO STOP-BANG ============ -->
+<!-- Ubicado después de beneficios para capturar al visitante motivado a saber su riesgo -->
+<section class="block sb-section" id="stop-bang" aria-label="Cuestionario STOP-BANG">
+    <div class="container" style="max-width:760px">
+        <div class="block__head">
+            <span class="block__kicker">Cuestionario STOP-BANG</span>
+            <h2 class="block__title">¿Tienes riesgo de apnea del sueño? <em>Descúbrelo en 2 min</em></h2>
+            <p class="block__lead">El cuestionario STOP-BANG es una herramienta clínica validada mundialmente para estimar el riesgo de apnea obstructiva. Responde 8 preguntas y conoce tu nivel de riesgo.</p>
+        </div>
+
+        <!-- Progreso -->
+        <div class="sb-progress__label" id="sb-progress-label" aria-live="polite">0 de 8 preguntas respondidas</div>
+        <div class="sb-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="8" aria-label="Progreso del cuestionario">
+            <div class="sb-progress__bar" id="sb-progress-bar"></div>
+        </div>
+
+        <div class="sb-quiz" id="sb-quiz" role="group" aria-label="Preguntas del cuestionario STOP-BANG">
+
+            <!-- S — Snoring / Ronquido -->
+            <div class="sb-question" id="sbq-s" data-qid="s">
+                <div class="sb-question__top">
+                    <div class="sb-letter" aria-hidden="true">S</div>
+                    <span class="sb-category">Ronquido</span>
+                </div>
+                <p class="sb-question__text" id="sbq-s-label">¿Roncas fuerte — más fuerte que al hablar, o lo suficiente para escucharse a través de una puerta cerrada?</p>
+                <div class="sb-btns" role="group" aria-labelledby="sbq-s-label">
+                    <button class="sb-btn" type="button" data-q="s" data-v="1" aria-pressed="false">Sí</button>
+                    <button class="sb-btn" type="button" data-q="s" data-v="0" aria-pressed="false">No</button>
+                </div>
+            </div>
+
+            <!-- T — Tired / Cansancio -->
+            <div class="sb-question" id="sbq-t" data-qid="t">
+                <div class="sb-question__top">
+                    <div class="sb-letter" aria-hidden="true">T</div>
+                    <span class="sb-category">Cansancio</span>
+                </div>
+                <p class="sb-question__text" id="sbq-t-label">¿Te sientes cansado, fatigado o con sueño durante el día con frecuencia, incluso habiendo dormido?</p>
+                <div class="sb-btns" role="group" aria-labelledby="sbq-t-label">
+                    <button class="sb-btn" type="button" data-q="t" data-v="1" aria-pressed="false">Sí</button>
+                    <button class="sb-btn" type="button" data-q="t" data-v="0" aria-pressed="false">No</button>
+                </div>
+            </div>
+
+            <!-- O — Observed / Observado -->
+            <div class="sb-question" id="sbq-o" data-qid="o">
+                <div class="sb-question__top">
+                    <div class="sb-letter" aria-hidden="true">O</div>
+                    <span class="sb-category">Observado</span>
+                </div>
+                <p class="sb-question__text" id="sbq-o-label">¿Alguien ha notado que dejas de respirar, o que te atragantas, mientras duermes?</p>
+                <div class="sb-btns" role="group" aria-labelledby="sbq-o-label">
+                    <button class="sb-btn" type="button" data-q="o" data-v="1" aria-pressed="false">Sí</button>
+                    <button class="sb-btn" type="button" data-q="o" data-v="0" aria-pressed="false">No</button>
+                </div>
+            </div>
+
+            <!-- P — Pressure / Presión arterial -->
+            <div class="sb-question" id="sbq-p" data-qid="p">
+                <div class="sb-question__top">
+                    <div class="sb-letter" aria-hidden="true">P</div>
+                    <span class="sb-category">Presión arterial</span>
+                </div>
+                <p class="sb-question__text" id="sbq-p-label">¿Tienes presión arterial alta o estás siendo tratado con medicamentos para controlarla?</p>
+                <div class="sb-btns" role="group" aria-labelledby="sbq-p-label">
+                    <button class="sb-btn" type="button" data-q="p" data-v="1" aria-pressed="false">Sí</button>
+                    <button class="sb-btn" type="button" data-q="p" data-v="0" aria-pressed="false">No</button>
+                </div>
+            </div>
+
+            <!-- B — BMI / Índice de masa corporal -->
+            <div class="sb-question" id="sbq-b" data-qid="b">
+                <div class="sb-question__top">
+                    <div class="sb-letter" aria-hidden="true">B</div>
+                    <span class="sb-category">Índice de masa corporal</span>
+                </div>
+                <p class="sb-question__text" id="sbq-b-label">¿Tu índice de masa corporal (IMC) es mayor a 35?</p>
+                <!-- Mini calculadora de IMC opcional -->
+                <button type="button" class="sb-bmi-toggle" onclick="sbToggleBmi()" aria-expanded="false" aria-controls="sb-bmi-panel">
+                    <i class="bi bi-calculator"></i> Calcular mi IMC (opcional)
+                </button>
+                <div class="sb-bmi-panel" id="sb-bmi-panel" role="region" aria-label="Calculadora de IMC">
+                    <div class="sb-bmi-row">
+                        <input type="number" id="sb-peso" placeholder="Peso (kg)" min="30" max="300" aria-label="Peso en kilogramos">
+                        <input type="number" id="sb-talla" placeholder="Estatura (m, ej: 1.70)" min="1.0" max="2.5" step="0.01" aria-label="Estatura en metros">
+                        <button type="button" class="sb-bmi-calc-btn" onclick="sbCalcBMI()">Calcular</button>
+                        <span class="sb-bmi-result" id="sb-bmi-result" aria-live="polite"></span>
+                    </div>
+                </div>
+                <div class="sb-btns" role="group" aria-labelledby="sbq-b-label">
+                    <button class="sb-btn" type="button" data-q="b" data-v="1" id="sb-btn-si-b" aria-pressed="false">Sí (IMC &gt; 35)</button>
+                    <button class="sb-btn" type="button" data-q="b" data-v="0" id="sb-btn-no-b" aria-pressed="false">No</button>
+                </div>
+            </div>
+
+            <!-- A — Age / Edad -->
+            <div class="sb-question" id="sbq-a" data-qid="a">
+                <div class="sb-question__top">
+                    <div class="sb-letter" aria-hidden="true">A</div>
+                    <span class="sb-category">Edad</span>
+                </div>
+                <p class="sb-question__text" id="sbq-a-label">¿Tienes más de 50 años?</p>
+                <div class="sb-btns" role="group" aria-labelledby="sbq-a-label">
+                    <button class="sb-btn" type="button" data-q="a" data-v="1" aria-pressed="false">Sí</button>
+                    <button class="sb-btn" type="button" data-q="a" data-v="0" aria-pressed="false">No</button>
+                </div>
+            </div>
+
+            <!-- N — Neck / Circunferencia de cuello -->
+            <div class="sb-question" id="sbq-n" data-qid="n">
+                <div class="sb-question__top">
+                    <div class="sb-letter" aria-hidden="true">N</div>
+                    <span class="sb-category">Circunferencia de cuello</span>
+                </div>
+                <p class="sb-question__text" id="sbq-n-label">¿La circunferencia de tu cuello es mayor a 40 cm? (Aproximadamente si usas cuello de camisa 16" o mayor)</p>
+                <div class="sb-btns" role="group" aria-labelledby="sbq-n-label">
+                    <button class="sb-btn" type="button" data-q="n" data-v="1" aria-pressed="false">Sí</button>
+                    <button class="sb-btn" type="button" data-q="n" data-v="0" aria-pressed="false">No</button>
+                </div>
+            </div>
+
+            <!-- G — Gender / Género -->
+            <div class="sb-question" id="sbq-g" data-qid="g">
+                <div class="sb-question__top">
+                    <div class="sb-letter" aria-hidden="true">G</div>
+                    <span class="sb-category">Sexo biológico</span>
+                </div>
+                <p class="sb-question__text" id="sbq-g-label">¿Eres hombre (sexo masculino al nacer)?</p>
+                <div class="sb-btns" role="group" aria-labelledby="sbq-g-label">
+                    <button class="sb-btn" type="button" data-q="g" data-v="1" aria-pressed="false">Sí</button>
+                    <button class="sb-btn" type="button" data-q="g" data-v="0" aria-pressed="false">No</button>
+                </div>
+            </div>
+        </div><!-- /.sb-quiz -->
+
+        <!-- Resultado (se muestra al responder las 8 preguntas) -->
+        <div class="sb-result" id="sb-result" aria-live="assertive" role="region" aria-label="Resultado del cuestionario">
+            <div class="sb-result__icon" id="sb-result-icon">&#128277;</div>
+            <div class="sb-result__level" id="sb-result-level">Riesgo intermedio</div>
+            <div class="sb-result__score" id="sb-result-score">4 de 8 factores presentes</div>
+            <p class="sb-result__message" id="sb-result-message"></p>
+            <div class="sb-result__disclaimer">
+                Este cuestionario es orientativo y no reemplaza la evaluación médica. Solo un neumólogo puede establecer un diagnóstico de apnea del sueño.
+            </div>
+            <a href="#" class="sb-result__cta" id="sb-result-cta" target="_blank" rel="noopener" data-cta="stopbang-wa">
+                <i class="bi bi-whatsapp"></i> Hablar con el Dr. Lara
+            </a>
+            <br>
+            <button type="button" class="sb-reset-btn" onclick="sbReset()">Reiniciar cuestionario</button>
         </div>
     </div>
 </section>
@@ -356,12 +653,112 @@
     <div class="container">
         <div class="cta-inline">
             <h2>¿Listo para dormir tranquilo?</h2>
-            <p>Una conversación de 2 minutos por WhatsApp es suficiente para resolver dudas, conocer el costo y agendar tu estudio.</p>
+            <p>Una conversación de 2 minutos por WhatsApp es suficiente para resolver dudas, conocer disponibilidad y agendar tu estudio.</p>
             <div class="cta-inline__btns">
-                <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google.%20Quiero%20info%20de%20la%20poligraf%C3%ADa%20respiratoria" target="_blank" rel="noopener" class="btn-wa" data-cta="mid-wa"><i class="bi bi-whatsapp"></i> Hablar por WhatsApp</a>
+                <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20estuve%20leyendo%20sobre%20la%20poligraf%C3%ADa%20respiratoria%20y%20quiero%20agendar%20la%20evaluaci%C3%B3n%20a%20%244%2C500." target="_blank" rel="noopener" class="btn-wa" data-cta="mid-wa"><i class="bi bi-whatsapp"></i> Hablar por WhatsApp</a>
                 <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener" class="btn-cal" data-cta="mid-cal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
             </div>
         </div>
+    </div>
+</section>
+
+<!-- ============ TESTIMONIOS ============ -->
+<!--
+  INSTRUCCIONES PARA LLENAR TESTIMONIOS:
+  - Solicita consentimiento escrito al paciente antes de publicar su nombre y foto.
+  - Usa nombre real o primer nombre + inicial del apellido.
+  - Edad aproximada (ej. "38 años") — no fecha de nacimiento.
+  - Foto opcional: círculo de 50x50px, idealmente tomada en el consultorio.
+  - Texto: 2-4 oraciones en voz del paciente, sin promesas de curación.
+  - GOOGLE REVIEWS: ver comentario abajo para integración futura.
+-->
+<section class="block testimonials-section" id="testimonios" aria-label="Testimonios de pacientes">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">Pacientes</span>
+            <h2 class="block__title">Lo que dicen quienes <em>ya hicieron el estudio</em></h2>
+        </div>
+
+        <!-- AVISO DE DESARROLLO — eliminar este div cuando los testimonios estén listos -->
+        <div class="testimonials-placeholder-notice" role="note">
+            <i class="bi bi-clock-history me-2"></i>
+            <strong>CONTENIDO PENDIENTE:</strong> Reemplaza las 3 tarjetas de abajo con testimonios reales de pacientes con consentimiento firmado. Elimina este aviso al publicar.
+        </div>
+
+        <div class="testimonials-grid">
+
+            <!-- TESTIMONIO 1 — PENDIENTE -->
+            <div class="testimonial-card">
+                <div class="testimonial-card__header">
+                    <div class="testimonial-card__avatar" aria-hidden="true">
+                        <!-- Reemplaza el siguiente <img> con la foto real del paciente o elimínalo para mostrar la inicial -->
+                        <!-- <img src="/images/testimonios/paciente-1.jpg" alt="Foto de [nombre]"> -->
+                        M
+                    </div>
+                    <div>
+                        <div class="testimonial-card__name">[NOMBRE 1 — PENDIENTE]</div>
+                        <div class="testimonial-card__meta">[Edad, ej: 42 años] · [Ciudad/Alcaldía]</div>
+                        <div class="testimonial-card__stars" aria-label="5 de 5 estrellas">★★★★★</div>
+                    </div>
+                </div>
+                <p class="testimonial-card__text">"[TESTIMONIO 1 — PENDIENTE. Insertar texto real del paciente aquí, 2-4 oraciones en primera persona. Ejemplo: 'Tenía años con ronquidos y nadie me había explicado qué era la apnea. El Dr. Lara me lo explicó todo con claridad y el estudio fue sencillísimo...']"</p>
+            </div>
+
+            <!-- TESTIMONIO 2 — PENDIENTE -->
+            <div class="testimonial-card">
+                <div class="testimonial-card__header">
+                    <div class="testimonial-card__avatar" aria-hidden="true">
+                        <!-- <img src="/images/testimonios/paciente-2.jpg" alt="Foto de [nombre]"> -->
+                        R
+                    </div>
+                    <div>
+                        <div class="testimonial-card__name">[NOMBRE 2 — PENDIENTE]</div>
+                        <div class="testimonial-card__meta">[Edad] · [Ciudad/Alcaldía]</div>
+                        <div class="testimonial-card__stars" aria-label="5 de 5 estrellas">★★★★★</div>
+                    </div>
+                </div>
+                <p class="testimonial-card__text">"[TESTIMONIO 2 — PENDIENTE. Sugerencia: pareja que agendó el estudio para su esposo/esposa. 'Mi marido no quería ir al médico pero cuando vi que el estudio se hace en casa se animó...']"</p>
+            </div>
+
+            <!-- TESTIMONIO 3 — PENDIENTE -->
+            <div class="testimonial-card">
+                <div class="testimonial-card__header">
+                    <div class="testimonial-card__avatar" aria-hidden="true">
+                        <!-- <img src="/images/testimonios/paciente-3.jpg" alt="Foto de [nombre]"> -->
+                        C
+                    </div>
+                    <div>
+                        <div class="testimonial-card__name">[NOMBRE 3 — PENDIENTE]</div>
+                        <div class="testimonial-card__meta">[Edad] · [Ciudad/Alcaldía]</div>
+                        <div class="testimonial-card__stars" aria-label="5 de 5 estrellas">★★★★★</div>
+                    </div>
+                </div>
+                <p class="testimonial-card__text">"[TESTIMONIO 3 — PENDIENTE. Sugerencia: paciente que ya usa CPAP y mejoró. 'Llevo 3 meses con el CPAP y es la primera vez en años que despierto descansado...']"</p>
+            </div>
+
+        </div><!-- /.testimonials-grid -->
+
+        <!--
+            GOOGLE REVIEWS EMBED — INTEGRACIÓN FUTURA
+            =============================================
+            Cuando tengas suficientes reseñas en Google Business Profile,
+            puedes incrustar un widget aquí. Opciones:
+            1. Widget nativo de Google (via "Elfsight" u otros): reemplaza el div
+               .google-reviews-placeholder con el script/iframe del proveedor.
+            2. Google Places API + fetch JS: llama a la API con tu Place ID y
+               renderiza las reseñas dinámicamente.
+            3. Plugin de terceros (ej: EmbedSocial, ReviewsWidget.net):
+               pega el embed code donde está el placeholder.
+
+            Tu Google Place ID: PENDIENTE (búscalo en Google Maps > "Compartir" > "ID de lugar")
+        -->
+        <div class="google-reviews-placeholder" role="note">
+            <i class="bi bi-google"></i>
+            <strong>Reseñas de Google</strong><br>
+            Aquí irá el widget de reseñas de Google cuando estén disponibles.<br>
+            <small>Reemplaza este bloque con el embed de tu proveedor preferido.</small>
+        </div>
+
     </div>
 </section>
 
@@ -370,14 +767,14 @@
     <div class="container">
         <div class="block__head">
             <span class="block__kicker">Quién hace tu estudio</span>
-            <h2 class="block__title">Neumólogo certificado, no un laboratorio sin médico</h2>
+            <h2 class="block__title">Neumólogo certificado, egresado del INER — <em>no un laboratorio sin médico</em></h2>
         </div>
         <div class="doc-card" style="max-width:820px;margin:0 auto">
-            <img src="/images/dr-william-lara.jpg" alt="Dr. William César Lara Vázquez, neumólogo" class="doc-card__avatar" width="120" height="120" loading="lazy" style="object-fit:cover">
+            <img src="/images/dr-william-lara.jpg" alt="Dr. William César Lara Vázquez, neumólogo egresado del INER" class="doc-card__avatar" width="120" height="120" loading="lazy" style="object-fit:cover">
             <div>
                 <h3>Dr. William César Lara Vázquez</h3>
-                <div class="role">Médico Neumólogo · Alta Especialidad en EPOC</div>
-                <p>Egresado del Instituto Nacional de Enfermedades Respiratorias (INER). Atención personalizada en CDMX, con interpretación directa de cada estudio y plan terapéutico explicado en lenguaje claro.</p>
+                <div class="role">Médico Neumólogo · Alta Especialidad en EPOC · Egresado del INER</div>
+                <p>Egresado del Instituto Nacional de Enfermedades Respiratorias (INER), la institución de referencia en neumología en México. Atención personalizada en CDMX, con interpretación directa de cada estudio y plan terapéutico explicado en lenguaje claro — sin tercerizar la lectura a un software.</p>
                 <div class="doc-card__creds">
                     <span><i class="bi bi-patch-check-fill"></i> Cédula Prof. 12588976</span>
                     <span><i class="bi bi-patch-check-fill"></i> Cédula Esp. 15595809</span>
@@ -396,12 +793,12 @@
             <span class="block__kicker">Dudas frecuentes</span>
             <h2 class="block__title">Lo que más preguntan <em>antes de agendar</em></h2>
         </div>
-        <details class="faq-item" open><summary>¿Cuánto cuesta el estudio?</summary><div class="faq-item__answer">En la mayoría de laboratorios de función pulmonar el precio usual de la <strong>poligrafía sola</strong> es de aproximadamente <strong>$4,000</strong>, <em>pero sin valoración por neumólogo</em> — solo te entregan el equipo y un reporte automatizado.<br><br>Por internet tenemos una promoción especial: <strong>valoración neumológica + poligrafía respiratoria + interpretación por neumólogo a $4,500</strong> (precio normal del paquete: $6,000). <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google%20y%20quiero%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20a%20%244%2C500" target="_blank" rel="noopener" style="color:#e64a19;font-weight:700">Mándame mensaje por WhatsApp</a> para apartar la promoción.</div></details>
-        <details class="faq-item"><summary>¿Es realmente válido un estudio en casa?</summary><div class="faq-item__answer">Sí. La poligrafía respiratoria es un estudio tipo III validado por la American Academy of Sleep Medicine (AASM) para diagnóstico de apnea obstructiva en pacientes con alta sospecha clínica y sin enfermedad cardiopulmonar grave.</div></details>
-        <details class="faq-item"><summary>¿Y si no logro dormir con el equipo?</summary><div class="faq-item__answer">El equipo es ligero y la mayoría se acostumbra en 30 minutos. Si la noche no es suficiente, repetimos el estudio sin costo adicional.</div></details>
-        <details class="faq-item"><summary>¿Cuándo recibo los resultados?</summary><div class="faq-item__answer">El reporte se entrega en consulta dentro de las 48 horas siguientes a la devolución del equipo, con explicación clara y plan terapéutico.</div></details>
-        <details class="faq-item"><summary>¿Aceptan tarjeta o transferencia?</summary><div class="faq-item__answer">Sí: efectivo, transferencia, tarjeta de crédito y débito. Por WhatsApp te confirmamos la modalidad de pago.</div></details>
-        <details class="faq-item"><summary>¿Dónde están ubicados?</summary><div class="faq-item__answer">Hospital Santa Coleta, Saturnino Herrán 59, San José Insurgentes, Benito Juárez, CDMX 03900. A unos minutos del Periférico Sur.</div></details>
+        <details class="faq-item" open><summary>¿Cuánto cuesta y qué incluye?</summary><div class="faq-item__answer">La mayoría de laboratorios cobra <strong>$3,000–$4,000 solo por el equipo</strong> y un reporte automatizado, sin que ningún médico revise tu caso.<br><br>Por internet tenemos promoción especial: <strong>valoración neumológica + equipo + poligrafía + interpretación por neumólogo egresado del INER = $4,500</strong> (precio normal del paquete: $6,000). Por $500 más que el laboratorio sin médico, obtienes diagnóstico real con criterio clínico. <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google%20y%20quiero%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20a%20%244%2C500" target="_blank" rel="noopener" style="color:#e64a19;font-weight:700" data-cta="faq-wa">Mándame mensaje por WhatsApp</a> para apartar la promoción.</div></details>
+        <details class="faq-item"><summary>¿Es realmente válido un estudio en casa?</summary><div class="faq-item__answer">Sí. La poligrafía respiratoria es un estudio tipo III validado por la American Academy of Sleep Medicine (AASM) para diagnóstico de apnea obstructiva en pacientes con alta sospecha clínica y sin enfermedad cardiopulmonar grave. Para la mayoría de personas con ronquidos y síntomas típicos, es suficiente para confirmar o descartar el diagnóstico.</div></details>
+        <details class="faq-item"><summary>¿Y si no logro dormir con el equipo?</summary><div class="faq-item__answer">El equipo es ligero y la mayoría se acostumbra en 30 minutos. Si la noche no fue suficiente para un estudio válido, repetimos sin costo adicional.</div></details>
+        <details class="faq-item"><summary>¿Cuándo recibo los resultados?</summary><div class="faq-item__answer">El reporte se entrega en consulta dentro de las 48 horas siguientes a la devolución del equipo, con explicación clara y plan terapéutico: CPAP, dispositivos de avance mandibular, cambios de posición y hábitos, o seguimiento si no hay apnea.</div></details>
+        <details class="faq-item"><summary>¿Aceptan tarjeta o transferencia?</summary><div class="faq-item__answer">Sí: efectivo, transferencia, tarjeta de crédito y débito. Por WhatsApp te confirmamos la modalidad de pago antes de la cita.</div></details>
+        <details class="faq-item"><summary>¿Dónde están ubicados?</summary><div class="faq-item__answer">Hospital Santa Coleta, Saturnino Herrán 59, San José Insurgentes, Benito Juárez, CDMX 03900. A unos minutos del Periférico Sur y con estacionamiento en el hospital.</div></details>
     </div>
 </section>
 
@@ -410,16 +807,16 @@
     <div class="container">
         <div class="cta-inline">
             <h2>Agenda tu poligrafía respiratoria hoy</h2>
-            <p>Atención por WhatsApp en horario hábil. Te resolvemos dudas y te apartamos fecha en minutos.</p>
+            <p>Atención por WhatsApp en horario hábil. Resolvemos dudas y apartamos tu fecha en minutos.</p>
             <div class="cta-inline__btns">
-                <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google.%20Quiero%20info%20de%20la%20poligraf%C3%ADa%20respiratoria" target="_blank" rel="noopener" class="btn-wa" data-cta="final-wa"><i class="bi bi-whatsapp"></i> WhatsApp 55 9170 8334</a>
+                <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20quiero%20agendar%20la%20poligraf%C3%ADa%20respiratoria.%20%C2%BFCu%C3%A1les%20son%20sus%20horarios%20disponibles%3F" target="_blank" rel="noopener" class="btn-wa" data-cta="final-wa"><i class="bi bi-whatsapp"></i> WhatsApp 55 9170 8334</a>
                 <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener" class="btn-cal" data-cta="final-cal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Footer oficial (idéntico al resto del sitio) -->
+<!-- Footer oficial -->
 <footer>
     <div class="container text-center">
         <div class="footer-logo-text">ALVEOS</div>
@@ -431,7 +828,7 @@
             <a href="tel:5591708334" aria-label="Teléfono"><i class="bi bi-telephone-fill"></i></a>
         </div>
         <hr class="footer-divider">
-        <p class="footer-meta mb-1">Dr. William César Lara Vázquez · Neumólogo · Alta Especialidad en EPOC</p>
+        <p class="footer-meta mb-1">Dr. William César Lara Vázquez · Neumólogo · Alta Especialidad en EPOC · Egresado del INER</p>
         <p class="footer-meta mb-2"><a href="/aviso-de-privacidad">Aviso de Privacidad</a><span style="color:rgba(255,255,255,.1);margin:0 8px">·</span><a href="/informacion-regulatoria">Información Regulatoria</a></p>
         <p class="footer-meta mb-0">© 2026 ALVEOS. Todos los derechos reservados.</p>
     </div>
@@ -439,15 +836,15 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- WhatsApp flotante (desktop) -->
-<a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp" data-cta="float-wa"><i class="bi bi-whatsapp"></i></a>
+<a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20poligraf%C3%ADa%20respiratoria" target="_blank" rel="noopener" class="wa-float" aria-label="Contactar por WhatsApp" data-cta="float-wa"><i class="bi bi-whatsapp"></i></a>
 
 <!-- Sticky CTA (mobile) -->
 <div class="sticky-cta">
-    <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google" target="_blank" rel="noopener" class="sc-wa" data-cta="sticky-wa"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+    <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500." target="_blank" rel="noopener" class="sc-wa" data-cta="sticky-wa"><i class="bi bi-whatsapp"></i> WhatsApp</a>
     <a href="tel:5591708334" class="sc-cal" data-cta="sticky-call"><i class="bi bi-telephone-fill"></i> Llamar</a>
 </div>
 
-<!-- Tracking básico de clicks CTA al dataLayer (para Ads conversion tracking via GTM) -->
+<!-- Tracking de clicks CTA al dataLayer (Ads conversion tracking via GTM) -->
 <script>
 document.addEventListener('click',function(e){
     var el=e.target.closest('[data-cta]');
@@ -455,6 +852,144 @@ document.addEventListener('click',function(e){
     window.dataLayer=window.dataLayer||[];
     window.dataLayer.push({event:'lp_cta_click',cta_id:el.getAttribute('data-cta'),cta_href:el.getAttribute('href')});
 });
+</script>
+
+<!-- ============ STOP-BANG QUIZ LOGIC ============ -->
+<script>
+(function(){
+    var answers={};
+    var TOTAL=8;
+
+    /* Toggle panel IMC */
+    window.sbToggleBmi=function(){
+        var panel=document.getElementById('sb-bmi-panel');
+        var btn=document.querySelector('.sb-bmi-toggle');
+        var open=panel.classList.toggle('open');
+        btn.setAttribute('aria-expanded',String(open));
+    };
+
+    /* Calcular IMC y pre-seleccionar respuesta */
+    window.sbCalcBMI=function(){
+        var w=parseFloat(document.getElementById('sb-peso').value);
+        var h=parseFloat(document.getElementById('sb-talla').value);
+        var resultEl=document.getElementById('sb-bmi-result');
+        if(!w||!h||h<1||h>2.5){resultEl.textContent='Revisa los valores ingresados.';return;}
+        var bmi=w/(h*h);
+        var isHigh=bmi>35;
+        resultEl.textContent='Tu IMC: '+bmi.toFixed(1)+' '+(isHigh?'(mayor a 35)':'(menor o igual a 35)');
+        /* Pre-selecciona el botón correspondiente */
+        var siBtn=document.getElementById('sb-btn-si-b');
+        var noBtn=document.getElementById('sb-btn-no-b');
+        siBtn.classList.toggle('active-si',isHigh);
+        siBtn.setAttribute('aria-pressed',String(isHigh));
+        noBtn.classList.toggle('active-no',!isHigh);
+        noBtn.setAttribute('aria-pressed',String(!isHigh));
+        sbSetAnswer('b',isHigh?1:0,isHigh?siBtn:noBtn);
+    };
+
+    function sbSetAnswer(qid,val,activeBtn){
+        answers[qid]=val;
+        /* Marcar pregunta como respondida */
+        var qEl=document.getElementById('sbq-'+qid);
+        if(qEl) qEl.classList.add('answered');
+        /* Actualizar progreso */
+        var count=Object.keys(answers).length;
+        var pct=Math.round(count/TOTAL*100);
+        var bar=document.getElementById('sb-progress-bar');
+        var label=document.getElementById('sb-progress-label');
+        if(bar){bar.style.width=pct+'%';}
+        if(label){label.textContent=count+' de '+TOTAL+' preguntas respondidas';}
+        var progressEl=document.querySelector('.sb-progress');
+        if(progressEl) progressEl.setAttribute('aria-valuenow',count);
+        /* Mostrar resultado cuando estén todas */
+        if(count===TOTAL) sbShowResult();
+    }
+
+    function sbShowResult(){
+        var score=Object.values(answers).reduce(function(a,b){return a+b;},0);
+        var level,icon,message,waMsg;
+        if(score<=2){
+            level='Riesgo bajo';
+            icon='&#128994;';/* verde */
+            message='Tu puntaje sugiere bajo riesgo de apnea obstructiva del sueño. Si tienes síntomas que te preocupan — ronquidos ocasionales, cansancio puntual — una valoración puede darte tranquilidad.';
+            waMsg='Hola%20Dr.%20Lara%2C%20hice%20el%20cuestionario%20STOP-BANG%20y%20mi%20resultado%20fue%20riesgo%20bajo%20('+score+'%2F8).%20Me%20gustar%C3%ADa%20saber%20si%20de%20todas%20formas%20me%20conviene%20el%20estudio.';
+        } else if(score<=4){
+            level='Riesgo intermedio';
+            icon='&#128993;';/* amarillo */
+            message='Tu puntaje indica riesgo intermedio de apnea del sueño. Una poligrafía respiratoria puede confirmar o descartar el diagnóstico con precisión.';
+            waMsg='Hola%20Dr.%20Lara%2C%20hice%20el%20cuestionario%20STOP-BANG%20y%20mi%20resultado%20fue%20riesgo%20intermedio%20('+score+'%2F8).%20Quisiera%20informaci%C3%B3n%20sobre%20la%20poligraf%C3%ADa%20a%20%244%2C500.';
+        } else {
+            level='Riesgo alto';
+            icon='&#128308;';/* rojo */
+            message='Tu puntaje indica alto riesgo de apnea obstructiva del sueño. El siguiente paso recomendado es un estudio diagnóstico — la poligrafía respiratoria en casa es la opción más accesible para confirmarlo.';
+            waMsg='Hola%20Dr.%20Lara%2C%20hice%20el%20cuestionario%20STOP-BANG%20y%20mi%20resultado%20fue%20riesgo%20alto%20('+score+'%2F8).%20Quiero%20agendar%20la%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500.';
+        }
+        var resultEl=document.getElementById('sb-result');
+        document.getElementById('sb-result-icon').innerHTML=icon;
+        document.getElementById('sb-result-level').textContent=level;
+        document.getElementById('sb-result-score').textContent=score+' de 8 factores de riesgo presentes';
+        document.getElementById('sb-result-message').textContent=message;
+        var ctaEl=document.getElementById('sb-result-cta');
+        ctaEl.href='https://wa.me/5215591708334?text='+waMsg;
+        /* Clase de color */
+        resultEl.className='sb-result';
+        if(score<=2) resultEl.classList.add('sb-result--low');
+        else if(score<=4) resultEl.classList.add('sb-result--mid');
+        else resultEl.classList.add('sb-result--high');
+        resultEl.style.display='block';
+        /* Scroll suave al resultado */
+        setTimeout(function(){
+            resultEl.scrollIntoView({behavior:'smooth',block:'nearest'});
+        },120);
+    }
+
+    /* Reiniciar cuestionario */
+    window.sbReset=function(){
+        answers={};
+        /* Resetear botones */
+        document.querySelectorAll('.sb-btn').forEach(function(btn){
+            btn.classList.remove('active-si','active-no');
+            btn.setAttribute('aria-pressed','false');
+        });
+        /* Resetear preguntas */
+        document.querySelectorAll('.sb-question').forEach(function(q){
+            q.classList.remove('answered');
+        });
+        /* Resetear progreso */
+        var bar=document.getElementById('sb-progress-bar');
+        var label=document.getElementById('sb-progress-label');
+        if(bar) bar.style.width='0%';
+        if(label) label.textContent='0 de 8 preguntas respondidas';
+        var progressEl=document.querySelector('.sb-progress');
+        if(progressEl) progressEl.setAttribute('aria-valuenow',0);
+        /* Ocultar resultado */
+        document.getElementById('sb-result').style.display='none';
+        /* Scroll al inicio del quiz */
+        document.getElementById('stop-bang').scrollIntoView({behavior:'smooth',block:'start'});
+    };
+
+    /* Delegación de eventos en los botones de respuesta */
+    var quiz=document.getElementById('sb-quiz');
+    if(quiz){
+        quiz.addEventListener('click',function(e){
+            var btn=e.target.closest('.sb-btn[data-q]');
+            if(!btn) return;
+            var qid=btn.getAttribute('data-q');
+            var val=parseInt(btn.getAttribute('data-v'),10);
+            /* Desactivar ambos botones del grupo y activar el seleccionado */
+            var group=btn.closest('.sb-btns');
+            if(group){
+                group.querySelectorAll('.sb-btn').forEach(function(b){
+                    b.classList.remove('active-si','active-no');
+                    b.setAttribute('aria-pressed','false');
+                });
+            }
+            btn.classList.add(val===1?'active-si':'active-no');
+            btn.setAttribute('aria-pressed','true');
+            sbSetAnswer(qid,val,btn);
+        });
+    }
+})();
 </script>
 
 </body>
