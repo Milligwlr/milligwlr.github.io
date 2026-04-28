@@ -41,20 +41,13 @@
 
     <style>
     /* ============ PROMO BANNER ============ */
-    .promo-banner{background:linear-gradient(120deg,#ff7a45 0%,#ff5722 50%,#e64a19 100%);color:#fff;padding:12px 0;text-align:center;font-weight:700;font-size:.9rem;position:relative;overflow:hidden;box-shadow:0 4px 16px rgba(230,74,25,.25)}
-    .promo-banner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 18px,rgba(255,255,255,.06) 18px,rgba(255,255,255,.06) 36px);pointer-events:none}
-    .promo-banner__inner{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 14px}
-    .promo-banner .tag{background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.4);padding:3px 10px;border-radius:999px;font-size:.7rem;letter-spacing:1px;text-transform:uppercase}
+    .promo-banner{background:#e64a19;color:#fff;padding:5px 0;text-align:center;font-weight:700;font-size:.8rem}
+    .promo-banner__inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px}
+    .promo-banner .tag{display:none}
     .promo-banner .price-old{text-decoration:line-through;opacity:.7;margin-left:4px;font-weight:600}
-    .promo-banner .price-new{font-size:1.1rem;font-weight:800}
-    .promo-banner a{background:#fff;color:#e64a19;padding:6px 14px;border-radius:999px;text-decoration:none;font-weight:800;font-size:.82rem;white-space:nowrap;transition:transform .2s}
+    .promo-banner .price-new{font-weight:800}
+    .promo-banner a{background:#fff;color:#e64a19;padding:2px 10px;border-radius:999px;text-decoration:none;font-weight:800;font-size:.76rem;white-space:nowrap;transition:transform .2s;margin-left:6px}
     .promo-banner a:hover{transform:scale(1.05);color:#e64a19}
-    /* Ensure price is always visible on mobile */
-    @media(max-width:480px){
-        .promo-banner .tag{display:none}
-        .promo-banner{font-size:.88rem;padding:10px 0}
-        .promo-banner .price-new{font-size:1.05rem}
-    }
     </style>
 
     <style id="lp-styles">
@@ -431,8 +424,8 @@
         <div class="row align-items-center g-5">
             <div class="col-lg-7 hero__content">
                 <!-- Badge con INER visible en el primer viewport en mobile y desktop -->
-                <div class="hero__badge"><span class="dot"></span> Egresado INER &middot; Estudio en casa &middot; Sin internamiento</div>
-                <h1>Estudio de apnea del sueño <em>en tu casa</em> — $4,500</h1>
+                <div class="hero__badge"><span class="dot"></span> Poligrafía respiratoria domiciliaria</div>
+                <h1>Estudio de apnea del sueño <em>en tu casa</em></h1>
                 <p class="hero__sub">Con valoración por neumólogo egresado del INER incluida. Una sola noche, en tu propia cama.</p>
 
                 <div class="price-highlight" role="text" aria-label="Precio promocional 4500 pesos, antes 6000">
