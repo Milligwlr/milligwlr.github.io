@@ -178,8 +178,7 @@
     .cond{background:linear-gradient(180deg,#fff 0%,#f0f7ff 100%);position:relative;overflow:hidden}
     .cond::before{content:'';position:absolute;inset:0;background:radial-gradient(700px 360px at 50% -10%,rgba(0,206,201,.08),transparent 60%);pointer-events:none}
     .cond .container{position:relative;z-index:1}
-    .cond-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
-    @media(max-width:1024px){.cond-grid{grid-template-columns:repeat(3,1fr)}}
+    .cond-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     @media(max-width:680px){.cond-grid{grid-template-columns:repeat(2,1fr);gap:12px}}
     .cond-card{position:relative;background:linear-gradient(180deg,#fff 0%,#fafdff 100%);border:1px solid rgba(9,132,227,.12);border-radius:20px;padding:26px 18px 22px;text-align:center;transition:all .35s var(--ease);overflow:hidden;cursor:default;display:flex;flex-direction:column;align-items:center;gap:10px}
     .cond-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--electric),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
@@ -423,6 +422,11 @@
                 <div class="cond-card__icon"><i class="bi bi-moon-stars-fill"></i></div>
                 <h3>Apnea del sueño</h3>
                 <span class="cond-card__tag">Sueño · CPAP</span>
+            </article>
+            <article class="cond-card">
+                <div class="cond-card__icon"><i class="bi bi-slash-circle"></i></div>
+                <h3>Tabaquismo</h3>
+                <span class="cond-card__tag">Dejar de fumar</span>
             </article>
         </div>
         <div style="text-align:center;margin-top:36px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:center">
