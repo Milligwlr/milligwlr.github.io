@@ -37,6 +37,13 @@ body {
 }
 h1,h2,h3,h4 { font-weight: 800; color: var(--navy); letter-spacing: -.02em; }
 .text-accent { color: var(--electric); }
+/* Remove underline from credential / certification links */
+.top-bar-legal a,
+a[href*="conacem.org"],
+a[href*="cedulaprofesional.sep.gob.mx"],
+a[href*="gob.mx/cofepris"] {
+    text-decoration: none !important;
+}
 .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0; }
 
 /* =============================================

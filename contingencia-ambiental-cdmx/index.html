@@ -63,7 +63,8 @@ h1,h2,h3,h4{font-weight:800;color:var(--navy);letter-spacing:-.02em}
 .text-accent{color:var(--electric)}
 
 /* ===== TOP BAR ===== */
-.top-bar{background:var(--navy);color:#fff;font-size:.7rem;padding:7px 0;letter-spacing:.6px;font-weight:600;text-align:center}
+.top-bar-legal{background:var(--navy);color:#fff;font-size:.7rem;padding:7px 0;letter-spacing:.6px;font-weight:600;text-align:center}
+.top-bar-legal a{color:inherit;text-decoration:none;}
 
 /* ===== NAV ===== */
 .navbar{background:rgba(255,255,255,.92);backdrop-filter:blur(28px) saturate(200%);-webkit-backdrop-filter:blur(28px) saturate(200%);border-bottom:1px solid rgba(0,0,0,.06);padding:14px 0;position:sticky;top:0;z-index:1050}
@@ -75,10 +76,12 @@ h1,h2,h3,h4{font-weight:800;color:var(--navy);letter-spacing:-.02em}
 
 /* ===== HERO ===== */
 .hero{position:relative;min-height:78vh;display:flex;align-items:center;overflow:hidden;color:#fff;padding:80px 0 60px;
+  --h-top:#3a5670;--h-mid:#4a5872;--h-bot:#3d6450;--h-glow:rgba(16,185,129,.30);--h-glow2:rgba(110,231,183,.18);
   background:
-    radial-gradient(ellipse 95% 80% at 50% 115%, rgba(16,185,129,.30) 0%, transparent 55%),
-    radial-gradient(ellipse 80% 60% at 85% -10%, rgba(110,231,183,.18) 0%, transparent 55%),
-    linear-gradient(180deg, #3a5670 0%, #4a5872 50%, #3d6450 100%)}
+    radial-gradient(ellipse 95% 80% at 50% 115%, var(--h-glow) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 60% at 85% -10%, var(--h-glow2) 0%, transparent 55%),
+    linear-gradient(180deg, var(--h-top) 0%, var(--h-mid) 50%, var(--h-bot) 100%);
+  transition:background 1.5s ease}
 .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:55%;pointer-events:none;z-index:0;background:linear-gradient(180deg,transparent 0%,rgba(234,88,12,.12) 45%,rgba(180,60,40,.20) 80%,rgba(120,40,30,.30) 100%);mix-blend-mode:soft-light}
 .hero__smog{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5}
 .hero__smog::before{content:"";position:absolute;top:10%;left:-10%;width:60vw;height:60vw;border-radius:50%;background:radial-gradient(circle,rgba(214,48,49,.25) 0%,transparent 60%);animation:smogDrift 14s ease-in-out infinite alternate;filter:blur(40px)}
@@ -284,8 +287,8 @@ footer.site-footer p{margin:4px 0}
     <!-- End Google Tag Manager (noscript) -->
 
 <!-- TOP BAR -->
-<div class="top-bar">
-  <i class="fas fa-lungs me-2"></i> Información médica revisada por el Dr. William Lara · Neumólogo INER
+<div class="top-bar-legal text-center fw-semibold">
+    <div class="container">Aviso Cofepris: <a href="https://www.gob.mx/cofepris" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">2609142002A00265</a> &nbsp;|&nbsp; Céd. Prof: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">12588976</a> &nbsp;|&nbsp; Céd. Esp: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">15595809</a> &nbsp;|&nbsp; <a href="https://conacem.org.mx/buscador" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">CNN-2102</a></div>
 </div>
 
 <!-- NAV -->
@@ -385,6 +388,15 @@ footer.site-footer p{margin:4px 0}
     if(v<=300) return {l:'Muy mala',c:'#a21caf'};
     return     {l:'Peligrosa',c:'#7f1d1d'};
   }
+  /* Same palette as main landing page cont-section */
+  function bgPalette(v){
+    if(v<=50)  return {top:'#2d5a7a',mid:'#3d7a8c',bot:'#4a9b7a',glow:'rgba(16,185,129,.32)',glow2:'rgba(110,231,183,.20)'};
+    if(v<=100) return {top:'#3a5670',mid:'#6a5a60',bot:'#9b6438',glow:'rgba(245,158,11,.34)',glow2:'rgba(252,211,77,.20)'};
+    if(v<=150) return {top:'#4a4258',mid:'#7a4a48',bot:'#b85a28',glow:'rgba(249,115,22,.42)',glow2:'rgba(251,146,60,.24)'};
+    if(v<=200) return {top:'#3d2c3a',mid:'#7a3a3a',bot:'#a8362a',glow:'rgba(239,68,68,.46)',glow2:'rgba(248,113,113,.26)'};
+    if(v<=300) return {top:'#2e1f3a',mid:'#5a2a52',bot:'#7a2858',glow:'rgba(162,28,175,.50)',glow2:'rgba(217,70,239,.28)'};
+    return       {top:'#2a1418',mid:'#4a1a1c',bot:'#5e1818',glow:'rgba(127,29,29,.55)',glow2:'rgba(153,27,27,.30)'};
+  }
   function $(id){return document.getElementById(id)}
   function render(v){
     var k=cat(v),el=$('aqiValue'),lbl=$('aqiLabel'),dot=$('aqiDot'),upd=$('aqiUpdated');
@@ -393,6 +405,16 @@ footer.site-footer p{margin:4px 0}
     lbl.textContent='· '+k.l;lbl.style.color=k.c;
     dot.style.background=k.c;dot.style.boxShadow='0 0 10px '+k.c+'aa';
     if(upd){var n=new Date();upd.textContent='· '+String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+' hrs'}
+    /* Apply dynamic background to hero */
+    var hero=document.querySelector('.hero');
+    if(hero){
+      var pal=bgPalette(v);
+      hero.style.setProperty('--h-top',pal.top);
+      hero.style.setProperty('--h-mid',pal.mid);
+      hero.style.setProperty('--h-bot',pal.bot);
+      hero.style.setProperty('--h-glow',pal.glow);
+      hero.style.setProperty('--h-glow2',pal.glow2);
+    }
   }
   function fail(){var el=$('aqiValue'),lbl=$('aqiLabel'),upd=$('aqiUpdated');if(!el)return;el.textContent='sin datos';if(lbl)lbl.textContent='';if(upd)upd.textContent=''}
   if('fetch' in window){

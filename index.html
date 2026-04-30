@@ -556,6 +556,12 @@
             color: var(--navy);
             margin: 0 0 18px;
         }
+        .hero__headline .line-inner {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--royal) 70%, var(--electric) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
         .hero__headline em {
             font-style: normal;
             background: linear-gradient(135deg, var(--cyan) 0%, var(--electric) 40%, #6c5ce7 100%);
@@ -564,7 +570,7 @@
             background-clip: text;
             position: relative;
         }
-        .hero__headline .line       { display: block; overflow: hidden; padding-bottom: .15em; }
+        .hero__headline .line       { display: block; overflow: hidden; padding-bottom: .3em; margin-bottom: -.1em; }
         .hero__headline .line-inner { display: block; }
 
         /* Sub — premium glass card */
@@ -1388,15 +1394,11 @@
             background: linear-gradient(to left, #f0f6ff 0%, #f0f6ff 25%, rgba(240,246,255,0) 100%);
         }
         .creds-marquee-track {
-            display: flex; align-items: stretch;
+            display: flex; align-items: center;
             width: max-content;
-            animation: creds-scroll 32s linear infinite;
             will-change: transform;
-        }
-        .creds-marquee-track:hover { animation-play-state: paused; }
-        @keyframes creds-scroll {
-            from { transform: translateX(0); }
-            to   { transform: translateX(-50%); }
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
         .creds-marquee-item {
             flex-shrink: 0;
@@ -1431,12 +1433,10 @@
             background: rgba(9,132,227,.06);
             padding: 3px 10px; border-radius: 100px;
         }
-        /* ALAT extra large */
-        .creds-marquee-item--xl .creds-marquee-item__logo {
-            width: 130px; height: 130px;
-        }
+        /* Normalize all logos to the same visual size */
+        .creds-marquee-item--xl .creds-marquee-item__logo,
         .creds-marquee-item--lg .creds-marquee-item__logo {
-            width: 100px; height: 100px;
+            width: 72px; height: 72px;
         }
 
         /* =============================================
@@ -1554,7 +1554,7 @@
         .service-card {
             background: var(--white);
             border-radius: 20px;
-            padding: 36px 32px 32px;
+            padding: 28px 24px 22px;
             border: 1px solid rgba(0,0,0,.05);
             box-shadow: 0 2px 12px rgba(0,0,0,.04);
             transition: all .45s var(--ease);
@@ -1569,12 +1569,12 @@
             border-color: rgba(9,132,227,.15);
         }
         .service-card__icon {
-            width: 64px; height: 64px;
-            border-radius: 18px;
-            background: linear-gradient(135deg, rgba(9,132,227,.06), rgba(0,206,201,.06));
+            width: 56px; height: 56px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(9,132,227,.08), rgba(0,206,201,.08));
             border: 1px solid rgba(9,132,227,.1);
             display: flex; align-items: center; justify-content: center;
-            margin-bottom: 22px;
+            margin-bottom: 16px;
             transition: all .45s var(--ease);
         }
         .service-card:hover .service-card__icon {
@@ -1590,18 +1590,22 @@
         }
         .service-card:hover .service-card__icon i { color: var(--white); }
         .service-card h3 {
-            font-size: 1.12rem;
+            font-size: 1.05rem;
             font-weight: 800;
             color: var(--navy);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             letter-spacing: -.015em;
         }
         .service-card p {
-            font-size: .9rem;
-            line-height: 1.72;
+            font-size: .85rem;
+            line-height: 1.6;
             color: var(--text-muted);
             margin: 0;
             flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
         .service-card__actions {
             display: flex;
@@ -2074,6 +2078,12 @@
             color: var(--white);
             margin: 0 0 8px;
         }
+        .contact__card address {
+            font-size: .88rem;
+            line-height: 1.65;
+            color: rgba(255,255,255,.55);
+            margin: 0;
+        }
         .contact__card p {
             font-size: .88rem;
             line-height: 1.65;
@@ -2315,8 +2325,12 @@
             .services.py-5, .diseases-section.py-5, .testimonials-section.py-5 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
             .services .container.my-5, .diseases-section .container.my-5, .testimonials-section .container.my-5 { margin-top: 1rem !important; margin-bottom: 1rem !important; }
             .services .mb-5, .diseases-section .mb-5, .testimonials-section .mb-5 { margin-bottom: 1.5rem !important; }
-            .svc-carousel__track .service-card { flex: 0 0 100%; }
-            .svc-carousel__track { gap: 16px; }
+            .svc-carousel__track .service-card { flex: 0 0 calc(100% - 2px); }
+            .svc-carousel__track { gap: 12px; }
+            .svc-carousel__arrow--prev { left: -4px; }
+            .svc-carousel__arrow--next { right: -4px; }
+            .service-card { padding: 22px 18px 18px; }
+            .service-card h3 { font-size: .98rem; }
             .svc-carousel {
                 padding-bottom: 0;
                 display: flex;
@@ -2437,7 +2451,7 @@
     <script>document.body.classList.add('js-enabled');</script>
 
     <div class="top-bar-legal text-center fw-semibold">
-        <div class="container">Aviso Cofepris: <a href="https://www.gob.mx/cofepris" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">2609142002A00265</a> &nbsp;|&nbsp; Céd. Prof: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">12588976</a> &nbsp;|&nbsp; Céd. Esp: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">15595809</a> &nbsp;|&nbsp; <a href="https://conacem.org.mx/buscador" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">CNN-2102</a></div>
+        <div class="container">Aviso Cofepris: <a href="https://www.gob.mx/cofepris" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">2609142002A00265</a> &nbsp;|&nbsp; Céd. Prof: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">12588976</a> &nbsp;|&nbsp; Céd. Esp: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">15595809</a> &nbsp;|&nbsp; <a href="https://conacem.org.mx/buscador" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">CNN-2102</a></div>
     </div>
 
     <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
@@ -2655,7 +2669,7 @@
                                 </div>
                                 <div class="cred-card__info">
                                     <div class="cred-card__type">Certificación</div>
-                                    <div class="cred-card__number"><a href="https://conacem.org.mx/buscador" target="_blank" rel="noopener" style="color:inherit">CNN-2102</a></div>
+                                    <div class="cred-card__number"><a href="https://conacem.org.mx/buscador" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">CNN-2102</a></div>
                                     <div class="cred-card__source">Consejo Nacional de Neumología</div>
                                 </div>
                             </div>
@@ -2669,48 +2683,118 @@
                     <div class="creds-marquee-track">
                         <!-- Set 1 -->
                         <div class="creds-marquee-item">
-                            <img src="images/iner.png" alt="INER" class="creds-marquee-item__logo" loading="lazy">
+                            <img src="images/iner.png" alt="INER" class="creds-marquee-item__logo" loading="eager">
                             <span class="creds-marquee-item__name">Instituto Nacional de Enfermedades Respiratorias</span>
                             <span class="creds-marquee-item__tag">Formación</span>
                         </div>
                         <div class="creds-marquee-item">
-                            <img src="images/Logo-SMNyCT.png" alt="SMNyCT" class="creds-marquee-item__logo" loading="lazy">
+                            <img src="images/Logo-SMNyCT.png" alt="SMNyCT" class="creds-marquee-item__logo" loading="eager">
                             <span class="creds-marquee-item__name">Soc. Mexicana de Neumología y Cirugía de Tórax</span>
                             <span class="creds-marquee-item__tag">Miembro</span>
                         </div>
                         <div class="creds-marquee-item creds-marquee-item--xl">
-                            <img src="images/alat.png" alt="ALAT" class="creds-marquee-item__logo" loading="lazy">
+                            <img src="images/alat.png" alt="ALAT" class="creds-marquee-item__logo" loading="eager">
                             <span class="creds-marquee-item__name">Asoc. Latinoamericana de Tórax</span>
                             <span class="creds-marquee-item__tag">Miembro</span>
                         </div>
                         <div class="creds-marquee-item creds-marquee-item--lg">
-                            <img src="images/ats.png" alt="ATS" class="creds-marquee-item__logo" loading="lazy">
+                            <img src="images/ats.png" alt="ATS" class="creds-marquee-item__logo" loading="eager">
                             <span class="creds-marquee-item__name">American Thoracic Society</span>
                             <span class="creds-marquee-item__tag">Miembro</span>
                         </div>
                         <!-- Set 2 (duplicate) -->
                         <div class="creds-marquee-item">
-                            <img src="images/iner.png" alt="INER" class="creds-marquee-item__logo" loading="lazy">
+                            <img src="images/iner.png" alt="INER" class="creds-marquee-item__logo" loading="eager">
                             <span class="creds-marquee-item__name">Instituto Nacional de Enfermedades Respiratorias</span>
                             <span class="creds-marquee-item__tag">Formación</span>
                         </div>
                         <div class="creds-marquee-item">
-                            <img src="images/Logo-SMNyCT.png" alt="SMNyCT" class="creds-marquee-item__logo" loading="lazy">
+                            <img src="images/Logo-SMNyCT.png" alt="SMNyCT" class="creds-marquee-item__logo" loading="eager">
                             <span class="creds-marquee-item__name">Soc. Mexicana de Neumología y Cirugía de Tórax</span>
                             <span class="creds-marquee-item__tag">Miembro</span>
                         </div>
                         <div class="creds-marquee-item creds-marquee-item--xl">
-                            <img src="images/alat.png" alt="ALAT" class="creds-marquee-item__logo" loading="lazy">
+                            <img src="images/alat.png" alt="ALAT" class="creds-marquee-item__logo" loading="eager">
                             <span class="creds-marquee-item__name">Asoc. Latinoamericana de Tórax</span>
                             <span class="creds-marquee-item__tag">Miembro</span>
                         </div>
                         <div class="creds-marquee-item creds-marquee-item--lg">
-                            <img src="images/ats.png" alt="ATS" class="creds-marquee-item__logo" loading="lazy">
+                            <img src="images/ats.png" alt="ATS" class="creds-marquee-item__logo" loading="eager">
+                            <span class="creds-marquee-item__name">American Thoracic Society</span>
+                            <span class="creds-marquee-item__tag">Miembro</span>
+                        </div>
+                        <!-- Set 3 (duplicate) -->
+                        <div class="creds-marquee-item">
+                            <img src="images/iner.png" alt="INER" class="creds-marquee-item__logo" loading="eager">
+                            <span class="creds-marquee-item__name">Instituto Nacional de Enfermedades Respiratorias</span>
+                            <span class="creds-marquee-item__tag">Formación</span>
+                        </div>
+                        <div class="creds-marquee-item">
+                            <img src="images/Logo-SMNyCT.png" alt="SMNyCT" class="creds-marquee-item__logo" loading="eager">
+                            <span class="creds-marquee-item__name">Soc. Mexicana de Neumología y Cirugía de Tórax</span>
+                            <span class="creds-marquee-item__tag">Miembro</span>
+                        </div>
+                        <div class="creds-marquee-item creds-marquee-item--xl">
+                            <img src="images/alat.png" alt="ALAT" class="creds-marquee-item__logo" loading="eager">
+                            <span class="creds-marquee-item__name">Asoc. Latinoamericana de Tórax</span>
+                            <span class="creds-marquee-item__tag">Miembro</span>
+                        </div>
+                        <div class="creds-marquee-item creds-marquee-item--lg">
+                            <img src="images/ats.png" alt="ATS" class="creds-marquee-item__logo" loading="eager">
                             <span class="creds-marquee-item__name">American Thoracic Society</span>
                             <span class="creds-marquee-item__tag">Miembro</span>
                         </div>
                     </div>
                 </div><!-- /creds-marquee-wrapper -->
+                <script>
+                /* Creds marquee — RAF-based infinite scroll, no CSS animation stutter */
+                (function(){
+                  var track = document.querySelector('.creds-marquee-track');
+                  var wrapper = document.querySelector('.creds-marquee-wrapper');
+                  if (!track || !wrapper) return;
+                  var pos = 0;
+                  var speed = 1.2; /* px/frame → ~72 px/s at 60fps */
+                  var paused = false;
+                  var oneSetW = 0;
+                  var started = false;
+
+                  function computeSetWidth() {
+                    /* 3 identical sets — one set = total/3 */
+                    return track.scrollWidth / 3;
+                  }
+
+                  function tick() {
+                    if (!paused) {
+                      pos -= speed;
+                      if (pos <= -oneSetW) pos += oneSetW;
+                      track.style.transform = 'translate3d(' + pos + 'px,0,0)';
+                    }
+                    requestAnimationFrame(tick);
+                  }
+
+                  function start() {
+                    if (started) return;
+                    oneSetW = computeSetWidth();
+                    if (oneSetW > 0) { started = true; requestAnimationFrame(tick); }
+                  }
+
+                  /* No pause on hover — continuous infinite scroll */
+
+                  /* Start after images load or timeout */
+                  var imgs = Array.prototype.slice.call(track.querySelectorAll('img'));
+                  var pending = imgs.filter(function(i){ return !i.complete; });
+                  if (pending.length === 0) { start(); }
+                  else {
+                    var done = 0;
+                    pending.forEach(function(img){
+                      function check(){ if(++done >= pending.length) start(); }
+                      img.addEventListener('load', check);
+                      img.addEventListener('error', check);
+                    });
+                  }
+                  setTimeout(start, 1500); /* fallback */
+                })();
+                </script>
             </div><!-- /about__credentials-section -->
         </section>
 
