@@ -73,8 +73,104 @@
 .kpi{font-size:2.4rem;font-weight:800;color:#fff;background:linear-gradient(135deg,#fff,var(--asma-2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-.02em;line-height:1;margin-bottom:8px}
 .kpi-label{font-size:.9rem;color:rgba(255,255,255,.7);line-height:1.5}
 
-/* Override hero title em gradient to teal */
-.disease-hero__title em{background:linear-gradient(135deg,var(--asma-2) 0%,var(--asma) 60%,#0eb37a 100%)!important;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+/* Override hero title em gradient to teal — fix clip */
+.disease-hero__title em{
+  font-style:normal;
+  display:inline-block;
+  background:linear-gradient(135deg,#5eead4 0%,var(--asma-2) 35%,var(--asma) 70%,#0eb37a 100%)!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;
+  color:transparent!important;
+  background-size:200% 100%;
+  animation:emShimmer 6s ease-in-out infinite;
+  filter:drop-shadow(0 0 24px rgba(0,184,148,.35));
+}
+@keyframes emShimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+/* ── Hero enriquecido ── */
+.disease-hero{position:relative;min-height:auto;padding:130px 0 90px!important}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;animation:orbFloat 14s ease-in-out infinite}
+.hero-orb-1{width:520px;height:520px;background:radial-gradient(circle,rgba(0,184,148,.4),transparent 65%);top:-120px;left:-100px;animation-delay:0s}
+.hero-orb-2{width:420px;height:420px;background:radial-gradient(circle,rgba(0,206,201,.35),transparent 65%);bottom:-150px;right:-80px;animation-delay:-7s}
+.hero-orb-3{width:280px;height:280px;background:radial-gradient(circle,rgba(94,234,212,.3),transparent 65%);top:40%;left:55%;animation-delay:-3s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.08)}66%{transform:translate(-30px,20px) scale(.95)}}
+.hero-grid-bg{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.05) 1px,transparent 1px);background-size:32px 32px;mask-image:radial-gradient(ellipse at center,#000 30%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 70%);pointer-events:none}
+.hero-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero-particles span{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--asma-2);box-shadow:0 0 12px var(--asma-2);opacity:.6;animation:particleRise 12s linear infinite}
+@keyframes particleRise{0%{transform:translateY(110vh) scale(0);opacity:0}10%{opacity:.7}90%{opacity:.7}100%{transform:translateY(-10vh) scale(1);opacity:0}}
+
+.disease-hero__title{position:relative}
+.disease-hero__title em{position:relative}
+.disease-hero__sub{font-size:1.08rem!important;color:rgba(255,255,255,.78)!important;line-height:1.7!important;max-width:580px}
+.disease-hero__sub strong{color:#fff;background:linear-gradient(120deg,transparent 0%,transparent 30%,rgba(0,184,148,.25) 30%,rgba(0,184,148,.25) 100%);padding:0 4px;border-radius:3px}
+
+/* Hero CTAs */
+.hero-actions{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
+.hero-cta-primary{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;background:linear-gradient(135deg,var(--asma) 0%,var(--asma-deep) 100%);color:#fff!important;border-radius:100px;font-weight:700;font-size:.95rem;text-decoration:none;transition:all .35s var(--ease);box-shadow:0 12px 32px rgba(0,184,148,.4),inset 0 1px 0 rgba(255,255,255,.2);position:relative;overflow:hidden}
+.hero-cta-primary::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--asma-2),var(--asma));opacity:0;transition:opacity .35s}
+.hero-cta-primary:hover::before{opacity:1}
+.hero-cta-primary span{position:relative;z-index:1;display:inline-flex;align-items:center;gap:10px}
+.hero-cta-primary:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(0,184,148,.55);color:#fff!important}
+.hero-cta-ghost{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;background:rgba(255,255,255,.06);color:#fff!important;border:1px solid rgba(255,255,255,.18);border-radius:100px;font-weight:600;font-size:.95rem;text-decoration:none;backdrop-filter:blur(14px);transition:all .35s var(--ease)}
+.hero-cta-ghost:hover{background:rgba(255,255,255,.12);border-color:rgba(94,234,212,.5);color:#fff!important;transform:translateY(-3px)}
+.hero-cta-ghost i{color:#25d366}
+
+/* Hero stats inline */
+.hero-trust{display:flex;align-items:center;gap:24px;margin-top:36px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap}
+.hero-trust-item{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.65);font-size:.82rem}
+.hero-trust-item i{color:var(--asma-2);font-size:1.1rem}
+.hero-trust-item strong{color:#fff;font-weight:700}
+
+/* Hero visual card — bronquios animados */
+.disease-hero__visual{padding:0!important;background:transparent!important;border:none!important}
+.bronchi-card{position:relative;background:linear-gradient(155deg,rgba(255,255,255,.09) 0%,rgba(0,184,148,.08) 50%,rgba(0,206,201,.06) 100%);border:1px solid rgba(255,255,255,.14);border-radius:28px;padding:36px 32px;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.18)}
+.bronchi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(94,234,212,.7),rgba(0,184,148,.5),transparent)}
+.bronchi-card::after{content:'';position:absolute;top:-50%;right:-50%;width:100%;padding-bottom:100%;border-radius:50%;background:radial-gradient(circle,rgba(0,184,148,.25),transparent 65%);pointer-events:none}
+.bronchi-svg{width:100%;height:auto;max-height:220px;display:block;margin:0 auto;position:relative;z-index:1}
+.bronchi-svg .bronchi-trunk{stroke:url(#bronchiGrad);stroke-width:5;fill:none;stroke-linecap:round;animation:breatheStroke 4s ease-in-out infinite}
+.bronchi-svg .bronchi-branch{stroke:url(#bronchiGrad);stroke-width:3;fill:none;stroke-linecap:round;animation:breatheStroke 4s ease-in-out infinite}
+.bronchi-svg .bronchi-twig{stroke:url(#bronchiGrad);stroke-width:1.6;fill:none;stroke-linecap:round;opacity:.7}
+.bronchi-svg .bronchi-alveoli{fill:url(#alveoliGrad);animation:alveoliPulse 3.5s ease-in-out infinite}
+@keyframes breatheStroke{0%,100%{filter:drop-shadow(0 0 4px rgba(0,184,148,.4))}50%{filter:drop-shadow(0 0 16px rgba(94,234,212,.9))}}
+@keyframes alveoliPulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.08);opacity:1}}
+
+.bronchi-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;position:relative;z-index:1}
+.bronchi-stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px 16px;backdrop-filter:blur(10px);transition:all .3s var(--ease)}
+.bronchi-stat:hover{background:rgba(0,184,148,.1);border-color:rgba(0,184,148,.3);transform:translateY(-2px)}
+.bronchi-stat__num{font-size:1.6rem;font-weight:800;background:linear-gradient(135deg,#fff,var(--asma-2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;letter-spacing:-.02em;margin-bottom:4px}
+.bronchi-stat__lbl{font-size:.72rem;color:rgba(255,255,255,.65);line-height:1.3}
+
+.bronchi-card__caption{display:flex;align-items:center;gap:10px;margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);font-size:.78rem;color:rgba(255,255,255,.6);position:relative;z-index:1}
+.bronchi-card__caption i{color:var(--asma-2);font-size:1rem}
+.bronchi-pulse-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ecc71;box-shadow:0 0 12px #2ecc71;animation:pulse-dot 1.6s ease-in-out infinite;flex-shrink:0}
+
+@media(max-width:991px){.bronchi-card{margin-top:30px}.disease-hero{padding:110px 0 70px!important}}
+@media(max-width:575px){.disease-hero__title{font-size:clamp(2.1rem,9vw,3rem)!important}.bronchi-card{padding:28px 22px}.bronchi-stats{grid-template-columns:1fr 1fr;gap:10px}.hero-trust{gap:14px}.hero-cta-primary,.hero-cta-ghost{padding:13px 22px;font-size:.88rem}}
+
+/* ── Bento cards (síntomas) — más vivas ── */
+.bento-grid-3{gap:20px}
+.bento-card{padding:30px 26px 28px;border-radius:22px;background:#fff;border:1px solid rgba(0,184,148,.08);position:relative;cursor:default;transform:translateY(0);transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .45s var(--ease)}
+.bento-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:22px 22px 0 0;background:linear-gradient(90deg,var(--asma),var(--asma-2));transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.bento-card::after{content:'';position:absolute;top:-30%;right:-30%;width:60%;padding-bottom:60%;border-radius:50%;background:radial-gradient(circle,rgba(0,184,148,.08),transparent 60%);opacity:0;transition:opacity .45s var(--ease);pointer-events:none}
+.bento-card:hover{transform:translateY(-8px);box-shadow:0 28px 60px rgba(0,184,148,.18),0 0 0 1px rgba(0,184,148,.12);border-color:rgba(0,184,148,.3)}
+.bento-card:hover::before{transform:scaleX(1)}
+.bento-card:hover::after{opacity:1}
+.bento-card:hover .bento-card__icon{transform:scale(1.08) rotate(-4deg);box-shadow:0 14px 30px rgba(0,184,148,.4)}
+.bento-card__icon{width:58px;height:58px;border-radius:16px;font-size:1.35rem;transition:transform .45s var(--ease),box-shadow .45s var(--ease);position:relative}
+.bento-card__icon::after{content:'';position:absolute;inset:-6px;border-radius:20px;border:1.5px dashed rgba(0,184,148,.25);opacity:0;transition:opacity .45s var(--ease)}
+.bento-card:hover .bento-card__icon::after{opacity:1;animation:iconRing 4s linear infinite}
+@keyframes iconRing{to{transform:rotate(360deg)}}
+.bento-card h3{font-size:1.08rem;letter-spacing:-.01em;margin-bottom:10px}
+.bento-card p{font-size:.9rem;line-height:1.65}
+
+/* Bento numbered indicator */
+.bento-num{position:absolute;top:18px;right:22px;font-size:2.4rem;font-weight:800;color:rgba(0,184,148,.08);line-height:1;letter-spacing:-.04em;font-feature-settings:'tnum';transition:color .45s var(--ease)}
+.bento-card:hover .bento-num{color:rgba(0,184,148,.18)}
+
+/* Diseño global más impactante: bg de la sección de contenido */
+.disease-content{position:relative}
+.disease-content::before{content:'';position:absolute;top:0;left:0;right:0;height:300px;background:radial-gradient(ellipse at top,rgba(0,184,148,.06),transparent 70%);pointer-events:none}
 
 /* ─── Bento grid 3 cols ─── */
 .bento-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
@@ -295,25 +391,86 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- ===== HERO ===== -->
 <section class="disease-hero">
 <div class="disease-hero__bg"></div>
+<div class="hero-grid-bg"></div>
+<div class="hero-orb hero-orb-1"></div>
+<div class="hero-orb hero-orb-2"></div>
+<div class="hero-orb hero-orb-3"></div>
+<div class="hero-particles" id="heroParticles" aria-hidden="true"></div>
 <div class="container position-relative">
 <nav class="disease-hero__breadcrumb" aria-label="Breadcrumb"><a href="/">Inicio</a><span>/</span><a href="/#enfermedades">Enfermedades</a><span>/</span><span class="current">Asma</span></nav>
 <div class="disease-hero__tag"><span class="dot"></span> Control GINA — pasos 1 a 5</div>
 <div class="row align-items-center g-5">
 <div class="col-lg-7">
-<h1 class="disease-hero__title">Asma <em>(la respiración que se cierra)</em></h1>
+<h1 class="disease-hero__title">La respiración<br><em>que se cierra</em></h1>
 <p class="disease-hero__sub">No es "nervios" ni "te falta condición". Es una <strong>inflamación crónica</strong> de los bronquios que silba, aprieta el pecho y te despierta tosiendo. Bien tratada, dejas de usar el inhalador de rescate y vuelves a hacer ejercicio sin pensarlo.</p>
-<div class="disease-hero__chips">
-<div class="chip"><i class="bi bi-wind"></i> Sibilancias y opresión</div>
-<div class="chip"><i class="fa-solid fa-smog"></i> Empeora con smog en CDMX</div>
-<div class="chip"><i class="bi bi-shield-check"></i> Control con inhalador correcto</div>
+<div class="hero-actions">
+  <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="hero-cta-primary"><span><i class="bi bi-calendar-check"></i> Agendar cita</span></a>
+  <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20una%20cita%20por%20asma" target="_blank" class="hero-cta-ghost"><i class="bi bi-whatsapp"></i> WhatsApp directo</a>
+</div>
+<div class="hero-trust">
+  <div class="hero-trust-item"><i class="bi bi-patch-check-fill"></i> <span>Neumólogo <strong>INER</strong></span></div>
+  <div class="hero-trust-item"><i class="bi bi-hospital"></i> <span>Hospital <strong>Santa Coleta</strong></span></div>
+  <div class="hero-trust-item"><i class="bi bi-shield-check"></i> <span>Guías <strong>GINA 2025</strong></span></div>
 </div>
 </div>
 <div class="col-lg-5">
 <div class="disease-hero__visual">
-<div class="disease-hero__visual-icon"><i class="fa-solid fa-lungs"></i></div>
-<div class="disease-hero__visual-text">
-<div class="kpi">7-10%</div>
-<div class="kpi-label">de los adultos en México vive con asma. Más de la mitad sin un control adecuado.</div>
+<div class="bronchi-card">
+  <svg class="bronchi-svg" viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animación de bronquios respirando">
+    <defs>
+      <linearGradient id="bronchiGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#5eead4"/>
+        <stop offset=".5" stop-color="#00cec9"/>
+        <stop offset="1" stop-color="#00b894"/>
+      </linearGradient>
+      <radialGradient id="alveoliGrad" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#5eead4" stop-opacity=".95"/>
+        <stop offset="1" stop-color="#00b894" stop-opacity=".4"/>
+      </radialGradient>
+    </defs>
+    <!-- Tráquea -->
+    <path class="bronchi-trunk" d="M140 18 L140 78"/>
+    <!-- Bronquios principales -->
+    <path class="bronchi-branch" d="M140 78 Q120 92 90 120"/>
+    <path class="bronchi-branch" d="M140 78 Q160 92 190 120"/>
+    <!-- Subdivisiones izquierda -->
+    <path class="bronchi-branch" d="M90 120 Q72 140 58 168"/>
+    <path class="bronchi-branch" d="M90 120 Q88 148 78 184"/>
+    <path class="bronchi-twig" d="M58 168 Q48 178 42 192"/>
+    <path class="bronchi-twig" d="M58 168 Q60 184 56 200"/>
+    <path class="bronchi-twig" d="M78 184 Q70 196 64 208"/>
+    <path class="bronchi-twig" d="M78 184 Q86 198 84 210"/>
+    <!-- Subdivisiones derecha -->
+    <path class="bronchi-branch" d="M190 120 Q208 140 222 168"/>
+    <path class="bronchi-branch" d="M190 120 Q192 148 202 184"/>
+    <path class="bronchi-twig" d="M222 168 Q232 178 238 192"/>
+    <path class="bronchi-twig" d="M222 168 Q220 184 224 200"/>
+    <path class="bronchi-twig" d="M202 184 Q210 196 216 208"/>
+    <path class="bronchi-twig" d="M202 184 Q194 198 196 210"/>
+    <!-- Alvéolos -->
+    <circle class="bronchi-alveoli" cx="42" cy="195" r="5" style="transform-origin:42px 195px"/>
+    <circle class="bronchi-alveoli" cx="56" cy="203" r="4" style="transform-origin:56px 203px;animation-delay:.4s"/>
+    <circle class="bronchi-alveoli" cx="64" cy="210" r="4.5" style="transform-origin:64px 210px;animation-delay:.8s"/>
+    <circle class="bronchi-alveoli" cx="84" cy="212" r="4" style="transform-origin:84px 212px;animation-delay:.2s"/>
+    <circle class="bronchi-alveoli" cx="238" cy="195" r="5" style="transform-origin:238px 195px;animation-delay:.6s"/>
+    <circle class="bronchi-alveoli" cx="224" cy="203" r="4" style="transform-origin:224px 203px;animation-delay:1s"/>
+    <circle class="bronchi-alveoli" cx="216" cy="210" r="4.5" style="transform-origin:216px 210px;animation-delay:.3s"/>
+    <circle class="bronchi-alveoli" cx="196" cy="212" r="4" style="transform-origin:196px 212px;animation-delay:.7s"/>
+  </svg>
+  <div class="bronchi-stats">
+    <div class="bronchi-stat">
+      <div class="bronchi-stat__num">7-10%</div>
+      <div class="bronchi-stat__lbl">adultos con asma en México</div>
+    </div>
+    <div class="bronchi-stat">
+      <div class="bronchi-stat__num">≤2×</div>
+      <div class="bronchi-stat__lbl">rescate/semana = controlada</div>
+    </div>
+  </div>
+  <div class="bronchi-card__caption">
+    <span class="bronchi-pulse-dot"></span>
+    <span>Inhalación · exhalación — así debería sentirse cada respiro.</span>
+  </div>
 </div>
 </div>
 </div>
@@ -697,6 +854,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script defer src="/enfermedades/_shared/disease.js"></script>
 <script>
+(function(){
+    var hp=document.getElementById('heroParticles');
+    if(hp){
+        var r=Math.random;
+        for(var i=0;i<22;i++){
+            var s=document.createElement('span');
+            s.style.cssText='left:'+(r()*100).toFixed(1)+'%;animation-duration:'+(r()*8+8).toFixed(1)+'s;animation-delay:'+(r()*12).toFixed(1)+'s;width:'+(r()*2+1.5).toFixed(1)+'px;height:'+(r()*2+1.5).toFixed(1)+'px;opacity:'+(r()*.4+.3).toFixed(2);
+            hp.appendChild(s);
+        }
+    }
+    document.querySelectorAll('.bento-grid-3 .bento-card').forEach(function(card,i){
+        var n=document.createElement('div');
+        n.className='bento-num';
+        n.textContent=String(i+1).padStart(2,'0');
+        card.appendChild(n);
+    });
+})();
 (function(){
     var c=document.getElementById('ctaParticles');
     if(!c)return;
