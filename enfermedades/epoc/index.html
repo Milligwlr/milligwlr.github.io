@@ -49,6 +49,10 @@
 
     <!-- ===== EPOC flagship — micro-overrides para patrones nuevos ===== -->
     <style>
+.disease-hero__bg{position:absolute;inset:0;background:radial-gradient(circle at 20% 30%,rgba(230,126,34,.20),transparent 55%),radial-gradient(circle at 80% 70%,rgba(230,126,34,.09),transparent 55%);pointer-events:none}
+.disease-hero__tag .dot{background:#e67e22;box-shadow:0 0 10px #e67e22;animation:pulse-dot 1.8s ease-in-out infinite}
+.disease-hero__visual-icon{background:linear-gradient(135deg,#e67e22,#b85014);box-shadow:0 10px 30px rgba(230,126,34,.4)}
+
     /* 1. Anatomy split + GOLD interactive scale */
     .epoc-anatomy{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:stretch;background:linear-gradient(145deg,#fff 0%,#f7fbff 100%);border:1px solid rgba(9,132,227,.08);border-radius:28px;padding:36px;box-shadow:0 20px 60px -30px rgba(9,44,84,.15);margin-bottom:32px;position:relative;overflow:hidden}
     .epoc-anatomy::before{content:"";position:absolute;top:-80px;right:-80px;width:240px;height:240px;background:radial-gradient(circle,rgba(9,132,227,.08),transparent 70%);border-radius:50%;pointer-events:none}
@@ -810,7 +814,7 @@
                 <div class="contact__card contact__card--location reveal">
                     <div class="contact__card-icon"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i></div>
                     <h3>Hospital Santa Coleta</h3>
-                    <address style="font-style:normal;margin:0;" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress"><span itemprop="streetAddress">Saturnino Herrán 59, Consultorio 507</span><br><span itemprop="addressLocality">San José Insurgentes, Benito Juárez</span><br><span itemprop="postalCode">03900</span> <span itemprop="addressRegion">Ciudad de México</span>, CDMX</address>
+                    <address style="font-style:normal;margin:0;" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress"><span itemprop="streetAddress">Saturnino Herrán 59</span><br><span itemprop="addressLocality">San José Insurgentes, Benito Juárez</span><br><span itemprop="postalCode">03900</span> <span itemprop="addressRegion">Ciudad de México</span>, CDMX</address>
                 </div>
                 <div class="contact__card contact__card--hours reveal">
                     <div class="contact__card-icon"><i class="bi bi-clock-fill" aria-hidden="true"></i></div>
