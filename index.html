@@ -393,8 +393,9 @@
             position: relative;
             min-height: 100dvh;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
+            padding-top: calc(72px + 4vh);
             overflow: hidden;
             background: #ffffff;
         }
@@ -483,7 +484,7 @@
             position: relative; z-index: 2;
             text-align: center;
             max-width: 940px;
-            padding: 48px 24px 48px;
+            padding: 0 24px 48px;
         }
 
         /* Hero Logo — large, prominent */
@@ -570,7 +571,7 @@
             background-clip: text;
             position: relative;
         }
-        .hero__headline .line       { display: block; overflow: hidden; padding-bottom: .3em; margin-bottom: -.1em; }
+        .hero__headline .line       { display: block; overflow: hidden; padding-bottom: .45em; margin-bottom: -.25em; }
         .hero__headline .line-inner { display: block; }
 
         /* Sub — premium glass card */
@@ -1407,6 +1408,8 @@
             gap: 10px;
             padding: 20px 32px;
             margin: 0 10px;
+            min-height: 185px;
+            min-width: 160px;
             background: rgba(255,255,255,.92);
             border: 1px solid rgba(9,132,227,.06);
             border-radius: 18px;
@@ -2306,7 +2309,7 @@
             .hero__cta      { width: 100%; justify-content: center; min-height: 48px; padding: 14px 32px; font-size: 1rem; }
             .hero__conditions { gap: 6px; }
             .hero__pill     { padding: 5px 12px; font-size: .7rem; }
-            .hero__content  { padding: 36px 20px 36px; }
+            .hero__content  { padding: 0 20px 36px; }
             .hero__logo     { width: 120px; height: 120px; margin-bottom: 14px; }
             .hero__headline { margin-bottom: 12px; }
             .hero__card-q   { padding: 14px 20px 10px; font-size: .86rem; }
@@ -2390,7 +2393,8 @@
             .creds-marquee-item__name { font-size: .64rem; max-width: 120px; }
             .creds-marquee-wrapper::before,
             .creds-marquee-wrapper::after { width: 60px; }
-            .creds-marquee-item--lg .creds-marquee-item__logo { width: 90px; height: 90px; }
+            .creds-marquee-item--lg .creds-marquee-item__logo,
+            .creds-marquee-item--xl .creds-marquee-item__logo { width: 68px; height: 68px; }
             /* Lighten hero effects on mobile */
             .hero__aurora { opacity: .5; filter: blur(80px); animation-duration: 30s; }
             .hero__orb3 { opacity: .4; }
