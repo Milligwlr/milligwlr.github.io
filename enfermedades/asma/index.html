@@ -123,18 +123,17 @@
 .hero-trust-item i{color:var(--asma-2);font-size:1.1rem}
 .hero-trust-item strong{color:#fff;font-weight:700}
 
-/* Hero visual card — bronquios animados */
+/* Hero visual card — ícono de pulmones */
 .disease-hero__visual{padding:0!important;background:transparent!important;border:none!important}
 .bronchi-card{position:relative;background:linear-gradient(155deg,rgba(255,255,255,.09) 0%,rgba(0,184,148,.08) 50%,rgba(0,206,201,.06) 100%);border:1px solid rgba(255,255,255,.14);border-radius:28px;padding:36px 32px;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.18)}
 .bronchi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(94,234,212,.7),rgba(0,184,148,.5),transparent)}
 .bronchi-card::after{content:'';position:absolute;top:-50%;right:-50%;width:100%;padding-bottom:100%;border-radius:50%;background:radial-gradient(circle,rgba(0,184,148,.25),transparent 65%);pointer-events:none}
-.bronchi-svg{width:100%;height:auto;max-height:220px;display:block;margin:0 auto;position:relative;z-index:1}
-.bronchi-svg .bronchi-trunk{stroke:url(#bronchiGrad);stroke-width:5;fill:none;stroke-linecap:round;animation:breatheStroke 4s ease-in-out infinite}
-.bronchi-svg .bronchi-branch{stroke:url(#bronchiGrad);stroke-width:3;fill:none;stroke-linecap:round;animation:breatheStroke 4s ease-in-out infinite}
-.bronchi-svg .bronchi-twig{stroke:url(#bronchiGrad);stroke-width:1.6;fill:none;stroke-linecap:round;opacity:.7}
-.bronchi-svg .bronchi-alveoli{fill:url(#alveoliGrad);animation:alveoliPulse 3.5s ease-in-out infinite}
-@keyframes breatheStroke{0%,100%{filter:drop-shadow(0 0 4px rgba(0,184,148,.4))}50%{filter:drop-shadow(0 0 16px rgba(94,234,212,.9))}}
-@keyframes alveoliPulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.08);opacity:1}}
+.bronchi-svg{width:100%;height:auto;max-height:200px;display:block;margin:0 auto;position:relative;z-index:1}
+.lung-shape{animation:lungBreathe 4s ease-in-out infinite;transform-origin:center}
+.lung-shape.right{animation-delay:.25s}
+.lung-trachea{animation:tracheaGlow 4s ease-in-out infinite}
+@keyframes lungBreathe{0%,100%{transform:scaleY(1) scaleX(1);filter:drop-shadow(0 0 6px rgba(0,184,148,.4))}50%{transform:scaleY(1.06) scaleX(1.04);filter:drop-shadow(0 0 18px rgba(94,234,212,.8))}}
+@keyframes tracheaGlow{0%,100%{filter:drop-shadow(0 0 3px rgba(0,184,148,.5))}50%{filter:drop-shadow(0 0 10px rgba(94,234,212,.9))}}
 
 .bronchi-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;position:relative;z-index:1}
 .bronchi-stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px 16px;backdrop-filter:blur(10px);transition:all .3s var(--ease)}
@@ -403,7 +402,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="row align-items-center g-5">
 <div class="col-lg-7">
 <h1 class="disease-hero__title"><em>Asma</em><span class="hero-h1-sub">La respiración que se cierra</span></h1>
-<p class="disease-hero__sub">No es "nervios" ni "te falta condición". Es una <strong>inflamación crónica</strong> de los bronquios que silba, aprieta el pecho y te despierta tosiendo. Bien tratada, dejas de usar el inhalador de rescate y vuelves a hacer ejercicio sin pensarlo.</p>
+<p class="disease-hero__sub"><strong>Inflamación crónica</strong> de los bronquios que silba, aprieta el pecho y te despierta de noche. Bien tratada, <strong>dejas de usar el inhalador de rescate</strong> y vuelves a moverte sin pensarlo.</p>
 <div class="hero-actions">
   <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="hero-cta-primary"><span><i class="bi bi-calendar-check"></i> Agendar cita</span></a>
   <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20una%20cita%20por%20asma" target="_blank" class="hero-cta-ghost"><i class="bi bi-whatsapp"></i> WhatsApp directo</a>
@@ -417,46 +416,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="col-lg-5">
 <div class="disease-hero__visual">
 <div class="bronchi-card">
-  <svg class="bronchi-svg" viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animación de bronquios respirando">
+  <svg class="bronchi-svg" viewBox="0 0 200 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pulmones sanos">
     <defs>
-      <linearGradient id="bronchiGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#5eead4"/>
-        <stop offset=".5" stop-color="#00cec9"/>
-        <stop offset="1" stop-color="#00b894"/>
+      <linearGradient id="bronchiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#5eead4"/>
+        <stop offset="50%" stop-color="#00cec9"/>
+        <stop offset="100%" stop-color="#00b894"/>
       </linearGradient>
-      <radialGradient id="alveoliGrad" cx="50%" cy="50%" r="50%">
-        <stop offset="0" stop-color="#5eead4" stop-opacity=".95"/>
-        <stop offset="1" stop-color="#00b894" stop-opacity=".4"/>
-      </radialGradient>
+      <filter id="glow"><feGaussianBlur stdDeviation="2.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
     </defs>
     <!-- Tráquea -->
-    <path class="bronchi-trunk" d="M140 18 L140 78"/>
-    <!-- Bronquios principales -->
-    <path class="bronchi-branch" d="M140 78 Q120 92 90 120"/>
-    <path class="bronchi-branch" d="M140 78 Q160 92 190 120"/>
-    <!-- Subdivisiones izquierda -->
-    <path class="bronchi-branch" d="M90 120 Q72 140 58 168"/>
-    <path class="bronchi-branch" d="M90 120 Q88 148 78 184"/>
-    <path class="bronchi-twig" d="M58 168 Q48 178 42 192"/>
-    <path class="bronchi-twig" d="M58 168 Q60 184 56 200"/>
-    <path class="bronchi-twig" d="M78 184 Q70 196 64 208"/>
-    <path class="bronchi-twig" d="M78 184 Q86 198 84 210"/>
-    <!-- Subdivisiones derecha -->
-    <path class="bronchi-branch" d="M190 120 Q208 140 222 168"/>
-    <path class="bronchi-branch" d="M190 120 Q192 148 202 184"/>
-    <path class="bronchi-twig" d="M222 168 Q232 178 238 192"/>
-    <path class="bronchi-twig" d="M222 168 Q220 184 224 200"/>
-    <path class="bronchi-twig" d="M202 184 Q210 196 216 208"/>
-    <path class="bronchi-twig" d="M202 184 Q194 198 196 210"/>
-    <!-- Alvéolos -->
-    <circle class="bronchi-alveoli" cx="42" cy="195" r="5" style="transform-origin:42px 195px"/>
-    <circle class="bronchi-alveoli" cx="56" cy="203" r="4" style="transform-origin:56px 203px;animation-delay:.4s"/>
-    <circle class="bronchi-alveoli" cx="64" cy="210" r="4.5" style="transform-origin:64px 210px;animation-delay:.8s"/>
-    <circle class="bronchi-alveoli" cx="84" cy="212" r="4" style="transform-origin:84px 212px;animation-delay:.2s"/>
-    <circle class="bronchi-alveoli" cx="238" cy="195" r="5" style="transform-origin:238px 195px;animation-delay:.6s"/>
-    <circle class="bronchi-alveoli" cx="224" cy="203" r="4" style="transform-origin:224px 203px;animation-delay:1s"/>
-    <circle class="bronchi-alveoli" cx="216" cy="210" r="4.5" style="transform-origin:216px 210px;animation-delay:.3s"/>
-    <circle class="bronchi-alveoli" cx="196" cy="212" r="4" style="transform-origin:196px 212px;animation-delay:.7s"/>
+    <rect class="lung-trachea" x="96" y="10" width="8" height="42" rx="4" fill="url(#bronchiGrad)" filter="url(#glow)"/>
+    <!-- Bronquio izquierdo -->
+    <path d="M96 48 Q78 54 66 70" stroke="url(#bronchiGrad)" stroke-width="7" stroke-linecap="round" fill="none" filter="url(#glow)"/>
+    <!-- Bronquio derecho -->
+    <path d="M104 48 Q122 54 134 70" stroke="url(#bronchiGrad)" stroke-width="7" stroke-linecap="round" fill="none" filter="url(#glow)"/>
+    <!-- Pulmón izquierdo -->
+    <path class="lung-shape" d="M66 70 C46 80 32 104 30 128 C28 150 38 164 54 162 C66 160 72 146 70 128 C68 110 60 88 66 70Z" fill="url(#bronchiGrad)" opacity=".82"/>
+    <!-- Pulmón derecho -->
+    <path class="lung-shape right" d="M134 70 C154 80 168 104 170 128 C172 150 162 164 146 162 C134 160 128 146 130 128 C132 110 140 88 134 70Z" fill="url(#bronchiGrad)" opacity=".82"/>
+    <!-- Highlight interno izquierdo -->
+    <path d="M58 90 C48 102 44 120 46 136" stroke="rgba(255,255,255,.25)" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <!-- Highlight interno derecho -->
+    <path d="M142 90 C152 102 156 120 154 136" stroke="rgba(255,255,255,.25)" stroke-width="4" stroke-linecap="round" fill="none"/>
   </svg>
   <div class="bronchi-stats">
     <div class="bronchi-stat">
@@ -526,56 +508,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
         </div>
 
-<!-- ===== Comparativa: Asma vs EPOC vs Bronquitis aguda ===== -->
-<div class="content-section reveal">
-<div class="content-section__label">¿Asma? ¿EPOC? ¿Bronquitis?</div>
-<h2 class="content-section__title">Asma vs. EPOC vs. bronquitis aguda</h2>
-<p class="section-lead">Las tres dan tos y "ahogan", pero son distintas y se tratan diferente. Reconocer cuál te corresponde cambia el plan: una se controla con inhaladores correctos, otra requiere dejar de fumar, y la tercera se va sola en días.</p>
-
-<div class="asma-compare">
-<div class="asma-compare__head"><i class="bi bi-clipboard-pulse"></i> Rasgo</div>
-<div class="asma-compare__head"><i class="bi bi-wind"></i> Asma</div>
-<div class="asma-compare__head"><i class="bi bi-lungs-fill"></i> EPOC</div>
-<div class="asma-compare__head"><i class="fa-solid fa-head-side-cough"></i> Bronquitis aguda</div>
-
-<div class="asma-compare__cell label">A qué edad inicia</div>
-<div class="asma-compare__cell asma">Suele empezar en infancia o juventud</div>
-<div class="asma-compare__cell epoc">Después de los 40, fumadores</div>
-<div class="asma-compare__cell bron">Cualquier edad, tras un resfriado</div>
-
-<div class="asma-compare__cell label">Cómo se siente</div>
-<div class="asma-compare__cell asma"><span class="dot lo"></span>Episodios: hoy bien, mañana ahogo</div>
-<div class="asma-compare__cell epoc"><span class="dot mid"></span>Falta de aire que va aumentando con los años</div>
-<div class="asma-compare__cell bron"><span class="dot mid"></span>Tos con flema 1-3 semanas y se va</div>
-
-<div class="asma-compare__cell label">Sibilancias (silbido)</div>
-<div class="asma-compare__cell asma"><span class="dot hi"></span>Clásicas, sobre todo de noche</div>
-<div class="asma-compare__cell epoc"><span class="dot mid"></span>A veces, con esfuerzo</div>
-<div class="asma-compare__cell bron"><span class="dot lo"></span>Poco frecuentes</div>
-
-<div class="asma-compare__cell label">Reversibilidad</div>
-<div class="asma-compare__cell asma"><span class="dot lo"></span>Se abre con broncodilatador</div>
-<div class="asma-compare__cell epoc"><span class="dot hi"></span>Daño parcialmente fijo</div>
-<div class="asma-compare__cell bron"><span class="dot lo"></span>Se resuelve solo</div>
-
-<div class="asma-compare__cell label">Detonante típico</div>
-<div class="asma-compare__cell asma">Polvo, polen, smog, ejercicio, frío</div>
-<div class="asma-compare__cell epoc">Tabaco (activo o pasivo) y leña</div>
-<div class="asma-compare__cell bron">Virus respiratorios</div>
-
-<div class="asma-compare__cell label">Tratamiento base</div>
-<div class="asma-compare__cell asma">Corticoide inhalado + plan personalizado</div>
-<div class="asma-compare__cell epoc">Broncodilatadores de acción larga + dejar de fumar</div>
-<div class="asma-compare__cell bron">Reposo, hidratación, sintomáticos</div>
-</div>
-</div>
-
 
 <!-- ===== Síntomas por zona del cuerpo ===== -->
 <div class="content-section reveal">
 <div class="content-section__label">Cómo se siente</div>
 <h2 class="content-section__title">El asma no es solo "tos"</h2>
-<p class="section-lead">El asma se manifiesta en varias partes del cuerpo a la vez. Estas son las quejas que más escucho en consulta — si te identificas con dos o más, vale la pena una espirometría.</p>
+<p class="section-lead">Si te identificas con dos o más de estas señales, vale la pena una espirometría.</p>
 
 <div class="bento-grid-3">
 <div class="bento-card"><div class="bento-card__icon" style="background:linear-gradient(135deg,var(--asma),var(--asma-deep))"><i class="bi bi-wind"></i></div><h3>Silbidos al respirar</h3><p>"Como si tuviera un silbato en el pecho." Se nota más al exhalar y empeora con el frío, el ejercicio o el smog.</p></div>
@@ -591,7 +529,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="content-section reveal">
 <div class="content-section__label">Quién tiene mayor riesgo</div>
 <h2 class="content-section__title">Personas que deberían descartar asma</h2>
-<p class="section-lead">El asma se hereda y se "despierta" cuando hay un disparador suficiente. Si tú o un familiar caen aquí y tienen síntomas respiratorios recurrentes, una espirometría aclara el panorama en 20 minutos.</p>
+<p class="section-lead">Si tú o alguien cercano encaja aquí y tiene síntomas respiratorios, una espirometría aclara el panorama en 20 minutos.</p>
 
 <div class="bento-grid-3">
 <div class="bento-card"><div class="bento-card__icon" style="background:linear-gradient(135deg,var(--asma),var(--asma-deep))"><i class="bi bi-people-fill"></i></div><h3>Antecedente familiar</h3><p>Padres o hermanos con asma, rinitis o dermatitis atópica. La carga genética es uno de los predictores más fuertes.</p></div>
@@ -607,20 +545,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="content-section reveal">
 <div class="content-section__label">Lo que se cree vs lo que es</div>
 <h2 class="content-section__title">Mitos frecuentes sobre el asma</h2>
-<p class="section-lead">Llevo años escuchando las mismas creencias que evitan que la gente trate bien su asma. Estas son las que más retrasan el control — y lo que la evidencia dice realmente.</p>
+<p class="section-lead">Las creencias que más retrasan el control del asma — y lo que la evidencia dice realmente.</p>
 
 <div class="asma-myths">
-<div class="asma-myth"><div class="asma-myth__badge"><i class="bi bi-x-lg"></i></div><h4>"El inhalador crea adicción."</h4><p>Los inhaladores no causan adicción. Lo que pasa es que si los suspendes, la inflamación regresa y vuelves a notar síntomas. Eso no es dependencia, es <strong>la enfermedad sin tratar</strong>.</p></div>
-<div class="asma-truth"><div class="asma-truth__badge"><i class="bi bi-check-lg"></i></div><h4>El corticoide inhalado es seguro a largo plazo.</h4><p>Actúa solo en el bronquio, casi no pasa al resto del cuerpo. Es la base del tratamiento porque previene crisis, hospitalizaciones y daño pulmonar permanente.</p></div>
+<div class="asma-myth"><div class="asma-myth__badge"><i class="bi bi-x-lg"></i></div><h4>"El inhalador crea adicción."</h4><p>No causa adicción. Si suspendes y regresan los síntomas, es <strong>la enfermedad sin tratar</strong> — no dependencia.</p></div>
+<div class="asma-truth"><div class="asma-truth__badge"><i class="bi bi-check-lg"></i></div><h4>El corticoide inhalado es seguro a largo plazo.</h4><p>Actúa solo en el bronquio. Es la base del tratamiento: previene crisis, hospitalizaciones y daño pulmonar permanente.</p></div>
 
-<div class="asma-myth"><div class="asma-myth__badge"><i class="bi bi-x-lg"></i></div><h4>"Si no tengo crisis, ya estoy curado."</h4><p>El asma es crónica. Estar bien es resultado del tratamiento, no de que la enfermedad se haya ido. Suspender el inhalador "porque te sientes bien" es la causa #1 de crisis.</p></div>
-<div class="asma-truth"><div class="asma-truth__badge"><i class="bi bi-check-lg"></i></div><h4>El asma se controla, no se cura.</h4><p>Con el inhalador correcto, dosis adecuada y técnica bien hecha, la mayoría de pacientes vive sin síntomas y sin limitaciones, incluso para hacer ejercicio intenso.</p></div>
-
-<div class="asma-myth"><div class="asma-myth__badge"><i class="bi bi-x-lg"></i></div><h4>"El salbutamol solito basta."</h4><p>Usarlo más de 2 veces por semana es señal de asma <strong>fuera de control</strong> y aumenta el riesgo de crisis grave. El rescate es para emergencias, no para vivir el día a día.</p></div>
-<div class="asma-truth"><div class="asma-truth__badge"><i class="bi bi-check-lg"></i></div><h4>El tratamiento de base previene la crisis.</h4><p>Un corticoide inhalado diario apaga la inflamación que causa los ataques. Apoyarte solo en el rescate es como apagar incendios sin nunca arreglar la fuga de gas.</p></div>
-
-<div class="asma-myth"><div class="asma-myth__badge"><i class="bi bi-x-lg"></i></div><h4>"No puedo hacer ejercicio si tengo asma."</h4><p>El asma mal tratada limita; bien controlada, no. Hay atletas olímpicos con asma. La meta del tratamiento es que entrenes sin sentir el pecho cerrado.</p></div>
-<div class="asma-truth"><div class="asma-truth__badge"><i class="bi bi-check-lg"></i></div><h4>El ejercicio mejora el asma a la larga.</h4><p>Mejora la condición pulmonar y reduce la sensación de ahogo. Si ahora te corta, lo que necesitas es ajustar el inhalador, no dejar de moverte.</p></div>
+<div class="asma-myth"><div class="asma-myth__badge"><i class="bi bi-x-lg"></i></div><h4>"El salbutamol solito basta."</h4><p>Usarlo más de 2 veces por semana = asma <strong>fuera de control</strong>. El rescate es para emergencias, no para vivir el día a día.</p></div>
+<div class="asma-truth"><div class="asma-truth__badge"><i class="bi bi-check-lg"></i></div><h4>El tratamiento de base previene la crisis.</h4><p>Un corticoide inhalado apaga la inflamación. Apoyarte solo en el rescate es apagar incendios sin arreglar la fuga de gas.</p></div>
 </div>
 </div>
 
@@ -628,7 +560,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="content-section reveal">
 <div class="content-section__label">El año en CDMX</div>
 <h2 class="content-section__title">Cuándo se descontrola tu asma en la ciudad</h2>
-<p class="section-lead">El asma no es igual en abril que en julio. La contaminación, el polen y el frío de la madrugada cambian a lo largo del año. Conocer tus meses críticos te permite anticipar el tratamiento, no correr a urgencias.</p>
+<p class="section-lead">Contaminación, polen y frío varían todo el año. Conocer tus meses críticos te permite anticipar el tratamiento, no correr a urgencias.</p>
 
 <div class="asma-cal reveal">
 <div class="asma-cal__months">
@@ -651,7 +583,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="asma-cal__legend-item"><span class="asma-cal__legend-dot" style="background:rgba(240,168,48,.4)"></span> Humedad / moho</div>
 <div class="asma-cal__legend-item"><span class="asma-cal__legend-dot" style="background:var(--asma)"></span> Mejor temporada</div>
 </div>
-<p class="mt-4 mb-0 text-center" style="font-size:.88rem;color:var(--text-muted)">Marzo a mayo concentran el mayor número de crisis por contingencias ambientales en el Valle de México. Si te toca, no esperes a estar sin aire para subir el escalón de tratamiento.</p>
+<p class="mt-4 mb-0 text-center" style="font-size:.88rem;color:var(--text-muted)">Marzo–mayo concentran el mayor número de crisis en el Valle de México. Anticipa, no reacciones.</p>
 </div>
 </div>
 
@@ -659,7 +591,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="content-section reveal">
 <div class="content-section__label">Cuándo ir a urgencias</div>
 <h2 class="content-section__title">Señales de crisis que no debes ignorar</h2>
-<p class="section-lead">La mayoría de los síntomas se manejan en casa con tu inhalador, pero hay señales claras de que la crisis se está saliendo de control. Si aparecen, no esperes a "ver si baja sola": llama o ve a urgencias.</p>
+<p class="section-lead">Si aparece alguna de estas señales, no esperes a "ver si baja sola" — ve a urgencias.</p>
 
 <div class="alarm-card reveal">
 <div class="alarm-card__badge"><i class="fa-solid fa-triangle-exclamation"></i></div>
@@ -684,12 +616,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="cta-inline__grid">
 <div>
 <div class="cta-inline__eyebrow">Espirometría + plan</div>
-<h3 class="cta-inline__title">¿Llevas meses con tos nocturna, silbidos o usando el inhalador "por si acaso"?</h3>
+<h3 class="cta-inline__title">¿Tos nocturna, silbidos o inhalador frecuente?</h3>
 <ul class="cta-inline__check">
 <li><i class="bi bi-check-circle-fill"></i> Espirometría con broncodilatador en consulta</li>
-<li><i class="bi bi-check-circle-fill"></i> Diagnóstico claro: si es asma, qué paso GINA y cuál inhalador</li>
-<li><i class="bi bi-check-circle-fill"></i> Revisión de técnica de inhalación (la mayoría la hace mal)</li>
-<li><i class="bi bi-check-circle-fill"></i> Plan escrito de acción para crisis y seguimiento</li>
+<li><i class="bi bi-check-circle-fill"></i> Diagnóstico + paso GINA + inhalador correcto</li>
+<li><i class="bi bi-check-circle-fill"></i> Técnica de inhalación y plan de acción para crisis</li>
 </ul>
 </div>
 <div class="cta-inline__right">
