@@ -234,6 +234,42 @@
 .faq-item[open] summary::after{content:"−"}
 .faq-item__answer{padding:0 20px 18px;color:#3a4a5c;line-height:1.65;font-size:.92rem}
 @media(min-width:768px){.faq-item summary{padding:18px 22px;font-size:1.02rem}.faq-item__answer{padding:0 22px 20px;font-size:.97rem}}
+
+/* STOP-BANG CALCULATOR */
+.stopbang{background:linear-gradient(140deg,#0d0824 0%,#1a0a3e 100%);border-radius:22px;padding:28px 20px;color:#fff;border:1px solid rgba(108,92,231,.35);box-shadow:0 20px 60px rgba(108,92,231,.22);position:relative;overflow:hidden}
+@media(min-width:768px){.stopbang{padding:44px 40px}}
+.stopbang::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#6c5ce7,#a29bfe,#6c5ce7);background-size:200% 100%;animation:alarmStripe 5s linear infinite}
+.stopbang::after{content:'';position:absolute;top:-40%;right:-20%;width:60%;padding-bottom:60%;border-radius:50%;background:radial-gradient(circle,rgba(108,92,231,.2),transparent 60%);pointer-events:none}
+.stopbang__inner{position:relative;z-index:1}
+.stopbang__grid{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:24px}
+@media(min-width:600px){.stopbang__grid{grid-template-columns:1fr 1fr;gap:10px 14px}}
+.sb-item{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.05);border:1.5px solid rgba(108,92,231,.2);border-radius:14px;padding:13px 16px;cursor:pointer;transition:all .22s ease;user-select:none;-webkit-user-select:none}
+.sb-item:hover{background:rgba(108,92,231,.1);border-color:rgba(108,92,231,.4)}
+.sb-item.active{background:rgba(108,92,231,.22);border-color:#6c5ce7;box-shadow:0 4px 18px rgba(108,92,231,.3)}
+.sb-item__letter{width:36px;height:36px;border-radius:10px;background:rgba(108,92,231,.18);border:1.5px solid rgba(108,92,231,.35);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;color:#a29bfe;flex-shrink:0;transition:all .22s ease}
+.sb-item.active .sb-item__letter{background:#6c5ce7;border-color:#6c5ce7;color:#fff;box-shadow:0 4px 14px rgba(108,92,231,.5)}
+.sb-item__text{flex:1;font-size:.88rem;font-weight:600;color:rgba(255,255,255,.75);line-height:1.35;transition:color .22s ease}
+.sb-item.active .sb-item__text{color:#fff}
+.sb-item__check{width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.75rem;color:transparent;transition:all .22s ease}
+.sb-item.active .sb-item__check{background:#6c5ce7;border-color:#6c5ce7;color:#fff}
+.stopbang__result{border-radius:16px;padding:20px 22px;margin-top:4px;transition:all .3s ease}
+.stopbang__result--low{background:rgba(0,184,148,.1);border:1.5px solid rgba(0,184,148,.35)}
+.stopbang__result--mid{background:rgba(253,203,110,.08);border:1.5px solid rgba(253,203,110,.35)}
+.stopbang__result--high{background:rgba(230,69,69,.12);border:1.5px solid rgba(230,69,69,.4)}
+.stopbang__result__score{font-size:2.8rem;font-weight:800;line-height:1;margin-bottom:4px}
+.stopbang__result--low .stopbang__result__score{color:#00b894}
+.stopbang__result--mid .stopbang__result__score{color:#fdcb6e}
+.stopbang__result--high .stopbang__result__score{color:#e64545}
+.stopbang__result__label{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;opacity:.75}
+.stopbang__result--low .stopbang__result__label{color:#00b894}
+.stopbang__result--mid .stopbang__result__label{color:#fdcb6e}
+.stopbang__result--high .stopbang__result__label{color:#e64545}
+.stopbang__result__msg{font-size:.9rem;color:rgba(255,255,255,.82);line-height:1.5;margin-bottom:16px}
+.stopbang__result__cta{display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff!important;font-weight:700;font-size:.88rem;padding:11px 20px;border-radius:100px;text-decoration:none;transition:all .22s ease;box-shadow:0 6px 18px rgba(37,211,102,.3)}
+.stopbang__result__cta:hover{background:#1da851;transform:translateY(-2px);box-shadow:0 10px 24px rgba(37,211,102,.4)}
+.stopbang__result__cta--neutral{background:rgba(108,92,231,.2);border:1.5px solid rgba(108,92,231,.4);color:#a29bfe!important;box-shadow:none}
+.stopbang__result__cta--neutral:hover{background:rgba(108,92,231,.35);transform:translateY(-2px)}
+.stopbang__disclaimer{font-size:.75rem;color:rgba(255,255,255,.38);margin-top:14px;line-height:1.5;font-style:italic}
 </style>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -517,6 +553,103 @@
 </div>
 </div>
 </div>
+
+<!-- STOP-BANG CALCULATOR -->
+<div class="apn-section reveal">
+<span class="apn-section__eyebrow"><i class="bi bi-clipboard2-pulse-fill"></i> Cuestionario validado</span>
+<h2 class="apn-section__title">¿Tienes riesgo de apnea? <em>Descúbrelo ahora</em></h2>
+<p class="apn-section__lead">El STOP-BANG es el cuestionario más usado mundialmente para detectar apnea del sueño. Responde las 8 preguntas — toca cada una si aplica a ti.</p>
+
+<div class="stopbang">
+  <div class="stopbang__inner">
+    <div class="stopbang__grid" id="sbGrid">
+
+      <div class="sb-item" data-q="s" onclick="sbToggle(this)">
+        <div class="sb-item__letter">S</div>
+        <div class="sb-item__text"><strong>Snoring</strong> — ¿Roncas tan fuerte que se escucha a través de una puerta?</div>
+        <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
+      </div>
+
+      <div class="sb-item" data-q="t" onclick="sbToggle(this)">
+        <div class="sb-item__letter">T</div>
+        <div class="sb-item__text"><strong>Tired</strong> — ¿Te sientes cansado o somnoliento durante el día, aunque dormiste suficiente?</div>
+        <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
+      </div>
+
+      <div class="sb-item" data-q="o" onclick="sbToggle(this)">
+        <div class="sb-item__letter">O</div>
+        <div class="sb-item__text"><strong>Observed</strong> — ¿Alguien ha notado que dejas de respirar mientras duermes?</div>
+        <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
+      </div>
+
+      <div class="sb-item" data-q="p" onclick="sbToggle(this)">
+        <div class="sb-item__letter">P</div>
+        <div class="sb-item__text"><strong>Pressure</strong> — ¿Tienes o te han tratado de presión arterial alta?</div>
+        <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
+      </div>
+
+      <div class="sb-item" data-q="b" onclick="sbToggle(this)">
+        <div class="sb-item__letter">B</div>
+        <div class="sb-item__text"><strong>BMI</strong> — ¿Tu índice de masa corporal (IMC) es mayor de 35?</div>
+        <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
+      </div>
+
+      <div class="sb-item" data-q="a" onclick="sbToggle(this)">
+        <div class="sb-item__letter">A</div>
+        <div class="sb-item__text"><strong>Age</strong> — ¿Tienes más de 50 años?</div>
+        <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
+      </div>
+
+      <div class="sb-item" data-q="n" onclick="sbToggle(this)">
+        <div class="sb-item__letter">N</div>
+        <div class="sb-item__text"><strong>Neck</strong> — ¿Tu cuello mide más de 40 cm de circunferencia?</div>
+        <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
+      </div>
+
+      <div class="sb-item" data-q="g" onclick="sbToggle(this)">
+        <div class="sb-item__letter">G</div>
+        <div class="sb-item__text"><strong>Gender</strong> — ¿Eres hombre?</div>
+        <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
+      </div>
+
+    </div><!-- /grid -->
+
+    <div class="stopbang__result stopbang__result--low" id="sbResult">
+      <div class="stopbang__result__score" id="sbScore">0</div>
+      <div class="stopbang__result__label" id="sbLabel">Riesgo bajo</div>
+      <div class="stopbang__result__msg" id="sbMsg">Tu puntuación indica riesgo bajo de apnea del sueño. Si tienes dudas o algún síntoma persiste, una consulta con el especialista puede orientarte mejor.</div>
+      <a href="https://wa.me/5215591708334?text=Hice%20el%20STOP-BANG%20y%20quiero%20hablar%20con%20el%20doctor" target="_blank" rel="noopener" class="stopbang__result__cta stopbang__result__cta--neutral" id="sbCta">
+        <i class="bi bi-whatsapp"></i> Consultar al doctor
+      </a>
+      <div class="stopbang__disclaimer">* Este cuestionario es una herramienta de tamizaje, no diagnóstico. Solo un estudio del sueño confirma la apnea. Herramienta basada en: Chung F. et al., Anesthesiology 2008.</div>
+    </div>
+
+  </div>
+</div>
+</div><!-- /apn-section stopbang -->
+
+<script>
+(function(){
+  var msgs = [
+    {min:0,max:2,cls:'low',label:'Riesgo bajo',msg:'Tu puntuación indica riesgo bajo de apnea del sueño. Si tienes dudas o algún síntoma persiste, una consulta puede orientarte.',ctaCls:'neutral',ctaTxt:'Consultar al doctor'},
+    {min:3,max:4,cls:'mid',label:'Riesgo intermedio',msg:'Tienes características que sugieren posible apnea del sueño. Se recomienda evaluación médica para descartar o confirmar el diagnóstico.',ctaCls:'',ctaTxt:'Agendar valoración'},
+    {min:5,max:8,cls:'high',label:'Riesgo alto',msg:'Tu puntuación es alta. Existe probabilidad elevada de apnea del sueño obstructiva — busca atención pronto para proteger tu corazón y tu calidad de vida.',ctaCls:'',ctaTxt:'Hablar con el doctor ahora'}
+  ];
+  window.sbToggle = function(el){
+    el.classList.toggle('active');
+    var score = document.querySelectorAll('#sbGrid .sb-item.active').length;
+    var r = msgs[score>=5?2:score>=3?1:0];
+    document.getElementById('sbScore').textContent = score;
+    document.getElementById('sbLabel').textContent = r.label;
+    document.getElementById('sbMsg').textContent = r.msg;
+    var res = document.getElementById('sbResult');
+    res.className = 'stopbang__result stopbang__result--'+r.cls;
+    var cta = document.getElementById('sbCta');
+    cta.className = 'stopbang__result__cta'+(r.ctaCls?' stopbang__result__cta--'+r.ctaCls:'');
+    cta.innerHTML = '<i class="bi bi-whatsapp"></i> '+r.ctaTxt;
+  };
+})();
+</script>
 
 <!-- PROCESO 4 PASOS -->
 <div class="apn-section reveal">
