@@ -66,8 +66,8 @@
 @keyframes heroFxPulse{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
 @keyframes heroFxBlob{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-30px,20px) scale(1.1)}66%{transform:translate(20px,-15px) scale(.95)}}
 .hero-fx-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(108,92,231,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(108,92,231,.05) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,#000 30%,transparent 75%);pointer-events:none;opacity:.6}
-.hero-fx-spark{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--svc);box-shadow:0 0 14px 2px rgba(108,92,231,.7);opacity:.7;pointer-events:none;animation:heroFxSpark 8s ease-in-out infinite}
-@keyframes heroFxSpark{0%,100%{transform:translate(0,0);opacity:0}10%,90%{opacity:.85}50%{transform:translate(20px,-30px);opacity:1}}
+.hero-fx-spark{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--svc);box-shadow:0 0 18px 3px rgba(108,92,231,.85),0 0 36px 6px rgba(108,92,231,.35);pointer-events:none;animation:heroFxSpark 7s ease-in-out infinite}
+@keyframes heroFxSpark{0%,100%{transform:translate(0,0) scale(.6);opacity:.35}50%{transform:translate(18px,-28px) scale(1);opacity:1}}
 
 .svc-hero-tag{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--svc),var(--svc-dark));padding:7px 14px;border-radius:100px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1.4px;box-shadow:0 6px 20px rgba(108,92,231,.4)}
 .svc-hero-tag .pulse{width:8px;height:8px;border-radius:50%;background:#fff;animation:pulse-dot 1.5s ease-in-out infinite}
@@ -273,10 +273,14 @@
 <section class="disease-hero">
 <div class="disease-hero__bg"></div>
 <div class="hero-fx-grid" aria-hidden="true"></div>
-<span class="hero-fx-spark" style="top:18%;left:8%;animation-delay:0s" aria-hidden="true"></span>
-<span class="hero-fx-spark" style="top:60%;left:18%;animation-delay:1.5s;background:#a29bfe;box-shadow:0 0 14px 2px rgba(162,155,254,.7)" aria-hidden="true"></span>
-<span class="hero-fx-spark" style="top:32%;right:12%;animation-delay:3s" aria-hidden="true"></span>
-<span class="hero-fx-spark" style="top:75%;right:22%;animation-delay:4.5s;background:#4834d4;box-shadow:0 0 14px 2px rgba(72,52,212,.7)" aria-hidden="true"></span>
+<span class="hero-fx-spark" style="top:14%;left:6%;animation-delay:0s" aria-hidden="true"></span>
+<span class="hero-fx-spark" style="top:62%;left:14%;animation-delay:1.2s;background:#a29bfe;box-shadow:0 0 18px 3px rgba(162,155,254,.85),0 0 36px 6px rgba(162,155,254,.35)" aria-hidden="true"></span>
+<span class="hero-fx-spark" style="top:30%;right:10%;animation-delay:2.4s" aria-hidden="true"></span>
+<span class="hero-fx-spark" style="top:78%;right:20%;animation-delay:3.6s;background:#4834d4;box-shadow:0 0 18px 3px rgba(72,52,212,.85),0 0 36px 6px rgba(72,52,212,.35)" aria-hidden="true"></span>
+<span class="hero-fx-spark" style="top:45%;left:48%;animation-delay:4.8s;width:5px;height:5px" aria-hidden="true"></span>
+<span class="hero-fx-spark" style="top:22%;left:38%;animation-delay:6s;background:#a29bfe;box-shadow:0 0 18px 3px rgba(162,155,254,.85),0 0 36px 6px rgba(162,155,254,.35);width:5px;height:5px" aria-hidden="true"></span>
+<span class="hero-fx-spark" style="top:68%;right:42%;animation-delay:.8s;width:4px;height:4px" aria-hidden="true"></span>
+<span class="hero-fx-spark" style="top:8%;right:32%;animation-delay:5.2s;background:#a29bfe;box-shadow:0 0 16px 3px rgba(162,155,254,.85);width:5px;height:5px" aria-hidden="true"></span>
 <div class="container position-relative">
 <nav class="disease-hero__breadcrumb" aria-label="Breadcrumb"><a href="/">Inicio</a><span>/</span><a href="/#servicios">Servicios</a><span>/</span><span class="current">Poligrafía Respiratoria</span></nav>
 <div class="row align-items-center g-4 g-lg-5">
@@ -383,14 +387,14 @@
 <h3 class="svc-wow__title">Estudio en casa: <em>el mismo diagnóstico</em>, sin la noche en cuarto ajeno</h3>
 <div class="svc-wow__compare">
 <div class="svc-wow__col svc-wow__col--bad">
-<div class="svc-wow__col-lbl">Polisomnografía hospital</div>
-<div class="svc-wow__col-num">1 noche internado</div>
-<div class="svc-wow__col-desc">Cama distinta, cables al techo, técnico de guardia, agenda hospitalaria. Costo significativamente mayor. Indicada en casos complejos.</div>
+<div class="svc-wow__col-lbl">En hospital</div>
+<div class="svc-wow__col-num">Cuarto ajeno</div>
+<div class="svc-wow__col-desc">Cables al techo. Técnico vigilando. Costo alto.</div>
 </div>
 <div class="svc-wow__col svc-wow__col--good">
-<div class="svc-wow__col-lbl">Poligrafía en casa</div>
-<div class="svc-wow__col-num">1 noche en casa</div>
-<div class="svc-wow__col-desc">Tu cama, tu pareja, tu rutina. Equipo portátil con batería. Mismo IAH, misma severidad — válido para apnea obstructiva típica según AASM.</div>
+<div class="svc-wow__col-lbl">En casa</div>
+<div class="svc-wow__col-num">Tu cama</div>
+<div class="svc-wow__col-desc">Equipo a batería. Mismo IAH, misma severidad.</div>
 </div>
 </div>
 <p class="svc-wow__foot">* Validado por la AASM como estudio nivel III. La polisomnografía hospitalaria sigue siendo la indicada para insomnio, apnea central, EPOC severo o trastornos del movimiento.</p>
@@ -553,12 +557,12 @@
     var cols=['rgba(108,92,231,','rgba(162,155,254,','rgba(72,52,212,','rgba(108,92,231,','rgba(162,155,254,'];
     var anims=['p-drift-1','p-drift-2','p-drift-3','p-drift-4','p-drift-5','p-drift-6','p-drift-7','p-drift-8'];
     var r=Math.random;
-    var n=window.innerWidth<768?35:75;
+    var n=window.innerWidth<768?55:110;
     for(var i=0;i<n;i++){
         var s=document.createElement('span');
-        var sz=(r()*5+2).toFixed(1)+'px';
+        var sz=(r()*6+3).toFixed(1)+'px';
         var col=cols[Math.floor(r()*cols.length)];
-        var op=(r()*.55+.45).toFixed(2);
+        var op=(r()*.45+.55).toFixed(2);
         s.className='cta-band__p';
         s.style.cssText='width:'+sz+';height:'+sz+';background:'+col+op+');'
             +'top:'+Math.floor(r()*100)+'%;left:'+Math.floor(r()*100)+'%;'
