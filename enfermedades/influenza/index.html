@@ -69,8 +69,17 @@
 /* HERO */
 .disease-hero{padding:110px 0 56px!important;min-height:auto!important}
 @media(min-width:768px){.disease-hero{padding:140px 0 80px!important}}
-.disease-hero__bg{position:absolute;inset:0;background:radial-gradient(circle at 15% 25%,rgba(255,107,53,.28),transparent 55%),radial-gradient(circle at 85% 75%,rgba(230,69,69,.18),transparent 55%);pointer-events:none}
-.flu-hero-tag{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:800;color:#fff;background:linear-gradient(135deg,#e64545,#c0392b);padding:7px 14px;border-radius:100px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1.4px;box-shadow:0 6px 20px rgba(230,69,69,.4)}
+.disease-hero__bg{position:absolute;inset:0;background:radial-gradient(circle at 15% 25%,rgba(255,107,53,.32),transparent 55%),radial-gradient(circle at 85% 75%,rgba(230,69,69,.22),transparent 55%);pointer-events:none}
+.disease-hero__bg::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(240,168,48,.12),transparent 70%);animation:heroBgPulse 7s ease-in-out infinite;pointer-events:none}
+@keyframes heroBgPulse{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+.disease-hero__bg::after{content:'';position:absolute;top:-10%;right:-5%;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,53,.4),transparent 70%);filter:blur(40px);animation:heroBlob 12s ease-in-out infinite;pointer-events:none}
+@keyframes heroBlob{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-30px,20px) scale(1.1)}66%{transform:translate(20px,-15px) scale(.95)}}
+.disease-hero{position:relative;overflow:hidden}
+.flu-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,107,53,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,107,53,.05) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,#000 30%,transparent 75%);pointer-events:none;opacity:.6}
+.flu-hero-spark{position:absolute;width:6px;height:6px;border-radius:50%;background:#ff6b35;box-shadow:0 0 14px 2px rgba(255,107,53,.7);opacity:.7;pointer-events:none;animation:sparkFloat 8s ease-in-out infinite}
+@keyframes sparkFloat{0%,100%{transform:translate(0,0);opacity:0}10%,90%{opacity:.85}50%{transform:translate(20px,-30px);opacity:1}}
+.flu-hero-tag{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:800;color:#fff;background:linear-gradient(135deg,#e64545,#c0392b);padding:7px 14px;border-radius:100px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1.4px;box-shadow:0 6px 20px rgba(230,69,69,.4),0 0 0 0 rgba(230,69,69,.5);animation:tagGlow 2.4s ease-in-out infinite}
+@keyframes tagGlow{0%,100%{box-shadow:0 6px 20px rgba(230,69,69,.4),0 0 0 0 rgba(230,69,69,.5)}50%{box-shadow:0 6px 24px rgba(230,69,69,.55),0 0 0 8px rgba(230,69,69,0)}}
 .flu-hero-tag .pulse{width:8px;height:8px;border-radius:50%;background:#fff;animation:pulse-dot 1.5s ease-in-out infinite}
 .flu-hero-title{font-size:clamp(1.9rem,7.5vw,3.6rem)!important;color:#fff;font-weight:800;line-height:1.05;letter-spacing:-.025em;margin-bottom:14px}
 .flu-hero-title em{font-style:normal;font-size:.62em;display:block;margin-top:10px;background:linear-gradient(135deg,#ff6b35,#f0a830);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;letter-spacing:-.015em;line-height:1.2}
@@ -91,7 +100,22 @@
 .flu-hero-visual{background:linear-gradient(140deg,rgba(255,107,53,.22),rgba(240,168,48,.08));border:1px solid rgba(255,255,255,.14);border-radius:24px;padding:32px 28px;backdrop-filter:blur(20px);position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3)}
 .flu-hero-visual::before{content:'';position:absolute;top:-30%;right:-30%;width:80%;padding-bottom:80%;border-radius:50%;background:radial-gradient(circle,rgba(255,107,53,.32),transparent 65%);pointer-events:none}
 .flu-hero-visual__icon{width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,#ff6b35,#c0392b);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.7rem;margin-bottom:18px;box-shadow:0 12px 30px rgba(255,107,53,.5);position:relative;z-index:1}
-.flu-hero-visual__big{font-size:4.5rem;font-weight:800;background:linear-gradient(135deg,#fff,#ff6b35,#f0a830);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;letter-spacing:-.04em;margin-bottom:8px;position:relative;z-index:1}
+.flu-hero-visual__big{font-size:4.5rem;font-weight:800;background:linear-gradient(135deg,#fff,#ff6b35,#f0a830);background-size:200% 200%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;letter-spacing:-.04em;margin-bottom:8px;position:relative;z-index:1;animation:bigShift 5s ease-in-out infinite}
+@keyframes bigShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.flu-hero-clock{position:absolute;top:18px;right:18px;width:62px;height:62px;border-radius:50%;border:2px solid rgba(255,107,53,.5);display:flex;align-items:center;justify-content:center;color:#ff6b35;font-size:1.3rem;background:rgba(255,107,53,.08);backdrop-filter:blur(10px);z-index:2;animation:clockSpin 8s linear infinite}
+.flu-hero-clock::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:1.5px dashed rgba(255,107,53,.35);animation:clockSpin 14s linear infinite reverse}
+@keyframes clockSpin{to{transform:rotate(360deg)}}
+.flu-hero-clock i{animation:clockSpin 8s linear infinite reverse}
+
+/* URGENCY BANNER en hero */
+.flu-urgency{display:flex;align-items:center;gap:12px;background:linear-gradient(90deg,rgba(230,69,69,.18),rgba(255,107,53,.1));border:1px solid rgba(255,107,53,.32);border-left:3px solid #ff6b35;border-radius:12px;padding:11px 14px;margin-bottom:18px;backdrop-filter:blur(10px);position:relative;overflow:hidden}
+.flu-urgency::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);transform:translateX(-100%);animation:urgencySweep 3.5s ease-in-out infinite}
+@keyframes urgencySweep{0%{transform:translateX(-100%)}50%,100%{transform:translateX(200%)}}
+.flu-urgency__icon{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#ff6b35,#c0392b);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;flex-shrink:0;box-shadow:0 4px 14px rgba(255,107,53,.45);animation:urgencyShake 2s ease-in-out infinite}
+@keyframes urgencyShake{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.flu-urgency__txt{font-size:.84rem;color:#fff;font-weight:600;line-height:1.4;position:relative;z-index:1}
+.flu-urgency__txt strong{background:linear-gradient(135deg,#ff6b35,#f0a830);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:800}
+@media(min-width:768px){.flu-urgency{padding:13px 18px}.flu-urgency__txt{font-size:.92rem}}
 .flu-hero-visual__lbl{font-size:.92rem;color:rgba(255,255,255,.78);line-height:1.55;position:relative;z-index:1}
 .flu-hero-visual__lbl strong{color:#fff;font-weight:700}
 .flu-hero-visual__divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);margin:22px 0;position:relative;z-index:1}
@@ -222,6 +246,44 @@
 .flu-cta__btn--cal{background:#fff;color:var(--navy)!important}
 .flu-cta__btn--cal:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
 
+/* RUTA RÁPIDA */
+.flu-route{background:linear-gradient(140deg,#0a1628 0%,#1a0f2e 100%);border-radius:24px;padding:32px 22px 28px;color:#fff;position:relative;overflow:hidden;border:1px solid rgba(255,107,53,.3);box-shadow:0 20px 60px rgba(255,107,53,.22)}
+@media(min-width:768px){.flu-route{padding:48px 44px 40px}}
+.flu-route::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b35,#f0a830,#2ecc71,#f0a830,#ff6b35);background-size:200% 100%;animation:fluStripe 6s linear infinite}
+.flu-route::after{content:'';position:absolute;top:-30%;right:-15%;width:50%;padding-bottom:50%;border-radius:50%;background:radial-gradient(circle,rgba(255,107,53,.22),transparent 65%);pointer-events:none}
+.flu-route__inner{position:relative;z-index:1}
+.flu-route__steps{display:flex;flex-direction:column;gap:6px;position:relative;margin-bottom:26px}
+@media(min-width:900px){.flu-route__steps{flex-direction:row;gap:0;justify-content:space-between;align-items:flex-start}}
+.flu-route__rail{display:none}
+@media(min-width:900px){.flu-route__rail{display:block;position:absolute;top:64px;left:8%;right:8%;height:2px;background:linear-gradient(90deg,#ff6b35,#f0a830,#2ecc71);opacity:.45;z-index:0}}
+.flu-route__step{position:relative;display:grid;grid-template-columns:auto 1fr;column-gap:16px;row-gap:2px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.flu-route__step:last-child{border-bottom:none}
+@media(min-width:900px){.flu-route__step{display:flex;flex-direction:column;align-items:center;text-align:center;flex:1;padding:0 10px;border-bottom:none;z-index:1}}
+.flu-route__dot{width:54px;height:54px;border-radius:16px;background:linear-gradient(135deg,#ff6b35,#c0392b);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.35rem;box-shadow:0 8px 22px rgba(255,107,53,.45);grid-row:span 3;position:relative}
+.flu-route__dot::after{content:'';position:absolute;inset:-6px;border-radius:20px;border:1.5px solid rgba(255,107,53,.25);animation:routePulse 2.4s ease-in-out infinite}
+@keyframes routePulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:0;transform:scale(1.18)}}
+.flu-route__step:nth-child(2) .flu-route__dot{background:linear-gradient(135deg,#f0a830,#e67e22);box-shadow:0 8px 22px rgba(240,168,48,.45)}
+.flu-route__step:nth-child(2) .flu-route__dot::after{border-color:rgba(240,168,48,.3)}
+.flu-route__step:nth-child(3) .flu-route__dot{background:linear-gradient(135deg,#0984e3,#0652dd);box-shadow:0 8px 22px rgba(9,132,227,.4)}
+.flu-route__step:nth-child(3) .flu-route__dot::after{border-color:rgba(9,132,227,.3)}
+.flu-route__dot--final{background:linear-gradient(135deg,#2ecc71,#27ae60)!important;box-shadow:0 8px 22px rgba(46,204,113,.45)!important}
+.flu-route__dot--final::after{border-color:rgba(46,204,113,.4)!important}
+@media(min-width:900px){.flu-route__dot{margin-bottom:14px}}
+.flu-route__time{font-size:.62rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#ff6b35;background:rgba(255,107,53,.1);border:1px solid rgba(255,107,53,.25);padding:3px 8px;border-radius:100px;display:inline-block;width:fit-content;margin-bottom:2px}
+.flu-route__step:nth-child(2) .flu-route__time{color:#f0a830;background:rgba(240,168,48,.12);border-color:rgba(240,168,48,.3)}
+.flu-route__step:nth-child(3) .flu-route__time{color:#74b9ff;background:rgba(9,132,227,.14);border-color:rgba(9,132,227,.32)}
+.flu-route__step--final .flu-route__time{color:#7bed9f;background:rgba(46,204,113,.12);border-color:rgba(46,204,113,.3)}
+.flu-route__step h4{font-size:.96rem;font-weight:800;color:#fff;margin:0;letter-spacing:-.01em;line-height:1.25}
+.flu-route__step p{font-size:.82rem;color:rgba(255,255,255,.7);margin:2px 0 0;line-height:1.45}
+@media(min-width:900px){.flu-route__step h4{font-size:1rem}.flu-route__step p{max-width:200px}}
+.flu-route__cta{display:flex;flex-direction:column;gap:10px}
+@media(min-width:600px){.flu-route__cta{flex-direction:row;justify-content:center}}
+.flu-route__btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 24px;border-radius:12px;font-weight:700;font-size:.94rem;text-decoration:none;transition:all .3s var(--ease);min-height:50px;cursor:pointer}
+.flu-route__btn--wa{background:#25d366;color:#fff!important;box-shadow:0 8px 22px rgba(37,211,102,.4)}
+.flu-route__btn--wa:hover{background:#1da851;transform:translateY(-2px)}
+.flu-route__btn--cal{background:#fff;color:var(--navy)!important}
+.flu-route__btn--cal:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
+
 /* CTA BAND */
 .cta-band{border:none!important;padding:64px 0!important}
 .cta-band .reveal::before,.cta-band .reveal::after{display:none!important}
@@ -328,13 +390,22 @@
 <!-- HERO -->
 <section class="disease-hero">
 <div class="disease-hero__bg"></div>
+<div class="flu-hero-grid" aria-hidden="true"></div>
+<span class="flu-hero-spark" style="top:18%;left:8%;animation-delay:.0s" aria-hidden="true"></span>
+<span class="flu-hero-spark" style="top:60%;left:18%;animation-delay:1.5s;background:#f0a830;box-shadow:0 0 14px 2px rgba(240,168,48,.7)" aria-hidden="true"></span>
+<span class="flu-hero-spark" style="top:32%;right:12%;animation-delay:3s" aria-hidden="true"></span>
+<span class="flu-hero-spark" style="top:75%;right:22%;animation-delay:4.5s;background:#e64545;box-shadow:0 0 14px 2px rgba(230,69,69,.7)" aria-hidden="true"></span>
 <div class="container position-relative">
 <nav class="disease-hero__breadcrumb" aria-label="Breadcrumb"><a href="/">Inicio</a><span>/</span><a href="/#enfermedades">Enfermedades</a><span>/</span><span class="current">Influenza</span></nav>
 <div class="row align-items-center g-4 g-lg-5">
 <div class="col-lg-7">
 <span class="flu-hero-tag"><span class="pulse"></span> Antiviral funciona en 48 h</span>
 <h1 class="flu-hero-title">No es "una gripita"<em>Es influenza, y sí importa.</em></h1>
-<p class="flu-hero-sub">Si llevas pocas horas con fiebre alta y dolor de cuerpo, hay un medicamento que <strong style="color:#fff">acorta la enfermedad</strong> — pero solo funciona si lo tomas a tiempo.</p>
+<p class="flu-hero-sub">Si llevas pocas horas con fiebre alta y dolor de cuerpo, hay un tratamiento que <strong style="color:#fff">acorta la enfermedad</strong> — pero solo funciona si se inicia a tiempo.</p>
+<div class="flu-urgency">
+<div class="flu-urgency__icon"><i class="bi bi-stopwatch-fill"></i></div>
+<div class="flu-urgency__txt">Tienes <strong>menos de 48 h</strong> desde el primer síntoma para que el tratamiento haga su mayor efecto. <strong>Cada hora cuenta.</strong></div>
+</div>
 <div class="flu-hero-cta">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20creo%20que%20tengo%20influenza%20y%20necesito%20valoraci%C3%B3n%20pronto" target="_blank" class="btn-wa-hero"><i class="bi bi-whatsapp"></i> WhatsApp ahora</a>
 <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="btn-cal-hero"><i class="bi bi-calendar-check"></i> Agendar cita</a>
@@ -347,6 +418,7 @@
 </div>
 <div class="col-lg-5 d-none d-lg-block">
 <div class="flu-hero-visual">
+<div class="flu-hero-clock" aria-hidden="true"><i class="bi bi-stopwatch-fill"></i></div>
 <div class="flu-hero-visual__icon"><i class="bi bi-thermometer-high"></i></div>
 <div class="flu-hero-visual__big">48h</div>
 <div class="flu-hero-visual__lbl">Es la ventana del antiviral.<br><strong>Después, su efecto cae mucho.</strong></div>
@@ -430,51 +502,11 @@
 </div>
 </div>
 
-<!-- CALCULADOR 48H -->
-<div class="flu-section reveal">
-<span class="flu-section__eyebrow"><i class="bi bi-stopwatch-fill"></i> Calculador de ventana antiviral</span>
-<h2 class="flu-section__title">¿Aún <em>estás a tiempo</em>?</h2>
-<p class="flu-section__lead">El oseltamivir (Tamiflu) funciona mejor mientras más rápido se inicie. Calcula cuántas horas te quedan.</p>
-
-<div class="flu-timer">
-<div class="flu-timer__inner">
-<p class="flu-timer__lead">Selecciona cuándo empezó la fiebre o el dolor de cuerpo:</p>
-<div class="flu-timer__field">
-<span class="flu-timer__label">Inicio:</span>
-<select class="flu-timer__select" id="fluHrs" aria-label="Horas desde que iniciaron los síntomas">
-<option value="">— Elige una opción —</option>
-<option value="6">Hace pocas horas (≤12 h)</option>
-<option value="18">Hace medio día (12–24 h)</option>
-<option value="36">Ayer (24–48 h)</option>
-<option value="60">Antier (48–72 h)</option>
-<option value="96">Hace 3 días o más</option>
-</select>
-</div>
-<button class="flu-timer__btn" type="button" onclick="fluCalc()"><i class="bi bi-stopwatch-fill"></i> Calcular ventana</button>
-
-<div class="flu-timer__result" id="fluResult">
-<div class="flu-timer__result-row">
-<div class="flu-timer__big" id="fluBig">—</div>
-<div>
-<div class="flu-timer__lbl" id="fluLbl">—</div>
-<div class="flu-timer__title" id="fluTitle">—</div>
-</div>
-</div>
-<div class="flu-timer__msg" id="fluMsg"></div>
-<a href="https://wa.me/5215591708334?text=Tengo%20s%C3%ADntomas%20de%20influenza%20y%20necesito%20valoraci%C3%B3n" target="_blank" rel="noopener" class="flu-timer__cta" id="fluCta">
-<i class="bi bi-whatsapp"></i> <span id="fluCtaTxt">Hablar con el doctor</span>
-</a>
-<div class="flu-timer__disclaimer">* Estimación informativa. La indicación de antiviral la da el médico tras valoración clínica.</div>
-</div>
-</div>
-</div>
-</div>
-
 <!-- POR QUÉ IMPORTA — comparativa antiviral -->
 <div class="flu-section reveal">
 <span class="flu-section__eyebrow"><i class="bi bi-graph-up-arrow"></i> Por qué importa el tiempo</span>
 <h2 class="flu-section__title">Lo que cambia <em>tomar el antiviral a tiempo</em></h2>
-<p class="flu-section__lead">El oseltamivir reduce duración, complicaciones y contagio en casa — siempre que se inicie dentro de las 48 h.</p>
+<p class="flu-section__lead">El tratamiento reduce duración, complicaciones y contagio en casa — siempre que se inicie dentro de las 48 h.</p>
 
 <div class="window-card reveal">
 <div class="window-card__inner">
@@ -569,29 +601,50 @@
 </div>
 </div>
 
-<!-- CTA FINAL INLINE -->
+<!-- RUTA RÁPIDA — sección creativa -->
 <div class="flu-section reveal" style="margin-bottom:24px">
-<div class="flu-cta">
-<div class="flu-cta__inner">
-<div>
-<span class="flu-cta__eyebrow"><i class="bi bi-stopwatch-fill"></i> Cita prioritaria por síntomas</span>
-<h3 class="flu-cta__title">Si llevas pocas horas con fiebre y dolor de cuerpo, no lo dejes para mañana.</h3>
-<ul class="flu-cta__list">
-<li><i class="bi bi-check-circle-fill"></i> Valoración clínica el mismo día</li>
-<li><i class="bi bi-check-circle-fill"></i> Prueba rápida de antígenos cuando aplica</li>
-<li><i class="bi bi-check-circle-fill"></i> Antiviral indicado dentro de la ventana</li>
-<li><i class="bi bi-check-circle-fill"></i> Plan claro para evitar complicación pulmonar</li>
-</ul>
+<span class="flu-section__eyebrow"><i class="bi bi-signpost-split-fill"></i> Ruta rápida a la consulta</span>
+<h2 class="flu-section__title">De tu mensaje al <em>tratamiento, en menos de 24 h</em></h2>
+<p class="flu-section__lead">Cuando hay influenza, cada hora pesa. Por eso la ruta hasta la consulta está pensada para ser corta y directa.</p>
+
+<div class="flu-route">
+<div class="flu-route__inner">
+<div class="flu-route__rail" aria-hidden="true"></div>
+<div class="flu-route__steps">
+
+<div class="flu-route__step">
+<div class="flu-route__dot"><i class="bi bi-whatsapp"></i></div>
+<div class="flu-route__time">Min 0</div>
+<h4>Mandas WhatsApp</h4>
+<p>Te respondo personalmente, sin filtros ni bots.</p>
 </div>
-<div>
-<div class="flu-cta__stat">
-<div class="flu-cta__stat-num">48 h</div>
-<div class="flu-cta__stat-lbl">Tu ventana para que el antiviral funcione bien</div>
+
+<div class="flu-route__step">
+<div class="flu-route__dot"><i class="bi bi-calendar-check"></i></div>
+<div class="flu-route__time">Mismo día</div>
+<h4>Hueco prioritario</h4>
+<p>Cita reservada para casos de fiebre aguda.</p>
 </div>
-<div class="flu-cta__btns">
-<a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20creo%20que%20tengo%20influenza%20y%20quiero%20cita%20pronto" target="_blank" class="flu-cta__btn flu-cta__btn--wa"><i class="bi bi-whatsapp"></i> WhatsApp directo</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="flu-cta__btn flu-cta__btn--cal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+
+<div class="flu-route__step">
+<div class="flu-route__dot"><i class="bi bi-clipboard2-pulse-fill"></i></div>
+<div class="flu-route__time">20 min</div>
+<h4>Valoración + prueba</h4>
+<p>Diagnóstico claro y oxigenación medida.</p>
 </div>
+
+<div class="flu-route__step flu-route__step--final">
+<div class="flu-route__dot flu-route__dot--final"><i class="bi bi-capsule"></i></div>
+<div class="flu-route__time">Dentro de 48 h</div>
+<h4>Tratamiento indicado</h4>
+<p>Plan personalizado, contigo de inicio a fin.</p>
+</div>
+
+</div>
+
+<div class="flu-route__cta">
+<a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20creo%20que%20tengo%20influenza%20y%20quiero%20cita%20pronto" target="_blank" class="flu-route__btn flu-route__btn--wa"><i class="bi bi-whatsapp"></i> Empezar por WhatsApp</a>
+<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="flu-route__btn flu-route__btn--cal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
 </div>
 </div>
 </div>
@@ -736,30 +789,6 @@
             +'animation:'+anims[Math.floor(r()*anims.length)]+' '+(r()*9+5).toFixed(1)+'s '+(r()*7).toFixed(1)+'s linear infinite;';
         c.appendChild(s);
     }
-})();
-</script>
-<script>
-(function(){
-  var data={
-    'green':{lbl:'Ventana abierta',title:'Aún a tiempo del antiviral',msg:'El oseltamivir funciona mejor cuanto antes. Agenda valoración hoy mismo para iniciar tratamiento dentro de la ventana óptima.',ctaTxt:'Agendar valoración hoy'},
-    'amber':{lbl:'Ventana cerrándose',title:'Ya casi se cumple el plazo',msg:'Estás en el límite de la ventana antiviral. Una valoración rápida puede definir si todavía conviene iniciar el tratamiento.',ctaTxt:'Hablar con el doctor ya'},
-    'red':{lbl:'Fuera de ventana',title:'Antiviral con menor utilidad',msg:'Pasaron más de 48 h, pero el manejo médico sigue siendo importante para evitar complicaciones (neumonía, descompensación). Valoramos tu caso.',ctaTxt:'Quiero valoración igual'}
-  };
-  window.fluCalc=function(){
-    var v=parseFloat(document.getElementById('fluHrs').value);
-    if(isNaN(v))return;
-    var key=v<=24?'green':v<=48?'amber':'red';
-    var d=data[key];
-    var rem=Math.max(0,48-v);
-    document.getElementById('fluBig').textContent=key==='red'?'0 h':rem+' h';
-    document.getElementById('fluLbl').textContent=d.lbl;
-    document.getElementById('fluTitle').textContent=d.title;
-    document.getElementById('fluMsg').textContent=d.msg;
-    document.getElementById('fluCtaTxt').textContent=d.ctaTxt;
-    var res=document.getElementById('fluResult');
-    res.className='flu-timer__result flu-timer__result--'+key+' visible';
-    setTimeout(function(){res.scrollIntoView({behavior:'smooth',block:'nearest'});},150);
-  };
 })();
 </script>
 </body>
