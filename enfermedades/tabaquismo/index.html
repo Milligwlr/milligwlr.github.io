@@ -374,7 +374,12 @@
 .faq-item summary::after{content:"+";color:#0984e3;font-size:1.5rem;font-weight:400;line-height:1;transition:transform .25s ease;flex-shrink:0}
 .faq-item[open] summary::after{content:"−"}
 .faq-item__answer{padding:0 22px 20px;color:#3a4a5c;line-height:1.7;font-size:.97rem}
-</style>
+
+        .nav-link--contingencia{color:#0891b2!important;font-weight:700!important}
+        .nav-link--contingencia::after{background:#0891b2!important}
+        .nav-link--contingencia:hover{color:#0369a1!important}
+        .nav-link--contingencia i{opacity:.85}
+        </style>
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/enfermedades/tabaquismo/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Es realmente posible dejar de fumar con ayuda médica?","acceptedAnswer":{"@type":"Answer","text":"Sí, y la diferencia es significativa. Las tasas de éxito a 12 meses pasan de 5-7% sin ayuda a 20-35% con tratamiento médico. La combinación de farmacoterapia (vareniclina, bupropión o terapia de reemplazo de nicotina) más acompañamiento médico estructurado es lo más efectivo."}},{"@type":"Question","name":"¿Qué pasa con mis pulmones cuando dejo de fumar?","acceptedAnswer":{"@type":"Answer","text":"A las 24 horas se normaliza el monóxido de carbono. A 2-3 meses mejora la función pulmonar. Al año, el riesgo cardiovascular disminuye a la mitad. A los 10-15 años, el riesgo de cáncer de pulmón se aproxima al de un no fumador. La progresión de la EPOC se frena en cualquier momento."}},{"@type":"Question","name":"¿Cuántos intentos suelen necesitarse para dejar de fumar?","acceptedAnswer":{"@type":"Answer","text":"El promedio son 5-7 intentos antes de lograrlo definitivamente. Esto no es un fracaso: cada intento aporta aprendizaje. Lo importante es no abandonar y tener un plan estructurado con apoyo médico."}},{"@type":"Question","name":"¿Cuánto cuesta el tratamiento médico para dejar de fumar?","acceptedAnswer":{"@type":"Answer","text":"El programa varía según el medicamento y la duración. Escríbenos por WhatsApp al 55 9170 8334 para conocer precios actualizados."}}]}
     </script>
@@ -388,8 +393,8 @@
 
 <div class="top-bar-legal text-center fw-semibold"><div class="container">Aviso Cofepris: <a href="https://www.gob.mx/cofepris" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">2609142002A00265</a> &nbsp;|&nbsp; Céd. Prof: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">12588976</a> &nbsp;|&nbsp; Céd. Esp: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">15595809</a> &nbsp;|&nbsp; <a href="https://conacem.org.mx/buscador" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">CNN-2102</a></div></div>
 
-<nav class="navbar navbar-expand-lg sticky-top" id="mainNav"><div class="container"><a class="navbar-brand d-flex align-items-center gap-2" href="/"><img src="/favicon.png" alt="Logo Alveos" class="navbar-logo" width="36" height="36" loading="lazy" decoding="async"><span class="brand-name">ALVEOS</span></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse justify-content-center" id="navbarNav"><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="/">Inicio</a></li><li class="nav-item"><a class="nav-link" href="/sobre-el-doctor/">Sobre el Doctor</a></li><li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="/#servicios" role="button" data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
+<nav class="navbar navbar-expand-lg sticky-top" id="mainNav"><div class="container"><a class="navbar-brand d-flex align-items-center gap-2" href="/"><img src="/favicon.png" alt="Logo Alveos" class="navbar-logo" width="36" height="36" loading="lazy" decoding="async"><span class="brand-name">ALVEOS</span></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse justify-content-center" id="navbarNav"><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-house me-1"></i>Inicio</a></li><li class="nav-item"><a class="nav-link" href="/sobre-el-doctor/"><i class="fas fa-user-md me-1"></i>Sobre el Doctor</a></li><li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="/#servicios" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-stethoscope me-1"></i>Servicios</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item fw-bold" href="/#servicios">Ver todos</a></li>
                         <li><hr class="dropdown-divider"></li>
@@ -406,7 +411,7 @@
                         <li><a class="dropdown-item" href="/servicios/teleconsulta/">Teleconsulta</a></li>
                     </ul>
                 </li><li class="nav-item dropdown active">
-                    <a class="nav-link dropdown-toggle active" href="/#enfermedades" role="button" data-bs-toggle="dropdown" aria-expanded="false">Enfermedades</a>
+                    <a class="nav-link dropdown-toggle active" href="/#enfermedades" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-lungs me-1"></i>Enfermedades</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item fw-bold" href="/#enfermedades">Ver todas</a></li>
                         <li><hr class="dropdown-divider"></li>
@@ -420,11 +425,13 @@
                         <li><a class="dropdown-item" href="/enfermedades/bronquiectasias/">Bronquiectasias</a></li>
                         <li><a class="dropdown-item" href="/enfermedades/hipertension-pulmonar/">Hipertensión pulmonar</a></li>
                         <li><a class="dropdown-item" href="/enfermedades/embolia-pulmonar/">Embolia pulmonar</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/neumotorax/">Neumotórax</a></li>
                         <li><a class="dropdown-item" href="/enfermedades/tabaquismo/">Tabaquismo</a></li>
                         <li><a class="dropdown-item" href="/enfermedades/secuelas-covid/">Secuelas post-COVID</a></li>
                         <li><a class="dropdown-item" href="/enfermedades/influenza/">Influenza</a></li>
                     </ul>
-                </li><li class="nav-item"><a class="nav-link" href="/preguntas-frecuentes/">FAQ</a></li><li class="nav-item"><a class="nav-link" href="/#contacto-final">Contacto</a></li></ul></div><div class="social-icons d-none d-lg-flex align-items-center"><a href="https://www.instagram.com/dr.williamlara/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a><a href="/#contacto-final" aria-label="Ubicación"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i></a></div></div></nav>
+                <li class="nav-item"><a class="nav-link nav-link--contingencia" href="/contingencia-ambiental-cdmx/"><i class="fas fa-smog me-1"></i>Contingencia</a></li>
+                </li><li class="nav-item"><a class="nav-link" href="/preguntas-frecuentes/"><i class="fas fa-circle-question me-1"></i>FAQ</a></li><li class="nav-item"><a class="nav-link" href="/#contacto-final"><i class="fas fa-envelope me-1"></i>Contacto</a></li></ul></div><div class="social-icons d-none d-lg-flex align-items-center"><a href="https://www.instagram.com/dr.williamlara/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a><a href="/#contacto-final" aria-label="Ubicación"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i></a></div></div></nav>
 
 <a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20cita" target="_blank" class="whatsapp-float" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
 
@@ -445,7 +452,7 @@
             <div class="col-lg-7 disease-hero__content">
                 <nav class="disease-hero__breadcrumb" aria-label="Breadcrumb">
                     <a href="/">Inicio</a><span class="sep">›</span>
-                    <a href="/#enfermedades">Enfermedades</a><span class="sep">›</span>
+                    <a href="/#enfermedades"><i class="fas fa-lungs me-1"></i>Enfermedades</a><span class="sep">›</span>
                     <span class="current">Tabaquismo</span>
                 </nav>
                 <div class="disease-hero__tag">
@@ -514,6 +521,7 @@
                     <a href="/enfermedades/fibrosis-pulmonar/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-lungs"></i></div><span>Fibrosis Pulmonar</span></a>
                     <a href="/enfermedades/bronquiectasias/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-lungs-virus"></i></div><span>Bronquiectasias</span></a>
                     <a href="/enfermedades/embolia-pulmonar/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-heart-crack"></i></div><span>Embolia Pulmonar</span></a>
+                    <a href="/enfermedades/neumotorax/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-explosion"></i></div><span>Neumotórax</span></a>
                     <a href="/enfermedades/hipertension-pulmonar/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-heart-pulse-fill"></i></div><span>Hipertensión Pulmonar</span></a>
                     <a href="/enfermedades/secuelas-covid/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-virus2"></i></div><span>Secuelas COVID-19</span></a>
                     <a href="/enfermedades/influenza/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-thermometer-high"></i></div><span>Influenza</span></a>

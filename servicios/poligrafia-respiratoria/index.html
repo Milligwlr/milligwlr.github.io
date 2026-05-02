@@ -196,7 +196,12 @@
 @media(min-width:768px){.faq-item summary{padding:18px 22px;font-size:1.02rem}.faq-item__answer{padding:0 22px 20px;font-size:.97rem}}
 
 @keyframes pulse-dot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.6}}
-</style>
+
+        .nav-link--contingencia{color:#0891b2!important;font-weight:700!important}
+        .nav-link--contingencia::after{background:#0891b2!important}
+        .nav-link--contingencia:hover{color:#0369a1!important}
+        .nav-link--contingencia i{opacity:.85}
+        </style>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/servicios/poligrafia-respiratoria/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Es lo mismo que una polisomnografía?","acceptedAnswer":{"@type":"Answer","text":"No. La poligrafía es un estudio nivel III que mide flujo, esfuerzo, oxígeno y posición: suficiente para confirmar apnea obstructiva en casos típicos. La polisomnografía agrega EEG, EOG y EMG, necesarios cuando hay insomnio, sospecha de apnea central u otro trastorno del sueño."}},{"@type":"Question","name":"¿Qué incluye el resultado?","acceptedAnswer":{"@type":"Answer","text":"Reporte con índice de apnea-hipopnea (IAH), severidad, tiempo con SpO2 menor a 90%, ronquidos por hora y posición predominante. Te lo explico en consulta y definimos plan: dispositivos posicionales, mandibular o CPAP/BiPAP."}},{"@type":"Question","name":"¿Y si no logro dormir con el equipo?","acceptedAnswer":{"@type":"Answer","text":"Es normal sentir el equipo al inicio. La cánula nasal y bandas son ligeras y la mayoría se acostumbra en 30 minutos. Si la noche resulta insuficiente, se repite sin costo adicional."}},{"@type":"Question","name":"¿Cuánto cuesta el estudio en CDMX?","acceptedAnswer":{"@type":"Answer","text":"El costo es significativamente menor al de una polisomnografía hospitalaria. Para precios actualizados, escribe por WhatsApp al 55 9170 8334."}}]}
@@ -213,10 +218,10 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Menú"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link" href="/sobre-el-doctor/">Sobre el Doctor</a></li>
+                <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-house me-1"></i>Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="/sobre-el-doctor/"><i class="fas fa-user-md me-1"></i>Sobre el Doctor</a></li>
                 <li class="nav-item dropdown active">
-                    <a class="nav-link dropdown-toggle active" href="/#servicios" role="button" data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
+                    <a class="nav-link dropdown-toggle active" href="/#servicios" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-stethoscope me-1"></i>Servicios</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item fw-bold" href="/#servicios">Ver todos</a></li>
                         <li><hr class="dropdown-divider"></li>
@@ -233,7 +238,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="/#enfermedades" role="button" data-bs-toggle="dropdown" aria-expanded="false">Enfermedades</a>
+                    <a class="nav-link dropdown-toggle" href="/#enfermedades" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-lungs me-1"></i>Enfermedades</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item fw-bold" href="/#enfermedades">Ver todas</a></li>
                         <li><hr class="dropdown-divider"></li>
@@ -247,13 +252,15 @@
                         <li><a class="dropdown-item" href="/enfermedades/bronquiectasias/">Bronquiectasias</a></li>
                         <li><a class="dropdown-item" href="/enfermedades/hipertension-pulmonar/">Hipertensión pulmonar</a></li>
                         <li><a class="dropdown-item" href="/enfermedades/embolia-pulmonar/">Embolia pulmonar</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/neumotorax/">Neumotórax</a></li>
                         <li><a class="dropdown-item" href="/enfermedades/tabaquismo/">Tabaquismo</a></li>
                         <li><a class="dropdown-item" href="/enfermedades/secuelas-covid/">Secuelas post-COVID</a></li>
                         <li><a class="dropdown-item" href="/enfermedades/influenza/">Influenza</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="/preguntas-frecuentes/">FAQ</a></li>
-                <li class="nav-item"><a class="nav-link" href="/#contacto-final">Contacto</a></li>
+                <li class="nav-item"><a class="nav-link nav-link--contingencia" href="/contingencia-ambiental-cdmx/"><i class="fas fa-smog me-1"></i>Contingencia</a></li>
+                <li class="nav-item"><a class="nav-link" href="/preguntas-frecuentes/"><i class="fas fa-circle-question me-1"></i>FAQ</a></li>
+                <li class="nav-item"><a class="nav-link" href="/#contacto-final"><i class="fas fa-envelope me-1"></i>Contacto</a></li>
             </ul>
         </div>
         <div class="social-icons d-flex align-items-center">
@@ -282,7 +289,7 @@
 <span class="hero-fx-spark" style="top:68%;right:42%;animation-delay:.8s;width:4px;height:4px" aria-hidden="true"></span>
 <span class="hero-fx-spark" style="top:8%;right:32%;animation-delay:5.2s;background:#a29bfe;box-shadow:0 0 16px 3px rgba(162,155,254,.85);width:5px;height:5px" aria-hidden="true"></span>
 <div class="container position-relative">
-<nav class="disease-hero__breadcrumb" aria-label="Breadcrumb"><a href="/">Inicio</a><span>/</span><a href="/#servicios">Servicios</a><span>/</span><span class="current">Poligrafía Respiratoria</span></nav>
+<nav class="disease-hero__breadcrumb" aria-label="Breadcrumb"><a href="/">Inicio</a><span>/</span><a href="/#servicios"><i class="fas fa-stethoscope me-1"></i>Servicios</a><span>/</span><span class="current">Poligrafía Respiratoria</span></nav>
 <div class="row align-items-center g-4 g-lg-5">
 <div class="col-lg-7">
 <span class="svc-hero-tag"><span class="pulse"></span> Estudio en casa · Una noche</span>

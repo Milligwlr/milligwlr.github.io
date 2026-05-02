@@ -488,7 +488,12 @@
       .bento-tile__cat{font-size:.58rem;letter-spacing:.16em}
       .bento-svc-rule{margin:42px auto 18px}
     }
-    </style>
+    
+        .nav-link--contingencia{color:#0891b2!important;font-weight:700!important}
+        .nav-link--contingencia::after{background:#0891b2!important}
+        .nav-link--contingencia:hover{color:#0369a1!important}
+        .nav-link--contingencia i{opacity:.85}
+        </style>
 
     <!-- GTM -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -518,10 +523,10 @@
         </button>
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-house me-1"></i>Inicio</a></li>
                 <li class="nav-item"><a class="nav-link active" href="/sobre-el-doctor/">Sobre el Doctor</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="/#servicios" role="button" data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
+                    <a class="nav-link dropdown-toggle" href="/#servicios" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-stethoscope me-1"></i>Servicios</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item fw-bold" href="/#servicios">Ver todos</a></li>
                         <li><hr class="dropdown-divider"></li>
@@ -538,7 +543,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="/#enfermedades" role="button" data-bs-toggle="dropdown" aria-expanded="false">Enfermedades</a>
+                    <a class="nav-link dropdown-toggle" href="/#enfermedades" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-lungs me-1"></i>Enfermedades</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item fw-bold" href="/#enfermedades">Ver todas</a></li>
                         <li><hr class="dropdown-divider"></li>
@@ -552,13 +557,15 @@
                         <li><a class="dropdown-item" href="/enfermedades/bronquiectasias/">Bronquiectasias</a></li>
                         <li><a class="dropdown-item" href="/enfermedades/hipertension-pulmonar/">Hipertensión pulmonar</a></li>
                         <li><a class="dropdown-item" href="/enfermedades/embolia-pulmonar/">Embolia pulmonar</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/neumotorax/">Neumotórax</a></li>
                         <li><a class="dropdown-item" href="/enfermedades/tabaquismo/">Tabaquismo</a></li>
                         <li><a class="dropdown-item" href="/enfermedades/secuelas-covid/">Secuelas post-COVID</a></li>
                         <li><a class="dropdown-item" href="/enfermedades/influenza/">Influenza</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="/preguntas-frecuentes/">FAQ</a></li>
-                <li class="nav-item"><a class="nav-link" href="/#contacto-final">Contacto</a></li>
+                <li class="nav-item"><a class="nav-link nav-link--contingencia" href="/contingencia-ambiental-cdmx/"><i class="fas fa-smog me-1"></i>Contingencia</a></li>
+                <li class="nav-item"><a class="nav-link" href="/preguntas-frecuentes/"><i class="fas fa-circle-question me-1"></i>FAQ</a></li>
+                <li class="nav-item"><a class="nav-link" href="/#contacto-final"><i class="fas fa-envelope me-1"></i>Contacto</a></li>
             </ul>
         </div>
         <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener" class="navbar-cta d-none d-lg-inline-flex">

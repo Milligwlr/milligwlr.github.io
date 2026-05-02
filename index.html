@@ -308,10 +308,10 @@
         .nav-link:hover::after { width: 100%; left: 0; }
         .nav-link.dropdown-toggle::after { display: none; }
         .nav-link:hover { color: var(--electric) !important; }
-        .nav-link--alert{color:var(--imeca-verybad)!important;font-weight:700!important}
-        .nav-link--alert::after{background:var(--imeca-verybad)!important}
-        .nav-link--alert:hover{color:#b91c1c!important}
-        .nav-link--alert i{opacity:.9}
+        .nav-link--contingencia{color:#0891b2!important;font-weight:700!important}
+        .nav-link--contingencia::after{background:#0891b2!important}
+        .nav-link--contingencia:hover{color:#0369a1!important}
+        .nav-link--contingencia i{opacity:.85}
         .social-icons a {
             color: var(--text-muted);
             font-size: 1.55rem;
@@ -2486,10 +2486,10 @@
             </button>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/sobre-el-doctor/">Sobre el Doctor</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-house me-1"></i>Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/sobre-el-doctor/"><i class="fas fa-user-md me-1"></i>Sobre el Doctor</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#servicios" role="button" data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
+                        <a class="nav-link dropdown-toggle" href="#servicios" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-stethoscope me-1"></i>Servicios</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item fw-bold" href="#servicios">Ver todos</a></li>
                             <li><hr class="dropdown-divider"></li>
@@ -2507,7 +2507,7 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#enfermedades" role="button" data-bs-toggle="dropdown" aria-expanded="false">Enfermedades</a>
+                        <a class="nav-link dropdown-toggle" href="#enfermedades" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-lungs me-1"></i>Enfermedades</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item fw-bold" href="#enfermedades">Ver todas</a></li>
                             <li><hr class="dropdown-divider"></li>
@@ -2521,14 +2521,15 @@
                             <li><a class="dropdown-item" href="/enfermedades/bronquiectasias/">Bronquiectasias</a></li>
                             <li><a class="dropdown-item" href="/enfermedades/hipertension-pulmonar/">Hipertensión pulmonar</a></li>
                             <li><a class="dropdown-item" href="/enfermedades/embolia-pulmonar/">Embolia pulmonar</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/neumotorax/">Neumotórax</a></li>
                             <li><a class="dropdown-item" href="/enfermedades/tabaquismo/">Tabaquismo</a></li>
                             <li><a class="dropdown-item" href="/enfermedades/secuelas-covid/">Secuelas post-COVID</a></li>
                             <li><a class="dropdown-item" href="/enfermedades/influenza/">Influenza</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link nav-link--alert" href="/contingencia-ambiental-cdmx/"><i class="fas fa-smog me-1"></i>Contingencia</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/preguntas-frecuentes/">FAQ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contacto-final">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link--contingencia" href="/contingencia-ambiental-cdmx/"><i class="fas fa-smog me-1"></i>Contingencia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/preguntas-frecuentes/"><i class="fas fa-circle-question me-1"></i>FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto-final"><i class="fas fa-envelope me-1"></i>Contacto</a></li>
                 </ul>
             </div>
             <div class="social-icons d-flex align-items-center">
@@ -3144,6 +3145,12 @@
                         <p>Un coágulo que bloquea las arterias del pulmón. Es una emergencia médica que requiere atención inmediata.</p>
                         <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
                     </a>
+                    <a href="/enfermedades/neumotorax/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-explosion" aria-hidden="true"></i></div>
+                        <h3>Neumotórax</h3>
+                        <p>Pulmón colapsado por aire en la pleura: dolor súbito y falta de aire. Drenaje y seguimiento para evitar recurrencias.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
                     <a href="/enfermedades/secuelas-covid/" class="disease-card">
                         <div class="disease-card__icon"><i class="fa-solid fa-virus-covid" aria-hidden="true"></i></div>
                         <h3>Secuelas COVID</h3>
@@ -3179,6 +3186,12 @@
                         <div class="disease-card__icon"><i class="fa-solid fa-shield-virus" aria-hidden="true"></i></div>
                         <h3>Embolia Pulmonar</h3>
                         <p>Un coágulo que bloquea las arterias del pulmón. Es una emergencia médica que requiere atención inmediata.</p>
+                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
+                    </a>
+                    <a href="/enfermedades/neumotorax/" class="disease-card">
+                        <div class="disease-card__icon"><i class="fa-solid fa-explosion" aria-hidden="true"></i></div>
+                        <h3>Neumotórax</h3>
+                        <p>Pulmón colapsado por aire en la pleura: dolor súbito y falta de aire. Drenaje y seguimiento para evitar recurrencias.</p>
                         <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
                     </a>
                     <a href="/enfermedades/secuelas-covid/" class="disease-card">
