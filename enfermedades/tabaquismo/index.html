@@ -345,6 +345,15 @@
   .tab-signal{grid-template-columns:1fr!important}
   .tab-signal__item{border:1px solid rgba(9,132,227,.15)!important}
 }
+/* HERO FX — efectos dinámicos */
+.disease-hero{position:relative;overflow:hidden}
+.disease-hero__bg::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(193,118,90,.14),transparent 70%);animation:heroFxPulse 7s ease-in-out infinite;pointer-events:none}
+.disease-hero__bg::after{content:'';position:absolute;top:-10%;right:-5%;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(193,118,90,.45),transparent 70%);filter:blur(40px);animation:heroFxBlob 12s ease-in-out infinite;pointer-events:none}
+@keyframes heroFxPulse{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+@keyframes heroFxBlob{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-30px,20px) scale(1.1)}66%{transform:translate(20px,-15px) scale(.95)}}
+.hero-fx-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(193,118,90,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(193,118,90,.06) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,#000 30%,transparent 75%);pointer-events:none;opacity:.6}
+.hero-fx-spark{position:absolute;width:6px;height:6px;border-radius:50%;background:#c1765a;box-shadow:0 0 14px 2px rgba(193,118,90,.7);opacity:.7;pointer-events:none;animation:heroFxSpark 8s ease-in-out infinite}
+@keyframes heroFxSpark{0%,100%{transform:translate(0,0);opacity:0}10%,90%{opacity:.85}50%{transform:translate(20px,-30px);opacity:1}}
 </style>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -424,6 +433,11 @@
 <!-- ===== HERO ===== -->
 <section class="disease-hero">
     <div class="disease-hero__bg"></div>
+<div class="hero-fx-grid" aria-hidden="true"></div>
+<span class="hero-fx-spark" style="top:18%;left:8%;animation-delay:0s" aria-hidden="true"></span>
+<span class="hero-fx-spark" style="top:60%;left:18%;animation-delay:1.5s;background:#e09980;box-shadow:0 0 14px 2px rgba(224,153,128,.7)" aria-hidden="true"></span>
+<span class="hero-fx-spark" style="top:32%;right:12%;animation-delay:3s" aria-hidden="true"></span>
+<span class="hero-fx-spark" style="top:75%;right:22%;animation-delay:4.5s;background:#8b4513;box-shadow:0 0 14px 2px rgba(139,69,19,.7)" aria-hidden="true"></span>
     <div class="disease-hero__aurora"></div>
     <div class="disease-hero__grid"></div>
     <div class="container">
