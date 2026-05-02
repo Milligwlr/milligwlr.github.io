@@ -186,7 +186,22 @@
     .mbadge--ats .mbadge__icon i{color:var(--accent-purple)}
     .mbadge--ats:hover .mbadge__icon{background:linear-gradient(135deg,var(--accent-purple),var(--electric))}
 
-    @media(max-width:900px){.mem-grid{grid-template-columns:1fr;gap:14px}.memberships{padding:64px 0 72px}}
+    /* logo image variant — no background tint needed */
+    .mbadge__icon--img{background:#f8faff;border-color:rgba(9,132,227,.1);padding:10px}
+    .mbadge:hover .mbadge__icon--img{background:#fff}
+
+    /* ERS variant */
+    .mbadge--ers::before{background:linear-gradient(90deg,#1d4ed8,var(--electric))}
+    .mbadge--ers .mbadge__icon{background:linear-gradient(135deg,rgba(29,78,216,.1),rgba(9,132,227,.08));border-color:rgba(29,78,216,.22)}
+    .mbadge--ers .mbadge__icon i{color:#1d4ed8}
+    .mbadge--ers:hover .mbadge__icon{background:linear-gradient(135deg,#1d4ed8,var(--electric))}
+    .mbadge--ers:hover .mbadge__icon i{color:#fff}
+
+    /* 4-column grid for 4 societies */
+    .mem-grid{grid-template-columns:repeat(4,1fr)}
+
+    @media(max-width:1024px){.mem-grid{grid-template-columns:repeat(2,1fr);gap:16px}}
+    @media(max-width:600px){.mem-grid{grid-template-columns:1fr;gap:14px}.memberships{padding:64px 0 72px}}
 
     /* ========== WALL OF TRUST — Premium dark credentials ========== */
     /* ========== CREDENCIALES — Premium Light Redesign ========== */
@@ -223,72 +238,87 @@
     .trust-wall__sub{font-size:1rem;color:#5a6a80;line-height:1.72;max-width:560px;margin:0 auto}
 
     /* cards grid */
-    .trust-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;position:relative;z-index:1}
+    .trust-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;position:relative;z-index:1}
 
-    /* card base */
-    .trust-card{position:relative;background:#fff;border-radius:20px;overflow:hidden;
-      border:1px solid rgba(0,0,0,.07);
-      box-shadow:0 4px 6px -2px rgba(0,0,0,.05),0 16px 40px -12px rgba(0,0,0,.10);
-      transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease)}
-    .trust-card:hover{transform:translateY(-6px);
-      box-shadow:0 8px 8px -4px rgba(0,0,0,.06),0 28px 60px -14px rgba(9,132,227,.18);
-      border-color:rgba(9,132,227,.22)}
-    .trust-card--cnn:hover{box-shadow:0 8px 8px -4px rgba(0,0,0,.06),0 28px 60px -14px rgba(245,158,11,.20);
-      border-color:rgba(245,158,11,.28)}
-    .trust-card::after{content:'';position:absolute;inset:0;
-      background:radial-gradient(circle at 50% -20%,rgba(9,132,227,.06) 0%,transparent 55%);
-      opacity:0;transition:opacity .4s;pointer-events:none}
-    .trust-card:hover::after{opacity:1}
-    .trust-card--cnn::after{background:radial-gradient(circle at 50% -20%,rgba(245,158,11,.08) 0%,transparent 55%)}
+    /* card base — ID card aesthetic */
+    .trust-card{position:relative;border-radius:24px;overflow:hidden;
+      box-shadow:0 2px 4px rgba(0,0,0,.04),0 20px 50px -16px rgba(10,22,40,.14);
+      transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+    .trust-card:hover{transform:translateY(-8px);
+      box-shadow:0 4px 8px rgba(0,0,0,.06),0 36px 70px -18px rgba(9,132,227,.24)}
+    .trust-card--cnn:hover{box-shadow:0 4px 8px rgba(0,0,0,.06),0 36px 70px -18px rgba(217,119,6,.28)}
 
-    /* accent stripe — 4px bold */
-    .trust-card__stripe{display:block;height:4px;width:100%}
-    .trust-card--buap .trust-card__stripe{background:linear-gradient(90deg,#1e4db7 0%,#0984e3 50%,#00cec9 100%)}
-    .trust-card--unam .trust-card__stripe{background:linear-gradient(90deg,#005f73 0%,#00cec9 50%,#74b9ff 100%)}
-    .trust-card--cnn  .trust-card__stripe{background:linear-gradient(90deg,#b45309 0%,#d97706 40%,#fcd34d 100%)}
+    /* Header zone — dark gradient with big number */
+    .trust-card__header{padding:28px 26px 24px;position:relative;overflow:hidden}
+    .trust-card--buap .trust-card__header{background:linear-gradient(145deg,#0a1628 0%,#0d2548 55%,#1e3799 100%)}
+    .trust-card--unam .trust-card__header{background:linear-gradient(145deg,#05161a 0%,#0a2a30 55%,#005f73 100%)}
+    .trust-card--cnn  .trust-card__header{background:linear-gradient(145deg,#1c0d00 0%,#3d1f00 55%,#92400e 100%)}
 
-    .trust-card__inner{padding:28px 28px 26px}
-    .trust-card__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+    /* subtle dot grid on header */
+    .trust-card__header::before{content:'';position:absolute;inset:0;
+      background-image:radial-gradient(circle,rgba(255,255,255,.07) 1px,transparent 1px);
+      background-size:20px 20px;pointer-events:none}
+    /* glow orb top-right */
+    .trust-card--buap .trust-card__header::after{content:'';position:absolute;top:-30%;right:-20%;
+      width:140px;height:140px;border-radius:50%;
+      background:radial-gradient(circle,rgba(9,132,227,.55) 0%,transparent 65%);
+      filter:blur(24px);pointer-events:none}
+    .trust-card--unam .trust-card__header::after{content:'';position:absolute;top:-30%;right:-20%;
+      width:140px;height:140px;border-radius:50%;
+      background:radial-gradient(circle,rgba(0,206,201,.5) 0%,transparent 65%);
+      filter:blur(24px);pointer-events:none}
+    .trust-card--cnn  .trust-card__header::after{content:'';position:absolute;top:-30%;right:-20%;
+      width:140px;height:140px;border-radius:50%;
+      background:radial-gradient(circle,rgba(217,119,6,.6) 0%,transparent 65%);
+      filter:blur(24px);pointer-events:none}
 
-    /* logo wrap — white bg with subtle shadow so any logo shows */
-    .trust-card__logo-wrap{width:52px;height:52px;border-radius:14px;background:#fff;
+    .trust-card__top{display:flex;align-items:flex-start;justify-content:space-between;
+      margin-bottom:18px;position:relative;z-index:1}
+
+    /* logo wrap on dark bg */
+    .trust-card__logo-wrap{width:48px;height:48px;border-radius:13px;background:rgba(255,255,255,.12);
       display:flex;align-items:center;justify-content:center;
-      border:1px solid rgba(0,0,0,.09);padding:8px;
-      box-shadow:0 2px 8px rgba(0,0,0,.08)}
-    .trust-card__logo{max-width:100%;max-height:100%;object-fit:contain}
+      border:1px solid rgba(255,255,255,.18);padding:8px;
+      backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+    .trust-card__logo{max-width:100%;max-height:100%;object-fit:contain;filter:brightness(0) invert(1)}
 
-    .trust-card__type{font-size:.58rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
-      color:#5a6a80;background:#f1f5f9;padding:5px 12px;border-radius:100px;border:1px solid #e2e8f0}
+    .trust-card__type{font-size:.56rem;font-weight:800;letter-spacing:.24em;text-transform:uppercase;
+      color:rgba(255,255,255,.55);background:rgba(255,255,255,.1);
+      padding:5px 12px;border-radius:100px;border:1px solid rgba(255,255,255,.12);
+      backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 
-    /* number — big mono with institution color */
+    /* number — massive credential display */
     .trust-card__number{font-family:'JetBrains Mono','SF Mono',Menlo,monospace;
-      font-size:2rem;font-weight:700;line-height:1;margin:4px 0 6px;
-      display:flex;align-items:baseline;gap:10px;letter-spacing:.02em;
-      background:linear-gradient(135deg,#0d1f3a 0%,#0984e3 100%);
-      -webkit-background-clip:text;background-clip:text;color:transparent}
-    .trust-card--cnn .trust-card__number{background:linear-gradient(135deg,#92400e 0%,#d97706 100%);
-      -webkit-background-clip:text;background-clip:text;color:transparent}
-    .trust-card__number small{font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-      font-family:var(--sans);-webkit-text-fill-color:#94a3b8}
+      font-size:1.95rem;font-weight:700;line-height:1;letter-spacing:.03em;
+      color:#fff;position:relative;z-index:1;margin:0 0 4px;
+      display:flex;align-items:baseline;gap:10px}
+    .trust-card--cnn .trust-card__number{color:#fde68a}
+    .trust-card__number small{font-size:.58rem;font-weight:800;letter-spacing:.16em;
+      text-transform:uppercase;color:rgba(255,255,255,.45);font-family:var(--sans)}
 
-    .trust-card__divider{height:1px;background:linear-gradient(90deg,#e2e8f0,transparent);margin:14px 0 16px}
+    .trust-card__verified{display:flex;align-items:center;gap:6px;font-size:.64rem;font-weight:700;
+      color:rgba(255,255,255,.55);letter-spacing:.06em;position:relative;z-index:1;margin:0}
+    .trust-card--buap .trust-card__verified i,.trust-card--unam .trust-card__verified i{color:#34d399}
+    .trust-card--cnn .trust-card__verified i{color:#fbbf24}
+    .trust-card__verified i{font-size:.8rem}
 
-    .trust-card__verified{display:flex;align-items:center;gap:7px;font-size:.67rem;font-weight:700;
-      color:#059669;letter-spacing:.05em;margin-bottom:14px}
-    .trust-card--cnn .trust-card__verified{color:#d97706}
-    .trust-card__verified i{font-size:.82rem}
+    /* Body zone — white clean */
+    .trust-card__inner{padding:22px 26px 24px;background:#fff}
+    .trust-card__divider{display:none}
 
-    .trust-card__institution{font-size:.96rem;font-weight:700;color:#0d1f3a;line-height:1.35;margin:0 0 6px}
-    .trust-card__detail{font-size:.8rem;color:#64748b;line-height:1.6;margin:0 0 22px}
+    .trust-card__institution{font-size:.98rem;font-weight:800;color:#0d1f3a;line-height:1.3;margin:0 0 5px}
+    .trust-card__detail{font-size:.8rem;color:#64748b;line-height:1.55;margin:0 0 20px}
 
-    .trust-card__verify{display:inline-flex;align-items:center;gap:7px;font-size:.73rem;font-weight:700;
-      color:#0984e3;text-decoration:none;padding:9px 16px;border-radius:10px;
-      background:#eff6ff;border:1px solid #bfdbfe;transition:all .22s var(--ease);cursor:pointer}
+    .trust-card__verify{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:700;
+      color:#0984e3;text-decoration:none;padding:9px 18px;border-radius:10px;
+      background:#eff6ff;border:1px solid #bfdbfe;transition:all .22s var(--ease)}
     .trust-card--cnn .trust-card__verify{color:#b45309;background:#fffbeb;border-color:#fde68a}
     .trust-card__verify:hover{background:#0984e3;color:#fff;border-color:#0984e3;
-      box-shadow:0 4px 18px rgba(9,132,227,.35)}
+      box-shadow:0 6px 20px rgba(9,132,227,.38)}
     .trust-card--cnn .trust-card__verify:hover{background:#d97706;color:#fff;border-color:#d97706;
-      box-shadow:0 4px 18px rgba(217,119,6,.35)}
+      box-shadow:0 6px 20px rgba(217,119,6,.38)}
+    /* hide old stripe */
+    .trust-card__stripe{display:none}
 
     @media(max-width:900px){.trust-cards{grid-template-columns:1fr;gap:18px}.trust-wall{padding:72px 0 80px}}
 
@@ -380,21 +410,33 @@
     .bento-tile:hover .bento-tile__arrow{opacity:1;transform:translateX(0)}
 
     /* Featured tile — 2x2 with abstract visual */
-    .bento-tile--feature{grid-column:span 2;grid-row:span 2;background:linear-gradient(135deg,#0a1628 0%,#1e3799 60%,#0984e3 110%);color:#fff;padding:28px;border-color:transparent}
-    .bento-tile--feature::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(0,206,201,.45) 0%,transparent 50%),radial-gradient(circle at 20% 90%,rgba(108,92,231,.4) 0%,transparent 50%);pointer-events:none}
-    /* Feature variant — EPOC (purple/cyan accent) */
-    .bento-tile--feature-epoc{background:linear-gradient(135deg,#0a1628 0%,#2d2b6e 55%,#5a4ed1 110%)}
-    .bento-tile--feature-epoc::after{background:radial-gradient(circle at 20% 20%,rgba(0,206,201,.55) 0%,transparent 50%),radial-gradient(circle at 90% 90%,rgba(116,185,255,.4) 0%,transparent 50%)}
-    .bento-tile--feature::before{background:radial-gradient(circle 280px at var(--mx,50%) var(--my,50%),rgba(255,255,255,.1),transparent 60%)}
-    .bento-tile--feature:hover{box-shadow:0 32px 70px -18px rgba(9,44,84,.55)}
-    .bento-tile--feature .bento-tile__icon{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.2);width:54px;height:54px;font-size:1.4rem;border-radius:14px}
-    .bento-tile--feature:hover .bento-tile__icon{background:rgba(255,255,255,.2);color:#fff}
-    .bento-tile--feature .bento-tile__arrow{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.18);color:#fff;width:38px;height:38px;font-size:.92rem}
-    .bento-tile--feature .bento-tile__name{color:#fff;font-size:1.85rem;line-height:1.05;letter-spacing:-.02em;margin-bottom:8px;font-weight:800;position:relative;z-index:2}
-    .bento-tile--feature .bento-tile__name em{font-style:italic;font-family:var(--serif);font-weight:700;background:linear-gradient(135deg,var(--cyan),#74b9ff);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .bento-tile--feature .bento-tile__hint{color:rgba(255,255,255,.72);font-size:.92rem;line-height:1.55;max-width:340px}
-    .bento-tile--feature .bento-tile__tag{position:absolute;top:24px;right:74px;font-size:.66rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.85);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:100px;padding:6px 14px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:3}
-    .bento-tile--feature .bento-shape{position:absolute;top:38%;right:-50px;width:280px;height:280px;opacity:.55;transform:translate(0,-50%);pointer-events:none;animation:bento-float 8s ease-in-out infinite}
+    .bento-tile--feature{grid-column:span 2;grid-row:span 2;color:#fff;padding:32px;border-color:transparent}
+    /* ASMA — vibrant electric→cyan */
+    .bento-tile--feature:not(.bento-tile--feature-epoc){
+      background:linear-gradient(145deg,#071325 0%,#0c2048 40%,#0552a0 70%,#0777c2 100%)}
+    .bento-tile--feature:not(.bento-tile--feature-epoc)::after{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse 70% 60% at 85% 15%,rgba(0,206,201,.55) 0%,transparent 55%),
+                 radial-gradient(ellipse 50% 50% at 15% 85%,rgba(9,132,227,.5) 0%,transparent 55%);
+      pointer-events:none}
+    /* EPOC — deep indigo→purple */
+    .bento-tile--feature-epoc{background:linear-gradient(145deg,#070a18 0%,#130f2e 40%,#2b1f6e 70%,#4a38c4 100%)}
+    .bento-tile--feature-epoc::after{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse 65% 55% at 80% 12%,rgba(0,206,201,.5) 0%,transparent 55%),
+                 radial-gradient(ellipse 55% 50% at 10% 88%,rgba(108,92,231,.55) 0%,transparent 55%);
+      pointer-events:none}
+    .bento-tile--feature::before{background:radial-gradient(circle 320px at var(--mx,50%) var(--my,50%),rgba(255,255,255,.12),transparent 60%)}
+    .bento-tile--feature:hover{box-shadow:0 32px 70px -18px rgba(9,44,84,.6)}
+    .bento-tile--feature .bento-tile__icon{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.22);width:56px;height:56px;font-size:1.45rem;border-radius:15px}
+    .bento-tile--feature:hover .bento-tile__icon{background:rgba(255,255,255,.24);color:#fff;transform:scale(1.08) rotate(-4deg)}
+    .bento-tile--feature .bento-tile__arrow{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#fff;width:38px;height:38px;font-size:.92rem}
+    .bento-tile--feature .bento-tile__name{color:#fff;font-size:clamp(1.55rem,2.6vw,1.95rem);line-height:1.05;letter-spacing:-.02em;margin-bottom:10px;font-weight:800;position:relative;z-index:2}
+    .bento-tile--feature .bento-tile__name em{font-style:italic;font-family:var(--serif);font-weight:700;background:linear-gradient(135deg,#7ee8e2,#a5d8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .bento-tile--feature-epoc .bento-tile__name em{background:linear-gradient(135deg,#7ee8e2,#c4b5fd);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .bento-tile--feature .bento-tile__hint{color:rgba(255,255,255,.7);font-size:.9rem;line-height:1.6;max-width:320px}
+    .bento-tile--feature .bento-tile__tag{position:absolute;top:24px;right:74px;font-size:.65rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.9);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:100px;padding:6px 14px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:3}
+    .bento-tile--feature .bento-shape{position:absolute;top:38%;right:-40px;width:260px;height:260px;opacity:.45;transform:translate(0,-50%);pointer-events:none;animation:bento-float 8s ease-in-out infinite;mix-blend-mode:screen}
     @keyframes bento-float{0%,100%{transform:translate(0,-50%) rotate(-2deg)}50%{transform:translate(-12px,-52%) rotate(2deg)}}
 
     /* Wide tile (2x1) */
@@ -678,7 +720,7 @@
                         <span class="last">Lara Vázquez</span>
                     </h1>
                     <div class="doc-hero__quote-card">
-                        <p>Neumólogo formado en el <strong>INER</strong>, con Alta Especialidad en EPOC. Atiendo enfermedades respiratorias en <strong>Hospital Santa Coleta, CDMX</strong>, con un enfoque clínico actualizado a las guías GOLD, GINA y ATS/ERS.</p>
+                        <p>Neumólogo formado en el <strong>INER</strong>, con Alta Especialidad en EPOC en curso. Atiendo enfermedades respiratorias en <strong>Hospital Santa Coleta, CDMX</strong>, con un enfoque clínico actualizado a las guías GOLD, GINA y ATS/ERS.</p>
                     </div>
                     <div class="doc-hero__cta-row">
                         <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener" class="doc-hero__cta">Agendar cita <i class="bi bi-arrow-right"></i></a>
@@ -742,45 +784,45 @@
             </div>
             <div class="trust-cards">
                 <article class="trust-card trust-card--buap reveal">
-                    <span class="trust-card__stripe"></span>
-                    <div class="trust-card__inner">
+                    <div class="trust-card__header">
                         <div class="trust-card__top">
                             <div class="trust-card__logo-wrap"><img src="/images/buap.png" alt="BUAP" class="trust-card__logo" loading="lazy" width="38" height="38"></div>
                             <span class="trust-card__type">Médico Cirujano</span>
                         </div>
                         <div class="trust-card__number">12588976 <small>SEP</small></div>
-                        <div class="trust-card__divider"></div>
                         <p class="trust-card__verified"><i class="bi bi-patch-check-fill"></i> Verificado públicamente</p>
+                    </div>
+                    <div class="trust-card__inner">
                         <h3 class="trust-card__institution">Benemérita Universidad Autónoma de Puebla</h3>
                         <p class="trust-card__detail">Cédula Profesional · Título de Médico Cirujano</p>
                         <a href="https://www.cedulaprofesional.sep.gob.mx/" target="_blank" rel="noopener" class="trust-card__verify">Verificar en SEP <i class="bi bi-arrow-up-right"></i></a>
                     </div>
                 </article>
                 <article class="trust-card trust-card--unam reveal reveal-d2">
-                    <span class="trust-card__stripe"></span>
-                    <div class="trust-card__inner">
+                    <div class="trust-card__header">
                         <div class="trust-card__top">
                             <div class="trust-card__logo-wrap"><img src="/images/UNAM.png" alt="UNAM" class="trust-card__logo" loading="lazy" width="38" height="38"></div>
                             <span class="trust-card__type">Especialidad</span>
                         </div>
                         <div class="trust-card__number">15595809 <small>SEP</small></div>
-                        <div class="trust-card__divider"></div>
                         <p class="trust-card__verified"><i class="bi bi-patch-check-fill"></i> Verificado públicamente</p>
+                    </div>
+                    <div class="trust-card__inner">
                         <h3 class="trust-card__institution">Universidad Nacional Autónoma de México</h3>
                         <p class="trust-card__detail">Cédula de Especialidad en Neumología · INER</p>
                         <a href="https://www.cedulaprofesional.sep.gob.mx/" target="_blank" rel="noopener" class="trust-card__verify">Verificar en SEP <i class="bi bi-arrow-up-right"></i></a>
                     </div>
                 </article>
                 <article class="trust-card trust-card--cnn reveal reveal-d4">
-                    <span class="trust-card__stripe"></span>
-                    <div class="trust-card__inner">
+                    <div class="trust-card__header">
                         <div class="trust-card__top">
                             <div class="trust-card__logo-wrap"><img src="/images/CNN.png" alt="CNN" class="trust-card__logo" loading="lazy" width="38" height="38"></div>
                             <span class="trust-card__type">Certificación</span>
                         </div>
                         <div class="trust-card__number"><a href="https://conacem.org.mx/buscador" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">CNN-2102</a></div>
-                        <div class="trust-card__divider"></div>
                         <p class="trust-card__verified"><i class="bi bi-patch-check-fill"></i> Certificación vigente</p>
+                    </div>
+                    <div class="trust-card__inner">
                         <h3 class="trust-card__institution">Consejo Nacional de Neumología A.C.</h3>
                         <p class="trust-card__detail">Competencia clínica auditada · Actualización continua</p>
                         <a href="https://conacem.org.mx/buscador" target="_blank" rel="noopener" class="trust-card__verify">Verificar en CNN <i class="bi bi-arrow-up-right"></i></a>
@@ -1086,32 +1128,50 @@
             <div class="mem-grid">
                 <article class="mbadge reveal">
                     <div class="mbadge__top">
-                        <div class="mbadge__icon"><i class="bi bi-flag-fill"></i></div>
+                        <div class="mbadge__icon mbadge__icon--img">
+                            <img src="/images/Logo-SMNyCT.png" alt="SMNyCT" width="36" height="36" loading="lazy" style="max-width:100%;max-height:100%;object-fit:contain">
+                        </div>
                         <span class="mbadge__region">México</span>
                     </div>
                     <h3 class="mbadge__name">SMNyCT</h3>
                     <p class="mbadge__full">Sociedad Mexicana de Neumología y Cirugía de Tórax</p>
-                    <p class="mbadge__detail"><i class="bi bi-patch-check-fill"></i> Membresía activa</p>
+                    <p class="mbadge__detail"><i class="bi bi-patch-check-fill"></i> Miembro activo</p>
                 </article>
 
                 <article class="mbadge mbadge--alat reveal reveal-d1">
                     <div class="mbadge__top">
-                        <div class="mbadge__icon"><i class="bi bi-globe-americas"></i></div>
+                        <div class="mbadge__icon mbadge__icon--img">
+                            <img src="/images/alat.png" alt="ALAT" width="36" height="36" loading="lazy" style="max-width:100%;max-height:100%;object-fit:contain">
+                        </div>
                         <span class="mbadge__region">Latinoamérica</span>
                     </div>
                     <h3 class="mbadge__name">ALAT</h3>
                     <p class="mbadge__full">Asociación Latinoamericana del Tórax</p>
-                    <p class="mbadge__detail"><i class="bi bi-patch-check-fill"></i> Membresía activa</p>
+                    <p class="mbadge__detail"><i class="bi bi-patch-check-fill"></i> Miembro activo</p>
                 </article>
 
                 <article class="mbadge mbadge--ats reveal reveal-d2">
                     <div class="mbadge__top">
-                        <div class="mbadge__icon"><i class="bi bi-globe2"></i></div>
-                        <span class="mbadge__region">Internacional</span>
+                        <div class="mbadge__icon mbadge__icon--img">
+                            <img src="/images/ats.png" alt="ATS" width="36" height="36" loading="lazy" style="max-width:100%;max-height:100%;object-fit:contain">
+                        </div>
+                        <span class="mbadge__region">EE.UU.</span>
                     </div>
                     <h3 class="mbadge__name">ATS</h3>
                     <p class="mbadge__full">American Thoracic Society</p>
-                    <p class="mbadge__detail"><i class="bi bi-patch-check-fill"></i> Membresía activa</p>
+                    <p class="mbadge__detail"><i class="bi bi-patch-check-fill"></i> Miembro activo</p>
+                </article>
+
+                <article class="mbadge mbadge--ers reveal reveal-d3">
+                    <div class="mbadge__top">
+                        <div class="mbadge__icon">
+                            <i class="bi bi-globe-europe-africa"></i>
+                        </div>
+                        <span class="mbadge__region">Europa</span>
+                    </div>
+                    <h3 class="mbadge__name">ERS</h3>
+                    <p class="mbadge__full">European Respiratory Society</p>
+                    <p class="mbadge__detail"><i class="bi bi-patch-check-fill"></i> Miembro activo</p>
                 </article>
             </div>
         </div>
