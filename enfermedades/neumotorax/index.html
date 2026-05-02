@@ -118,50 +118,54 @@
 .risk-card p{font-size:.8rem;color:var(--text-muted);line-height:1.5;margin:0}
 @media(min-width:768px){.risk-card{padding:24px 20px}.risk-card__icon{width:52px;height:52px;font-size:1.25rem}.risk-card h3{font-size:1.02rem;margin-bottom:8px}.risk-card p{font-size:.85rem}}
 
-/* MANEJO DEFINITIVO — sección animada */
+/* MANEJO DEFINITIVO — bento compacto (21st.dev style) */
 .ntx-def{position:relative}
-.def-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:28px}
-@media(min-width:600px){.def-grid{grid-template-columns:1fr 1fr;gap:16px}}
-@media(min-width:992px){.def-grid{grid-template-columns:repeat(3,1fr);gap:18px}}
-.def-card{position:relative;background:#fff;border:1px solid rgba(14,165,184,.14);border-radius:20px;padding:24px 22px 22px;overflow:hidden;transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .45s var(--ease);box-shadow:0 6px 18px rgba(10,22,40,.05);opacity:0;transform:translateY(28px);animation:defReveal .8s var(--ease) forwards}
-.def-card--anim-1{animation-delay:.05s}
-.def-card--anim-2{animation-delay:.15s}
-.def-card--anim-3{animation-delay:.25s}
-.def-card--anim-4{animation-delay:.35s}
-.def-card--anim-5{animation-delay:.45s}
-.def-card--anim-6{animation-delay:.55s}
-@keyframes defReveal{to{opacity:1;transform:translateY(0)}}
-.def-card:hover{transform:translateY(-6px);border-color:rgba(14,165,184,.4);box-shadow:0 22px 50px rgba(14,165,184,.18)}
-.def-card__halo{position:absolute;top:-40%;right:-30%;width:75%;padding-bottom:75%;border-radius:50%;background:radial-gradient(circle,rgba(14,165,184,.18),transparent 65%);opacity:0;transition:opacity .5s var(--ease);pointer-events:none}
-.def-card:hover .def-card__halo{opacity:1;animation:defHalo 6s ease-in-out infinite}
-@keyframes defHalo{0%,100%{transform:scale(1) rotate(0deg)}50%{transform:scale(1.15) rotate(180deg)}}
-.def-card__icon{position:relative;width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--ntx),var(--ntx-2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:14px;box-shadow:0 8px 22px rgba(14,165,184,.3);z-index:1}
-.def-card__icon::before{content:'';position:absolute;inset:-6px;border-radius:20px;border:2px solid var(--ntx);opacity:0;transition:all .4s var(--ease)}
-.def-card:hover .def-card__icon::before{opacity:.45;animation:defRing 1.6s ease-out infinite}
-@keyframes defRing{0%{transform:scale(1);opacity:.5}100%{transform:scale(1.45);opacity:0}}
-.def-card:hover .def-card__icon{animation:defIcon 2.6s ease-in-out infinite}
-@keyframes defIcon{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-4px) rotate(-6deg)}}
-.def-card h3{font-size:1.02rem;font-weight:800;color:var(--navy);margin:0 0 8px;line-height:1.25;letter-spacing:-.01em;position:relative;z-index:1}
-.def-card p{font-size:.88rem;color:var(--text-muted);line-height:1.55;margin:0 0 16px;position:relative;z-index:1}
-.def-card__bar{display:block;width:100%;height:4px;border-radius:100px;background:rgba(14,165,184,.1);overflow:hidden;position:relative;z-index:1}
-.def-card__bar-fill{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ntx),#7dd3fc);border-radius:100px;transition:width 1.2s var(--ease)}
-.def-card:hover .def-card__bar-fill{width:100%;animation:defShimmer 2.4s linear infinite}
-@keyframes defShimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+.def-bento{position:relative;border-radius:24px;overflow:hidden;background:linear-gradient(150deg,#06151c 0%,#0a2630 55%,#0e3a44 100%);border:1px solid rgba(14,165,184,.22);box-shadow:0 30px 80px -30px rgba(14,165,184,.4),0 0 0 1px rgba(255,255,255,.02) inset}
+.def-bento__bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.def-bento__orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;animation:defOrb 18s ease-in-out infinite}
+.def-bento__orb--1{top:-10%;left:-8%;width:340px;height:340px;background:radial-gradient(circle,rgba(14,165,184,.55),transparent 65%)}
+.def-bento__orb--2{bottom:-15%;right:-10%;width:380px;height:380px;background:radial-gradient(circle,rgba(125,211,252,.4),transparent 65%);animation-delay:-9s}
+@keyframes defOrb{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,-15px) scale(1.08)}}
+.def-bento__grid{position:absolute;inset:0;background-image:linear-gradient(rgba(125,211,252,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(125,211,252,.06) 1px,transparent 1px);background-size:32px 32px;mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,#000 35%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,#000 35%,transparent 80%)}
+.def-bento__inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:20px;padding:24px}
+@media(min-width:768px){.def-bento__inner{padding:32px}}
+@media(min-width:992px){.def-bento__inner{grid-template-columns:1fr 1.25fr;gap:32px;padding:36px;align-items:stretch}}
 
-.def-cta{position:relative;background:linear-gradient(140deg,#082930 0%,#0e3f48 100%);border:1px solid rgba(14,165,184,.3);border-radius:22px;padding:24px 22px;color:#fff;overflow:hidden;box-shadow:0 18px 44px rgba(14,165,184,.2)}
-@media(min-width:768px){.def-cta{padding:30px 32px}}
-.def-cta__pulse{position:absolute;top:-30%;left:-15%;width:55%;padding-bottom:55%;border-radius:50%;background:radial-gradient(circle,rgba(125,211,252,.28),transparent 65%);animation:defPulse 5s ease-in-out infinite;pointer-events:none}
-@keyframes defPulse{0%,100%{transform:scale(1);opacity:.65}50%{transform:scale(1.2);opacity:1}}
-.def-cta__content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
-@media(min-width:768px){.def-cta__content{flex-direction:row;align-items:center;gap:22px}}
-.def-cta__ico{font-size:2.2rem;color:#7dd3fc;flex-shrink:0;animation:defFloat 3.5s ease-in-out infinite}
-@keyframes defFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-.def-cta__content h4{font-size:1.05rem;font-weight:800;color:#fff;margin:0 0 4px;letter-spacing:-.01em}
-.def-cta__content p{font-size:.88rem;color:rgba(255,255,255,.78);margin:0;line-height:1.55;flex:1;min-width:0}
-.def-cta__btn{display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff!important;padding:13px 22px;border-radius:12px;font-weight:700;font-size:.92rem;text-decoration:none;transition:all .3s var(--ease);box-shadow:0 8px 22px rgba(37,211,102,.4);flex-shrink:0;white-space:nowrap}
-.def-cta__btn:hover{background:#1da851;transform:translateY(-2px);box-shadow:0 12px 28px rgba(37,211,102,.5)}
+.def-bento__intro{display:flex;flex-direction:column;color:#fff;min-width:0}
+.def-chip{display:inline-flex;align-items:center;gap:8px;font-size:.66rem;font-weight:800;color:#7dd3fc;background:rgba(125,211,252,.12);border:1px solid rgba(125,211,252,.3);padding:5px 12px;border-radius:100px;text-transform:uppercase;letter-spacing:1.6px;align-self:flex-start;margin-bottom:14px}
+.def-chip__dot{width:6px;height:6px;border-radius:50%;background:#7dd3fc;box-shadow:0 0 10px rgba(125,211,252,.9);animation:pulse-dot 1.6s ease-in-out infinite}
+.def-bento__title{font-size:clamp(1.4rem,4.2vw,1.95rem);font-weight:800;color:#fff;letter-spacing:-.025em;line-height:1.1;margin:0 0 12px}
+.def-bento__title em{font-style:normal;background:linear-gradient(135deg,#7dd3fc,#0ea5b8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.def-bento__lead{font-size:.92rem;color:rgba(255,255,255,.72);line-height:1.55;margin:0 0 18px;max-width:46ch}
+.def-bento__btn{display:inline-flex;align-items:center;gap:10px;background:#25d366;color:#fff!important;padding:12px 20px;border-radius:12px;font-weight:700;font-size:.9rem;text-decoration:none;transition:all .3s var(--ease);box-shadow:0 10px 26px rgba(37,211,102,.4);align-self:flex-start;margin-bottom:18px;position:relative;overflow:hidden}
+.def-bento__btn::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.25) 50%,transparent 70%);transform:translateX(-100%);transition:transform .7s var(--ease)}
+.def-bento__btn:hover{background:#1da851;transform:translateY(-2px);box-shadow:0 14px 32px rgba(37,211,102,.5)}
+.def-bento__btn:hover::before{transform:translateX(100%)}
+.def-bento__btn-arr{transition:transform .3s var(--ease)}
+.def-bento__btn:hover .def-bento__btn-arr{transform:translateX(4px)}
+.def-bento__metric{margin-top:auto;display:flex;align-items:baseline;gap:14px;padding:14px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;backdrop-filter:blur(10px)}
+.def-bento__metric-num{font-size:clamp(1.6rem,5vw,2.1rem);font-weight:800;background:linear-gradient(135deg,#7dd3fc,#0ea5b8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;letter-spacing:-.03em;flex-shrink:0}
+.def-bento__metric-lbl{font-size:.74rem;color:rgba(255,255,255,.7);line-height:1.45}
+
+.def-bento__people{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(min-width:560px){.def-bento__people{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:992px){.def-bento__people{grid-template-columns:1fr 1fr;gap:10px}}
+@media(min-width:1200px){.def-bento__people{grid-template-columns:repeat(3,1fr)}}
+.def-tile{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;backdrop-filter:blur(8px);transition:all .35s var(--ease);overflow:hidden;opacity:0;transform:translateY(14px);animation:defTile .6s var(--ease) forwards;min-height:118px}
+.def-tile--a{animation-delay:.05s}.def-tile--b{animation-delay:.12s}.def-tile--c{animation-delay:.19s}
+.def-tile--d{animation-delay:.26s}.def-tile--e{animation-delay:.33s}.def-tile--f{animation-delay:.4s}
+@keyframes defTile{to{opacity:1;transform:translateY(0)}}
+.def-tile::after{content:'';position:absolute;inset:-1px;border-radius:14px;padding:1px;background:linear-gradient(135deg,rgba(125,211,252,.5),transparent 60%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .35s var(--ease);pointer-events:none}
+.def-tile:hover{transform:translateY(-3px);background:rgba(255,255,255,.07);border-color:rgba(125,211,252,.3)}
+.def-tile:hover::after{opacity:1}
+.def-tile__ico{font-size:1.15rem;color:#7dd3fc;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(14,165,184,.25),rgba(125,211,252,.1));border:1px solid rgba(125,211,252,.25);border-radius:10px;flex-shrink:0;transition:transform .35s var(--ease)}
+.def-tile:hover .def-tile__ico{transform:scale(1.08) rotate(-4deg)}
+.def-tile__body{min-width:0}
+.def-tile h3{font-size:.85rem;font-weight:800;color:#fff;margin:0 0 2px;letter-spacing:-.005em;line-height:1.2}
+.def-tile p{font-size:.74rem;color:rgba(255,255,255,.65);margin:0;line-height:1.4}
+
 @media(prefers-reduced-motion:reduce){
-  .def-card,.def-card__halo,.def-card__icon,.def-card__icon::before,.def-card__bar-fill,.def-cta__pulse,.def-cta__ico{animation:none!important;transition:none!important;opacity:1;transform:none}
+  .def-bento__orb,.def-tile,.def-chip__dot,.def-bento__btn::before{animation:none!important;transition:none!important;opacity:1;transform:none}
 }
 
 /* Alarma */
@@ -472,66 +476,48 @@
 </div>
 </div>
 
-<!-- MANEJO DEFINITIVO — sección animada -->
+<!-- MANEJO DEFINITIVO — bento compacto inspirado en 21st.dev -->
 <div class="ntx-section ntx-def reveal">
-<span class="ntx-section__eyebrow"><i class="bi bi-shield-fill-check"></i> Manejo definitivo</span>
-<h2 class="ntx-section__title">¿Y si <em>no puede repetirse</em> nunca más?</h2>
-<p class="ntx-section__lead">Algunos pacientes no pueden permitirse un segundo neumotórax: por su trabajo, por su pasión o porque ya tuvieron varios. Para ellos existe el <strong>manejo definitivo</strong>: pleurodesis o cirugía toracoscópica (VATS) que sella la pleura para evitar recurrencias.</p>
-
-<div class="def-grid">
-<div class="def-card def-card--anim-1">
-<div class="def-card__halo"></div>
-<div class="def-card__icon"><i class="fa-solid fa-water"></i></div>
-<h3>Buceadores</h3>
-<p>El buceo está <strong>contraindicado de por vida</strong> tras un neumotórax, salvo manejo definitivo. La presión bajo el agua puede romper el pulmón otra vez.</p>
-<span class="def-card__bar"><span class="def-card__bar-fill"></span></span>
+<div class="def-bento">
+<div class="def-bento__bg" aria-hidden="true">
+<span class="def-bento__orb def-bento__orb--1"></span>
+<span class="def-bento__orb def-bento__orb--2"></span>
+<span class="def-bento__grid"></span>
 </div>
-<div class="def-card def-card--anim-2">
-<div class="def-card__halo"></div>
-<div class="def-card__icon"><i class="fa-solid fa-plane-up"></i></div>
-<h3>Pilotos y tripulación</h3>
-<p>Las aerolíneas y autoridades aeronáuticas suelen exigir <strong>pleurodesis o cirugía</strong> para volver a volar. La descompresión en cabina es un disparador real.</p>
-<span class="def-card__bar"><span class="def-card__bar-fill"></span></span>
+<div class="def-bento__inner">
+<div class="def-bento__intro">
+<span class="def-chip"><span class="def-chip__dot"></span> Manejo definitivo</span>
+<h2 class="def-bento__title">¿Y si <em>no puede repetirse</em>?</h2>
+<p class="def-bento__lead">Pleurodesis o cirugía toracoscópica (VATS) sellan la pleura para que un segundo neumotórax no te tome por sorpresa. Indicado cuando tu trabajo, deporte o pasión no admiten otra recaída.</p>
+<a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20necesito%20manejo%20definitivo%20de%20neumot%C3%B3rax" target="_blank" class="def-bento__btn"><i class="bi bi-whatsapp"></i> Consultar mi caso <i class="bi bi-arrow-right def-bento__btn-arr"></i></a>
+<div class="def-bento__metric"><span class="def-bento__metric-num">&lt;5%</span><span class="def-bento__metric-lbl">recurrencia tras VATS<br>vs. 30-50% sin tratamiento</span></div>
 </div>
-<div class="def-card def-card--anim-3">
-<div class="def-card__halo"></div>
-<div class="def-card__icon"><i class="bi bi-tropical-storm"></i></div>
-<h3>Alpinistas y montañistas</h3>
-<p>Subir a gran altura cambia las presiones del tórax. Para volver a expediciones serias se valora <strong>cirugía toracoscópica preventiva</strong>.</p>
-<span class="def-card__bar"><span class="def-card__bar-fill"></span></span>
+<div class="def-bento__people" role="list" aria-label="Pacientes que necesitan manejo definitivo">
+<div class="def-tile def-tile--a" role="listitem">
+<i class="def-tile__ico fa-solid fa-water"></i>
+<div class="def-tile__body"><h3>Buceadores</h3><p>Contraindicación de por vida sin cirugía</p></div>
 </div>
-<div class="def-card def-card--anim-4">
-<div class="def-card__halo"></div>
-<div class="def-card__icon"><i class="bi bi-arrow-repeat"></i></div>
-<h3>Recurrencia (≥2 episodios)</h3>
-<p>A partir del <strong>segundo neumotórax</strong> del mismo lado, la indicación es manejo definitivo. La probabilidad de un tercero supera el 80%.</p>
-<span class="def-card__bar"><span class="def-card__bar-fill"></span></span>
+<div class="def-tile def-tile--b" role="listitem">
+<i class="def-tile__ico fa-solid fa-plane-up"></i>
+<div class="def-tile__body"><h3>Pilotos y tripulación</h3><p>Aviación exige pleurodesis para volver</p></div>
 </div>
-<div class="def-card def-card--anim-5">
-<div class="def-card__halo"></div>
-<div class="def-card__icon"><i class="bi bi-people-fill"></i></div>
-<h3>Profesiones especiales</h3>
-<p>Bomberos, paracaidistas, militares, instructores de yoga, músicos de viento: ocupaciones con cambios de presión torácica donde una recaída es inaceptable.</p>
-<span class="def-card__bar"><span class="def-card__bar-fill"></span></span>
+<div class="def-tile def-tile--c" role="listitem">
+<i class="def-tile__ico bi bi-tropical-storm"></i>
+<div class="def-tile__body"><h3>Alpinistas</h3><p>Cambios de presión a gran altura</p></div>
 </div>
-<div class="def-card def-card--anim-6">
-<div class="def-card__halo"></div>
-<div class="def-card__icon"><i class="fa-solid fa-lungs"></i></div>
-<h3>Bullas grandes en TAC</h3>
-<p>Si la tomografía muestra <strong>bullas o blebs evidentes</strong>, el riesgo de recurrencia es muy alto. Operar a tiempo evita un segundo episodio inesperado.</p>
-<span class="def-card__bar"><span class="def-card__bar-fill"></span></span>
+<div class="def-tile def-tile--d" role="listitem">
+<i class="def-tile__ico bi bi-arrow-repeat"></i>
+<div class="def-tile__body"><h3>≥2 episodios</h3><p>Tercer neumotórax: 80% de riesgo</p></div>
+</div>
+<div class="def-tile def-tile--e" role="listitem">
+<i class="def-tile__ico bi bi-people-fill"></i>
+<div class="def-tile__body"><h3>Trabajos de riesgo</h3><p>Bomberos, militares, viento, yoga</p></div>
+</div>
+<div class="def-tile def-tile--f" role="listitem">
+<i class="def-tile__ico fa-solid fa-lungs"></i>
+<div class="def-tile__body"><h3>Bullas en TAC</h3><p>Operar antes del próximo aviso</p></div>
 </div>
 </div>
-
-<div class="def-cta">
-<div class="def-cta__pulse"></div>
-<div class="def-cta__content">
-<i class="bi bi-clipboard2-pulse-fill def-cta__ico"></i>
-<div>
-<h4>¿Te identificas con alguno?</h4>
-<p>Te ayudo a decidir si necesitas pleurodesis, cirugía VATS o seguimiento simple, en función de tu caso, tu trabajo y tu estilo de vida.</p>
-</div>
-<a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20creo%20que%20necesito%20manejo%20definitivo%20de%20neumot%C3%B3rax" target="_blank" class="def-cta__btn"><i class="bi bi-whatsapp"></i> Consultar mi caso</a>
 </div>
 </div>
 </div>
