@@ -112,8 +112,8 @@
 
     @media(max-width:1024px){.doc-hero{padding:108px 0 64px}.doc-hero__layout{grid-template-columns:1fr;gap:48px}.doc-hero__portrait{width:min(340px,80%);margin:0 auto}.doc-hero__title{text-align:center}.doc-hero__quote-card{margin-left:auto;margin-right:auto}.doc-hero__cta-row{justify-content:center}.doc-hero__tag{display:inline-flex}.doc-hero__inner > div:first-child{text-align:center}.doc-hero__badge{right:-8px;bottom:8px}}
 
-    /* ========== HERO STAT STRIP — 4 micro stat cards ========== */
-    .doc-hero__stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:36px;max-width:560px}
+    /* ========== HERO STAT STRIP — 3 micro stat cards ========== */
+    .doc-hero__stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px;max-width:430px}
     .doc-hero__stat{position:relative;background:rgba(255,255,255,.65);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(9,132,227,.12);border-radius:16px;padding:14px 12px 12px;text-align:center;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);overflow:hidden}
     .doc-hero__stat::before{content:'';position:absolute;top:0;left:14px;right:14px;height:2px;background:linear-gradient(90deg,var(--electric),var(--cyan));border-radius:2px;opacity:.85}
     .doc-hero__stat:hover{transform:translateY(-3px);box-shadow:0 14px 32px -14px rgba(9,132,227,.28);border-color:rgba(9,132,227,.28)}
@@ -132,7 +132,7 @@
     .doc-hero__chip--ats i{color:var(--accent-purple)}
 
     @media(max-width:1024px){.doc-hero__stats{margin-left:auto;margin-right:auto}.doc-hero__chips{justify-content:center;margin-left:auto;margin-right:auto}}
-    @media(max-width:560px){.doc-hero__stats{grid-template-columns:repeat(2,1fr);max-width:340px}}
+    @media(max-width:560px){.doc-hero__stats{grid-template-columns:repeat(3,1fr);max-width:100%}}
 
     /* ========== VALORES — 4 minimalist value cards inside editorial ========== */
     .values-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:64px;padding-top:48px;border-top:1px dashed rgba(9,132,227,.18)}
@@ -687,12 +687,8 @@
 
                     <div class="doc-hero__stats" aria-label="Métricas profesionales">
                         <div class="doc-hero__stat">
-                            <div class="doc-hero__stat-num">10<sup>+</sup></div>
+                            <div class="doc-hero__stat-num">8<sup>+</sup></div>
                             <div class="doc-hero__stat-label">Años de formación clínica</div>
-                        </div>
-                        <div class="doc-hero__stat">
-                            <div class="doc-hero__stat-num">17<sup>+</sup></div>
-                            <div class="doc-hero__stat-label">Guías internacionales</div>
                         </div>
                         <div class="doc-hero__stat">
                             <div class="doc-hero__stat-num">4</div>
@@ -700,7 +696,7 @@
                         </div>
                         <div class="doc-hero__stat">
                             <div class="doc-hero__stat-num">3</div>
-                            <div class="doc-hero__stat-label">Cédulas verificables</div>
+                            <div class="doc-hero__stat-label">Cédulas verificables SEP</div>
                         </div>
                     </div>
 
