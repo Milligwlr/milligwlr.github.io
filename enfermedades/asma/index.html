@@ -2,11 +2,12 @@
 <html lang="es-MX">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Tratamiento de Asma en CDMX | Dr. William Lara — Alveos</title>
 <meta name="description" content="Neumólogo especialista en asma en CDMX. Diagnóstico con espirometría, control GINA y plan personalizado. Dr. William Lara, formado en INER. Agenda tu cita.">
 <meta name="author" content="Dr. William César Lara Vázquez">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="theme-color" content="#0a1628">
 <link rel="canonical" href="https://alveos.mx/enfermedades/asma/">
 <meta http-equiv="content-language" content="es-MX">
 <link rel="alternate" hreflang="es-MX" href="https://alveos.mx/enfermedades/asma/">
@@ -41,295 +42,216 @@
 </script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/enfermedades/_shared/disease.css">
 <style>
-/* ── Asma accent ── */
-:root{--asma:#00b894;--asma-2:#00cec9;--asma-deep:#009478}
+/* ==========================================
+   ASMA — MOBILE-FIRST 2026
+   Acento: #00b894 (verde teal)
+========================================== */
 
-/* ─── CTA band stray line fix ─── */
-.cta-band{border:none!important}.cta-band .reveal::before,.cta-band .reveal::after{display:none!important}.cta-band::before{display:none!important}.cta-band .cta-band__inner{border:none!important}
+:root{--asma:#00b894;--asma-light:#5eead4;--asma-mid:#00cec9;--asma-dark:#009478}
 
-/* ─── Missing shared classes: local fallbacks ─── */
-.section-lead{font-size:1.02rem;color:var(--text-muted);line-height:1.75;max-width:780px;margin:0 0 28px}
-.content-section{margin-bottom:72px;padding-top:4px}
-.content-section__label{display:inline-flex;align-items:center;gap:10px;font-size:.72rem;font-weight:800;color:var(--asma);text-transform:uppercase;letter-spacing:3px;margin-bottom:14px}
-.content-section__label::before{content:'';width:22px;height:2px;background:var(--asma);border-radius:2px}
-.content-section__title{font-size:clamp(1.65rem,2.6vw,2.1rem);font-weight:800;color:var(--navy);margin-bottom:16px;letter-spacing:-.02em;line-height:1.2}
+.disease-content{padding:48px 0 24px}
+@media(min-width:768px){.disease-content{padding:64px 0 32px}}
+@media(min-width:1200px){.disease-content{padding:80px 0 48px}}
 
-/* ─── Hero tweaks ─── */
-.disease-hero__bg{position:absolute;inset:0;background:radial-gradient(circle at 20% 30%,rgba(0,184,148,.18),transparent 55%),radial-gradient(circle at 80% 70%,rgba(0,206,201,.12),transparent 55%);pointer-events:none}
-.disease-hero__tag{display:inline-flex;align-items:center;gap:10px;font-size:.76rem;font-weight:700;color:#5eead4;background:rgba(0,184,148,.14);border:1px solid rgba(0,184,148,.32);padding:7px 14px;border-radius:100px;margin-bottom:16px;text-transform:uppercase;letter-spacing:1.4px}
-.disease-hero__tag .dot{width:7px;height:7px;border-radius:50%;background:var(--asma-2);box-shadow:0 0 10px var(--asma-2);animation:pulse-dot 2s ease-in-out infinite}
-@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
-.disease-hero__chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
-.chip{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:100px;color:rgba(255,255,255,.85);font-size:.82rem;font-weight:600;backdrop-filter:blur(10px)}
-.chip i{color:var(--asma-2)}
-.disease-hero__visual{background:linear-gradient(135deg,rgba(0,184,148,.18),rgba(0,206,201,.1));border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:36px;backdrop-filter:blur(20px);position:relative;overflow:hidden}
-.disease-hero__visual::before{content:'';position:absolute;top:-30%;right:-30%;width:70%;padding-bottom:70%;border-radius:50%;background:radial-gradient(circle,rgba(0,184,148,.3),transparent 60%)}
-.disease-hero__visual-icon{width:72px;height:72px;border-radius:20px;background:linear-gradient(135deg,var(--asma),var(--asma-2));display:flex;align-items:center;justify-content:center;color:#fff;font-size:2rem;margin-bottom:20px;box-shadow:0 10px 30px rgba(0,184,148,.45)}
-.disease-hero__visual-text{position:relative}
-.kpi{font-size:2.4rem;font-weight:800;color:#fff;background:linear-gradient(135deg,#fff,var(--asma-2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-.02em;line-height:1;margin-bottom:8px}
-.kpi-label{font-size:.9rem;color:rgba(255,255,255,.7);line-height:1.5}
+.asma-section{margin-bottom:56px;position:relative}
+@media(min-width:768px){.asma-section{margin-bottom:80px}}
+.asma-section__eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;font-weight:800;color:var(--asma);text-transform:uppercase;letter-spacing:2.5px;background:rgba(0,184,148,.08);border:1px solid rgba(0,184,148,.18);border-radius:100px;padding:6px 14px;margin-bottom:14px}
+.asma-section__eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--asma);animation:pulse-dot 2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.85)}}
+.asma-section__title{font-size:clamp(1.5rem,5.5vw,2.2rem);font-weight:800;color:var(--navy);letter-spacing:-.025em;line-height:1.15;margin-bottom:14px}
+.asma-section__title em{font-style:normal;background:linear-gradient(135deg,var(--asma) 0%,var(--asma-mid) 60%,var(--asma-light) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.asma-section__lead{font-size:1rem;color:var(--text-muted);line-height:1.6;max-width:640px;margin:0 0 24px}
+@media(min-width:768px){.asma-section__lead{font-size:1.05rem;line-height:1.7;margin-bottom:32px}}
 
-/* Override hero title em gradient to teal — fix clip */
-.disease-hero__title em{
-  font-style:normal;
-  display:inline-block;
-  background:linear-gradient(135deg,#5eead4 0%,var(--asma-2) 35%,var(--asma) 70%,#0eb37a 100%)!important;
-  -webkit-background-clip:text!important;
-  background-clip:text!important;
-  -webkit-text-fill-color:transparent!important;
-  color:transparent!important;
-  background-size:200% 100%;
-  animation:emShimmer 6s ease-in-out infinite;
-  filter:drop-shadow(0 0 24px rgba(0,184,148,.35));
-}
+/* HERO */
+.disease-hero{padding:110px 0 56px!important;min-height:auto!important;position:relative;overflow:hidden}
+@media(min-width:768px){.disease-hero{padding:140px 0 80px!important}}
+.disease-hero__bg{position:absolute;inset:0;background:radial-gradient(circle at 15% 25%,rgba(0,184,148,.28),transparent 55%),radial-gradient(circle at 85% 75%,rgba(0,206,201,.16),transparent 55%);pointer-events:none}
+.asma-hero-tag{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--asma),var(--asma-dark));padding:7px 14px;border-radius:100px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1.4px;box-shadow:0 6px 20px rgba(0,184,148,.4)}
+.asma-hero-tag .pulse{width:8px;height:8px;border-radius:50%;background:#fff;animation:pulse-dot 1.5s ease-in-out infinite}
+.asma-hero-title{font-size:clamp(1.9rem,7.5vw,3.6rem)!important;color:#fff;font-weight:800;line-height:1.05;letter-spacing:-.025em;margin-bottom:14px}
+.asma-hero-title em{font-style:normal;font-size:.62em;display:block;margin-top:10px;background:linear-gradient(135deg,var(--asma-light) 0%,var(--asma-mid) 50%,var(--asma) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;letter-spacing:-.015em;line-height:1.2;background-size:200% 100%;animation:emShimmer 6s ease-in-out infinite;filter:drop-shadow(0 0 24px rgba(0,184,148,.35))}
 @keyframes emShimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.asma-hero-sub{font-size:1rem;color:rgba(255,255,255,.74);line-height:1.55;margin-bottom:22px;max-width:560px}
+@media(min-width:768px){.asma-hero-sub{font-size:1.1rem;margin-bottom:28px}}
+.asma-hero-cta{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+@media(min-width:480px){.asma-hero-cta{flex-direction:row;flex-wrap:wrap}}
+.asma-hero-cta .btn-wa-hero,.asma-hero-cta .btn-cal-hero{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;border-radius:14px;font-weight:700;font-size:.95rem;text-decoration:none;transition:all .3s var(--ease);min-height:52px;cursor:pointer}
+.btn-wa-hero{background:#25d366;color:#fff!important;box-shadow:0 8px 22px rgba(37,211,102,.4)}
+.btn-wa-hero:hover{background:#1da851;transform:translateY(-2px);box-shadow:0 12px 28px rgba(37,211,102,.5)}
+.btn-cal-hero{background:rgba(255,255,255,.1);color:#fff!important;border:1.5px solid rgba(255,255,255,.25);backdrop-filter:blur(10px)}
+.btn-cal-hero:hover{background:rgba(255,255,255,.18);transform:translateY(-2px)}
+.asma-hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+.asma-hero-stat{text-align:left;padding:14px 12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;backdrop-filter:blur(10px)}
+.asma-hero-stat__num{font-size:clamp(1.05rem,4.2vw,1.7rem);font-weight:800;background:linear-gradient(135deg,#fff,var(--asma-light));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;letter-spacing:-.02em;white-space:nowrap}
+.asma-hero-stat__lbl{font-size:.68rem;color:rgba(255,255,255,.65);margin-top:6px;line-height:1.3;font-weight:600}
+@media(min-width:768px){.asma-hero-stat{padding:18px 16px}.asma-hero-stat__lbl{font-size:.78rem}}
+.asma-hero-visual{background:linear-gradient(140deg,rgba(0,184,148,.22),rgba(0,206,201,.08));border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:32px 28px;backdrop-filter:blur(20px);position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.asma-hero-visual::before{content:'';position:absolute;top:-30%;right:-30%;width:80%;padding-bottom:80%;border-radius:50%;background:radial-gradient(circle,rgba(0,184,148,.32),transparent 65%);pointer-events:none}
+.asma-hero-visual__icon{width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,var(--asma),var(--asma-dark));display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.7rem;margin-bottom:18px;box-shadow:0 12px 30px rgba(0,184,148,.5);position:relative;z-index:1}
+.asma-hero-visual__big{font-size:4.5rem;font-weight:800;background:linear-gradient(135deg,#fff,var(--asma-light),var(--asma));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;letter-spacing:-.04em;margin-bottom:8px;position:relative;z-index:1}
+.asma-hero-visual__lbl{font-size:.92rem;color:rgba(255,255,255,.78);line-height:1.55;position:relative;z-index:1}
+.asma-hero-visual__lbl strong{color:#fff;font-weight:700}
+.asma-hero-visual__divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);margin:22px 0;position:relative;z-index:1}
+.asma-hero-visual__row{display:flex;align-items:center;gap:12px;padding:8px 0;color:rgba(255,255,255,.85);font-size:.88rem;font-weight:500;position:relative;z-index:1}
+.asma-hero-visual__row i{font-size:1.05rem;width:22px;text-align:center;flex-shrink:0;color:var(--asma-light)}
 
-/* ── Hero enriquecido ── */
-.disease-hero{position:relative;min-height:auto;padding:130px 0 90px!important}
-.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;animation:orbFloat 14s ease-in-out infinite}
-.hero-orb-1{width:520px;height:520px;background:radial-gradient(circle,rgba(0,184,148,.4),transparent 65%);top:-120px;left:-100px;animation-delay:0s}
-.hero-orb-2{width:420px;height:420px;background:radial-gradient(circle,rgba(0,206,201,.35),transparent 65%);bottom:-150px;right:-80px;animation-delay:-7s}
-.hero-orb-3{width:280px;height:280px;background:radial-gradient(circle,rgba(94,234,212,.3),transparent 65%);top:40%;left:55%;animation-delay:-3s}
-@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.08)}66%{transform:translate(-30px,20px) scale(.95)}}
-.hero-grid-bg{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.05) 1px,transparent 1px);background-size:32px 32px;mask-image:radial-gradient(ellipse at center,#000 30%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 70%);pointer-events:none}
-.hero-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.hero-particles span{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--asma-2);box-shadow:0 0 12px var(--asma-2);opacity:.6;animation:particleRise 12s linear infinite}
-@keyframes particleRise{0%{transform:translateY(110vh) scale(0);opacity:0}10%{opacity:.7}90%{opacity:.7}100%{transform:translateY(-10vh) scale(1);opacity:0}}
-
-.disease-hero__title{position:relative}
-.disease-hero__title em{position:relative}
-.disease-hero__sub{font-size:1.08rem!important;color:rgba(255,255,255,.78)!important;line-height:1.7!important;max-width:580px}
-.hero-h1-sub{font-size:.48em;font-weight:600;color:rgba(255,255,255,.8);letter-spacing:-.01em;font-style:normal;display:block;margin-top:6px}
-.disease-hero__sub strong{color:#fff;background:linear-gradient(120deg,transparent 0%,transparent 30%,rgba(0,184,148,.25) 30%,rgba(0,184,148,.25) 100%);padding:0 4px;border-radius:3px}
-
-/* Hero CTAs */
-.hero-actions{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
-.hero-cta-primary{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;background:linear-gradient(135deg,var(--asma) 0%,var(--asma-deep) 100%);color:#fff!important;border-radius:100px;font-weight:700;font-size:.95rem;text-decoration:none;transition:all .35s var(--ease);box-shadow:0 12px 32px rgba(0,184,148,.4),inset 0 1px 0 rgba(255,255,255,.2);position:relative;overflow:hidden}
-.hero-cta-primary::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--asma-2),var(--asma));opacity:0;transition:opacity .35s}
-.hero-cta-primary:hover::before{opacity:1}
-.hero-cta-primary span{position:relative;z-index:1;display:inline-flex;align-items:center;gap:10px}
-.hero-cta-primary:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(0,184,148,.55);color:#fff!important}
-.hero-cta-ghost{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;background:rgba(255,255,255,.06);color:#fff!important;border:1px solid rgba(255,255,255,.18);border-radius:100px;font-weight:600;font-size:.95rem;text-decoration:none;backdrop-filter:blur(14px);transition:all .35s var(--ease)}
-.hero-cta-ghost:hover{background:rgba(255,255,255,.12);border-color:rgba(94,234,212,.5);color:#fff!important;transform:translateY(-3px)}
-.hero-cta-ghost i{color:#25d366}
-
-/* Hero stats inline */
-.hero-trust{display:flex;align-items:center;gap:24px;margin-top:36px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap}
-.hero-trust-item{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.65);font-size:.82rem}
-.hero-trust-item i{color:var(--asma-2);font-size:1.1rem}
-.hero-trust-item strong{color:#fff;font-weight:700}
-
-/* Hero visual card — ícono de pulmones */
-.disease-hero__visual{padding:0!important;background:transparent!important;border:none!important}
-.bronchi-card{position:relative;background:linear-gradient(155deg,rgba(255,255,255,.09) 0%,rgba(0,184,148,.08) 50%,rgba(0,206,201,.06) 100%);border:1px solid rgba(255,255,255,.14);border-radius:28px;padding:36px 32px;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.18)}
-.bronchi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(94,234,212,.7),rgba(0,184,148,.5),transparent)}
-.bronchi-card::after{content:'';position:absolute;top:-50%;right:-50%;width:100%;padding-bottom:100%;border-radius:50%;background:radial-gradient(circle,rgba(0,184,148,.25),transparent 65%);pointer-events:none}
-.bronchi-svg{width:100%;height:auto;max-height:200px;display:block;margin:0 auto;position:relative;z-index:1}
-.lung-shape{animation:lungBreathe 4s ease-in-out infinite;transform-origin:center}
-.lung-shape.right{animation-delay:.25s}
-.lung-trachea{animation:tracheaGlow 4s ease-in-out infinite}
-@keyframes lungBreathe{0%,100%{transform:scaleY(1) scaleX(1);filter:drop-shadow(0 0 6px rgba(0,184,148,.4))}50%{transform:scaleY(1.06) scaleX(1.04);filter:drop-shadow(0 0 18px rgba(94,234,212,.8))}}
-@keyframes tracheaGlow{0%,100%{filter:drop-shadow(0 0 3px rgba(0,184,148,.5))}50%{filter:drop-shadow(0 0 10px rgba(94,234,212,.9))}}
-
-.bronchi-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;position:relative;z-index:1}
-.bronchi-stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px 16px;backdrop-filter:blur(10px);transition:all .3s var(--ease)}
-.bronchi-stat:hover{background:rgba(0,184,148,.1);border-color:rgba(0,184,148,.3);transform:translateY(-2px)}
-.bronchi-stat__num{font-size:1.6rem;font-weight:800;background:linear-gradient(135deg,#fff,var(--asma-2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;letter-spacing:-.02em;margin-bottom:4px}
-.bronchi-stat__lbl{font-size:.72rem;color:rgba(255,255,255,.65);line-height:1.3}
-
-.bronchi-card__caption{display:flex;align-items:center;gap:10px;margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);font-size:.78rem;color:rgba(255,255,255,.6);position:relative;z-index:1}
-.bronchi-card__caption i{color:var(--asma-2);font-size:1rem}
-.bronchi-pulse-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ecc71;box-shadow:0 0 12px #2ecc71;animation:pulse-dot 1.6s ease-in-out infinite;flex-shrink:0}
-
-@media(max-width:991px){.bronchi-card{margin-top:30px}.disease-hero{padding:110px 0 70px!important}}
-@media(max-width:575px){.disease-hero__title{font-size:clamp(2.1rem,9vw,3rem)!important}.bronchi-card{padding:28px 22px}.bronchi-stats{grid-template-columns:1fr 1fr;gap:10px}.hero-trust{gap:14px}.hero-cta-primary,.hero-cta-ghost{padding:13px 22px;font-size:.88rem}}
-
-/* ── Bento cards (síntomas) — más vivas ── */
-.bento-grid-3{gap:20px}
-.bento-card{padding:30px 26px 28px;border-radius:22px;background:#fff;border:1px solid rgba(0,184,148,.08);position:relative;cursor:default;transform:translateY(0);transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .45s var(--ease)}
-.bento-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:22px 22px 0 0;background:linear-gradient(90deg,var(--asma),var(--asma-2));transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
-.bento-card::after{content:'';position:absolute;top:-30%;right:-30%;width:60%;padding-bottom:60%;border-radius:50%;background:radial-gradient(circle,rgba(0,184,148,.08),transparent 60%);opacity:0;transition:opacity .45s var(--ease);pointer-events:none}
-.bento-card:hover{transform:translateY(-8px);box-shadow:0 28px 60px rgba(0,184,148,.18),0 0 0 1px rgba(0,184,148,.12);border-color:rgba(0,184,148,.3)}
-.bento-card:hover::before{transform:scaleX(1)}
-.bento-card:hover::after{opacity:1}
-.bento-card:hover .bento-card__icon{transform:scale(1.08) rotate(-4deg);box-shadow:0 14px 30px rgba(0,184,148,.4)}
-.bento-card__icon{width:58px;height:58px;border-radius:16px;font-size:1.35rem;transition:transform .45s var(--ease),box-shadow .45s var(--ease);position:relative}
-.bento-card__icon::after{content:'';position:absolute;inset:-6px;border-radius:20px;border:1.5px dashed rgba(0,184,148,.25);opacity:0;transition:opacity .45s var(--ease)}
-.bento-card:hover .bento-card__icon::after{opacity:1;animation:iconRing 4s linear infinite}
-@keyframes iconRing{to{transform:rotate(360deg)}}
-.bento-card h3{font-size:1.08rem;letter-spacing:-.01em;margin-bottom:10px}
-.bento-card p{font-size:.9rem;line-height:1.65}
-
-/* Bento numbered indicator */
-.bento-num{position:absolute;top:18px;right:22px;font-size:2.4rem;font-weight:800;color:rgba(0,184,148,.08);line-height:1;letter-spacing:-.04em;font-feature-settings:'tnum';transition:color .45s var(--ease)}
-.bento-card:hover .bento-num{color:rgba(0,184,148,.18)}
-
-/* Diseño global más impactante: bg de la sección de contenido */
-.disease-content{position:relative}
-.disease-content::before{content:'';position:absolute;top:0;left:0;right:0;height:300px;background:radial-gradient(ellipse at top,rgba(0,184,148,.06),transparent 70%);pointer-events:none}
-
-/* ─── Bento grid 3 cols ─── */
-.bento-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
-.bento-card{background:#fff;border:1px solid rgba(0,184,148,.1);border-radius:20px;padding:28px 26px;transition:all .4s var(--ease);box-shadow:0 2px 14px rgba(0,184,148,.05);position:relative;overflow:hidden}
-.bento-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,184,148,.14);border-color:rgba(0,184,148,.28)}
-.bento-card__icon{width:52px;height:52px;border-radius:15px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.25rem;margin-bottom:16px;box-shadow:0 8px 22px rgba(0,184,148,.25)}
-.bento-card h3{font-size:1.05rem;font-weight:800;color:var(--navy);margin:0 0 10px;letter-spacing:-.01em}
-.bento-card p{font-size:.88rem;color:var(--text-muted);line-height:1.6;margin:0}
-@media(max-width:991px){.bento-grid-3{grid-template-columns:1fr 1fr}}
-@media(max-width:576px){.bento-grid-3{grid-template-columns:1fr}}
-
-/* ─── Alarm card ─── */
-.alarm-card{display:grid;grid-template-columns:auto 1fr;gap:30px;background:linear-gradient(135deg,#2d0808 0%,#4a0f0f 100%);border:1px solid rgba(230,69,69,.3);border-radius:24px;padding:38px;color:#fff;box-shadow:0 16px 48px rgba(230,69,69,.18);position:relative;overflow:hidden}
-.alarm-card::before{content:'';position:absolute;top:-40%;right:-20%;width:60%;padding-bottom:60%;border-radius:50%;background:radial-gradient(circle,rgba(230,69,69,.22),transparent 60%)}
-.alarm-card__badge{width:76px;height:76px;border-radius:22px;background:linear-gradient(135deg,#e64545,#c0392b);display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;box-shadow:0 10px 28px rgba(230,69,69,.4);animation:pulseAlarm 2s ease-in-out infinite;flex-shrink:0}
-@keyframes pulseAlarm{0%,100%{transform:scale(1);box-shadow:0 10px 28px rgba(230,69,69,.4)}50%{transform:scale(1.06);box-shadow:0 14px 36px rgba(230,69,69,.6)}}
-.alarm-card__content{position:relative}
-.alarm-card__content h3{font-size:1.25rem;font-weight:800;color:#fff;margin:0 0 18px;letter-spacing:-.01em}
-.alarm-card__list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 28px}
-.alarm-card__list li{display:flex;align-items:flex-start;gap:12px;font-size:.9rem;line-height:1.5;color:rgba(255,255,255,.88)}
-.alarm-card__list li i{color:#ff7a7a;font-size:1.05rem;flex-shrink:0;margin-top:2px}
-@media(max-width:767px){.alarm-card{grid-template-columns:1fr;gap:22px;padding:30px 26px}.alarm-card__list{grid-template-columns:1fr}.alarm-card__badge{width:64px;height:64px;font-size:1.6rem}}
-
-/* ─── CTA inline ─── */
-.cta-inline__grid{display:grid;grid-template-columns:1.3fr 1fr;gap:36px;align-items:center}
-.cta-inline__eyebrow{font-size:.72rem;font-weight:800;color:var(--asma);text-transform:uppercase;letter-spacing:3px;margin-bottom:10px}
-.cta-inline__title{font-size:1.4rem;font-weight:800;color:var(--navy);margin-bottom:20px;letter-spacing:-.01em;line-height:1.3}
-.cta-inline__check{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
-.cta-inline__check li{display:flex;align-items:flex-start;gap:12px;font-size:.92rem;line-height:1.55;color:var(--text)}
-.cta-inline__check li i{color:var(--asma);font-size:1.1rem;flex-shrink:0;margin-top:2px}
-.cta-inline__right{display:flex;flex-direction:column;gap:20px}
-.cta-inline__actions{display:flex;flex-direction:column;gap:10px}
-.btn-wa,.btn-cal{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:12px;font-size:.92rem;font-weight:700;text-decoration:none;transition:all .3s var(--ease);border:none;cursor:pointer}
-.btn-wa{background:#25d366;color:#fff}
-.btn-wa:hover{background:#128c7e;color:#fff;transform:translateY(-2px);box-shadow:0 8px 22px rgba(37,211,102,.4)}
-.btn-cal{background:linear-gradient(135deg,var(--asma),var(--asma-deep));color:#fff}
-.btn-cal:hover{color:#fff;transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,184,148,.4)}
-@media(max-width:991px){.cta-inline__grid{grid-template-columns:1fr;gap:28px}.cta-inline__right{order:-1}}
-
-/* CTA stat card asma */
-.cta-inline__stat{background:linear-gradient(155deg,#062a25 0%,#0a1628 100%)!important;border:1px solid rgba(0,184,148,.32)!important;padding:26px 22px!important;position:relative;overflow:hidden;box-shadow:0 12px 36px rgba(0,184,148,.18);border-radius:18px}
-.cta-inline__stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(0,206,201,.8),rgba(0,184,148,.8),transparent)}
-.cta-inline__stat::after{content:'';position:absolute;top:-40%;right:-20%;width:60%;padding-bottom:60%;border-radius:50%;background:radial-gradient(circle,rgba(0,184,148,.2) 0%,transparent 65%);pointer-events:none}
-.cta-inline__stat-value{font-size:3.4rem!important;font-weight:800!important;background:linear-gradient(135deg,var(--asma-2) 0%,var(--asma) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent!important;letter-spacing:-.04em!important;line-height:1!important;display:inline-block;position:relative;z-index:1}
-.cta-inline__stat-label{font-size:.82rem!important;color:rgba(255,255,255,.72)!important;margin-top:10px!important;line-height:1.5!important;position:relative;z-index:1}
-
-/* ─── CTA band ─── */
-.cta-band__eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.74rem;font-weight:800;color:rgba(255,255,255,.75);text-transform:uppercase;letter-spacing:2.5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);padding:7px 16px;border-radius:100px;margin-bottom:18px}
-.cta-band__title{font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:800;color:#fff;margin:0 auto 14px;max-width:820px;letter-spacing:-.02em;line-height:1.2}
-.cta-band__sub{font-size:1.05rem;color:rgba(255,255,255,.72);max-width:620px;margin:0 auto 28px;line-height:1.6}
-
-/* ─── Asma-specific visuals: comparativa ─── */
-.asma-compare{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:0;border-radius:20px;overflow:hidden;border:1px solid rgba(0,0,0,.08);background:#fff;box-shadow:0 10px 40px rgba(10,22,40,.06);font-size:.9rem}
-.asma-compare__head{background:linear-gradient(135deg,var(--navy),#12233d);color:#fff;padding:18px 14px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px}
-.asma-compare__head i{font-size:1.4rem;color:var(--asma-2)}
-.asma-compare__head.row-label{background:transparent;color:var(--navy);text-transform:none;letter-spacing:0;font-size:.9rem;text-align:left;align-items:flex-start;padding:16px 18px;border-right:1px solid rgba(0,0,0,.06)}
-.asma-compare__cell{padding:16px 14px;font-size:.86rem;color:var(--text);border-top:1px solid rgba(0,0,0,.06);border-right:1px solid rgba(0,0,0,.06);text-align:center;display:flex;align-items:center;justify-content:center;line-height:1.45}
-.asma-compare__cell:last-child{border-right:none}
-.asma-compare__cell.label{font-weight:700;color:var(--navy);text-align:left;justify-content:flex-start;background:#f8f9fb}
-.asma-compare__cell.asma{background:rgba(0,184,148,.08)}
-.asma-compare__cell.epoc{background:rgba(230,126,34,.07)}
-.asma-compare__cell.bron{background:rgba(116,185,255,.08)}
-.asma-compare__cell .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
-.asma-compare__cell .dot.hi{background:#e64545}.asma-compare__cell .dot.mid{background:#f0a830}.asma-compare__cell .dot.lo{background:var(--asma)}
-
-/* ─── Escalera GINA ─── */
-.gina-stairs{background:linear-gradient(135deg,#062a25 0%,#0a1628 100%);border-radius:24px;padding:48px 40px;color:#fff;position:relative;overflow:hidden}
-.gina-stairs::before{content:'';position:absolute;inset:-40%;background:radial-gradient(circle at 25% 50%,rgba(0,184,148,.18),transparent 55%),radial-gradient(circle at 80% 60%,rgba(0,206,201,.14),transparent 55%);pointer-events:none}
-.gina-stairs__grid{position:relative;display:grid;grid-template-columns:1fr 2fr;gap:40px;align-items:center}
-.gina-stairs__viz{position:relative;display:flex;flex-direction:column-reverse;gap:8px;height:240px;justify-content:flex-end}
-.gina-step-bar{display:flex;align-items:center;gap:10px;height:38px}
-.gina-step-bar__num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800;background:rgba(255,255,255,.1);color:#fff;flex-shrink:0}
-.gina-step-bar__bar{height:14px;border-radius:100px;animation:ginaGrow 1.4s var(--ease) forwards;transform-origin:left;transform:scaleX(0)}
-.gina-step-bar:nth-child(1) .gina-step-bar__bar{background:linear-gradient(90deg,#74e0ce,var(--asma-2));width:30%;animation-delay:.1s}
-.gina-step-bar:nth-child(2) .gina-step-bar__bar{background:linear-gradient(90deg,var(--asma-2),var(--asma));width:50%;animation-delay:.25s}
-.gina-step-bar:nth-child(3) .gina-step-bar__bar{background:linear-gradient(90deg,var(--asma),#0a8b6f);width:70%;animation-delay:.4s}
-.gina-step-bar:nth-child(4) .gina-step-bar__bar{background:linear-gradient(90deg,#f0a830,#e67e22);width:85%;animation-delay:.55s}
-.gina-step-bar:nth-child(5) .gina-step-bar__bar{background:linear-gradient(90deg,#e64545,#c0392b);width:100%;animation-delay:.7s}
-@keyframes ginaGrow{to{transform:scaleX(1)}}
-.gina-stairs__list{display:flex;flex-direction:column;gap:12px;position:relative}
-.gina-stairs__row{display:grid;grid-template-columns:42px 1fr;gap:14px;padding:12px 16px;border-radius:14px;background:rgba(255,255,255,.04);border-left:3px solid rgba(0,184,148,.5)}
-.gina-stairs__row strong{display:block;font-size:.92rem;color:#fff;margin-bottom:2px}
-.gina-stairs__row span{font-size:.82rem;color:rgba(255,255,255,.65);line-height:1.5}
-.gina-stairs__row-num{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--asma),var(--asma-deep));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;flex-shrink:0}
-@media(max-width:991px){.gina-stairs__grid{grid-template-columns:1fr;gap:32px}.gina-stairs__viz{height:auto}}
-@media(max-width:576px){.gina-stairs{padding:32px 22px}}
-
-/* ─── Calendario CDMX (gatillos del año) ─── */
-.asma-cal{background:linear-gradient(135deg,#f8f9fb,#eef2f7);border-radius:24px;padding:44px 40px;border:1px solid rgba(0,0,0,.05)}
-.asma-cal__months{display:grid;grid-template-columns:repeat(12,1fr);gap:6px;margin-top:28px}
-.asma-cal__month{text-align:center;padding:16px 4px;border-radius:12px;background:#fff;border:1px solid rgba(0,0,0,.05);font-size:.7rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;transition:all .3s var(--ease)}
-.asma-cal__month.peak{background:linear-gradient(135deg,#e64545,#c0392b);color:#fff;border-color:transparent;transform:translateY(-4px);box-shadow:0 6px 18px rgba(230,69,69,.25)}
-.asma-cal__month.high{background:linear-gradient(135deg,#f0a830,#e67e22);color:#fff;border-color:transparent}
-.asma-cal__month.mid{background:rgba(240,168,48,.15);color:#b67920}
-.asma-cal__month.calm{background:linear-gradient(135deg,var(--asma),var(--asma-deep));color:#fff;border-color:transparent}
-.asma-cal__month-num{display:block;font-size:1rem;font-weight:800;margin-bottom:2px}
-.asma-cal__legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:24px;font-size:.78rem;color:var(--text-muted);justify-content:center}
-.asma-cal__legend-item{display:flex;align-items:center;gap:8px}
-.asma-cal__legend-dot{width:14px;height:14px;border-radius:4px}
-
-/* ─── Mitos vs verdades ─── */
-.asma-myths{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.asma-myth,.asma-truth{padding:26px;border-radius:18px;position:relative;transition:all .3s var(--ease)}
-.asma-myth{background:linear-gradient(135deg,rgba(230,69,69,.06),rgba(230,69,69,.02));border:1px solid rgba(230,69,69,.15)}
-.asma-truth{background:linear-gradient(135deg,rgba(0,184,148,.07),rgba(0,184,148,.02));border:1px solid rgba(0,184,148,.18)}
-.asma-myth__badge,.asma-truth__badge{width:40px;height:40px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:14px}
-.asma-myth__badge{background:#e64545;color:#fff}
-.asma-truth__badge{background:var(--asma);color:#fff}
-.asma-myth h4,.asma-truth h4{font-size:1rem;margin-bottom:8px;line-height:1.4}
-.asma-myth h4{color:#c0392b}
-.asma-truth h4{color:var(--asma-deep)}
-.asma-myth p,.asma-truth p{font-size:.88rem;line-height:1.6;color:var(--text-muted);margin:0}
-.asma-myth:hover{transform:translateX(-6px)}
-.asma-truth:hover{transform:translateX(6px)}
-@media(max-width:991px){.asma-compare{grid-template-columns:1fr;border-radius:16px}.asma-compare__head,.asma-compare__cell{border-right:none!important}.asma-compare__head{padding:14px 16px;font-size:.74rem;flex-direction:row;justify-content:center;gap:10px}.asma-compare__head i{font-size:1.1rem}.asma-compare__cell{justify-content:flex-start;padding:12px 18px;font-size:.85rem;text-align:left}.asma-compare__cell.label{background:#f0f3f7;font-size:.82rem;padding:10px 18px;text-transform:uppercase;letter-spacing:.8px;color:var(--text-muted)}.asma-cal__months{grid-template-columns:repeat(6,1fr)}.asma-myths{grid-template-columns:1fr}.asma-myth:hover,.asma-truth:hover{transform:none}}
-@media(max-width:576px){.asma-cal{padding:32px 22px}.asma-cal__months{grid-template-columns:repeat(4,1fr)}}
-
-/* ─── Contacto final ─── */
-.contacto-final-section{padding:90px 0;background:linear-gradient(180deg,var(--cloud) 0%,#fff 100%)}
-.contacto-final__header{text-align:center;max-width:680px;margin:0 auto 48px}
-.contacto-final__title{font-size:clamp(1.9rem,3vw,2.4rem);font-weight:800;color:var(--navy);letter-spacing:-.02em;margin-bottom:12px}
-.contacto-final__sub{font-size:1.02rem;color:var(--text-muted);line-height:1.65}
-
-/* FAQ */
-.faq-block{max-width:880px;margin:48px auto;padding:0 20px}
-.faq-block__title{font-size:clamp(1.6rem,3.2vw,2.2rem);font-weight:800;color:var(--navy,#0a1628);letter-spacing:-.02em;margin:0 0 8px;text-align:center}
-.faq-block__sub{color:#5a6b7d;text-align:center;margin:0 0 28px;font-size:1rem}
-.faq-item{background:#fff;border:1px solid rgba(0,184,148,.16);border-radius:14px;margin-bottom:12px;overflow:hidden;transition:box-shadow .25s ease}
-.faq-item[open]{box-shadow:0 8px 28px -10px rgba(0,148,120,.18);border-color:rgba(0,184,148,.32)}
-.faq-item summary{cursor:pointer;padding:18px 22px;font-weight:700;color:var(--navy,#0a1628);font-size:1.02rem;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:14px}
-.faq-item summary::-webkit-details-marker{display:none}
-.faq-item summary::after{content:"+";color:var(--asma);font-size:1.5rem;font-weight:400;line-height:1;transition:transform .25s ease;flex-shrink:0}
-.faq-item[open] summary::after{content:"−"}
-.faq-item__answer{padding:0 22px 20px;color:#3a4a5c;line-height:1.7;font-size:.97rem}
-/* HERO FX — efectos dinámicos */
-.disease-hero{position:relative;overflow:hidden}
+/* HERO FX */
+.hero-fx-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,184,148,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,184,148,.05) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,#000 30%,transparent 75%);pointer-events:none;opacity:.6}
+.hero-fx-spark{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--asma);box-shadow:0 0 14px 2px rgba(0,184,148,.7);opacity:.7;pointer-events:none;animation:heroFxSpark 8s ease-in-out infinite}
+@keyframes heroFxSpark{0%,100%{transform:translate(0,0);opacity:0}10%,90%{opacity:.85}50%{transform:translate(20px,-30px);opacity:1}}
 .disease-hero__bg::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(0,184,148,.12),transparent 70%);animation:heroFxPulse 7s ease-in-out infinite;pointer-events:none}
 .disease-hero__bg::after{content:'';position:absolute;top:-10%;right:-5%;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(0,184,148,.4),transparent 70%);filter:blur(40px);animation:heroFxBlob 12s ease-in-out infinite;pointer-events:none}
 @keyframes heroFxPulse{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
 @keyframes heroFxBlob{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-30px,20px) scale(1.1)}66%{transform:translate(20px,-15px) scale(.95)}}
-.hero-fx-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,184,148,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,184,148,.05) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,#000 30%,transparent 75%);pointer-events:none;opacity:.6}
-.hero-fx-spark{position:absolute;width:6px;height:6px;border-radius:50%;background:#00b894;box-shadow:0 0 14px 2px rgba(0,184,148,.7);opacity:.7;pointer-events:none;animation:heroFxSpark 8s ease-in-out infinite}
-@keyframes heroFxSpark{0%,100%{transform:translate(0,0);opacity:0}10%,90%{opacity:.85}50%{transform:translate(20px,-30px);opacity:1}}
+
+/* QUICK */
+.asma-quick{background:linear-gradient(135deg,#0a1628 0%,#0d2a26 100%);border:1px solid rgba(0,184,148,.35);border-radius:20px;padding:24px 22px;color:#fff;position:relative;overflow:hidden;margin-bottom:48px;box-shadow:0 16px 40px rgba(0,184,148,.15)}
+.asma-quick::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--asma-light),var(--asma),var(--asma-light));background-size:200% 100%;animation:bandStripe 5s linear infinite}
+@keyframes bandStripe{to{background-position:-200% 0}}
+.asma-quick::after{content:'';position:absolute;top:-50%;right:-20%;width:60%;padding-bottom:60%;border-radius:50%;background:radial-gradient(circle,rgba(0,184,148,.2) 0%,transparent 65%);pointer-events:none}
+.asma-quick__inner{position:relative;z-index:1}
+.asma-quick__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(94,234,212,.14);border:1px solid rgba(94,234,212,.3);color:var(--asma-light);font-size:.7rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:6px 12px;border-radius:100px;margin-bottom:14px}
+.asma-quick__title{font-size:clamp(1.25rem,4.5vw,1.7rem);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.25;margin-bottom:18px}
+.asma-quick__big{font-size:clamp(3rem,12vw,4.5rem);font-weight:800;background:linear-gradient(135deg,var(--asma-light),var(--asma));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;letter-spacing:-.04em;margin-bottom:6px}
+.asma-quick__big-lbl{font-size:.85rem;color:rgba(255,255,255,.72);margin-bottom:18px;line-height:1.5}
+.asma-quick__btns{display:flex;flex-direction:column;gap:10px}
+@media(min-width:480px){.asma-quick__btns{flex-direction:row}}
+.asma-quick__btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;border-radius:12px;font-weight:700;font-size:.92rem;text-decoration:none;transition:all .3s var(--ease);min-height:50px;flex:1;cursor:pointer}
+.asma-quick__btn--wa{background:#25d366;color:#fff!important}
+.asma-quick__btn--wa:hover{background:#1da851;transform:translateY(-2px)}
+.asma-quick__btn--cal{background:#fff;color:var(--navy)!important}
+.asma-quick__btn--cal:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.2)}
+
+/* SÍNTOMAS */
+.symp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(min-width:768px){.symp-grid{grid-template-columns:repeat(4,1fr);gap:14px}}
+.symp-card{background:#fff;border:1px solid rgba(0,184,148,.12);border-radius:18px;padding:18px 14px;text-align:center;transition:all .3s var(--ease);cursor:pointer}
+.symp-card:hover{transform:translateY(-4px);border-color:rgba(0,184,148,.3);box-shadow:0 14px 32px rgba(0,184,148,.14)}
+.symp-card__icon{width:54px;height:54px;border-radius:16px;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 12px}
+.symp-card h4{font-size:.92rem;font-weight:800;color:var(--navy);margin:0 0 4px;line-height:1.25}
+.symp-card p{font-size:.78rem;color:var(--text-muted);margin:0;line-height:1.4}
+@media(min-width:768px){.symp-card{padding:24px 18px}.symp-card h4{font-size:1rem}.symp-card p{font-size:.82rem}}
+
+/* RIESGO */
+.risk-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(min-width:768px){.risk-grid{grid-template-columns:repeat(4,1fr);gap:16px}}
+.risk-card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:18px;padding:20px 16px;transition:all .35s var(--ease);box-shadow:0 4px 14px rgba(10,22,40,.04);cursor:pointer;text-align:left}
+.risk-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,184,148,.14)}
+.risk-card__icon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;margin-bottom:12px}
+.risk-card h3{font-size:.95rem;font-weight:800;color:var(--navy);margin:0 0 6px;line-height:1.25}
+.risk-card p{font-size:.8rem;color:var(--text-muted);line-height:1.5;margin:0}
+@media(min-width:768px){.risk-card{padding:24px 20px}.risk-card__icon{width:52px;height:52px;font-size:1.25rem}.risk-card h3{font-size:1.02rem;margin-bottom:8px}.risk-card p{font-size:.85rem}}
+
+/* COMPARATIVA — controlado vs sin controlar */
+.compare{background:linear-gradient(140deg,#0a1628 0%,#0d2a26 100%);border-radius:24px;padding:28px 22px;color:#fff;position:relative;overflow:hidden;box-shadow:0 16px 48px rgba(0,184,148,.18)}
+@media(min-width:768px){.compare{padding:48px 40px}}
+.compare::before{content:'';position:absolute;inset:-40%;background:radial-gradient(circle at 25% 50%,rgba(0,184,148,.18),transparent 50%),radial-gradient(circle at 80% 50%,rgba(230,69,69,.1),transparent 50%);pointer-events:none}
+.compare__inner{position:relative;z-index:1}
+.compare__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(94,234,212,.12);border:1px solid rgba(94,234,212,.25);color:var(--asma-light);font-size:.7rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:6px 12px;border-radius:100px;margin-bottom:14px}
+.compare__title{font-size:clamp(1.2rem,4vw,1.65rem);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.25;margin-bottom:24px}
+.compare__title em{font-style:normal;background:linear-gradient(135deg,var(--asma-light),var(--asma));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.compare-grid{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:600px){.compare-grid{grid-template-columns:1fr 1fr;gap:16px}}
+.compare-col{border-radius:18px;padding:22px 20px;border:1px solid rgba(255,255,255,.08);position:relative;overflow:hidden}
+.compare-col--bad{background:rgba(230,69,69,.08);border-color:rgba(230,69,69,.28)}
+.compare-col--good{background:rgba(0,184,148,.1);border-color:rgba(0,184,148,.32);box-shadow:0 8px 28px rgba(0,184,148,.18)}
+.compare-col__head{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.compare-col__icon{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0}
+.compare-col--bad .compare-col__icon{background:rgba(230,69,69,.22);color:#ff7676}
+.compare-col--good .compare-col__icon{background:rgba(0,184,148,.25);color:var(--asma-light)}
+.compare-col__label{font-size:.65rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px}
+.compare-col--bad .compare-col__label{color:#ff7676}
+.compare-col--good .compare-col__label{color:var(--asma-light)}
+.compare-col__sub{font-size:.85rem;color:rgba(255,255,255,.78);font-weight:600;line-height:1.3}
+.compare-col__big{font-size:clamp(2.6rem,9vw,3.6rem);font-weight:800;line-height:1;letter-spacing:-.04em;margin-bottom:4px}
+.compare-col--bad .compare-col__big{background:linear-gradient(135deg,#ff7676,#e64545);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.compare-col--good .compare-col__big{background:linear-gradient(135deg,#fff,var(--asma-light),var(--asma));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.compare-col__bignum{font-size:.78rem;color:rgba(255,255,255,.6);margin-bottom:16px;font-weight:600}
+.compare-col__list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.compare-col__list li{display:flex;align-items:flex-start;gap:10px;font-size:.84rem;line-height:1.4;color:rgba(255,255,255,.85)}
+.compare-col__list li i{font-size:1rem;flex-shrink:0;margin-top:2px;width:18px;text-align:center}
+.compare-col--bad .compare-col__list li i{color:#ff7676}
+.compare-col--good .compare-col__list li i{color:var(--asma-light)}
+.compare__foot{margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);font-size:.85rem;color:rgba(255,255,255,.62);text-align:center;line-height:1.55}
+.compare__foot strong{color:#fff;font-weight:700}
+
+/* ALARMA */
+.alarm{background:linear-gradient(135deg,#0a1f1a 0%,#063229 100%);border:1px solid rgba(0,184,148,.4);border-radius:22px;padding:28px 22px;color:#fff;box-shadow:0 16px 48px rgba(0,184,148,.18);position:relative;overflow:hidden}
+@media(min-width:768px){.alarm{padding:40px 36px}}
+.alarm::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--asma-light),var(--asma),#e64545,var(--asma),var(--asma-light));animation:alarmStripe 4s linear infinite;background-size:200% 100%}
+@keyframes alarmStripe{to{background-position:-200% 0}}
+.alarm::after{content:'';position:absolute;top:-40%;right:-20%;width:60%;padding-bottom:60%;border-radius:50%;background:radial-gradient(circle,rgba(0,184,148,.25),transparent 60%);pointer-events:none}
+.alarm__inner{position:relative;z-index:1}
+.alarm__head{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.alarm__badge{width:54px;height:54px;border-radius:15px;background:linear-gradient(135deg,#e64545,#c0392b);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#fff;box-shadow:0 8px 22px rgba(230,69,69,.45);animation:pulseAlarm 2s ease-in-out infinite;flex-shrink:0}
+@keyframes pulseAlarm{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.alarm__title{font-size:1.15rem;font-weight:800;color:#fff;letter-spacing:-.01em;line-height:1.25;margin:0}
+@media(min-width:768px){.alarm__title{font-size:1.4rem}}
+.alarm__list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:600px){.alarm__list{grid-template-columns:1fr 1fr;gap:10px 24px}}
+.alarm__list li{display:flex;align-items:flex-start;gap:12px;font-size:.9rem;line-height:1.4;color:rgba(255,255,255,.92)}
+.alarm__list li i{color:var(--asma-light);font-size:1.1rem;flex-shrink:0;margin-top:2px;width:20px;text-align:center}
+
+/* CTA INLINE */
+.asma-cta{background:linear-gradient(140deg,#0a1628 0%,#0d2a26 100%);border-radius:24px;padding:32px 24px;color:#fff;position:relative;overflow:hidden;border:1px solid rgba(0,184,148,.25);box-shadow:0 20px 50px rgba(0,184,148,.18)}
+@media(min-width:768px){.asma-cta{padding:48px 44px}}
+.asma-cta::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--asma),var(--asma-light),var(--asma));background-size:200% 100%;animation:bandStripe 5s linear infinite}
+.asma-cta::after{content:'';position:absolute;top:-50%;right:-15%;width:55%;padding-bottom:55%;border-radius:50%;background:radial-gradient(circle,rgba(0,184,148,.25),transparent 65%);pointer-events:none}
+.asma-cta__inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:24px;align-items:center}
+@media(min-width:992px){.asma-cta__inner{grid-template-columns:1.4fr 1fr;gap:40px}}
+.asma-cta__eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:800;color:var(--asma-light);background:rgba(94,234,212,.12);border:1px solid rgba(94,234,212,.3);padding:6px 14px;border-radius:100px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1.5px}
+.asma-cta__title{font-size:clamp(1.25rem,4vw,1.7rem);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.25;margin-bottom:18px}
+.asma-cta__list{list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:8px}
+.asma-cta__list li{display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:rgba(255,255,255,.85);line-height:1.45}
+.asma-cta__list li i{color:var(--asma-light);font-size:1rem;flex-shrink:0;margin-top:2px}
+.asma-cta__stat{background:linear-gradient(155deg,rgba(0,184,148,.14),rgba(0,206,201,.08));border:1px solid rgba(0,184,148,.28);border-radius:18px;padding:22px;text-align:center;margin-bottom:14px}
+.asma-cta__stat-num{font-size:clamp(2.4rem,9vw,3.2rem);font-weight:800;background:linear-gradient(135deg,var(--asma-light),var(--asma));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;letter-spacing:-.04em;margin-bottom:6px}
+.asma-cta__stat-lbl{font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.5}
+.asma-cta__btns{display:flex;flex-direction:column;gap:10px}
+.asma-cta__btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:12px;font-weight:700;font-size:.92rem;text-decoration:none;transition:all .3s var(--ease);min-height:50px;cursor:pointer}
+.asma-cta__btn--wa{background:#25d366;color:#fff!important}
+.asma-cta__btn--wa:hover{background:#1da851;transform:translateY(-2px)}
+.asma-cta__btn--cal{background:#fff;color:var(--navy)!important}
+.asma-cta__btn--cal:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
+
+/* CTA BAND */
+.cta-band{border:none!important;padding:64px 0!important}
+.cta-band .reveal::before,.cta-band .reveal::after{display:none!important}
+.cta-band::before{display:none!important}
+
+/* FAQ */
+.faq-block{max-width:880px;margin:48px auto;padding:0 16px}
+.faq-block__title{font-size:clamp(1.45rem,4.5vw,2rem);font-weight:800;color:var(--navy);letter-spacing:-.02em;margin:0 0 6px;text-align:center}
+.faq-block__sub{color:var(--text-muted);text-align:center;margin:0 0 24px;font-size:.95rem}
+.faq-item{background:#fff;border:1px solid rgba(0,184,148,.16);border-radius:14px;margin-bottom:10px;overflow:hidden;transition:all .25s ease}
+.faq-item[open]{box-shadow:0 8px 28px -10px rgba(0,184,148,.2);border-color:rgba(0,184,148,.32)}
+.faq-item summary{cursor:pointer;padding:16px 20px;font-weight:700;color:var(--navy);font-size:.96rem;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:14px;line-height:1.35}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";color:var(--asma);font-size:1.5rem;font-weight:400;line-height:1;transition:transform .25s ease;flex-shrink:0}
+.faq-item[open] summary::after{content:"−"}
+.faq-item__answer{padding:0 20px 18px;color:#3a4a5c;line-height:1.65;font-size:.92rem}
+@media(min-width:768px){.faq-item summary{padding:18px 22px;font-size:1.02rem}.faq-item__answer{padding:0 22px 20px;font-size:.97rem}}
 </style>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/enfermedades/asma/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Cómo se diagnostica el asma?","acceptedAnswer":{"@type":"Answer","text":"El diagnóstico de asma se basa en síntomas compatibles (sibilancias, tos, opresión torácica, disnea) más la demostración de obstrucción reversible mediante espirometría con broncodilatador. En casos seleccionados se complementa con FeNO (óxido nítrico exhalado) y pruebas de alergia."}},{"@type":"Question","name":"¿El asma se cura?","acceptedAnswer":{"@type":"Answer","text":"El asma no se cura, pero se controla. Con el tratamiento adecuado según las guías GINA, la mayoría de pacientes pueden tener una vida completamente normal, sin crisis y sin limitaciones en la actividad física."}},{"@type":"Question","name":"¿Qué hacer en una crisis de asma?","acceptedAnswer":{"@type":"Answer","text":"Usar el inhalador de rescate (salbutamol) cada 20 minutos durante la primera hora, mantener la calma y respirar por la nariz. Si los síntomas no mejoran, los labios se ponen morados o aparece dificultad para hablar, acudir a urgencias inmediatamente."}},{"@type":"Question","name":"¿Cuánto cuesta una consulta de asma en CDMX?","acceptedAnswer":{"@type":"Answer","text":"Escríbenos por WhatsApp al 55 9170 8334 para conocer precios actualizados de consulta y espirometría."}}]}
-</script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
-<!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
+    <!-- End Google Tag Manager -->
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/enfermedades/asma/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Cómo se diagnostica el asma?","acceptedAnswer":{"@type":"Answer","text":"El diagnóstico de asma se basa en síntomas compatibles (sibilancias, tos, opresión torácica, disnea) más la demostración de obstrucción reversible mediante espirometría con broncodilatador. En casos seleccionados se complementa con FeNO (óxido nítrico exhalado) y pruebas de alergia."}},{"@type":"Question","name":"¿El asma se cura?","acceptedAnswer":{"@type":"Answer","text":"El asma no se cura, pero se controla. Con el tratamiento adecuado según las guías GINA, la mayoría de pacientes pueden tener una vida completamente normal, sin crisis y sin limitaciones en la actividad física."}},{"@type":"Question","name":"¿Qué hacer en una crisis de asma?","acceptedAnswer":{"@type":"Answer","text":"Usar el inhalador de rescate (salbutamol) cada 20 minutos durante la primera hora, mantener la calma y respirar por la nariz. Si los síntomas no mejoran, los labios se ponen morados o aparece dificultad para hablar, acudir a urgencias inmediatamente."}},{"@type":"Question","name":"¿Cuánto cuesta una consulta de asma en CDMX?","acceptedAnswer":{"@type":"Answer","text":"Escríbenos por WhatsApp al 55 9170 8334 para conocer precios actualizados de consulta y espirometría."}}]}
+    </script>
 </head>
 <body>
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG8Z6FKF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG8Z6FKF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>document.body.classList.add('js-enabled');</script>
 <div class="top-bar-legal text-center fw-semibold"><div class="container">Aviso Cofepris: <a href="https://www.gob.mx/cofepris" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">2609142002A00265</a> &nbsp;|&nbsp; Céd. Prof: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">12588976</a> &nbsp;|&nbsp; Céd. Esp: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">15595809</a> &nbsp;|&nbsp; <a href="https://conacem.org.mx/buscador" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">CNN-2102</a></div></div>
+
 <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2" href="/">
@@ -366,7 +288,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <li><a class="dropdown-item fw-bold" href="/#enfermedades">Ver todas</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="/enfermedades/epoc/">EPOC</a></li>
-                        <li><a class="dropdown-item" href="/enfermedades/asma/">Asma</a></li>
+                        <li><a class="dropdown-item active" href="/enfermedades/asma/">Asma</a></li>
                         <li><a class="dropdown-item" href="/enfermedades/apnea-del-sueno/">Apnea del sueño</a></li>
                         <li><a class="dropdown-item" href="/enfermedades/neumonia/">Neumonía</a></li>
                         <li><a class="dropdown-item" href="/enfermedades/fibrosis-pulmonar/">Fibrosis pulmonar</a></li>
@@ -394,81 +316,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </a>
     </div>
 </nav>
-<a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20cita%20por%20asma" target="_blank" class="whatsapp-float" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i><span class="wa-tooltip">¿Dudas? Escríbeme</span></a>
+
+<a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20cita" target="_blank" class="whatsapp-float" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i><span class="wa-tooltip">¿Dudas? Escríbeme</span></a>
+
 <main>
 
-<!-- ===== HERO ===== -->
+<!-- HERO -->
 <section class="disease-hero">
 <div class="disease-hero__bg"></div>
 <div class="hero-fx-grid" aria-hidden="true"></div>
 <span class="hero-fx-spark" style="top:18%;left:8%;animation-delay:0s" aria-hidden="true"></span>
-<span class="hero-fx-spark" style="top:60%;left:18%;animation-delay:1.5s;background:#00d4ab;box-shadow:0 0 14px 2px rgba(0,212,171,.7)" aria-hidden="true"></span>
+<span class="hero-fx-spark" style="top:60%;left:18%;animation-delay:1.5s;background:#5eead4;box-shadow:0 0 14px 2px rgba(94,234,212,.7)" aria-hidden="true"></span>
 <span class="hero-fx-spark" style="top:32%;right:12%;animation-delay:3s" aria-hidden="true"></span>
-<span class="hero-fx-spark" style="top:75%;right:22%;animation-delay:4.5s;background:#1abc9c;box-shadow:0 0 14px 2px rgba(26,188,156,.7)" aria-hidden="true"></span>
-<div class="hero-grid-bg"></div>
-<div class="hero-orb hero-orb-1"></div>
-<div class="hero-orb hero-orb-2"></div>
-<div class="hero-orb hero-orb-3"></div>
-<div class="hero-particles" id="heroParticles" aria-hidden="true"></div>
+<span class="hero-fx-spark" style="top:75%;right:22%;animation-delay:4.5s;background:#00cec9;box-shadow:0 0 14px 2px rgba(0,206,201,.7)" aria-hidden="true"></span>
 <div class="container position-relative">
 <nav class="disease-hero__breadcrumb" aria-label="Breadcrumb"><a href="/">Inicio</a><span>/</span><a href="/#enfermedades">Enfermedades</a><span>/</span><span class="current">Asma</span></nav>
-<div class="disease-hero__tag"><span class="dot"></span> ENFERMEDAD CRÓNICA</div>
-<div class="row align-items-center g-5">
+<div class="row align-items-center g-4 g-lg-5">
 <div class="col-lg-7">
-<h1 class="disease-hero__title"><em>Asma</em><span class="hero-h1-sub">La respiración que se cierra</span></h1>
-<p class="disease-hero__sub"><strong>Inflamación crónica</strong> de los bronquios que silba, aprieta el pecho y te despierta de noche. Bien tratada, <strong>dejas de usar el inhalador de rescate</strong> y vuelves a moverte sin pensarlo.</p>
-<div class="hero-actions">
-  <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="hero-cta-primary"><span><i class="bi bi-calendar-check"></i> Agendar cita</span></a>
-  <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20una%20cita%20por%20asma" target="_blank" class="hero-cta-ghost"><i class="bi bi-whatsapp"></i> WhatsApp directo</a>
+<span class="asma-hero-tag"><span class="pulse"></span> Temporada de crisis: octubre — abril</span>
+<h1 class="asma-hero-title">Respira sin pensarlo<em>Asma controlada, vida normal</em></h1>
+<p class="asma-hero-sub">Si toses de noche, silbas al respirar o usas el inhalador de rescate más de dos veces por semana, <strong style="color:#fff">tu asma no está controlada</strong> — y se puede arreglar.</p>
+<div class="asma-hero-cta">
+<a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20agendar%20una%20cita%20por%20asma" target="_blank" class="btn-wa-hero"><i class="bi bi-whatsapp"></i> WhatsApp ahora</a>
+<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="btn-cal-hero"><i class="bi bi-calendar-check"></i> Agendar cita</a>
 </div>
-<div class="hero-trust">
-  <div class="hero-trust-item"><i class="bi bi-patch-check-fill"></i> <span>Neumólogo <strong>INER</strong></span></div>
-  <div class="hero-trust-item"><i class="bi bi-hospital"></i> <span>Hospital <strong>Santa Coleta</strong></span></div>
-  <div class="hero-trust-item"><i class="bi bi-shield-check"></i> <span>Guías <strong>GINA 2025</strong></span></div>
+<div class="asma-hero-stats">
+<div class="asma-hero-stat"><div class="asma-hero-stat__num">8.5%</div><div class="asma-hero-stat__lbl">adultos en México</div></div>
+<div class="asma-hero-stat"><div class="asma-hero-stat__num">50%</div><div class="asma-hero-stat__lbl">sin control adecuado</div></div>
+<div class="asma-hero-stat"><div class="asma-hero-stat__num">0</div><div class="asma-hero-stat__lbl">crisis con tratamiento correcto</div></div>
 </div>
 </div>
-<div class="col-lg-5">
-<div class="disease-hero__visual">
-<div class="bronchi-card">
-  <svg class="bronchi-svg" viewBox="0 0 200 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pulmones sanos">
-    <defs>
-      <linearGradient id="bronchiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#5eead4"/>
-        <stop offset="50%" stop-color="#00cec9"/>
-        <stop offset="100%" stop-color="#00b894"/>
-      </linearGradient>
-      <filter id="glow"><feGaussianBlur stdDeviation="2.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    </defs>
-    <!-- Tráquea -->
-    <rect class="lung-trachea" x="96" y="10" width="8" height="42" rx="4" fill="url(#bronchiGrad)" filter="url(#glow)"/>
-    <!-- Bronquio izquierdo -->
-    <path d="M96 48 Q78 54 66 70" stroke="url(#bronchiGrad)" stroke-width="7" stroke-linecap="round" fill="none" filter="url(#glow)"/>
-    <!-- Bronquio derecho -->
-    <path d="M104 48 Q122 54 134 70" stroke="url(#bronchiGrad)" stroke-width="7" stroke-linecap="round" fill="none" filter="url(#glow)"/>
-    <!-- Pulmón izquierdo -->
-    <path class="lung-shape" d="M66 70 C46 80 32 104 30 128 C28 150 38 164 54 162 C66 160 72 146 70 128 C68 110 60 88 66 70Z" fill="url(#bronchiGrad)" opacity=".82"/>
-    <!-- Pulmón derecho -->
-    <path class="lung-shape right" d="M134 70 C154 80 168 104 170 128 C172 150 162 164 146 162 C134 160 128 146 130 128 C132 110 140 88 134 70Z" fill="url(#bronchiGrad)" opacity=".82"/>
-    <!-- Highlight interno izquierdo -->
-    <path d="M58 90 C48 102 44 120 46 136" stroke="rgba(255,255,255,.25)" stroke-width="4" stroke-linecap="round" fill="none"/>
-    <!-- Highlight interno derecho -->
-    <path d="M142 90 C152 102 156 120 154 136" stroke="rgba(255,255,255,.25)" stroke-width="4" stroke-linecap="round" fill="none"/>
-  </svg>
-  <div class="bronchi-stats">
-    <div class="bronchi-stat">
-      <div class="bronchi-stat__num">7-10%</div>
-      <div class="bronchi-stat__lbl">adultos con asma en México</div>
-    </div>
-    <div class="bronchi-stat">
-      <div class="bronchi-stat__num">≤2×</div>
-      <div class="bronchi-stat__lbl">rescate/semana = controlada</div>
-    </div>
-  </div>
-  <div class="bronchi-card__caption">
-    <span class="bronchi-pulse-dot"></span>
-    <span>Inhalación · exhalación — así debería sentirse cada respiro.</span>
-  </div>
-</div>
+<div class="col-lg-5 d-none d-lg-block">
+<div class="asma-hero-visual">
+<div class="asma-hero-visual__icon"><i class="bi bi-wind"></i></div>
+<div class="asma-hero-visual__big">20<span style="font-size:.45em;margin-left:4px">min</span></div>
+<div class="asma-hero-visual__lbl">Eso tarda la espirometría.<br><strong>El estudio que confirma o descarta el asma.</strong></div>
+<div class="asma-hero-visual__divider"></div>
+<div class="asma-hero-visual__row"><i class="bi bi-check-circle-fill"></i><span>Soplas en un tubo, sin dolor</span></div>
+<div class="asma-hero-visual__row"><i class="bi bi-check-circle-fill"></i><span>Resultado en la misma consulta</span></div>
+<div class="asma-hero-visual__row"><i class="bi bi-check-circle-fill"></i><span>Plan GINA personalizado</span></div>
 </div>
 </div>
 </div>
@@ -476,13 +362,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 
 <hr class="section-divider">
+
 <section class="disease-content section-bg">
     <div class="section-dots"></div>
     <div class="section-mesh"></div>
-    <div class="section-accent-line"></div>
     <div class="container">
 
-        <!-- Diseases strip -->
+        <!-- DISEASES STRIP -->
         <div class="diseases-strip reveal">
             <div class="diseases-strip__header">
                 <span class="diseases-strip__label">Enfermedades que tratamos</span>
@@ -494,211 +380,257 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="diseases-strip__track" id="dsTrack" role="list" aria-label="Enfermedades que tratamos">
                     <a href="/enfermedades/asma/" class="active" role="listitem"><div class="ds-icon"><i class="bi bi-wind"></i></div><span>Asma</span></a>
                     <a href="/enfermedades/epoc/" role="listitem"><div class="ds-icon"><i class="bi bi-lungs-fill"></i></div><span>EPOC</span></a>
-                    <a href="/enfermedades/neumonia/" role="listitem"><div class="ds-icon"><i class="fa-solid fa-bacteria"></i></div><span>Neumonía</span></a>
+                    <a href="/enfermedades/neumonia/" role="listitem"><div class="ds-icon"><i class="bi bi-virus"></i></div><span>Neumonía</span></a>
                     <a href="/enfermedades/apnea-del-sueno/" role="listitem"><div class="ds-icon"><i class="bi bi-moon-stars-fill"></i></div><span>Apnea del Sueño</span></a>
                     <a href="/enfermedades/derrames-pleurales/" role="listitem"><div class="ds-icon"><i class="bi bi-droplet-fill"></i></div><span>Derrames Pleurales</span></a>
-                    <a href="/enfermedades/tabaquismo/" role="listitem"><div class="ds-icon"><i class="fa-solid fa-smoking"></i></div><span>Tabaquismo</span></a>
+                    <a href="/enfermedades/tabaquismo/" role="listitem"><div class="ds-icon"><i class="bi bi-fire"></i></div><span>Tabaquismo</span></a>
                     <a href="/enfermedades/cancer-de-pulmon/" role="listitem"><div class="ds-icon"><i class="bi bi-radioactive"></i></div><span>Cáncer de Pulmón</span></a>
-                    <a href="/enfermedades/fibrosis-pulmonar/" role="listitem"><div class="ds-icon"><i class="fa-solid fa-lungs"></i></div><span>Fibrosis Pulmonar</span></a>
-                    <a href="/enfermedades/bronquiectasias/" role="listitem"><div class="ds-icon"><i class="fa-solid fa-lungs-virus"></i></div><span>Bronquiectasias</span></a>
-                    <a href="/enfermedades/embolia-pulmonar/" role="listitem"><div class="ds-icon"><i class="fa-solid fa-heart-crack"></i></div><span>Embolia Pulmonar</span></a>
+                    <a href="/enfermedades/fibrosis-pulmonar/" role="listitem"><div class="ds-icon"><i class="bi bi-lungs"></i></div><span>Fibrosis Pulmonar</span></a>
+                    <a href="/enfermedades/bronquiectasias/" role="listitem"><div class="ds-icon"><i class="bi bi-lungs-fill"></i></div><span>Bronquiectasias</span></a>
+                    <a href="/enfermedades/embolia-pulmonar/" role="listitem"><div class="ds-icon"><i class="bi bi-heartbreak-fill"></i></div><span>Embolia Pulmonar</span></a>
                     <a href="/enfermedades/hipertension-pulmonar/" role="listitem"><div class="ds-icon"><i class="bi bi-heart-pulse-fill"></i></div><span>Hipertensión Pulmonar</span></a>
                     <a href="/enfermedades/secuelas-covid/" role="listitem"><div class="ds-icon"><i class="bi bi-virus2"></i></div><span>Secuelas COVID-19</span></a>
                     <a href="/enfermedades/influenza/" role="listitem"><div class="ds-icon"><i class="bi bi-thermometer-high"></i></div><span>Influenza</span></a>
-                    <a href="/enfermedades/asma/" class="active" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-wind"></i></div><span>Asma</span></a>
+                    <a href="/enfermedades/asma/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-wind"></i></div><span>Asma</span></a>
                     <a href="/enfermedades/epoc/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-lungs-fill"></i></div><span>EPOC</span></a>
-                    <a href="/enfermedades/neumonia/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-bacteria"></i></div><span>Neumonía</span></a>
+                    <a href="/enfermedades/neumonia/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-virus"></i></div><span>Neumonía</span></a>
                     <a href="/enfermedades/apnea-del-sueno/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-moon-stars-fill"></i></div><span>Apnea del Sueño</span></a>
                     <a href="/enfermedades/derrames-pleurales/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-droplet-fill"></i></div><span>Derrames Pleurales</span></a>
-                    <a href="/enfermedades/tabaquismo/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-smoking"></i></div><span>Tabaquismo</span></a>
-                    <a href="/enfermedades/cancer-de-pulmon/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-radioactive"></i></div><span>Cáncer de Pulmón</span></a>
-                    <a href="/enfermedades/fibrosis-pulmonar/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-lungs"></i></div><span>Fibrosis Pulmonar</span></a>
-                    <a href="/enfermedades/bronquiectasias/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-lungs-virus"></i></div><span>Bronquiectasias</span></a>
-                    <a href="/enfermedades/embolia-pulmonar/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="fa-solid fa-heart-crack"></i></div><span>Embolia Pulmonar</span></a>
-                    <a href="/enfermedades/hipertension-pulmonar/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-heart-pulse-fill"></i></div><span>Hipertensión Pulmonar</span></a>
-                    <a href="/enfermedades/secuelas-covid/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-virus2"></i></div><span>Secuelas COVID-19</span></a>
-                    <a href="/enfermedades/influenza/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-thermometer-high"></i></div><span>Influenza</span></a>
+                    <a href="/enfermedades/tabaquismo/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-fire"></i></div><span>Tabaquismo</span></a>
                 </div>
             </div>
         </div>
 
-
-<!-- ===== Síntomas por zona del cuerpo ===== -->
-<div class="content-section reveal">
-<div class="content-section__label">Cómo se siente</div>
-<h2 class="content-section__title">El asma no es solo "tos"</h2>
-<p class="section-lead">Si te identificas con dos o más de estas señales, vale la pena una espirometría.</p>
-
-<div class="bento-grid-3">
-<div class="bento-card"><div class="bento-card__icon" style="background:linear-gradient(135deg,var(--asma),var(--asma-deep))"><i class="bi bi-wind"></i></div><h3>Silbidos al respirar</h3><p>"Como si tuviera un silbato en el pecho." Se nota más al exhalar y empeora con el frío, el ejercicio o el smog.</p></div>
-<div class="bento-card"><div class="bento-card__icon" style="background:linear-gradient(135deg,#0984e3,#1e3799)"><i class="bi bi-moon-stars-fill"></i></div><h3>Tos nocturna</h3><p>Te despierta entre las 2 y 5 a.m. con tos seca o ataques de "ahogo" que ceden al sentarte.</p></div>
-<div class="bento-card"><div class="bento-card__icon" style="background:linear-gradient(135deg,#bd56e6,#7b2cbf)"><i class="fa-solid fa-lungs-virus"></i></div><h3>Pecho apretado</h3><p>"Siento que no me llena el pulmón." Sensación de banda apretada, sobre todo al hacer esfuerzo.</p></div>
-<div class="bento-card"><div class="bento-card__icon" style="background:linear-gradient(135deg,#e67e22,#d35400)"><i class="fa-solid fa-person-running"></i></div><h3>Falta de aire en ejercicio</h3><p>Tienes que parar antes que los demás, o "te haces guaje" diciendo que ya no estás en forma.</p></div>
-<div class="bento-card"><div class="bento-card__icon" style="background:linear-gradient(135deg,#e64545,#c0392b)"><i class="fa-solid fa-spray-can-sparkles"></i></div><h3>Inhalador de rescate frecuente</h3><p>Usar salbutamol más de 2 veces por semana = asma <strong>no</strong> controlada. Es señal de que falta tratamiento de fondo.</p></div>
-<div class="bento-card"><div class="bento-card__icon" style="background:linear-gradient(135deg,#636e72,#2d3436)"><i class="bi bi-emoji-frown-fill"></i></div><h3>Cansancio que no cuadra</h3><p>Dormir mal por tos o ahogo deja al día siguiente irritable, sin energía y con dificultad para concentrarte.</p></div>
-</div>
-</div>
-
-<!-- ===== Grupos de riesgo ===== -->
-<div class="content-section reveal">
-<div class="content-section__label">Quién tiene mayor riesgo</div>
-<h2 class="content-section__title">Personas que deberían descartar asma</h2>
-<p class="section-lead">Si tú o alguien cercano encaja aquí y tiene síntomas respiratorios, una espirometría aclara el panorama en 20 minutos.</p>
-
-<div class="bento-grid-3">
-<div class="bento-card"><div class="bento-card__icon" style="background:linear-gradient(135deg,var(--asma),var(--asma-deep))"><i class="bi bi-people-fill"></i></div><h3>Antecedente familiar</h3><p>Padres o hermanos con asma, rinitis o dermatitis atópica. La carga genética es uno de los predictores más fuertes.</p></div>
-<div class="bento-card"><div class="bento-card__icon" style="background:linear-gradient(135deg,#0984e3,#1e3799)"><i class="fa-solid fa-seedling"></i></div><h3>Rinitis o atopia</h3><p>Estornudos, ojos llorosos en primavera, eccema. La nariz alérgica y los bronquios suelen viajar juntos.</p></div>
-<div class="bento-card"><div class="bento-card__icon" style="background:linear-gradient(135deg,#e67e22,#d35400)"><i class="fa-solid fa-smog"></i></div><h3>Vida en CDMX</h3><p>Ozono, partículas finas (PM2.5) y NO₂ son irritantes documentados que aumentan crisis y consultas a urgencias.</p></div>
-<div class="bento-card"><div class="bento-card__icon" style="background:linear-gradient(135deg,#636e72,#2d3436)"><i class="fa-solid fa-smoking"></i></div><h3>Tabaquismo activo o pasivo</h3><p>El humo dispara crisis y reduce la respuesta a corticoides inhalados. Incluye humo en casa, antros y leña.</p></div>
-<div class="bento-card"><div class="bento-card__icon" style="background:linear-gradient(135deg,#bd56e6,#7b2cbf)"><i class="bi bi-speedometer2"></i></div><h3>Sobrepeso u obesidad</h3><p>El peso extra empeora la mecánica respiratoria y hace al asma más resistente al tratamiento estándar.</p></div>
-<div class="bento-card"><div class="bento-card__icon" style="background:linear-gradient(135deg,#e64545,#c0392b)"><i class="fa-solid fa-flask"></i></div><h3>Exposición laboral</h3><p>Estilistas, panaderos, mecánicos, personal de limpieza, pintores. Hay asmas que aparecen por el trabajo.</p></div>
-</div>
-</div>
-
-<!-- ===== Mitos vs verdades ===== -->
-<div class="content-section reveal">
-<div class="content-section__label">Lo que se cree vs lo que es</div>
-<h2 class="content-section__title">Mitos frecuentes sobre el asma</h2>
-<p class="section-lead">Las creencias que más retrasan el control del asma — y lo que la evidencia dice realmente.</p>
-
-<div class="asma-myths">
-<div class="asma-myth"><div class="asma-myth__badge"><i class="bi bi-x-lg"></i></div><h4>"El inhalador crea adicción."</h4><p>No causa adicción. Si suspendes y regresan los síntomas, es <strong>la enfermedad sin tratar</strong> — no dependencia.</p></div>
-<div class="asma-truth"><div class="asma-truth__badge"><i class="bi bi-check-lg"></i></div><h4>El corticoide inhalado es seguro a largo plazo.</h4><p>Actúa solo en el bronquio. Es la base del tratamiento: previene crisis, hospitalizaciones y daño pulmonar permanente.</p></div>
-
-<div class="asma-myth"><div class="asma-myth__badge"><i class="bi bi-x-lg"></i></div><h4>"El salbutamol solito basta."</h4><p>Usarlo más de 2 veces por semana = asma <strong>fuera de control</strong>. El rescate es para emergencias, no para vivir el día a día.</p></div>
-<div class="asma-truth"><div class="asma-truth__badge"><i class="bi bi-check-lg"></i></div><h4>El tratamiento de base previene la crisis.</h4><p>Un corticoide inhalado apaga la inflamación. Apoyarte solo en el rescate es apagar incendios sin arreglar la fuga de gas.</p></div>
-</div>
-</div>
-
-<!-- ===== Calendario gatillos CDMX ===== -->
-<div class="content-section reveal">
-<div class="content-section__label">El año en CDMX</div>
-<h2 class="content-section__title">Cuándo se descontrola tu asma en la ciudad</h2>
-<p class="section-lead">Contaminación, polen y frío varían todo el año. Conocer tus meses críticos te permite anticipar el tratamiento, no correr a urgencias.</p>
-
-<div class="asma-cal reveal">
-<div class="asma-cal__months">
-<div class="asma-cal__month high"><span class="asma-cal__month-num">ENE</span>Frío</div>
-<div class="asma-cal__month high"><span class="asma-cal__month-num">FEB</span>Frío</div>
-<div class="asma-cal__month peak"><span class="asma-cal__month-num">MAR</span>Pico</div>
-<div class="asma-cal__month peak"><span class="asma-cal__month-num">ABR</span>Pico</div>
-<div class="asma-cal__month peak"><span class="asma-cal__month-num">MAY</span>Pico</div>
-<div class="asma-cal__month mid"><span class="asma-cal__month-num">JUN</span>Lluvia</div>
-<div class="asma-cal__month calm"><span class="asma-cal__month-num">JUL</span>Calma</div>
-<div class="asma-cal__month calm"><span class="asma-cal__month-num">AGO</span>Calma</div>
-<div class="asma-cal__month mid"><span class="asma-cal__month-num">SEP</span>Moho</div>
-<div class="asma-cal__month high"><span class="asma-cal__month-num">OCT</span>Sube</div>
-<div class="asma-cal__month high"><span class="asma-cal__month-num">NOV</span>Sube</div>
-<div class="asma-cal__month high"><span class="asma-cal__month-num">DIC</span>Frío</div>
-</div>
-<div class="asma-cal__legend">
-<div class="asma-cal__legend-item"><span class="asma-cal__legend-dot" style="background:#e64545"></span> Pico de ozono y polen</div>
-<div class="asma-cal__legend-item"><span class="asma-cal__legend-dot" style="background:#e67e22"></span> Aire frío y contaminación</div>
-<div class="asma-cal__legend-item"><span class="asma-cal__legend-dot" style="background:rgba(240,168,48,.4)"></span> Humedad / moho</div>
-<div class="asma-cal__legend-item"><span class="asma-cal__legend-dot" style="background:var(--asma)"></span> Mejor temporada</div>
-</div>
-<p class="mt-4 mb-0 text-center" style="font-size:.88rem;color:var(--text-muted)">Marzo–mayo concentran el mayor número de crisis en el Valle de México. Anticipa, no reacciones.</p>
-</div>
-</div>
-
-<!-- ===== Señales de alarma ===== -->
-<div class="content-section reveal">
-<div class="content-section__label">Cuándo ir a urgencias</div>
-<h2 class="content-section__title">Señales de crisis que no debes ignorar</h2>
-<p class="section-lead">Si aparece alguna de estas señales, no esperes a "ver si baja sola" — ve a urgencias.</p>
-
-<div class="alarm-card reveal">
-<div class="alarm-card__badge"><i class="fa-solid fa-triangle-exclamation"></i></div>
-<div class="alarm-card__content">
-<h3>Acude a urgencias si:</h3>
-<ul class="alarm-card__list">
-<li><i class="bi bi-lungs-fill"></i> Te falta el aire incluso sentado o al hablar.</li>
-<li><i class="bi bi-droplet-half"></i> Labios o uñas morados, piel pálida o sudoración fría.</li>
-<li><i class="bi bi-mic-mute"></i> No puedes terminar una frase completa por la tos o el ahogo.</li>
-<li><i class="bi bi-spray-can"></i> El inhalador de rescate ya no te alivia o dura menos de 2 horas.</li>
-<li><i class="bi bi-heart-pulse"></i> Sientes el pecho como una banda muy apretada que no cede.</li>
-<li><i class="bi bi-brightness-low-fill"></i> Estás somnoliento, confundido o con sueño fuera de lo normal.</li>
-<li><i class="bi bi-arrow-down"></i> Tu medidor de flujo (peak flow) baja por debajo del 60% de tu mejor valor.</li>
-</ul>
+<!-- ALERTA RÁPIDA -->
+<div class="asma-quick reveal">
+<div class="asma-quick__inner">
+<div class="asma-quick__badge"><i class="bi bi-wind"></i> ¿Inhalador de rescate más de 2× por semana?</div>
+<h2 class="asma-quick__title"><strong style="color:var(--asma-light)">El 50%</strong> de los pacientes con asma vive con la enfermedad descontrolada — sin saberlo.</h2>
+<div class="asma-quick__big">2×</div>
+<p class="asma-quick__big-lbl">Si usas salbutamol más de dos veces por semana, tu asma <strong>no</strong> está controlada. Una espirometría y un plan GINA pueden cambiar eso.</p>
+<div class="asma-quick__btns">
+<a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20agendar%20una%20espirometr%C3%ADa" target="_blank" class="asma-quick__btn asma-quick__btn--wa"><i class="bi bi-whatsapp"></i> Agenda la espirometría</a>
+<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="asma-quick__btn asma-quick__btn--cal"><i class="bi bi-calendar-check"></i> Agendar consulta</a>
 </div>
 </div>
 </div>
 
-<!-- ===== CTA inline ===== -->
-<div class="content-section reveal">
-<div class="cta-inline">
-<div class="cta-inline__grid">
+<!-- SÍNTOMAS -->
+<div class="asma-section reveal">
+<span class="asma-section__eyebrow"><i class="bi bi-clipboard-pulse"></i> Señales típicas</span>
+<h2 class="asma-section__title">¿Te suena <em>familiar</em> alguno?</h2>
+<p class="asma-section__lead">Si reconoces dos o más de estas señales, vale la pena una espirometría con broncodilatador.</p>
+
+<div class="symp-grid">
+<div class="symp-card">
+<div class="symp-card__icon" style="background:linear-gradient(135deg,var(--asma),var(--asma-dark));box-shadow:0 8px 20px rgba(0,184,148,.3)"><i class="bi bi-wind"></i></div>
+<h4>Silbidos al respirar</h4>
+<p>Como un silbato en el pecho</p>
+</div>
+<div class="symp-card">
+<div class="symp-card__icon" style="background:linear-gradient(135deg,#0984e3,#1e3799);box-shadow:0 8px 20px rgba(9,132,227,.3)"><i class="bi bi-moon-stars-fill"></i></div>
+<h4>Tos nocturna</h4>
+<p>Te despierta entre 2 y 5 a.m.</p>
+</div>
+<div class="symp-card">
+<div class="symp-card__icon" style="background:linear-gradient(135deg,#bd56e6,#7b2cbf);box-shadow:0 8px 20px rgba(189,86,230,.3)"><i class="bi bi-lungs-fill"></i></div>
+<h4>Pecho apretado</h4>
+<p>Como una banda al esfuerzo</p>
+</div>
+<div class="symp-card">
+<div class="symp-card__icon" style="background:linear-gradient(135deg,#e64545,#c0392b);box-shadow:0 8px 20px rgba(230,69,69,.3)"><i class="bi bi-droplet-half"></i></div>
+<h4>Inhalador frecuente</h4>
+<p>Más de 2× por semana</p>
+</div>
+</div>
+</div>
+
+<!-- FACTORES DE RIESGO -->
+<div class="asma-section reveal">
+<span class="asma-section__eyebrow"><i class="bi bi-shield-exclamation"></i> ¿Quién tiene más riesgo?</span>
+<h2 class="asma-section__title">Si encajas aquí, <em>no lo postergues</em></h2>
+<p class="asma-section__lead">Algunos factores hacen que los bronquios se inflamen y se cierren más fácil. Tener varios multiplica el riesgo.</p>
+
+<div class="risk-grid">
+<div class="risk-card">
+<div class="risk-card__icon" style="background:linear-gradient(135deg,var(--asma),var(--asma-dark))"><i class="bi bi-people-fill"></i></div>
+<h3>Antecedente familiar</h3>
+<p>Padres o hermanos con asma, rinitis o dermatitis atópica.</p>
+</div>
+<div class="risk-card">
+<div class="risk-card__icon" style="background:linear-gradient(135deg,#0984e3,#1e3799)"><i class="bi bi-flower2"></i></div>
+<h3>Rinitis o alergias</h3>
+<p>Estornudos, ojos llorosos, eccema. Nariz y bronquios suelen ir juntos.</p>
+</div>
+<div class="risk-card">
+<div class="risk-card__icon" style="background:linear-gradient(135deg,#e67e22,#d35400)"><i class="bi bi-cloud-haze2-fill"></i></div>
+<h3>Vivir en CDMX</h3>
+<p>Ozono, PM2.5 y NO₂ disparan crisis y consultas a urgencias.</p>
+</div>
+<div class="risk-card">
+<div class="risk-card__icon" style="background:linear-gradient(135deg,#e64545,#c0392b)"><i class="bi bi-fire"></i></div>
+<h3>Tabaco o leña</h3>
+<p>Activo, pasivo o por humo de leña. Empeora todo el cuadro.</p>
+</div>
+</div>
+</div>
+
+<!-- POR QUÉ IMPORTA — COMPARATIVA -->
+<div class="asma-section reveal">
+<span class="asma-section__eyebrow"><i class="bi bi-graph-up-arrow"></i> Por qué importa el control</span>
+<h2 class="asma-section__title">El asma no controlada <em>se siente</em> — la controlada no</h2>
+<p class="asma-section__lead">La diferencia entre vivir con miedo a la próxima crisis y olvidarte de que tienes asma se llama tratamiento de fondo.</p>
+
+<div class="compare reveal">
+<div class="compare__inner">
+<span class="compare__badge"><i class="bi bi-bar-chart-fill"></i> Datos GINA 2025 · World Asthma Report</span>
+<h3 class="compare__title">Sin control vs <em>con control GINA</em></h3>
+
+<div class="compare-grid">
+
+<div class="compare-col compare-col--bad">
+<div class="compare-col__head">
+<div class="compare-col__icon"><i class="bi bi-exclamation-triangle-fill"></i></div>
 <div>
-<div class="cta-inline__eyebrow">Espirometría + plan</div>
-<h3 class="cta-inline__title">¿Tos nocturna, silbidos o inhalador frecuente?</h3>
-<ul class="cta-inline__check">
-<li><i class="bi bi-check-circle-fill"></i> Espirometría con broncodilatador en consulta</li>
-<li><i class="bi bi-check-circle-fill"></i> Diagnóstico + paso GINA + inhalador correcto</li>
-<li><i class="bi bi-check-circle-fill"></i> Técnica de inhalación y plan de acción para crisis</li>
+<div class="compare-col__label">Sin control</div>
+<div class="compare-col__sub">Solo inhalador de rescate</div>
+</div>
+</div>
+<div class="compare-col__big">3–5</div>
+<div class="compare-col__bignum">crisis al año en promedio</div>
+<ul class="compare-col__list">
+<li><i class="bi bi-x-circle-fill"></i> Despertares nocturnos por tos</li>
+<li><i class="bi bi-x-circle-fill"></i> Salbutamol diario o casi diario</li>
+<li><i class="bi bi-x-circle-fill"></i> Faltas al trabajo o escuela</li>
+<li><i class="bi bi-x-circle-fill"></i> Riesgo de hospitalización</li>
 </ul>
 </div>
-<div class="cta-inline__right">
-<div class="cta-inline__stat">
-<div class="cta-inline__stat-value">≤2×</div>
-<div class="cta-inline__stat-label">por semana de inhalador de rescate. Si lo usas más, tu asma necesita un ajuste, no resignación.</div>
+
+<div class="compare-col compare-col--good">
+<div class="compare-col__head">
+<div class="compare-col__icon"><i class="bi bi-check-circle-fill"></i></div>
+<div>
+<div class="compare-col__label">Con control GINA</div>
+<div class="compare-col__sub">Tratamiento de fondo correcto</div>
 </div>
-<div class="cta-inline__actions">
-<a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20creo%20que%20tengo%20asma%20o%20no%20la%20tengo%20bien%20controlada" target="_blank" class="btn-wa"><i class="bi bi-whatsapp"></i> WhatsApp directo</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="btn-cal"><i class="bi bi-calendar-check"></i> Agendar en Cal.com</a>
+</div>
+<div class="compare-col__big">0–1</div>
+<div class="compare-col__bignum">crisis al año</div>
+<ul class="compare-col__list">
+<li><i class="bi bi-check-circle-fill"></i> Sueño completo, sin tos</li>
+<li><i class="bi bi-check-circle-fill"></i> Rescate ≤2 veces por semana</li>
+<li><i class="bi bi-check-circle-fill"></i> Ejercicio sin restricción</li>
+<li><i class="bi bi-check-circle-fill"></i> Sin urgencias ni esteroides orales</li>
+</ul>
+</div>
+
+</div>
+
+<p class="compare__foot"><strong>Reducción del 60–80%</strong> en hospitalizaciones cuando el paciente recibe corticoide inhalado de fondo en lugar de solo rescate.</p>
+</div>
+</div>
+</div>
+
+<!-- SEÑALES DE ALARMA -->
+<div class="asma-section reveal">
+<span class="asma-section__eyebrow" style="color:#e64545;background:rgba(230,69,69,.08);border-color:rgba(230,69,69,.2)"><i class="bi bi-exclamation-triangle-fill"></i> Señales urgentes</span>
+<h2 class="asma-section__title">Esto es urgencia, <em>no consulta</em></h2>
+<p class="asma-section__lead">Una crisis severa de asma puede comprometer tu vida en minutos. Si presentas alguna señal, ve a urgencias o llama al 911.</p>
+
+<div class="alarm reveal">
+<div class="alarm__inner">
+<div class="alarm__head">
+<div class="alarm__badge"><i class="bi bi-exclamation-triangle-fill"></i></div>
+<h3 class="alarm__title">Acude a urgencias si:</h3>
+</div>
+<ul class="alarm__list">
+<li><i class="bi bi-mic-mute-fill"></i> No puedes terminar una frase por la falta de aire</li>
+<li><i class="bi bi-droplet-half"></i> Labios o uñas morados, piel pálida o sudor frío</li>
+<li><i class="bi bi-x-octagon-fill"></i> El inhalador de rescate ya no te alivia</li>
+<li><i class="bi bi-heart-pulse-fill"></i> Pecho como banda muy apretada que no cede</li>
+<li><i class="bi bi-arrow-down-circle-fill"></i> Te falta el aire incluso sentado y quieto</li>
+<li><i class="bi bi-brightness-low-fill"></i> Somnolencia, confusión o desorientación</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- CTA FINAL -->
+<div class="asma-section reveal" style="margin-bottom:24px">
+<div class="asma-cta">
+<div class="asma-cta__inner">
+<div>
+<span class="asma-cta__eyebrow"><i class="bi bi-wind"></i> Citas disponibles esta semana</span>
+<h3 class="asma-cta__title">¿Toses de noche, silbas o usas el inhalador a diario?</h3>
+<ul class="asma-cta__list">
+<li><i class="bi bi-check-circle-fill"></i> Espirometría con broncodilatador en consulta</li>
+<li><i class="bi bi-check-circle-fill"></i> Diagnóstico exacto + paso GINA correcto</li>
+<li><i class="bi bi-check-circle-fill"></i> Inhalador correcto y técnica supervisada</li>
+<li><i class="bi bi-check-circle-fill"></i> Plan de acción para crisis impresa</li>
+</ul>
+</div>
+<div>
+<div class="asma-cta__stat">
+<div class="asma-cta__stat-num">20 min</div>
+<div class="asma-cta__stat-lbl">Es lo que tarda la espirometría que define todo el tratamiento</div>
+</div>
+<div class="asma-cta__btns">
+<a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20una%20consulta%20por%20asma" target="_blank" class="asma-cta__btn asma-cta__btn--wa"><i class="bi bi-whatsapp"></i> WhatsApp directo</a>
+<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="asma-cta__btn asma-cta__btn--cal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
 </div>
 </div>
 </div>
 </div>
 </div>
 
-</div>
+    </div>
 </section>
 
-<!-- ===== CTA BAND ===== -->
+<!-- CTA BAND -->
 <section class="cta-band text-center py-5">
     <div class="cta-band__particles" id="ctaParticles" aria-hidden="true"></div>
     <div class="container py-3 cta-band__inner reveal">
-        <p style="color:rgba(94,234,212,.75);font-size:.82rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">No esperes la siguiente crisis</p>
-        <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.03em;line-height:1.15">Controla tu asma, respira sin pensarlo</h2>
-        <p class="mb-5 mx-auto" style="color:rgba(255,255,255,.5);font-size:1rem;max-width:520px;line-height:1.75">Diagnóstico con espirometría, plan GINA personalizado, técnica de inhalación correcta y seguimiento continuo desde la primera consulta.</p>
+        <p style="color:rgba(94,234,212,.75);font-size:.78rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px">No esperes la siguiente crisis</p>
+        <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.025em;line-height:1.2">Controla tu asma.<br><em style="font-style:normal;background:linear-gradient(135deg,#5eead4,#00b894);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Respira sin pensarlo.</em></h2>
+        <p class="mb-4 mx-auto" style="color:rgba(255,255,255,.55);font-size:.98rem;max-width:500px;line-height:1.6">Espirometría, plan GINA y técnica de inhalación correcta desde la primera consulta.</p>
         <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="cta-band__btn">
-            Agendar mi cita ahora <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
+            Agendar mi cita <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
         </a>
     </div>
 </section>
 
-<!-- ===== FAQ ===== -->
+<!-- FAQ -->
 <section id="preguntas-frecuentes-asma" class="faq-block" aria-labelledby="faq-h-asma">
   <h2 id="faq-h-asma" class="faq-block__title">Preguntas frecuentes sobre asma</h2>
-  <p class="faq-block__sub">Resuelve dudas habituales sobre diagnóstico, tratamiento y seguimiento.</p>
+  <p class="faq-block__sub">Lo que más me preguntan en consulta sobre diagnóstico y control.</p>
   <details class="faq-item">
     <summary>¿Cómo se diagnostica el asma?</summary>
-    <div class="faq-item__answer"><p>El diagnóstico de asma se basa en síntomas compatibles (sibilancias, tos, opresión torácica, disnea) más la demostración de obstrucción reversible mediante espirometría con broncodilatador. En casos seleccionados se complementa con FeNO (óxido nítrico exhalado) y pruebas de alergia.</p></div>
+    <div class="faq-item__answer"><p>Síntomas compatibles (sibilancias, tos, opresión, falta de aire) <strong>más espirometría con broncodilatador</strong> que demuestre obstrucción reversible. En casos seleccionados se complementa con FeNO o pruebas de alergia.</p></div>
   </details>
   <details class="faq-item">
     <summary>¿El asma se cura?</summary>
-    <div class="faq-item__answer"><p>El asma no se cura, pero se controla. Con el tratamiento adecuado según las guías GINA, la mayoría de pacientes pueden tener una vida completamente normal, sin crisis y sin limitaciones en la actividad física.</p></div>
+    <div class="faq-item__answer"><p>El asma <strong>no se cura, pero se controla</strong>. Con el tratamiento adecuado según las guías GINA, la mayoría de pacientes vive sin crisis y sin limitaciones para hacer ejercicio o dormir.</p></div>
   </details>
   <details class="faq-item">
     <summary>¿Qué hacer en una crisis de asma?</summary>
-    <div class="faq-item__answer"><p>Usar el inhalador de rescate (salbutamol) cada 20 minutos durante la primera hora, mantener la calma y respirar por la nariz. Si los síntomas no mejoran, los labios se ponen morados o aparece dificultad para hablar, acudir a urgencias inmediatamente.</p></div>
+    <div class="faq-item__answer"><p>Usa el <strong>inhalador de rescate (salbutamol) cada 20 minutos</strong> en la primera hora, mantén la calma y respira por la nariz. Si no mejora, los labios se ponen morados o no puedes hablar de corrido, ve a urgencias.</p></div>
   </details>
   <details class="faq-item">
     <summary>¿Cuánto cuesta una consulta de asma en CDMX?</summary>
-    <div class="faq-item__answer"><p>El costo de la consulta de neumología en el Hospital Santa Coleta varía según el plan elegido. Escríbenos por WhatsApp al 55 9170 8334 para conocer precios actualizados de consulta y espirometría.</p></div>
+    <div class="faq-item__answer"><p>Escríbenos por <a href="https://wa.me/5215591708334" target="_blank" style="color:var(--asma);font-weight:700">WhatsApp al 55 9170 8334</a> para conocer precios actualizados de consulta y espirometría.</p></div>
   </details>
 </section>
 
-<!-- ===== CONTACTO ===== -->
+<!-- CONTACTO FINAL -->
 <section id="contacto-final" class="contact-section pt-3 pb-5">
     <div class="container" style="padding-bottom:48px;position:relative;z-index:1">
         <div class="text-center mb-5">
             <span class="section-label reveal">Contacto</span>
-            <h2 class="section-title reveal" style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.03em;color:#fff;margin-top:16px">Encuéntrame aquí</h2>
+            <h2 class="section-title reveal" style="font-size:clamp(1.7rem,4vw,2.4rem);font-weight:800;letter-spacing:-.025em;color:#fff;margin-top:14px">Encuéntrame aquí</h2>
         </div>
         <div class="contact__grid">
             <div class="contact__map-card reveal">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.844781446706!2d-99.1834226!3d19.3758368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce0014e7a8dbdd%3A0xc3af1172a396263f!2sSaturnino%20Herr%C3%A1n%2059%2C%20San%20Jos%C3%A9%20Insurgentes%2C%20Benito%20Ju%C3%A1rez%2C%2003900%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1708892400000!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación Hospital Santa Coleta"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d34785.66899967985!2d-99.18028396495866!3d19.389341285512508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff707b3c048f%3A0xc5706ab62966c0f5!2sDr.%20William%20C%C3%A9sar%20Lara%20V%C3%A1zquez%2C%20Neum%C3%B3logo!5e0!3m2!1sen!2smx!4v1777753629326!5m2!1sen!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación Hospital Santa Coleta"></iframe>
             </div>
             <div class="contact__card contact__card--location reveal">
                 <div class="contact__card-icon"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i></div>
@@ -727,10 +659,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 </section>
 
-<!-- E-E-A-T: Revisión médica + disclaimer -->
-<section aria-label="Información médica" style="background:#f8f9fb;border-top:1px solid rgba(0,0,0,.06);padding:48px 0;">
+<!-- E-E-A-T -->
+<section aria-label="Información médica" style="background:#f8f9fb;border-top:1px solid rgba(0,0,0,.06);padding:40px 0;">
   <div class="container" style="max-width:980px;">
-    <aside itemprop="reviewedBy" itemscope itemtype="https://schema.org/Physician" style="display:flex;align-items:flex-start;gap:14px;padding:18px 22px;background:#fff;border:1px solid rgba(0,184,148,.25);border-left:4px solid #00b894;border-radius:10px;font-size:.92rem;color:#444;line-height:1.55;box-shadow:0 2px 8px rgba(0,0,0,.04);margin-bottom:22px;">
+    <aside itemprop="reviewedBy" itemscope itemtype="https://schema.org/Physician" style="display:flex;align-items:flex-start;gap:14px;padding:18px 22px;background:#fff;border:1px solid rgba(0,184,148,.22);border-left:4px solid #00b894;border-radius:10px;font-size:.92rem;color:#444;line-height:1.55;box-shadow:0 2px 8px rgba(0,0,0,.04);margin-bottom:18px;">
       <i class="bi bi-patch-check-fill" style="color:#00b894;font-size:1.5rem;flex-shrink:0;line-height:1.2;" aria-hidden="true"></i>
       <div style="flex:1;">
         <strong style="color:#1a2238;display:block;margin-bottom:3px;font-size:.95rem;">Revisado médicamente por <a href="/sobre-el-doctor/" style="color:#00b894;text-decoration:none;border-bottom:1px solid currentColor;" itemprop="url"><span itemprop="name">Dr. William César Lara Vázquez</span></a></strong>
@@ -773,29 +705,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script defer src="/enfermedades/_shared/disease.js"></script>
 <script>
 (function(){
-    var hp=document.getElementById('heroParticles');
-    if(hp){
-        var r=Math.random;
-        for(var i=0;i<22;i++){
-            var s=document.createElement('span');
-            s.style.cssText='left:'+(r()*100).toFixed(1)+'%;animation-duration:'+(r()*8+8).toFixed(1)+'s;animation-delay:'+(r()*12).toFixed(1)+'s;width:'+(r()*2+1.5).toFixed(1)+'px;height:'+(r()*2+1.5).toFixed(1)+'px;opacity:'+(r()*.4+.3).toFixed(2);
-            hp.appendChild(s);
-        }
-    }
-    document.querySelectorAll('.bento-grid-3 .bento-card').forEach(function(card,i){
-        var n=document.createElement('div');
-        n.className='bento-num';
-        n.textContent=String(i+1).padStart(2,'0');
-        card.appendChild(n);
-    });
-})();
-(function(){
     var c=document.getElementById('ctaParticles');
     if(!c)return;
-    var cols=['rgba(0,184,148,','rgba(0,206,201,','rgba(94,234,212,','rgba(116,185,255,','rgba(46,213,165,'];
+    var cols=['rgba(0,184,148,','rgba(94,234,212,','rgba(0,206,201,','rgba(0,184,148,','rgba(94,234,212,'];
     var anims=['p-drift-1','p-drift-2','p-drift-3','p-drift-4','p-drift-5','p-drift-6','p-drift-7','p-drift-8'];
     var r=Math.random;
-    for(var i=0;i<75;i++){
+    var n=window.innerWidth<768?35:75;
+    for(var i=0;i<n;i++){
         var s=document.createElement('span');
         var sz=(r()*5+2).toFixed(1)+'px';
         var col=cols[Math.floor(r()*cols.length)];
