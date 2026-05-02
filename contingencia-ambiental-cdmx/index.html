@@ -166,7 +166,7 @@ section{padding:80px 0;position:relative}
 .fase-card.fase-2::before{background:linear-gradient(90deg,var(--imeca-extreme),var(--imeca-verybad))}
 .fase-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
 .fase-card__header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
-.fase-card__icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#fff;flex-shrink:0}
+.fase-card__icon{width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.7rem;color:#fff;flex-shrink:0;box-shadow:0 8px 24px rgba(214,48,49,.3)}
 .fase-1 .fase-card__icon{background:linear-gradient(135deg,var(--imeca-bad),var(--imeca-verybad))}
 .fase-2 .fase-card__icon{background:linear-gradient(135deg,var(--imeca-verybad),var(--imeca-extreme))}
 .fase-card__title{font-size:1.5rem;font-weight:800;color:var(--navy);margin:0;line-height:1.1}
@@ -278,6 +278,157 @@ footer.site-footer p{margin:4px 0}
 .plan-tab{border-radius:100px;transition:background .3s,color .3s,transform .3s}
 .plan-tab:hover{background:rgba(9,132,227,.06)}
 .plan-tab.active{background:rgba(9,132,227,.10)}
+
+/* ===== BENTO QUE ES ===== */
+.bento-quees{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;margin-top:48px}
+.bento-tile{background:#fff;border:1px solid var(--border);border-radius:24px;padding:28px;box-shadow:var(--shadow-md);position:relative;overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.bento-tile:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.bento-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.74rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--electric);margin-bottom:18px;background:rgba(9,132,227,.08);padding:6px 14px;border-radius:100px}
+.poll-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.poll-card{position:relative;border-radius:18px;padding:20px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(160deg,#f8faff 0%,#fff 100%);display:flex;flex-direction:column;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.poll-card:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(15,29,48,.1)}
+.poll-o3{background:linear-gradient(160deg,#fff8e8 0%,#fff 70%);border-color:rgba(253,203,110,.4)}
+.poll-pm{background:linear-gradient(160deg,#fef1f0 0%,#fff 70%);border-color:rgba(225,112,85,.35)}
+.poll-card__top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:12px;position:relative;z-index:2}
+.poll-symbol{font-size:1.85rem;font-weight:800;color:var(--navy);letter-spacing:-.04em;line-height:1}
+.poll-symbol sub{font-size:.55em;font-weight:800}
+.poll-tag{font-size:.66rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text-muted);background:rgba(0,0,0,.04);padding:4px 10px;border-radius:100px;border:1px solid var(--border)}
+.poll-svg{display:block;width:calc(100% + 40px);margin:6px -20px 14px;height:118px;border-radius:14px;border:1px solid rgba(0,0,0,.04);box-shadow:inset 0 0 0 1px rgba(255,255,255,.4),0 4px 14px rgba(15,29,48,.06)}
+.o3-mol{transform-origin:0 6px;animation:o3Spin 18s linear infinite}
+@keyframes o3Spin{from{transform:translate(225px,38px) rotate(0deg)}to{transform:translate(225px,38px) rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.o3-mol,.poll-svg circle animate{animation:none!important}}
+.poll-desc{font-size:.88rem;color:var(--text);line-height:1.55;margin:0 0 12px;font-weight:500}
+.poll-meta{margin-top:auto;font-size:.78rem;font-weight:700;color:var(--text-muted);display:inline-flex;align-items:center;gap:6px}
+.poll-meta i{color:var(--electric)}
+
+/* SEASON TIMELINE */
+.bento-when{display:flex;flex-direction:column}
+.season-track{margin-bottom:22px}
+.season-bar{position:relative;height:64px;background:linear-gradient(180deg,#f0f6ff,#fff);border:1px solid var(--border);border-radius:14px;padding:8px 10px}
+.season-band{position:absolute;top:8px;bottom:24px;border-radius:8px;opacity:.85}
+.season-band--ozone{background:linear-gradient(135deg,#fdcb6e,#f39c12)}
+.season-band--pm{background:linear-gradient(135deg,#e17055,#d63031)}
+.season-months{position:absolute;left:10px;right:10px;bottom:6px;display:grid;grid-template-columns:repeat(12,1fr);font-size:.62rem;font-weight:800;color:var(--text-muted);text-align:center;letter-spacing:.04em}
+.season-legend{display:flex;flex-direction:column;gap:14px;margin-top:auto}
+.season-leg-item{display:flex;align-items:flex-start;gap:14px}
+.season-leg-item > div strong{display:block;font-size:.92rem;color:var(--navy);margin-bottom:2px}
+.season-leg-item > div span{font-size:.82rem;color:var(--text-muted);line-height:1.45}
+.season-chip{flex-shrink:0;width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;box-shadow:var(--shadow-md)}
+.season-chip--ozone{background:linear-gradient(135deg,#fdcb6e,#e67e22)}
+.season-chip--pm{background:linear-gradient(135deg,#e17055,#c0392b)}
+@media(max-width:768px){.bento-quees{grid-template-columns:1fr}.poll-grid{grid-template-columns:1fr}}
+
+/* ===== FASE ROWS ===== */
+.fase-card__header{position:relative}
+.fase-pill{margin-left:auto;font-size:.66rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:100px;color:#fff;align-self:flex-start;flex-shrink:0}
+.fase-pill--1{background:linear-gradient(135deg,var(--imeca-bad),var(--imeca-verybad))}
+.fase-pill--2{background:linear-gradient(135deg,var(--imeca-verybad),var(--imeca-extreme))}
+.fase-rows{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.fase-row{display:flex;align-items:flex-start;gap:14px;padding:14px 16px;border-radius:14px;background:var(--cloud-alt);border:1px solid var(--border);transition:transform .3s var(--ease),background .3s,border-color .3s}
+.fase-row:hover{transform:translateX(4px);background:#fff;border-color:rgba(9,132,227,.25)}
+.fase-row__ico{flex-shrink:0;width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;color:#fff;box-shadow:0 4px 12px rgba(214,48,49,.25)}
+.fase-1 .fase-row__ico{background:linear-gradient(135deg,var(--imeca-bad),var(--imeca-verybad))}
+.fase-2 .fase-row__ico{background:linear-gradient(135deg,var(--imeca-verybad),var(--imeca-extreme))}
+.fase-row > div strong{display:block;color:var(--navy);font-size:.94rem;font-weight:700;margin-bottom:2px}
+.fase-row > div span{display:block;font-size:.82rem;color:var(--text-muted);line-height:1.5}
+
+/* ===== SYMPTOM GRID ===== */
+.symptom-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:24px 0}
+.symptom-tile{background:#fff;border:1px solid rgba(214,48,49,.18);border-radius:16px;padding:18px 14px;text-align:left;transition:transform .3s var(--ease),box-shadow .3s,border-color .3s;position:relative;display:flex;flex-direction:column;gap:6px}
+.symptom-tile:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(214,48,49,.16);border-color:rgba(214,48,49,.4)}
+.symptom-tile__ico{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#fee2e2,#fef1f0);color:var(--imeca-verybad);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:8px;border:1px solid rgba(214,48,49,.22);box-shadow:0 4px 12px rgba(214,48,49,.1)}
+.symptom-tile__ico--purple{color:var(--imeca-extreme);background:linear-gradient(135deg,#ede9fe,#fff);border-color:rgba(108,92,231,.2)}
+.symptom-tile > strong{font-size:.9rem;color:var(--navy);font-weight:800;line-height:1.2}
+.symptom-tile > span:not(.symptom-tile__ico){font-size:.76rem;color:var(--text-muted);line-height:1.45;display:block}
+@media(max-width:992px){.symptom-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.symptom-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ===== CTA RICH ===== */
+.cta-banner--rich{padding:56px 44px;text-align:left}
+.cta-banner--rich .cta-banner__content{position:relative;z-index:2;max-width:880px;margin:0 auto}
+.cta-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(116,185,255,.15);color:var(--sky);padding:6px 16px;border-radius:100px;font-size:.74rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px;border:1px solid rgba(116,185,255,.3)}
+.cta-banner--rich h3{text-align:left;font-size:clamp(26px,3.4vw,38px);line-height:1.15;margin-bottom:12px}
+.cta-banner--rich p{text-align:left;margin:0 0 28px;color:rgba(255,255,255,.82);max-width:560px}
+.cta-features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:30px}
+.cta-feature{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:18px;backdrop-filter:blur(10px);transition:transform .3s,background .3s}
+.cta-feature:hover{transform:translateY(-3px);background:rgba(255,255,255,.11)}
+.cta-feature__ico{width:48px;height:48px;border-radius:13px;background:linear-gradient(135deg,var(--electric),var(--sky));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:12px;box-shadow:0 6px 16px rgba(9,132,227,.4)}
+.cta-feature > strong{display:block;color:#fff;font-size:.95rem;margin-bottom:2px;font-weight:700}
+.cta-feature > span:not(.cta-feature__ico){display:block;font-size:.78rem;color:rgba(255,255,255,.65);line-height:1.4}
+.cta-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn-whatsapp-mega{display:inline-flex;align-items:center;gap:14px;background:linear-gradient(135deg,#25D366 0%,#128C7E 100%);color:#fff;padding:16px 26px;border-radius:18px;text-decoration:none;font-weight:700;box-shadow:0 12px 32px rgba(37,211,102,.4);transition:all .3s var(--ease)}
+.btn-whatsapp-mega:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(37,211,102,.55);color:#fff}
+.btn-whatsapp-mega i{font-size:1.9rem}
+.btn-whatsapp-mega strong{display:block;font-size:1rem;line-height:1.2}
+.btn-whatsapp-mega em{display:block;font-size:.78rem;font-style:normal;opacity:.85;font-weight:500;margin-top:2px}
+@media(max-width:768px){.cta-features{grid-template-columns:1fr}.cta-banner--rich{padding:44px 26px}}
+
+/* ===== TRIGGER FLOW (IMECA) ===== */
+.trigger-flow{margin-top:36px;padding:22px 26px;background:linear-gradient(135deg,#fff 0%,#fff8e8 50%,#fef1f0 100%);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow-md);position:relative;overflow:hidden}
+.trigger-flow::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--imeca-bad),var(--imeca-verybad),var(--imeca-extreme))}
+.trigger-flow__head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.trigger-flow__label{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--imeca-verybad)}
+.trigger-flow__source{font-size:.72rem;color:var(--text-muted);font-weight:600;display:inline-flex;align-items:center;gap:6px}
+.trigger-flow__source i{color:var(--electric)}
+.trigger-flow__stages{display:flex;align-items:stretch;gap:14px}
+.trigger-stage{flex:1;padding:14px 18px;border-radius:14px;color:#fff;position:relative;display:flex;flex-direction:column;gap:10px;overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.trigger-stage::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 90% -10%,rgba(255,255,255,.22),transparent 60%);pointer-events:none}
+.trigger-stage:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(214,48,49,.25)}
+.trigger-stage--1{background:linear-gradient(135deg,#e17055 0%,#d63031 100%)}
+.trigger-stage--2{background:linear-gradient(135deg,#d63031 0%,#6c5ce7 100%)}
+.trigger-stage__pill{font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:rgba(0,0,0,.25);padding:4px 11px;border-radius:100px;align-self:flex-start;position:relative;z-index:2}
+.trigger-stage__values{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;position:relative;z-index:2}
+.trigger-v{display:flex;flex-direction:column;line-height:1}
+.trigger-v strong{font-size:clamp(1.7rem,3.4vw,2.2rem);font-weight:800;letter-spacing:-.04em}
+.trigger-v em{font-size:.7rem;font-style:normal;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.88;margin-top:5px}
+.trigger-v__sep{font-size:.7rem;font-weight:800;opacity:.65;text-transform:uppercase;letter-spacing:.1em;align-self:center}
+.trigger-flow__arrow{align-self:center;color:var(--text-muted);font-size:1.05rem;flex-shrink:0;opacity:.55}
+@media(max-width:680px){.trigger-flow__stages{flex-direction:column}.trigger-flow__arrow{transform:rotate(90deg);align-self:center}}
+
+/* ===== EFFECTS GRID (compact) ===== */
+.effects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+.effect-card{display:flex;align-items:center;gap:14px;padding:14px 16px;background:#fff;border:1px solid var(--border);border-radius:16px;text-decoration:none;color:inherit;box-shadow:var(--shadow-md);transition:transform .3s var(--ease),box-shadow .3s,border-color .3s;position:relative;overflow:hidden}
+.effect-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;transition:width .3s var(--ease)}
+.effect-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:rgba(9,132,227,.25)}
+.effect-card:hover::before{width:5px}
+.effect-card--red::before{background:linear-gradient(180deg,var(--imeca-bad),var(--imeca-verybad))}
+.effect-card--orange::before{background:linear-gradient(180deg,#f59e0b,var(--imeca-bad))}
+.effect-card--purple::before{background:linear-gradient(180deg,#8b5cf6,var(--imeca-extreme))}
+.effect-card--blue::before{background:linear-gradient(180deg,var(--sky),var(--electric))}
+.effect-card--green::before{background:linear-gradient(180deg,#34d399,var(--imeca-good))}
+.effect-card__ico{flex-shrink:0;width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.15rem}
+.effect-card--red .effect-card__ico{background:linear-gradient(135deg,#fee2e2,#fef1f0);color:var(--imeca-verybad)}
+.effect-card--orange .effect-card__ico{background:linear-gradient(135deg,#fef3c7,#fff8e1);color:#d97706}
+.effect-card--purple .effect-card__ico{background:linear-gradient(135deg,#ede9fe,#f5f3ff);color:var(--imeca-extreme)}
+.effect-card--blue .effect-card__ico{background:linear-gradient(135deg,#dbeafe,#e8f4fd);color:var(--electric)}
+.effect-card--green .effect-card__ico{background:linear-gradient(135deg,#d1fae5,#eefaf5);color:#059669}
+.effect-card__body{flex:1;min-width:0}
+.effect-card__head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:3px}
+.effect-card__head h3{font-size:.98rem;margin:0;color:var(--navy);font-weight:800;line-height:1.15;letter-spacing:-.01em}
+.effect-card__stat{flex-shrink:0;font-size:.72rem;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--imeca-bad),var(--imeca-verybad));padding:3px 9px;border-radius:100px;letter-spacing:0;line-height:1.4;box-shadow:0 4px 10px rgba(214,48,49,.25)}
+.effect-card--orange .effect-card__stat{background:linear-gradient(135deg,#f59e0b,#d97706);box-shadow:0 4px 10px rgba(245,158,11,.25)}
+.effect-card--purple .effect-card__stat{background:linear-gradient(135deg,#8b5cf6,var(--imeca-extreme));box-shadow:0 4px 10px rgba(108,92,231,.25)}
+.effect-card--blue .effect-card__stat{background:linear-gradient(135deg,var(--sky),var(--electric));box-shadow:0 4px 10px rgba(9,132,227,.25)}
+.effect-card--green .effect-card__stat{background:linear-gradient(135deg,#34d399,var(--imeca-good));box-shadow:0 4px 10px rgba(0,184,148,.25)}
+.effect-card__body p{margin:0;font-size:.82rem;color:var(--text-muted);line-height:1.45}
+.effect-card__arrow{flex-shrink:0;color:var(--text-muted);font-size:.82rem;opacity:.4;transition:transform .3s,opacity .3s,color .3s}
+.effect-card:hover .effect-card__arrow{transform:translateX(4px);opacity:1;color:var(--electric)}
+@media(max-width:992px){.effects-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.effects-grid{grid-template-columns:1fr}}
+
+/* ===== OMS CARD ===== */
+.oms-card{display:flex;gap:24px;align-items:flex-start;background:linear-gradient(135deg,rgba(116,185,255,.08) 0%,rgba(255,255,255,.04) 100%);border:1px solid rgba(116,185,255,.18);border-radius:24px;padding:28px 32px;margin-top:36px;backdrop-filter:blur(10px);position:relative;overflow:hidden}
+.oms-card::before{content:"";position:absolute;top:-40%;right:-10%;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(116,185,255,.15) 0%,transparent 70%);pointer-events:none}
+.oms-card__badge{flex-shrink:0;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:100px;background:rgba(116,185,255,.18);color:var(--sky);font-size:.78rem;font-weight:800;letter-spacing:.1em;border:1px solid rgba(116,185,255,.3);position:relative;z-index:2}
+.oms-card__badge i{font-size:1rem}
+.oms-card__body{flex:1;position:relative;z-index:2}
+.oms-card__lead{font-size:clamp(1.1rem,2vw,1.35rem);font-weight:700;color:#fff;margin:0 0 18px;line-height:1.3;letter-spacing:-.01em}
+.oms-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.oms-stat{padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+.oms-stat--meta{background:rgba(116,185,255,.08);border-color:rgba(116,185,255,.18)}
+.oms-stat__pct{display:block;font-size:1.5rem;font-weight:800;color:var(--sky);letter-spacing:-.03em;line-height:1;margin-bottom:6px}
+.oms-stat__lbl{display:block;font-size:.76rem;color:rgba(255,255,255,.7);font-weight:500;line-height:1.4}
+@media(max-width:768px){.oms-card{flex-direction:column;padding:24px}.oms-stats{grid-template-columns:1fr}}
 </style>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -353,8 +504,8 @@ footer.site-footer p{margin:4px 0}
         <li class="nav-item"><a class="nav-link" href="/#contacto-final">Contacto</a></li>
       </ul>
     </div>
-    <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener" class="navbar-cta d-none d-lg-inline-flex">
-      Agendar cita <i class="bi bi-arrow-right"></i>
+    <a href="https://wa.me/525591708334" target="_blank" rel="noopener" class="navbar-cta d-none d-lg-inline-flex">
+      <i class="fab fa-whatsapp"></i> Agendar cita
     </a>
   </div>
 </nav>
@@ -376,7 +527,7 @@ footer.site-footer p{margin:4px 0}
         </div>
         <div class="hero__ctas">
           <a class="btn-primary-cta" href="#plan-accion"><i class="fas fa-shield-heart"></i> Ver plan por enfermedad</a>
-          <a class="btn-ghost-cta" href="https://cal.com/" target="_blank" rel="noopener"><i class="far fa-calendar"></i> Agendar consulta preventiva</a>
+          <a class="btn-ghost-cta" href="https://wa.me/525591708334" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Consulta preventiva por WhatsApp</a>
         </div>
       </div>
       <div class="col-lg-5 hero__aqi-col">
@@ -520,19 +671,140 @@ footer.site-footer p{margin:4px 0}
       </div>
     </div>
 
-    <div class="row mt-5">
-      <div class="col-lg-6 mb-4">
-        <div style="background:var(--cloud-alt);border-radius:20px;padding:32px;height:100%">
-          <h3 style="font-size:1.2rem;margin-bottom:14px"><i class="fas fa-wind text-accent me-2"></i>Los dos contaminantes críticos</h3>
-          <p style="margin-bottom:14px"><strong>Ozono (O₃):</strong> se forma en la atmósfera cuando los gases emitidos por vehículos y fábricas reaccionan con la radiación solar. Alcanza picos entre las 13:00 y 17:00 h.</p>
-          <p style="margin:0"><strong>Partículas finas (PM2.5 y PM10):</strong> sólidos y líquidos suspendidos. PM2.5 es 30 veces más pequeña que un cabello humano: penetra los alvéolos y pasa al torrente sanguíneo.</p>
+    <div class="bento-quees">
+      <div class="bento-tile bento-pollutants">
+        <span class="bento-eyebrow"><i class="fas fa-wind"></i> Contaminantes críticos</span>
+        <div class="poll-grid">
+          <div class="poll-card poll-o3">
+            <div class="poll-card__top">
+              <span class="poll-symbol">O₃</span>
+              <span class="poll-tag">Ozono</span>
+            </div>
+            <svg class="poll-svg" viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs>
+                <linearGradient id="o3Sky" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#fef3c7"/>
+                  <stop offset="1" stop-color="#fde68a"/>
+                </linearGradient>
+                <radialGradient id="o3Sun" cx=".5" cy=".5" r=".5">
+                  <stop offset="0" stop-color="#fffbeb"/>
+                  <stop offset=".5" stop-color="#fbbf24"/>
+                  <stop offset="1" stop-color="#f59e0b"/>
+                </radialGradient>
+                <linearGradient id="o3City" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#1e3a5f"/>
+                  <stop offset="1" stop-color="#0a1628"/>
+                </linearGradient>
+                <linearGradient id="o3Smog" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#fbbf24" stop-opacity="0"/>
+                  <stop offset="1" stop-color="#dc6e22" stop-opacity=".55"/>
+                </linearGradient>
+              </defs>
+              <rect width="300" height="130" fill="url(#o3Sky)"/>
+              <circle cx="58" cy="42" r="46" fill="#fde68a" opacity=".55"/>
+              <circle cx="58" cy="42" r="28" fill="url(#o3Sun)">
+                <animate attributeName="r" values="28;30;28" dur="4s" repeatCount="indefinite"/>
+              </circle>
+              <g class="o3-mol" transform="translate(225 38)">
+                <line x1="-18" y1="12" x2="0" y2="0" stroke="#7f1d1d" stroke-width="2.4" stroke-linecap="round" opacity=".55"/>
+                <line x1="0" y1="0" x2="18" y2="12" stroke="#7f1d1d" stroke-width="2.4" stroke-linecap="round" opacity=".55"/>
+                <circle cx="-18" cy="12" r="11" fill="#dc2626" stroke="#7f1d1d" stroke-width="1.4"/>
+                <circle cx="0" cy="0" r="11" fill="#dc2626" stroke="#7f1d1d" stroke-width="1.4"/>
+                <circle cx="18" cy="12" r="11" fill="#dc2626" stroke="#7f1d1d" stroke-width="1.4"/>
+                <text x="-18" y="15.5" text-anchor="middle" font-size="10" fill="#fff" font-weight="800" font-family="Plus Jakarta Sans">O</text>
+                <text x="0" y="3.5" text-anchor="middle" font-size="10" fill="#fff" font-weight="800" font-family="Plus Jakarta Sans">O</text>
+                <text x="18" y="15.5" text-anchor="middle" font-size="10" fill="#fff" font-weight="800" font-family="Plus Jakarta Sans">O</text>
+              </g>
+              <rect x="0" y="64" width="300" height="66" fill="url(#o3Smog)"/>
+              <path d="M0,130 L0,108 L18,108 L18,90 L36,90 L36,98 L54,98 L54,78 L78,78 L78,92 L98,92 L98,84 L120,84 L120,96 L146,96 L146,86 L172,86 L172,100 L196,100 L196,90 L222,90 L222,80 L244,80 L244,96 L266,96 L266,88 L290,88 L290,100 L300,100 L300,130 Z" fill="url(#o3City)"/>
+              <g fill="#fbbf24" opacity=".85">
+                <rect x="22" y="98" width="2" height="2"/><rect x="58" y="86" width="2" height="2"/>
+                <rect x="105" y="92" width="2" height="2"/><rect x="152" y="92" width="2" height="2"/>
+                <rect x="199" y="96" width="2" height="2"/><rect x="225" y="86" width="2" height="2"/>
+                <rect x="270" y="94" width="2" height="2"/>
+              </g>
+            </svg>
+            <p class="poll-desc">Se forma cuando los gases vehiculares reaccionan con la radiación solar.</p>
+            <div class="poll-meta"><i class="fas fa-clock"></i> Pico 13:00–17:00 h</div>
+          </div>
+          <div class="poll-card poll-pm">
+            <div class="poll-card__top">
+              <span class="poll-symbol">PM<sub>2.5</sub></span>
+              <span class="poll-tag">Partículas finas</span>
+            </div>
+            <svg class="poll-svg" viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs>
+                <radialGradient id="pmHair" cx=".4" cy=".4" r=".7">
+                  <stop offset="0" stop-color="#fef1f0"/>
+                  <stop offset=".55" stop-color="#fca5a5"/>
+                  <stop offset="1" stop-color="#7f1d1d"/>
+                </radialGradient>
+                <radialGradient id="pmDot">
+                  <stop offset="0" stop-color="#fca5a5"/>
+                  <stop offset="1" stop-color="#7f1d1d"/>
+                </radialGradient>
+                <pattern id="pmGrid" width="14" height="14" patternUnits="userSpaceOnUse">
+                  <path d="M14 0 L0 0 L0 14" fill="none" stroke="#dbeafe" stroke-width=".6"/>
+                </pattern>
+              </defs>
+              <rect width="300" height="130" fill="#f0f6ff"/>
+              <rect width="300" height="130" fill="url(#pmGrid)"/>
+              <circle cx="80" cy="65" r="56" fill="url(#pmHair)" stroke="#7f1d1d" stroke-width="1.6"/>
+              <circle cx="80" cy="65" r="56" fill="none" stroke="#fff" stroke-width="1" stroke-dasharray="2 4" opacity=".6"/>
+              <text x="80" y="62" text-anchor="middle" font-size="9.5" fill="#fff" font-weight="800" font-family="Plus Jakarta Sans" letter-spacing="1">CABELLO</text>
+              <text x="80" y="76" text-anchor="middle" font-size="8" fill="#fff" font-weight="700" font-family="Plus Jakarta Sans" opacity=".85">≈70 µm</text>
+              <line x1="142" y1="65" x2="190" y2="65" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3 3"/>
+              <text x="166" y="58" text-anchor="middle" font-size="9" fill="#475569" font-weight="800" font-family="Plus Jakarta Sans">30×</text>
+              <text x="166" y="78" text-anchor="middle" font-size="7" fill="#64748b" font-weight="600" font-family="Plus Jakarta Sans">más fino</text>
+              <g transform="translate(232 62)">
+                <circle r="3.4" fill="url(#pmDot)"/>
+                <circle cx="9" cy="-5" r="2.6" fill="url(#pmDot)" opacity=".9"/>
+                <circle cx="-7" cy="7" r="2.2" fill="url(#pmDot)" opacity=".85"/>
+                <circle cx="16" cy="4" r="2" fill="url(#pmDot)" opacity=".8"/>
+                <circle cx="-12" cy="-6" r="1.6" fill="url(#pmDot)" opacity=".7"/>
+                <circle cx="22" cy="-3" r="1.8" fill="url(#pmDot)" opacity=".75"/>
+                <circle cx="6" cy="10" r="1.5" fill="url(#pmDot)" opacity=".7"/>
+                <circle cx="-3" cy="-10" r="1.3" fill="url(#pmDot)" opacity=".65"/>
+                <circle cx="20" cy="-11" r="1.5" fill="url(#pmDot)" opacity=".7"/>
+                <circle cx="-15" cy="2" r="1.4" fill="url(#pmDot)" opacity=".65"/>
+              </g>
+              <text x="232" y="98" text-anchor="middle" font-size="9.5" fill="#7f1d1d" font-weight="800" font-family="Plus Jakarta Sans" letter-spacing=".5">PM₂.₅</text>
+              <text x="232" y="109" text-anchor="middle" font-size="7" fill="#64748b" font-weight="700" font-family="Plus Jakarta Sans">2.5 µm</text>
+            </svg>
+            <p class="poll-desc">30× más finas que un cabello: alcanzan los alvéolos y el torrente sanguíneo.</p>
+            <div class="poll-meta"><i class="fas fa-arrow-down"></i> Penetra hasta la sangre</div>
+          </div>
         </div>
       </div>
-      <div class="col-lg-6 mb-4">
-        <div style="background:var(--cloud-alt);border-radius:20px;padding:32px;height:100%">
-          <h3 style="font-size:1.2rem;margin-bottom:14px"><i class="fas fa-calendar-days text-accent me-2"></i>Cuándo ocurren</h3>
-          <p style="margin-bottom:14px"><strong>Temporada de ozono:</strong> 15 de febrero al 15 de junio: alta radiación, baja humedad, inversiones térmicas frecuentes.</p>
-          <p style="margin:0"><strong>Temporada seca-fría:</strong> noviembre a febrero: incendios, quemas agrícolas y estancamiento atmosférico elevan PM2.5.</p>
+
+      <div class="bento-tile bento-when">
+        <span class="bento-eyebrow"><i class="fas fa-calendar-days"></i> Calendario de riesgo</span>
+        <div class="season-track">
+          <div class="season-bar">
+            <div class="season-band season-band--ozone" style="left:11.5%;width:33%"></div>
+            <div class="season-band season-band--pm" style="left:83%;width:25%"></div>
+            <div class="season-band season-band--pm" style="left:0%;width:16%"></div>
+            <div class="season-months">
+              <span>E</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span>
+              <span>J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span>
+            </div>
+          </div>
+        </div>
+        <div class="season-legend">
+          <div class="season-leg-item">
+            <span class="season-chip season-chip--ozone"><i class="fas fa-sun"></i></span>
+            <div>
+              <strong>Ozono · 15 feb – 15 jun</strong>
+              <span>Alta radiación, baja humedad, inversiones térmicas</span>
+            </div>
+          </div>
+          <div class="season-leg-item">
+            <span class="season-chip season-chip--pm"><i class="fas fa-fire"></i></span>
+            <div>
+              <strong>Seca-fría · nov – feb</strong>
+              <span>Incendios, quemas agrícolas y estancamiento atmosférico</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -558,11 +830,27 @@ footer.site-footer p{margin:4px 0}
       <div class="imeca-level extreme"><div class="val">Extrema</div><div class="lbl">Emergencia sanitaria</div><span class="range">201+</span></div>
     </div>
 
-    <div class="row mt-4">
-      <div class="col-lg-10">
-        <p style="font-size:.94rem;color:var(--text-muted);line-height:1.7">
-          <strong style="color:var(--navy)">¿Cuándo se activa una contingencia?</strong> Conforme al <em>Programa para Contingencias Ambientales Atmosféricas (PCAA)</em> de la CAMe, la <strong>Fase I</strong> se activa cuando se supera el umbral de 150 IMECA para ozono o 158 IMECA para PM2.5. La <strong>Fase II</strong> requiere superar 200 IMECA sostenido. Estos umbrales se actualizaron por última vez en 2023, volviéndose más estrictos.
-        </p>
+    <div class="trigger-flow">
+      <div class="trigger-flow__head">
+        <span class="trigger-flow__label"><i class="fas fa-bolt"></i> Activación de contingencia</span>
+        <span class="trigger-flow__source"><i class="fas fa-circle-info"></i> PCAA · CAMe · act. 2023</span>
+      </div>
+      <div class="trigger-flow__stages">
+        <div class="trigger-stage trigger-stage--1">
+          <span class="trigger-stage__pill">Fase I</span>
+          <div class="trigger-stage__values">
+            <div class="trigger-v"><strong>&gt;150</strong><em>IMECA O₃</em></div>
+            <span class="trigger-v__sep">o</span>
+            <div class="trigger-v"><strong>&gt;158</strong><em>IMECA PM₂.₅</em></div>
+          </div>
+        </div>
+        <i class="fas fa-arrow-right trigger-flow__arrow" aria-hidden="true"></i>
+        <div class="trigger-stage trigger-stage--2">
+          <span class="trigger-stage__pill">Fase II</span>
+          <div class="trigger-stage__values">
+            <div class="trigger-v"><strong>&gt;200</strong><em>IMECA sostenido</em></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -598,11 +886,16 @@ footer.site-footer p{margin:4px 0}
       </div>
     </div>
 
-    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:28px 32px;margin-top:32px;backdrop-filter:blur(8px)">
-      <p style="margin:0;color:rgba(255,255,255,.85);font-size:1rem;line-height:1.7">
-        <i class="fas fa-quote-left text-accent me-2" style="color:var(--sky)!important"></i>
-        Según la Organización Mundial de la Salud, <strong>no existe un nivel seguro de exposición al PM2.5</strong>. Cada incremento de 10 µg/m³ en la exposición a largo plazo se asocia con un 8% de aumento en mortalidad por todas las causas y 15% en mortalidad por enfermedad respiratoria.
-      </p>
+    <div class="oms-card">
+      <div class="oms-card__badge"><i class="fas fa-globe"></i> OMS</div>
+      <div class="oms-card__body">
+        <p class="oms-card__lead">No existe un nivel seguro de exposición al PM₂.₅</p>
+        <div class="oms-stats">
+          <div class="oms-stat"><span class="oms-stat__pct">+8%</span><span class="oms-stat__lbl">mortalidad por todas las causas</span></div>
+          <div class="oms-stat"><span class="oms-stat__pct">+15%</span><span class="oms-stat__lbl">mortalidad respiratoria</span></div>
+          <div class="oms-stat oms-stat--meta"><span class="oms-stat__pct">+10 µg/m³</span><span class="oms-stat__lbl">por cada incremento crónico</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -626,14 +919,15 @@ footer.site-footer p{margin:4px 0}
             <h3 class="fase-card__title">Fase I</h3>
             <div class="fase-card__sub">&gt; 150 IMECA O₃ o &gt; 158 IMECA PM2.5</div>
           </div>
+          <span class="fase-pill fase-pill--1">Alerta</span>
         </div>
-        <ul>
-          <li><strong>Hoy No Circula doble:</strong> aplica también a engomados que normalmente circulan</li>
-          <li><strong>Evitar actividad física al aire libre</strong> entre 13:00 y 19:00 h</li>
-          <li><strong>Reducción industrial:</strong> 30–40% de emisiones en empresas reguladas</li>
-          <li><strong>Suspensión de actividades</strong> deportivas escolares al aire libre</li>
-          <li><strong>Grupos sensibles</strong> (niños, embarazadas, mayores de 60, enfermedades respiratorias) deben quedarse en interiores</li>
-        </ul>
+        <div class="fase-rows">
+          <div class="fase-row"><span class="fase-row__ico"><i class="fas fa-car-side"></i></span><div><strong>Hoy No Circula doble</strong><span>Aplica también a engomados que normalmente circulan</span></div></div>
+          <div class="fase-row"><span class="fase-row__ico"><i class="fas fa-person-running"></i></span><div><strong>Sin ejercicio al aire libre</strong><span>Especialmente entre 13:00 y 19:00 h</span></div></div>
+          <div class="fase-row"><span class="fase-row__ico"><i class="fas fa-industry"></i></span><div><strong>Reducción industrial 30–40%</strong><span>En empresas reguladas de la ZMVM</span></div></div>
+          <div class="fase-row"><span class="fase-row__ico"><i class="fas fa-school"></i></span><div><strong>Deporte escolar suspendido</strong><span>Actividades al aire libre canceladas</span></div></div>
+          <div class="fase-row"><span class="fase-row__ico"><i class="fas fa-people-roof"></i></span><div><strong>Grupos sensibles en interiores</strong><span>Niños, embarazadas, +60 y enfermedad respiratoria</span></div></div>
+        </div>
       </div>
 
       <div class="fase-card fase-2">
@@ -643,14 +937,15 @@ footer.site-footer p{margin:4px 0}
             <h3 class="fase-card__title">Fase II</h3>
             <div class="fase-card__sub">&gt; 200 IMECA sostenido</div>
           </div>
+          <span class="fase-pill fase-pill--2">Emergencia</span>
         </div>
-        <ul>
-          <li><strong>Hoy No Circula extendido</strong> (incluso vehículos con holograma 00 y 0)</li>
-          <li><strong>Suspensión total</strong> de actividades al aire libre</li>
-          <li><strong>Reducción industrial hasta 60%</strong> en emisiones</li>
-          <li><strong>Recomendación explícita</strong> de permanecer en casa con ventanas cerradas</li>
-          <li><strong>Emergencia sanitaria:</strong> hospitales activan protocolos de saturación por urgencias respiratorias</li>
-        </ul>
+        <div class="fase-rows">
+          <div class="fase-row"><span class="fase-row__ico"><i class="fas fa-ban"></i></span><div><strong>Hoy No Circula extendido</strong><span>Incluye hologramas 00 y 0</span></div></div>
+          <div class="fase-row"><span class="fase-row__ico"><i class="fas fa-door-closed"></i></span><div><strong>Sin actividades al aire libre</strong><span>Suspensión total para toda la población</span></div></div>
+          <div class="fase-row"><span class="fase-row__ico"><i class="fas fa-industry"></i></span><div><strong>Industria hasta −60%</strong><span>Reducción máxima de emisiones</span></div></div>
+          <div class="fase-row"><span class="fase-row__ico"><i class="fas fa-house-chimney"></i></span><div><strong>Quédate en casa</strong><span>Ventanas cerradas durante el día</span></div></div>
+          <div class="fase-row"><span class="fase-row__ico"><i class="fas fa-hospital"></i></span><div><strong>Saturación hospitalaria</strong><span>Protocolos por urgencias respiratorias</span></div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -667,55 +962,55 @@ footer.site-footer p{margin:4px 0}
       </div>
     </div>
 
-    <div class="row mt-5 g-4">
-      <div class="col-md-6 col-lg-4">
-        <div style="background:#fff;border-radius:20px;padding:28px;box-shadow:var(--shadow-md);height:100%;border-top:4px solid var(--imeca-verybad)">
-          <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#fee2e2,#fef1f0);color:var(--imeca-verybad);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px"><i class="fas fa-lungs-virus"></i></div>
-          <h3 style="font-size:1.15rem;margin-bottom:10px">Asma</h3>
-          <p style="color:var(--text-muted);font-size:.94rem;line-height:1.65;margin-bottom:12px">El ozono y PM2.5 desencadenan broncoespasmo. Durante contingencias, las crisis asmáticas aumentan <strong style="color:var(--navy)">hasta 4–5 veces</strong>.</p>
-          <a href="/enfermedades/asma" style="color:var(--electric);text-decoration:none;font-weight:600;font-size:.88rem">Saber más sobre asma <i class="fas fa-arrow-right ms-1"></i></a>
+    <div class="effects-grid">
+      <a class="effect-card effect-card--red" href="/enfermedades/asma">
+        <span class="effect-card__ico"><i class="fas fa-lungs-virus"></i></span>
+        <div class="effect-card__body">
+          <div class="effect-card__head"><h3>Asma</h3><span class="effect-card__stat">×4–5</span></div>
+          <p>Crisis por broncoespasmo durante contingencias</p>
         </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div style="background:#fff;border-radius:20px;padding:28px;box-shadow:var(--shadow-md);height:100%;border-top:4px solid var(--imeca-bad)">
-          <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#fef3c7,#fff8e1);color:var(--imeca-bad);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px"><i class="fas fa-smoking"></i></div>
-          <h3 style="font-size:1.15rem;margin-bottom:10px">EPOC</h3>
-          <p style="color:var(--text-muted);font-size:.94rem;line-height:1.65;margin-bottom:12px">Las exacerbaciones agudas se duplican durante contingencias. Cada exacerbación acelera la pérdida de función pulmonar de forma <strong style="color:var(--navy)">irreversible</strong>.</p>
-          <a href="/enfermedades/epoc" style="color:var(--electric);text-decoration:none;font-weight:600;font-size:.88rem">Saber más sobre EPOC <i class="fas fa-arrow-right ms-1"></i></a>
+        <i class="fas fa-arrow-right effect-card__arrow"></i>
+      </a>
+      <a class="effect-card effect-card--orange" href="/enfermedades/epoc">
+        <span class="effect-card__ico"><i class="fas fa-smoking"></i></span>
+        <div class="effect-card__body">
+          <div class="effect-card__head"><h3>EPOC</h3><span class="effect-card__stat">×2</span></div>
+          <p>Exacerbaciones agudas, pérdida pulmonar irreversible</p>
         </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div style="background:#fff;border-radius:20px;padding:28px;box-shadow:var(--shadow-md);height:100%;border-top:4px solid var(--imeca-extreme)">
-          <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#ede9fe,#f5f3ff);color:var(--imeca-extreme);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px"><i class="fas fa-prescription-bottle-medical"></i></div>
-          <h3 style="font-size:1.15rem;margin-bottom:10px">Fibrosis pulmonar</h3>
-          <p style="color:var(--text-muted);font-size:.94rem;line-height:1.65;margin-bottom:12px">Estudios recientes vinculan PM2.5 con progresión acelerada de fibrosis pulmonar idiopática (FPI) y aumento de <strong style="color:var(--navy)">exacerbaciones agudas</strong>.</p>
-          <a href="/enfermedades/fibrosis-pulmonar" style="color:var(--electric);text-decoration:none;font-weight:600;font-size:.88rem">Saber más sobre FPI <i class="fas fa-arrow-right ms-1"></i></a>
+        <i class="fas fa-arrow-right effect-card__arrow"></i>
+      </a>
+      <a class="effect-card effect-card--purple" href="/enfermedades/fibrosis-pulmonar">
+        <span class="effect-card__ico"><i class="fas fa-prescription-bottle-medical"></i></span>
+        <div class="effect-card__body">
+          <div class="effect-card__head"><h3>Fibrosis pulmonar</h3><span class="effect-card__stat">↑</span></div>
+          <p>PM₂.₅ acelera progresión de FPI y exacerbaciones</p>
         </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div style="background:#fff;border-radius:20px;padding:28px;box-shadow:var(--shadow-md);height:100%;border-top:4px solid var(--electric)">
-          <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#dbeafe,#e8f4fd);color:var(--electric);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px"><i class="fas fa-bed"></i></div>
-          <h3 style="font-size:1.15rem;margin-bottom:10px">Apnea del sueño</h3>
-          <p style="color:var(--text-muted);font-size:.94rem;line-height:1.65;margin-bottom:12px">La inflamación de vía aérea superior por contaminantes empeora los eventos obstructivos nocturnos: peor calidad del sueño y mayor <strong style="color:var(--navy)">riesgo cardiovascular</strong>.</p>
-          <a href="/enfermedades/apnea-del-sueno" style="color:var(--electric);text-decoration:none;font-weight:600;font-size:.88rem">Saber más sobre SAHOS <i class="fas fa-arrow-right ms-1"></i></a>
+        <i class="fas fa-arrow-right effect-card__arrow"></i>
+      </a>
+      <a class="effect-card effect-card--blue" href="/enfermedades/apnea-del-sueno">
+        <span class="effect-card__ico"><i class="fas fa-bed"></i></span>
+        <div class="effect-card__body">
+          <div class="effect-card__head"><h3>Apnea del sueño</h3><span class="effect-card__stat">CV</span></div>
+          <p>Más eventos obstructivos, riesgo cardiovascular</p>
         </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div style="background:#fff;border-radius:20px;padding:28px;box-shadow:var(--shadow-md);height:100%;border-top:4px solid var(--imeca-verybad)">
-          <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#fee2e2,#fef1f0);color:var(--imeca-verybad);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px"><i class="fas fa-virus-covid"></i></div>
-          <h3 style="font-size:1.15rem;margin-bottom:10px">Secuelas COVID</h3>
-          <p style="color:var(--text-muted);font-size:.94rem;line-height:1.65;margin-bottom:12px">Pacientes con fibrosis post-COVID tienen mayor sensibilidad a contaminantes: tos, opresión y desaturación se exacerban en días de mala calidad del aire.</p>
-          <a href="/enfermedades/secuelas-covid" style="color:var(--electric);text-decoration:none;font-weight:600;font-size:.88rem">Saber más <i class="fas fa-arrow-right ms-1"></i></a>
+        <i class="fas fa-arrow-right effect-card__arrow"></i>
+      </a>
+      <a class="effect-card effect-card--red" href="/enfermedades/secuelas-covid">
+        <span class="effect-card__ico"><i class="fas fa-virus-covid"></i></span>
+        <div class="effect-card__body">
+          <div class="effect-card__head"><h3>Secuelas COVID</h3><span class="effect-card__stat">SpO₂</span></div>
+          <p>Tos, opresión y desaturación exacerbadas</p>
         </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div style="background:#fff;border-radius:20px;padding:28px;box-shadow:var(--shadow-md);height:100%;border-top:4px solid var(--imeca-good)">
-          <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#d1fae5,#eefaf5);color:var(--imeca-good);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px"><i class="fas fa-heart-pulse"></i></div>
-          <h3 style="font-size:1.15rem;margin-bottom:10px">Población general</h3>
-          <p style="color:var(--text-muted);font-size:.94rem;line-height:1.65;margin-bottom:12px">Aunque no tengas enfermedad respiratoria previa, la exposición crónica a PM2.5 aumenta el riesgo de <strong style="color:var(--navy)">cáncer de pulmón, infartos y ACV</strong>.</p>
-          <a href="/enfermedades/cancer-de-pulmon" style="color:var(--electric);text-decoration:none;font-weight:600;font-size:.88rem">Ver factores de riesgo <i class="fas fa-arrow-right ms-1"></i></a>
+        <i class="fas fa-arrow-right effect-card__arrow"></i>
+      </a>
+      <a class="effect-card effect-card--green" href="/enfermedades/cancer-de-pulmon">
+        <span class="effect-card__ico"><i class="fas fa-heart-pulse"></i></span>
+        <div class="effect-card__body">
+          <div class="effect-card__head"><h3>Población sana</h3><span class="effect-card__stat">+riesgo</span></div>
+          <p>Cáncer de pulmón, infartos y ACV por exposición crónica</p>
         </div>
-      </div>
+        <i class="fas fa-arrow-right effect-card__arrow"></i>
+      </a>
     </div>
   </div>
 </section>
@@ -882,18 +1177,19 @@ footer.site-footer p{margin:4px 0}
     <div class="alert-urgent">
       <div class="alert-urgent__badge"><i class="fas fa-triangle-exclamation"></i> Urgencia médica</div>
       <h3>Síntomas que indican crisis respiratoria</h3>
-      <ul class="alert-urgent__list">
-        <li>Dificultad severa para respirar en reposo</li>
-        <li>Labios o uñas azuladas (cianosis)</li>
-        <li>No poder hablar oraciones completas</li>
-        <li>Saturación de oxígeno &lt; 90%</li>
-        <li>Opresión torácica intensa o dolor en el pecho</li>
-        <li>Frecuencia respiratoria &gt; 30 por minuto</li>
-        <li>Uso de músculos accesorios al respirar</li>
-        <li>Alteración del estado de conciencia</li>
-        <li>Fiebre &gt; 38.5 °C con tos nueva</li>
-        <li>El inhalador de rescate no mejora los síntomas</li>
-      </ul>
+      <p style="color:var(--text-muted);font-size:.95rem;margin:0 0 22px;max-width:680px">Si reconoces uno o más de estos signos, no esperes: cada minuto de hipoxia importa.</p>
+      <div class="symptom-grid">
+        <div class="symptom-tile"><span class="symptom-tile__ico"><i class="fas fa-lungs"></i></span><strong>Disnea severa</strong><span>Dificultad para respirar en reposo</span></div>
+        <div class="symptom-tile"><span class="symptom-tile__ico symptom-tile__ico--purple"><i class="fas fa-droplet"></i></span><strong>Cianosis</strong><span>Labios o uñas azuladas</span></div>
+        <div class="symptom-tile"><span class="symptom-tile__ico"><i class="fas fa-comment-slash"></i></span><strong>Habla cortada</strong><span>No completa oraciones enteras</span></div>
+        <div class="symptom-tile"><span class="symptom-tile__ico"><i class="fas fa-percent"></i></span><strong>SpO₂ &lt; 90%</strong><span>Por oxímetro de pulso</span></div>
+        <div class="symptom-tile"><span class="symptom-tile__ico"><i class="fas fa-heart-crack"></i></span><strong>Dolor torácico</strong><span>Opresión intensa en el pecho</span></div>
+        <div class="symptom-tile"><span class="symptom-tile__ico"><i class="fas fa-wind"></i></span><strong>FR &gt; 30 / min</strong><span>Respiración muy acelerada</span></div>
+        <div class="symptom-tile"><span class="symptom-tile__ico"><i class="fas fa-person-falling"></i></span><strong>Músculos accesorios</strong><span>Cuello y costillas trabajan al respirar</span></div>
+        <div class="symptom-tile"><span class="symptom-tile__ico symptom-tile__ico--purple"><i class="fas fa-brain"></i></span><strong>Confusión</strong><span>Alteración del estado de conciencia</span></div>
+        <div class="symptom-tile"><span class="symptom-tile__ico"><i class="fas fa-temperature-high"></i></span><strong>Fiebre &gt; 38.5 °C</strong><span>Asociada a tos nueva</span></div>
+        <div class="symptom-tile"><span class="symptom-tile__ico"><i class="fas fa-spray-can"></i></span><strong>Rescate sin efecto</strong><span>El inhalador no mejora los síntomas</span></div>
+      </div>
       <div class="alert-urgent__911">
         <div class="num">911</div>
         <p>Llama al <strong style="color:#fff">911</strong> inmediatamente si presentas cualquiera de los síntomas anteriores. No manejes por tu cuenta a un hospital si estás muy disneico; la ambulancia ofrece oxígeno en ruta.</p>
@@ -905,13 +1201,25 @@ footer.site-footer p{margin:4px 0}
 <!-- ============ CTA preventiva ============ -->
 <section class="section-light" id="cta-preventiva">
   <div class="container">
-    <div class="cta-banner">
+    <div class="cta-banner cta-banner--rich">
+      <div class="cta-banner__glow" aria-hidden="true"></div>
       <div class="cta-banner__content">
-        <h3>Agenda una consulta preventiva antes de la próxima contingencia</h3>
-        <p>Evalúo tu función pulmonar con espirometría, ajusto tus inhaladores según guías GOLD/GINA y te entrego un plan de acción escrito personalizado. En Hospital Santa Coleta, CDMX.</p>
-        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-          <a class="btn-primary-cta" href="https://cal.com/" target="_blank" rel="noopener"><i class="far fa-calendar"></i> Agendar por Cal.com</a>
-          <a class="btn-ghost-cta" href="https://wa.me/525591708334" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp directo</a>
+        <span class="cta-eyebrow"><i class="fas fa-stethoscope"></i> Consulta preventiva</span>
+        <h3>Llega listo a la próxima contingencia</h3>
+        <p>Plan personalizado en una sola visita en Hospital Santa Coleta, CDMX.</p>
+        <div class="cta-features">
+          <div class="cta-feature"><span class="cta-feature__ico"><i class="fas fa-lungs"></i></span><strong>Espirometría</strong><span>Función pulmonar baseline</span></div>
+          <div class="cta-feature"><span class="cta-feature__ico"><i class="fas fa-spray-can-sparkles"></i></span><strong>Ajuste de inhaladores</strong><span>Según guías GOLD / GINA</span></div>
+          <div class="cta-feature"><span class="cta-feature__ico"><i class="fas fa-file-medical"></i></span><strong>Plan escrito</strong><span>Verde · amarillo · rojo</span></div>
+        </div>
+        <div class="cta-actions">
+          <a class="btn-whatsapp-mega" href="https://wa.me/525591708334" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp"></i>
+            <span>
+              <strong>Agendar por WhatsApp</strong>
+              <em>Respuesta directa del consultorio</em>
+            </span>
+          </a>
         </div>
       </div>
     </div>
@@ -1039,7 +1347,7 @@ window.addEventListener('scroll', updateTOC, {passive:true});
 updateTOC();
 
 // Scroll reveal
-document.querySelectorAll('.section-title, .section-lead, .stat-card, .fase-card, .imeca-scale, .plan-tabs, .plan-panel, .alert-urgent, .cta-banner, #enfermedades .col-md-6 > div').forEach(el=>el.classList.add('reveal'));
+document.querySelectorAll('.section-title, .section-lead, .stat-card, .fase-card, .imeca-scale, .plan-tabs, .plan-panel, .alert-urgent, .cta-banner, .effect-card, .trigger-flow, .bento-tile, .oms-card').forEach(el=>el.classList.add('reveal'));
 const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -10% 0px',threshold:.08});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
