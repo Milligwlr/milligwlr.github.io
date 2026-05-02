@@ -49,7 +49,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&display=swap">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,700&display=swap">
     <link rel="preload" as="image" href="favicon.png">
     <link rel="preload" as="image" href="images/foto-perfil.png">
 
@@ -205,8 +205,8 @@
     </script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,700&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
@@ -1162,6 +1162,17 @@
             color: var(--navy);
             margin-bottom: 8px;
             letter-spacing: -.03em;
+        }
+        .about__name .last {
+            display: block;
+            background: linear-gradient(135deg, var(--cyan) 0%, var(--electric) 45%, #6c5ce7 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-style: italic;
+            font-family: 'Fraunces', 'Plus Jakarta Sans', serif;
+            font-weight: 700;
+            letter-spacing: -.02em;
         }
         .about__highlight {
             display: inline;
@@ -2619,12 +2630,12 @@
                     <div class="about__portrait reveal">
                         <div class="about__portrait-glow"></div>
                         <div class="about__photo-frame">
-                            <img src="images/foto-perfil.png" alt="Dr. William César Lara Vázquez, neumólogo en CDMX" width="600" height="600" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+                            <img src="images/dr-william-lara.jpg" alt="Dr. William César Lara Vázquez, neumólogo en CDMX" width="600" height="600" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
                         </div>
                     </div>
                     <div class="about__bio">
                         <span class="about__label reveal">Acerca de mí</span>
-                        <h2 class="about__name reveal">Dr. William César<br>Lara Vázquez</h2>
+                        <h2 class="about__name reveal">Dr. William César<br><span class="last">Lara Vázquez</span></h2>
                         <p class="about__subtitle reveal">Neumólogo de Alta Especialidad</p>
                         <p class="about__paragraph reveal">Mi formación en el <strong>Instituto Nacional de Enfermedades Respiratorias (INER)</strong> y la <span class="about__highlight">Alta Especialidad en EPOC</span> en curso me permiten ofrecerte un diagnóstico riguroso y actualizado, en un consultorio donde cada paciente recibe el tiempo y la atención que necesita.</p>
                         <div class="about__commitment reveal">

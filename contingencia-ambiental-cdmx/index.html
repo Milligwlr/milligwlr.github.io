@@ -73,6 +73,13 @@ h1,h2,h3,h4{font-weight:800;color:var(--navy);letter-spacing:-.02em}
 .brand-name{background:linear-gradient(135deg,var(--navy) 0%,var(--royal) 70%,var(--electric) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .nav-back{color:var(--text-muted);text-decoration:none;font-weight:600;font-size:.88rem;transition:color .3s}
 .nav-back:hover{color:var(--electric)}
+.navbar .nav-link{color:var(--navy)!important;font-weight:600;font-size:.92rem;padding:8px 14px!important;transition:color .3s}
+.navbar .nav-link:hover,.navbar .nav-link.active{color:var(--electric)!important}
+.navbar .dropdown-menu{border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-md);padding:8px;margin-top:8px}
+.navbar .dropdown-item{font-size:.88rem;font-weight:500;color:var(--text);border-radius:8px;padding:8px 12px}
+.navbar .dropdown-item:hover{background:var(--cloud);color:var(--electric)}
+.navbar-cta{background:var(--electric);color:#fff!important;padding:10px 22px;border-radius:100px;font-weight:700;text-decoration:none;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;transition:all .3s var(--ease);box-shadow:0 6px 20px rgba(9,132,227,.28)}
+.navbar-cta:hover{background:#0773c5;transform:translateY(-2px);box-shadow:0 8px 24px rgba(9,132,227,.4);color:#fff!important}
 
 /* ===== HERO ===== */
 .hero{position:relative;min-height:78vh;display:flex;align-items:center;overflow:hidden;color:#fff;padding:80px 0 60px;
@@ -292,13 +299,63 @@ footer.site-footer p{margin:4px 0}
 </div>
 
 <!-- NAV -->
-<nav class="navbar">
+<nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
   <div class="container">
     <a class="navbar-brand" href="/">
       <img src="/favicon.png" alt="Alveos" loading="lazy" decoding="async">
       <span class="brand-name">ALVEOS</span>
     </a>
-    <a class="nav-back" href="/"><i class="fas fa-arrow-left me-2"></i>Volver al inicio</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Menú">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="/sobre-el-doctor/">Sobre el Doctor</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="/#servicios" role="button" data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item fw-bold" href="/#servicios">Ver todos</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/servicios/espirometria/">Espirometría</a></li>
+            <li><a class="dropdown-item" href="/servicios/poligrafia-respiratoria/">Poligrafía respiratoria</a></li>
+            <li><a class="dropdown-item" href="/servicios/titulacion-presion-positiva/">Titulación CPAP/BiPAP</a></li>
+            <li><a class="dropdown-item" href="/servicios/feno/">FeNO</a></li>
+            <li><a class="dropdown-item" href="/servicios/broncoscopia/">Broncoscopia</a></li>
+            <li><a class="dropdown-item" href="/servicios/toracocentesis/">Toracocentesis</a></li>
+            <li><a class="dropdown-item" href="/servicios/cateter-pleural-multiproposito/">Catéter pleural</a></li>
+            <li><a class="dropdown-item" href="/servicios/seguimiento-enfermedades-cronicas/">Seguimiento crónico</a></li>
+            <li><a class="dropdown-item" href="/servicios/tratamiento-dejar-de-fumar/">Dejar de fumar</a></li>
+            <li><a class="dropdown-item" href="/servicios/teleconsulta/">Teleconsulta</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="/#enfermedades" role="button" data-bs-toggle="dropdown" aria-expanded="false">Enfermedades</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item fw-bold" href="/#enfermedades">Ver todas</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/enfermedades/epoc/">EPOC</a></li>
+            <li><a class="dropdown-item" href="/enfermedades/asma/">Asma</a></li>
+            <li><a class="dropdown-item" href="/enfermedades/apnea-del-sueno/">Apnea del sueño</a></li>
+            <li><a class="dropdown-item" href="/enfermedades/neumonia/">Neumonía</a></li>
+            <li><a class="dropdown-item" href="/enfermedades/fibrosis-pulmonar/">Fibrosis pulmonar</a></li>
+            <li><a class="dropdown-item" href="/enfermedades/cancer-de-pulmon/">Cáncer de pulmón</a></li>
+            <li><a class="dropdown-item" href="/enfermedades/derrames-pleurales/">Derrames pleurales</a></li>
+            <li><a class="dropdown-item" href="/enfermedades/bronquiectasias/">Bronquiectasias</a></li>
+            <li><a class="dropdown-item" href="/enfermedades/hipertension-pulmonar/">Hipertensión pulmonar</a></li>
+            <li><a class="dropdown-item" href="/enfermedades/embolia-pulmonar/">Embolia pulmonar</a></li>
+            <li><a class="dropdown-item" href="/enfermedades/tabaquismo/">Tabaquismo</a></li>
+            <li><a class="dropdown-item" href="/enfermedades/secuelas-covid/">Secuelas post-COVID</a></li>
+            <li><a class="dropdown-item" href="/enfermedades/influenza/">Influenza</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="/preguntas-frecuentes/">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#contacto-final">Contacto</a></li>
+      </ul>
+    </div>
+    <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener" class="navbar-cta d-none d-lg-inline-flex">
+      Agendar cita <i class="bi bi-arrow-right"></i>
+    </a>
   </div>
 </nav>
 
@@ -312,7 +369,6 @@ footer.site-footer p{margin:4px 0}
       <div class="col-lg-7 hero__content">
         <div class="hero__badge"><span class="dot"></span> Guía actualizada · Temporada 2026</div>
         <h1>Contingencia ambiental en CDMX: qué hacer si tienes <em>asma, EPOC o problemas respiratorios</em></h1>
-        <p class="hero__lead">Plan clínico por enfermedad, umbrales IMECA oficiales y señales de alarma explicadas por un neumólogo formado en el INER. Información basada en datos oficiales de CAMe, SEDEMA y guías internacionales GOLD/GINA.</p>
         <div class="hero__meta">
           <div class="hero__meta-item"><i class="fas fa-user-md"></i> Dr. William César Lara Vázquez</div>
           <div class="hero__meta-item"><i class="fas fa-id-card"></i> Céd. Esp. 15595809</div>
