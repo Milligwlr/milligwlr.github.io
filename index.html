@@ -308,6 +308,10 @@
         .nav-link:hover::after { width: 100%; left: 0; }
         .nav-link.dropdown-toggle::after { display: none; }
         .nav-link:hover { color: var(--electric) !important; }
+        .nav-link--alert{color:var(--imeca-verybad)!important;font-weight:700!important}
+        .nav-link--alert::after{background:var(--imeca-verybad)!important}
+        .nav-link--alert:hover{color:#b91c1c!important}
+        .nav-link--alert i{opacity:.9}
         .social-icons a {
             color: var(--text-muted);
             font-size: 1.55rem;
@@ -2522,6 +2526,7 @@
                             <li><a class="dropdown-item" href="/enfermedades/influenza/">Influenza</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item"><a class="nav-link nav-link--alert" href="/contingencia-ambiental-cdmx/"><i class="fas fa-smog me-1"></i>Contingencia</a></li>
                     <li class="nav-item"><a class="nav-link" href="/preguntas-frecuentes/">FAQ</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contacto-final">Contacto</a></li>
                 </ul>
