@@ -492,6 +492,134 @@
 </div>
 </div>
 
+<!-- STOP-BANG CALCULATOR -->
+<div class="apn-section reveal">
+<span class="apn-section__eyebrow"><i class="bi bi-clipboard2-pulse-fill"></i> Cuestionario STOP-BANG</span>
+<h2 class="apn-section__title">Calcula tu riesgo <em>en 30 segundos</em></h2>
+
+<div class="stopbang">
+<div class="stopbang__inner">
+
+  <div class="stopbang__list" id="sbList">
+
+    <div class="sb-item" data-q="s" onclick="this.classList.toggle('active')">
+      <div class="sb-item__letter">S</div>
+      <div class="sb-item__text">¿Roncas fuerte sin parar?</div>
+      <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
+    </div>
+
+    <div class="sb-item" data-q="t" onclick="this.classList.toggle('active')">
+      <div class="sb-item__letter">T</div>
+      <div class="sb-item__text">¿Te sientes somnoliento de día?</div>
+      <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
+    </div>
+
+    <div class="sb-item" data-q="o" onclick="this.classList.toggle('active')">
+      <div class="sb-item__letter">O</div>
+      <div class="sb-item__text">¿Alguien vio pausas al respirar?</div>
+      <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
+    </div>
+
+    <div class="sb-item" data-q="p" onclick="this.classList.toggle('active')">
+      <div class="sb-item__letter">P</div>
+      <div class="sb-item__text">¿Tienes presión arterial alta?</div>
+      <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
+    </div>
+
+    <div class="sb-item" id="sbItemB" data-q="b" onclick="sbToggleB(this)">
+      <div class="sb-item__letter">B</div>
+      <div class="sb-item__text">¿Tu IMC es mayor de 35?</div>
+      <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
+    </div>
+    <div class="sb-bmi" id="sbBmiCalc">
+      <span class="sb-bmi__label">Calcular IMC:</span>
+      <div class="sb-bmi__inputs">
+        <input class="sb-bmi__input" id="sbKg" type="number" inputmode="decimal" placeholder="Peso kg" min="30" max="250" step="0.1" aria-label="Peso en kilogramos">
+        <input class="sb-bmi__input" id="sbCm" type="number" inputmode="decimal" placeholder="Talla cm" min="100" max="250" step="1" aria-label="Talla en centímetros">
+      </div>
+      <button class="sb-bmi__btn" onclick="sbCalcBmi()" type="button">Calcular</button>
+      <div class="sb-bmi__result" id="sbBmiResult"></div>
+    </div>
+
+    <div class="sb-item" data-q="a" onclick="this.classList.toggle('active')">
+      <div class="sb-item__letter">A</div>
+      <div class="sb-item__text">¿Tienes más de 50 años?</div>
+      <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
+    </div>
+
+    <div class="sb-item" data-q="n" onclick="this.classList.toggle('active')">
+      <div class="sb-item__letter">N</div>
+      <div class="sb-item__text">¿Tu cuello mide más de 40 cm?</div>
+      <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
+    </div>
+
+    <div class="sb-item" data-q="g" onclick="this.classList.toggle('active')">
+      <div class="sb-item__letter">G</div>
+      <div class="sb-item__text">¿Eres hombre?</div>
+      <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
+    </div>
+
+  </div>
+
+  <button class="sb-calc-btn" onclick="sbCalcular()" type="button">
+    <i class="bi bi-clipboard2-check-fill"></i> Calcular riesgo
+  </button>
+
+  <div class="stopbang__result" id="sbResult">
+    <div class="stopbang__result__row">
+      <div class="stopbang__result__score" id="sbScore">0</div>
+      <div>
+        <div class="stopbang__result__label" id="sbLabel">Riesgo bajo</div>
+        <div class="stopbang__result__title" id="sbTitle">Puntuación de 8</div>
+      </div>
+    </div>
+    <div class="stopbang__result__msg" id="sbMsg"></div>
+    <a href="https://wa.me/5215591708334?text=Hice%20el%20STOP-BANG%20y%20quiero%20hablar%20con%20el%20doctor" target="_blank" rel="noopener" class="stopbang__result__cta" id="sbCta">
+      <i class="bi bi-whatsapp"></i> <span id="sbCtaTxt">Consultar al doctor</span>
+    </a>
+    <div class="stopbang__disclaimer">* Herramienta de tamizaje, no diagnóstico. Solo un estudio del sueño confirma la apnea. Basado en: Chung F. et al., Anesthesiology 2008.</div>
+  </div>
+
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+  var msgs=[
+    {cls:'low',label:'Riesgo bajo',title:'Bajo riesgo de apnea',msg:'Tu puntuación sugiere bajo riesgo. Si de todas formas roncas o te sientes cansado, una consulta puede darte tranquilidad.',ctaCls:'neutral',ctaTxt:'Consultar al doctor'},
+    {cls:'mid',label:'Riesgo intermedio',title:'Posible apnea del sueño',msg:'Tu puntuación indica riesgo intermedio. Se recomienda una evaluación médica para descartar o confirmar la apnea.',ctaCls:'',ctaTxt:'Agendar valoración'},
+    {cls:'high',label:'Riesgo alto',title:'Alto riesgo de apnea',msg:'Tu puntuación es alta. Existe probabilidad elevada de apnea — busca atención pronto para proteger tu corazón y calidad de vida.',ctaCls:'',ctaTxt:'Hablar con el doctor ahora'}
+  ];
+  window.sbToggleB=function(el){el.classList.toggle('active');};
+  window.sbCalcBmi=function(){
+    var kg=parseFloat(document.getElementById('sbKg').value);
+    var cm=parseFloat(document.getElementById('sbCm').value);
+    var res=document.getElementById('sbBmiResult');
+    var itemB=document.getElementById('sbItemB');
+    if(!kg||!cm||kg<30||cm<100){res.textContent='Ingresa valores válidos.';return;}
+    var imc=kg/((cm/100)*(cm/100));
+    var over35=imc>35;
+    res.textContent='Tu IMC: '+imc.toFixed(1)+(over35?' — mayor de 35 ✓':' — menor de 35');
+    over35?itemB.classList.add('active'):itemB.classList.remove('active');
+  };
+  window.sbCalcular=function(){
+    var score=document.querySelectorAll('#sbList .sb-item.active').length;
+    var r=msgs[score>=5?2:score>=3?1:0];
+    document.getElementById('sbScore').textContent=score+'/8';
+    document.getElementById('sbLabel').textContent=r.label;
+    document.getElementById('sbTitle').textContent=r.title;
+    document.getElementById('sbMsg').textContent=r.msg;
+    document.getElementById('sbCtaTxt').textContent=r.ctaTxt;
+    var res=document.getElementById('sbResult');
+    res.className='stopbang__result stopbang__result--'+r.cls+' visible';
+    var cta=document.getElementById('sbCta');
+    cta.className='stopbang__result__cta'+(r.ctaCls?' stopbang__result__cta--'+r.ctaCls:'');
+    setTimeout(function(){res.scrollIntoView({behavior:'smooth',block:'nearest'});},150);
+  };
+})();
+</script>
+
 <!-- ESCALA IAH -->
 <div class="apn-section reveal">
 <span class="apn-section__eyebrow"><i class="bi bi-bar-chart-fill"></i> ¿Qué tan grave es?</span>
@@ -634,141 +762,6 @@
 </div>
 </div>
 </div>
-
-<!-- STOP-BANG CALCULATOR -->
-<div class="apn-section reveal">
-<span class="apn-section__eyebrow"><i class="bi bi-clipboard2-pulse-fill"></i> Cuestionario STOP-BANG</span>
-<h2 class="apn-section__title">Calcula tu riesgo <em>en 30 segundos</em></h2>
-
-<div class="stopbang">
-<div class="stopbang__inner">
-
-  <div class="stopbang__list" id="sbList">
-
-    <div class="sb-item" data-q="s" onclick="this.classList.toggle('active')">
-      <div class="sb-item__letter">S</div>
-      <div class="sb-item__text">¿Roncas fuerte sin parar?</div>
-      <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
-    </div>
-
-    <div class="sb-item" data-q="t" onclick="this.classList.toggle('active')">
-      <div class="sb-item__letter">T</div>
-      <div class="sb-item__text">¿Te sientes somnoliento de día?</div>
-      <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
-    </div>
-
-    <div class="sb-item" data-q="o" onclick="this.classList.toggle('active')">
-      <div class="sb-item__letter">O</div>
-      <div class="sb-item__text">¿Alguien vio pausas al respirar?</div>
-      <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
-    </div>
-
-    <div class="sb-item" data-q="p" onclick="this.classList.toggle('active')">
-      <div class="sb-item__letter">P</div>
-      <div class="sb-item__text">¿Tienes presión arterial alta?</div>
-      <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
-    </div>
-
-    <div class="sb-item" id="sbItemB" data-q="b" onclick="sbToggleB(this)">
-      <div class="sb-item__letter">B</div>
-      <div class="sb-item__text">¿Tu IMC es mayor de 35?</div>
-      <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
-    </div>
-    <!-- Mini BMI calculator -->
-    <div class="sb-bmi" id="sbBmiCalc">
-      <span class="sb-bmi__label">Calcular IMC:</span>
-      <div class="sb-bmi__inputs">
-        <input class="sb-bmi__input" id="sbKg" type="number" inputmode="decimal" placeholder="Peso kg" min="30" max="250" step="0.1" aria-label="Peso en kilogramos">
-        <input class="sb-bmi__input" id="sbCm" type="number" inputmode="decimal" placeholder="Talla cm" min="100" max="250" step="1" aria-label="Talla en centímetros">
-      </div>
-      <button class="sb-bmi__btn" onclick="sbCalcBmi()" type="button">Calcular</button>
-      <div class="sb-bmi__result" id="sbBmiResult"></div>
-    </div>
-
-    <div class="sb-item" data-q="a" onclick="this.classList.toggle('active')">
-      <div class="sb-item__letter">A</div>
-      <div class="sb-item__text">¿Tienes más de 50 años?</div>
-      <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
-    </div>
-
-    <div class="sb-item" data-q="n" onclick="this.classList.toggle('active')">
-      <div class="sb-item__letter">N</div>
-      <div class="sb-item__text">¿Tu cuello mide más de 40 cm?</div>
-      <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
-    </div>
-
-    <div class="sb-item" data-q="g" onclick="this.classList.toggle('active')">
-      <div class="sb-item__letter">G</div>
-      <div class="sb-item__text">¿Eres hombre?</div>
-      <div class="sb-item__check"><i class="bi bi-check-lg"></i></div>
-    </div>
-
-  </div><!-- /list -->
-
-  <button class="sb-calc-btn" onclick="sbCalcular()" type="button">
-    <i class="bi bi-clipboard2-check-fill"></i> Calcular riesgo
-  </button>
-
-  <div class="stopbang__result" id="sbResult">
-    <div class="stopbang__result__row">
-      <div class="stopbang__result__score" id="sbScore">0</div>
-      <div>
-        <div class="stopbang__result__label" id="sbLabel">Riesgo bajo</div>
-        <div class="stopbang__result__title" id="sbTitle">Puntuación de 8</div>
-      </div>
-    </div>
-    <div class="stopbang__result__msg" id="sbMsg"></div>
-    <a href="https://wa.me/5215591708334?text=Hice%20el%20STOP-BANG%20y%20quiero%20hablar%20con%20el%20doctor" target="_blank" rel="noopener" class="stopbang__result__cta" id="sbCta">
-      <i class="bi bi-whatsapp"></i> <span id="sbCtaTxt">Consultar al doctor</span>
-    </a>
-    <div class="stopbang__disclaimer">* Herramienta de tamizaje, no diagnóstico. Solo un estudio del sueño confirma la apnea. Basado en: Chung F. et al., Anesthesiology 2008.</div>
-  </div>
-
-</div>
-</div>
-</div><!-- /apn-section stopbang -->
-
-<script>
-(function(){
-  var msgs=[
-    {cls:'low',label:'Riesgo bajo',title:'Bajo riesgo de apnea',msg:'Tu puntuación sugiere bajo riesgo. Si de todas formas roncas o te sientes cansado, una consulta puede darte tranquilidad.',ctaCls:'neutral',ctaTxt:'Consultar al doctor'},
-    {cls:'mid',label:'Riesgo intermedio',title:'Posible apnea del sueño',msg:'Tu puntuación indica riesgo intermedio. Se recomienda una evaluación médica para descartar o confirmar la apnea.',ctaCls:'',ctaTxt:'Agendar valoración'},
-    {cls:'high',label:'Riesgo alto',title:'Alto riesgo de apnea',msg:'Tu puntuación es alta. Existe probabilidad elevada de apnea — busca atención pronto para proteger tu corazón y calidad de vida.',ctaCls:'',ctaTxt:'Hablar con el doctor ahora'}
-  ];
-
-  window.sbToggleB = function(el){
-    el.classList.toggle('active');
-  };
-
-  window.sbCalcBmi = function(){
-    var kg=parseFloat(document.getElementById('sbKg').value);
-    var cm=parseFloat(document.getElementById('sbCm').value);
-    var res=document.getElementById('sbBmiResult');
-    var itemB=document.getElementById('sbItemB');
-    if(!kg||!cm||kg<30||cm<100){res.textContent='Ingresa valores válidos.';return;}
-    var imc=kg/((cm/100)*(cm/100));
-    var imcR=imc.toFixed(1);
-    var over35=imc>35;
-    res.textContent='Tu IMC: '+imcR+(over35?' — mayor de 35 ✓':' — menor de 35');
-    if(over35){itemB.classList.add('active');}else{itemB.classList.remove('active');}
-  };
-
-  window.sbCalcular = function(){
-    var score=document.querySelectorAll('#sbList .sb-item.active').length;
-    var r=msgs[score>=5?2:score>=3?1:0];
-    document.getElementById('sbScore').textContent=score+'/8';
-    document.getElementById('sbLabel').textContent=r.label;
-    document.getElementById('sbTitle').textContent=r.title;
-    document.getElementById('sbMsg').textContent=r.msg;
-    document.getElementById('sbCtaTxt').textContent=r.ctaTxt;
-    var res=document.getElementById('sbResult');
-    res.className='stopbang__result stopbang__result--'+r.cls+' visible';
-    var cta=document.getElementById('sbCta');
-    cta.className='stopbang__result__cta'+(r.ctaCls?' stopbang__result__cta--'+r.ctaCls:'');
-    setTimeout(function(){res.scrollIntoView({behavior:'smooth',block:'nearest'});},150);
-  };
-})();
-</script>
 
 <!-- CTA FINAL -->
 <div class="apn-section reveal" style="margin-bottom:24px">
