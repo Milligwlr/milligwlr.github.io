@@ -215,6 +215,28 @@
 .faq-item__answer{padding:0 20px 18px;color:#3a4a5c;line-height:1.65;font-size:.92rem}
 @media(min-width:768px){.faq-item summary{padding:18px 22px;font-size:1.02rem}.faq-item__answer{padding:0 22px 20px;font-size:.97rem}}
 
+/* PROGRESSION CURVES */
+.fib-curves{background:linear-gradient(140deg,#0a1628 0%,#1a0d3a 100%);border-radius:24px;padding:28px 22px;color:#fff;position:relative;overflow:hidden;box-shadow:0 16px 48px rgba(140,69,230,.22)}
+@media(min-width:768px){.fib-curves{padding:40px 36px}}
+.fib-curves::before{content:'';position:absolute;inset:-40%;background:radial-gradient(circle at 25% 50%,rgba(140,69,230,.18),transparent 50%),radial-gradient(circle at 80% 50%,rgba(179,136,255,.1),transparent 50%);pointer-events:none}
+.fib-curves__inner{position:relative;z-index:1}
+.fib-curves__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(179,136,255,.12);border:1px solid rgba(179,136,255,.25);color:#b388ff;font-size:.7rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:6px 12px;border-radius:100px;margin-bottom:14px}
+.fib-curves__title{font-size:clamp(1.15rem,4vw,1.55rem);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.25;margin-bottom:18px}
+.fib-curves__legend{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:14px}
+.fib-legend-item{display:flex;align-items:center;gap:8px;font-size:.8rem;font-weight:600;color:rgba(255,255,255,.85)}
+.fib-legend-dot{width:18px;height:4px;border-radius:2px;flex-shrink:0}
+.fib-legend-dot.untreated{background:#ff6b6b;box-shadow:0 0 10px rgba(255,107,107,.5)}
+.fib-legend-dot.treated{background:#b388ff;box-shadow:0 0 10px rgba(179,136,255,.5)}
+.fib-curves__svg{width:100%;aspect-ratio:2.4/1;min-height:200px}
+.fib-curves__svg svg{width:100%;height:100%;overflow:visible}
+.curve-grid{stroke:rgba(255,255,255,.08);stroke-width:1}
+.curve-axis{stroke:rgba(255,255,255,.35);stroke-width:1.5}
+.curve-label{fill:rgba(255,255,255,.55);font-size:11px;font-weight:600}
+.curve-untreated{fill:none;stroke:#ff6b6b;stroke-width:3;stroke-linecap:round;stroke-dasharray:1200;stroke-dashoffset:1200;animation:curveDraw 2.2s var(--ease) .3s forwards;filter:drop-shadow(0 0 6px rgba(255,107,107,.5))}
+.curve-treated{fill:none;stroke:#b388ff;stroke-width:3;stroke-linecap:round;stroke-dasharray:1200;stroke-dashoffset:1200;animation:curveDraw 2.2s var(--ease) .6s forwards;filter:drop-shadow(0 0 6px rgba(179,136,255,.5))}
+@keyframes curveDraw{to{stroke-dashoffset:0}}
+.fib-curves__footer{margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.6;font-style:italic}
+
 /* HERO FX — efectos dinámicos */
 .disease-hero{position:relative;overflow:hidden}
 .disease-hero__bg::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(140,69,230,.13),transparent 70%);animation:heroFxPulse 7s ease-in-out infinite;pointer-events:none}
@@ -336,8 +358,8 @@
 <div class="row align-items-center g-4 g-lg-5">
 <div class="col-lg-7">
 <span class="fib-hero-tag"><span class="pulse"></span> Cada mes que pasa cuenta</span>
-<h1 class="fib-hero-title">El pulmón se cicatriza<br>y no vuelve atrás<em>Fibrosis Pulmonar Idiopática</em></h1>
-<p class="fib-hero-sub">La fibrosis avanza en silencio. <strong style="color:#fff">Detectarla pronto</strong> es la única forma de frenarla — los antifibróticos modernos cambian el pronóstico cuando se usan a tiempo.</p>
+<h1 class="fib-hero-title">El pulmón se cicatriza<br>y no vuelve atrás<em>Fibrosis Pulmonar</em></h1>
+<p class="fib-hero-sub">La fibrosis avanza en silencio. <strong style="color:#fff">Detectarla pronto</strong> es la única forma de frenarla — el tratamiento actual cambia el pronóstico cuando se usa a tiempo.</p>
 <div class="fib-hero-cta">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20agendar%20una%20cita%20por%20posible%20fibrosis%20pulmonar" target="_blank" class="btn-wa-hero"><i class="bi bi-whatsapp"></i> WhatsApp ahora</a>
 <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="btn-cal-hero"><i class="bi bi-calendar-check"></i> Agendar cita</a>
@@ -360,7 +382,7 @@
 <div class="fib-hero-visual__divider"></div>
 <div class="fib-hero-visual__row"><i class="bi bi-search" style="color:#b388ff"></i><span>TACAR de tórax — patrón UIP</span></div>
 <div class="fib-hero-visual__row"><i class="bi bi-activity" style="color:#b388ff"></i><span>Espirometría — patrón restrictivo</span></div>
-<div class="fib-hero-visual__row"><i class="bi bi-capsule-pill" style="color:#b388ff"></i><span>Pirfenidona / Nintedanib</span></div>
+<div class="fib-hero-visual__row"><i class="bi bi-capsule-pill" style="color:#b388ff"></i><span>Tratamiento antifibrótico</span></div>
 </div>
 </div>
 </div>
@@ -406,20 +428,6 @@
                 </div>
             </div>
         </div>
-
-<!-- ALERTA RÁPIDA -->
-<div class="fib-quick reveal">
-<div class="fib-quick__inner">
-<div class="fib-quick__badge"><i class="bi bi-hourglass-split"></i> El tiempo es pulmón</div>
-<h2 class="fib-quick__title">La mayoría llega <strong style="color:#b388ff">2 años después</strong> de los primeros síntomas — y para entonces ya se perdió mucho.</h2>
-<div class="fib-quick__big">2 años</div>
-<p class="fib-quick__big-lbl">es el retraso promedio entre los primeros síntomas y el diagnóstico de fibrosis pulmonar. Cada mes cuenta.</p>
-<div class="fib-quick__btns">
-<a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20tengo%20s%C3%ADntomas%20que%20podr%C3%ADan%20ser%20fibrosis%20pulmonar" target="_blank" class="fib-quick__btn fib-quick__btn--wa"><i class="bi bi-whatsapp"></i> Quiero valoración</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="fib-quick__btn fib-quick__btn--cal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
-</div>
-</div>
-</div>
 
 <!-- SÍNTOMAS -->
 <div class="fib-section reveal">
@@ -487,23 +495,36 @@
 <h2 class="fib-section__title">Detectar a tiempo <em>cambia todo</em></h2>
 <p class="fib-section__lead">El antifibrótico no revierte la cicatriz, pero frena el avance. La diferencia entre actuar pronto y esperar es enorme.</p>
 
-<div class="fib-compare">
-<div class="fib-compare__inner">
-<div class="fib-compare__badge"><i class="bi bi-clipboard2-data-fill"></i> Pérdida anual de capacidad pulmonar (CVF)</div>
-<h3 class="fib-compare__title">Con tratamiento temprano vs. sin tratamiento</h3>
-<div class="fib-compare__grid">
-<div class="fib-compare__card fib-compare__card--bad">
-<div class="fib-compare__label"><i class="bi bi-x-octagon-fill"></i> Sin tratamiento</div>
-<div class="fib-compare__num">−200<small style="font-size:.4em;font-weight:700;letter-spacing:0">ml/año</small></div>
-<p class="fib-compare__desc">Pérdida acelerada de función pulmonar. <strong>Más oxígeno, más cansancio, peor pronóstico.</strong></p>
+<div class="fib-curves">
+<div class="fib-curves__inner">
+<div class="fib-curves__badge"><i class="bi bi-graph-up"></i> Proyección de función pulmonar a 5 años</div>
+<h3 class="fib-curves__title">La pendiente importa más que el número de hoy</h3>
+<div class="fib-curves__legend">
+<div class="fib-legend-item"><span class="fib-legend-dot untreated"></span> Sin tratamiento</div>
+<div class="fib-legend-item"><span class="fib-legend-dot treated"></span> Con tratamiento</div>
 </div>
-<div class="fib-compare__card fib-compare__card--good">
-<div class="fib-compare__label"><i class="bi bi-check-circle-fill"></i> Con antifibrótico</div>
-<div class="fib-compare__num">−100<small style="font-size:.4em;font-weight:700;letter-spacing:0">ml/año</small></div>
-<p class="fib-compare__desc">Hasta <strong>50% menos progresión.</strong> Más años activos, más independencia, más vida.</p>
+<div class="fib-curves__svg" aria-hidden="true">
+<svg viewBox="0 0 600 230" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+<line class="curve-grid" x1="60" y1="40" x2="560" y2="40"/>
+<line class="curve-grid" x1="60" y1="90" x2="560" y2="90"/>
+<line class="curve-grid" x1="60" y1="140" x2="560" y2="140"/>
+<line class="curve-grid" x1="60" y1="190" x2="560" y2="190"/>
+<line class="curve-axis" x1="60" y1="20" x2="60" y2="200"/>
+<line class="curve-axis" x1="60" y1="200" x2="560" y2="200"/>
+<text class="curve-label" x="50" y="44" text-anchor="end">100%</text>
+<text class="curve-label" x="50" y="94" text-anchor="end">85%</text>
+<text class="curve-label" x="50" y="144" text-anchor="end">70%</text>
+<text class="curve-label" x="50" y="194" text-anchor="end">55%</text>
+<text class="curve-label" x="60" y="220" text-anchor="middle">Hoy</text>
+<text class="curve-label" x="185" y="220" text-anchor="middle">1 año</text>
+<text class="curve-label" x="310" y="220" text-anchor="middle">2 años</text>
+<text class="curve-label" x="435" y="220" text-anchor="middle">3 años</text>
+<text class="curve-label" x="560" y="220" text-anchor="middle">5 años</text>
+<path class="curve-untreated" d="M60 40 Q130 55 185 75 Q250 105 310 130 Q370 155 435 175 Q500 188 560 196"/>
+<path class="curve-treated" d="M60 40 Q150 48 240 58 Q330 70 420 82 Q490 92 560 102"/>
+</svg>
 </div>
-</div>
-<p style="font-size:.78rem;color:rgba(255,255,255,.45);margin-top:18px;font-style:italic;line-height:1.5">Datos basados en estudios INPULSIS y ASCEND con nintedanib y pirfenidona en FPI.</p>
+<p class="fib-curves__footer">Visualización educativa basada en datos promedio de ensayos clínicos. Cada paciente tiene su propia curva — el seguimiento cada 3-6 meses con espirometría y prueba de difusión es la base.</p>
 </div>
 </div>
 </div>
@@ -582,7 +603,7 @@
   <p class="faq-block__sub">Lo que más me preguntan en consulta sobre diagnóstico y tratamiento.</p>
   <details class="faq-item">
     <summary>¿La fibrosis pulmonar tiene cura?</summary>
-    <div class="faq-item__answer"><p>La FPI no se cura, pero los <strong>antifibróticos modernos (pirfenidona, nintedanib)</strong> frenan significativamente la progresión y prolongan la sobrevida. El trasplante pulmonar es opción en casos seleccionados.</p></div>
+    <div class="faq-item__answer"><p>La FPI no se cura, pero el <strong>tratamiento antifibrótico actual</strong> frena significativamente la progresión y prolonga la sobrevida. El trasplante pulmonar es opción en casos seleccionados.</p></div>
   </details>
   <details class="faq-item">
     <summary>¿Cómo se diagnostica?</summary>
