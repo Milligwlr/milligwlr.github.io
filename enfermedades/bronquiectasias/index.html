@@ -134,19 +134,55 @@
 @media(min-width:768px){.symp-card{padding:24px 18px}.symp-card h4{font-size:1rem}.symp-card p{font-size:.82rem}}
 
 /* ─── Anatomy split: bronquio sano vs dilatado ─── */
-.br-anatomy{display:grid;grid-template-columns:1fr;gap:16px;margin-top:8px}
-@media(min-width:768px){.br-anatomy{grid-template-columns:1fr 1fr;gap:20px}}
-.br-anatomy__card{background:linear-gradient(155deg,#0d2040 0%,#0a1628 100%);border:1px solid rgba(0,137,123,.22);border-radius:24px;padding:26px 22px 24px;position:relative;overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s}
-@media(min-width:768px){.br-anatomy__card{padding:32px 28px 28px}}
-.br-anatomy__card:hover{transform:translateY(-5px);box-shadow:0 22px 60px rgba(0,137,123,.18)}
-.br-anatomy__card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--bq),var(--bq-light),transparent)}
-.br-anatomy__card--bad::before{background:linear-gradient(90deg,transparent,#e17055,#d63031,transparent)}
-.br-anatomy__tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:100px;font-size:.66rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:rgba(38,166,154,.15);border:1px solid rgba(38,166,154,.3);color:var(--bq-light);margin-bottom:16px}
-.br-anatomy__card--bad .br-anatomy__tag{background:rgba(214,48,49,.14);border-color:rgba(214,48,49,.3);color:#ff7a6a}
-.br-anatomy__tag::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse-dot 2s ease-in-out infinite}
-.br-anatomy__svg{display:block;width:100%;height:auto;max-height:160px;margin-bottom:14px}
-.br-anatomy__h{color:#fff;font-weight:800;font-size:1.05rem;letter-spacing:-.02em;margin:0 0 8px}
-.br-anatomy__p{font-size:.88rem;color:rgba(255,255,255,.66);line-height:1.6;margin:0}
+.br-anatomy{display:grid;grid-template-columns:1fr;gap:18px;margin-top:8px}
+@media(min-width:768px){.br-anatomy{grid-template-columns:1fr 1fr;gap:24px}}
+.br-anatomy__card{background:linear-gradient(155deg,#0d2040 0%,#0a1628 60%,#06101e 100%);border:1px solid rgba(0,137,123,.25);border-radius:26px;padding:28px 24px;position:relative;overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s;box-shadow:0 18px 50px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.05)}
+@media(min-width:768px){.br-anatomy__card{padding:36px 32px}}
+.br-anatomy__card:hover{transform:translateY(-6px);box-shadow:0 28px 70px rgba(0,137,123,.25),inset 0 1px 0 rgba(255,255,255,.06)}
+.br-anatomy__card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--bq),var(--bq-light),var(--bq),transparent)}
+.br-anatomy__card--bad{border-color:rgba(214,48,49,.28)}
+.br-anatomy__card--bad:hover{box-shadow:0 28px 70px rgba(214,48,49,.22),inset 0 1px 0 rgba(255,255,255,.06)}
+.br-anatomy__card--bad::before{background:linear-gradient(90deg,transparent,#e17055,#d63031,#e17055,transparent)}
+.br-anatomy__card::after{content:'';position:absolute;top:-30%;right:-25%;width:75%;padding-bottom:75%;border-radius:50%;background:radial-gradient(circle,rgba(0,137,123,.22) 0%,transparent 65%);pointer-events:none}
+.br-anatomy__card--bad::after{background:radial-gradient(circle,rgba(214,48,49,.22) 0%,transparent 65%)}
+.br-anatomy__tag{position:relative;z-index:2;display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:100px;font-size:.66rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;background:rgba(38,166,154,.16);border:1px solid rgba(38,166,154,.36);color:var(--bq-light);margin-bottom:20px;backdrop-filter:blur(10px)}
+.br-anatomy__card--bad .br-anatomy__tag{background:rgba(214,48,49,.16);border-color:rgba(214,48,49,.36);color:#ff8a7a}
+.br-anatomy__tag::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 12px currentColor;animation:pulse-dot 2s ease-in-out infinite}
+
+/* ── Composición visual con iconos ── */
+.br-anatomy__visual{position:relative;height:170px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;border-radius:20px;overflow:hidden;background:radial-gradient(ellipse at center,rgba(0,137,123,.18) 0%,transparent 70%);border:1px solid rgba(255,255,255,.06)}
+.br-anatomy__card--bad .br-anatomy__visual{background:radial-gradient(ellipse at center,rgba(214,48,49,.18) 0%,transparent 70%)}
+@media(min-width:768px){.br-anatomy__visual{height:200px}}
+.br-anatomy__visual-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:22px 22px;mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%)}
+.br-anatomy__main-icon{position:relative;z-index:2;width:96px;height:96px;border-radius:28px;display:flex;align-items:center;justify-content:center;font-size:3rem;color:#fff;background:linear-gradient(135deg,var(--bq),var(--bq-dark));box-shadow:0 18px 44px rgba(0,137,123,.5),inset 0 1px 0 rgba(255,255,255,.18)}
+.br-anatomy__card--bad .br-anatomy__main-icon{background:linear-gradient(135deg,#e17055,#a51616);box-shadow:0 18px 44px rgba(214,48,49,.5),inset 0 1px 0 rgba(255,255,255,.18);animation:wobble 4s ease-in-out infinite}
+@keyframes wobble{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+.br-anatomy__orbit{position:absolute;z-index:1;width:42px;height:42px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;color:#fff;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.br-anatomy__orbit--1{top:14%;left:12%;background:linear-gradient(135deg,rgba(38,166,154,.85),rgba(0,137,123,.85));animation:floaty 4.5s ease-in-out infinite}
+.br-anatomy__orbit--2{top:18%;right:14%;background:linear-gradient(135deg,rgba(128,203,196,.85),rgba(38,166,154,.85));animation:floaty 5s ease-in-out infinite reverse}
+.br-anatomy__orbit--3{bottom:14%;left:18%;background:linear-gradient(135deg,rgba(0,150,136,.85),rgba(0,137,123,.85));animation:floaty 5.5s ease-in-out infinite .5s}
+.br-anatomy__orbit--4{bottom:16%;right:12%;background:linear-gradient(135deg,rgba(77,182,172,.85),rgba(38,166,154,.85));animation:floaty 4.8s ease-in-out infinite reverse .3s}
+.br-anatomy__card--bad .br-anatomy__orbit--1{background:linear-gradient(135deg,#f0a830,#e67e22);animation:shake 3s ease-in-out infinite}
+.br-anatomy__card--bad .br-anatomy__orbit--2{background:linear-gradient(135deg,#e17055,#d63031);animation:shake 3.5s ease-in-out infinite reverse}
+.br-anatomy__card--bad .br-anatomy__orbit--3{background:linear-gradient(135deg,#ffd93d,#f0a830);animation:shake 4s ease-in-out infinite .3s}
+.br-anatomy__card--bad .br-anatomy__orbit--4{background:linear-gradient(135deg,#d63031,#a51616);animation:shake 3.2s ease-in-out infinite reverse .4s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes shake{0%,100%{transform:translate(0,0) rotate(0)}25%{transform:translate(2px,-3px) rotate(-3deg)}50%{transform:translate(-2px,3px) rotate(3deg)}75%{transform:translate(3px,-2px) rotate(-2deg)}}
+
+.br-anatomy__h{position:relative;z-index:2;color:#fff;font-weight:800;font-size:1.1rem;letter-spacing:-.02em;margin:0 0 10px}
+.br-anatomy__p{position:relative;z-index:2;font-size:.92rem;color:rgba(255,255,255,.72);line-height:1.6;margin:0}
+.br-anatomy__features{position:relative;z-index:2;margin-top:18px;padding-top:16px;border-top:1px dashed rgba(255,255,255,.1);display:flex;flex-direction:column;gap:8px}
+.br-anatomy__feat{display:flex;align-items:center;gap:10px;font-size:.84rem;color:rgba(255,255,255,.78);font-weight:500}
+.br-anatomy__feat i{width:22px;height:22px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.72rem;flex-shrink:0;color:#fff}
+.br-anatomy__card .br-anatomy__feat i{background:rgba(38,166,154,.3);color:var(--bq-light)}
+.br-anatomy__card--bad .br-anatomy__feat i{background:rgba(214,48,49,.3);color:#ff8a7a}
+
+/* ── Section background enriquecido ── */
+.section-bg{background:
+  radial-gradient(ellipse 90% 50% at 5% 12%,rgba(0,137,123,.07) 0%,transparent 60%),
+  radial-gradient(ellipse 70% 60% at 95% 88%,rgba(38,166,154,.05) 0%,transparent 60%),
+  radial-gradient(ellipse 50% 30% at 50% 50%,rgba(0,137,123,.03) 0%,transparent 70%),
+  linear-gradient(180deg,#fafdfc 0%,#f4f9f8 100%)!important}
 
 /* ─── Vicious cycle ─── */
 .br-cycle{display:grid;grid-template-columns:1fr;gap:0;margin-top:8px;position:relative;border-radius:20px;overflow:hidden;border:1px solid rgba(0,137,123,.14);box-shadow:0 12px 44px rgba(0,137,123,.09)}
@@ -500,43 +536,39 @@
 <div class="br-anatomy">
     <div class="br-anatomy__card">
         <span class="br-anatomy__tag">Bronquio sano</span>
-        <svg class="br-anatomy__svg" viewBox="0 0 300 160" aria-hidden="true">
-            <defs>
-                <linearGradient id="bgSano" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#26a69a" stop-opacity=".4"/>
-                    <stop offset="100%" stop-color="#00897b" stop-opacity=".15"/>
-                </linearGradient>
-            </defs>
-            <path d="M30 80 C 80 78, 130 82, 190 80 L 270 80" fill="none" stroke="url(#bgSano)" stroke-width="26" stroke-linecap="round"/>
-            <path d="M30 80 C 80 78, 130 82, 190 80 L 270 80" fill="none" stroke="#80cbc4" stroke-width="2.5" stroke-linecap="round" opacity=".9"/>
-            <circle cx="60" cy="80" r="3.5" fill="#26a69a"/>
-            <circle cx="100" cy="80" r="3.5" fill="#26a69a"/>
-            <circle cx="140" cy="80" r="3.5" fill="#26a69a"/>
-            <circle cx="180" cy="80" r="3.5" fill="#26a69a"/>
-            <circle cx="220" cy="80" r="3.5" fill="#26a69a"/>
-            <path d="M40 72 L 45 64 M 80 72 L 85 64 M 120 72 L 125 64 M 160 72 L 165 64 M 200 72 L 205 64 M 240 72 L 245 64" stroke="#80cbc4" stroke-width="1.5" stroke-linecap="round" opacity=".8"/>
-        </svg>
+        <div class="br-anatomy__visual">
+            <div class="br-anatomy__visual-bg"></div>
+            <div class="br-anatomy__orbit br-anatomy__orbit--1"><i class="fa-solid fa-feather"></i></div>
+            <div class="br-anatomy__orbit br-anatomy__orbit--2"><i class="fa-solid fa-wind"></i></div>
+            <div class="br-anatomy__orbit br-anatomy__orbit--3"><i class="fa-solid fa-shield-heart"></i></div>
+            <div class="br-anatomy__orbit br-anatomy__orbit--4"><i class="fa-solid fa-arrow-up"></i></div>
+            <div class="br-anatomy__main-icon"><i class="fa-solid fa-lungs"></i></div>
+        </div>
         <h3 class="br-anatomy__h">Pared firme · calibre uniforme</h3>
         <p class="br-anatomy__p">Los cilios (las pestañitas internas) barren el moco hacia arriba cada minuto. La autolimpieza funciona sola.</p>
+        <div class="br-anatomy__features">
+            <div class="br-anatomy__feat"><i class="fa-solid fa-check"></i> Cilios activos barriendo moco</div>
+            <div class="br-anatomy__feat"><i class="fa-solid fa-check"></i> Pared elástica sin daños</div>
+            <div class="br-anatomy__feat"><i class="fa-solid fa-check"></i> Sin acumulación de bacterias</div>
+        </div>
     </div>
     <div class="br-anatomy__card br-anatomy__card--bad">
         <span class="br-anatomy__tag">Bronquio dilatado</span>
-        <svg class="br-anatomy__svg" viewBox="0 0 300 160" aria-hidden="true">
-            <defs>
-                <linearGradient id="bgMal" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#e17055" stop-opacity=".32"/>
-                    <stop offset="100%" stop-color="#d63031" stop-opacity=".15"/>
-                </linearGradient>
-            </defs>
-            <path d="M30 80 C 60 50, 90 110, 140 70 C 180 40, 210 120, 270 80" fill="none" stroke="url(#bgMal)" stroke-width="40" stroke-linecap="round"/>
-            <path d="M30 80 C 60 50, 90 110, 140 70 C 180 40, 210 120, 270 80" fill="none" stroke="#ff7a6a" stroke-width="2.5" stroke-linecap="round" opacity=".9"/>
-            <ellipse cx="70" cy="62" rx="11" ry="9" fill="#ffd93d" opacity=".7"/>
-            <ellipse cx="110" cy="98" rx="13" ry="10" fill="#ffd93d" opacity=".75"/>
-            <ellipse cx="170" cy="58" rx="12" ry="9" fill="#ffd93d" opacity=".7"/>
-            <ellipse cx="225" cy="100" rx="12" ry="9" fill="#ffd93d" opacity=".7"/>
-        </svg>
+        <div class="br-anatomy__visual">
+            <div class="br-anatomy__visual-bg"></div>
+            <div class="br-anatomy__orbit br-anatomy__orbit--1"><i class="fa-solid fa-droplet"></i></div>
+            <div class="br-anatomy__orbit br-anatomy__orbit--2"><i class="fa-solid fa-bacterium"></i></div>
+            <div class="br-anatomy__orbit br-anatomy__orbit--3"><i class="fa-solid fa-fire"></i></div>
+            <div class="br-anatomy__orbit br-anatomy__orbit--4"><i class="fa-solid fa-virus"></i></div>
+            <div class="br-anatomy__main-icon"><i class="fa-solid fa-lungs-virus"></i></div>
+        </div>
         <h3 class="br-anatomy__h">Paredes abolsadas · moco atrapado</h3>
         <p class="br-anatomy__p">Los bronquios se deforman como globitos y los cilios fallan. Las bolsas de moco se vuelven caldo de cultivo para bacterias.</p>
+        <div class="br-anatomy__features">
+            <div class="br-anatomy__feat"><i class="fa-solid fa-xmark"></i> Cilios dañados, sin barrer</div>
+            <div class="br-anatomy__feat"><i class="fa-solid fa-xmark"></i> Pared deformada permanente</div>
+            <div class="br-anatomy__feat"><i class="fa-solid fa-xmark"></i> Bacterias colonizan las bolsas</div>
+        </div>
     </div>
 </div>
 </div>
