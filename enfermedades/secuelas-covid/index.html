@@ -109,6 +109,32 @@
 .symp-card p{font-size:.78rem;color:var(--text-muted);margin:0;line-height:1.4}
 @media(min-width:768px){.symp-card{padding:24px 18px}.symp-card h4{font-size:1rem}.symp-card p{font-size:.82rem}}
 
+/* Quote cards (validación emocional) */
+.quote-grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:600px){.quote-grid{grid-template-columns:1fr 1fr;gap:14px}}
+@media(min-width:1100px){.quote-grid{grid-template-columns:repeat(4,1fr)}}
+.quote-card{background:#fff;border:1px solid var(--sc-bord);border-radius:20px;padding:22px 20px;margin:0;position:relative;transition:all .35s var(--ease);box-shadow:0 6px 18px rgba(10,22,40,.05);display:flex;flex-direction:column;gap:14px;overflow:hidden}
+.quote-card::before{content:'\201C';position:absolute;top:-18px;right:14px;font-family:Georgia,serif;font-size:7rem;color:var(--sc);opacity:.08;line-height:1;font-weight:700}
+.quote-card:hover{transform:translateY(-4px);border-color:var(--sc);box-shadow:0 18px 38px rgba(32,178,170,.15)}
+.quote-card__icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#20b2aa,#17897f);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 6px 16px rgba(32,178,170,.28);position:relative;z-index:1}
+.quote-card blockquote{margin:0;font-size:1rem;font-weight:600;color:var(--navy);line-height:1.4;letter-spacing:-.01em;position:relative;z-index:1}
+.quote-card blockquote strong{background:linear-gradient(120deg,transparent 0%,transparent 8%,rgba(32,178,170,.18) 8%,rgba(32,178,170,.18) 92%,transparent 92%);padding:0 2px;font-weight:700}
+.quote-card figcaption{font-size:.72rem;font-weight:800;color:var(--sc);text-transform:uppercase;letter-spacing:1.4px;margin-top:auto;padding-top:8px;border-top:1px solid rgba(32,178,170,.12)}
+
+/* Check list (auto-test) */
+.check-list{display:grid;grid-template-columns:1fr;gap:10px;background:linear-gradient(160deg,#fff,#f6fbfa);border:1px solid var(--sc-bord);border-radius:22px;padding:20px 18px;box-shadow:0 10px 30px rgba(32,178,170,.08)}
+@media(min-width:768px){.check-list{grid-template-columns:1fr 1fr;gap:12px 22px;padding:28px 26px}}
+.check-item{display:flex;align-items:flex-start;gap:12px;cursor:pointer;padding:10px 12px;border-radius:12px;transition:background .2s ease;-webkit-tap-highlight-color:transparent}
+.check-item:hover{background:rgba(32,178,170,.05)}
+.check-item input{position:absolute;opacity:0;pointer-events:none}
+.check-box{width:22px;height:22px;border-radius:7px;border:2px solid var(--sc);background:#fff;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s ease;margin-top:1px;position:relative}
+.check-box::after{content:'';width:10px;height:6px;border-left:2.5px solid #fff;border-bottom:2.5px solid #fff;transform:rotate(-45deg) translateY(-1px);opacity:0;transition:opacity .2s ease}
+.check-item input:checked + .check-box{background:linear-gradient(135deg,#20b2aa,#17897f);border-color:#17897f;box-shadow:0 4px 12px rgba(32,178,170,.4);transform:scale(1.05)}
+.check-item input:checked + .check-box::after{opacity:1}
+.check-txt{font-size:.92rem;color:var(--navy);line-height:1.45;font-weight:500;user-select:none}
+.check-item input:checked ~ .check-txt{color:var(--sc2)}
+.check-txt strong{color:var(--navy);font-weight:800}
+
 /* Risk grid */
 .risk-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(min-width:768px){.risk-grid{grid-template-columns:repeat(4,1fr);gap:16px}}
@@ -359,116 +385,76 @@
         </div>
 
 <!-- ============================================
-     SÍNTOMAS
+     SÍNTOMAS — validación emocional
 ============================================= -->
 <div class="sc-section reveal">
-<span class="sc-eyebrow"><i class="bi bi-clipboard-pulse"></i> Cómo se siente</span>
-<h2 class="sc-title">Las 4 quejas que <em>casi todos</em> repiten</h2>
-<p class="sc-lead">Si llevas <strong>más de 12 semanas</strong> con cualquiera de estos síntomas tras tu COVID, no es normal — y no se va a quitar solo.</p>
+<span class="sc-eyebrow"><i class="bi bi-chat-quote-fill"></i> Lo que sientes</span>
+<h2 class="sc-title">No te lo estás <em>inventando</em></h2>
+<p class="sc-lead">Los estudios "salen normales" pero tú sabes que algo no está bien. Esto es lo que más escucho en consulta — y sí, todo tiene explicación médica.</p>
 
-<div class="symp-grid">
-<div class="symp-card">
-<div class="symp-card__icon"><i class="bi bi-lungs-fill"></i></div>
-<h4>Te falta el aire</h4>
-<p>Al subir escaleras o caminar</p>
-</div>
-<div class="symp-card">
-<div class="symp-card__icon" style="background:linear-gradient(135deg,#0984e3,#1e3799)"><i class="bi bi-battery-half"></i></div>
-<h4>Cansancio extremo</h4>
-<p>No rindes ni medio día</p>
-</div>
-<div class="symp-card">
-<div class="symp-card__icon" style="background:linear-gradient(135deg,#bd56e6,#7b2cbf)"><i class="bi bi-cloud-fog2"></i></div>
-<h4>Niebla mental</h4>
-<p>Memoria y concentración</p>
-</div>
-<div class="symp-card">
-<div class="symp-card__icon" style="background:linear-gradient(135deg,#e64545,#c0392b)"><i class="bi bi-heart-pulse-fill"></i></div>
-<h4>Palpitaciones</h4>
-<p>Corazón acelerado al pararte</p>
-</div>
+<div class="quote-grid">
+<figure class="quote-card">
+<div class="quote-card__icon"><i class="bi bi-lungs-fill"></i></div>
+<blockquote>"Antes subía corriendo. Hoy <strong>me detengo en el rellano</strong>."</blockquote>
+<figcaption>Disnea de esfuerzo</figcaption>
+</figure>
+<figure class="quote-card">
+<div class="quote-card__icon" style="background:linear-gradient(135deg,#0984e3,#1e3799)"><i class="bi bi-battery-half"></i></div>
+<blockquote>"Hago una cosa al día y <strong>ya no puedo más</strong>."</blockquote>
+<figcaption>Fatiga post-esfuerzo</figcaption>
+</figure>
+<figure class="quote-card">
+<div class="quote-card__icon" style="background:linear-gradient(135deg,#bd56e6,#7b2cbf)"><i class="bi bi-cloud-fog2"></i></div>
+<blockquote>"<strong>Se me van las palabras</strong>. Llego al cuarto y no sé a qué."</blockquote>
+<figcaption>Niebla mental (brain fog)</figcaption>
+</figure>
+<figure class="quote-card">
+<div class="quote-card__icon" style="background:linear-gradient(135deg,#e64545,#c0392b)"><i class="bi bi-heart-pulse-fill"></i></div>
+<blockquote>"Me paro de la cama y <strong>el corazón se me dispara</strong>."</blockquote>
+<figcaption>Taquicardia postural</figcaption>
+</figure>
 </div>
 </div>
 
 <!-- ============================================
-     RIESGO
+     CHECK ME — autoevaluación tipo test
 ============================================= -->
 <div class="sc-section reveal">
-<span class="sc-eyebrow"><i class="bi bi-shield-exclamation"></i> Quién está más en riesgo</span>
-<h2 class="sc-title">Estos perfiles se complican más</h2>
-<p class="sc-lead">El Long COVID puede aparecer aun después de una infección leve. Pero algunos perfiles tienen más probabilidad.</p>
+<span class="sc-eyebrow"><i class="bi bi-ui-checks"></i> ¿Te suena?</span>
+<h2 class="sc-title">Si marcas <em>3 o más</em>, vale la pena evaluarte</h2>
+<p class="sc-lead">Una mini-prueba de 30 segundos. Mientras más cosas reconozcas en ti, más se justifica una valoración pulmonar dirigida.</p>
 
-<div class="risk-grid">
-<div class="risk-card">
-<div class="risk-card__icon" style="background:linear-gradient(135deg,#20b2aa,#17897f)"><i class="bi bi-hospital"></i></div>
-<h3>Hospitalizado por COVID</h3>
-<p>50-70% desarrolla secuelas.</p>
-</div>
-<div class="risk-card">
-<div class="risk-card__icon" style="background:linear-gradient(135deg,#bd56e6,#7b2cbf)"><i class="bi bi-gender-female"></i></div>
-<h3>Mujer 30-50 años</h3>
-<p>Es el grupo más afectado.</p>
-</div>
-<div class="risk-card">
-<div class="risk-card__icon" style="background:linear-gradient(135deg,#e64545,#c0392b)"><i class="bi bi-shield-slash"></i></div>
-<h3>No vacunado</h3>
-<p>Más riesgo de COVID grave.</p>
-</div>
-<div class="risk-card">
-<div class="risk-card__icon" style="background:linear-gradient(135deg,#0984e3,#1e3799)"><i class="bi bi-arrow-repeat"></i></div>
-<h3>Varias infecciones</h3>
-<p>Cada reinfección suma riesgo.</p>
-</div>
+<div class="check-list">
+<label class="check-item"><input type="checkbox"><span class="check-box"></span><span class="check-txt">Pasaron <strong>más de 3 meses</strong> y no regreso a mi línea base.</span></label>
+<label class="check-item"><input type="checkbox"><span class="check-box"></span><span class="check-txt">Antes hacía ejercicio. <strong>Hoy no puedo</strong> ni con caminar rápido.</span></label>
+<label class="check-item"><input type="checkbox"><span class="check-box"></span><span class="check-txt">Las escaleras me <strong>cuestan más</strong> que antes del COVID.</span></label>
+<label class="check-item"><input type="checkbox"><span class="check-box"></span><span class="check-txt">La gente me dice que estoy bien, pero <strong>yo sé que no</strong>.</span></label>
+<label class="check-item"><input type="checkbox"><span class="check-box"></span><span class="check-txt">Olvido cosas que <strong>antes no olvidaba</strong>.</span></label>
+<label class="check-item"><input type="checkbox"><span class="check-box"></span><span class="check-txt">Duermo y aun así <strong>despierto agotado</strong>.</span></label>
 </div>
 </div>
 
 <!-- ============================================
-     POR QUÉ IMPORTA — comparativa
+     ANTES vs CONMIGO
 ============================================= -->
 <div class="sc-section reveal">
-<span class="sc-eyebrow"><i class="bi bi-graph-up-arrow"></i> Por qué importa evaluarte</span>
-<h2 class="sc-title">Con plan, <em>la mayoría se recupera</em></h2>
-<p class="sc-lead">No es resignarse a "vivir así". La diferencia entre dejarlo pasar y seguir un plan dirigido es enorme.</p>
+<span class="sc-eyebrow"><i class="bi bi-arrow-left-right"></i> Tu camino, dos rutas</span>
+<h2 class="sc-title">Esperar no es <em>neutral</em></h2>
+<p class="sc-lead">El cuerpo no se "acomoda solo" después del COVID. La diferencia entre dejarlo pasar y traer un plan dirigido se mide en años de tu vida.</p>
 
 <div class="sc-vs">
 <div class="sc-vs__inner">
 <div class="sc-vs__col sc-vs__col--bad">
-<span class="sc-vs__lbl sc-vs__lbl--bad"><i class="bi bi-x-circle-fill"></i> Sin evaluar</span>
+<span class="sc-vs__lbl sc-vs__lbl--bad"><i class="bi bi-hourglass-bottom"></i> Si lo dejas pasar</span>
 <div class="sc-vs__num sc-vs__num--bad">2+ años</div>
-<p class="sc-vs__txt">Síntomas que se cronifican. Riesgo real de <strong>fibrosis pulmonar permanente</strong> y limitación de por vida.</p>
+<p class="sc-vs__txt">Síntomas que se cronifican. Riesgo real de <strong>fibrosis pulmonar permanente</strong>. Tu vida se ajusta a la baja sin que te des cuenta.</p>
 </div>
 <div class="sc-vs__arrow"><i class="bi bi-arrow-right"></i></div>
 <div class="sc-vs__col sc-vs__col--good">
-<span class="sc-vs__lbl sc-vs__lbl--good"><i class="bi bi-check-circle-fill"></i> Con plan dirigido</span>
+<span class="sc-vs__lbl sc-vs__lbl--good"><i class="bi bi-stars"></i> Con un plan a tu medida</span>
 <div class="sc-vs__num sc-vs__num--good">6-12 meses</div>
-<p class="sc-vs__txt">La mayoría <strong>recupera su línea base</strong> con rehabilitación pulmonar y manejo multidisciplinario temprano.</p>
+<p class="sc-vs__txt">La mayoría <strong>vuelve a su línea base</strong>. Recuperas el aire, la energía y la cabeza — paso a paso, con datos objetivos.</p>
 </div>
-</div>
-</div>
-</div>
-
-<!-- ============================================
-     SEÑALES DE ALARMA
-============================================= -->
-<div class="sc-section reveal">
-<span class="sc-eyebrow" style="color:#e64545;background:rgba(230,69,69,.08);border-color:rgba(230,69,69,.2)"><i class="bi bi-exclamation-triangle-fill"></i> Cuándo es urgencia</span>
-<h2 class="sc-title">Señales que dicen "ve a urgencias <em>ahora</em>"</h2>
-<p class="sc-lead">Después de un COVID, no toda molestia espera. Si aparece <strong>cualquiera</strong> de estas, no esperes:</p>
-
-<div class="alarm reveal">
-<div class="alarm__inner">
-<div class="alarm__head">
-<div class="alarm__badge"><i class="bi bi-exclamation-triangle-fill"></i></div>
-<h3 class="alarm__title">Acude a urgencias si tienes:</h3>
-</div>
-<ul class="alarm__list">
-<li><i class="bi bi-lungs-fill"></i> Te falta el aire en reposo</li>
-<li><i class="bi bi-droplet-half"></i> Labios o uñas morados</li>
-<li><i class="bi bi-heart-pulse"></i> Dolor en el pecho que no cede</li>
-<li><i class="bi bi-activity"></i> Hinchazón en una pierna</li>
-<li><i class="bi bi-brightness-low-fill"></i> Confusión o desmayo</li>
-<li><i class="bi bi-thermometer-high"></i> Fiebre nueva tras semanas bien</li>
-</ul>
 </div>
 </div>
 </div>
@@ -480,13 +466,13 @@
 <div class="sc-cta">
 <div class="sc-cta__inner">
 <div>
-<span class="sc-cta__eyebrow"><i class="bi bi-clipboard2-pulse"></i> Plan de recuperación</span>
-<h3 class="sc-cta__title">Llevas más de 3 meses sin volver a tu línea base. Vamos a destrabarlo.</h3>
+<span class="sc-cta__eyebrow"><i class="bi bi-clipboard2-pulse"></i> Tu plan, no un protocolo genérico</span>
+<h3 class="sc-cta__title">Vamos a poner <em style="font-style:normal;color:#7fe0c9">números</em> a lo que sientes — y a destrabarlo.</h3>
 <ul class="sc-cta__list">
-<li><i class="bi bi-check-circle-fill"></i> Espirometría, DLCO y caminata de 6 minutos</li>
-<li><i class="bi bi-check-circle-fill"></i> TAC si sospecha de fibrosis post-COVID</li>
-<li><i class="bi bi-check-circle-fill"></i> Plan de rehabilitación pulmonar a tu ritmo</li>
-<li><i class="bi bi-check-circle-fill"></i> Coordinación con cardio / neuro si hace falta</li>
+<li><i class="bi bi-check-circle-fill"></i> Mido tu pulmón con espirometría, DLCO y caminata de 6 min</li>
+<li><i class="bi bi-check-circle-fill"></i> Descarto fibrosis con TAC si tu historia lo justifica</li>
+<li><i class="bi bi-check-circle-fill"></i> Diseño tu rehabilitación a tu ritmo — sin "echarle ganas"</li>
+<li><i class="bi bi-check-circle-fill"></i> Te conecto con cardio o neuro si la cosa va más allá</li>
 </ul>
 </div>
 <div>
