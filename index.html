@@ -164,7 +164,7 @@
         {
           "@type":"MedicalClinic",
           "@id":"https://alveos.mx/#clinic-santa-coleta",
-          "name":"Dr. William Lara — Consultorio Hospital Santa Coleta",
+          "name":"Dr. William Lara, Consultorio Hospital Santa Coleta",
           "url":"https://alveos.mx/",
           "telephone":"+525591708334",
           "medicalSpecialty":"https://schema.org/Pulmonary",
@@ -2628,7 +2628,7 @@
                         <p class="about__subtitle reveal">Neumólogo de Alta Especialidad</p>
                         <p class="about__paragraph reveal">Mi formación en el <strong>Instituto Nacional de Enfermedades Respiratorias (INER)</strong> y la <span class="about__highlight">Alta Especialidad en EPOC</span> en curso me permiten ofrecerte un diagnóstico riguroso y actualizado, en un consultorio donde cada paciente recibe el tiempo y la atención que necesita.</p>
                         <div class="about__commitment reveal">
-                            Mi compromiso contigo es claro: <strong>escucharte sin prisa</strong>, explicarte sin tecnicismos y construir un plan de tratamiento adaptado a <em>tu vida y tu ritmo</em>. Porque cada respiración cuenta — y cada paciente es único.
+                            Mi compromiso contigo es claro: <strong>escucharte sin prisa</strong>, explicarte sin tecnicismos y construir un plan de tratamiento adaptado a <em>tu vida y tu ritmo</em>. Porque cada respiración cuenta, y cada paciente es único.
                         </div>
                         <a href="/sobre-el-doctor/" class="about__cta-btn reveal">Conoce mi trayectoria <i class="bi bi-arrow-right"></i></a>
                     </div>
@@ -2885,7 +2885,7 @@
                             <div class="service-card">
                                 <div class="service-card__icon"><i class="bi bi-activity" aria-hidden="true"></i></div>
                                 <h3>Espirometría con broncodilatador</h3>
-                                <p>Medimos tu función pulmonar antes y después de un broncodilatador para determinar si la obstrucción de tus vías aéreas es reversible — clave para distinguir asma de EPOC.</p>
+                                <p>Medimos tu función pulmonar antes y después de un broncodilatador para determinar si la obstrucción de tus vías aéreas es reversible, clave para distinguir asma de EPOC.</p>
                                 
                             </div>
                             <div class="service-card">
@@ -2977,7 +2977,7 @@
                             <div class="service-card">
                                 <div class="service-card__icon"><i class="bi bi-clipboard-check" aria-hidden="true"></i></div>
                                 <h3>Seguimiento de enfermedades crónicas</h3>
-                                <p>Asma, EPOC, fibrosis pulmonar — el seguimiento regular es clave. Ajustamos tu tratamiento continuamente para que tengas menos crisis y más días buenos.</p>
+                                <p>Asma, EPOC, fibrosis pulmonar: el seguimiento regular es clave. Ajustamos tu tratamiento continuamente para que tengas menos crisis y más días buenos.</p>
                                 <span class="service-card__cta">Agendar <i class="bi bi-arrow-right"></i></span>
                             </div>
                         </div></div>
@@ -3227,7 +3227,7 @@
                   <span class="cont-eyebrow__dot" aria-hidden="true"></span>
                   <span class="cont-eyebrow__text">Temporada de contingencias</span>
                   <span class="cont-eyebrow__sep" aria-hidden="true"></span>
-                  <span class="cont-eyebrow__period">Feb — Jun</span>
+                  <span class="cont-eyebrow__period">Feb a Jun</span>
                 </div>
                 <h3 class="cont-title">El aire en CDMX hoy puede <em>afectar tu respiración</em></h3>
                 <p class="cont-desc">Si tienes asma, EPOC o rinitis alérgica, los días de mala calidad del aire pueden disparar síntomas. Aprende a leer el AQI, cuándo quedarte en casa y cómo protegerte.</p>
@@ -3236,7 +3236,7 @@
                   Ver guía de protección
                   <i class="bi bi-arrow-right cont-cta__arrow"></i>
                 </a>
-                <p class="cont-source"><i class="bi bi-patch-check-fill" style="color:#10b981"></i> Datos: Open-Meteo Air Quality · CDMX</p>
+                <p class="cont-source"><i class="bi bi-patch-check-fill" style="color:#10b981"></i> Datos: World Air Quality Index (AQICN) · CDMX</p>
               </div>
 
             </div>
@@ -3330,9 +3330,11 @@
         </script>
         <script>
         (function(){
-          // AQI live widget — Open-Meteo Air Quality API (libre, sin token)
-          // Coordenadas: Hospital Santa Coleta, Benito Juárez, CDMX
-          var url = 'https://air-quality-api.open-meteo.com/v1/air-quality?latitude=19.3758&longitude=-99.1834&current=us_aqi&timezone=America%2FMexico_City';
+          // AQI live widget — fuente primaria: World Air Quality Index (WAQI/AQICN)
+          // Fallback: Open-Meteo Air Quality (sin token). Coordenadas: CDMX (Benito Juárez).
+          var WAQI_TOKEN = 'b481de62d5e14378bb9e68fc6edd515c6d03128f';
+          var WAQI_URL   = 'https://api.waqi.info/feed/geo:19.3758;-99.1834/?token=' + WAQI_TOKEN;
+          var OM_URL     = 'https://air-quality-api.open-meteo.com/v1/air-quality?latitude=19.3758&longitude=-99.1834&current=us_aqi&timezone=America%2FMexico_City';
           function aqiCategory(v){
             if(v<=50)  return {label:'Buena',         color:'#10b981'};
             if(v<=100) return {label:'Moderada',      color:'#f59e0b'};
@@ -3341,17 +3343,19 @@
             if(v<=300) return {label:'Muy mala',      color:'#a21caf'};
             return       {label:'Peligrosa',          color:'#7f1d1d'};
           }
-          function render(v){
+          function render(v, link){
             var cat = aqiCategory(v);
             var el = document.getElementById('aqiValue');
             var lbl = document.getElementById('aqiLabel');
             var dot = document.getElementById('aqiDot');
             var upd = document.getElementById('aqiUpdated');
+            var wid = document.getElementById('aqiLiveWidget');
             if(!el) return;
             el.textContent = Math.round(v);
             lbl.textContent = '· ' + cat.label;
             dot.style.background = cat.color;
             dot.style.boxShadow = '0 0 10px ' + cat.color + 'aa';
+            if(wid && link) wid.href = link;
             window.__aqiValue = v;
             window.dispatchEvent(new CustomEvent('aqi:update',{detail:{value:v,color:cat.color,label:cat.label}}));
             if (upd) {
@@ -3370,14 +3374,25 @@
             lbl.textContent = '';
             if (upd) upd.textContent = '';
           }
-          if('fetch' in window){
-            fetch(url, {cache:'no-store'})
+          function fromOpenMeteo(){
+            return fetch(OM_URL, {cache:'no-store'})
               .then(function(r){return r.ok ? r.json() : Promise.reject();})
               .then(function(d){
                 var v = d && d.current && d.current.us_aqi;
-                if(typeof v === 'number') render(v); else fail();
+                if(typeof v === 'number') render(v, null); else fail();
               })
               .catch(fail);
+          }
+          if('fetch' in window){
+            fetch(WAQI_URL, {cache:'no-store'})
+              .then(function(r){return r.ok ? r.json() : Promise.reject();})
+              .then(function(d){
+                if(d && d.status === 'ok' && d.data && typeof d.data.aqi === 'number'){
+                  var link = (d.data.city && d.data.city.url) ? d.data.city.url : 'https://aqicn.org/city/mexico/';
+                  render(d.data.aqi, link);
+                } else { return Promise.reject(); }
+              })
+              .catch(fromOpenMeteo);
           } else { fail(); }
         })();
         </script>
@@ -3621,7 +3636,7 @@
                     <!-- Location card -->
                     <div class="contact__card contact__card--location reveal">
                         <div class="contact__card-icon"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i></div>
-                        <h3>Hospital Santa Coleta — Consultorio 507</h3>
+                        <h3>Hospital Santa Coleta, Consultorio 507</h3>
                         <address style="font-style:normal;margin:0;" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress"><span itemprop="streetAddress">Saturnino Herrán 59</span><br><span itemprop="addressLocality">San José Insurgentes, Benito Juárez</span><br><span itemprop="postalCode">03900</span> <span itemprop="addressRegion">Ciudad de México</span>, CDMX</address>
                     </div>
 
@@ -3629,8 +3644,8 @@
                     <div class="contact__card contact__card--hours reveal reveal-d1">
                         <div class="contact__card-icon"><i class="bi bi-clock-fill" aria-hidden="true"></i></div>
                         <h3>Horarios de atención</h3>
-                        <p class="hours-detail">Lunes a viernes: 16:00 — 20:30 hrs</p>
-                        <p class="hours-detail">Sábado y domingo: 12:00 — 16:00 hrs</p>
+                        <p class="hours-detail">Lunes a viernes: 16:00 a 20:30 hrs</p>
+                        <p class="hours-detail">Sábado y domingo: 12:00 a 16:00 hrs</p>
                         <span class="hours-badge">Previa Cita</span>
                     </div>
 
@@ -3655,7 +3670,7 @@
                 <p style="font-size:.82rem; color:#64748b; margin:0; line-height:1.65; max-width:680px; margin-left:auto; margin-right:auto;">
                     Consultas de neumología disponibles para pacientes del centro y sur de la Ciudad de México:
                     <strong style="color:#0f1d30;">Roma, Condesa, Del Valle, Narvarte, Nápoles, San José Insurgentes, Pedregal, Perisur, San Ángel, Coyoacán, Mixcoac, Tlalpan</strong>
-                    y colonias cercanas al Periférico Sur — a menos de 10-15 minutos del Hospital Santa Coleta.
+                    y colonias cercanas al Periférico Sur, a menos de 10-15 minutos del Hospital Santa Coleta.
                 </p>
             </div>
         </section>

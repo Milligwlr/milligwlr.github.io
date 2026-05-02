@@ -281,7 +281,7 @@
     .lp-footer a{color:#9ec5ff;text-decoration:none}
 
     /* ============ STICKY MÓVIL ============ */
-    .sticky-cta{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid rgba(0,0,0,.1);padding:10px 12px;display:flex;gap:8px;z-index:90;box-shadow:0 -4px 20px rgba(0,0,0,.08)}
+    .sticky-cta{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid rgba(0,0,0,.1);padding:10px 12px;padding-bottom:max(10px,env(safe-area-inset-bottom));display:flex;gap:8px;z-index:90;box-shadow:0 -4px 20px rgba(0,0,0,.08)}
     .sticky-cta a{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 12px;border-radius:12px;font-weight:800;font-size:.95rem;text-decoration:none}
     .sticky-cta .sc-wa{background:var(--green);color:#fff}
     .sticky-cta .sc-cal{background:var(--navy);color:#fff}
@@ -484,7 +484,7 @@
                     <ul class="hero__card-list">
                         <li><i class="bi bi-house-door-fill"></i><div><strong>Equipo a domicilio</strong>El equipo te lo entrego en consulta o se coordina por mensajería.</div></li>
                         <li><i class="bi bi-moon-stars-fill"></i><div><strong>Una noche en casa</strong>Duermes con tus sensores en tu cama, sin estrés de cuarto ajeno.</div></li>
-                        <li><i class="bi bi-clipboard2-pulse-fill"></i><div><strong>Reporte por neumólogo egresado del INER</strong>IAH, severidad, oximetría, posición — interpretado por médico, no por software.</div></li>
+                        <li><i class="bi bi-clipboard2-pulse-fill"></i><div><strong>Reporte por neumólogo egresado del INER</strong>IAH, severidad, oximetría, posición: interpretado por médico, no por software.</div></li>
                         <li><i class="bi bi-arrow-right-circle-fill"></i><div><strong>Plan terapéutico claro</strong>Te explico opciones (CPAP, dispositivos, cambios) sin tecnicismos.</div></li>
                     </ul>
                 </div>
@@ -503,7 +503,7 @@
                     <span class="block__kicker">Para quien lo acompaña</span>
                     <h2 class="block__title" style="text-align:left;margin-bottom:14px">¿Te <em>preocupa</em> cómo duerme?</h2>
                     <div class="partner-callout">
-                        Notar pausas en su respiración o ronquidos intensos puede ser señal de apnea del sueño — algo tratable, pero que conviene revisar.
+                        Notar pausas en su respiración o ronquidos intensos puede ser señal de apnea del sueño, algo tratable, pero que conviene revisar.
                     </div>
                     <ul class="partner__signs">
                         <li><i class="bi bi-check-circle-fill"></i> Pausas o respiración irregular al dormir</li>
@@ -554,7 +554,7 @@
                     <div class="sb-letter" aria-hidden="true">S</div>
                     <span class="sb-category">Ronquido</span>
                 </div>
-                <p class="sb-question__text" id="sbq-s-label">¿Roncas fuerte — más fuerte que al hablar, o lo suficiente para escucharse a través de una puerta cerrada?</p>
+                <p class="sb-question__text" id="sbq-s-label">¿Roncas fuerte, más fuerte que al hablar, o lo suficiente para escucharse a través de una puerta cerrada?</p>
                 <div class="sb-btns" role="group" aria-labelledby="sbq-s-label">
                     <button class="sb-btn" type="button" data-q="s" data-v="1" aria-pressed="false">Sí</button>
                     <button class="sb-btn" type="button" data-q="s" data-v="0" aria-pressed="false">No</button>
@@ -689,7 +689,7 @@
         <div class="block__head">
             <span class="block__kicker">Por qué este estudio</span>
             <h2 class="block__title">Diagnóstico válido <em>sin pasar la noche en hospital</em></h2>
-            <p class="block__lead">La poligrafía respiratoria domiciliaria es un estudio nivel III validado por la AASM. Para la mayoría de pacientes con sospecha clara de apnea, es suficiente para confirmar el diagnóstico — sin la incomodidad ni el costo de una polisomnografía hospitalaria.</p>
+            <p class="block__lead">La poligrafía respiratoria domiciliaria es un estudio nivel III validado por la AASM. Para la mayoría de pacientes con sospecha clara de apnea, es suficiente para confirmar el diagnóstico, sin la incomodidad ni el costo de una polisomnografía hospitalaria.</p>
         </div>
         <div class="benefits-grid">
             <div class="benefit"><div class="benefit__icon"><i class="bi bi-house-heart-fill"></i></div><h3>Duermes en tu cama</h3><p>Sin cuarto de hospital, sin cambiar tu rutina. Tu noche real, tu diagnóstico real.</p></div>
@@ -829,14 +829,14 @@
     <div class="container">
         <div class="block__head">
             <span class="block__kicker">Quién hace tu estudio</span>
-            <h2 class="block__title">Neumólogo certificado, egresado del INER — <em>no un laboratorio sin médico</em></h2>
+            <h2 class="block__title">Neumólogo certificado, egresado del INER: <em>no un laboratorio sin médico</em></h2>
         </div>
         <div class="doc-card" style="max-width:820px;margin:0 auto">
             <img src="/images/dr-william-lara.jpg" alt="Dr. William César Lara Vázquez, neumólogo egresado del INER" class="doc-card__avatar" width="120" height="120" loading="lazy" style="object-fit:cover">
             <div>
                 <h3>Dr. William César Lara Vázquez</h3>
                 <div class="role">Médico Neumólogo · Alta Especialidad en EPOC · Egresado del INER</div>
-                <p>Egresado del Instituto Nacional de Enfermedades Respiratorias (INER), la institución de referencia en neumología en México. Atención personalizada en CDMX, con interpretación directa de cada estudio y plan terapéutico explicado en lenguaje claro — sin tercerizar la lectura a un software.</p>
+                <p>Egresado del Instituto Nacional de Enfermedades Respiratorias (INER), la institución de referencia en neumología en México. Atención personalizada en CDMX, con interpretación directa de cada estudio y plan terapéutico explicado en lenguaje claro, sin tercerizar la lectura a un software.</p>
                 <div class="doc-card__creds">
                     <span><i class="bi bi-patch-check-fill"></i> Cédula Prof. 12588976</span>
                     <span><i class="bi bi-patch-check-fill"></i> Cédula Esp. 15595809</span>
@@ -973,7 +973,7 @@ document.addEventListener('click',function(e){
         if(score<=2){
             level='Riesgo bajo';
             icon='&#128994;';/* verde */
-            message='Tu puntaje sugiere bajo riesgo de apnea obstructiva del sueño. Si tienes síntomas que te preocupan — ronquidos ocasionales, cansancio puntual — una valoración puede darte tranquilidad.';
+            message='Tu puntaje sugiere bajo riesgo de apnea obstructiva del sueño. Si tienes síntomas que te preocupan (ronquidos ocasionales, cansancio puntual), una valoración puede darte tranquilidad.';
             waMsg='Hola%20Dr.%20Lara%2C%20hice%20el%20cuestionario%20STOP-BANG%20y%20mi%20resultado%20fue%20riesgo%20bajo%20('+score+'%2F8).%20Me%20gustar%C3%ADa%20saber%20si%20de%20todas%20formas%20me%20conviene%20el%20estudio.';
         } else if(score<=4){
             level='Riesgo intermedio';
@@ -983,7 +983,7 @@ document.addEventListener('click',function(e){
         } else {
             level='Riesgo alto';
             icon='&#128308;';/* rojo */
-            message='Tu puntaje indica alto riesgo de apnea obstructiva del sueño. El siguiente paso recomendado es un estudio diagnóstico — la poligrafía respiratoria en casa es la opción más accesible para confirmarlo.';
+            message='Tu puntaje indica alto riesgo de apnea obstructiva del sueño. El siguiente paso recomendado es un estudio diagnóstico: la poligrafía respiratoria en casa es la opción más accesible para confirmarlo.';
             waMsg='Hola%20Dr.%20Lara%2C%20hice%20el%20cuestionario%20STOP-BANG%20y%20mi%20resultado%20fue%20riesgo%20alto%20('+score+'%2F8).%20Quiero%20agendar%20la%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500.';
         }
         var resultEl=document.getElementById('sb-result');

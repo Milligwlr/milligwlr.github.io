@@ -396,7 +396,7 @@
 <div class="col-lg-7">
 <span class="apn-hero-tag"><span class="pulse"></span> 80% de casos sin diagnosticar</span>
 <h1 class="apn-hero-title">Tu cuerpo deja de respirar<br>mientras duermes<em>Apnea Obstructiva del Sueño</em></h1>
-<p class="apn-hero-sub">Cada noche tu garganta se cierra decenas de veces, tu oxígeno cae y tu corazón trabaja de más — y lo más probable es que <strong style="color:#fff">no lo sepas</strong>.</p>
+<p class="apn-hero-sub">Cada noche tu garganta se cierra decenas de veces, tu oxígeno cae y tu corazón trabaja de más, y lo más probable es que <strong style="color:#fff">no lo sepas</strong>.</p>
 <div class="apn-hero-cta">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20agendar%20una%20cita%20por%20posible%20apnea%20del%20sue%C3%B1o" target="_blank" class="btn-wa-hero"><i class="bi bi-whatsapp"></i> WhatsApp ahora</a>
 <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="btn-cal-hero"><i class="bi bi-calendar-check"></i> Agendar cita</a>
@@ -466,7 +466,7 @@
 <div class="apn-quick reveal">
 <div class="apn-quick__inner">
 <div class="apn-quick__badge"><i class="bi bi-moon-fill"></i> ¿Roncas fuerte y te despiertas cansado?</div>
-<h2 class="apn-quick__title">El <strong style="color:#a29bfe">80% de los casos</strong> de apnea nunca recibe diagnóstico — y el corazón lo paga.</h2>
+<h2 class="apn-quick__title">El <strong style="color:#a29bfe">80% de los casos</strong> de apnea nunca recibe diagnóstico, y el corazón lo paga.</h2>
 <div class="apn-quick__big">80%</div>
 <p class="apn-quick__big-lbl">de personas con apnea no saben que la tienen. El estudio del sueño en casa cambia eso en una sola noche.</p>
 <div class="apn-quick__btns">
@@ -603,7 +603,7 @@
   var msgs=[
     {cls:'low',label:'Riesgo bajo',title:'Bajo riesgo de apnea',msg:'Tu puntuación sugiere bajo riesgo. Si de todas formas roncas o te sientes cansado, una consulta puede darte tranquilidad.',ctaCls:'neutral',ctaTxt:'Consultar al doctor'},
     {cls:'mid',label:'Riesgo intermedio',title:'Posible apnea del sueño',msg:'Tu puntuación indica riesgo intermedio. Se recomienda una evaluación médica para descartar o confirmar la apnea.',ctaCls:'',ctaTxt:'Agendar valoración'},
-    {cls:'high',label:'Riesgo alto',title:'Alto riesgo de apnea',msg:'Tu puntuación es alta. Existe probabilidad elevada de apnea — busca atención pronto para proteger tu corazón y calidad de vida.',ctaCls:'',ctaTxt:'Hablar con el doctor ahora'}
+    {cls:'high',label:'Riesgo alto',title:'Alto riesgo de apnea',msg:'Tu puntuación es alta. Existe probabilidad elevada de apnea. Busca atención pronto para proteger tu corazón y calidad de vida.',ctaCls:'',ctaTxt:'Hablar con el doctor ahora'}
   ];
   window.sbToggleB=function(el){el.classList.toggle('active');};
   window.sbCalcBmi=function(){
@@ -614,7 +614,7 @@
     if(!kg||!cm||kg<30||cm<100){res.textContent='Ingresa valores válidos.';return;}
     var imc=kg/((cm/100)*(cm/100));
     var over35=imc>35;
-    res.textContent='Tu IMC: '+imc.toFixed(1)+(over35?' — mayor de 35 ✓':' — menor de 35');
+    res.textContent='Tu IMC: '+imc.toFixed(1)+(over35?': mayor de 35 ✓':': menor de 35');
     over35?itemB.classList.add('active'):itemB.classList.remove('active');
   };
   window.sbCalcular=function(){
@@ -676,7 +676,7 @@
 <!-- FACTORES DE RIESGO -->
 <div class="apn-section reveal">
 <span class="apn-section__eyebrow"><i class="bi bi-shield-exclamation"></i> ¿Quién tiene más riesgo?</span>
-<h2 class="apn-section__title">Más común de lo que crees<em> — y muy tratable</em></h2>
+<h2 class="apn-section__title">Más común de lo que crees<em>, y muy tratable</em></h2>
 <p class="apn-section__lead">Algunos factores hacen que la vía aérea se cierre más fácilmente durante el sueño. Tener varios multiplica el riesgo.</p>
 
 <div class="risk-grid">
@@ -798,7 +798,7 @@
 </div>
 <div class="apn-cta__btns">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20consulta%20por%20posible%20apnea%20del%20sue%C3%B1o" target="_blank" class="apn-cta__btn apn-cta__btn--wa"><i class="bi bi-whatsapp"></i> WhatsApp directo</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="apn-cta__btn apn-cta__btn--cal"><i class="bi bi-calendar-check"></i> Agendar en Cal.com</a>
+<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="apn-cta__btn apn-cta__btn--cal"><i class="bi bi-calendar-check"></i> Agendar cita online</a>
 </div>
 </div>
 </div>
@@ -862,8 +862,8 @@
             <div class="contact__card contact__card--hours reveal">
                 <div class="contact__card-icon"><i class="bi bi-clock-fill" aria-hidden="true"></i></div>
                 <h3>Horarios de atención</h3>
-                <p class="hours-detail">Lunes a viernes: 16:00 — 20:30 hrs</p>
-                <p class="hours-detail">Sábado y domingo: 12:00 — 16:00 hrs</p>
+                <p class="hours-detail">Lunes a viernes: 16:00 a 20:30 hrs</p>
+                <p class="hours-detail">Sábado y domingo: 12:00 a 16:00 hrs</p>
                 <span class="hours-badge">Previa Cita</span>
             </div>
             <div class="contact__action-card reveal">

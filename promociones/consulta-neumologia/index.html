@@ -244,7 +244,7 @@
     .lp-footer{background:#0a1929;color:rgba(255,255,255,.55);padding:32px 0 22px;text-align:center;font-size:.83rem}
 
     /* ============ STICKY MÓVIL ============ */
-    .sticky-cta{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid rgba(0,0,0,.1);padding:10px 12px;display:flex;gap:8px;z-index:90;box-shadow:0 -4px 20px rgba(0,0,0,.08)}
+    .sticky-cta{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid rgba(0,0,0,.1);padding:10px 12px;padding-bottom:max(10px,env(safe-area-inset-bottom));display:flex;gap:8px;z-index:90;box-shadow:0 -4px 20px rgba(0,0,0,.08)}
     .sticky-cta a{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 12px;border-radius:12px;font-weight:800;font-size:.95rem;text-decoration:none}
     .sticky-cta .sc-wa{background:var(--green);color:#fff}
     .sticky-cta .sc-cal{background:var(--navy);color:#fff}
@@ -373,8 +373,8 @@
                 <h3 itemprop="name">Dr. William César Lara Vázquez</h3>
                 <div class="role">Médico Neumólogo · Alta Especialidad en EPOC <span style="color:var(--muted);font-weight:600">(en curso)</span></div>
                 <ul class="doc-card__bullets">
-                    <li><i class="bi bi-mortarboard-fill"></i><span><strong>Neumología</strong> — Instituto Nacional de Enfermedades Respiratorias (INER), centro de referencia nacional.</span></li>
-                    <li><i class="bi bi-award-fill"></i><span><strong>Alta Especialidad en EPOC en curso</strong> — formación clínica continua en enfermedad pulmonar obstructiva.</span></li>
+                    <li><i class="bi bi-mortarboard-fill"></i><span><strong>Neumología</strong>: Instituto Nacional de Enfermedades Respiratorias (INER), centro de referencia nacional.</span></li>
+                    <li><i class="bi bi-award-fill"></i><span><strong>Alta Especialidad en EPOC en curso</strong>: formación clínica continua en enfermedad pulmonar obstructiva.</span></li>
                     <li><i class="bi bi-patch-check-fill"></i><span><strong>Certificación vigente</strong> por el Consejo Nacional de Neumología (CNN-2102).</span></li>
                     <li><i class="bi bi-hospital-fill"></i><span>Práctica clínica en <strong>Hospital Santa Coleta</strong> con interpretación directa de espirometría, FeNO, poligrafía respiratoria y procedimientos pleurales.</span></li>
                 </ul>
@@ -464,7 +464,7 @@
                     <div class="loc-row__icon"><i class="bi bi-clock-fill"></i></div>
                     <div>
                         <h3>Horarios</h3>
-                        <p>Lunes a viernes: 16:00 — 20:30 hrs<br>Sábado y domingo: 12:00 — 16:00 hrs<br><span style="color:var(--electric);font-weight:700">Previa cita</span></p>
+                        <p>Lunes a viernes: 16:00 a 20:30 hrs<br>Sábado y domingo: 12:00 a 16:00 hrs<br><span style="color:var(--electric);font-weight:700">Previa cita</span></p>
                     </div>
                 </div>
                 <div class="loc-row">
@@ -502,8 +502,8 @@
             <div class="faq-item__answer">
                 Sí. En el mismo consultorio realizamos:
                 <ul style="padding-left:18px;margin:10px 0 12px">
-                    <li><strong>Espirometría simple</strong> — incluida en la consulta cuando es relevante para tu padecimiento.</li>
-                    <li><strong>FeNO</strong> (óxido nítrico exhalado) — costo extra.</li>
+                    <li><strong>Espirometría simple</strong>: incluida en la consulta cuando es relevante para tu padecimiento.</li>
+                    <li><strong>FeNO</strong> (óxido nítrico exhalado): costo extra.</li>
                 </ul>
                 Adicionalmente ofrecemos:
                 <ul style="padding-left:18px;margin:10px 0">
@@ -517,14 +517,14 @@
         <details class="faq-item">
             <summary>¿Cuánto dura la consulta?</summary>
             <div class="faq-item__answer">
-                La <strong>primera consulta</strong> dura entre <strong>40 y 60 minutos</strong> — es deliberadamente larga para hacer una historia clínica completa y no apurar el diagnóstico. Las <strong>consultas subsecuentes</strong> duran aproximadamente <strong>30 minutos</strong>.
+                La <strong>primera consulta</strong> dura entre <strong>40 y 60 minutos</strong>, deliberadamente larga para hacer una historia clínica completa y no apurar el diagnóstico. Las <strong>consultas subsecuentes</strong> duran aproximadamente <strong>30 minutos</strong>.
             </div>
         </details>
 
         <details class="faq-item">
             <summary>¿Cuál es el costo de la consulta?</summary>
             <div class="faq-item__answer">
-                La <strong>primera consulta</strong> tiene un <strong>precio especial de internet de <span class="price-pill">$1,300</span></strong> (precio normal <s style="color:var(--muted)">$1,800</s>). Es la misma valoración completa — solo necesitas mencionar al escribirnos que llegaste a través de internet.
+                La <strong>primera consulta</strong> tiene un <strong>precio especial de internet de <span class="price-pill">$1,300</span></strong> (precio normal <s style="color:var(--muted)">$1,800</s>). Es la misma valoración completa; solo menciona al escribirnos que llegaste a través de internet.
                 <p style="margin:12px 0 0">La <strong>consulta subsecuente</strong> (seguimiento del mismo padecimiento) tiene un costo de <span class="price-pill">$1,500</span>.</p>
             </div>
         </details>
@@ -532,7 +532,7 @@
         <details class="faq-item">
             <summary>¿Qué debo llevar a mi primera consulta?</summary>
             <div class="faq-item__answer">
-                Idealmente: <strong>estudios previos</strong> (radiografías, tomografías, espirometrías, análisis), <strong>lista de medicamentos</strong> que tomas (incluyendo inhaladores y dosis) y, si lo tienes, <strong>resumen del médico que te refirió</strong>. Si no tienes estudios previos, no es problema — lo evaluamos desde cero.
+                Idealmente: <strong>estudios previos</strong> (radiografías, tomografías, espirometrías, análisis), <strong>lista de medicamentos</strong> que tomas (incluyendo inhaladores y dosis) y, si lo tienes, <strong>resumen del médico que te refirió</strong>. Si no tienes estudios previos, no es problema: lo evaluamos desde cero.
             </div>
         </details>
 

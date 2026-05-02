@@ -379,7 +379,10 @@ footer.site-footer p{margin:4px 0}
 </style>
 <script>
 (function(){
-  var url='https://air-quality-api.open-meteo.com/v1/air-quality?latitude=19.3758&longitude=-99.1834&current=us_aqi&timezone=America%2FMexico_City';
+  // Fuente primaria: WAQI/AQICN. Fallback: Open-Meteo (sin token).
+  var WAQI_TOKEN='b481de62d5e14378bb9e68fc6edd515c6d03128f';
+  var WAQI_URL='https://api.waqi.info/feed/geo:19.3758;-99.1834/?token='+WAQI_TOKEN;
+  var OM_URL='https://air-quality-api.open-meteo.com/v1/air-quality?latitude=19.3758&longitude=-99.1834&current=us_aqi&timezone=America%2FMexico_City';
   function cat(v){
     if(v<=50)  return {l:'Buena',c:'#10b981'};
     if(v<=100) return {l:'Moderada',c:'#f59e0b'};
@@ -398,12 +401,13 @@ footer.site-footer p{margin:4px 0}
     return       {top:'#2a1418',mid:'#4a1a1c',bot:'#5e1818',glow:'rgba(127,29,29,.55)',glow2:'rgba(153,27,27,.30)'};
   }
   function $(id){return document.getElementById(id)}
-  function render(v){
-    var k=cat(v),el=$('aqiValue'),lbl=$('aqiLabel'),dot=$('aqiDot'),upd=$('aqiUpdated');
+  function render(v,link){
+    var k=cat(v),el=$('aqiValue'),lbl=$('aqiLabel'),dot=$('aqiDot'),upd=$('aqiUpdated'),wid=$('aqiLiveWidget');
     if(!el)return;
     el.textContent=Math.round(v);el.style.color=k.c;
     lbl.textContent='· '+k.l;lbl.style.color=k.c;
     dot.style.background=k.c;dot.style.boxShadow='0 0 10px '+k.c+'aa';
+    if(wid&&link)wid.href=link;
     if(upd){var n=new Date();upd.textContent='· '+String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+' hrs'}
     /* Apply dynamic background to hero */
     var hero=document.querySelector('.hero');
@@ -417,8 +421,19 @@ footer.site-footer p{margin:4px 0}
     }
   }
   function fail(){var el=$('aqiValue'),lbl=$('aqiLabel'),upd=$('aqiUpdated');if(!el)return;el.textContent='sin datos';if(lbl)lbl.textContent='';if(upd)upd.textContent=''}
+  function fromOM(){
+    return fetch(OM_URL,{cache:'no-store'}).then(function(r){return r.ok?r.json():Promise.reject()}).then(function(d){var v=d&&d.current&&d.current.us_aqi;if(typeof v==='number')render(v,null);else fail()}).catch(fail);
+  }
   if('fetch' in window){
-    fetch(url,{cache:'no-store'}).then(function(r){return r.ok?r.json():Promise.reject()}).then(function(d){var v=d&&d.current&&d.current.us_aqi;if(typeof v==='number')render(v);else fail()}).catch(fail);
+    fetch(WAQI_URL,{cache:'no-store'})
+      .then(function(r){return r.ok?r.json():Promise.reject()})
+      .then(function(d){
+        if(d&&d.status==='ok'&&d.data&&typeof d.data.aqi==='number'){
+          var link=(d.data.city&&d.data.city.url)?d.data.city.url:'https://aqicn.org/city/mexico/';
+          render(d.data.aqi,link);
+        } else { return Promise.reject(); }
+      })
+      .catch(fromOM);
   } else fail();
 })();
 </script>
@@ -454,14 +469,14 @@ footer.site-footer p{margin:4px 0}
         <div style="background:var(--cloud-alt);border-radius:20px;padding:32px;height:100%">
           <h3 style="font-size:1.2rem;margin-bottom:14px"><i class="fas fa-wind text-accent me-2"></i>Los dos contaminantes críticos</h3>
           <p style="margin-bottom:14px"><strong>Ozono (O₃):</strong> se forma en la atmósfera cuando los gases emitidos por vehículos y fábricas reaccionan con la radiación solar. Alcanza picos entre las 13:00 y 17:00 h.</p>
-          <p style="margin:0"><strong>Partículas finas (PM2.5 y PM10):</strong> sólidos y líquidos suspendidos. PM2.5 es 30 veces más pequeña que un cabello humano — penetra los alvéolos y pasa al torrente sanguíneo.</p>
+          <p style="margin:0"><strong>Partículas finas (PM2.5 y PM10):</strong> sólidos y líquidos suspendidos. PM2.5 es 30 veces más pequeña que un cabello humano: penetra los alvéolos y pasa al torrente sanguíneo.</p>
         </div>
       </div>
       <div class="col-lg-6 mb-4">
         <div style="background:var(--cloud-alt);border-radius:20px;padding:32px;height:100%">
           <h3 style="font-size:1.2rem;margin-bottom:14px"><i class="fas fa-calendar-days text-accent me-2"></i>Cuándo ocurren</h3>
-          <p style="margin-bottom:14px"><strong>Temporada de ozono:</strong> 15 de febrero al 15 de junio — alta radiación, baja humedad, inversiones térmicas frecuentes.</p>
-          <p style="margin:0"><strong>Temporada seca-fría:</strong> noviembre a febrero — incendios, quemas agrícolas y estancamiento atmosférico elevan PM2.5.</p>
+          <p style="margin-bottom:14px"><strong>Temporada de ozono:</strong> 15 de febrero al 15 de junio: alta radiación, baja humedad, inversiones térmicas frecuentes.</p>
+          <p style="margin:0"><strong>Temporada seca-fría:</strong> noviembre a febrero: incendios, quemas agrícolas y estancamiento atmosférico elevan PM2.5.</p>
         </div>
       </div>
     </div>
@@ -625,7 +640,7 @@ footer.site-footer p{margin:4px 0}
         <div style="background:#fff;border-radius:20px;padding:28px;box-shadow:var(--shadow-md);height:100%;border-top:4px solid var(--electric)">
           <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#dbeafe,#e8f4fd);color:var(--electric);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px"><i class="fas fa-bed"></i></div>
           <h3 style="font-size:1.15rem;margin-bottom:10px">Apnea del sueño</h3>
-          <p style="color:var(--text-muted);font-size:.94rem;line-height:1.65;margin-bottom:12px">La inflamación de vía aérea superior por contaminantes empeora los eventos obstructivos nocturnos — peor calidad del sueño y mayor <strong style="color:var(--navy)">riesgo cardiovascular</strong>.</p>
+          <p style="color:var(--text-muted);font-size:.94rem;line-height:1.65;margin-bottom:12px">La inflamación de vía aérea superior por contaminantes empeora los eventos obstructivos nocturnos: peor calidad del sueño y mayor <strong style="color:var(--navy)">riesgo cardiovascular</strong>.</p>
           <a href="/enfermedades/apnea-del-sueno" style="color:var(--electric);text-decoration:none;font-weight:600;font-size:.88rem">Saber más sobre SAHOS <i class="fas fa-arrow-right ms-1"></i></a>
         </div>
       </div>
@@ -633,7 +648,7 @@ footer.site-footer p{margin:4px 0}
         <div style="background:#fff;border-radius:20px;padding:28px;box-shadow:var(--shadow-md);height:100%;border-top:4px solid var(--imeca-verybad)">
           <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#fee2e2,#fef1f0);color:var(--imeca-verybad);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px"><i class="fas fa-virus-covid"></i></div>
           <h3 style="font-size:1.15rem;margin-bottom:10px">Secuelas COVID</h3>
-          <p style="color:var(--text-muted);font-size:.94rem;line-height:1.65;margin-bottom:12px">Pacientes con fibrosis post-COVID tienen mayor sensibilidad a contaminantes — tos, opresión y desaturación se exacerban en días de mala calidad del aire.</p>
+          <p style="color:var(--text-muted);font-size:.94rem;line-height:1.65;margin-bottom:12px">Pacientes con fibrosis post-COVID tienen mayor sensibilidad a contaminantes: tos, opresión y desaturación se exacerban en días de mala calidad del aire.</p>
           <a href="/enfermedades/secuelas-covid" style="color:var(--electric);text-decoration:none;font-weight:600;font-size:.88rem">Saber más <i class="fas fa-arrow-right ms-1"></i></a>
         </div>
       </div>
@@ -742,7 +757,7 @@ footer.site-footer p{margin:4px 0}
         </div>
         <div class="plan-step warning">
           <h4><i class="fas fa-2 text-accent me-2"></i>Oximetría diaria</h4>
-          <p>Mide SpO₂ en reposo y después de caminar 6 minutos. Registra los valores — toda caída ≥ 4 puntos es bandera roja.</p>
+          <p>Mide SpO₂ en reposo y después de caminar 6 minutos. Registra los valores: toda caída ≥ 4 puntos es bandera roja.</p>
         </div>
         <div class="plan-step">
           <h4><i class="fas fa-3 text-accent me-2"></i>Continúa antifibróticos</h4>
@@ -825,7 +840,7 @@ footer.site-footer p{margin:4px 0}
       </ul>
       <div class="alert-urgent__911">
         <div class="num">911</div>
-        <p>Llama al <strong style="color:#fff">911</strong> inmediatamente si presentas cualquiera de los síntomas anteriores. No manejes por tu cuenta a un hospital si estás muy disneico — la ambulancia ofrece oxígeno en ruta.</p>
+        <p>Llama al <strong style="color:#fff">911</strong> inmediatamente si presentas cualquiera de los síntomas anteriores. No manejes por tu cuenta a un hospital si estás muy disneico; la ambulancia ofrece oxígeno en ruta.</p>
       </div>
     </div>
   </div>
@@ -863,26 +878,26 @@ footer.site-footer p{margin:4px 0}
         <div class="ref">Autoridad que coordina y activa las contingencias en el Valle de México.</div>
       </div>
       <div class="source-item">
-        <strong>2. SEDEMA — Secretaría del Medio Ambiente CDMX</strong>
-        Sistema de Monitoreo Atmosférico (SIMAT) — datos IMECA en tiempo real.
+        <strong>2. SEDEMA: Secretaría del Medio Ambiente CDMX</strong>
+        Sistema de Monitoreo Atmosférico (SIMAT): datos IMECA en tiempo real.
         <a href="http://www.aire.cdmx.gob.mx/" target="_blank" rel="noopener">aire.cdmx.gob.mx</a>
         <div class="ref">Fuente oficial de mediciones horarias de O₃, PM2.5, PM10, NO₂, SO₂ y CO.</div>
       </div>
       <div class="source-item">
         <strong>3. Organización Mundial de la Salud (OMS/WHO)</strong>
         WHO Global Air Quality Guidelines, 2021.
-        <a href="https://www.who.int/publications/i/item/9789240034228" target="_blank" rel="noopener">who.int — Air Quality Guidelines 2021</a>
+        <a href="https://www.who.int/publications/i/item/9789240034228" target="_blank" rel="noopener">who.int: Air Quality Guidelines 2021</a>
         <div class="ref">Límites internacionales de PM2.5, PM10, O₃, NO₂, SO₂ y CO.</div>
       </div>
       <div class="source-item">
         <strong>4. Global Initiative for Chronic Obstructive Lung Disease (GOLD)</strong>
-        GOLD Report 2025 — Global Strategy for the Diagnosis, Management, and Prevention of COPD.
+        GOLD Report 2025: Global Strategy for the Diagnosis, Management, and Prevention of COPD.
         <a href="https://goldcopd.org/" target="_blank" rel="noopener">goldcopd.org</a>
         <div class="ref">Referencia internacional para diagnóstico y tratamiento de EPOC.</div>
       </div>
       <div class="source-item">
         <strong>5. Global Initiative for Asthma (GINA)</strong>
-        GINA Main Report 2025 — Global Strategy for Asthma Management and Prevention.
+        GINA Main Report 2025: Global Strategy for Asthma Management and Prevention.
         <a href="https://ginasthma.org/" target="_blank" rel="noopener">ginasthma.org</a>
         <div class="ref">Guía internacional para manejo del asma por pasos y planes escritos.</div>
       </div>
@@ -894,13 +909,13 @@ footer.site-footer p{margin:4px 0}
       </div>
       <div class="source-item">
         <strong>7. Instituto Nacional de Enfermedades Respiratorias (INER)</strong>
-        Centro nacional de referencia en neumología — formación de alta especialidad del Dr. Lara.
+        Centro nacional de referencia en neumología; formación de alta especialidad del Dr. Lara.
         <a href="https://www.iner.salud.gob.mx/" target="_blank" rel="noopener">iner.salud.gob.mx</a>
         <div class="ref">Investigación mexicana sobre efectos de contaminación en salud respiratoria.</div>
       </div>
       <div class="source-item">
         <strong>8. American Thoracic Society (ATS) / European Respiratory Society (ERS)</strong>
-        ATS/ERS/JRS/ALAT Clinical Practice Guideline — Idiopathic Pulmonary Fibrosis, 2022 update.
+        ATS/ERS/JRS/ALAT Clinical Practice Guideline: Idiopathic Pulmonary Fibrosis, 2022 update.
         <a href="https://www.thoracic.org/statements/" target="_blank" rel="noopener">thoracic.org/statements</a>
         <div class="ref">Guías para fibrosis pulmonar idiopática y enfermedades intersticiales.</div>
       </div>
