@@ -118,39 +118,51 @@
 .risk-card p{font-size:.8rem;color:var(--text-muted);line-height:1.5;margin:0}
 @media(min-width:768px){.risk-card{padding:24px 20px}.risk-card__icon{width:52px;height:52px;font-size:1.25rem}.risk-card h3{font-size:1.02rem;margin-bottom:8px}.risk-card p{font-size:.85rem}}
 
-/* TIPOS — Bento de tipos de neumotórax */
-.types-grid{display:grid;grid-template-columns:1fr;gap:14px}
-@media(min-width:768px){.types-grid{grid-template-columns:1fr 1fr;gap:18px}}
-.type-card{background:#fff;border:1px solid rgba(14,165,184,.14);border-radius:20px;padding:24px 22px;position:relative;overflow:hidden;transition:all .35s var(--ease);box-shadow:0 6px 18px rgba(10,22,40,.05)}
-.type-card:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(14,165,184,.16);border-color:rgba(14,165,184,.32)}
-.type-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(180deg,var(--ntx),var(--ntx-2))}
-.type-card__head{display:flex;align-items:center;gap:14px;margin-bottom:14px}
-.type-card__num{width:42px;height:42px;border-radius:12px;background:var(--ntx-soft);color:var(--ntx);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.05rem;flex-shrink:0;border:1px solid var(--ntx-soft-2)}
-.type-card__title{font-size:1.05rem;font-weight:800;color:var(--navy);margin:0;line-height:1.25;letter-spacing:-.01em}
-.type-card__desc{font-size:.9rem;color:var(--text-muted);line-height:1.55;margin:0 0 12px}
-.type-card__tag{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;color:var(--ntx);background:var(--ntx-soft);padding:5px 12px;border-radius:100px;border:1px solid var(--ntx-soft-2)}
+/* MANEJO DEFINITIVO — sección animada */
+.ntx-def{position:relative}
+.def-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:28px}
+@media(min-width:600px){.def-grid{grid-template-columns:1fr 1fr;gap:16px}}
+@media(min-width:992px){.def-grid{grid-template-columns:repeat(3,1fr);gap:18px}}
+.def-card{position:relative;background:#fff;border:1px solid rgba(14,165,184,.14);border-radius:20px;padding:24px 22px 22px;overflow:hidden;transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .45s var(--ease);box-shadow:0 6px 18px rgba(10,22,40,.05);opacity:0;transform:translateY(28px);animation:defReveal .8s var(--ease) forwards}
+.def-card--anim-1{animation-delay:.05s}
+.def-card--anim-2{animation-delay:.15s}
+.def-card--anim-3{animation-delay:.25s}
+.def-card--anim-4{animation-delay:.35s}
+.def-card--anim-5{animation-delay:.45s}
+.def-card--anim-6{animation-delay:.55s}
+@keyframes defReveal{to{opacity:1;transform:translateY(0)}}
+.def-card:hover{transform:translateY(-6px);border-color:rgba(14,165,184,.4);box-shadow:0 22px 50px rgba(14,165,184,.18)}
+.def-card__halo{position:absolute;top:-40%;right:-30%;width:75%;padding-bottom:75%;border-radius:50%;background:radial-gradient(circle,rgba(14,165,184,.18),transparent 65%);opacity:0;transition:opacity .5s var(--ease);pointer-events:none}
+.def-card:hover .def-card__halo{opacity:1;animation:defHalo 6s ease-in-out infinite}
+@keyframes defHalo{0%,100%{transform:scale(1) rotate(0deg)}50%{transform:scale(1.15) rotate(180deg)}}
+.def-card__icon{position:relative;width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--ntx),var(--ntx-2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:14px;box-shadow:0 8px 22px rgba(14,165,184,.3);z-index:1}
+.def-card__icon::before{content:'';position:absolute;inset:-6px;border-radius:20px;border:2px solid var(--ntx);opacity:0;transition:all .4s var(--ease)}
+.def-card:hover .def-card__icon::before{opacity:.45;animation:defRing 1.6s ease-out infinite}
+@keyframes defRing{0%{transform:scale(1);opacity:.5}100%{transform:scale(1.45);opacity:0}}
+.def-card:hover .def-card__icon{animation:defIcon 2.6s ease-in-out infinite}
+@keyframes defIcon{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-4px) rotate(-6deg)}}
+.def-card h3{font-size:1.02rem;font-weight:800;color:var(--navy);margin:0 0 8px;line-height:1.25;letter-spacing:-.01em;position:relative;z-index:1}
+.def-card p{font-size:.88rem;color:var(--text-muted);line-height:1.55;margin:0 0 16px;position:relative;z-index:1}
+.def-card__bar{display:block;width:100%;height:4px;border-radius:100px;background:rgba(14,165,184,.1);overflow:hidden;position:relative;z-index:1}
+.def-card__bar-fill{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ntx),#7dd3fc);border-radius:100px;transition:width 1.2s var(--ease)}
+.def-card:hover .def-card__bar-fill{width:100%;animation:defShimmer 2.4s linear infinite}
+@keyframes defShimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
 
-/* Comparativa "por qué importa" — Tratado a tiempo vs descuidado */
-.ntx-vs{background:linear-gradient(140deg,#0a1628 0%,#142849 100%);border-radius:24px;padding:32px 24px;color:#fff;position:relative;overflow:hidden}
-@media(min-width:768px){.ntx-vs{padding:48px 40px}}
-.ntx-vs::before{content:'';position:absolute;inset:-40%;background:radial-gradient(circle at 25% 50%,rgba(46,204,113,.18),transparent 50%),radial-gradient(circle at 80% 50%,rgba(14,165,184,.18),transparent 50%);pointer-events:none}
-.ntx-vs__inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:18px}
-@media(min-width:768px){.ntx-vs__inner{grid-template-columns:1fr 1fr;gap:24px}}
-.ntx-vs__col{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:24px 20px;backdrop-filter:blur(8px)}
-.ntx-vs__col--good{border-color:rgba(46,204,113,.3)}
-.ntx-vs__col--bad{border-color:rgba(14,165,184,.35)}
-.ntx-vs__tag{display:inline-flex;align-items:center;gap:6px;font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;padding:5px 12px;border-radius:100px;margin-bottom:14px}
-.ntx-vs__col--good .ntx-vs__tag{background:rgba(46,204,113,.15);color:#2ecc71;border:1px solid rgba(46,204,113,.3)}
-.ntx-vs__col--bad .ntx-vs__tag{background:rgba(14,165,184,.15);color:#7dd3fc;border:1px solid rgba(14,165,184,.3)}
-.ntx-vs__big{font-size:clamp(2.4rem,9vw,3.4rem);font-weight:800;line-height:1;letter-spacing:-.04em;margin-bottom:6px}
-.ntx-vs__col--good .ntx-vs__big{background:linear-gradient(135deg,#2ecc71,#74b9ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.ntx-vs__col--bad .ntx-vs__big{background:linear-gradient(135deg,var(--ntx),#f0a830);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.ntx-vs__big-lbl{font-size:.85rem;color:rgba(255,255,255,.7);margin-bottom:18px;line-height:1.45}
-.ntx-vs__list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
-.ntx-vs__list li{display:flex;align-items:flex-start;gap:10px;font-size:.88rem;line-height:1.45;color:rgba(255,255,255,.88)}
-.ntx-vs__list li i{font-size:1rem;flex-shrink:0;margin-top:2px}
-.ntx-vs__col--good .ntx-vs__list li i{color:#2ecc71}
-.ntx-vs__col--bad .ntx-vs__list li i{color:#7dd3fc}
+.def-cta{position:relative;background:linear-gradient(140deg,#082930 0%,#0e3f48 100%);border:1px solid rgba(14,165,184,.3);border-radius:22px;padding:24px 22px;color:#fff;overflow:hidden;box-shadow:0 18px 44px rgba(14,165,184,.2)}
+@media(min-width:768px){.def-cta{padding:30px 32px}}
+.def-cta__pulse{position:absolute;top:-30%;left:-15%;width:55%;padding-bottom:55%;border-radius:50%;background:radial-gradient(circle,rgba(125,211,252,.28),transparent 65%);animation:defPulse 5s ease-in-out infinite;pointer-events:none}
+@keyframes defPulse{0%,100%{transform:scale(1);opacity:.65}50%{transform:scale(1.2);opacity:1}}
+.def-cta__content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+@media(min-width:768px){.def-cta__content{flex-direction:row;align-items:center;gap:22px}}
+.def-cta__ico{font-size:2.2rem;color:#7dd3fc;flex-shrink:0;animation:defFloat 3.5s ease-in-out infinite}
+@keyframes defFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.def-cta__content h4{font-size:1.05rem;font-weight:800;color:#fff;margin:0 0 4px;letter-spacing:-.01em}
+.def-cta__content p{font-size:.88rem;color:rgba(255,255,255,.78);margin:0;line-height:1.55;flex:1;min-width:0}
+.def-cta__btn{display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff!important;padding:13px 22px;border-radius:12px;font-weight:700;font-size:.92rem;text-decoration:none;transition:all .3s var(--ease);box-shadow:0 8px 22px rgba(37,211,102,.4);flex-shrink:0;white-space:nowrap}
+.def-cta__btn:hover{background:#1da851;transform:translateY(-2px);box-shadow:0 12px 28px rgba(37,211,102,.5)}
+@media(prefers-reduced-motion:reduce){
+  .def-card,.def-card__halo,.def-card__icon,.def-card__icon::before,.def-card__bar-fill,.def-cta__pulse,.def-cta__ico{animation:none!important;transition:none!important;opacity:1;transform:none}
+}
 
 /* Alarma */
 .alarm{background:linear-gradient(135deg,#08272d 0%,#0e3f48 100%);border:1px solid rgba(14,165,184,.4);border-radius:22px;padding:28px 22px;color:#fff;box-shadow:0 16px 48px rgba(14,165,184,.2);position:relative;overflow:hidden}
@@ -192,9 +204,20 @@
 .ntx-cta__btn--cal:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
 
 /* CTA band */
-.cta-band{border:none!important;padding:64px 0!important}
+.cta-band{border:none!important;padding:64px 0!important;background:radial-gradient(ellipse at 50% 0%,#0e3f48 0%,#0a1628 70%)!important;position:relative;overflow:hidden}
 .cta-band .reveal::before,.cta-band .reveal::after{display:none!important}
 .cta-band::before{display:none!important}
+.cta-band .cta-band__p{box-shadow:0 0 8px 1px currentColor;filter:saturate(1.2)}
+/* Estrellas grandes con halo — encima de las partículas pequeñas */
+.cta-stars{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.cta-star{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;box-shadow:0 0 12px 3px rgba(255,255,255,.85),0 0 24px 6px rgba(125,211,252,.55);animation:starTwinkle 3.5s ease-in-out infinite}
+.cta-star--ntx{background:#7dd3fc;box-shadow:0 0 14px 3px rgba(125,211,252,.95),0 0 28px 8px rgba(14,165,184,.5)}
+.cta-star--gold{background:#fde68a;box-shadow:0 0 14px 3px rgba(253,230,138,.95),0 0 28px 8px rgba(251,191,36,.5)}
+@keyframes starTwinkle{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1.3)}}
+@keyframes starDrift{0%{transform:translate(0,0)}100%{transform:translate(20px,-30px)}}
+.cta-shooting{position:absolute;width:120px;height:1px;background:linear-gradient(90deg,transparent,#fff,transparent);opacity:0;animation:shoot 6s ease-out infinite;transform-origin:left center}
+.cta-shooting::after{content:'';position:absolute;right:0;top:50%;width:6px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 12px 4px rgba(255,255,255,.9);transform:translateY(-50%)}
+@keyframes shoot{0%{opacity:0;transform:translate(0,0) rotate(20deg)}10%{opacity:1}30%{opacity:1;transform:translate(260px,90px) rotate(20deg)}40%,100%{opacity:0;transform:translate(260px,90px) rotate(20deg)}}
 
 /* FAQ */
 .faq-block{max-width:880px;margin:48px auto;padding:0 16px}
@@ -419,48 +442,6 @@
 </div>
 </div>
 
-<!-- TIPOS -->
-<div class="ntx-section reveal">
-<span class="ntx-section__eyebrow"><i class="bi bi-diagram-3"></i> Tipos de neumotórax</span>
-<h2 class="ntx-section__title">No todos son iguales — <em>el tratamiento depende del tipo</em></h2>
-<p class="ntx-section__lead">Saber de qué tipo es ayuda a decidir si basta con observación, drenaje o cirugía. Estos son los más frecuentes:</p>
-
-<div class="types-grid">
-<div class="type-card">
-<div class="type-card__head">
-<div class="type-card__num">1</div>
-<h3 class="type-card__title">Espontáneo primario</h3>
-</div>
-<p class="type-card__desc">Aparece en personas <strong>sanas, jóvenes, altas y delgadas</strong>, casi siempre fumadores. Se rompe una pequeña burbuja (bleb) en la superficie del pulmón.</p>
-<span class="type-card__tag"><i class="bi bi-person-fill"></i> Hombre joven · sin enfermedad pulmonar</span>
-</div>
-<div class="type-card">
-<div class="type-card__head">
-<div class="type-card__num">2</div>
-<h3 class="type-card__title">Espontáneo secundario</h3>
-</div>
-<p class="type-card__desc">Sucede sobre un <strong>pulmón ya enfermo</strong>: EPOC, asma grave, fibrosis quística o tras infección. Es más serio porque la reserva pulmonar es menor.</p>
-<span class="type-card__tag"><i class="fa-solid fa-lungs"></i> EPOC · Asma · Fibrosis</span>
-</div>
-<div class="type-card">
-<div class="type-card__head">
-<div class="type-card__num">3</div>
-<h3 class="type-card__title">Traumático</h3>
-</div>
-<p class="type-card__desc">Después de un <strong>golpe, accidente o herida penetrante</strong> en el tórax. La fractura de una costilla puede pinchar el pulmón.</p>
-<span class="type-card__tag"><i class="bi bi-bandaid-fill"></i> Trauma · Costilla rota</span>
-</div>
-<div class="type-card">
-<div class="type-card__head">
-<div class="type-card__num">4</div>
-<h3 class="type-card__title">Iatrogénico o a tensión</h3>
-</div>
-<p class="type-card__desc">Como complicación de <strong>biopsias, catéteres o ventilación mecánica</strong>. La forma "a tensión" es una urgencia vital y necesita descompresión inmediata.</p>
-<span class="type-card__tag"><i class="bi bi-exclamation-triangle-fill"></i> Procedimiento · Urgencia</span>
-</div>
-</div>
-</div>
-
 <!-- FACTORES DE RIESGO -->
 <div class="ntx-section reveal">
 <span class="ntx-section__eyebrow"><i class="bi bi-shield-exclamation"></i> Quién tiene más riesgo</span>
@@ -491,36 +472,66 @@
 </div>
 </div>
 
-<!-- POR QUÉ IMPORTA -->
-<div class="ntx-section reveal">
-<span class="ntx-section__eyebrow"><i class="bi bi-hourglass-split"></i> Por qué importa</span>
-<h2 class="ntx-section__title">Atender a tiempo <em>cambia todo</em></h2>
-<p class="ntx-section__lead">Tratado pronto, el pulmón vuelve a su sitio y haces vida normal. Ignorarlo abre la puerta a complicaciones serias:</p>
+<!-- MANEJO DEFINITIVO — sección animada -->
+<div class="ntx-section ntx-def reveal">
+<span class="ntx-section__eyebrow"><i class="bi bi-shield-fill-check"></i> Manejo definitivo</span>
+<h2 class="ntx-section__title">¿Y si <em>no puede repetirse</em> nunca más?</h2>
+<p class="ntx-section__lead">Algunos pacientes no pueden permitirse un segundo neumotórax: por su trabajo, por su pasión o porque ya tuvieron varios. Para ellos existe el <strong>manejo definitivo</strong>: pleurodesis o cirugía toracoscópica (VATS) que sella la pleura para evitar recurrencias.</p>
 
-<div class="ntx-vs">
-<div class="ntx-vs__inner">
-<div class="ntx-vs__col ntx-vs__col--good">
-<span class="ntx-vs__tag"><i class="bi bi-check-circle-fill"></i> Atendido a tiempo</span>
-<div class="ntx-vs__big">100%</div>
-<div class="ntx-vs__big-lbl">de pulmones se reexpanden con manejo adecuado</div>
-<ul class="ntx-vs__list">
-<li><i class="bi bi-check-lg"></i> El pulmón se reinfla en días</li>
-<li><i class="bi bi-check-lg"></i> Vuelves a tu rutina en 1–2 semanas</li>
-<li><i class="bi bi-check-lg"></i> Plan claro para que no se repita</li>
-<li><i class="bi bi-check-lg"></i> Sin daño pulmonar permanente</li>
-</ul>
+<div class="def-grid">
+<div class="def-card def-card--anim-1">
+<div class="def-card__halo"></div>
+<div class="def-card__icon"><i class="fa-solid fa-water"></i></div>
+<h3>Buceadores</h3>
+<p>El buceo está <strong>contraindicado de por vida</strong> tras un neumotórax, salvo manejo definitivo. La presión bajo el agua puede romper el pulmón otra vez.</p>
+<span class="def-card__bar"><span class="def-card__bar-fill"></span></span>
 </div>
-<div class="ntx-vs__col ntx-vs__col--bad">
-<span class="ntx-vs__tag"><i class="bi bi-x-circle-fill"></i> Si lo dejas pasar</span>
-<div class="ntx-vs__big">50%</div>
-<div class="ntx-vs__big-lbl">de recurrencia en 2 años sin seguimiento</div>
-<ul class="ntx-vs__list">
-<li><i class="bi bi-x-lg"></i> Riesgo de neumotórax a tensión</li>
-<li><i class="bi bi-x-lg"></i> Recurrencias cada vez más cercanas</li>
-<li><i class="bi bi-x-lg"></i> Insuficiencia respiratoria aguda</li>
-<li><i class="bi bi-x-lg"></i> Cirugía mayor en lugar de catéter</li>
-</ul>
+<div class="def-card def-card--anim-2">
+<div class="def-card__halo"></div>
+<div class="def-card__icon"><i class="fa-solid fa-plane-up"></i></div>
+<h3>Pilotos y tripulación</h3>
+<p>Las aerolíneas y autoridades aeronáuticas suelen exigir <strong>pleurodesis o cirugía</strong> para volver a volar. La descompresión en cabina es un disparador real.</p>
+<span class="def-card__bar"><span class="def-card__bar-fill"></span></span>
 </div>
+<div class="def-card def-card--anim-3">
+<div class="def-card__halo"></div>
+<div class="def-card__icon"><i class="bi bi-tropical-storm"></i></div>
+<h3>Alpinistas y montañistas</h3>
+<p>Subir a gran altura cambia las presiones del tórax. Para volver a expediciones serias se valora <strong>cirugía toracoscópica preventiva</strong>.</p>
+<span class="def-card__bar"><span class="def-card__bar-fill"></span></span>
+</div>
+<div class="def-card def-card--anim-4">
+<div class="def-card__halo"></div>
+<div class="def-card__icon"><i class="bi bi-arrow-repeat"></i></div>
+<h3>Recurrencia (≥2 episodios)</h3>
+<p>A partir del <strong>segundo neumotórax</strong> del mismo lado, la indicación es manejo definitivo. La probabilidad de un tercero supera el 80%.</p>
+<span class="def-card__bar"><span class="def-card__bar-fill"></span></span>
+</div>
+<div class="def-card def-card--anim-5">
+<div class="def-card__halo"></div>
+<div class="def-card__icon"><i class="bi bi-people-fill"></i></div>
+<h3>Profesiones especiales</h3>
+<p>Bomberos, paracaidistas, militares, instructores de yoga, músicos de viento: ocupaciones con cambios de presión torácica donde una recaída es inaceptable.</p>
+<span class="def-card__bar"><span class="def-card__bar-fill"></span></span>
+</div>
+<div class="def-card def-card--anim-6">
+<div class="def-card__halo"></div>
+<div class="def-card__icon"><i class="fa-solid fa-lungs"></i></div>
+<h3>Bullas grandes en TAC</h3>
+<p>Si la tomografía muestra <strong>bullas o blebs evidentes</strong>, el riesgo de recurrencia es muy alto. Operar a tiempo evita un segundo episodio inesperado.</p>
+<span class="def-card__bar"><span class="def-card__bar-fill"></span></span>
+</div>
+</div>
+
+<div class="def-cta">
+<div class="def-cta__pulse"></div>
+<div class="def-cta__content">
+<i class="bi bi-clipboard2-pulse-fill def-cta__ico"></i>
+<div>
+<h4>¿Te identificas con alguno?</h4>
+<p>Te ayudo a decidir si necesitas pleurodesis, cirugía VATS o seguimiento simple, en función de tu caso, tu trabajo y tu estilo de vida.</p>
+</div>
+<a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20creo%20que%20necesito%20manejo%20definitivo%20de%20neumot%C3%B3rax" target="_blank" class="def-cta__btn"><i class="bi bi-whatsapp"></i> Consultar mi caso</a>
 </div>
 </div>
 </div>
@@ -583,9 +594,23 @@
 <!-- CTA BAND -->
 <section class="cta-band text-center py-5">
     <div class="cta-band__particles" id="ctaParticles" aria-hidden="true"></div>
+    <div class="cta-stars" aria-hidden="true">
+        <span class="cta-star cta-star--ntx" style="top:18%;left:8%;animation-delay:0s"></span>
+        <span class="cta-star" style="top:34%;left:22%;animation-delay:.6s"></span>
+        <span class="cta-star cta-star--gold" style="top:62%;left:14%;animation-delay:1.2s"></span>
+        <span class="cta-star cta-star--ntx" style="top:78%;left:32%;animation-delay:1.8s"></span>
+        <span class="cta-star" style="top:24%;left:48%;animation-delay:.3s"></span>
+        <span class="cta-star cta-star--ntx" style="top:70%;left:54%;animation-delay:2.4s"></span>
+        <span class="cta-star cta-star--gold" style="top:30%;right:18%;animation-delay:.9s"></span>
+        <span class="cta-star" style="top:55%;right:8%;animation-delay:1.5s"></span>
+        <span class="cta-star cta-star--ntx" style="top:82%;right:24%;animation-delay:2.1s"></span>
+        <span class="cta-star" style="top:12%;right:36%;animation-delay:2.7s"></span>
+        <span class="cta-shooting" style="top:20%;left:5%;animation-delay:1.5s"></span>
+        <span class="cta-shooting" style="top:55%;left:35%;animation-delay:4s"></span>
+    </div>
     <div class="container py-3 cta-band__inner reveal">
         <p style="color:rgba(14,165,184,.7);font-size:.78rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px">Atención especializada en pleura</p>
-        <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.025em;line-height:1.2">Un pulmón colapsado <em style="font-style:normal;background:linear-gradient(135deg,#0ea5b8,#7dd3fc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">tiene tratamiento — y no tiene por qué repetirse</em></h2>
+        <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.025em;line-height:1.2">Un pulmón colapsado <em style="font-style:normal;background:linear-gradient(135deg,#0ea5b8,#7dd3fc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">tiene tratamiento, y no tiene por qué repetirse</em></h2>
         <p class="mb-4 mx-auto" style="color:rgba(255,255,255,.55);font-size:.98rem;max-width:520px;line-height:1.6">Drenaje pleural, seguimiento post-alta y plan de prevención individualizado.</p>
         <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" class="cta-band__btn">
             Agendar mi cita <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
@@ -615,7 +640,7 @@
   </details>
   <details class="faq-item">
     <summary>¿Cómo agendo consulta?</summary>
-    <div class="faq-item__answer"><p>Escríbeme directo por <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20agendar%20cita%20por%20neumot%C3%B3rax" target="_blank" style="color:var(--ntx);font-weight:700">WhatsApp al 55 9170 8334</a> o agenda en línea con el botón de cita.</p></div>
+    <div class="faq-item__answer"><p>Escríbeme directo por <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20agendar%20cita%20por%20neumot%C3%B3rax" target="_blank" style="color:var(--ntx);font-weight:700">WhatsApp</a> o agenda en línea con el botón de cita.</p></div>
   </details>
 </section>
 
