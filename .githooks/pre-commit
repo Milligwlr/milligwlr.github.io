@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Bloquea commits con mojibake (texto UTF-8 mal decodificado como Windows-1252).
+# Patrones típicos: Ã© (é), Ã³ (ó), Ã­ (í), Ã± (ñ), Ã¡ (á), Ãº (ú), â€ (em-dash/comillas).
+
+set -e
+
+staged=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(html|css|js|json|xml|txt|md|svg)$' || true)
+[ -z "$staged" ] && exit 0
+
+bad=""
+while IFS= read -r f; do
+  [ -z "$f" ] && continue
+  [ ! -f "$f" ] && continue
+  if LC_ALL=C grep -lE 'Ã[©³­±¡ºü‰"]|â€' "$f" >/dev/null 2>&1; then
+    bad="$bad$f"$'\n'
+  fi
+done <<< "$staged"
+
+if [ -n "$bad" ]; then
+  echo "ERROR: mojibake detectado en los siguientes archivos:" >&2
+  echo "$bad" >&2
+  echo "Caracteres como 'Ã©', 'Ã³', 'â€\"' indican texto UTF-8 mal codificado como Windows-1252." >&2
+  echo "Reabre el archivo con encoding UTF-8 correcto antes de commitear." >&2
+  echo "Para bypass de emergencia: git commit --no-verify" >&2
+  exit 1
+fi
+
+exit 0
