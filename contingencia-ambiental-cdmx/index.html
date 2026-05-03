@@ -80,6 +80,10 @@ h1,h2,h3,h4{font-weight:800;color:var(--navy);letter-spacing:-.02em}
 .navbar .dropdown-item:hover{background:var(--cloud);color:var(--electric)}
 .navbar-cta{background:var(--electric);color:#fff!important;padding:10px 22px;border-radius:100px;font-weight:700;text-decoration:none;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;transition:all .3s var(--ease);box-shadow:0 6px 20px rgba(9,132,227,.28)}
 .navbar-cta:hover{background:#0773c5;transform:translateY(-2px);box-shadow:0 8px 24px rgba(9,132,227,.4);color:#fff!important}
+.nav-link--recursos{color:#1e3799!important;font-weight:700!important}
+.nav-link--recursos::after{background:#1e3799!important}
+.nav-link--recursos:hover{color:#0984e3!important}
+.nav-link--recursos i{opacity:.85}
 
 /* ===== HERO ===== */
 .hero{position:relative;min-height:78vh;display:flex;align-items:center;overflow:hidden;color:#fff;padding:80px 0 60px;
@@ -501,6 +505,7 @@ footer.site-footer p{margin:4px 0}
             <li><a class="dropdown-item" href="/enfermedades/influenza/">Influenza</a></li>
           </ul>
         </li>
+        <li class="nav-item"><a class="nav-link nav-link--recursos active" href="/recursos/"><i class="fas fa-book-medical me-1"></i>Recursos</a></li>
         <li class="nav-item"><a class="nav-link" href="/preguntas-frecuentes/"><i class="fas fa-circle-question me-1"></i>FAQ</a></li>
         <li class="nav-item"><a class="nav-link" href="/#contacto-final"><i class="fas fa-envelope me-1"></i>Contacto</a></li>
       </ul>
