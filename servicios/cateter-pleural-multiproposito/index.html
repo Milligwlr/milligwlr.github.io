@@ -571,5 +571,55 @@
     }
 })();
 </script>
+
+<!-- Alveos · dataLayer events para GTM -->
+<script>/* alveos-datalayer-v1 */
+(function(){
+  if(!window.dataLayer) window.dataLayer = [];
+  function pageSlug(){
+    var p = location.pathname.replace(/\/+$/, '') || '/';
+    return p === '/' ? 'home' : p.replace(/^\//,'').replace(/\//g,'-');
+  }
+  function push(event, type, label){
+    window.dataLayer.push({
+      event: event,
+      cta_type: type,
+      cta_label: label || '',
+      cta_page: pageSlug()
+    });
+  }
+  document.addEventListener('click', function(e){
+    var el = e.target.closest('a[href]');
+    if(!el) return;
+    var href = el.getAttribute('href') || '';
+    var label = (el.textContent || '').trim().slice(0, 60);
+    if(/wa\.me|api\.whatsapp|chat\.whatsapp/.test(href)){
+      push('cta_click', 'whatsapp', label);
+    } else if(/cal\.com\/dr-william-lara/.test(href)){
+      push('cta_click', 'calcom', label);
+    } else if(href.indexOf('tel:') === 0){
+      push('cta_click', 'phone', label);
+    } else if(href.indexOf('mailto:') === 0){
+      push('cta_click', 'email', label);
+    }
+  }, { passive: true });
+  // FAQ accordion open tracking
+  document.addEventListener('show.bs.collapse', function(e){
+    var t = e.target;
+    var q = (t.previousElementSibling && t.previousElementSibling.textContent || '').trim().slice(0, 80);
+    push('faq_open', 'accordion', q);
+  }, true);
+  // Scroll depth (25/50/75/100)
+  var marks = [25,50,75,100], hit = {};
+  window.addEventListener('scroll', function(){
+    var h = document.documentElement;
+    var pct = Math.round((window.scrollY + window.innerHeight) / h.scrollHeight * 100);
+    marks.forEach(function(m){
+      if(pct >= m && !hit[m]){ hit[m] = true; push('scroll_depth', 'scroll', String(m)); }
+    });
+  }, { passive: true });
+})();
+</script>
+
 </body>
 </html>
