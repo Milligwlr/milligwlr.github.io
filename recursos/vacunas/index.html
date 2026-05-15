@@ -46,7 +46,7 @@
       {"@type":"Question","name":"Tengo asma, ¿es seguro vacunarme?","acceptedAnswer":{"@type":"Answer","text":"Sí, y es altamente recomendado. Influenza, neumococo y otros virus son los principales disparadores de crisis asmáticas. El asma es una indicación, no una contraindicación."}},
       {"@type":"Question","name":"¿Qué vacunas necesita un adulto con EPOC?","acceptedAnswer":{"@type":"Answer","text":"Influenza anual, neumococo (PCV20 dosis única o PCV15 + PPSV23), Tdap con refuerzos cada 10 años, COVID-19 estacional y VSR si tiene ≥50 años con EPOC moderada-grave."}},
       {"@type":"Question","name":"¿Dónde aplican estas vacunas en México?","acceptedAnswer":{"@type":"Answer","text":"Las vacunas de la campaña son gratuitas en el sector público: centros de salud, IMSS, ISSSTE, jurisdicciones sanitarias e IMSS Bienestar. También en farmacias y centros privados autorizados (incluye VSR y Tdap)."}},
-      {"@type":"Question","name":"¿El consultorio del Dr. Lara aplica vacunas?","acceptedAnswer":{"@type":"Answer","text":"No. Esta página es material educativo. En consulta puedo revisar tu cartilla, indicarte por escrito qué vacunas te corresponden y a dónde acudir, pero el consultorio no aplica ni distribuye vacunas."}}
+      {"@type":"Question","name":"¿Qué hacen en consulta con respecto a vacunas?","acceptedAnswer":{"@type":"Answer","text":"En consulta podemos revisar tu cartilla y orientarte sobre las vacunas respiratorias que te corresponden según tu edad y enfermedad pulmonar. Si tienes dudas específicas sobre disponibilidad, escríbenos por WhatsApp."}}
     ]}
   ]
 }
@@ -168,8 +168,17 @@
 .vax-acc__abbr{font-size:.66rem;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px}
 .vax-acc__title{font-size:1.05rem;font-weight:800;color:var(--navy);margin:0;line-height:1.2}
 .vax-acc__sub{font-size:.78rem;color:var(--text-muted);margin:3px 0 0;line-height:1.35}
-.vax-acc__chev{color:var(--vax);font-size:1.1rem;flex-shrink:0;transition:transform .3s}
-.vax-acc__item[open] .vax-acc__chev{transform:rotate(180deg)}
+.vax-acc__chev{display:none}
+.vax-acc__cta{flex-shrink:0;display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--vax),var(--vax-dark));color:#fff;font-size:.74rem;font-weight:700;letter-spacing:.4px;text-transform:uppercase;padding:8px 14px;border-radius:999px;box-shadow:0 6px 16px rgba(0,184,148,.28);transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s}
+.vax-acc__cta i{font-size:.85rem;transition:transform .35s var(--ease)}
+.vax-acc__item:hover .vax-acc__cta{transform:translateY(-1px) scale(1.04);box-shadow:0 10px 22px rgba(0,184,148,.38)}
+.vax-acc__item[open] .vax-acc__cta{background:linear-gradient(135deg,#64748b,#334155);box-shadow:0 4px 12px rgba(51,65,85,.25)}
+.vax-acc__item[open] .vax-acc__cta i{transform:rotate(180deg)}
+.vax-acc__cta__txt::before{content:'Ver detalles'}
+.vax-acc__item[open] .vax-acc__cta__txt::before{content:'Ocultar'}
+@media(max-width:520px){.vax-acc__cta{padding:7px 11px;font-size:.68rem}.vax-acc__cta__txt{display:none}}
+.vax-acc__sum:hover{background:linear-gradient(135deg,rgba(0,184,148,.04),rgba(0,206,201,.02))}
+.vax-acc__item:not([open]):hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(10,22,40,.1)}
 .vax-acc__body{padding:0 22px 22px;display:grid;grid-template-columns:1fr;gap:14px;border-top:1px dashed rgba(0,0,0,.08);margin-top:4px;padding-top:18px}
 @media(min-width:768px){.vax-acc__body{grid-template-columns:1fr 1fr;gap:16px 22px}}
 .vax-tab{padding:14px 16px;border-radius:13px;background:linear-gradient(135deg,#fafbff,#f4f7fc);border:1px solid rgba(0,0,0,.04)}
@@ -421,41 +430,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- READING PROGRESS -->
 <div class="read-progress" aria-hidden="true"><div class="read-progress__bar" id="readProgress"></div></div>
 
-<!-- TOC RAIL (DESKTOP ≥1280) -->
-<aside class="toc-rail" id="tocRail" aria-label="Navegación rápida de la guía">
-  <div class="toc-rail__lbl">En esta guía</div>
-  <a href="#por-que"><i class="bi bi-shield-check"></i> Por qué importan</a>
-  <a href="#tabla"><i class="bi bi-table"></i> Resumen rápido</a>
-  <a href="#detalle"><i class="bi bi-prescription2"></i> Detalle por vacuna</a>
-  <a href="#temporada"><i class="bi bi-snow"></i> Temporada México</a>
-  <a href="#mitos"><i class="bi bi-question-circle"></i> Mitos y realidades</a>
-  <a href="#agendar"><i class="bi bi-clipboard-check"></i> Agendar consulta</a>
-  <a href="#referencias"><i class="bi bi-book-medical"></i> Referencias</a>
-</aside>
-
-<!-- TOC FAB (MOBILE / TABLET) -->
-<button class="toc-fab" id="tocFab" aria-label="Abrir índice de la guía" aria-expanded="false" aria-controls="tocDrawer" type="button">
-  <span class="toc-fab__pulse" aria-hidden="true"></span>
-  <i class="bi bi-list-ul" aria-hidden="true"></i>
-</button>
-
-<!-- TOC DRAWER -->
-<aside class="toc-drawer" id="tocDrawer" role="dialog" aria-label="Índice de secciones" aria-modal="true">
-  <div class="toc-drawer__panel" role="document">
-    <div class="toc-drawer__handle" aria-hidden="true"></div>
-    <div class="toc-drawer__title"><i class="bi bi-bookmark-heart-fill" aria-hidden="true"></i> Navegar la guía</div>
-    <ol>
-      <li><a href="#por-que" data-toc-link>Por qué importan <i class="bi bi-shield-check toc-ic" aria-hidden="true"></i></a></li>
-      <li><a href="#tabla" data-toc-link>Resumen rápido <i class="bi bi-table toc-ic" aria-hidden="true"></i></a></li>
-      <li><a href="#detalle" data-toc-link>Detalle por vacuna <i class="bi bi-prescription2 toc-ic" aria-hidden="true"></i></a></li>
-      <li><a href="#temporada" data-toc-link>Temporada en México <i class="bi bi-snow toc-ic" aria-hidden="true"></i></a></li>
-      <li><a href="#mitos" data-toc-link>Mitos y realidades <i class="bi bi-question-circle toc-ic" aria-hidden="true"></i></a></li>
-      <li><a href="#agendar" data-toc-link>Agendar consulta <i class="bi bi-clipboard-check toc-ic" aria-hidden="true"></i></a></li>
-      <li><a href="#referencias" data-toc-link>Fuentes y referencias <i class="bi bi-book-medical toc-ic" aria-hidden="true"></i></a></li>
-    </ol>
-  </div>
-</aside>
-
 <main>
 
 <!-- HERO -->
@@ -488,7 +462,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="vax-hero-safe">
 <div class="vax-hero-safe__icon"><i class="fas fa-circle-info"></i></div>
 <h3 class="vax-hero-safe__title">Aviso importante</h3>
-<p class="vax-hero-safe__txt"><strong>El consultorio del Dr. Lara NO aplica vacunas ni las distribuye.</strong> Esta página es material educativo. Las vacunas se aplican en centros de salud, IMSS, ISSSTE, jurisdicciones sanitarias y centros privados autorizados. En consulta podemos revisar tu cartilla y darte una indicación por escrito.</p>
+<p class="vax-hero-safe__txt">Esta página es material educativo. <strong>En consulta podemos revisar tu cartilla y orientarte</strong> sobre qué vacunas respiratorias te corresponden según tu edad y enfermedad pulmonar.</p>
 </div>
 </div>
 </div>
@@ -574,8 +548,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="safeguard" style="margin-top:18px">
 <div class="safeguard__icon"><i class="fas fa-circle-info"></i></div>
 <div>
-<h4>El consultorio del Dr. Lara no aplica vacunas</h4>
-<p>Esta página es educativa. Las vacunas respiratorias se aplican <strong>gratis en el sector público</strong> (centros de salud, IMSS, ISSSTE, jurisdicciones sanitarias) o en farmacias y centros privados autorizados. En consulta puedo revisar tu cartilla y darte una indicación por escrito.</p>
+<h4>¿Tienes dudas sobre tu cartilla?</h4>
+<p>Esta página es educativa. <strong>En consulta podemos revisar tu cartilla y orientarte</strong> sobre las vacunas respiratorias que te corresponden según tu edad y condición pulmonar.</p>
 </div>
 </div>
 </div>
@@ -597,7 +571,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h3 class="vax-acc__title">Influenza</h3>
 <p class="vax-acc__sub">Anual · Reduce exacerbaciones de asma y EPOC, hospitalización y mortalidad</p>
 </div>
-<i class="bi bi-chevron-down vax-acc__chev"></i>
+<span class="vax-acc__cta" aria-hidden="true"><span class="vax-acc__cta__txt"></span><i class="bi bi-chevron-down"></i></span>
 </summary>
 <div class="vax-acc__body">
 <div class="vax-tab vax-tab--good">
@@ -642,7 +616,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h3 class="vax-acc__title">Neumococo</h3>
 <p class="vax-acc__sub">Previene neumonía neumocócica, bacteriemia y meningitis · PCV20 / PPSV23</p>
 </div>
-<i class="bi bi-chevron-down vax-acc__chev"></i>
+<span class="vax-acc__cta" aria-hidden="true"><span class="vax-acc__cta__txt"></span><i class="bi bi-chevron-down"></i></span>
 </summary>
 <div class="vax-acc__body">
 <div class="vax-tab vax-tab--good">
@@ -690,7 +664,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h3 class="vax-acc__title">VSR (RSV)</h3>
 <p class="vax-acc__sub">Dosis única · Protege contra enfermedad respiratoria grave en adultos mayores</p>
 </div>
-<i class="bi bi-chevron-down vax-acc__chev"></i>
+<span class="vax-acc__cta" aria-hidden="true"><span class="vax-acc__cta__txt"></span><i class="bi bi-chevron-down"></i></span>
 </summary>
 <div class="vax-acc__body">
 <div class="vax-tab vax-tab--good">
@@ -734,7 +708,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h3 class="vax-acc__title">COVID-19</h3>
 <p class="vax-acc__sub">Formulación actualizada cada temporada · Reduce hospitalización y enfermedad grave</p>
 </div>
-<i class="bi bi-chevron-down vax-acc__chev"></i>
+<span class="vax-acc__cta" aria-hidden="true"><span class="vax-acc__cta__txt"></span><i class="bi bi-chevron-down"></i></span>
 </summary>
 <div class="vax-acc__body">
 <div class="vax-tab vax-tab--good">
@@ -778,7 +752,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h3 class="vax-acc__title">Tos ferina (Tdap) en adultos</h3>
 <p class="vax-acc__sub">Tétanos · difteria · tos ferina acelular · Importante en EPOC, asma y convivientes con bebés</p>
 </div>
-<i class="bi bi-chevron-down vax-acc__chev"></i>
+<span class="vax-acc__cta" aria-hidden="true"><span class="vax-acc__cta__txt"></span><i class="bi bi-chevron-down"></i></span>
 </summary>
 <div class="vax-acc__body">
 <div class="vax-tab vax-tab--good">
@@ -890,7 +864,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><i class="bi bi-check-circle-fill"></i> Indicación por escrito que puedas presentar en tu centro de vacunación.</li>
 <li><i class="bi bi-check-circle-fill"></i> Calendario personalizado y orden recomendado de aplicación.</li>
 </ul>
-<div class="vax-cta__safe"><strong>Importante:</strong> el consultorio NO aplica vacunas ni las distribuye. La consulta es informativa y para darte una indicación clara que llevarás a tu centro de vacunación.</div>
+<div class="vax-cta__safe"><strong>En consulta</strong> revisamos tu cartilla y te orientamos sobre las vacunas respiratorias que te corresponden según tu edad y enfermedad pulmonar.</div>
 </div>
 <div>
 <div class="vax-cta__btns">
@@ -943,7 +917,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </div>
     </aside>
     <p role="note" style="font-size:.82rem;color:#666;line-height:1.6;margin:0;padding:14px 18px;background:rgba(255,193,7,.08);border-left:3px solid #ffc107;border-radius:6px;">
-      <strong style="color:#5d4a05;">Aviso médico importante:</strong> La información contenida en este sitio es de carácter <strong>educativo e informativo</strong> y <strong>no sustituye la consulta, diagnóstico ni tratamiento</strong> con un profesional médico. <strong>El consultorio del Dr. Lara no aplica ni distribuye vacunas.</strong> Acude a tu centro de vacunación autorizado.
+      <strong style="color:#5d4a05;">Aviso médico importante:</strong> La información contenida en este sitio es de carácter <strong>educativo e informativo</strong> y <strong>no sustituye la consulta, diagnóstico ni tratamiento</strong> con un profesional médico. En consulta podemos revisar tu cartilla y orientarte.
     </p>
   </div>
 </section>
@@ -977,9 +951,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script>
 (function(){
   var bar = document.getElementById('readProgress');
-  var fab = document.getElementById('tocFab');
-  var rail = document.getElementById('tocRail');
-  var drawer = document.getElementById('tocDrawer');
   var doc = document.documentElement;
   var ticking = false;
 
@@ -990,65 +961,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       var max = doc.scrollHeight - doc.clientHeight;
       var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
       if(bar) bar.style.width = Math.max(0, Math.min(100, pct)) + '%';
-      var passedHero = window.scrollY > 420;
-      if(fab) fab.classList.toggle('is-visible', passedHero);
-      if(rail) rail.classList.toggle('is-visible', passedHero);
       ticking = false;
     });
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
-
-  // Drawer open/close
-  function openDrawer(){
-    if(!drawer || !fab) return;
-    drawer.classList.add('is-open');
-    fab.setAttribute('aria-expanded','true');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeDrawer(){
-    if(!drawer || !fab) return;
-    drawer.classList.remove('is-open');
-    fab.setAttribute('aria-expanded','false');
-    document.body.style.overflow = '';
-  }
-  if(fab) fab.addEventListener('click', openDrawer);
-  if(drawer){
-    drawer.addEventListener('click', function(e){
-      if(e.target === drawer) closeDrawer();
-      var link = e.target.closest('a[data-toc-link]');
-      if(link) setTimeout(closeDrawer, 220);
-    });
-  }
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape' && drawer && drawer.classList.contains('is-open')){
-      closeDrawer();
-      if(fab) fab.focus();
-    }
-  });
-
-  // Scrollspy for desktop rail
-  if('IntersectionObserver' in window && rail){
-    var railLinks = rail.querySelectorAll('a[href^="#"]');
-    var current = null;
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(en.isIntersecting){
-          current = en.target.id;
-        }
-      });
-      if(current){
-        railLinks.forEach(function(a){
-          a.classList.toggle('is-current', a.getAttribute('href') === '#' + current);
-        });
-      }
-    }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
-    railLinks.forEach(function(a){
-      var id = a.getAttribute('href').slice(1);
-      var el = document.getElementById(id);
-      if(el) io.observe(el);
-    });
-  }
 })();
 </script>
 
