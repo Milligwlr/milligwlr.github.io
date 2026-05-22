@@ -202,7 +202,7 @@
           "aggregateRating":{
             "@type":"AggregateRating",
             "ratingValue":"5.0",
-            "reviewCount":"14",
+            "reviewCount":"21",
             "bestRating":"5",
             "worstRating":"1"
           }
@@ -1079,22 +1079,37 @@
         }
 
         .agenda-cta {
-            display: inline-flex; align-items: center; justify-content: center;
-            gap: 8px;
-            padding: 11px 20px;
-            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px 22px;
+            border-radius: 12px;
             text-decoration: none;
-            font-weight: 600;
-            font-size: .9rem;
-            transition: all .18s var(--ease);
-            min-height: 44px;
-            background: var(--ag-ink);
+            font-weight: 700;
+            font-size: .95rem;
+            letter-spacing: -.005em;
+            transition: transform .18s var(--ease), box-shadow .18s var(--ease), background .25s var(--ease);
+            min-height: 52px;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: #fff !important;
-            border: 1px solid var(--ag-ink);
+            border: 1px solid #1e40af;
+            box-shadow: 0 6px 18px -8px rgba(37, 99, 235, .55), 0 2px 4px rgba(37, 99, 235, .15);
         }
-        .agenda-cta:hover { background: #1a2a44; transform: translateY(-1px); }
-        .agenda-cta:focus-visible { outline: 2px solid var(--ag-blue); outline-offset: 3px; }
-        .agenda-cta i { font-size: .95em; }
+        .agenda-cta:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 28px -8px rgba(37, 99, 235, .65), 0 4px 10px rgba(37, 99, 235, .22);
+        }
+        .agenda-cta:focus-visible { outline: 2px solid #fff; outline-offset: -4px; box-shadow: 0 0 0 3px var(--ag-blue); }
+        .agenda-cta i { font-size: 1em; }
+        .agenda-cta i:last-child { margin-left: 2px; transition: transform .22s var(--ease); }
+        .agenda-cta:hover i:last-child { transform: translateX(3px); }
+        .agenda-block--primary .agenda-block__icon {
+            background: var(--ag-blue);
+            color: #fff;
+            width: 42px; height: 42px;
+            box-shadow: 0 4px 12px -4px rgba(37, 99, 235, .4);
+        }
 
         /* Contacto directo: header limpio */
         .agenda-block--contact .agenda-block__title {
@@ -1127,44 +1142,78 @@
             border: 1px solid var(--ag-line);
             background: #fff;
             color: var(--ag-ink);
-            transition: all .18s var(--ease);
+            transition: transform .18s var(--ease), box-shadow .18s var(--ease), background .2s var(--ease), border-color .2s var(--ease);
             cursor: pointer;
-            min-height: 90px;
+            min-height: 96px;
         }
-        .agenda-contact-btn:hover {
-            border-color: var(--ag-blue-soft-2);
-            background: var(--ag-bg);
-            transform: translateY(-1px);
-        }
-        .agenda-contact-btn:focus-visible { outline: 2px solid var(--ag-blue); outline-offset: 2px; }
+        .agenda-contact-btn:focus-visible { outline: 2px solid #fff; outline-offset: -4px; box-shadow: 0 0 0 3px var(--ag-blue); }
         .agenda-contact-btn i {
-            font-size: 1.15rem;
+            font-size: 1.25rem;
             color: var(--ag-mute);
             margin-bottom: 2px;
         }
         .agenda-contact-btn__label {
-            font-size: .68rem;
-            font-weight: 500;
+            font-size: .66rem;
+            font-weight: 600;
             color: var(--ag-mute);
             line-height: 1.2;
             text-transform: uppercase;
-            letter-spacing: .04em;
+            letter-spacing: .05em;
         }
         .agenda-contact-btn__value {
-            font-size: .82rem;
+            font-size: .85rem;
             font-weight: 700;
             color: var(--ag-ink);
             line-height: 1.2;
         }
 
-        /* Acentos sutiles por tipo */
-        .agenda-contact-btn--call:hover i { color: var(--ag-ink); }
-        .agenda-contact-btn--wa:hover {
-            border-color: var(--ag-green);
-            background: var(--ag-green-soft);
+        /* Llamar — primario sólido navy (alto contraste, urgencia) */
+        .agenda-contact-btn--call {
+            background: var(--ag-ink);
+            border-color: var(--ag-ink);
         }
-        .agenda-contact-btn--wa:hover i { color: var(--ag-green); }
+        .agenda-contact-btn--call i { color: #fff; }
+        .agenda-contact-btn--call .agenda-contact-btn__label { color: rgba(255, 255, 255, .68); }
+        .agenda-contact-btn--call .agenda-contact-btn__value { color: #fff; }
+        .agenda-contact-btn--call:hover {
+            background: #1a2a44;
+            border-color: #1a2a44;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px -10px rgba(15, 29, 48, .45);
+        }
+        .agenda-contact-btn--call:focus-visible { box-shadow: 0 0 0 3px var(--ag-blue); }
+
+        /* WhatsApp — verde de marca con contraste WCAG AA (5.02:1 con texto blanco) */
+        .agenda-contact-btn--wa {
+            background: #15803D;
+            border-color: #0F7D34;
+        }
+        .agenda-contact-btn--wa i { color: #fff; }
+        .agenda-contact-btn--wa .agenda-contact-btn__label { color: rgba(255, 255, 255, .88); }
+        .agenda-contact-btn--wa .agenda-contact-btn__value { color: #fff; }
+        .agenda-contact-btn--wa:hover {
+            background: #0F7D34;
+            border-color: #0c6a2c;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px -10px rgba(21, 128, 61, .55);
+        }
+        .agenda-contact-btn--wa:focus-visible { box-shadow: 0 0 0 3px #15803D; }
+
+        /* Email — ghost terciario (visualmente deprioritizado) */
+        .agenda-contact-btn--email {
+            background: var(--ag-bg);
+            border-color: var(--ag-line-2);
+        }
+        .agenda-contact-btn--email i { color: var(--ag-faint); }
+        .agenda-contact-btn--email .agenda-contact-btn__label,
+        .agenda-contact-btn--email .agenda-contact-btn__value { color: var(--ag-mute); }
+        .agenda-contact-btn--email:hover {
+            background: #fff;
+            border-color: var(--ag-blue-soft-2);
+            transform: translateY(-1px);
+        }
         .agenda-contact-btn--email:hover i { color: var(--ag-blue); }
+        .agenda-contact-btn--email:hover .agenda-contact-btn__value { color: var(--ag-ink); }
 
         /* Ubicación */
         .agenda-block--location .agenda-block__title {
@@ -1227,41 +1276,51 @@
         .agenda-location-mapbtn:focus-visible { outline: 2px solid var(--ag-blue); outline-offset: 2px; }
         .agenda-location-mapbtn i { font-size: .9em; }
 
-        /* Consulta a domicilio — clickable card */
+        /* Consulta a domicilio — CTA card con acento verde */
         a.agenda-block--home {
             display: block;
             text-decoration: none;
-            background: #fff;
-            border-color: var(--ag-line);
+            background: linear-gradient(135deg, #fff 0%, var(--ag-green-soft) 140%);
+            border-color: rgba(22, 163, 74, .18);
             position: relative;
+            transition: transform .18s var(--ease), box-shadow .2s var(--ease), border-color .2s var(--ease), background .25s var(--ease);
         }
         a.agenda-block--home:hover {
-            border-color: var(--ag-blue-soft-2);
-            background: var(--ag-blue-soft);
+            border-color: var(--ag-green);
+            background: linear-gradient(135deg, var(--ag-green-soft) 0%, rgba(22, 163, 74, .16) 140%);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 24px -10px rgba(22, 163, 74, .38);
         }
         a.agenda-block--home:focus-visible {
-            outline: 2px solid var(--ag-blue);
+            outline: 2px solid var(--ag-green);
             outline-offset: 2px;
         }
         a.agenda-block--home .agenda-block__head { margin-bottom: 0; align-items: center; }
         a.agenda-block--home .agenda-block__icon {
-            background: var(--ag-green-soft);
-            color: var(--ag-green);
+            background: var(--ag-green);
+            color: #fff;
+            box-shadow: 0 4px 12px -4px rgba(22, 163, 74, .45);
         }
         a.agenda-block--home:hover .agenda-block__icon {
-            background: #fff;
+            background: #15803d;
         }
         a.agenda-block--home .agenda-block__title { color: var(--ag-ink); }
         a.agenda-block--home .agenda-home-arrow {
             margin-left: auto;
-            color: var(--ag-faint);
-            font-size: 1.05rem;
-            transition: all .18s var(--ease);
+            color: var(--ag-green);
+            font-size: 1.1rem;
+            transition: transform .18s var(--ease), color .2s var(--ease);
             flex-shrink: 0;
         }
         a.agenda-block--home:hover .agenda-home-arrow {
-            color: var(--ag-blue);
-            transform: translateX(3px);
+            color: #15803d;
+            transform: translateX(4px);
+        }
+
+        /* Ubicación — referencia (visualmente deprioritizada) */
+        .agenda-block--location {
+            background: var(--ag-bg);
+            border-color: var(--ag-line-2);
         }
 
         /* Mobile */
@@ -4261,11 +4320,11 @@
 
                 <!-- Verified badge + Google rating widget visible (refleja AggregateRating del schema) -->
                 <div class="text-center mb-5 reveal" style="display:flex;flex-direction:column;gap:14px;align-items:center;">
-                    <a href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer" class="gbp-rating-widget" aria-label="Calificación de 5.0 estrellas con 14 reseñas verificadas en Google. Ver reseñas">
+                    <a href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer" class="gbp-rating-widget" aria-label="Calificación de 5.0 estrellas con 21 reseñas verificadas en Google. Ver reseñas">
                         <span class="gbp-rating-widget__num">5.0</span>
                         <div class="gbp-rating-widget__meta">
                             <span class="gbp-rating-widget__stars" aria-hidden="true">★★★★★</span>
-                            <span class="gbp-rating-widget__count">14 reseñas verificadas</span>
+                            <span class="gbp-rating-widget__count">21 reseñas verificadas</span>
                         </div>
                         <span class="gbp-rating-widget__source"><i class="bi bi-google" aria-hidden="true"></i> Google</span>
                     </a>
@@ -5231,7 +5290,19 @@
                 </div>
             </section>
 
-            <!-- 3) Ubicación del consultorio -->
+            <!-- 3) Consulta a domicilio (link directo a WhatsApp) -->
+            <a class="agenda-block agenda-block--home" href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20me%20interesa%20agendar%20una%20consulta%20a%20domicilio.%20%C2%BFPodr%C3%ADa%20darme%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20disponibilidad%20y%20coordinaci%C3%B3n%3F" target="_blank" rel="noopener noreferrer" data-cta="agenda-modal-home" aria-labelledby="agenda-home-t agenda-home-d">
+                <div class="agenda-block__head">
+                    <div class="agenda-block__icon"><i class="bi bi-house-heart" aria-hidden="true"></i></div>
+                    <div style="flex:1;min-width:0;">
+                        <h3 id="agenda-home-t" class="agenda-block__title">Consulta a domicilio</h3>
+                        <p id="agenda-home-d" class="agenda-block__desc">Atención médica a domicilio previa coordinación. Tócame para escribir por WhatsApp.</p>
+                    </div>
+                    <i class="bi bi-arrow-right agenda-home-arrow" aria-hidden="true"></i>
+                </div>
+            </a>
+
+            <!-- 4) Ubicación del consultorio -->
             <section class="agenda-block agenda-block--location" aria-labelledby="agenda-loc-t">
                 <h3 id="agenda-loc-t" class="agenda-block__title"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i> Ubicación del consultorio</h3>
                 <p class="agenda-block__desc">Consulta presencial en el <strong>Hospital Santa Coleta</strong>.</p>
@@ -5255,18 +5326,6 @@
                     </a>
                 </div>
             </section>
-
-            <!-- 4) Consulta a domicilio (link directo a WhatsApp) -->
-            <a class="agenda-block agenda-block--home" href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20me%20interesa%20agendar%20una%20consulta%20a%20domicilio.%20%C2%BFPodr%C3%ADa%20darme%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20disponibilidad%20y%20coordinaci%C3%B3n%3F" target="_blank" rel="noopener noreferrer" data-cta="agenda-modal-home" aria-labelledby="agenda-home-t agenda-home-d">
-                <div class="agenda-block__head">
-                    <div class="agenda-block__icon"><i class="bi bi-house-heart" aria-hidden="true"></i></div>
-                    <div style="flex:1;min-width:0;">
-                        <h3 id="agenda-home-t" class="agenda-block__title">Consulta a domicilio</h3>
-                        <p id="agenda-home-d" class="agenda-block__desc">Atención médica a domicilio previa coordinación. Tócame para escribir por WhatsApp.</p>
-                    </div>
-                    <i class="bi bi-arrow-right agenda-home-arrow" aria-hidden="true"></i>
-                </div>
-            </a>
 
         </div>
 
