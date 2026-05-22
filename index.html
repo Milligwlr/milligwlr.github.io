@@ -926,18 +926,19 @@
 
         /* ====== AGENDA MODAL — Refined, elegant, low-saturation ====== */
         :root {
-            --ag-ink:    #0f1d30;
-            --ag-mute:   #6b7488;
+            --ag-ink:    #0a1628;   /* match site --navy */
+            --ag-mute:   #64748b;   /* match site --text-muted */
             --ag-faint:  #94a0b4;
-            --ag-line:   rgba(15, 29, 48, .08);
-            --ag-line-2: rgba(15, 29, 48, .05);
+            --ag-line:   rgba(9, 132, 227, .10);  /* electric tint, matches disease cards */
+            --ag-line-2: rgba(9, 132, 227, .06);
             --ag-bg:     #fafbfc;
             --ag-bg-2:   #f4f6fa;
-            --ag-blue:   #2563eb;
-            --ag-blue-soft: rgba(37, 99, 235, .08);
-            --ag-blue-soft-2: rgba(37, 99, 235, .14);
-            --ag-green:  #16a34a;
-            --ag-green-soft: rgba(22, 163, 74, .09);
+            --ag-blue:   #0984e3;   /* match site --electric */
+            --ag-blue-soft: rgba(9, 132, 227, .08);
+            --ag-blue-soft-2: rgba(9, 132, 227, .14);
+            --ag-teal:   #00b894;   /* match site --teal */
+            --ag-teal-soft: rgba(0, 184, 148, .08);
+            --ag-wa:     #25D366;   /* match site Preguntar/floater */
         }
 
         .agenda-modal {
@@ -961,10 +962,10 @@
             width: 100%;
             max-width: 480px;
             max-height: 90vh;
-            border-radius: 18px;
+            border-radius: 22px;
             box-shadow:
-                0 30px 60px -20px rgba(15, 29, 48, .25),
-                0 8px 20px -8px rgba(15, 29, 48, .12),
+                0 20px 50px -16px rgba(10, 22, 40, .18),
+                0 4px 14px -6px rgba(10, 22, 40, .08),
                 0 0 0 1px var(--ag-line);
             display: flex;
             flex-direction: column;
@@ -1036,33 +1037,37 @@
         .agenda-modal__footer button:hover { color: var(--ag-ink); }
         .agenda-modal__footer button:focus-visible { outline: 2px solid var(--ag-blue); outline-offset: 2px; }
 
-        /* ====== Bloques del modal ====== */
+        /* ====== Bloques del modal — alineados con disease cards del sitio ====== */
         .agenda-block {
             border: 1px solid var(--ag-line);
-            border-radius: 14px;
-            padding: 16px 18px;
+            border-radius: 16px;
+            padding: 18px 20px;
             background: #fff;
             transition: border-color .2s var(--ease), background .2s var(--ease);
         }
         .agenda-block--primary {
-            background: var(--ag-blue-soft);
-            border-color: var(--ag-blue-soft-2);
+            background: linear-gradient(160deg, #fff 0%, #f4f8ff 60%, #eaf2ff 100%);
+            border-color: rgba(9, 132, 227, .12);
         }
         .agenda-block__head {
             display: flex; align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 12px;
+            gap: 14px;
+            margin-bottom: 14px;
         }
         .agenda-block__icon {
             flex-shrink: 0;
-            width: 38px; height: 38px;
-            border-radius: 10px;
-            background: var(--ag-blue-soft);
+            width: 42px; height: 42px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(9,132,227,.10), rgba(0,184,148,.08));
             color: var(--ag-blue);
+            border: 1px solid rgba(9, 132, 227, .12);
             display: inline-flex; align-items: center; justify-content: center;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
         }
-        .agenda-block--primary .agenda-block__icon { background: #fff; }
+        .agenda-block--primary .agenda-block__icon {
+            background: linear-gradient(135deg, rgba(9,132,227,.16), rgba(0,184,148,.10));
+            border-color: rgba(9, 132, 227, .18);
+        }
         .agenda-block__title {
             margin: 0 0 3px;
             font-size: 1rem;
@@ -1078,38 +1083,35 @@
             line-height: 1.5;
         }
 
+        /* Primary CTA — pill con gradiente navy→indigo→electric igual que .hero__cta */
         .agenda-cta {
             display: flex; align-items: center; justify-content: center;
             gap: 10px;
             width: 100%;
-            padding: 14px 22px;
-            border-radius: 12px;
+            padding: 14px 28px;
+            border-radius: 100px;
             text-decoration: none;
             font-weight: 700;
             font-size: .95rem;
             letter-spacing: -.005em;
-            transition: transform .18s var(--ease), box-shadow .18s var(--ease), background .25s var(--ease);
+            transition: transform .18s var(--ease), box-shadow .25s var(--ease), background-position .35s var(--ease);
             min-height: 52px;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            background: linear-gradient(135deg, #0a1628 0%, #1e3799 50%, #0984e3 100%);
+            background-size: 200% 200%;
+            background-position: 50% 50%;
             color: #fff !important;
-            border: 1px solid #1e40af;
-            box-shadow: 0 6px 18px -8px rgba(37, 99, 235, .55), 0 2px 4px rgba(37, 99, 235, .15);
+            border: none;
+            box-shadow: 0 6px 28px -4px rgba(9, 132, 227, .30);
         }
         .agenda-cta:hover {
-            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            background-position: 100% 50%;
             transform: translateY(-1px);
-            box-shadow: 0 10px 28px -8px rgba(37, 99, 235, .65), 0 4px 10px rgba(37, 99, 235, .22);
+            box-shadow: 0 10px 32px -4px rgba(9, 132, 227, .42);
         }
         .agenda-cta:focus-visible { outline: 2px solid #fff; outline-offset: -4px; box-shadow: 0 0 0 3px var(--ag-blue); }
         .agenda-cta i { font-size: 1em; }
         .agenda-cta i:last-child { margin-left: 2px; transition: transform .22s var(--ease); }
         .agenda-cta:hover i:last-child { transform: translateX(3px); }
-        .agenda-block--primary .agenda-block__icon {
-            background: var(--ag-blue);
-            color: #fff;
-            width: 42px; height: 42px;
-            box-shadow: 0 4px 12px -4px rgba(37, 99, 235, .4);
-        }
 
         /* Contacto directo: header limpio */
         .agenda-block--contact .agenda-block__title {
@@ -1134,85 +1136,85 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            padding: 14px 8px;
-            border-radius: 12px;
+            gap: 8px;
+            padding: 16px 10px;
+            border-radius: 14px;
             text-decoration: none;
             font-family: inherit;
             border: 1px solid var(--ag-line);
             background: #fff;
             color: var(--ag-ink);
-            transition: transform .18s var(--ease), box-shadow .18s var(--ease), background .2s var(--ease), border-color .2s var(--ease);
+            transition: transform .18s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease);
             cursor: pointer;
-            min-height: 96px;
+            min-height: 100px;
         }
         .agenda-contact-btn:focus-visible { outline: 2px solid #fff; outline-offset: -4px; box-shadow: 0 0 0 3px var(--ag-blue); }
         .agenda-contact-btn i {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             color: var(--ag-mute);
-            margin-bottom: 2px;
+            margin-bottom: 0;
         }
         .agenda-contact-btn__label {
-            font-size: .66rem;
+            font-size: .65rem;
             font-weight: 600;
             color: var(--ag-mute);
-            line-height: 1.2;
+            line-height: 1.1;
             text-transform: uppercase;
-            letter-spacing: .05em;
+            letter-spacing: .06em;
         }
         .agenda-contact-btn__value {
-            font-size: .85rem;
+            font-size: .92rem;
             font-weight: 700;
             color: var(--ag-ink);
-            line-height: 1.2;
+            line-height: 1.15;
         }
 
-        /* Llamar — primario sólido navy (alto contraste, urgencia) */
+        /* Llamar — electric blue del sitio (--electric #0984e3, color de marca) */
         .agenda-contact-btn--call {
-            background: var(--ag-ink);
-            border-color: var(--ag-ink);
+            background: var(--ag-blue);
+            border-color: var(--ag-blue);
         }
         .agenda-contact-btn--call i { color: #fff; }
-        .agenda-contact-btn--call .agenda-contact-btn__label { color: rgba(255, 255, 255, .68); }
-        .agenda-contact-btn--call .agenda-contact-btn__value { color: #fff; }
+        .agenda-contact-btn--call .agenda-contact-btn__label { color: rgba(255, 255, 255, .82); }
+        .agenda-contact-btn--call .agenda-contact-btn__value { color: #fff; font-size: .9rem; }
         .agenda-contact-btn--call:hover {
-            background: #1a2a44;
-            border-color: #1a2a44;
+            background: #0772c4;
+            border-color: #0772c4;
             transform: translateY(-2px);
-            box-shadow: 0 10px 22px -10px rgba(15, 29, 48, .45);
+            box-shadow: 0 10px 22px -10px rgba(9, 132, 227, .55);
         }
-        .agenda-contact-btn--call:focus-visible { box-shadow: 0 0 0 3px var(--ag-blue); }
+        .agenda-contact-btn--call:focus-visible { box-shadow: 0 0 0 3px #0a1628; }
 
-        /* WhatsApp — verde de marca con contraste WCAG AA (5.02:1 con texto blanco) */
+        /* WhatsApp — verde de marca #25D366 (mismo que .dis-cta-wa y floater del sitio) */
         .agenda-contact-btn--wa {
-            background: #15803D;
-            border-color: #0F7D34;
+            background: var(--ag-wa);
+            border-color: var(--ag-wa);
         }
         .agenda-contact-btn--wa i { color: #fff; }
-        .agenda-contact-btn--wa .agenda-contact-btn__label { color: rgba(255, 255, 255, .88); }
+        .agenda-contact-btn--wa .agenda-contact-btn__label { color: rgba(255, 255, 255, .92); }
         .agenda-contact-btn--wa .agenda-contact-btn__value { color: #fff; }
         .agenda-contact-btn--wa:hover {
-            background: #0F7D34;
-            border-color: #0c6a2c;
+            background: #1fbf5b;
+            border-color: #1fbf5b;
             transform: translateY(-2px);
-            box-shadow: 0 10px 22px -10px rgba(21, 128, 61, .55);
+            box-shadow: 0 10px 22px -10px rgba(37, 211, 102, .55);
         }
-        .agenda-contact-btn--wa:focus-visible { box-shadow: 0 0 0 3px #15803D; }
+        .agenda-contact-btn--wa:focus-visible { box-shadow: 0 0 0 3px #1fbf5b; }
 
-        /* Email — ghost terciario (visualmente deprioritizado) */
+        /* Email — ghost terciario con tinte electric (matchea contact-btn--email del sitio) */
         .agenda-contact-btn--email {
-            background: var(--ag-bg);
-            border-color: var(--ag-line-2);
+            background: rgba(9, 132, 227, .04);
+            border-color: rgba(9, 132, 227, .14);
         }
-        .agenda-contact-btn--email i { color: var(--ag-faint); }
+        .agenda-contact-btn--email i { color: var(--ag-blue); opacity: .7; }
         .agenda-contact-btn--email .agenda-contact-btn__label,
         .agenda-contact-btn--email .agenda-contact-btn__value { color: var(--ag-mute); }
         .agenda-contact-btn--email:hover {
-            background: #fff;
-            border-color: var(--ag-blue-soft-2);
+            background: rgba(9, 132, 227, .08);
+            border-color: rgba(9, 132, 227, .22);
             transform: translateY(-1px);
         }
-        .agenda-contact-btn--email:hover i { color: var(--ag-blue); }
+        .agenda-contact-btn--email:hover i { opacity: 1; }
         .agenda-contact-btn--email:hover .agenda-contact-btn__value { color: var(--ag-ink); }
 
         /* Ubicación */
@@ -1276,69 +1278,81 @@
         .agenda-location-mapbtn:focus-visible { outline: 2px solid var(--ag-blue); outline-offset: 2px; }
         .agenda-location-mapbtn i { font-size: .9em; }
 
-        /* Consulta a domicilio — CTA card con acento verde */
+        /* Consulta a domicilio — CTA card con tinte teal (matchea --teal del sitio) */
         a.agenda-block--home {
             display: block;
             text-decoration: none;
-            background: linear-gradient(135deg, #fff 0%, var(--ag-green-soft) 140%);
-            border-color: rgba(22, 163, 74, .18);
+            background: linear-gradient(160deg, #fff 0%, rgba(0, 184, 148, .05) 60%, rgba(0, 184, 148, .10) 100%);
+            border-color: rgba(0, 184, 148, .18);
             position: relative;
             transition: transform .18s var(--ease), box-shadow .2s var(--ease), border-color .2s var(--ease), background .25s var(--ease);
         }
         a.agenda-block--home:hover {
-            border-color: var(--ag-green);
-            background: linear-gradient(135deg, var(--ag-green-soft) 0%, rgba(22, 163, 74, .16) 140%);
+            border-color: var(--ag-teal);
+            background: linear-gradient(160deg, rgba(0, 184, 148, .06) 0%, rgba(0, 184, 148, .12) 60%, rgba(0, 184, 148, .18) 100%);
             transform: translateY(-1px);
-            box-shadow: 0 10px 24px -10px rgba(22, 163, 74, .38);
+            box-shadow: 0 10px 24px -10px rgba(0, 184, 148, .35);
         }
         a.agenda-block--home:focus-visible {
-            outline: 2px solid var(--ag-green);
+            outline: 2px solid var(--ag-teal);
             outline-offset: 2px;
         }
         a.agenda-block--home .agenda-block__head { margin-bottom: 0; align-items: center; }
         a.agenda-block--home .agenda-block__icon {
-            background: var(--ag-green);
-            color: #fff;
-            box-shadow: 0 4px 12px -4px rgba(22, 163, 74, .45);
+            background: linear-gradient(135deg, rgba(0, 184, 148, .16), rgba(0, 184, 148, .28));
+            border-color: rgba(0, 184, 148, .25);
+            color: var(--ag-teal);
         }
         a.agenda-block--home:hover .agenda-block__icon {
-            background: #15803d;
+            background: linear-gradient(135deg, rgba(0, 184, 148, .22), rgba(0, 184, 148, .38));
+            border-color: var(--ag-teal);
         }
         a.agenda-block--home .agenda-block__title { color: var(--ag-ink); }
         a.agenda-block--home .agenda-home-arrow {
             margin-left: auto;
-            color: var(--ag-green);
+            color: var(--ag-teal);
             font-size: 1.1rem;
             transition: transform .18s var(--ease), color .2s var(--ease);
             flex-shrink: 0;
         }
         a.agenda-block--home:hover .agenda-home-arrow {
-            color: #15803d;
+            color: #008f72;
             transform: translateX(4px);
         }
 
-        /* Ubicación — referencia (visualmente deprioritizada) */
+        /* Ubicación — card neutra (matchea FAQ cards del sitio) */
         .agenda-block--location {
-            background: var(--ag-bg);
-            border-color: var(--ag-line-2);
+            background: #fff;
+            border-color: var(--ag-line);
         }
 
         /* Mobile */
         @media (max-width: 540px) {
             .agenda-modal { padding: 0; align-items: flex-end; }
-            .agenda-modal__dialog { max-height: 94vh; border-radius: 18px 18px 0 0; max-width: 100%; }
+            .agenda-modal__dialog { max-height: 94vh; border-radius: 22px 22px 0 0; max-width: 100%; }
             .agenda-modal__header { padding: 22px 20px 14px; }
-            .agenda-modal__title { font-size: 1.2rem; }
-            .agenda-modal__body { padding: 4px 20px 18px; gap: 10px; }
+            .agenda-modal__title { font-size: 1.22rem; }
+            .agenda-modal__sub { font-size: .88rem; }
+            .agenda-modal__body { padding: 4px 18px 18px; gap: 12px; }
             .agenda-modal__footer { padding: 12px 20px 16px; }
-            .agenda-contact-row { gap: 6px; }
-            .agenda-contact-btn { padding: 12px 4px; min-height: 86px; }
-            .agenda-contact-btn i { font-size: 1.05rem; }
-            .agenda-contact-btn__label { font-size: .62rem; }
-            .agenda-contact-btn__value { font-size: .76rem; }
+            .agenda-block { padding: 16px; }
+            .agenda-block__icon { width: 40px; height: 40px; font-size: 1.05rem; }
+            .agenda-block__title { font-size: .98rem; }
+            .agenda-block__desc { font-size: .84rem; }
+            .agenda-cta { padding: 13px 22px; font-size: .92rem; min-height: 50px; }
+            .agenda-contact-row { gap: 7px; }
+            .agenda-contact-btn { padding: 14px 6px; min-height: 92px; gap: 6px; }
+            .agenda-contact-btn i { font-size: 1.3rem; }
+            .agenda-contact-btn__label { font-size: .62rem; letter-spacing: .04em; }
+            .agenda-contact-btn__value { font-size: .82rem; }
+            .agenda-contact-btn--call .agenda-contact-btn__value { font-size: .8rem; }
         }
         @media (max-width: 360px) {
-            .agenda-contact-btn__value { font-size: .7rem; }
+            .agenda-modal__body { padding: 4px 14px 14px; }
+            .agenda-block { padding: 14px; }
+            .agenda-contact-btn { padding: 12px 4px; min-height: 88px; }
+            .agenda-contact-btn__label { font-size: .58rem; }
+            .agenda-contact-btn--call .agenda-contact-btn__value { font-size: .74rem; }
         }
         @media (prefers-reduced-motion: reduce) {
             .agenda-modal, .agenda-modal__dialog { animation: none !important; }
@@ -5274,17 +5288,17 @@
                 <div class="agenda-contact-row" role="group" aria-label="Opciones de contacto directo">
                     <a class="agenda-contact-btn agenda-contact-btn--call" href="tel:+525591708334" data-cta="agenda-modal-tel" aria-label="Llamar al 55 9170 8334">
                         <i class="bi bi-telephone-fill" aria-hidden="true"></i>
-                        <span class="agenda-contact-btn__label">Llamar ahora</span>
+                        <span class="agenda-contact-btn__label">Llamar</span>
                         <span class="agenda-contact-btn__value">55 9170 8334</span>
                     </a>
                     <a class="agenda-contact-btn agenda-contact-btn--wa" href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20de%20su%20sitio%20alveos.mx%20y%20quisiera%20agendar%20una%20consulta%20de%20neumolog%C3%ADa." target="_blank" rel="noopener noreferrer" data-cta="agenda-modal-wa" aria-label="Enviar mensaje por WhatsApp">
                         <i class="bi bi-whatsapp" aria-hidden="true"></i>
-                        <span class="agenda-contact-btn__label">Enviar mensaje</span>
+                        <span class="agenda-contact-btn__label">Mensaje</span>
                         <span class="agenda-contact-btn__value">WhatsApp</span>
                     </a>
                     <a class="agenda-contact-btn agenda-contact-btn--email" href="mailto:drwilliam.neumocare@gmail.com?subject=Solicitud%20de%20consulta%20de%20neumolog%C3%ADa" data-cta="agenda-modal-email" aria-label="Enviar email">
                         <i class="bi bi-envelope-fill" aria-hidden="true"></i>
-                        <span class="agenda-contact-btn__label">Enviar email</span>
+                        <span class="agenda-contact-btn__label">Escribir</span>
                         <span class="agenda-contact-btn__value">Email</span>
                     </a>
                 </div>
