@@ -330,8 +330,8 @@
         .nav-link:hover::after { width: 100%; left: 0; }
         .nav-link.dropdown-toggle::after { display: none; }
         .nav-link:hover { color: var(--electric) !important; }
-        .nav-link--recursos{color:#1e3799!important;font-weight:700!important}
-        .nav-link--recursos::after{background:#1e3799!important}
+        .nav-link--recursos.active{color:#1e3799!important;font-weight:700!important}
+        .nav-link--recursos.active::after{background:#1e3799!important}
         .nav-link--recursos:hover{color:#0984e3!important}
         .nav-link--recursos i{opacity:.85}
         .social-icons a {
@@ -586,10 +586,22 @@
             padding-bottom: 0.15em;
         }
         .hero__headline .line-inner {
-            background: linear-gradient(135deg, var(--navy) 0%, var(--royal) 70%, var(--electric) 100%);
+            /* Solid navy color as default — guarantees contrast even if GSAP fails */
+            color: var(--navy);
+            /* Gradient applied via background-clip when supported */
+            background: linear-gradient(135deg, var(--navy) 0%, var(--royal) 55%, var(--electric) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+        /* Safety net: if GSAP fails to opacity:1, show solid navy after 3s */
+        @media (prefers-reduced-motion: no-preference) {
+            .hero__headline .line-inner {
+                animation: hero-headline-safety 3s 1s forwards;
+            }
+        }
+        @keyframes hero-headline-safety {
+            to { opacity: 1; transform: translateY(0); }
         }
         .hero__headline em {
             font-style: normal;
@@ -701,24 +713,24 @@
             flex-direction: column;
             align-items: center;
             gap: 6px;
-            opacity: .5;
+            opacity: .85;
             animation: hero-scroll-bounce 2.2s ease-in-out infinite;
             z-index: 5;
         }
         .hero__scroll-hint span {
-            font-size: .68rem;
-            font-weight: 600;
-            letter-spacing: .08em;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .12em;
             text-transform: uppercase;
-            color: var(--text-muted);
+            color: var(--navy);
         }
         .hero__scroll-hint i {
-            font-size: 1.1rem;
-            color: var(--electric);
+            font-size: 1.2rem;
+            color: var(--royal);
         }
         @keyframes hero-scroll-bounce {
-            0%,100% { transform: translateX(-50%) translateY(0); opacity:.5; }
-            50%     { transform: translateX(-50%) translateY(8px); opacity:.85; }
+            0%,100% { transform: translateX(-50%) translateY(0); opacity:.85; }
+            50%     { transform: translateX(-50%) translateY(8px); opacity:1; }
         }
         .hero__cta {
             display: inline-flex; align-items: center; gap: 10px;

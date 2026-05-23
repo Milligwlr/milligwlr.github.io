@@ -86,8 +86,8 @@ h1,h2,h3,h4{font-weight:800;color:var(--navy);letter-spacing:-.02em}
 .navbar .dropdown-item:hover{background:var(--cloud);color:var(--electric)}
 .navbar-cta{background:var(--electric);color:#fff!important;padding:10px 22px;border-radius:100px;font-weight:700;text-decoration:none;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;transition:all .3s var(--ease);box-shadow:0 6px 20px rgba(9,132,227,.28)}
 .navbar-cta:hover{background:#0773c5;transform:translateY(-2px);box-shadow:0 8px 24px rgba(9,132,227,.4);color:#fff!important}
-.nav-link--recursos{color:#1e3799!important;font-weight:700!important}
-.nav-link--recursos::after{background:#1e3799!important}
+.nav-link--recursos.active{color:#1e3799!important;font-weight:700!important}
+.nav-link--recursos.active::after{background:#1e3799!important}
 .nav-link--recursos:hover{color:#0984e3!important}
 .nav-link--recursos i{opacity:.85}
 
@@ -523,8 +523,11 @@ footer.site-footer p{margin:4px 0}
         <li class="nav-item"><a class="nav-link" href="/ubicacion/"><i class="fas fa-location-dot me-1"></i>Ubicación</a></li>
       </ul>
     </div>
-    <a href="https://wa.me/525591708334"  target="_blank" rel="noopener noreferrer" class="navbar-cta d-none d-lg-inline-flex">
-      <i class="fab fa-whatsapp"></i> Agendar cita
+    <div class="social-icons d-flex align-items-center">
+      <a href="https://www.instagram.com/dr.williamlara/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+    </div>
+    <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="navbar-cta d-none d-lg-inline-flex">
+      Agendar cita <i class="bi bi-arrow-right"></i>
     </a>
   </div>
 </nav>
@@ -546,7 +549,7 @@ footer.site-footer p{margin:4px 0}
         </div>
         <div class="hero__ctas">
           <a class="btn-primary-cta" href="#plan-accion"><i class="fas fa-shield-heart"></i> Ver plan por enfermedad</a>
-          <a class="btn-ghost-cta" href="https://wa.me/525591708334"  target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Consulta preventiva por WhatsApp</a>
+          <a class="btn-ghost-cta" href="https://wa.me/5215591708334"  target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Consulta preventiva por WhatsApp</a>
         </div>
       </div>
       <div class="col-lg-5 hero__aqi-col">
@@ -1232,7 +1235,7 @@ footer.site-footer p{margin:4px 0}
           <div class="cta-feature"><span class="cta-feature__ico"><i class="fas fa-file-medical"></i></span><strong>Plan escrito</strong><span>Verde · amarillo · rojo</span></div>
         </div>
         <div class="cta-actions">
-          <a class="btn-whatsapp-mega" href="https://wa.me/525591708334"  target="_blank" rel="noopener noreferrer">
+          <a class="btn-whatsapp-mega" href="https://wa.me/5215591708334"  target="_blank" rel="noopener noreferrer">
             <i class="fab fa-whatsapp"></i>
             <span>
               <strong>Agendar por WhatsApp</strong>
@@ -1322,17 +1325,29 @@ footer.site-footer p{margin:4px 0}
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
-<footer class="site-footer">
-  <div class="container">
-    <p><strong style="color:#fff">Dr. William César Lara Vázquez</strong> · Neumólogo · Alta Especialidad INER</p>
-    <p>Céd. Prof. 12588976 · Céd. Esp. 15595809 (Consejo Nacional de Neumología)</p>
-    <p>Hospital Santa Coleta · Saturnino Herrán 59, San José Insurgentes, Benito Juárez, CDMX</p>
-    <p style="margin-top:14px">
-      <a href="/">Inicio</a> &nbsp;·&nbsp;
-      <a href="/aviso-de-privacidad/">Aviso de privacidad</a> &nbsp;·&nbsp;
-      <a href="/contingencia-ambiental-cdmx/">Contingencia ambiental</a>
+<!-- ============ FOOTER CANÓNICO ============ -->
+<footer style="background:#0a1628;color:rgba(255,255,255,.82);padding:52px 0 28px">
+  <div class="container text-center">
+    <div style="font-size:1.45rem;font-weight:800;color:#fff;letter-spacing:-.03em">ALVEOS</div>
+    <div style="font-size:.85rem;color:rgba(255,255,255,.65);margin-top:4px;margin-bottom:24px">Neumología de Vanguardia · Ciudad de México</div>
+    <div style="margin-bottom:24px">
+      <a href="https://www.instagram.com/dr.williamlara/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="color:rgba(255,255,255,.85);font-size:1.4rem;margin:0 10px;text-decoration:none"><i class="bi bi-instagram"></i></a>
+      <a href="https://wa.me/5215591708334" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" style="color:rgba(255,255,255,.85);font-size:1.4rem;margin:0 10px;text-decoration:none"><i class="bi bi-whatsapp"></i></a>
+      <a href="tel:5591708334" aria-label="Teléfono" style="color:rgba(255,255,255,.85);font-size:1.4rem;margin:0 10px;text-decoration:none"><i class="bi bi-telephone-fill"></i></a>
+    </div>
+    <hr style="border-color:rgba(255,255,255,.15);margin:24px 0">
+    <div style="max-width:720px;margin:0 auto 18px;font-size:.78rem;line-height:1.7;color:rgba(255,255,255,.65);text-align:center">
+      <p style="margin:0 0 6px;color:rgba(255,255,255,.85);font-weight:600">Dr. William César Lara Vázquez · Médico Cirujano, Especialista en Neumología</p>
+      <p style="margin:0 0 4px">Cédula Profesional SEP: <strong style="color:#fff">12588976</strong> (BUAP) · Cédula de Especialidad SEP: <strong style="color:#fff">15595809</strong> (UNAM / INER)</p>
+      <p style="margin:0 0 4px">Certificado vigente por el Consejo Nacional de Neumología A.C. (CNN)</p>
+      <p style="margin:0 0 4px">Consultorio: Saturnino Herrán 59, Cons. 507, Hospital Santa Coleta, San José Insurgentes, Benito Juárez, CDMX 03900</p>
+    </div>
+    <p style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:8px">
+      <a href="/aviso-de-privacidad" style="color:rgba(255,255,255,.78);text-decoration:none">Aviso de Privacidad</a>
+      <span style="color:rgba(255,255,255,.2);margin:0 8px">·</span>
+      <a href="/informacion-regulatoria" style="color:rgba(255,255,255,.78);text-decoration:none">Información Regulatoria</a>
     </p>
+    <p style="font-size:.82rem;color:rgba(255,255,255,.65);margin:0">© 2026 ALVEOS. Todos los derechos reservados.</p>
   </div>
 </footer>
 
