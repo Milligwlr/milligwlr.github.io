@@ -221,6 +221,7 @@
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/enfermedades/embolia-pulmonar/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Qué es una embolia pulmonar?","acceptedAnswer":{"@type":"Answer","text":"Es la obstrucción de una arteria pulmonar por un coágulo, casi siempre proveniente de las venas profundas de las piernas (trombosis venosa profunda). Es una urgencia médica que puede ser mortal si no se trata oportunamente."}},{"@type":"Question","name":"¿Cuáles son los síntomas de una embolia pulmonar?","acceptedAnswer":{"@type":"Answer","text":"Disnea súbita, dolor torácico que empeora al respirar, taquicardia, tos con sangre y, en casos graves, desmayo o hipotensión. Si tienes estos síntomas, especialmente tras un viaje largo, cirugía reciente o inmovilización, acude a urgencias inmediatamente."}},{"@type":"Question","name":"¿Cuánto tiempo dura el tratamiento de una embolia pulmonar?","acceptedAnswer":{"@type":"Answer","text":"El tratamiento anticoagulante dura mínimo 3 meses. En embolias provocadas por un factor reversible (cirugía, inmovilización), suele suspenderse a los 3-6 meses. En embolias no provocadas o recurrentes puede ser indefinido. La duración la define el balance entre riesgo de recurrencia y riesgo de sangrado."}},{"@type":"Question","name":"¿Cuánto cuesta el seguimiento de embolia pulmonar en CDMX?","acceptedAnswer":{"@type":"Answer","text":"Escríbenos por WhatsApp al 55 9170 8334 para conocer precios actualizados y agendar consulta."}}]}
     </script>
+    <link rel="stylesheet" href="/assets/agenda-modal.css">
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -295,7 +296,7 @@
         <div class="social-icons d-flex align-items-center">
             <a href="https://www.instagram.com/dr.williamlara/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
         </div>
-        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="navbar-cta d-none d-lg-inline-flex">
+        <a href="#agendaModal" class="navbar-cta d-none d-lg-inline-flex" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
             Agendar cita <i class="bi bi-arrow-right"></i>
         </a>
     </div>
@@ -320,7 +321,7 @@
 <p class="ep-hero-sub">Si te falta el aire <strong style="color:#fff">de un momento a otro</strong> tras un viaje largo, cirugía o reposo prolongado: no esperes. Cada hora cuenta.</p>
 <div class="ep-hero-cta">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20creo%20que%20tengo%20embolia%20pulmonar" target="_blank" rel="noopener noreferrer" class="btn-wa-hero"><i class="bi bi-whatsapp"></i> WhatsApp ahora</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="btn-cal-hero"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+<a href="#agendaModal" class="btn-cal-hero" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
 </div>
 <div class="ep-hero-stats">
 <div class="ep-hero-stat"><div class="ep-hero-stat__num">90%</div><div class="ep-hero-stat__lbl">Vienen de las piernas</div></div>
@@ -523,7 +524,7 @@
 </div>
 <div class="ep-cta__btns">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20seguimiento%20post-embolia%20pulmonar" target="_blank" rel="noopener noreferrer" class="ep-cta__btn ep-cta__btn--wa"><i class="bi bi-whatsapp"></i> WhatsApp directo</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="ep-cta__btn ep-cta__btn--cal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+<a href="#agendaModal" class="ep-cta__btn ep-cta__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
 </div>
 </div>
 </div>
@@ -540,7 +541,7 @@
         <p style="color:rgba(230,69,69,.7);font-size:.78rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px">Seguimiento especializado</p>
         <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.025em;line-height:1.2">Una embolia bien tratada <em style="font-style:normal;background:linear-gradient(135deg,#e64545,#f0a830);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">no tiene por qué repetirse</em></h2>
         <p class="mb-4 mx-auto" style="color:rgba(255,255,255,.55);font-size:.98rem;max-width:500px;line-height:1.6">Anticoagulación a la medida y prevención de recurrencias.</p>
-        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="cta-band__btn">
+        <a href="#agendaModal" class="cta-band__btn" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
             Agendar mi cita <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
         </a>
     </div>
@@ -721,5 +722,6 @@
 })();
 </script>
 
+    <script src="/assets/agenda-modal.js" defer></script>
 </body>
 </html>

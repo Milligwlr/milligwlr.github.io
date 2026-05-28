@@ -312,6 +312,7 @@
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/enfermedades/apnea-del-sueno/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Cómo se diagnostica la apnea del sueño?","acceptedAnswer":{"@type":"Answer","text":"El estudio estándar es la polisomnografía (estudio del sueño completo) o la poligrafía respiratoria domiciliaria. Ambos miden los episodios de pausa respiratoria por hora (índice apnea-hipopnea, IAH) y permiten clasificar la severidad como leve, moderada o severa."}},{"@type":"Question","name":"¿El CPAP cura la apnea del sueño?","acceptedAnswer":{"@type":"Answer","text":"El CPAP no cura la apnea, pero la trata mientras se usa. Es el tratamiento de primera línea para apnea moderada-severa: mantiene abierta la vía aérea durante el sueño, elimina los ronquidos y normaliza la oxigenación. La adherencia al tratamiento es clave."}},{"@type":"Question","name":"¿Qué pasa si no trato mi apnea del sueño?","acceptedAnswer":{"@type":"Answer","text":"La apnea del sueño no tratada aumenta el riesgo de hipertensión arterial, infarto, arritmias, accidente cerebrovascular, diabetes y accidentes por somnolencia diurna. También deteriora la calidad de vida, la concentración y el estado de ánimo."}},{"@type":"Question","name":"¿Cuánto cuesta un estudio del sueño en CDMX?","acceptedAnswer":{"@type":"Answer","text":"El costo varía según se realice en laboratorio (polisomnografía) o en casa (poligrafía respiratoria). Escríbenos por WhatsApp al 55 9170 8334 para conocer precios actualizados y disponibilidad."}}]}
     </script>
+    <link rel="stylesheet" href="/assets/agenda-modal.css">
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG8Z6FKF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -384,7 +385,7 @@
         <div class="social-icons d-flex align-items-center">
             <a href="https://www.instagram.com/dr.williamlara/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
         </div>
-        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="navbar-cta d-none d-lg-inline-flex">
+        <a href="#agendaModal" class="navbar-cta d-none d-lg-inline-flex" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
             Agendar cita <i class="bi bi-arrow-right"></i>
         </a>
     </div>
@@ -411,7 +412,7 @@
 <p class="apn-hero-sub">Cada noche tu garganta se cierra decenas de veces, tu oxígeno cae y tu corazón trabaja de más, y lo más probable es que <strong style="color:#fff">no lo sepas</strong>.</p>
 <div class="apn-hero-cta">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20agendar%20una%20cita%20por%20posible%20apnea%20del%20sue%C3%B1o" target="_blank" rel="noopener noreferrer" class="btn-wa-hero"><i class="bi bi-whatsapp"></i> WhatsApp ahora</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="btn-cal-hero"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+<a href="#agendaModal" class="btn-cal-hero" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
 </div>
 <div class="apn-hero-stats">
 <div class="apn-hero-stat"><div class="apn-hero-stat__num">30%</div><div class="apn-hero-stat__lbl">adultos afectados</div></div>
@@ -484,7 +485,7 @@
 <p class="apn-quick__big-lbl">de personas con apnea no saben que la tienen. El estudio del sueño en casa cambia eso en una sola noche.</p>
 <div class="apn-quick__btns">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20agendar%20un%20estudio%20del%20sue%C3%B1o" target="_blank" rel="noopener noreferrer" class="apn-quick__btn apn-quick__btn--wa"><i class="bi bi-whatsapp"></i> Agenda el estudio</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="apn-quick__btn apn-quick__btn--cal"><i class="bi bi-calendar-check"></i> Agendar consulta</a>
+<a href="#agendaModal" class="apn-quick__btn apn-quick__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar consulta</a>
 </div>
 </div>
 </div>
@@ -811,7 +812,7 @@
 </div>
 <div class="apn-cta__btns">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20consulta%20por%20posible%20apnea%20del%20sue%C3%B1o" target="_blank" rel="noopener noreferrer" class="apn-cta__btn apn-cta__btn--wa"><i class="bi bi-whatsapp"></i> WhatsApp directo</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="apn-cta__btn apn-cta__btn--cal"><i class="bi bi-calendar-check"></i> Agendar cita online</a>
+<a href="#agendaModal" class="apn-cta__btn apn-cta__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita online</a>
 </div>
 </div>
 </div>
@@ -828,7 +829,7 @@
         <p style="color:rgba(162,155,254,.7);font-size:.78rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px">Diagnóstico sencillo · Resultado que cambia tu vida</p>
         <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.025em;line-height:1.2">Dormir bien no es un lujo.<br><em style="font-style:normal;background:linear-gradient(135deg,#a29bfe,#6c5ce7);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Es una necesidad médica.</em></h2>
         <p class="mb-4 mx-auto" style="color:rgba(255,255,255,.55);font-size:.98rem;max-width:500px;line-height:1.6">Diagnóstico, CPAP y seguimiento para que dejes de despertar cansado.</p>
-        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="cta-band__btn">
+        <a href="#agendaModal" class="cta-band__btn" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
             Agendar mi cita <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
         </a>
     </div>
@@ -1008,5 +1009,6 @@
 })();
 </script>
 
+    <script src="/assets/agenda-modal.js" defer></script>
 </body>
 </html>

@@ -245,6 +245,7 @@
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/enfermedades/neumonia/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Cuánto dura una neumonía?","acceptedAnswer":{"@type":"Answer","text":"La fase aguda de una neumonía adquirida en la comunidad suele durar 7 a 10 días con tratamiento antibiótico adecuado. La tos residual y la fatiga pueden persistir 4 a 6 semanas. La radiografía puede tardar hasta 6-8 semanas en normalizarse, por lo que se recomienda un control radiológico tardío."}},{"@type":"Question","name":"¿Cuándo es grave una neumonía?","acceptedAnswer":{"@type":"Answer","text":"Una neumonía es grave si aparece dificultad respiratoria importante, frecuencia respiratoria mayor a 30 por minuto, oxigenación menor a 90%, presión arterial baja, confusión o si afecta a adultos mayores con enfermedades crónicas. En estos casos se requiere hospitalización."}},{"@type":"Question","name":"¿Se puede prevenir la neumonía?","acceptedAnswer":{"@type":"Answer","text":"Sí. La vacunación antineumocócica y antiinfluenza son las medidas más efectivas, especialmente en mayores de 60 años, fumadores y pacientes con EPOC, asma, diabetes o inmunosupresión. También ayudan dejar de fumar y el lavado frecuente de manos."}},{"@type":"Question","name":"¿Cuánto cuesta una consulta por neumonía en CDMX?","acceptedAnswer":{"@type":"Answer","text":"El costo varía según el plan elegido. Si tienes síntomas, escríbenos por WhatsApp al 55 9170 8334 para agendar cita prioritaria."}}]}
     </script>
+    <link rel="stylesheet" href="/assets/agenda-modal.css">
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -322,7 +323,7 @@
         <div class="social-icons d-flex align-items-center">
             <a href="https://www.instagram.com/dr.williamlara/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
         </div>
-        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="navbar-cta d-none d-lg-inline-flex">
+        <a href="#agendaModal" class="navbar-cta d-none d-lg-inline-flex" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
             Agendar cita <i class="bi bi-arrow-right"></i>
         </a>
     </div>
@@ -638,7 +639,7 @@
                             <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20creo%20tener%20neumon%C3%ADa%20y%20quiero%20agendar%20una%20cita" target="_blank" rel="noopener noreferrer" class="cta-inline__btn cta-inline__btn--wa">
                                 <i class="bi bi-whatsapp"></i> WhatsApp
                             </a>
-                            <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="cta-inline__btn cta-inline__btn--cal">
+                            <a href="#agendaModal" class="cta-inline__btn cta-inline__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
                                 <i class="bi bi-calendar-check"></i> Agendar cita
                             </a>
                         </div>
@@ -662,7 +663,7 @@
         <p style="color:rgba(116,185,255,.7);font-size:.82rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">Diagnóstico hoy</p>
         <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.03em;line-height:1.15">Recupérate sin dejar huella</h2>
         <p class="mb-5 mx-auto" style="color:rgba(255,255,255,.45);font-size:1rem;max-width:520px;line-height:1.75">Valoración completa con radiografía de tórax, oximetría y análisis en una sola consulta. Antibiótico dirigido y seguimiento hasta la resolución total.</p>
-        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="cta-band__btn">
+        <a href="#agendaModal" class="cta-band__btn" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
             Agendar mi cita ahora <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
         </a>
     </div>
@@ -842,5 +843,6 @@
 })();
 </script>
 
+    <script src="/assets/agenda-modal.js" defer></script>
 </body>
 </html>

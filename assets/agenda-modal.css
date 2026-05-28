@@ -1,0 +1,438 @@
+        :root {
+            --ag-ink:    #0a1628;   /* match site --navy */
+            --ag-mute:   #64748b;   /* match site --text-muted */
+            --ag-faint:  #94a0b4;
+            --ag-line:   rgba(9, 132, 227, .10);  /* electric tint, matches disease cards */
+            --ag-line-2: rgba(9, 132, 227, .06);
+            --ag-bg:     #fafbfc;
+            --ag-bg-2:   #f4f6fa;
+            --ag-blue:   #0984e3;   /* match site --electric */
+            --ag-blue-soft: rgba(9, 132, 227, .08);
+            --ag-blue-soft-2: rgba(9, 132, 227, .14);
+            --ag-teal:   #00b894;   /* match site --teal */
+            --ag-teal-soft: rgba(0, 184, 148, .08);
+            --ag-wa:     #25D366;   /* match site Preguntar/floater */
+        }
+
+        .agenda-modal {
+            position: fixed; inset: 0;
+            background: rgba(15, 29, 48, .42);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 24px 16px;
+            animation: agenda-fade .22s ease-out;
+        }
+        .agenda-modal.is-open { display: flex; }
+        @keyframes agenda-fade { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes agenda-pop  { from { opacity: 0; transform: translateY(12px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+        .agenda-modal__dialog {
+            background: #fff;
+            width: 100%;
+            max-width: 480px;
+            max-height: 90vh;
+            border-radius: 22px;
+            box-shadow:
+                0 20px 50px -16px rgba(10, 22, 40, .18),
+                0 4px 14px -6px rgba(10, 22, 40, .08),
+                0 0 0 1px var(--ag-line);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: agenda-pop .28s var(--ease) both;
+        }
+        .agenda-modal__header {
+            padding: 24px 26px 18px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .agenda-modal__title {
+            margin: 0 0 4px;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--ag-ink);
+            letter-spacing: -.018em;
+            line-height: 1.2;
+        }
+        .agenda-modal__sub {
+            margin: 0;
+            font-size: .9rem;
+            color: var(--ag-mute);
+            line-height: 1.5;
+            font-weight: 400;
+        }
+        .agenda-modal__close {
+            background: transparent; border: none; padding: 0;
+            width: 32px; height: 32px;
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: var(--ag-faint);
+            cursor: pointer;
+            transition: all .18s var(--ease);
+            flex-shrink: 0;
+        }
+        .agenda-modal__close:hover { background: var(--ag-bg-2); color: var(--ag-ink); }
+        .agenda-modal__close:focus-visible { outline: 2px solid var(--ag-blue); outline-offset: 2px; }
+        .agenda-modal__body {
+            padding: 4px 26px 22px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+        }
+        .agenda-modal__body::-webkit-scrollbar { width: 6px; }
+        .agenda-modal__body::-webkit-scrollbar-thumb { background: var(--ag-line); border-radius: 100px; }
+        .agenda-modal__footer {
+            padding: 12px 26px 18px;
+            border-top: 1px solid var(--ag-line-2);
+            text-align: center;
+            background: var(--ag-bg);
+        }
+        .agenda-modal__footer button {
+            background: transparent; border: none;
+            color: var(--ag-mute);
+            font-size: .88rem;
+            font-weight: 500;
+            padding: 8px 14px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: color .18s var(--ease);
+        }
+        .agenda-modal__footer button:hover { color: var(--ag-ink); }
+        .agenda-modal__footer button:focus-visible { outline: 2px solid var(--ag-blue); outline-offset: 2px; }
+
+        /* ====== Bloques del modal — alineados con disease cards del sitio ====== */
+        .agenda-block {
+            border: 1px solid var(--ag-line);
+            border-radius: 16px;
+            padding: 18px 20px;
+            background: #fff;
+            transition: border-color .2s var(--ease), background .2s var(--ease);
+        }
+        .agenda-block--primary {
+            background: linear-gradient(160deg, #fff 0%, #f4f8ff 60%, #eaf2ff 100%);
+            border-color: rgba(9, 132, 227, .12);
+        }
+        .agenda-block__head {
+            display: flex; align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+        .agenda-block__icon {
+            flex-shrink: 0;
+            width: 42px; height: 42px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(9,132,227,.10), rgba(0,184,148,.08));
+            color: var(--ag-blue);
+            border: 1px solid rgba(9, 132, 227, .12);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+        }
+        .agenda-block--primary .agenda-block__icon {
+            background: linear-gradient(135deg, rgba(9,132,227,.16), rgba(0,184,148,.10));
+            border-color: rgba(9, 132, 227, .18);
+        }
+        .agenda-block__title {
+            margin: 0 0 3px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--ag-ink);
+            letter-spacing: -.005em;
+            line-height: 1.25;
+        }
+        .agenda-block__desc {
+            margin: 0;
+            font-size: .85rem;
+            color: var(--ag-mute);
+            line-height: 1.5;
+        }
+
+        /* Primary CTA — pill con gradiente navy→indigo→electric igual que .hero__cta */
+        .agenda-cta {
+            display: flex; align-items: center; justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px 28px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: .95rem;
+            letter-spacing: -.005em;
+            transition: transform .18s var(--ease), box-shadow .25s var(--ease), background-position .35s var(--ease);
+            min-height: 52px;
+            background: linear-gradient(135deg, #0a1628 0%, #1e3799 50%, #0984e3 100%);
+            background-size: 200% 200%;
+            background-position: 50% 50%;
+            color: #fff !important;
+            border: none;
+            box-shadow: 0 6px 28px -4px rgba(9, 132, 227, .30);
+        }
+        .agenda-cta:hover {
+            background-position: 100% 50%;
+            transform: translateY(-1px);
+            box-shadow: 0 10px 32px -4px rgba(9, 132, 227, .42);
+        }
+        .agenda-cta:focus-visible { outline: 2px solid #fff; outline-offset: -4px; box-shadow: 0 0 0 3px var(--ag-blue); }
+        .agenda-cta i { font-size: 1em; }
+        .agenda-cta i:last-child { margin-left: 2px; transition: transform .22s var(--ease); }
+        .agenda-cta:hover i:last-child { transform: translateX(3px); }
+
+        /* Contacto directo: header limpio */
+        .agenda-block--contact .agenda-block__title {
+            display: flex; align-items: center; gap: 8px;
+            margin-bottom: 12px;
+        }
+        .agenda-block--contact .agenda-block__title i {
+            color: var(--ag-blue);
+            font-size: 1rem;
+            background: var(--ag-blue-soft);
+            width: 24px; height: 24px;
+            border-radius: 6px;
+            display: inline-flex; align-items: center; justify-content: center;
+        }
+        .agenda-contact-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+        .agenda-contact-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 10px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-family: inherit;
+            border: 1px solid var(--ag-line);
+            background: #fff;
+            color: var(--ag-ink);
+            transition: transform .18s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease);
+            cursor: pointer;
+            min-height: 100px;
+        }
+        .agenda-contact-btn:focus-visible { outline: 2px solid #fff; outline-offset: -4px; box-shadow: 0 0 0 3px var(--ag-blue); }
+        .agenda-contact-btn i {
+            font-size: 1.5rem;
+            color: var(--ag-mute);
+            margin-bottom: 0;
+        }
+        .agenda-contact-btn__label {
+            font-size: .65rem;
+            font-weight: 600;
+            color: var(--ag-mute);
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+        }
+        .agenda-contact-btn__value {
+            font-size: .92rem;
+            font-weight: 700;
+            color: var(--ag-ink);
+            line-height: 1.15;
+        }
+
+        /* Llamar — electric blue del sitio (--electric #0984e3, color de marca) */
+        .agenda-contact-btn--call {
+            background: var(--ag-blue);
+            border-color: var(--ag-blue);
+        }
+        .agenda-contact-btn--call i { color: #fff; }
+        .agenda-contact-btn--call .agenda-contact-btn__label { color: rgba(255, 255, 255, .82); }
+        .agenda-contact-btn--call .agenda-contact-btn__value { color: #fff; font-size: .9rem; }
+        .agenda-contact-btn--call:hover {
+            background: #0772c4;
+            border-color: #0772c4;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px -10px rgba(9, 132, 227, .55);
+        }
+        .agenda-contact-btn--call:focus-visible { box-shadow: 0 0 0 3px #0a1628; }
+
+        /* WhatsApp — verde de marca #25D366 (mismo que .dis-cta-wa y floater del sitio) */
+        .agenda-contact-btn--wa {
+            background: var(--ag-wa);
+            border-color: var(--ag-wa);
+        }
+        .agenda-contact-btn--wa i { color: #fff; }
+        .agenda-contact-btn--wa .agenda-contact-btn__label { color: rgba(255, 255, 255, .92); }
+        .agenda-contact-btn--wa .agenda-contact-btn__value { color: #fff; }
+        .agenda-contact-btn--wa:hover {
+            background: #1fbf5b;
+            border-color: #1fbf5b;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px -10px rgba(37, 211, 102, .55);
+        }
+        .agenda-contact-btn--wa:focus-visible { box-shadow: 0 0 0 3px #1fbf5b; }
+
+        /* Email — ghost terciario con tinte electric (matchea contact-btn--email del sitio) */
+        .agenda-contact-btn--email {
+            background: rgba(9, 132, 227, .04);
+            border-color: rgba(9, 132, 227, .14);
+        }
+        .agenda-contact-btn--email i { color: var(--ag-blue); opacity: .7; }
+        .agenda-contact-btn--email .agenda-contact-btn__label,
+        .agenda-contact-btn--email .agenda-contact-btn__value { color: var(--ag-mute); }
+        .agenda-contact-btn--email:hover {
+            background: rgba(9, 132, 227, .08);
+            border-color: rgba(9, 132, 227, .22);
+            transform: translateY(-1px);
+        }
+        .agenda-contact-btn--email:hover i { opacity: 1; }
+        .agenda-contact-btn--email:hover .agenda-contact-btn__value { color: var(--ag-ink); }
+
+        /* Ubicación */
+        .agenda-block--location .agenda-block__title {
+            display: flex; align-items: center; gap: 8px;
+            margin-bottom: 4px;
+        }
+        .agenda-block--location .agenda-block__title i {
+            color: var(--ag-blue);
+            font-size: 1rem;
+            background: var(--ag-blue-soft);
+            width: 24px; height: 24px;
+            border-radius: 6px;
+            display: inline-flex; align-items: center; justify-content: center;
+        }
+        .agenda-location-card {
+            background: var(--ag-bg);
+            border: 1px solid var(--ag-line-2);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin: 12px 0;
+        }
+        .agenda-location-card__head {
+            display: flex; align-items: center; gap: 8px;
+            margin-bottom: 8px;
+            font-weight: 700; color: var(--ag-ink);
+            font-size: .9rem;
+        }
+        .agenda-location-card__head i { color: var(--ag-faint); font-size: .95rem; }
+        .agenda-location-card address {
+            font-style: normal;
+            color: var(--ag-mute);
+            font-size: .85rem;
+            line-height: 1.6;
+            margin: 0 0 8px;
+        }
+        .agenda-location-card__cons {
+            display: inline-flex; align-items: center; gap: 6px;
+            color: var(--ag-blue);
+            font-weight: 600;
+            font-size: .82rem;
+            padding: 4px 10px;
+            background: var(--ag-blue-soft);
+            border-radius: 100px;
+        }
+        .agenda-location-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+        .agenda-location-mapbtn {
+            display: inline-flex; align-items: center; gap: 7px;
+            padding: 8px 14px;
+            background: #fff;
+            color: var(--ag-ink) !important;
+            border: 1px solid var(--ag-line);
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: .82rem;
+            min-height: 36px;
+            transition: all .18s var(--ease);
+        }
+        .agenda-location-mapbtn:hover { border-color: var(--ag-blue-soft-2); color: var(--ag-blue) !important; background: var(--ag-blue-soft); }
+        .agenda-location-mapbtn:focus-visible { outline: 2px solid var(--ag-blue); outline-offset: 2px; }
+        .agenda-location-mapbtn i { font-size: .9em; }
+
+        /* Consulta a domicilio — CTA card con tinte teal (matchea --teal del sitio) */
+        a.agenda-block--home {
+            display: block;
+            text-decoration: none;
+            background: linear-gradient(160deg, #fff 0%, rgba(0, 184, 148, .05) 60%, rgba(0, 184, 148, .10) 100%);
+            border-color: rgba(0, 184, 148, .18);
+            position: relative;
+            transition: transform .18s var(--ease), box-shadow .2s var(--ease), border-color .2s var(--ease), background .25s var(--ease);
+        }
+        a.agenda-block--home:hover {
+            border-color: var(--ag-teal);
+            background: linear-gradient(160deg, rgba(0, 184, 148, .06) 0%, rgba(0, 184, 148, .12) 60%, rgba(0, 184, 148, .18) 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 24px -10px rgba(0, 184, 148, .35);
+        }
+        a.agenda-block--home:focus-visible {
+            outline: 2px solid var(--ag-teal);
+            outline-offset: 2px;
+        }
+        a.agenda-block--home .agenda-block__head { margin-bottom: 0; align-items: center; }
+        a.agenda-block--home .agenda-block__icon {
+            background: linear-gradient(135deg, rgba(0, 184, 148, .16), rgba(0, 184, 148, .28));
+            border-color: rgba(0, 184, 148, .25);
+            color: var(--ag-teal);
+        }
+        a.agenda-block--home:hover .agenda-block__icon {
+            background: linear-gradient(135deg, rgba(0, 184, 148, .22), rgba(0, 184, 148, .38));
+            border-color: var(--ag-teal);
+        }
+        a.agenda-block--home .agenda-block__title { color: var(--ag-ink); }
+        a.agenda-block--home .agenda-home-arrow {
+            margin-left: auto;
+            color: var(--ag-teal);
+            font-size: 1.1rem;
+            transition: transform .18s var(--ease), color .2s var(--ease);
+            flex-shrink: 0;
+        }
+        a.agenda-block--home:hover .agenda-home-arrow {
+            color: #008f72;
+            transform: translateX(4px);
+        }
+
+        /* Ubicación — card neutra (matchea FAQ cards del sitio) */
+        .agenda-block--location {
+            background: #fff;
+            border-color: var(--ag-line);
+        }
+
+        /* Mobile */
+        @media (max-width: 540px) {
+            .agenda-modal { padding: 0; align-items: flex-end; }
+            .agenda-modal__dialog { max-height: 94vh; border-radius: 22px 22px 0 0; max-width: 100%; }
+            .agenda-modal__header { padding: 22px 20px 14px; }
+            .agenda-modal__title { font-size: 1.22rem; }
+            .agenda-modal__sub { font-size: .88rem; }
+            .agenda-modal__body { padding: 4px 18px 18px; gap: 12px; }
+            .agenda-modal__footer { padding: 12px 20px 16px; }
+            .agenda-block { padding: 16px; }
+            .agenda-block__icon { width: 40px; height: 40px; font-size: 1.05rem; }
+            .agenda-block__title { font-size: .98rem; }
+            .agenda-block__desc { font-size: .84rem; }
+            .agenda-cta { padding: 13px 22px; font-size: .92rem; min-height: 50px; }
+            .agenda-contact-row { gap: 7px; }
+            .agenda-contact-btn { padding: 14px 6px; min-height: 92px; gap: 6px; }
+            .agenda-contact-btn i { font-size: 1.3rem; }
+            .agenda-contact-btn__label { font-size: .62rem; letter-spacing: .04em; }
+            .agenda-contact-btn__value { font-size: .82rem; }
+            .agenda-contact-btn--call .agenda-contact-btn__value { font-size: .8rem; }
+        }
+        @media (max-width: 360px) {
+            .agenda-modal__body { padding: 4px 14px 14px; }
+            .agenda-block { padding: 14px; }
+            .agenda-contact-btn { padding: 12px 4px; min-height: 88px; }
+            .agenda-contact-btn__label { font-size: .58rem; }
+            .agenda-contact-btn--call .agenda-contact-btn__value { font-size: .74rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .agenda-modal, .agenda-modal__dialog { animation: none !important; }
+        }
+        body.agenda-open { overflow: hidden; }
+
+        /* Two-column variant — sin email (Llamar + WhatsApp solamente) */
+        .agenda-contact-row--two {
+            grid-template-columns: repeat(2, 1fr);
+        }

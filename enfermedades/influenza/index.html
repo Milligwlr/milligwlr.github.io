@@ -317,6 +317,7 @@
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/enfermedades/influenza/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Cómo distinguir influenza de un resfriado común?","acceptedAnswer":{"@type":"Answer","text":"La influenza inicia bruscamente con fiebre alta (38-40°C), dolores musculares intensos, fatiga marcada, dolor de cabeza y tos seca. El resfriado es más gradual, sin fiebre alta, predomina la congestión nasal y los síntomas son más leves. La duración también difiere: la influenza dura 5-7 días, el resfriado 3-5."}},{"@type":"Question","name":"¿Cuándo es peligrosa la influenza?","acceptedAnswer":{"@type":"Answer","text":"Cuando aparece dificultad respiratoria, dolor torácico, oxigenación menor a 92%, fiebre persistente más de 4 días, deterioro del estado general o si afecta a embarazadas, mayores de 65 años, niños pequeños o personas con enfermedades crónicas (asma, EPOC, diabetes, inmunosupresión)."}},{"@type":"Question","name":"¿Sirve la vacuna contra la influenza?","acceptedAnswer":{"@type":"Answer","text":"Sí. Reduce el riesgo de enfermedad grave, hospitalización y muerte, especialmente en adultos mayores y enfermos crónicos. La protección no es total porque el virus cambia cada temporada, pero los casos vacunados que se enferman lo hacen de forma más leve."}},{"@type":"Question","name":"¿Cuánto cuesta una consulta por influenza en CDMX?","acceptedAnswer":{"@type":"Answer","text":"Escríbenos por WhatsApp al 55 9170 8334 para agendar cita prioritaria si tienes síntomas."}}]}
     </script>
+    <link rel="stylesheet" href="/assets/agenda-modal.css">
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG8Z6FKF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -389,7 +390,7 @@
         <div class="social-icons d-flex align-items-center">
             <a href="https://www.instagram.com/dr.williamlara/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
         </div>
-        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="navbar-cta d-none d-lg-inline-flex">
+        <a href="#agendaModal" class="navbar-cta d-none d-lg-inline-flex" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
             Agendar cita <i class="bi bi-arrow-right"></i>
         </a>
     </div>
@@ -420,7 +421,7 @@
 </div>
 <div class="flu-hero-cta">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20creo%20que%20tengo%20influenza%20y%20necesito%20valoraci%C3%B3n%20pronto" target="_blank" rel="noopener noreferrer" class="btn-wa-hero"><i class="bi bi-whatsapp"></i> WhatsApp ahora</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="btn-cal-hero"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+<a href="#agendaModal" class="btn-cal-hero" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
 </div>
 <div class="flu-hero-stats">
 <div class="flu-hero-stat"><div class="flu-hero-stat__num">48h</div><div class="flu-hero-stat__lbl">Ventana antiviral</div></div>
@@ -657,7 +658,7 @@
 
 <div class="flu-route__cta">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20creo%20que%20tengo%20influenza%20y%20quiero%20cita%20pronto" target="_blank" rel="noopener noreferrer" class="flu-route__btn flu-route__btn--wa"><i class="bi bi-whatsapp"></i> Empezar por WhatsApp</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="flu-route__btn flu-route__btn--cal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+<a href="#agendaModal" class="flu-route__btn flu-route__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
 </div>
 </div>
 </div>
@@ -673,7 +674,7 @@
         <p style="color:rgba(255,107,53,.75);font-size:.78rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px">Cita prioritaria · Antiviral en ventana</p>
         <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.025em;line-height:1.2">No esperes a "ver si pasa".<br><em style="font-style:normal;background:linear-gradient(135deg,#ff6b35,#f0a830);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Las primeras 48 h son las que cuentan.</em></h2>
         <p class="mb-4 mx-auto" style="color:rgba(255,255,255,.55);font-size:.98rem;max-width:520px;line-height:1.6">Valoración el mismo día y plan claro para que la influenza no termine en hospital.</p>
-        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="cta-band__btn">
+        <a href="#agendaModal" class="cta-band__btn" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
             Agendar mi cita <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
         </a>
     </div>
@@ -853,5 +854,6 @@
 })();
 </script>
 
+    <script src="/assets/agenda-modal.js" defer></script>
 </body>
 </html>

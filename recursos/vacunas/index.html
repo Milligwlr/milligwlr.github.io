@@ -347,6 +347,7 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
+    <link rel="stylesheet" href="/assets/agenda-modal.css">
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG8Z6FKF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -419,7 +420,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="social-icons d-flex align-items-center">
             <a href="https://www.instagram.com/dr.williamlara/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
         </div>
-        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="navbar-cta d-none d-lg-inline-flex">
+        <a href="#agendaModal" class="navbar-cta d-none d-lg-inline-flex" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
             Agendar cita <i class="bi bi-arrow-right"></i>
         </a>
     </div>
@@ -869,7 +870,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div>
 <div class="vax-cta__btns">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20revisar%20mi%20cartilla%20de%20vacunaci%C3%B3n" target="_blank" rel="noopener noreferrer" class="vax-cta__btn vax-cta__btn--wa"><i class="bi bi-whatsapp"></i> Consultar por WhatsApp</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="vax-cta__btn vax-cta__btn--cal"><i class="bi bi-calendar-check"></i> Agendar consulta</a>
+<a href="#agendaModal" class="vax-cta__btn vax-cta__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar consulta</a>
 </div>
 </div>
 </div>
@@ -1018,5 +1019,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })();
 </script>
 
+    <script src="/assets/agenda-modal.js" defer></script>
 </body>
 </html>

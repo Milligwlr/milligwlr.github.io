@@ -173,6 +173,7 @@
         .nav-link--recursos i{opacity:.85}
         </style>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
+    <link rel="stylesheet" href="/assets/agenda-modal.css">
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG8Z6FKF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -241,7 +242,7 @@
                 <li class="nav-item"><a class="nav-link" href="/ubicacion/"><i class="fas fa-location-dot me-1"></i>Ubicación</a></li>
             </ul>
         </div>
-        <a href="https://cal.com/dr-william-lara/agendar-cita"  target="_blank" rel="noopener noreferrer" class="navbar-cta d-none d-lg-inline-flex">Agendar cita <i class="bi bi-arrow-right"></i></a>
+        <a href="#agendaModal" class="navbar-cta d-none d-lg-inline-flex" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">Agendar cita <i class="bi bi-arrow-right"></i></a>
     </div>
 </nav>
 
@@ -310,7 +311,7 @@
                 <p class="faq-section__lead">Todo lo que necesitas saber para llegar preparado y aprovechar la consulta al máximo.</p>
                 <div class="faq-list">
                     <details class="faq-item"><summary>¿Cuándo debo ir con un neumólogo?</summary><div class="faq-item__answer"><p>Cuando tienes <strong>tos que dura más de 3 semanas</strong>, falta de aire al hacer esfuerzos que antes hacías sin problema, sibilancias (silbidos al respirar), ronquido fuerte con pausas respiratorias, dolor en el pecho al respirar, o ya tienes diagnóstico de asma o EPOC pero sigues con síntomas. También si fumas o fumaste y quieres tu primera evaluación pulmonar.</p></div></details>
-                    <details class="faq-item"><summary>¿Necesito referencia médica para agendar?</summary><div class="faq-item__answer"><p>No. Puedes agendar por <a href="https://wa.me/5215591708334"  target="_blank" rel="noopener noreferrer" class="faq-link--wa"><i class="bi bi-whatsapp"></i>55 9170 8334</a> o <a href="https://cal.com/dr-william-lara/agendar-cita"  target="_blank" rel="noopener noreferrer" class="faq-link--cal"><i class="bi bi-calendar-check-fill"></i>reservar cita en línea</a>. Si te refirió otro médico, trae el resumen y estudios previos para no repetirlos y avanzar más rápido.</p></div></details>
+                    <details class="faq-item"><summary>¿Necesito referencia médica para agendar?</summary><div class="faq-item__answer"><p>No. Puedes agendar por <a href="https://wa.me/5215591708334"  target="_blank" rel="noopener noreferrer" class="faq-link--wa"><i class="bi bi-whatsapp"></i>55 9170 8334</a> o <a href="#agendaModal" class="faq-link--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check-fill"></i>reservar cita en línea</a>. Si te refirió otro médico, trae el resumen y estudios previos para no repetirlos y avanzar más rápido.</p></div></details>
                     <details class="faq-item"><summary>¿Cuánto dura la primera consulta?</summary><div class="faq-item__answer"><p>Entre <strong>45 y 60 minutos</strong>. Es la consulta más larga porque incluye historia clínica completa, exploración, revisión de estudios previos y plan inicial. Las consultas de seguimiento duran 25 a 30 minutos.</p></div></details>
                     <details class="faq-item"><summary>¿Qué debo llevar a mi primera consulta?</summary><div class="faq-item__answer"><p>Lista de medicamentos actuales con dosis (incluye inhaladores y los que tomas ocasionalmente), estudios previos en físico o digital (radiografías, TAC, espirometrías, polisomnografía, gasometrías), resúmenes de hospitalizaciones y, si tu memoria de los síntomas es limitada, un familiar que te acompañe.</p></div></details>
                     <details class="faq-item"><summary>¿Puedo llevar a un acompañante?</summary><div class="faq-item__answer"><p>Sí, recomendado. Especialmente si eres adulto mayor, tienes deterioro de memoria o si quien describe mejor los síntomas (ronquido, pausas al dormir, episodios) es tu pareja o familiar.</p></div></details>
@@ -370,7 +371,7 @@
                     <p class="faq-cta__sub">Si tu duda es médica y requiere consulta, te lo digo claro. Si la puedo resolver por WhatsApp, lo hago sin costo.</p>
                     <div class="faq-cta__btns">
                         <a href="https://wa.me/5215591708334?text=Tengo%20una%20pregunta"  target="_blank" rel="noopener noreferrer" class="faq-cta__btn faq-cta__btn--wa"><i class="bi bi-whatsapp"></i> Preguntar por WhatsApp</a>
-                        <a href="https://cal.com/dr-william-lara/agendar-cita"  target="_blank" rel="noopener noreferrer" class="faq-cta__btn faq-cta__btn--cal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+                        <a href="#agendaModal" class="faq-cta__btn faq-cta__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
                     </div>
                 </div>
             </div>
@@ -382,7 +383,7 @@
             <p style="color:rgba(116,185,255,.7);font-size:.82rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">Atención por cita previa</p>
             <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.03em;line-height:1.15">¿Listo para resolverlo en consulta?</h2>
             <p class="mb-5 mx-auto" style="color:rgba(255,255,255,.45);font-size:1rem;max-width:520px;line-height:1.75">Hospital Santa Coleta, CDMX. También teleconsulta para toda la República.</p>
-            <a href="https://cal.com/dr-william-lara/agendar-cita"  target="_blank" rel="noopener noreferrer" class="cta-band__btn">Agendar cita <i class="bi bi-arrow-right ms-2"></i></a>
+            <a href="#agendaModal" class="cta-band__btn" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">Agendar cita <i class="bi bi-arrow-right ms-2"></i></a>
         </div>
     </section>
     <!-- ===== CONTACTO ===== -->
@@ -491,5 +492,6 @@
 })();
 </script>
 
+    <script src="/assets/agenda-modal.js" defer></script>
 </body>
 </html>

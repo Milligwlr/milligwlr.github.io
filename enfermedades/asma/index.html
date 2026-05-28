@@ -251,6 +251,7 @@
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/enfermedades/asma/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Cómo se diagnostica el asma?","acceptedAnswer":{"@type":"Answer","text":"El diagnóstico de asma se basa en síntomas compatibles (sibilancias, tos, opresión torácica, disnea) más la demostración de obstrucción reversible mediante espirometría con broncodilatador. En casos seleccionados se complementa con FeNO (óxido nítrico exhalado) y pruebas de alergia."}},{"@type":"Question","name":"¿El asma se cura?","acceptedAnswer":{"@type":"Answer","text":"El asma no se cura, pero se controla. Con el tratamiento adecuado según las guías GINA, la mayoría de pacientes pueden tener una vida completamente normal, sin crisis y sin limitaciones en la actividad física."}},{"@type":"Question","name":"¿Qué hacer en una crisis de asma?","acceptedAnswer":{"@type":"Answer","text":"Usar el inhalador de rescate (salbutamol) cada 20 minutos durante la primera hora, mantener la calma y respirar por la nariz. Si los síntomas no mejoran, los labios se ponen morados o aparece dificultad para hablar, acudir a urgencias inmediatamente."}},{"@type":"Question","name":"¿Cuánto cuesta una consulta de asma en CDMX?","acceptedAnswer":{"@type":"Answer","text":"Escríbenos por WhatsApp al 55 9170 8334 para conocer precios actualizados de consulta y espirometría."}}]}
     </script>
+    <link rel="stylesheet" href="/assets/agenda-modal.css">
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG8Z6FKF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -323,7 +324,7 @@
         <div class="social-icons d-flex align-items-center">
             <a href="https://www.instagram.com/dr.williamlara/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
         </div>
-        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="navbar-cta d-none d-lg-inline-flex">
+        <a href="#agendaModal" class="navbar-cta d-none d-lg-inline-flex" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
             Agendar cita <i class="bi bi-arrow-right"></i>
         </a>
     </div>
@@ -350,7 +351,7 @@
 <p class="asma-hero-sub">Si toses de noche, silbas al respirar o usas el inhalador de rescate más de dos veces por semana, <strong style="color:#fff">tu asma no está controlada</strong>. Y se puede arreglar.</p>
 <div class="asma-hero-cta">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20agendar%20una%20cita%20por%20asma" target="_blank" rel="noopener noreferrer" class="btn-wa-hero"><i class="bi bi-whatsapp"></i> WhatsApp ahora</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="btn-cal-hero"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+<a href="#agendaModal" class="btn-cal-hero" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
 </div>
 <div class="asma-hero-stats">
 <div class="asma-hero-stat"><div class="asma-hero-stat__num">8.5%</div><div class="asma-hero-stat__lbl">adultos en México</div></div>
@@ -423,7 +424,7 @@
 <p class="asma-quick__big-lbl">Si usas salbutamol más de dos veces por semana, tu asma <strong>no</strong> está controlada. <a href="/servicios/espirometria/">Una espirometría</a> y un plan GINA pueden cambiar eso.</p>
 <div class="asma-quick__btns">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20agendar%20una%20espirometr%C3%ADa" target="_blank" rel="noopener noreferrer" class="asma-quick__btn asma-quick__btn--wa"><i class="bi bi-whatsapp"></i> Agenda la espirometría</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="asma-quick__btn asma-quick__btn--cal"><i class="bi bi-calendar-check"></i> Agendar consulta</a>
+<a href="#agendaModal" class="asma-quick__btn asma-quick__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar consulta</a>
 </div>
 </div>
 </div>
@@ -589,7 +590,7 @@
 </div>
 <div class="asma-cta__btns">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20una%20consulta%20por%20asma" target="_blank" rel="noopener noreferrer" class="asma-cta__btn asma-cta__btn--wa"><i class="bi bi-whatsapp"></i> WhatsApp directo</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="asma-cta__btn asma-cta__btn--cal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+<a href="#agendaModal" class="asma-cta__btn asma-cta__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
 </div>
 </div>
 </div>
@@ -606,7 +607,7 @@
         <p style="color:rgba(94,234,212,.75);font-size:.78rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px">No esperes la siguiente crisis</p>
         <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.025em;line-height:1.2">Controla tu asma.<br><em style="font-style:normal;background:linear-gradient(135deg,#5eead4,#00b894);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Respira sin pensarlo.</em></h2>
         <p class="mb-4 mx-auto" style="color:rgba(255,255,255,.55);font-size:.98rem;max-width:500px;line-height:1.6">Espirometría, plan GINA y técnica de inhalación correcta desde la primera consulta.</p>
-        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="cta-band__btn">
+        <a href="#agendaModal" class="cta-band__btn" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
             Agendar mi cita <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
         </a>
     </div>
@@ -786,5 +787,6 @@
 })();
 </script>
 
+    <script src="/assets/agenda-modal.js" defer></script>
 </body>
 </html>

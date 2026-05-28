@@ -447,6 +447,7 @@ footer.site-footer p{margin:4px 0}
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <!-- End Google Tag Manager -->
+    <link rel="stylesheet" href="/assets/agenda-modal.css">
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -526,7 +527,7 @@ footer.site-footer p{margin:4px 0}
     <div class="social-icons d-flex align-items-center">
       <a href="https://www.instagram.com/dr.williamlara/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
     </div>
-    <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="navbar-cta d-none d-lg-inline-flex">
+    <a href="#agendaModal" class="navbar-cta d-none d-lg-inline-flex" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
       Agendar cita <i class="bi bi-arrow-right"></i>
     </a>
   </div>
@@ -1447,5 +1448,6 @@ document.querySelectorAll('.fase-card, .stat-card').forEach(card=>{
 })();
 </script>
 
+    <script src="/assets/agenda-modal.js" defer></script>
 </body>
 </html>

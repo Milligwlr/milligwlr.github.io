@@ -630,6 +630,7 @@
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
+    <link rel="stylesheet" href="/assets/agenda-modal.css">
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG8Z6FKF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -704,7 +705,7 @@
                 <li class="nav-item"><a class="nav-link" href="/ubicacion/"><i class="fas fa-location-dot me-1"></i>Ubicación</a></li>
             </ul>
         </div>
-        <a href="https://cal.com/dr-william-lara/agendar-cita"  target="_blank" rel="noopener noreferrer" class="navbar-cta d-none d-lg-inline-flex">
+        <a href="#agendaModal" class="navbar-cta d-none d-lg-inline-flex" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
             Agendar cita <i class="bi bi-arrow-right"></i>
         </a>
     </div>
@@ -741,7 +742,7 @@
                         <p>Neumólogo formado en el <strong>INER</strong>, con Alta Especialidad en EPOC en curso. Atiendo enfermedades respiratorias en <strong>Hospital Santa Coleta, CDMX</strong>, con un enfoque clínico actualizado a las guías GOLD, GINA y ATS/ERS.</p>
                     </div>
                     <div class="doc-hero__cta-row">
-                        <a href="https://cal.com/dr-william-lara/agendar-cita"  target="_blank" rel="noopener noreferrer" class="doc-hero__cta">Agendar cita <i class="bi bi-arrow-right"></i></a>
+                        <a href="#agendaModal" class="doc-hero__cta" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">Agendar cita <i class="bi bi-arrow-right"></i></a>
                         <a href="https://wa.me/5215591708334"  target="_blank" rel="noopener noreferrer" class="doc-hero__cta doc-hero__cta--wa">WhatsApp <i class="bi bi-whatsapp"></i></a>
                     </div>
 
@@ -1378,7 +1379,7 @@
             <p class="mb-3" style="color:rgba(116,185,255,.7);font-size:.82rem;font-weight:700;letter-spacing:3px;text-transform:uppercase">No esperes a que empeore</p>
             <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-.03em;line-height:1.15">Tu respiración no debería<br>ser una limitación</h2>
             <p class="mb-5 mx-auto" style="color:rgba(255,255,255,.5);font-size:1.08rem;max-width:520px;line-height:1.75">Miles de pacientes ya recuperaron su calidad de vida. Una consulta puede ser el inicio de la tuya.</p>
-            <a href="https://cal.com/dr-william-lara/agendar-cita"  target="_blank" rel="noopener noreferrer" class="cta-band__btn">
+            <a href="#agendaModal" class="cta-band__btn" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
                 Agendar mi cita ahora <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
             </a>
         </div>
@@ -1629,5 +1630,6 @@
 })();
 </script>
 
+    <script src="/assets/agenda-modal.js" defer></script>
 </body>
 </html>

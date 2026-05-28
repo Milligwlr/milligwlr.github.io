@@ -339,6 +339,7 @@
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/enfermedades/bronquiectasias/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Qué son las bronquiectasias?","acceptedAnswer":{"@type":"Answer","text":"Son dilataciones permanentes y anormales de los bronquios, generalmente secundarias a infecciones graves, fibrosis quística, inmunodeficiencias o aspiraciones. Se manifiestan con tos crónica con expectoración abundante y purulenta, infecciones respiratorias recurrentes y, en ocasiones, hemoptisis."}},{"@type":"Question","name":"¿Las bronquiectasias se curan?","acceptedAnswer":{"@type":"Answer","text":"El daño bronquial es permanente, pero las bronquiectasias se controlan muy bien con un plan integral: técnicas de drenaje bronquial, tratamiento agresivo de las exacerbaciones, antibióticos inhalados o cíclicos en casos seleccionados, vacunación y manejo de la causa subyacente."}},{"@type":"Question","name":"¿Cómo se diagnostican las bronquiectasias?","acceptedAnswer":{"@type":"Answer","text":"El estándar diagnóstico es la tomografía de alta resolución de tórax. Adicionalmente se hacen estudios para identificar la causa: cultivos de expectoración (incluyendo micobacterias), inmunoglobulinas, prueba del sudor en jóvenes y autoinmunidad."}},{"@type":"Question","name":"¿Cuánto cuesta una consulta para bronquiectasias en CDMX?","acceptedAnswer":{"@type":"Answer","text":"Escríbenos por WhatsApp al 55 9170 8334 para conocer precios actualizados."}}]}
     </script>
+    <link rel="stylesheet" href="/assets/agenda-modal.css">
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -413,7 +414,7 @@
         <div class="social-icons d-flex align-items-center">
             <a href="https://www.instagram.com/dr.williamlara/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
         </div>
-        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="navbar-cta d-none d-lg-inline-flex">
+        <a href="#agendaModal" class="navbar-cta d-none d-lg-inline-flex" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
             Agendar cita <i class="bi bi-arrow-right"></i>
         </a>
     </div>
@@ -441,7 +442,7 @@
 <p class="bq-hero-sub">Si toses con flema <strong style="color:#fff">casi todos los días</strong> o te enfermas del pecho una y otra vez, hay un círculo vicioso atrás, y un plan que lo rompe.</p>
 <div class="bq-hero-cta">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.%2C%20creo%20que%20puedo%20tener%20bronquiectasias" target="_blank" rel="noopener noreferrer" class="btn-wa-hero"><i class="bi bi-whatsapp"></i> WhatsApp ahora</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="btn-cal-hero"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+<a href="#agendaModal" class="btn-cal-hero" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
 </div>
 <div class="bq-hero-stats">
 <div class="bq-hero-stat"><div class="bq-hero-stat__num">TACAR</div><div class="bq-hero-stat__lbl">1 estudio confirma</div></div>
@@ -516,7 +517,7 @@
 <p class="bq-quick__big-lbl">Una tomografía de alta resolución de tórax confirma o descarta bronquiectasias en una sola toma. Sin ella, el diagnóstico se retrasa años.</p>
 <div class="bq-quick__btns">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.%2C%20toso%20flema%20diaria%20y%20quiero%20valoraci%C3%B3n" target="_blank" rel="noopener noreferrer" class="bq-quick__btn bq-quick__btn--wa"><i class="bi bi-whatsapp"></i> Quiero valoración</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="bq-quick__btn bq-quick__btn--cal"><i class="bi bi-calendar-check"></i> Agendar consulta</a>
+<a href="#agendaModal" class="bq-quick__btn bq-quick__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar consulta</a>
 </div>
 </div>
 </div>
@@ -786,7 +787,7 @@
 </div>
 <div class="bq-cta__btns">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.%2C%20creo%20que%20tengo%20bronquiectasias%20y%20necesito%20consulta" target="_blank" rel="noopener noreferrer" class="bq-cta__btn bq-cta__btn--wa"><i class="bi bi-whatsapp"></i> WhatsApp directo</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="bq-cta__btn bq-cta__btn--cal"><i class="bi bi-calendar-check"></i> Agendar consulta</a>
+<a href="#agendaModal" class="bq-cta__btn bq-cta__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar consulta</a>
 </div>
 </div>
 </div>
@@ -805,7 +806,7 @@
         <p style="color:rgba(38,166,154,.75);font-size:.78rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px">Atención especializada</p>
         <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.025em;line-height:1.2">Controla tus bronquiectasias y <em style="font-style:normal;background:linear-gradient(135deg,#26a69a,#80cbc4);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">vive mejor</em></h2>
         <p class="mb-4 mx-auto" style="color:rgba(255,255,255,.55);font-size:.98rem;max-width:520px;line-height:1.6">Diagnóstico preciso, fisioterapia respiratoria y tratamiento de fondo para reducir exacerbaciones.</p>
-        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="cta-band__btn">
+        <a href="#agendaModal" class="cta-band__btn" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
             Agendar mi cita <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
         </a>
     </div>
@@ -990,5 +991,6 @@
 })();
 </script>
 
+    <script src="/assets/agenda-modal.js" defer></script>
 </body>
 </html>

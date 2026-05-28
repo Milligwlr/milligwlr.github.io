@@ -340,6 +340,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
 </style>
+    <link rel="stylesheet" href="/assets/agenda-modal.css">
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -414,7 +415,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="social-icons d-flex align-items-center">
             <a href="https://www.instagram.com/dr.williamlara/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
         </div>
-        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="navbar-cta d-none d-lg-inline-flex">
+        <a href="#agendaModal" class="navbar-cta d-none d-lg-inline-flex" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
             Agendar cita <i class="bi bi-arrow-right"></i>
         </a>
     </div>
@@ -487,7 +488,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <a class="btn-ubi btn-ubi--wa" href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vivo%20en%20Santa%20Fe%20y%20quisiera%20agendar%20una%20consulta%20de%20neumolog%C3%ADa." target="_blank" rel="noopener noreferrer" data-cta="zona-card-wa">
                             <i class="bi bi-whatsapp" aria-hidden="true"></i> Agendar por WhatsApp
                         </a>
-                        <a class="btn-ubi btn-ubi--cal" href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" data-cta="zona-card-cal">
+                        <a class="btn-ubi btn-ubi--cal" href="#agendaModal" data-cta="zona-card-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
                             <i class="bi bi-calendar-check" aria-hidden="true"></i> Agendar en línea
                         </a>
                         <a class="btn-ubi btn-ubi--ghost" href="tel:+525591708334" data-cta="zona-card-tel">
@@ -715,5 +716,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 
+    <script src="/assets/agenda-modal.js" defer></script>
 </body>
 </html>

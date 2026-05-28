@@ -383,6 +383,7 @@
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/enfermedades/tabaquismo/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Es realmente posible dejar de fumar con ayuda médica?","acceptedAnswer":{"@type":"Answer","text":"Sí, y la diferencia es significativa. Las tasas de éxito a 12 meses pasan de 5-7% sin ayuda a 20-35% con tratamiento médico. La combinación de farmacoterapia (vareniclina, bupropión o terapia de reemplazo de nicotina) más acompañamiento médico estructurado es lo más efectivo."}},{"@type":"Question","name":"¿Qué pasa con mis pulmones cuando dejo de fumar?","acceptedAnswer":{"@type":"Answer","text":"A las 24 horas se normaliza el monóxido de carbono. A 2-3 meses mejora la función pulmonar. Al año, el riesgo cardiovascular disminuye a la mitad. A los 10-15 años, el riesgo de cáncer de pulmón se aproxima al de un no fumador. La progresión de la EPOC se frena en cualquier momento."}},{"@type":"Question","name":"¿Cuántos intentos suelen necesitarse para dejar de fumar?","acceptedAnswer":{"@type":"Answer","text":"El promedio son 5-7 intentos antes de lograrlo definitivamente. Esto no es un fracaso: cada intento aporta aprendizaje. Lo importante es no abandonar y tener un plan estructurado con apoyo médico."}},{"@type":"Question","name":"¿Cuánto cuesta el tratamiento médico para dejar de fumar?","acceptedAnswer":{"@type":"Answer","text":"El programa varía según el medicamento y la duración. Escríbenos por WhatsApp al 55 9170 8334 para conocer precios actualizados."}}]}
     </script>
+    <link rel="stylesheet" href="/assets/agenda-modal.css">
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -681,7 +682,7 @@
                             <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20quiero%20agendar%20una%20cita%20para%20dejar%20de%20fumar" target="_blank" rel="noopener noreferrer" class="cta-inline__btn cta-inline__btn--wa">
                                 <i class="bi bi-whatsapp"></i> WhatsApp
                             </a>
-                            <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="cta-inline__btn cta-inline__btn--cal">
+                            <a href="#agendaModal" class="cta-inline__btn cta-inline__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
                                 <i class="bi bi-calendar-check"></i> Agendar cita
                             </a>
                         </div>
@@ -705,7 +706,7 @@
         <p style="color:rgba(116,185,255,.7);font-size:.82rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">Un día a la vez</p>
         <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.03em;line-height:1.15">Recupera tu respiración</h2>
         <p class="mb-5 mx-auto" style="color:rgba(255,255,255,.45);font-size:1rem;max-width:520px;line-height:1.75">Tratamiento médico de cesación tabáquica con fecha de corte, medicación ajustada a tu dependencia y seguimiento real.</p>
-        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="cta-band__btn">
+        <a href="#agendaModal" class="cta-band__btn" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
             Agendar mi cita ahora <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
         </a>
     </div>
@@ -885,5 +886,6 @@
 })();
 </script>
 
+    <script src="/assets/agenda-modal.js" defer></script>
 </body>
 </html>

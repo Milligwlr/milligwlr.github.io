@@ -246,6 +246,7 @@
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/enfermedades/secuelas-covid/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Qué son las secuelas pulmonares de COVID-19?","acceptedAnswer":{"@type":"Answer","text":"Son alteraciones respiratorias que persisten más de 12 semanas tras la infección aguda: disnea de esfuerzo, tos persistente, intolerancia al ejercicio, alteraciones en pruebas de función pulmonar o cambios fibróticos en la tomografía. Forman parte del síndrome post-COVID o long COVID."}},{"@type":"Question","name":"¿Las secuelas de COVID son permanentes?","acceptedAnswer":{"@type":"Answer","text":"La mayoría mejora progresivamente en 6 a 12 meses, especialmente con rehabilitación pulmonar. En un porcentaje menor, las alteraciones fibróticas pueden ser permanentes y requerir tratamiento a largo plazo. La evaluación temprana mejora el pronóstico."}},{"@type":"Question","name":"¿Qué estudios se hacen para evaluar secuelas de COVID?","acceptedAnswer":{"@type":"Answer","text":"Pruebas de función pulmonar completas (espirometría, DLCO, volúmenes), tomografía de tórax si hay sospecha de fibrosis, prueba de caminata de 6 minutos, oximetría con esfuerzo y, en casos seleccionados, ecocardiograma para descartar afectación cardiaca."}},{"@type":"Question","name":"¿Cómo agendo una valoración post-COVID en CDMX?","acceptedAnswer":{"@type":"Answer","text":"Escríbenos por WhatsApp al 55 9170 8334 para agendar tu valoración con el Dr. William Lara, neumólogo formado en el INER."}}]}
     </script>
+    <link rel="stylesheet" href="/assets/agenda-modal.css">
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -320,7 +321,7 @@
         <div class="social-icons d-flex align-items-center">
             <a href="https://www.instagram.com/dr.williamlara/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
         </div>
-        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="navbar-cta d-none d-lg-inline-flex">
+        <a href="#agendaModal" class="navbar-cta d-none d-lg-inline-flex" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
             Agendar cita <i class="bi bi-arrow-right"></i>
         </a>
     </div>
@@ -347,7 +348,7 @@
 <p class="sc-hero-sub">Te falta el aire al subir escaleras, no rindes igual y la cabeza va dos pasos atrás. Es <strong style="color:#fff">una condición real, descrita y tratable</strong>.</p>
 <div class="sc-hero-cta">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20creo%20que%20tengo%20secuelas%20de%20COVID" target="_blank" rel="noopener noreferrer" class="btn-wa-hero"><i class="bi bi-whatsapp"></i> WhatsApp ahora</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="btn-cal-hero"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+<a href="#agendaModal" class="btn-cal-hero" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
 </div>
 <div class="sc-hero-stats">
 <div class="sc-hero-stat"><div class="sc-hero-stat__num">10-30%</div><div class="sc-hero-stat__lbl">Lo desarrollan</div></div>
@@ -509,7 +510,7 @@
 </div>
 <div class="sc-cta__btns">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20tengo%20síntomas%20post-COVID%20y%20quiero%20valoración" target="_blank" rel="noopener noreferrer" class="sc-cta__btn sc-cta__btn--wa"><i class="bi bi-whatsapp"></i> WhatsApp directo</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="sc-cta__btn sc-cta__btn--cal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+<a href="#agendaModal" class="sc-cta__btn sc-cta__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
 </div>
 </div>
 </div>
@@ -528,7 +529,7 @@
         <p style="color:rgba(127,224,201,.7);font-size:.78rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px">Recuperación dirigida</p>
         <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.025em;line-height:1.2">Las secuelas de COVID <em style="font-style:normal;background:linear-gradient(135deg,#7fe0c9,#20b2aa);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">tienen tratamiento</em>. No esperes más</h2>
         <p class="mb-4 mx-auto" style="color:rgba(255,255,255,.55);font-size:.98rem;max-width:500px;line-height:1.6">Evaluación pulmonar completa y plan de recuperación a tu medida.</p>
-        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="cta-band__btn">
+        <a href="#agendaModal" class="cta-band__btn" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
             Agendar mi cita <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
         </a>
     </div>
@@ -713,5 +714,6 @@
 })();
 </script>
 
+    <script src="/assets/agenda-modal.js" defer></script>
 </body>
 </html>

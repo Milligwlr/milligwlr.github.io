@@ -209,6 +209,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"MedicalWebPage","url":"https://alveos.mx/servicios/broncoscopia/","name":"Broncoscopia en CDMX | Endoscopia Pulmonar","description":"Broncoscopia flexible diagnóstica y terapéutica con neumólogo en CDMX.","inLanguage":"es-MX","datePublished":"2026-04-25","dateModified":"2026-04-25","lastReviewed":"2026-04-25","reviewedBy":{"@id":"https://alveos.mx/#physician"},"author":{"@id":"https://alveos.mx/#physician"},"specialty":"https://schema.org/Pulmonary","audience":{"@type":"MedicalAudience","audienceType":"Patient"}}
 </script>
+    <link rel="stylesheet" href="/assets/agenda-modal.css">
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG8Z6FKF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -264,7 +265,7 @@
         <div class="social-icons d-flex align-items-center">
             <a href="https://www.instagram.com/dr.williamlara/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
         </div>
-        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="navbar-cta d-none d-lg-inline-flex">Agendar cita <i class="bi bi-arrow-right"></i></a>
+        <a href="#agendaModal" class="navbar-cta d-none d-lg-inline-flex" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">Agendar cita <i class="bi bi-arrow-right"></i></a>
     </div>
 </nav>
 
@@ -293,7 +294,7 @@
 <p class="svc-hero-sub">Una cámara delgada entra por la nariz para ver tus bronquios en HD. Bajo sedación: <strong style="color:#fff">no recuerdas el procedimiento</strong>.</p>
 <div class="svc-hero-cta">
 <a href="https://wa.me/5215591708334?text=Quiero%20informaci%C3%B3n%20sobre%20broncoscopia" target="_blank" rel="noopener noreferrer" class="btn-wa-hero"><i class="bi bi-whatsapp"></i> WhatsApp ahora</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="btn-cal-hero"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+<a href="#agendaModal" class="btn-cal-hero" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
 </div>
 <div class="svc-hero-stats">
 <div class="svc-hero-stat"><div class="svc-hero-stat__num">30–45 min</div><div class="svc-hero-stat__lbl">de procedimiento</div></div>
@@ -448,7 +449,7 @@
 </div>
 <div class="svc-cta__btns">
 <a href="https://wa.me/5215591708334?text=Quiero%20informaci%C3%B3n%20sobre%20broncoscopia" target="_blank" rel="noopener noreferrer" class="svc-cta__btn svc-cta__btn--wa"><i class="bi bi-whatsapp"></i> WhatsApp directo</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="svc-cta__btn svc-cta__btn--cal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+<a href="#agendaModal" class="svc-cta__btn svc-cta__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
 </div>
 </div>
 </div>
@@ -465,7 +466,7 @@
 <p style="color:rgba(93,216,208,.7);font-size:.78rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px">Diagnóstico directo · Sin cirugía</p>
 <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.025em;line-height:1.2">A veces hay que<br><em style="font-style:normal;background:linear-gradient(135deg,#5dd8d0,#20b2aa);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">ver para creer.</em></h2>
 <p class="mb-4 mx-auto" style="color:rgba(255,255,255,.55);font-size:.98rem;max-width:500px;line-height:1.6">Cámara HD. Sedación cómoda. Diagnóstico el mismo día.</p>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="cta-band__btn">Agendar mi cita <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i></a>
+<a href="#agendaModal" class="cta-band__btn" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">Agendar mi cita <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i></a>
 </div>
 </section>
 
@@ -621,5 +622,6 @@
 })();
 </script>
 
+    <script src="/assets/agenda-modal.js" defer></script>
 </body>
 </html>

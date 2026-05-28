@@ -257,6 +257,7 @@
     @media(min-width:992px){.wa-float{display:flex}}
     </style>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
+    <link rel="stylesheet" href="/assets/agenda-modal.css">
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG8Z6FKF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -298,7 +299,7 @@
                     <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google%20y%20quiero%20agendar%20una%20consulta%20de%20neumolog%C3%ADa."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="hero-wa">
                         <i class="bi bi-whatsapp"></i> Asegurar mi cita a $1,300
                     </a>
-                    <a href="https://cal.com/dr-william-lara/agendar-cita"  target="_blank" rel="noopener noreferrer" class="btn-cal" data-cta="hero-cal">
+                    <a href="#agendaModal" class="btn-cal" data-cta="hero-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
                         <i class="bi bi-calendar-check"></i> Agendar en línea
                     </a>
                 </div>
@@ -555,7 +556,7 @@
             <p>Atención por WhatsApp en horario hábil. Te confirmamos disponibilidad y resolvemos cualquier duda antes de tu cita.</p>
             <div class="cta-inline__btns">
                 <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google%20y%20quiero%20agendar%20una%20consulta%20de%20neumolog%C3%ADa."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="final-wa"><i class="bi bi-whatsapp"></i> Asegurar mi cita a $1,300</a>
-                <a href="https://cal.com/dr-william-lara/agendar-cita"  target="_blank" rel="noopener noreferrer" class="btn-cal" data-cta="final-cal"><i class="bi bi-calendar-check"></i> Agendar en línea</a>
+                <a href="#agendaModal" class="btn-cal" data-cta="final-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar en línea</a>
             </div>
         </div>
     </div>
@@ -596,7 +597,7 @@
 <div class="sticky-cta">
     <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20del%20anuncio%20de%20Google%20y%20quiero%20agendar%20una%20consulta%20de%20neumolog%C3%ADa."  target="_blank" rel="noopener noreferrer" class="sc-wa" data-cta="sticky-wa"><i class="bi bi-whatsapp"></i> WhatsApp</a>
     <a href="tel:5591708334" class="sc-call" data-cta="sticky-call" style="background:var(--electric);color:#fff"><i class="bi bi-telephone-fill"></i> Llamar</a>
-    <a href="https://cal.com/dr-william-lara/agendar-cita"  target="_blank" rel="noopener noreferrer" class="sc-cal" data-cta="sticky-cal"><i class="bi bi-calendar-check"></i> Agendar</a>
+    <a href="#agendaModal" class="sc-cal" data-cta="sticky-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar</a>
 </div>
 
 <!-- Tracking básico de clicks CTA al dataLayer -->
@@ -659,5 +660,6 @@ document.addEventListener('click',function(e){
 })();
 </script>
 
+    <script src="/assets/agenda-modal.js" defer></script>
 </body>
 </html>

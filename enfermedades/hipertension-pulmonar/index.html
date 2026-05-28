@@ -221,6 +221,7 @@
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/enfermedades/hipertension-pulmonar/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Qué es la hipertensión pulmonar?","acceptedAnswer":{"@type":"Answer","text":"Es el aumento sostenido de la presión en las arterias pulmonares (presión media en arteria pulmonar mayor o igual a 20 mmHg). Existen cinco grupos según su causa, desde la hipertensión arterial pulmonar idiopática hasta la asociada a enfermedad cardiaca izquierda, EPOC, tromboembolia o enfermedades sistémicas."}},{"@type":"Question","name":"¿Cómo se diagnostica la hipertensión pulmonar?","acceptedAnswer":{"@type":"Answer","text":"La sospecha inicia con un ecocardiograma, pero el diagnóstico definitivo requiere cateterismo cardiaco derecho. Adicionalmente se hacen pruebas para identificar la causa: pruebas de función pulmonar, gammagrafía pulmonar V/Q, autoinmunidad y tomografía."}},{"@type":"Question","name":"¿La hipertensión pulmonar tiene tratamiento?","acceptedAnswer":{"@type":"Answer","text":"Sí. Los avances en los últimos 20 años han transformado el pronóstico. Existen fármacos específicos (antagonistas del receptor de endotelina, inhibidores de PDE5, prostaciclinas) que mejoran síntomas y sobrevida. La selección depende del grupo y la severidad."}},{"@type":"Question","name":"¿Cuánto cuesta una valoración de hipertensión pulmonar en CDMX?","acceptedAnswer":{"@type":"Answer","text":"Escríbenos por WhatsApp al 55 9170 8334 para agendar tu cita."}}]}
     </script>
+    <link rel="stylesheet" href="/assets/agenda-modal.css">
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -295,7 +296,7 @@
         <div class="social-icons d-flex align-items-center">
             <a href="https://www.instagram.com/dr.williamlara/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
         </div>
-        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="navbar-cta d-none d-lg-inline-flex">
+        <a href="#agendaModal" class="navbar-cta d-none d-lg-inline-flex" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
             Agendar cita <i class="bi bi-arrow-right"></i>
         </a>
     </div>
@@ -320,7 +321,7 @@
 <p class="hp-hero-sub">La hipertensión pulmonar tarda <strong style="color:#fff">en promedio 2 a 4 años</strong> en diagnosticarse. Cada mes que pasa, tu corazón derecho trabaja de más.</p>
 <div class="hp-hero-cta">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20creo%20que%20tengo%20hipertension%20pulmonar" target="_blank" rel="noopener noreferrer" class="btn-wa-hero"><i class="bi bi-whatsapp"></i> WhatsApp ahora</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="btn-cal-hero"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+<a href="#agendaModal" class="btn-cal-hero" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
 </div>
 <div class="hp-hero-stats">
 <div class="hp-hero-stat"><div class="hp-hero-stat__num">2-4 años</div><div class="hp-hero-stat__lbl">Retraso típico</div></div>
@@ -523,7 +524,7 @@
 </div>
 <div class="hp-cta__btns">
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.,%20quiero%20agendar%20una%20cita%20por%20hipertension%20pulmonar" target="_blank" rel="noopener noreferrer" class="hp-cta__btn hp-cta__btn--wa"><i class="bi bi-whatsapp"></i> WhatsApp directo</a>
-<a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="hp-cta__btn hp-cta__btn--cal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+<a href="#agendaModal" class="hp-cta__btn hp-cta__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
 </div>
 </div>
 </div>
@@ -540,7 +541,7 @@
         <p style="color:rgba(231,76,60,.7);font-size:.78rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px">Diagnóstico especializado</p>
         <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.025em;line-height:1.2">La hipertensión pulmonar <em style="font-style:normal;background:linear-gradient(135deg,#e74c3c,#f0a830);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">sí tiene tratamiento</em></h2>
         <p class="mb-4 mx-auto" style="color:rgba(255,255,255,.55);font-size:.98rem;max-width:500px;line-height:1.6">Lo que más pesa es llegar antes de que el corazón derecho se canse.</p>
-        <a href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" class="cta-band__btn">
+        <a href="#agendaModal" class="cta-band__btn" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
             Agendar mi cita <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
         </a>
     </div>
@@ -721,5 +722,6 @@
 })();
 </script>
 
+    <script src="/assets/agenda-modal.js" defer></script>
 </body>
 </html>
