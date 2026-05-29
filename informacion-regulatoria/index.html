@@ -140,7 +140,7 @@
 
 <nav class="nav">
   <a class="nav__brand" href="/">
-    <img src="/favicon.png" alt="Alveos" loading="lazy" decoding="async">
+    <img src="/favicon.png" alt="Alveos" width="32" height="32" loading="lazy" decoding="async">
     alveos.mx
   </a>
   <a class="nav__back" href="/">← Volver al inicio</a>
@@ -371,6 +371,7 @@
 </main>
 
 <footer>
+  <p data-med-disclaimer style="font-size:.76rem;color:#666;max-width:720px;margin:0 auto 10px;line-height:1.55">La información de este sitio es de carácter educativo e informativo y no sustituye la consulta, diagnóstico ni tratamiento con un profesional médico. En caso de emergencia respiratoria llame al 911.</p>
   <p>© 2026 Dr. William César Lara Vázquez · Neumólogo · CDMX</p>
   <p>
     <a href="/">Inicio</a> ·
@@ -438,5 +439,8 @@
 </script>
 
     <script src="/assets/agenda-modal.js" defer></script>
+<div class="read-progress" aria-hidden="true"><div class="read-progress__bar"></div></div>
+<style>.read-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:9999;pointer-events:none;background:transparent}.read-progress__bar{height:100%;width:0;background:linear-gradient(90deg,#0984e3,#00cec9,#0984e3);box-shadow:0 0 12px rgba(9,132,227,.5);transition:width .12s linear;border-radius:0 3px 3px 0}</style>
+<script>(function(){var bar=document.querySelector(".read-progress__bar"),doc=document.documentElement,t=false;function s(){if(t)return;t=true;requestAnimationFrame(function(){var m=doc.scrollHeight-doc.clientHeight;bar.style.width=Math.max(0,Math.min(100,m>0?(doc.scrollTop/m)*100:0))+"%";t=false})}window.addEventListener("scroll",s,{passive:true});window.addEventListener("resize",s,{passive:true});s()})();</script>
 </body>
 </html>

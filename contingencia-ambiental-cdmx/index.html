@@ -464,7 +464,7 @@ footer.site-footer p{margin:4px 0}
 <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <img src="/favicon.png" alt="Alveos" loading="lazy" decoding="async">
+      <img src="/favicon.png" alt="Alveos" width="32" height="32" loading="lazy" decoding="async">
       <span class="brand-name">ALVEOS</span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Menú">
@@ -1226,6 +1226,7 @@ footer.site-footer p{margin:4px 0}
   <div class="container">
     <div class="cta-banner cta-banner--rich">
       <div class="cta-banner__glow" aria-hidden="true"></div>
+      <div class="cta-band__particles" id="ctgParticles" aria-hidden="true"></div>
       <div class="cta-banner__content">
         <span class="cta-eyebrow"><i class="fas fa-stethoscope"></i> Consulta preventiva</span>
         <h3>Llega listo a la próxima contingencia</h3>
@@ -1348,6 +1349,7 @@ footer.site-footer p{margin:4px 0}
       <span style="color:rgba(255,255,255,.2);margin:0 8px">·</span>
       <a href="/informacion-regulatoria" style="color:rgba(255,255,255,.78);text-decoration:none">Información Regulatoria</a>
     </p>
+    <p data-med-disclaimer style="font-size:.76rem;color:rgba(255,255,255,.6);max-width:720px;margin:0 auto 10px;line-height:1.55">La información de este sitio es de carácter educativo e informativo y no sustituye la consulta, diagnóstico ni tratamiento con un profesional médico. En caso de emergencia respiratoria llame al 911.</p>
     <p style="font-size:.82rem;color:rgba(255,255,255,.65);margin:0">© 2026 ALVEOS. Todos los derechos reservados.</p>
   </div>
 </footer>
@@ -1449,5 +1451,17 @@ document.querySelectorAll('.fase-card, .stat-card').forEach(card=>{
 </script>
 
     <script src="/assets/agenda-modal.js" defer></script>
+<!-- CTA final · partículas (inline, autocontenido) -->
+<style>
+#ctgParticles{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+#ctgParticles .cta-band__p{position:absolute;border-radius:50%;opacity:0;animation:ctgDrift linear infinite}
+@keyframes ctgDrift{0%{transform:translate(0,0);opacity:0}10%{opacity:.85}90%{opacity:.3}100%{transform:translate(var(--dx),var(--dy));opacity:0}}
+</style>
+<script>
+(function(){var c=document.getElementById('ctgParticles');if(!c||c.children.length)return;var cols=['rgba(116,185,255,','rgba(9,132,227,','rgba(0,206,201,'];var r=Math.random;var n=window.innerWidth<768?28:60;for(var i=0;i<n;i++){var s=document.createElement('span');s.className='cta-band__p';var sz=(r()*5+2).toFixed(1)+'px';var col=cols[Math.floor(r()*cols.length)];var op=(r()*.5+.4).toFixed(2);var dx=(r()*160-80).toFixed(0)+'px';var dy=(r()*-140-20).toFixed(0)+'px';s.style.cssText='width:'+sz+';height:'+sz+';background:'+col+op+');top:'+Math.floor(r()*100)+'%;left:'+Math.floor(r()*100)+'%;--dx:'+dx+';--dy:'+dy+';animation-duration:'+(r()*9+5).toFixed(1)+'s;animation-delay:'+(r()*7).toFixed(1)+'s';c.appendChild(s);}})();
+</script>
+<div class="read-progress" aria-hidden="true"><div class="read-progress__bar"></div></div>
+<style>.read-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:9999;pointer-events:none;background:transparent}.read-progress__bar{height:100%;width:0;background:linear-gradient(90deg,#0984e3,#00cec9,#0984e3);box-shadow:0 0 12px rgba(9,132,227,.5);transition:width .12s linear;border-radius:0 3px 3px 0}</style>
+<script>(function(){var bar=document.querySelector(".read-progress__bar"),doc=document.documentElement,t=false;function s(){if(t)return;t=true;requestAnimationFrame(function(){var m=doc.scrollHeight-doc.clientHeight;bar.style.width=Math.max(0,Math.min(100,m>0?(doc.scrollTop/m)*100:0))+"%";t=false})}window.addEventListener("scroll",s,{passive:true});window.addEventListener("resize",s,{passive:true});s()})();</script>
 </body>
 </html>

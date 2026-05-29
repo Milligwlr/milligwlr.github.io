@@ -421,6 +421,7 @@ body{
  </nav>
 
  <footer class="foot">
+  <p data-med-disclaimer style="font-size:.72rem;color:#888;max-width:560px;margin:0 auto 8px;line-height:1.5">La información de este sitio es de carácter educativo e informativo y no sustituye la consulta, diagnóstico ni tratamiento con un profesional médico. En caso de emergencia respiratoria llame al 911.</p>
   <span class="foot__reg">© ALVEOS</span>
  </footer>
 </main>
@@ -491,5 +492,8 @@ body{
 </script>
 
     <script src="/assets/agenda-modal.js" defer></script>
+<div class="read-progress" aria-hidden="true"><div class="read-progress__bar"></div></div>
+<style>.read-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:9999;pointer-events:none;background:transparent}.read-progress__bar{height:100%;width:0;background:linear-gradient(90deg,#0984e3,#00cec9,#0984e3);box-shadow:0 0 12px rgba(9,132,227,.5);transition:width .12s linear;border-radius:0 3px 3px 0}</style>
+<script>(function(){var bar=document.querySelector(".read-progress__bar"),doc=document.documentElement,t=false;function s(){if(t)return;t=true;requestAnimationFrame(function(){var m=doc.scrollHeight-doc.clientHeight;bar.style.width=Math.max(0,Math.min(100,m>0?(doc.scrollTop/m)*100:0))+"%";t=false})}window.addEventListener("scroll",s,{passive:true});window.addEventListener("resize",s,{passive:true});s()})();</script>
 </body>
 </html>
