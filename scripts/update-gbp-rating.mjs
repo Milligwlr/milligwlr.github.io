@@ -4,7 +4,7 @@
 // Requiere GOOGLE_MAPS_API_KEY (Places API New) en env.
 
 import { readFile, writeFile } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -12,15 +12,32 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const PLACE_QUERY = "Dr. William César Lara Vázquez Neumólogo Hospital Santa Coleta CDMX";
 const LOCATION_BIAS = { lat: 19.3678, lng: -99.1865, radiusMeters: 500 };
 
+// Patch del JSON-LD AggregateRating. Tolera ambos formatos de espaciado:
+//   "ratingValue":"5.0","reviewCount":"21"      (index.html, ubicacion — compacto)
+//   "ratingValue": "5.0", "reviewCount": "21"   (zonas — con espacio tras ":")
+const JSONLD_RATING = {
+  name: "JSON-LD AggregateRating",
+  find: /("ratingValue":\s*")[\d.]+("\s*,\s*"reviewCount":\s*")\d+(")/,
+  build: (m, r, c) => `${m[1]}${r}${m[2]}${c}${m[3]}`,
+};
+
+// Zonas con ficha LocalBusiness propia (mismo aggregateRating del GBP).
+// Al crear una nueva zona con aggregateRating, añade su slug aquí.
+const ZONAS = [
+  "santa-fe",
+  "roma-condesa",
+  "polanco",
+  "lomas-de-chapultepec",
+  "interlomas",
+  "del-valle",
+  "coyoacan",
+];
+
 const TARGETS = [
   {
     file: "index.html",
     patches: [
-      {
-        name: "JSON-LD AggregateRating (home)",
-        find: /("ratingValue":")[\d.]+(",\s*"reviewCount":")\d+(")/,
-        build: (m, r, c) => `${m[1]}${r}${m[2]}${c}${m[3]}`,
-      },
+      JSONLD_RATING,
       {
         name: "aria-label widget",
         find: /(aria-label="Calificación de )[\d.]+( estrellas con )\d+( reseñas verificadas en Google\. Ver reseñas")/,
@@ -38,16 +55,8 @@ const TARGETS = [
       },
     ],
   },
-  {
-    file: "ubicacion/index.html",
-    patches: [
-      {
-        name: "JSON-LD AggregateRating (ubicacion)",
-        find: /("ratingValue":")[\d.]+(",\s*"reviewCount":")\d+(")/,
-        build: (m, r, c) => `${m[1]}${r}${m[2]}${c}${m[3]}`,
-      },
-    ],
-  },
+  { file: "ubicacion/index.html", patches: [JSONLD_RATING] },
+  ...ZONAS.map((z) => ({ file: `zonas/${z}/index.html`, patches: [JSONLD_RATING] })),
 ];
 
 async function fetchGbpStats() {
@@ -151,7 +160,12 @@ async function main() {
   console.log(anyFileChanged ? "\n✓ HTML actualizado" : "\n= Sin cambios (rating/count ya coinciden)");
 }
 
-main().catch((err) => {
-  console.error("✗", err.message);
-  process.exit(1);
-});
+export { TARGETS, ROOT, applyPatches, fetchGbpStats };
+
+// Ejecuta solo si se invoca directamente (importable en tests sin disparar la API).
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((err) => {
+    console.error("✗", err.message);
+    process.exit(1);
+  });
+}
