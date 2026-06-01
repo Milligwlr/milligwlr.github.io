@@ -40,15 +40,52 @@ El sitio está más maduro de lo que asumen los briefs. Verificado contra archiv
 
 ---
 
-## TEXTOS QUE REQUIEREN VISTO BUENO DEL DR. (antes de publicar)
-Marcados en el código con `<!-- PENDIENTE: revisión del Dr. ... -->`:
-- **(ES)** `servicios/espirometria/index.html` — publicación del precio **$1,200 / +$400** en hero y FAQ.
-  Confirmar que el precio y la política (aislada vs. complemento) son correctos y publicables.
-- **(EN)** Capa /en/ — todos los textos clínicos nuevos (Wave 2, en progreso).
+## Cambios realizados — Wave 2 (capa /en/ inglés + hreflang recíproco)
+
+Generadas con scripts re-ejecutables (filosofía del skill, como `scaffold-page.py`):
+- `scripts/build-en-pages.py` — chrome compartido (head, nav EN, footer, GTM, agenda-modal, scripts).
+- `scripts/build-en-content.py` — copy clínico/marketing EN por página.
+- `scripts/wire-en-hreflang.py` — inserta el alternate `hreflang="en"` recíproco en las 6 contrapartes ES (idempotente).
+
+**6 páginas nuevas bajo /en/** (lang="en", reusan disease.css + acento por página, agenda-modal, GTM):
+
+| /en/ página | Par ES (x-default→ES) | Enfoque |
+|---|---|---|
+| `/en/` | `/` | Landing inglés: neumólogo que habla inglés en CDMX |
+| `/en/english-speaking-pulmonologist-mexico-city/` | `/sobre-el-doctor/` | **Página ancla viajeros:** altitud, asma/EPOC en viaje, mismo día, teleconsulta, WhatsApp +52 |
+| `/en/altitude-breathing-mexico-city/` | `/contingencia-ambiental-cdmx/` | Altitud ~2,240 m + contaminación, señales de alarma, cuándo ver neumólogo |
+| `/en/spirometry/` | `/servicios/espirometria/` | Lung function test, $1,200 MXN, 25 min, ATS/ERS |
+| `/en/sleep-apnea-test/` | `/servicios/poligrafia-respiratoria/` | Home sleep study (nivel III) |
+| `/en/teleconsultation/` | `/servicios/teleconsulta/` | Video, segunda opinión, refills, anywhere in Mexico |
+
+**hreflang recíproco verificado** en ambos sentidos (ES↔EN) con `x-default`→ES (público núcleo). Schema EN
+con `availableLanguage:["Spanish","English"]` en la landing; `MedicalWebPage`/`MedicalTest`/`MedicalProcedure`
++ `BreadcrumbList` por página, `reviewedBy`/`author` = Dr. Lara. Sin marcas de eventos (verificado por regex).
+Sitemap: +6 EN con alternates completos + alternate `en` añadido a las 6 entradas ES → 48 URLs, XML válido.
+Validador: 55 páginas, 2 CRITICO (pre-existentes de 404.html), **0 nuevas fallas en /en/**.
 
 ---
 
-## Pendientes / próximas waves
-- **Wave 2:** capa /en/ con hreflang recíproco (es-MX ↔ en ↔ x-default), página ancla
-  `english-speaking-pulmonologist-mexico-city` + altitud CDMX, selector de idioma, schema EN.
-- **Wave 3:** CRO poligrafía; doc del perfil de Google (servicios, atributo idioma EN, Q&A).
+## TEXTOS QUE REQUIEREN VISTO BUENO DEL DR. (antes de publicar)
+Marcados en el código con `<!-- PENDING/PENDIENTE: ... review ... -->`:
+
+**(ES)** `servicios/espirometria/index.html` — publicación del precio **$1,200 / +$400** (hero + FAQ).
+Confirmar precio y política (aislada vs. complemento).
+
+**(EN) — revisión clínica del Dr. + revisión por angloparlante nativo:**
+- `/en/` — landing (reasons-to-visit, precios US$ aproximados).
+- `/en/english-speaking-pulmonologist-mexico-city/` — altitud, señales de alarma, manejo de asma/EPOC en viaje, precios.
+- `/en/altitude-breathing-mexico-city/` — fisiología de altitud (~25% menos O₂), aclimatación vs. red flags.
+- `/en/spirometry/` — descripción del estudio, criterios ATS/ERS de reversibilidad, **precio $1,200/+$400**, preparación.
+- `/en/sleep-apnea-test/` — poligrafía nivel III domiciliaria, signos de apnea.
+- `/en/teleconsultation/` — alcance clínico de la teleconsulta (qué sí/qué no), prescripción.
+
+> Nota: los montos en USD son aproximados ("≈US$70–80") y dependen del tipo de cambio — confirmar antes de publicar.
+
+---
+
+## Pendientes / próximas waves (fuera de este PR)
+- **CRO poligrafía** (CVR 3.2% → meta 6–8%): contenido educativo, checklist, CTA en dos pasos.
+- **Perfil de Google (doc):** servicios con descripciones, atributo idioma "Inglés", categoría secundaria
+  (medicina del sueño), Q&A sembradas, posts EN para viajeros, rutina de reseñas. (No editable por código.)
+- **Tras merge:** solicitar indexación en Search Console de `/servicios/espirometria/` y de las 6 `/en/`.
