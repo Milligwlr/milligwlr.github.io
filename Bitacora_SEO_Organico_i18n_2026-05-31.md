@@ -84,6 +84,28 @@ Confirmar precio y política (aislada vs. complemento).
 
 ---
 
+## Wave 3 — Ajustes del Dr. + rediseño UX de /en/ (2026-05-31)
+
+Ajustes de datos solicitados por el Dr.:
+- **Espirometría +$600 con consulta** (antes +$400) — en ES (`servicios/espirometria`) y EN (`/en/spirometry/`).
+- **Duración 40 min** (antes 25) — la espirometría con broncodilatador dura ≥40 min (test, broncodilatador, espera, re-test). Actualizado en todo el ES y EN.
+- **Precio en otros lugares:** añadido "$1,400–$1,500" (promedio CDMX, vía búsqueda web — rango real $1,200–$2,000) a la FAQ ES y a la página EN, como contraste de valor.
+- **Preparación:** "sin café ni cola" → "sin café ni refrescos" (ES) / "coffee or soft drinks" (EN).
+- **Consulta extranjeros = US$99** (antes $1,300 MXN/≈US$70–80) — en `/en/` y `/en/english-speaking-pulmonologist-mexico-city/`. (Precio internacional, no aplica al sitio ES.)
+
+Rediseño UX de la capa /en/ (skills `ui-ux-pro-max` + `frontend-design`), aplicado en el
+generador `scripts/build-en-pages.py` (CSS compartido) → regenera las 6 páginas:
+- Tipografía display **Fraunces** (la del sitio, antes no cargada en /en/) en H1/H2, cursiva editorial.
+- **Hero trust strip** above-the-fold (English-speaking · 5.0/26 reviews · INER · Benito Juárez) — patrón "Social Proof-Focused" del design system.
+- Grid sutil de fondo en hero (profundidad), cards con hover sólido (translateY + sombra) y `cursor:pointer`, acento lateral con gradiente.
+- A11y: `:focus-visible` con outline, `summary` con chevron animado y `min-height:44px` (touch target), CTAs ≥52px, `prefers-reduced-motion` respetado.
+- Verificado en preview (sin errores de consola, Fraunces activa, 4 señales de confianza). Validador: 55 págs, 2 CRITICO pre-existentes, 0 nuevas.
+
+> **Nota precio:** el +$600, el $1,200 y el rango $1,400–$1,500 siguen marcados PENDING review.
+> US$99 es el precio internacional de consulta confirmado por el Dr. (solo páginas /en/).
+
+---
+
 ## Pendientes / próximas waves (fuera de este PR)
 - **CRO poligrafía** (CVR 3.2% → meta 6–8%): contenido educativo, checklist, CTA en dos pasos.
 - **Perfil de Google (doc):** servicios con descripciones, atributo idioma "Inglés", categoría secundaria

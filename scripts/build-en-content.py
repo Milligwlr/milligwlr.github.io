@@ -77,7 +77,7 @@ def build_pages():
 {faq([
   ("Do I need to speak Spanish?", "No. Dr. Lara sees English-speaking patients and you can arrange everything by WhatsApp in English."),
   ("Can I be seen the same day?", "Often, yes — availability varies. Message the office on WhatsApp (+52) and we'll confirm the soonest in-person or video slot."),
-  ("How much does a visit cost?", "A first pulmonology visit is currently $1,300 MXN (about US$70–80, depending on the exchange rate); spirometry is $1,200 MXN. We'll confirm current pricing by WhatsApp before your visit."),
+  ("How much does a visit cost?", "A first pulmonology visit is US$99 for international patients; spirometry is $1,200 MXN. We'll confirm current pricing by WhatsApp before your visit."),
   ("Do you take my travel/health insurance?", "We provide an itemized receipt (recibo/factura) you can submit to most international insurers for reimbursement. Payment is at the time of the visit."),
   ("Where exactly is the office?", "Saturnino Herrán 59, San José Insurgentes, Benito Juárez, 03900 Mexico City — see the <a href='/ubicacion/' hreflang='es-MX' style='color:var(--svc);font-weight:700'>location page</a> for the map."),
 ])}
@@ -157,7 +157,7 @@ def build_pages():
 <h2>How to see the doctor — <em>three easy ways</em></h2>
 <div class="en-grid">
 <div class="en-card"><h3>1 · WhatsApp (+52)</h3><p>Message in English. Tell us your symptoms and dates; we'll suggest the soonest option and what to bring.</p></div>
-<div class="en-card"><h3>2 · In person</h3><p>Central office in Benito Juárez. Same-day visits often available. A first visit is $1,300 MXN (≈US$70–80).</p></div>
+<div class="en-card"><h3>2 · In person</h3><p>Central office in Benito Juárez. Same-day visits often available. A first visit is US$99 for international patients.</p></div>
 <div class="en-card"><h3>3 · Teleconsultation</h3><p>Stay at your hotel or home and see the doctor by video — ideal for refills, follow-up and test interpretation. <a href="/en/teleconsultation/" style="color:var(--svc);font-weight:700">Learn more →</a></p></div>
 </div>
 </div></section>
@@ -279,21 +279,21 @@ def build_pages():
         bc(("Home (ES)", f"{BASE}/"), ("English", f"{BASE}/en/"), ("Spirometry", f"{BASE}/en/{slug}")),
     ]
     body = f"""{head("Spirometry in Mexico City | Lung Function Test — $1,200 MXN",
-        "Spirometry (lung function test) with bronchodilator in central Mexico City. $1,200 MXN, ~25 minutes, same-day result interpreted by a pulmonologist to ATS/ERS standards. English-speaking.",
+        "Spirometry (lung function test) with bronchodilator in central Mexico City. $1,200 MXN, about 40 minutes, same-day result interpreted by a pulmonologist to ATS/ERS standards. English-speaking.",
         slug, ACCENT_TEAL, schema, es_alt="/servicios/espirometria/")}
 {gtm()}
 {nav("/servicios/espirometria/")}
 {hero("Lung function test",
       'Spirometry, <em>explained in plain English</em>',
-      "A 25-minute breathing test that measures how open your airways are — the test that confirms or rules out asthma and COPD. Same-day result, interpreted by a pulmonologist. $1,200 MXN.",
+      "A breathing test that measures how open your airways are — the test that confirms or rules out asthma and COPD. Takes about 40 minutes, same-day result, interpreted by a pulmonologist. $1,200 MXN.",
       "Hello%2C%20I%27d%20like%20to%20book%20a%20spirometry%20test%20in%20English.")}
 
 <section class="en-section"><div class="container" style="max-width:820px">
 {H["PENDING"]}
-<p class="en-lead">Spirometry is the standard lung function test. You take a deep breath and blow out as hard and long as you can into a mouthpiece; the machine measures how much air you move and how fast. We usually repeat it after a bronchodilator (a quick-acting inhaler) to see whether your airways open up — the key difference between asthma and COPD. It's painless, takes about 25 minutes, and you leave with a result the same day.</p>
+<p class="en-lead">Spirometry is the standard lung function test. You take a deep breath and blow out as hard and long as you can into a mouthpiece; the machine measures how much air you move and how fast. We repeat it after a bronchodilator (a quick-acting inhaler) and wait for it to take effect to see whether your airways open up — the key difference between asthma and COPD. It's painless, takes about 40 minutes in total, and you leave with a result the same day.</p>
 <div class="en-grid">
-<div class="en-card"><h3><i class="bi bi-clock" style="color:var(--svc)"></i> ~25 minutes</h3><p>Start to finish, including the post-bronchodilator repeat.</p></div>
-<div class="en-card"><h3><i class="bi bi-tag-fill" style="color:var(--svc)"></i> $1,200 MXN</h3><p>As a standalone test (≈US$65–75). +$400 MXN if added to a consultation. {H["PENDING"]}</p></div>
+<div class="en-card"><h3><i class="bi bi-clock" style="color:var(--svc)"></i> About 40 minutes</h3><p>Start to finish, including the wait for the bronchodilator to take effect and the repeat test.</p></div>
+<div class="en-card"><h3><i class="bi bi-tag-fill" style="color:var(--svc)"></i> $1,200 MXN</h3><p>As a standalone test (≈US$65–75). +$600 MXN if added to a consultation. Elsewhere in Mexico City it typically runs $1,400–$1,500. {H["PENDING"]}</p></div>
 <div class="en-card"><h3><i class="bi bi-clipboard2-check" style="color:var(--svc)"></i> Same-day result</h3><p>Interpreted by the pulmonologist to ATS/ERS criteria, with a clear plan.</p></div>
 <div class="en-card"><h3><i class="bi bi-translate" style="color:var(--svc)"></i> In English</h3><p>Instructions and your results explained in English.</p></div>
 </div>
@@ -302,15 +302,16 @@ def build_pages():
 <section class="en-section"><div class="container" style="max-width:820px">
 <h2>How to <em>prepare</em></h2>
 {H["PENDING"]}
-<div class="en-card"><p>Avoid coffee/cola for 4 hours and don't smoke for 1 hour before. Avoid a heavy meal 2 hours before. Wear loose clothing. If you use a rescue (short-acting) inhaler, hold it for 6–12 hours before if it's safe for you to do so — ask us if unsure. Bring a list or photo of your current inhalers.</p></div>
+<div class="en-card"><p>Avoid coffee or soft drinks for 4 hours and don't smoke for 1 hour before. Avoid a heavy meal 2 hours before. Wear loose clothing. If you use a rescue (short-acting) inhaler, hold it for 6–12 hours before if it's safe for you to do so — ask us if unsure. Bring a list or photo of your current inhalers.</p></div>
 </div></section>
 
 {trust()}
 
 {faq([
-  ("Does spirometry hurt?", "No. The only demanding part is blowing out as hard as you can for about 6 seconds; some people cough at the end, which is expected."),
+  ("Does spirometry hurt?", "No. The only demanding part is blowing out as hard as you can for about 6 seconds at a time; some people cough at the end, which is expected."),
+  ("How long does it take?", "About 40 minutes in total. The breathing maneuvers themselves are quick, but we test you, give a bronchodilator, wait for it to take full effect, and then test again to measure the response."),
   ("Why the inhaler during the test?", "To measure reversibility. If your airflow improves by ≥12% and 200 mL after the bronchodilator, it supports asthma; if it doesn't reverse, it points toward COPD. That distinction drives your treatment."),
-  ("How much does it cost?", "$1,200 MXN as a standalone test, or +$400 MXN when added to a consultation. We confirm current pricing by WhatsApp."),
+  ("How much does it cost?", "$1,200 MXN as a standalone test, or +$600 MXN when added to a consultation. Elsewhere in Mexico City the standalone test typically runs $1,400–$1,500 MXN. We confirm current pricing by WhatsApp."),
   ("Can I get it the same day I arrive?", "Often yes — message us on WhatsApp with your dates and we'll find a slot."),
   ("Will I understand my results?", "Yes — the pulmonologist explains what the numbers mean for you, in English, and what to do next."),
 ])}

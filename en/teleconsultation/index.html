@@ -38,51 +38,84 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "MedicalWebPage", "url": "https://alveos.mx/en/teleconsultation/", "name": "Pulmonology Teleconsultation in English", "inLanguage": "en", "lastReviewed": "2026-05-31", "reviewedBy": {"@type": "Physician", "@id": "https://alveos.mx/#physician", "name": "Dr. William César Lara Vázquez"}, "author": {"@type": "Physician", "@id": "https://alveos.mx/#physician", "name": "Dr. William César Lara Vázquez"}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home (ES)", "item": "https://alveos.mx/"}, {"@type": "ListItem", "position": 2, "name": "English", "item": "https://alveos.mx/en/"}, {"@type": "ListItem", "position": 3, "name": "Teleconsultation", "item": "https://alveos.mx/en/teleconsultation/"}]}</script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/enfermedades/_shared/disease.css">
 <link rel="stylesheet" href="/assets/agenda-modal.css">
 <style>
-:root{--svc:#6d1e54;--svc-light:#a04887;--svc-dark:#4a0e38}
+:root{--svc:#6d1e54;--svc-light:#a04887;--svc-dark:#4a0e38;--en-ease:cubic-bezier(.16,1,.3,1)}
 .disease-content{padding:48px 0 24px}
 @media(min-width:768px){.disease-content{padding:64px 0 32px}}
-.en-section{margin-bottom:48px}
-.en-section h2{font-size:clamp(1.4rem,5vw,2rem);font-weight:800;color:var(--navy);letter-spacing:-.02em;line-height:1.2;margin-bottom:14px}
-.en-section h2 em{font-style:normal;background:linear-gradient(135deg,var(--svc),var(--svc-light));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.en-lead{font-size:1.05rem;color:var(--text-muted);line-height:1.7;max-width:680px;margin:0 0 20px}
-.en-hero{padding:108px 0 52px;position:relative;overflow:hidden;background:linear-gradient(140deg,#0a1628 0%,#0d1f3a 100%)}
-@media(min-width:768px){.en-hero{padding:140px 0 76px}}
-.en-hero__bg{position:absolute;inset:0;background:radial-gradient(circle at 15% 25%,color-mix(in oklab,var(--svc) 32%,transparent),transparent 55%),radial-gradient(circle at 85% 75%,color-mix(in oklab,var(--svc-light) 18%,transparent),transparent 55%);pointer-events:none}
-.en-hero__tag{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--svc),var(--svc-dark));padding:7px 14px;border-radius:100px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1.4px}
-.en-hero h1{font-size:clamp(1.9rem,7vw,3.2rem);color:#fff;font-weight:800;line-height:1.07;letter-spacing:-.025em;margin-bottom:16px}
-.en-hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--svc-light),var(--svc));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.en-hero__sub{font-size:1.08rem;color:rgba(255,255,255,.74);line-height:1.6;margin-bottom:24px;max-width:600px}
+/* Focus visible for keyboard nav (a11y) */
+.en-page a:focus-visible,.en-page summary:focus-visible,.en-page button:focus-visible{outline:3px solid var(--svc-light);outline-offset:3px;border-radius:8px}
+.en-section{margin-bottom:52px}
+.en-section h2{font-family:"Fraunces",Georgia,serif;font-size:clamp(1.55rem,5vw,2.2rem);font-weight:600;color:var(--navy);letter-spacing:-.015em;line-height:1.15;margin-bottom:16px}
+.en-section h2 em{font-style:italic;font-weight:600;background:linear-gradient(135deg,var(--svc),var(--svc-light));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.en-lead{font-size:1.07rem;color:#4a5568;line-height:1.72;max-width:68ch;margin:0 0 22px}
+/* HERO */
+.en-hero{padding:120px 0 60px;position:relative;overflow:hidden;background:linear-gradient(150deg,#0a1628 0%,#0d2236 55%,#0c2b44 100%)}
+@media(min-width:768px){.en-hero{padding:152px 0 88px}}
+.en-hero__bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 12% 18%,color-mix(in oklab,var(--svc) 38%,transparent),transparent 60%),radial-gradient(ellipse 50% 55% at 88% 82%,color-mix(in oklab,var(--svc-light) 22%,transparent),transparent 60%);pointer-events:none}
+.en-hero__grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:54px 54px;mask-image:radial-gradient(ellipse 75% 65% at 50% 40%,#000 25%,transparent 78%);-webkit-mask-image:radial-gradient(ellipse 75% 65% at 50% 40%,#000 25%,transparent 78%);pointer-events:none;opacity:.6}
+.en-hero__inner{position:relative;z-index:1;max-width:720px}
+.en-hero__tag{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--svc),var(--svc-dark));padding:8px 16px;border-radius:100px;margin-bottom:18px;text-transform:uppercase;letter-spacing:1.6px;box-shadow:0 8px 24px color-mix(in oklab,var(--svc) 45%,transparent)}
+.en-hero h1{font-family:"Fraunces",Georgia,serif;font-size:clamp(2.1rem,7.5vw,3.6rem);color:#fff;font-weight:600;line-height:1.06;letter-spacing:-.02em;margin-bottom:18px}
+.en-hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--svc-light),var(--svc));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.en-hero__sub{font-size:1.12rem;color:rgba(255,255,255,.78);line-height:1.62;margin-bottom:28px;max-width:60ch}
 .en-cta{display:flex;flex-wrap:wrap;gap:12px}
-.en-cta a{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 24px;border-radius:14px;font-weight:700;font-size:.96rem;text-decoration:none;min-height:52px}
-.en-cta .wa{background:#25d366;color:#fff}
-.en-cta .wa:hover{background:#1da851}
-.en-cta .cal{background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.25)}
-.en-card{background:#fff;border:1px solid color-mix(in oklab,var(--svc) 16%,transparent);border-left:4px solid var(--svc);border-radius:12px;padding:20px 22px;margin-bottom:16px}
-.en-card h3{font-size:1.05rem;font-weight:800;color:var(--navy);margin:0 0 8px}
-.en-card p{font-size:.95rem;color:#444;line-height:1.6;margin:0}
-.en-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.en-cta a{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;border-radius:14px;font-weight:700;font-size:.97rem;text-decoration:none;min-height:52px;cursor:pointer;transition:transform .22s var(--en-ease),background .22s var(--en-ease),box-shadow .22s var(--en-ease)}
+.en-cta .wa{background:#25d366;color:#fff;box-shadow:0 8px 22px rgba(37,211,102,.38)}
+.en-cta .wa:hover{background:#1da851;transform:translateY(-2px);box-shadow:0 12px 28px rgba(37,211,102,.5)}
+.en-cta .cal{background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.28);backdrop-filter:blur(10px)}
+.en-cta .cal:hover{background:rgba(255,255,255,.18);transform:translateY(-2px)}
+/* Hero trust strip */
+.en-hero__trust{display:flex;flex-wrap:wrap;gap:18px 26px;margin-top:30px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12)}
+.en-hero__trust span{display:inline-flex;align-items:center;gap:9px;color:rgba(255,255,255,.82);font-size:.9rem;font-weight:600}
+.en-hero__trust i{color:var(--svc-light);font-size:1.05rem}
+/* CARDS */
+.en-grid{display:grid;grid-template-columns:1fr;gap:16px}
 @media(min-width:768px){.en-grid{grid-template-columns:1fr 1fr}}
-.en-alarm{background:#fff5f5;border:1px solid rgba(220,53,69,.25);border-left:4px solid #dc3545;border-radius:12px;padding:20px 22px}
-.en-alarm h3{color:#b02a37;font-weight:800;font-size:1.05rem;margin:0 0 10px}
-.en-alarm ul{margin:0;padding-left:20px}.en-alarm li{font-size:.95rem;color:#444;line-height:1.7}
-.en-faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:0;margin-bottom:10px;overflow:hidden}
-.en-faq summary{cursor:pointer;padding:16px 20px;font-weight:700;color:var(--navy);font-size:.98rem;list-style:none}
+.en-card{background:#fff;border:1px solid color-mix(in oklab,var(--svc) 14%,transparent);border-radius:16px;padding:24px;margin-bottom:0;position:relative;transition:transform .3s var(--en-ease),box-shadow .3s var(--en-ease),border-color .3s var(--en-ease)}
+.en-card::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:4px;border-radius:0 4px 4px 0;background:linear-gradient(180deg,var(--svc),var(--svc-light));opacity:.9}
+.en-card:hover{transform:translateY(-4px);border-color:color-mix(in oklab,var(--svc) 34%,transparent);box-shadow:0 16px 38px color-mix(in oklab,var(--svc) 16%,transparent)}
+.en-card h3{font-size:1.08rem;font-weight:800;color:var(--navy);margin:0 0 9px;letter-spacing:-.01em;display:flex;align-items:center;gap:9px}
+.en-card h3 i{font-size:1.15rem}
+.en-card p{font-size:.96rem;color:#475569;line-height:1.62;margin:0}
+.en-card a{color:var(--svc-dark);font-weight:700;text-decoration:none;border-bottom:1px solid color-mix(in oklab,var(--svc) 40%,transparent);transition:color .2s}
+.en-card a:hover{color:var(--svc)}
+/* ALARM */
+.en-alarm{background:linear-gradient(180deg,#fff6f6,#fff);border:1px solid rgba(220,53,69,.22);border-radius:16px;padding:24px 26px;box-shadow:0 10px 30px rgba(220,53,69,.07)}
+.en-alarm h3{color:#b02a37;font-weight:800;font-size:1.12rem;margin:0 0 12px;display:flex;align-items:center;gap:10px}
+.en-alarm ul{margin:0;padding-left:22px}.en-alarm li{font-size:.96rem;color:#475569;line-height:1.75}
+/* FAQ */
+.en-faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:0;margin-bottom:12px;overflow:hidden;transition:border-color .25s,box-shadow .25s}
+.en-faq details[open]{border-color:color-mix(in oklab,var(--svc) 30%,transparent);box-shadow:0 10px 28px rgba(10,22,40,.06)}
+.en-faq summary{cursor:pointer;padding:18px 52px 18px 22px;font-weight:700;color:var(--navy);font-size:1rem;list-style:none;position:relative;min-height:44px;display:flex;align-items:center}
 .en-faq summary::-webkit-details-marker{display:none}
-.en-faq .a{padding:0 20px 16px;font-size:.94rem;color:#444;line-height:1.65}
-.en-trust{display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding:18px 22px;background:#f8f9fb;border-radius:14px;border:1px solid rgba(0,0,0,.06)}
-.en-trust img{width:64px;height:64px;border-radius:50%;object-fit:cover}
-.en-disclaimer{font-size:.85rem;color:#6a7585;line-height:1.6;background:#f8f9fb;border-top:1px solid rgba(0,0,0,.06);padding:28px 0}
+.en-faq summary::after{content:"";position:absolute;right:22px;top:50%;width:11px;height:11px;border-right:2px solid var(--svc);border-bottom:2px solid var(--svc);transform:translateY(-65%) rotate(45deg);transition:transform .3s var(--en-ease)}
+.en-faq details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.en-faq summary:hover{color:var(--svc-dark)}
+.en-faq .a{padding:0 22px 18px;font-size:.95rem;color:#475569;line-height:1.68}
+.en-faq .a a{color:var(--svc-dark);font-weight:700}
+/* TRUST */
+.en-trust{display:flex;flex-wrap:wrap;gap:18px;align-items:center;padding:22px 26px;background:linear-gradient(135deg,#f8fafc,#f1f5f9);border-radius:18px;border:1px solid rgba(0,0,0,.06)}
+.en-trust img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 6px 18px rgba(10,22,40,.14);flex-shrink:0}
+.en-trust a{color:var(--svc-dark);font-weight:700;text-decoration:none}
+.en-trust a:hover{color:var(--svc)}
+/* DISCLAIMER */
+.en-disclaimer{font-size:.86rem;color:#64748b;line-height:1.62;background:#f8fafc;border-top:1px solid rgba(0,0,0,.06);padding:30px 0}
+/* LANG SWITCH */
 .lang-switch{display:inline-flex;gap:2px;border:1px solid rgba(255,255,255,.25);border-radius:100px;overflow:hidden;font-size:.8rem;font-weight:700}
-.lang-switch a{padding:6px 14px;color:rgba(255,255,255,.8);text-decoration:none}
+.lang-switch a{padding:7px 15px;color:rgba(255,255,255,.82);text-decoration:none;min-height:34px;display:inline-flex;align-items:center;transition:background .2s,color .2s}
+.lang-switch a:hover{background:rgba(255,255,255,.12)}
 .lang-switch a.active{background:#fff;color:#0a1628}
+@media(prefers-reduced-motion:reduce){
+  .en-cta a,.en-card,.en-faq details,.en-faq summary::after{transition:none}
+  .en-cta a:hover,.en-card:hover{transform:none}
+}
 </style>
 </head>
-<body>
+<body class="en-page">
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG8Z6FKF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
@@ -107,13 +140,22 @@
 </nav>
 <section class="en-hero">
 <div class="en-hero__bg" aria-hidden="true"></div>
+<div class="en-hero__grid" aria-hidden="true"></div>
 <div class="container position-relative">
+<div class="en-hero__inner">
 <span class="en-hero__tag"><i class="bi bi-translate"></i> Online visit</span>
 <h1>See a pulmonologist <em>by video, in English</em></h1>
 <p class="en-hero__sub">Don't want to leave your hotel or home? A video consultation works well for second opinions, interpreting tests you already have, follow-up of asthma or COPD, and refill plans.</p>
 <div class="en-cta">
 <a class="wa" href="https://wa.me/5215591708334?text=Hello%2C%20I%27d%20like%20to%20book%20an%20English%20teleconsultation%20with%20the%20pulmonologist." target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp"></i> WhatsApp (+52)</a>
 <a class="cal" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Book a visit</a>
+</div>
+<div class="en-hero__trust">
+<span><i class="bi bi-translate"></i> English-speaking</span>
+<span><i class="bi bi-star-fill"></i> 5.0 · 26 Google reviews</span>
+<span><i class="bi bi-hospital"></i> Trained at the INER</span>
+<span><i class="bi bi-geo-alt-fill"></i> Central Benito Juárez</span>
+</div>
 </div>
 </div>
 </section>
