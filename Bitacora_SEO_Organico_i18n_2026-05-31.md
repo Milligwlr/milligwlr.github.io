@@ -101,8 +101,18 @@ generador `scripts/build-en-pages.py` (CSS compartido) → regenera las 6 págin
 - A11y: `:focus-visible` con outline, `summary` con chevron animado y `min-height:44px` (touch target), CTAs ≥52px, `prefers-reduced-motion` respetado.
 - Verificado en preview (sin errores de consola, Fraunces activa, 4 señales de confianza). Validador: 55 págs, 2 CRITICO pre-existentes, 0 nuevas.
 
-> **Nota precio:** el +$600, el $1,200 y el rango $1,400–$1,500 siguen marcados PENDING review.
+> **Nota precio:** el +$600, el $1,200 y el rango $1,400–$1,500 fueron **APROBADOS por el Dr.** (2026-05-31).
 > US$99 es el precio internacional de consulta confirmado por el Dr. (solo páginas /en/).
+
+---
+
+## Wave 4 — Aprobación del Dr. (2026-05-31)
+
+El Dr. **aprobó todos los textos clínicos y precios** marcados `PENDING review`. Se eliminaron
+los marcadores: variable `PENDING=""` en el generador (limpia los 14 `{H["PENDING"]}` de las
+páginas /en/ al regenerar) + se quitaron los 2 comentarios `<!-- PENDIENTE -->` de
+`servicios/espirometria/index.html`. Contenido sin cambios, solo se retiraron los avisos.
+Verificado: 0 marcadores residuales; validador 55 págs, 2 CRITICO pre-existentes (404.html).
 
 ---
 

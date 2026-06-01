@@ -293,7 +293,7 @@ def build_pages():
 <p class="en-lead">Spirometry is the standard lung function test. You take a deep breath and blow out as hard and long as you can into a mouthpiece; the machine measures how much air you move and how fast. We repeat it after a bronchodilator (a quick-acting inhaler) and wait for it to take effect to see whether your airways open up — the key difference between asthma and COPD. It's painless, takes about 40 minutes in total, and you leave with a result the same day.</p>
 <div class="en-grid">
 <div class="en-card"><h3><i class="bi bi-clock" style="color:var(--svc)"></i> About 40 minutes</h3><p>Start to finish, including the wait for the bronchodilator to take effect and the repeat test.</p></div>
-<div class="en-card"><h3><i class="bi bi-tag-fill" style="color:var(--svc)"></i> $1,200 MXN</h3><p>As a standalone test (≈US$65–75). +$600 MXN if added to a consultation. Elsewhere in Mexico City it typically runs $1,400–$1,500. {H["PENDING"]}</p></div>
+<div class="en-card"><h3><i class="bi bi-tag-fill" style="color:var(--svc)"></i> $1,200 MXN</h3><p>As a standalone test (≈US$65–75). +$600 MXN if added to a consultation. Elsewhere in Mexico City it typically runs $1,400–$1,500.</p></div>
 <div class="en-card"><h3><i class="bi bi-clipboard2-check" style="color:var(--svc)"></i> Same-day result</h3><p>Interpreted by the pulmonologist to ATS/ERS criteria, with a clear plan.</p></div>
 <div class="en-card"><h3><i class="bi bi-translate" style="color:var(--svc)"></i> In English</h3><p>Instructions and your results explained in English.</p></div>
 </div>

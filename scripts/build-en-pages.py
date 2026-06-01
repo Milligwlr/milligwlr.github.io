@@ -19,7 +19,7 @@ ROOT = sys.argv[1] if len(sys.argv) > 1 else "."
 BASE = "https://alveos.mx"
 WA = "5215591708334"  # +52 1 55 9170 8334
 
-PENDING = "<!-- PENDING: Dr. / native-speaker review of clinical copy before publishing -->"
+PENDING = ""  # clinical copy approved by Dr. Lara (2026-05-31); markers removed
 
 # ---- Shared chrome ---------------------------------------------------------
 
