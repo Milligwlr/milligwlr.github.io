@@ -1,0 +1,83 @@
+# Bitácora de optimización — Google Ads ALVEOS
+
+**Cuenta:** 6354525352 (drwilliam.neumocare@gmail.com) · **Fecha:** 31 may 2026
+**Objetivo:** mejorar conversiones, sostener el gasto en ~$9,500/mes (instrucción del Dr.) y reorientar a pacientes de mayor valor (sueño/EPOC).
+
+---
+
+## 1. Bitácora de cambios (qué · dónde · de X a Y · por qué · reversible)
+
+| # | Cambio | Dónde | De → A | Por qué | Reversible | Quién |
+|---|---|---|---|---|---|---|
+| 1 | Presupuesto Consulta | Campañas | $200 → $150 → **$200** | Ajuste durante definición de meta; queda en $200 | Sí | Claude |
+| 2 | Presupuesto Servicios | Campañas | $100 → **$112** | Subir a meta $9,500/mes y dar aire a Espirometría (campeón de CPA) + Sueño | Sí | Claude |
+| 3 | Pausa keyword | Palabras clave (Consulta) | `doctor especialista en pulmones` (amplia) Activa → **Detenida** | CPA $519 ≈ 3× promedio; duplicado caro del ganador `especialista en pulmón` ($88) | Sí (detenida, no eliminada) | Claude |
+| 4 | Pausa keyword | Palabras clave (Consulta) | `doctor especialista en pulmones` (frase) Activa → **Detenida** | CPA $158; consolida gasto en el término barato | Sí | Claude |
+| 5 | Negativa | Palabras clave neg. (Consulta) | + `apnea del sueño` (frase) | Saca la fuga de apnea (~$1,600/mes) de Consulta y la rutea al grupo Sueño | Sí | Dr. (verificado por Claude) |
+| 6 | Negativa | Palabras clave neg. (Consulta) | + `polisomnografia`, `polisomnografía` (frase) | No se ofrece ese estudio | Sí | Dr. (verificado) |
+| 7 | Negativa | Palabras clave neg. (Consulta) | + `iner` (frase) | Búsqueda institucional/navegacional | Sí | Dr. (verificado) |
+| 8 | Horario perfil Google | GBP | 08:00–21:00 → **15:00–21:00** | El horario publicado estaba mal y alejaba pacientes (arreglo #1 del informe) | Sí | Dr. |
+| 9 | Recurso de Ubicación | Recursos (nivel Cuenta) | + Perfil de Google vinculado a nivel cuenta | Mostrar dirección + "Cómo llegar" en los anuncios (191 solicitudes de ruta/mes de valor) | Sí | Claude |
+
+**Verificado por datos (API):** las negativas 5–7 están activas en la campaña Consulta; las keywords 3–4 quedaron detenidas; presupuestos en $200 + $112.
+
+---
+
+## 2. Estado de configuración auditado (correcciones al informe)
+
+- **Puja:** ambas campañas YA estaban en **Maximizar conversiones** (no en manual como asumía el informe). Consulta lleva **tCPA $246.72** (flojo).
+- **Ubicación:** Consulta YA estaba en **"Presencia"** (no requirió cambio). Servicios usa **radio de 5 millas** alrededor del consultorio (acotado). El gasto en Edomex venía de búsquedas con nombres de municipios tecleadas desde CDMX → se controla con negativas, no con geo.
+- **Tracking:** SANO. `agendar_cita`, `clic_whatsapp`, `llamada` son **primarias** y registran; las campañas optimizan hacia "Contactos + Reservar citas". (Las "Local actions/directions" NO entran al conteo de las campañas.)
+- **Recursos que YA existían** (no hizo falta crearlos): **Vínculos a sitios** (sirviendo, con clics; su estado "Apto limitado — Salud en la publicidad personalizada" es NORMAL para médicos, no un rechazo), Llamada (55 9170 8334), Precios, Fragmentos estructurados, Textos destacados, Imágenes, y callout "COFEPRIS 2609142002A00265".
+- **Recurso de Ubicación:** ya servía vía la campaña Express (843 clics históricos); además agregué el Perfil de Google a nivel cuenta para reforzarlo.
+- **La mayor fuga histórica** (`hospital de neumología cdmx`, $1,013, 0 conv) ya estaba **pausada**.
+
+---
+
+## 3. Antes vs Después
+
+| Métrica | Antes | Después |
+|---|---|---|
+| Presupuesto total | $300/día (nominal ~$9,120; gasto real ~$13k/mes) | **$312/día (~$9,485/mes)** |
+| Campaña Servicios | Limitada por presupuesto · opt 76% | **Apto · opt 89.8%** |
+| Fuga apnea en Consulta | ~$1,600/mes activa (CPA ~$300, página equivocada) | **Bloqueada** (negativa → rutea a Sueño) |
+| `doctor especialista en pulmones` | Activa (CPA mezclado ~$338) | **Pausada** |
+| Horario perfil Google | 08:00–21:00 (incorrecto) | **15:00–21:00** ✓ |
+| Estrategia de puja | Maximizar conversiones | Sin cambio (ya era correcta) |
+| CPA mezclado (30 d) | ~$178 | meta $120–150 (a medir) |
+
+---
+
+## 4. Pendientes — micro-tareas OPCIONALES (para el Dr.)
+
+1. **Vínculos a sitios — NO hace falta "arreglar".** Ya sirven y reciben clics. El aviso "corrige vínculos rechazados" es en realidad el estado **"Apto (limitado) — Salud en la publicidad personalizada"**, que es **NORMAL** para un consultorio médico (no es un rechazo real → ignóralo). *Opcional:* hay espacios vacíos; si quieres más cobertura agrega `Consulta` → /promociones/consulta-neumologia/, `Espirometría` → /promociones/espirometria-broncodilatador/, `Estudio de Sueño` → /promociones/poligrafia-respiratoria/, `Sobre el Doctor` → /sobre-el-doctor/.
+2. **(Opcional, baja prioridad)** Titular `Reserva Cita por WhatsApp` en el RSA de Consulta: sólo conviene quitarlo si algún día agregas un recurso de **Mensajes**; hoy no hay ninguno, así que no urge y funciona como CTA útil.
+
+---
+
+## 5. No tocado (a propósito) — revisar después
+
+- **tCPA Consulta $246.72:** dejar 2–4 semanas estables y luego bajar a ~$180–200 (10–20% sobre el CPA reciente). No cambiar dos palancas a la vez.
+- **Valores de conversión:** inconsistentes (agendar ~$11k, WhatsApp ~$4k, llamada $1). No afectan hoy (Max Conversiones). Validar contigo los valores reales antes de migrar a puja por valor.
+- **Reestructura STAG / campaña EPOC:** la estructura ya es semi-STAG (Consulta / Espirometría / Sueño). Documentado como mejora futura; no se reconstruyó para no romper histórico.
+- **Sábado:** con Maximizar conversiones sólo sirve pausar el día completo (las bajas de puja se ignoran). Ganancia chica → opcional.
+
+## 6. Pendientes del informe — NO son de Google Ads (web/dev/legal)
+
+- Reconstruir la página `/promociones/poligrafia-respiratoria` (CVR 3.2% → meta >6–8%).
+- Reescribir título/meta de `/servicios/espirometria` (capturar "espirometria": 140 impresiones, pos 5.35, 0 clics).
+- **COFEPRIS:** ya aparece "COFEPRIS 2609142002A00265" en los callouts → probablemente el Aviso de Publicidad ya está presentado; **verificar** que esté vigente.
+- Aviso de privacidad (LFPDPPP) en todo punto de captación (formularios, WhatsApp).
+- Limpieza de UTMs / atribución en GA4 (bucket "Unassigned" grande).
+- Rutina de reseñas (4–6 nuevas/mes; la recencia pesa).
+
+---
+
+## 7. Qué vigilar las próximas 2 semanas (umbrales)
+
+- **Pacientes nuevos atendidos/semana ≥ 15.** Si caen por debajo → reinvertir / aflojar el tCPA en la campaña de mejor ROAS.
+- **IS perdido por presupuesto (Consulta 44%):** con $200 y el desperdicio cortado, debe captar mejores búsquedas. No esperes que baje mucho: el presupuesto es un tope deliberado.
+- **CPA mezclado:** hoy ~$178 → meta $120–150. Si sigue >$178 tras el aprendizaje, revisar.
+- **Grupo Sueño:** confirmar que sigue recibiendo apnea de alta intención (términos exactos) y que la negativa `apnea del sueño` en Consulta no ahogó demanda buena.
+- **Recurso de Ubicación:** que se apruebe y empiece a mostrar el "Cómo llegar" en los anuncios.
+- **Gasto real:** que el ritmo mensual se acerque a ~$9,500 y no vuelva a ~$13k (vigilar el historial de costo diario).
