@@ -2733,6 +2733,97 @@
         }
         .disease-band.band-paused { animation: none !important; }
 
+        /* ── SERVICIOS V2: banner destacado + filas compactas + tabs con indicador deslizante ── */
+        .services-tabs { position: relative; }
+        .services-tabs__ind {
+            position: absolute; left: 0; top: 0; width: 100px; height: 40px;
+            border-radius: 100px;
+            background: linear-gradient(135deg, var(--royal), var(--electric));
+            box-shadow: 0 4px 16px rgba(9,132,227,.35);
+            transition: transform .45s var(--ease), width .45s var(--ease), height .45s var(--ease);
+            z-index: 0; opacity: 0;
+        }
+        .services-tabs.has-ind .services-tabs__ind { opacity: 1; }
+        .services-tabs.has-ind .services-tab { position: relative; z-index: 1; }
+        .services-tabs.has-ind .services-tab.active { background: transparent; border-color: transparent; box-shadow: none; }
+        .services-panel.active { animation: svc2-panel-in .5s var(--ease); }
+        @keyframes svc2-panel-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+        .svc2-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        /* min-width:0 evita que los textos nowrap desborden la celda del grid */
+        .svc2-grid > * { min-width: 0; }
+        /* banner destacado delgado */
+        .svc2-feat {
+            grid-column: 1 / -1;
+            position: relative; display: flex; align-items: center; gap: 18px;
+            background: linear-gradient(120deg, var(--navy) 0%, var(--royal) 55%, var(--electric) 120%);
+            border-radius: 18px; padding: 20px 24px;
+            color: #fff; text-decoration: none; overflow: hidden;
+            transition: transform .25s var(--ease), box-shadow .3s;
+        }
+        .svc2-feat:hover { transform: translateY(-2px); box-shadow: 0 18px 48px rgba(9,132,227,.3); color: #fff; }
+        .svc2-feat::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 55%; height: 100%;
+            background: linear-gradient(100deg, transparent, rgba(255,255,255,.14), transparent);
+            transform: translateX(-130%) skewX(-18deg);
+        }
+        .svc2-feat:hover::after { animation: svc2-sheen .9s var(--ease); }
+        @keyframes svc2-sheen { to { transform: translateX(300%) skewX(-18deg); } }
+        .svc2-feat .svc2-ic { background: rgba(255,255,255,.14); }
+        .svc2-feat .svc2-ic i { color: #fff; }
+        .svc2-feat h3 { font-size: 1.05rem; font-weight: 800; margin: 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; color: #fff; }
+        .svc2-badge {
+            background: linear-gradient(135deg, var(--cyan), var(--sky));
+            color: var(--navy); font-size: .58rem; font-weight: 800;
+            letter-spacing: .1em; text-transform: uppercase;
+            padding: 4px 10px; border-radius: 100px;
+        }
+        .svc2-feat p { font-size: .8rem; color: rgba(255,255,255,.75); margin: 3px 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .svc2-feat .svc2-btn {
+            background: #fff; color: var(--navy); font-size: .8rem; font-weight: 800;
+            padding: 11px 22px; border-radius: 100px; flex-shrink: 0;
+            transition: transform .18s var(--ease);
+        }
+        .svc2-feat:active .svc2-btn { transform: scale(.95); }
+        /* fila compacta */
+        .svc2-row {
+            display: flex; align-items: center; gap: 14px;
+            background: var(--white);
+            border: 1px solid rgba(10,22,40,.06); border-radius: 14px;
+            padding: 13px 16px;
+            text-decoration: none; color: inherit;
+            transition: border-color .25s, box-shadow .25s, background .25s;
+        }
+        .svc2-row:hover { border-color: rgba(9,132,227,.25); box-shadow: 0 8px 26px rgba(9,132,227,.1); background: #fdfeff; color: inherit; }
+        .svc2-row:active { transform: scale(.99); }
+        .svc2-ic {
+            width: 40px; height: 40px; border-radius: 11px;
+            display: grid; place-items: center; flex-shrink: 0;
+            background: linear-gradient(135deg, rgba(9,132,227,.09), rgba(0,206,201,.09));
+        }
+        .svc2-ic i { font-size: 1rem; color: var(--electric); }
+        .svc2-tx { flex: 1; min-width: 0; }
+        .svc2-row h3 { font-size: .9rem; font-weight: 800; color: var(--navy); margin: 0; letter-spacing: -.01em; }
+        .svc2-row p { font-size: .75rem; color: var(--text-muted); margin: 1px 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .svc2-go {
+            width: 30px; height: 30px; border-radius: 50%;
+            display: grid; place-items: center; flex-shrink: 0;
+            background: rgba(9,132,227,.07);
+            transition: background .25s, transform .25s var(--ease);
+        }
+        .svc2-go i { font-size: .8rem; color: var(--electric); transition: color .25s; }
+        .svc2-row:hover .svc2-go { background: var(--electric); transform: translateX(3px); }
+        .svc2-row:hover .svc2-go i { color: #fff; }
+        @media (max-width: 760px) {
+            .svc2-grid { grid-template-columns: 1fr; }
+            .svc2-feat { flex-wrap: wrap; }
+            .svc2-feat p { white-space: normal; }
+        }
+        @media (max-width: 480px) {
+            .svc2-feat .svc2-ic { display: none; }
+            .svc2-feat { padding: 18px 20px; }
+            .svc2-feat .svc2-btn { width: 100%; text-align: center; padding: 13px; }
+        }
+
         /* ── ENFERMEDADES V2: buscador de síntomas + grid (desktop) / burbujas (móvil) ── */
         .f-obs{--acc:#0984e3}.f-inf{--acc:#f59e0b}.f-sue{--acc:#6c5ce7}
         .f-cro{--acc:#00b894}.f-urg{--acc:#e17055}.f-onc{--acc:#a55eea}
@@ -3896,6 +3987,7 @@
 
                 <!-- Tab pills -->
                 <div class="services-tabs reveal" role="tablist">
+                    <span class="services-tabs__ind" aria-hidden="true"></span>
                     <button class="services-tab active" role="tab" aria-selected="true" data-tab="consulta">
                         <i class="bi bi-clipboard2-pulse" aria-hidden="true"></i> Consulta y valoración <span class="tab-count">4</span>
                     </button>
@@ -3915,156 +4007,127 @@
 
                     <!-- ── Consulta y valoración ── -->
                     <div class="services-panel active" role="tabpanel" data-panel="consulta">
-                        <div class="svc-carousel"><div class="svc-carousel__viewport"><div class="svc-carousel__track">
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i></div>
-                                <h3>Consulta de Neumología</h3>
-                                <p>Evaluación completa de tu salud respiratoria con un neumólogo certificado. Revisamos tus síntomas, antecedentes e historial para darte un diagnóstico preciso y un plan de tratamiento claro.</p>
-                                <span class="service-card__cta">Agendar cita <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-house-heart" aria-hidden="true"></i></div>
-                                <h3>Consulta a domicilio</h3>
-                                <p>Si tu condición dificulta el traslado, llevo la atención neumológica a tu hogar. Misma calidad de consulta, misma dedicación, en la comodidad de tu casa.</p>
-                                <span class="service-card__cta">Solicitar visita <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-camera-video" aria-hidden="true"></i></div>
-                                <h3>Teleconsulta</h3>
-                                <p>Consulta neumológica por videollamada desde cualquier lugar. Ideal para seguimientos, segundas opiniones o si te encuentras fuera de la CDMX. Misma atención, sin desplazarte.</p>
-                                <span class="service-card__cta">Agendar teleconsulta <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-shield-check" aria-hidden="true"></i></div>
-                                <h3>Valoración preoperatoria pulmonar</h3>
-                                <p>Antes de una cirugía, es fundamental saber cómo están tus pulmones. Esta valoración reduce riesgos y te da la tranquilidad de llegar preparado al quirófano.</p>
-                                <span class="service-card__cta">Agendar <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div></div>
-                        <button class="svc-carousel__arrow svc-carousel__arrow--prev" aria-label="Anterior"><i class="bi bi-chevron-left"></i></button>
-                        <button class="svc-carousel__arrow svc-carousel__arrow--next" aria-label="Siguiente"><i class="bi bi-chevron-right"></i></button>
-                        <div class="svc-carousel__dots"></div>
+                        <div class="svc2-grid">
+                            <a class="svc2-feat" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal" data-cta="svc-consulta-feat">
+                                <span class="svc2-ic"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i></span>
+                                <span class="svc2-tx">
+                                    <h3>Consulta de Neumología <span class="svc2-badge">Más solicitado</span></h3>
+                                    <p>Evaluación completa de tu salud respiratoria con un neumólogo certificado: síntomas, antecedentes e historial para un diagnóstico preciso y un plan claro.</p>
+                                </span>
+                                <span class="svc2-btn">Agendar</span>
+                            </a>
+                            <a class="svc2-row" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                                <span class="svc2-ic"><i class="bi bi-house-heart" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Consulta a domicilio</h3><p>Si tu condición dificulta el traslado, llevo la atención neumológica a tu hogar con la misma calidad de consulta.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="/servicios/teleconsulta/">
+                                <span class="svc2-ic"><i class="bi bi-camera-video" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Teleconsulta</h3><p>Consulta por videollamada desde cualquier lugar; ideal para seguimientos y segundas opiniones.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                                <span class="svc2-ic"><i class="bi bi-shield-check" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Valoración preoperatoria pulmonar</h3><p>Antes de una cirugía es fundamental saber cómo están tus pulmones: reduce riesgos y llega preparado.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
                         </div>
                     </div>
 
                     <!-- ── Estudios respiratorios ── -->
                     <div class="services-panel" role="tabpanel" data-panel="estudios">
-                        <div class="svc-carousel"><div class="svc-carousel__viewport"><div class="svc-carousel__track">
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-lungs" aria-hidden="true"></i></div>
-                                <h3>Espirometría simple</h3>
-                                <p>Prueba rápida e indolora que mide tu capacidad pulmonar. Es el primer paso para detectar asma, EPOC u otros problemas respiratorios ocultos.</p>
-                                
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-activity" aria-hidden="true"></i></div>
-                                <h3>Espirometría con broncodilatador</h3>
-                                <p>Medimos tu función pulmonar antes y después de un broncodilatador para determinar si la obstrucción de tus vías aéreas es reversible, clave para distinguir asma de EPOC.</p>
-                                
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-moon-stars" aria-hidden="true"></i></div>
-                                <h3>Poligrafía respiratoria</h3>
-                                <p>Estudio nocturno que detecta apnea del sueño desde tu casa. Registra tu respiración, oxígeno y esfuerzo mientras duermes para un diagnóstico preciso.</p>
-                                
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="fa-solid fa-fan" aria-hidden="true"></i></div>
-                                <h3>Titulación CPAP automático</h3>
-                                <p>Ajustamos la presión óptima de tu equipo CPAP para que funcione perfectamente mientras duermes, eliminando las pausas respiratorias de la apnea del sueño.</p>
-                                
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="fa-solid fa-wind" aria-hidden="true"></i></div>
-                                <h3>Fracción exhalada de óxido nítrico</h3>
-                                <p>Prueba de aliento que mide la inflamación en tus vías respiratorias. Ayuda a diagnosticar y monitorear el asma de forma objetiva y sin molestias.</p>
-                                
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-broadcast" aria-hidden="true"></i></div>
-                                <h3>Ultrasonido pulmonar</h3>
-                                <p>Imagen en tiempo real de tus pulmones sin radiación. Permite detectar líquido pleural, consolidaciones y otras alteraciones de forma rápida y segura.</p>
-                                
-                            </div>
-                        </div></div>
-                        <button class="svc-carousel__arrow svc-carousel__arrow--prev" aria-label="Anterior"><i class="bi bi-chevron-left"></i></button>
-                        <button class="svc-carousel__arrow svc-carousel__arrow--next" aria-label="Siguiente"><i class="bi bi-chevron-right"></i></button>
-                        <div class="svc-carousel__dots"></div>
+                        <div class="svc2-grid">
+                            <a class="svc2-feat" href="/servicios/espirometria/" data-cta="svc-espiro-feat">
+                                <span class="svc2-ic"><i class="bi bi-activity" aria-hidden="true"></i></span>
+                                <span class="svc2-tx">
+                                    <h3>Espirometría con broncodilatador <span class="svc2-badge">Diagnóstico clave</span></h3>
+                                    <p>El estudio de referencia para distinguir asma de EPOC: medimos tu función pulmonar antes y después del broncodilatador. Resultados el mismo día.</p>
+                                </span>
+                                <span class="svc2-btn">Agendar</span>
+                            </a>
+                            <a class="svc2-row" href="/servicios/espirometria/">
+                                <span class="svc2-ic"><i class="bi bi-lungs" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Espirometría simple</h3><p>Prueba rápida e indolora que mide tu capacidad pulmonar; el primer paso para detectar asma o EPOC.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="/servicios/poligrafia-respiratoria/">
+                                <span class="svc2-ic"><i class="bi bi-moon-stars" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Poligrafía respiratoria</h3><p>Estudio nocturno que detecta apnea del sueño desde tu casa, con diagnóstico preciso.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="/servicios/titulacion-presion-positiva/">
+                                <span class="svc2-ic"><i class="fa-solid fa-fan" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Titulación CPAP automático</h3><p>Ajustamos la presión óptima de tu CPAP para eliminar las pausas respiratorias mientras duermes.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="/servicios/feno/">
+                                <span class="svc2-ic"><i class="fa-solid fa-wind" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Fracción exhalada de óxido nítrico</h3><p>Prueba de aliento que mide la inflamación de tus vías respiratorias; clave en asma.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                                <span class="svc2-ic"><i class="bi bi-broadcast" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Ultrasonido pulmonar</h3><p>Imagen en tiempo real de tus pulmones, sin radiación: líquido pleural y consolidaciones al momento.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
                         </div>
                     </div>
 
                     <!-- ── Procedimientos ── -->
                     <div class="services-panel" role="tabpanel" data-panel="procedimientos">
-                        <div class="svc-carousel"><div class="svc-carousel__viewport"><div class="svc-carousel__track">
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-droplet" aria-hidden="true"></i></div>
-                                <h3>Toracocentesis</h3>
-                                <p>Procedimiento para drenar líquido acumulado alrededor de tus pulmones. Alivia la dificultad respiratoria y permite analizar el líquido para determinar su causa.</p>
-                                <span class="service-card__cta">Agendar <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-bandaid" aria-hidden="true"></i></div>
-                                <h3>Colocación de sonda endopleural</h3>
-                                <p>Cuando el derrame pleural es importante, colocamos una sonda para drenar de forma continua y controlada, devolviendo espacio a tus pulmones para respirar.</p>
-                                <span class="service-card__cta">Agendar <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-moisture" aria-hidden="true"></i></div>
-                                <h3>Catéter pleural</h3>
-                                <p>Para derrames recurrentes, este catéter permanente te permite drenar líquido desde casa de forma segura, reduciendo visitas hospitalarias y mejorando tu calidad de vida.</p>
-                                <span class="service-card__cta">Agendar <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-search-heart" aria-hidden="true"></i></div>
-                                <h3>Broncoscopía diagnóstica</h3>
-                                <p>Exploración directa de tus vías respiratorias con una cámara flexible. Permite tomar muestras y diagnosticar lesiones, infecciones o tumores con alta precisión.</p>
-                                <span class="service-card__cta">Agendar <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div></div>
-                        <button class="svc-carousel__arrow svc-carousel__arrow--prev" aria-label="Anterior"><i class="bi bi-chevron-left"></i></button>
-                        <button class="svc-carousel__arrow svc-carousel__arrow--next" aria-label="Siguiente"><i class="bi bi-chevron-right"></i></button>
-                        <div class="svc-carousel__dots"></div>
+                        <div class="svc2-grid">
+                            <a class="svc2-row" href="/servicios/toracocentesis/">
+                                <span class="svc2-ic"><i class="bi bi-droplet" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Toracocentesis</h3><p>Drenaje del líquido acumulado alrededor de tus pulmones: alivia y permite analizar la causa.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                                <span class="svc2-ic"><i class="bi bi-bandaid" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Colocación de sonda endopleural</h3><p>Drenaje continuo y controlado de derrames importantes para devolver espacio a tus pulmones.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="/servicios/cateter-pleural-multiproposito/">
+                                <span class="svc2-ic"><i class="bi bi-moisture" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Catéter pleural</h3><p>Para derrames recurrentes: drena desde casa de forma segura y reduce visitas hospitalarias.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="/servicios/broncoscopia/">
+                                <span class="svc2-ic"><i class="bi bi-search-heart" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Broncoscopía diagnóstica</h3><p>Exploración directa de tus vías respiratorias con cámara flexible: muestras y diagnóstico precisos.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
                         </div>
                     </div>
 
                     <!-- ── Tratamientos ── -->
                     <div class="services-panel" role="tabpanel" data-panel="tratamientos">
-                        <div class="svc-carousel"><div class="svc-carousel__viewport"><div class="svc-carousel__track">
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-heart-pulse" aria-hidden="true"></i></div>
-                                <h3>Terapia respiratoria</h3>
-                                <p>Programa de ejercicios y técnicas guiadas para fortalecer tus pulmones, mejorar tu capacidad respiratoria y recuperar tu calidad de vida paso a paso.</p>
-                                <span class="service-card__cta">Agendar <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-shield-plus" aria-hidden="true"></i></div>
-                                <h3>Tratamiento para dejar de fumar</h3>
-                                <p>Plan médico personalizado con herramientas que realmente funcionan. Te acompaño en cada paso para que dejes el cigarro de forma definitiva y sin recaídas.</p>
-                                <span class="service-card__cta">Agendar <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="fa-solid fa-ribbon" aria-hidden="true"></i></div>
-                                <h3>Detección de cáncer pulmonar</h3>
-                                <p>Si tienes factores de riesgo, una evaluación temprana puede salvar tu vida. Realizamos estudios de tamizaje y seguimiento de nódulos pulmonares sospechosos.</p>
-                                <span class="service-card__cta">Agendar <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-clipboard-check" aria-hidden="true"></i></div>
-                                <h3>Seguimiento de enfermedades crónicas</h3>
-                                <p>Asma, EPOC, fibrosis pulmonar: el seguimiento regular es clave. Ajustamos tu tratamiento continuamente para que tengas menos crisis y más días buenos.</p>
-                                <span class="service-card__cta">Agendar <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div></div>
-                        <button class="svc-carousel__arrow svc-carousel__arrow--prev" aria-label="Anterior"><i class="bi bi-chevron-left"></i></button>
-                        <button class="svc-carousel__arrow svc-carousel__arrow--next" aria-label="Siguiente"><i class="bi bi-chevron-right"></i></button>
-                        <div class="svc-carousel__dots"></div>
+                        <div class="svc2-grid">
+                            <a class="svc2-row" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                                <span class="svc2-ic"><i class="bi bi-heart-pulse" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Terapia respiratoria</h3><p>Ejercicios y técnicas guiadas para fortalecer tus pulmones y recuperar tu calidad de vida.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="/servicios/tratamiento-dejar-de-fumar/">
+                                <span class="svc2-ic"><i class="bi bi-shield-plus" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Tratamiento para dejar de fumar</h3><p>Plan médico personalizado con herramientas que funcionan; te acompaño hasta dejarlo de forma definitiva.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                                <span class="svc2-ic"><i class="fa-solid fa-ribbon" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Detección de cáncer pulmonar</h3><p>Si tienes factores de riesgo, el tamizaje temprano y el seguimiento de nódulos pueden salvar tu vida.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="/servicios/seguimiento-enfermedades-cronicas/">
+                                <span class="svc2-ic"><i class="bi bi-clipboard-check" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Seguimiento de enfermedades crónicas</h3><p>Asma, EPOC, fibrosis: ajustamos tu tratamiento continuamente para menos crisis y más días buenos.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
                         </div>
                     </div>
 
                 </div>
             </div>
         </section>
-
         <!-- ===== ENFERMEDADES — Counter-scrolling bands ===== -->
         <hr class="section-divider">
         <section id="enfermedades" class="diseases-section section-bg py-5">
@@ -5402,6 +5465,28 @@
                 setTimeout(function() { band.style.transition = 'none'; }, 350);
             });
         });
+
+        /* ── Servicios v2: indicador deslizante de pestañas ── */
+        (function(){
+            var wrap = document.querySelector('.services-tabs');
+            var ind = document.querySelector('.services-tabs__ind');
+            if (!wrap || !ind) return;
+            function move(){
+                var t = wrap.querySelector('.services-tab.active');
+                if (!t) return;
+                ind.style.width = t.offsetWidth + 'px';
+                ind.style.height = t.offsetHeight + 'px';
+                ind.style.transform = 'translate(' + t.offsetLeft + 'px,' + t.offsetTop + 'px)';
+            }
+            wrap.classList.add('has-ind');
+            move();
+            window.addEventListener('resize', move, { passive: true });
+            wrap.querySelectorAll('.services-tab').forEach(function(t){
+                t.addEventListener('click', function(){ requestAnimationFrame(move); });
+            });
+            /* el reveal de la sección puede cambiar el layout tras la primera medición */
+            setTimeout(move, 600);
+        })();
 
         /* ── Enfermedades v2: buscador de síntomas (grid desktop / burbujas móvil + sheet) ── */
         (function(){
