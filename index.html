@@ -2733,6 +2733,90 @@
         }
         .disease-band.band-paused { animation: none !important; }
 
+        /* ── ENFERMEDADES V2: buscador de síntomas + grid (desktop) / burbujas (móvil) ── */
+        .f-obs{--acc:#0984e3}.f-inf{--acc:#f59e0b}.f-sue{--acc:#6c5ce7}
+        .f-cro{--acc:#00b894}.f-urg{--acc:#e17055}.f-onc{--acc:#a55eea}
+        .dis2-chips{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin:0 0 10px}
+        .dis2-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.9);border:1.5px solid rgba(10,22,40,.1);border-radius:100px;padding:10px 18px;font-family:var(--sans);font-size:.82rem;font-weight:700;color:var(--text);cursor:pointer;transition:transform .25s var(--ease),border-color .25s,box-shadow .25s,background .25s,color .25s}
+        .dis2-chip i{font-size:.8rem;color:var(--text-muted);transition:color .25s}
+        .dis2-chip:hover{transform:translateY(-2px);border-color:rgba(9,132,227,.35);box-shadow:0 6px 18px rgba(9,132,227,.1)}
+        .dis2-chip.on{background:linear-gradient(135deg,var(--navy),var(--royal) 60%,var(--electric));border-color:transparent;color:#fff;box-shadow:0 8px 24px rgba(9,132,227,.3)}
+        .dis2-chip.on i{color:#fff}
+        .dis2-hint{text-align:center;font-size:.8rem;font-weight:600;color:var(--text-muted);min-height:1.5em;margin:0 0 28px;transition:opacity .3s}
+        /* grid desktop */
+        .dis2-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+        .dis2-card{position:relative;background:var(--white);border:1px solid rgba(10,22,40,.06);border-radius:18px;padding:22px 20px 18px;box-shadow:0 2px 10px rgba(10,22,40,.04);display:flex;flex-direction:column;gap:9px;overflow:hidden;transition:opacity .4s var(--ease),transform .4s var(--ease),box-shadow .3s,border-color .3s}
+        .dis2-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--acc,var(--electric));opacity:.85}
+        .dis2-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(10,22,40,.1)}
+        .dis2-fam{font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--acc)}
+        .dis2-ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--acc) 11%,#fff)}
+        .dis2-ic i{font-size:1.1rem;color:var(--acc)}
+        .dis2-card h3{font-size:.98rem;font-weight:800;color:var(--navy);margin:0;letter-spacing:-.01em}
+        .dis2-card p{font-size:.78rem;line-height:1.55;color:var(--text-muted);flex:1;margin:0}
+        .dis2-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+        .dis2-cta{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;color:var(--electric);background:rgba(9,132,227,.06);border:1px solid rgba(9,132,227,.18);border-radius:100px;padding:7px 14px;text-decoration:none;transition:background .25s,border-color .25s,transform .15s var(--ease)}
+        .dis2-cta:hover{border-color:var(--electric);background:rgba(9,132,227,.1);color:var(--electric)}
+        .dis2-cta:active{transform:scale(.96)}
+        .dis2-cta--wa{color:#128C7E;background:rgba(37,211,102,.08);border-color:rgba(37,211,102,.3)}
+        .dis2-cta--wa:hover{border-color:#25d366;background:rgba(37,211,102,.14);color:#128C7E}
+        .dis2-soon-tag{font-size:.66rem;font-weight:700;color:var(--amber,#f59e0b);align-self:center}
+        .dis2-grid.filtering .dis2-card{opacity:.22;transform:scale(.975)}
+        .dis2-grid.filtering .dis2-card.hit{opacity:1;transform:scale(1);box-shadow:0 14px 38px color-mix(in srgb,var(--acc) 22%,transparent);border-color:color-mix(in srgb,var(--acc) 40%,transparent)}
+        /* burbujas móviles */
+        .dis2-bubbles{display:none;position:relative;height:520px;margin-top:6px}
+        .dis2-bub{--sz:78px;position:absolute;width:var(--sz);height:var(--sz);margin:calc(var(--sz)/-2) 0 0 calc(var(--sz)/-2);border-radius:50%;
+            background:linear-gradient(165deg,rgba(255,255,255,.97),rgba(244,249,255,.88));
+            border:1px solid rgba(255,255,255,.95);
+            box-shadow:0 2px 4px rgba(10,22,40,.04),0 12px 28px -6px rgba(10,22,40,.12),inset 0 1px 0 #fff;
+            display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;padding:0;
+            transition:transform .7s var(--ease),opacity .55s var(--ease),box-shadow .45s var(--ease),border-color .45s;
+            will-change:transform;font-family:var(--sans)}
+        .dis2-bub--lg{--sz:96px}
+        .dis2-bub--sm{--sz:66px}
+        .dis2-bub .bic{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--acc) 10%,#fff);border:1px solid color-mix(in srgb,var(--acc) 16%,transparent);transition:transform .4s var(--ease)}
+        .dis2-bub .bic i{font-size:.72rem;color:var(--acc)}
+        .dis2-bub--lg .bic{width:32px;height:32px}
+        .dis2-bub--lg .bic i{font-size:.88rem}
+        .dis2-bub--sm .bic{width:22px;height:22px}
+        .dis2-bub--sm .bic i{font-size:.6rem}
+        .dis2-bub b{font-size:.57rem;font-weight:800;color:var(--navy);text-align:center;line-height:1.15;padding:0 7px;letter-spacing:-.01em}
+        .dis2-bub--lg b{font-size:.62rem}
+        .dis2-bub--sm b{font-size:.5rem}
+        .dis2-bub:active{transform:scale(.95)}
+        .dis2-bubbles.filtering .dis2-bub{opacity:.12;box-shadow:0 6px 16px rgba(10,22,40,.05)}
+        .dis2-bubbles.filtering .dis2-bub.hit{opacity:1;z-index:3;
+            border-color:color-mix(in srgb,var(--acc) 45%,#fff);
+            box-shadow:0 2px 4px rgba(10,22,40,.04),0 18px 44px -8px color-mix(in srgb,var(--acc) 38%,transparent),0 0 0 6px color-mix(in srgb,var(--acc) 7%,transparent),inset 0 1px 0 #fff}
+        .dis2-bubbles.filtering .dis2-bub.hit .bic{transform:scale(1.08)}
+        /* bottom sheet móvil */
+        .dis2-sheetbg{position:fixed;inset:0;background:rgba(10,22,40,.45);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:1090}
+        .dis2-sheetbg.on{opacity:1;pointer-events:auto}
+        .dis2-sheet{position:fixed;left:0;right:0;bottom:0;background:#fff;border-radius:26px 26px 0 0;padding:14px 22px calc(24px + env(safe-area-inset-bottom));z-index:1100;transform:translateY(100%);transition:transform .3s var(--ease);box-shadow:0 -16px 50px rgba(10,22,40,.25)}
+        .dis2-sheet.on{transform:translateY(0)}
+        .dis2-sheet.closing{transition:transform .2s ease-in}
+        .dis2-sheet .grab{width:42px;height:5px;border-radius:5px;background:rgba(10,22,40,.14);margin:0 auto 14px}
+        .dis2-sheet .top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+        .dis2-sheet .sic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:color-mix(in srgb,var(--acc,#0984e3) 12%,#fff);flex-shrink:0}
+        .dis2-sheet .sic i{font-size:1.15rem;color:var(--acc,#0984e3)}
+        .dis2-sheet h3{font-size:1.02rem;font-weight:800;color:var(--navy);margin:0}
+        .dis2-sheet .sfam{font-size:.58rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--acc,#0984e3)}
+        .dis2-sheet .x{margin-left:auto;width:32px;height:32px;border-radius:50%;border:none;background:rgba(10,22,40,.06);color:var(--text-muted);font-size:.95rem;cursor:pointer;display:grid;place-items:center}
+        .dis2-sheet .sdesc{font-size:.8rem;line-height:1.6;color:var(--text-muted);margin:0 0 8px}
+        .dis2-sheet ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 14px;padding:0}
+        .dis2-sheet li{font-size:.66rem;font-weight:700;color:var(--acc,#0984e3);background:color-mix(in srgb,var(--acc,#0984e3) 8%,#fff);border:1px solid color-mix(in srgb,var(--acc,#0984e3) 22%,transparent);border-radius:100px;padding:5px 11px}
+        .dis2-sheet .scta{display:flex;gap:9px}
+        .dis2-sheet .more{flex:1;text-align:center;background:linear-gradient(135deg,var(--royal),var(--electric));color:#fff;font-size:.84rem;font-weight:800;padding:13px;border-radius:100px;text-decoration:none;transition:transform .15s var(--ease)}
+        .dis2-sheet .more:active{transform:scale(.97)}
+        .dis2-sheet .swa{width:48px;height:48px;border-radius:50%;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.35);display:grid;place-items:center;text-decoration:none}
+        .dis2-sheet .swa i{font-size:1.2rem;color:#25D366}
+        .dis2-sheet .soon{font-size:.62rem;color:#b45309;font-weight:700;margin-top:8px;text-align:center}
+        @media(max-width:1020px){.dis2-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:767.98px){
+            .dis2-grid{display:none}
+            .dis2-bubbles{display:block}
+            .dis2-chip{padding:8px 13px;font-size:.72rem;gap:6px}
+        }
+
         /* =============================================
            TESTIMONIALS
         ============================================= */
@@ -3607,8 +3691,8 @@
                         <div class="about__portrait-glow"></div>
                         <div class="about__photo-frame">
                             <picture>
-                                <source type="image/webp" srcset="images/dr-william-lara.webp">
-                                <img src="images/dr-william-lara.jpg" alt="Dr. William César Lara Vázquez, neumólogo en CDMX" width="600" height="600" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+                                <source type="image/webp" srcset="images/dr-lara-hospital.webp">
+                                <img src="images/dr-lara-hospital.jpg" alt="Dr. William César Lara Vázquez en el hospital, neumólogo en CDMX" width="800" height="1073" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
                             </picture>
                         </div>
                     </div>
@@ -3997,186 +4081,136 @@
                     <p class="section-sub reveal">Si algo de esto te suena familiar, puedo ayudarte. Haz clic en cualquiera para saber más.</p>
                 </div>
             </div>
-            <div class="disease-bands">
-                <!-- Band 1 — scrolls left -->
-                <div class="disease-band disease-band--top">
-                    <a href="/enfermedades/asma/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-wind" aria-hidden="true"></i></div>
+            <div class="container">
+                <div class="dis2-chips reveal" id="disChips" role="group" aria-label="Filtra por sintoma"></div>
+                <p class="dis2-hint" id="disHint">Elige un síntoma para ver las condiciones relacionadas.</p>
+                <div class="dis2-grid" id="disGrid">
+                    <div class="dis2-card f-obs" data-cell="0" data-sz="lg" data-s="tos aire silbido" data-sym="Silbidos al respirar|Tos seca nocturna|Pecho apretado" data-url="/enfermedades/asma/">
+                        <span class="dis2-fam">Vía aérea</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-lungs" aria-hidden="true"></i></span>
                         <h3>Asma</h3>
                         <p>¿Sientes silbidos al respirar, falta de aire o tos que no se quita? Con el tratamiento correcto, puedes vivir sin que el asma te detenga.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/epoc/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-lungs" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/asma/">Saber más <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-obs" data-cell="2" data-sz="lg" data-s="tos aire fumo silbido" data-sym="Fatiga al caminar|Tos con flema|Historial de tabaco" data-url="/enfermedades/epoc/">
+                        <span class="dis2-fam">Vía aérea</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-wind" aria-hidden="true"></i></span>
                         <h3>EPOC</h3>
                         <p>¿Te cansas al caminar o subir escaleras? La EPOC avanza en silencio, pero con el manejo adecuado se puede frenar.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/neumonia/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-bacterium" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/epoc/">Saber más <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-inf" data-cell="12" data-sz="lg" data-s="tos fiebre pecho" data-sym="Fiebre alta|Tos con flema|Dolor al respirar" data-url="/enfermedades/neumonia/">
+                        <span class="dis2-fam">Infecciosa</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-bacterium" aria-hidden="true"></i></span>
                         <h3>Neumonía</h3>
                         <p>Fiebre alta, tos con flema y dolor al respirar son señales de alarma que requieren atención rápida.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/apnea-del-sueno/" class="disease-card">
-                        <div class="disease-card__icon"><i class="bi bi-moon-stars" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/neumonia/">Saber más <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-sue" data-cell="7" data-sz="lg" data-s="ronquido cansancio" data-sym="Ronquido fuerte|Somnolencia de día|Pausas al respirar" data-url="/enfermedades/apnea-del-sueno/">
+                        <span class="dis2-fam">Sueño</span>
+                        <span class="dis2-ic"><i class="bi bi-moon-stars" aria-hidden="true"></i></span>
                         <h3>Apnea del Sueño</h3>
                         <p>¿Roncas fuerte y te despiertas cansado? Podrías dejar de respirar mientras duermes sin saberlo.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/fibrosis-pulmonar/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-lungs-virus" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/apnea-del-sueno/">Saber más <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-cro" data-cell="1" data-s="aire tos cansancio" data-sym="Falta de aire progresiva|Tos seca persistente" data-url="/enfermedades/fibrosis-pulmonar/">
+                        <span class="dis2-fam">Crónica</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-lungs-virus" aria-hidden="true"></i></span>
                         <h3>Fibrosis Pulmonar</h3>
                         <p>Cicatrización progresiva del tejido pulmonar que dificulta la respiración. Un diagnóstico temprano es clave.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/cancer-de-pulmon/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-ribbon" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/fibrosis-pulmonar/">Saber más <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-onc" data-cell="14" data-sz="lg" data-s="tos fumo" data-sym="Tos que cambia|Sangre al toser|Pérdida de peso" data-url="/enfermedades/cancer-de-pulmon/">
+                        <span class="dis2-fam">Oncología</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-ribbon" aria-hidden="true"></i></span>
                         <h3>Cáncer de Pulmón</h3>
                         <p>La detección oportuna puede salvar vidas. Si tienes factores de riesgo, una evaluación puede marcar la diferencia.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/influenza/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-virus" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/cancer-de-pulmon/">Saber más <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-inf" data-cell="3" data-sz="sm" data-s="fiebre tos" data-sym="Fiebre súbita|Dolor de cuerpo|Tos seca" data-url="/enfermedades/influenza/">
+                        <span class="dis2-fam">Infecciosa</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-virus" aria-hidden="true"></i></span>
                         <h3>Influenza</h3>
                         <p>Más que una gripe: puede complicarse gravemente. Prevención y tratamiento oportuno son fundamentales.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <!-- Duplicates for seamless loop -->
-                    <a href="/enfermedades/asma/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-wind" aria-hidden="true"></i></div>
-                        <h3>Asma</h3>
-                        <p>¿Sientes silbidos al respirar, falta de aire o tos que no se quita? Con el tratamiento correcto, puedes vivir sin que el asma te detenga.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/epoc/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-lungs" aria-hidden="true"></i></div>
-                        <h3>EPOC</h3>
-                        <p>¿Te cansas al caminar o subir escaleras? La EPOC avanza en silencio, pero con el manejo adecuado se puede frenar.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/neumonia/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-bacterium" aria-hidden="true"></i></div>
-                        <h3>Neumonía</h3>
-                        <p>Fiebre alta, tos con flema y dolor al respirar son señales de alarma que requieren atención rápida.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/apnea-del-sueno/" class="disease-card">
-                        <div class="disease-card__icon"><i class="bi bi-moon-stars" aria-hidden="true"></i></div>
-                        <h3>Apnea del Sueño</h3>
-                        <p>¿Roncas fuerte y te despiertas cansado? Podrías dejar de respirar mientras duermes sin saberlo.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/fibrosis-pulmonar/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-lungs-virus" aria-hidden="true"></i></div>
-                        <h3>Fibrosis Pulmonar</h3>
-                        <p>Cicatrización progresiva del tejido pulmonar que dificulta la respiración. Un diagnóstico temprano es clave.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/cancer-de-pulmon/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-ribbon" aria-hidden="true"></i></div>
-                        <h3>Cáncer de Pulmón</h3>
-                        <p>La detección oportuna puede salvar vidas. Si tienes factores de riesgo, una evaluación puede marcar la diferencia.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/influenza/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-virus" aria-hidden="true"></i></div>
-                        <h3>Influenza</h3>
-                        <p>Más que una gripe: puede complicarse gravemente. Prevención y tratamiento oportuno son fundamentales.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                </div>
-                <!-- Band 2 — scrolls right (opposite direction) -->
-                <div class="disease-band disease-band--bottom">
-                    <a href="/enfermedades/derrames-pleurales/" class="disease-card">
-                        <div class="disease-card__icon"><i class="bi bi-moisture" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/influenza/">Saber más <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-urg" data-cell="5" data-s="pecho aire" data-short="Derrame Pleural" data-sym="Dolor de pecho|Falta de aire súbita" data-url="/enfermedades/derrames-pleurales/">
+                        <span class="dis2-fam">Pleura</span>
+                        <span class="dis2-ic"><i class="bi bi-moisture" aria-hidden="true"></i></span>
                         <h3>Derrames Pleurales</h3>
                         <p>¿Sientes dolor en el pecho o falta de aire repentina? La acumulación de líquido necesita diagnóstico especializado.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/tabaquismo/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-ban-smoking" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/derrames-pleurales/">Saber más <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-cro" data-cell="6" data-sz="sm" data-s="fumo tos" data-sym="Dependencia|Tos de fumador" data-url="/enfermedades/tabaquismo/">
+                        <span class="dis2-fam">Prevención</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-ban-smoking" aria-hidden="true"></i></span>
                         <h3>Tabaquismo</h3>
                         <p>Un plan médico real, con herramientas probadas, para que dejes de fumar de forma definitiva.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/bronquiectasias/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-lungs" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/tabaquismo/">Saber más <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-obs" data-cell="8" data-s="tos fiebre" data-sym="Infecciones repetidas|Flema abundante" data-url="/enfermedades/bronquiectasias/">
+                        <span class="dis2-fam">Vía aérea</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-lungs" aria-hidden="true"></i></span>
                         <h3>Bronquiectasias</h3>
                         <p>Daño permanente en los bronquios que causa infecciones recurrentes. El manejo adecuado mejora tu calidad de vida.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/hipertension-pulmonar/" class="disease-card">
-                        <div class="disease-card__icon"><i class="bi bi-heart-pulse" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/bronquiectasias/">Saber más <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-cro" data-cell="4" data-s="aire cansancio" data-short="Hipertensión Pulm." data-sym="Fatiga|Falta de aire al esfuerzo|Hinchazón de piernas" data-url="/enfermedades/hipertension-pulmonar/">
+                        <span class="dis2-fam">Crónica</span>
+                        <span class="dis2-ic"><i class="bi bi-heart-pulse" aria-hidden="true"></i></span>
                         <h3>Hipertensión Pulmonar</h3>
                         <p>Presión alta en las arterias del pulmón que afecta el corazón. Un diagnóstico preciso cambia el pronóstico.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/embolia-pulmonar/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-shield-virus" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/hipertension-pulmonar/">Saber más <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-urg" data-cell="9" data-s="pecho aire" data-sym="Dolor súbito|Falta de aire repentina" data-url="/enfermedades/embolia-pulmonar/">
+                        <span class="dis2-fam">Urgencia</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-shield-virus" aria-hidden="true"></i></span>
                         <h3>Embolia Pulmonar</h3>
                         <p>Un coágulo que bloquea las arterias del pulmón. Es una emergencia médica que requiere atención inmediata.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/neumotorax/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-explosion" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/embolia-pulmonar/">Saber más <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-urg" data-cell="10" data-sz="sm" data-s="pecho aire" data-sym="Dolor punzante|Falta de aire súbita" data-url="/enfermedades/neumotorax/">
+                        <span class="dis2-fam">Urgencia</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-explosion" aria-hidden="true"></i></span>
                         <h3>Neumotórax</h3>
                         <p>Pulmón colapsado por aire en la pleura: dolor súbito y falta de aire. Drenaje y seguimiento para evitar recurrencias.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/secuelas-covid/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-virus-covid" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/neumotorax/">Saber más <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-cro" data-cell="11" data-s="tos aire cansancio" data-sym="Fatiga persistente|Tos residual" data-url="/enfermedades/secuelas-covid/">
+                        <span class="dis2-fam">Crónica</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-virus-covid" aria-hidden="true"></i></span>
                         <h3>Secuelas COVID</h3>
                         <p>¿Sigues con tos o falta de aire después del COVID? Evaluamos y tratamos las secuelas respiratorias post-infección.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <!-- Duplicates for seamless loop -->
-                    <a href="/enfermedades/derrames-pleurales/" class="disease-card">
-                        <div class="disease-card__icon"><i class="bi bi-moisture" aria-hidden="true"></i></div>
-                        <h3>Derrames Pleurales</h3>
-                        <p>¿Sientes dolor en el pecho o falta de aire repentina? La acumulación de líquido necesita diagnóstico especializado.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/tabaquismo/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-ban-smoking" aria-hidden="true"></i></div>
-                        <h3>Tabaquismo</h3>
-                        <p>Un plan médico real, con herramientas probadas, para que dejes de fumar de forma definitiva.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/bronquiectasias/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-lungs" aria-hidden="true"></i></div>
-                        <h3>Bronquiectasias</h3>
-                        <p>Daño permanente en los bronquios que causa infecciones recurrentes. El manejo adecuado mejora tu calidad de vida.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/hipertension-pulmonar/" class="disease-card">
-                        <div class="disease-card__icon"><i class="bi bi-heart-pulse" aria-hidden="true"></i></div>
-                        <h3>Hipertensión Pulmonar</h3>
-                        <p>Presión alta en las arterias del pulmón que afecta el corazón. Un diagnóstico preciso cambia el pronóstico.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/embolia-pulmonar/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-shield-virus" aria-hidden="true"></i></div>
-                        <h3>Embolia Pulmonar</h3>
-                        <p>Un coágulo que bloquea las arterias del pulmón. Es una emergencia médica que requiere atención inmediata.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/neumotorax/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-explosion" aria-hidden="true"></i></div>
-                        <h3>Neumotórax</h3>
-                        <p>Pulmón colapsado por aire en la pleura: dolor súbito y falta de aire. Drenaje y seguimiento para evitar recurrencias.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/secuelas-covid/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-virus-covid" aria-hidden="true"></i></div>
-                        <h3>Secuelas COVID</h3>
-                        <p>¿Sigues con tos o falta de aire después del COVID? Evaluamos y tratamos las secuelas respiratorias post-infección.</p>
-                        <span class="disease-card__cta">Saber más <i class="bi bi-arrow-right"></i></span>
-                    </a>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/secuelas-covid/">Saber más <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-sue" data-cell="13" data-s="ronquido aire cansancio" data-short="Hipoventilación" data-sym="Somnolencia de día|Dolor de cabeza al despertar|Ronquido" data-url="">
+                        <span class="dis2-fam">Sueño</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-weight-scale" aria-hidden="true"></i></span>
+                        <h3>Hipoventilación por obesidad</h3>
+                        <p>El exceso de peso impide respirar bien, sobre todo al dormir: somnolencia de día, dolor de cabeza matutino y fatiga constante.</p>
+                        <div class="dis2-actions"><span class="dis2-soon-tag">Página próximamente</span></div>
+                    </div>
                 </div>
+                <div class="dis2-bubbles" id="disBubbles"></div>
+            </div>
+            <!-- sheet móvil de enfermedad -->
+            <div class="dis2-sheetbg" id="disSheetBg"></div>
+            <div class="dis2-sheet" id="disSheet" role="dialog" aria-modal="true" aria-labelledby="disSheetName">
+                <div class="grab"></div>
+                <div class="top">
+                    <span class="sic" id="disSheetIc"></span>
+                    <div><div class="sfam" id="disSheetFam"></div><h3 id="disSheetName"></h3></div>
+                    <button type="button" class="x" id="disSheetX" aria-label="Cerrar"><i class="bi bi-x-lg"></i></button>
+                </div>
+                <p class="sdesc" id="disSheetDesc"></p>
+                <ul id="disSheetSym"></ul>
+                <div class="scta">
+                    <a class="more" id="disSheetMore" href="#">Saber más</a>
+                    <a class="swa" id="disSheetWa" href="#" target="_blank" rel="noopener noreferrer" aria-label="Preguntar por WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                </div>
+                <div class="soon" id="disSheetSoon" hidden>Página en construcción — pregunta por WhatsApp</div>
             </div>
         </section>
-
         <!-- ===== BANNER CONTINGENCIA — Premium redesign ===== -->
         <div class="cont-section" aria-label="Recurso: contingencia ambiental">
           <div class="cont-aurora cont-aurora--a"></div>
@@ -5368,6 +5402,139 @@
                 setTimeout(function() { band.style.transition = 'none'; }, 350);
             });
         });
+
+        /* ── Enfermedades v2: buscador de síntomas (grid desktop / burbujas móvil + sheet) ── */
+        (function(){
+            var grid = document.getElementById('disGrid');
+            var field = document.getElementById('disBubbles');
+            if (!grid || !field) return;
+            var cards = Array.prototype.slice.call(grid.querySelectorAll('.dis2-card'));
+
+            /* WhatsApp "Preguntar" por enfermedad (mismo patrón que antes) */
+            cards.forEach(function(card){
+                var name = card.querySelector('h3').textContent.trim();
+                var actions = card.querySelector('.dis2-actions');
+                var waMsg = encodeURIComponent('Hola Dr., tengo síntomas relacionados con ' + name + '. ¿Podría agendar una cita?');
+                var wa = document.createElement('a');
+                wa.className = 'dis2-cta dis2-cta--wa';
+                wa.href = waBase + waMsg;
+                wa.target = '_blank'; wa.rel = 'noopener noreferrer';
+                wa.innerHTML = '<i class="bi bi-whatsapp"></i> Preguntar';
+                actions.appendChild(wa);
+            });
+
+            /* chips de síntomas */
+            var SYMPTOMS = [
+                {k:'tos',       t:'Tos persistente',      ic:'fa-solid fa-head-side-cough', msg:'La tos de más de 3 semanas siempre merece estudio.'},
+                {k:'aire',      t:'Falta de aire',        ic:'fa-solid fa-wind',            msg:'La falta de aire nunca es normal: esto puede causarla.'},
+                {k:'ronquido',  t:'Ronco / duermo mal',   ic:'fa-solid fa-moon',            msg:'Roncar fuerte y despertar cansado: estudia tu sueño.'},
+                {k:'pecho',     t:'Dolor de pecho',       ic:'fa-solid fa-heart-pulse',     msg:'Dolor de pecho con falta de aire: valoración pronta.'},
+                {k:'fumo',      t:'Fumo o fumé',          ic:'fa-solid fa-ban-smoking',     msg:'Fumar daña en silencio: esto es lo que hay que vigilar.'},
+                {k:'fiebre',    t:'Fiebre / gripa fuerte',ic:'fa-solid fa-temperature-high',msg:'Una gripa que no cede puede ser algo más.'},
+                {k:'silbido',   t:'Silbido de pecho',     ic:'fa-solid fa-wave-square',     msg:'Un silbido al respirar casi siempre viene de bronquios estrechos.'},
+                {k:'cansancio', t:'Cansancio constante',  ic:'fa-solid fa-battery-quarter', msg:'El cansancio sin explicación puede venir del pulmón o del sueño.'}
+            ];
+            var chipsWrap = document.getElementById('disChips');
+            var hint = document.getElementById('disHint');
+            var HINT_DEFAULT = hint.textContent;
+
+            /* burbujas móviles generadas desde las cards (patrón de ladrillo 5x3) */
+            var REST = (function(){
+                var xa=[17.7,43.5,69.4], xb=[30.6,56.5,82.3];
+                var ys=[12.6,30.1,47.6,65.0,82.5], out=[];
+                ys.forEach(function(y,r){ (r%2?xb:xa).forEach(function(x){ out.push([x,y]); }); });
+                return out;
+            })();
+            var bubs = [];
+            cards.forEach(function(card){
+                var cell = parseInt(card.dataset.cell, 10) || 0;
+                var b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'dis2-bub ' + (card.className.match(/f-[a-z]+/) || [''])[0] + (card.dataset.sz ? ' dis2-bub--' + card.dataset.sz : '');
+                b.dataset.s = card.dataset.s;
+                var p = REST[cell % REST.length];
+                b.style.left = p[0] + '%'; b.style.top = p[1] + '%';
+                b.innerHTML = '<span class="bic">' + card.querySelector('.dis2-ic').innerHTML + '</span><b>' + (card.dataset.short || card.querySelector('h3').textContent) + '</b>';
+                b.addEventListener('click', function(){ openSheet(card); });
+                field.appendChild(b); bubs.push(b);
+            });
+
+            function clusterTargets(n, W, H){
+                var rows=[], left=n;
+                while (left > 0) { var take = Math.min(3, left); rows.push(take); left -= take; }
+                if (rows.length > 1 && rows[rows.length-1] === 1 && rows[rows.length-2] === 3) { rows[rows.length-2]=2; rows[rows.length-1]=2; }
+                var DX=106, DY=100, cy=H*0.42, startY=cy-(rows.length-1)*DY/2, out=[];
+                rows.forEach(function(count, r){
+                    var y=startY+r*DY, startX=W/2-(count-1)*DX/2;
+                    for (var c=0; c<count; c++) out.push([startX+c*DX, y]);
+                });
+                return out;
+            }
+
+            function applyFilter(s){
+                if (!s) {
+                    grid.classList.remove('filtering'); field.classList.remove('filtering');
+                    cards.forEach(function(c){ c.classList.remove('hit'); });
+                    bubs.forEach(function(b){ b.classList.remove('hit'); b.style.transform=''; });
+                    hint.textContent = HINT_DEFAULT; return;
+                }
+                grid.classList.add('filtering'); field.classList.add('filtering');
+                cards.forEach(function(c){ c.classList.toggle('hit', c.dataset.s.split(' ').indexOf(s.k) > -1); });
+                var W=field.clientWidth, H=field.clientHeight;
+                var hits = bubs.filter(function(b){ return b.dataset.s.split(' ').indexOf(s.k) > -1; });
+                var tg = clusterTargets(hits.length, W, H), k=0;
+                bubs.forEach(function(b){
+                    var hit = hits.indexOf(b) > -1;
+                    b.classList.toggle('hit', hit);
+                    var half = b.offsetWidth/2, rx = b.offsetLeft + half, ry = b.offsetTop + half;
+                    if (hit) {
+                        var t = tg[k++], grow = 100/b.offsetWidth;
+                        b.style.transform = 'translate(' + (t[0]-rx).toFixed(1) + 'px,' + (t[1]-ry).toFixed(1) + 'px) scale(' + grow.toFixed(3) + ')';
+                    } else {
+                        var dx=rx-W/2, dy=ry-H/2, m=Math.max(1, Math.hypot(dx,dy));
+                        b.style.transform = 'translate(' + (dx/m*30).toFixed(1) + 'px,' + (dy/m*30).toFixed(1) + 'px) scale(.78)';
+                    }
+                });
+                hint.textContent = s.msg;
+            }
+
+            SYMPTOMS.forEach(function(s){
+                var ch = document.createElement('button');
+                ch.type = 'button'; ch.className = 'dis2-chip';
+                ch.innerHTML = '<i class="' + s.ic + '" aria-hidden="true"></i>' + s.t;
+                ch.addEventListener('click', function(){
+                    var was = ch.classList.contains('on');
+                    chipsWrap.querySelectorAll('.dis2-chip.on').forEach(function(x){ x.classList.remove('on'); });
+                    if (!was) ch.classList.add('on');
+                    applyFilter(was ? null : s);
+                });
+                chipsWrap.appendChild(ch);
+            });
+
+            /* bottom sheet móvil */
+            var sheet = document.getElementById('disSheet'), bg = document.getElementById('disSheetBg');
+            function openSheet(card){
+                var fam = (card.className.match(/f-[a-z]+/) || [''])[0];
+                sheet.className = 'dis2-sheet ' + fam;
+                document.getElementById('disSheetIc').innerHTML = card.querySelector('.dis2-ic').innerHTML;
+                document.getElementById('disSheetFam').textContent = card.querySelector('.dis2-fam').textContent;
+                document.getElementById('disSheetName').textContent = card.querySelector('h3').textContent;
+                document.getElementById('disSheetDesc').textContent = card.querySelector('p').textContent;
+                document.getElementById('disSheetSym').innerHTML = (card.dataset.sym || '').split('|').map(function(x){ return '<li>' + x + '</li>'; }).join('');
+                var more = document.getElementById('disSheetMore'), soon = document.getElementById('disSheetSoon');
+                var waMsg = encodeURIComponent('Hola Dr., tengo síntomas relacionados con ' + card.querySelector('h3').textContent.trim() + '. ¿Podría agendar una cita?');
+                document.getElementById('disSheetWa').href = waBase + waMsg;
+                if (card.dataset.url) { more.href = card.dataset.url; more.style.opacity = 1; more.style.pointerEvents = ''; soon.hidden = true; }
+                else { more.removeAttribute('href'); more.style.opacity = .55; more.style.pointerEvents = 'none'; soon.hidden = false; }
+                requestAnimationFrame(function(){ sheet.classList.add('on'); bg.classList.add('on'); });
+            }
+            function closeSheet(){
+                sheet.classList.add('closing'); sheet.classList.remove('on'); bg.classList.remove('on');
+                setTimeout(function(){ sheet.classList.remove('closing'); }, 220);
+            }
+            document.getElementById('disSheetX').addEventListener('click', closeSheet);
+            bg.addEventListener('click', closeSheet);
+        })();
 
         /* ── WhatsApp tooltip auto-show after 5s ── */
         var waFloat = document.querySelector('.whatsapp-float');
