@@ -319,6 +319,19 @@
             font-size: .88rem;
             transition: color .3s;
             position: relative;
+            /* el icono y el texto nunca se parten en dos líneas */
+            white-space: nowrap;
+        }
+        /* Desktop estrecho (992–1399px): sin iconos y espaciado más fino
+           para que todo el navbar quepa en una línea bien proporcionada */
+        @media (min-width: 992px) and (max-width: 1399.98px) {
+            .navbar .nav-link { margin: 0 3px; font-size: .84rem; padding-left: 8px; padding-right: 8px; }
+            .navbar .nav-link > i { display: none; }
+            .navbar-brand { font-size: 1.3rem; }
+            .navbar-cta { margin-left: 10px; padding: 9px 16px; font-size: .78rem; white-space: nowrap; }
+            .lang-switch { margin-left: 8px; }
+            .lang-switch a { padding: 5px 10px; }
+            .social-icons a { margin-left: 4px; }
         }
         .nav-link::after {
             content: '';
@@ -349,6 +362,7 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            white-space: nowrap;
             padding: 9px 22px;
             border-radius: 100px;
             background: var(--electric);
@@ -3393,9 +3407,10 @@
            RESPONSIVE
         ============================================= */
         @media(max-width:991px) {
+            /* móvil: primero el texto que describe al doctor, después la foto */
             .about__hero-inner { flex-direction: column; gap: 40px; }
-            .about__portrait   { flex: none; max-width: 360px; margin: 0 auto; }
-            .about__bio        { padding: 0 24px; max-width: 100%; }
+            .about__portrait   { flex: none; max-width: 360px; margin: 0 auto; order: 2; }
+            .about__bio        { padding: 0 24px; max-width: 100%; order: 1; }
             /* creds now in marquee */
             .svc-carousel__track .service-card { flex: 0 0 calc(50% - 12px); }
             .svc-carousel__arrow--prev { left: -16px; }
