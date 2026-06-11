@@ -292,6 +292,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <li class="nav-item"><a class="nav-link active" href="/ubicacion/"><i class="fas fa-location-dot me-1"></i>Ubicación</a></li>
             </ul>
         </div>
+        <style>
+        .lang-switch{display:inline-flex;flex-shrink:0;gap:2px;border:1px solid rgba(10,22,40,.18);border-radius:100px;overflow:hidden;font-size:.8rem;font-weight:700;margin-left:14px}
+        .lang-switch a{padding:6px 13px;color:#475569;text-decoration:none;min-height:34px;display:inline-flex;align-items:center;transition:background .2s,color .2s}
+        .lang-switch a:hover{background:rgba(10,22,40,.06)}@media(max-width:575px){.social-icons{display:none!important}.lang-switch{margin-left:auto!important}}
+        .lang-switch a.active{background:#0a1628;color:#fff}
+        .lang-suggest{position:fixed;left:0;right:0;bottom:0;z-index:1060;background:#0a1628;color:#fff;padding:11px 18px;display:none;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;font-size:.9rem;box-shadow:0 -4px 20px rgba(0,0,0,.18)}
+        .lang-suggest.show{display:flex}
+        .lang-suggest__go{background:#fff;color:#0a1628;padding:6px 16px;border-radius:100px;font-weight:700;text-decoration:none}
+        .lang-suggest button{background:transparent;border:0;color:rgba(255,255,255,.7);font-size:1.35rem;line-height:1;cursor:pointer;padding:0 4px}
+        @media(max-width:991px){.lang-switch{order:2;margin-left:6px}}
+        </style>
+        <div class="lang-switch" role="navigation" aria-label="Idioma">
+            <a class="active" href="#" aria-current="true">ES</a><a href="/en/" hreflang="en">EN</a>
+        </div>
         <div class="social-icons d-flex align-items-center">
             <a href="https://www.instagram.com/dr.williamlara/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
         </div>
@@ -532,5 +546,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 
     <script src="/assets/agenda-modal.js" defer></script>
+<div class="lang-suggest" id="langSuggest" role="region" aria-label="Language">
+    <span>This site is also available in English.</span>
+    <a class="lang-suggest__go" href="/en/" data-lang-target>View in English &rarr;</a>
+    <button type="button" aria-label="Dismiss" data-lang-dismiss>&times;</button>
+</div>
+<script>
+(function(){try{var KEY='alveos_lang_pref';if(localStorage.getItem(KEY))return;var lang=(navigator.language||navigator.userLanguage||'').toLowerCase();if(lang.indexOf('es')===0)return;var el=document.getElementById('langSuggest');if(!el)return;el.classList.add('show');el.querySelector('[data-lang-target]').addEventListener('click',function(){localStorage.setItem(KEY,'en');});el.querySelector('[data-lang-dismiss]').addEventListener('click',function(){localStorage.setItem(KEY,'es');el.classList.remove('show');});}catch(e){}})();
+</script>
 </body>
 </html>

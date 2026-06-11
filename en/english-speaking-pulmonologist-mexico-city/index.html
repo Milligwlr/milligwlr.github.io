@@ -104,10 +104,10 @@
 /* DISCLAIMER */
 .en-disclaimer{font-size:.86rem;color:#64748b;line-height:1.62;background:#f8fafc;border-top:1px solid rgba(0,0,0,.06);padding:30px 0}
 /* LANG SWITCH */
-.lang-switch{display:inline-flex;gap:2px;border:1px solid rgba(255,255,255,.25);border-radius:100px;overflow:hidden;font-size:.8rem;font-weight:700}
-.lang-switch a{padding:7px 15px;color:rgba(255,255,255,.82);text-decoration:none;min-height:34px;display:inline-flex;align-items:center;transition:background .2s,color .2s}
-.lang-switch a:hover{background:rgba(255,255,255,.12)}
-.lang-switch a.active{background:#fff;color:#0a1628}
+.lang-switch{display:inline-flex;flex-shrink:0;gap:2px;border:1px solid rgba(10,22,40,.18);border-radius:100px;overflow:hidden;font-size:.8rem;font-weight:700}
+.lang-switch a{padding:7px 15px;color:#475569;text-decoration:none;min-height:34px;display:inline-flex;align-items:center;transition:background .2s,color .2s}
+.lang-switch a:hover{background:rgba(10,22,40,.06)}
+.lang-switch a.active{background:#0a1628;color:#fff}
 @media(prefers-reduced-motion:reduce){
   .en-cta a,.en-card,.en-faq details,.en-faq summary::after{transition:none}
   .en-cta a:hover,.en-card:hover{transform:none}

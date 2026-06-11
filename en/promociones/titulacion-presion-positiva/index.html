@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+  ============================================================
+  HIGH-CONVERSION LANDING PAGE — Google Ads
+  ============================================================
+  GOAL: Convert paid Google Ads traffic (intent keywords:
+  "CPAP titration price / CPAP pressure adjustment Mexico
+  City / CPAP sleep apnea study") into a single measurable
+  action: WhatsApp contact or Cal.com booking.
+  This landing is ONLY for the titration study
+  (it does not include an additional pulmonology consult) —
+  the user who lands here already has an apnea diagnosis and
+  wants to fine-tune the optimal pressure of their CPAP for
+  obstructive sleep apnea.
+
+  Applied rules:
+  - No navigation bar or internal escape links.
+  - Minimal footer (essential legal only, no links to other pages).
+  - One promise per section, one CTA always visible.
+  - Trust signals above the fold (Cofepris, license numbers, hospital).
+  - Floating WhatsApp button + sticky bottom CTA on mobile.
+  - <meta robots="noindex"> to avoid cannibalizing the main SEO
+    page (/servicios/poligrafia-respiratoria/) and because it is
+    exclusively Ads traffic.
+  - No fixed prices in copy: invite WhatsApp to quote (better
+    conversion friction than a number that scares people off).
+  - Heat: hero, short benefits, step-by-step, social proof,
+    short objection FAQ, final CTA.
+  ============================================================
+-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPAP Titration Mexico City $3,900 | Positive Pressure Adjustment</title>
+    <meta name="description" content="CPAP titration in Mexico City for $3,900 (regular price $4,500). Optimal pressure set by a pulmonologist, 5 nights at home. Book by WhatsApp.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://alveos.mx/en/promociones/titulacion-presion-positiva/">
+    <!-- og added -->
+    <meta property="og:title" content="CPAP Titration Mexico City | Positive Pressure Adjustment">
+    <meta property="og:description" content="CPAP titration in Mexico City by a pulmonologist, optimal pressure set at home. Book by WhatsApp.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://alveos.mx/en/promociones/titulacion-presion-positiva/">
+    <meta property="og:image" content="https://alveos.mx/images/dr-william-lara.png">
+    <meta name="author" content="Dr. William César Lara Vázquez">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="stylesheet" href="/enfermedades/_shared/disease.css">
+
+    <style>
+    /* Featured promotion banner */
+    .promo-banner{background:linear-gradient(120deg,#ff7a45 0%,#ff5722 50%,#e64a19 100%);color:#fff;padding:14px 0;text-align:center;font-weight:700;font-size:.95rem;position:relative;overflow:hidden;box-shadow:0 4px 16px rgba(230,74,25,.25)}
+    .promo-banner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 18px,rgba(255,255,255,.06) 18px,rgba(255,255,255,.06) 36px);pointer-events:none}
+    .promo-banner__inner{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 18px}
+    .promo-banner .tag{background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.4);padding:3px 10px;border-radius:999px;font-size:.72rem;letter-spacing:1px;text-transform:uppercase}
+    .promo-banner .price-old{text-decoration:line-through;opacity:.7;margin-left:6px;font-weight:600}
+    .promo-banner .price-new{font-size:1.15rem;font-weight:800}
+    .promo-banner a{background:#fff;color:#e64a19;padding:6px 16px;border-radius:999px;text-decoration:none;font-weight:800;font-size:.85rem;transition:transform .2s}
+    .promo-banner a:hover{transform:scale(1.05);color:#e64a19}
+    .promo-lang2{display:inline-flex;gap:2px;border:1px solid rgba(255,255,255,.6);border-radius:999px;overflow:hidden;margin-left:10px;font-size:.72rem;font-weight:800;vertical-align:middle}
+    .promo-lang2 a{padding:2px 9px;color:#fff;text-decoration:none;line-height:1.7}
+    .promo-lang2 a:not(.active):hover{background:rgba(255,255,255,.22)}
+    .promo-lang2 a.active{background:#fff}
+    .promo-lang2 a.active{color:#e64a19}
+
+    /* Promotion card inside the hero */
+    .promo-card{background:linear-gradient(135deg,#fff7f2 0%,#ffe8db 100%);border:2px dashed #ff5722;border-radius:18px;padding:20px 22px;margin:0 0 22px;display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+    .promo-card__icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#ff7a45,#e64a19);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+    .promo-card__body{flex:1;min-width:200px}
+    .promo-card__title{font-weight:800;color:#7a2d0a;font-size:1rem;margin-bottom:2px;line-height:1.3}
+    .promo-card__copy{font-size:.88rem;color:#5a3a25;line-height:1.45;margin:0}
+    .promo-card__copy strong{color:#e64a19}
+    .promo-card__copy s{opacity:.65;margin-right:4px}
+    </style>
+
+    <style id="lp-styles">
+    :root{
+        --navy:#0a2540;
+        --electric:#0984e3;
+        --cyan:#00cec9;
+        --green:#25D366;
+        --green-dark:#128C7E;
+        --bg:#f7fbff;
+        --ink:#1a2238;
+        --muted:#5a6b7d;
+        --ease:cubic-bezier(.22,.61,.36,1);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);background:#fff;margin:0;line-height:1.6;padding-bottom:72px}
+    @media(min-width:992px){body{padding-bottom:0}}
+
+    /* ============ TOP TRUST BAR ============ */
+    .trust-bar{background:var(--navy);color:#fff;font-size:.78rem;padding:8px 0;text-align:center;letter-spacing:.3px}
+    .trust-bar a{color:#9ec5ff;text-decoration:none}
+    .trust-bar i{color:var(--cyan);margin-right:4px}
+
+    /* Mini-header without navigation: just logo + click-to-call phone */
+    .lp-header{background:#fff;border-bottom:1px solid rgba(0,0,0,.06);padding:14px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+    .lp-header__inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .lp-logo{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--navy);text-decoration:none;font-size:1.15rem;letter-spacing:.5px}
+    .lp-logo img{width:34px;height:34px}
+    .lp-header__phone{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;padding:9px 16px;border-radius:999px;text-decoration:none;font-weight:700;font-size:.92rem;transition:transform .2s var(--ease)}
+    .lp-header__phone:hover{transform:scale(1.04);color:#fff}
+    .lp-header__phone span{display:none}
+    @media(min-width:600px){.lp-header__phone span{display:inline}}
+
+    /* ============ HERO ============ */
+    .hero{position:relative;background:linear-gradient(135deg,#0a2540 0%,#0e3a6b 60%,#0984e3 100%);color:#fff;padding:56px 0 64px;overflow:hidden}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(800px 400px at 80% 10%,rgba(0,206,201,.25),transparent 60%);pointer-events:none}
+    .hero__content{position:relative;z-index:2}
+    .hero__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,206,201,.18);border:1px solid rgba(0,206,201,.4);color:#7fffe6;padding:7px 16px;border-radius:999px;font-size:.82rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
+    .hero__badge .dot{width:8px;height:8px;background:#00cec9;border-radius:50%;box-shadow:0 0 12px #00cec9;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+    section.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:18px;color:#fff}
+    section.hero h1 em{font-style:normal;background:linear-gradient(120deg,#00cec9,#7fffe6);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+    .hero__sub{font-size:1.12rem;color:rgba(255,255,255,.85);margin-bottom:24px;max-width:560px;line-height:1.55}
+    .hero__bullets{list-style:none;padding:0;margin:0 0 28px;display:grid;gap:10px}
+    .hero__bullets li{display:flex;align-items:center;gap:10px;font-size:1rem;color:#e8f4ff}
+    .hero__bullets i{color:#7fffe6;font-size:1.15rem;flex-shrink:0}
+    .hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:22px}
+    .btn-wa,.btn-cal{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 26px;border-radius:14px;font-weight:800;font-size:1.05rem;text-decoration:none;transition:all .25s var(--ease);box-shadow:0 10px 30px -8px rgba(0,0,0,.4);min-width:220px}
+    .btn-wa{background:var(--green);color:#fff}
+    .btn-wa:hover{background:var(--green-dark);color:#fff;transform:translateY(-2px);box-shadow:0 14px 34px -8px rgba(37,211,102,.5)}
+    .btn-cal{background:#fff;color:var(--navy)}
+    .btn-cal:hover{background:#e8f4ff;color:var(--navy);transform:translateY(-2px)}
+    .hero__trust{display:flex;flex-wrap:wrap;gap:18px;font-size:.83rem;color:rgba(255,255,255,.7)}
+    .hero__trust span{display:inline-flex;align-items:center;gap:6px}
+    .hero__trust i{color:#7fffe6}
+
+    /* Visual card on the right */
+    .hero__card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:24px;padding:28px;backdrop-filter:blur(12px);position:relative;z-index:2}
+    .hero__card h3{color:#fff;font-weight:800;font-size:1.3rem;margin-bottom:6px}
+    .hero__card .subt{color:#7fffe6;font-size:.85rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
+    .hero__card-list{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+    .hero__card-list li{display:flex;gap:12px;align-items:flex-start;color:#e8f4ff;font-size:.95rem}
+    .hero__card-list i{color:#00cec9;font-size:1.4rem;flex-shrink:0}
+    .hero__card-list strong{color:#fff;display:block;margin-bottom:2px}
+
+    /* ============ GENERIC SECTION ============ */
+    section.block{padding:64px 0}
+    .block__head{text-align:center;max-width:720px;margin:0 auto 40px}
+    .block__kicker{display:inline-block;background:rgba(9,132,227,.1);color:var(--electric);padding:6px 14px;border-radius:999px;font-size:.78rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:14px}
+    .block__title{font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:800;letter-spacing:-.02em;color:var(--navy);margin-bottom:12px;line-height:1.2}
+    .block__title em{font-style:normal;color:var(--electric)}
+    .block__lead{font-size:1.05rem;color:var(--muted);line-height:1.65}
+
+    /* ============ BENEFITS ============ */
+    .benefits{background:var(--bg)}
+    .benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+    .benefit{background:#fff;border:1px solid rgba(9,132,227,.12);border-radius:18px;padding:26px;transition:all .3s var(--ease)}
+    .benefit:hover{transform:translateY(-4px);border-color:rgba(9,132,227,.3);box-shadow:0 14px 30px -12px rgba(9,44,84,.18)}
+    .benefit__icon{width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px}
+    .benefit h3{font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:8px}
+    .benefit p{font-size:.93rem;color:var(--muted);margin:0;line-height:1.55}
+
+    /* ============ TIMELINE STEPS ============ */
+    .timeline{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:20px}
+    .timeline::before{content:'';position:absolute;top:42px;left:8%;right:8%;height:3px;background:linear-gradient(90deg,var(--electric) 0%,var(--cyan) 100%);border-radius:3px;z-index:0;opacity:.35}
+    .tl-step{position:relative;text-align:center;padding:0 14px;z-index:1}
+    .tl-step__circle{width:84px;height:84px;border-radius:50%;background:#fff;border:3px solid var(--electric);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;position:relative;box-shadow:0 8px 24px -10px rgba(9,132,227,.45);transition:transform .3s var(--ease)}
+    .tl-step:hover .tl-step__circle{transform:translateY(-4px) scale(1.05)}
+    .tl-step__circle i{font-size:1.9rem;background:linear-gradient(135deg,var(--electric),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+    .tl-step__num{position:absolute;top:-8px;right:-4px;width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#ff7a45,#e64a19);color:#fff;font-weight:800;font-size:.9rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(230,74,25,.4)}
+    .tl-step__title{font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:8px;letter-spacing:-.01em}
+    .tl-step__desc{font-size:.9rem;color:var(--muted);line-height:1.55;margin:0 auto;max-width:220px}
+    .tl-step__time{display:inline-block;margin-top:10px;font-size:.72rem;color:var(--electric);background:rgba(9,132,227,.08);padding:3px 10px;border-radius:999px;font-weight:700;letter-spacing:.4px;text-transform:uppercase}
+    @media(max-width:900px){
+        .timeline{grid-template-columns:1fr;gap:8px}
+        .timeline::before{display:none}
+        .tl-step{display:grid;grid-template-columns:auto 1fr;gap:18px;text-align:left;padding:0;align-items:start}
+        .tl-step__circle{margin:0;width:64px;height:64px}
+        .tl-step__circle i{font-size:1.4rem}
+        .tl-step__num{width:24px;height:24px;font-size:.78rem}
+        .tl-step__desc{max-width:100%}
+        .tl-step:not(:last-child){padding-bottom:18px;border-bottom:1px dashed rgba(9,132,227,.2);margin-bottom:8px}
+    }
+
+    /* ============ CTA INLINE ============ */
+    .cta-inline{background:linear-gradient(135deg,var(--navy) 0%,#0e3a6b 100%);color:#fff;padding:48px 32px;border-radius:24px;text-align:center;position:relative;overflow:hidden}
+    .cta-inline::before{content:'';position:absolute;inset:0;background:radial-gradient(500px 200px at 50% 0%,rgba(0,206,201,.25),transparent 60%);pointer-events:none}
+    .cta-inline > *{position:relative;z-index:2}
+    .cta-inline h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:12px;letter-spacing:-.02em;color:#fff}
+    .cta-inline p{color:rgba(255,255,255,.8);max-width:540px;margin:0 auto 26px;font-size:1.02rem}
+    .cta-inline__btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+
+    /* ============ TRUST / DOCTOR ============ */
+    .doc-card{background:#fff;border:1px solid rgba(9,132,227,.15);border-radius:22px;padding:32px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;box-shadow:0 12px 30px -16px rgba(9,44,84,.15)}
+    .doc-card__avatar{width:120px;height:120px;border-radius:50%;flex-shrink:0;border:3px solid #fff;box-shadow:0 8px 24px -8px rgba(9,44,84,.25);object-fit:cover}
+    .doc-card h3{font-size:1.25rem;font-weight:800;color:var(--navy);margin-bottom:6px}
+    .doc-card .role{color:var(--electric);font-weight:700;font-size:.92rem;margin-bottom:10px}
+    .doc-card p{color:var(--muted);font-size:.93rem;margin:0;line-height:1.6}
+    .doc-card__creds{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .doc-card__creds span{background:rgba(9,132,227,.08);color:var(--electric);padding:5px 12px;border-radius:999px;font-size:.78rem;font-weight:600}
+    @media(max-width:600px){.doc-card{grid-template-columns:1fr;text-align:center}.doc-card__avatar{margin:0 auto}.doc-card__creds{justify-content:center}}
+
+    /* ============ FAQ ============ */
+    .faq-item{background:#fff;border:1px solid rgba(9,132,227,.12);border-radius:14px;margin-bottom:12px;overflow:hidden}
+    .faq-item summary{padding:18px 22px;font-weight:700;color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;font-size:1rem}
+    .faq-item summary::-webkit-details-marker{display:none}
+    .faq-item summary::after{content:'+';font-size:1.5rem;color:var(--electric);font-weight:300;transition:transform .25s}
+    .faq-item[open] summary::after{transform:rotate(45deg)}
+    .faq-item__answer{padding:0 22px 20px;color:var(--muted);font-size:.95rem;line-height:1.65}
+
+    /* ============ MINIMAL FOOTER ============ */
+    .lp-footer{background:#0a1929;color:rgba(255,255,255,.55);padding:32px 0 22px;text-align:center;font-size:.83rem}
+    .lp-footer__brand{color:#fff;font-weight:800;letter-spacing:2px;margin-bottom:8px;font-size:1rem}
+    .lp-footer p{margin:4px 0}
+    .lp-footer a{color:#9ec5ff;text-decoration:none}
+
+    /* ============ MOBILE STICKY ============ */
+    .sticky-cta{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid rgba(0,0,0,.1);padding:10px 12px;padding-bottom:max(10px,env(safe-area-inset-bottom));display:flex;gap:8px;z-index:90;box-shadow:0 -4px 20px rgba(0,0,0,.08)}
+    .sticky-cta a{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 12px;border-radius:12px;font-weight:800;font-size:.95rem;text-decoration:none}
+    .sticky-cta .sc-wa{background:var(--green);color:#fff}
+    .sticky-cta .sc-cal{background:var(--navy);color:#fff}
+    @media(min-width:992px){.sticky-cta{display:none}}
+
+    /* Floating WhatsApp desktop */
+    .wa-float{position:fixed;bottom:24px;right:24px;width:60px;height:60px;background:var(--green);color:#fff;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:1.8rem;text-decoration:none;box-shadow:0 8px 24px rgba(37,211,102,.45);z-index:90;animation:waPulse 2.4s infinite}
+    @keyframes waPulse{0%,100%{box-shadow:0 8px 24px rgba(37,211,102,.45)}50%{box-shadow:0 8px 30px rgba(37,211,102,.75)}}
+    .wa-float:hover{color:#fff;transform:scale(1.08)}
+    @media(min-width:992px){.wa-float{display:flex}}
+
+    /* GTM */
+    </style>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
+    <link rel="stylesheet" href="/assets/agenda-modal.css">
+<script type="application/ld+json" data-promo-schema>
+{"@context": "https://schema.org", "@type": "MedicalBusiness", "name": "Alveos · Dr. William César Lara Vázquez", "medicalSpecialty": "Pulmonary", "url": "https://alveos.mx/en/promociones/titulacion-presion-positiva/", "telephone": "+525591708334", "image": "https://alveos.mx/images/dr-william-lara.png", "address": {"@type": "PostalAddress", "streetAddress": "Saturnino Herrán 59, Consultorio 507, Hospital Santa Coleta", "addressLocality": "San José Insurgentes, Benito Juárez", "addressRegion": "CDMX", "postalCode": "03900", "addressCountry": "MX"}, "physician": {"@type": "Physician", "name": "Dr. William César Lara Vázquez", "medicalSpecialty": "Pulmonary"}, "makesOffer": {"@type": "Offer", "itemOffered": {"@type": "MedicalProcedure", "name": "Positive pressure titration (CPAP/BiPAP)"}, "price": "3900", "priceCurrency": "MXN", "availability": "https://schema.org/InStock"}}
+</script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG8Z6FKF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- Official legal trust bar (identical to the rest of the site) -->
+<div class="top-bar-legal text-center fw-semibold">
+    <div class="container">Cofepris Notice: <a href="https://www.gob.mx/cofepris"  target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">2609142002A00265</a> &nbsp;|&nbsp; Prof. License: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action"  target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">12588976</a> &nbsp;|&nbsp; Specialty License: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action"  target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">15595809</a> &nbsp;|&nbsp; <a href="https://conacem.org.mx/buscador"  target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">CNN-2102</a></div>
+</div>
+
+<!-- Promotion banner (main Ads CTA) -->
+<div class="promo-banner">
+    <div class="container promo-banner__inner">
+        <span class="tag"><i class="bi bi-stars"></i> Promotion</span>
+        <span><strong>CPAP Titration</strong> <span class="price-old">$4,500</span> <span class="price-new">$3,900</span></span>
+        <a href="https://wa.me/5215591708334?text=Hi%20Dr.%20Lara%2C%20I%20saw%20the%20Google%20ad%20and%20I%20want%20the%20positive%20pressure%20titration%20promotion%20for%20%243%2C900"  target="_blank" rel="noopener noreferrer" data-cta="promo-banner"><i class="bi bi-whatsapp"></i> Reserve</a>
+        <span class="promo-lang2" role="navigation" aria-label="Language"><a href="/promociones/titulacion-presion-positiva/" hreflang="es-MX">ES</a><a class="active" href="#" aria-current="true">EN</a></span>
+    </div>
+</div>
+
+<!-- Official navbar (no menu, just logo + CTA) to keep brand identity without escape links -->
+<nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
+    <div class="container">
+        <!-- DEV NOTE: the logo/ALVEOS always points to "/" (landing page) so as not to retain the user on a promo. Keep this href on future promotion pages. -->
+        <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+            <img src="/images/logo-cuadrado/alveos-logo.png" alt="Alveos Logo" class="navbar-logo" width="36" height="36" loading="lazy" decoding="async" style="border-radius:8px;object-fit:cover">
+            <span class="brand-name">ALVEOS</span>
+        </a>
+        <a href="https://wa.me/5215591708334?text=Hi%20Dr.%20Lara%2C%20I%20saw%20the%20Google%20ad%20and%20I%20want%20the%20positive%20pressure%20titration%20promotion%20for%20%243%2C900"  target="_blank" rel="noopener noreferrer" class="navbar-cta d-inline-flex" data-cta="navbar-wa">
+            <i class="bi bi-whatsapp me-2"></i> Get the promotion
+        </a>
+    </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7 hero__content">
+                <div class="hero__badge"><span class="dot"></span> Promotion · CPAP Titration</div>
+                <h1>Find the <em>optimal pressure</em> of your CPAP for obstructive sleep apnea</h1>
+                <div class="urgency-strip" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,176,0,.14);border:1px solid rgba(255,176,0,.45);color:#ffd285;padding:7px 14px;border-radius:999px;font-size:.82rem;font-weight:700;letter-spacing:.2px;margin-bottom:18px"><i class="bi bi-clock-history" style="color:#ffb000"></i> Medical slots available this week — limited devices per shift</div>
+                <p class="hero__sub">At-home titration with a clinical-grade APAP device over <strong>5 nights</strong>. We determine the exact pressure that controls your respiratory events — no trial pressures, no months of blind adjustments.</p>
+                <div class="promo-card">
+                    <div class="promo-card__icon"><i class="bi bi-tag-fill"></i></div>
+                    <div class="promo-card__body">
+                        <div class="promo-card__title">Exclusive online promotion</div>
+                        <p class="promo-card__copy">CPAP titration for <strong>$3,900</strong> <s>$4,500</s>. Mention it when you message us on WhatsApp.</p>
+                    </div>
+                </div>
+                <ul class="hero__bullets">
+                    <li><i class="bi bi-check-circle-fill"></i> 5 nights at home, no hospital stay</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Clinical-grade APAP device</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Report with optimal pressure, read by a pulmonologist</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Useful to buy or adjust your CPAP</li>
+                </ul>
+                <div class="hero__cta">
+                    <a href="https://wa.me/5215591708334?text=Hi%20Dr.%20Lara%2C%20I%20saw%20the%20Google%20ad.%20I%20want%20info%20about%20the%20CPAP%20titration"  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="hero-wa">
+                        <i class="bi bi-whatsapp"></i> Reserve my CPAP titration — $3,900
+                    </a>
+                    <a href="#agendaModal" class="btn-cal" data-cta="hero-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                        <i class="bi bi-calendar-check"></i> Book an appointment
+                    </a>
+                </div>
+                <div class="hero__trust">
+                    <span><i class="bi bi-geo-alt-fill"></i> Hospital Santa Coleta, CDMX</span>
+                    <span><i class="bi bi-shield-check"></i> Cofepris active</span>
+                    <span><i class="bi bi-clock-history"></i> Reply within minutes</span>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="hero__card">
+                    <div class="subt">What the study includes</div>
+                    <h3>At-home titration + report</h3>
+                    <ul class="hero__card-list">
+                        <li><i class="bi bi-house-door-fill"></i><div><strong>APAP device</strong>Clinical-grade device that tests automatic pressures over 5 nights.</div></li>
+                        <li><i class="bi bi-moon-stars-fill"></i><div><strong>5 nights in your own bed</strong>You sleep with the mask at home, in real position and surroundings; several nights give more reliable data than a single one.</div></li>
+                        <li><i class="bi bi-graph-up-arrow"></i><div><strong>Curve analysis</strong>I identify the pressure that controls your apneas, hypopneas and leaks across all 5 nights.</div></li>
+                        <li><i class="bi bi-file-earmark-medical-fill"></i><div><strong>Report with optimal pressure</strong>You receive the exact value to program or buy your CPAP.</div></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ BENEFITS ============ -->
+<section class="block benefits">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">Why titrate</span>
+            <h2 class="block__title">The right pressure <em>changes everything</em></h2>
+            <p class="block__lead">A CPAP with the wrong pressure doesn't control your apnea, wakes you up or causes leaks. Titration is the study that determines the exact pressure you need — not a number the device guesses automatically.</p>
+        </div>
+        <div class="benefits-grid">
+            <div class="benefit"><div class="benefit__icon"><i class="bi bi-piggy-bank-fill"></i></div><h3>Promotional price</h3><p>$3,900 online vs $4,500 regular price at labs. Same quality, lower cost.</p></div>
+            <div class="benefit"><div class="benefit__icon"><i class="bi bi-house-heart-fill"></i></div><h3>In your own bed</h3><p>At-home study in your usual position and surroundings. More representative than a lab.</p></div>
+            <div class="benefit"><div class="benefit__icon"><i class="bi bi-graph-up-arrow"></i></div><h3>Documented optimal pressure</h3><p>Report with residual AHI, leaks and recommended mask. Ready to program your device.</p></div>
+            <div class="benefit"><div class="benefit__icon"><i class="bi bi-person-badge-fill"></i></div><h3>Interpreted by a pulmonologist</h3><p>It's not a PDF the device generates automatically. I personally review the curve and adjust it.</p></div>
+            <div class="benefit"><div class="benefit__icon"><i class="bi bi-shield-fill-check"></i></div><h3>Clinical-grade device</h3><p>Professional APAP with new consumables (individual mask) per patient.</p></div>
+            <div class="benefit"><div class="benefit__icon"><i class="bi bi-cart-check-fill"></i></div><h3>Useful to buy a CPAP</h3><p>With the titrated pressure you can buy the right device without overpaying for features you don't need.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ STEPS ============ -->
+<section class="block">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">How it works</span>
+            <h2 class="block__title">4 steps · from appointment to <em>optimal pressure</em></h2>
+        </div>
+        <div class="timeline">
+            <div class="tl-step">
+                <div class="tl-step__circle"><span class="tl-step__num">1</span><i class="bi bi-whatsapp"></i></div>
+                <h3 class="tl-step__title">Reserve by WhatsApp</h3>
+                <p class="tl-step__desc">Send me a message mentioning the promotion. We confirm a date and I explain the requirements.</p>
+                <span class="tl-step__time">5 min</span>
+            </div>
+            <div class="tl-step">
+                <div class="tl-step__circle"><span class="tl-step__num">2</span><i class="bi bi-mask"></i></div>
+                <h3 class="tl-step__title">Delivery and fitting</h3>
+                <p class="tl-step__desc">I hand you the APAP device and mask, we adjust the seal and I show you how to use it.</p>
+                <span class="tl-step__time">30 min</span>
+            </div>
+            <div class="tl-step">
+                <div class="tl-step__circle"><span class="tl-step__num">3</span><i class="bi bi-moon-stars-fill"></i></div>
+                <h3 class="tl-step__title">5 nights at home</h3>
+                <p class="tl-step__desc">You sleep with the device in your own bed for 5 nights. The APAP tests pressures and records events in your real environment.</p>
+                <span class="tl-step__time">5 nights</span>
+            </div>
+            <div class="tl-step">
+                <div class="tl-step__circle"><span class="tl-step__num">4</span><i class="bi bi-file-earmark-medical-fill"></i></div>
+                <h3 class="tl-step__title">Report with pressure</h3>
+                <p class="tl-step__desc">An interpreted report with the optimal pressure, residual AHI, leaks and recommended mask.</p>
+                <span class="tl-step__time">48 hrs</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ CTA INLINE ============ -->
+<section class="block" style="padding-top:0">
+    <div class="container">
+        <div class="cta-inline">
+            <h2>Reserve your CPAP titration</h2>
+            <p>Promotion $3,900 (regular $4,500). At-home study + report with optimal pressure, read by a pulmonologist. Message me and we confirm a date within minutes.</p>
+            <div class="cta-inline__btns">
+                <a href="https://wa.me/5215591708334?text=Hi%20Dr.%20Lara%2C%20I%20saw%20the%20Google%20ad.%20I%20want%20info%20about%20the%20CPAP%20titration"  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="mid-wa"><i class="bi bi-whatsapp"></i> Reserve my CPAP titration — $3,900</a>
+                <a href="#agendaModal" class="btn-cal" data-cta="mid-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Book an appointment</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ DOCTOR / E-E-A-T ============ -->
+<section class="block benefits">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">Who interprets your titration</span>
+            <h2 class="block__title">Titration read by a <em>board-certified pulmonologist</em></h2>
+        </div>
+        <div class="doc-card" style="max-width:820px;margin:0 auto">
+            <img src="/images/dr-william-lara.jpg" alt="Dr. William César Lara Vázquez, pulmonologist" class="doc-card__avatar" width="120" height="120" loading="lazy" style="object-fit:cover">
+            <div>
+                <h3>Dr. William César Lara Vázquez</h3>
+                <div class="role">Pulmonologist · Advanced Specialty in COPD</div>
+                <p>Graduate of the Instituto Nacional de Enfermedades Respiratorias (INER). Personalized care in CDMX, with direct interpretation of every study and a treatment plan explained in plain language.</p>
+                <p style="margin-top:10px;font-weight:700;color:var(--navy);background:rgba(9,132,227,.08);border-left:3px solid var(--electric);padding:8px 12px;border-radius:8px;font-size:.92rem"><i class="bi bi-graph-up-arrow" style="color:var(--electric);margin-right:4px"></i> 80+ positive pressure titrations personally interpreted in 2025, with documented optimal pressure for each patient.</p>
+                <div class="doc-card__creds">
+                    <span><i class="bi bi-patch-check-fill"></i> Prof. License 12588976</span>
+                    <span><i class="bi bi-patch-check-fill"></i> Specialty License 15595809</span>
+                    <span><i class="bi bi-patch-check-fill"></i> <a href="https://conacem.org.mx/buscador"  target="_blank" rel="noopener noreferrer" style="color:inherit">CNN-2102</a></span>
+                    <span><i class="bi bi-shield-check"></i> Cofepris 2609142002A00265</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ OBJECTION FAQ ============ -->
+<section class="block">
+    <div class="container" style="max-width:820px">
+        <div class="block__head">
+            <span class="block__kicker">Frequently asked</span>
+            <h2 class="block__title">What people ask most <em>before booking</em></h2>
+        </div>
+        <details class="faq-item" open><summary>How much does a CPAP titration cost?</summary><div class="faq-item__answer">At most sleep labs the regular price is around <strong>$4,500</strong>. Online we have a promotion at <strong>$3,900</strong>. <a href="https://wa.me/5215591708334?text=Hi%20Dr.%20Lara%2C%20I%20saw%20the%20Google%20ad%20and%20I%20want%20the%20positive%20pressure%20titration%20promotion%20for%20%243%2C900"  target="_blank" rel="noopener noreferrer" style="color:#e64a19;font-weight:700">Message me on WhatsApp</a> mentioning the promotion to reserve it.</div></details>
+        <details class="faq-item"><summary>Do I already need an apnea diagnosis?</summary><div class="faq-item__answer">Yes. Titration is for patients who already have a confirmed apnea diagnosis (by home sleep test or polysomnography) and need to determine the exact pressure of their CPAP. If you don't have a diagnosis yet, you first need a sleep study.</div></details>
+        <details class="faq-item"><summary>What exactly is included?</summary><div class="faq-item__answer">It includes a clinical-grade APAP device loan for 5 nights, a new individual mask, seal fitting, complete overnight recording, interpretation by a pulmonologist and a report with optimal pressure, residual AHI, leaks and recommended mask. <strong>It does not include an additional medical consult</strong>: it is only the titration.</div></details>
+        <details class="faq-item"><summary>What if I already own a CPAP?</summary><div class="faq-item__answer">Perfect. After the titration I give you the exact pressure value you should program into your device. If your CPAP is very basic (fixed pressure) we can assess whether you need to upgrade it.</div></details>
+        <details class="faq-item"><summary>Do you accept card or transfer?</summary><div class="faq-item__answer">Yes: cash, transfer, credit and debit card. We confirm the payment method by WhatsApp.</div></details>
+        <details class="faq-item"><summary>Where are you located?</summary><div class="faq-item__answer">Hospital Santa Coleta, Saturnino Herrán 59, San José Insurgentes, Benito Juárez, CDMX 03900. A few minutes from Periférico Sur.</div></details>
+    </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="block benefits" style="padding-bottom:80px">
+    <div class="container">
+        <div class="cta-inline">
+            <h2>Reserve your titration today</h2>
+            <p>Promotion $3,900 (regular $4,500). 5 nights, optimal pressure, ready for your CPAP. WhatsApp support during business hours.</p>
+            <div class="cta-inline__btns">
+                <a href="https://wa.me/5215591708334?text=Hi%20Dr.%20Lara%2C%20I%20saw%20the%20Google%20ad.%20I%20want%20info%20about%20the%20CPAP%20titration"  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="final-wa"><i class="bi bi-whatsapp"></i> Reserve my CPAP titration — $3,900</a>
+                <a href="#agendaModal" class="btn-cal" data-cta="final-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Book an appointment</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Official footer (identical to the rest of the site) -->
+<footer>
+    <div class="container text-center">
+        <div class="footer-logo-text">ALVEOS</div>
+        <div class="footer-tagline">Cutting-Edge Pulmonology · Mexico City</div>
+        <div class="footer-social">
+            <a href="https://www.instagram.com/dr.williamlara/"  target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://wa.me/5215591708334"  target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            <a href="tel:5591708334" aria-label="Phone" data-cta="navbar-tel"><i class="bi bi-telephone-fill"></i></a>
+        </div>
+        <hr class="footer-divider">
+        <p class="footer-meta mb-1">Dr. William César Lara Vázquez · Pulmonologist · Advanced Specialty in COPD</p>
+        <p class="footer-meta mb-2"><a href="/aviso-de-privacidad">Privacy Notice</a><span style="color:rgba(255,255,255,.1);margin:0 8px">·</span><a href="/informacion-regulatoria">Regulatory Information</a></p>
+        <p class="footer-meta mb-2" data-med-disclaimer style="max-width:720px;margin:0 auto 10px;font-size:.74rem;opacity:.7;line-height:1.55;">The information on this page is educational and informational in nature and does not replace consultation, diagnosis or treatment by a medical professional. In case of a respiratory emergency, call 911.</p>
+        <p class="footer-meta mb-0">© 2026 ALVEOS. All rights reserved.</p>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Floating WhatsApp (desktop) -->
+<a href="https://wa.me/5215591708334?text=Hi%20Dr.%20Lara%2C%20I%20saw%20the%20Google%20ad"  target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="WhatsApp" data-cta="float-wa"><i class="bi bi-whatsapp"></i></a>
+
+<!-- Sticky CTA (mobile) with urgency strip -->
+<div class="sticky-cta" style="flex-direction:column;gap:6px;padding-top:6px">
+    <div style="font-size:.72rem;font-weight:700;color:#b45c00;background:rgba(255,176,0,.14);border:1px solid rgba(255,176,0,.4);padding:3px 10px;border-radius:999px;letter-spacing:.2px"><i class="bi bi-clock-history" style="margin-right:4px"></i>Limited devices this week</div>
+    <div style="display:flex;gap:8px;width:100%">
+        <a href="https://wa.me/5215591708334?text=Hi%20Dr.%20Lara%2C%20I%20saw%20the%20Google%20ad"  target="_blank" rel="noopener noreferrer" class="sc-wa" data-cta="sticky-wa" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 12px;border-radius:12px;font-weight:800;font-size:.95rem;text-decoration:none;background:var(--green);color:#fff"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+        <a href="tel:5591708334" class="sc-call" data-cta="sticky-call" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 12px;border-radius:12px;font-weight:800;font-size:.95rem;text-decoration:none;background:var(--electric);color:#fff"><i class="bi bi-telephone-fill"></i> Call</a>
+        <a href="#agendaModal" class="sc-cal" data-cta="sticky-cal" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 12px;border-radius:12px;font-weight:800;font-size:.95rem;text-decoration:none;background:var(--navy);color:#fff" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Book</a>
+    </div>
+</div>
+
+<!-- Basic CTA click tracking to dataLayer (for Ads conversion tracking via GTM) -->
+<script>
+document.addEventListener('click',function(e){
+    var el=e.target.closest('[data-cta]');
+    if(!el)return;
+    window.dataLayer=window.dataLayer||[];
+    window.dataLayer.push({event:'lp_cta_click',cta_id:el.getAttribute('data-cta'),cta_href:el.getAttribute('href')});
+});
+</script>
+
+
+<!-- Alveos · dataLayer events for GTM -->
+<script>/* alveos-datalayer-v1 */
+(function(){
+  if(!window.dataLayer) window.dataLayer = [];
+  function pageSlug(){
+    var p = location.pathname.replace(/\/+$/, '') || '/';
+    return p === '/' ? 'home' : p.replace(/^\//,'').replace(/\//g,'-');
+  }
+  function push(event, type, label){
+    window.dataLayer.push({
+      event: event,
+      cta_type: type,
+      cta_label: label || '',
+      cta_page: pageSlug()
+    });
+  }
+  document.addEventListener('click', function(e){
+    var el = e.target.closest('a[href]');
+    if(!el) return;
+    var href = el.getAttribute('href') || '';
+    var label = (el.textContent || '').trim().slice(0, 60);
+    if(/wa\.me|api\.whatsapp|chat\.whatsapp/.test(href)){
+      push('cta_click', 'whatsapp', label);
+    } else if(/cal\.com\/dr-william-lara/.test(href)){
+      push('cta_click', 'calcom', label);
+    } else if(href.indexOf('tel:') === 0){
+      push('cta_click', 'phone', label);
+    } else if(href.indexOf('mailto:') === 0){
+      push('cta_click', 'email', label);
+    }
+  }, { passive: true });
+  // FAQ accordion open tracking
+  document.addEventListener('show.bs.collapse', function(e){
+    var t = e.target;
+    var q = (t.previousElementSibling && t.previousElementSibling.textContent || '').trim().slice(0, 80);
+    push('faq_open', 'accordion', q);
+  }, true);
+  // Scroll depth (25/50/75/100)
+  var marks = [25,50,75,100], hit = {};
+  window.addEventListener('scroll', function(){
+    var h = document.documentElement;
+    var pct = Math.round((window.scrollY + window.innerHeight) / h.scrollHeight * 100);
+    marks.forEach(function(m){
+      if(pct >= m && !hit[m]){ hit[m] = true; push('scroll_depth', 'scroll', String(m)); }
+    });
+  }, { passive: true });
+})();
+</script>
+
+    <script src="/assets/agenda-modal.js" defer></script>
+</body>
+</html>
