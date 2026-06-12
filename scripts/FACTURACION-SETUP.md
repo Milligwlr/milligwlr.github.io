@@ -46,14 +46,27 @@ por mes, sigue estos pasos una sola vez (10 minutos):
 
 ## Configuración (al inicio del código)
 ```js
-var CARPETA_CSF   = 'CSF';    // carpeta de Drive donde caen los PDF
-var FOLIO_PREFIJO = 'LAVW';   // serie de la contadora
-var FOLIO_INICIO  = 41;       // siguiente número de su consecutivo
-var AVISAR_CORREO = true;     // correo por cada solicitud
-var CORREO_AVISO  = 'williamc2lv@gmail.com';
+var CARPETA_CSF      = 'ALVEOS CSF';                    // carpeta de Drive para los PDF
+var FOLIO_PREFIJO    = 'LAVW';                          // serie de la contadora
+var FOLIO_INICIO     = 41;                              // siguiente número de su consecutivo
+var CORREO_DR        = 'williamc2lv@gmail.com';         // validación y pendientes
+var CORREO_CONTADORA = 'facturas.enviocfdi@gmail.com';  // emisión del CFDI
+var DIAS_PENDIENTE   = 3;                               // días para el recordatorio
 ```
 - El folio es **global y continúa entre meses** (LAVW41, LAVW42...),
   para empatar con el consecutivo de la contadora.
+
+## Flujo de correos
+1. **Llega una solicitud** → correo al Dr. con *Nombre, Fecha y
+   Consulta/Estudio* para validar que el paciente sí acudió.
+2. **El Dr. marca "Asistió ✓ (Dr.)"** en la hoja → correo automático a la
+   contadora (con copia al Dr.) con todos los datos fiscales y la CSF para
+   emitir el CFDI.
+3. **Pendientes**: si una solicitud lleva 3+ días sin validar, llega un
+   recordatorio diario (9 am) al Dr. — solo si hay pendientes.
+
+> ⚠️ Para que funcionen los pasos 2 y 3, después de pegar el código ejecuta
+> **una vez** la función `instalarDisparadores` (Ejecutar ▶) y autoriza.
 - `FOLIO_INICIO` solo cuenta la primera vez; después el contador sigue solo.
   Si necesitas re-empatarlo: cambia `FOLIO_INICIO` y ejecuta la función
   `reiniciarFolio` desde el editor (Ejecutar ▶).

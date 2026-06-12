@@ -48,30 +48,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .fact-layout { display:grid; grid-template-columns: 1.5fr .9fr; gap:32px; align-items:start; }
 @media (max-width: 991px){ .fact-layout { grid-template-columns: 1fr; } }
 
-/* formulario */
-.fact-form { background:#fff; border:1px solid rgba(10,22,40,.08); border-radius:22px; padding:30px 28px; box-shadow:0 1px 2px rgba(10,22,40,.04), 0 20px 50px -24px rgba(10,22,40,.14); }
-.fact-form fieldset { border:0; padding:0; margin:0 0 28px; min-inline-size:auto; }
+/* formulario — pasos amigables, móvil primero */
+.fact-form { background:#fff; border:1px solid rgba(10,22,40,.08); border-radius:22px; padding:28px 26px; box-shadow:0 1px 2px rgba(10,22,40,.04), 0 20px 50px -24px rgba(10,22,40,.14); }
+@media (max-width: 640px){ .fact-form { padding:22px 16px; border-radius:18px; } }
+.fact-form fieldset { border:0; padding:0; margin:0 0 30px; min-inline-size:auto; }
 .fact-form fieldset:last-of-type { margin-bottom:18px; }
-.fact-form legend { display:flex; align-items:center; gap:10px; font-size:1.02rem; font-weight:800; color:var(--navy); letter-spacing:-.01em; margin-bottom:16px; float:none; width:100%; }
-.fact-form legend i { width:34px; height:34px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; font-size:.95rem; background:rgba(217,119,6,.1); color:var(--gold); border:1px solid rgba(217,119,6,.2); flex-shrink:0; }
-.fact-form legend::after { content:''; flex:1; height:1px; background:linear-gradient(90deg, rgba(10,22,40,.1), transparent); }
-.fact-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-@media (max-width: 640px){ .fact-grid { grid-template-columns:1fr; } }
+.fact-step { display:flex; align-items:flex-start; gap:14px; margin-bottom:18px; }
+.fact-step__num { width:40px; height:40px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.05rem; color:#fff; background:linear-gradient(135deg,var(--navy),var(--electric)); box-shadow:0 6px 16px -4px rgba(9,132,227,.4); }
+.fact-step__t { font-size:1.08rem; font-weight:800; color:var(--navy); letter-spacing:-.015em; line-height:1.2; margin:0; padding-top:2px; }
+.fact-step__s { font-size:.84rem; color:#7d8da1; line-height:1.5; margin:3px 0 0; }
+.fact-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width: 640px){ .fact-grid { grid-template-columns:1fr; gap:14px; } }
 .fact-field { display:flex; flex-direction:column; gap:6px; }
 .fact-field--full { grid-column: 1 / -1; }
-.fact-field label { font-size:.8rem; font-weight:700; color:var(--navy); letter-spacing:.01em; }
+.fact-field label { font-size:.84rem; font-weight:700; color:var(--navy); letter-spacing:.01em; }
 .fact-field label .req { color:#dc2626; }
-.fact-field label .opt { font-weight:600; color:#94a3b8; font-size:.72rem; }
-.fact-field input, .fact-field select { font-family:inherit; font-size:.94rem; color:var(--navy); background:#f8fafd; border:1.5px solid rgba(10,22,40,.1); border-radius:12px; padding:12px 14px; min-height:48px; transition:border-color .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease); width:100%; }
+.fact-field label .opt { font-weight:600; color:#94a3b8; font-size:.74rem; }
+/* 16px+ evita el zoom automático de iOS al enfocar */
+.fact-field input, .fact-field select { font-family:inherit; font-size:1rem; color:var(--navy); background:#f8fafd; border:1.5px solid rgba(10,22,40,.1); border-radius:14px; padding:13px 15px; min-height:52px; transition:border-color .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease); width:100%; -webkit-appearance:none; appearance:none; }
+.fact-field select { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' fill='none'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%235a6b7d' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 16px center; padding-right:40px; }
 .fact-field input:focus, .fact-field select:focus { outline:none; border-color:var(--electric); background:#fff; box-shadow:0 0 0 4px rgba(9,132,227,.12); }
 .fact-field input::placeholder { color:#9aa8ba; }
-.fact-field .hint { font-size:.72rem; color:#7d8da1; line-height:1.45; }
+.fact-field .hint { font-size:.74rem; color:#7d8da1; line-height:1.45; }
 .fact-field.is-invalid input, .fact-field.is-invalid select { border-color:#dc2626; background:#fff7f7; }
-.fact-field .err { display:none; font-size:.72rem; color:#dc2626; font-weight:600; }
+.fact-field .err { display:none; font-size:.74rem; color:#dc2626; font-weight:600; }
 .fact-field.is-invalid .err { display:block; }
 .fact-amount { position:relative; }
-.fact-amount::before { content:'$'; position:absolute; left:14px; top:50%; transform:translateY(-50%); color:#7d8da1; font-weight:700; }
-.fact-amount input { padding-left:30px; }
+.fact-amount::before { content:'$'; position:absolute; left:15px; top:50%; transform:translateY(-50%); color:#7d8da1; font-weight:700; }
+.fact-amount input { padding-left:32px; }
 
 /* dropzone CSF */
 .fact-drop { position:relative; border:2px dashed rgba(9,132,227,.3); border-radius:16px; background:rgba(9,132,227,.03); padding:24px 20px; text-align:center; transition:border-color .25s var(--ease), background .25s var(--ease); cursor:pointer; }
@@ -250,7 +254,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                 <!-- CSF opcional -->
                 <fieldset>
-                    <legend><i class="bi bi-file-earmark-pdf" aria-hidden="true"></i> Constancia de situación fiscal <span class="opt" style="font-size:.72rem;font-weight:600;color:#94a3b8">(opcional)</span></legend>
+                    <div class="fact-step">
+                        <span class="fact-step__num" aria-hidden="true">1</span>
+                        <div>
+                            <h2 class="fact-step__t">¿Tienes tu constancia fiscal a la mano?</h2>
+                            <p class="fact-step__s">Súbela y te ahorras teclear tus datos. <strong>No es obligatoria</strong>: si no la tienes, salta al paso 2.</p>
+                        </div>
+                    </div>
                     <div class="fact-drop" id="csfDrop">
                         <button type="button" class="fact-drop__clear" id="csfClear">Quitar archivo</button>
                         <input type="file" id="csfFile" accept="application/pdf" aria-label="Subir constancia de situación fiscal en PDF">
@@ -263,7 +273,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                 <!-- Datos fiscales -->
                 <fieldset>
-                    <legend><i class="bi bi-person-vcard" aria-hidden="true"></i> Datos fiscales del receptor</legend>
+                    <div class="fact-step">
+                        <span class="fact-step__num" aria-hidden="true">2</span>
+                        <div>
+                            <h2 class="fact-step__t">¿A nombre de quién va la factura?</h2>
+                            <p class="fact-step__s">Copia los datos tal como aparecen en la constancia para que el SAT acepte tu factura a la primera.</p>
+                        </div>
+                    </div>
                     <div class="fact-grid">
                         <div class="fact-field fact-field--full" data-csf-skippable>
                             <label for="fNombre">Nombre o denominación social <span class="req" aria-hidden="true">*</span></label>
@@ -359,17 +375,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                 <!-- Consulta y pago -->
                 <fieldset>
-                    <legend><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i> Datos de la consulta y el pago</legend>
-                    <div class="fact-grid">
-                        <div class="fact-field fact-field--full">
-                            <label for="fPaciente">Nombre completo del paciente <span class="opt">(solo si es distinto al receptor de la factura)</span></label>
-                            <input type="text" id="fPaciente" name="paciente" placeholder="Ej. factura a nombre de la empresa o de un familiar">
+                    <div class="fact-step">
+                        <span class="fact-step__num" aria-hidden="true">3</span>
+                        <div>
+                            <h2 class="fact-step__t">Cuéntanos de tu visita</h2>
+                            <p class="fact-step__s">Con esto localizamos tu consulta para validar y emitir más rápido.</p>
                         </div>
+                    </div>
+                    <div class="fact-grid">
                         <div class="fact-field">
                             <label for="fFecha">Fecha de la consulta o estudio <span class="req" aria-hidden="true">*</span></label>
                             <input type="date" id="fFecha" name="fecha" required>
-                            <span class="hint">Nos ayuda a localizar tu visita para validar y emitir más rápido.</span>
                             <span class="err">Indica la fecha de tu consulta.</span>
+                        </div>
+                        <div class="fact-field">
+                            <label for="fEstudio">¿Qué se realizó? <span class="req" aria-hidden="true">*</span></label>
+                            <select id="fEstudio" name="estudio" required>
+                                <option value="" selected disabled>Selecciona</option>
+                                <option>Consulta de neumología</option>
+                                <option>Teleconsulta</option>
+                                <option>Espirometría</option>
+                                <option>FeNO</option>
+                                <option>Poligrafía respiratoria</option>
+                                <option>Titulación CPAP/BiPAP</option>
+                                <option>Broncoscopia</option>
+                                <option>Toracocentesis</option>
+                                <option>Catéter pleural</option>
+                                <option>Consulta + estudio</option>
+                                <option>Otro</option>
+                            </select>
+                            <span class="err">Selecciona qué se realizó.</span>
+                        </div>
+                        <div class="fact-field fact-field--full">
+                            <label for="fPaciente">Nombre completo del paciente <span class="opt">(solo si es distinto al receptor de la factura)</span></label>
+                            <input type="text" id="fPaciente" name="paciente" placeholder="Ej. factura a nombre de la empresa o de un familiar">
                         </div>
                         <div class="fact-field">
                             <label for="fPago">Forma de pago <span class="req" aria-hidden="true">*</span></label>
@@ -392,8 +431,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                 <div class="fact-consent">
                     <input type="checkbox" id="fConsent" required>
-                    <label for="fConsent">He leído el <a href="/aviso-de-privacidad/" target="_blank" rel="noopener">Aviso de Privacidad</a> y autorizo el uso de mis datos fiscales exclusivamente para la emisión de mi factura (CFDI). <span class="req" aria-hidden="true">*</span></label>
+                    <label for="fConsent">He leído y acepto el <a href="/aviso-de-privacidad/#facturacion" target="_blank" rel="noopener">aviso de privacidad</a>. Entiendo que mis datos fiscales se usarán únicamente para emitir mi factura y que se resguardan de forma segura en los servicios de Google (Sheets y Drive) del consultorio. <span class="req" aria-hidden="true">*</span></label>
                 </div>
+                <p style="font-size:.72rem;color:#94a3b8;line-height:1.55;margin:-8px 0 22px">Responsable: Dr. William César Lara Vázquez, Hospital Santa Coleta, CDMX. Finalidad: emisión de tu CFDI y cumplimiento de obligaciones fiscales. Consulta el <a href="/aviso-de-privacidad/#facturacion" target="_blank" rel="noopener" style="color:#7d8da1">aviso de privacidad integral</a>.</p>
 
                 <button type="submit" class="fact-submit" id="factSubmit">
                     <i class="bi bi-send-fill" aria-hidden="true"></i> Solicitar mi factura
@@ -551,6 +591,7 @@ var FACT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbydLZEJZP8cU5Cl-Zn-
             correo: document.getElementById('fCorreo').value.trim(),
             paciente: document.getElementById('fPaciente').value.trim(),
             fechaConsulta: document.getElementById('fFecha').value,
+            estudio: document.getElementById('fEstudio').value,
             pago: document.getElementById('fPago').value,
             monto: document.getElementById('fMonto').value,
             csf: csfData
@@ -568,6 +609,7 @@ var FACT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbydLZEJZP8cU5Cl-Zn-
             + '• Correo: ' + d.correo + '\n'
             + (d.paciente ? '• Paciente: ' + d.paciente + '\n' : '')
             + '• Fecha de consulta: ' + d.fechaConsulta + '\n'
+            + '• Consulta/Estudio: ' + d.estudio + '\n'
             + '• Forma de pago: ' + d.pago + '\n'
             + '• Monto: $' + d.monto + ' MXN'
             + (d.csf ? '\n(En un momento le comparto mi CSF en PDF por este chat)' : '');
