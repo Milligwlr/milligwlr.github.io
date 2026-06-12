@@ -53,7 +53,7 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,700&display=swap">
     <link rel="preload" as="image" href="/favicon.png">
-    <link rel="preload" as="image" href="/images/foto-perfil.png">
+    <link rel="preload" as="image" href="/images/dr-william-lara.webp" fetchpriority="high">
 
     <script type="application/ld+json">
     {
@@ -293,9 +293,10 @@
            NAVBAR
         ============================================= */
         .navbar {
-            background: rgba(255,255,255,.88);
-            backdrop-filter: blur(28px) saturate(200%);
-            -webkit-backdrop-filter: blur(28px) saturate(200%);
+            background: rgba(255,255,255,.92);
+            /* blur moderado: 12px cuesta una fracción de 28px en cada frame de scroll */
+            backdrop-filter: blur(12px) saturate(140%);
+            -webkit-backdrop-filter: blur(12px) saturate(140%);
             border-bottom: 1px solid rgba(0,0,0,.06);
             padding: 14px 0;
             transition: padding .4s var(--ease), box-shadow .4s, background .4s;
@@ -319,6 +320,19 @@
             font-size: .88rem;
             transition: color .3s;
             position: relative;
+            /* el icono y el texto nunca se parten en dos líneas */
+            white-space: nowrap;
+        }
+        /* Desktop estrecho (992–1399px): sin iconos y espaciado más fino
+           para que todo el navbar quepa en una línea bien proporcionada */
+        @media (min-width: 992px) and (max-width: 1399.98px) {
+            .navbar .nav-link { margin: 0 3px; font-size: .84rem; padding-left: 8px; padding-right: 8px; }
+            .navbar .nav-link > i { display: none; }
+            .navbar-brand { font-size: 1.3rem; }
+            .navbar-cta { margin-left: 10px; padding: 9px 16px; font-size: .78rem; white-space: nowrap; }
+            .lang-switch { margin-left: 8px; }
+            .lang-switch a { padding: 5px 10px; }
+            .social-icons a { margin-left: 4px; }
         }
         .nav-link::after {
             content: '';
@@ -349,6 +363,7 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            white-space: nowrap;
             padding: 9px 22px;
             border-radius: 100px;
             background: var(--electric);
@@ -433,11 +448,15 @@
             position: relative;
             min-height: 100dvh;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: center;
-            padding-top: calc(72px + 4vh);
+            padding-top: calc(72px + 2vh);
+            padding-bottom: 56px;
             overflow: hidden;
-            background: #ffffff;
+            background:
+                radial-gradient(1000px 680px at 88% 4%, rgba(116,185,255,.30), transparent 62%),
+                radial-gradient(760px 560px at 4% 96%, rgba(0,206,201,.12), transparent 60%),
+                linear-gradient(165deg, #fbfdff 0%, var(--cloud) 55%, #e7f0ff 100%);
         }
 
         /* Gradient orb blobs */
@@ -503,12 +522,28 @@
             to   { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
-        /* Sparkle canvas overlay — z-index 3 so particles float OVER content */
+        /* Sparkle field overlay — z-index 3 so particles float OVER content.
+           CSS-only (opacity en compositor): 0 trabajo en el hilo principal por frame,
+           sustituye al canvas que rasterizaba 240 partículas en CPU. */
         .hero__sparkle-canvas {
             position: absolute;
             inset: 0;
             z-index: 3;
             pointer-events: none;
+        }
+        .sparkle-field span {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(116,185,255,.85);
+            opacity: 0;
+            animation: sparkle-twinkle var(--sd,3s) ease-in-out var(--sl,0s) infinite;
+        }
+        .sparkle-field span.glow {
+            box-shadow: 0 0 7px 2px rgba(9,132,227,.22);
+        }
+        @keyframes sparkle-twinkle {
+            0%, 100% { opacity: 0; }
+            50%      { opacity: .6; }
         }
 
         /* Dot grid pattern */
@@ -519,12 +554,17 @@
             z-index: 1;
         }
 
-        /* Content */
+        /* Content — split: copy izquierda, doctor derecha */
         .hero__content {
             position: relative; z-index: 2;
-            text-align: center;
-            max-width: 940px;
-            padding: 0 24px 48px;
+            width: 100%;
+            max-width: 1240px;
+            padding: 0 5vw 28px;
+            display: grid;
+            grid-template-columns: 1.08fr .92fr;
+            gap: 48px;
+            align-items: center;
+            text-align: left;
         }
 
         /* Hero Logo — large, prominent */
@@ -591,8 +631,8 @@
         /* Headline */
         .hero__headline {
             font-weight: 800;
-            font-size: clamp(2.6rem, 7vw, 4.6rem);
-            line-height: 1.15;
+            font-size: clamp(2.3rem, 3.7vw, 3.55rem);
+            line-height: 1.08;
             letter-spacing: -0.035em;
             color: var(--navy);
             margin: 0 0 18px;
@@ -628,71 +668,182 @@
         .hero__headline .line       { display: block; overflow: visible; }
         .hero__headline .line-inner { display: block; overflow: visible; padding-bottom: 0.1em; }
 
-        /* Sub — premium glass card */
-        .hero__sub {
-            max-width: 540px;
-            margin: 0 auto 16px;
-            background: rgba(255,255,255,.35);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(9,132,227,.1);
-            border-radius: 20px;
-            padding: 0;
-            box-shadow: 0 8px 32px rgba(10,22,40,.05), inset 0 1px 0 rgba(255,255,255,.5);
-            position: relative;
-            overflow: hidden;
-        }
-        .hero__sub::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent 5%, var(--electric) 30%, var(--cyan) 70%, transparent 95%);
-            opacity: .6;
-        }
-        .hero__card-q {
-            padding: 18px 28px 14px;
-            font-size: clamp(.85rem, 1.4vw, .95rem);
-            line-height: 1.65;
-            color: var(--text-muted);
-            font-style: italic;
-            position: relative;
-        }
-        .hero__card-q::before {
-            content: '\201C';
-            position: absolute;
-            top: 8px; left: 12px;
-            font-size: 2.2rem;
-            color: rgba(9,132,227,.12);
-            font-style: normal;
-            font-weight: 800;
-            line-height: 1;
-        }
-        .hero__card-divider {
-            height: 1px;
-            margin: 0 28px;
-            background: linear-gradient(90deg, transparent, rgba(9,132,227,.15), transparent);
-        }
-        .hero__card-value {
-            padding: 14px 28px 18px;
-            font-size: clamp(.88rem, 1.5vw, .98rem);
-            line-height: 1.7;
-            color: var(--text);
-            font-weight: 500;
-        }
-        .hero__card-value strong {
+        /* ── HERO V2: split mensaje + doctor ── */
+
+        /* Eyebrow con credencial */
+        .hero__eyebrow {
+            display: inline-flex; align-items: center; gap: 9px;
+            background: rgba(9,132,227,.07);
+            border: 1px solid rgba(9,132,227,.18);
+            border-radius: 100px;
+            padding: 8px 18px;
+            font-size: .72rem; font-weight: 800;
+            letter-spacing: .14em; text-transform: uppercase;
             color: var(--electric);
-            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .hero__eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); position: relative; flex-shrink: 0; }
+        .hero__eyebrow-dot::after {
+            content: ''; position: absolute; inset: -4px; border-radius: 50%;
+            border: 2px solid rgba(0,184,148,.5);
+            animation: hero-eyebrow-ping 2.4s var(--ease) infinite;
+        }
+        @keyframes hero-eyebrow-ping {
+            0% { transform: scale(.6); opacity: 1; }
+            80%, 100% { transform: scale(1.6); opacity: 0; }
+        }
+
+        /* Sub — párrafo de apoyo (sustituye a la tarjeta glass) */
+        .hero__sub {
+            max-width: 54ch;
+            margin: 0 0 22px;
+            font-size: clamp(.95rem, 1.35vw, 1.08rem);
+            line-height: 1.7;
+            color: var(--text-muted);
+        }
+        .hero__sub strong { color: var(--text); font-weight: 700; }
+
+        /* Prueba social bajo el CTA */
+        .hero__proof {
+            display: flex; align-items: center; gap: 11px;
+            margin: 18px 0 24px;
+        }
+        .hero__proof .stars { display: flex; gap: 2px; }
+        .hero__proof .stars i { color: #f59e0b; font-size: .82rem; }
+        .hero__proof-txt { font-size: .84rem; color: var(--text-muted); }
+        .hero__proof-txt b { color: var(--navy); font-weight: 800; }
+
+        /* Franja de instituciones */
+        .hero__inst { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+        .hero__inst-lbl {
+            font-size: .62rem; font-weight: 800; letter-spacing: .14em;
+            text-transform: uppercase; color: var(--text-muted);
+        }
+        .hero__inst img { height: 30px; width: auto; filter: grayscale(1) opacity(.55); transition: filter .25s; }
+        .hero__inst img:hover { filter: grayscale(0) opacity(1); }
+
+        /* Columna del doctor */
+        .hero__doc { position: relative; justify-self: center; width: min(420px, 100%); }
+        .hero__breath {
+            position: absolute; left: 50%; top: 46%;
+            width: 108%; aspect-ratio: 1;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+        .hero__breath i {
+            position: absolute; inset: 0; border-radius: 50%;
+            border: 1.5px solid rgba(9,132,227,.35);
+            animation: hero-breathe 5s var(--ease) infinite;
+        }
+        .hero__breath i:nth-child(2) { animation-delay: 1.2s; border-color: rgba(0,206,201,.30); }
+        .hero__breath i:nth-child(3) { animation-delay: 2.4s; border-color: rgba(116,185,255,.35); }
+        @keyframes hero-breathe {
+            0%   { transform: scale(.82); opacity: 0; }
+            45%  { opacity: .8; }
+            100% { transform: scale(1.12); opacity: 0; }
+        }
+        .hero__doc-frame {
+            position: relative; border-radius: 32px; overflow: hidden;
+            background: linear-gradient(170deg, #e9f2ff 0%, #d7e8fd 60%, #cfe3fb 100%);
+            box-shadow: 0 30px 80px -20px rgba(10,22,40,.28), inset 0 1px 0 rgba(255,255,255,.8);
+            border: 1px solid rgba(255,255,255,.9);
+        }
+        .hero__doc-frame::before {
+            content: ''; position: absolute; left: 50%; top: 58%;
+            width: 78%; aspect-ratio: 1;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(closest-side, rgba(9,132,227,.26), transparent);
+        }
+        .hero__doc-frame img {
+            display: block; width: 100%; height: auto; position: relative;
+            -webkit-mask-image: linear-gradient(180deg, #000 86%, transparent 100%);
+            mask-image: linear-gradient(180deg, #000 86%, transparent 100%);
+        }
+        .hero__doc-plate {
+            position: absolute; left: 14px; right: 14px; bottom: 14px;
+            display: flex; align-items: center; justify-content: space-between; gap: 10px;
+            background: rgba(255,255,255,.78);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,.9); border-radius: 18px;
+            padding: 12px 18px;
+            box-shadow: 0 10px 30px rgba(10,22,40,.14);
+        }
+        .hero__doc-plate .n { font-size: .92rem; font-weight: 800; color: var(--navy); line-height: 1.2; }
+        .hero__doc-plate .r { font-size: .7rem; color: var(--text-muted); font-weight: 600; }
+        .hero__doc-plate .chk {
+            display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--electric), var(--royal));
+            color: #fff; font-size: .9rem; flex-shrink: 0;
+        }
+        .hero__float {
+            position: absolute; display: flex; align-items: center; gap: 9px;
+            background: rgba(255,255,255,.85);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,.95); border-radius: 14px;
+            padding: 10px 14px;
+            box-shadow: 0 12px 32px rgba(10,22,40,.14);
+            animation: hero-floaty 6s ease-in-out infinite;
+        }
+        @keyframes hero-floaty {
+            0%, 100% { transform: translateY(0); }
+            50%      { transform: translateY(-9px); }
+        }
+        .hero__float .ic { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 9px; flex-shrink: 0; }
+        .hero__float .ic img { height: 20px; width: auto; }
+        .hero__float .ic i { font-size: .92rem; }
+        .hero__float .t { font-size: .68rem; font-weight: 800; color: var(--navy); line-height: 1.25; }
+        .hero__float .t small { display: block; font-size: .6rem; color: var(--text-muted); font-weight: 600; }
+        .hero__float--iner   { top: 36px; left: -46px; animation-delay: .8s; }
+        .hero__float--iner .ic { background: rgba(9,132,227,.1); }
+        .hero__float--rating { top: 42%; right: -52px; animation-delay: 2s; }
+        .hero__float--rating .ic { background: rgba(245,158,11,.12); }
+        .hero__float--rating .ic i { color: #f59e0b; }
+        .hero__float--epoc   { bottom: 96px; left: -58px; }
+        .hero__float--epoc .ic { background: rgba(0,184,148,.12); }
+        .hero__float--epoc .ic i { color: var(--teal); }
+
+        /* Split → stack en tablet/móvil */
+        @media (max-width: 991.98px) {
+            .hero { padding-top: calc(72px + 3vh); }
+            .hero__content {
+                grid-template-columns: 1fr;
+                gap: 38px;
+                text-align: center;
+                padding-bottom: 40px;
+            }
+            .hero__sub { margin-left: auto; margin-right: auto; }
+            .hero__conditions, .hero__cta-row, .hero__proof, .hero__inst { justify-content: center; }
+            /* Los chips flotantes tapaban la cara del doctor en pantallas
+               angostas: aquí dejan de flotar sobre la foto y fluyen como
+               credenciales estáticas debajo del retrato. El chip de rating
+               se oculta porque hero__proof ya muestra "5.0 en Google". */
+            .hero__doc {
+                width: min(340px, 88%);
+                display: flex; flex-wrap: wrap;
+                justify-content: center; gap: 10px;
+            }
+            .hero__doc-frame { flex: 0 0 100%; }
+            .hero__float {
+                position: static;
+                animation: none;
+                box-shadow: 0 6px 18px rgba(10,22,40,.1);
+            }
+            .hero__float--rating { display: none; }
+        }
+        @media (max-width: 480px) {
+            .hero__inst { gap: 16px; }
+            .hero__inst img { height: 24px; }
         }
 
         /* Condition pills */
         .hero__conditions {
             display: flex; flex-wrap: wrap;
-            gap: 8px; justify-content: center;
-            margin-bottom: 20px;
+            gap: 8px; justify-content: flex-start;
+            margin-bottom: 24px;
         }
+        .hero__pill i { font-size: .78rem; color: var(--electric); }
         .hero__pill {
-            display: inline-flex; align-items: center; gap: 5px;
+            display: inline-flex; align-items: center; gap: 7px;
             padding: 10px 18px; /* min-height efectivo 44px → WCAG 2.5.8 Target Size */
             min-height: 44px;
             border-radius: 100px;
@@ -715,9 +866,27 @@
         /* CTA row */
         .hero__cta-row {
             display: flex; align-items: center;
-            gap: 12px; flex-wrap: wrap;
-            justify-content: center;
+            gap: 14px; flex-wrap: wrap;
+            justify-content: flex-start;
         }
+        /* WhatsApp ghost — ruta de baja fricción junto al CTA primario */
+        .hero__cta-ghost {
+            display: inline-flex; align-items: center; gap: 9px;
+            background: #fff;
+            border: 1.5px solid rgba(37,211,102,.45);
+            color: #128C7E !important;
+            font-weight: 700; font-size: .95rem;
+            padding: 14px 26px; border-radius: 100px;
+            text-decoration: none;
+            transition: transform .2s var(--ease), box-shadow .2s, background .2s;
+        }
+        .hero__cta-ghost:hover {
+            transform: translateY(-2px);
+            background: rgba(37,211,102,.06);
+            box-shadow: 0 8px 24px rgba(37,211,102,.16);
+        }
+        .hero__cta-ghost:active { transform: scale(.97); transition-duration: .15s; }
+        .hero__cta-ghost i { color: #25D366; font-size: 1.1em; }
         .hero__scroll-hint {
             position: absolute;
             bottom: 14px;
@@ -746,43 +915,36 @@
             0%,100% { transform: translateX(-50%) translateY(0); opacity:.85; }
             50%     { transform: translateX(-50%) translateY(8px); opacity:1; }
         }
+        /* CTA calmado: halo fijo en reposo, shimmer SOLO en hover (por transform,
+           no repinta), compresión al presionar. Sin animaciones infinitas. */
         .hero__cta {
             display: inline-flex; align-items: center; gap: 10px;
             background: linear-gradient(135deg, var(--navy) 0%, var(--royal) 50%, var(--electric) 100%);
-            background-size: 200% 200%;
-            animation: cta-gradient-shift 4s ease infinite;
             color: var(--white) !important;
             text-decoration: none;
             padding: 18px 46px;
             border-radius: 100px;
             font-weight: 700; font-size: 1.05rem;
             border: none;
-            transition: all .4s var(--ease);
-            box-shadow: 0 6px 28px rgba(9,132,227,.3), 0 0 0 0 rgba(9,132,227,0);
+            transition: transform .2s var(--ease), box-shadow .25s var(--ease);
+            box-shadow: 0 6px 28px rgba(9,132,227,.3);
             position: relative;
             overflow: hidden;
             z-index: 1;
         }
-        @keyframes cta-gradient-shift {
-            0%   { background-position: 0% 50%; }
-            50%  { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        /* Shimmer sweep */
+        /* Shimmer sweep — solo al hacer hover, vía transform */
         .hero__cta::before {
             content: '';
             position: absolute;
-            top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
-            animation: cta-shimmer 3s ease-in-out infinite;
+            top: 0; left: 0; width: 60%; height: 100%;
+            background: linear-gradient(100deg, transparent, rgba(255,255,255,.28), transparent);
+            transform: translateX(-130%) skewX(-18deg);
             z-index: 2;
         }
         @keyframes cta-shimmer {
-            0%   { left: -100%; }
-            60%  { left: 100%; }
-            100% { left: 100%; }
+            to { transform: translateX(280%) skewX(-18deg); }
         }
-        /* Outer glow ring */
+        /* Halo exterior fijo */
         .hero__cta::after {
             content: '';
             position: absolute;
@@ -790,22 +952,22 @@
             border-radius: 100px;
             background: linear-gradient(135deg, var(--electric), var(--cyan), var(--royal));
             z-index: -1;
-            opacity: .5;
-            filter: blur(8px);
-            animation: cta-glow-pulse 3s ease-in-out infinite;
-        }
-        @keyframes cta-glow-pulse {
-            0%,100% { opacity: .35; filter: blur(8px); }
-            50%     { opacity: .65; filter: blur(14px); }
+            opacity: .35;
+            filter: blur(10px);
+            transition: opacity .25s var(--ease);
         }
         .hero__cta:hover {
-            transform: translateY(-3px) scale(1.04) !important;
+            transform: translateY(-2px) !important;
             box-shadow: 0 14px 48px rgba(9,132,227,.4), 0 0 32px rgba(9,132,227,.15);
             color: var(--white) !important;
         }
-        .hero__cta:hover::after { opacity: .8; }
+        .hero__cta:hover::before { animation: cta-shimmer .8s var(--ease); }
+        .hero__cta:hover::after { opacity: .6; }
         .hero__cta i { transition: transform .3s; position: relative; z-index: 3; }
         .hero__cta:hover i { transform: translateX(5px); }
+        /* Feedback táctil al presionar (Emil Kowalski: 150ms ease-out) */
+        .hero__cta:active { transform: translateY(-1px) scale(.97) !important; transition-duration: .15s; }
+        .navbar-cta:active, .cta-band__btn:active { transform: scale(.97); transition-duration: .15s; }
 
         /* CTA variante WhatsApp — verde de marca, mismo nivel visual */
         .hero__cta--wa {
@@ -1387,13 +1549,14 @@
 
         /* GSAP hidden states — opacity:0.01 en candidatos LCP (PDF 5.1):
            Chrome descalifica opacity:0 como LCP; 0.01 es imperceptible pero elegible. */
-        body.js-enabled .hero__logo              { opacity:.01; transform:scale(.8); }
-        body.js-enabled .hero__tag              { opacity:0; transform:translateY(20px); }
-        body.js-enabled .hero__tagline          { opacity:0; transform:translateY(20px); }
+        body.js-enabled .hero__eyebrow          { opacity:0; transform:translateY(16px); }
         body.js-enabled .hero__headline .line-inner { opacity:.01; transform:translateY(100%); }
-        body.js-enabled .hero__sub              { opacity:0; transform:translateY(30px); }
+        body.js-enabled .hero__sub              { opacity:0; transform:translateY(24px); }
         body.js-enabled .hero__conditions       { opacity:0; transform:translateY(20px); }
-        body.js-enabled .hero__cta-row          { opacity:0; transform:translateY(30px); }
+        body.js-enabled .hero__cta-row          { opacity:0; transform:translateY(24px); }
+        body.js-enabled .hero__proof,
+        body.js-enabled .hero__inst             { opacity:0; transform:translateY(18px); }
+        body.js-enabled .hero__doc              { opacity:.01; transform:translateY(28px); }
 
         .reveal { transition: opacity .65s var(--ease), transform .65s var(--ease); }
         body.js-enabled .reveal { opacity:0; transform:translateY(28px); }
@@ -1800,9 +1963,8 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            font-style: italic;
-            font-family: 'Fraunces', 'Plus Jakarta Sans', serif;
-            font-weight: 700;
+            font-style: normal;
+            font-weight: 800;
             letter-spacing: -.02em;
         }
         .about__highlight {
@@ -2117,6 +2279,7 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 16px rgba(9,132,227,.10);
         }
+        .services-tab:active { transform: scale(.96); transition-duration: .15s; }
         .services-tab.active {
             background: var(--electric);
             color: var(--white);
@@ -2254,6 +2417,21 @@
             transform: translateY(-6px);
             box-shadow: 0 16px 48px rgba(9,132,227,.12);
             border-color: rgba(9,132,227,.15);
+        }
+        /* Spotlight: halo azul sutil que sigue el cursor (solo pointer fino).
+           Una variable CSS por mousemove — sin costo en scroll. */
+        @media (hover: hover) and (pointer: fine) {
+            .service-card { position: relative; overflow: hidden; }
+            .service-card::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(240px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(9,132,227,.07), transparent 70%);
+                opacity: 0;
+                transition: opacity .3s var(--ease);
+                pointer-events: none;
+            }
+            .service-card:hover::before { opacity: 1; }
         }
         .service-card__icon {
             width: 56px; height: 56px;
@@ -2581,6 +2759,207 @@
         }
         .disease-band.band-paused { animation: none !important; }
 
+        /* ── SERVICIOS V2: banner destacado + filas compactas + tabs con indicador deslizante ── */
+        .services-tabs { position: relative; }
+        .services-tabs__ind {
+            position: absolute; left: 0; top: 0; width: 100px; height: 40px;
+            border-radius: 100px;
+            background: linear-gradient(135deg, var(--royal), var(--electric));
+            box-shadow: 0 4px 16px rgba(9,132,227,.35);
+            transition: transform .45s var(--ease), width .45s var(--ease), height .45s var(--ease);
+            z-index: 0; opacity: 0;
+        }
+        .services-tabs.has-ind .services-tabs__ind { opacity: 1; }
+        .services-tabs.has-ind .services-tab { position: relative; z-index: 1; }
+        .services-tabs.has-ind .services-tab.active { background: transparent; border-color: transparent; box-shadow: none; }
+        .services-panel.active { animation: svc2-panel-in .5s var(--ease); }
+        @keyframes svc2-panel-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+        .svc2-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        /* min-width:0 evita que los textos nowrap desborden la celda del grid */
+        .svc2-grid > * { min-width: 0; }
+        /* banner destacado delgado */
+        .svc2-feat {
+            grid-column: 1 / -1;
+            position: relative; display: flex; align-items: center; gap: 18px;
+            background: linear-gradient(120deg, var(--navy) 0%, var(--royal) 55%, var(--electric) 120%);
+            border-radius: 18px; padding: 20px 24px;
+            color: #fff; text-decoration: none; overflow: hidden;
+            transition: transform .25s var(--ease), box-shadow .3s;
+        }
+        .svc2-feat:hover { transform: translateY(-2px); box-shadow: 0 18px 48px rgba(9,132,227,.3); color: #fff; }
+        .svc2-feat::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 55%; height: 100%;
+            background: linear-gradient(100deg, transparent, rgba(255,255,255,.14), transparent);
+            transform: translateX(-130%) skewX(-18deg);
+        }
+        .svc2-feat:hover::after { animation: svc2-sheen .9s var(--ease); }
+        @keyframes svc2-sheen { to { transform: translateX(300%) skewX(-18deg); } }
+        .svc2-feat .svc2-ic { background: rgba(255,255,255,.14); }
+        .svc2-feat .svc2-ic i { color: #fff; }
+        .svc2-feat h3 { font-size: 1.05rem; font-weight: 800; margin: 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; color: #fff; }
+        .svc2-badge {
+            background: linear-gradient(135deg, var(--cyan), var(--sky));
+            color: var(--navy); font-size: .58rem; font-weight: 800;
+            letter-spacing: .1em; text-transform: uppercase;
+            padding: 4px 10px; border-radius: 100px;
+        }
+        .svc2-feat p { font-size: .8rem; color: rgba(255,255,255,.75); margin: 3px 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .svc2-feat .svc2-btn {
+            background: #fff; color: var(--navy); font-size: .8rem; font-weight: 800;
+            padding: 11px 22px; border-radius: 100px; flex-shrink: 0;
+            transition: transform .18s var(--ease);
+        }
+        .svc2-feat:active .svc2-btn { transform: scale(.95); }
+        /* fila compacta */
+        .svc2-row {
+            display: flex; align-items: center; gap: 14px;
+            background: var(--white);
+            border: 1px solid rgba(10,22,40,.06); border-radius: 14px;
+            padding: 15px 18px;
+            text-decoration: none; color: inherit;
+            transition: border-color .25s, box-shadow .25s, background .25s, transform .25s var(--ease);
+        }
+        /* fila ancha: cierra los paneles con conteo impar para que el bloque quede simétrico */
+        .svc2-row--wide { grid-column: 1 / -1; }
+        .svc2-row:hover { border-color: rgba(9,132,227,.25); box-shadow: 0 8px 26px rgba(9,132,227,.1); background: #fdfeff; color: inherit; transform: translateY(-1px); }
+        .svc2-row:active { transform: scale(.99); }
+        .svc2-ic {
+            width: 40px; height: 40px; border-radius: 11px;
+            display: grid; place-items: center; flex-shrink: 0;
+            background: linear-gradient(135deg, rgba(9,132,227,.09), rgba(0,206,201,.09));
+        }
+        .svc2-ic i { font-size: 1rem; color: var(--electric); }
+        .svc2-tx { flex: 1; min-width: 0; }
+        .svc2-row h3 { font-size: .9rem; font-weight: 800; color: var(--navy); margin: 0; letter-spacing: -.01em; }
+        /* 2 líneas máx en vez de nowrap: el truncado a una línea cortaba la
+           propuesta de valor a media frase ("...a tu hogar con la mism…") */
+        .svc2-row p { font-size: .75rem; color: var(--text-muted); margin: 1px 0 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .svc2-go {
+            width: 30px; height: 30px; border-radius: 50%;
+            display: grid; place-items: center; flex-shrink: 0;
+            background: rgba(9,132,227,.07);
+            transition: background .25s, transform .25s var(--ease);
+        }
+        .svc2-go i { font-size: .8rem; color: var(--electric); transition: color .25s; }
+        .svc2-row:hover .svc2-go { background: var(--electric); transform: translateX(3px); }
+        .svc2-row:hover .svc2-go i { color: #fff; }
+        @media (max-width: 760px) {
+            .svc2-grid { grid-template-columns: 1fr; }
+            .svc2-feat { flex-wrap: wrap; }
+            .svc2-feat p { white-space: normal; }
+        }
+        @media (max-width: 480px) {
+            .svc2-feat .svc2-ic { display: none; }
+            .svc2-feat { padding: 18px 20px; }
+            .svc2-feat .svc2-btn { width: 100%; text-align: center; padding: 13px; }
+        }
+
+        /* ── ENFERMEDADES V2: buscador de síntomas + grid (desktop) / burbujas (móvil) ── */
+        .f-obs{--acc:#0984e3}.f-inf{--acc:#f59e0b}.f-sue{--acc:#6c5ce7}
+        .f-cro{--acc:#00b894}.f-urg{--acc:#e17055}.f-onc{--acc:#a55eea}
+        .dis2-chips{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin:0 0 10px}
+        .dis2-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.9);border:1.5px solid rgba(10,22,40,.1);border-radius:100px;padding:10px 18px;font-family:var(--sans);font-size:.82rem;font-weight:700;color:var(--text);cursor:pointer;transition:transform .25s var(--ease),border-color .25s,box-shadow .25s,background .25s,color .25s}
+        .dis2-chip i{font-size:.8rem;color:var(--text-muted);transition:color .25s}
+        .dis2-chip:hover{transform:translateY(-2px);border-color:rgba(9,132,227,.35);box-shadow:0 6px 18px rgba(9,132,227,.1)}
+        .dis2-chip.on{background:linear-gradient(135deg,var(--navy),var(--royal) 60%,var(--electric));border-color:transparent;color:#fff;box-shadow:0 8px 24px rgba(9,132,227,.3)}
+        .dis2-chip.on i{color:#fff}
+        .dis2-hint{text-align:center;font-size:.8rem;font-weight:600;color:var(--text-muted);min-height:1.5em;margin:0 0 28px;transition:opacity .3s}
+        /* grid desktop — 5x3: las 15 condiciones caben en una pantalla */
+        .dis2-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+        /* tinte sutil por familia clínica: rompe el blanco-sobre-blanco de las
+           15 tarjetas y refuerza el código de color sin bajar contraste */
+        .dis2-card{position:relative;background:linear-gradient(180deg,color-mix(in srgb,var(--acc,var(--electric)) 4.5%,#fff) 0%,#fff 58%);border:1px solid rgba(10,22,40,.06);border-radius:16px;padding:15px 14px 13px;box-shadow:0 2px 10px rgba(10,22,40,.04);display:flex;flex-direction:column;gap:7px;overflow:hidden;transition:opacity .4s var(--ease),transform .4s var(--ease),box-shadow .3s,border-color .3s}
+        .dis2-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--acc,var(--electric));opacity:.85}
+        .dis2-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(10,22,40,.1);border-color:color-mix(in srgb,var(--acc,var(--electric)) 32%,transparent)}
+        .dis2-fam{font-size:.54rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--acc)}
+        .dis2-ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:color-mix(in srgb,var(--acc) 11%,#fff)}
+        .dis2-ic i{font-size:.92rem;color:var(--acc)}
+        .dis2-card h3{font-size:.86rem;font-weight:800;color:var(--navy);margin:0;letter-spacing:-.01em}
+        .dis2-card p{font-size:.72rem;line-height:1.52;color:#56657a;flex:1;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+        /* sección compacta: que chips + grid quepan en un viewport de escritorio */
+        @media(min-width:992px){
+            .diseases-section .container.my-5{margin-top:.5rem!important;margin-bottom:.75rem!important}
+            .diseases-section .mb-5{margin-bottom:1rem!important}
+            .diseases-section.py-5{padding-top:1.25rem!important;padding-bottom:2rem!important}
+            .diseases-section .section-title{font-size:clamp(1.6rem,2.6vw,2.1rem)}
+            .diseases-section .section-sub{margin-bottom:0}
+            .dis2-grid{gap:10px}
+            .dis2-card{padding:12px 12px 10px;gap:5px}
+            .dis2-cta{padding:5px 10px}
+            .dis2-ic{width:30px;height:30px}
+            .dis2-ic i{font-size:.84rem}
+            .dis2-hint{margin-bottom:16px}
+            .dis2-chips{margin-bottom:8px}
+        }
+        .dis2-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:3px}
+        .dis2-cta{display:inline-flex;align-items:center;gap:5px;font-size:.64rem;font-weight:700;color:var(--electric);background:rgba(9,132,227,.06);border:1px solid rgba(9,132,227,.18);border-radius:100px;padding:6px 11px;text-decoration:none;transition:background .25s,border-color .25s,transform .15s var(--ease)}
+        .dis2-cta:hover{border-color:var(--electric);background:rgba(9,132,227,.1);color:var(--electric)}
+        .dis2-cta:active{transform:scale(.96)}
+        .dis2-cta--wa{color:#128C7E;background:rgba(37,211,102,.08);border-color:rgba(37,211,102,.3)}
+        .dis2-cta--wa:hover{border-color:#25d366;background:rgba(37,211,102,.14);color:#128C7E}
+        .dis2-soon-tag{font-size:.66rem;font-weight:700;color:var(--amber,#f59e0b);align-self:center}
+        .dis2-grid.filtering .dis2-card{opacity:.22;transform:scale(.975)}
+        .dis2-grid.filtering .dis2-card.hit{opacity:1;transform:scale(1);box-shadow:0 14px 38px color-mix(in srgb,var(--acc) 22%,transparent);border-color:color-mix(in srgb,var(--acc) 40%,transparent)}
+        /* burbujas móviles */
+        .dis2-bubbles{display:none;position:relative;margin-top:6px}
+        .dis2-bub{--sz:78px;position:absolute;width:var(--sz);height:var(--sz);margin:calc(var(--sz)/-2) 0 0 calc(var(--sz)/-2);border-radius:50%;
+            background:linear-gradient(165deg,rgba(255,255,255,.97),rgba(244,249,255,.88));
+            border:1px solid rgba(255,255,255,.95);
+            box-shadow:0 2px 4px rgba(10,22,40,.04),0 12px 28px -6px rgba(10,22,40,.12),inset 0 1px 0 #fff;
+            display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;padding:0;
+            transition:transform .7s var(--ease),opacity .55s var(--ease),box-shadow .45s var(--ease),border-color .45s;
+            will-change:transform;font-family:var(--sans)}
+        .dis2-bub--lg{--sz:96px}
+        .dis2-bub--sm{--sz:66px}
+        .dis2-bub .bic{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--acc) 10%,#fff);border:1px solid color-mix(in srgb,var(--acc) 16%,transparent);transition:transform .4s var(--ease)}
+        .dis2-bub .bic i{font-size:.72rem;color:var(--acc)}
+        .dis2-bub--lg .bic{width:32px;height:32px}
+        .dis2-bub--lg .bic i{font-size:.88rem}
+        .dis2-bub--sm .bic{width:22px;height:22px}
+        .dis2-bub--sm .bic i{font-size:.6rem}
+        .dis2-bub b{font-size:.57rem;font-weight:800;color:var(--navy);text-align:center;line-height:1.15;padding:0 7px;letter-spacing:-.01em}
+        .dis2-bub--lg b{font-size:.62rem}
+        .dis2-bub--sm b{font-size:.5rem}
+        .dis2-bub:active{transform:scale(.95)}
+        .dis2-bubbles.filtering .dis2-bub{opacity:.12;box-shadow:0 6px 16px rgba(10,22,40,.05)}
+        .dis2-bubbles.filtering .dis2-bub.hit{opacity:1;z-index:3;
+            border-color:color-mix(in srgb,var(--acc) 45%,#fff);
+            box-shadow:0 2px 4px rgba(10,22,40,.04),0 18px 44px -8px color-mix(in srgb,var(--acc) 38%,transparent),0 0 0 6px color-mix(in srgb,var(--acc) 7%,transparent),inset 0 1px 0 #fff}
+        .dis2-bubbles.filtering .dis2-bub.hit .bic{transform:scale(1.08)}
+        /* bottom sheet móvil */
+        .dis2-sheetbg{position:fixed;inset:0;background:rgba(10,22,40,.45);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:1090}
+        .dis2-sheetbg.on{opacity:1;pointer-events:auto}
+        .dis2-sheet{position:fixed;left:0;right:0;bottom:0;background:#fff;border-radius:26px 26px 0 0;padding:14px 22px calc(24px + env(safe-area-inset-bottom));z-index:1100;transform:translateY(100%);transition:transform .3s var(--ease);box-shadow:0 -16px 50px rgba(10,22,40,.25)}
+        .dis2-sheet.on{transform:translateY(0)}
+        .dis2-sheet.closing{transition:transform .2s ease-in}
+        .dis2-sheet .grab{width:42px;height:5px;border-radius:5px;background:rgba(10,22,40,.14);margin:0 auto 14px}
+        .dis2-sheet .top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+        .dis2-sheet .sic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:color-mix(in srgb,var(--acc,#0984e3) 12%,#fff);flex-shrink:0}
+        .dis2-sheet .sic i{font-size:1.15rem;color:var(--acc,#0984e3)}
+        .dis2-sheet h3{font-size:1.02rem;font-weight:800;color:var(--navy);margin:0}
+        .dis2-sheet .sfam{font-size:.58rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--acc,#0984e3)}
+        .dis2-sheet .x{margin-left:auto;width:32px;height:32px;border-radius:50%;border:none;background:rgba(10,22,40,.06);color:var(--text-muted);font-size:.95rem;cursor:pointer;display:grid;place-items:center}
+        .dis2-sheet .sdesc{font-size:.8rem;line-height:1.6;color:var(--text-muted);margin:0 0 8px}
+        .dis2-sheet ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 14px;padding:0}
+        .dis2-sheet li{font-size:.66rem;font-weight:700;color:var(--acc,#0984e3);background:color-mix(in srgb,var(--acc,#0984e3) 8%,#fff);border:1px solid color-mix(in srgb,var(--acc,#0984e3) 22%,transparent);border-radius:100px;padding:5px 11px}
+        .dis2-sheet .scta{display:flex;gap:9px}
+        .dis2-sheet .more{flex:1;text-align:center;background:linear-gradient(135deg,var(--royal),var(--electric));color:#fff;font-size:.84rem;font-weight:800;padding:13px;border-radius:100px;text-decoration:none;transition:transform .15s var(--ease)}
+        .dis2-sheet .more:active{transform:scale(.97)}
+        .dis2-sheet .swa{width:48px;height:48px;border-radius:50%;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.35);display:grid;place-items:center;text-decoration:none}
+        .dis2-sheet .swa i{font-size:1.2rem;color:#25D366}
+        .dis2-sheet .soon{font-size:.62rem;color:#b45309;font-weight:700;margin-top:8px;text-align:center}
+        @media(max-width:1240px){.dis2-grid{grid-template-columns:repeat(4,1fr)}}
+        @media(max-width:1020px){.dis2-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:767.98px){
+            .dis2-grid{display:none}
+            .dis2-bubbles{display:block;height:460px}
+            .dis2-chip{padding:8px 13px;font-size:.72rem;gap:6px}
+            .dis2-hint{margin-bottom:14px}
+        }
+        @media(max-width:480px){
+            .dis2-bub--lg{--sz:88px}
+        }
+
         /* =============================================
            TESTIMONIALS
         ============================================= */
@@ -2617,10 +2996,15 @@
             flex-direction: column;
             gap: 16px;
             will-change: transform;
+            /* duración la fija el JS según la altura real del set; --tgap = mitad del gap
+               para que el wrap a -50% caiga exactamente al inicio del set clonado */
+            animation: testimonial-scroll-up var(--t-dur, 60s) linear infinite;
         }
+        .testimonial-col--down { animation-direction: reverse; }
+        .testimonial-col:hover { animation-play-state: paused; }
         @keyframes testimonial-scroll-up {
             0%   { transform: translateY(0); }
-            100% { transform: translateY(-50%); }
+            100% { transform: translateY(calc(-50% - var(--tgap, 8px))); }
         }
         .testi-card {
             background: var(--white);
@@ -3039,9 +3423,10 @@
            RESPONSIVE
         ============================================= */
         @media(max-width:991px) {
+            /* móvil: primero el texto que describe al doctor, después la foto */
             .about__hero-inner { flex-direction: column; gap: 40px; }
-            .about__portrait   { flex: none; max-width: 360px; margin: 0 auto; }
-            .about__bio        { padding: 0 24px; max-width: 100%; }
+            .about__portrait   { flex: none; max-width: 360px; margin: 0 auto; order: 2; }
+            .about__bio        { padding: 0 24px; max-width: 100%; order: 1; }
             /* creds now in marquee */
             .svc-carousel__track .service-card { flex: 0 0 calc(50% - 12px); }
             .svc-carousel__arrow--prev { left: -16px; }
@@ -3110,8 +3495,23 @@
                 margin-bottom: 0;
             }
             .service-card { padding: 28px 24px 26px; }
-            .services-tabs { gap: 6px; margin-bottom: 28px; }
-            .services-tab { font-size: .78rem; padding: 8px 14px; }
+            /* Tabs en una sola línea deslizable: en vez de envolver en 2-3
+               filas, los pills se desplazan horizontalmente con snap; el
+               pill cortado en el borde es la pista de que hay más. */
+            .services-tabs {
+                gap: 6px; margin-bottom: 28px;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                overflow-x: auto;
+                overscroll-behavior-x: contain;
+                scroll-snap-type: x proximity;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                padding: 4px 14px 8px;
+                margin-left: -14px; margin-right: -14px;
+            }
+            .services-tabs::-webkit-scrollbar { display: none; }
+            .services-tab { font-size: .78rem; padding: 8px 14px; flex-shrink: 0; scroll-snap-align: center; }
             .services-tab .tab-count { width: 19px; height: 19px; font-size: .66rem; }
             .testimonial-columns {
                 height: 420px;
@@ -3201,7 +3601,9 @@
             .top-bar-legal  { font-size: .62rem; padding: 6px 0; }
             .navbar-brand   { font-size: 1.25rem; }
             .navbar-logo    { height: 28px !important; }
-            .whatsapp-float { bottom: 20px; right: 16px; width: 54px; height: 54px; font-size: 1.5rem; }
+            /* compact FAB, no pulsing ring: keep CTAs visible on mobile */
+            .whatsapp-float { bottom: 14px; right: 12px; width: 48px; height: 48px; font-size: 1.3rem; }
+            .whatsapp-float::after { display: none; }
             .stat-num       { font-size: 1.6rem; }
             .stat-label     { font-size: .62rem; letter-spacing: .5px; }
             .stat-item      { padding: 24px 10px; }
@@ -3253,15 +3655,15 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-house me-1"></i>Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/sobre-el-doctor/"><i class="fas fa-user-md me-1"></i>About the Doctor</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/en/about/"><i class="fas fa-user-md me-1"></i>About the Doctor</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="/servicios/" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-stethoscope me-1"></i>Services</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item fw-bold" href="/servicios/">View all</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/servicios/espirometria/">Spirometry</a></li>
+                            <li><a class="dropdown-item" href="/en/spirometry/">Spirometry</a></li>
 
-                            <li><a class="dropdown-item" href="/servicios/poligrafia-respiratoria/">Respiratory polygraphy</a></li>
+                            <li><a class="dropdown-item" href="/en/sleep-apnea-test/">Respiratory polygraphy</a></li>
                             <li><a class="dropdown-item" href="/servicios/titulacion-presion-positiva/">CPAP/BiPAP titration</a></li>
                             <li><a class="dropdown-item" href="/servicios/feno/">FeNO</a></li>
                             <li><a class="dropdown-item" href="/servicios/broncoscopia/">Bronchoscopy</a></li>
@@ -3269,7 +3671,7 @@
                             <li><a class="dropdown-item" href="/servicios/cateter-pleural-multiproposito/">Pleural catheter</a></li>
                             <li><a class="dropdown-item" href="/servicios/seguimiento-enfermedades-cronicas/">Chronic care follow-up</a></li>
                             <li><a class="dropdown-item" href="/servicios/tratamiento-dejar-de-fumar/">Quit smoking</a></li>
-                            <li><a class="dropdown-item" href="/servicios/teleconsulta/">Telemedicine</a></li>
+                            <li><a class="dropdown-item" href="/en/teleconsultation/">Telemedicine</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -3277,8 +3679,8 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item fw-bold" href="/enfermedades/">View all</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/enfermedades/epoc/">COPD</a></li>
-                            <li><a class="dropdown-item" href="/enfermedades/asma/">Asthma</a></li>
+                            <li><a class="dropdown-item" href="/en/copd/">COPD</a></li>
+                            <li><a class="dropdown-item" href="/en/asthma/">Asthma</a></li>
                             <li><a class="dropdown-item" href="/enfermedades/apnea-del-sueno/">Sleep apnea</a></li>
                             <li><a class="dropdown-item" href="/enfermedades/neumonia/">Pneumonia</a></li>
                             <li><a class="dropdown-item" href="/enfermedades/fibrosis-pulmonar/">Pulmonary fibrosis</a></li>
@@ -3286,10 +3688,10 @@
                             <li><a class="dropdown-item" href="/enfermedades/derrames-pleurales/">Pleural effusions</a></li>
                             <li><a class="dropdown-item" href="/enfermedades/bronquiectasias/">Bronchiectasis</a></li>
                             <li><a class="dropdown-item" href="/enfermedades/hipertension-pulmonar/">Pulmonary hypertension</a></li>
-                            <li><a class="dropdown-item" href="/enfermedades/embolia-pulmonar/">Pulmonary embolism</a></li>
+                            <li><a class="dropdown-item" href="/en/pulmonary-embolism/">Pulmonary embolism</a></li>
                         <li><a class="dropdown-item" href="/enfermedades/neumotorax/">Pneumothorax</a></li>
                             <li><a class="dropdown-item" href="/enfermedades/tabaquismo/">Smoking</a></li>
-                            <li><a class="dropdown-item" href="/enfermedades/secuelas-covid/">Post-COVID sequelae</a></li>
+                            <li><a class="dropdown-item" href="/enfermedades/secuelas-covid/">Long COVID</a></li>
                             <li><a class="dropdown-item" href="/enfermedades/influenza/">Influenza</a></li>
                         </ul>
                     </li>
@@ -3301,7 +3703,7 @@
                             <li><a class="dropdown-item" href="/contingencia-ambiental-cdmx/">Air quality alerts in CDMX</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="/preguntas-frecuentes/"><i class="fas fa-circle-question me-1"></i>FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/en/faq/"><i class="fas fa-circle-question me-1"></i>FAQ</a></li>
                     <li class="nav-item"><a class="nav-link" href="/ubicacion/"><i class="fas fa-location-dot me-1"></i>Location</a></li>
                 </ul>
             </div>
@@ -3329,32 +3731,71 @@
             <div class="hero__bg"></div>
             <div class="hero__aurora"></div>
             <div class="hero__orb3"></div>
-            <canvas class="hero__sparkle-canvas" id="heroSparkles"></canvas>
+            <div class="hero__sparkle-canvas sparkle-field" id="heroSparkles" aria-hidden="true"></div>
             <div class="hero__grid"></div>
             <div class="hero__content">
-                <img src="/favicon.png" alt="Alveos Logo" class="hero__logo" width="120" height="120" fetchpriority="high" decoding="async">
-                <h1 class="hero__headline">
-                    <span class="line"><span class="line-inner">Pulmonologist in Mexico City</span></span>
-                </h1>
-                <div class="hero__sub">
-                    <div class="hero__card-q">A cough that won't go away, shortness of breath or lung problems that affect your daily life?</div>
-                    <div class="hero__card-divider"></div>
-                    <div class="hero__card-value"><strong>Dr. William Lara</strong> combines top-level expertise with a <strong>personal, caring approach</strong> to give you back the peace of mind of breathing well.</div>
+                <div class="hero__copy">
+                    <span class="hero__eyebrow"><span class="hero__eyebrow-dot" aria-hidden="true"></span>Board-certified pulmonologist · INER · Mexico City</span>
+                    <h1 class="hero__headline">
+                        <span class="line"><span class="line-inner">Breathe easy.</span></span>
+                        <span class="line"><span class="line-inner">Pulmonologist <em>in Mexico City</em></span></span>
+                    </h1>
+                    <p class="hero__sub">A cough that won't go away or trouble breathing? <strong>Dr. William Lara</strong> combines top-level expertise with a <strong>personal, caring approach</strong> to give you back the peace of mind of breathing well.</p>
+                    <div class="hero__conditions">
+                        <a class="hero__pill" href="/en/asthma/"><i class="fas fa-lungs" aria-hidden="true"></i>Asthma</a>
+                        <a class="hero__pill" href="/en/copd/"><i class="fas fa-wind" aria-hidden="true"></i>COPD</a>
+                        <a class="hero__pill" href="/enfermedades/apnea-del-sueno/"><i class="fas fa-moon" aria-hidden="true"></i>Sleep Apnea</a>
+                        <a class="hero__pill" href="/enfermedades/neumonia/"><i class="fas fa-virus" aria-hidden="true"></i>Pneumonia</a>
+                        <a class="hero__pill" href="/enfermedades/tabaquismo/"><i class="fas fa-ban-smoking" aria-hidden="true"></i>Smoking</a>
+                        <a class="hero__pill" href="/enfermedades/fibrosis-pulmonar/"><i class="fas fa-lungs-virus" aria-hidden="true"></i>Pulmonary Fibrosis</a>
+                        <a class="hero__pill" href="/enfermedades/derrames-pleurales/"><i class="fas fa-droplet" aria-hidden="true"></i>Pleural Effusion</a>
+                    </div>
+                    <div class="hero__cta-row">
+                        <button type="button" class="hero__cta" data-cta="hero-agendar-open" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                            <i class="bi bi-calendar-check" aria-hidden="true"></i> Book a consultation <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                        </button>
+                        <a class="hero__cta-ghost" href="https://wa.me/5215591708334?text=I%20would%20like%20to%20book%20an%20appointment" target="_blank" rel="noopener noreferrer" data-cta="hero-whatsapp">
+                            <i class="bi bi-whatsapp" aria-hidden="true"></i> Direct WhatsApp
+                        </a>
+                    </div>
+                    <div class="hero__proof">
+                        <span class="stars" aria-hidden="true">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </span>
+                        <span class="hero__proof-txt"><b>5.0</b> · 29 verified reviews on <b>Google</b></span>
+                    </div>
+                    <div class="hero__inst">
+                        <span class="hero__inst-lbl">Training and board certifications</span>
+                        <img src="/images/iner.png" alt="National Institute of Respiratory Diseases (INER)" height="30" loading="lazy" decoding="async">
+                        <img src="/images/UNAM.webp" alt="Universidad Nacional Autónoma de México (UNAM)" height="30" loading="lazy" decoding="async">
+                        <img src="/images/CNN.png" alt="National Pulmonology Board" height="30" loading="lazy" decoding="async">
+                        <img src="/images/Logo-SMNyCT.webp" alt="Mexican Society of Pulmonology and Thoracic Surgery" height="30" loading="lazy" decoding="async">
+                    </div>
                 </div>
-                <p class="hero__tagline">Advanced <em>Respiratory Health</em></p>
-                <div class="hero__conditions">
-                    <a class="hero__pill" href="/enfermedades/asma/">Asthma</a>
-                    <a class="hero__pill" href="/enfermedades/epoc/">COPD</a>
-                    <a class="hero__pill" href="/enfermedades/apnea-del-sueno/">Sleep Apnea</a>
-                    <a class="hero__pill" href="/enfermedades/neumonia/">Pneumonia</a>
-                    <a class="hero__pill" href="/enfermedades/tabaquismo/">Smoking</a>
-                    <a class="hero__pill" href="/enfermedades/fibrosis-pulmonar/">Pulmonary Fibrosis</a>
-                    <a class="hero__pill" href="/enfermedades/derrames-pleurales/">Pleural Effusion</a>
-                </div>
-                <div class="hero__cta-row">
-                    <button type="button" class="hero__cta" data-cta="hero-agendar-open" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
-                        <i class="bi bi-calendar-check" aria-hidden="true"></i> Book a consultation <i class="bi bi-arrow-right" aria-hidden="true"></i>
-                    </button>
+                <div class="hero__doc">
+                    <div class="hero__breath" aria-hidden="true"><i></i><i></i><i></i></div>
+                    <div class="hero__doc-frame">
+                        <img src="/images/dr-william-lara.webp" alt="Dr. William César Lara Vázquez, pulmonologist in Mexico City" width="800" height="1000" fetchpriority="high" decoding="async">
+                        <div class="hero__doc-plate">
+                            <div>
+                                <div class="n">Dr. William Lara Vázquez</div>
+                                <div class="r">Pulmonology · Specialty Lic. 15595809</div>
+                            </div>
+                            <span class="chk" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
+                        </div>
+                    </div>
+                    <div class="hero__float hero__float--iner">
+                        <span class="ic"><img src="/images/iner.png" alt="" loading="lazy" decoding="async"></span>
+                        <span class="t">Trained at INER<small>High specialty</small></span>
+                    </div>
+                    <div class="hero__float hero__float--rating">
+                        <span class="ic"><i class="bi bi-star-fill" aria-hidden="true"></i></span>
+                        <span class="t">5.0 on Google<small>29 reviews</small></span>
+                    </div>
+                    <div class="hero__float hero__float--epoc">
+                        <span class="ic"><i class="fas fa-lungs" aria-hidden="true"></i></span>
+                        <span class="t">COPD expert<small>and difficult-to-control asthma</small></span>
+                    </div>
                 </div>
             </div>
             <div class="hero__scroll-hint" aria-hidden="true">
@@ -3411,8 +3852,8 @@
                         <div class="about__portrait-glow"></div>
                         <div class="about__photo-frame">
                             <picture>
-                                <source type="image/webp" srcset="/images/dr-william-lara.webp">
-                                <img src="/images/dr-william-lara.jpg" alt="Dr. William César Lara Vázquez, pulmonologist in Mexico City" width="600" height="600" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+                                <source type="image/webp" srcset="/images/dr-lara-hospital.webp">
+                                <img src="/images/dr-lara-hospital.jpg" alt="Dr. William César Lara Vázquez at the hospital, pulmonologist in Mexico City" width="800" height="1073" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
                             </picture>
                         </div>
                     </div>
@@ -3424,7 +3865,7 @@
                         <div class="about__commitment reveal">
                             My commitment to you is clear: <strong>to listen without rushing</strong>, explain without jargon and build a treatment plan tailored to <em>your life and your pace</em>. Because every breath counts, and every patient is unique.
                         </div>
-                        <a href="/sobre-el-doctor/" class="about__cta-btn reveal">Learn about my background <i class="bi bi-arrow-right"></i></a>
+                        <a href="/en/about/" class="about__cta-btn reveal">Learn about my background <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -3616,8 +4057,9 @@
 
                 <!-- Tab pills -->
                 <div class="services-tabs reveal" role="tablist">
+                    <span class="services-tabs__ind" aria-hidden="true"></span>
                     <button class="services-tab active" role="tab" aria-selected="true" data-tab="consulta">
-                        <i class="bi bi-clipboard2-pulse" aria-hidden="true"></i> Consultation & assessment <span class="tab-count">4</span>
+                        <i class="bi bi-clipboard2-pulse" aria-hidden="true"></i> Consultation &amp; assessment <span class="tab-count">4</span>
                     </button>
                     <button class="services-tab" role="tab" aria-selected="false" data-tab="estudios">
                         <i class="bi bi-lungs" aria-hidden="true"></i> Respiratory studies <span class="tab-count">6</span>
@@ -3635,156 +4077,127 @@
 
                     <!-- ── Consulta y valoración ── -->
                     <div class="services-panel active" role="tabpanel" data-panel="consulta">
-                        <div class="svc-carousel"><div class="svc-carousel__viewport"><div class="svc-carousel__track">
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i></div>
-                                <h3>Pulmonology Consultation</h3>
-                                <p>A complete evaluation of your respiratory health with a board-certified pulmonologist. We review your symptoms, background and medical history to give you an accurate diagnosis and a clear treatment plan.</p>
-                                <span class="service-card__cta">Book appointment <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-house-heart" aria-hidden="true"></i></div>
-                                <h3>Home Visit Consultation</h3>
-                                <p>If your condition makes traveling difficult, I bring pulmonology care to your home. The same quality of consultation, the same dedication, in the comfort of your house.</p>
-                                <span class="service-card__cta">Request a visit <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-camera-video" aria-hidden="true"></i></div>
-                                <h3>Telemedicine</h3>
-                                <p>A pulmonology consultation by video call from anywhere. Ideal for follow-ups, second opinions or if you are outside Mexico City. The same care, without traveling.</p>
-                                <span class="service-card__cta">Book telemedicine <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-shield-check" aria-hidden="true"></i></div>
-                                <h3>Preoperative lung assessment</h3>
-                                <p>Before surgery, it is essential to know the condition of your lungs. This assessment reduces risks and gives you the peace of mind of going into the operating room well prepared.</p>
-                                <span class="service-card__cta">Book <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div></div>
-                        <button class="svc-carousel__arrow svc-carousel__arrow--prev" aria-label="Previous"><i class="bi bi-chevron-left"></i></button>
-                        <button class="svc-carousel__arrow svc-carousel__arrow--next" aria-label="Next"><i class="bi bi-chevron-right"></i></button>
-                        <div class="svc-carousel__dots"></div>
+                        <div class="svc2-grid">
+                            <a class="svc2-feat" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal" data-cta="svc-consulta-feat">
+                                <span class="svc2-ic"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i></span>
+                                <span class="svc2-tx">
+                                    <h3>Pulmonology Consultation <span class="svc2-badge">Most requested</span></h3>
+                                    <p>A complete evaluation of your respiratory health with a board-certified pulmonologist: symptoms, background and medical history for an accurate diagnosis and a clear plan.</p>
+                                </span>
+                                <span class="svc2-btn">Book</span>
+                            </a>
+                            <a class="svc2-row" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                                <span class="svc2-ic"><i class="bi bi-house-heart" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Home visit consultation</h3><p>If your condition makes traveling difficult, I bring pulmonology care to your home with the same quality of consultation.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="/en/teleconsultation/">
+                                <span class="svc2-ic"><i class="bi bi-camera-video" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Telemedicine</h3><p>A consultation by video call from anywhere; ideal for follow-ups and second opinions.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row svc2-row--wide" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                                <span class="svc2-ic"><i class="bi bi-shield-check" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Preoperative lung assessment</h3><p>Before surgery it is essential to know how your lungs are doing: lower your risks and arrive prepared.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
                         </div>
                     </div>
 
                     <!-- ── Estudios respiratorios ── -->
                     <div class="services-panel" role="tabpanel" data-panel="estudios">
-                        <div class="svc-carousel"><div class="svc-carousel__viewport"><div class="svc-carousel__track">
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-lungs" aria-hidden="true"></i></div>
-                                <h3>Simple spirometry</h3>
-                                <p>A quick, painless test that measures your lung capacity. It is the first step to detect asthma, COPD or other hidden respiratory problems.</p>
-                                
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-activity" aria-hidden="true"></i></div>
-                                <h3>Spirometry with bronchodilator</h3>
-                                <p>We measure your lung function before and after a bronchodilator to determine whether your airway obstruction is reversible, key to telling asthma apart from COPD.</p>
-                                
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-moon-stars" aria-hidden="true"></i></div>
-                                <h3>Respiratory polygraphy</h3>
-                                <p>An overnight study that detects sleep apnea from your home. It records your breathing, oxygen and effort while you sleep for an accurate diagnosis.</p>
-                                
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="fa-solid fa-fan" aria-hidden="true"></i></div>
-                                <h3>Automatic CPAP titration</h3>
-                                <p>We adjust the optimal pressure of your CPAP device so it works perfectly while you sleep, eliminating the breathing pauses of sleep apnea.</p>
-                                
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="fa-solid fa-wind" aria-hidden="true"></i></div>
-                                <h3>Fractional exhaled nitric oxide</h3>
-                                <p>A breath test that measures inflammation in your airways. It helps diagnose and monitor asthma objectively and without discomfort.</p>
-                                
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-broadcast" aria-hidden="true"></i></div>
-                                <h3>Lung ultrasound</h3>
-                                <p>Real-time imaging of your lungs without radiation. It allows pleural fluid, consolidations and other abnormalities to be detected quickly and safely.</p>
-                                
-                            </div>
-                        </div></div>
-                        <button class="svc-carousel__arrow svc-carousel__arrow--prev" aria-label="Previous"><i class="bi bi-chevron-left"></i></button>
-                        <button class="svc-carousel__arrow svc-carousel__arrow--next" aria-label="Next"><i class="bi bi-chevron-right"></i></button>
-                        <div class="svc-carousel__dots"></div>
+                        <div class="svc2-grid">
+                            <a class="svc2-feat" href="/en/spirometry/" data-cta="svc-espiro-feat">
+                                <span class="svc2-ic"><i class="bi bi-activity" aria-hidden="true"></i></span>
+                                <span class="svc2-tx">
+                                    <h3>Spirometry with bronchodilator <span class="svc2-badge">Key diagnostic test</span></h3>
+                                    <p>The gold-standard test to tell asthma apart from COPD: we measure your lung function before and after a bronchodilator. Same-day results.</p>
+                                </span>
+                                <span class="svc2-btn">Book</span>
+                            </a>
+                            <a class="svc2-row" href="/en/spirometry/">
+                                <span class="svc2-ic"><i class="bi bi-lungs" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Simple spirometry</h3><p>A quick, painless test that measures your lung capacity; the first step to detect asthma or COPD.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="/en/sleep-apnea-test/">
+                                <span class="svc2-ic"><i class="bi bi-moon-stars" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Respiratory polygraphy</h3><p>An overnight study that detects sleep apnea from your home, with an accurate diagnosis.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="/servicios/titulacion-presion-positiva/">
+                                <span class="svc2-ic"><i class="fa-solid fa-fan" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Automatic CPAP titration</h3><p>We adjust your CPAP to its optimal pressure to eliminate breathing pauses while you sleep.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="/servicios/feno/">
+                                <span class="svc2-ic"><i class="fa-solid fa-wind" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Fractional exhaled nitric oxide</h3><p>A breath test that measures inflammation in your airways; key in asthma.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row svc2-row--wide" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                                <span class="svc2-ic"><i class="bi bi-broadcast" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Lung ultrasound</h3><p>Real-time imaging of your lungs, without radiation: pleural fluid and consolidations on the spot.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
                         </div>
                     </div>
 
                     <!-- ── Procedimientos ── -->
                     <div class="services-panel" role="tabpanel" data-panel="procedimientos">
-                        <div class="svc-carousel"><div class="svc-carousel__viewport"><div class="svc-carousel__track">
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-droplet" aria-hidden="true"></i></div>
-                                <h3>Thoracentesis</h3>
-                                <p>A procedure to drain fluid that has built up around your lungs. It relieves shortness of breath and allows the fluid to be analyzed to determine its cause.</p>
-                                <span class="service-card__cta">Book <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-bandaid" aria-hidden="true"></i></div>
-                                <h3>Chest tube placement</h3>
-                                <p>When the pleural effusion is significant, we place a tube to drain it continuously and in a controlled way, giving your lungs room to breathe again.</p>
-                                <span class="service-card__cta">Book <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-moisture" aria-hidden="true"></i></div>
-                                <h3>Pleural catheter</h3>
-                                <p>For recurrent effusions, this indwelling catheter lets you drain fluid safely from home, reducing hospital visits and improving your quality of life.</p>
-                                <span class="service-card__cta">Book <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-search-heart" aria-hidden="true"></i></div>
-                                <h3>Diagnostic bronchoscopy</h3>
-                                <p>A direct examination of your airways with a flexible camera. It allows samples to be taken and lesions, infections or tumors to be diagnosed with high precision.</p>
-                                <span class="service-card__cta">Book <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div></div>
-                        <button class="svc-carousel__arrow svc-carousel__arrow--prev" aria-label="Previous"><i class="bi bi-chevron-left"></i></button>
-                        <button class="svc-carousel__arrow svc-carousel__arrow--next" aria-label="Next"><i class="bi bi-chevron-right"></i></button>
-                        <div class="svc-carousel__dots"></div>
+                        <div class="svc2-grid">
+                            <a class="svc2-row" href="/servicios/toracocentesis/">
+                                <span class="svc2-ic"><i class="bi bi-droplet" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Thoracentesis</h3><p>Drainage of the fluid built up around your lungs: it brings relief and lets us analyze the cause.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                                <span class="svc2-ic"><i class="bi bi-bandaid" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Chest tube placement</h3><p>Continuous, controlled drainage of significant effusions to give your lungs room to breathe again.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="/servicios/cateter-pleural-multiproposito/">
+                                <span class="svc2-ic"><i class="bi bi-moisture" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Pleural catheter</h3><p>For recurrent effusions: drain safely from home and reduce hospital visits.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="/servicios/broncoscopia/">
+                                <span class="svc2-ic"><i class="bi bi-search-heart" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Diagnostic bronchoscopy</h3><p>A direct look at your airways with a flexible camera: precise samples and an accurate diagnosis.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
                         </div>
                     </div>
 
                     <!-- ── Tratamientos ── -->
                     <div class="services-panel" role="tabpanel" data-panel="tratamientos">
-                        <div class="svc-carousel"><div class="svc-carousel__viewport"><div class="svc-carousel__track">
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-heart-pulse" aria-hidden="true"></i></div>
-                                <h3>Respiratory therapy</h3>
-                                <p>A program of guided exercises and techniques to strengthen your lungs, improve your breathing capacity and recover your quality of life step by step.</p>
-                                <span class="service-card__cta">Book <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-shield-plus" aria-hidden="true"></i></div>
-                                <h3>Smoking-cessation treatment</h3>
-                                <p>A personalized medical plan with tools that truly work. I support you every step of the way so you can quit smoking for good and without relapses.</p>
-                                <span class="service-card__cta">Book <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="fa-solid fa-ribbon" aria-hidden="true"></i></div>
-                                <h3>Lung cancer screening</h3>
-                                <p>If you have risk factors, an early evaluation can save your life. We perform screening studies and follow-up of suspicious lung nodules.</p>
-                                <span class="service-card__cta">Book <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                            <div class="service-card">
-                                <div class="service-card__icon"><i class="bi bi-clipboard-check" aria-hidden="true"></i></div>
-                                <h3>Chronic disease follow-up</h3>
-                                <p>Asthma, COPD, pulmonary fibrosis: regular follow-up is key. We continuously adjust your treatment so you have fewer flare-ups and more good days.</p>
-                                <span class="service-card__cta">Book <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div></div>
-                        <button class="svc-carousel__arrow svc-carousel__arrow--prev" aria-label="Previous"><i class="bi bi-chevron-left"></i></button>
-                        <button class="svc-carousel__arrow svc-carousel__arrow--next" aria-label="Next"><i class="bi bi-chevron-right"></i></button>
-                        <div class="svc-carousel__dots"></div>
+                        <div class="svc2-grid">
+                            <a class="svc2-row" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                                <span class="svc2-ic"><i class="bi bi-heart-pulse" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Respiratory therapy</h3><p>Guided exercises and techniques to strengthen your lungs and recover your quality of life.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="/servicios/tratamiento-dejar-de-fumar/">
+                                <span class="svc2-ic"><i class="bi bi-shield-plus" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Smoking-cessation treatment</h3><p>A personalized medical plan with tools that work; I support you until you quit for good.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                                <span class="svc2-ic"><i class="fa-solid fa-ribbon" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Lung cancer screening</h3><p>If you have risk factors, early screening and nodule follow-up can save your life.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="svc2-row" href="/servicios/seguimiento-enfermedades-cronicas/">
+                                <span class="svc2-ic"><i class="bi bi-clipboard-check" aria-hidden="true"></i></span>
+                                <span class="svc2-tx"><h3>Chronic disease follow-up</h3><p>Asthma, COPD, fibrosis: we continuously adjust your treatment for fewer flare-ups and more good days.</p></span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                            </a>
                         </div>
                     </div>
 
                 </div>
             </div>
         </section>
-
         <!-- ===== ENFERMEDADES — Counter-scrolling bands ===== -->
         <hr class="section-divider">
         <section id="enfermedades" class="diseases-section section-bg py-5">
@@ -3798,189 +4211,139 @@
                 <div class="mb-5 text-center">
                     <span class="section-label reveal">Diseases</span>
                     <h2 class="section-title reveal">Do you recognize any of these problems?</h2>
-                    <p class="section-sub reveal">If any of this sounds familiar, I can help you. Click on any of them to learn more.</p>
+                    <p class="section-sub reveal">If any of this sounds familiar, I can help. Click on any of them to learn more.</p>
                 </div>
             </div>
-            <div class="disease-bands">
-                <!-- Band 1 — scrolls left -->
-                <div class="disease-band disease-band--top">
-                    <a href="/enfermedades/asma/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-wind" aria-hidden="true"></i></div>
+            <div class="container">
+                <div class="dis2-chips reveal" id="disChips" role="group" aria-label="Filter by symptom"></div>
+                <p class="dis2-hint" id="disHint">Pick a symptom to see the related conditions.</p>
+                <div class="dis2-grid" id="disGrid">
+                    <div class="dis2-card f-obs" data-cell="0" data-sz="lg" data-s="tos aire silbido" data-sym="Wheezing when breathing|Dry cough at night|Tight chest" data-url="/en/asthma/">
+                        <span class="dis2-fam">Airways</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-lungs" aria-hidden="true"></i></span>
                         <h3>Asthma</h3>
                         <p>Do you feel wheezing when you breathe, shortness of breath or a cough that won't go away? With the right treatment, you can live without asthma holding you back.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/epoc/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-lungs" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/en/asthma/">Learn more <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-obs" data-cell="2" data-sz="lg" data-s="tos aire fumo silbido" data-sym="Fatigue when walking|Cough with phlegm|Smoking history" data-url="/en/copd/">
+                        <span class="dis2-fam">Airways</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-wind" aria-hidden="true"></i></span>
                         <h3>COPD</h3>
                         <p>Do you get tired when walking or climbing stairs? COPD advances silently, but with the right management it can be slowed down.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/neumonia/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-bacterium" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/en/copd/">Learn more <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-inf" data-cell="12" data-sz="lg" data-s="tos fiebre pecho" data-sym="High fever|Cough with phlegm|Pain when breathing" data-url="/enfermedades/neumonia/">
+                        <span class="dis2-fam">Infectious</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-bacterium" aria-hidden="true"></i></span>
                         <h3>Pneumonia</h3>
                         <p>High fever, a cough with phlegm and pain when breathing are warning signs that require prompt attention.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/apnea-del-sueno/" class="disease-card">
-                        <div class="disease-card__icon"><i class="bi bi-moon-stars" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/neumonia/">Learn more <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-sue" data-cell="7" data-sz="lg" data-s="ronquido cansancio" data-sym="Loud snoring|Daytime sleepiness|Breathing pauses" data-url="/enfermedades/apnea-del-sueno/">
+                        <span class="dis2-fam">Sleep</span>
+                        <span class="dis2-ic"><i class="bi bi-moon-stars" aria-hidden="true"></i></span>
                         <h3>Sleep Apnea</h3>
                         <p>Do you snore loudly and wake up tired? You could be pausing your breathing while you sleep without knowing it.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/fibrosis-pulmonar/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-lungs-virus" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/apnea-del-sueno/">Learn more <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-cro" data-cell="1" data-s="aire tos cansancio" data-sym="Progressive shortness of breath|Persistent dry cough" data-url="/enfermedades/fibrosis-pulmonar/">
+                        <span class="dis2-fam">Chronic</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-lungs-virus" aria-hidden="true"></i></span>
                         <h3>Pulmonary Fibrosis</h3>
                         <p>Progressive scarring of lung tissue that makes breathing harder. An early diagnosis is key.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/cancer-de-pulmon/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-ribbon" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/fibrosis-pulmonar/">Learn more <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-onc" data-cell="14" data-sz="lg" data-s="tos fumo" data-sym="A cough that changes|Coughing up blood|Weight loss" data-url="/enfermedades/cancer-de-pulmon/">
+                        <span class="dis2-fam">Oncology</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-ribbon" aria-hidden="true"></i></span>
                         <h3>Lung Cancer</h3>
                         <p>Early detection can save lives. If you have risk factors, an evaluation can make all the difference.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/influenza/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-virus" aria-hidden="true"></i></div>
-                        <h3>Influenza</h3>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/cancer-de-pulmon/">Learn more <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-inf" data-cell="3" data-sz="sm" data-s="fiebre tos" data-sym="Sudden fever|Body aches|Dry cough" data-url="/enfermedades/influenza/">
+                        <span class="dis2-fam">Infectious</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-virus" aria-hidden="true"></i></span>
+                        <h3>Influenza (Flu)</h3>
                         <p>More than a cold: it can become seriously complicated. Prevention and timely treatment are essential.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <!-- Duplicates for seamless loop -->
-                    <a href="/enfermedades/asma/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-wind" aria-hidden="true"></i></div>
-                        <h3>Asthma</h3>
-                        <p>Do you feel wheezing when you breathe, shortness of breath or a cough that won't go away? With the right treatment, you can live without asthma holding you back.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/epoc/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-lungs" aria-hidden="true"></i></div>
-                        <h3>COPD</h3>
-                        <p>Do you get tired when walking or climbing stairs? COPD advances silently, but with the right management it can be slowed down.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/neumonia/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-bacterium" aria-hidden="true"></i></div>
-                        <h3>Pneumonia</h3>
-                        <p>High fever, a cough with phlegm and pain when breathing are warning signs that require prompt attention.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/apnea-del-sueno/" class="disease-card">
-                        <div class="disease-card__icon"><i class="bi bi-moon-stars" aria-hidden="true"></i></div>
-                        <h3>Sleep Apnea</h3>
-                        <p>Do you snore loudly and wake up tired? You could be pausing your breathing while you sleep without knowing it.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/fibrosis-pulmonar/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-lungs-virus" aria-hidden="true"></i></div>
-                        <h3>Pulmonary Fibrosis</h3>
-                        <p>Progressive scarring of lung tissue that makes breathing harder. An early diagnosis is key.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/cancer-de-pulmon/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-ribbon" aria-hidden="true"></i></div>
-                        <h3>Lung Cancer</h3>
-                        <p>Early detection can save lives. If you have risk factors, an evaluation can make all the difference.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/influenza/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-virus" aria-hidden="true"></i></div>
-                        <h3>Influenza</h3>
-                        <p>More than a cold: it can become seriously complicated. Prevention and timely treatment are essential.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                </div>
-                <!-- Band 2 — scrolls right (opposite direction) -->
-                <div class="disease-band disease-band--bottom">
-                    <a href="/enfermedades/derrames-pleurales/" class="disease-card">
-                        <div class="disease-card__icon"><i class="bi bi-moisture" aria-hidden="true"></i></div>
-                        <h3>Pleural Effusions</h3>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/influenza/">Learn more <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-urg" data-cell="5" data-s="pecho aire" data-short="Pleural Effusion" data-sym="Chest pain|Sudden shortness of breath" data-url="/enfermedades/derrames-pleurales/">
+                        <span class="dis2-fam">Pleura</span>
+                        <span class="dis2-ic"><i class="bi bi-moisture" aria-hidden="true"></i></span>
+                        <h3>Pleural Effusion</h3>
                         <p>Do you feel chest pain or sudden shortness of breath? Fluid buildup requires specialized diagnosis.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/tabaquismo/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-ban-smoking" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/derrames-pleurales/">Learn more <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-cro" data-cell="6" data-sz="sm" data-s="fumo tos" data-sym="Dependence|Smoker's cough" data-url="/enfermedades/tabaquismo/">
+                        <span class="dis2-fam">Prevention</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-ban-smoking" aria-hidden="true"></i></span>
                         <h3>Smoking</h3>
                         <p>A real medical plan, with proven tools, to help you quit smoking for good.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/bronquiectasias/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-lungs" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/tabaquismo/">Learn more <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-obs" data-cell="8" data-s="tos fiebre" data-sym="Repeated infections|Heavy phlegm" data-url="/enfermedades/bronquiectasias/">
+                        <span class="dis2-fam">Airways</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-lungs" aria-hidden="true"></i></span>
                         <h3>Bronchiectasis</h3>
                         <p>Permanent damage to the bronchi that causes recurrent infections. Proper management improves your quality of life.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/hipertension-pulmonar/" class="disease-card">
-                        <div class="disease-card__icon"><i class="bi bi-heart-pulse" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/bronquiectasias/">Learn more <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-cro" data-cell="4" data-s="aire cansancio" data-short="Pulm. Hypertension" data-sym="Fatigue|Shortness of breath on exertion|Leg swelling" data-url="/enfermedades/hipertension-pulmonar/">
+                        <span class="dis2-fam">Chronic</span>
+                        <span class="dis2-ic"><i class="bi bi-heart-pulse" aria-hidden="true"></i></span>
                         <h3>Pulmonary Hypertension</h3>
                         <p>High pressure in the lung arteries that affects the heart. An accurate diagnosis changes the prognosis.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/embolia-pulmonar/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-shield-virus" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/hipertension-pulmonar/">Learn more <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-urg" data-cell="9" data-s="pecho aire" data-sym="Sudden pain|Sudden shortness of breath" data-url="/en/pulmonary-embolism/">
+                        <span class="dis2-fam">Emergency</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-shield-virus" aria-hidden="true"></i></span>
                         <h3>Pulmonary Embolism</h3>
                         <p>A clot that blocks the lung arteries. It is a medical emergency that requires immediate attention.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/neumotorax/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-explosion" aria-hidden="true"></i></div>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/en/pulmonary-embolism/">Learn more <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-urg" data-cell="10" data-sz="sm" data-s="pecho aire" data-sym="Stabbing pain|Sudden shortness of breath" data-url="/enfermedades/neumotorax/">
+                        <span class="dis2-fam">Emergency</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-explosion" aria-hidden="true"></i></span>
                         <h3>Pneumothorax</h3>
                         <p>A lung collapsed by air in the pleura: sudden pain and shortness of breath. Drainage and follow-up to prevent recurrences.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/secuelas-covid/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-virus-covid" aria-hidden="true"></i></div>
-                        <h3>Post-COVID Sequelae</h3>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/neumotorax/">Learn more <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-cro" data-cell="11" data-s="tos aire cansancio" data-sym="Persistent fatigue|Lingering cough" data-url="/enfermedades/secuelas-covid/">
+                        <span class="dis2-fam">Chronic</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-virus-covid" aria-hidden="true"></i></span>
+                        <h3>Long COVID</h3>
                         <p>Still have a cough or shortness of breath after COVID? We evaluate and treat post-infection respiratory sequelae.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <!-- Duplicates for seamless loop -->
-                    <a href="/enfermedades/derrames-pleurales/" class="disease-card">
-                        <div class="disease-card__icon"><i class="bi bi-moisture" aria-hidden="true"></i></div>
-                        <h3>Pleural Effusions</h3>
-                        <p>Do you feel chest pain or sudden shortness of breath? Fluid buildup requires specialized diagnosis.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/tabaquismo/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-ban-smoking" aria-hidden="true"></i></div>
-                        <h3>Smoking</h3>
-                        <p>A real medical plan, with proven tools, to help you quit smoking for good.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/bronquiectasias/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-lungs" aria-hidden="true"></i></div>
-                        <h3>Bronchiectasis</h3>
-                        <p>Permanent damage to the bronchi that causes recurrent infections. Proper management improves your quality of life.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/hipertension-pulmonar/" class="disease-card">
-                        <div class="disease-card__icon"><i class="bi bi-heart-pulse" aria-hidden="true"></i></div>
-                        <h3>Pulmonary Hypertension</h3>
-                        <p>High pressure in the lung arteries that affects the heart. An accurate diagnosis changes the prognosis.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/embolia-pulmonar/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-shield-virus" aria-hidden="true"></i></div>
-                        <h3>Pulmonary Embolism</h3>
-                        <p>A clot that blocks the lung arteries. It is a medical emergency that requires immediate attention.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/neumotorax/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-explosion" aria-hidden="true"></i></div>
-                        <h3>Pneumothorax</h3>
-                        <p>A lung collapsed by air in the pleura: sudden pain and shortness of breath. Drainage and follow-up to prevent recurrences.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
-                    <a href="/enfermedades/secuelas-covid/" class="disease-card">
-                        <div class="disease-card__icon"><i class="fa-solid fa-virus-covid" aria-hidden="true"></i></div>
-                        <h3>Post-COVID Sequelae</h3>
-                        <p>Still have a cough or shortness of breath after COVID? We evaluate and treat post-infection respiratory sequelae.</p>
-                        <span class="disease-card__cta">Learn more <i class="bi bi-arrow-right"></i></span>
-                    </a>
+                        <div class="dis2-actions"><a class="dis2-cta" href="/enfermedades/secuelas-covid/">Learn more <i class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                    <div class="dis2-card f-sue" data-cell="13" data-s="ronquido aire cansancio" data-short="Hypoventilation" data-sym="Daytime sleepiness|Headache on waking|Snoring" data-url="">
+                        <span class="dis2-fam">Sleep</span>
+                        <span class="dis2-ic"><i class="fa-solid fa-weight-scale" aria-hidden="true"></i></span>
+                        <h3>Obesity Hypoventilation</h3>
+                        <p>Excess weight makes it hard to breathe well, especially during sleep: daytime sleepiness, morning headaches and constant fatigue.</p>
+                        <div class="dis2-actions"><span class="dis2-soon-tag">Page coming soon</span></div>
+                    </div>
                 </div>
+                <div class="dis2-bubbles" id="disBubbles"></div>
+            </div>
+            <!-- sheet móvil de enfermedad -->
+            <div class="dis2-sheetbg" id="disSheetBg"></div>
+            <div class="dis2-sheet" id="disSheet" role="dialog" aria-modal="true" aria-labelledby="disSheetName">
+                <div class="grab"></div>
+                <div class="top">
+                    <span class="sic" id="disSheetIc"></span>
+                    <div><div class="sfam" id="disSheetFam"></div><h3 id="disSheetName"></h3></div>
+                    <button type="button" class="x" id="disSheetX" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+                </div>
+                <p class="sdesc" id="disSheetDesc"></p>
+                <ul id="disSheetSym"></ul>
+                <div class="scta">
+                    <a class="more" id="disSheetMore" href="#">Learn more</a>
+                    <a class="swa" id="disSheetWa" href="#" target="_blank" rel="noopener noreferrer" aria-label="Ask on WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                </div>
+                <div class="soon" id="disSheetSoon" hidden>Page under construction - ask on WhatsApp</div>
             </div>
         </section>
-
         <!-- ===== BANNER CONTINGENCIA — Premium redesign ===== -->
         <div class="cont-section" aria-label="Resource: air quality alert">
           <div class="cont-aurora cont-aurora--a"></div>
@@ -4142,12 +4505,12 @@
           var WAQI_URL   = 'https://api.waqi.info/feed/geo:19.3758;-99.1834/?token=' + WAQI_TOKEN;
           var OM_URL     = 'https://air-quality-api.open-meteo.com/v1/air-quality?latitude=19.3758&longitude=-99.1834&current=us_aqi&timezone=America%2FMexico_City';
           function aqiCategory(v){
-            if(v<=50)  return {label:'Good',          color:'#10b981'};
+            if(v<=50)  return {label:'Good',         color:'#10b981'};
             if(v<=100) return {label:'Moderate',      color:'#f59e0b'};
             if(v<=150) return {label:'Unhealthy (sensitive groups)', color:'#f97316'};
-            if(v<=200) return {label:'Unhealthy',     color:'#ef4444'};
-            if(v<=300) return {label:'Very unhealthy', color:'#a21caf'};
-            return       {label:'Hazardous',           color:'#7f1d1d'};
+            if(v<=200) return {label:'Unhealthy',          color:'#ef4444'};
+            if(v<=300) return {label:'Very unhealthy',      color:'#a21caf'};
+            return       {label:'Hazardous',          color:'#7f1d1d'};
           }
           function render(v, link){
             var cat = aqiCategory(v);
@@ -4215,6 +4578,27 @@
           // smog state — color is for the *haze*, not bright glow
           var state = {value:60, smoke:'#3a2a22', tint:'#a86a3a', speed:.18};
 
+          // sprites pre-renderizados (uno por color de humo): evita crear un
+          // createRadialGradient por partícula en cada frame — el gradiente se
+          // pinta una vez y luego solo se hace drawImage escalado
+          var SPRITE_R = 128, sprites = {smoke:null, tint:null};
+          function makeSprite(col){
+            var c = document.createElement('canvas');
+            c.width = c.height = SPRITE_R*2;
+            var sx = c.getContext('2d');
+            var g = sx.createRadialGradient(SPRITE_R,SPRITE_R,SPRITE_R*0.05,SPRITE_R,SPRITE_R,SPRITE_R);
+            g.addColorStop(0, hexToRgba(col, 1));
+            g.addColorStop(0.55, hexToRgba(col, 0.35));
+            g.addColorStop(1, hexToRgba(col, 0));
+            sx.fillStyle = g;
+            sx.fillRect(0,0,SPRITE_R*2,SPRITE_R*2);
+            return c;
+          }
+          function buildSprites(){
+            sprites.smoke = makeSprite(state.smoke);
+            sprites.tint  = makeSprite(state.tint);
+          }
+
           function resize(){
             var r = section.getBoundingClientRect();
             w = Math.max(1, Math.floor(r.width));
@@ -4264,20 +4648,15 @@
               if(p.y < -p.r) p.y = h+p.r;
               if(p.y > h+p.r) p.y = -p.r;
               var alpha = p.a * (0.75 + 0.25*Math.sin(p.tw));
-              var col = p.warm ? state.tint : state.smoke;
-              var grd = ctx.createRadialGradient(p.x,p.y,p.r*0.05,p.x,p.y,p.r);
-              grd.addColorStop(0, hexToRgba(col, alpha));
-              grd.addColorStop(0.55, hexToRgba(col, alpha*0.35));
-              grd.addColorStop(1, hexToRgba(col, 0));
-              ctx.fillStyle = grd;
+              if(!sprites.smoke) buildSprites();
+              var spr = p.warm ? sprites.tint : sprites.smoke;
               // irregular blob via slight scale + rotation
               ctx.save();
               ctx.translate(p.x,p.y);
               ctx.rotate(p.rot);
               ctx.scale(1.15, 0.78);
-              ctx.beginPath();
-              ctx.arc(0,0,p.r,0,Math.PI*2);
-              ctx.fill();
+              ctx.globalAlpha = alpha;
+              ctx.drawImage(spr, -p.r, -p.r, p.r*2, p.r*2);
               ctx.restore();
             }
             ctx.globalCompositeOperation = 'source-over';
@@ -4305,6 +4684,7 @@
             var pal = bgPalette(v);
             state.tint = pal.tint;
             state.smoke = pal.smoke;
+            buildSprites();
             section.style.setProperty('--bg-top', pal.top);
             section.style.setProperty('--bg-mid', pal.mid);
             section.style.setProperty('--bg-bot', pal.bot);
@@ -4363,11 +4743,11 @@
 
                 <!-- Verified badge + Google rating widget visible (refleja AggregateRating del schema) -->
                 <div class="text-center mb-5 reveal" style="display:flex;flex-direction:column;gap:14px;align-items:center;">
-                    <a href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer" class="gbp-rating-widget" aria-label="5.0-star rating with 26 verified Google reviews. View reviews">
+                    <a href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer" class="gbp-rating-widget" aria-label="5.0-star rating with 29 verified Google reviews. View reviews">
                         <span class="gbp-rating-widget__num">5.0</span>
                         <div class="gbp-rating-widget__meta">
                             <span class="gbp-rating-widget__stars" aria-hidden="true">★★★★★</span>
-                            <span class="gbp-rating-widget__count">26 verified reviews</span>
+                            <span class="gbp-rating-widget__count">29 verified reviews</span>
                         </div>
                         <span class="gbp-rating-widget__source"><i class="bi bi-google" aria-hidden="true"></i> Google</span>
                     </a>
@@ -4421,7 +4801,7 @@
 
         <!-- ===== CTA BAND ===== -->
         <section class="cta-band text-center" style="padding:80px 0">
-            <canvas class="cta-band__canvas" id="ctaSparkles"></canvas>
+            <div class="cta-band__canvas sparkle-field" id="ctaSparkles" aria-hidden="true"></div>
             <div class="cta-band__glow-line"></div>
             <div class="container cta-band-content reveal">
                 <p class="mb-3" style="color:rgba(116,185,255,.7);font-size:.82rem;font-weight:700;letter-spacing:3px;text-transform:uppercase">Don't wait for it to get worse</p>
@@ -4499,7 +4879,7 @@
                     <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                         <summary itemprop="name">What is a spirometry test with bronchodilator used for?</summary>
                         <div class="faq-item__body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                            <p itemprop="text">It is a quick, painless test in which you blow into a device to measure your lung capacity. It is the key study to diagnose <a href="/enfermedades/asma/">asthma</a>, <a href="/enfermedades/epoc/">COPD</a> or other hidden respiratory problems.</p>
+                            <p itemprop="text">It is a quick, painless test in which you blow into a device to measure your lung capacity. It is the key study to diagnose <a href="/en/asthma/">asthma</a>, <a href="/en/copd/">COPD</a> or other hidden respiratory problems.</p>
                         </div>
                     </details>
 
@@ -4513,7 +4893,7 @@
                     <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                         <summary itemprop="name">What is medical follow-up for asthma and COPD like?</summary>
                         <div class="faq-item__body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                            <p itemprop="text">We review your progress together, adjust your treatment if needed and work to reduce your respiratory flare-ups. The goal is to keep your condition from limiting your daily life. Learn more about <a href="/enfermedades/asma/">asthma</a> and <a href="/enfermedades/epoc/">COPD</a>.</p>
+                            <p itemprop="text">We review your progress together, adjust your treatment if needed and work to reduce your respiratory flare-ups. The goal is to keep your condition from limiting your daily life. Learn more about <a href="/en/asthma/">asthma</a> and <a href="/en/copd/">COPD</a>.</p>
                         </div>
                     </details>
 
@@ -4534,7 +4914,7 @@
                     <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                         <summary itemprop="name">What diseases does an INER pulmonologist treat in Mexico City?</summary>
                         <div class="faq-item__body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                            <p itemprop="text">An INER-trained pulmonologist treats COPD, asthma, sleep apnea, pneumonia, pulmonary fibrosis, pleural effusions, pulmonary hypertension, pulmonary embolism, bronchiectasis and post-COVID-19 sequelae.</p>
+                            <p itemprop="text">An INER-trained pulmonologist treats COPD, asthma, sleep apnea, pneumonia, pulmonary fibrosis, pleural effusions, pulmonary hypertension, pulmonary embolism, bronchiectasis and post-COVID-19 respiratory sequelae.</p>
                         </div>
                     </details>
 
@@ -4547,7 +4927,7 @@
                 </div>
 
                 <p class="text-center mt-4 reveal" style="font-size:.88rem;color:var(--text-muted);margin-top:32px;">
-                    Have another question? <a href="/preguntas-frecuentes/" style="color:var(--electric);font-weight:600;">See the full list of 22 FAQs</a> or
+                    Have another question? <a href="/en/faq/" style="color:var(--electric);font-weight:600;">See the full list of 22 FAQs</a> or
                     <a href="https://wa.me/5215591708334?text=Hi%20Dr.%20Lara%2C%20I%20have%20a%20question%20before%20booking" target="_blank" rel="noopener noreferrer" style="color:var(--electric);font-weight:600;">ask me on WhatsApp</a>.
                 </p>
             </div>
@@ -4572,7 +4952,7 @@
             <div class="footer-social">
                 <a href="https://www.instagram.com/dr.williamlara/"  target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
                 <a href="https://wa.me/5215591708334"  target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
-                <a href="tel:5591708334" aria-label="Teléfono" data-cta="navbar-tel"><i class="bi bi-telephone-fill" aria-hidden="true"></i></a>
+                <a href="tel:5591708334" aria-label="Phone" data-cta="navbar-tel"><i class="bi bi-telephone-fill" aria-hidden="true"></i></a>
             </div>
             <hr class="footer-divider">
 
@@ -4580,7 +4960,7 @@
             <div class="footer-compliance" style="max-width:720px;margin:0 auto 18px;font-size:.72rem;line-height:1.7;color:rgba(255,255,255,.55);text-align:center;">
                 <p style="margin:0 0 6px;color:rgba(255,255,255,.78);font-weight:600;">Dr. William César Lara Vázquez · Physician and Surgeon, Specialist in Pulmonology</p>
                 <p style="margin:0 0 4px;">SEP Professional License: <strong style="color:rgba(255,255,255,.78);">12588976</strong> (BUAP) · SEP Specialty License: <strong style="color:rgba(255,255,255,.78);">15595809</strong> (UNAM / INER)</p>
-                <p style="margin:0 0 4px;">Currently board-certified by the National Pulmonology Board (CNN)</p>
+                <p style="margin:0 0 4px;">Currently board-certified by the National Pulmonology Board, A.C. (CNN)</p>
                 <p style="margin:0 0 4px;">Office: Saturnino Herrán 59, Office 507, Hospital Santa Coleta, San José Insurgentes, Benito Juárez, CDMX 03900</p>
             </div>
 
@@ -4828,7 +5208,7 @@
                 if (!title || !oldCta) return;
                 var name = title.textContent.trim();
                 var useCal = calServices.indexOf(name) !== -1;
-                var href = useCal ? calLink : waBase + encodeURIComponent('Hi Dr., I am interested in the service: ' + name + '. Could you give me more information?');
+                var href = useCal ? calLink : waBase + encodeURIComponent('Hello Dr., I am interested in the service: ' + name + '. Could you give me more information?');
                 var btn = document.createElement('a');
                 btn.className = useCal ? 'service-card__cta service-card__cta--cal' : 'service-card__cta service-card__cta--wa';
                 btn.href = href;
@@ -4853,14 +5233,20 @@
         if (hasGSAP) {
             gsap.registerPlugin(ScrollTrigger);
 
-            /* Hero entrance */
+            /* Hero entrance — blur-in cinematográfico: el contenido "enfoca"
+               mientras entra (blur 12px→0 + y). clearProps quita el filter al
+               terminar para no dejar un stacking context residual. */
+            var blurEls = ['.hero__eyebrow','.hero__headline .line-inner','.hero__sub','.hero__conditions','.hero__cta-row','.hero__proof','.hero__inst','.hero__doc'];
+            gsap.set(blurEls, { filter:'blur(12px)' });
             var tl = gsap.timeline({ defaults:{ ease:'power4.out' }, delay: 0.1 });
-            tl.to('.hero__logo',                { opacity:1, scale:1, duration:1 })
-              .to('.hero__headline .line-inner', { opacity:1, y:0, duration:1.2, stagger:0.15 }, '-=0.4')
-              .to('.hero__sub',                 { opacity:1, y:0, duration:0.9 }, '-=0.7')
-              .to('.hero__tagline',             { opacity:1, y:0, duration:0.8 }, '-=0.7')
-              .to('.hero__conditions',          { opacity:1, y:0, duration:0.7 }, '-=0.4')
-              .to('.hero__cta-row',             { opacity:1, y:0, duration:0.9 }, '-=0.5');
+            tl.to('.hero__eyebrow',             { opacity:1, y:0, filter:'blur(0px)', duration:0.7, clearProps:'filter' })
+              .to('.hero__headline .line-inner', { opacity:1, y:0, filter:'blur(0px)', duration:1.1, stagger:0.14, clearProps:'filter' }, '-=0.35')
+              .to('.hero__sub',                 { opacity:1, y:0, filter:'blur(0px)', duration:0.9, clearProps:'filter' }, '-=0.7')
+              .to('.hero__doc',                 { opacity:1, y:0, filter:'blur(0px)', duration:1.1, clearProps:'filter' }, '-=0.85')
+              .to('.hero__conditions',          { opacity:1, y:0, filter:'blur(0px)', duration:0.7, clearProps:'filter' }, '-=0.7')
+              .to('.hero__cta-row',             { opacity:1, y:0, filter:'blur(0px)', duration:0.8, clearProps:'filter' }, '-=0.5')
+              .to('.hero__proof',               { opacity:1, y:0, filter:'blur(0px)', duration:0.6, clearProps:'filter' }, '-=0.55')
+              .to('.hero__inst',                { opacity:1, y:0, filter:'blur(0px)', duration:0.6, clearProps:'filter' }, '-=0.45');
 
             /* Hero parallax — only on desktop */
             if (window.innerWidth > 768) {
@@ -4902,7 +5288,7 @@
 
         } else {
             /* Fallback (no GSAP) */
-            document.querySelectorAll('.hero__logo,.hero__tagline,.hero__headline .line-inner,.hero__sub,.hero__conditions,.hero__cta-row').forEach(function(el){
+            document.querySelectorAll('.hero__eyebrow,.hero__headline .line-inner,.hero__sub,.hero__conditions,.hero__cta-row,.hero__proof,.hero__inst,.hero__doc').forEach(function(el){
                 el.style.opacity='1'; el.style.transform='none';
             });
             var obs = new IntersectionObserver(function(entries){
@@ -4911,135 +5297,72 @@
             document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
         }
 
-        /* ── Sparkle canvas system — desktop only ── */
-        function initSparkles(canvasId, particleCount) {
-            if (window.innerWidth <= 768) particleCount = Math.round(particleCount * 0.35);
-            var canvas = document.getElementById(canvasId);
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var particles = [];
-            var raf = null;
-
-            function resize() {
-                var rect = canvas.parentElement.getBoundingClientRect();
-                canvas.width = rect.width;
-                canvas.height = rect.height;
+        /* ── Sparkle field — nodos CSS generados una sola vez.
+           La animación (solo opacity) corre en el compositor: cero costo
+           por frame en el hilo principal, a diferencia del canvas anterior. ── */
+        function initSparkles(fieldId, starCount) {
+            if (window.innerWidth <= 768) starCount = Math.round(starCount * 0.5);
+            var field = document.getElementById(fieldId);
+            if (!field) return;
+            var frag = document.createDocumentFragment();
+            for (var i = 0; i < starCount; i++) {
+                var s = document.createElement('span');
+                var size = (Math.random() * 2 + 0.7).toFixed(1);
+                if (size > 2.2) s.className = 'glow';
+                s.style.cssText = 'width:' + size + 'px;height:' + size + 'px;' +
+                    'left:' + (Math.random() * 100).toFixed(2) + '%;' +
+                    'top:' + (Math.random() * 100).toFixed(2) + '%;' +
+                    '--sd:' + (2.5 + Math.random() * 4).toFixed(2) + 's;' +
+                    '--sl:' + (Math.random() * 5).toFixed(2) + 's';
+                frag.appendChild(s);
             }
-            resize();
-            window.addEventListener('resize', resize);
-
-            for (var i = 0; i < particleCount; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    size: Math.random() * 2 + 0.5,
-                    speedY: (Math.random() - 0.5) * 0.3,
-                    speedX: (Math.random() - 0.5) * 0.2,
-                    opacity: Math.random(),
-                    fadeSpeed: 0.003 + Math.random() * 0.008,
-                    fadeDir: 1
-                });
-            }
-
-            function draw() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                for (var j = 0; j < particles.length; j++) {
-                    var p = particles[j];
-                    p.x += p.speedX;
-                    p.y += p.speedY;
-                    p.opacity += p.fadeSpeed * p.fadeDir;
-                    if (p.opacity >= 1) { p.opacity = 1; p.fadeDir = -1; }
-                    if (p.opacity <= 0) { p.opacity = 0; p.fadeDir = 1; p.x = Math.random() * canvas.width; p.y = Math.random() * canvas.height; }
-                    if (p.x < 0) p.x = canvas.width;
-                    if (p.x > canvas.width) p.x = 0;
-                    if (p.y < 0) p.y = canvas.height;
-                    if (p.y > canvas.height) p.y = 0;
-
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(116,185,255,' + (p.opacity * 0.6) + ')';
-                    ctx.fill();
-
-                    if (p.size > 1.2) {
-                        ctx.beginPath();
-                        ctx.arc(p.x, p.y, p.size * 2.5, 0, Math.PI * 2);
-                        ctx.fillStyle = 'rgba(9,132,227,' + (p.opacity * 0.08) + ')';
-                        ctx.fill();
-                    }
-                }
-                raf = requestAnimationFrame(draw);
-            }
-
-            var sparkleObs = new IntersectionObserver(function(entries) {
-                if (entries[0].isIntersecting) {
-                    if (!raf) draw();
-                } else {
-                    if (raf) { cancelAnimationFrame(raf); raf = null; }
-                }
-            }, { threshold: 0 });
-            sparkleObs.observe(canvas.parentElement);
+            field.appendChild(frag);
         }
 
-        initSparkles('heroSparkles', 240);
-        initSparkles('ctaSparkles', 160);
+        initSparkles('heroSparkles', 40);
+        initSparkles('ctaSparkles', 28);
 
-        /* ── Testimonial scroll — seamless infinite loop ── */
+        /* ── Spotlight en service-cards: actualiza 2 variables CSS por mousemove ── */
+        if (window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+            document.addEventListener('mousemove', function(e) {
+                var card = e.target.closest && e.target.closest('.service-card');
+                if (!card) return;
+                var r = card.getBoundingClientRect();
+                card.style.setProperty('--spot-x', (e.clientX - r.left) + 'px');
+                card.style.setProperty('--spot-y', (e.clientY - r.top) + 'px');
+            }, { passive: true });
+        }
+
+        /* ── Testimonial scroll — marquee CSS infinito.
+           Antes: 110 nodos (22 tarjetas x5) movidos con style.transform en JS
+           cada frame. Ahora: 1 solo clon por columna y animación CSS que corre
+           en el compositor; el navegador la pausa solo fuera de viewport. ── */
         document.querySelectorAll('.testimonial-col').forEach(function(col, idx) {
-            var speed = [0.275, -0.225, 0.3][idx] || 0.275; /* halved per UX feedback for readability */
+            var pxPerSec = [16.5, 13.5, 18][idx] || 16.5; /* mismas velocidades que la versión JS */
 
-            /* Clone cards enough times to guarantee seamless wrap (4x the set) */
             var origCards = Array.from(col.querySelectorAll('.testi-card'));
-            for (var clone = 0; clone < 4; clone++) {
-                origCards.forEach(function(c) {
-                    col.appendChild(c.cloneNode(true));
-                });
-            }
+            if (!origCards.length) return;
+            origCards.forEach(function(c) { col.appendChild(c.cloneNode(true)); });
 
-            /* Measure one full set height */
-            var gap = 16;
+            var gap = parseFloat(getComputedStyle(col).rowGap) || 16;
             var setHeight = 0;
             origCards.forEach(function(c) { setHeight += c.offsetHeight + gap; });
 
-            /* Upward scroll (speed>0): start at 0, move up (translateY goes negative)
-               Downward scroll (speed<0): start mid-content, move down */
-            var pos = speed < 0 ? setHeight : 0;
-            var paused = false;
-            var raf = null;
-
-            col.addEventListener('mouseenter', function() { paused = true; });
-            col.addEventListener('mouseleave', function() { paused = false; });
-
-            function tick() {
-                if (!paused) {
-                    pos += speed;
-                    /* Seamless wrap */
-                    if (speed > 0 && pos >= setHeight) pos -= setHeight;
-                    if (speed < 0 && pos <= 0) pos += setHeight;
-                    col.style.transform = 'translateY(' + (-pos) + 'px)';
-                }
-                raf = requestAnimationFrame(tick);
-            }
-
-            var tObs = new IntersectionObserver(function(entries) {
-                if (entries[0].isIntersecting) {
-                    if (!raf) tick();
-                } else {
-                    if (raf) { cancelAnimationFrame(raf); raf = null; }
-                }
-            }, { threshold: 0 });
-            tObs.observe(col);
+            col.style.setProperty('--t-dur', (setHeight / pxPerSec).toFixed(1) + 's');
+            col.style.setProperty('--tgap', (gap / 2) + 'px');
+            if (idx === 1) col.classList.add('testimonial-col--down');
         });
 
         /* ── Service cards: dual CTAs + highlight ── */
         var waBase = 'https://wa.me/5215591708334?text=';
         var calLink = 'https://cal.com/dr-william-lara/agendar-cita';
         var calServices = ['Pulmonology Consultation'];
-        var agendarOnly = ['Pulmonology Consultation', 'Home Visit Consultation'];
+        var agendarOnly = ['Pulmonology Consultation', 'Home visit consultation'];
         var servicePages = {
-            'Telemedicine': '/servicios/teleconsulta/',
-            'Simple spirometry': '/servicios/espirometria/',
-            'Spirometry with bronchodilator': '/servicios/espirometria/',
-'Respiratory polygraphy': '/servicios/poligrafia-respiratoria/',
+            'Telemedicine': '/en/teleconsultation/',
+            'Simple spirometry': '/en/spirometry/',
+            'Spirometry with bronchodilator': '/en/spirometry/',
+'Respiratory polygraphy': '/en/sleep-apnea-test/',
             'Automatic CPAP titration': '/servicios/titulacion-presion-positiva/',
             'Fractional exhaled nitric oxide': '/servicios/feno/',
             'Thoracentesis': '/servicios/toracocentesis/',
@@ -5058,7 +5381,7 @@
             if (!oldCta && !pageHref) return;
             var useCal = calServices.indexOf(name) !== -1;
             var onlyAgendar = agendarOnly.indexOf(name) !== -1;
-            var agendarHref = useCal ? calLink : waBase + encodeURIComponent('Hi Dr., I would like to book ' + name + '. Could you give me more information?');
+            var agendarHref = useCal ? calLink : waBase + encodeURIComponent('Hello Dr., I would like to book ' + name + '. Could you give me more information?');
             var agendarIcon = useCal ? '<i class="bi bi-calendar-check"></i>' : '<i class="bi bi-whatsapp"></i>';
             var agendarClass = useCal ? 'service-card__cta service-card__cta--cal' : 'service-card__cta service-card__cta--wa';
             /* Build CTA row */
@@ -5084,7 +5407,7 @@
             var oldCta = card.querySelector('.disease-card__cta');
             if (!title || !oldCta) return;
             var name = title.textContent.trim();
-            var waMsg = encodeURIComponent('Hi Dr., I have symptoms related to ' + name + '. Could I book an appointment?');
+            var waMsg = encodeURIComponent('Hello Dr., I have symptoms related to ' + name + '. Could I book an appointment?');
             var pageLink = card.getAttribute('href') || '#';
             /* Remove the <a> default navigation */
             card.removeAttribute('href');
@@ -5212,6 +5535,168 @@
                 setTimeout(function() { band.style.transition = 'none'; }, 350);
             });
         });
+
+        /* ── Servicios v2: indicador deslizante de pestañas ── */
+        (function(){
+            var wrap = document.querySelector('.services-tabs');
+            var ind = document.querySelector('.services-tabs__ind');
+            if (!wrap || !ind) return;
+            function move(){
+                var t = wrap.querySelector('.services-tab.active');
+                if (!t) return;
+                ind.style.width = t.offsetWidth + 'px';
+                ind.style.height = t.offsetHeight + 'px';
+                ind.style.transform = 'translate(' + t.offsetLeft + 'px,' + t.offsetTop + 'px)';
+            }
+            wrap.classList.add('has-ind');
+            move();
+            window.addEventListener('resize', move, { passive: true });
+            wrap.querySelectorAll('.services-tab').forEach(function(t){
+                t.addEventListener('click', function(){
+                    requestAnimationFrame(move);
+                    /* en móvil los tabs son un carril deslizable: centra el activo */
+                    t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                });
+            });
+            /* el indicador debe re-medirse si el carril de tabs se desplaza */
+            wrap.addEventListener('scroll', function(){ requestAnimationFrame(move); }, { passive: true });
+            /* el reveal de la sección puede cambiar el layout tras la primera medición */
+            setTimeout(move, 600);
+        })();
+
+        /* ── Enfermedades v2: buscador de síntomas (grid desktop / burbujas móvil + sheet) ── */
+        (function(){
+            var grid = document.getElementById('disGrid');
+            var field = document.getElementById('disBubbles');
+            if (!grid || !field) return;
+            var cards = Array.prototype.slice.call(grid.querySelectorAll('.dis2-card'));
+
+            /* WhatsApp "Preguntar" por enfermedad (mismo patrón que antes) */
+            cards.forEach(function(card){
+                var name = card.querySelector('h3').textContent.trim();
+                var actions = card.querySelector('.dis2-actions');
+                var waMsg = encodeURIComponent('Hello Dr., I have symptoms related to ' + name + '. Could I book an appointment?');
+                var wa = document.createElement('a');
+                wa.className = 'dis2-cta dis2-cta--wa';
+                wa.href = waBase + waMsg;
+                wa.target = '_blank'; wa.rel = 'noopener noreferrer';
+                wa.innerHTML = '<i class="bi bi-whatsapp"></i> Ask';
+                actions.appendChild(wa);
+            });
+
+            /* chips de síntomas */
+            var SYMPTOMS = [
+                {k:'tos',       t:'Persistent cough',      ic:'fa-solid fa-head-side-cough', msg:'A cough lasting more than 3 weeks always deserves evaluation.'},
+                {k:'aire',      t:'Shortness of breath',        ic:'fa-solid fa-wind',            msg:'Shortness of breath is never normal: these conditions can cause it.'},
+                {k:'ronquido',  t:'I snore / sleep poorly',   ic:'fa-solid fa-moon',            msg:'Loud snoring and waking up tired: get your sleep studied.'},
+                {k:'pecho',     t:'Chest pain',       ic:'fa-solid fa-heart-pulse',     msg:'Chest pain with shortness of breath: get checked promptly.'},
+                {k:'fumo',      t:'I smoke or used to',          ic:'fa-solid fa-ban-smoking',     msg:'Smoking causes silent damage: this is what to watch for.'},
+                {k:'fiebre',    t:'Fever / bad flu',ic:'fa-solid fa-temperature-high',msg:'A flu that will not go away may be something more.'},
+                {k:'silbido',   t:'Wheezing',     ic:'fa-solid fa-wave-square',     msg:'Wheezing when you breathe almost always comes from narrowed airways.'},
+                {k:'cansancio', t:'Constant tiredness',  ic:'fa-solid fa-battery-quarter', msg:'Unexplained tiredness can come from your lungs or your sleep.'}
+            ];
+            var chipsWrap = document.getElementById('disChips');
+            var hint = document.getElementById('disHint');
+            var HINT_DEFAULT = hint.textContent;
+
+            /* burbujas móviles generadas desde las cards (patrón de ladrillo 5x3) */
+            var REST = (function(){
+                var xa=[17.7,43.5,69.4], xb=[30.6,56.5,82.3];
+                var ys=[12.6,30.1,47.6,65.0,82.5], out=[];
+                ys.forEach(function(y,r){ (r%2?xb:xa).forEach(function(x){ out.push([x,y]); }); });
+                return out;
+            })();
+            var bubs = [];
+            cards.forEach(function(card){
+                var cell = parseInt(card.dataset.cell, 10) || 0;
+                var b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'dis2-bub ' + (card.className.match(/f-[a-z]+/) || [''])[0] + (card.dataset.sz ? ' dis2-bub--' + card.dataset.sz : '');
+                b.dataset.s = card.dataset.s;
+                var p = REST[cell % REST.length];
+                b.style.left = p[0] + '%'; b.style.top = p[1] + '%';
+                b.innerHTML = '<span class="bic">' + card.querySelector('.dis2-ic').innerHTML + '</span><b>' + (card.dataset.short || card.querySelector('h3').textContent) + '</b>';
+                b.addEventListener('click', function(){ openSheet(card); });
+                field.appendChild(b); bubs.push(b);
+            });
+
+            function clusterTargets(n, W, H){
+                var rows=[], left=n;
+                while (left > 0) { var take = Math.min(3, left); rows.push(take); left -= take; }
+                if (rows.length > 1 && rows[rows.length-1] === 1 && rows[rows.length-2] === 3) { rows[rows.length-2]=2; rows[rows.length-1]=2; }
+                /* aire entre burbujas agrupadas: crecen a ~96px, separación 116/108 */
+                var DX=116, DY=108, cy=H*0.44, startY=cy-(rows.length-1)*DY/2, out=[];
+                rows.forEach(function(count, r){
+                    var y=startY+r*DY, startX=W/2-(count-1)*DX/2;
+                    for (var c=0; c<count; c++) out.push([startX+c*DX, y]);
+                });
+                return out;
+            }
+
+            function applyFilter(s){
+                if (!s) {
+                    grid.classList.remove('filtering'); field.classList.remove('filtering');
+                    cards.forEach(function(c){ c.classList.remove('hit'); });
+                    bubs.forEach(function(b){ b.classList.remove('hit'); b.style.transform=''; });
+                    hint.textContent = HINT_DEFAULT; return;
+                }
+                grid.classList.add('filtering'); field.classList.add('filtering');
+                cards.forEach(function(c){ c.classList.toggle('hit', c.dataset.s.split(' ').indexOf(s.k) > -1); });
+                var W=field.clientWidth, H=field.clientHeight;
+                var hits = bubs.filter(function(b){ return b.dataset.s.split(' ').indexOf(s.k) > -1; });
+                var tg = clusterTargets(hits.length, W, H), k=0;
+                bubs.forEach(function(b){
+                    var hit = hits.indexOf(b) > -1;
+                    b.classList.toggle('hit', hit);
+                    var half = b.offsetWidth/2, rx = b.offsetLeft + half, ry = b.offsetTop + half;
+                    if (hit) {
+                        var t = tg[k++], grow = 96/b.offsetWidth;
+                        b.style.transform = 'translate(' + (t[0]-rx).toFixed(1) + 'px,' + (t[1]-ry).toFixed(1) + 'px) scale(' + grow.toFixed(3) + ')';
+                    } else {
+                        var dx=rx-W/2, dy=ry-H/2, m=Math.max(1, Math.hypot(dx,dy));
+                        b.style.transform = 'translate(' + (dx/m*30).toFixed(1) + 'px,' + (dy/m*30).toFixed(1) + 'px) scale(.78)';
+                    }
+                });
+                hint.textContent = s.msg;
+            }
+
+            SYMPTOMS.forEach(function(s){
+                var ch = document.createElement('button');
+                ch.type = 'button'; ch.className = 'dis2-chip';
+                ch.innerHTML = '<i class="' + s.ic + '" aria-hidden="true"></i>' + s.t;
+                ch.addEventListener('click', function(){
+                    var was = ch.classList.contains('on');
+                    chipsWrap.querySelectorAll('.dis2-chip.on').forEach(function(x){ x.classList.remove('on'); });
+                    if (!was) ch.classList.add('on');
+                    applyFilter(was ? null : s);
+                });
+                chipsWrap.appendChild(ch);
+            });
+
+            /* bottom sheet móvil */
+            var sheet = document.getElementById('disSheet'), bg = document.getElementById('disSheetBg');
+            function openSheet(card){
+                var fam = (card.className.match(/f-[a-z]+/) || [''])[0];
+                sheet.className = 'dis2-sheet ' + fam;
+                document.getElementById('disSheetIc').innerHTML = card.querySelector('.dis2-ic').innerHTML;
+                document.getElementById('disSheetFam').textContent = card.querySelector('.dis2-fam').textContent;
+                document.getElementById('disSheetName').textContent = card.querySelector('h3').textContent;
+                document.getElementById('disSheetDesc').textContent = card.querySelector('p').textContent;
+                document.getElementById('disSheetSym').innerHTML = (card.dataset.sym || '').split('|').map(function(x){ return '<li>' + x + '</li>'; }).join('');
+                var more = document.getElementById('disSheetMore'), soon = document.getElementById('disSheetSoon');
+                var waMsg = encodeURIComponent('Hello Dr., I have symptoms related to ' + card.querySelector('h3').textContent.trim() + '. Could I book an appointment?');
+                document.getElementById('disSheetWa').href = waBase + waMsg;
+                if (card.dataset.url) { more.href = card.dataset.url; more.style.opacity = 1; more.style.pointerEvents = ''; soon.hidden = true; }
+                else { more.removeAttribute('href'); more.style.opacity = .55; more.style.pointerEvents = 'none'; soon.hidden = false; }
+                requestAnimationFrame(function(){ sheet.classList.add('on'); bg.classList.add('on'); });
+            }
+            function closeSheet(){
+                sheet.classList.add('closing'); sheet.classList.remove('on'); bg.classList.remove('on');
+                setTimeout(function(){ sheet.classList.remove('closing'); }, 220);
+            }
+            document.getElementById('disSheetX').addEventListener('click', closeSheet);
+            bg.addEventListener('click', closeSheet);
+        })();
 
         /* ── WhatsApp tooltip auto-show after 5s ── */
         var waFloat = document.querySelector('.whatsapp-float');
@@ -5442,7 +5927,27 @@
 })();
 </script>
 
-
+<!-- Sugerencia de idioma para visitantes con navegador en inglés -->
+<div class="lang-suggest" id="langSuggest" role="region" aria-label="Language">
+    <span>Este sitio también está disponible en español.</span>
+    <a class="lang-suggest__go" href="/" data-lang-target>Ver en español &rarr;</a>
+    <button type="button" aria-label="Dismiss" data-lang-dismiss>&times;</button>
+</div>
+<script>
+(function(){
+    try{
+        var KEY='alveos_lang_pref';
+        if(localStorage.getItem(KEY)) return;
+        var lang=(navigator.language||navigator.userLanguage||'').toLowerCase();
+        if(lang.indexOf('es')!==0) return; // navegador no en español: no sugerir
+        var el=document.getElementById('langSuggest');
+        if(!el) return;
+        el.classList.add('show');
+        el.querySelector('[data-lang-target]').addEventListener('click',function(){localStorage.setItem(KEY,'es');});
+        el.querySelector('[data-lang-dismiss]').addEventListener('click',function(){localStorage.setItem(KEY,'en');el.classList.remove('show');});
+    }catch(e){}
+})();
+</script>
 
 </body>
 </html>
