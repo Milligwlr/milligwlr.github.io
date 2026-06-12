@@ -44,11 +44,25 @@ por mes, sigue estos pasos una sola vez (10 minutos):
   `ALVEOS Facturación · CSF / <mes>`, con el folio en el nombre, y la fila
   lleva el enlace directo.
 
-## Extras opcionales
-- **Aviso por correo en cada solicitud**: en el código, dentro de `notificar()`,
-  cambia `var AVISAR = false;` a `true`.
-- **Probarlo sin el sitio**: en el editor de Apps Script ejecuta la función
-  `testManual` y revisa que aparezca una fila de prueba.
-- Si algún día cambias el código, vuelve a **Implementar → Administrar
-  implementaciones → editar (lápiz) → Nueva versión** para que tome los cambios
-  sin cambiar la URL.
+## Configuración (al inicio del código)
+```js
+var FOLIO_INICIO  = 1;     // ← pon el SIGUIENTE número del consecutivo de tu contadora
+var AVISAR_CORREO = true;  // correo por cada solicitud
+var CORREO_AVISO  = 'drwilliam.neumocare@gmail.com';
+```
+- El folio es **global y continúa entre meses** (FACT-0145, FACT-0146...),
+  para empatar con el consecutivo de la contadora.
+- `FOLIO_INICIO` solo cuenta la primera vez; después el contador sigue solo.
+  Si necesitas re-empatarlo: cambia `FOLIO_INICIO` y ejecuta la función
+  `reiniciarFolio` desde el editor (Ejecutar ▶).
+
+## Cómo actualizar el código sin cambiar la URL
+1. Pega el código nuevo en el editor y guarda.
+2. **Implementar → Administrar implementaciones → ✏️ (editar) →
+   Versión: "Nueva versión" → Implementar.**
+   (Si creas una "Nueva implementación" en vez de nueva versión, la URL
+   cambia y habría que actualizar el sitio.)
+
+## Extras
+- **Probarlo sin el sitio**: ejecuta la función `testManual` en el editor y
+  revisa que aparezca una fila de prueba.
