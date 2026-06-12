@@ -1415,3 +1415,11 @@ body.js-enabled .reveal { opacity: 0; transform: translateY(28px); }
 /* ===== Reading progress bar (shared, auto-injected by disease.js) ===== */
 .read-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:9999;pointer-events:none;background:transparent}
 .read-progress__bar{height:100%;width:0;background:linear-gradient(90deg,var(--electric),var(--cyan),var(--electric));box-shadow:0 0 12px rgba(9,132,227,.5);transition:width .12s linear;border-radius:0 3px 3px 0}
+
+/* FAB WhatsApp móvil: más compacto y sin anillo pulsante para que no
+   tape CTAs de las tarjetas (p.ej. "Verificar en SEP"); 48px ≥ mínimo
+   táctil WCAG */
+@media(max-width:576px){
+    .whatsapp-float{width:48px;height:48px;font-size:1.3rem;bottom:14px;right:12px}
+    .whatsapp-float::after{display:none}
+}

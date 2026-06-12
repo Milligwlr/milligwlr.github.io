@@ -81,7 +81,9 @@
 
     .doc-hero__title{font-size:clamp(2.4rem,5.5vw,4.4rem);font-weight:800;line-height:.98;letter-spacing:-.038em;color:var(--navy);margin:0 0 24px}
     .doc-hero__title .first{display:block;color:var(--navy)}
-    .doc-hero__title .last{display:block;background:linear-gradient(135deg,var(--cyan) 0%,var(--electric) 45%,var(--accent-purple) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic;font-family:var(--serif);font-weight:700}
+    /* nombre en la misma familia sans del sitio (patrón del hero del home):
+       el display serif itálico chocaba con el resto de la tipografía */
+    .doc-hero__title .last{display:block;background:linear-gradient(135deg,var(--cyan) 0%,var(--electric) 45%,var(--accent-purple) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:normal;font-family:inherit;font-weight:800}
 
     .doc-hero__quote-card{position:relative;max-width:540px;background:rgba(255,255,255,.6);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1px solid rgba(9,132,227,.12);border-radius:22px;padding:24px 28px;margin:0 0 32px;box-shadow:0 12px 40px -12px rgba(10,22,40,.12),inset 0 1px 0 rgba(255,255,255,.55)}
     .doc-hero__quote-card::before{content:'';position:absolute;top:0;left:24px;right:24px;height:2px;background:linear-gradient(90deg,transparent,var(--electric) 30%,var(--cyan) 70%,transparent);opacity:.65;border-radius:2px}
@@ -118,6 +120,11 @@
     .doc-hero__badge-info span{color:#5a6b7d;font-weight:600;letter-spacing:.5px}
 
     @media(max-width:1024px){.doc-hero{padding:108px 0 64px}.doc-hero__layout{grid-template-columns:1fr;gap:48px}.doc-hero__portrait{width:min(340px,80%);margin:0 auto}.doc-hero__title{text-align:center}.doc-hero__quote-card{margin-left:auto;margin-right:auto}.doc-hero__cta-row{justify-content:center}.doc-hero__tag{display:inline-flex}.doc-hero__inner > div:first-child{text-align:center}.doc-hero__badge{right:-8px;bottom:8px}}
+    /* móvil: el chip de certificación se partía en dos líneas desalineadas;
+       compactado para que quepa en una sola línea a 360-414px */
+    @media(max-width:480px){.doc-hero__tag{font-size:.6rem;letter-spacing:.11em;gap:7px;padding:8px 14px;white-space:nowrap}}
+    /* móvil: menos aire muerto arriba — el nombre entra al primer viewport */
+    @media(max-width:640px){.doc-hero{padding-top:64px}.doc-hero__breadcrumb{margin-bottom:20px}}
 
     /* ========== HERO STAT STRIP — 3 micro stat cards ========== */
     .doc-hero__stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px;max-width:430px}
@@ -164,7 +171,7 @@
     .memberships__head{text-align:center;max-width:680px;margin:0 auto 48px;position:relative;z-index:1}
     .memberships__label{display:inline-flex;align-items:center;gap:10px;font-size:.7rem;font-weight:800;letter-spacing:.32em;text-transform:uppercase;color:var(--accent-purple);background:rgba(108,92,231,.08);border:1px solid rgba(108,92,231,.2);border-radius:100px;padding:7px 20px;margin-bottom:18px}
     .memberships__title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.035em;color:var(--navy);line-height:1.12;margin:0 0 12px}
-    .memberships__title em{font-style:italic;font-family:var(--serif);font-weight:700;background:linear-gradient(135deg,var(--accent-purple),var(--electric));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .memberships__title em{font-style:normal;font-weight:800;background:linear-gradient(135deg,var(--accent-purple),var(--electric));-webkit-background-clip:text;background-clip:text;color:transparent}
     .memberships__sub{font-size:.98rem;color:#5a6b7d;line-height:1.65;max-width:560px;margin:0 auto}
 
     .mem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative;z-index:1;max-width:980px;margin:0 auto}
@@ -240,7 +247,7 @@
       border-radius:100px;padding:7px 18px;margin-bottom:20px}
     .trust-wall__title{font-size:clamp(2rem,4vw,2.8rem);font-weight:800;letter-spacing:-.04em;
       color:#0d1f3a;line-height:1.12;margin:0 0 14px}
-    .trust-wall__title em{font-style:italic;font-family:var(--serif);font-weight:700;
+    .trust-wall__title em{font-style:normal;font-weight:800;
       background:linear-gradient(135deg,#0984e3,#00cec9);-webkit-background-clip:text;background-clip:text;color:transparent}
     .trust-wall__sub{font-size:1rem;color:#5a6a80;line-height:1.72;max-width:560px;margin:0 auto}
 
@@ -342,7 +349,7 @@
     .editorial__head-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(9,132,227,.25),transparent);max-width:120px}
     .editorial__kicker{font-size:.7rem;font-weight:800;letter-spacing:.32em;text-transform:uppercase;color:var(--electric)}
     .editorial__title{font-size:clamp(2.2rem,4.6vw,3.4rem);font-weight:800;letter-spacing:-.035em;color:var(--navy);line-height:1.05;margin:0 0 56px;max-width:780px}
-    .editorial__title em{font-style:italic;font-family:var(--serif);font-weight:700;background:linear-gradient(135deg,var(--cyan),var(--electric),var(--accent-purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .editorial__title em{font-style:normal;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--electric),var(--accent-purple));-webkit-background-clip:text;background-clip:text;color:transparent}
 
     .editorial__body{display:grid;grid-template-columns:1fr 360px;gap:64px;align-items:start}
     .editorial__article{font-size:1.06rem;line-height:1.85;color:#2c3e50}
@@ -369,7 +376,7 @@
     .timeline-head{text-align:center;margin-bottom:64px;position:relative;z-index:1}
     .timeline-head__label{display:inline-flex;align-items:center;gap:10px;font-size:.7rem;font-weight:800;letter-spacing:.32em;text-transform:uppercase;color:var(--cyan);background:rgba(0,206,201,.1);border:1px solid rgba(0,206,201,.22);border-radius:100px;padding:7px 20px;margin-bottom:18px}
     .timeline-head__title{font-size:clamp(2rem,4.4vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;color:#fff;margin:0 0 12px}
-    .timeline-head__title em{font-style:italic;font-family:var(--serif);font-weight:700;background:linear-gradient(135deg,var(--cyan),#74b9ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .timeline-head__title em{font-style:normal;font-weight:800;background:linear-gradient(135deg,var(--cyan),#74b9ff);-webkit-background-clip:text;background-clip:text;color:transparent}
     .timeline-head__sub{color:rgba(255,255,255,.55);font-size:1rem;line-height:1.65;max-width:540px;margin:0 auto}
 
     .timeline-flow{position:relative;max-width:880px;margin:0 auto;padding:20px 0}
@@ -406,7 +413,7 @@
     .bento-head{text-align:center;max-width:720px;margin:0 auto 56px;position:relative;z-index:1}
     .bento-head__label{display:inline-flex;align-items:center;gap:10px;font-size:.7rem;font-weight:800;letter-spacing:.32em;text-transform:uppercase;color:var(--cyan);background:rgba(0,206,201,.1);border:1px solid rgba(0,206,201,.22);border-radius:100px;padding:7px 20px;margin-bottom:18px}
     .bento-head__title{font-size:clamp(2rem,4.4vw,3rem);font-weight:800;letter-spacing:-.035em;color:var(--navy);line-height:1.08;margin:0 0 14px}
-    .bento-head__title em{font-style:italic;font-family:var(--serif);font-weight:700;background:linear-gradient(135deg,var(--electric),var(--cyan),var(--accent-purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .bento-head__title em{font-style:normal;font-weight:800;background:linear-gradient(135deg,var(--electric),var(--cyan),var(--accent-purple));-webkit-background-clip:text;background-clip:text;color:transparent}
     .bento-head__sub{font-size:1.02rem;color:#5a6b7d;line-height:1.7;max-width:560px;margin:0 auto}
 
     .bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:180px;gap:18px;position:relative;z-index:1}
@@ -444,7 +451,7 @@
     .bento-tile--feature:hover .bento-tile__icon{background:rgba(255,255,255,.24);color:#fff;transform:scale(1.08) rotate(-4deg)}
     .bento-tile--feature .bento-tile__arrow{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#fff;width:38px;height:38px;font-size:.92rem}
     .bento-tile--feature .bento-tile__name{color:#fff;font-size:clamp(1.55rem,2.6vw,1.95rem);line-height:1.05;letter-spacing:-.02em;margin-bottom:10px;font-weight:800;position:relative;z-index:2}
-    .bento-tile--feature .bento-tile__name em{font-style:italic;font-family:var(--serif);font-weight:700;background:linear-gradient(135deg,#7ee8e2,#a5d8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .bento-tile--feature .bento-tile__name em{font-style:normal;font-weight:800;background:linear-gradient(135deg,#7ee8e2,#a5d8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
     .bento-tile--feature-epoc .bento-tile__name em{background:linear-gradient(135deg,#7ee8e2,#c4b5fd);-webkit-background-clip:text;background-clip:text;color:transparent}
     .bento-tile--feature .bento-tile__hint{color:rgba(255,255,255,.7);font-size:.9rem;line-height:1.6;max-width:320px}
     .bento-tile--feature .bento-tile__tag{position:absolute;top:24px;right:74px;font-size:.65rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.9);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:100px;padding:6px 14px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:3}
@@ -485,7 +492,7 @@
     .guides-head{text-align:center;max-width:760px;margin:0 auto 48px;position:relative;z-index:1}
     .guides-head__label{display:inline-flex;align-items:center;gap:10px;font-size:.7rem;font-weight:800;letter-spacing:.32em;text-transform:uppercase;color:var(--electric);background:rgba(9,132,227,.08);border:1px solid rgba(9,132,227,.18);border-radius:100px;padding:7px 20px;margin-bottom:18px}
     .guides-head__title{font-size:clamp(2rem,4.4vw,3rem);font-weight:800;letter-spacing:-.035em;color:var(--navy);line-height:1.08;margin:0 0 14px}
-    .guides-head__title em{font-style:italic;font-family:var(--serif);font-weight:700;background:linear-gradient(135deg,var(--electric),var(--cyan),var(--accent-purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .guides-head__title em{font-style:normal;font-weight:800;background:linear-gradient(135deg,var(--electric),var(--cyan),var(--accent-purple));-webkit-background-clip:text;background-clip:text;color:transparent}
     .guides-head__sub{font-size:1.02rem;color:#5a6b7d;line-height:1.7;max-width:580px;margin:0 auto}
 
     /* Hero stat number */
