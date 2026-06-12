@@ -74,43 +74,122 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/enfermedades/_shared/disease.css">
 
 <style>
-/* ─── Hub-specific (cards grid + hero variants) ─── */
-.hub-hero { padding: 110px 0 56px; background: linear-gradient(180deg, #f8faff 0%, #fff 100%); position: relative; overflow: hidden; }
-.hub-hero::before { content:''; position:absolute; top:-50%; right:-20%; width:60%; padding-bottom:60%; border-radius:50%; background:radial-gradient(circle, rgba(9,132,227,.10), transparent 70%); pointer-events:none; }
-.hub-hero::after { content:''; position:absolute; bottom:-40%; left:-10%; width:50%; padding-bottom:50%; border-radius:50%; background:radial-gradient(circle, rgba(30,55,153,.08), transparent 70%); pointer-events:none; }
+/* ═══ SERVICIOS HUB · rediseño premium por categorías ═══ */
+:root{ --serif:'Fraunces','Plus Jakarta Sans',serif;
+  --cat-funcion:#0891b2; --cat-sueno:#6c5ce7; --cat-proc:#0984e3; --cat-acomp:#0f9d58; }
+
+/* ── HERO ── */
+.hub-hero { padding: 110px 0 48px; background: linear-gradient(180deg,#f6faff 0%,#fff 100%); position: relative; overflow: hidden; }
+.hub-hero::before { content:''; position:absolute; top:-50%; right:-20%; width:60%; padding-bottom:60%; border-radius:50%; background:radial-gradient(circle, rgba(9,132,227,.10), transparent 70%); pointer-events:none; animation: hub-breathe 9s ease-in-out infinite; }
+.hub-hero::after { content:''; position:absolute; bottom:-40%; left:-10%; width:50%; padding-bottom:50%; border-radius:50%; background:radial-gradient(circle, rgba(108,92,231,.07), transparent 70%); pointer-events:none; animation: hub-breathe 12s ease-in-out infinite reverse; }
+@keyframes hub-breathe { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+.hub-hero__grid-bg { position:absolute; inset:0; background-image:radial-gradient(circle, rgba(10,22,40,.05) 1px, transparent 1px); background-size:30px 30px; mask-image:radial-gradient(ellipse 75% 65% at 50% 30%, #000 25%, transparent 78%); -webkit-mask-image:radial-gradient(ellipse 75% 65% at 50% 30%, #000 25%, transparent 78%); pointer-events:none; }
 .hub-hero .container { position: relative; z-index: 1; }
-.hub-hero__breadcrumb { font-size:.82rem; color: var(--text-muted); margin-bottom: 14px; }
+.hub-hero__breadcrumb { font-size:.82rem; color: var(--text-muted); margin-bottom: 18px; }
 .hub-hero__breadcrumb a { color: var(--text-muted); text-decoration: none; }
 .hub-hero__breadcrumb a:hover { color: var(--electric); }
 .hub-hero__breadcrumb span { margin: 0 6px; }
 .hub-hero__eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:.72rem; font-weight:700; color: var(--electric); text-transform:uppercase; letter-spacing:2px; background: rgba(9,132,227,.08); padding: 7px 14px; border-radius: 100px; margin-bottom: 18px; border: 1px solid rgba(9,132,227,.16); }
-.hub-hero h1 { font-size: clamp(2rem, 5.2vw, 3.4rem); font-weight: 800; color: var(--navy); letter-spacing: -.025em; line-height: 1.1; max-width: 760px; margin-bottom: 16px; }
-.hub-hero h1 em { font-style: italic; font-weight: 700; background: linear-gradient(135deg, var(--royal), var(--electric)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.hub-hero__lead { color: var(--text-muted); font-size: 1.08rem; max-width: 700px; margin-bottom: 8px; line-height: 1.65; }
+.hub-hero h1 { font-size: clamp(2.2rem, 5.6vw, 3.9rem); font-weight: 800; color: var(--navy); letter-spacing: -.035em; line-height: 1.04; max-width: 820px; margin-bottom: 18px; text-wrap: balance; }
+.hub-hero h1 em { font-style: italic; font-weight: 700; font-family: var(--serif); background: linear-gradient(135deg, var(--royal), var(--electric)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hub-hero__lead { color: var(--text-muted); font-size: 1.08rem; max-width: 680px; margin-bottom: 30px; line-height: 1.68; }
 
-.hub-section { padding: 56px 0 80px; }
-.hub-grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
-@media (min-width: 640px) { .hub-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 992px) { .hub-grid { grid-template-columns: repeat(3, 1fr); } }
-.hub-card { background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 24px; text-decoration: none; color: inherit; transition: all .3s var(--ease); display: flex; flex-direction: column; min-height: 200px; box-shadow: var(--shadow-xs); position: relative; overflow: hidden; }
-.hub-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background: linear-gradient(90deg, var(--electric), var(--royal)); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
-.hub-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: rgba(9,132,227,.20); color: inherit; }
+/* índice de categorías en el hero */
+.hub-index { display:flex; flex-wrap:wrap; gap:10px; }
+.hub-index a { display:inline-flex; align-items:center; gap:9px; padding:10px 18px; background:#fff; border:1px solid rgba(10,22,40,.1); border-radius:100px; text-decoration:none; color:var(--navy); font-size:.86rem; font-weight:700; transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s var(--ease); }
+.hub-index a i { font-size:.95rem; }
+.hub-index a:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -10px rgba(10,22,40,.2); }
+.hub-index a[data-cat="funcion"] i{color:var(--cat-funcion)} .hub-index a[data-cat="funcion"]:hover{border-color:var(--cat-funcion)}
+.hub-index a[data-cat="sueno"] i{color:var(--cat-sueno)} .hub-index a[data-cat="sueno"]:hover{border-color:var(--cat-sueno)}
+.hub-index a[data-cat="proc"] i{color:var(--cat-proc)} .hub-index a[data-cat="proc"]:hover{border-color:var(--cat-proc)}
+.hub-index a[data-cat="acomp"] i{color:var(--cat-acomp)} .hub-index a[data-cat="acomp"]:hover{border-color:var(--cat-acomp)}
+
+/* ── TRIAGE de síntomas ── */
+.hub-triage { padding: 40px 0 8px; }
+.hub-triage__rail { display:grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.hub-triage__item { display:flex; flex-direction:column; gap:6px; padding:18px 20px; border-radius:16px; background:#fff; border:1px solid rgba(10,22,40,.08); text-decoration:none; transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease); position:relative; overflow:hidden; }
+.hub-triage__item::after { content:'\F138'; font-family:'bootstrap-icons'; position:absolute; right:16px; top:50%; transform:translate(6px,-50%); opacity:0; color:var(--electric); transition: all .3s var(--ease); }
+.hub-triage__item:hover { transform: translateY(-3px); box-shadow: 0 16px 36px -16px rgba(10,22,40,.18); border-color: rgba(9,132,227,.3); }
+.hub-triage__item:hover::after { opacity:1; transform:translate(0,-50%); }
+.hub-triage__symptom { font-size:.95rem; font-weight:800; color:var(--navy); letter-spacing:-.01em; }
+.hub-triage__study { font-size:.78rem; font-weight:600; color:var(--electric); display:inline-flex; align-items:center; gap:6px; }
+.hub-triage__label { display:flex; align-items:center; gap:12px; margin-bottom:18px; font-size:.72rem; font-weight:800; letter-spacing:.24em; text-transform:uppercase; color:#5a6b7d; }
+.hub-triage__label::after { content:''; flex:1; height:1px; background:linear-gradient(90deg, rgba(9,132,227,.25), transparent); }
+@media (max-width: 991px){ .hub-triage__rail { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 560px){ .hub-triage__rail { grid-template-columns: 1fr; } }
+
+/* ── CATEGORÍAS ── */
+.hub-section { padding: 30px 0 64px; }
+.hub-cat { margin-bottom: 52px; }
+.hub-cat:last-child { margin-bottom: 0; }
+.hub-cat__head { display:flex; align-items:center; gap:14px; margin-bottom:20px; }
+.hub-cat__icon { width:46px; height:46px; border-radius:13px; display:flex; align-items:center; justify-content:center; font-size:1.25rem; color:#fff; flex-shrink:0; }
+.hub-cat__title { font-size: clamp(1.3rem, 2.6vw, 1.7rem); font-weight: 800; color: var(--navy); letter-spacing: -.02em; margin:0; line-height:1.15; }
+.hub-cat__sub { font-size:.85rem; color:var(--text-muted); margin:2px 0 0; }
+.hub-cat__rule { flex:1; height:1px; background:linear-gradient(90deg, rgba(10,22,40,.12), transparent); }
+
+.hub-cat--funcion .hub-cat__icon { background:linear-gradient(135deg,#06b6d4,var(--cat-funcion)); box-shadow:0 8px 20px -6px rgba(8,145,178,.45); }
+.hub-cat--sueno .hub-cat__icon { background:linear-gradient(135deg,#8b7cf6,var(--cat-sueno)); box-shadow:0 8px 20px -6px rgba(108,92,231,.45); }
+.hub-cat--proc .hub-cat__icon { background:linear-gradient(135deg,#38a3f5,var(--cat-proc)); box-shadow:0 8px 20px -6px rgba(9,132,227,.45); }
+.hub-cat--acomp .hub-cat__icon { background:linear-gradient(135deg,#34c178,var(--cat-acomp)); box-shadow:0 8px 20px -6px rgba(15,157,88,.45); }
+
+.hub-grid { display: grid; gap: 16px; grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 991px) { .hub-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .hub-grid { grid-template-columns: 1fr; } }
+
+.hub-card { --cat: var(--electric); background: #fff; border: 1px solid rgba(10,22,40,.08); border-radius: 20px; padding: 26px 24px 22px; text-decoration: none; color: inherit; transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease); display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(10,22,40,.04); position: relative; overflow: hidden; }
+.hub-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background: var(--cat); transform: scaleX(0); transform-origin: left; transition: transform .4s var(--ease); }
+.hub-card::after { content:''; position:absolute; top:-40%; right:-25%; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle, color-mix(in srgb, var(--cat) 14%, transparent), transparent 65%); opacity:0; transition: opacity .4s var(--ease); pointer-events:none; }
+.hub-card:hover { transform: translateY(-5px); box-shadow: 0 24px 50px -20px color-mix(in srgb, var(--cat) 35%, rgba(10,22,40,.25)); border-color: color-mix(in srgb, var(--cat) 35%, transparent); color: inherit; }
 .hub-card:hover::before { transform: scaleX(1); }
-.hub-card__icon { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, var(--electric), var(--royal)); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 16px; box-shadow: var(--shadow-blue); flex-shrink: 0; }
-.hub-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--navy); margin: 0 0 8px; letter-spacing: -.01em; }
-.hub-card p { font-size: .92rem; color: var(--text-muted); line-height: 1.55; margin: 0 0 14px; flex-grow: 1; }
-.hub-card__more { display: inline-flex; align-items: center; gap: 6px; color: var(--electric); font-weight: 600; font-size: .9rem; transition: gap .25s var(--ease); }
-.hub-card:hover .hub-card__more { gap: 10px; }
+.hub-card:hover::after { opacity:1; }
+.hub-card__top { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:16px; }
+.hub-card__icon { width: 48px; height: 48px; border-radius: 13px; background: color-mix(in srgb, var(--cat) 10%, #fff); color: var(--cat); border:1px solid color-mix(in srgb, var(--cat) 22%, transparent); display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; transition: all .35s var(--ease); }
+.hub-card:hover .hub-card__icon { background: var(--cat); color:#fff; transform: scale(1.06) rotate(-3deg); }
+.hub-card h3 { font-size: 1.12rem; font-weight: 800; color: var(--navy); margin: 0 0 7px; letter-spacing: -.015em; }
+.hub-card p { font-size: .9rem; color: var(--text-muted); line-height: 1.6; margin: 0 0 16px; flex-grow: 1; }
+.hub-card__meta { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:16px; }
+.hub-card__chip { display:inline-flex; align-items:center; gap:5px; font-size:.68rem; font-weight:700; color:#475569; background:#f4f7fb; border:1px solid rgba(10,22,40,.07); padding:4px 10px; border-radius:100px; white-space:nowrap; }
+.hub-card__chip i { font-size:.72rem; color: var(--cat); }
+.hub-card__more { display: inline-flex; align-items: center; gap: 6px; color: var(--cat); font-weight: 700; font-size: .88rem; transition: gap .25s var(--ease); }
+.hub-card:hover .hub-card__more { gap: 11px; }
 
-/* CTA band */
-.hub-cta-band { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 50%, var(--royal) 100%); color: #fff; padding: 70px 0; text-align: center; position: relative; overflow: hidden; }
-.hub-cta-band::before { content:''; position:absolute; inset:0; background: radial-gradient(circle at 20% 30%, rgba(9,132,227,.25), transparent 60%); pointer-events:none; }
-.hub-cta-band::after { content:''; position:absolute; bottom:-30%; right:-10%; width:50%; padding-bottom:50%; border-radius:50%; background:radial-gradient(circle, rgba(9,132,227,.18), transparent 60%); pointer-events:none; }
+/* tarjeta destacada — espirometría 2 columnas */
+.hub-card--feature { grid-column: span 2; flex-direction: row; align-items: stretch; gap: 26px; background: linear-gradient(135deg,#06222e 0%,#0a3a4a 55%,#0891b2 130%); border-color: transparent; color:#fff; }
+.hub-card--feature::after { opacity:.85; background: radial-gradient(ellipse 60% 70% at 85% 10%, rgba(0,206,201,.4), transparent 60%); }
+.hub-card--feature h3 { color:#fff; font-size:1.5rem; letter-spacing:-.02em; }
+.hub-card--feature p { color: rgba(255,255,255,.78); }
+.hub-card--feature .hub-card__icon { background: rgba(255,255,255,.12); color:#fff; border-color: rgba(255,255,255,.22); width:56px; height:56px; font-size:1.5rem; }
+.hub-card--feature:hover .hub-card__icon { background: rgba(255,255,255,.24); color:#fff; }
+.hub-card--feature .hub-card__chip { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.16); color: rgba(255,255,255,.85); }
+.hub-card--feature .hub-card__chip i { color:#7ee8e2; }
+.hub-card--feature .hub-card__more { color:#7ee8e2; }
+.hub-card--feature .hub-card__tag { position:absolute; top:20px; right:22px; font-size:.62rem; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.9); background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); border-radius:100px; padding:5px 13px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.hub-card--feature > div { display:flex; flex-direction:column; }
+@media (max-width: 991px){ .hub-card--feature { grid-column: span 2; flex-direction: column; } }
+@media (max-width: 600px){ .hub-card--feature { grid-column: span 1; } }
+
+/* reveals suaves */
+.hub-reveal { opacity:0; transform: translateY(24px); transition: opacity .65s var(--ease), transform .65s var(--ease); }
+.hub-reveal.visible { opacity:1; transform:none; }
+html.no-js .hub-reveal, body:not(.js-enabled) .hub-reveal { opacity:1; transform:none; }
+
+/* ── CTA final (lenguaje "breathing" del home) ── */
+.hub-cta-band { background: var(--navy); color: #fff; padding: 92px 0; text-align: center; position: relative; overflow: hidden; }
+.hub-cta-band__aura { position:absolute; top:50%; left:50%; width:min(700px,90vw); aspect-ratio:1; transform:translate(-50%,-50%); border-radius:50%; background:radial-gradient(circle, rgba(9,132,227,.17) 0%, rgba(0,206,201,.08) 38%, transparent 68%); filter:blur(28px); animation: hub-cta-breathe 7s ease-in-out infinite; pointer-events:none; }
+@keyframes hub-cta-breathe { 0%,100%{transform:translate(-50%,-50%) scale(.92);opacity:.55} 50%{transform:translate(-50%,-50%) scale(1.08);opacity:1} }
+.hub-cta-band__rings { position:absolute; top:50%; left:50%; width:0; height:0; pointer-events:none; }
+.hub-cta-band__rings span { position:absolute; top:0; left:0; width:200px; height:200px; transform:translate(-50%,-50%) scale(.4); border-radius:50%; border:1px solid rgba(116,185,255,.35); opacity:0; animation: hub-cta-ring 6s cubic-bezier(.16,1,.3,1) infinite; }
+.hub-cta-band__rings span:nth-child(2){ animation-delay:2s; } .hub-cta-band__rings span:nth-child(3){ animation-delay:4s; }
+@keyframes hub-cta-ring { 0%{transform:translate(-50%,-50%) scale(.4);opacity:0} 12%{opacity:.5} 100%{transform:translate(-50%,-50%) scale(3.2);opacity:0} }
 .hub-cta-band__inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; padding: 0 20px; }
-.hub-cta-band h2 { color: #fff; font-size: clamp(1.6rem, 3.5vw, 2.4rem); margin-bottom: 14px; font-weight: 800; letter-spacing: -.02em; }
-.hub-cta-band p { color: rgba(255,255,255,.78); font-size: 1.05rem; margin-bottom: 28px; line-height: 1.6; }
-.hub-cta-band__btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 32px; background: linear-gradient(135deg, #1ebe57, #25D366); color: #fff !important; border-radius: 100px; font-weight: 700; font-size: 1.02rem; text-decoration: none; box-shadow: 0 8px 24px rgba(37,211,102,.35); transition: all .3s var(--ease); }
+.hub-cta-band h2 { color: #fff; font-size: clamp(1.7rem, 3.8vw, 2.6rem); margin-bottom: 14px; font-weight: 800; letter-spacing: -.025em; }
+.hub-cta-band h2 em { font-style:normal; background:linear-gradient(135deg,var(--cyan,#00cec9) 0%,#74b9ff 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.hub-cta-band p { color: rgba(255,255,255,.62); font-size: 1.05rem; margin-bottom: 30px; line-height: 1.65; }
+.hub-cta-band__btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 34px; background: linear-gradient(135deg, #1ebe57, #25D366); color: #fff !important; border-radius: 100px; font-weight: 700; font-size: 1.02rem; text-decoration: none; box-shadow: 0 8px 24px rgba(37,211,102,.35); transition: transform .3s var(--ease), box-shadow .3s var(--ease); }
 .hub-cta-band__btn:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(37,211,102,.5); }
+.hub-cta-band__btn:active { transform: scale(.97); }
+@media (prefers-reduced-motion: reduce){ .hub-cta-band__aura{animation:none;opacity:.7} .hub-cta-band__rings{display:none} .hub-hero::before,.hub-hero::after{animation:none} }
 
 .nav-link--recursos.active{color:#1e3799!important;font-weight:700!important}
 .nav-link--recursos.active::after{background:#1e3799!important}
@@ -213,116 +292,250 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </a>
     </div>
 </nav>
-<a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20quiero%20informaci%C3%B3n%20sobre%20un%20estudio%20neumol%C3%B3gico" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i><span class="wa-tooltip">¿Dudas? Escríbeme</span></a>
+<a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx.%20Quiero%20informaci%C3%B3n%20sobre%20un%20estudio%20neumol%C3%B3gico" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i><span class="wa-tooltip">¿Dudas? Escríbeme</span></a>
 
 <main>
 
 <!-- HERO -->
 <section class="hub-hero">
+    <div class="hub-hero__grid-bg" aria-hidden="true"></div>
     <div class="container">
         <nav class="hub-hero__breadcrumb" aria-label="Breadcrumb">
             <a href="/">Inicio</a> <span>›</span> <span aria-current="page">Servicios</span>
         </nav>
         <span class="hub-hero__eyebrow"><i class="bi bi-stethoscope" aria-hidden="true"></i> Estudios y servicios · CDMX</span>
         <h1>Estudios y servicios <em>neumológicos</em></h1>
-        <p class="hub-hero__lead">Estudios diagnósticos y procedimientos neumológicos realizados personalmente por el Dr. William César Lara Vázquez en Hospital Santa Coleta o en tu casa (poligrafía y titulación de CPAP). Selecciona un estudio para conocer en qué consiste, cómo prepararte y qué incluye.</p>
+        <p class="hub-hero__lead">Estudios diagnósticos y procedimientos realizados personalmente por el Dr. William César Lara Vázquez en Hospital Santa Coleta o en tu casa. Selecciona un estudio para conocer en qué consiste, cómo prepararte y qué incluye.</p>
+        <nav class="hub-index" aria-label="Categorías de servicios">
+            <a href="#funcion-pulmonar" data-cat="funcion"><i class="bi bi-wind" aria-hidden="true"></i> Función pulmonar</a>
+            <a href="#sueno" data-cat="sueno"><i class="bi bi-moon-stars" aria-hidden="true"></i> Sueño</a>
+            <a href="#procedimientos" data-cat="proc"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i> Procedimientos</a>
+            <a href="#acompanamiento" data-cat="acomp"><i class="bi bi-heart-pulse" aria-hidden="true"></i> Consulta y acompañamiento</a>
+        </nav>
     </div>
 </section>
 
-<hr class="section-divider">
-
-<!-- GRID DE CARDS -->
-<section class="hub-section section-bg">
-    <div class="section-dots"></div>
-    <div class="section-mesh"></div>
+<!-- TRIAGE: del síntoma al estudio -->
+<section class="hub-triage">
     <div class="container">
-        <div class="hub-grid">
-
-            <a class="hub-card" href="/servicios/espirometria/" data-cta="hub-card-espirometria">
-                <div class="hub-card__icon"><i class="bi bi-wind" aria-hidden="true"></i></div>
-                <h3>Espirometría</h3>
-                <p>Prueba de función pulmonar con broncodilatador. 10 minutos, sin dolor.</p>
-                <span class="hub-card__more">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+        <div class="hub-triage__label">Del síntoma al estudio</div>
+        <div class="hub-triage__rail">
+            <a class="hub-triage__item hub-reveal" href="/servicios/espirometria/" data-cta="triage-espirometria">
+                <span class="hub-triage__symptom">"Me falta el aire"</span>
+                <span class="hub-triage__study"><i class="bi bi-wind" aria-hidden="true"></i> Espirometría</span>
             </a>
-
-            <a class="hub-card" href="/servicios/broncoscopia/" data-cta="hub-card-broncoscopia">
-                <div class="hub-card__icon"><i class="bi bi-camera-video" aria-hidden="true"></i></div>
-                <h3>Broncoscopia</h3>
-                <p>Estudio endoscópico de vías aéreas bajo sedación.</p>
-                <span class="hub-card__more">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+            <a class="hub-triage__item hub-reveal" href="/servicios/poligrafia-respiratoria/" data-cta="triage-poligrafia">
+                <span class="hub-triage__symptom">"Ronco y me levanto cansado"</span>
+                <span class="hub-triage__study"><i class="bi bi-moon" aria-hidden="true"></i> Poligrafía respiratoria</span>
             </a>
-
-            <a class="hub-card" href="/servicios/poligrafia-respiratoria/" data-cta="hub-card-poligrafia">
-                <div class="hub-card__icon"><i class="bi bi-moon" aria-hidden="true"></i></div>
-                <h3>Poligrafía respiratoria</h3>
-                <p>Estudio de sueño en tu casa para diagnosticar apnea.</p>
-                <span class="hub-card__more">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+            <a class="hub-triage__item hub-reveal" href="/servicios/feno/" data-cta="triage-feno">
+                <span class="hub-triage__symptom">"Mi asma no se controla"</span>
+                <span class="hub-triage__study"><i class="bi bi-graph-up" aria-hidden="true"></i> FeNO</span>
             </a>
-
-            <a class="hub-card" href="/servicios/titulacion-presion-positiva/" data-cta="hub-card-titulacion">
-                <div class="hub-card__icon"><i class="bi bi-toggles2" aria-hidden="true"></i></div>
-                <h3>Titulación CPAP / BiPAP</h3>
-                <p>Configuración personalizada de tu CPAP o BiPAP.</p>
-                <span class="hub-card__more">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+            <a class="hub-triage__item hub-reveal" href="/servicios/toracocentesis/" data-cta="triage-toracocentesis">
+                <span class="hub-triage__symptom">"Tengo líquido en el pulmón"</span>
+                <span class="hub-triage__study"><i class="bi bi-droplet-half" aria-hidden="true"></i> Toracocentesis</span>
             </a>
-
-            <a class="hub-card" href="/servicios/toracocentesis/" data-cta="hub-card-toracocentesis">
-                <div class="hub-card__icon"><i class="bi bi-droplet-half" aria-hidden="true"></i></div>
-                <h3>Toracocentesis</h3>
-                <p>Drenaje de líquido pleural diagnóstico o terapéutico.</p>
-                <span class="hub-card__more">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-            </a>
-
-            <a class="hub-card" href="/servicios/cateter-pleural-multiproposito/" data-cta="hub-card-cateter">
-                <div class="hub-card__icon"><i class="bi bi-tools" aria-hidden="true"></i></div>
-                <h3>Catéter pleural multipropósito</h3>
-                <p>Cateterismo pleural para derrames recurrentes.</p>
-                <span class="hub-card__more">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-            </a>
-
-            <a class="hub-card" href="/servicios/teleconsulta/" data-cta="hub-card-teleconsulta">
-                <div class="hub-card__icon"><i class="bi bi-camera-video-fill" aria-hidden="true"></i></div>
-                <h3>Teleconsulta</h3>
-                <p>Consulta por videollamada para seguimiento y opiniones.</p>
-                <span class="hub-card__more">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-            </a>
-
-            <a class="hub-card" href="/servicios/feno/" data-cta="hub-card-feno">
-                <div class="hub-card__icon"><i class="bi bi-graph-up" aria-hidden="true"></i></div>
-                <h3>FeNO</h3>
-                <p>Medición de óxido nítrico exhalado para evaluar inflamación asmática.</p>
-                <span class="hub-card__more">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-            </a>
-
-            <a class="hub-card" href="/servicios/seguimiento-enfermedades-cronicas/" data-cta="hub-card-seguimiento">
-                <div class="hub-card__icon"><i class="bi bi-arrow-repeat" aria-hidden="true"></i></div>
-                <h3>Seguimiento de enfermedades crónicas</h3>
-                <p>Seguimiento estructurado de EPOC, asma, fibrosis y apnea.</p>
-                <span class="hub-card__more">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-            </a>
-
-            <a class="hub-card" href="/servicios/tratamiento-dejar-de-fumar/" data-cta="hub-card-dejar-fumar">
-                <div class="hub-card__icon"><i class="bi bi-x-octagon" aria-hidden="true"></i></div>
-                <h3>Tratamiento para dejar de fumar</h3>
-                <p>Plan médico personalizado con farmacoterapia.</p>
-                <span class="hub-card__more">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-            </a>
-
         </div>
+    </div>
+</section>
+
+<!-- CATEGORÍAS -->
+<section class="hub-section">
+    <div class="container">
+
+        <!-- 1 · Función pulmonar -->
+        <div class="hub-cat hub-cat--funcion" id="funcion-pulmonar">
+            <div class="hub-cat__head hub-reveal">
+                <div class="hub-cat__icon"><i class="bi bi-wind" aria-hidden="true"></i></div>
+                <div>
+                    <h2 class="hub-cat__title">Función pulmonar</h2>
+                    <p class="hub-cat__sub">Mide cómo respiras y detecta obstrucción o inflamación.</p>
+                </div>
+                <div class="hub-cat__rule" aria-hidden="true"></div>
+            </div>
+            <div class="hub-grid">
+                <a class="hub-card hub-card--feature hub-reveal" style="--cat:var(--cat-funcion)" href="/servicios/espirometria/" data-cta="hub-card-espirometria">
+                    <span class="hub-card__tag">El más solicitado</span>
+                    <div>
+                        <div class="hub-card__top"><div class="hub-card__icon"><i class="bi bi-wind" aria-hidden="true"></i></div></div>
+                        <h3>Espirometría</h3>
+                        <p>La prueba de oro de la función pulmonar, con broncodilatador incluido. Diagnostica asma y EPOC, y mide qué tan reversible es la obstrucción.</p>
+                        <div class="hub-card__meta">
+                            <span class="hub-card__chip"><i class="bi bi-clock" aria-hidden="true"></i> 10 minutos</span>
+                            <span class="hub-card__chip"><i class="bi bi-emoji-smile" aria-hidden="true"></i> Sin dolor</span>
+                            <span class="hub-card__chip"><i class="bi bi-hospital" aria-hidden="true"></i> Hospital Santa Coleta</span>
+                        </div>
+                        <span class="hub-card__more">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                    </div>
+                </a>
+                <a class="hub-card hub-reveal" style="--cat:var(--cat-funcion)" href="/servicios/feno/" data-cta="hub-card-feno">
+                    <div class="hub-card__top"><div class="hub-card__icon"><i class="bi bi-graph-up" aria-hidden="true"></i></div></div>
+                    <h3>FeNO</h3>
+                    <p>Mide la inflamación de tus bronquios con una sola exhalación. Clave para ajustar el tratamiento del asma.</p>
+                    <div class="hub-card__meta">
+                        <span class="hub-card__chip"><i class="bi bi-clock" aria-hidden="true"></i> Minutos</span>
+                        <span class="hub-card__chip"><i class="bi bi-hospital" aria-hidden="true"></i> Consultorio</span>
+                    </div>
+                    <span class="hub-card__more">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                </a>
+            </div>
+        </div>
+
+        <!-- 2 · Sueño -->
+        <div class="hub-cat hub-cat--sueno" id="sueno">
+            <div class="hub-cat__head hub-reveal">
+                <div class="hub-cat__icon"><i class="bi bi-moon-stars" aria-hidden="true"></i></div>
+                <div>
+                    <h2 class="hub-cat__title">Estudios del sueño</h2>
+                    <p class="hub-cat__sub">Diagnóstico y tratamiento de la apnea, sin salir de tu casa.</p>
+                </div>
+                <div class="hub-cat__rule" aria-hidden="true"></div>
+            </div>
+            <div class="hub-grid">
+                <a class="hub-card hub-reveal" style="--cat:var(--cat-sueno)" href="/servicios/poligrafia-respiratoria/" data-cta="hub-card-poligrafia">
+                    <div class="hub-card__top"><div class="hub-card__icon"><i class="bi bi-moon" aria-hidden="true"></i></div></div>
+                    <h3>Poligrafía respiratoria</h3>
+                    <p>Estudio de sueño en tu propia cama para diagnosticar apnea. Sin hospital, sin cables de más.</p>
+                    <div class="hub-card__meta">
+                        <span class="hub-card__chip"><i class="bi bi-house-heart" aria-hidden="true"></i> En tu casa</span>
+                        <span class="hub-card__chip"><i class="bi bi-moon-fill" aria-hidden="true"></i> Una noche</span>
+                    </div>
+                    <span class="hub-card__more">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                </a>
+                <a class="hub-card hub-reveal" style="--cat:var(--cat-sueno)" href="/servicios/titulacion-presion-positiva/" data-cta="hub-card-titulacion">
+                    <div class="hub-card__top"><div class="hub-card__icon"><i class="bi bi-toggles2" aria-hidden="true"></i></div></div>
+                    <h3>Titulación CPAP / BiPAP</h3>
+                    <p>Encontramos la presión exacta que tu vía aérea necesita para que duermas (y descanses) de verdad.</p>
+                    <div class="hub-card__meta">
+                        <span class="hub-card__chip"><i class="bi bi-house-heart" aria-hidden="true"></i> En tu casa</span>
+                        <span class="hub-card__chip"><i class="bi bi-sliders" aria-hidden="true"></i> Personalizada</span>
+                    </div>
+                    <span class="hub-card__more">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                </a>
+            </div>
+        </div>
+
+        <!-- 3 · Procedimientos -->
+        <div class="hub-cat hub-cat--proc" id="procedimientos">
+            <div class="hub-cat__head hub-reveal">
+                <div class="hub-cat__icon"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i></div>
+                <div>
+                    <h2 class="hub-cat__title">Procedimientos especializados</h2>
+                    <p class="hub-cat__sub">Diagnóstico y tratamiento avanzado en Hospital Santa Coleta.</p>
+                </div>
+                <div class="hub-cat__rule" aria-hidden="true"></div>
+            </div>
+            <div class="hub-grid">
+                <a class="hub-card hub-reveal" style="--cat:var(--cat-proc)" href="/servicios/broncoscopia/" data-cta="hub-card-broncoscopia">
+                    <div class="hub-card__top"><div class="hub-card__icon"><i class="bi bi-camera-video" aria-hidden="true"></i></div></div>
+                    <h3>Broncoscopia</h3>
+                    <p>Visualización directa de tus vías aéreas bajo sedación: biopsias, lavados y diagnóstico preciso.</p>
+                    <div class="hub-card__meta">
+                        <span class="hub-card__chip"><i class="bi bi-hospital" aria-hidden="true"></i> Hospital</span>
+                        <span class="hub-card__chip"><i class="bi bi-droplet" aria-hidden="true"></i> Con sedación</span>
+                    </div>
+                    <span class="hub-card__more">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                </a>
+                <a class="hub-card hub-reveal" style="--cat:var(--cat-proc)" href="/servicios/toracocentesis/" data-cta="hub-card-toracocentesis">
+                    <div class="hub-card__top"><div class="hub-card__icon"><i class="bi bi-droplet-half" aria-hidden="true"></i></div></div>
+                    <h3>Toracocentesis</h3>
+                    <p>Drenaje del líquido pleural que te impide respirar: alivio inmediato y diagnóstico del derrame.</p>
+                    <div class="hub-card__meta">
+                        <span class="hub-card__chip"><i class="bi bi-hospital" aria-hidden="true"></i> Hospital</span>
+                        <span class="hub-card__chip"><i class="bi bi-lightning-charge" aria-hidden="true"></i> Alivio inmediato</span>
+                    </div>
+                    <span class="hub-card__more">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                </a>
+                <a class="hub-card hub-reveal" style="--cat:var(--cat-proc)" href="/servicios/cateter-pleural-multiproposito/" data-cta="hub-card-cateter">
+                    <div class="hub-card__top"><div class="hub-card__icon"><i class="bi bi-tools" aria-hidden="true"></i></div></div>
+                    <h3>Catéter pleural multipropósito</h3>
+                    <p>Solución de largo plazo para derrames recurrentes, con manejo ambulatorio desde casa.</p>
+                    <div class="hub-card__meta">
+                        <span class="hub-card__chip"><i class="bi bi-hospital" aria-hidden="true"></i> Hospital</span>
+                        <span class="hub-card__chip"><i class="bi bi-arrow-repeat" aria-hidden="true"></i> Derrames recurrentes</span>
+                    </div>
+                    <span class="hub-card__more">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                </a>
+            </div>
+        </div>
+
+        <!-- 4 · Consulta y acompañamiento -->
+        <div class="hub-cat hub-cat--acomp" id="acompanamiento">
+            <div class="hub-cat__head hub-reveal">
+                <div class="hub-cat__icon"><i class="bi bi-heart-pulse" aria-hidden="true"></i></div>
+                <div>
+                    <h2 class="hub-cat__title">Consulta y acompañamiento</h2>
+                    <p class="hub-cat__sub">Atención continua, presencial o a distancia.</p>
+                </div>
+                <div class="hub-cat__rule" aria-hidden="true"></div>
+            </div>
+            <div class="hub-grid">
+                <a class="hub-card hub-reveal" style="--cat:var(--cat-acomp)" href="/servicios/teleconsulta/" data-cta="hub-card-teleconsulta">
+                    <div class="hub-card__top"><div class="hub-card__icon"><i class="bi bi-camera-video-fill" aria-hidden="true"></i></div></div>
+                    <h3>Teleconsulta</h3>
+                    <p>Consulta por videollamada con receta válida: seguimiento, segundas opiniones y revisión de estudios.</p>
+                    <div class="hub-card__meta">
+                        <span class="hub-card__chip"><i class="bi bi-laptop" aria-hidden="true"></i> Videollamada</span>
+                        <span class="hub-card__chip"><i class="bi bi-globe-americas" aria-hidden="true"></i> Desde donde estés</span>
+                    </div>
+                    <span class="hub-card__more">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                </a>
+                <a class="hub-card hub-reveal" style="--cat:var(--cat-acomp)" href="/servicios/seguimiento-enfermedades-cronicas/" data-cta="hub-card-seguimiento">
+                    <div class="hub-card__top"><div class="hub-card__icon"><i class="bi bi-arrow-repeat" aria-hidden="true"></i></div></div>
+                    <h3>Seguimiento de enfermedades crónicas</h3>
+                    <p>Programa estructurado para EPOC, asma, fibrosis y apnea: tu pulmón vigilado todo el año.</p>
+                    <div class="hub-card__meta">
+                        <span class="hub-card__chip"><i class="bi bi-calendar-check" aria-hidden="true"></i> Plan anual</span>
+                        <span class="hub-card__chip"><i class="bi bi-hospital" aria-hidden="true"></i> Consultorio</span>
+                    </div>
+                    <span class="hub-card__more">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                </a>
+                <a class="hub-card hub-reveal" style="--cat:var(--cat-acomp)" href="/servicios/tratamiento-dejar-de-fumar/" data-cta="hub-card-dejar-fumar">
+                    <div class="hub-card__top"><div class="hub-card__icon"><i class="bi bi-x-octagon" aria-hidden="true"></i></div></div>
+                    <h3>Tratamiento para dejar de fumar</h3>
+                    <p>Plan médico con farmacoterapia y acompañamiento real hasta lograrlo. Sin juicios.</p>
+                    <div class="hub-card__meta">
+                        <span class="hub-card__chip"><i class="bi bi-capsule" aria-hidden="true"></i> Con farmacoterapia</span>
+                        <span class="hub-card__chip"><i class="bi bi-person-heart" aria-hidden="true"></i> Acompañado</span>
+                    </div>
+                    <span class="hub-card__more">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                </a>
+            </div>
+        </div>
+
     </div>
 </section>
 
 <!-- CTA BAND final -->
 <section class="hub-cta-band">
-    <div class="cta-band__particles" aria-hidden="true"></div>
+    <div class="hub-cta-band__aura" aria-hidden="true"></div>
+    <div class="hub-cta-band__rings" aria-hidden="true"><span></span><span></span><span></span></div>
     <div class="hub-cta-band__inner">
-        <h2>¿Listo para agendar tu estudio?</h2>
-        <p>Te ayudo a elegir el estudio correcto según tus síntomas. Escríbeme por WhatsApp y te oriento personalmente.</p>
-        <a class="hub-cta-band__btn" href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20de%20la%20p%C3%A1gina%20de%20servicios%20y%20quiero%20agendar%20un%20estudio." target="_blank" rel="noopener noreferrer" data-cta="hub-cta-wa">
+        <h2>¿No sabes qué <em>estudio</em> necesitas?</h2>
+        <p>Cuéntame tus síntomas por WhatsApp y te oriento personalmente hacia el estudio correcto.</p>
+        <a class="hub-cta-band__btn" href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx,%20de%20la%20p%C3%A1gina%20de%20servicios%20y%20quiero%20agendar%20un%20estudio." target="_blank" rel="noopener noreferrer" data-cta="hub-cta-wa">
             <i class="bi bi-whatsapp" aria-hidden="true"></i> Escribir por WhatsApp
         </a>
     </div>
 </section>
+
+<script>
+/* Reveals por viewport para el hub (sin GSAP, compositor-friendly) */
+(function(){
+    var els = document.querySelectorAll('.hub-reveal');
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        els.forEach(function(el){ el.classList.add('visible'); });
+        return;
+    }
+    var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+            if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
+        });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function(el){ io.observe(el); });
+})();
+</script>
 
 </main>
 
@@ -332,7 +545,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="footer-tagline">Neumología de Vanguardia · Ciudad de México</div>
         <div class="footer-social">
             <a href="https://www.instagram.com/dr.williamlara/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
-            <a href="https://wa.me/5215591708334" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+            <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx%20y%20quisiera%20agendar%20una%20cita." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
             <a href="tel:5591708334" aria-label="Teléfono" data-cta="navbar-tel"><i class="bi bi-telephone-fill" aria-hidden="true"></i></a>
         </div>
         <hr class="footer-divider">

@@ -161,6 +161,26 @@
     /* Smooth scroll offset para anchors con navbar fija */
     .faq-section[id]{scroll-margin-top:90px}
 
+    /* ── BUSCADOR de preguntas ── */
+    .faq-search{position:relative;display:flex;align-items:center;gap:12px;max-width:620px;margin-top:28px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:100px;padding:6px 20px 6px 22px;backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);transition:border-color .3s ease, box-shadow .3s ease, background .3s ease}
+    .faq-search:focus-within{border-color:rgba(116,185,255,.65);background:rgba(255,255,255,.12);box-shadow:0 0 0 4px rgba(9,132,227,.18),0 18px 40px -18px rgba(0,0,0,.4)}
+    .faq-search > i{color:#74b9ff;font-size:1.05rem;flex-shrink:0}
+    .faq-search input{flex:1;background:transparent;border:0;outline:0;color:#fff;font-size:.98rem;font-weight:600;padding:11px 0;min-width:0}
+    .faq-search input::placeholder{color:rgba(255,255,255,.45);font-weight:500}
+    .faq-search input::-webkit-search-cancel-button{-webkit-appearance:none}
+    .faq-search__count{flex-shrink:0;font-size:.72rem;font-weight:800;letter-spacing:.08em;color:rgba(255,255,255,.65);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);border-radius:100px;padding:5px 12px;white-space:nowrap}
+    .faq-search__count:empty{display:none}
+    .faq-noresults{background:#fff;border:1px dashed rgba(9,132,227,.35);border-radius:18px;padding:36px 28px;text-align:center;margin-bottom:48px}
+    .faq-noresults i{font-size:2rem;color:rgba(9,132,227,.4);display:block;margin-bottom:10px}
+    .faq-noresults strong{display:block;color:var(--navy);font-size:1.08rem;margin-bottom:6px}
+    .faq-noresults p{color:var(--text-muted);font-size:.92rem;margin:0 0 18px}
+    .faq-noresults a{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#1ebe57,#25D366);color:#fff!important;border-radius:100px;padding:11px 24px;font-weight:700;font-size:.92rem;text-decoration:none;box-shadow:0 6px 18px rgba(37,211,102,.32);transition:transform .25s ease, box-shadow .25s ease}
+    .faq-noresults a:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(37,211,102,.45)}
+    body.faq-searching .faq-cat-grid{display:none}
+    .faq-item[data-hit="0"]{display:none}
+    .faq-section[data-empty="1"]{display:none}
+    mark.faq-mark{background:rgba(0,206,201,.25);color:inherit;border-radius:3px;padding:0 1px}
+
     /* Links de acción dentro de respuestas */
     .faq-link--wa{color:#25d366!important;border-bottom-color:rgba(37,211,102,.4)!important;font-weight:700}
     .faq-link--wa:hover{border-bottom-color:#25d366!important}
@@ -261,7 +281,7 @@
     </div>
 </nav>
 
-<a href="https://wa.me/5215591708334?text=Tengo%20una%20pregunta"  target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i><span class="wa-tooltip">¿Necesitas ayuda? Escríbeme</span></a>
+<a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx.%20Tengo%20una%20pregunta"  target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i><span class="wa-tooltip">¿Necesitas ayuda? Escríbeme</span></a>
 
 <main>
     <!-- HERO -->
@@ -284,6 +304,11 @@
                 <div class="faq-hero-stat"><div class="faq-hero-stat__num">23</div><div class="faq-hero-stat__lbl">preguntas resueltas</div></div>
                 <div class="faq-hero-stat"><div class="faq-hero-stat__num">4</div><div class="faq-hero-stat__lbl">categorías</div></div>
                 <div class="faq-hero-stat"><div class="faq-hero-stat__num">24h</div><div class="faq-hero-stat__lbl">respuesta por WhatsApp</div></div>
+            </div>
+            <div class="faq-search" role="search">
+                <i class="bi bi-search" aria-hidden="true"></i>
+                <input id="faqSearch" type="search" placeholder="Busca tu duda: costo, espirometría, apnea, receta..." aria-label="Buscar en preguntas frecuentes" autocomplete="off">
+                <span class="faq-search__count" id="faqSearchCount" aria-live="polite"></span>
             </div>
         </div>
     </section>
@@ -320,13 +345,20 @@
             </div>
 
             <!-- CONSULTA Y AGENDA -->
+            <div class="faq-noresults" id="faqNoResults" hidden>
+                <i class="bi bi-search-heart" aria-hidden="true"></i>
+                <strong>No encontré esa duda aquí</strong>
+                <p>Pero la respondo personalmente. Escríbeme tu pregunta por WhatsApp y te contesto el mismo día.</p>
+                <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20de%20su%20sitio%20web%20alveos.mx.%20Tengo%20una%20pregunta%20que%20no%20encontr%C3%A9%20en%20el%20FAQ" target="_blank" rel="noopener noreferrer" data-cta="faq-noresults-wa"><i class="bi bi-whatsapp" aria-hidden="true"></i> Preguntar por WhatsApp</a>
+            </div>
+
             <div id="consulta" class="faq-section reveal">
                 <span class="faq-section__eyebrow"><i class="bi bi-calendar-check"></i> Consulta y agenda</span>
                 <h2 class="faq-section__title">Antes de tu <em>primera cita</em></h2>
                 <p class="faq-section__lead">Todo lo que necesitas saber para llegar preparado y aprovechar la consulta al máximo.</p>
                 <div class="faq-list">
                     <details class="faq-item"><summary>¿Cuándo debo ir con un neumólogo?</summary><div class="faq-item__answer"><p>Cuando tienes <strong>tos que dura más de 3 semanas</strong>, falta de aire al hacer esfuerzos que antes hacías sin problema, sibilancias (silbidos al respirar), ronquido fuerte con pausas respiratorias, dolor en el pecho al respirar, o ya tienes diagnóstico de asma o EPOC pero sigues con síntomas. También si fumas o fumaste y quieres tu primera evaluación pulmonar.</p></div></details>
-                    <details class="faq-item"><summary>¿Necesito referencia médica para agendar?</summary><div class="faq-item__answer"><p>No. Puedes agendar por <a href="https://wa.me/5215591708334"  target="_blank" rel="noopener noreferrer" class="faq-link--wa"><i class="bi bi-whatsapp"></i>55 9170 8334</a> o <a href="#agendaModal" class="faq-link--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check-fill"></i>reservar cita en línea</a>. Si te refirió otro médico, trae el resumen y estudios previos para no repetirlos y avanzar más rápido.</p></div></details>
+                    <details class="faq-item"><summary>¿Necesito referencia médica para agendar?</summary><div class="faq-item__answer"><p>No. Puedes agendar por <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx%20y%20quisiera%20agendar%20una%20cita."  target="_blank" rel="noopener noreferrer" class="faq-link--wa"><i class="bi bi-whatsapp"></i>55 9170 8334</a> o <a href="#agendaModal" class="faq-link--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check-fill"></i>reservar cita en línea</a>. Si te refirió otro médico, trae el resumen y estudios previos para no repetirlos y avanzar más rápido.</p></div></details>
                     <details class="faq-item"><summary>¿Cuánto dura la primera consulta?</summary><div class="faq-item__answer"><p>Entre <strong>45 y 60 minutos</strong>. Es la consulta más larga porque incluye historia clínica completa, exploración, revisión de estudios previos y plan inicial. Las consultas de seguimiento duran 25 a 30 minutos.</p></div></details>
                     <details class="faq-item"><summary>¿Qué debo llevar a mi primera consulta?</summary><div class="faq-item__answer"><p>Lista de medicamentos actuales con dosis (incluye inhaladores y los que tomas ocasionalmente), estudios previos en físico o digital (radiografías, TAC, espirometrías, polisomnografía, gasometrías), resúmenes de hospitalizaciones y, si tu memoria de los síntomas es limitada, un familiar que te acompañe.</p></div></details>
                     <details class="faq-item"><summary>¿Puedo llevar a un acompañante?</summary><div class="faq-item__answer"><p>Sí, recomendado. Especialmente si eres adulto mayor, tienes deterioro de memoria o si quien describe mejor los síntomas (ronquido, pausas al dormir, episodios) es tu pareja o familiar.</p></div></details>
@@ -359,9 +391,9 @@
                     <details class="faq-item"><summary>¿La espirometría duele?</summary><div class="faq-item__answer"><p>No. La <a href="/servicios/espirometria/">espirometría</a> es indolora. Solo requiere soplar con fuerza en una boquilla durante 6 segundos, y se repite 2 o 3 veces. Puede causar tos leve o mareo pasajero. <strong>Dura 20 a 30 minutos</strong> en total.</p></div></details>
                     <details class="faq-item"><summary>¿La broncoscopia es muy invasiva?</summary><div class="faq-item__answer"><p>La <a href="/servicios/broncoscopia/">broncoscopia flexible</a> se realiza <strong>bajo sedación</strong>. Dura 30 a 45 minutos con monitoreo continuo. Habitualmente bien tolerada. Puedes tener tos leve o expectoración con un poco de sangre en las primeras 24 horas. No requiere hospitalización en la mayoría de casos.</p></div></details>
                     <details class="faq-item"><summary>¿El estudio del sueño se hace en mi casa o en hospital?</summary><div class="faq-item__answer"><p>La <a href="/servicios/poligrafia-respiratoria/">poligrafía respiratoria domiciliaria</a> es el estudio que usamos: registra tu respiración, oxígeno y esfuerzo mientras duermes en tu cama. Es precisa para diagnosticar apnea del sueño y, en la mayoría de los casos, <strong>evita la necesidad de un estudio hospitalario</strong>.</p></div></details>
-                    <details class="faq-item"><summary>¿Cuánto tardan los resultados de mis estudios?</summary><div class="faq-item__answer"><p><strong>Espirometría y FeNO:</strong> el mismo día, te los explico en consulta. <strong>Poligrafía respiratoria:</strong> 3 a 5 días hábiles. <strong>Broncoscopia con biopsia:</strong> 7 a 14 días por patología. Te aviso por <a href="https://wa.me/5215591708334"  target="_blank" rel="noopener noreferrer" class="faq-link--wa"><i class="bi bi-whatsapp"></i>WhatsApp</a> en cuanto estén listos.</p></div></details>
-                    <details class="faq-item"><summary>¿Cómo me preparo para la espirometría?</summary><div class="faq-item__answer"><ul style="margin:0;padding-left:18px;line-height:1.8"><li><strong>Sin café, té ni bebidas con cafeína</strong> las 4 horas previas</li><li><strong>Sin fumar</strong> al menos 1 hora antes (idealmente el día del estudio)</li><li>Evita comida abundante las 2 horas previas</li><li><strong>Broncodilatador de rescate</strong> (salbutamol): suspendes 6 a 12 horas antes</li><li><strong>Broncodilatadores de acción prolongada</strong> (LABA/LAMA como formoterol, salmeterol, tiotropio): suspendes 12 a 24 horas antes, solo si tu médico lo indica</li><li>Ropa cómoda y no ajustada en el pecho o abdomen</li><li>Trae la lista de tus inhaladores actuales</li></ul><p style="margin:10px 0 0;font-size:.88rem;color:#5a6a7a">Si tienes duda sobre algún medicamento específico, consúltame por <a href="https://wa.me/5215591708334"  target="_blank" rel="noopener noreferrer" class="faq-link--wa"><i class="bi bi-whatsapp"></i>WhatsApp</a> antes del estudio.</p></div></details>
-                    <details class="faq-item"><summary>¿Tengo que dejar mis medicamentos antes de un estudio?</summary><div class="faq-item__answer"><p>Depende del estudio. Para <strong>espirometría con broncodilatador</strong>: suspender broncodilatadores de acción corta 6 horas antes y los de acción prolongada 12 a 24 horas antes. Para <strong>poligrafía</strong>: no se suspende nada. Te paso instrucciones específicas por <a href="https://wa.me/5215591708334"  target="_blank" rel="noopener noreferrer" class="faq-link--wa"><i class="bi bi-whatsapp"></i>WhatsApp</a> al confirmar tu cita.</p></div></details>
+                    <details class="faq-item"><summary>¿Cuánto tardan los resultados de mis estudios?</summary><div class="faq-item__answer"><p><strong>Espirometría y FeNO:</strong> el mismo día, te los explico en consulta. <strong>Poligrafía respiratoria:</strong> 3 a 5 días hábiles. <strong>Broncoscopia con biopsia:</strong> 7 a 14 días por patología. Te aviso por <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx%20y%20quisiera%20agendar%20una%20cita."  target="_blank" rel="noopener noreferrer" class="faq-link--wa"><i class="bi bi-whatsapp"></i>WhatsApp</a> en cuanto estén listos.</p></div></details>
+                    <details class="faq-item"><summary>¿Cómo me preparo para la espirometría?</summary><div class="faq-item__answer"><ul style="margin:0;padding-left:18px;line-height:1.8"><li><strong>Sin café, té ni bebidas con cafeína</strong> las 4 horas previas</li><li><strong>Sin fumar</strong> al menos 1 hora antes (idealmente el día del estudio)</li><li>Evita comida abundante las 2 horas previas</li><li><strong>Broncodilatador de rescate</strong> (salbutamol): suspendes 6 a 12 horas antes</li><li><strong>Broncodilatadores de acción prolongada</strong> (LABA/LAMA como formoterol, salmeterol, tiotropio): suspendes 12 a 24 horas antes, solo si tu médico lo indica</li><li>Ropa cómoda y no ajustada en el pecho o abdomen</li><li>Trae la lista de tus inhaladores actuales</li></ul><p style="margin:10px 0 0;font-size:.88rem;color:#5a6a7a">Si tienes duda sobre algún medicamento específico, consúltame por <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx%20y%20quisiera%20agendar%20una%20cita."  target="_blank" rel="noopener noreferrer" class="faq-link--wa"><i class="bi bi-whatsapp"></i>WhatsApp</a> antes del estudio.</p></div></details>
+                    <details class="faq-item"><summary>¿Tengo que dejar mis medicamentos antes de un estudio?</summary><div class="faq-item__answer"><p>Depende del estudio. Para <strong>espirometría con broncodilatador</strong>: suspender broncodilatadores de acción corta 6 horas antes y los de acción prolongada 12 a 24 horas antes. Para <strong>poligrafía</strong>: no se suspende nada. Te paso instrucciones específicas por <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx%20y%20quisiera%20agendar%20una%20cita."  target="_blank" rel="noopener noreferrer" class="faq-link--wa"><i class="bi bi-whatsapp"></i>WhatsApp</a> al confirmar tu cita.</p></div></details>
                 </div>
             </div>
 
@@ -371,8 +403,8 @@
                 <h2 class="faq-section__title">Sin <em>sorpresas</em> en el costo</h2>
                 <p class="faq-section__lead">Te paso el costo actualizado por WhatsApp antes de que confirmes tu cita.</p>
                 <div class="faq-list">
-                    <details class="faq-item"><summary>¿Reciben seguro de gastos médicos mayores?</summary><div class="faq-item__answer"><p>Trabajamos con varias aseguradoras. Antes de agendar, contáctanos por <a href="https://wa.me/5215591708334"  target="_blank" rel="noopener noreferrer">WhatsApp</a> con el nombre de tu aseguradora para confirmar cobertura y modalidad: <strong>reembolso o pago directo</strong>.</p></div></details>
-                    <details class="faq-item"><summary>¿Cuánto cuesta una consulta?</summary><div class="faq-item__answer"><p>El costo varía según el tipo (primera vez, seguimiento, teleconsulta) y si incluye estudios. Te paso el costo actualizado por <a href="https://wa.me/5215591708334?text=Quiero%20saber%20el%20costo%20de%20consulta"  target="_blank" rel="noopener noreferrer" class="faq-link--wa"><i class="bi bi-whatsapp"></i>WhatsApp</a> antes de que confirmes la cita, sin sorpresas.</p></div></details>
+                    <details class="faq-item"><summary>¿Reciben seguro de gastos médicos mayores?</summary><div class="faq-item__answer"><p>Trabajamos con varias aseguradoras. Antes de agendar, contáctanos por <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx%20y%20quisiera%20agendar%20una%20cita."  target="_blank" rel="noopener noreferrer">WhatsApp</a> con el nombre de tu aseguradora para confirmar cobertura y modalidad: <strong>reembolso o pago directo</strong>.</p></div></details>
+                    <details class="faq-item"><summary>¿Cuánto cuesta una consulta?</summary><div class="faq-item__answer"><p>El costo varía según el tipo (primera vez, seguimiento, teleconsulta) y si incluye estudios. Te paso el costo actualizado por <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx.%20Quiero%20saber%20el%20costo%20de%20consulta"  target="_blank" rel="noopener noreferrer" class="faq-link--wa"><i class="bi bi-whatsapp"></i>WhatsApp</a> antes de que confirmes la cita, sin sorpresas.</p></div></details>
                     <details class="faq-item"><summary>¿Aceptan pago con tarjeta?</summary><div class="faq-item__answer"><p>Sí. Aceptamos <strong>efectivo, transferencia y tarjeta</strong> (débito y crédito) en consultorio. Para teleconsulta, el pago es por transferencia o link de pago previo a la cita.</p></div></details>
                     <details class="faq-item"><summary>¿Dan factura?</summary><div class="faq-item__answer"><p>Sí. La factura se emite el mismo día. Solicítala al momento del pago con tus datos fiscales (RFC, razón social, uso de CFDI).</p></div></details>
                 </div>
@@ -385,7 +417,7 @@
                     <h3 class="faq-cta__title">Escríbeme directo y te respondo el <em style="font-style:normal;background:linear-gradient(135deg,#74b9ff,#00cec9);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">mismo día</em></h3>
                     <p class="faq-cta__sub">Si tu duda es médica y requiere consulta, te lo digo claro. Si la puedo resolver por WhatsApp, lo hago sin costo.</p>
                     <div class="faq-cta__btns">
-                        <a href="https://wa.me/5215591708334?text=Tengo%20una%20pregunta"  target="_blank" rel="noopener noreferrer" class="faq-cta__btn faq-cta__btn--wa"><i class="bi bi-whatsapp"></i> Preguntar por WhatsApp</a>
+                        <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx.%20Tengo%20una%20pregunta"  target="_blank" rel="noopener noreferrer" class="faq-cta__btn faq-cta__btn--wa"><i class="bi bi-whatsapp"></i> Preguntar por WhatsApp</a>
                         <a href="#agendaModal" class="faq-cta__btn faq-cta__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
                     </div>
                 </div>
@@ -426,7 +458,7 @@
                     <span class="hours-badge">Previa Cita</span>
                 </div>
                 <div class="contact__action-card reveal">
-                    <a href="https://wa.me/5215591708334?text=Quiero%20agendar%20una%20duda"  target="_blank" rel="noopener noreferrer" class="contact__action-btn contact__action-btn--wa">
+                    <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx.%20Quiero%20agendar%20una%20duda"  target="_blank" rel="noopener noreferrer" class="contact__action-btn contact__action-btn--wa">
                         <i class="bi bi-whatsapp" style="font-size:1.2rem"></i> WhatsApp
                     </a>
                     <a href="mailto:drwilliam.neumocare@gmail.com" class="contact__action-btn contact__action-btn--email">
@@ -439,6 +471,54 @@
             </div>
         </div>
     </section>
+<script>
+/* ── Buscador de preguntas frecuentes (filtro en vivo) ── */
+(function(){
+    var input = document.getElementById('faqSearch');
+    var count = document.getElementById('faqSearchCount');
+    var empty = document.getElementById('faqNoResults');
+    if (!input) return;
+    var items = Array.prototype.slice.call(document.querySelectorAll('.faq-item'));
+    var sections = Array.prototype.slice.call(document.querySelectorAll('.faq-section'));
+    function norm(s){
+        return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+    }
+    items.forEach(function(it){ it.dataset.text = norm(it.textContent); });
+    var t = null;
+    function run(){
+        var q = norm(input.value.trim());
+        var searching = q.length >= 2;
+        document.body.classList.toggle('faq-searching', searching);
+        var hits = 0;
+        items.forEach(function(it){
+            var hit = !searching || it.dataset.text.indexOf(q) !== -1;
+            it.dataset.hit = hit ? '1' : '0';
+            if (searching && hit) { it.open = true; hits++; }
+            if (!searching) { it.open = false; }
+        });
+        sections.forEach(function(sec){
+            var visible = sec.querySelectorAll('.faq-item[data-hit="1"], .faq-item:not([data-hit])').length;
+            sec.dataset.empty = (searching && visible === 0) ? '1' : '0';
+        });
+        count.textContent = searching ? (hits + (hits === 1 ? ' resultado' : ' resultados')) : '';
+        empty.hidden = !(searching && hits === 0);
+        if (searching && window.dataLayer) {
+            window.dataLayer.push({ event: 'faq_search', search_term: input.value.trim().slice(0, 60), results: hits });
+        }
+    }
+    input.addEventListener('input', function(){
+        clearTimeout(t);
+        t = setTimeout(run, 160);
+    });
+    /* atajo de teclado: "/" enfoca el buscador */
+    document.addEventListener('keydown', function(e){
+        if (e.key === '/' && document.activeElement !== input && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
+            e.preventDefault();
+            input.focus();
+        }
+    });
+})();
+</script>
 </main>
 
 <footer>
@@ -447,7 +527,7 @@
         <div class="footer-tagline">Neumología de Vanguardia · Ciudad de México</div>
         <div class="footer-social">
             <a href="https://www.instagram.com/dr.williamlara/"  target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-            <a href="https://wa.me/5215591708334"  target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx%20y%20quisiera%20agendar%20una%20cita."  target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
             <a href="tel:5591708334" aria-label="Teléfono" data-cta="navbar-tel"><i class="bi bi-telephone-fill"></i></a>
         </div>
         <hr class="footer-divider">

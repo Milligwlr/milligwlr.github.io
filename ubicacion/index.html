@@ -131,19 +131,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/enfermedades/_shared/disease.css">
 
 <style>
-/* ─── Hub-specific (location page) ─── */
-.hub-hero { padding: 110px 0 56px; background: linear-gradient(180deg, #f8faff 0%, #fff 100%); position: relative; overflow: hidden; }
-.hub-hero::before { content:''; position:absolute; top:-50%; right:-20%; width:60%; padding-bottom:60%; border-radius:50%; background:radial-gradient(circle, rgba(9,132,227,.10), transparent 70%); pointer-events:none; }
-.hub-hero::after { content:''; position:absolute; bottom:-40%; left:-10%; width:50%; padding-bottom:50%; border-radius:50%; background:radial-gradient(circle, rgba(30,55,153,.08), transparent 70%); pointer-events:none; }
+/* ─── Ubicación · rediseño premium ─── */
+:root{ --serif:'Fraunces','Plus Jakarta Sans',serif; }
+.hub-hero { padding: 110px 0 52px; background: linear-gradient(180deg,#f6faff 0%,#fff 100%); position: relative; overflow: hidden; }
+.hub-hero::before { content:''; position:absolute; top:-50%; right:-20%; width:60%; padding-bottom:60%; border-radius:50%; background:radial-gradient(circle, rgba(9,132,227,.10), transparent 70%); pointer-events:none; animation: hub-breathe 9s ease-in-out infinite; }
+.hub-hero::after { content:''; position:absolute; bottom:-40%; left:-10%; width:50%; padding-bottom:50%; border-radius:50%; background:radial-gradient(circle, rgba(108,92,231,.07), transparent 70%); pointer-events:none; animation: hub-breathe 12s ease-in-out infinite reverse; }
+@keyframes hub-breathe { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+.hub-hero__grid-bg { position:absolute; inset:0; background-image:radial-gradient(circle, rgba(10,22,40,.05) 1px, transparent 1px); background-size:30px 30px; mask-image:radial-gradient(ellipse 75% 65% at 50% 30%, #000 25%, transparent 78%); -webkit-mask-image:radial-gradient(ellipse 75% 65% at 50% 30%, #000 25%, transparent 78%); pointer-events:none; }
 .hub-hero .container { position: relative; z-index: 1; }
-.hub-hero__breadcrumb { font-size:.82rem; color: var(--text-muted); margin-bottom: 14px; }
+.hub-hero__breadcrumb { font-size:.82rem; color: var(--text-muted); margin-bottom: 18px; }
 .hub-hero__breadcrumb a { color: var(--text-muted); text-decoration: none; }
 .hub-hero__breadcrumb a:hover { color: var(--electric); }
 .hub-hero__breadcrumb span { margin: 0 6px; }
 .hub-hero__eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:.72rem; font-weight:700; color: var(--electric); text-transform:uppercase; letter-spacing:2px; background: rgba(9,132,227,.08); padding: 7px 14px; border-radius: 100px; margin-bottom: 18px; border: 1px solid rgba(9,132,227,.16); }
-.hub-hero h1 { font-size: clamp(2rem, 5.2vw, 3.4rem); font-weight: 800; color: var(--navy); letter-spacing: -.025em; line-height: 1.1; max-width: 760px; margin-bottom: 16px; }
-.hub-hero h1 em { font-style: italic; font-weight: 700; background: linear-gradient(135deg, var(--royal), var(--electric)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.hub-hero__lead { color: var(--text-muted); font-size: 1.08rem; max-width: 720px; margin-bottom: 22px; line-height: 1.65; }
+.hub-hero h1 { font-size: clamp(2.1rem, 5.4vw, 3.6rem); font-weight: 800; color: var(--navy); letter-spacing: -.035em; line-height: 1.06; max-width: 800px; margin-bottom: 18px; text-wrap: balance; }
+.hub-hero h1 em { font-style: italic; font-weight: 700; font-family: var(--serif); background: linear-gradient(135deg, var(--royal), var(--electric)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hub-hero__lead { color: var(--text-muted); font-size: 1.08rem; max-width: 720px; margin-bottom: 24px; line-height: 1.68; }
 
 .ubi-quick { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
 .ubi-quick a { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: #fff; border: 1px solid var(--border); border-radius: 100px; font-size: .92rem; color: var(--text); text-decoration: none; font-weight: 600; box-shadow: var(--shadow-xs); transition: all .25s var(--ease); }
@@ -187,9 +190,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .ubi-arrive__grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
 @media (min-width: 700px) { .ubi-arrive__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1000px) { .ubi-arrive__grid { grid-template-columns: repeat(4, 1fr); } }
-.ubi-arrive__card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 22px; transition: all .25s var(--ease); }
-.ubi-arrive__card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: rgba(9,132,227,.18); }
-.ubi-arrive__icon { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, var(--electric), var(--royal)); display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; margin-bottom: 14px; box-shadow: var(--shadow-blue); }
+.ubi-arrive__card { --acc: var(--electric); background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 22px; transition: all .25s var(--ease); position: relative; overflow: hidden; }
+.ubi-arrive__card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background: var(--acc); transform: scaleX(0); transform-origin:left; transition: transform .35s var(--ease); }
+.ubi-arrive__card:hover { transform: translateY(-3px); box-shadow: 0 20px 44px -18px color-mix(in srgb, var(--acc) 35%, rgba(10,22,40,.25)); border-color: color-mix(in srgb, var(--acc) 35%, transparent); }
+.ubi-arrive__card:hover::before { transform: scaleX(1); }
+.ubi-arrive__icon { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, var(--acc), color-mix(in srgb, var(--acc) 55%, #06112a)); display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; margin-bottom: 14px; box-shadow: 0 8px 20px -6px color-mix(in srgb, var(--acc) 45%, transparent); }
 .ubi-arrive__card h3 { font-size: 1.02rem; margin: 0 0 8px; color: var(--navy); font-weight: 700; }
 .ubi-arrive__card p { font-size: .92rem; color: var(--text-muted); margin: 0; line-height: 1.55; }
 .ubi-arrive__card a { color: var(--electric); text-decoration: none; font-weight: 600; }
@@ -203,15 +208,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .ubi-coverage__chip { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; background: var(--cloud-alt); border: 1px solid var(--border); border-radius: 100px; font-size: .9rem; color: var(--text); font-weight: 600; }
 .ubi-coverage__chip i { color: var(--electric); font-size: .9em; }
 
-/* CTA band */
-.hub-cta-band { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 50%, var(--royal) 100%); color: #fff; padding: 70px 0; text-align: center; position: relative; overflow: hidden; }
-.hub-cta-band::before { content:''; position:absolute; inset:0; background: radial-gradient(circle at 20% 30%, rgba(9,132,227,.25), transparent 60%); pointer-events:none; }
-.hub-cta-band::after { content:''; position:absolute; bottom:-30%; right:-10%; width:50%; padding-bottom:50%; border-radius:50%; background:radial-gradient(circle, rgba(9,132,227,.18), transparent 60%); pointer-events:none; }
+/* Colonias enlazables a páginas de zona */
+a.ubi-coverage__chip { text-decoration:none; transition: transform .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease), color .25s var(--ease); }
+a.ubi-coverage__chip:hover { transform: translateY(-2px); border-color: var(--electric); color: var(--electric); box-shadow: 0 10px 22px -10px rgba(9,132,227,.35); }
+a.ubi-coverage__chip::after { content:'\F138'; font-family:'bootstrap-icons'; font-size:.78em; color:var(--electric); }
+
+/* CTA band — "breathing" (lenguaje del home) */
+.hub-cta-band { background: var(--navy); color: #fff; padding: 92px 0; text-align: center; position: relative; overflow: hidden; }
+.hub-cta-band__aura { position:absolute; top:50%; left:50%; width:min(700px,90vw); aspect-ratio:1; transform:translate(-50%,-50%); border-radius:50%; background:radial-gradient(circle, rgba(9,132,227,.17) 0%, rgba(0,206,201,.08) 38%, transparent 68%); filter:blur(28px); animation: hub-cta-breathe 7s ease-in-out infinite; pointer-events:none; }
+@keyframes hub-cta-breathe { 0%,100%{transform:translate(-50%,-50%) scale(.92);opacity:.55} 50%{transform:translate(-50%,-50%) scale(1.08);opacity:1} }
+.hub-cta-band__rings { position:absolute; top:50%; left:50%; width:0; height:0; pointer-events:none; }
+.hub-cta-band__rings span { position:absolute; top:0; left:0; width:200px; height:200px; transform:translate(-50%,-50%) scale(.4); border-radius:50%; border:1px solid rgba(116,185,255,.35); opacity:0; animation: hub-cta-ring 6s cubic-bezier(.16,1,.3,1) infinite; }
+.hub-cta-band__rings span:nth-child(2){ animation-delay:2s; } .hub-cta-band__rings span:nth-child(3){ animation-delay:4s; }
+@keyframes hub-cta-ring { 0%{transform:translate(-50%,-50%) scale(.4);opacity:0} 12%{opacity:.5} 100%{transform:translate(-50%,-50%) scale(3.2);opacity:0} }
 .hub-cta-band__inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; padding: 0 20px; }
-.hub-cta-band h2 { color: #fff; font-size: clamp(1.6rem, 3.5vw, 2.4rem); margin-bottom: 14px; font-weight: 800; letter-spacing: -.02em; }
-.hub-cta-band p { color: rgba(255,255,255,.78); font-size: 1.05rem; margin-bottom: 28px; line-height: 1.6; }
-.hub-cta-band__btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 32px; background: linear-gradient(135deg, #1ebe57, #25D366); color: #fff !important; border-radius: 100px; font-weight: 700; font-size: 1.02rem; text-decoration: none; box-shadow: 0 8px 24px rgba(37,211,102,.35); transition: all .3s var(--ease); }
+.hub-cta-band h2 { color: #fff; font-size: clamp(1.7rem, 3.8vw, 2.6rem); margin-bottom: 14px; font-weight: 800; letter-spacing: -.025em; }
+.hub-cta-band h2 em { font-style:normal; background:linear-gradient(135deg,#00cec9 0%,#74b9ff 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.hub-cta-band p { color: rgba(255,255,255,.62); font-size: 1.05rem; margin-bottom: 30px; line-height: 1.65; }
+.hub-cta-band__btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 34px; background: linear-gradient(135deg, #1ebe57, #25D366); color: #fff !important; border-radius: 100px; font-weight: 700; font-size: 1.02rem; text-decoration: none; box-shadow: 0 8px 24px rgba(37,211,102,.35); transition: transform .3s var(--ease), box-shadow .3s var(--ease); }
 .hub-cta-band__btn:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(37,211,102,.5); }
+.hub-cta-band__btn:active { transform: scale(.97); }
+@media (prefers-reduced-motion: reduce){ .hub-cta-band__aura{animation:none;opacity:.7} .hub-cta-band__rings{display:none} .hub-hero::before,.hub-hero::after{animation:none} }
 
 .nav-link--recursos.active{color:#1e3799!important;font-weight:700!important}
 .nav-link--recursos.active::after{background:#1e3799!important}
@@ -314,12 +331,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </a>
     </div>
 </nav>
-<a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20desde%20la%20p%C3%A1gina%20de%20ubicaci%C3%B3n%20y%20quiero%20agendar" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i><span class="wa-tooltip">¿Dudas? Escríbeme</span></a>
+<a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx,%20de%20la%20p%C3%A1gina%20de%20ubicaci%C3%B3n%20y%20quiero%20agendar" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i><span class="wa-tooltip">¿Dudas? Escríbeme</span></a>
 
 <main>
 
 <!-- HERO -->
 <section class="hub-hero" aria-labelledby="ubi-h1">
+    <div class="hub-hero__grid-bg" aria-hidden="true"></div>
     <div class="container">
         <nav class="hub-hero__breadcrumb" aria-label="Breadcrumb">
             <a href="/">Inicio</a> <span>›</span> <span aria-current="page">Ubicación del consultorio</span>
@@ -331,7 +349,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="ubi-quick" role="list">
             <a href="https://maps.app.goo.gl/4yc6UXv296PZ7zSC7" target="_blank" rel="noopener noreferrer" data-cta="ubi-quick-maps"><i class="bi bi-map-fill" aria-hidden="true"></i> Abrir en Google Maps</a>
             <a href="tel:+525591708334" data-cta="ubi-quick-tel"><i class="bi bi-telephone-fill" aria-hidden="true"></i> 55 9170 8334</a>
-            <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20desde%20alveos.mx%20y%20quisiera%20agendar%20una%20cita." target="_blank" rel="noopener noreferrer" data-cta="ubi-quick-wa"><i class="bi bi-whatsapp" aria-hidden="true"></i> WhatsApp</a>
+            <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx%20y%20quisiera%20agendar%20una%20cita." target="_blank" rel="noopener noreferrer" data-cta="ubi-quick-wa"><i class="bi bi-whatsapp" aria-hidden="true"></i> WhatsApp</a>
             <a href="/contacto/dr-william-lara.vcf" data-cta="ubi-quick-vcf"><i class="bi bi-person-vcard" aria-hidden="true"></i> Guardar contacto</a>
         </div>
     </div>
@@ -382,7 +400,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <h2><i class="bi bi-calendar-check-fill" aria-hidden="true"></i> Agendar consulta</h2>
                     <p style="color: var(--text-muted); margin: 0 0 12px; font-size: .95rem;">Elige el medio más cómodo para ti. El WhatsApp suele responder en menos de 2 horas en horario hábil.</p>
                     <div class="ubi-cta-row">
-                        <a class="btn-ubi btn-ubi--wa" href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20quisiera%20agendar%20una%20consulta%20de%20neumolog%C3%ADa." target="_blank" rel="noopener noreferrer" data-cta="ubi-card-wa">
+                        <a class="btn-ubi btn-ubi--wa" href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx.%20Quisiera%20agendar%20una%20consulta%20de%20neumolog%C3%ADa." target="_blank" rel="noopener noreferrer" data-cta="ubi-card-wa">
                             <i class="bi bi-whatsapp" aria-hidden="true"></i> Agendar por WhatsApp
                         </a>
                         <a class="btn-ubi btn-ubi--cal" href="#agendaModal" data-cta="ubi-card-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
@@ -407,25 +425,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="ubi-arrive__lead">Cuatro maneras de llegar al Hospital Santa Coleta, San José Insurgentes.</p>
 
         <div class="ubi-arrive__grid">
-            <article class="ubi-arrive__card">
+            <article class="ubi-arrive__card" style="--acc:#0984e3">
                 <div class="ubi-arrive__icon"><i class="bi bi-car-front-fill" aria-hidden="true"></i></div>
                 <h3>En auto</h3>
                 <p>Saturnino Herrán 59, cerca del cruce con Insurgentes Sur. El hospital cuenta con estacionamiento propio dentro del edificio. Desde Periférico Sur o Viaducto, calcula 10–20 minutos según tráfico.</p>
             </article>
 
-            <article class="ubi-arrive__card">
+            <article class="ubi-arrive__card" style="--acc:#d32f2f">
                 <div class="ubi-arrive__icon"><i class="bi bi-train-front-fill" aria-hidden="true"></i></div>
                 <h3>En Metro / Metrobús</h3>
                 <p>Línea 1 del Metrobús: estación <strong>Olivo</strong> o <strong>San Antonio</strong>, a 5–7 minutos caminando. Metro Mixcoac (L7 y L12) está a 15 minutos en taxi o aplicación.</p>
             </article>
 
-            <article class="ubi-arrive__card">
+            <article class="ubi-arrive__card" style="--acc:#475569">
                 <div class="ubi-arrive__icon"><i class="bi bi-taxi-front-fill" aria-hidden="true"></i></div>
                 <h3>Uber / DiDi</h3>
                 <p>Pide directo a <strong>"Hospital Santa Coleta, Saturnino Herrán 59"</strong>. Costo aproximado desde Roma o Coyoacán: $80–$150 MXN en horario regular.</p>
             </article>
 
-            <article class="ubi-arrive__card">
+            <article class="ubi-arrive__card" style="--acc:#0f9d58">
                 <div class="ubi-arrive__icon"><i class="bi bi-camera-video-fill" aria-hidden="true"></i></div>
                 <h3>Sin desplazarte</h3>
                 <p>Si vives lejos o tu condición lo justifica, la <a href="/servicios/teleconsulta/">teleconsulta</a> está disponible para seguimiento y opiniones de primera vez (excepto casos que requieran exploración física directa).</p>
@@ -441,9 +459,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="ubi-coverage__lead">El consultorio recibe pacientes principalmente de las colonias del centro y sur de la Ciudad de México, todas a menos de 15–20 minutos en coche.</p>
 
         <div class="ubi-coverage__chips" role="list">
-            <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Roma</span>
-            <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Condesa</span>
-            <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Del Valle</span>
+            <a class="ubi-coverage__chip" href="/zonas/roma-condesa/"><i class="bi bi-geo-alt" aria-hidden="true"></i> Roma</a>
+            <a class="ubi-coverage__chip" href="/zonas/roma-condesa/"><i class="bi bi-geo-alt" aria-hidden="true"></i> Condesa</a>
+            <a class="ubi-coverage__chip" href="/zonas/del-valle/"><i class="bi bi-geo-alt" aria-hidden="true"></i> Del Valle</a>
             <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Narvarte</span>
             <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Nápoles</span>
             <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> San José Insurgentes</span>
@@ -451,7 +469,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Pedregal</span>
             <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Perisur</span>
             <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> San Ángel</span>
-            <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Coyoacán</span>
+            <a class="ubi-coverage__chip" href="/zonas/coyoacan/"><i class="bi bi-geo-alt" aria-hidden="true"></i> Coyoacán</a>
             <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Tlalpan</span>
             <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Insurgentes Sur</span>
         </div>
@@ -460,11 +478,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- FINAL CTA BAND -->
 <section class="hub-cta-band" aria-labelledby="ubi-final-h2">
-    <div class="cta-band__particles" aria-hidden="true"></div>
+    <div class="hub-cta-band__aura" aria-hidden="true"></div>
+    <div class="hub-cta-band__rings" aria-hidden="true"><span></span><span></span><span></span></div>
     <div class="hub-cta-band__inner">
-        <h2 id="ubi-final-h2">Una consulta puede ser el inicio de tu recuperación</h2>
+        <h2 id="ubi-final-h2">Una consulta puede ser el inicio de tu <em>recuperación</em></h2>
         <p>Si tienes tos persistente, dificultad para respirar o necesitas seguimiento de una enfermedad respiratoria crónica, escribe por WhatsApp. El Dr. Lara responde personalmente para ajustar día y hora.</p>
-        <a class="hub-cta-band__btn" href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20de%20la%20p%C3%A1gina%20de%20ubicaci%C3%B3n%20y%20quiero%20agendar%20una%20consulta." target="_blank" rel="noopener noreferrer" data-cta="ubi-final-wa">
+        <a class="hub-cta-band__btn" href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx,%20de%20la%20p%C3%A1gina%20de%20ubicaci%C3%B3n%20y%20quiero%20agendar%20una%20consulta." target="_blank" rel="noopener noreferrer" data-cta="ubi-final-wa">
             <i class="bi bi-whatsapp" aria-hidden="true"></i> Escribir por WhatsApp ahora
         </a>
     </div>
@@ -478,7 +497,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="footer-tagline">Neumología de Vanguardia · Ciudad de México</div>
         <div class="footer-social">
             <a href="https://www.instagram.com/dr.williamlara/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
-            <a href="https://wa.me/5215591708334" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+            <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx%20y%20quisiera%20agendar%20una%20cita." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
             <a href="tel:5591708334" aria-label="Teléfono" data-cta="navbar-tel"><i class="bi bi-telephone-fill" aria-hidden="true"></i></a>
         </div>
         <hr class="footer-divider">
