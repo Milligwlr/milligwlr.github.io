@@ -1981,6 +1981,9 @@
             line-height: 1.85;
             color: var(--text-muted);
             margin-bottom: 24px;
+            text-align: justify;
+            hyphens: auto;
+            -webkit-hyphens: auto;
         }
         .about__paragraph strong { color: var(--text); font-weight: 700; }
         /* Commitment block — styled quote */
@@ -2776,40 +2779,24 @@
         .svc2-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
         /* min-width:0 evita que los textos nowrap desborden la celda del grid */
         .svc2-grid > * { min-width: 0; }
-        /* banner destacado delgado */
-        .svc2-feat {
-            grid-column: 1 / -1;
-            position: relative; display: flex; align-items: center; gap: 18px;
-            background: linear-gradient(120deg, var(--navy) 0%, var(--royal) 55%, var(--electric) 120%);
-            border-radius: 18px; padding: 20px 24px;
-            color: #fff; text-decoration: none; overflow: hidden;
-            transition: transform .25s var(--ease), box-shadow .3s;
+        /* destacado: MISMO tamaño que las demás tarjetas; se distingue por
+           tinte más marcado, hilo grueso, tile navy y badge */
+        .svc2-row--feat {
+            background: linear-gradient(180deg, color-mix(in srgb, var(--acc, var(--electric)) 10%, #fff) 0%, color-mix(in srgb, var(--acc, var(--electric)) 3%, #fff) 100%);
+            border-color: color-mix(in srgb, var(--acc, var(--electric)) 30%, transparent);
         }
-        .svc2-feat { box-shadow: 0 10px 30px color-mix(in srgb, var(--acc, var(--electric)) 20%, transparent); }
-        .svc2-feat:hover { transform: translateY(-2px); box-shadow: 0 18px 48px color-mix(in srgb, var(--acc, var(--electric)) 32%, transparent); color: #fff; }
-        .svc2-feat::after {
-            content: ''; position: absolute; top: 0; left: 0; width: 55%; height: 100%;
-            background: linear-gradient(100deg, transparent, rgba(255,255,255,.14), transparent);
-            transform: translateX(-130%) skewX(-18deg);
+        .svc2-row--feat::before { height: 4px; opacity: 1; }
+        .svc2-row--feat .svc2-ic {
+            background: linear-gradient(135deg, var(--navy), var(--royal));
+            box-shadow: 0 6px 16px rgba(10,22,40,.28);
         }
-        .svc2-feat:hover::after { animation: svc2-sheen .9s var(--ease); }
-        @keyframes svc2-sheen { to { transform: translateX(300%) skewX(-18deg); } }
-        .svc2-feat .svc2-ic { background: rgba(255,255,255,.14); box-shadow: none; }
-        .svc2-feat .svc2-ic i { color: #fff; }
-        .svc2-feat h3 { font-size: 1.05rem; font-weight: 800; margin: 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; color: #fff; }
         .svc2-badge {
             background: linear-gradient(135deg, var(--cyan), var(--sky));
             color: var(--navy); font-size: .58rem; font-weight: 800;
             letter-spacing: .1em; text-transform: uppercase;
             padding: 4px 10px; border-radius: 100px;
+            vertical-align: middle; white-space: nowrap;
         }
-        .svc2-feat p { font-size: .8rem; color: rgba(255,255,255,.75); margin: 3px 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .svc2-feat .svc2-btn {
-            background: #fff; color: var(--navy); font-size: .8rem; font-weight: 800;
-            padding: 11px 22px; border-radius: 100px; flex-shrink: 0;
-            transition: transform .18s var(--ease);
-        }
-        .svc2-feat:active .svc2-btn { transform: scale(.95); }
         /* Acento de color por categoría — mismo lenguaje que las familias
            clínicas de Enfermedades: cada pestaña tiene identidad propia */
         .services-panel[data-panel="consulta"]       { --acc: #0984e3; }
@@ -2882,13 +2869,6 @@
         .svc2-row:hover .svc2-go i { color: #fff; }
         @media (max-width: 760px) {
             .svc2-grid { grid-template-columns: 1fr; }
-            .svc2-feat { flex-wrap: wrap; }
-            .svc2-feat p { white-space: normal; }
-        }
-        @media (max-width: 480px) {
-            .svc2-feat .svc2-ic { display: none; }
-            .svc2-feat { padding: 18px 20px; }
-            .svc2-feat .svc2-btn { width: 100%; text-align: center; padding: 13px; }
         }
 
         /* ── ENFERMEDADES V2: buscador de síntomas + grid (desktop) / burbujas (móvil) ── */
@@ -3625,7 +3605,29 @@
             }
         }
         @media(max-width:576px) {
-            .hero__headline { font-size: 2.2rem; }
+            /* Hero ordenado: titular en 2 lineas limpias ("Respira tranquilo." /
+               "Neumologo en CDMX"), pills en carril de una linea, prueba social
+               apilada y logos en fila bajo su etiqueta. */
+            .hero__headline { font-size: 2.02rem; }
+            /* el carril nowrap no debe inflar el min-content del grid */
+            .hero__content > * { min-width: 0; }
+            .hero__conditions {
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                overflow-x: auto;
+                overscroll-behavior-x: contain;
+                scroll-snap-type: x proximity;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                gap: 8px;
+                margin-left: -20px; margin-right: -20px;
+                padding: 2px 20px 8px;
+            }
+            .hero__conditions::-webkit-scrollbar { display: none; }
+            .hero__pill { flex-shrink: 0; scroll-snap-align: center; }
+            .hero__proof { flex-direction: column; gap: 5px; }
+            .hero__inst { gap: 10px 20px; }
+            .hero__inst-lbl { flex-basis: 100%; text-align: center; }
             .hero__logo     { width: 100px; height: 100px; margin-bottom: 10px; }
             .cred-card__inner { padding: 16px 14px 14px; gap: 12px; }
             .cred-card__logo-wrap { width: 44px; height: 44px; }
@@ -4115,13 +4117,13 @@
                     <!-- ── Consulta y valoración ── -->
                     <div class="services-panel active" role="tabpanel" data-panel="consulta">
                         <div class="svc2-grid">
-                            <a class="svc2-feat" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal" data-cta="svc-consulta-feat">
+                            <a class="svc2-row svc2-row--feat" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal" data-cta="svc-consulta-feat">
                                 <span class="svc2-ic"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i></span>
                                 <span class="svc2-tx">
                                     <h3>Consulta de Neumología <span class="svc2-badge">Más solicitado</span></h3>
                                     <p>Evaluación completa de tu salud respiratoria con un neumólogo certificado: síntomas, antecedentes e historial para un diagnóstico preciso y un plan claro.</p>
                                 </span>
-                                <span class="svc2-btn">Agendar</span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
                             </a>
                             <a class="svc2-row" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
                                 <span class="svc2-ic"><i class="bi bi-house-heart" aria-hidden="true"></i></span>
@@ -4133,7 +4135,7 @@
                                 <span class="svc2-tx"><h3>Teleconsulta</h3><p>Consulta por videollamada desde cualquier lugar; ideal para seguimientos y segundas opiniones.</p></span>
                                 <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
                             </a>
-                            <a class="svc2-row svc2-row--wide" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                            <a class="svc2-row" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
                                 <span class="svc2-ic"><i class="bi bi-shield-check" aria-hidden="true"></i></span>
                                 <span class="svc2-tx"><h3>Valoración preoperatoria pulmonar</h3><p>Antes de una cirugía es fundamental saber cómo están tus pulmones: reduce riesgos y llega preparado.</p></span>
                                 <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
@@ -4144,13 +4146,13 @@
                     <!-- ── Estudios respiratorios ── -->
                     <div class="services-panel" role="tabpanel" data-panel="estudios">
                         <div class="svc2-grid">
-                            <a class="svc2-feat" href="/servicios/espirometria/" data-cta="svc-espiro-feat">
+                            <a class="svc2-row svc2-row--feat" href="/servicios/espirometria/" data-cta="svc-espiro-feat">
                                 <span class="svc2-ic"><i class="bi bi-activity" aria-hidden="true"></i></span>
                                 <span class="svc2-tx">
                                     <h3>Espirometría con broncodilatador <span class="svc2-badge">Diagnóstico clave</span></h3>
                                     <p>El estudio de referencia para distinguir asma de EPOC: medimos tu función pulmonar antes y después del broncodilatador. Resultados el mismo día.</p>
                                 </span>
-                                <span class="svc2-btn">Agendar</span>
+                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
                             </a>
                             <a class="svc2-row" href="/servicios/espirometria/">
                                 <span class="svc2-ic"><i class="bi bi-lungs" aria-hidden="true"></i></span>
@@ -4172,7 +4174,7 @@
                                 <span class="svc2-tx"><h3>Fracción exhalada de óxido nítrico</h3><p>Prueba de aliento que mide la inflamación de tus vías respiratorias; clave en asma.</p></span>
                                 <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
                             </a>
-                            <a class="svc2-row svc2-row--wide" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                            <a class="svc2-row" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
                                 <span class="svc2-ic"><i class="bi bi-broadcast" aria-hidden="true"></i></span>
                                 <span class="svc2-tx"><h3>Ultrasonido pulmonar</h3><p>Imagen en tiempo real de tus pulmones, sin radiación: líquido pleural y consolidaciones al momento.</p></span>
                                 <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
@@ -5587,7 +5589,11 @@
             }
             wrap.classList.add('has-ind');
             move();
-            window.addEventListener('resize', move, { passive: true });
+            window.addEventListener('resize', function(){
+                requestAnimationFrame(move);
+                /* re-medir tras el reflow (rotacion de telefono, zoom) */
+                setTimeout(move, 220);
+            }, { passive: true });
             wrap.querySelectorAll('.services-tab').forEach(function(t){
                 t.addEventListener('click', function(){
                     requestAnimationFrame(move);
