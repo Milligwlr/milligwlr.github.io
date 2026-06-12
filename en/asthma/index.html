@@ -40,7 +40,7 @@
 {"@context":"https://schema.org","@type":"MedicalWebPage","name":"Asthma Treatment in Mexico City","description":"Specialized diagnosis and treatment of Asthma by Dr. William César Lara Vázquez, pulmonologist trained at INER.","url":"https://alveos.mx/en/asthma/","inLanguage":"en","lastReviewed":"2026-04-30","reviewedBy":{"@type":"Physician","@id":"https://alveos.mx/#physician","name":"Dr. William César Lara Vázquez"},"mainContentOfPage":{"@type":"WebPageElement","cssSelector":"main"},"isPartOf":{"@type":"WebSite","@id":"https://alveos.mx/#website","name":"Alveos — Dr. William Lara Vázquez","url":"https://alveos.mx/"},"author":{"@type":"Physician","@id":"https://alveos.mx/#physician","name":"Dr. William César Lara Vázquez"},"about":{"@type":"MedicalCondition","name":"Asthma","alternateName":"Bronchial asthma","code":{"@type":"MedicalCode","codeValue":"J45.909","codingSystem":"ICD-10-CM"},"recognizingAuthority":{"@type":"Organization","name":"GINA (Global Initiative for Asthma)"},"description":"A chronic disease that inflames the airways and makes them narrower, causing recurrent episodes of wheezing, shortness of breath, chest tightness and cough.","associatedAnatomy":{"@type":"AnatomicalStructure","name":"Airways (bronchi) and lungs"},"cause":[{"@type":"MedicalCause","name":"Genetic factors and family predisposition"},{"@type":"MedicalCause","name":"Exposure to allergens (pollen, dust mites, animal dander)"},{"@type":"MedicalCause","name":"Respiratory irritants (tobacco smoke, air pollution)"}],"possibleTreatment":[{"@type":"MedicalTherapy","name":"Short-acting and long-acting bronchodilators"},{"@type":"MedicalTherapy","name":"Inhaled corticosteroids"},{"@type":"MedicalTherapy","name":"Biologic therapy for severe asthma"}],"riskFactor":[{"@type":"MedicalRiskFactor","name":"Family history of asthma or allergies"},{"@type":"MedicalRiskFactor","name":"Allergic rhinitis or atopic dermatitis"},{"@type":"MedicalRiskFactor","name":"Exposure to air pollution in Mexico City"}],"signOrSymptom":[{"@type":"MedicalSignOrSymptom","name":"Wheezing (whistling sound when breathing)"},{"@type":"MedicalSignOrSymptom","name":"Nighttime or early-morning cough"},{"@type":"MedicalSignOrSymptom","name":"Chest tightness"},{"@type":"MedicalSignOrSymptom","name":"Shortness of breath (dyspnea)"}],"diagnosingTest":{"@type":"MedicalTest","name":"Spirometry with bronchodilator"}},"medicalAudience":{"@type":"MedicalAudience","audienceType":"Patient"}}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://alveos.mx/"},{"@type":"ListItem","position":2,"name":"Conditions","item":"https://alveos.mx/enfermedades/"},{"@type":"ListItem","position":3,"name":"Asthma","item":"https://alveos.mx/en/asthma/"}]}
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://alveos.mx/en/"},{"@type":"ListItem","position":2,"name":"Conditions","item":"https://alveos.mx/enfermedades/"},{"@type":"ListItem","position":3,"name":"Asthma","item":"https://alveos.mx/en/asthma/"}]}
 </script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
@@ -262,7 +262,7 @@
 
 <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="/en/">
             <img src="/favicon.png" alt="Alveos Logo" class="navbar-logo" width="36" height="36" loading="lazy" decoding="async">
             <span class="brand-name">ALVEOS</span>
         </a>
@@ -271,56 +271,56 @@
         </button>
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-house me-1"></i>Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/sobre-el-doctor/"><i class="fas fa-user-md me-1"></i>About the Doctor</a></li>
+                <li class="nav-item"><a class="nav-link" href="/en/"><i class="fas fa-house me-1"></i>Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/en/about/"><i class="fas fa-user-md me-1"></i>About the Doctor</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="/servicios/" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-stethoscope me-1"></i>Services</a>
+                    <a class="nav-link dropdown-toggle" href="/servicios/" hreflang="es-MX" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-stethoscope me-1"></i>Services</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item fw-bold" href="/servicios/">View all</a></li>
+                        <li><a class="dropdown-item fw-bold" href="/servicios/" hreflang="es-MX">View all</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="/servicios/espirometria/">Spirometry</a></li>
-                        <li><a class="dropdown-item" href="/servicios/poligrafia-respiratoria/">Respiratory polygraphy</a></li>
-                        <li><a class="dropdown-item" href="/servicios/titulacion-presion-positiva/">CPAP/BiPAP titration</a></li>
-                        <li><a class="dropdown-item" href="/servicios/feno/">FeNO</a></li>
-                        <li><a class="dropdown-item" href="/servicios/broncoscopia/">Bronchoscopy</a></li>
-                        <li><a class="dropdown-item" href="/servicios/toracocentesis/">Thoracentesis</a></li>
-                        <li><a class="dropdown-item" href="/servicios/cateter-pleural-multiproposito/">Pleural catheter</a></li>
-                        <li><a class="dropdown-item" href="/servicios/seguimiento-enfermedades-cronicas/">Chronic care follow-up</a></li>
-                        <li><a class="dropdown-item" href="/servicios/tratamiento-dejar-de-fumar/">Quit smoking</a></li>
-                        <li><a class="dropdown-item" href="/servicios/teleconsulta/">Telemedicine</a></li>
+                        <li><a class="dropdown-item" href="/en/spirometry/">Spirometry</a></li>
+                        <li><a class="dropdown-item" href="/en/sleep-apnea-test/">Respiratory polygraphy</a></li>
+                        <li><a class="dropdown-item" href="/servicios/titulacion-presion-positiva/" hreflang="es-MX">CPAP/BiPAP titration</a></li>
+                        <li><a class="dropdown-item" href="/servicios/feno/" hreflang="es-MX">FeNO</a></li>
+                        <li><a class="dropdown-item" href="/servicios/broncoscopia/" hreflang="es-MX">Bronchoscopy</a></li>
+                        <li><a class="dropdown-item" href="/servicios/toracocentesis/" hreflang="es-MX">Thoracentesis</a></li>
+                        <li><a class="dropdown-item" href="/servicios/cateter-pleural-multiproposito/" hreflang="es-MX">Pleural catheter</a></li>
+                        <li><a class="dropdown-item" href="/servicios/seguimiento-enfermedades-cronicas/" hreflang="es-MX">Chronic care follow-up</a></li>
+                        <li><a class="dropdown-item" href="/servicios/tratamiento-dejar-de-fumar/" hreflang="es-MX">Quit smoking</a></li>
+                        <li><a class="dropdown-item" href="/en/teleconsultation/">Telemedicine</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown active">
-                    <a class="nav-link dropdown-toggle active" href="/enfermedades/" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-lungs me-1"></i>Diseases</a>
+                    <a class="nav-link dropdown-toggle active" href="/enfermedades/" hreflang="es-MX" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-lungs me-1"></i>Diseases</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item fw-bold" href="/enfermedades/">View all</a></li>
+                        <li><a class="dropdown-item fw-bold" href="/enfermedades/" hreflang="es-MX">View all</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="/enfermedades/epoc/">COPD</a></li>
-                        <li><a class="dropdown-item active" href="/enfermedades/asma/">Asthma</a></li>
-                        <li><a class="dropdown-item" href="/enfermedades/apnea-del-sueno/">Sleep apnea</a></li>
-                        <li><a class="dropdown-item" href="/enfermedades/neumonia/">Pneumonia</a></li>
-                        <li><a class="dropdown-item" href="/enfermedades/fibrosis-pulmonar/">Pulmonary fibrosis</a></li>
-                        <li><a class="dropdown-item" href="/enfermedades/cancer-de-pulmon/">Lung cancer</a></li>
-                        <li><a class="dropdown-item" href="/enfermedades/derrames-pleurales/">Pleural effusions</a></li>
-                        <li><a class="dropdown-item" href="/enfermedades/bronquiectasias/">Bronchiectasis</a></li>
-                        <li><a class="dropdown-item" href="/enfermedades/hipertension-pulmonar/">Pulmonary hypertension</a></li>
-                        <li><a class="dropdown-item" href="/enfermedades/embolia-pulmonar/">Pulmonary embolism</a></li>
-                        <li><a class="dropdown-item" href="/enfermedades/neumotorax/">Pneumothorax</a></li>
-                        <li><a class="dropdown-item" href="/enfermedades/tabaquismo/">Smoking</a></li>
-                        <li><a class="dropdown-item" href="/enfermedades/secuelas-covid/">Post-COVID sequelae</a></li>
-                        <li><a class="dropdown-item" href="/enfermedades/influenza/">Influenza</a></li>
+                        <li><a class="dropdown-item" href="/en/copd/">COPD</a></li>
+                        <li><a class="dropdown-item active" href="/en/asthma/">Asthma</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/apnea-del-sueno/" hreflang="es-MX">Sleep apnea</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/neumonia/" hreflang="es-MX">Pneumonia</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/fibrosis-pulmonar/" hreflang="es-MX">Pulmonary fibrosis</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/cancer-de-pulmon/" hreflang="es-MX">Lung cancer</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/derrames-pleurales/" hreflang="es-MX">Pleural effusions</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/bronquiectasias/" hreflang="es-MX">Bronchiectasis</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/hipertension-pulmonar/" hreflang="es-MX">Pulmonary hypertension</a></li>
+                        <li><a class="dropdown-item" href="/en/pulmonary-embolism/">Pulmonary embolism</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/neumotorax/" hreflang="es-MX">Pneumothorax</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/tabaquismo/" hreflang="es-MX">Smoking</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/secuelas-covid/" hreflang="es-MX">Post-COVID sequelae</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/influenza/" hreflang="es-MX">Influenza</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle nav-link--recursos" href="#recursos" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-book-medical me-1"></i>Resources</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/recursos/inhaladores/">Inhalers</a></li>
-                        <li><a class="dropdown-item" href="/recursos/vacunas/">Vaccines</a></li>
-                        <li><a class="dropdown-item" href="/contingencia-ambiental-cdmx/">Air quality alerts in CDMX</a></li>
+                        <li><a class="dropdown-item" href="/recursos/inhaladores/" hreflang="es-MX">Inhalers</a></li>
+                        <li><a class="dropdown-item" href="/recursos/vacunas/" hreflang="es-MX">Vaccines</a></li>
+                        <li><a class="dropdown-item" href="/contingencia-ambiental-cdmx/" hreflang="es-MX">Air quality alerts in CDMX</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="/preguntas-frecuentes/"><i class="fas fa-circle-question me-1"></i>FAQ</a></li>
-                <li class="nav-item"><a class="nav-link" href="/ubicacion/"><i class="fas fa-location-dot me-1"></i>Location</a></li>
+                <li class="nav-item"><a class="nav-link" href="/en/faq/"><i class="fas fa-circle-question me-1"></i>FAQ</a></li>
+                <li class="nav-item"><a class="nav-link" href="/ubicacion/" hreflang="es-MX"><i class="fas fa-location-dot me-1"></i>Location</a></li>
             </ul>
         </div>
                 <style>
@@ -359,7 +359,7 @@
 <span class="hero-fx-spark" style="top:32%;right:12%;animation-delay:3s" aria-hidden="true"></span>
 <span class="hero-fx-spark" style="top:75%;right:22%;animation-delay:4.5s;background:#00cec9;box-shadow:0 0 14px 2px rgba(0,206,201,.7)" aria-hidden="true"></span>
 <div class="container position-relative">
-<nav class="disease-hero__breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/enfermedades/"><i class="fas fa-lungs me-1"></i>Diseases</a><span>/</span><span class="current">Asthma</span></nav>
+<nav class="disease-hero__breadcrumb" aria-label="Breadcrumb"><a href="/en/">Home</a><span>/</span><a href="/enfermedades/" hreflang="es-MX"><i class="fas fa-lungs me-1"></i>Diseases</a><span>/</span><span class="current">Asthma</span></nav>
 <div class="row align-items-center g-4 g-lg-5">
 <div class="col-lg-7">
 <span class="asma-hero-tag"><span class="pulse"></span> Flare-up season: October to April</span>
@@ -407,26 +407,26 @@
             </div>
             <div class="diseases-strip__nav-wrap">
                 <div class="diseases-strip__track" id="dsTrack" role="list" aria-label="Conditions we treat">
-                    <a href="/enfermedades/asma/" class="active" role="listitem"><div class="ds-icon"><i class="bi bi-wind"></i></div><span>Asthma</span></a>
-                    <a href="/enfermedades/epoc/" role="listitem"><div class="ds-icon"><i class="bi bi-lungs-fill"></i></div><span>COPD</span></a>
-                    <a href="/enfermedades/neumonia/" role="listitem"><div class="ds-icon"><i class="bi bi-virus"></i></div><span>Pneumonia</span></a>
-                    <a href="/enfermedades/apnea-del-sueno/" role="listitem"><div class="ds-icon"><i class="bi bi-moon-stars-fill"></i></div><span>Sleep Apnea</span></a>
-                    <a href="/enfermedades/derrames-pleurales/" role="listitem"><div class="ds-icon"><i class="bi bi-droplet-fill"></i></div><span>Pleural Effusions</span></a>
-                    <a href="/enfermedades/tabaquismo/" role="listitem"><div class="ds-icon"><i class="bi bi-fire"></i></div><span>Smoking</span></a>
-                    <a href="/enfermedades/cancer-de-pulmon/" role="listitem"><div class="ds-icon"><i class="bi bi-radioactive"></i></div><span>Lung Cancer</span></a>
-                    <a href="/enfermedades/fibrosis-pulmonar/" role="listitem"><div class="ds-icon"><i class="bi bi-lungs"></i></div><span>Pulmonary Fibrosis</span></a>
-                    <a href="/enfermedades/bronquiectasias/" role="listitem"><div class="ds-icon"><i class="bi bi-lungs-fill"></i></div><span>Bronchiectasis</span></a>
-                    <a href="/enfermedades/embolia-pulmonar/" role="listitem"><div class="ds-icon"><i class="bi bi-heartbreak-fill"></i></div><span>Pulmonary Embolism</span></a>
-                    <a href="/enfermedades/neumotorax/" role="listitem"><div class="ds-icon"><i class="fa-solid fa-explosion"></i></div><span>Pneumothorax</span></a>
-                    <a href="/enfermedades/hipertension-pulmonar/" role="listitem"><div class="ds-icon"><i class="bi bi-heart-pulse-fill"></i></div><span>Pulmonary Hypertension</span></a>
-                    <a href="/enfermedades/secuelas-covid/" role="listitem"><div class="ds-icon"><i class="bi bi-virus2"></i></div><span>COVID-19 Sequelae</span></a>
-                    <a href="/enfermedades/influenza/" role="listitem"><div class="ds-icon"><i class="bi bi-thermometer-high"></i></div><span>Influenza</span></a>
-                    <a href="/enfermedades/asma/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-wind"></i></div><span>Asthma</span></a>
-                    <a href="/enfermedades/epoc/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-lungs-fill"></i></div><span>COPD</span></a>
-                    <a href="/enfermedades/neumonia/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-virus"></i></div><span>Pneumonia</span></a>
-                    <a href="/enfermedades/apnea-del-sueno/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-moon-stars-fill"></i></div><span>Sleep Apnea</span></a>
-                    <a href="/enfermedades/derrames-pleurales/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-droplet-fill"></i></div><span>Pleural Effusions</span></a>
-                    <a href="/enfermedades/tabaquismo/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-fire"></i></div><span>Smoking</span></a>
+                    <a href="/en/asthma/" class="active" role="listitem"><div class="ds-icon"><i class="bi bi-wind"></i></div><span>Asthma</span></a>
+                    <a href="/en/copd/" role="listitem"><div class="ds-icon"><i class="bi bi-lungs-fill"></i></div><span>COPD</span></a>
+                    <a href="/enfermedades/neumonia/" hreflang="es-MX" role="listitem"><div class="ds-icon"><i class="bi bi-virus"></i></div><span>Pneumonia</span></a>
+                    <a href="/enfermedades/apnea-del-sueno/" hreflang="es-MX" role="listitem"><div class="ds-icon"><i class="bi bi-moon-stars-fill"></i></div><span>Sleep Apnea</span></a>
+                    <a href="/enfermedades/derrames-pleurales/" hreflang="es-MX" role="listitem"><div class="ds-icon"><i class="bi bi-droplet-fill"></i></div><span>Pleural Effusions</span></a>
+                    <a href="/enfermedades/tabaquismo/" hreflang="es-MX" role="listitem"><div class="ds-icon"><i class="bi bi-fire"></i></div><span>Smoking</span></a>
+                    <a href="/enfermedades/cancer-de-pulmon/" hreflang="es-MX" role="listitem"><div class="ds-icon"><i class="bi bi-radioactive"></i></div><span>Lung Cancer</span></a>
+                    <a href="/enfermedades/fibrosis-pulmonar/" hreflang="es-MX" role="listitem"><div class="ds-icon"><i class="bi bi-lungs"></i></div><span>Pulmonary Fibrosis</span></a>
+                    <a href="/enfermedades/bronquiectasias/" hreflang="es-MX" role="listitem"><div class="ds-icon"><i class="bi bi-lungs-fill"></i></div><span>Bronchiectasis</span></a>
+                    <a href="/en/pulmonary-embolism/" role="listitem"><div class="ds-icon"><i class="bi bi-heartbreak-fill"></i></div><span>Pulmonary Embolism</span></a>
+                    <a href="/enfermedades/neumotorax/" hreflang="es-MX" role="listitem"><div class="ds-icon"><i class="fa-solid fa-explosion"></i></div><span>Pneumothorax</span></a>
+                    <a href="/enfermedades/hipertension-pulmonar/" hreflang="es-MX" role="listitem"><div class="ds-icon"><i class="bi bi-heart-pulse-fill"></i></div><span>Pulmonary Hypertension</span></a>
+                    <a href="/enfermedades/secuelas-covid/" hreflang="es-MX" role="listitem"><div class="ds-icon"><i class="bi bi-virus2"></i></div><span>COVID-19 Sequelae</span></a>
+                    <a href="/enfermedades/influenza/" hreflang="es-MX" role="listitem"><div class="ds-icon"><i class="bi bi-thermometer-high"></i></div><span>Influenza</span></a>
+                    <a href="/en/asthma/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-wind"></i></div><span>Asthma</span></a>
+                    <a href="/en/copd/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-lungs-fill"></i></div><span>COPD</span></a>
+                    <a href="/enfermedades/neumonia/" hreflang="es-MX" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-virus"></i></div><span>Pneumonia</span></a>
+                    <a href="/enfermedades/apnea-del-sueno/" hreflang="es-MX" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-moon-stars-fill"></i></div><span>Sleep Apnea</span></a>
+                    <a href="/enfermedades/derrames-pleurales/" hreflang="es-MX" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-droplet-fill"></i></div><span>Pleural Effusions</span></a>
+                    <a href="/enfermedades/tabaquismo/" hreflang="es-MX" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-fire"></i></div><span>Smoking</span></a>
                 </div>
             </div>
         </div>
@@ -437,7 +437,7 @@
 <div class="asma-quick__badge"><i class="bi bi-wind"></i> Rescue inhaler more than 2× a week?</div>
 <h2 class="asma-quick__title"><strong style="color:var(--asma-light)">50%</strong> of asthma patients live with uncontrolled disease without knowing it.</h2>
 <div class="asma-quick__big">2×</div>
-<p class="asma-quick__big-lbl">If you use salbutamol more than twice a week, your asthma is <strong>not</strong> under control. <a href="/servicios/espirometria/">A spirometry test</a> and a GINA plan can change that.</p>
+<p class="asma-quick__big-lbl">If you use salbutamol more than twice a week, your asthma is <strong>not</strong> under control. <a href="/en/spirometry/">A spirometry test</a> and a GINA plan can change that.</p>
 <div class="asma-quick__btns">
 <a href="https://wa.me/5215591708334?text=Hi%20Dr.%2C%20I%20want%20to%20book%20a%20spirometry%20test" target="_blank" rel="noopener noreferrer" class="asma-quick__btn asma-quick__btn--wa"><i class="bi bi-whatsapp"></i> Book the spirometry</a>
 <a href="#agendaModal" class="asma-quick__btn asma-quick__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Book consultation</a>
@@ -500,7 +500,7 @@
 <div class="risk-card">
 <div class="risk-card__icon" style="background:linear-gradient(135deg,#e64545,#c0392b)"><i class="bi bi-fire"></i></div>
 <h3>Tobacco or wood smoke</h3>
-<p>Active, passive or from wood smoke. It worsens the whole picture and a <a href="/servicios/tratamiento-dejar-de-fumar/">smoking-cessation program</a> is worthwhile.</p>
+<p>Active, passive or from wood smoke. It worsens the whole picture and a <a href="/servicios/tratamiento-dejar-de-fumar/" hreflang="es-MX">smoking-cessation program</a> is worthwhile.</p>
 </div>
 </div>
 </div>
@@ -635,7 +635,7 @@
   <p class="faq-block__sub">The questions I'm asked most in the office about diagnosis and control.</p>
   <details class="faq-item">
     <summary>How is asthma diagnosed?</summary>
-    <div class="faq-item__answer"><p>Compatible symptoms (wheezing, cough, tightness, shortness of breath) <strong>plus spirometry with a bronchodilator</strong> that demonstrates reversible obstruction. In selected cases it is complemented with <a href="/servicios/feno/">FeNO</a> or allergy testing.</p></div>
+    <div class="faq-item__answer"><p>Compatible symptoms (wheezing, cough, tightness, shortness of breath) <strong>plus spirometry with a bronchodilator</strong> that demonstrates reversible obstruction. In selected cases it is complemented with <a href="/servicios/feno/" hreflang="es-MX">FeNO</a> or allergy testing.</p></div>
   </details>
   <details class="faq-item">
     <summary>Can asthma be cured?</summary>
@@ -695,7 +695,7 @@
     <aside itemprop="reviewedBy" itemscope itemtype="https://schema.org/Physician" style="display:flex;align-items:flex-start;gap:14px;padding:18px 22px;background:#fff;border:1px solid rgba(0,184,148,.22);border-left:4px solid #00b894;border-radius:10px;font-size:.92rem;color:#444;line-height:1.55;box-shadow:0 2px 8px rgba(0,0,0,.04);margin-bottom:18px;">
       <i class="bi bi-patch-check-fill" style="color:#00b894;font-size:1.5rem;flex-shrink:0;line-height:1.2;" aria-hidden="true"></i>
       <div style="flex:1;">
-        <strong style="color:#1a2238;display:block;margin-bottom:3px;font-size:.95rem;">Medically reviewed by <a href="/sobre-el-doctor/" style="color:#00b894;text-decoration:none;border-bottom:1px solid currentColor;" itemprop="url"><span itemprop="name">Dr. William César Lara Vázquez</span></a></strong>
+        <strong style="color:#1a2238;display:block;margin-bottom:3px;font-size:.95rem;">Medically reviewed by <a href="/en/about/" style="color:#00b894;text-decoration:none;border-bottom:1px solid currentColor;" itemprop="url"><span itemprop="name">Dr. William César Lara Vázquez</span></a></strong>
         <span style="color:#666;"><span itemprop="jobTitle">Pulmonologist</span> · Professional License <span itemprop="identifier">12588976</span> · Specialty License 15595809 · Certified by the Mexican Board of Pulmonology (<a href="https://conacem.org.mx/buscador"  target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">CNN-2102</a>)</span><br>
         <span style="color:#888;font-size:.85rem;">Last reviewed: <time itemprop="dateModified" datetime="2026-04-30">April 30, 2026</time></span>
       </div>
@@ -720,9 +720,9 @@
         <hr class="footer-divider">
         <p class="footer-meta mb-1">Dr. William César Lara Vázquez · Pulmonologist · Specialist in Respiratory Diseases</p>
         <p class="footer-meta mb-2">
-            <a href="/aviso-de-privacidad">Privacy Notice</a>
+            <a href="/aviso-de-privacidad" hreflang="es-MX">Privacy Notice</a>
             <span style="color:rgba(255,255,255,.1);margin:0 8px">·</span>
-            <a href="/informacion-regulatoria">Regulatory Information</a>
+            <a href="/informacion-regulatoria" hreflang="es-MX">Regulatory Information</a>
         </p>
         <p class="footer-meta mb-0">© 2026 ALVEOS. All rights reserved.</p>
     </div>
