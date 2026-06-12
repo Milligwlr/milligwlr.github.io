@@ -1,8 +1,9 @@
 /* ===== ALVEOS · Agenda modal (reutilizable) =====
    Inyecta el modal de agenda en cualquier página del sitio.
-   - Mensaje WhatsApp por defecto cambia según contexto:
-     · /promociones/* → "Vengo del anuncio de Google de Alveos"  (consulta $1800 1ª vez)
-     · resto del sitio → "Vengo de su sitio alveos.mx"           (consulta $1300 1ª vez)
+   - Mensaje WhatsApp por defecto cambia según contexto (ES y EN):
+     · /promociones/<promo> y /en/promociones/<promo> → menciona la promoción
+       específica y su precio ($1,300 / $1,200 / $4,500 / $3,900)
+     · resto del sitio → "vengo de su sitio web alveos.mx"
    - Conecta cualquier elemento con [data-open-agenda] como trigger del modal.
    - Pushea al dataLayer:
        agenda_modal_open  (source = data-cta del trigger)
@@ -15,14 +16,50 @@
   if (window.__alveosAgendaModalLoaded) return;
   window.__alveosAgendaModalLoaded = true;
 
-  // --- 1. Contexto: anuncio de Google vs sitio orgánico -------------------
-  var isPromo = /^\/promociones\//.test(location.pathname);
-  var waMessage = isPromo
-    ? 'Hola Dr. Lara, vengo del anuncio de Google de Alveos y quisiera agendar una consulta de neumología.'
-    : 'Hola Dr. Lara, vengo de su sitio alveos.mx y quisiera agendar una consulta de neumología.';
-  var waHomeMessage = isPromo
-    ? 'Hola Dr. Lara, vengo del anuncio de Google de Alveos y me interesa agendar una consulta a domicilio. ¿Podría darme más información sobre la disponibilidad y coordinación?'
-    : 'Hola Dr. Lara, vengo de su sitio alveos.mx y me interesa agendar una consulta a domicilio. ¿Podría darme más información sobre la disponibilidad y coordinación?';
+  // --- 1. Contexto: promoción específica vs sitio orgánico (ES/EN) --------
+  var path = location.pathname;
+  var isEN = /^\/en\//.test(path);
+  var isPromo = /\/promociones\//.test(path);
+  var PROMO_PHRASES = {
+    'consulta-neumologia': {
+      es: 'la promoción de consulta de neumología a $1,300',
+      en: 'the $1,300 pulmonology consultation promotion'
+    },
+    'espirometria-broncodilatador': {
+      es: 'la promoción de espirometría con broncodilatador a $1,200',
+      en: 'the $1,200 spirometry with bronchodilator promotion'
+    },
+    'poligrafia-respiratoria': {
+      es: 'la promoción de valoración + poligrafía respiratoria a $4,500',
+      en: 'the $4,500 consultation + home sleep study offer'
+    },
+    'titulacion-presion-positiva': {
+      es: 'la promoción de titulación de presión positiva a $3,900',
+      en: 'the $3,900 positive pressure titration promotion'
+    }
+  };
+  var promoKey = null;
+  for (var k in PROMO_PHRASES) {
+    if (path.indexOf('/promociones/' + k) !== -1) { promoKey = k; break; }
+  }
+  var lang = isEN ? 'en' : 'es';
+  var promoPhrase = promoKey ? PROMO_PHRASES[promoKey][lang] : (isEN ? 'the $1,300 pulmonology consultation promotion' : 'la promoción de consulta de neumología a $1,300');
+  var waMessage, waHomeMessage;
+  if (isEN) {
+    waMessage = isPromo
+      ? 'Hello Dr. Lara, I am coming from ' + promoPhrase + ' and I would like to book.'
+      : 'Hello Dr. Lara, I am contacting you from your website alveos.mx and I would like to book a pulmonology consultation.';
+    waHomeMessage = isPromo
+      ? 'Hello Dr. Lara, I am coming from ' + promoPhrase + ' and I am interested in a home visit consultation. Could you give me more information about availability and coordination?'
+      : 'Hello Dr. Lara, I am contacting you from your website alveos.mx and I am interested in a home visit consultation. Could you give me more information about availability and coordination?';
+  } else {
+    waMessage = isPromo
+      ? 'Hola Dr. Lara, vengo de ' + promoPhrase + ' y quisiera agendar mi cita.'
+      : 'Hola Dr. Lara, vengo de su sitio web alveos.mx y quisiera agendar una consulta de neumología.';
+    waHomeMessage = isPromo
+      ? 'Hola Dr. Lara, vengo de ' + promoPhrase + ' y me interesa agendar una consulta a domicilio. ¿Podría darme más información sobre la disponibilidad y coordinación?'
+      : 'Hola Dr. Lara, vengo de su sitio web alveos.mx y me interesa agendar una consulta a domicilio. ¿Podría darme más información sobre la disponibilidad y coordinación?';
+  }
 
   var waBase = 'https://wa.me/5215591708334?text=';
   var waHref = waBase + encodeURIComponent(waMessage);
