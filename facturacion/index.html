@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Facturación (CFDI) | Dr. William Lara · Alveos</title>
+<meta name="description" content="Solicita tu factura (CFDI 4.0) por tu consulta o estudio con el Dr. William Lara. Formulario en línea con catálogos oficiales del SAT.">
+<meta name="author" content="Dr. William César Lara Vázquez">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0a1628">
+<link rel="canonical" href="https://alveos.mx/facturacion/">
+<link rel="icon" href="/favicon.png" type="image/png">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
+<!-- End Google Tag Manager -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="/enfermedades/_shared/disease.css">
+
+<style>
+/* ═══ FACTURACIÓN · formulario CFDI 4.0 ═══ */
+:root{ --serif:'Fraunces','Plus Jakarta Sans',serif; --gold:#d97706; }
+
+.fact-hero { padding: 110px 0 44px; background: linear-gradient(180deg,#f6faff 0%,#fff 100%); position: relative; overflow: hidden; }
+.fact-hero::before { content:''; position:absolute; top:-50%; right:-20%; width:60%; padding-bottom:60%; border-radius:50%; background:radial-gradient(circle, rgba(217,119,6,.08), transparent 70%); pointer-events:none; }
+.fact-hero::after { content:''; position:absolute; bottom:-40%; left:-10%; width:50%; padding-bottom:50%; border-radius:50%; background:radial-gradient(circle, rgba(9,132,227,.08), transparent 70%); pointer-events:none; }
+.fact-hero .container { position:relative; z-index:1; }
+.fact-hero__breadcrumb { font-size:.82rem; color:var(--text-muted); margin-bottom:18px; }
+.fact-hero__breadcrumb a { color:var(--text-muted); text-decoration:none; }
+.fact-hero__breadcrumb a:hover { color:var(--electric); }
+.fact-hero__breadcrumb span { margin:0 6px; }
+.fact-hero__eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:.72rem; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:2px; background:rgba(217,119,6,.08); padding:7px 14px; border-radius:100px; margin-bottom:18px; border:1px solid rgba(217,119,6,.22); }
+.fact-hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight:800; color:var(--navy); letter-spacing:-.035em; line-height:1.06; margin-bottom:16px; text-wrap:balance; }
+.fact-hero h1 em { font-style:italic; font-weight:700; font-family:var(--serif); background:linear-gradient(135deg,#b45309,var(--gold)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.fact-hero__lead { color:var(--text-muted); font-size:1.05rem; max-width:680px; line-height:1.68; margin-bottom:0; }
+
+.fact-main { padding: 36px 0 80px; }
+.fact-layout { display:grid; grid-template-columns: 1.5fr .9fr; gap:32px; align-items:start; }
+@media (max-width: 991px){ .fact-layout { grid-template-columns: 1fr; } }
+
+/* formulario */
+.fact-form { background:#fff; border:1px solid rgba(10,22,40,.08); border-radius:22px; padding:30px 28px; box-shadow:0 1px 2px rgba(10,22,40,.04), 0 20px 50px -24px rgba(10,22,40,.14); }
+.fact-form fieldset { border:0; padding:0; margin:0 0 28px; min-inline-size:auto; }
+.fact-form fieldset:last-of-type { margin-bottom:18px; }
+.fact-form legend { display:flex; align-items:center; gap:10px; font-size:1.02rem; font-weight:800; color:var(--navy); letter-spacing:-.01em; margin-bottom:16px; float:none; width:100%; }
+.fact-form legend i { width:34px; height:34px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; font-size:.95rem; background:rgba(217,119,6,.1); color:var(--gold); border:1px solid rgba(217,119,6,.2); flex-shrink:0; }
+.fact-form legend::after { content:''; flex:1; height:1px; background:linear-gradient(90deg, rgba(10,22,40,.1), transparent); }
+.fact-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media (max-width: 640px){ .fact-grid { grid-template-columns:1fr; } }
+.fact-field { display:flex; flex-direction:column; gap:6px; }
+.fact-field--full { grid-column: 1 / -1; }
+.fact-field label { font-size:.8rem; font-weight:700; color:var(--navy); letter-spacing:.01em; }
+.fact-field label .req { color:#dc2626; }
+.fact-field label .opt { font-weight:600; color:#94a3b8; font-size:.72rem; }
+.fact-field input, .fact-field select { font-family:inherit; font-size:.94rem; color:var(--navy); background:#f8fafd; border:1.5px solid rgba(10,22,40,.1); border-radius:12px; padding:12px 14px; min-height:48px; transition:border-color .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease); width:100%; }
+.fact-field input:focus, .fact-field select:focus { outline:none; border-color:var(--electric); background:#fff; box-shadow:0 0 0 4px rgba(9,132,227,.12); }
+.fact-field input::placeholder { color:#9aa8ba; }
+.fact-field .hint { font-size:.72rem; color:#7d8da1; line-height:1.45; }
+.fact-field.is-invalid input, .fact-field.is-invalid select { border-color:#dc2626; background:#fff7f7; }
+.fact-field .err { display:none; font-size:.72rem; color:#dc2626; font-weight:600; }
+.fact-field.is-invalid .err { display:block; }
+.fact-amount { position:relative; }
+.fact-amount::before { content:'$'; position:absolute; left:14px; top:50%; transform:translateY(-50%); color:#7d8da1; font-weight:700; }
+.fact-amount input { padding-left:30px; }
+
+/* dropzone CSF */
+.fact-drop { position:relative; border:2px dashed rgba(9,132,227,.3); border-radius:16px; background:rgba(9,132,227,.03); padding:24px 20px; text-align:center; transition:border-color .25s var(--ease), background .25s var(--ease); cursor:pointer; }
+.fact-drop:hover, .fact-drop.is-over { border-color:var(--electric); background:rgba(9,132,227,.07); }
+.fact-drop input[type="file"] { position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%; }
+.fact-drop__icon { font-size:1.7rem; color:var(--electric); display:block; margin-bottom:6px; }
+.fact-drop__txt { font-size:.92rem; font-weight:700; color:var(--navy); }
+.fact-drop__sub { font-size:.76rem; color:#7d8da1; margin-top:3px; }
+.fact-drop.has-file { border-style:solid; border-color:rgba(16,185,129,.45); background:rgba(16,185,129,.06); }
+.fact-drop.has-file .fact-drop__icon { color:#10b981; }
+.fact-drop__clear { position:absolute; top:10px; right:12px; z-index:2; background:#fff; border:1px solid rgba(10,22,40,.12); border-radius:100px; font-size:.7rem; font-weight:700; color:#64748b; padding:4px 12px; cursor:pointer; display:none; }
+.fact-drop.has-file .fact-drop__clear { display:inline-block; }
+.fact-csf-note { display:none; margin-top:12px; font-size:.8rem; color:#047857; background:rgba(16,185,129,.08); border:1px solid rgba(16,185,129,.25); border-radius:12px; padding:10px 14px; line-height:1.5; }
+.fact-csf-note.show { display:block; }
+
+/* aviso deducibilidad */
+.fact-tip { display:flex; gap:12px; align-items:flex-start; background:rgba(217,119,6,.06); border:1px solid rgba(217,119,6,.22); border-radius:14px; padding:14px 16px; margin-bottom:24px; }
+.fact-tip i { color:var(--gold); font-size:1.05rem; margin-top:2px; flex-shrink:0; }
+.fact-tip p { font-size:.82rem; color:#6d4607; line-height:1.55; margin:0; }
+
+/* consentimiento */
+.fact-consent { display:flex; gap:10px; align-items:flex-start; margin-bottom:22px; }
+.fact-consent input { width:20px; height:20px; margin-top:2px; accent-color:var(--electric); flex-shrink:0; cursor:pointer; }
+.fact-consent label { font-size:.8rem; color:#5a6b7d; line-height:1.55; cursor:pointer; }
+.fact-consent a { color:var(--electric); font-weight:600; }
+
+.fact-submit { display:inline-flex; align-items:center; justify-content:center; gap:10px; width:100%; padding:16px 32px; border:0; border-radius:100px; font-family:inherit; font-weight:800; font-size:1.02rem; color:#fff; background:linear-gradient(135deg,var(--navy) 0%,var(--royal) 55%,var(--electric) 100%); box-shadow:0 8px 28px rgba(9,132,227,.32); cursor:pointer; transition:transform .3s var(--ease), box-shadow .3s var(--ease); }
+.fact-submit:hover { transform:translateY(-2px); box-shadow:0 14px 38px rgba(9,132,227,.42); }
+.fact-submit:active { transform:scale(.98); }
+.fact-submit[disabled] { opacity:.65; cursor:wait; transform:none; }
+
+/* estados */
+.fact-status { display:none; border-radius:16px; padding:28px 24px; text-align:center; margin-top:18px; }
+.fact-status.show { display:block; }
+.fact-status--ok { background:rgba(16,185,129,.08); border:1px solid rgba(16,185,129,.3); }
+.fact-status--ok i { font-size:2.2rem; color:#10b981; display:block; margin-bottom:8px; }
+.fact-status--err { background:rgba(220,38,38,.06); border:1px solid rgba(220,38,38,.25); }
+.fact-status--err i { font-size:2.2rem; color:#dc2626; display:block; margin-bottom:8px; }
+.fact-status strong { display:block; font-size:1.08rem; color:var(--navy); margin-bottom:6px; }
+.fact-status p { font-size:.88rem; color:#5a6b7d; margin:0; line-height:1.6; }
+.fact-status .folio { font-family:'JetBrains Mono',Menlo,monospace; font-weight:700; color:#047857; }
+
+/* panel lateral */
+.fact-aside { display:flex; flex-direction:column; gap:16px; position:sticky; top:96px; }
+.fact-card { background:#fff; border:1px solid rgba(10,22,40,.08); border-radius:18px; padding:22px; box-shadow:0 1px 2px rgba(10,22,40,.04); }
+.fact-card h2 { font-size:.98rem; font-weight:800; color:var(--navy); display:flex; align-items:center; gap:10px; margin:0 0 12px; }
+.fact-card h2 i { color:var(--gold); }
+.fact-card p, .fact-card li { font-size:.84rem; color:#5a6b7d; line-height:1.6; }
+.fact-card p { margin:0 0 8px; }
+.fact-card ul { padding-left:18px; margin:0; }
+.fact-card li { margin-bottom:6px; }
+.fact-card--dark { background:linear-gradient(150deg,#0a1628 0%,#10243f 100%); border-color:transparent; }
+.fact-card--dark h2 { color:#fff; }
+.fact-card--dark p { color:rgba(255,255,255,.65); }
+.fact-card--dark a { display:inline-flex; align-items:center; gap:8px; margin-top:6px; color:#7ee8e2; font-weight:700; font-size:.86rem; text-decoration:none; }
+@media (max-width:991px){ .fact-aside { position:static; } }
+
+.nav-link--recursos:hover{color:#0984e3!important}
+.nav-link--recursos i{opacity:.85}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; } }
+</style>
+    <link rel="stylesheet" href="/assets/agenda-modal.css">
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG8Z6FKF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>document.body.classList.add('js-enabled');</script>
+<div class="top-bar-legal text-center fw-semibold"><div class="container">Aviso Cofepris: <a href="https://www.gob.mx/cofepris" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">2609142002A00265</a> &nbsp;|&nbsp; Céd. Prof: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">12588976</a> &nbsp;|&nbsp; Céd. Esp: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">15595809</a> &nbsp;|&nbsp; <a href="https://conacem.org.mx/buscador" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">CNN-2102</a></div></div>
+<nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+            <img src="/favicon.png" alt="Logo Alveos" class="navbar-logo" width="36" height="36" loading="lazy" decoding="async">
+            <span class="brand-name">ALVEOS</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Menú">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-house me-1"></i>Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="/sobre-el-doctor/"><i class="fas fa-user-md me-1"></i>Sobre el Doctor</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="/servicios/" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-stethoscope me-1"></i>Servicios</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item fw-bold" href="/servicios/">Ver todos</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/servicios/espirometria/">Espirometría</a></li>
+                        <li><a class="dropdown-item" href="/servicios/poligrafia-respiratoria/">Poligrafía respiratoria</a></li>
+                        <li><a class="dropdown-item" href="/servicios/titulacion-presion-positiva/">Titulación CPAP/BiPAP</a></li>
+                        <li><a class="dropdown-item" href="/servicios/feno/">FeNO</a></li>
+                        <li><a class="dropdown-item" href="/servicios/broncoscopia/">Broncoscopia</a></li>
+                        <li><a class="dropdown-item" href="/servicios/toracocentesis/">Toracocentesis</a></li>
+                        <li><a class="dropdown-item" href="/servicios/cateter-pleural-multiproposito/">Catéter pleural</a></li>
+                        <li><a class="dropdown-item" href="/servicios/seguimiento-enfermedades-cronicas/">Seguimiento crónico</a></li>
+                        <li><a class="dropdown-item" href="/servicios/tratamiento-dejar-de-fumar/">Dejar de fumar</a></li>
+                        <li><a class="dropdown-item" href="/servicios/teleconsulta/">Teleconsulta</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="/enfermedades/" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-lungs me-1"></i>Enfermedades</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item fw-bold" href="/enfermedades/">Ver todas</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/enfermedades/epoc/">EPOC</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/asma/">Asma</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/apnea-del-sueno/">Apnea del sueño</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/neumonia/">Neumonía</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/fibrosis-pulmonar/">Fibrosis pulmonar</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/cancer-de-pulmon/">Cáncer de pulmón</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/derrames-pleurales/">Derrames pleurales</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/bronquiectasias/">Bronquiectasias</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/hipertension-pulmonar/">Hipertensión pulmonar</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/embolia-pulmonar/">Embolia pulmonar</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/neumotorax/">Neumotórax</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/tabaquismo/">Tabaquismo</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/secuelas-covid/">Secuelas post-COVID</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/influenza/">Influenza</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle nav-link--recursos" href="#recursos" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-book-medical me-1"></i>Recursos</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/recursos/inhaladores/">Inhaladores</a></li>
+                        <li><a class="dropdown-item" href="/recursos/vacunas/">Vacunas</a></li>
+                        <li><a class="dropdown-item" href="/contingencia-ambiental-cdmx/">Contingencia ambiental CDMX</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/preguntas-frecuentes/"><i class="fas fa-circle-question me-1"></i>FAQ</a></li>
+                <li class="nav-item"><a class="nav-link" href="/ubicacion/"><i class="fas fa-location-dot me-1"></i>Ubicación</a></li>
+            </ul>
+        </div>
+        <style>
+        .lang-switch{display:inline-flex;flex-shrink:0;gap:2px;border:1px solid rgba(10,22,40,.18);border-radius:100px;overflow:hidden;font-size:.8rem;font-weight:700;margin-left:14px}
+        .lang-switch a{padding:6px 13px;color:#475569;text-decoration:none;min-height:34px;display:inline-flex;align-items:center;transition:background .2s,color .2s}
+        .lang-switch a:hover{background:rgba(10,22,40,.06)}@media(max-width:575px){.social-icons{display:none!important}.lang-switch{margin-left:auto!important}}
+        .lang-switch a.active{background:#0a1628;color:#fff}
+        @media(max-width:991px){.lang-switch{order:2;margin-left:6px}}
+        </style>
+        <div class="lang-switch" role="navigation" aria-label="Idioma">
+            <a class="active" href="#" aria-current="true">ES</a><a href="/en/" hreflang="en">EN</a>
+        </div>
+        <div class="social-icons d-flex align-items-center">
+            <a href="https://www.instagram.com/dr.williamlara/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+        </div>
+        <a href="#agendaModal" class="navbar-cta d-none d-lg-inline-flex" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+            Agendar cita <i class="bi bi-arrow-right"></i>
+        </a>
+    </div>
+</nav>
+<a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20de%20su%20sitio%20web%20alveos.mx%2C%20de%20la%20p%C3%A1gina%20de%20facturaci%C3%B3n%2C%20y%20tengo%20una%20duda%20con%20mi%20factura." target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i><span class="wa-tooltip">¿Dudas con tu factura?</span></a>
+
+<main>
+
+<!-- HERO -->
+<section class="fact-hero">
+    <div class="container">
+        <nav class="fact-hero__breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Inicio</a> <span>›</span> <span aria-current="page">Facturación</span>
+        </nav>
+        <span class="fact-hero__eyebrow"><i class="bi bi-receipt" aria-hidden="true"></i> Facturación electrónica · CFDI 4.0</span>
+        <h1>Solicita tu <em>factura</em> en línea</h1>
+        <p class="fact-hero__lead">Llena este formulario después de tu consulta o estudio y tu factura se emitirá con los datos exactos de tu constancia de situación fiscal. Tarda menos de 3 minutos.</p>
+    </div>
+</section>
+
+<!-- FORM -->
+<section class="fact-main">
+    <div class="container">
+        <div class="fact-layout">
+
+            <form class="fact-form" id="factForm" novalidate>
+
+                <div class="fact-tip">
+                    <i class="bi bi-lightbulb-fill" aria-hidden="true"></i>
+                    <p><strong>Para que tu factura sea deducible:</strong> el SAT solo permite deducir honorarios médicos pagados con <strong>tarjeta, transferencia o cheque</strong>. Los pagos en efectivo se facturan igual, pero no son deducibles en tu declaración anual (art. 151 LISR).</p>
+                </div>
+
+                <!-- CSF opcional -->
+                <fieldset>
+                    <legend><i class="bi bi-file-earmark-pdf" aria-hidden="true"></i> Constancia de situación fiscal <span class="opt" style="font-size:.72rem;font-weight:600;color:#94a3b8">(opcional)</span></legend>
+                    <div class="fact-drop" id="csfDrop">
+                        <button type="button" class="fact-drop__clear" id="csfClear">Quitar archivo</button>
+                        <input type="file" id="csfFile" accept="application/pdf" aria-label="Subir constancia de situación fiscal en PDF">
+                        <i class="bi bi-cloud-arrow-up fact-drop__icon" aria-hidden="true"></i>
+                        <div class="fact-drop__txt" id="csfTxt">Arrastra o toca para subir tu CSF en PDF</div>
+                        <div class="fact-drop__sub"><strong>No es obligatoria</strong> · máximo 4 MB · si la subes, no necesitas teclear tu nombre, RFC ni código postal</div>
+                    </div>
+                    <div class="fact-csf-note" id="csfNote"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> Tu CSF quedó adjunta. Tomaremos de ahí tu nombre, RFC, código postal y domicilio fiscal; esos campos ya no son obligatorios.</div>
+                </fieldset>
+
+                <!-- Datos fiscales -->
+                <fieldset>
+                    <legend><i class="bi bi-person-vcard" aria-hidden="true"></i> Datos fiscales del receptor</legend>
+                    <div class="fact-grid">
+                        <div class="fact-field fact-field--full" data-csf-skippable>
+                            <label for="fNombre">Nombre o denominación social <span class="req" aria-hidden="true">*</span></label>
+                            <input type="text" id="fNombre" name="nombre" autocomplete="name" placeholder="Tal como aparece en tu CSF, sin régimen societario" required>
+                            <span class="hint">En CFDI 4.0 debe coincidir <strong>exactamente</strong> con tu constancia (en mayúsculas, sin "S.A. de C.V.").</span>
+                            <span class="err">Escribe el nombre o razón social.</span>
+                        </div>
+                        <div class="fact-field" data-csf-skippable>
+                            <label for="fRfc">RFC <span class="req" aria-hidden="true">*</span></label>
+                            <input type="text" id="fRfc" name="rfc" maxlength="13" placeholder="XAXX010101000" style="text-transform:uppercase" required>
+                            <span class="err">RFC inválido: 12 caracteres (moral) o 13 (física).</span>
+                        </div>
+                        <div class="fact-field" data-csf-skippable>
+                            <label for="fCp">Código postal fiscal <span class="req" aria-hidden="true">*</span></label>
+                            <input type="text" id="fCp" name="cp" inputmode="numeric" maxlength="5" placeholder="03900" required>
+                            <span class="hint">El del domicilio fiscal de tu CSF, no el de tu casa.</span>
+                            <span class="err">Deben ser 5 dígitos.</span>
+                        </div>
+                        <div class="fact-field">
+                            <label for="fRegimen">Régimen fiscal <span class="req" aria-hidden="true">*</span></label>
+                            <select id="fRegimen" name="regimen" required>
+                                <option value="" selected disabled>Selecciona tu régimen (viene en tu CSF)</option>
+                                <optgroup label="Personas físicas — los más comunes">
+                                    <option value="605">605 · Sueldos y salarios e ingresos asimilados</option>
+                                    <option value="612">612 · Actividades empresariales y profesionales</option>
+                                    <option value="626">626 · Régimen Simplificado de Confianza (RESICO)</option>
+                                    <option value="616">616 · Sin obligaciones fiscales</option>
+                                    <option value="606">606 · Arrendamiento</option>
+                                </optgroup>
+                                <optgroup label="Personas morales">
+                                    <option value="601">601 · General de Ley Personas Morales</option>
+                                    <option value="603">603 · Personas morales con fines no lucrativos</option>
+                                    <option value="620">620 · Sociedades cooperativas de producción</option>
+                                    <option value="623">623 · Opcional para grupos de sociedades</option>
+                                    <option value="624">624 · Coordinados</option>
+                                </optgroup>
+                                <optgroup label="Otros regímenes del catálogo SAT">
+                                    <option value="607">607 · Enajenación o adquisición de bienes</option>
+                                    <option value="608">608 · Demás ingresos</option>
+                                    <option value="610">610 · Residentes en el extranjero sin establecimiento permanente</option>
+                                    <option value="611">611 · Ingresos por dividendos (socios y accionistas)</option>
+                                    <option value="614">614 · Ingresos por intereses</option>
+                                    <option value="615">615 · Ingresos por obtención de premios</option>
+                                    <option value="621">621 · Incorporación fiscal</option>
+                                    <option value="622">622 · Actividades agrícolas, ganaderas, silvícolas y pesqueras</option>
+                                    <option value="625">625 · Actividades empresariales por plataformas tecnológicas</option>
+                                </optgroup>
+                            </select>
+                            <span class="err">Selecciona tu régimen fiscal.</span>
+                        </div>
+                        <div class="fact-field">
+                            <label for="fUso">Uso del CFDI <span class="req" aria-hidden="true">*</span></label>
+                            <select id="fUso" name="uso" required>
+                                <option value="" disabled>Selecciona el uso</option>
+                                <optgroup label="Los más comunes para consulta médica">
+                                    <option value="D01" selected>D01 · Honorarios médicos, dentales y gastos hospitalarios</option>
+                                    <option value="G03">G03 · Gastos en general</option>
+                                    <option value="D07">D07 · Primas por seguros de gastos médicos</option>
+                                    <option value="S01">S01 · Sin efectos fiscales</option>
+                                </optgroup>
+                                <optgroup label="Otros usos del catálogo SAT">
+                                    <option value="G01">G01 · Adquisición de mercancías</option>
+                                    <option value="G02">G02 · Devoluciones, descuentos o bonificaciones</option>
+                                    <option value="I01">I01 · Construcciones</option>
+                                    <option value="I02">I02 · Mobiliario y equipo de oficina</option>
+                                    <option value="I03">I03 · Equipo de transporte</option>
+                                    <option value="I04">I04 · Equipo de cómputo y accesorios</option>
+                                    <option value="I05">I05 · Dados, troqueles, moldes, matrices y herramental</option>
+                                    <option value="I06">I06 · Comunicaciones telefónicas</option>
+                                    <option value="I07">I07 · Comunicaciones satelitales</option>
+                                    <option value="I08">I08 · Otra maquinaria y equipo</option>
+                                    <option value="D02">D02 · Gastos médicos por incapacidad o discapacidad</option>
+                                    <option value="D03">D03 · Gastos funerales</option>
+                                    <option value="D04">D04 · Donativos</option>
+                                    <option value="D05">D05 · Intereses reales por créditos hipotecarios</option>
+                                    <option value="D06">D06 · Aportaciones voluntarias al SAR</option>
+                                    <option value="D08">D08 · Gastos de transportación escolar obligatoria</option>
+                                    <option value="D09">D09 · Depósitos para el ahorro o planes de pensiones</option>
+                                    <option value="D10">D10 · Pagos por servicios educativos (colegiaturas)</option>
+                                    <option value="CP01">CP01 · Pagos</option>
+                                </optgroup>
+                            </select>
+                            <span class="hint">Para deducir tu consulta usa <strong>D01</strong>.</span>
+                            <span class="err">Selecciona el uso del CFDI.</span>
+                        </div>
+                        <div class="fact-field">
+                            <label for="fCorreo">Correo electrónico <span class="req" aria-hidden="true">*</span></label>
+                            <input type="email" id="fCorreo" name="correo" autocomplete="email" placeholder="adonde@enviamos-tu-factura.com" required>
+                            <span class="err">Escribe un correo válido.</span>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Consulta y pago -->
+                <fieldset>
+                    <legend><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i> Datos de la consulta y el pago</legend>
+                    <div class="fact-grid">
+                        <div class="fact-field fact-field--full">
+                            <label for="fPaciente">Nombre completo del paciente <span class="opt">(solo si es distinto al receptor de la factura)</span></label>
+                            <input type="text" id="fPaciente" name="paciente" placeholder="Ej. factura a nombre de la empresa o de un familiar">
+                        </div>
+                        <div class="fact-field">
+                            <label for="fFecha">Fecha de la consulta o estudio <span class="req" aria-hidden="true">*</span></label>
+                            <input type="date" id="fFecha" name="fecha" required>
+                            <span class="hint">Nos ayuda a localizar tu visita para validar y emitir más rápido.</span>
+                            <span class="err">Indica la fecha de tu consulta.</span>
+                        </div>
+                        <div class="fact-field">
+                            <label for="fPago">Forma de pago <span class="req" aria-hidden="true">*</span></label>
+                            <select id="fPago" name="pago" required>
+                                <option value="" selected disabled>¿Cómo pagaste?</option>
+                                <option value="Transferencia (03)">Transferencia electrónica</option>
+                                <option value="Tarjeta de crédito (04)">Tarjeta de crédito</option>
+                                <option value="Tarjeta de débito (28)">Tarjeta de débito</option>
+                                <option value="Efectivo (01)">Efectivo</option>
+                            </select>
+                            <span class="err">Selecciona la forma de pago.</span>
+                        </div>
+                        <div class="fact-field">
+                            <label for="fMonto">Monto pagado (MXN) <span class="req" aria-hidden="true">*</span></label>
+                            <div class="fact-amount"><input type="number" id="fMonto" name="monto" min="1" step="0.01" inputmode="decimal" placeholder="1,300.00" required></div>
+                            <span class="err">Escribe el monto pagado.</span>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="fact-consent">
+                    <input type="checkbox" id="fConsent" required>
+                    <label for="fConsent">He leído el <a href="/aviso-de-privacidad/" target="_blank" rel="noopener">Aviso de Privacidad</a> y autorizo el uso de mis datos fiscales exclusivamente para la emisión de mi factura (CFDI). <span class="req" aria-hidden="true">*</span></label>
+                </div>
+
+                <button type="submit" class="fact-submit" id="factSubmit">
+                    <i class="bi bi-send-fill" aria-hidden="true"></i> Solicitar mi factura
+                </button>
+
+                <div class="fact-status fact-status--ok" id="factOk" role="status">
+                    <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                    <strong>¡Solicitud recibida!</strong>
+                    <p>Tu folio es <span class="folio" id="factFolio"></span>. El Dr. Lara validará tu visita y recibirás tu factura en el correo que indicaste, normalmente en un máximo de 72 horas hábiles.</p>
+                </div>
+                <div class="fact-status fact-status--err" id="factErr" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i>
+                    <strong>No pudimos enviar tu solicitud</strong>
+                    <p>Inténtalo de nuevo en unos minutos o mándanos tus datos por <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20de%20su%20sitio%20web%20alveos.mx%20y%20quiero%20solicitar%20mi%20factura." target="_blank" rel="noopener noreferrer">WhatsApp</a>.</p>
+                </div>
+            </form>
+
+            <!-- ASIDE -->
+            <aside class="fact-aside" aria-label="Información de facturación">
+                <div class="fact-card">
+                    <h2><i class="bi bi-info-circle-fill" aria-hidden="true"></i> Antes de llenar</h2>
+                    <ul>
+                        <li>Ten a la mano tu <strong>constancia de situación fiscal (CSF)</strong>: el SAT exige que nombre, RFC, código postal y régimen coincidan exactamente.</li>
+                        <li>Solicita tu factura <strong>dentro del mismo mes</strong> de tu consulta; idealmente el mismo día.</li>
+                        <li>La consulta médica está <strong>exenta de IVA</strong>; tu factura se emite así por ley.</li>
+                    </ul>
+                </div>
+                <div class="fact-card">
+                    <h2><i class="bi bi-clock-history" aria-hidden="true"></i> ¿Qué sigue?</h2>
+                    <p>1 · Validamos que la consulta o estudio se realizó.</p>
+                    <p>2 · Emitimos tu CFDI con los datos que nos diste.</p>
+                    <p>3 · Lo recibes por correo (XML + PDF), máximo en 72 h hábiles.</p>
+                </div>
+                <div class="fact-card fact-card--dark">
+                    <h2><i class="bi bi-whatsapp" aria-hidden="true" style="color:#25D366"></i> ¿Dudas o correcciones?</h2>
+                    <p>Si tu factura llegó con un error o tienes dudas del proceso, escríbenos.</p>
+                    <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20de%20su%20sitio%20web%20alveos.mx%2C%20de%20la%20p%C3%A1gina%20de%20facturaci%C3%B3n%2C%20y%20tengo%20una%20duda%20con%20mi%20factura." target="_blank" rel="noopener noreferrer">Escribir por WhatsApp <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div class="container text-center">
+        <div class="footer-logo-text">ALVEOS</div>
+        <div class="footer-tagline">Neumología de Vanguardia · Ciudad de México</div>
+        <div class="footer-social">
+            <a href="https://www.instagram.com/dr.williamlara/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+            <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20vengo%20de%20su%20sitio%20web%20alveos.mx%20y%20quisiera%20agendar%20una%20cita." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+            <a href="tel:5591708334" aria-label="Teléfono" data-cta="navbar-tel"><i class="bi bi-telephone-fill" aria-hidden="true"></i></a>
+        </div>
+        <hr class="footer-divider">
+        <p class="footer-meta mb-1">Dr. William César Lara Vázquez · Neumólogo · Especialista en Enfermedades Respiratorias</p>
+        <p class="footer-meta mb-2">
+            <a href="/aviso-de-privacidad">Aviso de Privacidad</a>
+            <span style="color:rgba(255,255,255,.1);margin:0 8px">·</span>
+            <a href="/informacion-regulatoria">Información Regulatoria</a>
+        </p>
+        <p class="footer-meta mb-2" data-med-disclaimer style="max-width:720px;margin:0 auto 10px;font-size:.76rem;opacity:.72;line-height:1.55;">La información de este sitio es de carácter educativo e informativo y no sustituye la consulta, diagnóstico ni tratamiento con un profesional médico. En caso de emergencia respiratoria llame al 911.</p>
+        <p class="footer-meta mb-0">© 2026 ALVEOS. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/agenda-modal.js" defer></script>
+
+<script>
+/* ═══ Facturación · envío a Google Sheets vía Apps Script ═══
+   1) Despliega el Apps Script de scripts/facturacion-apps-script.gs (ver scripts/FACTURACION-SETUP.md)
+   2) Pega aquí la URL del despliegue (termina en /exec)
+   Mientras esté vacía, el formulario usa WhatsApp como respaldo. */
+var FACT_ENDPOINT = '';
+
+(function(){
+    var form = document.getElementById('factForm');
+    var drop = document.getElementById('csfDrop');
+    var fileInput = document.getElementById('csfFile');
+    var csfTxt = document.getElementById('csfTxt');
+    var csfNote = document.getElementById('csfNote');
+    var csfClear = document.getElementById('csfClear');
+    var submitBtn = document.getElementById('factSubmit');
+    var okBox = document.getElementById('factOk');
+    var errBox = document.getElementById('factErr');
+    var csfData = null;
+
+    /* fecha máxima = hoy */
+    document.getElementById('fFecha').max = new Date().toISOString().slice(0, 10);
+
+    /* ── CSF: dropzone ── */
+    function setFile(file){
+        if (!file) return;
+        if (file.type !== 'application/pdf') { alert('La constancia debe ser un PDF.'); return; }
+        if (file.size > 4 * 1024 * 1024) { alert('El PDF no debe pasar de 4 MB.'); return; }
+        var reader = new FileReader();
+        reader.onload = function(){
+            csfData = { name: file.name, base64: reader.result.split(',')[1] };
+            drop.classList.add('has-file');
+            csfTxt.textContent = file.name;
+            csfNote.classList.add('show');
+            /* con CSF, nombre/RFC/CP dejan de ser obligatorios */
+            document.querySelectorAll('[data-csf-skippable] input').forEach(function(inp){
+                inp.required = false;
+                inp.closest('.fact-field').classList.remove('is-invalid');
+            });
+        };
+        reader.readAsDataURL(file);
+    }
+    fileInput.addEventListener('change', function(){ setFile(this.files[0]); });
+    ;['dragover','dragenter'].forEach(function(ev){ drop.addEventListener(ev, function(e){ e.preventDefault(); drop.classList.add('is-over'); }); });
+    ;['dragleave','drop'].forEach(function(ev){ drop.addEventListener(ev, function(e){ e.preventDefault(); drop.classList.remove('is-over'); }); });
+    drop.addEventListener('drop', function(e){ setFile(e.dataTransfer.files[0]); });
+    csfClear.addEventListener('click', function(e){
+        e.stopPropagation();
+        csfData = null; fileInput.value = '';
+        drop.classList.remove('has-file');
+        csfTxt.textContent = 'Arrastra o toca para subir tu CSF en PDF';
+        csfNote.classList.remove('show');
+        document.querySelectorAll('[data-csf-skippable] input').forEach(function(inp){ inp.required = true; });
+    });
+
+    /* ── validación ── */
+    var RFC_RE = /^([A-ZÑ&]{3,4})\d{6}[A-Z0-9]{3}$/i;
+    function fieldOf(el){ return el.closest('.fact-field'); }
+    function validate(){
+        var ok = true;
+        form.querySelectorAll('input[required], select[required]').forEach(function(el){
+            var f = fieldOf(el);
+            var valid = el.checkValidity();
+            if (el.id === 'fRfc' && el.value) valid = RFC_RE.test(el.value.trim());
+            if (el.id === 'fCp' && el.value) valid = /^\d{5}$/.test(el.value.trim());
+            if (f) f.classList.toggle('is-invalid', !valid);
+            if (!valid) ok = false;
+        });
+        if (!document.getElementById('fConsent').checked) {
+            alert('Para continuar, acepta el Aviso de Privacidad.');
+            ok = false;
+        }
+        return ok;
+    }
+    form.querySelectorAll('input, select').forEach(function(el){
+        el.addEventListener('input', function(){ var f = fieldOf(el); f && f.classList.remove('is-invalid'); });
+    });
+
+    function payload(){
+        return {
+            nombre: document.getElementById('fNombre').value.trim().toUpperCase(),
+            rfc: document.getElementById('fRfc').value.trim().toUpperCase(),
+            cp: document.getElementById('fCp').value.trim(),
+            regimen: document.getElementById('fRegimen').selectedOptions[0] ? document.getElementById('fRegimen').selectedOptions[0].textContent.trim() : '',
+            uso: document.getElementById('fUso').selectedOptions[0] ? document.getElementById('fUso').selectedOptions[0].textContent.trim() : '',
+            correo: document.getElementById('fCorreo').value.trim(),
+            paciente: document.getElementById('fPaciente').value.trim(),
+            fechaConsulta: document.getElementById('fFecha').value,
+            pago: document.getElementById('fPago').value,
+            monto: document.getElementById('fMonto').value,
+            csf: csfData
+        };
+    }
+
+    /* respaldo: WhatsApp con los datos (sin archivo) */
+    function waFallback(d){
+        var msg = 'Hola Dr. Lara, vengo de su sitio web alveos.mx y solicito mi factura:\n'
+            + (d.nombre ? '• Nombre/Razón social: ' + d.nombre + '\n' : '')
+            + (d.rfc ? '• RFC: ' + d.rfc + '\n' : '')
+            + (d.cp ? '• CP fiscal: ' + d.cp + '\n' : '')
+            + '• Régimen: ' + d.regimen + '\n'
+            + '• Uso CFDI: ' + d.uso + '\n'
+            + '• Correo: ' + d.correo + '\n'
+            + (d.paciente ? '• Paciente: ' + d.paciente + '\n' : '')
+            + '• Fecha de consulta: ' + d.fechaConsulta + '\n'
+            + '• Forma de pago: ' + d.pago + '\n'
+            + '• Monto: $' + d.monto + ' MXN'
+            + (d.csf ? '\n(En un momento le comparto mi CSF en PDF por este chat)' : '');
+        window.open('https://wa.me/5215591708334?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+        okBox.classList.add('show');
+        document.getElementById('factFolio').textContent = 'enviado por WhatsApp';
+    }
+
+    form.addEventListener('submit', function(e){
+        e.preventDefault();
+        okBox.classList.remove('show'); errBox.classList.remove('show');
+        if (!validate()) {
+            var bad = form.querySelector('.fact-field.is-invalid');
+            bad && bad.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+        }
+        var d = payload();
+        if (window.dataLayer) window.dataLayer.push({ event: 'factura_submit', con_csf: !!d.csf, forma_pago: d.pago });
+        if (!FACT_ENDPOINT) { waFallback(d); return; }
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="bi bi-hourglass-split" aria-hidden="true"></i> Enviando...';
+        /* text/plain evita el preflight CORS con Apps Script */
+        fetch(FACT_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(d) })
+            .then(function(r){ return r.json(); })
+            .then(function(res){
+                if (!res || !res.ok) throw new Error(res && res.error || 'error');
+                document.getElementById('factFolio').textContent = res.folio;
+                okBox.classList.add('show');
+                form.querySelectorAll('fieldset, .fact-consent, .fact-submit, .fact-tip').forEach(function(el){ el.style.display = 'none'; });
+                okBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            })
+            .catch(function(){
+                errBox.classList.add('show');
+                errBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            })
+            .finally(function(){
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="bi bi-send-fill" aria-hidden="true"></i> Solicitar mi factura';
+            });
+    });
+})();
+</script>
+</body>
+</html>
