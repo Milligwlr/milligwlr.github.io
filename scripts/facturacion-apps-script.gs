@@ -10,20 +10,20 @@
  * Instrucciones de despliegue: ver scripts/FACTURACION-SETUP.md
  */
 
-var CARPETA_CSF = 'ALVEOS Facturación · CSF'; // carpeta en Drive para los PDF
+var CARPETA_CSF = 'CSF'; // nombre de la carpeta en Drive para los PDF
 
 /** ── CONFIGURACIÓN ────────────────────────────────────────────
- * FOLIO_INICIO: número con el que arranca el consecutivo, para
- * empatar con el que ya lleva tu contadora. Ej.: si su última
- * factura fue la 144, pon 145. Solo se usa la PRIMERA vez; después
- * el contador sigue solo (es global, continúa entre meses).
- * Para reiniciarlo: en el editor ejecuta la función reiniciarFolio.
+ * Folio consecutivo de la contadora: serie LAVW. El siguiente que
+ * le toca es LAVW41, así que arranca en 41. FOLIO_INICIO solo se
+ * usa la PRIMERA vez; después el contador sigue solo entre meses.
+ * Para re-empatarlo: cambia FOLIO_INICIO y ejecuta reiniciarFolio.
  *
  * AVISAR_CORREO: true = te llega un correo por cada solicitud.
  */
-var FOLIO_INICIO = 1;
+var FOLIO_PREFIJO = 'LAVW';
+var FOLIO_INICIO = 41;
 var AVISAR_CORREO = true;
-var CORREO_AVISO = 'drwilliam.neumocare@gmail.com';
+var CORREO_AVISO = 'williamc2lv@gmail.com';
 
 var ENCABEZADOS = [
   'Folio',
@@ -55,8 +55,8 @@ function doPost(e) {
     var nombreMes = Utilities.formatDate(ahora, zona, 'yyyy-MM');
     var hoja = libro.getSheetByName(nombreMes) || crearHojaMes(libro, nombreMes);
 
-    // ── folio consecutivo global (empata con el de la contadora) ──
-    var folio = 'FACT-' + ('000' + siguienteFolio()).slice(-4);
+    // ── folio consecutivo global (serie de la contadora) ──
+    var folio = FOLIO_PREFIJO + siguienteFolio();
 
     // ── CSF a Drive (si la adjuntaron) ──
     var linkCsf = '';
@@ -148,7 +148,7 @@ function siguienteFolio() {
  *  pone el contador en FOLIO_INICIO otra vez. */
 function reiniciarFolio() {
   PropertiesService.getScriptProperties().deleteProperty('folio_actual');
-  Logger.log('Contador reiniciado. El próximo folio será FACT-' + ('000' + FOLIO_INICIO).slice(-4));
+  Logger.log('Contador reiniciado. El próximo folio será ' + FOLIO_PREFIJO + FOLIO_INICIO);
 }
 
 function notificar(folio, datos, linkCsf) {

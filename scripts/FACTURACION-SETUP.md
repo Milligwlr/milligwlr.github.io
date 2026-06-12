@@ -46,11 +46,13 @@ por mes, sigue estos pasos una sola vez (10 minutos):
 
 ## Configuración (al inicio del código)
 ```js
-var FOLIO_INICIO  = 1;     // ← pon el SIGUIENTE número del consecutivo de tu contadora
-var AVISAR_CORREO = true;  // correo por cada solicitud
-var CORREO_AVISO  = 'drwilliam.neumocare@gmail.com';
+var CARPETA_CSF   = 'CSF';    // carpeta de Drive donde caen los PDF
+var FOLIO_PREFIJO = 'LAVW';   // serie de la contadora
+var FOLIO_INICIO  = 41;       // siguiente número de su consecutivo
+var AVISAR_CORREO = true;     // correo por cada solicitud
+var CORREO_AVISO  = 'williamc2lv@gmail.com';
 ```
-- El folio es **global y continúa entre meses** (FACT-0145, FACT-0146...),
+- El folio es **global y continúa entre meses** (LAVW41, LAVW42...),
   para empatar con el consecutivo de la contadora.
 - `FOLIO_INICIO` solo cuenta la primera vez; después el contador sigue solo.
   Si necesitas re-empatarlo: cambia `FOLIO_INICIO` y ejecuta la función
