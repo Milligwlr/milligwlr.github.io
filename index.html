@@ -812,15 +812,26 @@
             }
             .hero__sub { margin-left: auto; margin-right: auto; }
             .hero__conditions, .hero__cta-row, .hero__proof, .hero__inst { justify-content: center; }
-            .hero__doc { width: min(340px, 88%); }
-            .hero__float--iner   { left: -10px; }
-            .hero__float--rating { right: -12px; }
-            .hero__float--epoc   { left: -14px; bottom: 80px; }
+            /* Los chips flotantes tapaban la cara del doctor en pantallas
+               angostas: aquí dejan de flotar sobre la foto y fluyen como
+               credenciales estáticas debajo del retrato. El chip de rating
+               se oculta porque hero__proof ya muestra "5.0 en Google". */
+            .hero__doc {
+                width: min(340px, 88%);
+                display: flex; flex-wrap: wrap;
+                justify-content: center; gap: 10px;
+            }
+            .hero__doc-frame { flex: 0 0 100%; }
+            .hero__float {
+                position: static;
+                animation: none;
+                box-shadow: 0 6px 18px rgba(10,22,40,.1);
+            }
+            .hero__float--rating { display: none; }
         }
         @media (max-width: 480px) {
             .hero__inst { gap: 16px; }
             .hero__inst img { height: 24px; }
-            .hero__float .t small { display: none; }
         }
 
         /* Condition pills */
@@ -1951,9 +1962,8 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            font-style: italic;
-            font-family: 'Fraunces', 'Plus Jakarta Sans', serif;
-            font-weight: 700;
+            font-style: normal;
+            font-weight: 800;
             letter-spacing: -.02em;
         }
         .about__highlight {
@@ -2268,6 +2278,7 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 16px rgba(9,132,227,.10);
         }
+        .services-tab:active { transform: scale(.96); transition-duration: .15s; }
         .services-tab.active {
             background: var(--electric);
             color: var(--white);
@@ -2819,7 +2830,9 @@
         .svc2-ic i { font-size: 1rem; color: var(--electric); }
         .svc2-tx { flex: 1; min-width: 0; }
         .svc2-row h3 { font-size: .9rem; font-weight: 800; color: var(--navy); margin: 0; letter-spacing: -.01em; }
-        .svc2-row p { font-size: .75rem; color: var(--text-muted); margin: 1px 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        /* 2 líneas máx en vez de nowrap: el truncado a una línea cortaba la
+           propuesta de valor a media frase ("...a tu hogar con la mism…") */
+        .svc2-row p { font-size: .75rem; color: var(--text-muted); margin: 1px 0 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .svc2-go {
             width: 30px; height: 30px; border-radius: 50%;
             display: grid; place-items: center; flex-shrink: 0;
@@ -2852,14 +2865,16 @@
         .dis2-hint{text-align:center;font-size:.8rem;font-weight:600;color:var(--text-muted);min-height:1.5em;margin:0 0 28px;transition:opacity .3s}
         /* grid desktop — 5x3: las 15 condiciones caben en una pantalla */
         .dis2-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-        .dis2-card{position:relative;background:var(--white);border:1px solid rgba(10,22,40,.06);border-radius:16px;padding:15px 14px 13px;box-shadow:0 2px 10px rgba(10,22,40,.04);display:flex;flex-direction:column;gap:7px;overflow:hidden;transition:opacity .4s var(--ease),transform .4s var(--ease),box-shadow .3s,border-color .3s}
+        /* tinte sutil por familia clínica: rompe el blanco-sobre-blanco de las
+           15 tarjetas y refuerza el código de color sin bajar contraste */
+        .dis2-card{position:relative;background:linear-gradient(180deg,color-mix(in srgb,var(--acc,var(--electric)) 4.5%,#fff) 0%,#fff 58%);border:1px solid rgba(10,22,40,.06);border-radius:16px;padding:15px 14px 13px;box-shadow:0 2px 10px rgba(10,22,40,.04);display:flex;flex-direction:column;gap:7px;overflow:hidden;transition:opacity .4s var(--ease),transform .4s var(--ease),box-shadow .3s,border-color .3s}
         .dis2-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--acc,var(--electric));opacity:.85}
-        .dis2-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(10,22,40,.1)}
+        .dis2-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(10,22,40,.1);border-color:color-mix(in srgb,var(--acc,var(--electric)) 32%,transparent)}
         .dis2-fam{font-size:.54rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--acc)}
         .dis2-ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:color-mix(in srgb,var(--acc) 11%,#fff)}
         .dis2-ic i{font-size:.92rem;color:var(--acc)}
         .dis2-card h3{font-size:.86rem;font-weight:800;color:var(--navy);margin:0;letter-spacing:-.01em}
-        .dis2-card p{font-size:.7rem;line-height:1.5;color:var(--text-muted);flex:1;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+        .dis2-card p{font-size:.72rem;line-height:1.52;color:#56657a;flex:1;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
         /* sección compacta: que chips + grid quepan en un viewport de escritorio */
         @media(min-width:992px){
             .diseases-section .container.my-5{margin-top:.5rem!important;margin-bottom:.75rem!important}
@@ -3479,8 +3494,23 @@
                 margin-bottom: 0;
             }
             .service-card { padding: 28px 24px 26px; }
-            .services-tabs { gap: 6px; margin-bottom: 28px; }
-            .services-tab { font-size: .78rem; padding: 8px 14px; }
+            /* Tabs en una sola línea deslizable: en vez de envolver en 2-3
+               filas, los pills se desplazan horizontalmente con snap; el
+               pill cortado en el borde es la pista de que hay más. */
+            .services-tabs {
+                gap: 6px; margin-bottom: 28px;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                overflow-x: auto;
+                overscroll-behavior-x: contain;
+                scroll-snap-type: x proximity;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                padding: 4px 14px 8px;
+                margin-left: -14px; margin-right: -14px;
+            }
+            .services-tabs::-webkit-scrollbar { display: none; }
+            .services-tab { font-size: .78rem; padding: 8px 14px; flex-shrink: 0; scroll-snap-align: center; }
             .services-tab .tab-count { width: 19px; height: 19px; font-size: .66rem; }
             .testimonial-columns {
                 height: 420px;
@@ -3570,7 +3600,9 @@
             .top-bar-legal  { font-size: .62rem; padding: 6px 0; }
             .navbar-brand   { font-size: 1.25rem; }
             .navbar-logo    { height: 28px !important; }
-            .whatsapp-float { bottom: 20px; right: 16px; width: 54px; height: 54px; font-size: 1.5rem; }
+            /* FAB compacto y sin anillo: que no tape CTAs en móvil */
+            .whatsapp-float { bottom: 14px; right: 12px; width: 48px; height: 48px; font-size: 1.3rem; }
+            .whatsapp-float::after { display: none; }
             .stat-num       { font-size: 1.6rem; }
             .stat-label     { font-size: .62rem; letter-spacing: .5px; }
             .stat-item      { padding: 24px 10px; }
@@ -5519,8 +5551,14 @@
             move();
             window.addEventListener('resize', move, { passive: true });
             wrap.querySelectorAll('.services-tab').forEach(function(t){
-                t.addEventListener('click', function(){ requestAnimationFrame(move); });
+                t.addEventListener('click', function(){
+                    requestAnimationFrame(move);
+                    /* en móvil los tabs son un carril deslizable: centra el activo */
+                    t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                });
             });
+            /* el indicador debe re-medirse si el carril de tabs se desplaza */
+            wrap.addEventListener('scroll', function(){ requestAnimationFrame(move); }, { passive: true });
             /* el reveal de la sección puede cambiar el layout tras la primera medición */
             setTimeout(move, 600);
         })();
