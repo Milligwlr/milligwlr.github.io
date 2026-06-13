@@ -49,7 +49,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 @media (max-width: 991px){ .fact-layout { grid-template-columns: 1fr; } }
 
 /* formulario — pasos amigables, móvil primero */
-.fact-form { background:#fff; border:1px solid rgba(10,22,40,.08); border-radius:22px; padding:28px 26px; box-shadow:0 1px 2px rgba(10,22,40,.04), 0 20px 50px -24px rgba(10,22,40,.14); }
+.fact-form { background:#fff; border:1px solid rgba(10,22,40,.08); border-radius:22px; padding:28px 26px; box-shadow:0 1px 2px rgba(10,22,40,.04), 0 20px 50px -24px rgba(10,22,40,.14); min-width:0; }
 @media (max-width: 640px){ .fact-form { padding:22px 16px; border-radius:18px; } }
 .fact-form fieldset { border:0; padding:0; margin:0 0 30px; min-inline-size:auto; }
 .fact-form fieldset:last-of-type { margin-bottom:18px; }
@@ -159,20 +159,50 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .fact-reviews__stars { font-size:1.3rem; color:#fbbf24; letter-spacing:4px; margin-bottom:8px; }
 .fact-reviews__title { font-size:1.3rem; font-weight:800; color:#fff; letter-spacing:-.02em; margin:0 0 6px; }
 .fact-reviews__sub { font-size:.88rem; color:rgba(255,255,255,.6); line-height:1.6; max-width:440px; margin:0 auto 20px; }
-.fact-reviews__rail { display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 2px 14px; -webkit-overflow-scrolling:touch; scrollbar-width:thin; scrollbar-color:rgba(255,255,255,.25) transparent; text-align:left; }
+.fact-reviews { min-width:0; max-width:100%; }
+.fact-reviews__rail { display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 2px 14px; -webkit-overflow-scrolling:touch; scrollbar-width:thin; scrollbar-color:rgba(255,255,255,.25) transparent; text-align:left; max-width:100%; min-width:0; }
 .fact-review { flex:0 0 min(270px, 78vw); scroll-snap-align:start; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:16px 18px; }
 .fact-review__stars { color:#fbbf24; font-size:.72rem; letter-spacing:2px; margin-bottom:8px; }
 .fact-review__txt { font-size:.84rem; color:rgba(255,255,255,.85); line-height:1.55; margin:0 0 10px; }
 .fact-review__name { font-size:.74rem; font-weight:700; color:rgba(255,255,255,.55); }
 .fact-review__name i { color:#34d399; margin-right:4px; }
-.fact-reviews__ctas { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:14px; }
-.fact-reviews__btn { display:inline-flex; align-items:center; gap:9px; padding:13px 26px; border-radius:100px; font-weight:800; font-size:.94rem; text-decoration:none; transition:transform .3s var(--ease), box-shadow .3s var(--ease); }
+.fact-reviews__ctas { display:flex; flex-direction:column; align-items:center; gap:14px; margin-top:20px; }
+.fact-reviews__btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; text-decoration:none; transition:transform .3s var(--ease), box-shadow .3s var(--ease), color .3s var(--ease); }
 .fact-reviews__btn:active { transform:scale(.97); }
-.fact-reviews__btn--write { background:#fff; color:var(--navy); box-shadow:0 8px 24px rgba(255,255,255,.15); }
-.fact-reviews__btn--write:hover { transform:translateY(-2px); color:var(--navy); box-shadow:0 12px 32px rgba(255,255,255,.22); }
-.fact-reviews__btn--write i { color:#fbbf24; }
-.fact-reviews__btn--read { background:transparent; color:#fff; border:1px solid rgba(255,255,255,.3); }
-.fact-reviews__btn--read:hover { border-color:#fff; color:#fff; transform:translateY(-2px); }
+
+/* CTA principal: dorado vibrante que "respira" y destella para captar la mirada */
+.fact-reviews__btn--write {
+    position:relative; overflow:hidden;
+    width:100%; max-width:360px;
+    padding:18px 30px; border-radius:100px;
+    font-weight:800; font-size:1.1rem; letter-spacing:-.01em;
+    color:#231400 !important;
+    background:linear-gradient(135deg,#ffe79a 0%,#fbbf24 45%,#f59e0b 100%);
+    box-shadow:0 12px 30px -6px rgba(245,158,11,.6);
+    animation:fr-pulse 2.6s ease-in-out infinite;
+}
+@keyframes fr-pulse {
+    0%,100% { box-shadow:0 12px 30px -6px rgba(245,158,11,.55), 0 0 0 0 rgba(251,191,36,.55); }
+    50%     { box-shadow:0 18px 40px -6px rgba(245,158,11,.75), 0 0 30px 7px rgba(251,191,36,.35); }
+}
+.fact-reviews__btn--write::after {
+    content:''; position:absolute; top:0; left:-130%; width:55%; height:100%;
+    background:linear-gradient(105deg,transparent,rgba(255,255,255,.6),transparent);
+    transform:skewX(-18deg); animation:fr-shine 3s ease-in-out infinite;
+}
+@keyframes fr-shine { 0%,60% { left:-130%; } 100% { left:170%; } }
+.fact-reviews__btn--write i { color:#9a5b00; font-size:1.2rem; animation:fr-star 2.6s ease-in-out infinite; }
+@keyframes fr-star { 0%,100% { transform:scale(1) rotate(0); } 50% { transform:scale(1.18) rotate(-8deg); } }
+.fact-reviews__btn--write:hover { transform:translateY(-3px) scale(1.03); color:#231400 !important; box-shadow:0 22px 48px -6px rgba(245,158,11,.8); }
+
+/* CTA secundario: enlace discreto */
+.fact-reviews__btn--read { background:transparent; color:rgba(255,255,255,.72); padding:4px 8px; font-size:.86rem; font-weight:600; text-decoration:underline; text-underline-offset:3px; }
+.fact-reviews__btn--read:hover { color:#fff; }
+
+@media (max-width:420px){ .fact-reviews__btn--write { font-size:.9rem; padding:15px 14px; gap:8px; white-space:nowrap; } .fact-reviews__btn--write i { font-size:1.05rem; } }
+@media (prefers-reduced-motion:reduce){
+    .fact-reviews__btn--write, .fact-reviews__btn--write i, .fact-reviews__btn--write::after { animation:none; }
+}
 @media (prefers-reduced-motion:reduce){ .fact-reviews.show { animation:none; } }
 
 /* panel lateral */
