@@ -264,12 +264,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .fact-card--dark h2 { color:#fff; }
 .fact-card--dark p { color:rgba(255,255,255,.65); }
 .fact-card--dark a { display:inline-flex; align-items:center; gap:8px; margin-top:6px; color:#7ee8e2; font-weight:700; font-size:.86rem; text-decoration:none; }
-@media (max-width:991px){ .fact-aside { position:static; } }
+/* Aside cards: transición suave para el estado resaltado */
+.fact-card { transition:border-color .3s ease, box-shadow .3s ease, background .3s ease; }
+/* "¿Qué sigue?" tras enviar: resaltado dorado + nota de espera */
+.fact-next__wait { display:none; }
+.fact-card--next { border-color:rgba(217,119,6,.5); background:linear-gradient(155deg,#fffaf0 0%,#fff 65%); box-shadow:0 1px 2px rgba(10,22,40,.04), 0 18px 42px -22px rgba(217,119,6,.45); }
+.fact-card--next h2, .fact-card--next h2 i { color:var(--gold); }
+.fact-card--next .fact-next__wait { display:flex; align-items:flex-start; gap:8px; margin:0 0 12px; padding:11px 13px; border-radius:12px; background:rgba(217,119,6,.10); color:#92400e; font-weight:700; font-size:.86rem; line-height:1.5; }
+.fact-card--next .fact-next__wait i { color:var(--gold); font-size:1.05rem; flex:0 0 auto; margin-top:1px; }
+@media (max-width:991px){ .fact-aside { position:static; } .fact-hero { padding-top:72px; } }
 
 .nav-link--recursos:hover{color:#0984e3!important}
 .nav-link--recursos i{opacity:.85}
 /* Gutter consistente en móvil (hero, formulario y panel alineados) */
 @media (max-width:575px){
+    .fact-hero { padding-top:38px; }
     .fact-hero > .container, .fact-main > .container { padding-left:16px; padding-right:16px; }
     .fact-main { padding-top:28px; }
     .fact-form { padding:22px 15px; }
@@ -542,7 +551,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
                     <strong>¡Solicitud recibida!</strong>
                     <p>Tu folio es <span class="folio" id="factFolio"></span>. Recibirás tu factura (PDF + XML) en el correo que indicaste en un plazo de <strong>48 a 72 horas hábiles</strong>.</p>
-                    <p>Si pasado ese tiempo no te llega, contáctame por <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20solicit%C3%A9%20mi%20factura%20en%20alveos.mx%20y%20a%C3%BAn%20no%20la%20recibo." target="_blank" rel="noopener noreferrer">WhatsApp</a> o al correo <a href="mailto:drwilliam.neumocare@gmail.com">drwilliam.neumocare@gmail.com</a>.</p>
+                    <p>Si pasado ese tiempo no te llega, contáctame por <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara%2C%20solicit%C3%A9%20mi%20factura%20en%20alveos.mx%20y%20a%C3%BAn%20no%20la%20recibo." target="_blank" rel="noopener noreferrer">WhatsApp</a> o al correo <a href="mailto:dr.william.lara.neumologo@gmail.com">dr.william.lara.neumologo@gmail.com</a>.</p>
                 </div>
 
                 <div class="fact-reviews" id="factReviews" aria-label="Reseñas de pacientes">
@@ -571,7 +580,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <!-- ASIDE -->
             <aside class="fact-aside" aria-label="Información de facturación">
-                <div class="fact-card">
+                <div class="fact-card" id="cardAntes">
                     <h2><i class="bi bi-info-circle-fill" aria-hidden="true"></i> Antes de llenar</h2>
                     <ul>
                         <li>Ten a la mano tu <strong>constancia de situación fiscal (CSF)</strong>: el SAT exige que nombre, RFC, código postal y régimen coincidan exactamente.</li>
@@ -579,8 +588,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <li>La consulta médica está <strong>exenta de IVA</strong>; tu factura se emite así por ley.</li>
                     </ul>
                 </div>
-                <div class="fact-card">
+                <div class="fact-card" id="cardQueSigue">
                     <h2><i class="bi bi-clock-history" aria-hidden="true"></i> ¿Qué sigue?</h2>
+                    <p class="fact-next__wait"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> Listo, ya no tienes que hacer nada más. Solo espera tu correo.</p>
                     <p>1 · Validamos que la consulta o estudio se realizó.</p>
                     <p>2 · Emitimos tu CFDI con los datos que nos diste.</p>
                     <p>3 · Lo recibes por correo (XML + PDF), máximo en 72 h hábiles.</p>
@@ -965,6 +975,8 @@ var FACT_REVIEWS = [
         form.querySelectorAll('fieldset, .fact-consent, .fact-submit, .fact-tip').forEach(function(el){ el.style.display = 'none'; });
         var aviso = form.querySelector('p[style*="font-size:.72rem"]');
         if (aviso) aviso.style.display = 'none';
+        var cardAntes = document.getElementById('cardAntes'); if (cardAntes) cardAntes.style.display = 'none';
+        var cardNext = document.getElementById('cardQueSigue'); if (cardNext) cardNext.classList.add('fact-card--next');
         okBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
         if (window.dataLayer) window.dataLayer.push({ event: 'factura_exito' });
     }

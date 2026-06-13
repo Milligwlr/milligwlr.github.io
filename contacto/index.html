@@ -70,7 +70,7 @@ body{
 .top-bar-legal a{color:inherit;text-decoration:none}
 /* Cinematic backdrop */
 .bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-.bg__orb{position:absolute;border-radius:50%;filter:blur(8px);will-change:transform;animation:breathe 14s ease-in-out infinite alternate}
+.bg__orb{position:absolute;border-radius:50%;filter:blur(8px);animation:breathe 14s ease-in-out infinite alternate}
 .bg__orb--1{top:-18%;right:-22%;width:78vw;height:78vw;background:radial-gradient(circle,rgba(9,132,227,.13) 0%,rgba(108,92,231,.06) 38%,transparent 68%)}
 .bg__orb--2{bottom:-22%;left:-18%;width:62vw;height:62vw;background:radial-gradient(circle,rgba(0,206,201,.10) 0%,transparent 62%);animation-direction:alternate-reverse;animation-duration:17s}
 .bg__grid{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(10,22,40,.055) 1px,transparent 1px);background-size:30px 30px;mask-image:radial-gradient(ellipse 70% 60% at 50% 35%,#000 25%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 35%,#000 25%,transparent 80%)}
@@ -82,9 +82,9 @@ body{
 .brand{display:flex;flex-direction:column;align-items:center;gap:14px;margin:6px 0 4px;text-align:center}
 .brand__halo{position:relative;width:220px;height:220px;display:grid;place-items:center;isolation:isolate}
 /* AI conic aura — sutil */
-.brand__halo::before{content:"";position:absolute;inset:-14px;border-radius:50%;background:conic-gradient(from 0deg,rgba(0,206,201,.0) 0deg,rgba(0,206,201,.32) 60deg,rgba(9,132,227,.32) 140deg,rgba(108,92,231,.32) 220deg,rgba(0,206,201,.0) 300deg,rgba(0,206,201,.0) 360deg);filter:blur(22px);opacity:.55;z-index:-2;animation:auraSpin 9s linear infinite}
+.brand__halo::before{content:"";position:absolute;inset:-14px;border-radius:50%;background:conic-gradient(from 0deg,rgba(0,206,201,.0) 0deg,rgba(0,206,201,.26) 60deg,rgba(9,132,227,.26) 140deg,rgba(108,92,231,.26) 220deg,rgba(0,206,201,.0) 300deg,rgba(0,206,201,.0) 360deg);filter:blur(24px);opacity:.4;z-index:-2;animation:auraSpin 24s linear infinite}
 /* soft outer glow */
-.brand__halo::after{content:"";position:absolute;inset:-44px;border-radius:50%;background:radial-gradient(circle,rgba(108,92,231,.14) 0%,rgba(9,132,227,.10) 38%,rgba(0,206,201,.06) 62%,transparent 80%);filter:blur(38px);z-index:-3;animation:glow 5s ease-in-out infinite}
+.brand__halo::after{content:"";position:absolute;inset:-44px;border-radius:50%;background:radial-gradient(circle,rgba(108,92,231,.14) 0%,rgba(9,132,227,.10) 38%,rgba(0,206,201,.06) 62%,transparent 80%);filter:blur(38px);z-index:-3;animation:glow 8s ease-in-out infinite}
 @keyframes auraSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 .brand__halo img{width:148px;height:148px;display:block;position:relative;z-index:2;filter:drop-shadow(0 10px 28px rgba(9,132,227,.45)) drop-shadow(0 0 18px rgba(0,206,201,.35));background:transparent}
 
@@ -100,21 +100,18 @@ body{
 @keyframes ringSpinB{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
 
 /* Orbiting nodes */
-.orbit{position:absolute;inset:0;animation:orbitSpin 14s linear infinite}
-.orbit--rev{animation:orbitSpin 18s linear infinite reverse}
+.orbit{position:absolute;inset:0;animation:orbitSpin 26s linear infinite}
 .orbit__node{position:absolute;width:8px;height:8px;border-radius:50%;background:radial-gradient(circle,#fff 0%,var(--cyan) 60%,transparent 100%);box-shadow:0 0 12px var(--cyan),0 0 4px #fff;top:50%;left:50%;margin:-4px 0 0 -4px;transform-origin:center}
 .orbit__node--p{background:radial-gradient(circle,#fff 0%,var(--purple) 60%,transparent 100%);box-shadow:0 0 12px var(--purple),0 0 4px #fff}
 .orbit__node--e{background:radial-gradient(circle,#fff 0%,var(--electric) 60%,transparent 100%);box-shadow:0 0 12px var(--electric),0 0 4px #fff}
 .n1{transform:translate(96px,0)}
 .n2{transform:rotate(120deg) translate(96px,0)}
 .n3{transform:rotate(240deg) translate(96px,0)}
-.n4{transform:rotate(60deg) translate(110px,0)}
-.n5{transform:rotate(200deg) translate(110px,0)}
 @keyframes orbitSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 
 @keyframes glow{0%,100%{opacity:.65;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
 
-.tag{display:inline-flex;align-items:center;gap:8px;background:rgba(9,132,227,.07);border:1px solid rgba(9,132,227,.20);border-radius:100px;padding:7px 14px;font-size:.66rem;font-weight:700;color:var(--electric);letter-spacing:.18em;text-transform:uppercase}
+.tag{display:inline-flex;align-items:center;gap:8px;background:rgba(9,132,227,.07);border:1px solid rgba(9,132,227,.20);border-radius:100px;padding:7px 14px;font-size:.66rem;font-weight:700;color:#0768b8;letter-spacing:.18em;text-transform:uppercase}
 .tag .dot{width:6px;height:6px;border-radius:50%;background:var(--electric);box-shadow:0 0 0 4px rgba(9,132,227,.18);animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(9,132,227,.18)}50%{box-shadow:0 0 0 8px rgba(9,132,227,.05)}}
 
@@ -124,6 +121,7 @@ body{
 .brand__role strong{color:var(--navy);font-weight:700}
 .brand__creds{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:2px}
 .brand__creds span{font-size:.66rem;color:var(--muted);background:#fff;border:1px solid var(--line);padding:4px 10px;border-radius:100px;font-variant-numeric:tabular-nums;letter-spacing:.02em;font-weight:500}
+.brand__creds a:focus-visible{outline:2px solid var(--electric);outline-offset:3px;border-radius:6px}
 
 /* Card stack */
 .stack{width:100%;display:flex;flex-direction:column;gap:11px;margin-top:8px}
@@ -136,10 +134,8 @@ body{
  transition:transform .25s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
  -webkit-tap-highlight-color:transparent;cursor:pointer;overflow:hidden;letter-spacing:-.005em;
 }
-.btn::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--electric),var(--cyan));opacity:0;transition:opacity .3s var(--ease)}
 .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm),var(--shadow-lg);border-color:var(--line-2)}
-.btn:hover::before{opacity:1}
-.btn:active{transform:translateY(0) scale(.99)}
+.btn:active{transform:translateY(0) scale(.98)}
 .btn:focus-visible{outline:2px solid var(--electric);outline-offset:3px}
 
 .btn__ic{flex:0 0 42px;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#eaf2ff 0%,#dff3f3 100%);color:var(--electric);transition:transform .3s var(--ease)}
@@ -153,90 +149,72 @@ body{
 /* Primary CTA — Cal.com (online booking, lo más conversión) */
 .btn--primary{
  background:linear-gradient(135deg,var(--navy) 0%,var(--royal) 50%,var(--electric) 100%);
- background-size:200% 200%;animation:cta-shift 6s ease infinite;
  color:#fff;border-color:transparent;box-shadow:var(--shadow-cta);
 }
-.btn--primary::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);animation:shimmer 3.6s ease-in-out infinite;pointer-events:none}
-.btn--primary::before{display:none}
 .btn--primary:hover{transform:translateY(-3px);box-shadow:0 14px 38px rgba(30,53,90,.42),0 4px 10px rgba(30,53,90,.22)}
-.btn--primary .btn__ic{background:rgba(255,255,255,.18);color:#fff;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.btn--primary .btn__sub{color:rgba(255,255,255,.82);font-weight:500}
+.btn--primary .btn__ic{background:rgba(255,255,255,.20);color:#fff;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.btn--primary .btn__sub{color:rgba(255,255,255,.88);font-weight:500}
 .btn--primary .btn__chev{color:rgba(255,255,255,.85)}
 .btn--primary:hover .btn__chev{color:#fff}
-@keyframes cta-shift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-@keyframes shimmer{0%,15%{left:-100%}45%,100%{left:120%}}
-
-/* Sitio web oficial — flashy variant púrpura/cian */
-.btn--site{
- background:linear-gradient(135deg,#0d1f3a 0%,#6c5ce7 45%,#00cec9 100%);
- background-size:200% 200%;animation:cta-shift 6s ease infinite;
- color:#fff;border-color:transparent;box-shadow:0 8px 28px rgba(108,92,231,.32),0 2px 6px rgba(0,206,201,.18);
+/* Barrido de luz compartido por el trío de conversión — sólo en hover (no perpetuo) */
+.btn--primary::after,.btn--wa-solid::after,.btn--fact::after{content:"";position:absolute;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-18deg);pointer-events:none;opacity:0}
+@media (hover:hover) and (pointer:fine){
+ .btn--primary:hover::after,.btn--wa-solid:hover::after,.btn--fact:hover::after{animation:sweep .7s var(--ease)}
 }
-.btn--site::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);animation:shimmer 3.6s ease-in-out infinite;pointer-events:none}
-.btn--site::before{display:none}
-.btn--site:hover{transform:translateY(-3px);box-shadow:0 14px 38px rgba(108,92,231,.45),0 4px 10px rgba(0,206,201,.28)}
-.btn--site .btn__ic{background:rgba(255,255,255,.18);color:#fff;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.btn--site .btn__sub{color:rgba(255,255,255,.82);font-weight:500}
-.btn--site .btn__chev{color:rgba(255,255,255,.85)}
-.btn--site:hover .btn__chev{color:#fff}
+@keyframes sweep{0%{left:-130%;opacity:0}12%{opacity:1}100%{left:140%;opacity:0}}
 
-/* WhatsApp green accent */
-.btn--wa .btn__ic{background:linear-gradient(135deg,#dcfce7 0%,#bbf7d0 100%);color:#16a34a}
-.btn--wa::before{background:linear-gradient(180deg,#25D366,#16a34a)}
-.btn--wa:hover{border-color:rgba(37,211,102,.30)}
+/* Sitio web oficial — tarjeta calmada */
+.btn--site .btn__ic{background:linear-gradient(135deg,#e6efff 0%,#e7e3ff 100%);color:var(--royal)}
 
-/* Telemedicina accent */
+/* Telemedicina — tarjeta calmada */
 .btn--tele .btn__ic{background:linear-gradient(135deg,#ede9fe 0%,#ddd6fe 100%);color:var(--purple)}
-.btn--tele::before{background:linear-gradient(180deg,var(--purple),var(--electric))}
+/* Llamar ahora — tarjeta calmada */
+.btn--call .btn__ic{background:linear-gradient(135deg,#dff3f3 0%,#cffafe 100%);color:#0e8f9a}
+/* Ubicación — tarjeta calmada */
+.btn--loc .btn__ic{background:linear-gradient(135deg,#ffe9dc 0%,#ffd9c2 100%);color:#c2410c}
 
-/* Instagram accent */
+/* Instagram — tarjeta calmada (ícono de marca) */
 .btn--ig .btn__ic{background:linear-gradient(135deg,#feda75 0%,#fa7e1e 35%,#d62976 65%,#962fbf 100%);color:#fff}
-.btn--ig::before{background:linear-gradient(180deg,#fa7e1e,#d62976,#962fbf)}
-.btn--ig:hover{border-color:rgba(214,41,118,.30)}
 
-/* X (Twitter) accent */
+/* X (Twitter) — tarjeta calmada (ícono de marca) */
 .btn--x .btn__ic{background:linear-gradient(135deg,#1a1a1a 0%,#000 100%);color:#fff}
-.btn--x::before{background:linear-gradient(180deg,#1a1a1a,#000)}
-.btn--x:hover{border-color:rgba(0,0,0,.35)}
 
-/* Solid highlight base — shared by wa-solid, map, air */
-.btn--wa-solid,.btn--map,.btn--air{
- color:#fff;border-color:transparent;
- background-size:200% 200%;animation:cta-shift 6s ease infinite;
-}
-.btn--wa-solid::before,.btn--map::before,.btn--air::before{display:none}
-.btn--wa-solid::after,.btn--map::after,.btn--air::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);animation:shimmer 3.6s ease-in-out infinite;pointer-events:none}
-.btn--wa-solid .btn__ic,.btn--map .btn__ic,.btn--air .btn__ic{background:rgba(255,255,255,.18);color:#fff;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.btn--wa-solid .btn__sub,.btn--map .btn__sub,.btn--air .btn__sub{color:rgba(255,255,255,.82)}
-.btn--wa-solid .btn__chev,.btn--map .btn__chev,.btn--air .btn__chev{color:rgba(255,255,255,.85)}
-.btn--wa-solid:hover .btn__chev,.btn--map:hover .btn__chev,.btn--air:hover .btn__chev{color:#fff}
-/* WhatsApp solid */
-.btn--wa-solid{background:linear-gradient(135deg,#075e54 0%,#128C7E 45%,#25D366 100%);box-shadow:0 8px 28px rgba(37,211,102,.32),0 2px 6px rgba(7,94,84,.18)}
-.btn--wa-solid:hover{transform:translateY(-3px);box-shadow:0 14px 38px rgba(37,211,102,.45),0 4px 10px rgba(7,94,84,.24)}
-/* Map location */
-.btn--map{background:linear-gradient(135deg,#b94040 0%,#e05c2a 50%,#f5a623 100%);box-shadow:0 8px 28px rgba(185,64,64,.28),0 2px 6px rgba(224,92,42,.16)}
-.btn--map:hover{transform:translateY(-3px);box-shadow:0 14px 38px rgba(185,64,64,.42),0 4px 10px rgba(224,92,42,.22)}
-/* Air quality */
-.btn--air{background:linear-gradient(135deg,#0277BD 0%,#0097A7 50%,#26C6DA 100%);box-shadow:0 8px 28px rgba(2,119,189,.28),0 2px 6px rgba(0,151,167,.16)}
-.btn--air:hover{transform:translateY(-3px);box-shadow:0 14px 38px rgba(2,119,189,.42),0 4px 10px rgba(0,151,167,.22)}
-/* Facturación — dorado/ámbar */
-.btn--fact .btn__ic{background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%);color:#b45309}
-.btn--fact::before{background:linear-gradient(180deg,#f59e0b,#b45309)}
-.btn--fact:hover{border-color:rgba(245,158,11,.35)}
+/* ===== Trío de conversión: sólidos WhatsApp + Facturación ===== */
+.btn--wa-solid,.btn--fact{color:#fff;border-color:transparent}
+.btn--wa-solid .btn__ic,.btn--fact .btn__ic{background:rgba(255,255,255,.20);color:#fff;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.btn--wa-solid .btn__sub,.btn--fact .btn__sub{color:#fff}
+.btn--primary .btn__lbl,.btn--wa-solid .btn__lbl,.btn--fact .btn__lbl{text-shadow:0 1px 2px rgba(10,22,40,.22)}
+.btn--wa-solid .btn__chev,.btn--fact .btn__chev{color:rgba(255,255,255,.85)}
+.btn--wa-solid:hover,.btn--fact:hover{transform:translateY(-3px)}
+.btn--wa-solid:hover .btn__chev,.btn--fact:hover .btn__chev{color:#fff}
+/* WhatsApp — verde */
+.btn--wa-solid{background:linear-gradient(135deg,#075e54 0%,#0f8a6f 52%,#1fa85a 100%);box-shadow:0 8px 28px rgba(37,211,102,.28),0 2px 6px rgba(7,94,84,.16)}
+.btn--wa-solid:hover{box-shadow:0 14px 38px rgba(37,211,102,.42),0 4px 10px rgba(7,94,84,.24)}
+/* Facturación — dorado (resaltada, bajo WhatsApp) */
+.btn--fact{background:linear-gradient(135deg,#7c3a08 0%,#9a4a08 48%,#b5590a 100%);box-shadow:0 8px 28px rgba(180,83,9,.34),0 2px 6px rgba(124,58,8,.22)}
+.btn--fact:hover{box-shadow:0 14px 38px rgba(217,119,6,.46),0 4px 10px rgba(180,83,9,.28)}
+/* Calidad del aire — tarjeta calmada */
+.btn--air .btn__ic{background:linear-gradient(135deg,#dbeafe 0%,#cffafe 100%);color:#0369a1}
 
 /* Section divider */
-.divider{display:flex;align-items:center;gap:12px;width:100%;margin:14px 0 2px;color:var(--soft);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700}
+.divider{display:flex;align-items:center;gap:12px;width:100%;margin:14px 0 2px;color:var(--muted);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700}
 .divider::before,.divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(9,132,227,.22),transparent)}
 
 /* Foot */
 .foot{margin-top:16px;text-align:center;font-size:.72rem;color:var(--muted);line-height:1.7;letter-spacing:.01em;max-width:380px}
 .foot strong{color:var(--ink);font-weight:700}
 .foot__sep{display:inline-block;width:32px;height:1px;background:linear-gradient(90deg,transparent,var(--soft),transparent);vertical-align:middle;margin:0 4px}
-.foot__reg{display:block;margin-top:8px;font-size:.66rem;color:var(--soft);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.foot__reg{display:block;margin-top:8px;font-size:.66rem;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.02em}
 
 /* Toast for share fallback */
 .toast{position:fixed;left:50%;bottom:max(28px,env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);background:var(--navy-deep);color:#fff;padding:12px 18px;border-radius:100px;font-size:.82rem;font-weight:600;box-shadow:0 10px 30px rgba(10,22,40,.30);opacity:0;pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease);z-index:50}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* Entrada escalonada — sólo sin reduce-motion; el estado por defecto es visible */
+@media (prefers-reduced-motion:no-preference){
+ .brand,.stack>*{opacity:0;animation:rise .55s var(--ease) both;animation-delay:calc(min(var(--i,0),8) * 34ms)}
+}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
 /* Reduced motion */
 @media (prefers-reduced-motion:reduce){
@@ -256,7 +234,6 @@ body{
  .bg__grid{background-image:radial-gradient(circle,rgba(255,255,255,.05) 1px,transparent 1px)}
  .brand__creds span{background:rgba(255,255,255,.04)}
  .btn__ic{background:rgba(9,132,227,.14);color:#7fa2dd}
- .btn--wa .btn__ic{background:rgba(37,211,102,.14);color:#4ade80}
  .btn--tele .btn__ic{background:rgba(108,92,231,.16);color:#a78bfa}
 }
 </style>
@@ -315,7 +292,6 @@ body{
        <stop offset="100%" stop-color="#a78bfa" stop-opacity=".7"/>
       </linearGradient>
      </defs>
-     <circle class="ring-r4" cx="0" cy="0" r="78"/>
      <circle class="ring-r3" cx="0" cy="0" r="92"/>
      <circle class="ring-r2" cx="0" cy="0" r="100"/>
      <circle class="ring-r1" cx="0" cy="0" r="106"/>
@@ -324,10 +300,6 @@ body{
      <span class="orbit__node n1"></span>
      <span class="orbit__node orbit__node--p n2"></span>
      <span class="orbit__node orbit__node--e n3"></span>
-    </div>
-    <div class="orbit orbit--rev">
-     <span class="orbit__node orbit__node--e n4"></span>
-     <span class="orbit__node orbit__node--p n5"></span>
     </div>
    </div>
    <picture>
@@ -347,91 +319,100 @@ body{
 
  <nav class="stack" aria-label="Acciones de contacto">
 
-  <a class="btn btn--site" href="https://alveos.mx/?utm_source=qr-receta&utm_medium=qr&utm_campaign=home" rel="noopener">
-   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
-   <span class="btn__lbl">Sitio web oficial<span class="btn__sub">alveos.mx · conoce más del Dr. Lara</span></span>
-   <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-  </a>
-
-  <a class="btn btn--primary" href="https://cal.com/dr-william-lara/agendar-cita?utm_source=qr-receta&utm_medium=qr&utm_campaign=contacto" rel="noopener noreferrer"  target="_blank">
+  <a class="btn btn--primary" style="--i:1" href="https://cal.com/dr-william-lara/agendar-cita?utm_source=qr-receta&utm_medium=qr&utm_campaign=contacto" rel="noopener noreferrer"  target="_blank">
    <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 10h18M8 2v4M16 2v4"/><path d="M9 15l2 2 4-4"/></svg></span>
-   <span class="btn__lbl">Agendar cita online<span class="btn__sub">Elige día y hora en línea</span></span>
+   <span class="btn__lbl">Agendar cita en línea<span class="btn__sub">Elige el día y la hora</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
-  <a class="btn btn--wa-solid" href="https://wa.me/5215591708334?text=Hola,%20vengo%20de%20su%20sitio%20web%20alveos.mx.%20Escane%C3%A9%20la%20receta%20y%20me%20gustar%C3%ADa%20agendar%20una%20cita." rel="noopener noreferrer"  target="_blank">
+  <a class="btn btn--wa-solid" style="--i:2" href="https://wa.me/5215591708334?text=Hola,%20vengo%20de%20su%20sitio%20web%20alveos.mx.%20Escane%C3%A9%20la%20receta%20y%20me%20gustar%C3%ADa%20agendar%20una%20cita." rel="noopener noreferrer"  target="_blank">
    <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.2-.7.2s-.8.9-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5s-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1.1 1-1.1 2.5s1.1 2.9 1.3 3.1c.2.2 2.2 3.4 5.4 4.7.7.3 1.3.5 1.8.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-3-.2-.3C4.4 15.2 4 13.6 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8z"/></svg></span>
    <span class="btn__lbl">Agendar por WhatsApp<span class="btn__sub">Envía mensaje para agendar cita</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
-  <a class="btn btn--map" href="https://maps.app.goo.gl/4yc6UXv296PZ7zSC7" rel="noopener noreferrer"  target="_blank">
-   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-4-4-7-7.8-7-11a7 7 0 0 1 14 0c0 3.2-3 7-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
-   <span class="btn__lbl">Ubicación del consultorio<span class="btn__sub">Hospital Santa Coleta · ver en Google Maps</span></span>
-   <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-  </a>
-
-  <a class="btn btn--tele" href="https://cal.com/dr-william-lara/agendar-cita?utm_source=qr-receta&utm_medium=qr&utm_campaign=telemedicina" rel="noopener noreferrer"  target="_blank">
-   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10l5-3v10l-5-3"/><rect x="2" y="6" width="13" height="12" rx="2.5"/></svg></span>
-   <span class="btn__lbl">Consulta por videollamada<span class="btn__sub">Telemedicina · agenda en línea</span></span>
-   <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-  </a>
-
-  <a class="btn btn--fact" href="https://alveos.mx/facturacion/?utm_source=qr-receta&utm_medium=qr&utm_campaign=facturacion" rel="noopener">
+  <a class="btn btn--fact" style="--i:3" href="https://alveos.mx/facturacion/?utm_source=qr-receta&utm_medium=qr&utm_campaign=facturacion" rel="noopener">
    <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg></span>
    <span class="btn__lbl">Facturación<span class="btn__sub">Solicita tu factura (CFDI) en línea</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
-  <a class="btn" href="dr-william-lara.vcf" download>
+  <a class="btn btn--tele" style="--i:4" href="https://cal.com/dr-william-lara/agendar-cita?utm_source=qr-receta&utm_medium=qr&utm_campaign=telemedicina" rel="noopener noreferrer"  target="_blank">
+   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10l5-3v10l-5-3"/><rect x="2" y="6" width="13" height="12" rx="2.5"/></svg></span>
+   <span class="btn__lbl">Consulta por videollamada<span class="btn__sub">Telemedicina · agenda en línea</span></span>
+   <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+  </a>
+
+  <a class="btn btn--call" style="--i:5" href="tel:+525591708334">
+   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+   <span class="btn__lbl">Llamar ahora<span class="btn__sub">+52 55 9170 8334 · llamada directa</span></span>
+   <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+  </a>
+
+  <h2 class="divider" style="--i:6">Tu contacto</h2>
+
+  <a class="btn btn--loc" style="--i:7" href="https://maps.app.goo.gl/4yc6UXv296PZ7zSC7" rel="noopener noreferrer"  target="_blank">
+   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-4-4-7-7.8-7-11a7 7 0 0 1 14 0c0 3.2-3 7-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+   <span class="btn__lbl">Ubicación del consultorio<span class="btn__sub">Hospital Santa Coleta · ver en Google Maps</span></span>
+   <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+  </a>
+
+  <a class="btn" style="--i:8" href="dr-william-lara.vcf" download>
    <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></span>
    <span class="btn__lbl">Guardar contacto<span class="btn__sub">Tarjeta vCard para tu teléfono</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
-  <button class="btn" id="shareBtn" type="button">
+  <button class="btn" id="shareBtn" type="button" style="--i:9">
    <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span>
    <span class="btn__lbl">Compartir con un familiar<span class="btn__sub">Envía este contacto por mensaje</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </button>
 
-  <div class="divider" role="separator">Recursos del paciente</div>
+  <h2 class="divider" style="--i:10">Recursos del paciente</h2>
 
-  <a class="btn btn--air" href="https://alveos.mx/contingencia-ambiental-cdmx/?utm_source=qr-receta&utm_medium=qr&utm_campaign=contingencia" rel="noopener">
+  <a class="btn btn--air" style="--i:11" href="https://alveos.mx/contingencia-ambiental-cdmx/?utm_source=qr-receta&utm_medium=qr&utm_campaign=contingencia" rel="noopener">
    <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15h13a3 3 0 1 0-3-3"/><path d="M3 19h17a2 2 0 1 0-2-2"/><path d="M3 11h9a2.5 2.5 0 1 0-2.5-2.5"/></svg></span>
    <span class="btn__lbl">Calidad del aire en CDMX<span class="btn__sub">Recomendaciones según contingencia</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
-  <a class="btn" href="https://alveos.mx/servicios/?utm_source=qr-receta&utm_medium=qr&utm_campaign=servicios" rel="noopener">
+  <a class="btn" style="--i:12" href="https://alveos.mx/servicios/?utm_source=qr-receta&utm_medium=qr&utm_campaign=servicios" rel="noopener">
    <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg></span>
    <span class="btn__lbl">Servicios y estudios<span class="btn__sub">Espirometría, polisomnografía, broncoscopía</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
-  <a class="btn" href="https://alveos.mx/enfermedades/?utm_source=qr-receta&utm_medium=qr&utm_campaign=enfermedades" rel="noopener">
+  <a class="btn" style="--i:13" href="https://alveos.mx/enfermedades/?utm_source=qr-receta&utm_medium=qr&utm_campaign=enfermedades" rel="noopener">
    <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></span>
    <span class="btn__lbl">Enfermedades respiratorias<span class="btn__sub">EPOC, asma, apnea, fibrosis y más</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
-  <a class="btn btn--ig" href="https://www.instagram.com/dr.williamlara/" rel="noopener noreferrer"  target="_blank">
+  <h2 class="divider" style="--i:14">Conoce más</h2>
+
+  <a class="btn btn--site" style="--i:15" href="https://alveos.mx/?utm_source=qr-receta&utm_medium=qr&utm_campaign=home" rel="noopener">
+   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+   <span class="btn__lbl">Sitio web oficial<span class="btn__sub">alveos.mx · conoce más del Dr. Lara</span></span>
+   <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+  </a>
+
+  <a class="btn btn--ig" style="--i:16" href="https://www.instagram.com/dr.williamlara/" rel="noopener noreferrer"  target="_blank">
    <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span>
    <span class="btn__lbl">Cuenta de Instagram<span class="btn__sub">@dr.williamlara · contenido médico</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
-  <a class="btn btn--x" href="https://x.com/Milligw" rel="noopener noreferrer"  target="_blank">
+  <a class="btn btn--x" style="--i:17" href="https://x.com/Milligw" rel="noopener noreferrer"  target="_blank">
    <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
    <span class="btn__lbl">Cuenta en X (Twitter)<span class="btn__sub">@Milligw · artículos médicos recientes</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
-
  </nav>
 
  <footer class="foot">
-  <p data-med-disclaimer style="font-size:.72rem;color:#888;max-width:560px;margin:0 auto 8px;line-height:1.5">La información de este sitio es de carácter educativo e informativo y no sustituye la consulta, diagnóstico ni tratamiento con un profesional médico. En caso de emergencia respiratoria llame al 911.</p>
+  <p data-med-disclaimer style="font-size:.72rem;color:var(--muted);max-width:560px;margin:0 auto 8px;line-height:1.5">La información de este sitio es de carácter educativo e informativo y no sustituye la consulta, diagnóstico ni tratamiento con un profesional médico. En caso de emergencia respiratoria llame al 911.</p>
   <span class="foot__reg">© ALVEOS</span>
  </footer>
 </main>
@@ -501,9 +482,5 @@ body{
 })();
 </script>
 
-    <script src="/assets/agenda-modal.js" defer></script>
-<div class="read-progress" aria-hidden="true"><div class="read-progress__bar"></div></div>
-<style>.read-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:9999;pointer-events:none;background:transparent}.read-progress__bar{height:100%;width:0;background:linear-gradient(90deg,#0984e3,#00cec9,#0984e3);box-shadow:0 0 12px rgba(9,132,227,.5);transition:width .12s linear;border-radius:0 3px 3px 0}</style>
-<script>(function(){var bar=document.querySelector(".read-progress__bar"),doc=document.documentElement,t=false;function s(){if(t)return;t=true;requestAnimationFrame(function(){var m=doc.scrollHeight-doc.clientHeight;bar.style.width=Math.max(0,Math.min(100,m>0?(doc.scrollTop/m)*100:0))+"%";t=false})}window.addEventListener("scroll",s,{passive:true});window.addEventListener("resize",s,{passive:true});s()})();</script>
-</body>
+    <script src="/assets/agenda-modal.js" defer></script></body>
 </html>
