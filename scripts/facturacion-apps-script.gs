@@ -18,7 +18,8 @@
  */
 
 /** ── CONFIGURACIÓN ──────────────────────────────────────────── */
-var CARPETA_CSF = 'ALVEOS CSF';                     // carpeta en Drive para los PDF
+var CARPETA_CSF_ID = '1DzfpM9XNwhEyjwUjf7il7lWWdd5yp9Y-'; // ID de la carpeta destino (Contaduria/ALVEOS CSF). El ID NO cambia aunque la muevas o renombres.
+var CARPETA_CSF = 'ALVEOS CSF';                     // respaldo por NOMBRE solo si el ID llegara a fallar
 var FOLIO_PREFIJO = 'LAVW';                         // serie de la contadora
 var FOLIO_INICIO = 41;                              // siguiente número de su consecutivo
 var CORREO_DR = 'williamc2lv@gmail.com';            // recibe solicitudes y pendientes
@@ -379,6 +380,11 @@ function reiniciarFolio() {
 }
 
 function obtenerCarpeta() {
+  // 1º por ID (robusto: sobrevive a mover/renombrar la carpeta).
+  if (CARPETA_CSF_ID) {
+    try { return DriveApp.getFolderById(CARPETA_CSF_ID); } catch (e) { /* si el ID falla, caemos al respaldo por nombre */ }
+  }
+  // 2º respaldo por nombre (evita perder la factura si el ID dejara de servir).
   var it = DriveApp.getFoldersByName(CARPETA_CSF);
   return it.hasNext() ? it.next() : DriveApp.createFolder(CARPETA_CSF);
 }
