@@ -134,6 +134,8 @@ a[href*="gob.mx/cofepris"] {
     border-radius: 1px;
 }
 .nav-link:hover::after, .nav-link.active::after { width: 100%; left: 0; }
+/* Dropdowns: quita el caret de Bootstrap (rectángulo azul bajo el toggle); conserva el subrayado hover/active */
+.nav-link.dropdown-toggle::after { border: 0; margin: 0; }
 .nav-link:hover, .nav-link.active { color: var(--electric) !important; }
 .social-icons a {
     color: var(--text-muted);
@@ -145,7 +147,7 @@ a[href*="gob.mx/cofepris"] {
 }
 .social-icons a:hover { color: var(--electric); transform: translateY(-2px); }
 .navbar-cta {
-    display: inline-flex; align-items: center; gap: 6px;
+    display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
     padding: 9px 22px; border-radius: 100px;
     background: var(--electric); color: #fff !important;
     font-size: .82rem; font-weight: 700; text-decoration: none;

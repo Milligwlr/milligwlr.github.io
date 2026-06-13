@@ -146,55 +146,39 @@ body{
 .btn__chev{color:var(--soft);flex:0 0 auto;transition:transform .3s var(--ease),color .3s var(--ease)}
 .btn:hover .btn__chev{color:var(--electric);transform:translateX(3px)}
 
-/* Primary CTA — Cal.com (online booking, lo más conversión) */
-.btn--primary{
- background:linear-gradient(135deg,var(--navy) 0%,var(--royal) 50%,var(--electric) 100%);
- color:#fff;border-color:transparent;box-shadow:var(--shadow-cta);
-}
-.btn--primary:hover{transform:translateY(-3px);box-shadow:0 14px 38px rgba(30,53,90,.42),0 4px 10px rgba(30,53,90,.22)}
-.btn--primary .btn__ic{background:rgba(255,255,255,.20);color:#fff;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.btn--primary .btn__sub{color:rgba(255,255,255,.88);font-weight:500}
-.btn--primary .btn__chev{color:rgba(255,255,255,.85)}
-.btn--primary:hover .btn__chev{color:#fff}
-/* Barrido de luz compartido por el trío de conversión — sólo en hover (no perpetuo) */
-.btn--primary::after,.btn--wa-solid::after,.btn--fact::after{content:"";position:absolute;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-18deg);pointer-events:none;opacity:0}
-@media (hover:hover) and (pointer:fine){
- .btn--primary:hover::after,.btn--wa-solid:hover::after,.btn--fact:hover::after{animation:sweep .7s var(--ease)}
-}
+/* ===== CTA sólidos llamativos (sistema compartido) ===== */
+.btn--solid{color:#fff;border-color:transparent}
+.btn--solid .btn__ic{background:rgba(255,255,255,.20);color:#fff;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.btn--solid .btn__sub{color:#fff;font-weight:500}
+.btn--solid .btn__lbl{text-shadow:0 1px 2px rgba(10,22,40,.30)}
+.btn--solid .btn__chev{color:rgba(255,255,255,.85)}
+.btn--solid:hover{transform:translateY(-3px)}
+.btn--solid:hover .btn__chev{color:#fff}
+/* Barrido de luz — sólo en hover (no perpetuo) */
+.btn--solid::after{content:"";position:absolute;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.30),transparent);transform:skewX(-18deg);pointer-events:none;opacity:0}
+@media (hover:hover) and (pointer:fine){ .btn--solid:hover::after{animation:sweep .7s var(--ease)} }
 @keyframes sweep{0%{left:-130%;opacity:0}12%{opacity:1}100%{left:140%;opacity:0}}
 
-/* Sitio web oficial — tarjeta calmada */
-.btn--site .btn__ic{background:linear-gradient(135deg,#e6efff 0%,#e7e3ff 100%);color:var(--royal)}
-
-/* Telemedicina — tarjeta calmada */
-.btn--tele .btn__ic{background:linear-gradient(135deg,#ede9fe 0%,#ddd6fe 100%);color:var(--purple)}
-/* Llamar ahora — tarjeta calmada */
-.btn--call .btn__ic{background:linear-gradient(135deg,#dff3f3 0%,#cffafe 100%);color:#0e8f9a}
-/* Ubicación — tarjeta calmada */
-.btn--loc .btn__ic{background:linear-gradient(135deg,#ffe9dc 0%,#ffd9c2 100%);color:#c2410c}
-
-/* Instagram — tarjeta calmada (ícono de marca) */
-.btn--ig .btn__ic{background:linear-gradient(135deg,#feda75 0%,#fa7e1e 35%,#d62976 65%,#962fbf 100%);color:#fff}
-
-/* X (Twitter) — tarjeta calmada (ícono de marca) */
-.btn--x .btn__ic{background:linear-gradient(135deg,#1a1a1a 0%,#000 100%);color:#fff}
-
-/* ===== Trío de conversión: sólidos WhatsApp + Facturación ===== */
-.btn--wa-solid,.btn--fact{color:#fff;border-color:transparent}
-.btn--wa-solid .btn__ic,.btn--fact .btn__ic{background:rgba(255,255,255,.20);color:#fff;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.btn--wa-solid .btn__sub,.btn--fact .btn__sub{color:#fff}
-.btn--primary .btn__lbl,.btn--wa-solid .btn__lbl,.btn--fact .btn__lbl{text-shadow:0 1px 2px rgba(10,22,40,.22)}
-.btn--wa-solid .btn__chev,.btn--fact .btn__chev{color:rgba(255,255,255,.85)}
-.btn--wa-solid:hover,.btn--fact:hover{transform:translateY(-3px)}
-.btn--wa-solid:hover .btn__chev,.btn--fact:hover .btn__chev{color:#fff}
-/* WhatsApp — verde */
-.btn--wa-solid{background:linear-gradient(135deg,#075e54 0%,#0f8a6f 52%,#1fa85a 100%);box-shadow:0 8px 28px rgba(37,211,102,.28),0 2px 6px rgba(7,94,84,.16)}
-.btn--wa-solid:hover{box-shadow:0 14px 38px rgba(37,211,102,.42),0 4px 10px rgba(7,94,84,.24)}
-/* Facturación — dorado (resaltada, bajo WhatsApp) */
+/* Color por botón — vivos pero legibles (extremo claro contenido + scrim para texto blanco) */
+.btn--primary{background:linear-gradient(135deg,var(--navy) 0%,var(--royal) 50%,var(--electric) 100%);box-shadow:var(--shadow-cta)}
+.btn--primary:hover{box-shadow:0 14px 38px rgba(30,53,90,.42),0 4px 10px rgba(30,53,90,.22)}
+.btn--wa-solid{background:linear-gradient(135deg,#075e54 0%,#0f8a6f 52%,#1fa85a 100%);box-shadow:0 8px 28px rgba(37,211,102,.30),0 2px 6px rgba(7,94,84,.16)}
+.btn--wa-solid:hover{box-shadow:0 14px 38px rgba(37,211,102,.44),0 4px 10px rgba(7,94,84,.24)}
 .btn--fact{background:linear-gradient(135deg,#7c3a08 0%,#9a4a08 48%,#b5590a 100%);box-shadow:0 8px 28px rgba(180,83,9,.34),0 2px 6px rgba(124,58,8,.22)}
 .btn--fact:hover{box-shadow:0 14px 38px rgba(217,119,6,.46),0 4px 10px rgba(180,83,9,.28)}
-/* Calidad del aire — tarjeta calmada */
-.btn--air .btn__ic{background:linear-gradient(135deg,#dbeafe 0%,#cffafe 100%);color:#0369a1}
+.btn--site{background:linear-gradient(135deg,#1f2d6e 0%,#6c5ce7 48%,#0a93a0 100%);box-shadow:0 8px 28px rgba(108,92,231,.32),0 2px 6px rgba(10,147,160,.18)}
+.btn--site:hover{box-shadow:0 14px 38px rgba(108,92,231,.46),0 4px 10px rgba(10,147,160,.28)}
+.btn--share{background:linear-gradient(135deg,#9a2b2b 0%,#c13c1f 52%,#c95f16 100%);box-shadow:0 8px 28px rgba(193,60,31,.32),0 2px 6px rgba(154,43,43,.18)}
+.btn--share:hover{box-shadow:0 14px 38px rgba(193,60,31,.46),0 4px 10px rgba(154,43,43,.26)}
+.btn--air{background:linear-gradient(135deg,#024e86 0%,#0784a8 50%,#0b92b4 100%);box-shadow:0 8px 28px rgba(7,132,168,.32),0 2px 6px rgba(2,78,134,.18)}
+.btn--air:hover{box-shadow:0 14px 38px rgba(7,132,168,.46),0 4px 10px rgba(2,78,134,.26)}
+
+/* ===== Tarjetas calmadas: ícono con tinte ===== */
+.btn--tele .btn__ic{background:linear-gradient(135deg,#ede9fe 0%,#ddd6fe 100%);color:var(--purple)}
+.btn--call .btn__ic{background:linear-gradient(135deg,#dff3f3 0%,#cffafe 100%);color:#0e8f9a}
+.btn--loc .btn__ic{background:linear-gradient(135deg,#ffe9dc 0%,#ffd9c2 100%);color:#c2410c}
+.btn--ig .btn__ic{background:linear-gradient(135deg,#feda75 0%,#fa7e1e 35%,#d62976 65%,#962fbf 100%);color:#fff}
+.btn--x .btn__ic{background:linear-gradient(135deg,#1a1a1a 0%,#000 100%);color:#fff}
 
 /* Section divider */
 .divider{display:flex;align-items:center;gap:12px;width:100%;margin:14px 0 2px;color:var(--muted);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700}
@@ -307,7 +291,7 @@ body{
     <img src="logo.png" alt="ALVEOS" width="148" height="148" decoding="async" fetchpriority="high">
    </picture>
   </div>
-  <span class="tag"><span class="dot"></span>ALVEOS · Neumología</span>
+  <span class="tag"><span class="dot"></span>ALVEOS</span>
   <h1 class="brand__name">Dr. William César <em>Lara Vázquez</em></h1>
   <div class="brand__role"><strong>Neumólogo</strong> · Alta Especialidad en EPOC</div>
   <div class="brand__creds">
@@ -319,59 +303,59 @@ body{
 
  <nav class="stack" aria-label="Acciones de contacto">
 
-  <a class="btn btn--primary" style="--i:1" href="https://cal.com/dr-william-lara/agendar-cita?utm_source=qr-receta&utm_medium=qr&utm_campaign=contacto" rel="noopener noreferrer"  target="_blank">
+  <a class="btn btn--primary btn--solid" style="--i:1" href="https://cal.com/dr-william-lara/agendar-cita?utm_source=qr-receta&utm_medium=qr&utm_campaign=contacto" rel="noopener noreferrer"  target="_blank">
    <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 10h18M8 2v4M16 2v4"/><path d="M9 15l2 2 4-4"/></svg></span>
    <span class="btn__lbl">Agendar cita en línea<span class="btn__sub">Elige el día y la hora</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
-  <a class="btn btn--wa-solid" style="--i:2" href="https://wa.me/5215591708334?text=Hola,%20vengo%20de%20su%20sitio%20web%20alveos.mx.%20Escane%C3%A9%20la%20receta%20y%20me%20gustar%C3%ADa%20agendar%20una%20cita." rel="noopener noreferrer"  target="_blank">
+  <a class="btn btn--wa-solid btn--solid" style="--i:2" href="https://wa.me/5215591708334?text=Hola,%20vengo%20de%20su%20sitio%20web%20alveos.mx.%20Escane%C3%A9%20la%20receta%20y%20me%20gustar%C3%ADa%20agendar%20una%20cita." rel="noopener noreferrer"  target="_blank">
    <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.2-.7.2s-.8.9-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5s-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1.1 1-1.1 2.5s1.1 2.9 1.3 3.1c.2.2 2.2 3.4 5.4 4.7.7.3 1.3.5 1.8.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-3-.2-.3C4.4 15.2 4 13.6 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8z"/></svg></span>
    <span class="btn__lbl">Agendar por WhatsApp<span class="btn__sub">Envía mensaje para agendar cita</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
-  <a class="btn btn--fact" style="--i:3" href="https://alveos.mx/facturacion/?utm_source=qr-receta&utm_medium=qr&utm_campaign=facturacion" rel="noopener">
+  <a class="btn btn--fact btn--solid" style="--i:3" href="https://alveos.mx/facturacion/?utm_source=qr-receta&utm_medium=qr&utm_campaign=facturacion" rel="noopener">
    <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg></span>
    <span class="btn__lbl">Facturación<span class="btn__sub">Solicita tu factura (CFDI) en línea</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
-  <a class="btn btn--tele" style="--i:4" href="https://cal.com/dr-william-lara/agendar-cita?utm_source=qr-receta&utm_medium=qr&utm_campaign=telemedicina" rel="noopener noreferrer"  target="_blank">
-   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10l5-3v10l-5-3"/><rect x="2" y="6" width="13" height="12" rx="2.5"/></svg></span>
-   <span class="btn__lbl">Consulta por videollamada<span class="btn__sub">Telemedicina · agenda en línea</span></span>
-   <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-  </a>
-
-  <a class="btn btn--call" style="--i:5" href="tel:+525591708334">
+  <a class="btn btn--call" style="--i:4" href="tel:+525591708334">
    <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
    <span class="btn__lbl">Llamar ahora<span class="btn__sub">+52 55 9170 8334 · llamada directa</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
-  <h2 class="divider" style="--i:6">Tu contacto</h2>
-
-  <a class="btn btn--loc" style="--i:7" href="https://maps.app.goo.gl/4yc6UXv296PZ7zSC7" rel="noopener noreferrer"  target="_blank">
-   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-4-4-7-7.8-7-11a7 7 0 0 1 14 0c0 3.2-3 7-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
-   <span class="btn__lbl">Ubicación del consultorio<span class="btn__sub">Hospital Santa Coleta · ver en Google Maps</span></span>
+  <a class="btn btn--tele" style="--i:5" href="https://cal.com/dr-william-lara/agendar-cita?utm_source=qr-receta&utm_medium=qr&utm_campaign=telemedicina" rel="noopener noreferrer"  target="_blank">
+   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10l5-3v10l-5-3"/><rect x="2" y="6" width="13" height="12" rx="2.5"/></svg></span>
+   <span class="btn__lbl">Consulta por videollamada<span class="btn__sub">Telemedicina · agenda en línea</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
-  <a class="btn" style="--i:8" href="dr-william-lara.vcf" download>
-   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></span>
-   <span class="btn__lbl">Guardar contacto<span class="btn__sub">Tarjeta vCard para tu teléfono</span></span>
+  <h2 class="divider" style="--i:6">Conoce más</h2>
+
+  <a class="btn btn--site btn--solid" style="--i:7" href="https://alveos.mx/?utm_source=qr-receta&utm_medium=qr&utm_campaign=home" rel="noopener">
+   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+   <span class="btn__lbl">Sitio web oficial<span class="btn__sub">alveos.mx · conoce más del Dr. Lara</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
-  <button class="btn" id="shareBtn" type="button" style="--i:9">
-   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span>
-   <span class="btn__lbl">Compartir con un familiar<span class="btn__sub">Envía este contacto por mensaje</span></span>
+  <a class="btn btn--ig" style="--i:8" href="https://www.instagram.com/dr.williamlara/" rel="noopener noreferrer"  target="_blank">
+   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span>
+   <span class="btn__lbl">Cuenta de Instagram<span class="btn__sub">@dr.williamlara · contenido médico</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-  </button>
+  </a>
+
+  <a class="btn btn--x" style="--i:9" href="https://x.com/Milligw" rel="noopener noreferrer"  target="_blank">
+   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
+   <span class="btn__lbl">Cuenta en X (Twitter)<span class="btn__sub">@Milligw · artículos médicos recientes</span></span>
+   <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+  </a>
 
   <h2 class="divider" style="--i:10">Recursos del paciente</h2>
 
-  <a class="btn btn--air" style="--i:11" href="https://alveos.mx/contingencia-ambiental-cdmx/?utm_source=qr-receta&utm_medium=qr&utm_campaign=contingencia" rel="noopener">
+  <a class="btn btn--air btn--solid" style="--i:11" href="https://alveos.mx/contingencia-ambiental-cdmx/?utm_source=qr-receta&utm_medium=qr&utm_campaign=contingencia" rel="noopener">
    <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15h13a3 3 0 1 0-3-3"/><path d="M3 19h17a2 2 0 1 0-2-2"/><path d="M3 11h9a2.5 2.5 0 1 0-2.5-2.5"/></svg></span>
    <span class="btn__lbl">Calidad del aire en CDMX<span class="btn__sub">Recomendaciones según contingencia</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
@@ -389,23 +373,23 @@ body{
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
-  <h2 class="divider" style="--i:14">Conoce más</h2>
+  <h2 class="divider" style="--i:14">Tu contacto</h2>
 
-  <a class="btn btn--site" style="--i:15" href="https://alveos.mx/?utm_source=qr-receta&utm_medium=qr&utm_campaign=home" rel="noopener">
-   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
-   <span class="btn__lbl">Sitio web oficial<span class="btn__sub">alveos.mx · conoce más del Dr. Lara</span></span>
+  <button class="btn btn--share btn--solid" id="shareBtn" type="button" style="--i:15">
+   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span>
+   <span class="btn__lbl">Compartir con un familiar<span class="btn__sub">Envía este contacto por mensaje</span></span>
+   <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+  </button>
+
+  <a class="btn btn--loc" style="--i:16" href="https://maps.app.goo.gl/4yc6UXv296PZ7zSC7" rel="noopener noreferrer"  target="_blank">
+   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-4-4-7-7.8-7-11a7 7 0 0 1 14 0c0 3.2-3 7-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+   <span class="btn__lbl">Ubicación del consultorio<span class="btn__sub">Hospital Santa Coleta · ver en Google Maps</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 
-  <a class="btn btn--ig" style="--i:16" href="https://www.instagram.com/dr.williamlara/" rel="noopener noreferrer"  target="_blank">
-   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span>
-   <span class="btn__lbl">Cuenta de Instagram<span class="btn__sub">@dr.williamlara · contenido médico</span></span>
-   <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-  </a>
-
-  <a class="btn btn--x" style="--i:17" href="https://x.com/Milligw" rel="noopener noreferrer"  target="_blank">
-   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
-   <span class="btn__lbl">Cuenta en X (Twitter)<span class="btn__sub">@Milligw · artículos médicos recientes</span></span>
+  <a class="btn" style="--i:17" href="dr-william-lara.vcf" download>
+   <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></span>
+   <span class="btn__lbl">Guardar contacto<span class="btn__sub">Tarjeta vCard para tu teléfono</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
   </a>
 

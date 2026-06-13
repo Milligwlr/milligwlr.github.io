@@ -202,8 +202,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .fact-review__stars { color:#f5a623; font-size:.78rem; letter-spacing:2px; margin-bottom:8px; }
 .fact-review__txt { font-size:.86rem; color:#3a4a5c; line-height:1.55; margin:0; }
 
-/* indicadores (puntos) — solo móvil */
-.fact-reviews__dots { display:none; justify-content:center; gap:7px; margin:6px 0 18px; }
+/* Navegación de reseñas: flechas + puntos */
+.fact-reviews__controls { display:flex; align-items:center; justify-content:center; gap:14px; margin:10px 0 18px; }
+.fact-reviews__nav { width:42px; height:42px; flex:0 0 42px; border-radius:50%; border:1px solid rgba(10,22,40,.12); background:#fff; color:var(--navy); display:inline-flex; align-items:center; justify-content:center; font-size:1.15rem; cursor:pointer; box-shadow:0 1px 2px rgba(10,22,40,.06), 0 8px 18px -12px rgba(10,22,40,.3); transition:transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease), color .25s var(--ease), opacity .25s var(--ease); }
+.fact-reviews__nav:hover { background:var(--electric); color:#fff; border-color:transparent; transform:translateY(-2px); box-shadow:0 10px 22px -8px rgba(9,132,227,.5); }
+.fact-reviews__nav:active { transform:scale(.94); }
+.fact-reviews__nav:focus-visible { outline:2px solid var(--electric); outline-offset:3px; }
+.fact-reviews__nav:disabled { opacity:.32; pointer-events:none; box-shadow:none; }
+.fact-reviews__dots { display:flex; justify-content:center; gap:7px; }
 .fact-reviews__dots button { width:7px; height:7px; border-radius:100px; border:0; padding:0; background:rgba(10,22,40,.18); cursor:pointer; transition:width .3s var(--ease), background .3s var(--ease); }
 .fact-reviews__dots button.is-on { width:20px; background:#f5a623; }
 
@@ -566,7 +572,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <h2 class="fact-reviews__title">¿Cómo fue tu experiencia?</h2>
                     <p class="fact-reviews__sub">Mientras llega tu factura, lee lo que otros pacientes cuentan. Si la tuya fue buena, tu reseña ayuda a que más personas respiren mejor.</p>
                     <div class="fact-reviews__rail" id="factReviewsRail" tabindex="0" aria-label="Reseñas de pacientes"></div>
-                    <div class="fact-reviews__dots" id="factReviewsDots" role="tablist" aria-label="Navegar reseñas"></div>
+                    <div class="fact-reviews__controls">
+                        <button type="button" class="fact-reviews__nav" id="factReviewsPrev" aria-label="Reseña anterior"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
+                        <div class="fact-reviews__dots" id="factReviewsDots" role="tablist" aria-label="Navegar reseñas"></div>
+                        <button type="button" class="fact-reviews__nav" id="factReviewsNext" aria-label="Reseña siguiente"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+                    </div>
                     <a class="fact-reviews__btn fact-reviews__btn--read" href="https://g.page/r/CfXAZim2anDFEBI" target="_blank" rel="noopener noreferrer" data-cta="fact-review-read">
                         <i class="bi bi-google" aria-hidden="true"></i> Ver todas en Google
                     </a>
@@ -956,20 +966,22 @@ var FACT_REVIEWS = [
             var cards = Array.prototype.slice.call(rail.children);
             var dotEls = Array.prototype.slice.call(dots.children);
             function scrollToCard(i){ var c = cards[i]; if (!c) return; var delta = c.getBoundingClientRect().left - rail.getBoundingClientRect().left; rail.scrollTo({ left: rail.scrollLeft + delta, behavior: 'smooth' }); }
+            var prevBtn = document.getElementById('factReviewsPrev');
+            var nextBtn = document.getElementById('factReviewsNext');
             var curIdx = 0;
+            function updateNav(idx){
+                dotEls.forEach(function(d, i){ d.classList.toggle('is-on', i === idx); });
+                if (prevBtn) prevBtn.disabled = (idx <= 0);
+                if (nextBtn) nextBtn.disabled = (idx >= cards.length - 1);
+            }
             rail.addEventListener('scroll', function(){
                 var mid = rail.scrollLeft + rail.clientWidth / 2, best = Infinity, idx = 0;
                 cards.forEach(function(c, i){ var center = c.offsetLeft + c.offsetWidth / 2; var d = Math.abs(center - mid); if (d < best){ best = d; idx = i; } });
-                curIdx = idx; dotEls.forEach(function(d, i){ d.classList.toggle('is-on', i === idx); });
+                curIdx = idx; updateNav(idx);
             }, { passive: true });
-            if (window.matchMedia('(max-width:640px)').matches && !window.matchMedia('(prefers-reduced-motion:reduce)').matches){
-                var paused = false;
-                rail.addEventListener('pointerdown', function(){ paused = true; });
-                setInterval(function(){
-                    if (paused || !document.getElementById('factReviews').classList.contains('show')) return;
-                    scrollToCard((curIdx + 1) % cards.length);
-                }, 5000);
-            }
+            if (prevBtn) prevBtn.addEventListener('click', function(){ scrollToCard(Math.max(0, curIdx - 1)); });
+            if (nextBtn) nextBtn.addEventListener('click', function(){ scrollToCard(Math.min(cards.length - 1, curIdx + 1)); });
+            updateNav(0);
         }
         document.getElementById('factReviews').classList.add('show');
         form.querySelectorAll('fieldset, .fact-consent, .fact-submit, .fact-tip').forEach(function(el){ el.style.display = 'none'; });
