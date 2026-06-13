@@ -80,8 +80,10 @@ h1,h2,h3,h4{font-weight:800;color:var(--navy);letter-spacing:-.02em}
 .brand-name{background:linear-gradient(135deg,var(--navy) 0%,var(--royal) 70%,var(--electric) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .nav-back{color:var(--text-muted);text-decoration:none;font-weight:600;font-size:.88rem;transition:color .3s}
 .nav-back:hover{color:var(--electric)}
-.navbar .nav-link{color:var(--navy)!important;font-weight:600;font-size:.92rem;padding:8px 14px!important;transition:color .3s}
+.navbar-nav{align-items:center}
+.navbar .nav-link{color:var(--navy)!important;font-weight:600;font-size:.92rem;padding:8px 14px!important;transition:color .3s;white-space:nowrap;display:inline-flex;align-items:center}
 .navbar .nav-link:hover,.navbar .nav-link.active{color:var(--electric)!important}
+@media (min-width:992px) and (max-width:1399.98px){.navbar .nav-link{font-size:.84rem;padding:8px 8px!important}.navbar .nav-link>i{display:none}}
 .navbar .dropdown-menu{border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-md);padding:8px;margin-top:8px}
 .navbar .dropdown-item{font-size:.88rem;font-weight:500;color:var(--text);border-radius:8px;padding:8px 12px}
 .navbar .dropdown-item:hover{background:var(--cloud);color:var(--electric)}

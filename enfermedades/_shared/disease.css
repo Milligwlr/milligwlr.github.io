@@ -100,6 +100,7 @@ a[href*="gob.mx/cofepris"] {
     0%,100% { filter: drop-shadow(0 0 6px rgba(9,132,227,.5)) drop-shadow(0 0 16px rgba(9,132,227,.22)); }
     50%      { filter: drop-shadow(0 0 12px rgba(9,132,227,.8)) drop-shadow(0 0 32px rgba(9,132,227,.4)); }
 }
+.navbar-nav { align-items: center; }
 .nav-link {
     font-weight: 600;
     color: var(--text-muted) !important;
@@ -107,6 +108,21 @@ a[href*="gob.mx/cofepris"] {
     font-size: .88rem;
     transition: color .3s;
     position: relative;
+    /* el icono y el texto nunca se parten en dos líneas (alinea todo el navbar) */
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+}
+/* Desktop estrecho (992–1399px): sin iconos y espaciado más fino
+   para que todo el navbar quepa en una línea bien proporcionada */
+@media (min-width: 992px) and (max-width: 1399.98px) {
+    .navbar .nav-link { margin: 0 3px; font-size: .84rem; padding-left: 8px; padding-right: 8px; }
+    .navbar .nav-link > i { display: none; }
+    .navbar-brand { font-size: 1.3rem; }
+    .navbar-cta { margin-left: 10px; padding: 9px 16px; font-size: .78rem; white-space: nowrap; }
+    .lang-switch { margin-left: 8px; }
+    .lang-switch a { padding: 5px 10px; }
+    .social-icons a { margin-left: 4px; }
 }
 .nav-link::after {
     content: '';
