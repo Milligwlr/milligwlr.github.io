@@ -671,7 +671,18 @@ var FACT_REVIEWS = [
     var submitBtn = document.getElementById('factSubmit');
     var okBox = document.getElementById('factOk');
     var errBox = document.getElementById('factErr');
-    var csfData = null;
+    var csfFile = null;   /* referencia SÍNCRONA al PDF seleccionado (fuente de verdad) */
+    var csfData = null;   /* { name, base64 } correspondiente a csfFile, o null */
+
+    /* Lee un File a base64 (sin el prefijo data:...). Devuelve una promesa. */
+    function leerCsf(file){
+        return new Promise(function(resolve, reject){
+            var r = new FileReader();
+            r.onload = function(){ resolve(String(r.result).split(',')[1] || ''); };
+            r.onerror = function(){ reject(r.error || new Error('No se pudo leer el PDF')); };
+            r.readAsDataURL(file);
+        });
+    }
 
     function norm(s){ return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
 
@@ -999,23 +1010,28 @@ var FACT_REVIEWS = [
     /* ── CSF: dropzone ── */
     function setFile(file){
         if (!file) return;
-        if (file.type !== 'application/pdf') { alert('La constancia debe ser un PDF.'); return; }
+        /* Aceptamos por tipo MIME O por extensión: en Windows/iOS un PDF a veces
+           llega con file.type vacío o genérico y se rechazaba por error. */
+        var esPdf = file.type === 'application/pdf' || /\.pdf$/i.test(file.name || '');
+        if (!esPdf) { alert('La constancia debe ser un archivo PDF.'); return; }
         if (file.size > 4 * 1024 * 1024) { alert('El PDF no debe pasar de 4 MB.'); return; }
-        var reader = new FileReader();
-        reader.onload = function(){
-            csfData = { name: file.name, base64: reader.result.split(',')[1] };
-            drop.classList.add('has-file');
-            csfTxt.textContent = file.name;
-            csfNote.classList.add('show');
-            /* con CSF, ocultamos nombre/RFC/CP (vienen en la constancia) */
-            document.querySelectorAll('[data-csf-skippable]').forEach(function(f){
-                var inp = f.querySelector('input');
-                if (inp) inp.required = false;
-                f.classList.add('is-hidden');
-                f.classList.remove('is-invalid');
-            });
-        };
-        reader.readAsDataURL(file);
+        /* Guardamos la referencia de inmediato (síncrono). La lectura a base64 puede
+           tardar; ya NO dependemos de que termine antes de enviar (ver construirPayload). */
+        csfFile = file;
+        csfData = null;
+        drop.classList.add('has-file');
+        csfTxt.textContent = file.name;
+        csfNote.classList.add('show');
+        /* con CSF, ocultamos nombre/RFC/CP (vienen en la constancia) */
+        document.querySelectorAll('[data-csf-skippable]').forEach(function(f){
+            var inp = f.querySelector('input');
+            if (inp) inp.required = false;
+            f.classList.add('is-hidden');
+            f.classList.remove('is-invalid');
+        });
+        /* Pre-lectura en segundo plano para que el envío sea instantáneo. El check
+           csfFile === file evita asignar un base64 viejo si el usuario cambia/quita el archivo. */
+        leerCsf(file).then(function(b64){ if (csfFile === file) csfData = { name: file.name, base64: b64 }; }).catch(function(){});
     }
     fileInput.addEventListener('change', function(){ setFile(this.files[0]); });
     ;['dragover','dragenter'].forEach(function(ev){ drop.addEventListener(ev, function(e){ e.preventDefault(); drop.classList.add('is-over'); }); });
@@ -1023,7 +1039,7 @@ var FACT_REVIEWS = [
     drop.addEventListener('drop', function(e){ setFile(e.dataTransfer.files[0]); });
     csfClear.addEventListener('click', function(e){
         e.stopPropagation();
-        csfData = null; fileInput.value = '';
+        csfFile = null; csfData = null; fileInput.value = '';
         drop.classList.remove('has-file');
         csfTxt.textContent = 'Arrastra o toca para subir tu CSF en PDF';
         csfNote.classList.remove('show');
@@ -1097,9 +1113,21 @@ var FACT_REVIEWS = [
             fechaConsulta: document.getElementById('fFecha').value,
             estudio: est,
             pago: combos.pago.getValue(),
-            monto: document.getElementById('fMonto').value,
-            csf: csfData
+            monto: document.getElementById('fMonto').value
         };
+    }
+
+    /* Arma el payload garantizando que, si hay PDF seleccionado, su base64 viaje SÍ o SÍ.
+       Si la pre-lectura aún no terminó, lo leemos aquí mismo antes de enviar (elimina la carrera). */
+    function construirPayload(){
+        var d = payload();
+        if (!csfFile) { d.csf = null; return Promise.resolve(d); }
+        if (csfData) { d.csf = csfData; return Promise.resolve(d); }
+        return leerCsf(csfFile).then(function(b64){
+            csfData = { name: csfFile.name, base64: b64 };
+            d.csf = csfData;
+            return d;
+        });
     }
 
     /* respaldo: WhatsApp con los datos (sin archivo) */
@@ -1129,26 +1157,29 @@ var FACT_REVIEWS = [
             bad && bad.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
-        var d = payload();
-        if (window.dataLayer) window.dataLayer.push({ event: 'factura_submit', con_csf: !!d.csf, forma_pago: d.pago });
-        if (!FACT_ENDPOINT) { waFallback(d); return; }
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="bi bi-hourglass-split" aria-hidden="true"></i> Enviando...';
-        /* text/plain evita el preflight CORS con Apps Script */
-        fetch(FACT_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(d) })
-            .then(function(r){ return r.json(); })
-            .then(function(res){
-                if (!res || !res.ok) throw new Error(res && res.error || 'error');
-                exito(res.folio);
-            })
-            .catch(function(){
-                errBox.classList.add('show');
-                errBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            })
-            .finally(function(){
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="bi bi-send-fill" aria-hidden="true"></i> Solicitar mi factura';
-            });
+        /* construirPayload espera a que el PDF esté leído: nunca enviamos sin la CSF que adjuntaste */
+        construirPayload().then(function(d){
+            if (window.dataLayer) window.dataLayer.push({ event: 'factura_submit', con_csf: !!d.csf, forma_pago: d.pago });
+            if (!FACT_ENDPOINT) { waFallback(d); return; }
+            /* text/plain evita el preflight CORS con Apps Script */
+            return fetch(FACT_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(d) })
+                .then(function(r){ return r.json(); })
+                .then(function(res){
+                    if (!res || !res.ok) throw new Error(res && res.error || 'error');
+                    exito(res.folio);
+                });
+        })
+        .catch(function(){
+            /* Incluye el caso en que el PDF no se pudo leer: mostramos error, NO un falso éxito. */
+            errBox.classList.add('show');
+            errBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        })
+        .finally(function(){
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="bi bi-send-fill" aria-hidden="true"></i> Solicitar mi factura';
+        });
     });
 
     /* Al recargar (F5) o volver con "Atrás", deja el formulario limpio:
