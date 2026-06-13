@@ -394,6 +394,13 @@ function obtenerSubcarpeta(carpeta, nombre) {
   return it.hasNext() ? it.next() : carpeta.createFolder(nombre);
 }
 
+/** Prueba SIN gastar folio: Ejecutar ▶ probarCarpeta y revisa el registro (Ver > Registros).
+ * Debe mostrar "ALVEOS CSF" y una URL que, al abrirla, esté dentro de Contaduria. */
+function probarCarpeta() {
+  var c = obtenerCarpeta();
+  Logger.log('Carpeta destino: ' + c.getName() + '\nURL: ' + c.getUrl());
+}
+
 function respuesta(obj) {
   return ContentService.createTextOutput(JSON.stringify(obj))
     .setMimeType(ContentService.MimeType.JSON);
