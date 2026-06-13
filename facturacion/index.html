@@ -76,6 +76,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .fact-amount { position:relative; }
 .fact-amount::before { content:'$'; position:absolute; left:15px; top:50%; transform:translateY(-50%); color:#7d8da1; font-weight:700; }
 .fact-amount input { padding-left:32px; }
+.fact-field.is-hidden { display:none; }
+
+/* ── Combobox con búsqueda ── */
+.fact-combo { position:relative; }
+.fact-combo__input { width:100%; }
+.fact-combo__caret { position:absolute; right:15px; top:18px; color:#5a6b7d; pointer-events:none; transition:transform .2s var(--ease); font-size:.8rem; }
+.fact-combo.is-open .fact-combo__caret { transform:rotate(180deg); }
+.fact-field.is-invalid .fact-combo__input,
+.fact-field.is-invalid .fact-combo__box { border-color:#dc2626; background:#fff7f7; }
+.fact-combo__list { position:absolute; z-index:30; left:0; right:0; top:calc(100% + 6px); margin:0; padding:6px; list-style:none; background:#fff; border:1px solid rgba(10,22,40,.12); border-radius:14px; box-shadow:0 18px 44px -16px rgba(10,22,40,.3); max-height:264px; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+.fact-combo__opt { padding:11px 12px; border-radius:9px; font-size:.9rem; color:var(--navy); cursor:pointer; line-height:1.35; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.fact-combo__opt:hover, .fact-combo__opt.is-active { background:rgba(9,132,227,.09); }
+.fact-combo__opt.is-sel { background:rgba(16,185,129,.1); font-weight:700; }
+.fact-combo__opt.is-sel::after { content:'\F26E'; font-family:'bootstrap-icons'; color:#10b981; font-size:.85rem; }
+.fact-combo__group { padding:9px 12px 4px; font-size:.66rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:#94a3b8; }
+.fact-combo__empty { padding:13px; font-size:.86rem; color:#94a3b8; text-align:center; }
+
+/* ── Combobox múltiple (chips) ── */
+.fact-combo--multi .fact-combo__box { display:flex; flex-wrap:wrap; gap:7px; align-items:center; background:#f8fafd; border:1.5px solid rgba(10,22,40,.1); border-radius:14px; padding:9px 42px 9px 11px; min-height:52px; transition:border-color .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease); cursor:text; }
+.fact-combo--multi.is-open .fact-combo__box,
+.fact-combo--multi .fact-combo__box:focus-within { border-color:var(--electric); background:#fff; box-shadow:0 0 0 4px rgba(9,132,227,.12); }
+.fact-combo--multi .fact-combo__input { flex:1; min-width:130px; border:0; background:transparent; box-shadow:none; padding:5px 2px; min-height:auto; }
+.fact-combo--multi .fact-combo__input:focus { box-shadow:none; }
+.fact-chip { display:inline-flex; align-items:center; gap:7px; background:rgba(9,132,227,.1); border:1px solid rgba(9,132,227,.22); color:var(--navy); border-radius:100px; padding:5px 6px 5px 13px; font-size:.82rem; font-weight:700; line-height:1.2; }
+.fact-chip button { border:0; background:rgba(10,22,40,.08); color:#5a6b7d; width:20px; height:20px; border-radius:50%; font-size:1rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0; flex-shrink:0; transition:background .2s, color .2s; }
+.fact-chip button:hover { background:#dc2626; color:#fff; }
+
+/* ── Toggle receptor = paciente ── */
+.fact-toggle { display:flex; gap:10px; flex-wrap:wrap; }
+.fact-toggle__btn { flex:1; min-width:150px; padding:13px 16px; border-radius:14px; border:1.5px solid rgba(10,22,40,.12); background:#f8fafd; color:var(--navy); font-family:inherit; font-weight:700; font-size:.9rem; cursor:pointer; transition:border-color .2s var(--ease), background .2s var(--ease), color .2s var(--ease), box-shadow .2s var(--ease); display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:52px; }
+.fact-toggle__btn i { font-size:1rem; }
+.fact-toggle__btn:hover { border-color:rgba(9,132,227,.4); }
+.fact-toggle__btn.is-on { border-color:var(--electric); background:rgba(9,132,227,.08); color:var(--electric); box-shadow:0 0 0 3px rgba(9,132,227,.12); }
 
 /* dropzone CSF */
 .fact-drop { position:relative; border:2px dashed rgba(9,132,227,.3); border-radius:16px; background:rgba(9,132,227,.03); padding:24px 20px; text-align:center; transition:border-color .25s var(--ease), background .25s var(--ease); cursor:pointer; }
@@ -292,7 +325,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <div class="fact-drop__txt" id="csfTxt">Arrastra o toca para subir tu CSF en PDF</div>
                         <div class="fact-drop__sub"><strong>No es obligatoria</strong> · máximo 4 MB · si la subes, no necesitas teclear tu nombre, RFC ni código postal</div>
                     </div>
-                    <div class="fact-csf-note" id="csfNote"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> Tu CSF quedó adjunta. Tomaremos de ahí tu nombre, RFC, código postal y domicilio fiscal; esos campos ya no son obligatorios.</div>
+                    <div class="fact-csf-note" id="csfNote"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> Tu CSF quedó adjunta. Tomamos de ahí tu nombre, RFC y código postal, así que ocultamos esos campos. Solo confirma tu régimen, uso de CFDI y los datos de tu visita.</div>
                 </fieldset>
 
                 <!-- Datos fiscales -->
@@ -324,70 +357,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                         <div class="fact-field">
                             <label for="fRegimen">Régimen fiscal <span class="req" aria-hidden="true">*</span></label>
-                            <select id="fRegimen" name="regimen" required>
-                                <option value="" selected disabled>Selecciona tu régimen (viene en tu CSF)</option>
-                                <optgroup label="Personas físicas — los más comunes">
-                                    <option value="605">605 · Sueldos y salarios e ingresos asimilados</option>
-                                    <option value="612">612 · Actividades empresariales y profesionales</option>
-                                    <option value="626">626 · Régimen Simplificado de Confianza (RESICO)</option>
-                                    <option value="616">616 · Sin obligaciones fiscales</option>
-                                    <option value="606">606 · Arrendamiento</option>
-                                </optgroup>
-                                <optgroup label="Personas morales">
-                                    <option value="601">601 · General de Ley Personas Morales</option>
-                                    <option value="603">603 · Personas morales con fines no lucrativos</option>
-                                    <option value="620">620 · Sociedades cooperativas de producción</option>
-                                    <option value="623">623 · Opcional para grupos de sociedades</option>
-                                    <option value="624">624 · Coordinados</option>
-                                </optgroup>
-                                <optgroup label="Otros regímenes del catálogo SAT">
-                                    <option value="607">607 · Enajenación o adquisición de bienes</option>
-                                    <option value="608">608 · Demás ingresos</option>
-                                    <option value="610">610 · Residentes en el extranjero sin establecimiento permanente</option>
-                                    <option value="611">611 · Ingresos por dividendos (socios y accionistas)</option>
-                                    <option value="614">614 · Ingresos por intereses</option>
-                                    <option value="615">615 · Ingresos por obtención de premios</option>
-                                    <option value="621">621 · Incorporación fiscal</option>
-                                    <option value="622">622 · Actividades agrícolas, ganaderas, silvícolas y pesqueras</option>
-                                    <option value="625">625 · Actividades empresariales por plataformas tecnológicas</option>
-                                </optgroup>
-                            </select>
-                            <span class="err">Selecciona tu régimen fiscal.</span>
+                            <div class="fact-combo" data-combo="regimen" data-mode="single">
+                                <input type="text" class="fact-combo__input" id="fRegimen" placeholder="Escribe o elige tu régimen" role="combobox" aria-expanded="false" aria-autocomplete="list" autocomplete="off">
+                                <i class="bi bi-chevron-down fact-combo__caret" aria-hidden="true"></i>
+                                <ul class="fact-combo__list" role="listbox" aria-label="Régimen fiscal" hidden></ul>
+                            </div>
+                            <span class="hint">Empieza a escribir el número o nombre; viene en tu CSF.</span>
+                            <span class="err">Selecciona tu régimen fiscal de la lista.</span>
                         </div>
                         <div class="fact-field">
                             <label for="fUso">Uso del CFDI <span class="req" aria-hidden="true">*</span></label>
-                            <select id="fUso" name="uso" required>
-                                <option value="" disabled>Selecciona el uso</option>
-                                <optgroup label="Los más comunes para consulta médica">
-                                    <option value="D01" selected>D01 · Honorarios médicos, dentales y gastos hospitalarios</option>
-                                    <option value="G03">G03 · Gastos en general</option>
-                                    <option value="D07">D07 · Primas por seguros de gastos médicos</option>
-                                    <option value="S01">S01 · Sin efectos fiscales</option>
-                                </optgroup>
-                                <optgroup label="Otros usos del catálogo SAT">
-                                    <option value="G01">G01 · Adquisición de mercancías</option>
-                                    <option value="G02">G02 · Devoluciones, descuentos o bonificaciones</option>
-                                    <option value="I01">I01 · Construcciones</option>
-                                    <option value="I02">I02 · Mobiliario y equipo de oficina</option>
-                                    <option value="I03">I03 · Equipo de transporte</option>
-                                    <option value="I04">I04 · Equipo de cómputo y accesorios</option>
-                                    <option value="I05">I05 · Dados, troqueles, moldes, matrices y herramental</option>
-                                    <option value="I06">I06 · Comunicaciones telefónicas</option>
-                                    <option value="I07">I07 · Comunicaciones satelitales</option>
-                                    <option value="I08">I08 · Otra maquinaria y equipo</option>
-                                    <option value="D02">D02 · Gastos médicos por incapacidad o discapacidad</option>
-                                    <option value="D03">D03 · Gastos funerales</option>
-                                    <option value="D04">D04 · Donativos</option>
-                                    <option value="D05">D05 · Intereses reales por créditos hipotecarios</option>
-                                    <option value="D06">D06 · Aportaciones voluntarias al SAR</option>
-                                    <option value="D08">D08 · Gastos de transportación escolar obligatoria</option>
-                                    <option value="D09">D09 · Depósitos para el ahorro o planes de pensiones</option>
-                                    <option value="D10">D10 · Pagos por servicios educativos (colegiaturas)</option>
-                                    <option value="CP01">CP01 · Pagos</option>
-                                </optgroup>
-                            </select>
+                            <div class="fact-combo" data-combo="uso" data-mode="single">
+                                <input type="text" class="fact-combo__input" id="fUso" placeholder="Escribe o elige el uso" role="combobox" aria-expanded="false" aria-autocomplete="list" autocomplete="off">
+                                <i class="bi bi-chevron-down fact-combo__caret" aria-hidden="true"></i>
+                                <ul class="fact-combo__list" role="listbox" aria-label="Uso del CFDI" hidden></ul>
+                            </div>
                             <span class="hint">Para deducir tu consulta usa <strong>D01</strong>.</span>
-                            <span class="err">Selecciona el uso del CFDI.</span>
+                            <span class="err">Selecciona el uso del CFDI de la lista.</span>
                         </div>
                         <div class="fact-field">
                             <label for="fCorreo">Correo electrónico <span class="req" aria-hidden="true">*</span></label>
@@ -407,42 +393,48 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                     </div>
                     <div class="fact-grid">
+                        <div class="fact-field fact-field--full">
+                            <label for="fEstudio">¿Qué se realizó? <span class="req" aria-hidden="true">*</span> <span class="opt">(puedes elegir varios)</span></label>
+                            <div class="fact-combo fact-combo--multi" data-combo="estudio" data-mode="multi">
+                                <div class="fact-combo__box">
+                                    <span class="fact-combo__chips"></span>
+                                    <input type="text" class="fact-combo__input" id="fEstudio" placeholder="Escribe o elige…" role="combobox" aria-expanded="false" aria-autocomplete="list" autocomplete="off">
+                                </div>
+                                <i class="bi bi-chevron-down fact-combo__caret" aria-hidden="true"></i>
+                                <ul class="fact-combo__list" role="listbox" aria-multiselectable="true" aria-label="Qué se realizó" hidden></ul>
+                            </div>
+                            <span class="err">Selecciona al menos una opción.</span>
+                        </div>
+                        <div class="fact-field fact-field--full is-hidden" id="fEstudioOtroField">
+                            <label for="fEstudioOtro">Describe qué se realizó <span class="req" aria-hidden="true">*</span></label>
+                            <input type="text" id="fEstudioOtro" placeholder="Escribe el estudio o procedimiento que no viene en la lista">
+                            <span class="err">Escribe qué se realizó.</span>
+                        </div>
+                        <div class="fact-field fact-field--full">
+                            <label>¿La factura es para la misma persona que recibió la atención? <span class="req" aria-hidden="true">*</span></label>
+                            <div class="fact-toggle" role="group" aria-label="¿El receptor es el mismo que el paciente?">
+                                <button type="button" class="fact-toggle__btn is-on" data-recv="si" aria-pressed="true"><i class="bi bi-check-circle" aria-hidden="true"></i> Sí, es para el paciente</button>
+                                <button type="button" class="fact-toggle__btn" data-recv="no" aria-pressed="false"><i class="bi bi-person-plus" aria-hidden="true"></i> No, va a otro nombre</button>
+                            </div>
+                        </div>
+                        <div class="fact-field fact-field--full is-hidden" id="fPacienteField">
+                            <label for="fPaciente">Nombre completo del paciente <span class="req" aria-hidden="true">*</span></label>
+                            <input type="text" id="fPaciente" placeholder="¿Quién recibió la consulta o el estudio?">
+                            <span class="hint">La factura se emite al receptor fiscal de arriba; esto solo nos dice a quién se atendió.</span>
+                            <span class="err">Escribe el nombre del paciente.</span>
+                        </div>
                         <div class="fact-field">
                             <label for="fFecha">Fecha de la consulta o estudio <span class="req" aria-hidden="true">*</span></label>
                             <input type="date" id="fFecha" name="fecha" required>
                             <span class="err">Indica la fecha de tu consulta.</span>
                         </div>
                         <div class="fact-field">
-                            <label for="fEstudio">¿Qué se realizó? <span class="req" aria-hidden="true">*</span></label>
-                            <select id="fEstudio" name="estudio" required>
-                                <option value="" selected disabled>Selecciona</option>
-                                <option>Consulta de neumología</option>
-                                <option>Teleconsulta</option>
-                                <option>Espirometría</option>
-                                <option>FeNO</option>
-                                <option>Poligrafía respiratoria</option>
-                                <option>Titulación CPAP/BiPAP</option>
-                                <option>Broncoscopia</option>
-                                <option>Toracocentesis</option>
-                                <option>Catéter pleural</option>
-                                <option>Consulta + estudio</option>
-                                <option>Otro</option>
-                            </select>
-                            <span class="err">Selecciona qué se realizó.</span>
-                        </div>
-                        <div class="fact-field fact-field--full">
-                            <label for="fPaciente">Nombre completo del paciente <span class="opt">(solo si es distinto al receptor de la factura)</span></label>
-                            <input type="text" id="fPaciente" name="paciente" placeholder="Ej. factura a nombre de la empresa o de un familiar">
-                        </div>
-                        <div class="fact-field">
                             <label for="fPago">Forma de pago <span class="req" aria-hidden="true">*</span></label>
-                            <select id="fPago" name="pago" required>
-                                <option value="" selected disabled>¿Cómo pagaste?</option>
-                                <option value="Transferencia (03)">Transferencia electrónica</option>
-                                <option value="Tarjeta de crédito (04)">Tarjeta de crédito</option>
-                                <option value="Tarjeta de débito (28)">Tarjeta de débito</option>
-                                <option value="Efectivo (01)">Efectivo</option>
-                            </select>
+                            <div class="fact-combo" data-combo="pago" data-mode="single">
+                                <input type="text" class="fact-combo__input" id="fPago" placeholder="Escribe o elige…" role="combobox" aria-expanded="false" aria-autocomplete="list" autocomplete="off">
+                                <i class="bi bi-chevron-down fact-combo__caret" aria-hidden="true"></i>
+                                <ul class="fact-combo__list" role="listbox" aria-label="Forma de pago" hidden></ul>
+                            </div>
                             <span class="err">Selecciona la forma de pago.</span>
                         </div>
                         <div class="fact-field">
@@ -575,6 +567,220 @@ var FACT_REVIEWS = [
     var errBox = document.getElementById('factErr');
     var csfData = null;
 
+    function norm(s){ return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+
+    /* ── Catálogos (g = encabezado de grupo, v = texto visible, s = valor que se envía) ── */
+    var CAT = {
+        regimen: [
+            { g: 'Personas físicas — más comunes' },
+            { v: '605 · Sueldos y salarios e ingresos asimilados' },
+            { v: '612 · Actividades empresariales y profesionales' },
+            { v: '626 · Régimen Simplificado de Confianza (RESICO)' },
+            { v: '616 · Sin obligaciones fiscales' },
+            { v: '606 · Arrendamiento' },
+            { g: 'Personas morales' },
+            { v: '601 · General de Ley Personas Morales' },
+            { v: '603 · Personas morales con fines no lucrativos' },
+            { v: '620 · Sociedades cooperativas de producción' },
+            { v: '623 · Opcional para grupos de sociedades' },
+            { v: '624 · Coordinados' },
+            { g: 'Otros regímenes del catálogo SAT' },
+            { v: '607 · Enajenación o adquisición de bienes' },
+            { v: '608 · Demás ingresos' },
+            { v: '610 · Residentes en el extranjero sin establecimiento permanente' },
+            { v: '611 · Ingresos por dividendos (socios y accionistas)' },
+            { v: '614 · Ingresos por intereses' },
+            { v: '615 · Ingresos por obtención de premios' },
+            { v: '621 · Incorporación fiscal' },
+            { v: '622 · Actividades agrícolas, ganaderas, silvícolas y pesqueras' },
+            { v: '625 · Actividades empresariales por plataformas tecnológicas' }
+        ],
+        uso: [
+            { g: 'Más comunes para consulta médica' },
+            { v: 'D01 · Honorarios médicos, dentales y gastos hospitalarios' },
+            { v: 'G03 · Gastos en general' },
+            { v: 'D07 · Primas por seguros de gastos médicos' },
+            { v: 'S01 · Sin efectos fiscales' },
+            { g: 'Otros usos del catálogo SAT' },
+            { v: 'G01 · Adquisición de mercancías' },
+            { v: 'G02 · Devoluciones, descuentos o bonificaciones' },
+            { v: 'I01 · Construcciones' },
+            { v: 'I02 · Mobiliario y equipo de oficina' },
+            { v: 'I03 · Equipo de transporte' },
+            { v: 'I04 · Equipo de cómputo y accesorios' },
+            { v: 'I05 · Dados, troqueles, moldes, matrices y herramental' },
+            { v: 'I06 · Comunicaciones telefónicas' },
+            { v: 'I07 · Comunicaciones satelitales' },
+            { v: 'I08 · Otra maquinaria y equipo' },
+            { v: 'D02 · Gastos médicos por incapacidad o discapacidad' },
+            { v: 'D03 · Gastos funerales' },
+            { v: 'D04 · Donativos' },
+            { v: 'D05 · Intereses reales por créditos hipotecarios' },
+            { v: 'D06 · Aportaciones voluntarias al SAR' },
+            { v: 'D08 · Gastos de transportación escolar obligatoria' },
+            { v: 'D09 · Depósitos para el ahorro o planes de pensiones' },
+            { v: 'D10 · Pagos por servicios educativos (colegiaturas)' },
+            { v: 'CP01 · Pagos' }
+        ],
+        pago: [
+            { v: 'Transferencia electrónica', s: 'Transferencia (03)' },
+            { v: 'Tarjeta de crédito', s: 'Tarjeta de crédito (04)' },
+            { v: 'Tarjeta de débito', s: 'Tarjeta de débito (28)' },
+            { v: 'Efectivo', s: 'Efectivo (01)' }
+        ],
+        estudio: [
+            { v: 'Consulta de neumología' },
+            { v: 'Teleconsulta' },
+            { v: 'Espirometría con broncodilatador' },
+            { v: 'FeNO' },
+            { v: 'Poligrafía respiratoria' },
+            { v: 'Titulación CPAP/BiPAP' },
+            { v: 'Broncoscopia' },
+            { v: 'Toracocentesis' },
+            { v: 'Catéter pleural' },
+            { v: 'Consulta + Tratamiento' },
+            { v: 'Otro' }
+        ]
+    };
+
+    /* ── Motor de combobox (single y multi) ── */
+    function initCombo(wrap, items, mode){
+        var input = wrap.querySelector('.fact-combo__input');
+        var list = wrap.querySelector('.fact-combo__list');
+        var caret = wrap.querySelector('.fact-combo__caret');
+        var chips = wrap.querySelector('.fact-combo__chips');
+        var box = wrap.querySelector('.fact-combo__box') || wrap;
+        var selected = [];
+        var activeIdx = -1;
+        var field = wrap.closest('.fact-field');
+        var listId = 'list-' + wrap.dataset.combo;
+        list.id = listId;
+        input.setAttribute('aria-controls', listId);
+
+        function clearInvalid(){ if (field) field.classList.remove('is-invalid'); }
+
+        function render(query){
+            list.innerHTML = '';
+            var q = norm(query), n = 0;
+            items.forEach(function(it){
+                if (it.g){
+                    if (q) return;
+                    var h = document.createElement('li');
+                    h.className = 'fact-combo__group'; h.textContent = it.g;
+                    list.appendChild(h); return;
+                }
+                if (q && norm(it.v).indexOf(q) === -1) return;
+                var val = it.s || it.v;
+                var li = document.createElement('li');
+                li.className = 'fact-combo__opt'; li.setAttribute('role', 'option'); li.id = listId + '-' + (n++);
+                li.dataset.val = val; li.dataset.disp = it.v; li.textContent = it.v;
+                if (mode === 'multi' && selected.indexOf(val) !== -1){ li.classList.add('is-sel'); li.setAttribute('aria-selected', 'true'); }
+                list.appendChild(li);
+            });
+            if (!list.querySelector('.fact-combo__opt')){
+                var e = document.createElement('li'); e.className = 'fact-combo__empty';
+                e.textContent = 'Sin coincidencias'; list.appendChild(e);
+            }
+            activeIdx = -1;
+            input.removeAttribute('aria-activedescendant');
+        }
+        function open(){ render(mode === 'multi' ? input.value : input.value); list.hidden = false; input.setAttribute('aria-expanded', 'true'); wrap.classList.add('is-open'); }
+        function close(){ list.hidden = true; input.setAttribute('aria-expanded', 'false'); wrap.classList.remove('is-open'); }
+
+        function renderChips(){
+            chips.innerHTML = '';
+            selected.forEach(function(val){
+                var it = items.filter(function(i){ return (i.s || i.v) === val; })[0];
+                var chip = document.createElement('span'); chip.className = 'fact-chip';
+                var t = document.createElement('span'); t.textContent = it ? it.v : val;
+                var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', 'Quitar'); b.textContent = '×';
+                b.addEventListener('click', function(e){ e.stopPropagation(); selected = selected.filter(function(v){ return v !== val; }); renderChips(); api.onChange(); });
+                chip.appendChild(t); chip.appendChild(b); chips.appendChild(chip);
+            });
+            api.onChange();
+        }
+        function setSingle(val, disp){ selected = [val]; input.value = disp; clearInvalid(); close(); api.onChange(); }
+        function toggleMulti(val){
+            if (selected.indexOf(val) === -1) selected.push(val); else selected = selected.filter(function(v){ return v !== val; });
+            renderChips(); input.value = ''; render(''); clearInvalid(); input.focus();
+        }
+        function resolveSingle(){
+            var q = norm(input.value.trim());
+            if (!q){ selected = []; return; }
+            var opts = items.filter(function(i){ return !i.g; });
+            var exact = opts.filter(function(i){ return norm(i.v) === q; });
+            var starts = opts.filter(function(i){ return norm(i.v).indexOf(q) === 0; });
+            var pick = exact[0] || (starts.length === 1 ? starts[0] : null);
+            if (pick){ selected = [pick.s || pick.v]; input.value = pick.v; } else { selected = []; }
+        }
+
+        input.addEventListener('focus', open);
+        input.addEventListener('input', function(){ if (list.hidden) open(); render(input.value); if (mode === 'single') selected = []; });
+        list.addEventListener('mousedown', function(e){
+            var li = e.target.closest('.fact-combo__opt'); if (!li) return; e.preventDefault();
+            if (mode === 'single') setSingle(li.dataset.val, li.dataset.disp); else toggleMulti(li.dataset.val);
+        });
+        if (caret) caret.addEventListener('mousedown', function(e){ e.preventDefault(); if (list.hidden){ input.focus(); open(); } else close(); });
+        if (box !== wrap) box.addEventListener('mousedown', function(e){ if (e.target === box){ e.preventDefault(); input.focus(); open(); } });
+        input.addEventListener('blur', function(){ setTimeout(function(){ if (mode === 'single') resolveSingle(); close(); api.onChange(); }, 150); });
+        input.addEventListener('keydown', function(e){
+            var opts = Array.prototype.slice.call(list.querySelectorAll('.fact-combo__opt'));
+            if (e.key === 'ArrowDown'){ e.preventDefault(); if (list.hidden) open(); activeIdx = Math.min(activeIdx + 1, opts.length - 1); hi(opts); }
+            else if (e.key === 'ArrowUp'){ e.preventDefault(); activeIdx = Math.max(activeIdx - 1, 0); hi(opts); }
+            else if (e.key === 'Enter'){ if (!list.hidden && opts[activeIdx]){ e.preventDefault(); if (mode === 'single') setSingle(opts[activeIdx].dataset.val, opts[activeIdx].dataset.disp); else toggleMulti(opts[activeIdx].dataset.val); } }
+            else if (e.key === 'Escape'){ close(); }
+            else if (e.key === 'Backspace' && mode === 'multi' && !input.value && selected.length){ selected.pop(); renderChips(); render(''); }
+        });
+        function hi(opts){ opts.forEach(function(o, i){ o.classList.toggle('is-active', i === activeIdx); }); if (opts[activeIdx]){ opts[activeIdx].scrollIntoView({ block: 'nearest' }); input.setAttribute('aria-activedescendant', opts[activeIdx].id); } }
+
+        var api = {
+            mode: mode,
+            getValues: function(){ return selected.slice(); },
+            getValue: function(){ return selected[0] || ''; },
+            isEmpty: function(){ return selected.length === 0; },
+            preset: function(q){
+                var opts = items.filter(function(i){ return !i.g; });
+                var pick = opts.filter(function(i){ return norm(i.v).indexOf(norm(q)) === 0; })[0];
+                if (pick){ selected = [pick.s || pick.v]; input.value = pick.v; }
+            },
+            onChange: function(){}
+        };
+        return api;
+    }
+
+    var combos = {};
+    document.querySelectorAll('.fact-combo').forEach(function(wrap){
+        var key = wrap.dataset.combo;
+        combos[key] = initCombo(wrap, CAT[key], wrap.dataset.mode);
+    });
+    combos.uso.preset('D01'); /* default médico: honorarios */
+
+    /* "Otro" en ¿qué se realizó? revela el campo de texto libre */
+    var otroField = document.getElementById('fEstudioOtroField');
+    var otroInput = document.getElementById('fEstudioOtro');
+    combos.estudio.onChange = function(){
+        var hasOtro = combos.estudio.getValues().indexOf('Otro') !== -1;
+        otroField.classList.toggle('is-hidden', !hasOtro);
+        if (!hasOtro){ otroInput.value = ''; otroField.classList.remove('is-invalid'); }
+    };
+    otroInput.addEventListener('input', function(){ otroField.classList.remove('is-invalid'); });
+
+    /* ── Receptor = paciente ── */
+    var recvBtns = document.querySelectorAll('.fact-toggle__btn');
+    var pacienteField = document.getElementById('fPacienteField');
+    var fPaciente = document.getElementById('fPaciente');
+    var receptorEsPaciente = true;
+    recvBtns.forEach(function(b){
+        b.addEventListener('click', function(){
+            receptorEsPaciente = b.dataset.recv === 'si';
+            recvBtns.forEach(function(x){ var on = x === b; x.classList.toggle('is-on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+            pacienteField.classList.toggle('is-hidden', receptorEsPaciente);
+            if (receptorEsPaciente){ fPaciente.value = ''; pacienteField.classList.remove('is-invalid'); }
+            else { setTimeout(function(){ fPaciente.focus(); }, 60); }
+        });
+    });
+    fPaciente.addEventListener('input', function(){ pacienteField.classList.remove('is-invalid'); });
+
     /* éxito: muestra confirmación + widget de reseñas */
     function exito(folioTxt){
         document.getElementById('factFolio').textContent = folioTxt;
@@ -619,10 +825,12 @@ var FACT_REVIEWS = [
             drop.classList.add('has-file');
             csfTxt.textContent = file.name;
             csfNote.classList.add('show');
-            /* con CSF, nombre/RFC/CP dejan de ser obligatorios */
-            document.querySelectorAll('[data-csf-skippable] input').forEach(function(inp){
-                inp.required = false;
-                inp.closest('.fact-field').classList.remove('is-invalid');
+            /* con CSF, ocultamos nombre/RFC/CP (vienen en la constancia) */
+            document.querySelectorAll('[data-csf-skippable]').forEach(function(f){
+                var inp = f.querySelector('input');
+                if (inp) inp.required = false;
+                f.classList.add('is-hidden');
+                f.classList.remove('is-invalid');
             });
         };
         reader.readAsDataURL(file);
@@ -637,7 +845,11 @@ var FACT_REVIEWS = [
         drop.classList.remove('has-file');
         csfTxt.textContent = 'Arrastra o toca para subir tu CSF en PDF';
         csfNote.classList.remove('show');
-        document.querySelectorAll('[data-csf-skippable] input').forEach(function(inp){ inp.required = true; });
+        document.querySelectorAll('[data-csf-skippable]').forEach(function(f){
+            var inp = f.querySelector('input');
+            if (inp) inp.required = true;
+            f.classList.remove('is-hidden');
+        });
     });
 
     /* ── validación ── */
@@ -645,7 +857,8 @@ var FACT_REVIEWS = [
     function fieldOf(el){ return el.closest('.fact-field'); }
     function validate(){
         var ok = true;
-        form.querySelectorAll('input[required], select[required]').forEach(function(el){
+        form.querySelectorAll('input[required]').forEach(function(el){
+            if (el.offsetParent === null) return; /* ignora campos ocultos */
             var f = fieldOf(el);
             var valid = el.checkValidity();
             if (el.id === 'fRfc' && el.value) valid = RFC_RE.test(el.value.trim());
@@ -653,6 +866,23 @@ var FACT_REVIEWS = [
             if (f) f.classList.toggle('is-invalid', !valid);
             if (!valid) ok = false;
         });
+        /* comboboxes de selección única */
+        ['regimen', 'uso', 'pago'].forEach(function(k){
+            var empty = combos[k].isEmpty();
+            document.querySelector('[data-combo="' + k + '"]').closest('.fact-field').classList.toggle('is-invalid', empty);
+            if (empty) ok = false;
+        });
+        /* ¿qué se realizó? (múltiple) */
+        var estEmpty = combos.estudio.isEmpty();
+        document.querySelector('[data-combo="estudio"]').closest('.fact-field').classList.toggle('is-invalid', estEmpty);
+        if (estEmpty) ok = false;
+        if (combos.estudio.getValues().indexOf('Otro') !== -1 && !otroInput.value.trim()){
+            otroField.classList.add('is-invalid'); ok = false;
+        }
+        /* nombre del paciente cuando el receptor es distinto */
+        if (!receptorEsPaciente && !fPaciente.value.trim()){
+            pacienteField.classList.add('is-invalid'); ok = false;
+        }
         if (!document.getElementById('fConsent').checked) {
             alert('Para continuar, acepta el Aviso de Privacidad.');
             ok = false;
@@ -664,17 +894,20 @@ var FACT_REVIEWS = [
     });
 
     function payload(){
+        var est = combos.estudio.getValues().map(function(v){
+            return v === 'Otro' ? (otroInput.value.trim() || 'Otro') : v;
+        }).join(', ');
         return {
             nombre: document.getElementById('fNombre').value.trim().toUpperCase(),
             rfc: document.getElementById('fRfc').value.trim().toUpperCase(),
             cp: document.getElementById('fCp').value.trim(),
-            regimen: document.getElementById('fRegimen').selectedOptions[0] ? document.getElementById('fRegimen').selectedOptions[0].textContent.trim() : '',
-            uso: document.getElementById('fUso').selectedOptions[0] ? document.getElementById('fUso').selectedOptions[0].textContent.trim() : '',
+            regimen: combos.regimen.getValue(),
+            uso: combos.uso.getValue(),
             correo: document.getElementById('fCorreo').value.trim(),
-            paciente: document.getElementById('fPaciente').value.trim(),
+            paciente: receptorEsPaciente ? '' : fPaciente.value.trim(),
             fechaConsulta: document.getElementById('fFecha').value,
-            estudio: document.getElementById('fEstudio').value,
-            pago: document.getElementById('fPago').value,
+            estudio: est,
+            pago: combos.pago.getValue(),
             monto: document.getElementById('fMonto').value,
             csf: csfData
         };
