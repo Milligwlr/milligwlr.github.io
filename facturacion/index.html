@@ -110,6 +110,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .fact-toggle__btn i { font-size:1rem; }
 .fact-toggle__btn:hover { border-color:rgba(9,132,227,.4); }
 .fact-toggle__btn.is-on { border-color:var(--electric); background:rgba(9,132,227,.08); color:var(--electric); box-shadow:0 0 0 3px rgba(9,132,227,.12); }
+/* receptor: "Sí" angosto (al contenido) y "No" ocupa el resto en una línea */
+.fact-toggle__btn[data-recv="si"] { flex:0 0 auto; min-width:0; padding-left:24px; padding-right:24px; }
+.fact-toggle__btn[data-recv="no"] { flex:1 1 auto; min-width:0; white-space:nowrap; }
 
 /* ── Selector de estudios (multi, sin búsqueda) ── */
 .fact-pick { position:relative; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
@@ -478,7 +481,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <div class="fact-pick" id="estudioPick">
                                 <div class="fact-pick__chips" id="estudioChips"></div>
                                 <button type="button" class="fact-pick__add" id="estudioAdd" aria-haspopup="listbox" aria-expanded="false">
-                                    <i class="bi bi-plus-lg" aria-hidden="true"></i> <span id="estudioAddLabel">Elegir estudio</span>
+                                    <i class="bi bi-plus-lg" aria-hidden="true"></i> <span id="estudioAddLabel">Elegir estudio o servicio</span>
                                 </button>
                                 <ul class="fact-pick__menu" id="estudioMenu" role="listbox" aria-label="Estudios disponibles" hidden></ul>
                             </div>
@@ -490,16 +493,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <span class="err">Escribe qué se realizó.</span>
                         </div>
                         <div class="fact-field fact-field--full">
-                            <label>¿La factura es para la misma persona que recibió la atención? <span class="req" aria-hidden="true">*</span></label>
-                            <div class="fact-toggle" role="group" aria-label="¿El receptor es el mismo que el paciente?">
-                                <button type="button" class="fact-toggle__btn is-on" data-recv="si" aria-pressed="true"><i class="bi bi-check-circle" aria-hidden="true"></i> Sí, es para el paciente</button>
-                                <button type="button" class="fact-toggle__btn" data-recv="no" aria-pressed="false"><i class="bi bi-person-plus" aria-hidden="true"></i> No, va a otro nombre</button>
+                            <label>¿El receptor de la factura es el paciente? <span class="req" aria-hidden="true">*</span></label>
+                            <p class="fact-step__s" style="margin:-2px 0 10px;color:#5a6b7d">El receptor es a quién se le factura. Si la consulta fue de un familiar, elige «No».</p>
+                            <div class="fact-toggle" role="group" aria-label="¿El receptor de la factura es el paciente?">
+                                <button type="button" class="fact-toggle__btn is-on" data-recv="si" aria-pressed="true"><i class="bi bi-check-circle" aria-hidden="true"></i> Sí</button>
+                                <button type="button" class="fact-toggle__btn" data-recv="no" aria-pressed="false"><i class="bi bi-person-plus" aria-hidden="true"></i> No, es mi familiar</button>
                             </div>
                         </div>
                         <div class="fact-field fact-field--full is-hidden" id="fPacienteField">
-                            <label for="fPaciente">Nombre completo del paciente <span class="req" aria-hidden="true">*</span></label>
-                            <input type="text" id="fPaciente" placeholder="¿Quién recibió la consulta o el estudio?">
-                            <span class="hint">La factura se emite al receptor fiscal de arriba; esto solo nos dice a quién se atendió.</span>
+                            <label for="fPaciente">Nombre completo del paciente (tu familiar) <span class="req" aria-hidden="true">*</span></label>
+                            <input type="text" id="fPaciente" placeholder="Nombre de quien recibió la consulta o el estudio">
+                            <span class="hint">La factura sale a tu nombre (datos de arriba); este nombre va en el concepto del CFDI para identificar al paciente.</span>
                             <span class="err">Escribe el nombre del paciente.</span>
                         </div>
                         <div class="fact-field">
@@ -865,7 +869,7 @@ var FACT_REVIEWS = [
         });
         var todas = estSel.length === ESTUDIO_OPTS.length;
         estAdd.hidden = todas;
-        estAddLabel.textContent = estSel.length ? 'Agregar otro' : 'Elegir estudio';
+        estAddLabel.textContent = estSel.length ? 'Agregar otro' : 'Elegir estudio o servicio';
     }
     function estSync(){
         estRenderChips();
@@ -1045,6 +1049,17 @@ var FACT_REVIEWS = [
         el.addEventListener('input', function(){ var f = fieldOf(el); f && f.classList.remove('is-invalid'); });
     });
 
+    /* Formato en vivo de RFC y CP (límites oficiales del SAT):
+       RFC = 12 (moral) o 13 (física) caracteres en mayúsculas; CP = 5 dígitos. */
+    document.getElementById('fRfc').addEventListener('input', function(){
+        var clean = this.value.replace(/[^a-zA-ZñÑ&0-9]/g, '').slice(0, 13);
+        if (clean !== this.value){ var p = this.selectionStart; this.value = clean; try { this.setSelectionRange(p, p); } catch(e){} }
+    });
+    document.getElementById('fCp').addEventListener('input', function(){
+        var clean = this.value.replace(/\D/g, '').slice(0, 5);
+        if (clean !== this.value){ var p = Math.min(this.selectionStart, clean.length); this.value = clean; try { this.setSelectionRange(p, p); } catch(e){} }
+    });
+
     function payload(){
         var est = estudioCtl.value();
         return {
@@ -1110,6 +1125,21 @@ var FACT_REVIEWS = [
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = '<i class="bi bi-send-fill" aria-hidden="true"></i> Solicitar mi factura';
             });
+    });
+
+    /* Al recargar (F5) o volver con "Atrás", deja el formulario limpio:
+       el navegador no re-muestra los datos ya enviados y se puede pedir otra factura. */
+    window.addEventListener('pageshow', function(e){
+        if (e.persisted){ location.reload(); return; } /* bfcache → estado totalmente fresco */
+        form.reset();
+        estSel = []; estSync();
+        receptorEsPaciente = true;
+        recvBtns.forEach(function(x){ var on = x.dataset.recv === 'si'; x.classList.toggle('is-on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+        pacienteField.classList.add('is-hidden');
+        okBox.classList.remove('show');
+        errBox.classList.remove('show');
+        document.getElementById('factReviews').classList.remove('show');
+        combos.uso.preset('D01');
     });
 })();
 </script>

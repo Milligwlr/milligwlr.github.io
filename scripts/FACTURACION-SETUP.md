@@ -58,12 +58,23 @@ var DIAS_PENDIENTE   = 3;                               // días para el recorda
 
 ## Flujo de correos
 1. **Llega una solicitud** → correo al Dr. con *Nombre, Fecha y
-   Consulta/Estudio* para validar que el paciente sí acudió.
-2. **El Dr. marca "Asistió ✓ (Dr.)"** en la hoja → correo automático a la
-   contadora (con copia al Dr.) con todos los datos fiscales y la CSF para
-   emitir el CFDI.
+   Consulta/Estudio* y un botón verde **"Revisar y validar"**.
+2. **El Dr. valida** — de dos maneras, las dos avisan a la contadora:
+   - Tocando el botón del correo: abre una **página de confirmación** con los
+     datos y un botón **"Sí, validar"** (un toque más, sin abrir la hoja), o
+   - Marcando la casilla **"Asistió ✓ (Dr.)"** directo en la hoja.
+
+   Cualquiera de las dos manda el correo automático a la contadora (con copia
+   al Dr.) con todos los datos fiscales y la CSF para emitir el CFDI.
 3. **Pendientes**: si una solicitud lleva 3+ días sin validar, llega un
    recordatorio diario (9 am) al Dr. — solo si hay pendientes.
+
+> 🔒 **Botón "Validar" del correo**: el enlace lleva una firma única (token
+> HMAC) por solicitud, así que solo funciona desde tu correo y nadie lo puede
+> falsificar. Si se toca dos veces no duplica nada. **No requiere configuración
+> extra** (el secreto se crea solo). Eso sí: como agrega `doGet`, hay que
+> **volver a implementar** el código (ver "Cómo actualizar el código sin
+> cambiar la URL"). El botón usa la misma URL `/exec` del formulario.
 
 > ⚠️ Para que funcionen los pasos 2 y 3, después de pegar el código ejecuta
 > **una vez** la función `instalarDisparadores` (Ejecutar ▶) y autoriza.
