@@ -99,8 +99,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .fact-combo--multi .fact-combo__box:focus-within { border-color:var(--electric); background:#fff; box-shadow:0 0 0 4px rgba(9,132,227,.12); }
 .fact-combo--multi .fact-combo__input { flex:1; min-width:130px; border:0; background:transparent; box-shadow:none; padding:5px 2px; min-height:auto; }
 .fact-combo--multi .fact-combo__input:focus { box-shadow:none; }
-.fact-chip { display:inline-flex; align-items:center; gap:7px; background:rgba(9,132,227,.1); border:1px solid rgba(9,132,227,.22); color:var(--navy); border-radius:100px; padding:5px 6px 5px 13px; font-size:.82rem; font-weight:700; line-height:1.2; }
-.fact-chip button { border:0; background:rgba(10,22,40,.08); color:#5a6b7d; width:20px; height:20px; border-radius:50%; font-size:1rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0; flex-shrink:0; transition:background .2s, color .2s; }
+.fact-chip { display:inline-flex; align-items:center; gap:6px; background:rgba(9,132,227,.1); border:1px solid rgba(9,132,227,.22); color:var(--navy); border-radius:100px; padding:5px 5px 5px 12px; font-size:.8rem; font-weight:700; line-height:1.2; }
+.fact-chip button { border:0; background:rgba(10,22,40,.08); color:#5a6b7d; width:19px; height:19px; border-radius:50%; font-size:.95rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0; flex-shrink:0; transition:background .2s, color .2s; }
 .fact-chip button:hover { background:#dc2626; color:#fff; }
 
 /* ── Toggle receptor = paciente ── */
@@ -109,6 +109,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .fact-toggle__btn i { font-size:1rem; }
 .fact-toggle__btn:hover { border-color:rgba(9,132,227,.4); }
 .fact-toggle__btn.is-on { border-color:var(--electric); background:rgba(9,132,227,.08); color:var(--electric); box-shadow:0 0 0 3px rgba(9,132,227,.12); }
+
+/* ── Selector de estudios (multi, sin búsqueda) ── */
+.fact-pick { position:relative; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.fact-pick__chips { display:contents; }
+.fact-pick__add { display:inline-flex; align-items:center; gap:7px; padding:11px 18px; border-radius:100px; border:1.5px dashed rgba(9,132,227,.45); background:rgba(9,132,227,.05); color:var(--electric); font-family:inherit; font-weight:700; font-size:.88rem; cursor:pointer; transition:background .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease); min-height:44px; }
+.fact-pick__add i { font-size:.95rem; }
+.fact-pick__add:hover { background:rgba(9,132,227,.1); border-color:var(--electric); }
+.fact-pick__add[hidden] { display:none; }
+.fact-field.is-invalid .fact-pick__add { border-color:#dc2626; background:#fff7f7; color:#dc2626; }
+.fact-pick__menu { position:absolute; z-index:30; left:0; right:0; top:calc(100% + 8px); margin:0; padding:6px; list-style:none; background:#fff; border:1px solid rgba(10,22,40,.12); border-radius:14px; box-shadow:0 18px 44px -16px rgba(10,22,40,.3); max-height:280px; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+.fact-pick__opt { padding:13px 14px; border-radius:9px; font-size:.93rem; color:var(--navy); cursor:pointer; line-height:1.3; }
+.fact-pick__opt:hover, .fact-pick__opt.is-active { background:rgba(9,132,227,.09); }
+.fact-pick__opt--otro { color:var(--electric); font-weight:700; border-top:1px dashed rgba(10,22,40,.1); margin-top:4px; padding-top:13px; }
 
 /* dropzone CSF */
 .fact-drop { position:relative; border:2px dashed rgba(9,132,227,.3); border-radius:16px; background:rgba(9,132,227,.03); padding:24px 20px; text-align:center; transition:border-color .25s var(--ease), background .25s var(--ease); cursor:pointer; }
@@ -153,24 +166,43 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .fact-status a { color:var(--electric); font-weight:700; }
 
 /* ── Reseñas (aparece tras enviar) ── */
-.fact-reviews { display:none; margin-top:22px; background:linear-gradient(150deg,#0a1628 0%,#10243f 100%); border-radius:22px; padding:30px 24px 26px; text-align:center; overflow:hidden; position:relative; }
+.fact-reviews { display:none; margin-top:22px; background:linear-gradient(150deg,#0a1628 0%,#10243f 100%); border-radius:22px; padding:28px 22px 24px; text-align:center; overflow:hidden; position:relative; min-width:0; max-width:100%; }
 .fact-reviews.show { display:block; animation:fr-in .6s var(--ease) both; }
 @keyframes fr-in { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
-.fact-reviews__stars { font-size:1.3rem; color:#fbbf24; letter-spacing:4px; margin-bottom:8px; }
-.fact-reviews__title { font-size:1.3rem; font-weight:800; color:#fff; letter-spacing:-.02em; margin:0 0 6px; }
-.fact-reviews__sub { font-size:.88rem; color:rgba(255,255,255,.6); line-height:1.6; max-width:440px; margin:0 auto 20px; }
-.fact-reviews { min-width:0; max-width:100%; }
-.fact-reviews__rail { display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 2px 14px; -webkit-overflow-scrolling:touch; scrollbar-width:thin; scrollbar-color:rgba(255,255,255,.25) transparent; text-align:left; max-width:100%; min-width:0; }
-.fact-review { flex:0 0 min(270px, 78vw); scroll-snap-align:start; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:16px 18px; }
-.fact-review__stars { color:#fbbf24; font-size:.72rem; letter-spacing:2px; margin-bottom:8px; }
-.fact-review__txt { font-size:.84rem; color:rgba(255,255,255,.85); line-height:1.55; margin:0 0 10px; }
-.fact-review__name { font-size:.74rem; font-weight:700; color:rgba(255,255,255,.55); }
-.fact-review__name i { color:#34d399; margin-right:4px; }
-.fact-reviews__ctas { display:flex; flex-direction:column; align-items:center; gap:14px; margin-top:20px; }
+
+/* botón dorado al inicio */
+.fact-reviews .fact-reviews__btn--write { margin:0 auto 22px; }
+
+/* encabezado tipo Google: 5.0 ★★★★★ · 26 reseñas */
+.fact-reviews__rating { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:8px 10px; margin-bottom:10px; }
+.fact-reviews__score { font-size:1.5rem; font-weight:800; color:#fff; line-height:1; }
+.fact-reviews__stars { font-size:1.05rem; color:#fbbf24; letter-spacing:3px; line-height:1; }
+.fact-reviews__gmeta { display:inline-flex; align-items:center; gap:6px; font-size:.78rem; font-weight:600; color:rgba(255,255,255,.6); }
+.fact-reviews__gmeta img { display:inline-block; }
+.fact-reviews__title { font-size:1.22rem; font-weight:800; color:#fff; letter-spacing:-.02em; margin:0 0 6px; }
+.fact-reviews__sub { font-size:.86rem; color:rgba(255,255,255,.6); line-height:1.6; max-width:440px; margin:0 auto 18px; }
+
+.fact-reviews__rail { display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 2px 8px; -webkit-overflow-scrolling:touch; scrollbar-width:none; text-align:left; max-width:100%; min-width:0; }
+.fact-reviews__rail::-webkit-scrollbar { display:none; }
+.fact-review { flex:0 0 min(280px,82vw); scroll-snap-align:center; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:18px; display:flex; flex-direction:column; }
+.fact-review__head { display:flex; align-items:center; gap:11px; margin-bottom:11px; }
+.fact-review__avatar { width:40px; height:40px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.05rem; color:#fff; }
+.fact-review__who { min-width:0; text-align:left; }
+.fact-review__name { font-size:.9rem; font-weight:700; color:#fff; line-height:1.2; }
+.fact-review__src { font-size:.7rem; color:rgba(255,255,255,.5); display:flex; align-items:center; gap:5px; margin-top:2px; }
+.fact-review__src img { display:inline-block; }
+.fact-review__stars { color:#fbbf24; font-size:.78rem; letter-spacing:2px; margin-bottom:8px; }
+.fact-review__txt { font-size:.86rem; color:rgba(255,255,255,.85); line-height:1.55; margin:0; }
+
+/* indicadores (puntos) — solo móvil */
+.fact-reviews__dots { display:none; justify-content:center; gap:7px; margin:6px 0 18px; }
+.fact-reviews__dots button { width:7px; height:7px; border-radius:100px; border:0; padding:0; background:rgba(255,255,255,.28); cursor:pointer; transition:width .3s var(--ease), background .3s var(--ease); }
+.fact-reviews__dots button.is-on { width:20px; background:#fbbf24; }
+
 .fact-reviews__btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; text-decoration:none; transition:transform .3s var(--ease), box-shadow .3s var(--ease), color .3s var(--ease); }
 .fact-reviews__btn:active { transform:scale(.97); }
 
-/* CTA principal: dorado vibrante que "respira" y destella para captar la mirada */
+/* CTA principal: dorado vibrante que "respira" y destella */
 .fact-reviews__btn--write {
     position:relative; overflow:hidden;
     width:100%; max-width:360px;
@@ -196,14 +228,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .fact-reviews__btn--write:hover { transform:translateY(-3px) scale(1.03); color:#231400 !important; box-shadow:0 22px 48px -6px rgba(245,158,11,.8); }
 
 /* CTA secundario: enlace discreto */
-.fact-reviews__btn--read { background:transparent; color:rgba(255,255,255,.72); padding:4px 8px; font-size:.86rem; font-weight:600; text-decoration:underline; text-underline-offset:3px; }
+.fact-reviews__btn--read { display:inline-flex; margin:8px auto 0; background:transparent; color:rgba(255,255,255,.72); padding:4px 8px; font-size:.86rem; font-weight:600; text-decoration:underline; text-underline-offset:3px; }
 .fact-reviews__btn--read:hover { color:#fff; }
 
-@media (max-width:420px){ .fact-reviews__btn--write { font-size:.9rem; padding:15px 14px; gap:8px; white-space:nowrap; } .fact-reviews__btn--write i { font-size:1.05rem; } }
-@media (prefers-reduced-motion:reduce){
-    .fact-reviews__btn--write, .fact-reviews__btn--write i, .fact-reviews__btn--write::after { animation:none; }
+/* MÓVIL: una reseña a la vez (carrusel con puntos) */
+@media (max-width:640px){
+    .fact-review { flex:0 0 100%; }
+    .fact-reviews__dots { display:flex; }
+    .fact-reviews__btn--write { font-size:1rem; padding:16px 18px; }
 }
-@media (prefers-reduced-motion:reduce){ .fact-reviews.show { animation:none; } }
+@media (max-width:380px){ .fact-reviews__btn--write { font-size:.9rem; padding:15px 12px; gap:7px; white-space:nowrap; } .fact-reviews__btn--write i { font-size:1.05rem; } }
+@media (prefers-reduced-motion:reduce){
+    .fact-reviews.show, .fact-reviews__btn--write, .fact-reviews__btn--write i, .fact-reviews__btn--write::after { animation:none; }
+}
 
 /* panel lateral */
 .fact-aside { display:flex; flex-direction:column; gap:16px; position:sticky; top:96px; }
@@ -222,6 +259,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 .nav-link--recursos:hover{color:#0984e3!important}
 .nav-link--recursos i{opacity:.85}
+/* Gutter consistente en móvil (hero, formulario y panel alineados) */
+@media (max-width:575px){
+    .fact-hero > .container, .fact-main > .container { padding-left:16px; padding-right:16px; }
+    .fact-main { padding-top:28px; }
+    .fact-form { padding:22px 15px; }
+    .fact-layout { gap:18px; }
+}
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; } }
 </style>
     <link rel="stylesheet" href="/assets/agenda-modal.css">
@@ -424,14 +468,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                     <div class="fact-grid">
                         <div class="fact-field fact-field--full">
-                            <label for="fEstudio">¿Qué se realizó? <span class="req" aria-hidden="true">*</span> <span class="opt">(puedes elegir varios)</span></label>
-                            <div class="fact-combo fact-combo--multi" data-combo="estudio" data-mode="multi">
-                                <div class="fact-combo__box">
-                                    <span class="fact-combo__chips"></span>
-                                    <input type="text" class="fact-combo__input" id="fEstudio" placeholder="Escribe o elige…" role="combobox" aria-expanded="false" aria-autocomplete="list" autocomplete="off">
-                                </div>
-                                <i class="bi bi-chevron-down fact-combo__caret" aria-hidden="true"></i>
-                                <ul class="fact-combo__list" role="listbox" aria-multiselectable="true" aria-label="Qué se realizó" hidden></ul>
+                            <label>¿Qué se realizó? <span class="req" aria-hidden="true">*</span> <span class="opt">(puedes elegir varios)</span></label>
+                            <div class="fact-pick" id="estudioPick">
+                                <div class="fact-pick__chips" id="estudioChips"></div>
+                                <button type="button" class="fact-pick__add" id="estudioAdd" aria-haspopup="listbox" aria-expanded="false">
+                                    <i class="bi bi-plus-lg" aria-hidden="true"></i> <span id="estudioAddLabel">Elegir estudio</span>
+                                </button>
+                                <ul class="fact-pick__menu" id="estudioMenu" role="listbox" aria-label="Estudios disponibles" hidden></ul>
                             </div>
                             <span class="err">Selecciona al menos una opción.</span>
                         </div>
@@ -493,18 +536,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
 
                 <div class="fact-reviews" id="factReviews" aria-label="Reseñas de pacientes">
-                    <div class="fact-reviews__stars" aria-hidden="true">★★★★★</div>
-                    <h2 class="fact-reviews__title">¿Cómo fue tu experiencia?</h2>
-                    <p class="fact-reviews__sub">Mientras llega tu factura, lee lo que otros pacientes cuentan de su consulta. Si la tuya fue una buena experiencia, tu reseña ayuda a que más personas respiren mejor.</p>
-                    <div class="fact-reviews__rail" id="factReviewsRail" tabindex="0" aria-label="Desliza para leer reseñas"></div>
-                    <div class="fact-reviews__ctas">
-                        <a class="fact-reviews__btn fact-reviews__btn--write" href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer" data-cta="fact-review-write">
-                            <i class="bi bi-star-fill" aria-hidden="true"></i> Dejar mi reseña en Google
-                        </a>
-                        <a class="fact-reviews__btn fact-reviews__btn--read" href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer" data-cta="fact-review-read">
-                            <i class="bi bi-google" aria-hidden="true"></i> Ver todas en Google
-                        </a>
+                    <a class="fact-reviews__btn fact-reviews__btn--write" href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer" data-cta="fact-review-write">
+                        <i class="bi bi-star-fill" aria-hidden="true"></i> Dejar mi reseña en Google
+                    </a>
+                    <div class="fact-reviews__rating">
+                        <span class="fact-reviews__score">5.0</span>
+                        <span class="fact-reviews__stars" aria-hidden="true">★★★★★</span>
+                        <span class="fact-reviews__gmeta"><img src="https://cdn.simpleicons.org/google" alt="" width="15" height="15" loading="lazy"> 26 reseñas en Google</span>
                     </div>
+                    <h2 class="fact-reviews__title">¿Cómo fue tu experiencia?</h2>
+                    <p class="fact-reviews__sub">Mientras llega tu factura, lee lo que otros pacientes cuentan. Si la tuya fue buena, tu reseña ayuda a que más personas respiren mejor.</p>
+                    <div class="fact-reviews__rail" id="factReviewsRail" tabindex="0" aria-label="Reseñas de pacientes"></div>
+                    <div class="fact-reviews__dots" id="factReviewsDots" role="tablist" aria-label="Navegar reseñas"></div>
+                    <a class="fact-reviews__btn fact-reviews__btn--read" href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer" data-cta="fact-review-read">
+                        <i class="bi bi-google" aria-hidden="true"></i> Ver todas en Google
+                    </a>
                 </div>
                 <div class="fact-status fact-status--err" id="factErr" role="alert">
                     <i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i>
@@ -785,15 +831,63 @@ var FACT_REVIEWS = [
     });
     combos.uso.preset('D01'); /* default médico: honorarios */
 
-    /* "Otro" en ¿qué se realizó? revela el campo de texto libre */
+    /* ── ¿Qué se realizó? · multi-selección sin búsqueda, con "Agregar otro" ── */
+    var ESTUDIO_OPTS = [
+        'Consulta de neumología', 'Teleconsulta', 'Espirometría con broncodilatador',
+        'FeNO', 'Poligrafía respiratoria', 'Titulación CPAP/BiPAP', 'Broncoscopia',
+        'Toracocentesis', 'Catéter pleural', 'Consulta + Tratamiento', 'Otro'
+    ];
+    var estSel = [];
+    var estChips = document.getElementById('estudioChips');
+    var estAdd = document.getElementById('estudioAdd');
+    var estAddLabel = document.getElementById('estudioAddLabel');
+    var estMenu = document.getElementById('estudioMenu');
+    var estPick = document.getElementById('estudioPick');
+    var estField = estPick.closest('.fact-field');
     var otroField = document.getElementById('fEstudioOtroField');
     var otroInput = document.getElementById('fEstudioOtro');
-    combos.estudio.onChange = function(){
-        var hasOtro = combos.estudio.getValues().indexOf('Otro') !== -1;
+    otroInput.addEventListener('input', function(){ otroField.classList.remove('is-invalid'); });
+
+    function estRenderChips(){
+        estChips.innerHTML = '';
+        estSel.forEach(function(v){
+            var chip = document.createElement('span'); chip.className = 'fact-chip';
+            var t = document.createElement('span'); t.textContent = v;
+            var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', 'Quitar ' + v); b.textContent = '×';
+            b.addEventListener('click', function(){ estSel = estSel.filter(function(x){ return x !== v; }); estSync(); });
+            chip.appendChild(t); chip.appendChild(b); estChips.appendChild(chip);
+        });
+        var todas = estSel.length === ESTUDIO_OPTS.length;
+        estAdd.hidden = todas;
+        estAddLabel.textContent = estSel.length ? 'Agregar otro' : 'Elegir estudio';
+    }
+    function estSync(){
+        estRenderChips();
+        var hasOtro = estSel.indexOf('Otro') !== -1;
         otroField.classList.toggle('is-hidden', !hasOtro);
         if (!hasOtro){ otroInput.value = ''; otroField.classList.remove('is-invalid'); }
+        if (estSel.length) estField.classList.remove('is-invalid');
+    }
+    function estOpenMenu(){
+        estMenu.innerHTML = '';
+        ESTUDIO_OPTS.filter(function(o){ return estSel.indexOf(o) === -1; }).forEach(function(o){
+            var li = document.createElement('li'); li.className = 'fact-pick__opt' + (o === 'Otro' ? ' fact-pick__opt--otro' : '');
+            li.setAttribute('role', 'option'); li.textContent = (o === 'Otro' ? '+ Otro (escribir)' : o);
+            li.addEventListener('mousedown', function(e){ e.preventDefault(); estSel.push(o); estCloseMenu(); estSync(); });
+            estMenu.appendChild(li);
+        });
+        estMenu.hidden = false; estAdd.setAttribute('aria-expanded', 'true'); estPick.classList.add('is-open');
+    }
+    function estCloseMenu(){ estMenu.hidden = true; estAdd.setAttribute('aria-expanded', 'false'); estPick.classList.remove('is-open'); }
+    estAdd.addEventListener('click', function(){ if (estMenu.hidden) estOpenMenu(); else estCloseMenu(); });
+    document.addEventListener('click', function(e){ if (!estPick.contains(e.target)) estCloseMenu(); });
+    /* API mínima para validar/enviar */
+    var estudioCtl = {
+        isEmpty: function(){ return estSel.length === 0; },
+        hasOtro: function(){ return estSel.indexOf('Otro') !== -1; },
+        value: function(){ return estSel.map(function(v){ return v === 'Otro' ? (otroInput.value.trim() || 'Otro') : v; }).join(', '); }
     };
-    otroInput.addEventListener('input', function(){ otroField.classList.remove('is-invalid'); });
+    estRenderChips();
 
     /* ── Receptor = paciente ── */
     var recvBtns = document.querySelectorAll('.fact-toggle__btn');
@@ -816,22 +910,46 @@ var FACT_REVIEWS = [
         document.getElementById('factFolio').textContent = folioTxt;
         okBox.classList.add('show');
         var rail = document.getElementById('factReviewsRail');
+        var dots = document.getElementById('factReviewsDots');
         if (!rail.children.length) {
-            FACT_REVIEWS.forEach(function(r){
-                var card = document.createElement('article');
-                card.className = 'fact-review';
-                var stars = document.createElement('div');
-                stars.className = 'fact-review__stars';
-                stars.textContent = '★★★★★';
-                var txt = document.createElement('p');
-                txt.className = 'fact-review__txt';
-                txt.textContent = '"' + r.t + '"';
-                var name = document.createElement('div');
-                name.className = 'fact-review__name';
-                name.innerHTML = '<i class="bi bi-patch-check-fill" aria-hidden="true"></i>' + r.n + ' · Reseña verificada en Google';
-                card.appendChild(stars); card.appendChild(txt); card.appendChild(name);
+            var AV_COLORS = ['#0984e3','#6c5ce7','#00b894','#e17055','#0097a7','#d63031','#8e44ad','#16a085'];
+            FACT_REVIEWS.forEach(function(r, i){
+                var card = document.createElement('article'); card.className = 'fact-review';
+                var head = document.createElement('div'); head.className = 'fact-review__head';
+                var av = document.createElement('div'); av.className = 'fact-review__avatar';
+                av.style.background = AV_COLORS[i % AV_COLORS.length]; av.textContent = r.n.charAt(0);
+                var who = document.createElement('div'); who.className = 'fact-review__who';
+                var nm = document.createElement('div'); nm.className = 'fact-review__name'; nm.textContent = r.n;
+                var src = document.createElement('div'); src.className = 'fact-review__src';
+                src.innerHTML = '<img src="https://cdn.simpleicons.org/google" alt="" width="12" height="12" loading="lazy"> Reseña verificada en Google';
+                who.appendChild(nm); who.appendChild(src);
+                head.appendChild(av); head.appendChild(who);
+                var stars = document.createElement('div'); stars.className = 'fact-review__stars'; stars.textContent = '★★★★★';
+                var txt = document.createElement('p'); txt.className = 'fact-review__txt'; txt.textContent = '"' + r.t + '"';
+                card.appendChild(head); card.appendChild(stars); card.appendChild(txt);
                 rail.appendChild(card);
+                var dot = document.createElement('button'); dot.type = 'button'; dot.setAttribute('aria-label', 'Ir a la reseña ' + (i + 1));
+                if (i === 0) dot.className = 'is-on';
+                dot.addEventListener('click', function(){ scrollToCard(i); });
+                dots.appendChild(dot);
             });
+            var cards = Array.prototype.slice.call(rail.children);
+            var dotEls = Array.prototype.slice.call(dots.children);
+            function scrollToCard(i){ var c = cards[i]; if (!c) return; var delta = c.getBoundingClientRect().left - rail.getBoundingClientRect().left; rail.scrollTo({ left: rail.scrollLeft + delta, behavior: 'smooth' }); }
+            var curIdx = 0;
+            rail.addEventListener('scroll', function(){
+                var mid = rail.scrollLeft + rail.clientWidth / 2, best = Infinity, idx = 0;
+                cards.forEach(function(c, i){ var center = c.offsetLeft + c.offsetWidth / 2; var d = Math.abs(center - mid); if (d < best){ best = d; idx = i; } });
+                curIdx = idx; dotEls.forEach(function(d, i){ d.classList.toggle('is-on', i === idx); });
+            }, { passive: true });
+            if (window.matchMedia('(max-width:640px)').matches && !window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+                var paused = false;
+                rail.addEventListener('pointerdown', function(){ paused = true; });
+                setInterval(function(){
+                    if (paused || !document.getElementById('factReviews').classList.contains('show')) return;
+                    scrollToCard((curIdx + 1) % cards.length);
+                }, 5000);
+            }
         }
         document.getElementById('factReviews').classList.add('show');
         form.querySelectorAll('fieldset, .fact-consent, .fact-submit, .fact-tip').forEach(function(el){ el.style.display = 'none'; });
@@ -903,12 +1021,10 @@ var FACT_REVIEWS = [
             if (empty) ok = false;
         });
         /* ¿qué se realizó? (múltiple) */
-        var estEmpty = combos.estudio.isEmpty();
-        document.querySelector('[data-combo="estudio"]').closest('.fact-field').classList.toggle('is-invalid', estEmpty);
+        var estEmpty = estudioCtl.isEmpty();
+        estField.classList.toggle('is-invalid', estEmpty);
         if (estEmpty) ok = false;
-        if (combos.estudio.getValues().indexOf('Otro') !== -1 && !otroInput.value.trim()){
-            otroField.classList.add('is-invalid'); ok = false;
-        }
+        if (estudioCtl.hasOtro() && !otroInput.value.trim()){ otroField.classList.add('is-invalid'); ok = false; }
         /* nombre del paciente cuando el receptor es distinto */
         if (!receptorEsPaciente && !fPaciente.value.trim()){
             pacienteField.classList.add('is-invalid'); ok = false;
@@ -924,9 +1040,7 @@ var FACT_REVIEWS = [
     });
 
     function payload(){
-        var est = combos.estudio.getValues().map(function(v){
-            return v === 'Otro' ? (otroInput.value.trim() || 'Otro') : v;
-        }).join(', ');
+        var est = estudioCtl.value();
         return {
             nombre: document.getElementById('fNombre').value.trim().toUpperCase(),
             rfc: document.getElementById('fRfc').value.trim().toUpperCase(),
