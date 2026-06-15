@@ -151,22 +151,6 @@
     @media(max-width:1024px){.doc-hero__stats{margin-left:auto;margin-right:auto}.doc-hero__chips{justify-content:center;margin-left:auto;margin-right:auto}}
     @media(max-width:560px){.doc-hero__stats{grid-template-columns:repeat(3,1fr);max-width:100%}}
 
-    /* ========== VALORES — 4 minimalist value cards inside editorial ========== */
-    .values-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:64px;padding-top:48px;border-top:1px dashed rgba(9,132,227,.18)}
-    .vcard{position:relative;padding:22px 22px 24px;background:#fff;border:1px solid rgba(9,132,227,.1);border-radius:18px;transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s var(--ease)}
-    .vcard:hover{transform:translateY(-4px);box-shadow:0 18px 40px -18px rgba(9,44,84,.18);border-color:rgba(9,132,227,.25)}
-    .vcard__icon{width:46px;height:46px;border-radius:13px;background:linear-gradient(135deg,#f4f9ff,#e9f3ff);display:flex;align-items:center;justify-content:center;margin-bottom:14px;border:1px solid rgba(9,132,227,.12);transition:all .35s var(--ease)}
-    .vcard:hover .vcard__icon{background:linear-gradient(135deg,var(--electric),var(--cyan));border-color:transparent}
-    .vcard__icon svg{width:22px;height:22px;color:var(--electric);transition:color .35s var(--ease)}
-    .vcard:hover .vcard__icon svg{color:#fff}
-    .vcard__title{font-size:.98rem;font-weight:800;color:var(--navy);margin:0 0 6px;letter-spacing:-.01em;line-height:1.25}
-    .vcard__line{font-size:.82rem;color:#64748b;line-height:1.55;margin:0}
-    .vcard--cyan .vcard__icon{background:linear-gradient(135deg,rgba(0,206,201,.12),rgba(9,132,227,.08));border-color:rgba(0,206,201,.2)}
-    .vcard--cyan .vcard__icon svg{color:var(--cyan)}
-    .vcard--purple .vcard__icon{background:linear-gradient(135deg,rgba(108,92,231,.1),rgba(9,132,227,.08));border-color:rgba(108,92,231,.2)}
-    .vcard--purple .vcard__icon svg{color:var(--accent-purple)}
-    @media(max-width:900px){.values-row{grid-template-columns:repeat(2,1fr);margin-top:48px}}
-    @media(max-width:480px){.values-row{grid-template-columns:1fr}}
 
     /* ========== MEMBRESÍAS — Society badge grid ========== */
     .memberships{position:relative;padding:88px 0 96px;background:linear-gradient(180deg,#f8faff 0%,#fff 100%);overflow:hidden}
@@ -390,8 +374,9 @@
 
     .timeline-flow{position:relative;max-width:880px;margin:0 auto;padding:20px 0}
     .timeline-flow__line{position:absolute;left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);background:linear-gradient(180deg,transparent 0%,rgba(9,132,227,.55) 12%,rgba(0,206,201,.55) 50%,rgba(108,92,231,.55) 88%,transparent 100%)}
-    .timeline-flow__line::after{content:'';position:absolute;left:-1px;top:0;width:4px;height:80px;background:linear-gradient(180deg,transparent,var(--cyan) 50%,transparent);border-radius:4px;filter:blur(2px);animation:tl-flow 4s ease-in-out infinite}
-    @keyframes tl-flow{0%{top:0%;opacity:0}10%{opacity:1}90%{opacity:1}100%{top:100%;opacity:0}}
+    /* beam de progreso (relleno) controlado por scroll — estilo keynote Apple */
+    .timeline-flow__progress{position:absolute;left:50%;top:0;width:2px;height:0;transform:translateX(-50%);background:linear-gradient(180deg,var(--cyan) 0%,var(--electric) 55%,var(--accent-purple) 100%);border-radius:2px;box-shadow:0 0 10px rgba(0,206,201,.5);z-index:1;pointer-events:none;will-change:height}
+    .timeline-flow__progress::after{content:'';position:absolute;left:50%;bottom:0;width:13px;height:13px;transform:translate(-50%,50%);border-radius:50%;background:radial-gradient(circle,#fff 0%,var(--cyan) 42%,rgba(0,206,201,0) 72%);box-shadow:0 0 18px 5px rgba(0,206,201,.6)}
 
     .tl-item{position:relative;display:grid;grid-template-columns:1fr 60px 1fr;align-items:center;margin-bottom:42px;min-height:100px}
     .tl-item:last-child{margin-bottom:0}
@@ -414,6 +399,31 @@
     .tl-epoc-glow{font-size:1.55rem;background:linear-gradient(135deg,var(--cyan) 0%,#74b9ff 50%,var(--accent-purple) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:900;letter-spacing:-.01em;text-shadow:0 0 30px rgba(0,206,201,.4)}
 
     @media(max-width:768px){.timeline-section{padding:72px 0}.timeline-flow{max-width:100%}.timeline-flow__line{left:23px}.tl-item{grid-template-columns:46px 1fr;gap:18px;margin-bottom:28px}.tl-item__node{grid-column:1}.tl-item__card,.tl-item--left .tl-item__card,.tl-item--right .tl-item__card{grid-column:2;text-align:left;padding:20px 22px}}
+
+    /* nodos que se "encienden" cuando el beam los alcanza al hacer scroll */
+    .tl-item__dot{transition:transform .55s var(--ease),box-shadow .55s var(--ease),border-color .55s var(--ease)}
+    .tl-item.is-lit .tl-item__dot{transform:scale(1.08);border-color:var(--cyan);box-shadow:0 0 0 6px rgba(0,206,201,.14),0 0 28px rgba(0,206,201,.5)}
+    .tl-item.is-lit .tl-item__dot--epoc{box-shadow:0 0 0 7px rgba(0,206,201,.22),0 0 34px rgba(0,206,201,.72)}
+    /* estados iniciales anti-flash para la coreografía de scroll (GSAP) */
+    body.js-enabled .tl-item,body.js-enabled .bento-tile{opacity:0}
+    @media(max-width:768px){.timeline-flow__progress{left:23px}}
+
+    /* ===== Trayectoria ANCLADA (pin) — marco tipo keynote (desktop + móvil) ===== */
+    /* La sección se fija a pantalla completa y el recorrido sube dentro de un
+       marco enmascarado conforme haces scroll (lo controla GSAP en JS).
+       Se apaga en prefers-reduced-motion: sin marco, todo el recorrido visible. */
+    @media (prefers-reduced-motion: no-preference){
+      .timeline-stage{min-height:100vh;box-sizing:border-box;padding-top:72px;display:flex;flex-direction:column;justify-content:center;gap:20px}
+      .timeline-viewport{position:relative;width:100%;max-height:66vh;overflow:hidden;
+        -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 91%,transparent 100%);
+        mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 91%,transparent 100%)}
+      .timeline-viewport .timeline-flow{margin:0 auto;will-change:transform}
+    }
+    /* móvil: cabecera más compacta y marco más bajo para que quepa en 100vh */
+    @media (prefers-reduced-motion: no-preference) and (max-width:768px){
+      .timeline-stage{padding-top:58px;gap:14px}
+      .timeline-viewport{max-height:56vh}
+    }
 
 
     /* ========== LO QUE TRATO — Bento Grid ========== */
@@ -798,7 +808,7 @@
 
                     <div class="doc-hero__stats" aria-label="Métricas profesionales">
                         <div class="doc-hero__stat">
-                            <div class="doc-hero__stat-num">8<sup>+</sup></div>
+                            <div class="doc-hero__stat-num">11</div>
                             <div class="doc-hero__stat-label">Años de formación clínica</div>
                         </div>
                         <div class="doc-hero__stat">
@@ -806,7 +816,7 @@
                             <div class="doc-hero__stat-label">Alta Especialidad</div>
                         </div>
                         <div class="doc-hero__stat">
-                            <div class="doc-hero__stat-num">3</div>
+                            <div class="doc-hero__stat-num">2</div>
                             <div class="doc-hero__stat-label">Cédulas verificables SEP</div>
                         </div>
                     </div>
@@ -944,37 +954,6 @@
                     </div>
                 </aside>
             </div>
-
-            <div class="values-row" aria-label="Valores de atención">
-                <article class="vcard reveal">
-                    <div class="vcard__icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5a8.38 8.38 0 0 0 .9 3.8 8.5 8.5 0 0 0 7.6 4.7 8.38 8.38 0 0 0 3.8-.9L21 21l-1.9-5.7a8.38 8.38 0 0 0 .9-3.8 8.5 8.5 0 0 0-4.7-7.6 8.38 8.38 0 0 0-3.8-.9h-.5a8.48 8.48 0 0 0-8 8v.5z"/></svg>
-                    </div>
-                    <h3 class="vcard__title">Escucha primero</h3>
-                    <p class="vcard__line">Tiempo real para entender tu historia antes de proponer un plan.</p>
-                </article>
-                <article class="vcard vcard--cyan reveal reveal-d1">
-                    <div class="vcard__icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 13l2 2 4-4"/></svg>
-                    </div>
-                    <h3 class="vcard__title">Evidencia GOLD/GINA</h3>
-                    <p class="vcard__line">Cada decisión apoyada en guías internacionales actualizadas.</p>
-                </article>
-                <article class="vcard vcard--purple reveal reveal-d2">
-                    <div class="vcard__icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                    </div>
-                    <h3 class="vcard__title">Plan claro</h3>
-                    <p class="vcard__line">Sales sabiendo qué tienes, por qué y los pasos exactos a seguir.</p>
-                </article>
-                <article class="vcard reveal reveal-d3">
-                    <div class="vcard__icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    </div>
-                    <h3 class="vcard__title">Seguimiento real</h3>
-                    <p class="vcard__line">Acompañamiento continuo, presencial o por teleconsulta.</p>
-                </article>
-            </div>
         </div>
     </section>
 
@@ -985,16 +964,19 @@
         <div class="timeline-section__bg"></div>
         <div class="timeline-section__orb"></div>
         <div class="container">
+            <div class="timeline-stage">
             <div class="timeline-head">
                 <span class="timeline-head__label reveal"><i class="bi bi-calendar-week-fill"></i> Trayectoria</span>
                 <h2 class="timeline-head__title reveal reveal-d1">Formación y <em>experiencia</em></h2>
                 <p class="timeline-head__sub reveal reveal-d2">De la residencia médica a la práctica privada en CDMX, una ruta verificable en instituciones de referencia.</p>
             </div>
 
+            <div class="timeline-viewport">
             <div class="timeline-flow">
                 <div class="timeline-flow__line"></div>
+                <div class="timeline-flow__progress" aria-hidden="true"></div>
 
-                <article class="tl-item tl-item--left reveal">
+                <article class="tl-item tl-item--left">
                     <div class="tl-item__card">
                         <div class="tl-item__year">BUAP</div>
                         <h3 class="tl-item__title">Médico Cirujano</h3>
@@ -1003,7 +985,7 @@
                     <div class="tl-item__node"><div class="tl-item__dot"><i class="bi bi-mortarboard-fill"></i></div></div>
                 </article>
 
-                <article class="tl-item tl-item--right reveal">
+                <article class="tl-item tl-item--right">
                     <div class="tl-item__node"><div class="tl-item__dot"><i class="bi bi-hospital-fill"></i></div></div>
                     <div class="tl-item__card">
                         <div class="tl-item__year">INER · UNAM</div>
@@ -1012,7 +994,7 @@
                     </div>
                 </article>
 
-                <article class="tl-item tl-item--left reveal">
+                <article class="tl-item tl-item--left">
                     <div class="tl-item__card">
                         <div class="tl-item__year"><a href="https://conacem.org.mx/buscador"  target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">CNN-2102</a> · Vigente</div>
                         <h3 class="tl-item__title">Consejo Nacional de Neumología</h3>
@@ -1021,7 +1003,7 @@
                     <div class="tl-item__node"><div class="tl-item__dot"><i class="bi bi-patch-check-fill"></i></div></div>
                 </article>
 
-                <article class="tl-item tl-item--right reveal tl-item--epoc">
+                <article class="tl-item tl-item--right tl-item--epoc">
                     <div class="tl-item__node"><div class="tl-item__dot tl-item__dot--epoc"><i class="bi bi-lungs-fill"></i></div></div>
                     <div class="tl-item__card tl-item__card--epoc">
                         <div class="tl-item__year">INER · Alta Especialidad</div>
@@ -1030,7 +1012,7 @@
                     </div>
                 </article>
 
-                <article class="tl-item tl-item--left reveal">
+                <article class="tl-item tl-item--left">
                     <div class="tl-item__card">
                         <div class="tl-item__year">CDMX · Hoy</div>
                         <h3 class="tl-item__title">Hospital Santa Coleta</h3>
@@ -1038,7 +1020,9 @@
                     </div>
                     <div class="tl-item__node"><div class="tl-item__dot"><i class="bi bi-building-fill"></i></div></div>
                 </article>
-            </div>
+            </div><!-- /.timeline-flow -->
+            </div><!-- /.timeline-viewport -->
+            </div><!-- /.timeline-stage -->
         </div>
     </section>
 
@@ -1056,7 +1040,7 @@
             </div>
 
             <!-- Bento grid -->
-            <div class="bento reveal">
+            <div class="bento">
                 <a class="bento-tile bento-tile--feature" href="/enfermedades/asma/" data-tilt>
                     <span class="bento-tile__tag">Más frecuente</span>
                     <span class="bento-tile__num">01</span>
@@ -1598,30 +1582,41 @@
     function initDocPage(){
         initSparkles('ctaSparkles', 160);
 
-        // Count-up de las cifras del hero (8+, 3) al entrar en viewport
-        (function(){
-            var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            var nums = document.querySelectorAll('.doc-hero__stat-num');
-            if (reduce || !('IntersectionObserver' in window) || !nums.length) return;
-            var io = new IntersectionObserver(function(entries){
-                entries.forEach(function(en){
-                    if (!en.isIntersecting) return;
-                    io.unobserve(en.target);
-                    var node = en.target.childNodes[0];
-                    var target = parseInt(node && node.textContent, 10);
-                    if (isNaN(target)) return;
-                    var t0 = null;
-                    function step(ts){
-                        if (!t0) t0 = ts;
-                        var p = Math.min((ts - t0) / 900, 1);
-                        node.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
-                        if (p < 1) requestAnimationFrame(step);
-                    }
-                    requestAnimationFrame(step);
+        // Count-up de las cifras del hero al entrar en viewport.
+        // initDocPage() corre dos veces (DOMContentLoaded + load); fijamos el
+        // objetivo en data-count UNA sola vez para que la segunda pasada no lea
+        // el número a mitad de animación y lo tome como nuevo destino.
+        if (!initDocPage._countup) {
+            initDocPage._countup = true;
+            (function(){
+                var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                var nums = document.querySelectorAll('.doc-hero__stat-num');
+                if (!('IntersectionObserver' in window) || !nums.length) return;
+                nums.forEach(function(n){
+                    var t = parseInt(n.textContent, 10);
+                    if (!isNaN(t)) n.dataset.count = t;
                 });
-            }, { threshold: .6 });
-            nums.forEach(function(n){ io.observe(n); });
-        })();
+                if (reduce) return; // sin animación: ya muestran su valor final
+                var io = new IntersectionObserver(function(entries){
+                    entries.forEach(function(en){
+                        if (!en.isIntersecting) return;
+                        io.unobserve(en.target);
+                        var node = en.target;
+                        var target = parseInt(node.dataset.count, 10);
+                        if (isNaN(target)) return;
+                        var t0 = null;
+                        function step(ts){
+                            if (!t0) t0 = ts;
+                            var p = Math.min((ts - t0) / 900, 1);
+                            node.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+                            if (p < 1) requestAnimationFrame(step);
+                        }
+                        requestAnimationFrame(step);
+                    });
+                }, { threshold: .6 });
+                nums.forEach(function(n){ if (n.dataset.count) io.observe(n); });
+            })();
+        }
 
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
         gsap.registerPlugin(ScrollTrigger);
@@ -1643,6 +1638,82 @@
                 els.forEach(function(el){ el.classList.add('visible'); });
             }
         });
+
+        // ===== Coreografía estilo Apple · Trayectoria ANCLADA (pin) + bento =====
+        if (!initDocPage._choreo) {
+            initDocPage._choreo = true;
+
+            var beam    = document.querySelector('.timeline-flow__progress');
+            var flow    = document.querySelector('.timeline-flow');
+            var stage   = document.querySelector('.timeline-stage');
+            var vport   = document.querySelector('.timeline-viewport');
+            var tlItems = gsap.utils.toArray('.tl-item');
+            var tiles   = gsap.utils.toArray('.bento-tile');
+
+            // En móvil el pin también va; evita el "salto" por la barra de URL en iOS.
+            if (window.ScrollTrigger) ScrollTrigger.config({ ignoreMobileResize: true });
+
+            var mm = gsap.matchMedia();
+
+            // ---- DESKTOP + MÓVIL: la sección se ancla y el recorrido sube atado al scroll ----
+            mm.add('(prefers-reduced-motion: no-preference)', function(){
+                if (!stage || !flow || !beam) return;
+                gsap.set(tlItems, { opacity: 1, y: 0 }); // viajan dentro del marco enmascarado
+
+                var distance = function(){
+                    return Math.max(1, flow.scrollHeight - (vport ? vport.clientHeight : window.innerHeight));
+                };
+
+                var tl = gsap.timeline({
+                    defaults: { ease: 'none' },
+                    scrollTrigger: {
+                        trigger: stage, start: 'top top',
+                        end: function(){ return '+=' + Math.round(distance() * 1.12 + 140); },
+                        pin: true, scrub: 0.6, anticipatePin: 1, invalidateOnRefresh: true
+                    }
+                });
+                // el track sube a través del marco mientras el beam se rellena
+                tl.to(flow, { y: function(){ return -distance(); }, duration: 1 }, 0);
+                tl.fromTo(beam, { height: '0%' }, { height: '100%', duration: 1 }, 0);
+
+                // cada nodo se enciende cuando cruza el centro del marco
+                var centers = tlItems.map(function(it){ return it.offsetTop + it.offsetHeight / 2; });
+                var base = centers[0] || 0, span = (centers[centers.length - 1] - base) || 1;
+                tlItems.forEach(function(it, i){
+                    var at = 0.04 + ((centers[i] - base) / span) * 0.9;
+                    tl.to(it, { duration: 0.001,
+                        onStart:           function(){ it.classList.add('is-lit'); },
+                        onReverseComplete: function(){ it.classList.remove('is-lit'); }
+                    }, at);
+                });
+
+                return function(){ // limpieza al cambiar de breakpoint
+                    gsap.set(flow, { clearProps: 'transform' });
+                    gsap.set(beam, { clearProps: 'height' });
+                    tlItems.forEach(function(it){ it.classList.remove('is-lit'); });
+                };
+            });
+
+            // ---- reduced-motion: todo visible, sin movimiento ----
+            mm.add('(prefers-reduced-motion: reduce)', function(){
+                if (beam) gsap.set(beam, { height: '100%' });
+                gsap.set(tlItems, { opacity: 1, y: 0 });
+                gsap.set(tiles, { opacity: 1, y: 0 });
+                tlItems.forEach(function(it){ it.classList.add('is-lit'); });
+            });
+
+            // ---- Bento "Lo que trato": cascada construida atada al scroll (sin pin) ----
+            mm.add('(prefers-reduced-motion: no-preference)', function(){
+                if (!tiles.length) return;
+                var bt = gsap.timeline({
+                    scrollTrigger: { trigger: '.bento', start: 'top 86%', end: 'top 34%', scrub: 0.6 }
+                });
+                bt.fromTo(tiles,
+                    { opacity: 0, y: 54, scale: 0.95 },
+                    { opacity: 1, y: 0, scale: 1, ease: 'power2.out', duration: 1, stagger: 0.4 }
+                );
+            });
+        }
 
         // Cursor-aware tilt for bento + triad
         var tiltEls = document.querySelectorAll('[data-tilt]');
