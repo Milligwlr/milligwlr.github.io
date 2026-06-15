@@ -509,10 +509,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                         <div class="fact-field fact-field--full">
                             <label>¿El receptor de la factura es el paciente? <span class="req" aria-hidden="true">*</span></label>
-                            <p class="fact-step__s" style="margin:-2px 0 10px;color:#5a6b7d">El receptor es a quién se le factura. Si la consulta fue de un familiar, elige «No».</p>
+                            <p class="fact-step__s" style="margin:-2px 0 10px;color:#5a6b7d">Si pagaste la consulta de un familiar y vas a facturar a tu nombre, elige: No, pagué por un familiar</p>
                             <div class="fact-toggle" role="group" aria-label="¿El receptor de la factura es el paciente?">
                                 <button type="button" class="fact-toggle__btn is-on" data-recv="si" aria-pressed="true"><i class="bi bi-check-circle" aria-hidden="true"></i> Sí</button>
-                                <button type="button" class="fact-toggle__btn" data-recv="no" aria-pressed="false"><i class="bi bi-person-plus" aria-hidden="true"></i> No, es mi familiar</button>
+                                <button type="button" class="fact-toggle__btn" data-recv="no" aria-pressed="false"><i class="bi bi-person-plus" aria-hidden="true"></i> No, pagué por un familiar</button>
                             </div>
                         </div>
                         <div class="fact-field fact-field--full is-hidden" id="fPacienteField">
@@ -537,7 +537,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                         <div class="fact-field">
                             <label for="fMonto">Monto pagado (MXN) <span class="req" aria-hidden="true">*</span></label>
-                            <div class="fact-amount"><input type="number" id="fMonto" name="monto" min="1" step="0.01" inputmode="decimal" placeholder="1,300.00" required></div>
+                            <div class="fact-amount"><input type="text" id="fMonto" name="monto" inputmode="decimal" autocomplete="off" placeholder="1,500" required></div>
                             <span class="err">Escribe el monto pagado.</span>
                         </div>
                     </div>
@@ -1061,6 +1061,13 @@ var FACT_REVIEWS = [
             var valid = el.checkValidity();
             if (el.id === 'fRfc' && el.value) valid = RFC_RE.test(el.value.trim());
             if (el.id === 'fCp' && el.value) valid = /^\d{5}$/.test(el.value.trim());
+            if (el.id === 'fMonto' && f) {
+                var errMonto = f.querySelector('.err');
+                var monto = parseFloat(el.value.replace(/,/g, ''));
+                if (el.value && (isNaN(monto) || monto < 1)) { valid = false; if (errMonto) errMonto.textContent = 'Escribe el monto pagado.'; }
+                else if (el.value && monto > 20000) { valid = false; if (errMonto) errMonto.textContent = 'Verifica el monto: parece demasiado alto (máx. $20,000).'; }
+                else if (errMonto) errMonto.textContent = 'Escribe el monto pagado.';
+            }
             if (f) f.classList.toggle('is-invalid', !valid);
             if (!valid) ok = false;
         });
@@ -1099,6 +1106,21 @@ var FACT_REVIEWS = [
         var clean = this.value.replace(/\D/g, '').slice(0, 5);
         if (clean !== this.value){ var p = Math.min(this.selectionStart, clean.length); this.value = clean; try { this.setSelectionRange(p, p); } catch(e){} }
     });
+    /* Monto: agrupa miles con coma en vivo (1500 → 1,500) y conserva la posición del cursor.
+       Acepta hasta 2 decimales; la coma se elimina al validar y enviar. */
+    document.getElementById('fMonto').addEventListener('input', function(){
+        var digitsBefore = this.value.slice(0, this.selectionStart).replace(/[^\d]/g, '').length;
+        var clean = this.value.replace(/[^\d.]/g, '');
+        var parts = clean.split('.');
+        var intPart = parts[0].replace(/^0+(?=\d)/, '');
+        var decPart = parts.length > 1 ? '.' + parts.slice(1).join('').slice(0, 2) : '';
+        var formatted = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + decPart;
+        if (formatted === this.value) return;
+        this.value = formatted;
+        var pos = 0, count = 0;
+        while (pos < formatted.length && count < digitsBefore){ if (/\d/.test(formatted[pos])) count++; pos++; }
+        try { this.setSelectionRange(pos, pos); } catch(e){}
+    });
 
     function payload(){
         var est = estudioCtl.value();
@@ -1113,7 +1135,7 @@ var FACT_REVIEWS = [
             fechaConsulta: document.getElementById('fFecha').value,
             estudio: est,
             pago: combos.pago.getValue(),
-            monto: document.getElementById('fMonto').value
+            monto: document.getElementById('fMonto').value.replace(/,/g, '')
         };
     }
 
