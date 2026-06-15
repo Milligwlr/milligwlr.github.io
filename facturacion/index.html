@@ -69,6 +69,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .fact-field select { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' fill='none'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%235a6b7d' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 16px center; padding-right:40px; }
 .fact-field input:focus, .fact-field select:focus { outline:none; border-color:var(--electric); background:#fff; box-shadow:0 0 0 4px rgba(9,132,227,.12); }
 .fact-field input::placeholder { color:#9aa8ba; }
+/* el RFC se teclea en mayúsculas, pero su placeholder se lee en caja normal */
+#fRfc::placeholder { text-transform:none; }
 .fact-field .hint { font-size:.74rem; color:#7d8da1; line-height:1.45; }
 .fact-field.is-invalid input, .fact-field.is-invalid select { border-color:#dc2626; background:#fff7f7; }
 .fact-field .err { display:none; font-size:.74rem; color:#dc2626; font-weight:600; }
@@ -272,6 +274,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .fact-card--dark a { display:inline-flex; align-items:center; gap:8px; margin-top:6px; color:#7ee8e2; font-weight:700; font-size:.86rem; text-decoration:none; }
 /* Aside cards: transición suave para el estado resaltado */
 .fact-card { transition:border-color .3s ease, box-shadow .3s ease, background .3s ease; }
+/* "Antes de llenar" reubicado al inicio del formulario: panel sobrio, sin caja-en-caja */
+.fact-card--intro { background:#f8fafd; border-color:rgba(10,22,40,.08); box-shadow:none; margin-bottom:18px; }
 /* "¿Qué sigue?" tras enviar: resaltado dorado + nota de espera */
 .fact-next__wait { display:none; }
 .fact-card--next { border-color:rgba(217,119,6,.5); background:linear-gradient(155deg,#fffaf0 0%,#fff 65%); box-shadow:0 1px 2px rgba(10,22,40,.04), 0 18px 42px -22px rgba(217,119,6,.45); }
@@ -402,9 +406,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <form class="fact-form" id="factForm" novalidate>
 
+                <div class="fact-card fact-card--intro" id="cardAntes">
+                    <h2><i class="bi bi-info-circle-fill" aria-hidden="true"></i> Antes de llenar</h2>
+                    <ul>
+                        <li>Ten a la mano tu <strong>constancia de situación fiscal (CSF)</strong>: el SAT exige que nombre, RFC, código postal y régimen coincidan exactamente.</li>
+                        <li>Solo se facturan servicios realizados dentro del <strong>mismo mes</strong> de tu consulta; idealmente solicita tu factura el mismo día.</li>
+                        <li>La consulta médica está <strong>exenta de IVA</strong>; tu factura se emite así por ley.</li>
+                    </ul>
+                </div>
+
                 <div class="fact-tip">
                     <i class="bi bi-lightbulb-fill" aria-hidden="true"></i>
-                    <p><strong>Para que tu factura sea deducible:</strong> el SAT solo permite deducir honorarios médicos pagados con <strong>tarjeta, transferencia o cheque</strong>. Los pagos en efectivo se facturan igual, pero no son deducibles en tu declaración anual (art. 151 LISR).</p>
+                    <p><strong>Para que tu factura sea deducible:</strong> el SAT solo permite deducir honorarios médicos pagados con <strong>tarjeta o transferencia</strong>. Los pagos en efectivo se facturan igual, pero no son deducibles en tu declaración anual (art. 151 LISR).</p>
                 </div>
 
                 <!-- CSF opcional -->
@@ -444,12 +457,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                         <div class="fact-field" data-csf-skippable>
                             <label for="fRfc">RFC <span class="req" aria-hidden="true">*</span></label>
-                            <input type="text" id="fRfc" name="rfc" maxlength="13" placeholder="XAXX010101000" style="text-transform:uppercase" required>
+                            <input type="text" id="fRfc" name="rfc" maxlength="13" placeholder="Escribe tu RFC" style="text-transform:uppercase" required>
                             <span class="err">RFC inválido: 12 caracteres (moral) o 13 (física).</span>
                         </div>
                         <div class="fact-field" data-csf-skippable>
                             <label for="fCp">Código postal fiscal <span class="req" aria-hidden="true">*</span></label>
-                            <input type="text" id="fCp" name="cp" inputmode="numeric" maxlength="5" placeholder="03900" required>
+                            <input type="text" id="fCp" name="cp" inputmode="numeric" maxlength="5" placeholder="Escribe tu código postal fiscal" required>
                             <span class="hint">El del domicilio fiscal de tu CSF, no el de tu casa.</span>
                             <span class="err">Deben ser 5 dígitos.</span>
                         </div>
@@ -590,14 +603,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <!-- ASIDE -->
             <aside class="fact-aside" aria-label="Información de facturación">
-                <div class="fact-card" id="cardAntes">
-                    <h2><i class="bi bi-info-circle-fill" aria-hidden="true"></i> Antes de llenar</h2>
-                    <ul>
-                        <li>Ten a la mano tu <strong>constancia de situación fiscal (CSF)</strong>: el SAT exige que nombre, RFC, código postal y régimen coincidan exactamente.</li>
-                        <li>Solicita tu factura <strong>dentro del mismo mes</strong> de tu consulta; idealmente el mismo día.</li>
-                        <li>La consulta médica está <strong>exenta de IVA</strong>; tu factura se emite así por ley.</li>
-                    </ul>
-                </div>
                 <div class="fact-card" id="cardQueSigue">
                     <h2><i class="bi bi-clock-history" aria-hidden="true"></i> ¿Qué sigue?</h2>
                     <p class="fact-next__wait"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> Listo, ya no tienes que hacer nada más. Solo espera tu correo.</p>
@@ -870,7 +875,6 @@ var FACT_REVIEWS = [
         var key = wrap.dataset.combo;
         combos[key] = initCombo(wrap, CAT[key], wrap.dataset.mode);
     });
-    combos.uso.preset('D01'); /* default médico: honorarios */
 
     /* ── ¿Qué se realizó? · multi-selección sin búsqueda, con "Agregar otro" ── */
     var ESTUDIO_OPTS = [
@@ -1216,7 +1220,6 @@ var FACT_REVIEWS = [
         okBox.classList.remove('show');
         errBox.classList.remove('show');
         document.getElementById('factReviews').classList.remove('show');
-        combos.uso.preset('D01');
     });
 })();
 </script>
