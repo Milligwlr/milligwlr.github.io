@@ -166,6 +166,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .fact-status--ok i { font-size:2.2rem; color:#10b981; display:block; margin-bottom:8px; }
 .fact-status--err { background:rgba(220,38,38,.06); border:1px solid rgba(220,38,38,.25); }
 .fact-status--err i { font-size:2.2rem; color:#dc2626; display:block; margin-bottom:8px; }
+/* faltan datos mínimos: aviso ámbar arriba del botón, antes de enviar */
+.fact-status--warn { margin-top:0; margin-bottom:18px; background:rgba(217,119,6,.07); border:1px solid rgba(217,119,6,.3); }
+.fact-status--warn i { font-size:2rem; color:var(--gold); display:block; margin-bottom:8px; }
+.fact-status--warn p { color:#6d4607; }
 .fact-status strong { display:block; font-size:1.08rem; color:var(--navy); margin-bottom:6px; }
 .fact-status p { font-size:.88rem; color:#5a6b7d; margin:0 0 6px; line-height:1.6; }
 .fact-status .folio { font-family:'JetBrains Mono',Menlo,monospace; font-weight:700; color:#047857; }
@@ -561,6 +565,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <label for="fConsent">He leído y acepto el <a href="/aviso-de-privacidad/#facturacion" target="_blank" rel="noopener">aviso de privacidad</a>. Entiendo que mis datos fiscales se usarán únicamente para emitir mi factura y que se resguardan de forma segura en los servicios de Google (Sheets y Drive) del consultorio. <span class="req" aria-hidden="true">*</span></label>
                 </div>
                 <p style="font-size:.72rem;color:#94a3b8;line-height:1.55;margin:-8px 0 22px">Responsable: Dr. William César Lara Vázquez, Hospital Santa Coleta, CDMX. Finalidad: emisión de tu CFDI y cumplimiento de obligaciones fiscales. Consulta el <a href="/aviso-de-privacidad/#facturacion" target="_blank" rel="noopener" style="color:#7d8da1">aviso de privacidad integral</a>.</p>
+
+                <div class="fact-status fact-status--warn" id="factFaltan" role="alert">
+                    <i class="bi bi-exclamation-circle-fill" aria-hidden="true"></i>
+                    <strong>Aún faltan algunos datos</strong>
+                    <p id="factFaltanMsg"></p>
+                </div>
 
                 <button type="submit" class="fact-submit" id="factSubmit">
                     <i class="bi bi-send-fill" aria-hidden="true"></i> Solicitar mi factura
@@ -1057,10 +1067,18 @@ var FACT_REVIEWS = [
     /* ── validación ── */
     var RFC_RE = /^([A-ZÑ&]{3,4})\d{6}[A-Z0-9]{3}$/i;
     function fieldOf(el){ return el.closest('.fact-field'); }
+    /* Devuelve la lista (legible) de datos mínimos que faltan. Vacía = listo para enviar.
+       Respeta la regla CSF: con la constancia adjunta, nombre/RFC/CP quedan ocultos y
+       no se exigen (offsetParent === null los salta). */
+    var REQ_LABELS = {
+        fNombre: 'Nombre o razón social', fRfc: 'RFC válido', fCp: 'Código postal (5 dígitos)',
+        fCorreo: 'Correo electrónico válido', fMonto: 'Monto pagado', fFecha: 'Fecha de la consulta'
+    };
     function validate(){
-        var ok = true;
+        var faltan = [];
         form.querySelectorAll('input[required]').forEach(function(el){
-            if (el.offsetParent === null) return; /* ignora campos ocultos */
+            if (el.id === 'fConsent') return;        /* el consentimiento se evalúa aparte */
+            if (el.offsetParent === null) return;     /* ignora campos ocultos (p. ej. con CSF) */
             var f = fieldOf(el);
             var valid = el.checkValidity();
             if (el.id === 'fRfc' && el.value) valid = RFC_RE.test(el.value.trim());
@@ -1073,31 +1091,39 @@ var FACT_REVIEWS = [
                 else if (errMonto) errMonto.textContent = 'Escribe el monto pagado.';
             }
             if (f) f.classList.toggle('is-invalid', !valid);
-            if (!valid) ok = false;
+            if (!valid) faltan.push(REQ_LABELS[el.id] || el.id);
         });
         /* comboboxes de selección única */
+        var comboLabels = { regimen: 'Régimen fiscal', uso: 'Uso del CFDI', pago: 'Forma de pago' };
         ['regimen', 'uso', 'pago'].forEach(function(k){
             var empty = combos[k].isEmpty();
             document.querySelector('[data-combo="' + k + '"]').closest('.fact-field').classList.toggle('is-invalid', empty);
-            if (empty) ok = false;
+            if (empty) faltan.push(comboLabels[k]);
         });
         /* ¿qué se realizó? (múltiple) */
         var estEmpty = estudioCtl.isEmpty();
         estField.classList.toggle('is-invalid', estEmpty);
-        if (estEmpty) ok = false;
-        if (estudioCtl.hasOtro() && !otroInput.value.trim()){ otroField.classList.add('is-invalid'); ok = false; }
+        if (estEmpty) faltan.push('Qué se realizó (estudio o servicio)');
+        if (estudioCtl.hasOtro() && !otroInput.value.trim()){ otroField.classList.add('is-invalid'); faltan.push('Describir el estudio (opción “Otro”)'); }
         /* nombre del paciente cuando el receptor es distinto */
         if (!receptorEsPaciente && !fPaciente.value.trim()){
-            pacienteField.classList.add('is-invalid'); ok = false;
+            pacienteField.classList.add('is-invalid'); faltan.push('Nombre del paciente');
         }
-        if (!document.getElementById('fConsent').checked) {
-            alert('Para continuar, acepta el Aviso de Privacidad.');
-            ok = false;
-        }
-        return ok;
+        if (!document.getElementById('fConsent').checked) faltan.push('Aceptar el aviso de privacidad');
+        return faltan;
+    }
+    /* Muestra el aviso ámbar con los datos que faltan (desde validate() o desde el backend). */
+    var faltanBox = document.getElementById('factFaltan');
+    var faltanMsg = document.getElementById('factFaltanMsg');
+    function escHtml(s){ return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+    function mostrarFaltan(faltan){
+        var lista = (faltan && faltan.length) ? faltan.map(escHtml).join('</strong>, <strong>') : 'algunos datos obligatorios';
+        faltanMsg.innerHTML = 'Para emitir tu factura necesitamos que completes: <strong>' + lista + '</strong>. ' +
+            'Revísalos en el formulario y vuelve a tocar “Solicitar mi factura”.';
+        faltanBox.classList.add('show');
     }
     form.querySelectorAll('input, select').forEach(function(el){
-        el.addEventListener('input', function(){ var f = fieldOf(el); f && f.classList.remove('is-invalid'); });
+        el.addEventListener('input', function(){ var f = fieldOf(el); f && f.classList.remove('is-invalid'); faltanBox.classList.remove('show'); });
     });
 
     /* Formato en vivo de RFC y CP (límites oficiales del SAT):
@@ -1177,10 +1203,12 @@ var FACT_REVIEWS = [
 
     form.addEventListener('submit', function(e){
         e.preventDefault();
-        okBox.classList.remove('show'); errBox.classList.remove('show');
-        if (!validate()) {
+        okBox.classList.remove('show'); errBox.classList.remove('show'); faltanBox.classList.remove('show');
+        var faltan = validate();
+        if (faltan.length) {
+            mostrarFaltan(faltan);
             var bad = form.querySelector('.fact-field.is-invalid');
-            bad && bad.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            (bad || faltanBox).scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
         submitBtn.disabled = true;
@@ -1193,8 +1221,14 @@ var FACT_REVIEWS = [
             return fetch(FACT_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(d) })
                 .then(function(r){ return r.json(); })
                 .then(function(res){
-                    if (!res || !res.ok) throw new Error(res && res.error || 'error');
-                    exito(res.folio);
+                    if (res && res.ok) { exito(res.folio); return; }
+                    /* el backend también rechaza solicitudes incompletas (red de seguridad) */
+                    if (res && res.error === 'datos_incompletos') {
+                        mostrarFaltan(res.faltan);
+                        faltanBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        return;
+                    }
+                    throw new Error(res && res.error || 'error');
                 });
         })
         .catch(function(){

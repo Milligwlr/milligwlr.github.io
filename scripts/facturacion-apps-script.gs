@@ -56,6 +56,15 @@ function doPost(e) {
   }
   try {
     var datos = JSON.parse(e.postData.contents);
+
+    // Rechaza solicitudes incompletas ANTES de gastar folio o avisar al Dr.
+    // (formularios enviados en blanco, bots que tocan el endpoint público, etc.).
+    // No se crea fila ni se manda correo: el frontend muestra qué falta.
+    var faltan = camposFaltantes(datos);
+    if (faltan.length) {
+      return respuesta({ ok: false, error: 'datos_incompletos', faltan: faltan });
+    }
+
     var libro = SpreadsheetApp.getActiveSpreadsheet();
     var ahora = new Date();
     var zona = Session.getScriptTimeZone();
@@ -103,6 +112,40 @@ function doPost(e) {
   } catch (err) {
     return respuesta({ ok: false, error: String(err) });
   }
+}
+
+/** Datos mínimos indispensables de una solicitud.
+ * Regla CSF: si viene la constancia adjunta (datos.csf.base64), nombre/RFC/CP
+ * llegan en ella, así que NO se exigen; el resto sí es indispensable para que
+ * el Dr. valide y la contadora timbre. Es deliberadamente MÁS PERMISIVA que la
+ * validación del formulario (no revalida formato de RFC ni tope de monto) para
+ * no rechazar nunca una solicitud legítima: solo frena las que llegan vacías.
+ * Devuelve [] si está completa, o la lista de campos que faltan. */
+function camposFaltantes(datos) {
+  if (!datos || typeof datos !== 'object') return ['(solicitud vacía)'];
+  var falta = [];
+  var txt = function (v) { return String(v == null ? '' : v).trim(); };
+
+  var tieneCsf = !!(datos.csf && datos.csf.base64);
+  if (!tieneCsf) {
+    if (!txt(datos.nombre)) falta.push('Nombre o razón social');
+    if (!txt(datos.rfc))    falta.push('RFC');
+    if (!txt(datos.cp))     falta.push('Código postal fiscal');
+  }
+  if (!txt(datos.regimen)) falta.push('Régimen fiscal');
+  if (!txt(datos.uso))     falta.push('Uso del CFDI');
+
+  var correo = txt(datos.correo);
+  if (!correo || correo.indexOf('@') < 1) falta.push('Correo electrónico');
+
+  if (!txt(datos.estudio))       falta.push('Consulta o estudio realizado');
+  if (!txt(datos.fechaConsulta)) falta.push('Fecha de la consulta');
+  if (!txt(datos.pago))          falta.push('Forma de pago');
+
+  var monto = parseFloat(txt(datos.monto).replace(/,/g, ''));
+  if (!(monto > 0)) falta.push('Monto pagado');
+
+  return falta;
 }
 
 /** Correo al Dr. para validar la visita — con botón "Validar" de un toque. */
@@ -473,4 +516,14 @@ function testManual() {
     pago: 'Transferencia (03)', monto: '1300'
   }) } };
   Logger.log(doPost(e).getContent());
+}
+
+/** Prueba que una solicitud vacía SE RECHAZA sin gastar folio ni mandar correo.
+ * Ejecutar > testIncompleto. Debe registrar {"ok":false,"error":"datos_incompletos",...}. */
+function testIncompleto() {
+  var vacia = { postData: { contents: JSON.stringify({}) } };
+  Logger.log('Solicitud vacía → ' + doPost(vacia).getContent());
+  // Con CSF adjunta pero sin lo demás: igual debe faltar régimen/uso/correo/etc.
+  var soloCsf = { postData: { contents: JSON.stringify({ csf: { name: 'x.pdf', base64: 'AAAA' } }) } };
+  Logger.log('Solo CSF → ' + doPost(soloCsf).getContent());
 }
