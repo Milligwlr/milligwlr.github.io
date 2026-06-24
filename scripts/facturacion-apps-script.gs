@@ -21,7 +21,7 @@
 var CARPETA_CSF_ID = '1DzfpM9XNwhEyjwUjf7il7lWWdd5yp9Y-'; // ID de la carpeta destino (Contaduria/ALVEOS CSF). El ID NO cambia aunque la muevas o renombres.
 var CARPETA_CSF = 'ALVEOS CSF';                     // respaldo por NOMBRE solo si el ID llegara a fallar
 var FOLIO_PREFIJO = 'LAVW';                         // serie de la contadora
-var FOLIO_INICIO = 41;                              // siguiente número de su consecutivo
+var FOLIO_INICIO = 42;                              // siguiente número de su consecutivo (41/42 quemados por correos en blanco; real arranca en 42)
 var CORREO_DR = 'williamc2lv@gmail.com';            // recibe solicitudes y pendientes
 var CORREO_CONTADORA = 'facturas.enviocfdi@gmail.com'; // recibe validadas para timbrar
 var DIAS_PENDIENTE = 3;                             // días sin validar para recordatorio
