@@ -395,6 +395,58 @@
         .hero__trust{font-size:.78rem;gap:10px}
         .hero__badge{font-size:.74rem;padding:5px 12px}
     }
+
+    /* ===== Mejoras CRO (jun-2026): confianza en hero, resenas reales, micro-interacciones ===== */
+    .hero__creds{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}
+    .hero__cred{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#e8f4ff;padding:7px 13px;border-radius:999px;font-size:.82rem;font-weight:700;text-decoration:none}
+    .hero__cred i{color:#7fffe6}
+    .hero__cred .stars{color:#f5b400;letter-spacing:1px;font-size:.95rem}
+    a.hero__cred:hover{background:rgba(255,255,255,.2);color:#fff}
+    .greviews{max-width:620px;margin:0 auto;background:#fff;border:1px solid rgba(9,132,227,.15);border-radius:22px;padding:30px 28px;text-align:center;box-shadow:0 12px 30px -16px rgba(9,44,84,.15)}
+    .greviews__top{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+    .greviews__num{font-size:2.6rem;font-weight:800;color:var(--navy);line-height:1}
+    .greviews__stars{color:#f5b400;font-size:1.3rem;letter-spacing:3px}
+    .greviews__count{color:var(--muted);font-size:.9rem;font-weight:600;margin-top:3px}
+    .greviews__lead{color:var(--muted);font-size:.98rem;line-height:1.6;margin:14px auto 16px;max-width:480px}
+    .greviews__fact{display:inline-flex;align-items:center;gap:8px;background:rgba(9,132,227,.08);color:var(--navy);border-left:3px solid var(--electric);border-radius:10px;padding:10px 14px;font-weight:700;font-size:.9rem;margin-bottom:18px}
+    .greviews__btn{display:inline-flex;align-items:center;gap:9px;background:var(--navy);color:#fff;padding:13px 22px;border-radius:12px;font-weight:800;text-decoration:none;transition:transform .2s var(--ease),background .2s}
+    .greviews__btn:hover{background:#0e3a6b;color:#fff;transform:translateY(-2px)}
+    .btn-wa:active,.btn-cal:active,.greviews__btn:active,.sticky-cta a:active{transform:scale(.97)}
+    .reveal{opacity:0;transform:translateY(18px)}
+    .reveal.in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
+    @media(prefers-reduced-motion:reduce){.reveal,.reveal.in{opacity:1!important;transform:none!important;transition:none!important}}
+
+    /* Diag cards con icono + numero de marca de agua */
+    .diag-card__icon-wrap{background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff}
+    .diag-card__num{position:absolute;top:14px;right:16px;width:auto;height:auto;background:none;color:rgba(9,132,227,.13);font-size:2.3rem;font-weight:800;margin:0;line-height:1;box-shadow:none;border-radius:0}
+    /* Timeline -> tarjetas responsivas (escritorio y movil) */
+    .timeline::before{display:none}
+    .tl-step{background:#fff;border:1px solid rgba(9,132,227,.12);border-radius:18px;padding:26px 18px 22px;box-shadow:0 8px 24px -14px rgba(9,44,84,.18);transition:transform .3s var(--ease)}
+    .tl-step:hover{transform:translateY(-5px)}
+    .tl-step:hover .tl-step__circle{transform:scale(1.05)}
+    @media(max-width:900px){
+      .timeline{grid-template-columns:1fr 1fr;gap:16px}
+      .tl-step{display:block;text-align:center;padding:24px 16px 20px;border-bottom:1px solid rgba(9,132,227,.12);margin-bottom:0}
+      .tl-step__circle{margin:0 auto 16px;width:72px;height:72px}
+      .tl-step__circle i{font-size:1.7rem}
+      .tl-step__num{width:28px;height:28px;font-size:.85rem}
+      .tl-step__desc{max-width:100%}
+    }
+    @media(max-width:560px){.timeline{grid-template-columns:1fr}}
+    /* CTA: lucecitas (sparkle-field, igual que el home) + linea luminosa */
+    .cta-inline::before{background:radial-gradient(600px 240px at 50% 0%,rgba(0,206,201,.28),transparent 60%);animation:none}
+    .cta-inline::after{content:'';position:absolute;top:0;left:12%;right:12%;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 16px rgba(0,206,201,.75);z-index:3}
+    .cta-inline .sparkle-field{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;border-radius:24px}
+    .cta-inline .sparkle-field span{position:absolute;border-radius:50%;background:rgba(190,225,255,.95);opacity:0;animation:cta-twinkle var(--sd,3s) ease-in-out var(--sl,0s) infinite}
+    .cta-inline .sparkle-field span.glow{box-shadow:0 0 9px 3px rgba(116,185,255,.4)}
+    @keyframes cta-twinkle{0%,100%{opacity:0}50%{opacity:.95}}
+    @media(prefers-reduced-motion:reduce){.cta-inline .sparkle-field span{animation:none;opacity:.45}}
+
+    /* Pagina mas compacta (menos scroll) */
+    section.block{padding:46px 0}
+    .hero{padding:40px 0 46px}
+    .block__head{margin-bottom:28px}
+    .cta-inline{padding:40px 28px}
     </style>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <link rel="stylesheet" href="/assets/agenda-modal.css">
@@ -441,9 +493,8 @@
             <div class="col-lg-7 hero__content">
                 <!-- Badge con INER visible en el primer viewport en mobile y desktop -->
                 <div class="hero__badge"><span class="dot"></span> Poligrafía respiratoria domiciliaria</div>
-                <h1>Estudio de apnea del sueño <em>en tu casa</em></h1>
-                <div class="urgency-strip" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,176,0,.14);border:1px solid rgba(255,176,0,.45);color:#ffd285;padding:7px 14px;border-radius:999px;font-size:.82rem;font-weight:700;letter-spacing:.2px;margin-bottom:14px"><i class="bi bi-clock-history" style="color:#ffb000"></i> Agenda médica disponible esta semana — espacios limitados por turno</div>
-                <p class="hero__sub">Con valoración por neumólogo egresado del INER incluida. Una sola noche, en tu propia cama.</p>
+                <h1>Estudio de apnea del sueño <em>en tu casa</em> · $4,500</h1>
+                <p class="hero__sub">Valoración + poligrafía interpretada por neumólogo certificado del INER, una noche en tu cama.</p>
 
                 <div class="price-highlight" role="text" aria-label="Precio promocional 4500 pesos, antes 6000">
                     <span class="price-highlight__from">Desde</span>
@@ -488,10 +539,10 @@
                         <i class="bi bi-calendar-check"></i> Agendar cita
                     </a>
                 </div>
-                <div class="hero__trust">
-                    <span><i class="bi bi-geo-alt-fill"></i> Hospital Santa Coleta, CDMX</span>
-                    <span><i class="bi bi-shield-check"></i> Cofepris vigente</span>
-                    <span><i class="bi bi-clock-history"></i> Respuesta en minutos</span>
+                <div class="hero__creds">
+                    <span class="hero__cred"><i class="bi bi-mortarboard-fill"></i> Egresado del INER</span>
+                    <span class="hero__cred"><i class="bi bi-patch-check-fill"></i> Neumólogo Certificado</span>
+                    <a class="hero__cred" href="https://g.page/r/CfXAZim2anDFEBI" target="_blank" rel="noopener noreferrer" data-cta="hero-google-rating"><span class="stars">★</span> 5.0 en Google</a>
                 </div>
             </div>
             <div class="col-lg-5">
@@ -541,6 +592,31 @@
                         <p style="font-size:.93rem;color:var(--navy);font-weight:600;margin-bottom:4px">En su propia cama</p>
                         <p style="font-size:.85rem;color:var(--muted);margin:0">Sin hospital, sin internamiento</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ DOCTOR / E-E-A-T (subido para reforzar confianza temprano) ============ -->
+<section class="block">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">Quién hace tu estudio</span>
+            <h2 class="block__title">Neumólogo certificado, egresado del INER: <em>no un laboratorio sin médico</em></h2>
+        </div>
+        <div class="doc-card" style="max-width:820px;margin:0 auto">
+            <img src="/images/dr-william-lara.jpg" alt="Dr. William César Lara Vázquez, neumólogo egresado del INER" class="doc-card__avatar" width="120" height="120" loading="lazy" style="object-fit:cover">
+            <div>
+                <h3>Dr. William César Lara Vázquez</h3>
+                <div class="role">Médico Neumólogo · Alta Especialidad en EPOC · Egresado del INER</div>
+                <p>Egresado del Instituto Nacional de Enfermedades Respiratorias (INER), la institución de referencia en neumología en México. Atención personalizada en CDMX, con interpretación directa de cada estudio y plan terapéutico explicado en lenguaje claro, sin tercerizar la lectura a un software.</p>
+                <p style="margin-top:10px;font-weight:700;color:var(--navy);background:rgba(9,132,227,.08);border-left:3px solid var(--electric);padding:8px 12px;border-radius:8px;font-size:.92rem"><i class="bi bi-graph-up-arrow" style="color:var(--electric);margin-right:4px"></i> Cada estudio de sueño lo interpreta personalmente el Dr. Lara, con plan terapéutico explicado a cada paciente.</p>
+                <div class="doc-card__creds">
+                    <span><i class="bi bi-patch-check-fill"></i> Cédula Prof. 12588976</span>
+                    <span><i class="bi bi-patch-check-fill"></i> Cédula Esp. 15595809</span>
+                    <span><i class="bi bi-patch-check-fill"></i> <a href="https://conacem.org.mx/buscador"  target="_blank" rel="noopener noreferrer" style="color:inherit">CNN-2102</a></span>
+                    <span><i class="bi bi-shield-check"></i> Cofepris 2609142002A00265</span>
                 </div>
             </div>
         </div>
@@ -755,75 +831,27 @@
     </div>
 </section>
 
-<!-- ============ TESTIMONIOS ============ -->
-<!--
-  INSTRUCCIONES PARA LLENAR TESTIMONIOS:
-  - Solicita consentimiento escrito al paciente antes de publicar su nombre y foto.
-  - Usa nombre real o primer nombre + inicial del apellido.
-  - Edad aproximada (ej. "38 años") — no fecha de nacimiento.
-  - Foto opcional: círculo de 50x50px, idealmente tomada en el consultorio.
-  - Texto: 2-4 oraciones en voz del paciente, sin promesas de curación.
-  - GOOGLE REVIEWS: ver comentario abajo para integración futura.
--->
-<section class="block testimonials-section" id="testimonios" aria-label="Testimonios de pacientes">
+<!-- ============ RESEÑAS REALES (Google) ============ -->
+<section class="block testimonials-section" id="testimonios" aria-label="Reseñas de pacientes">
     <div class="container">
         <div class="block__head">
             <span class="block__kicker">Pacientes</span>
             <h2 class="block__title">Lo que dicen quienes <em>ya hicieron el estudio</em></h2>
         </div>
-
-        <div class="testimonials-grid">
-
-            <div class="testimonial-card">
-                <div class="testimonial-card__header">
-                    <div class="testimonial-card__avatar" aria-hidden="true">M</div>
-                    <div>
-                        <div class="testimonial-card__name">Mariana G.</div>
-                        <div class="testimonial-card__meta">39 años · Benito Juárez, CDMX</div>
-                        <div class="testimonial-card__stars" aria-label="5 de 5 estrellas">★★★★★</div>
-                    </div>
+        <div class="greviews">
+            <div class="greviews__top">
+                <div class="greviews__num">5.0</div>
+                <div style="text-align:left">
+                    <div class="greviews__stars">★★★★★</div>
+                    <div class="greviews__count">Calificación de pacientes en Google</div>
                 </div>
-                <p class="testimonial-card__text">"Llevaba meses preocupada porque mi esposo dejaba de respirar dormido. El Dr. Lara nos explicó todo sin tecnicismos y el estudio fue en casa, sin complicaciones. Hoy él duerme con CPAP y los dos descansamos por fin."</p>
             </div>
-
-            <div class="testimonial-card">
-                <div class="testimonial-card__header">
-                    <div class="testimonial-card__avatar" aria-hidden="true">R</div>
-                    <div>
-                        <div class="testimonial-card__name">Roberto H.</div>
-                        <div class="testimonial-card__meta">54 años · Coyoacán, CDMX</div>
-                        <div class="testimonial-card__stars" aria-label="5 de 5 estrellas">★★★★★</div>
-                    </div>
-                </div>
-                <p class="testimonial-card__text">"Pensé que tendría que internarme una noche en hospital. Me sorprendió lo sencillo del equipo: lo coloqué yo solo y dormí en mi cama. A los dos días tenía el reporte explicado paso a paso. Trato muy profesional."</p>
+            <p class="greviews__lead">Reseñas reales y verificables de pacientes atendidos por el Dr. Lara. Puedes leerlas directamente en su perfil de Google.</p>
+            <div class="greviews__fact"><i class="bi bi-graph-up-arrow" style="color:var(--electric)"></i> Cada paciente lo atiende e interpreta personalmente el Dr. Lara, neumólogo egresado del INER.</div>
+            <div>
+                <a class="greviews__btn" href="https://g.page/r/CfXAZim2anDFEBI" target="_blank" rel="noopener noreferrer" data-cta="testi-google-reviews"><i class="bi bi-google"></i> Leer reseñas en Google</a>
             </div>
-
-            <div class="testimonial-card">
-                <div class="testimonial-card__header">
-                    <div class="testimonial-card__avatar" aria-hidden="true">C</div>
-                    <div>
-                        <div class="testimonial-card__name">Carolina M.</div>
-                        <div class="testimonial-card__meta">45 años · Álvaro Obregón, CDMX</div>
-                        <div class="testimonial-card__stars" aria-label="5 de 5 estrellas">★★★★★</div>
-                    </div>
-                </div>
-                <p class="testimonial-card__text">"Fui la que insistí en agendar la cita por los ronquidos de mi marido. Lo que más valoré fue que el doctor sí lo escuchó y revisó su caso, no fue un reporte automático como otros lugares. La diferencia de precio vale totalmente."</p>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="testimonial-card__header">
-                    <div class="testimonial-card__avatar" aria-hidden="true">J</div>
-                    <div>
-                        <div class="testimonial-card__name">Jorge A.</div>
-                        <div class="testimonial-card__meta">61 años · Tlalpan, CDMX</div>
-                        <div class="testimonial-card__stars" aria-label="5 de 5 estrellas">★★★★★</div>
-                    </div>
-                </div>
-                <p class="testimonial-card__text">"Llevo tres meses con el tratamiento y es la primera vez en años que me levanto descansado. La consulta con el Dr. Lara fue clara, sin venderme cosas innecesarias. Lo recomiendo cien por ciento."</p>
-            </div>
-
-        </div><!-- /.testimonials-grid -->
-
+        </div>
     </div>
 </section>
 
@@ -831,36 +859,12 @@
 <section class="block" style="padding-top:0">
     <div class="container">
         <div class="cta-inline">
+            <div class="sparkle-field" aria-hidden="true"></div>
             <h2>¿Listo para dormir tranquilo?</h2>
             <p>Una conversación de 2 minutos por WhatsApp es suficiente para resolver dudas, conocer disponibilidad y agendar tu estudio.</p>
             <div class="cta-inline__btns">
                 <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20estuve%20leyendo%20sobre%20la%20poligraf%C3%ADa%20respiratoria%20y%20quiero%20agendar%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20a%20$4,500."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="mid-wa"><i class="bi bi-whatsapp"></i> Apartar mi estudio de sueño — $4,500</a>
                 <a href="#agendaModal" class="btn-cal" data-cta="mid-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ============ DOCTOR / E-E-A-T ============ -->
-<section class="block benefits">
-    <div class="container">
-        <div class="block__head">
-            <span class="block__kicker">Quién hace tu estudio</span>
-            <h2 class="block__title">Neumólogo certificado, egresado del INER: <em>no un laboratorio sin médico</em></h2>
-        </div>
-        <div class="doc-card" style="max-width:820px;margin:0 auto">
-            <img src="/images/dr-william-lara.jpg" alt="Dr. William César Lara Vázquez, neumólogo egresado del INER" class="doc-card__avatar" width="120" height="120" loading="lazy" style="object-fit:cover">
-            <div>
-                <h3>Dr. William César Lara Vázquez</h3>
-                <div class="role">Médico Neumólogo · Alta Especialidad en EPOC · Egresado del INER</div>
-                <p>Egresado del Instituto Nacional de Enfermedades Respiratorias (INER), la institución de referencia en neumología en México. Atención personalizada en CDMX, con interpretación directa de cada estudio y plan terapéutico explicado en lenguaje claro, sin tercerizar la lectura a un software.</p>
-                <p style="margin-top:10px;font-weight:700;color:var(--navy);background:rgba(9,132,227,.08);border-left:3px solid var(--electric);padding:8px 12px;border-radius:8px;font-size:.92rem"><i class="bi bi-graph-up-arrow" style="color:var(--electric);margin-right:4px"></i> +150 estudios de sueño interpretados personalmente en 2025, con plan terapéutico explicado a cada paciente.</p>
-                <div class="doc-card__creds">
-                    <span><i class="bi bi-patch-check-fill"></i> Cédula Prof. 12588976</span>
-                    <span><i class="bi bi-patch-check-fill"></i> Cédula Esp. 15595809</span>
-                    <span><i class="bi bi-patch-check-fill"></i> <a href="https://conacem.org.mx/buscador"  target="_blank" rel="noopener noreferrer" style="color:inherit">CNN-2102</a></span>
-                    <span><i class="bi bi-shield-check"></i> Cofepris 2609142002A00265</span>
-                </div>
             </div>
         </div>
     </div>
@@ -886,6 +890,7 @@
 <section class="block benefits" style="padding-bottom:80px">
     <div class="container">
         <div class="cta-inline">
+            <div class="sparkle-field" aria-hidden="true"></div>
             <h2>Agenda tu poligrafía respiratoria hoy</h2>
             <p>Atención por WhatsApp en horario hábil. Resolvemos dudas y apartamos tu fecha en minutos.</p>
             <div class="cta-inline__btns">
@@ -914,6 +919,37 @@
     </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/* Apariciones suaves al hacer scroll (solo transform/opacity; se aplican via JS = seguro sin JS; respeta reduce-motion; NO toca el hero/LCP) */
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var els = Array.prototype.slice.call(document.querySelectorAll('.block, .greviews'));
+  els.forEach(function(el){ el.classList.add('reveal'); });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {rootMargin:'0px 0px -8% 0px', threshold:0.08});
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+<script>
+/* Lucecitas (sparkle-field) en los CTA — mismo efecto y codigo que el home */
+(function(){
+  var fields = document.querySelectorAll('.cta-inline .sparkle-field');
+  fields.forEach(function(field){
+    var n = window.innerWidth <= 768 ? 22 : 44;
+    var frag = document.createDocumentFragment();
+    for (var i=0;i<n;i++){
+      var s=document.createElement('span');
+      var size=(Math.random()*2+0.7).toFixed(1);
+      if(size>2.2) s.className='glow';
+      s.style.cssText='width:'+size+'px;height:'+size+'px;left:'+(Math.random()*100).toFixed(2)+'%;top:'+(Math.random()*100).toFixed(2)+'%;--sd:'+(2.5+Math.random()*4).toFixed(2)+'s;--sl:'+(Math.random()*5).toFixed(2)+'s';
+      frag.appendChild(s);
+    }
+    field.appendChild(frag);
+  });
+})();
+</script>
 
 <!-- WhatsApp flotante (desktop) -->
 <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20quiero%20informaci%C3%B3n%20sobre%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20$4,500."  target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Contactar por WhatsApp" data-cta="float-wa"><i class="bi bi-whatsapp"></i></a>
