@@ -340,6 +340,14 @@
 .promo-lang2 a:not(.active):hover{background:rgba(9,37,64,.08)}
 .promo-lang2 a.active{background:var(--navy)}
 .promo-lang2 a.active{color:#fff}
+/* Banner de promoción delgado (patrón reutilizado de espirometría) */
+.promo-banner{background:#e64a19;color:#fff;padding:5px 0;text-align:center;font-weight:700;font-size:.8rem}
+.promo-banner__inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px}
+.promo-banner .price-old{text-decoration:line-through;opacity:.7;margin-left:4px;font-weight:600}
+.promo-banner .price-new{font-weight:800}
+.promo-banner a{background:#fff;color:#e64a19;padding:2px 10px;border-radius:999px;text-decoration:none;font-weight:800;font-size:.76rem;white-space:nowrap;transition:transform .2s;margin-left:6px}
+.promo-banner a:hover{transform:scale(1.05);color:#e64a19}
+@media(max-width:600px){.promo-banner{font-size:.72rem;padding:4px 0}.promo-banner a{font-size:.7rem;padding:1px 8px}}
 </style>
 <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
     <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:12px">
@@ -353,6 +361,14 @@
         <span class="promo-lang2" role="navigation" aria-label="Language"><a class="active" href="#" aria-current="true">ES</a><a href="/en/promociones/consulta-neumologia/" hreflang="en">EN</a></span>
     </div>
 </nav>
+
+<!-- Banner promoción (CTA principal de Ads) -->
+<div class="promo-banner">
+    <div class="container promo-banner__inner">
+        <span><strong>Consulta de neumología</strong> <span class="price-old">$1,800</span> <span class="price-new">$1,300</span></span>
+        <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20la%20promoci%C3%B3n%20de%20consulta%20de%20neumolog%C3%ADa%20a%20$1,300%20y%20quiero%20agendar%20mi%20cita." target="_blank" rel="noopener noreferrer" data-cta="promo-banner"><i class="bi bi-whatsapp"></i> Apartar</a>
+    </div>
+</div>
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
@@ -756,7 +772,6 @@ document.querySelectorAll('.testimonial-col').forEach(function(col, idx) {
 <!-- Sticky CTA (mobile) -->
 <div class="sticky-cta">
     <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20la%20promoci%C3%B3n%20de%20consulta%20de%20neumolog%C3%ADa%20a%20$1,300%20y%20quiero%20agendar%20mi%20cita."  target="_blank" rel="noopener noreferrer" class="sc-wa" data-cta="sticky-wa"><i class="bi bi-whatsapp"></i> WhatsApp</a>
-    <a href="tel:5591708334" class="sc-call" data-cta="sticky-call" style="background:var(--electric);color:#fff"><i class="bi bi-telephone-fill"></i> Llamar</a>
     <a href="#agendaModal" class="sc-cal" data-cta="sticky-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar</a>
 </div>
 
