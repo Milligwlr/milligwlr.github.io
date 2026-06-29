@@ -39,13 +39,13 @@
 
     <style id="lp-styles">
     :root{
-        --navy:#0a2540;
-        --electric:#0984e3;
-        --cyan:#00cec9;
+        --navy:#0a2e2c;
+        --electric:#0d9e84;
+        --cyan:#2dd4bf;
         --green:#1DA851;
         --green-dark:#128C7E;
-        --bg:#f7fbff;
-        --ink:#1a2238;
+        --bg:#f1fbf7;
+        --ink:#142b26;
         --muted:#5a6b7d;
         --ease:cubic-bezier(.22,.61,.36,1);
     }
@@ -55,61 +55,61 @@
     @media(min-width:992px){body{padding-bottom:0}}
 
     /* ============ HERO ============ */
-    .hero{position:relative;background:linear-gradient(135deg,#0a2540 0%,#0e3a6b 60%,#0984e3 100%);color:#fff;padding:56px 0 64px;overflow:hidden}
-    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(800px 400px at 80% 10%,rgba(0,206,201,.25),transparent 60%);pointer-events:none}
+    .hero{position:relative;background:linear-gradient(135deg,#0a2e2c 0%,#0c544c 60%,#0d9e84 100%);color:#fff;padding:56px 0 64px;overflow:hidden}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(800px 400px at 80% 10%,rgba(45,212,191,.25),transparent 60%);pointer-events:none}
     .hero__content{position:relative;z-index:2}
-    .hero__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,206,201,.18);border:1px solid rgba(0,206,201,.4);color:#7fffe6;padding:7px 16px;border-radius:999px;font-size:.82rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
-    .hero__badge .dot{width:8px;height:8px;background:#00cec9;border-radius:50%;box-shadow:0 0 12px #00cec9;animation:pulse 2s infinite}
+    .hero__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(45,212,191,.18);border:1px solid rgba(45,212,191,.4);color:#a5f3df;padding:7px 16px;border-radius:999px;font-size:.82rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
+    .hero__badge .dot{width:8px;height:8px;background:#2dd4bf;border-radius:50%;box-shadow:0 0 12px #2dd4bf;animation:pulse 2s infinite}
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
     section.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:18px;color:#fff}
-    section.hero h1 em{font-style:normal;background:linear-gradient(120deg,#00cec9,#7fffe6);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+    section.hero h1 em{font-style:normal;background:linear-gradient(120deg,#2dd4bf,#a5f3df);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
     .hero__sub{font-size:1.12rem;color:rgba(255,255,255,.85);margin-bottom:24px;max-width:560px;line-height:1.55}
     .hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:22px}
     .btn-wa,.btn-cal{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 26px;border-radius:14px;font-weight:800;font-size:1.05rem;text-decoration:none;transition:all .25s var(--ease);box-shadow:0 10px 30px -8px rgba(0,0,0,.4);min-width:220px}
     .btn-wa{background:var(--green);color:#fff}
     .btn-wa:hover{background:var(--green-dark);color:#fff;transform:translateY(-2px);box-shadow:0 14px 34px -8px rgba(29,168,81,.5)}
     .btn-cal{background:#fff;color:var(--navy)}
-    .btn-cal:hover{background:#e8f4ff;color:var(--navy);transform:translateY(-2px)}
+    .btn-cal:hover{background:#e6faf4;color:var(--navy);transform:translateY(-2px)}
     .hero__trust{display:flex;flex-wrap:wrap;gap:18px;font-size:.83rem;color:rgba(255,255,255,.7)}
     .hero__trust span{display:inline-flex;align-items:center;gap:6px}
-    .hero__trust i{color:#7fffe6}
+    .hero__trust i{color:#a5f3df}
 
     /* Card visual a la derecha */
     .hero__card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:24px;padding:28px;backdrop-filter:blur(12px);position:relative;z-index:2}
     .hero__card h3{color:#fff;font-weight:800;font-size:1.3rem;margin-bottom:6px}
-    .hero__card .subt{color:#7fffe6;font-size:.85rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
+    .hero__card .subt{color:#a5f3df;font-size:.85rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
     .hero__card-list{list-style:none;padding:0;margin:0;display:grid;gap:14px}
-    .hero__card-list li{display:flex;gap:12px;align-items:flex-start;color:#e8f4ff;font-size:.95rem}
-    .hero__card-list i{color:#00cec9;font-size:1.4rem;flex-shrink:0}
+    .hero__card-list li{display:flex;gap:12px;align-items:flex-start;color:#e6faf4;font-size:.95rem}
+    .hero__card-list i{color:#2dd4bf;font-size:1.4rem;flex-shrink:0}
     .hero__card-list strong{color:#fff;display:block;margin-bottom:2px}
     /* Grid visual de iconos (mas limpio que lista de bullets) */
     .hero__visual-grid{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .hero__visual-grid li{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:14px 8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;transition:all .25s var(--ease)}
-    .hero__visual-grid li:hover{background:rgba(255,255,255,.1);border-color:rgba(0,206,201,.4);transform:translateY(-2px)}
-    .hvg__ico{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,rgba(0,206,201,.25),rgba(9,132,227,.25));display:flex;align-items:center;justify-content:center;color:#7fffe6;font-size:1.25rem}
-    .hvg__label{font-size:.78rem;font-weight:700;color:#e8f4ff;line-height:1.25;letter-spacing:.2px}
+    .hero__visual-grid li:hover{background:rgba(255,255,255,.1);border-color:rgba(45,212,191,.4);transform:translateY(-2px)}
+    .hvg__ico{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,rgba(45,212,191,.25),rgba(13,158,132,.25));display:flex;align-items:center;justify-content:center;color:#a5f3df;font-size:1.25rem}
+    .hvg__label{font-size:.78rem;font-weight:700;color:#e6faf4;line-height:1.25;letter-spacing:.2px}
     .hero__card-foot{margin:14px 0 0;font-size:.72rem;color:rgba(255,255,255,.55);text-align:center;letter-spacing:.3px}
 
     /* Badge de precio promocional dentro del hero */
-    .hero__price{display:inline-flex;flex-direction:column;align-items:flex-start;gap:6px;background:linear-gradient(135deg,rgba(0,206,201,.15),rgba(9,132,227,.15));border:1px solid rgba(0,206,201,.35);border-radius:16px;padding:14px 20px;margin-bottom:22px;backdrop-filter:blur(8px);position:relative}
-    .hero__price::before{content:'PROMOCIÓN';position:absolute;top:-10px;left:16px;background:linear-gradient(135deg,#00cec9,#0984e3);color:#fff;font-size:.65rem;font-weight:800;letter-spacing:1px;padding:3px 10px;border-radius:999px;box-shadow:0 4px 12px -4px rgba(0,206,201,.6)}
-    .hero__price-label{font-size:.78rem;font-weight:700;color:#7fffe6;letter-spacing:.4px;text-transform:uppercase;margin-top:4px}
+    .hero__price{display:inline-flex;flex-direction:column;align-items:flex-start;gap:6px;background:linear-gradient(135deg,rgba(45,212,191,.15),rgba(13,158,132,.15));border:1px solid rgba(45,212,191,.35);border-radius:16px;padding:14px 20px;margin-bottom:22px;backdrop-filter:blur(8px);position:relative}
+    .hero__price::before{content:'PROMOCIÓN';position:absolute;top:-10px;left:16px;background:linear-gradient(135deg,#2dd4bf,#0d9e84);color:#fff;font-size:.65rem;font-weight:800;letter-spacing:1px;padding:3px 10px;border-radius:999px;box-shadow:0 4px 12px -4px rgba(45,212,191,.6)}
+    .hero__price-label{font-size:.78rem;font-weight:700;color:#a5f3df;letter-spacing:.4px;text-transform:uppercase;margin-top:4px}
     .hero__price-row{display:flex;align-items:baseline;gap:12px}
     .hero__price-old{font-size:1.2rem;color:rgba(255,255,255,.55);text-decoration:line-through;text-decoration-color:rgba(255,107,107,.85);text-decoration-thickness:2.5px;font-weight:600}
-    .hero__price-new{font-size:2.4rem;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1;text-shadow:0 2px 12px rgba(0,206,201,.35)}
+    .hero__price-new{font-size:2.4rem;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1;text-shadow:0 2px 12px rgba(45,212,191,.35)}
 
     /* Iconos de metodos de pago */
     .pay-row{display:flex;justify-content:center;align-items:center;gap:18px;margin:22px auto 0;flex-wrap:wrap}
     .pay-row__item{display:inline-flex;flex-direction:column;align-items:center;gap:6px;color:var(--muted);font-size:.72rem;font-weight:700;letter-spacing:.3px;text-transform:uppercase}
-    .pay-row__item i{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,rgba(9,132,227,.08),rgba(0,206,201,.08));border:1px solid rgba(9,132,227,.18);display:flex;align-items:center;justify-content:center;font-size:1.35rem;color:var(--electric);transition:all .25s var(--ease)}
-    .pay-row__item:hover i{transform:translateY(-2px);border-color:var(--electric);background:rgba(9,132,227,.12)}
+    .pay-row__item i{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,rgba(13,158,132,.08),rgba(45,212,191,.08));border:1px solid rgba(13,158,132,.18);display:flex;align-items:center;justify-content:center;font-size:1.35rem;color:var(--electric);transition:all .25s var(--ease)}
+    .pay-row__item:hover i{transform:translateY(-2px);border-color:var(--electric);background:rgba(13,158,132,.12)}
 
     /* CTA final con lucecitas premium (orbs + dot pattern) */
-    .cta-inline--lights{position:relative;overflow:hidden;background:linear-gradient(135deg,#061a30 0%,#0a2540 35%,#0e3a6b 70%,#0984e3 100%)}
+    .cta-inline--lights{position:relative;overflow:hidden;background:linear-gradient(135deg,#06231f 0%,#0a2e2c 35%,#0c544c 70%,#0d9e84 100%)}
     .cta-inline--lights::before{content:'';position:absolute;inset:-20%;background:
-        radial-gradient(600px 300px at 15% 20%,rgba(0,206,201,.30),transparent 60%),
-        radial-gradient(500px 280px at 85% 80%,rgba(9,132,227,.40),transparent 55%),
-        radial-gradient(400px 240px at 70% 15%,rgba(127,255,230,.20),transparent 60%);
+        radial-gradient(600px 300px at 15% 20%,rgba(45,212,191,.30),transparent 60%),
+        radial-gradient(500px 280px at 85% 80%,rgba(13,158,132,.40),transparent 55%),
+        radial-gradient(400px 240px at 70% 15%,rgba(165,243,223,.20),transparent 60%);
         animation:ctaOrbs 18s ease-in-out infinite;pointer-events:none;z-index:1}
     .cta-inline--lights::after{content:'';position:absolute;inset:0;background-image:
         radial-gradient(circle at 20% 35%,rgba(255,255,255,.06) 0,transparent 1.5px),
@@ -128,27 +128,27 @@
     /* ============ SECCIÓN GENÉRICA ============ */
     section.block{padding:64px 0}
     .block__head{text-align:center;max-width:720px;margin:0 auto 40px}
-    .block__kicker{display:inline-block;background:rgba(9,132,227,.1);color:var(--electric);padding:6px 14px;border-radius:999px;font-size:.78rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:14px}
+    .block__kicker{display:inline-block;background:rgba(13,158,132,.1);color:var(--electric);padding:6px 14px;border-radius:999px;font-size:.78rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:14px}
     .block__title{font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:800;letter-spacing:-.02em;color:var(--navy);margin-bottom:12px;line-height:1.2}
     .block__title em{font-style:normal;color:var(--electric)}
     .block__lead{font-size:1.05rem;color:var(--muted);line-height:1.65}
 
     /* ============ PASOS / QUÉ INCLUYE (premium) ============ */
-    .cond{background:linear-gradient(180deg,#fff 0%,#f0f7ff 100%);position:relative;overflow:hidden}
-    .cond::before{content:'';position:absolute;inset:0;background:radial-gradient(700px 360px at 50% -10%,rgba(0,206,201,.08),transparent 60%);pointer-events:none}
+    .cond{background:linear-gradient(180deg,#fff 0%,#ecfaf4 100%);position:relative;overflow:hidden}
+    .cond::before{content:'';position:absolute;inset:0;background:radial-gradient(700px 360px at 50% -10%,rgba(45,212,191,.08),transparent 60%);pointer-events:none}
     .cond .container{position:relative;z-index:1}
     .cond-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     @media(max-width:680px){.cond-grid{grid-template-columns:repeat(2,1fr);gap:12px}}
-    .cond-card{position:relative;background:linear-gradient(180deg,#fff 0%,#fafdff 100%);border:1px solid rgba(9,132,227,.12);border-radius:20px;padding:26px 18px 22px;text-align:center;transition:all .35s var(--ease);overflow:hidden;cursor:default;display:flex;flex-direction:column;align-items:center;gap:10px}
+    .cond-card{position:relative;background:linear-gradient(180deg,#fff 0%,#f6fdfa 100%);border:1px solid rgba(13,158,132,.12);border-radius:20px;padding:26px 18px 22px;text-align:center;transition:all .35s var(--ease);overflow:hidden;cursor:default;display:flex;flex-direction:column;align-items:center;gap:10px}
     .cond-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--electric),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
-    .cond-card::after{content:'';position:absolute;inset:-1px;border-radius:20px;background:linear-gradient(135deg,rgba(0,206,201,.18),rgba(9,132,227,.18));opacity:0;transition:opacity .35s var(--ease);z-index:-1;filter:blur(14px)}
-    .cond-card:hover{transform:translateY(-6px);border-color:rgba(0,206,201,.4);box-shadow:0 22px 44px -18px rgba(9,44,84,.22)}
+    .cond-card::after{content:'';position:absolute;inset:-1px;border-radius:20px;background:linear-gradient(135deg,rgba(45,212,191,.18),rgba(13,158,132,.18));opacity:0;transition:opacity .35s var(--ease);z-index:-1;filter:blur(14px)}
+    .cond-card:hover{transform:translateY(-6px);border-color:rgba(45,212,191,.4);box-shadow:0 22px 44px -18px rgba(8,44,40,.22)}
     .cond-card:hover::before{transform:scaleX(1)}
     .cond-card:hover::after{opacity:1}
-    .cond-card__icon{width:62px;height:62px;border-radius:18px;background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.7rem;margin-bottom:4px;box-shadow:0 10px 24px -10px rgba(9,132,227,.55);transition:transform .35s var(--ease)}
+    .cond-card__icon{width:62px;height:62px;border-radius:18px;background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.7rem;margin-bottom:4px;box-shadow:0 10px 24px -10px rgba(13,158,132,.55);transition:transform .35s var(--ease)}
     .cond-card:hover .cond-card__icon{transform:scale(1.08) rotate(-4deg)}
     .cond-card h3{font-size:1.05rem;font-weight:800;color:var(--navy);margin:0;letter-spacing:-.01em}
-    .cond-card__tag{display:inline-block;font-size:.68rem;font-weight:800;padding:4px 10px;border-radius:999px;background:rgba(9,132,227,.1);color:var(--electric);letter-spacing:.4px;text-transform:uppercase}
+    .cond-card__tag{display:inline-block;font-size:.68rem;font-weight:800;padding:4px 10px;border-radius:999px;background:rgba(13,158,132,.1);color:var(--electric);letter-spacing:.4px;text-transform:uppercase}
     .cond-card__tag--featured{background:linear-gradient(135deg,#ff7a45,#e64a19);color:#fff;box-shadow:0 6px 14px -4px rgba(230,74,25,.5)}
 
     /* Boton secundario elegante */
@@ -157,32 +157,32 @@
     .btn-ask-wa:hover{background:rgba(29,168,81,.14);border-color:var(--green);color:var(--green-dark);transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(29,168,81,.25)}
 
     /* ============ CTA INLINE ============ */
-    .cta-inline{background:linear-gradient(135deg,var(--navy) 0%,#0e3a6b 100%);color:#fff;padding:48px 32px;border-radius:24px;text-align:center;position:relative;overflow:hidden}
-    .cta-inline::before{content:'';position:absolute;inset:0;background:radial-gradient(500px 200px at 50% 0%,rgba(0,206,201,.25),transparent 60%);pointer-events:none}
+    .cta-inline{background:linear-gradient(135deg,var(--navy) 0%,#0c544c 100%);color:#fff;padding:48px 32px;border-radius:24px;text-align:center;position:relative;overflow:hidden}
+    .cta-inline::before{content:'';position:absolute;inset:0;background:radial-gradient(500px 200px at 50% 0%,rgba(45,212,191,.25),transparent 60%);pointer-events:none}
     .cta-inline > *{position:relative;z-index:2}
     .cta-inline h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:12px;letter-spacing:-.02em;color:#fff}
     .cta-inline p{color:rgba(255,255,255,.8);max-width:540px;margin:0 auto 26px;font-size:1.02rem}
     .cta-inline__btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
 
     /* ============ DOCTOR / E-E-A-T ============ */
-    .doc-card{background:#fff;border:1px solid rgba(9,132,227,.15);border-radius:22px;padding:32px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;box-shadow:0 12px 30px -16px rgba(9,44,84,.15)}
-    .doc-card__avatar{width:140px;height:140px;border-radius:50%;flex-shrink:0;border:3px solid #fff;box-shadow:0 8px 24px -8px rgba(9,44,84,.25);object-fit:cover}
+    .doc-card{background:#fff;border:1px solid rgba(13,158,132,.15);border-radius:22px;padding:32px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;box-shadow:0 12px 30px -16px rgba(8,44,40,.15)}
+    .doc-card__avatar{width:140px;height:140px;border-radius:50%;flex-shrink:0;border:3px solid #fff;box-shadow:0 8px 24px -8px rgba(8,44,40,.25);object-fit:cover}
     .doc-card h3{font-size:1.3rem;font-weight:800;color:var(--navy);margin-bottom:6px}
     .doc-card .role{color:var(--electric);font-weight:700;font-size:.95rem;margin-bottom:14px}
     .doc-card__bullets{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:8px}
     .doc-card__bullets li{display:flex;gap:10px;align-items:flex-start;font-size:.94rem;color:var(--ink);line-height:1.5}
     .doc-card__bullets i{color:var(--electric);font-size:1.05rem;flex-shrink:0;margin-top:3px}
     .doc-card__creds{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-    .doc-card__creds span{background:rgba(9,132,227,.08);color:var(--electric);padding:5px 12px;border-radius:999px;font-size:.78rem;font-weight:600}
+    .doc-card__creds span{background:rgba(13,158,132,.08);color:var(--electric);padding:5px 12px;border-radius:999px;font-size:.78rem;font-weight:600}
     @media(max-width:700px){.doc-card{grid-template-columns:1fr;text-align:left}.doc-card__avatar{margin:0 auto}.doc-card__creds{justify-content:flex-start}}
 
     /* ============ UBICACIÓN ============ */
     .loc{background:linear-gradient(180deg,#fff 0%,var(--bg) 100%)}
     .loc-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:stretch;max-width:1080px;margin:0 auto}
     @media(max-width:880px){.loc-grid{grid-template-columns:1fr}}
-    .loc-map{border-radius:20px;overflow:hidden;border:1px solid rgba(9,132,227,.15);box-shadow:0 14px 36px -16px rgba(9,44,84,.18);min-height:340px;background:#e8f4ff}
+    .loc-map{border-radius:20px;overflow:hidden;border:1px solid rgba(13,158,132,.15);box-shadow:0 14px 36px -16px rgba(8,44,40,.18);min-height:340px;background:#e6faf4}
     .loc-map iframe{display:block;width:100%;height:100%;min-height:340px;border:0}
-    .loc-info{background:#fff;border:1px solid rgba(9,132,227,.15);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:18px;box-shadow:0 10px 28px -16px rgba(9,44,84,.15)}
+    .loc-info{background:#fff;border:1px solid rgba(13,158,132,.15);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:18px;box-shadow:0 10px 28px -16px rgba(8,44,40,.15)}
     .loc-info h3{font-size:1.15rem;font-weight:800;color:var(--navy);margin:0 0 4px}
     .loc-info p,.loc-info address{font-size:.95rem;color:var(--muted);margin:0;font-style:normal;line-height:1.55}
     .loc-row{display:flex;gap:14px;align-items:flex-start}
@@ -190,7 +190,7 @@
     .loc-info .btn-wa{min-width:0;width:100%;margin-top:auto}
 
     /* ============ FAQ ============ */
-    .faq-item{background:#fff;border:1px solid rgba(9,132,227,.12);border-radius:14px;margin-bottom:12px;overflow:hidden}
+    .faq-item{background:#fff;border:1px solid rgba(13,158,132,.12);border-radius:14px;margin-bottom:12px;overflow:hidden}
     .faq-item summary{padding:18px 22px;font-weight:700;color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;font-size:1rem;gap:14px}
     .faq-item summary::-webkit-details-marker{display:none}
     .faq-item summary::after{content:'+';font-size:1.5rem;color:var(--electric);font-weight:300;transition:transform .25s;flex-shrink:0}
@@ -200,7 +200,7 @@
     .price-pill{display:inline-block;background:rgba(29,168,81,.12);color:var(--green-dark);padding:3px 10px;border-radius:999px;font-weight:800;font-size:.85rem;margin:0 2px}
 
     /* ============ FOOTER ============ */
-    .lp-footer{background:#0a1929;color:rgba(255,255,255,.55);padding:32px 0 22px;text-align:center;font-size:.83rem}
+    .lp-footer{background:#072420;color:rgba(255,255,255,.55);padding:32px 0 22px;text-align:center;font-size:.83rem}
 
     /* ============ STICKY MÓVIL ============ */
     .sticky-cta{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid rgba(0,0,0,.1);padding:10px 12px;padding-bottom:max(10px,env(safe-area-inset-bottom));display:flex;gap:8px;z-index:90;box-shadow:0 -4px 20px rgba(0,0,0,.08)}
@@ -217,8 +217,8 @@
 
     /* ===== Mejoras CRO: confianza en hero, resenas reales, micro-interacciones ===== */
     .hero__creds{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}
-    .hero__cred{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#e8f4ff;padding:7px 13px;border-radius:999px;font-size:.82rem;font-weight:700;text-decoration:none}
-    .hero__cred i{color:#7fffe6}
+    .hero__cred{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#e6faf4;padding:7px 13px;border-radius:999px;font-size:.82rem;font-weight:700;text-decoration:none}
+    .hero__cred i{color:#a5f3df}
     .hero__cred .stars{color:#f5b400;letter-spacing:1px;font-size:.95rem}
     a.hero__cred:hover{background:rgba(255,255,255,.2);color:#fff}
     .btn-wa:active,.btn-cal:active,.sticky-cta a:active{transform:scale(.97)}
@@ -227,11 +227,11 @@
     @media(prefers-reduced-motion:reduce){.reveal,.reveal.in{opacity:1!important;transform:none!important;transition:none!important}}
 
     /* CTA: lucecitas (sparkle-field) + linea luminosa */
-    .cta-inline:not(.cta-inline--lights)::before{background:radial-gradient(600px 240px at 50% 0%,rgba(0,206,201,.28),transparent 60%);animation:none}
-    .cta-inline:not(.cta-inline--lights)::after{content:'';position:absolute;top:0;left:12%;right:12%;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 16px rgba(0,206,201,.75);z-index:3}
+    .cta-inline:not(.cta-inline--lights)::before{background:radial-gradient(600px 240px at 50% 0%,rgba(45,212,191,.28),transparent 60%);animation:none}
+    .cta-inline:not(.cta-inline--lights)::after{content:'';position:absolute;top:0;left:12%;right:12%;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 16px rgba(45,212,191,.75);z-index:3}
     .cta-inline .sparkle-field{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;border-radius:24px}
-    .cta-inline .sparkle-field span{position:absolute;border-radius:50%;background:rgba(190,225,255,.95);opacity:0;animation:cta-twinkle var(--sd,3s) ease-in-out var(--sl,0s) infinite}
-    .cta-inline .sparkle-field span.glow{box-shadow:0 0 9px 3px rgba(116,185,255,.4)}
+    .cta-inline .sparkle-field span{position:absolute;border-radius:50%;background:rgba(190,245,225,.95);opacity:0;animation:cta-twinkle var(--sd,3s) ease-in-out var(--sl,0s) infinite}
+    .cta-inline .sparkle-field span.glow{box-shadow:0 0 9px 3px rgba(116,225,200,.4)}
     @keyframes cta-twinkle{0%,100%{opacity:0}50%{opacity:.95}}
     @media(prefers-reduced-motion:reduce){.cta-inline .sparkle-field span{animation:none;opacity:.45}}
 
@@ -242,22 +242,22 @@
     .cta-inline{padding:40px 28px}
 
     /* ===== Sección de reseñas reales de Google (copiada del home) ===== */
-    :root{ --cloud:#f0f6ff; --cloud-alt:#f8faff; --white:#ffffff; --text:#0f1d30; --text-muted:#64748b; --royal:#1e3799; --shadow-sm:0 2px 14px rgba(10,22,40,.07); --shadow-md:0 6px 32px rgba(10,22,40,.09); --sans:'Plus Jakarta Sans',system-ui,sans-serif; }
-    .gbp-rating-widget{display:inline-flex;align-items:center;gap:14px;padding:14px 24px;background:linear-gradient(135deg,#fff 0%,var(--cloud-alt) 100%);border:1px solid rgba(9,132,227,.14);border-radius:100px;box-shadow:var(--shadow-sm);font-family:var(--sans);text-decoration:none;color:var(--text);transition:all .3s var(--ease)}
+    :root{ --cloud:#ecfaf4; --cloud-alt:#f2fcf8; --white:#ffffff; --text:#0e2a24; --text-muted:#64748b; --royal:#0c6f5e; --shadow-sm:0 2px 14px rgba(10,30,26,.07); --shadow-md:0 6px 32px rgba(10,30,26,.09); --sans:'Plus Jakarta Sans',system-ui,sans-serif; }
+    .gbp-rating-widget{display:inline-flex;align-items:center;gap:14px;padding:14px 24px;background:linear-gradient(135deg,#fff 0%,var(--cloud-alt) 100%);border:1px solid rgba(13,158,132,.14);border-radius:100px;box-shadow:var(--shadow-sm);font-family:var(--sans);text-decoration:none;color:var(--text);transition:all .3s var(--ease)}
     .gbp-rating-widget:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);color:var(--text)}
     .gbp-rating-widget__num{font-size:1.5rem;font-weight:800;color:var(--navy);line-height:1}
     .gbp-rating-widget__stars{color:#fbbc04;font-size:1rem;letter-spacing:1px;line-height:1}
     .gbp-rating-widget__meta{display:flex;flex-direction:column;line-height:1.2}
     .gbp-rating-widget__source{font-size:.72rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em}
     .gbp-rating-widget__count{font-size:.82rem;font-weight:600;color:var(--navy)}
-    .testimonial-source-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(9,132,227,.07);border:1px solid rgba(9,132,227,.16);border-radius:100px;padding:6px 18px;font-size:.72rem;font-weight:700;color:var(--electric)}
+    .testimonial-source-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(13,158,132,.07);border:1px solid rgba(13,158,132,.16);border-radius:100px;padding:6px 18px;font-size:.72rem;font-weight:700;color:var(--electric)}
     .testimonial-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;height:520px;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 8%,black 92%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,black 8%,black 92%,transparent 100%)}
     .testimonial-col{display:flex;flex-direction:column;gap:16px;will-change:transform;animation:testimonial-scroll-up var(--t-dur,60s) linear infinite}
     .testimonial-col--down{animation-direction:reverse}
     .testimonial-col:hover{animation-play-state:paused}
     @keyframes testimonial-scroll-up{0%{transform:translateY(0)}100%{transform:translateY(calc(-50% - var(--tgap,8px)))}}
-    .testi-card{background:var(--white);border:1px solid rgba(0,0,0,.06);border-radius:18px;padding:24px;box-shadow:0 2px 12px rgba(10,22,40,.04);transition:all .4s var(--ease);flex-shrink:0}
-    .testi-card:hover{box-shadow:0 12px 40px rgba(10,22,40,.09);border-color:rgba(9,132,227,.15)}
+    .testi-card{background:var(--white);border:1px solid rgba(0,0,0,.06);border-radius:18px;padding:24px;box-shadow:0 2px 12px rgba(10,30,26,.04);transition:all .4s var(--ease);flex-shrink:0}
+    .testi-card:hover{box-shadow:0 12px 40px rgba(10,30,26,.09);border-color:rgba(13,158,132,.15)}
     .testi-stars{display:flex;gap:2px;margin-bottom:12px}
     .testi-stars i{color:#f59e0b;font-size:.82rem}
     .testi-text{font-size:.88rem;line-height:1.7;color:var(--text);font-style:italic;margin:0 0 16px}
@@ -273,10 +273,10 @@
     @media(max-width:560px){.qf-compare{grid-template-columns:1fr}}
     .qf-col{border-radius:18px;padding:24px 20px;text-align:center;border:1px solid;display:flex;flex-direction:column;gap:6px}
     .qf-col--solo{background:#fff;border-color:rgba(230,74,25,.22)}
-    .qf-col--plan{background:linear-gradient(160deg,#0a2540 0%,#0e3a6b 100%);border-color:transparent;color:#fff;box-shadow:0 16px 36px -18px rgba(9,44,84,.35)}
+    .qf-col--plan{background:linear-gradient(160deg,#0a2e2c 0%,#0c544c 100%);border-color:transparent;color:#fff;box-shadow:0 16px 36px -18px rgba(8,44,40,.35)}
     .qf-col__lbl{font-size:.72rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase}
     .qf-col--solo .qf-col__lbl{color:#e64a19}
-    .qf-col--plan .qf-col__lbl{color:#7fffe6}
+    .qf-col--plan .qf-col__lbl{color:#a5f3df}
     .qf-col__num{font-size:2.6rem;font-weight:800;line-height:1;letter-spacing:-.02em}
     .qf-col--solo .qf-col__num{color:var(--navy)}
     .qf-col--plan .qf-col__num{color:#fff}
@@ -286,8 +286,8 @@
     .qf-src{text-align:center;font-size:.76rem;color:var(--muted);margin:16px auto 0;max-width:600px;line-height:1.5}
     .qf-tl{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:960px;margin:0 auto}
     @media(max-width:680px){.qf-tl{grid-template-columns:1fr 1fr}}
-    .qf-tl__item{background:#fff;border:1px solid rgba(9,132,227,.12);border-radius:16px;padding:20px 16px;text-align:center;box-shadow:0 6px 18px -14px rgba(9,44,84,.2)}
-    .qf-tl__t{display:inline-block;font-size:.72rem;font-weight:800;color:var(--electric);background:rgba(9,132,227,.1);padding:4px 12px;border-radius:999px;margin-bottom:10px}
+    .qf-tl__item{background:#fff;border:1px solid rgba(13,158,132,.12);border-radius:16px;padding:20px 16px;text-align:center;box-shadow:0 6px 18px -14px rgba(8,44,40,.2)}
+    .qf-tl__t{display:inline-block;font-size:.72rem;font-weight:800;color:var(--electric);background:rgba(13,158,132,.1);padding:4px 12px;border-radius:999px;margin-bottom:10px}
     .qf-tl__ico{font-size:1.5rem;color:var(--electric);margin-bottom:6px}
     .qf-tl__txt{font-size:.84rem;color:var(--ink);line-height:1.45}
     </style>
@@ -358,6 +358,48 @@
     </div>
 </section>
 
+<!-- ============ QUÉ GANA TU CUERPO (empieza el mismo día) ============ -->
+<section class="block cond">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">Empieza el mismo día</span>
+            <h2 class="block__title">Lo que gana tu cuerpo <em>desde que lo dejas</em></h2>
+            <p class="block__lead">El beneficio arranca en las primeras horas, sin importar cuántos años lleves fumando.</p>
+        </div>
+        <div class="qf-tl">
+            <div class="qf-tl__item"><div class="qf-tl__t">20 minutos</div><div class="qf-tl__ico"><i class="bi bi-heart-pulse-fill"></i></div><div class="qf-tl__txt">Tu pulso y tu presión empiezan a normalizarse.</div></div>
+            <div class="qf-tl__item"><div class="qf-tl__t">24–48 horas</div><div class="qf-tl__ico"><i class="bi bi-wind"></i></div><div class="qf-tl__txt">El monóxido de carbono sale de tu sangre; regresan el gusto y el olfato.</div></div>
+            <div class="qf-tl__item"><div class="qf-tl__t">2–12 semanas</div><div class="qf-tl__ico"><i class="bi bi-lungs-fill"></i></div><div class="qf-tl__txt">Mejora tu circulación y respiras con menos esfuerzo.</div></div>
+            <div class="qf-tl__item"><div class="qf-tl__t">1 año</div><div class="qf-tl__ico"><i class="bi bi-heart-fill"></i></div><div class="qf-tl__txt">Tu riesgo de enfermedad del corazón baja cerca de la mitad.</div></div>
+        </div>
+        <p class="qf-src">Fuente: Centros para el Control de Enfermedades (CDC) y Cirujano General de EE. UU.</p>
+    </div>
+</section>
+
+<!-- ============ POR QUÉ SOLO NO FUNCIONA (el dato que lo cambia todo) ============ -->
+<section class="block">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">El dato que lo cambia todo</span>
+            <h2 class="block__title">Dejarlo <em>solo</em> casi nunca funciona</h2>
+            <p class="block__lead">No es que te falte voluntad: la nicotina genera dependencia física. Por eso el acompañamiento médico cambia tanto las probabilidades.</p>
+        </div>
+        <div class="qf-compare">
+            <div class="qf-col qf-col--solo">
+                <div class="qf-col__lbl">Intentarlo solo</div>
+                <div class="qf-col__num">~7%</div>
+                <div class="qf-col__desc">sigue sin fumar al año cuando lo intenta sin apoyo médico ni plan.</div>
+            </div>
+            <div class="qf-col qf-col--plan">
+                <div class="qf-col__lbl">Con plan médico</div>
+                <div class="qf-col__num">3–5×</div>
+                <div class="qf-col__desc">más probabilidades de lograrlo, combinando plan, manejo del antojo y seguimiento.</div>
+            </div>
+        </div>
+        <p class="qf-src">Cifras de referencia de guías de cesación tabáquica (ATS) y de la Sociedad Mexicana de Neumología y Cirugía de Tórax.</p>
+    </div>
+</section>
+
 <!-- ============ PRECIOS (cerca del Hero por intención de búsqueda) ============ -->
 <section class="pricing" aria-labelledby="precios-title" style="background:#fff;padding:48px 0 24px">
     <div class="container">
@@ -366,20 +408,20 @@
             <h2 class="block__title" id="precios-title">Empieza por una <em>valoración</em> clara</h2>
         </div>
         <div class="pricing-hero" style="max-width:760px;margin:0 auto">
-            <div class="pricing-hero__card" style="position:relative;background:linear-gradient(160deg,#0a2540 0%,#0e3a6b 60%,#0984e3 130%);color:#fff;border-radius:24px;padding:36px 32px 30px;box-shadow:0 24px 60px -24px rgba(9,44,84,.5);display:flex;flex-direction:column;align-items:center;gap:18px;overflow:hidden">
-                <span class="pricing-hero__tag" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#00cec9,#0984e3);color:#fff;font-size:.78rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:7px 16px;border-radius:999px;box-shadow:0 6px 18px -4px rgba(0,206,201,.5)"><i class="bi bi-stars"></i> Promoción de internet</span>
+            <div class="pricing-hero__card" style="position:relative;background:linear-gradient(160deg,#0a2e2c 0%,#0c544c 60%,#0d9e84 130%);color:#fff;border-radius:24px;padding:36px 32px 30px;box-shadow:0 24px 60px -24px rgba(8,44,40,.5);display:flex;flex-direction:column;align-items:center;gap:18px;overflow:hidden">
+                <span class="pricing-hero__tag" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#2dd4bf,#0d9e84);color:#fff;font-size:.78rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:7px 16px;border-radius:999px;box-shadow:0 6px 18px -4px rgba(45,212,191,.5)"><i class="bi bi-stars"></i> Promoción de internet</span>
                 <div class="pricing-hero__row" style="display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;width:100%">
                     <div class="pricing-hero__old" style="display:flex;flex-direction:column;align-items:center;gap:4px">
                         <span class="pricing-hero__old-label" style="font-size:.72rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:rgba(255,255,255,.55)">Precio normal</span>
                         <span class="pricing-hero__old-amount" style="font-size:1.6rem;font-weight:700;color:rgba(255,255,255,.55);text-decoration:line-through;text-decoration-color:rgba(255,107,107,.85);text-decoration-thickness:3px;letter-spacing:-.01em">$1,800</span>
                     </div>
-                    <div class="pricing-hero__arrow" style="font-size:1.6rem;color:#7fffe6;opacity:.7"><i class="bi bi-arrow-right"></i></div>
+                    <div class="pricing-hero__arrow" style="font-size:1.6rem;color:#a5f3df;opacity:.7"><i class="bi bi-arrow-right"></i></div>
                     <div class="pricing-hero__new" style="display:flex;flex-direction:column;align-items:center;gap:4px">
-                        <span class="pricing-hero__new-label" style="font-size:.72rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#7fffe6">Pagas hoy</span>
-                        <span class="pricing-hero__new-amount" style="font-size:3.2rem;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1;text-shadow:0 4px 20px rgba(0,206,201,.4)"><span class="cur" style="font-size:1.4rem;font-weight:700;vertical-align:top;margin-right:2px;opacity:.8">$</span>1,300</span>
+                        <span class="pricing-hero__new-label" style="font-size:.72rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#a5f3df">Pagas hoy</span>
+                        <span class="pricing-hero__new-amount" style="font-size:3.2rem;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1;text-shadow:0 4px 20px rgba(45,212,191,.4)"><span class="cur" style="font-size:1.4rem;font-weight:700;vertical-align:top;margin-right:2px;opacity:.8">$</span>1,300</span>
                     </div>
                 </div>
-                <p class="pricing-hero__desc pricing-hero__desc--cta" style="font-size:1.05rem;font-weight:700;color:#7fffe6;background:rgba(0,206,201,.12);border:1px solid rgba(0,206,201,.25);border-radius:12px;padding:12px 20px;display:inline-flex;align-items:center;gap:8px;text-align:center"><i class="bi bi-whatsapp"></i> Solo menciona que llegaste por internet al escribirnos.</p>
+                <p class="pricing-hero__desc pricing-hero__desc--cta" style="font-size:1.05rem;font-weight:700;color:#a5f3df;background:rgba(45,212,191,.12);border:1px solid rgba(45,212,191,.25);border-radius:12px;padding:12px 20px;display:inline-flex;align-items:center;gap:8px;text-align:center"><i class="bi bi-whatsapp"></i> Solo menciona que llegaste por internet al escribirnos.</p>
                 <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20la%20promoci%C3%B3n%20para%20dejar%20de%20fumar%20a%20$1,300%20y%20quiero%20agendar%20mi%20valoraci%C3%B3n."  target="_blank" rel="noopener noreferrer" class="price-card__cta" data-cta="price-wa" style="align-self:center;padding:14px 28px;font-size:1rem;margin-top:6px;display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:10px;font-weight:800;text-decoration:none;background:var(--green);color:#fff"><i class="bi bi-whatsapp"></i> Asegurar mi cita a $1,300</a>
             </div>
         </div>
@@ -470,48 +512,6 @@
     </div>
 </section>
 
-<!-- ============ POR QUÉ SOLO NO FUNCIONA ============ -->
-<section class="block">
-    <div class="container">
-        <div class="block__head">
-            <span class="block__kicker">El dato que lo cambia todo</span>
-            <h2 class="block__title">Dejarlo <em>solo</em> casi nunca funciona</h2>
-            <p class="block__lead">No es que te falte voluntad: la nicotina genera dependencia física. Por eso el acompañamiento médico cambia tanto las probabilidades.</p>
-        </div>
-        <div class="qf-compare">
-            <div class="qf-col qf-col--solo">
-                <div class="qf-col__lbl">Intentarlo solo</div>
-                <div class="qf-col__num">~7%</div>
-                <div class="qf-col__desc">sigue sin fumar al año cuando lo intenta sin apoyo médico ni plan.</div>
-            </div>
-            <div class="qf-col qf-col--plan">
-                <div class="qf-col__lbl">Con plan médico</div>
-                <div class="qf-col__num">3–5×</div>
-                <div class="qf-col__desc">más probabilidades de lograrlo, combinando plan, manejo del antojo y seguimiento.</div>
-            </div>
-        </div>
-        <p class="qf-src">Cifras de referencia de guías de cesación tabáquica (ATS) y de la Sociedad Mexicana de Neumología y Cirugía de Tórax.</p>
-    </div>
-</section>
-
-<!-- ============ QUÉ GANA TU CUERPO ============ -->
-<section class="block cond">
-    <div class="container">
-        <div class="block__head">
-            <span class="block__kicker">Empieza el mismo día</span>
-            <h2 class="block__title">Lo que gana tu cuerpo <em>desde que lo dejas</em></h2>
-            <p class="block__lead">El beneficio arranca en las primeras horas, sin importar cuántos años lleves fumando.</p>
-        </div>
-        <div class="qf-tl">
-            <div class="qf-tl__item"><div class="qf-tl__t">20 minutos</div><div class="qf-tl__ico"><i class="bi bi-heart-pulse-fill"></i></div><div class="qf-tl__txt">Tu pulso y tu presión empiezan a normalizarse.</div></div>
-            <div class="qf-tl__item"><div class="qf-tl__t">24–48 horas</div><div class="qf-tl__ico"><i class="bi bi-wind"></i></div><div class="qf-tl__txt">El monóxido de carbono sale de tu sangre; regresan el gusto y el olfato.</div></div>
-            <div class="qf-tl__item"><div class="qf-tl__t">2–12 semanas</div><div class="qf-tl__ico"><i class="bi bi-lungs-fill"></i></div><div class="qf-tl__txt">Mejora tu circulación y respiras con menos esfuerzo.</div></div>
-            <div class="qf-tl__item"><div class="qf-tl__t">1 año</div><div class="qf-tl__ico"><i class="bi bi-heart-fill"></i></div><div class="qf-tl__txt">Tu riesgo de enfermedad del corazón baja cerca de la mitad.</div></div>
-        </div>
-        <p class="qf-src">Fuente: Centros para el Control de Enfermedades (CDC) y Cirujano General de EE. UU.</p>
-    </div>
-</section>
-
 <!-- ============ UBICACIÓN ============ -->
 <section class="block loc">
     <div class="container">
@@ -599,7 +599,7 @@
             </div>
         </div>
         <div class="text-center mt-4">
-            <a href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;color:var(--electric);font-weight:600;font-size:.92rem;text-decoration:none;border-bottom:1px solid rgba(9,132,227,.3);padding-bottom:2px">
+            <a href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;color:var(--electric);font-weight:600;font-size:.92rem;text-decoration:none;border-bottom:1px solid rgba(13,158,132,.3);padding-bottom:2px">
                 <i class="bi bi-google" aria-hidden="true"></i> Ver todas las reseñas en Google
             </a>
         </div>
