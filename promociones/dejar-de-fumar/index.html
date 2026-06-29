@@ -267,6 +267,29 @@
     .testi-badge{font-size:.68rem;color:var(--text-muted);margin:1px 0 0}
     @media(max-width:992px){.testimonial-columns{height:440px}}
     @media(max-width:640px){.testimonial-columns{grid-template-columns:1fr 1fr;gap:10px;height:380px}.testimonial-columns > :nth-child(3){display:none}.testimonial-col{gap:10px}.testi-card{padding:14px;border-radius:14px}.testi-text{font-size:.8rem;line-height:1.6}.testi-name{font-size:.75rem}.testi-badge{font-size:.62rem}.testi-avatar{width:32px;height:32px;font-size:.8rem}}
+
+    /* ===== Específico cesación: solo-vs-plan + qué gana tu cuerpo ===== */
+    .qf-compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:720px;margin:0 auto}
+    @media(max-width:560px){.qf-compare{grid-template-columns:1fr}}
+    .qf-col{border-radius:18px;padding:24px 20px;text-align:center;border:1px solid;display:flex;flex-direction:column;gap:6px}
+    .qf-col--solo{background:#fff;border-color:rgba(230,74,25,.22)}
+    .qf-col--plan{background:linear-gradient(160deg,#0a2540 0%,#0e3a6b 100%);border-color:transparent;color:#fff;box-shadow:0 16px 36px -18px rgba(9,44,84,.35)}
+    .qf-col__lbl{font-size:.72rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase}
+    .qf-col--solo .qf-col__lbl{color:#e64a19}
+    .qf-col--plan .qf-col__lbl{color:#7fffe6}
+    .qf-col__num{font-size:2.6rem;font-weight:800;line-height:1;letter-spacing:-.02em}
+    .qf-col--solo .qf-col__num{color:var(--navy)}
+    .qf-col--plan .qf-col__num{color:#fff}
+    .qf-col__desc{font-size:.85rem;line-height:1.5}
+    .qf-col--solo .qf-col__desc{color:var(--muted)}
+    .qf-col--plan .qf-col__desc{color:rgba(255,255,255,.82)}
+    .qf-src{text-align:center;font-size:.76rem;color:var(--muted);margin:16px auto 0;max-width:600px;line-height:1.5}
+    .qf-tl{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:960px;margin:0 auto}
+    @media(max-width:680px){.qf-tl{grid-template-columns:1fr 1fr}}
+    .qf-tl__item{background:#fff;border:1px solid rgba(9,132,227,.12);border-radius:16px;padding:20px 16px;text-align:center;box-shadow:0 6px 18px -14px rgba(9,44,84,.2)}
+    .qf-tl__t{display:inline-block;font-size:.72rem;font-weight:800;color:var(--electric);background:rgba(9,132,227,.1);padding:4px 12px;border-radius:999px;margin-bottom:10px}
+    .qf-tl__ico{font-size:1.5rem;color:var(--electric);margin-bottom:6px}
+    .qf-tl__txt{font-size:.84rem;color:var(--ink);line-height:1.45}
     </style>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <link rel="stylesheet" href="/assets/agenda-modal.css">
@@ -302,7 +325,7 @@
             <div class="col-lg-7 hero__content">
                 <div class="hero__badge"><span class="dot"></span> Dejar de fumar · CDMX</div>
                 <h1>Deja de fumar con apoyo médico: <em>$1,300</em></h1>
-                <p class="hero__sub">No es fuerza de voluntad: es un plan. Valoración integral, plan personalizado y acompañamiento, con neumólogo egresado del INER.</p>
+                <p class="hero__sub">Intentar solo falla casi siempre. Aquí defines una fecha para dejarlo, manejamos el antojo y la abstinencia con plan médico, y te acompañamos para que esta vez sí lo logres. Con neumólogo egresado del INER.</p>
                 <div class="hero__cta">
                     <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20la%20promoci%C3%B3n%20para%20dejar%20de%20fumar%20a%20$1,300%20y%20quiero%20agendar%20mi%20valoraci%C3%B3n."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="hero-wa">
                         <i class="bi bi-whatsapp"></i> Asegurar mi cita a $1,300
@@ -321,11 +344,11 @@
                 <div class="hero__card">
                     <div class="subt">Tu valoración incluye</div>
                     <ul class="hero__visual-grid">
-                        <li><span class="hvg__ico"><i class="bi bi-clipboard2-pulse-fill"></i></span><span class="hvg__label">Valoración integral</span></li>
-                        <li><span class="hvg__ico"><i class="bi bi-lungs-fill"></i></span><span class="hvg__label">Medimos tu pulmón hoy</span></li>
-                        <li><span class="hvg__ico"><i class="bi bi-bullseye"></i></span><span class="hvg__label">Plan personalizado</span></li>
-                        <li><span class="hvg__ico"><i class="bi bi-heart-pulse-fill"></i></span><span class="hvg__label">Manejo del antojo</span></li>
-                        <li><span class="hvg__ico"><i class="bi bi-calendar-heart-fill"></i></span><span class="hvg__label">Acompañamiento</span></li>
+                        <li><span class="hvg__ico"><i class="bi bi-card-checklist"></i></span><span class="hvg__label">Test de dependencia</span></li>
+                        <li><span class="hvg__ico"><i class="bi bi-lungs-fill"></i></span><span class="hvg__label">Medimos tu pulmón</span></li>
+                        <li><span class="hvg__ico"><i class="bi bi-calendar-check-fill"></i></span><span class="hvg__label">Tu fecha para dejarlo</span></li>
+                        <li><span class="hvg__ico"><i class="bi bi-heart-pulse-fill"></i></span><span class="hvg__label">Plan contra el antojo</span></li>
+                        <li><span class="hvg__ico"><i class="bi bi-shield-fill-check"></i></span><span class="hvg__label">Manejo de la abstinencia</span></li>
                         <li><span class="hvg__ico"><i class="bi bi-emoji-smile-fill"></i></span><span class="hvg__label">Sin juicios si recaes</span></li>
                     </ul>
                     <p class="hero__card-foot">Atención solo para adultos · Previa cita</p>
@@ -403,40 +426,40 @@
 <section class="block cond">
     <div class="container">
         <div class="block__head">
-            <span class="block__kicker">Cómo te acompañamos</span>
-            <h2 class="block__title">Un programa <em>pensado para que esta vez sí</em></h2>
-            <p class="block__lead">Intentar solo falla la mayoría de las veces. Con valoración, plan y seguimiento médico, las probabilidades de lograrlo se multiplican.</p>
+            <span class="block__kicker">El programa, paso a paso</span>
+            <h2 class="block__title">Un método para dejar de fumar, <em>no "echarle ganas"</em></h2>
+            <p class="block__lead">La nicotina genera dependencia: por eso el abordaje es médico. Esto es lo que hacemos contigo, en orden.</p>
         </div>
         <div class="cond-grid" style="max-width:1080px;margin:0 auto">
             <article class="cond-card">
-                <div class="cond-card__icon"><i class="bi bi-clipboard2-pulse"></i></div>
-                <h3>Valoración integral</h3>
-                <span class="cond-card__tag">Punto de partida</span>
+                <div class="cond-card__icon"><i class="bi bi-card-checklist"></i></div>
+                <h3>Valoración y test de dependencia</h3>
+                <span class="cond-card__tag">Paso 1</span>
             </article>
             <article class="cond-card">
-                <div class="cond-card__icon"><i class="bi bi-lungs"></i></div>
-                <h3>Medimos tu pulmón</h3>
-                <span class="cond-card__tag">Hoy vs. después</span>
-            </article>
-            <article class="cond-card">
-                <div class="cond-card__icon"><i class="bi bi-bullseye"></i></div>
-                <h3>Plan personalizado</h3>
-                <span class="cond-card__tag">No receta genérica</span>
+                <div class="cond-card__icon"><i class="bi bi-calendar-check"></i></div>
+                <h3>Tu fecha para dejar de fumar</h3>
+                <span class="cond-card__tag">Paso 2</span>
             </article>
             <article class="cond-card">
                 <div class="cond-card__icon"><i class="bi bi-heart-pulse"></i></div>
-                <h3>Manejo del antojo</h3>
-                <span class="cond-card__tag">Abordaje médico</span>
+                <h3>Plan contra el antojo y la abstinencia</h3>
+                <span class="cond-card__tag">Paso 3</span>
+            </article>
+            <article class="cond-card">
+                <div class="cond-card__icon"><i class="bi bi-cup-hot"></i></div>
+                <h3>Estrategia para tus detonantes</h3>
+                <span class="cond-card__tag">Café · estrés · social</span>
             </article>
             <article class="cond-card">
                 <div class="cond-card__icon"><i class="bi bi-calendar-heart"></i></div>
-                <h3>Seguimiento</h3>
+                <h3>Seguimiento mes a mes</h3>
                 <span class="cond-card__tag cond-card__tag--featured">Acompañamiento</span>
             </article>
             <article class="cond-card">
-                <div class="cond-card__icon"><i class="bi bi-emoji-smile"></i></div>
-                <h3>Sin culpa</h3>
-                <span class="cond-card__tag">Recaída sin castigo</span>
+                <div class="cond-card__icon"><i class="bi bi-arrow-repeat"></i></div>
+                <h3>Recaída sin culpa</h3>
+                <span class="cond-card__tag">Ajustamos y seguimos</span>
             </article>
         </div>
         <div style="text-align:center;margin-top:36px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:center">
@@ -444,6 +467,48 @@
                 <i class="bi bi-whatsapp"></i> Tengo una pregunta antes de agendar
             </a>
         </div>
+    </div>
+</section>
+
+<!-- ============ POR QUÉ SOLO NO FUNCIONA ============ -->
+<section class="block">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">El dato que lo cambia todo</span>
+            <h2 class="block__title">Dejarlo <em>solo</em> casi nunca funciona</h2>
+            <p class="block__lead">No es que te falte voluntad: la nicotina genera dependencia física. Por eso el acompañamiento médico cambia tanto las probabilidades.</p>
+        </div>
+        <div class="qf-compare">
+            <div class="qf-col qf-col--solo">
+                <div class="qf-col__lbl">Intentarlo solo</div>
+                <div class="qf-col__num">~7%</div>
+                <div class="qf-col__desc">sigue sin fumar al año cuando lo intenta sin apoyo médico ni plan.</div>
+            </div>
+            <div class="qf-col qf-col--plan">
+                <div class="qf-col__lbl">Con plan médico</div>
+                <div class="qf-col__num">3–5×</div>
+                <div class="qf-col__desc">más probabilidades de lograrlo, combinando plan, manejo del antojo y seguimiento.</div>
+            </div>
+        </div>
+        <p class="qf-src">Cifras de referencia de guías de cesación tabáquica (ATS) y de la Sociedad Mexicana de Neumología y Cirugía de Tórax.</p>
+    </div>
+</section>
+
+<!-- ============ QUÉ GANA TU CUERPO ============ -->
+<section class="block cond">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">Empieza el mismo día</span>
+            <h2 class="block__title">Lo que gana tu cuerpo <em>desde que lo dejas</em></h2>
+            <p class="block__lead">El beneficio arranca en las primeras horas, sin importar cuántos años lleves fumando.</p>
+        </div>
+        <div class="qf-tl">
+            <div class="qf-tl__item"><div class="qf-tl__t">20 minutos</div><div class="qf-tl__ico"><i class="bi bi-heart-pulse-fill"></i></div><div class="qf-tl__txt">Tu pulso y tu presión empiezan a normalizarse.</div></div>
+            <div class="qf-tl__item"><div class="qf-tl__t">24–48 horas</div><div class="qf-tl__ico"><i class="bi bi-wind"></i></div><div class="qf-tl__txt">El monóxido de carbono sale de tu sangre; regresan el gusto y el olfato.</div></div>
+            <div class="qf-tl__item"><div class="qf-tl__t">2–12 semanas</div><div class="qf-tl__ico"><i class="bi bi-lungs-fill"></i></div><div class="qf-tl__txt">Mejora tu circulación y respiras con menos esfuerzo.</div></div>
+            <div class="qf-tl__item"><div class="qf-tl__t">1 año</div><div class="qf-tl__ico"><i class="bi bi-heart-fill"></i></div><div class="qf-tl__txt">Tu riesgo de enfermedad del corazón baja cerca de la mitad.</div></div>
+        </div>
+        <p class="qf-src">Fuente: Centros para el Control de Enfermedades (CDC) y Cirujano General de EE. UU.</p>
     </div>
 </section>
 
@@ -571,6 +636,27 @@
         </details>
 
         <details class="faq-item">
+            <summary>¿Tengo que dejarlo de golpe?</summary>
+            <div class="faq-item__answer">
+                No necesariamente. Definimos juntos una <strong>fecha</strong> y el método que mejor te funcione: a veces es dejarlo de golpe y a veces una reducción guiada. El plan se ajusta a ti.
+            </div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Ya intenté por mi cuenta y recaí, ¿esto es diferente?</summary>
+            <div class="faq-item__answer">
+                Sí. Aquí hay <strong>plan médico, manejo del antojo y seguimiento</strong>, no solo buenas intenciones. La mayoría de quienes lo logran tuvieron intentos previos: la recaída no te descalifica.
+            </div>
+        </details>
+
+        <details class="faq-item">
+            <summary>¿Funciona si llevo muchos años fumando?</summary>
+            <div class="faq-item__answer">
+                Sí. El beneficio para tu cuerpo <strong>empieza desde las primeras horas</strong> de dejarlo, sin importar cuánto tiempo lleves fumando. Nunca es tarde para empezar.
+            </div>
+        </details>
+
+        <details class="faq-item">
             <summary>¿Cuál es el costo?</summary>
             <div class="faq-item__answer">
                 La <strong>valoración</strong> tiene precio de internet <span class="price-pill">$1,300</span> (normal <s style="color:var(--muted)">$1,800</s>); solo menciona que llegaste por internet. Si tu plan requiere tratamiento médico adicional, se cotiza por separado y se te explica antes.
@@ -599,8 +685,8 @@
     <div class="container">
         <div class="cta-inline cta-inline--lights">
             <div class="sparkle-field" aria-hidden="true"></div>
-            <h2>Da el primer paso hoy</h2>
-            <p>Atención por WhatsApp en horario hábil. Te confirmamos disponibilidad y resolvemos cualquier duda antes de tu valoración.</p>
+            <h2>Pon una fecha para dejar de fumar</h2>
+            <p>Empieza con una valoración. Atención por WhatsApp en horario hábil: confirmamos disponibilidad y resolvemos tus dudas antes de la cita.</p>
             <div class="cta-inline__btns">
                 <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20la%20promoci%C3%B3n%20para%20dejar%20de%20fumar%20a%20$1,300%20y%20quiero%20agendar%20mi%20valoraci%C3%B3n."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="final-wa"><i class="bi bi-whatsapp"></i> Asegurar mi cita a $1,300</a>
                 <a href="#agendaModal" class="btn-cal" data-cta="final-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar en línea</a>
