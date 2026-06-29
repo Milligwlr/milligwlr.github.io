@@ -54,6 +54,7 @@
     .promo-banner .price-new{font-weight:800}
     .promo-banner a{background:#fff;color:#e64a19;padding:2px 10px;border-radius:999px;text-decoration:none;font-weight:800;font-size:.76rem;white-space:nowrap;transition:transform .2s;margin-left:6px}
     .promo-banner a:hover{transform:scale(1.05);color:#e64a19}
+    @media(max-width:600px){.promo-banner{font-size:.72rem;padding:4px 0}.promo-banner a{font-size:.7rem;padding:1px 8px}}
     .promo-lang2{display:inline-flex;gap:2px;border:1px solid rgba(255,255,255,.6);border-radius:999px;overflow:hidden;margin-left:10px;font-size:.72rem;font-weight:800;vertical-align:middle}
     .promo-lang2 a{padding:2px 9px;color:#fff;text-decoration:none;line-height:1.7}
     .promo-lang2 a:not(.active):hover{background:rgba(255,255,255,.22)}
@@ -530,15 +531,21 @@
                     <span class="price-highlight__save">Ahorra $1,500</span>
                 </div>
 
-                <!-- Comparación implícita: laboratorio típico vs. ALVEOS -->
+                <div class="hero__cta" style="margin-bottom:18px">
+                    <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20$4,500.%20%C2%BFTienen%20disponibilidad%20esta%20semana%3F"  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="hero-wa-top">
+                        <i class="bi bi-whatsapp"></i> Apartar mi estudio — $4,500
+                    </a>
+                </div>
+
+                <!-- Comparación: polisomnografía hospitalaria vs. ALVEOS -->
                 <div class="compare-strip" role="region" aria-label="Comparación de precios">
                     <div class="compare-col compare-col--other">
-                        <div class="compare-col__label">Laboratorio típico</div>
-                        <div class="compare-col__price">~$4,000</div>
+                        <div class="compare-col__label">Polisomnografía en hospital</div>
+                        <div class="compare-col__price">$8,000–$15,000</div>
                         <ul class="compare-col__list">
-                            <li>Solo el equipo + PDF</li>
-                            <li>Reporte automatizado</li>
-                            <li>Sin consulta médica</li>
+                            <li>Una noche internado</li>
+                            <li>Cuarto y cableado ajenos</li>
+                            <li>Costo mucho mayor</li>
                         </ul>
                     </div>
                     <div class="compare-col compare-col--vs" aria-hidden="true">VS</div>

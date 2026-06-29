@@ -81,33 +81,42 @@
 
     +     '<div class="agenda-modal__body">'
 
-    // 1) Agenda en línea (cal.com)
-    +       '<section class="agenda-block agenda-block--primary" aria-labelledby="agenda-online-t">'
+    // 1) WhatsApp — canal preferido (bloque primario, va primero)
+    +       '<section class="agenda-block agenda-block--primary" aria-labelledby="agenda-wa-t">'
+    +         '<div class="agenda-block__head">'
+    +           '<div class="agenda-block__icon"><i class="bi bi-whatsapp" aria-hidden="true"></i></div>'
+    +           '<div>'
+    +             '<h3 id="agenda-wa-t" class="agenda-block__title">Escríbenos por WhatsApp</h3>'
+    +             '<p class="agenda-block__desc">La forma más rápida de agendar. Te respondemos personalmente.</p>'
+    +           '</div>'
+    +         '</div>'
+    +         '<a class="agenda-cta agenda-cta--wa" href="' + waHref + '" target="_blank" rel="noopener noreferrer" data-cta="agenda-modal-wa">'
+    +           '<i class="bi bi-whatsapp" aria-hidden="true"></i> Escribir por WhatsApp <i class="bi bi-arrow-right" aria-hidden="true"></i>'
+    +         '</a>'
+    +       '</section>'
+
+    // 2) Agenda en línea (cal.com) — también resaltada (bloque primario)
+    +       '<section class="agenda-block agenda-block--primary agenda-block--online" aria-labelledby="agenda-online-t">'
     +         '<div class="agenda-block__head">'
     +           '<div class="agenda-block__icon"><i class="bi bi-calendar2-check" aria-hidden="true"></i></div>'
     +           '<div>'
     +             '<h3 id="agenda-online-t" class="agenda-block__title">Agenda en línea</h3>'
-    +             '<p class="agenda-block__desc">Selecciona fecha y hora disponible de forma rápida y segura.</p>'
+    +             '<p class="agenda-block__desc">Reserva tú mismo fecha y hora al instante, sin esperar respuesta.</p>'
     +           '</div>'
     +         '</div>'
-    +         '<a class="agenda-cta" href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" data-cta="agenda-modal-cal">'
+    +         '<a class="agenda-cta agenda-cta--cal" href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" data-cta="agenda-modal-cal">'
     +           '<i class="bi bi-calendar-plus" aria-hidden="true"></i> Agendar en línea <i class="bi bi-arrow-right" aria-hidden="true"></i>'
     +         '</a>'
     +       '</section>'
 
-    // 2) Contacto directo: Llamar + WhatsApp (sin email, según preferencia)
+    // 3) Contacto directo: Llamar
     +       '<section class="agenda-block agenda-block--contact" aria-labelledby="agenda-contact-t">'
     +         '<h3 id="agenda-contact-t" class="agenda-block__title"><i class="bi bi-telephone-fill" aria-hidden="true"></i> Contacto directo</h3>'
-    +         '<div class="agenda-contact-row agenda-contact-row--two">'
+    +         '<div class="agenda-contact-row">'
     +           '<a class="agenda-contact-btn agenda-contact-btn--call" href="tel:+525591708334" data-cta="agenda-modal-tel" aria-label="Llamar al 55 9170 8334">'
     +             '<i class="bi bi-telephone-fill" aria-hidden="true"></i>'
     +             '<span class="agenda-contact-btn__label">Llamar</span>'
     +             '<span class="agenda-contact-btn__value">55 9170 8334</span>'
-    +           '</a>'
-    +           '<a class="agenda-contact-btn agenda-contact-btn--wa" href="' + waHref + '" target="_blank" rel="noopener noreferrer" data-cta="agenda-modal-wa" aria-label="Enviar mensaje por WhatsApp">'
-    +             '<i class="bi bi-whatsapp" aria-hidden="true"></i>'
-    +             '<span class="agenda-contact-btn__label">Mensaje</span>'
-    +             '<span class="agenda-contact-btn__value">WhatsApp</span>'
     +           '</a>'
     +         '</div>'
     +       '</section>'
