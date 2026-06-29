@@ -81,44 +81,32 @@
 
     +     '<div class="agenda-modal__body">'
 
-    // 1) WhatsApp — canal preferido (bloque primario, va primero)
-    +       '<section class="agenda-block agenda-block--primary" aria-labelledby="agenda-wa-t">'
-    +         '<div class="agenda-block__head">'
-    +           '<div class="agenda-block__icon"><i class="bi bi-whatsapp" aria-hidden="true"></i></div>'
-    +           '<div>'
-    +             '<h3 id="agenda-wa-t" class="agenda-block__title">Escríbenos por WhatsApp</h3>'
-    +             '<p class="agenda-block__desc">La forma más rápida de agendar. Te respondemos personalmente.</p>'
-    +           '</div>'
-    +         '</div>'
-    +         '<a class="agenda-cta agenda-cta--wa" href="' + waHref + '" target="_blank" rel="noopener noreferrer" data-cta="agenda-modal-wa">'
-    +           '<i class="bi bi-whatsapp" aria-hidden="true"></i> Escribir por WhatsApp <i class="bi bi-arrow-right" aria-hidden="true"></i>'
-    +         '</a>'
-    +       '</section>'
-
-    // 2) Agenda en línea (cal.com) — también resaltada (bloque primario)
-    +       '<section class="agenda-block agenda-block--primary agenda-block--online" aria-labelledby="agenda-online-t">'
-    +         '<div class="agenda-block__head">'
-    +           '<div class="agenda-block__icon"><i class="bi bi-calendar2-check" aria-hidden="true"></i></div>'
-    +           '<div>'
-    +             '<h3 id="agenda-online-t" class="agenda-block__title">Agenda en línea</h3>'
-    +             '<p class="agenda-block__desc">Reserva tú mismo fecha y hora al instante, sin esperar respuesta.</p>'
-    +           '</div>'
-    +         '</div>'
-    +         '<a class="agenda-cta agenda-cta--cal" href="https://cal.com/dr-william-lara/agendar-cita" target="_blank" rel="noopener noreferrer" data-cta="agenda-modal-cal">'
-    +           '<i class="bi bi-calendar-plus" aria-hidden="true"></i> Agendar en línea <i class="bi bi-arrow-right" aria-hidden="true"></i>'
-    +         '</a>'
-    +       '</section>'
-
-    // 3) Contacto directo: Llamar
-    +       '<section class="agenda-block agenda-block--contact" aria-labelledby="agenda-contact-t">'
-    +         '<h3 id="agenda-contact-t" class="agenda-block__title"><i class="bi bi-telephone-fill" aria-hidden="true"></i> Contacto directo</h3>'
-    +         '<div class="agenda-contact-row">'
-    +           '<a class="agenda-contact-btn agenda-contact-btn--call" href="tel:+525591708334" data-cta="agenda-modal-tel" aria-label="Llamar al 55 9170 8334">'
-    +             '<i class="bi bi-telephone-fill" aria-hidden="true"></i>'
-    +             '<span class="agenda-contact-btn__label">Llamar</span>'
-    +             '<span class="agenda-contact-btn__value">55 9170 8334</span>'
+    // 1) Dos formas primarias, lado a lado (simétricas): WhatsApp + Agenda en línea
+    +       '<div class="agenda-primary-grid">'
+    +         '<section class="agenda-choice agenda-choice--wa" aria-labelledby="agenda-wa-t">'
+    +           '<div class="agenda-choice__icon"><i class="bi bi-whatsapp" aria-hidden="true"></i></div>'
+    +           '<h3 id="agenda-wa-t" class="agenda-choice__title">Por WhatsApp</h3>'
+    +           '<p class="agenda-choice__desc">Te respondemos personalmente.</p>'
+    +           '<a class="agenda-choice__cta agenda-choice__cta--wa" href="' + waHref + '" target="_blank" rel="noopener noreferrer" data-cta="agenda-modal-wa">'
+    +             '<i class="bi bi-whatsapp" aria-hidden="true"></i> Escribir'
     +           '</a>'
-    +         '</div>'
+    +         '</section>'
+    +         '<section class="agenda-choice agenda-choice--cal" aria-labelledby="agenda-online-t">'
+    +           '<div class="agenda-choice__icon"><i class="bi bi-calendar2-check" aria-hidden="true"></i></div>'
+    +           '<h3 id="agenda-online-t" class="agenda-choice__title">Agenda en línea</h3>'
+    +           '<p class="agenda-choice__desc">Elige fecha y hora al instante.</p>'
+    +           '<a class="agenda-choice__cta agenda-choice__cta--cal" href="https://cal.com/dr-william-lara/agendar-cita" data-cal-link="dr-william-lara/agendar-cita" data-cal-namespace="agendar-cita" data-cal-config=\'{"layout":"month_view"}\' data-cta="agenda-modal-cal">'
+    +             '<i class="bi bi-calendar-plus" aria-hidden="true"></i> Ver calendario'
+    +           '</a>'
+    +         '</section>'
+    +       '</div>'
+
+    // 2) ¿Prefieres llamar? — barra de ancho completo
+    +       '<section class="agenda-block agenda-block--contact" aria-labelledby="agenda-contact-t">'
+    +         '<h3 id="agenda-contact-t" class="agenda-block__title"><i class="bi bi-telephone-fill" aria-hidden="true"></i> ¿Prefieres llamar?</h3>'
+    +         '<a class="agenda-call-bar" href="tel:+525591708334" data-cta="agenda-modal-tel" aria-label="Llamar al 55 9170 8334">'
+    +           '<i class="bi bi-telephone-fill" aria-hidden="true"></i> <span>55 9170 8334</span>'
+    +         '</a>'
     +       '</section>'
 
     // 3) Consulta a domicilio
@@ -160,6 +148,21 @@
     +   '</div>'
     + '</div>';
 
+  // --- 2b. Embed de cal.com (popup inline, sin pestaña nueva) ------------
+  // Carga el embed oficial una sola vez. El botón "Ver calendario" lleva
+  // data-cal-link, así que el embed.js abre el calendario en su propio modal
+  // sobre la página (delegación de clicks). Si el JS falla, el href a cal.com
+  // sirve de respaldo.
+  function loadCalEmbed(){
+    if (window.__alveosCalLoaded) return;
+    window.__alveosCalLoaded = true;
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "Cal");
+    try {
+      window.Cal("init", "agendar-cita", { origin: "https://cal.com" });
+      window.Cal.ns["agendar-cita"]("ui", { hideEventTypeDetails: false, layout: "month_view" });
+    } catch (e) { /* el respaldo href a cal.com sigue funcionando */ }
+  }
+
   // --- 3. Inyección + wiring ---------------------------------------------
   function init(){
     // Si la página ya tiene un #agendaModal inline (caso index.html legacy),
@@ -172,6 +175,9 @@
 
     var modal = document.getElementById('agendaModal');
     if (!modal) return;
+
+    // Cargar el embed de cal.com para el botón "Ver calendario"
+    loadCalEmbed();
 
     var lastFocus = null;
 

@@ -436,3 +436,106 @@
         .agenda-contact-row--two {
             grid-template-columns: repeat(2, 1fr);
         }
+
+        /* ====== Dos formas primarias simétricas (WhatsApp + Agenda en línea) ====== */
+        .agenda-primary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .agenda-choice {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 5px;
+            padding: 20px 16px;
+            border-radius: 16px;
+            border: 1px solid var(--ag-line);
+            background: linear-gradient(160deg, #fff 0%, #f4f8ff 60%, #eaf2ff 100%);
+        }
+        .agenda-choice--wa {
+            background: linear-gradient(160deg, #fff 0%, rgba(37,211,102,.06) 60%, rgba(37,211,102,.12) 100%);
+            border-color: rgba(37, 211, 102, .20);
+        }
+        .agenda-choice__icon {
+            width: 46px; height: 46px;
+            border-radius: 14px;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 3px;
+        }
+        .agenda-choice--wa .agenda-choice__icon {
+            background: rgba(37, 211, 102, .14);
+            color: #1fa855;
+            border: 1px solid rgba(37, 211, 102, .22);
+        }
+        .agenda-choice--cal .agenda-choice__icon {
+            background: linear-gradient(135deg, rgba(9,132,227,.16), rgba(0,184,148,.10));
+            color: var(--ag-blue);
+            border: 1px solid rgba(9, 132, 227, .18);
+        }
+        .agenda-choice__title {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--ag-ink);
+            letter-spacing: -.005em;
+            line-height: 1.2;
+        }
+        .agenda-choice__desc {
+            margin: 0 0 12px;
+            font-size: .82rem;
+            color: var(--ag-mute);
+            line-height: 1.45;
+            flex: 1;
+        }
+        .agenda-choice__cta {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: .9rem;
+            color: #fff !important;
+            border: none;
+            cursor: pointer;
+            min-height: 46px;
+            transition: transform .18s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
+        }
+        .agenda-choice__cta--wa { background: var(--ag-wa); }
+        .agenda-choice__cta--wa:hover { background: #1fbf5b; transform: translateY(-1px); box-shadow: 0 8px 22px -8px rgba(37,211,102,.5); }
+        .agenda-choice__cta--cal { background: linear-gradient(135deg, #0a1628 0%, #1e3799 50%, #0984e3 100%); }
+        .agenda-choice__cta--cal:hover { transform: translateY(-1px); box-shadow: 0 8px 22px -6px rgba(9,132,227,.45); }
+        .agenda-choice__cta:focus-visible { outline: 2px solid #fff; outline-offset: -4px; box-shadow: 0 0 0 3px var(--ag-blue); }
+
+        /* Barra "Llamar" de ancho completo */
+        .agenda-call-bar {
+            display: flex; align-items: center; justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 13px 16px;
+            border-radius: 14px;
+            background: var(--ag-blue);
+            border: 1px solid var(--ag-blue);
+            color: #fff !important;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            min-height: 50px;
+            transition: transform .18s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease);
+        }
+        .agenda-call-bar:hover { background: #0772c4; transform: translateY(-1px); box-shadow: 0 10px 22px -10px rgba(9,132,227,.55); }
+        .agenda-call-bar:focus-visible { outline: 2px solid #fff; outline-offset: -4px; box-shadow: 0 0 0 3px #0a1628; }
+
+        /* En móvil las 2 tarjetas se apilan (siguen simétricas, alto igual) */
+        @media (max-width: 540px) {
+            .agenda-primary-grid { grid-template-columns: 1fr; }
+            .agenda-choice { flex-direction: row; text-align: left; align-items: center; flex-wrap: wrap; padding: 16px; gap: 4px 14px; }
+            .agenda-choice__icon { margin-bottom: 0; }
+            .agenda-choice__title { width: calc(100% - 60px); }
+            .agenda-choice__desc { width: calc(100% - 60px); margin: 0 0 10px; }
+            .agenda-choice__cta { flex-basis: 100%; }
+        }
