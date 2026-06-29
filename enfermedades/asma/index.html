@@ -224,6 +224,13 @@
 .cta-band .reveal::before,.cta-band .reveal::after{display:none!important}
 .cta-band::before{display:none!important}
 
+/* RESPUESTA DIRECTA (callout sobrio) */
+.asma-answer{display:flex;gap:14px;align-items:flex-start;background:rgba(0,184,148,.06);border:1px solid rgba(0,184,148,.2);border-left:4px solid var(--asma);border-radius:12px;padding:18px 20px;margin-bottom:48px}
+.asma-answer i{color:var(--asma);font-size:1.4rem;flex-shrink:0;line-height:1.2}
+.asma-answer p{margin:0;font-size:1rem;line-height:1.6;color:#3a4a5c}
+.asma-answer p strong{color:var(--navy);font-weight:700}
+@media(min-width:768px){.asma-answer p{font-size:1.05rem;line-height:1.7}}
+
 /* FAQ */
 .faq-block{max-width:880px;margin:48px auto;padding:0 16px}
 .faq-block__title{font-size:clamp(1.45rem,4.5vw,2rem);font-weight:800;color:var(--navy);letter-spacing:-.02em;margin:0 0 6px;text-align:center}
@@ -250,7 +257,7 @@
     })(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <!-- End Google Tag Manager -->
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/enfermedades/asma/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Cómo se diagnostica el asma?","acceptedAnswer":{"@type":"Answer","text":"El diagnóstico de asma se basa en síntomas compatibles (sibilancias, tos, opresión torácica, disnea) más la demostración de obstrucción reversible mediante espirometría con broncodilatador. En casos seleccionados se complementa con FeNO (óxido nítrico exhalado) y pruebas de alergia."}},{"@type":"Question","name":"¿El asma se cura?","acceptedAnswer":{"@type":"Answer","text":"El asma no se cura, pero se controla. Con el tratamiento adecuado según las guías GINA, la mayoría de pacientes pueden tener una vida completamente normal, sin crisis y sin limitaciones en la actividad física."}},{"@type":"Question","name":"¿Qué hacer en una crisis de asma?","acceptedAnswer":{"@type":"Answer","text":"Usar el inhalador de rescate (salbutamol) cada 20 minutos durante la primera hora, mantener la calma y respirar por la nariz. Si los síntomas no mejoran, los labios se ponen morados o aparece dificultad para hablar, acudir a urgencias inmediatamente."}},{"@type":"Question","name":"¿Cuánto cuesta una consulta de asma en CDMX?","acceptedAnswer":{"@type":"Answer","text":"Escríbenos por WhatsApp al 55 9170 8334 para conocer precios actualizados de consulta y espirometría."}}]}
+    {"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/enfermedades/asma/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Cómo se diagnostica el asma?","acceptedAnswer":{"@type":"Answer","text":"El diagnóstico de asma se basa en síntomas compatibles (sibilancias, tos, opresión torácica, disnea) más la demostración de obstrucción reversible mediante espirometría con broncodilatador. En casos seleccionados se complementa con FeNO (óxido nítrico exhalado) y pruebas de alergia."}},{"@type":"Question","name":"¿Qué es el asma?","acceptedAnswer":{"@type":"Answer","text":"Es una enfermedad crónica que inflama y estrecha los bronquios de forma reversible. Esa obstrucción variable explica las sibilancias, la tos y la falta de aire, y mejora con el tratamiento adecuado."}},{"@type":"Question","name":"¿Cuáles son los síntomas de asma?","acceptedAnswer":{"@type":"Answer","text":"Sibilancias (silbidos al respirar), tos seca sobre todo nocturna, opresión en el pecho y falta de aire. Suelen aparecer por episodios y empeorar con ejercicio, alergias, gripes o aire frío."}},{"@type":"Question","name":"¿Qué desencadena las crisis de asma?","acceptedAnswer":{"@type":"Answer","text":"Alérgenos (ácaros, polen, mascotas), infecciones respiratorias, humo de tabaco o leña, contaminación de la CDMX, ejercicio y aire frío. Identificar tus desencadenantes es parte clave del control."}},{"@type":"Question","name":"¿Cómo se controla el asma?","acceptedAnswer":{"@type":"Answer","text":"El asma no se cura, se controla con un corticosteroide inhalado de mantenimiento (genérico) que desinflama los bronquios, más un broncodilatador de rescate para síntomas. Todo según el paso GINA que te corresponda."}},{"@type":"Question","name":"¿Cuál es la diferencia entre asma y EPOC?","acceptedAnswer":{"@type":"Answer","text":"El asma suele iniciar en jóvenes, cursa por crisis y la obstrucción es reversible; la EPOC aparece tras años de tabaquismo y la obstrucción es poco reversible. La espirometría y el FeNO ayudan a distinguirlas."}},{"@type":"Question","name":"¿El asma se cura?","acceptedAnswer":{"@type":"Answer","text":"El asma no se cura, pero se controla. Con el tratamiento adecuado según las guías GINA, la mayoría de pacientes pueden tener una vida completamente normal, sin crisis y sin limitaciones en la actividad física."}},{"@type":"Question","name":"¿Qué hacer en una crisis de asma?","acceptedAnswer":{"@type":"Answer","text":"Usar el inhalador de rescate (salbutamol) cada 20 minutos durante la primera hora, mantener la calma y respirar por la nariz. Si los síntomas no mejoran, los labios se ponen morados o aparece dificultad para hablar, acudir a urgencias inmediatamente."}},{"@type":"Question","name":"¿Cuánto cuesta una consulta de asma en CDMX?","acceptedAnswer":{"@type":"Answer","text":"Escríbenos por WhatsApp al 55 9170 8334 para conocer precios actualizados de consulta y espirometría."}}]}
     </script>
     <link rel="stylesheet" href="/assets/agenda-modal.css">
 </head>
@@ -444,11 +451,17 @@
 </div>
 </div>
 
+<!-- RESPUESTA DIRECTA -->
+<div class="asma-answer reveal">
+<i class="bi bi-lungs-fill" aria-hidden="true"></i>
+<p>El <strong>asma</strong> es la inflamación crónica de los bronquios que los estrecha de forma reversible y provoca <strong>síntomas de asma</strong> como sibilancias, tos, opresión y falta de aire. No se cura, pero se controla con tratamiento de fondo según las guías GINA.</p>
+</div>
+
 <!-- SÍNTOMAS -->
 <div class="asma-section reveal">
 <span class="asma-section__eyebrow"><i class="bi bi-clipboard-pulse"></i> Señales típicas</span>
 <h2 class="asma-section__title">¿Te suena <em>familiar</em> alguno?</h2>
-<p class="asma-section__lead">Si reconoces dos o más de estas señales, vale la pena una espirometría con broncodilatador.</p>
+<p class="asma-section__lead">Los síntomas de asma aparecen por crisis y suelen empeorar de noche o con el ejercicio. Si reconoces dos o más, vale la pena una <a href="/servicios/espirometria/">espirometría</a> con broncodilatador.</p>
 
 <div class="symp-grid">
 <div class="symp-card">
@@ -508,7 +521,7 @@
 <div class="asma-section reveal">
 <span class="asma-section__eyebrow"><i class="bi bi-graph-up-arrow"></i> Por qué importa el control</span>
 <h2 class="asma-section__title">El asma no controlada <em>se siente</em>; la controlada, no</h2>
-<p class="asma-section__lead">La diferencia entre vivir con miedo a la próxima crisis y olvidarte de que tienes asma se llama tratamiento de fondo.</p>
+<p class="asma-section__lead">El tratamiento del asma de fondo es lo que separa vivir con miedo a la próxima crisis de olvidarte de que tienes asma.</p>
 
 <div class="compare reveal">
 <div class="compare__inner">
@@ -635,6 +648,26 @@
   <details class="faq-item">
     <summary>¿Cómo se diagnostica el asma?</summary>
     <div class="faq-item__answer"><p>Síntomas compatibles (sibilancias, tos, opresión, falta de aire) <strong>más espirometría con broncodilatador</strong> que demuestre obstrucción reversible. En casos seleccionados se complementa con <a href="/servicios/feno/">FeNO</a> o pruebas de alergia.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>¿Qué es el asma?</summary>
+    <div class="faq-item__answer"><p>Es una enfermedad crónica que <strong>inflama y estrecha los bronquios</strong> de forma reversible. Esa obstrucción variable explica las sibilancias, la tos y la falta de aire, y mejora con el tratamiento adecuado.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>¿Cuáles son los síntomas de asma?</summary>
+    <div class="faq-item__answer"><p>Sibilancias (silbidos al respirar), tos seca sobre todo nocturna, opresión en el pecho y falta de aire. Suelen aparecer por episodios y empeorar con ejercicio, alergias, gripes o aire frío.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>¿Qué desencadena las crisis de asma?</summary>
+    <div class="faq-item__answer"><p>Alérgenos (ácaros, polen, mascotas), infecciones respiratorias, humo de tabaco o leña, contaminación de la CDMX, ejercicio y aire frío. Identificar tus desencadenantes es parte clave del control.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>¿Cómo se controla el asma?</summary>
+    <div class="faq-item__answer"><p>El asma <strong>no se cura, se controla</strong> con un corticosteroide inhalado de mantenimiento (genérico) que desinflama los bronquios, más un broncodilatador de rescate para síntomas. Todo según el paso GINA que te corresponda.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>¿Cuál es la diferencia entre asma y EPOC?</summary>
+    <div class="faq-item__answer"><p>El asma suele iniciar en jóvenes, cursa por crisis y la obstrucción es reversible; la <a href="/enfermedades/epoc/">EPOC</a> aparece tras años de tabaquismo y la obstrucción es poco reversible. La <a href="/servicios/espirometria/">espirometría</a> y el <a href="/servicios/feno/">FeNO</a> ayudan a distinguirlas.</p></div>
   </details>
   <details class="faq-item">
     <summary>¿El asma se cura?</summary>
