@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Sincroniza ratingValue + reviewCount de Google Business Profile en el HTML:
 // JSON-LD aggregateRating + textos visibles del widget .gbp-rating-widget
-// (home, ubicación, santa-coleta, zonas/* y promociones/* con widget).
+// (home ES/EN, facturación, ubicación, santa-coleta, zonas/* y promociones/* con widget).
 // Llamado por .github/workflows/update-gbp-rating.yml (cron semanal).
 // Requiere GOOGLE_MAPS_API_KEY (Places API New) en env.
 //
@@ -45,6 +45,44 @@ const WIDGET_PATCHES = [
   },
 ];
 
+// Textos visibles propios de la home (prueba social del hero + selector de idioma).
+const HOME_EXTRA_PATCHES = [
+  {
+    name: "hero proof txt",
+    find: /(<span class="hero__proof-txt"><b>)[\d.]+(<\/b> · )\d+( reseñas verificadas)/,
+    build: (m, r, c) => `${m[1]}${r}${m[2]}${c}${m[3]}`,
+  },
+  {
+    name: "toggle small ES",
+    find: /(<span class="t">)[\d.]+( en Google<small>)\d+( reseñas<\/small>)/,
+    build: (m, r, c) => `${m[1]}${r}${m[2]}${c}${m[3]}`,
+  },
+];
+
+// Home EN (JSON-LD + selector de idioma en inglés).
+const EN_PATCHES = [
+  JSONLD_RATING,
+  {
+    name: "toggle small EN",
+    find: /(<span class="t">)[\d.]+( on Google<small>)\d+( reviews<\/small>)/,
+    build: (m, r, c) => `${m[1]}${r}${m[2]}${c}${m[3]}`,
+  },
+];
+
+// Facturación (texto visible + comentario CSS de referencia).
+const FACT_PATCHES = [
+  {
+    name: "facturación visible",
+    find: /(loading="lazy"> )\d+( reseñas en Google<\/span>)/,
+    build: (m, _r, c) => `${m[1]}${c}${m[2]}`,
+  },
+  {
+    name: "facturación comentario CSS",
+    find: /(★★★★★ · )\d+( reseñas \*\/)/,
+    build: (m, _r, c) => `${m[1]}${c}${m[2]}`,
+  },
+];
+
 // Zonas con ficha LocalBusiness propia (mismo aggregateRating del GBP) + widget.
 // Al crear una nueva zona, añade su slug aquí.
 const ZONAS = [
@@ -72,7 +110,9 @@ const PROMOS = [
 ];
 
 const TARGETS = [
-  { file: "index.html", patches: [JSONLD_RATING, ...WIDGET_PATCHES] },
+  { file: "index.html", patches: [JSONLD_RATING, ...WIDGET_PATCHES, ...HOME_EXTRA_PATCHES] },
+  { file: "en/index.html", patches: EN_PATCHES },
+  { file: "facturacion/index.html", patches: FACT_PATCHES },
   { file: "ubicacion/index.html", patches: [JSONLD_RATING] },
   { file: "neumologo-en-hospital-santa-coleta/index.html", patches: [JSONLD_RATING, ...WIDGET_PATCHES] },
   ...ZONAS.map((z) => ({ file: `zonas/${z}/index.html`, patches: [JSONLD_RATING, ...WIDGET_PATCHES] })),

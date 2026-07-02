@@ -35,7 +35,7 @@ jobs:
           if [ -n "$(git status --porcelain)" ]; then
             git config user.name  "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add index.html ubicacion/index.html zonas/*/index.html neumologo-en-hospital-santa-coleta/index.html promociones/*/index.html
+            git add index.html en/index.html facturacion/index.html ubicacion/index.html zonas/*/index.html neumologo-en-hospital-santa-coleta/index.html promociones/*/index.html
             git commit -m "chore(gbp): sync rating/reviewCount desde GBP"
             git push origin HEAD:AP-Claude
           else
