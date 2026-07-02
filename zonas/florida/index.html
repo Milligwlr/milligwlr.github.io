@@ -403,6 +403,42 @@ section.block{padding:46px 0}
 @media(max-width:992px){.testimonial-columns{height:440px}}
 @media(max-width:640px){.testimonial-columns{grid-template-columns:1fr 1fr;gap:10px;height:380px}.testimonial-columns > :nth-child(3){display:none}.testimonial-col{gap:10px}.testi-card{padding:14px;border-radius:14px}.testi-text{font-size:.8rem;line-height:1.6}.testi-name{font-size:.75rem}.testi-badge{font-size:.62rem}.testi-avatar{width:32px;height:32px;font-size:.8rem}}
 
+
+/* Hero conversion-first estilo promo (directiva Dr. 2026-07-02) */
+.zhero{position:relative;background:linear-gradient(135deg,#0a2540 0%,#0e3a6b 60%,#0984e3 100%);color:#fff;padding:110px 0 56px;overflow:hidden}
+.zhero::before{content:'';position:absolute;inset:0;background:radial-gradient(800px 400px at 80% 10%,rgba(0,206,201,.25),transparent 60%);pointer-events:none}
+.zhero .container{position:relative;z-index:2}
+.zhero__breadcrumb{font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:14px}
+.zhero__breadcrumb a{color:rgba(255,255,255,.65);text-decoration:none}
+.zhero__breadcrumb a:hover{color:#7fffe6}
+.zhero__breadcrumb span{margin:0 6px}
+.zhero__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,206,201,.18);border:1px solid rgba(0,206,201,.4);color:#7fffe6;padding:7px 16px;border-radius:999px;font-size:.78rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
+.zhero__badge .dot{width:8px;height:8px;background:#00cec9;border-radius:50%;box-shadow:0 0 12px #00cec9;animation:zpulse 2s infinite}
+@keyframes zpulse{0%,100%{opacity:1}50%{opacity:.4}}
+.zhero h1{font-size:clamp(2rem,4.6vw,3rem);font-weight:800;letter-spacing:-.02em;line-height:1.12;margin-bottom:16px;color:#fff;max-width:720px}
+.zhero h1 em{font-style:normal;background:linear-gradient(120deg,#00cec9,#7fffe6);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.zhero__sub{font-size:1.06rem;color:rgba(255,255,255,.85);margin-bottom:24px;max-width:600px;line-height:1.6}
+.zhero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+.zhero .btn-wa,.zhero .btn-cal{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 26px;border-radius:14px;font-weight:800;font-size:1.02rem;text-decoration:none;transition:all .25s var(--ease);box-shadow:0 10px 30px -8px rgba(0,0,0,.4);min-width:220px}
+.zhero .btn-wa{background:#1DA851;color:#fff}
+.zhero .btn-wa:hover{background:#128C7E;color:#fff;transform:translateY(-2px);box-shadow:0 14px 34px -8px rgba(29,168,81,.5)}
+.zhero .btn-cal{background:#fff;color:var(--navy)}
+.zhero .btn-cal:hover{background:#e8f4ff;color:var(--navy);transform:translateY(-2px)}
+.zhero__creds{display:flex;flex-wrap:wrap;gap:10px;margin:0}
+.zhero__cred{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#e8f4ff;padding:7px 13px;border-radius:999px;font-size:.82rem;font-weight:700;text-decoration:none}
+.zhero__cred i{color:#7fffe6}
+.zhero__cred .stars{color:#f5b400;letter-spacing:1px;font-size:.95rem}
+a.zhero__cred:hover{background:rgba(255,255,255,.2);color:#fff}
+.zhero__card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:24px;padding:28px;backdrop-filter:blur(12px);position:relative;z-index:2}
+.zhero__card .subt{color:#7fffe6;font-size:.85rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
+.zhero__grid{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.zhero__grid li{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:14px 8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;transition:all .25s var(--ease)}
+.zhero__grid li:hover{background:rgba(255,255,255,.1);border-color:rgba(0,206,201,.4);transform:translateY(-2px)}
+.zhero__ico{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,rgba(0,206,201,.25),rgba(9,132,227,.25));display:flex;align-items:center;justify-content:center;color:#7fffe6;font-size:1.25rem}
+.zhero__lbl{font-size:.78rem;font-weight:700;color:#e8f4ff;line-height:1.25;letter-spacing:.2px}
+.zhero__card-foot{margin:14px 0 0;font-size:.72rem;color:rgba(255,255,255,.55);text-align:center;letter-spacing:.3px}
+@media(max-width:991px){.zhero{padding:96px 0 44px}.zhero__card{margin-top:26px}}
+
 .nav-link--recursos.active{color:#1e3799!important;font-weight:700!important}
 .nav-link--recursos.active::after{background:#1e3799!important}
 .nav-link--recursos:hover{color:#0984e3!important}
@@ -509,20 +545,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <main>
 
 <!-- HERO -->
-<section class="hub-hero" aria-labelledby="zona-h1">
+<section class="zhero" aria-labelledby="zona-h1">
     <div class="container">
-        <nav class="hub-hero__breadcrumb" aria-label="Breadcrumb">
-            <a href="/">Inicio</a> <span>›</span> <a href="/ubicacion/">Ubicación</a> <span>›</span> <span aria-current="page">Zona Florida</span>
-        </nav>
-        <span class="hub-hero__eyebrow"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i> Atendemos pacientes de la colonia Florida</span>
-        <h1 id="zona-h1">Neumólogo para pacientes de la colonia <em>Florida</em>, CDMX</h1>
-        <p class="hub-hero__lead">Atención neumológica a 8–15 minutos de la colonia Florida: asma y alergias respiratorias, neumonía, EPOC y estudio de sueño instalado en tu propia casa. Consultorio en Hospital Santa Coleta (San José Insurgentes), subiendo por Insurgentes Sur.</p>
-
-        <div class="ubi-quick" role="list">
-            <a href="https://maps.app.goo.gl/4yc6UXv296PZ7zSC7" target="_blank" rel="noopener noreferrer" data-cta="zona-quick-maps"><i class="bi bi-map-fill" aria-hidden="true"></i> Ver consultorio en Google Maps</a>
-            <a href="tel:+525591708334" data-cta="zona-quick-tel"><i class="bi bi-telephone-fill" aria-hidden="true"></i> 55 9170 8334</a>
-            <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx.%20Vivo%20en%20Florida%20y%20quisiera%20agendar." target="_blank" rel="noopener noreferrer" data-cta="zona-quick-wa"><i class="bi bi-whatsapp" aria-hidden="true"></i> WhatsApp</a>
-            <a href="/servicios/teleconsulta/" data-cta="zona-quick-tele"><i class="bi bi-camera-video-fill" aria-hidden="true"></i> Teleconsulta</a>
+        <nav class="zhero__breadcrumb" aria-label="Breadcrumb"><a href="/">Inicio</a> <span>›</span> <a href="/ubicacion/">Ubicación</a> <span>›</span> <span aria-current="page">Zona Florida</span></nav>
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7">
+                <div class="zhero__badge"><span class="dot"></span> Atendemos pacientes de la colonia Florida</div>
+                <h1 id="zona-h1">Neumólogo para pacientes de la colonia <em>Florida</em>, CDMX</h1>
+                <p class="zhero__sub">Atención neumológica a 8–15 minutos de la colonia Florida: asma y alergias respiratorias, neumonía, EPOC y estudio de sueño instalado en tu propia casa. Consultorio en Hospital Santa Coleta (San José Insurgentes), subiendo por Insurgentes Sur.</p>
+                <div class="zhero__cta">
+                    <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx.%20Vivo%20en%20Florida%20y%20quisiera%20agendar." target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="zona-hero-wa">
+                        <i class="bi bi-whatsapp" aria-hidden="true"></i> Asegurar mi cita a $1,500
+                    </a>
+                    <a href="#agendaModal" class="btn-cal" data-cta="zona-hero-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                        <i class="bi bi-calendar-check" aria-hidden="true"></i> Agendar cita
+                    </a>
+                </div>
+                <div class="zhero__creds">
+                    <span class="zhero__cred"><i class="bi bi-mortarboard-fill" aria-hidden="true"></i> Egresado del INER</span>
+                    <span class="zhero__cred"><i class="bi bi-patch-check-fill" aria-hidden="true"></i> Neumólogo Certificado</span>
+                    <a class="zhero__cred" href="https://g.page/r/CfXAZim2anDFEBI" target="_blank" rel="noopener noreferrer" data-cta="zona-hero-rating"><span class="stars">★</span> 5.0 en Google</a>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="zhero__card">
+                    <div class="subt">Tu primera consulta incluye</div>
+                    <ul class="zhero__grid">
+                        <li><span class="zhero__ico"><i class="bi bi-clipboard2-pulse-fill" aria-hidden="true"></i></span><span class="zhero__lbl">Historia clínica</span></li>
+                        <li><span class="zhero__ico"><i class="bi bi-lungs-fill" aria-hidden="true"></i></span><span class="zhero__lbl">Exploración respiratoria</span></li>
+                        <li><span class="zhero__ico"><i class="bi bi-droplet-fill" aria-hidden="true"></i></span><span class="zhero__lbl">Oximetría</span></li>
+                        <li><span class="zhero__ico"><i class="bi bi-search-heart" aria-hidden="true"></i></span><span class="zhero__lbl">Plan diagnóstico</span></li>
+                        <li><span class="zhero__ico"><i class="bi bi-wind" aria-hidden="true"></i></span><span class="zhero__lbl">Espirometría simple<sup>*</sup></span></li>
+                        <li><span class="zhero__ico"><i class="bi bi-chat-square-text-fill" aria-hidden="true"></i></span><span class="zhero__lbl">Explicación clara</span></li>
+                    </ul>
+                    <p class="zhero__card-foot"><sup>*</sup>Aplican restricciones</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
