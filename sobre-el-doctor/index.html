@@ -299,6 +299,9 @@
       border:1px solid rgba(255,255,255,.3);padding:9px;
       backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
     .trust-card__logo{max-width:100%;max-height:100%;object-fit:contain}
+    /* ficha de especialidad con doble aval (UNAM + INER): logos compactos para caber en movil */
+    .trust-card--unam .trust-card__logo-wrap{width:58px;height:58px;border-radius:13px;padding:7px}
+    .trust-card--unam .trust-card__header-body{gap:12px;flex-wrap:wrap}
 
     .trust-card__type{font-size:.56rem;font-weight:800;letter-spacing:.24em;text-transform:uppercase;
       color:rgba(255,255,255,.55);background:rgba(255,255,255,.1);
@@ -918,6 +921,7 @@
                         </div>
                         <div class="trust-card__header-body">
                             <div class="trust-card__logo-wrap"><img src="/images/UNAM.png" alt="UNAM" class="trust-card__logo" loading="lazy" width="54" height="54"></div>
+                            <div class="trust-card__logo-wrap"><img src="/images/iner.png" alt="INER" class="trust-card__logo" loading="lazy" width="46" height="54"></div>
                             <div class="trust-card__cred">
                                 <div class="trust-card__number">15595809 <small>SEP</small></div>
                                 <p class="trust-card__verified"><i class="bi bi-patch-check-fill"></i> Verificado públicamente</p>

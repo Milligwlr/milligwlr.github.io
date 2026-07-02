@@ -32,9 +32,11 @@
         document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
     }
 
-    /* Auto-close mobile nav on link click */
+    /* Auto-close mobile nav on link click (NO en los toggles de dropdown:
+       "Servicios/Enfermedades/Recursos" tambien son .nav-link y cerraban el
+       panel antes de poder elegir una opcion — bug reportado 2026-07-02) */
     var navCollapse = document.getElementById('navbarNav');
-    document.querySelectorAll('.navbar-nav .nav-link').forEach(function(link){
+    document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle), .navbar-nav .dropdown-item').forEach(function(link){
         link.addEventListener('click', function(){
             if (navCollapse && navCollapse.classList.contains('show') && typeof bootstrap !== 'undefined') {
                 bootstrap.Collapse.getOrCreateInstance(navCollapse, { toggle: false }).hide();
