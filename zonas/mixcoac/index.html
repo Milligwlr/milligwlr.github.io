@@ -346,6 +346,63 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .doc-card__creds span{background:rgba(9,132,227,.08);color:var(--electric);padding:5px 12px;border-radius:999px;font-size:.78rem;font-weight:600}
 @media(max-width:700px){.doc-card{grid-template-columns:1fr}.doc-card__avatar{margin:0 auto}}
 
+
+/* Secciones compartidas con promos: padecimientos + resenas (2026-07-02) */
+.btn-wa,.btn-cal{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 26px;border-radius:14px;font-weight:800;font-size:1.05rem;text-decoration:none;transition:all .25s var(--ease);box-shadow:0 10px 30px -8px rgba(0,0,0,.4);min-width:220px}
+.btn-cal{background:#fff;color:var(--navy)}
+section.block{padding:64px 0}
+.block__head{text-align:center;max-width:720px;margin:0 auto 40px}
+.block__kicker{display:inline-block;background:rgba(9,132,227,.1);color:var(--electric);padding:6px 14px;border-radius:999px;font-size:.78rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:14px}
+.block__title{font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:800;letter-spacing:-.02em;color:var(--navy);margin-bottom:12px;line-height:1.2}
+.block__title em{font-style:normal;color:var(--electric)}
+.block__lead{font-size:1.05rem;color:var(--muted);line-height:1.65}
+.cond{background:linear-gradient(180deg,#fff 0%,#f0f7ff 100%);position:relative;overflow:hidden}
+.cond::before{content:'';position:absolute;inset:0;background:radial-gradient(700px 360px at 50% -10%,rgba(0,206,201,.08),transparent 60%);pointer-events:none}
+.cond .container{position:relative;z-index:1}
+.cond-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:680px){.cond-grid{grid-template-columns:repeat(2,1fr);gap:12px}}
+.cond-card{position:relative;background:linear-gradient(180deg,#fff 0%,#fafdff 100%);border:1px solid rgba(9,132,227,.12);border-radius:20px;padding:26px 18px 22px;text-align:center;transition:all .35s var(--ease);overflow:hidden;cursor:default;display:flex;flex-direction:column;align-items:center;gap:10px}
+.cond-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--electric),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.cond-card::after{content:'';position:absolute;inset:-1px;border-radius:20px;background:linear-gradient(135deg,rgba(0,206,201,.18),rgba(9,132,227,.18));opacity:0;transition:opacity .35s var(--ease);z-index:-1;filter:blur(14px)}
+.cond-card:hover{transform:translateY(-6px);border-color:rgba(0,206,201,.4);box-shadow:0 22px 44px -18px rgba(9,44,84,.22)}
+.cond-card:hover::before{transform:scaleX(1)}
+.cond-card:hover::after{opacity:1}
+.cond-card__icon{width:62px;height:62px;border-radius:18px;background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.7rem;margin-bottom:4px;box-shadow:0 10px 24px -10px rgba(9,132,227,.55);transition:transform .35s var(--ease)}
+.cond-card:hover .cond-card__icon{transform:scale(1.08) rotate(-4deg)}
+.cond-card h3{font-size:1.05rem;font-weight:800;color:var(--navy);margin:0;letter-spacing:-.01em}
+.cond-card__tag{display:inline-block;font-size:.68rem;font-weight:800;padding:4px 10px;border-radius:999px;background:rgba(9,132,227,.1);color:var(--electric);letter-spacing:.4px;text-transform:uppercase}
+.cond-card__tag--featured{background:linear-gradient(135deg,#ff7a45,#e64a19);color:#fff;box-shadow:0 6px 14px -4px rgba(230,74,25,.5)}
+.btn-ask-wa{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:14px;font-weight:700;font-size:.97rem;text-decoration:none;color:var(--green-dark);background:rgba(29,168,81,.07);border:1.5px solid rgba(29,168,81,.4);transition:all .25s var(--ease);backdrop-filter:blur(4px)}
+.btn-ask-wa i{font-size:1.15rem;color:var(--green)}
+.btn-ask-wa:hover{background:rgba(29,168,81,.14);border-color:var(--green);color:var(--green-dark);transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(29,168,81,.25)}
+section.block{padding:46px 0}
+.block__head{margin-bottom:28px}
+:root{ --cloud:#f0f6ff; --cloud-alt:#f8faff; --white:#ffffff; --text:#0f1d30; --text-muted:#64748b; --royal:#1e3799; --shadow-sm:0 2px 14px rgba(10,22,40,.07); --shadow-md:0 6px 32px rgba(10,22,40,.09); --sans:'Plus Jakarta Sans',system-ui,sans-serif; }
+.gbp-rating-widget{display:inline-flex;align-items:center;gap:14px;padding:14px 24px;background:linear-gradient(135deg,#fff 0%,var(--cloud-alt) 100%);border:1px solid rgba(9,132,227,.14);border-radius:100px;box-shadow:var(--shadow-sm);font-family:var(--sans);text-decoration:none;color:var(--text);transition:all .3s var(--ease)}
+.gbp-rating-widget:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);color:var(--text)}
+.gbp-rating-widget__num{font-size:1.5rem;font-weight:800;color:var(--navy);line-height:1}
+.gbp-rating-widget__stars{color:#fbbc04;font-size:1rem;letter-spacing:1px;line-height:1}
+.gbp-rating-widget__meta{display:flex;flex-direction:column;line-height:1.2}
+.gbp-rating-widget__source{font-size:.72rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em}
+.gbp-rating-widget__count{font-size:.82rem;font-weight:600;color:var(--navy)}
+.testimonial-source-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(9,132,227,.07);border:1px solid rgba(9,132,227,.16);border-radius:100px;padding:6px 18px;font-size:.72rem;font-weight:700;color:var(--electric)}
+.testimonial-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;height:520px;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 8%,black 92%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,black 8%,black 92%,transparent 100%)}
+.testimonial-col{display:flex;flex-direction:column;gap:16px;will-change:transform;animation:testimonial-scroll-up var(--t-dur,60s) linear infinite}
+.testimonial-col--down{animation-direction:reverse}
+.testimonial-col:hover{animation-play-state:paused}
+@keyframes testimonial-scroll-up{0%{transform:translateY(0)}100%{transform:translateY(calc(-50% - var(--tgap,8px)))}}
+.testi-card{background:var(--white);border:1px solid rgba(0,0,0,.06);border-radius:18px;padding:24px;box-shadow:0 2px 12px rgba(10,22,40,.04);transition:all .4s var(--ease);flex-shrink:0}
+.testi-card:hover{box-shadow:0 12px 40px rgba(10,22,40,.09);border-color:rgba(9,132,227,.15)}
+.testi-stars{display:flex;gap:2px;margin-bottom:12px}
+.testi-stars i{color:#f59e0b;font-size:.82rem}
+.testi-text{font-size:.88rem;line-height:1.7;color:var(--text);font-style:italic;margin:0 0 16px}
+.testi-author{display:flex;align-items:center;gap:10px}
+.testi-avatar{width:38px;height:38px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--electric),var(--royal));color:var(--white);font-weight:700;font-size:.95rem;display:flex;align-items:center;justify-content:center}
+.testi-name{font-weight:700;font-size:.82rem;color:var(--navy);margin:0}
+.testi-badge{font-size:.68rem;color:var(--text-muted);margin:1px 0 0}
+@media(max-width:992px){.testimonial-columns{height:440px}}
+@media(max-width:640px){.testimonial-columns{grid-template-columns:1fr 1fr;gap:10px;height:380px}.testimonial-columns > :nth-child(3){display:none}.testimonial-col{gap:10px}.testi-card{padding:14px;border-radius:14px}.testi-text{font-size:.8rem;line-height:1.6}.testi-name{font-size:.75rem}.testi-badge{font-size:.62rem}.testi-avatar{width:32px;height:32px;font-size:.8rem}}
+
 .nav-link--recursos.active{color:#1e3799!important;font-weight:700!important}
 .nav-link--recursos.active::after{background:#1e3799!important}
 .nav-link--recursos:hover{color:#0984e3!important}
@@ -659,6 +716,114 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <p style="margin:14px 0 0"><a href="/sobre-el-doctor/" style="color:var(--electric);font-weight:700">Conoce más sobre el doctor →</a></p>
             </div>
         </article>
+    </div>
+</section>
+
+
+<!-- ============ PADECIMIENTOS ============ -->
+<section class="block cond">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">Áreas de atención</span>
+            <h2 class="block__title">Síntomas y padecimientos que <em>tratamos</em></h2>
+            <p class="block__lead">Atención de adultos. Si tu síntoma no aparece aquí, escríbenos por WhatsApp y te orientamos antes de agendar.</p>
+        </div>
+        <div class="cond-grid" style="max-width:1080px;margin:0 auto">
+            <article class="cond-card">
+                <div class="cond-card__icon"><i class="bi bi-soundwave"></i></div>
+                <h3>Tos crónica</h3>
+                <span class="cond-card__tag">Diagnóstico</span>
+            </article>
+            <article class="cond-card">
+                <div class="cond-card__icon"><i class="bi bi-lungs"></i></div>
+                <h3>Bronquitis</h3>
+                <span class="cond-card__tag">Aguda · Crónica</span>
+            </article>
+            <article class="cond-card">
+                <div class="cond-card__icon"><i class="bi bi-wind"></i></div>
+                <h3>Asma</h3>
+                <span class="cond-card__tag">Guías GINA</span>
+            </article>
+            <article class="cond-card">
+                <div class="cond-card__icon"><i class="bi bi-lungs-fill"></i></div>
+                <h3>EPOC</h3>
+                <span class="cond-card__tag cond-card__tag--featured">Alta Especialidad</span>
+            </article>
+            <article class="cond-card">
+                <div class="cond-card__icon"><i class="bi bi-moon-stars-fill"></i></div>
+                <h3>Apnea del sueño</h3>
+                <span class="cond-card__tag">Sueño · CPAP</span>
+            </article>
+            <article class="cond-card">
+                <div class="cond-card__icon"><i class="bi bi-slash-circle"></i></div>
+                <h3>Tabaquismo</h3>
+                <span class="cond-card__tag">Dejar de fumar</span>
+            </article>
+        </div>
+        <div style="text-align:center;margin-top:36px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:center">
+            <a href="/enfermedades/" class="btn-cal" style="background:var(--navy);color:#fff;min-width:0;padding:14px 28px;font-size:.98rem;box-shadow:0 8px 22px -10px rgba(9,44,84,.35)" data-cta="cond-all">
+                <i class="bi bi-grid-3x3-gap-fill"></i> Ver todas las enfermedades
+            </a>
+            <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx%20y%20tengo%20una%20pregunta%20sobre%20mi%20padecimiento%20respiratorio.%20Me%20gustar%C3%ADa%20saber%20si%20es%20algo%20que%20usted%20atiende."  target="_blank" rel="noopener noreferrer" class="btn-ask-wa" data-cta="cond-ask">
+                <i class="bi bi-whatsapp"></i> Preguntar por otra enfermedad
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ============ RESEÑAS REALES (Google) ============ -->
+<section class="block">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">Pacientes</span>
+            <h2 class="block__title">Lo que dicen quienes ya pasaron a <em>consulta</em></h2>
+        </div>
+        <div class="text-center mb-4" style="display:flex;flex-direction:column;gap:14px;align-items:center;">
+            <a href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer" class="gbp-rating-widget" aria-label="Calificación de 5.0 estrellas con 34 reseñas verificadas en Google. Ver reseñas">
+                <span class="gbp-rating-widget__num">5.0</span>
+                <div class="gbp-rating-widget__meta">
+                    <span class="gbp-rating-widget__stars" aria-hidden="true">★★★★★</span>
+                    <span class="gbp-rating-widget__count">34 reseñas verificadas</span>
+                </div>
+                <span class="gbp-rating-widget__source"><i class="bi bi-google" aria-hidden="true"></i> Google</span>
+            </a>
+            <div class="testimonial-source-badge"><i class="bi bi-patch-check-fill"></i> Opiniones de pacientes verificados</div>
+        </div>
+        <div class="testimonial-columns">
+            <div class="testimonial-col">
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Very kind and generous, he also does check up on you daily until recovery. Great job! I recommend him a lot."</p><div class="testi-author"><div class="testi-avatar">T</div><div><p class="testi-name">Thulie M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Muy buen médico, muy amable y siempre pendiente de sus pacientes. Lo recomiendo ampliamente."</p><div class="testi-author"><div class="testi-avatar">R</div><div><p class="testi-name">Rossana R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Si estás buscando a un neumólogo que combine conocimiento, dedicación y un trato genuinamente humano, lo recomiendo sin duda."</p><div class="testi-author"><div class="testi-avatar">C</div><div><p class="testi-name">Ces R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Muy buena atención por parte del Dr. Lara, sabe explicar muy bien a sus pacientes. Excelente desde el primer contacto."</p><div class="testi-author"><div class="testi-avatar">F</div><div><p class="testi-name">Fabiola G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Very kind and generous, he also does check up on you daily until recovery. Great job! I recommend him a lot."</p><div class="testi-author"><div class="testi-avatar">T</div><div><p class="testi-name">Thulie M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Muy buen médico, muy amable y siempre pendiente de sus pacientes. Lo recomiendo ampliamente."</p><div class="testi-author"><div class="testi-avatar">R</div><div><p class="testi-name">Rossana R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Si estás buscando a un neumólogo que combine conocimiento, dedicación y un trato genuinamente humano, lo recomiendo sin duda."</p><div class="testi-author"><div class="testi-avatar">C</div><div><p class="testi-name">Ces R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Muy buena atención por parte del Dr. Lara, sabe explicar muy bien a sus pacientes. Excelente desde el primer contacto."</p><div class="testi-author"><div class="testi-avatar">F</div><div><p class="testi-name">Fabiola G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+            </div>
+            <div class="testimonial-col">
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Mi experiencia con el doctor William ha sido muy buena. Es buen doctor, amable, respetuoso y le explica todo bien al paciente."</p><div class="testi-author"><div class="testi-avatar">L</div><div><p class="testi-name">Lourdes A.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Excelente Dr. Empático, humano, y muy comprometido con su labor."</p><div class="testi-author"><div class="testi-avatar">S</div><div><p class="testi-name">Sonia de la F.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Excelente atención, super personalizada cuidando cada detalle y siempre al pendiente del paciente."</p><div class="testi-author"><div class="testi-avatar">Y</div><div><p class="testi-name">Yetlanetzy R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Agradezco la atención y seguimiento en cada consulta. Me explicó el diagnóstico con claridad. Lo recomiendo ampliamente."</p><div class="testi-author"><div class="testi-avatar">K</div><div><p class="testi-name">Karla G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Mi experiencia con el doctor William ha sido muy buena. Es buen doctor, amable, respetuoso y le explica todo bien al paciente."</p><div class="testi-author"><div class="testi-avatar">L</div><div><p class="testi-name">Lourdes A.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Excelente Dr. Empático, humano, y muy comprometido con su labor."</p><div class="testi-author"><div class="testi-avatar">S</div><div><p class="testi-name">Sonia de la F.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Excelente atención, super personalizada cuidando cada detalle y siempre al pendiente del paciente."</p><div class="testi-author"><div class="testi-avatar">Y</div><div><p class="testi-name">Yetlanetzy R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Agradezco la atención y seguimiento en cada consulta. Me explicó el diagnóstico con claridad. Lo recomiendo ampliamente."</p><div class="testi-author"><div class="testi-avatar">K</div><div><p class="testi-name">Karla G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+            </div>
+            <div class="testimonial-col">
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Muy buena atención del Dr. Lara. Las explicaciones fueron claras y los estudios se realizaron sin contratiempos. Muy recomendado."</p><div class="testi-author"><div class="testi-avatar">T</div><div><p class="testi-name">Teté P.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"El Dr. William puntual en la cita nos atendió con mucho esmero, checó con mucho detalle y el diagnóstico muy acertado."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Adán C.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"El doctor William es excelente, muy humano, profesional y dedicado a sus pacientes. Si necesitas un neumólogo, no dudes en llamarlo."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Adri N.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Muy buena atención del Dr. Lara. Las explicaciones fueron claras y los estudios se realizaron sin contratiempos. Muy recomendado."</p><div class="testi-author"><div class="testi-avatar">T</div><div><p class="testi-name">Teté P.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"El Dr. William puntual en la cita nos atendió con mucho esmero, checó con mucho detalle y el diagnóstico muy acertado."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Adán C.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"El doctor William es excelente, muy humano, profesional y dedicado a sus pacientes. Si necesitas un neumólogo, no dudes en llamarlo."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Adri N.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;color:var(--electric);font-weight:600;font-size:.92rem;text-decoration:none;border-bottom:1px solid rgba(9,132,227,.3);padding-bottom:2px">
+                <i class="bi bi-google" aria-hidden="true"></i> Ver todas las reseñas en Google
+            </a>
+        </div>
     </div>
 </section>
 
