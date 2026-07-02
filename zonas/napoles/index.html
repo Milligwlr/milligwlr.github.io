@@ -439,6 +439,32 @@ a.zhero__cred:hover{background:rgba(255,255,255,.2);color:#fff}
 .zhero__card-foot{margin:14px 0 0;font-size:.72rem;color:rgba(255,255,255,.55);text-align:center;letter-spacing:.3px}
 @media(max-width:991px){.zhero{padding:96px 0 44px}.zhero__card{margin-top:26px}}
 
+
+/* Pulido impeccable 2026-07-02: cabeceras unificadas + filas + checklist */
+.zsec-head{text-align:center;max-width:720px;margin:0 auto 34px}
+.zsec-head .block__lead{max-width:60ch;margin-left:auto;margin-right:auto}
+.zsec-head h2{text-wrap:balance}
+.zsvc-list{display:grid;gap:14px;max-width:840px;margin:0 auto}
+.zsvc-row{display:flex;align-items:center;gap:18px;padding:18px 22px;background:#fff;border:1px solid var(--border);border-radius:16px;text-decoration:none;transition:border-color .25s var(--ease),box-shadow .25s var(--ease),transform .25s var(--ease)}
+.zsvc-row:hover{border-color:rgba(9,132,227,.35);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.zsvc-row:focus-visible{outline:3px solid var(--electric);outline-offset:3px}
+.zsvc-row__icon{width:48px;height:48px;border-radius:13px;background:linear-gradient(135deg,var(--electric),var(--royal));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0;box-shadow:0 8px 18px -8px rgba(9,132,227,.5)}
+.zsvc-row__body{flex:1;min-width:0}
+.zsvc-row__body h3{font-size:1.04rem;font-weight:800;color:var(--navy);margin:0 0 2px}
+.zsvc-row__body p{font-size:.92rem;color:var(--text-muted);margin:0;line-height:1.5}
+.zsvc-row__go{color:var(--electric);font-size:1.1rem;flex-shrink:0;transition:transform .25s var(--ease)}
+.zsvc-row:hover .zsvc-row__go{transform:translateX(4px)}
+.zsym-list{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px 26px;max-width:840px;margin:0 auto;padding:0}
+.zsym-item{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:14px;transition:background .25s var(--ease)}
+.zsym-item:hover{background:rgba(9,132,227,.05)}
+.zsym-item > i{color:var(--electric);font-size:1.15rem;flex-shrink:0;margin-top:2px}
+.zsym-item strong a{color:var(--navy);text-decoration:none;font-weight:800}
+.zsym-item strong a:hover{color:var(--electric)}
+.zsym-item span{color:var(--text-muted);font-size:.95rem;line-height:1.55}
+.zfaq-more{max-width:820px;margin:26px auto 0;text-align:center;padding:18px 22px;background:#fff;border:1px dashed rgba(9,132,227,.35);border-radius:14px;color:var(--text-muted);font-size:.96rem}
+.zfaq-more a{color:var(--electric);font-weight:700}
+@media (prefers-reduced-motion: reduce){.zsvc-row,.zsvc-row__go,.zsym-item{transition:none}}
+
 .nav-link--recursos.active{color:#1e3799!important;font-weight:700!important}
 .nav-link--recursos.active::after{background:#1e3799!important}
 .nav-link--recursos:hover{color:#0984e3!important}
@@ -588,10 +614,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <hr class="section-divider">
 
 <!-- QUIEN TE ATIENDE (E-E-A-T) -->
-<section class="ubi-arrive" aria-labelledby="zona-doc-h2" style="background:#fff;">
+<section class="ubi-arrive" aria-labelledby="zona-doc-h2" style="background:var(--cloud-alt,#f8faff);">
     <div class="container">
-        <h2 id="zona-doc-h2">Quién te atiende</h2>
-        <p class="ubi-arrive__lead">Conoce al especialista antes de agendar.</p>
+        <div class="block__head zsec-head">
+            <span class="block__kicker">Quién te atiende</span>
+            <h2 class="block__title" id="zona-doc-h2">Tu médico <em>especialista</em></h2>
+            <p class="block__lead">Formación en el INER, certificación vigente y consulta explicada con calma: este es el médico que te va a recibir.</p>
+            </div>
         <article class="doc-card" style="margin:0 auto" itemscope itemtype="https://schema.org/Physician">
             <img src="/images/dr-william-lara.jpg" alt="Dr. William César Lara Vázquez, neumólogo egresado del INER" class="doc-card__avatar" width="140" height="140" loading="lazy" itemprop="image">
             <div>
@@ -670,24 +699,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- SERVICIOS ESTRELLA -->
 <section class="ubi-arrive" aria-labelledby="zona-serv-h2">
     <div class="container">
-        <h2 id="zona-serv-h2">Servicios más solicitados desde Nápoles</h2>
-        <p class="ubi-arrive__lead">Estudios y tratamientos que resolvemos de forma directa, sin enviar al paciente a múltiples sedes.</p>
-        <div class="ubi-arrive__grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
-            <article class="ubi-arrive__card">
-                <div class="ubi-arrive__icon" style="background:linear-gradient(135deg,#1ebe57,#25D366)"><i class="bi bi-lungs-fill" aria-hidden="true"></i></div>
-                <h3><a href="/servicios/poligrafia-respiratoria/" style="color:inherit;text-decoration:none">Poligrafía respiratoria</a></h3>
-                <p>Estudio de sueño en tu casa, sin hospitalizarte.</p>
-            </article>
-            <article class="ubi-arrive__card">
-                <div class="ubi-arrive__icon" style="background: linear-gradient(135deg, #1ebe57, #25D366);"><i class="bi bi-clipboard2-pulse-fill" aria-hidden="true"></i></div>
-                <h3><a href="/servicios/espirometria/" style="color:inherit;text-decoration:none">Espirometría</a></h3>
-                <p>Función pulmonar interpretada en la misma consulta.</p>
-            </article>
-            <article class="ubi-arrive__card">
-                <div class="ubi-arrive__icon" style="background:linear-gradient(135deg,#1ebe57,#25D366)"><i class="bi bi-moon-stars" aria-hidden="true"></i></div>
-                <h3><a href="/servicios/tratamiento-dejar-de-fumar/" style="color:inherit;text-decoration:none">Dejar de fumar</a></h3>
-                <p>Programa médico estructurado a 12 meses.</p>
-            </article>
+        <div class="block__head zsec-head">
+            <h2 class="block__title" id="zona-serv-h2">Servicios más solicitados desde Nápoles</h2>
+            <p class="block__lead">Estudios y tratamientos que resolvemos de forma directa, sin enviar al paciente a múltiples sedes.</p>
+            </div>
+        <div class="zsvc-list">
+            <a class="zsvc-row" href="/servicios/poligrafia-respiratoria/"><span class="zsvc-row__icon"><i class="bi bi-lungs-fill" aria-hidden="true"></i></span><span class="zsvc-row__body"><h3>Poligrafía respiratoria</h3><p>Estudio de sueño en tu casa, sin hospitalizarte.</p></span><i class="bi bi-arrow-right zsvc-row__go" aria-hidden="true"></i></a>
+            <a class="zsvc-row" href="/servicios/espirometria/"><span class="zsvc-row__icon"><i class="bi bi-clipboard2-pulse-fill" aria-hidden="true"></i></span><span class="zsvc-row__body"><h3>Espirometría</h3><p>Función pulmonar interpretada en la misma consulta.</p></span><i class="bi bi-arrow-right zsvc-row__go" aria-hidden="true"></i></a>
+            <a class="zsvc-row" href="/servicios/tratamiento-dejar-de-fumar/"><span class="zsvc-row__icon"><i class="bi bi-moon-stars" aria-hidden="true"></i></span><span class="zsvc-row__body"><h3>Dejar de fumar</h3><p>Programa médico estructurado a 12 meses.</p></span><i class="bi bi-arrow-right zsvc-row__go" aria-hidden="true"></i></a>
         </div>
     </div>
 </section>
@@ -695,35 +714,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- PERFIL: enfermedades top del barrio -->
 <section class="ubi-arrive" aria-labelledby="zona-perfil-h2" style="background:#fff;">
     <div class="container">
-        <h2 id="zona-perfil-h2">Lo más consultado por pacientes de Nápoles</h2>
-        <p class="ubi-arrive__lead">Los motivos de consulta más frecuentes en pacientes desde Nápoles este año.</p>
-        <div class="ubi-arrive__grid">
-            <article class="ubi-arrive__card">
-                <div class="ubi-arrive__icon" style="background:linear-gradient(135deg,#e67e22,#d35400)"><i class="bi bi-lungs" aria-hidden="true"></i></div>
-                <h3><a href="/enfermedades/asma/" style="color:inherit;text-decoration:none">Asma del adulto</a></h3>
-                <p>tos nocturna y silbido de pecho.</p>
-            </article>
-            <article class="ubi-arrive__card">
-                <div class="ubi-arrive__icon" style="background:linear-gradient(135deg,#6c5ce7,#4834d4)"><i class="bi bi-moon-stars-fill" aria-hidden="true"></i></div>
-                <h3><a href="/enfermedades/apnea-del-sueno/" style="color:inherit;text-decoration:none">Apnea del sueño</a></h3>
-                <p>ronquido y somnolencia durante el día.</p>
-            </article>
-            <article class="ubi-arrive__card">
-                <div class="ubi-arrive__icon" style="background:linear-gradient(135deg,#1ebe57,#25D366)"><i class="bi bi-arrow-repeat" aria-hidden="true"></i></div>
-                <h3><a href="/enfermedades/epoc/" style="color:inherit;text-decoration:none">Epoc</a></h3>
-                <p>tos con flema que no se quita.</p>
-            </article>
-            <article class="ubi-arrive__card">
-                <div class="ubi-arrive__icon" style="background:linear-gradient(135deg,#ec4899,#db2777)"><i class="bi bi-heart-pulse" aria-hidden="true"></i></div>
-                <h3><a href="/enfermedades/tabaquismo/" style="color:inherit;text-decoration:none">Tabaquismo</a></h3>
-                <p>programa médico para dejar de fumar.</p>
-            </article>
-        </div>
+        <div class="block__head zsec-head">
+            <h2 class="block__title" id="zona-perfil-h2">Lo más consultado por pacientes de Nápoles</h2>
+            <p class="block__lead">Los motivos de consulta más frecuentes en pacientes desde Nápoles este año.</p>
+            </div>
+        <ul class="zsym-list">
+            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong><a href="/enfermedades/asma/">Asma del adulto</a></strong><br>Tos nocturna y silbido de pecho.</span></li>
+            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong><a href="/enfermedades/apnea-del-sueno/">Apnea del sueño</a></strong><br>Ronquido y somnolencia durante el día.</span></li>
+            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong><a href="/enfermedades/epoc/">EPOC</a></strong><br>Tos con flema que no se quita.</span></li>
+            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong><a href="/enfermedades/tabaquismo/">Tabaquismo</a></strong><br>Programa médico para dejar de fumar.</span></li>
+        </ul>
     </div>
 </section>
 
 <!-- ============ RESEÑAS REALES (Google) ============ -->
-<section class="block">
+<section class="block" style="background:var(--cloud-alt,#f8faff)">
     <div class="container">
         <div class="block__head">
             <span class="block__kicker">Pacientes</span>
@@ -849,8 +854,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- HOW TO ARRIVE FROM BARRIO -->
 <section class="ubi-arrive" aria-labelledby="zona-arrive-h2">
     <div class="container">
-        <h2 id="zona-arrive-h2">Cómo llegar al consultorio desde Nápoles</h2>
-        <p class="ubi-arrive__lead">Cuatro maneras de llegar al Hospital Santa Coleta desde Nápoles, CDMX.</p>
+        <div class="block__head zsec-head">
+            <h2 class="block__title" id="zona-arrive-h2">Cómo llegar al consultorio desde Nápoles</h2>
+            <p class="block__lead">Cuatro maneras de llegar al Hospital Santa Coleta desde Nápoles, CDMX.</p>
+            </div>
 
         <div class="ubi-arrive__grid">
             <article class="ubi-arrive__card">
@@ -883,8 +890,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- COBERTURA EXTRA -->
 <section class="ubi-coverage" aria-labelledby="zona-cov-h2">
     <div class="container">
-        <h2 id="zona-cov-h2">También atendemos pacientes desde colonias cercanas a Nápoles</h2>
-        <p class="ubi-coverage__lead">Si vives cerca de Nápoles pero en una colonia distinta, también te esperamos. Distancia y tiempo son similares.</p>
+        <div class="block__head zsec-head">
+            <h2 class="block__title" id="zona-cov-h2">También atendemos pacientes desde colonias cercanas a Nápoles</h2>
+            <p class="block__lead">Si vives cerca de Nápoles pero en una colonia distinta, también te esperamos. Distancia y tiempo son similares.</p>
+            </div>
         <div class="ubi-coverage__chips" role="list">
             <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Ampliación Nápoles</span>
             <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Ciudad de los Deportes</span>
@@ -898,9 +907,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- FAQ -->
 <section class="faq-section" aria-labelledby="zona-faq-h2">
     <div class="container">
-        <h2 id="zona-faq-h2">Preguntas frecuentes de pacientes desde Nápoles</h2>
-        <p class="faq-section__lead">Las dudas más comunes antes de la primera consulta.</p>
-        <div class="faq-list">
+        <div class="block__head zsec-head">
+            <h2 class="block__title" id="zona-faq-h2">Preguntas frecuentes de pacientes desde Nápoles</h2>
+            <p class="block__lead">Las dudas más comunes antes de la primera consulta.</p>
+            </div>
+        <div class="faq-list" style="margin:0 auto">
             <details class="faq-item">
                 <summary>¿Cuánto cuesta la consulta con el neumólogo cerca de Nápoles?</summary>
                 <div class="faq-answer"><p>La consulta tiene un costo de $1,500 MXN e incluye la valoración completa con plan escrito. Los estudios (espirometría, poligrafía) se cotizan por separado; confirma por WhatsApp al 55 9170 8334.</p></div>
@@ -918,6 +929,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="faq-answer"><p>Sí. El <a href="/servicios/tratamiento-dejar-de-fumar/">tratamiento médico para dejar de fumar</a> combina valoración clínica, terapia médica de primera línea que se elige y prescribe en consulta, y seguimiento estructurado hasta 12 meses.</p></div>
             </details>
         </div>
+        <div class="zfaq-more">¿Te quedó otra duda? <a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx%20y%20tengo%20una%20duda%20antes%20de%20agendar." target="_blank" rel="noopener noreferrer">Escríbeme por WhatsApp</a> — respondo personalmente.</div>
+
     </div>
 </section>
 
