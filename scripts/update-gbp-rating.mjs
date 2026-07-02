@@ -1,7 +1,12 @@
 #!/usr/bin/env node
-// Sincroniza ratingValue + reviewCount de Google Business Profile en el HTML.
+// Sincroniza ratingValue + reviewCount de Google Business Profile en el HTML:
+// JSON-LD aggregateRating + textos visibles del widget .gbp-rating-widget
+// (home, ubicación, santa-coleta, zonas/* y promociones/* con widget).
 // Llamado por .github/workflows/update-gbp-rating.yml (cron semanal).
 // Requiere GOOGLE_MAPS_API_KEY (Places API New) en env.
+//
+// Prueba local sin API key:
+//   node scripts/update-gbp-rating.mjs --dry-run --rating 5.0 --count 36
 
 import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -21,8 +26,27 @@ const JSONLD_RATING = {
   build: (m, r, c) => `${m[1]}${r}${m[2]}${c}${m[3]}`,
 };
 
-// Zonas con ficha LocalBusiness propia (mismo aggregateRating del GBP).
-// Al crear una nueva zona con aggregateRating, añade su slug aquí.
+// Widget/badge visible .gbp-rating-widget (rating "5.0" + "N reseñas verificadas").
+const WIDGET_PATCHES = [
+  {
+    name: "aria-label widget",
+    find: /(aria-label="Calificación de )[\d.]+( estrellas con )\d+( reseñas verificadas en Google\. Ver reseñas")/,
+    build: (m, r, c) => `${m[1]}${r}${m[2]}${c}${m[3]}`,
+  },
+  {
+    name: "widget rating num",
+    find: /(<span class="gbp-rating-widget__num">)[\d.]+(<\/span>)/,
+    build: (m, r) => `${m[1]}${r}${m[2]}`,
+  },
+  {
+    name: "widget count text",
+    find: /(<span class="gbp-rating-widget__count">)\d+( reseñas verificadas<\/span>)/,
+    build: (m, _r, c) => `${m[1]}${c}${m[2]}`,
+  },
+];
+
+// Zonas con ficha LocalBusiness propia (mismo aggregateRating del GBP) + widget.
+// Al crear una nueva zona, añade su slug aquí.
 const ZONAS = [
   "santa-fe",
   "roma-condesa",
@@ -31,32 +55,28 @@ const ZONAS = [
   "interlomas",
   "del-valle",
   "coyoacan",
+  "napoles",
+  "mixcoac",
+  "florida",
+  "guadalupe-inn",
+  "san-jose-insurgentes",
+];
+
+// Promos con widget (sin JSON-LD aggregateRating propio).
+// titulacion-presion-positiva no lleva widget; al añadirlo, súmala aquí.
+const PROMOS = [
+  "consulta-neumologia",
+  "dejar-de-fumar",
+  "espirometria-broncodilatador",
+  "poligrafia-respiratoria",
 ];
 
 const TARGETS = [
-  {
-    file: "index.html",
-    patches: [
-      JSONLD_RATING,
-      {
-        name: "aria-label widget",
-        find: /(aria-label="Calificación de )[\d.]+( estrellas con )\d+( reseñas verificadas en Google\. Ver reseñas")/,
-        build: (m, r, c) => `${m[1]}${r}${m[2]}${c}${m[3]}`,
-      },
-      {
-        name: "widget rating num",
-        find: /(<span class="gbp-rating-widget__num">)[\d.]+(<\/span>)/,
-        build: (m, r) => `${m[1]}${r}${m[2]}`,
-      },
-      {
-        name: "widget count text",
-        find: /(<span class="gbp-rating-widget__count">)\d+( reseñas verificadas<\/span>)/,
-        build: (m, _r, c) => `${m[1]}${c}${m[2]}`,
-      },
-    ],
-  },
+  { file: "index.html", patches: [JSONLD_RATING, ...WIDGET_PATCHES] },
   { file: "ubicacion/index.html", patches: [JSONLD_RATING] },
-  ...ZONAS.map((z) => ({ file: `zonas/${z}/index.html`, patches: [JSONLD_RATING] })),
+  { file: "neumologo-en-hospital-santa-coleta/index.html", patches: [JSONLD_RATING, ...WIDGET_PATCHES] },
+  ...ZONAS.map((z) => ({ file: `zonas/${z}/index.html`, patches: [JSONLD_RATING, ...WIDGET_PATCHES] })),
+  ...PROMOS.map((p) => ({ file: `promociones/${p}/index.html`, patches: WIDGET_PATCHES })),
 ];
 
 async function fetchGbpStats() {
@@ -126,11 +146,40 @@ function applyPatches(content, patches, rating, count) {
   return { updated, changes };
 }
 
+// CLI: --dry-run (no escribe), --rating 5.0 --count 36 (omite la API, para pruebas locales).
+function parseArgs(argv) {
+  const args = { dryRun: false, rating: null, count: null };
+  for (let i = 0; i < argv.length; i++) {
+    if (argv[i] === "--dry-run") args.dryRun = true;
+    else if (argv[i] === "--rating") args.rating = argv[++i];
+    else if (argv[i] === "--count") args.count = argv[++i];
+  }
+  if ((args.rating === null) !== (args.count === null)) {
+    throw new Error("--rating y --count deben ir juntos");
+  }
+  if (args.rating !== null && !/^\d\.\d$/.test(args.rating)) {
+    throw new Error(`--rating inválido: ${args.rating} (formato N.N)`);
+  }
+  if (args.count !== null && !/^\d+$/.test(args.count)) {
+    throw new Error(`--count inválido: ${args.count}`);
+  }
+  return args;
+}
+
 async function main() {
-  console.log("→ Consultando Places API…");
-  const stats = await fetchGbpStats();
-  console.log(`  ${stats.name} (${stats.placeId})`);
-  console.log(`  rating=${stats.rating} count=${stats.count}`);
+  const args = parseArgs(process.argv.slice(2));
+
+  let stats;
+  if (args.rating !== null) {
+    stats = { rating: args.rating, count: args.count };
+    console.log(`→ Usando valores manuales: rating=${stats.rating} count=${stats.count}`);
+  } else {
+    console.log("→ Consultando Places API…");
+    stats = await fetchGbpStats();
+    console.log(`  ${stats.name} (${stats.placeId})`);
+    console.log(`  rating=${stats.rating} count=${stats.count}`);
+  }
+  if (args.dryRun) console.log("→ DRY-RUN: no se escribirá ningún archivo");
 
   let anyFileChanged = false;
   let anyMissingMatch = false;
@@ -147,7 +196,7 @@ async function main() {
     }
 
     if (updated !== original) {
-      await writeFile(path, updated, "utf8");
+      if (!args.dryRun) await writeFile(path, updated, "utf8");
       anyFileChanged = true;
     }
   }
@@ -157,7 +206,11 @@ async function main() {
     process.exit(2);
   }
 
-  console.log(anyFileChanged ? "\n✓ HTML actualizado" : "\n= Sin cambios (rating/count ya coinciden)");
+  if (args.dryRun) {
+    console.log(anyFileChanged ? "\n✓ DRY-RUN: habría cambios (nada escrito)" : "\n= DRY-RUN: sin cambios");
+  } else {
+    console.log(anyFileChanged ? "\n✓ HTML actualizado" : "\n= Sin cambios (rating/count ya coinciden)");
+  }
 }
 
 export { TARGETS, ROOT, applyPatches, fetchGbpStats };

@@ -4,7 +4,7 @@
 //
 //   Uso:  node scripts/set-review-count.mjs 34
 //
-// Cubre: home ES, home EN, ubicación, las 7 zonas, facturación y las 3 promos.
+// Cubre: home ES, home EN, ubicación, santa-coleta, las 12 zonas, facturación y las 4 promos con widget.
 // El rating (5.0) no se toca; solo el conteo. Best-effort: si un patrón no existe
 // en un archivo, lo omite sin error.
 
@@ -29,14 +29,15 @@ const factCom  = { name: "facturación comentario", re: /(· )\d+( reseñas \*\/
 const promoWid = { name: "promo widget count", re: /(<span class="gbp-rating-widget__count">)\d+( reseñas verificadas)/g, fn: (m, a, b) => a + count + b };
 const promoAria= { name: "promo aria-label",   re: /(con )\d+( reseñas verificadas en Google)/g, fn: (m, a, b) => a + count + b };
 
-const ZONAS = ["santa-fe", "roma-condesa", "polanco", "lomas-de-chapultepec", "interlomas", "del-valle", "coyoacan"];
-const PROMOS = ["consulta-neumologia", "espirometria-broncodilatador", "poligrafia-respiratoria"];
+const ZONAS = ["santa-fe", "roma-condesa", "polanco", "lomas-de-chapultepec", "interlomas", "del-valle", "coyoacan", "napoles", "mixcoac", "florida", "guadalupe-inn", "san-jose-insurgentes"];
+const PROMOS = ["consulta-neumologia", "dejar-de-fumar", "espirometria-broncodilatador", "poligrafia-respiratoria"];
 
 const TARGETS = [
   { file: "index.html",            reps: [schema, esVerif, esSmall] },
   { file: "en/index.html",         reps: [schema, enSmall, esVerif] },
   { file: "ubicacion/index.html",  reps: [schema, esVerif] },
   { file: "facturacion/index.html",reps: [factVis, factCom] },
+  { file: "neumologo-en-hospital-santa-coleta/index.html", reps: [schema, esVerif] },
   ...ZONAS.map((z)  => ({ file: `zonas/${z}/index.html`,        reps: [schema, esVerif] })),
   ...PROMOS.map((p) => ({ file: `promociones/${p}/index.html`,  reps: [promoWid, promoAria] })),
 ];
