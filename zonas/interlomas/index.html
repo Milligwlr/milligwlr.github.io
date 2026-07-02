@@ -333,6 +333,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .hub-cta-band__btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 32px; background: linear-gradient(135deg, #1ebe57, #25D366); color: #fff !important; border-radius: 100px; font-weight: 700; font-size: 1.02rem; text-decoration: none; box-shadow: 0 8px 24px rgba(37,211,102,.35); transition: all .3s var(--ease); }
 .hub-cta-band__btn:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(37,211,102,.5); }
 
+
+/* Quien te atiende (doc-card, patron de promos) */
+.doc-card{background:#fff;border:1px solid rgba(9,132,227,.15);border-radius:22px;padding:32px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;box-shadow:0 12px 30px -16px rgba(9,44,84,.15);max-width:880px}
+.doc-card__avatar{width:140px;height:140px;border-radius:50%;flex-shrink:0;border:3px solid #fff;box-shadow:0 8px 24px -8px rgba(9,44,84,.25);object-fit:cover}
+.doc-card h3{font-size:1.3rem;font-weight:800;color:var(--navy);margin-bottom:6px}
+.doc-card .role{color:var(--electric);font-weight:700;font-size:.95rem;margin-bottom:14px}
+.doc-card__bullets{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:8px}
+.doc-card__bullets li{display:flex;gap:10px;align-items:flex-start;font-size:.94rem;color:var(--text);line-height:1.5}
+.doc-card__bullets i{color:var(--electric);font-size:1.05rem;flex-shrink:0;margin-top:3px}
+.doc-card__creds{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.doc-card__creds span{background:rgba(9,132,227,.08);color:var(--electric);padding:5px 12px;border-radius:999px;font-size:.78rem;font-weight:600}
+@media(max-width:700px){.doc-card{grid-template-columns:1fr}.doc-card__avatar{margin:0 auto}}
+
 .nav-link--recursos.active{color:#1e3799!important;font-weight:700!important}
 .nav-link--recursos.active::after{background:#1e3799!important}
 .nav-link--recursos:hover{color:#0984e3!important}
@@ -616,6 +629,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Hacienda de las Palmas</span>
             <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Magnocentro</span>
         </div>
+    </div>
+</section>
+
+
+<!-- QUIEN TE ATIENDE (E-E-A-T) -->
+<section class="ubi-arrive" aria-labelledby="zona-doc-h2" style="background:#fff;">
+    <div class="container">
+        <h2 id="zona-doc-h2">Quién te atiende</h2>
+        <p class="ubi-arrive__lead">Conoce al especialista antes de agendar.</p>
+        <article class="doc-card" style="margin:0 auto" itemscope itemtype="https://schema.org/Physician">
+            <img src="/images/dr-william-lara.jpg" alt="Dr. William César Lara Vázquez, neumólogo egresado del INER" class="doc-card__avatar" width="140" height="140" loading="lazy" itemprop="image">
+            <div>
+                <h3 itemprop="name">Dr. William César Lara Vázquez</h3>
+                <div class="role">Médico Neumólogo · Alta Especialidad en EPOC <span style="color:var(--text-muted);font-weight:600">(en curso)</span></div>
+                <ul class="doc-card__bullets">
+                    <li><i class="bi bi-mortarboard-fill" aria-hidden="true"></i><span><strong>Neumología</strong>: Instituto Nacional de Enfermedades Respiratorias (INER), centro de referencia nacional.</span></li>
+                    <li><i class="bi bi-graph-up-arrow" aria-hidden="true"></i><span><strong>+500 consultas de neumología resueltas personalmente en 2025</strong> en CDMX, con plan terapéutico explicado a cada paciente.</span></li>
+                    <li><i class="bi bi-award-fill" aria-hidden="true"></i><span><strong>Alta Especialidad en EPOC en curso</strong>: formación clínica continua en enfermedad pulmonar obstructiva.</span></li>
+                    <li><i class="bi bi-patch-check-fill" aria-hidden="true"></i><span><strong>Certificación vigente</strong> por el Consejo Nacional de Neumología (CNN-2102).</span></li>
+                    <li><i class="bi bi-hospital-fill" aria-hidden="true"></i><span>Práctica clínica en <strong>Hospital Santa Coleta</strong> con interpretación directa de espirometría, FeNO, poligrafía respiratoria y procedimientos pleurales.</span></li>
+                </ul>
+                <div class="doc-card__creds">
+                    <span><i class="bi bi-patch-check-fill" aria-hidden="true"></i> Cédula Prof. 12588976</span>
+                    <span><i class="bi bi-patch-check-fill" aria-hidden="true"></i> Cédula Esp. 15595809</span>
+                    <span><i class="bi bi-patch-check-fill" aria-hidden="true"></i> <a href="https://conacem.org.mx/buscador" target="_blank" rel="noopener noreferrer" style="color:inherit">CNN-2102</a></span>
+                    <span><i class="bi bi-shield-check" aria-hidden="true"></i> Cofepris 2609142002A00265</span>
+                </div>
+                <p style="margin:14px 0 0"><a href="/sobre-el-doctor/" style="color:var(--electric);font-weight:700">Conoce más sobre el doctor →</a></p>
+            </div>
+        </article>
     </div>
 </section>
 
