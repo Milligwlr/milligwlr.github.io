@@ -308,6 +308,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .ubi-coverage__chips { display: flex; flex-wrap: wrap; gap: 10px; }
 .ubi-coverage__chip { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; background: var(--cloud-alt); border: 1px solid var(--border); border-radius: 100px; font-size: .9rem; color: var(--text); font-weight: 600; }
 .ubi-coverage__chip i { color: var(--electric); font-size: .9em; }
+a.ubi-coverage__chip { text-decoration:none; transition: transform .25s cubic-bezier(.22,.61,.36,1), border-color .25s, box-shadow .25s, color .25s; }
+a.ubi-coverage__chip:hover { transform: translateY(-2px); border-color: var(--electric); color: var(--electric); box-shadow: 0 10px 22px -10px rgba(9,132,227,.35); }
+a.ubi-coverage__chip::after { content:'\F138'; font-family:'bootstrap-icons'; font-size:.78em; color:var(--electric); }
 
 /* FAQ */
 .faq-section { padding: 56px 0 64px; background: #f8faff; border-top: 1px solid var(--border); }
@@ -891,7 +894,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <article class="ubi-arrive__card">
                 <div class="ubi-arrive__icon"><i class="bi bi-taxi-front-fill" aria-hidden="true"></i></div>
                 <h3>Qué incluye</h3>
-                <p>Algunos precios anuncian solo el equipo y cobran aparte la consulta o la lectura. Aquí el paquete de $4,500 incluye consulta, equipo, análisis y plan; la modalidad a domicilio cuesta $5,000 en total.</p>
+                <p>Algunos precios anuncian solo el equipo y cobran aparte la consulta o la lectura. Aquí el paquete de $4,500 incluye consulta, equipo, análisis y plan; la modalidad a domicilio cuesta $5,000 solo por el estudio (la consulta se cobra aparte).</p>
             </article>
 
             <article class="ubi-arrive__card">
@@ -900,6 +903,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <p>Hacer el estudio en tu propia cama no solo es más cómodo: refleja mejor tu sueño real que dormir en un laboratorio, y evita costos de hospedaje nocturno.</p>
             </article>
         </div>
+        <p class="block__lead" style="margin-top:28px;max-width:820px">Un dato que ayuda a decidir sin gastar de más: en estudios comparativos, el índice de apnea-hipopnea que mide la poligrafía en casa tiene una correlación de aproximadamente 0.92 con el de la polisomnografía hospitalaria en casos típicos de apnea obstructiva (DOI: 10.1159/000489158). Por eso suele ser el punto de partida y cuesta menos; los casos donde sí conviene el laboratorio te los explico en <a href="/poligrafia-vs-polisomnografia/">poligrafía vs polisomnografía</a>.</p>
     </div>
 </section>
 
@@ -908,16 +912,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="container">
         <div class="block__head zsec-head">
             <h2 class="block__title" id="zona-cov-h2">El estudio también llega a tu colonia ($5,000 a domicilio)</h2>
-            <p class="block__lead">Si eliges la modalidad a domicilio ($5,000 en total), instalamos el equipo en toda la CDMX; estas son algunas de las zonas más frecuentes.</p>
+            <p class="block__lead">Si eliges la modalidad a domicilio ($5,000, consulta aparte), el equipo llega a tu casa en toda la CDMX; estas son algunas de las zonas más frecuentes.</p>
             </div>
         <div class="ubi-coverage__chips" role="list">
-            <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> San José Insurgentes</span>
-            <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Mixcoac</span>
-            <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> CDMX</span>
-            <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Nápoles</span>
-            <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Guadalupe Inn</span>
+            <a class="ubi-coverage__chip" href="/servicios/poligrafia-respiratoria/a-domicilio-san-jose-insurgentes/"><i class="bi bi-geo-alt" aria-hidden="true"></i> San José Insurgentes</a>
+            <a class="ubi-coverage__chip" href="/servicios/poligrafia-respiratoria/a-domicilio-mixcoac/"><i class="bi bi-geo-alt" aria-hidden="true"></i> Mixcoac</a>
+            <a class="ubi-coverage__chip" href="/servicios/poligrafia-respiratoria/a-domicilio-del-valle/"><i class="bi bi-geo-alt" aria-hidden="true"></i> Del Valle</a>
+            <a class="ubi-coverage__chip" href="/servicios/poligrafia-respiratoria/a-domicilio-napoles/"><i class="bi bi-geo-alt" aria-hidden="true"></i> Nápoles</a>
+            <a class="ubi-coverage__chip" href="/servicios/poligrafia-respiratoria/a-domicilio-guadalupe-inn/"><i class="bi bi-geo-alt" aria-hidden="true"></i> Guadalupe Inn</a>
             <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Polanco</span>
             <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Santa Fe</span>
+            <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Toda la CDMX</span>
         </div>
     </div>
 </section>
