@@ -35,12 +35,255 @@
 
     <!-- Schema enriquecido (E-E-A-T): Physician + MedicalWebPage + BreadcrumbList -->
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@graph":[
-      {"@type":"MedicalWebPage","@id":"https://alveos.mx/sobre-el-doctor/#webpage","url":"https://alveos.mx/sobre-el-doctor/","name":"Sobre el Dr. William Lara — Neumólogo en CDMX","description":"Trayectoria, formación, certificaciones y enfoque clínico del Dr. William César Lara Vázquez, neumólogo del INER.","inLanguage":"es-MX","primaryImageOfPage":"https://alveos.mx/images/dr-lara-retrato-840.jpg","datePublished":"2026-04-01","dateModified":"2026-04-25","lastReviewed":"2026-04-25","reviewedBy":{"@id":"https://alveos.mx/#physician"},"author":{"@id":"https://alveos.mx/#physician"},"about":{"@id":"https://alveos.mx/#physician"},"specialty":"https://schema.org/Pulmonary","audience":{"@type":"MedicalAudience","audienceType":"Patient"}},
-      {"@type":["Physician","Person"],"@id":"https://alveos.mx/#physician","name":"Dr. William César Lara Vázquez","alternateName":"Dr. William Lara","honorificPrefix":"Dr.","givenName":"William César","familyName":"Lara Vázquez","jobTitle":"Neumólogo","image":"https://alveos.mx/images/dr-lara-retrato-840.jpg","url":"https://alveos.mx/sobre-el-doctor/","telephone":"+525591708334","email":"dr.william.lara.neumologo@gmail.com","medicalSpecialty":"https://schema.org/Pulmonary","knowsLanguage":["es","en"],"availableService":[{"@type":"MedicalProcedure","name":"Espirometría"},{"@type":"MedicalProcedure","name":"Polisomnografía"},{"@type":"MedicalProcedure","name":"Broncoscopia"},{"@type":"MedicalProcedure","name":"Teleconsulta de Neumología"}],"alumniOf":[{"@type":"EducationalOrganization","name":"Benemérita Universidad Autónoma de Puebla (BUAP)","url":"https://www.buap.mx/"},{"@type":"EducationalOrganization","name":"Universidad Nacional Autónoma de México (UNAM)","url":"https://www.unam.mx/"},{"@type":"EducationalOrganization","name":"Instituto Nacional de Enfermedades Respiratorias (INER)","url":"https://www.iner.salud.gob.mx/"}],"hasCredential":[{"@type":"EducationalOccupationalCredential","credentialCategory":"Cédula Profesional de Médico Cirujano","identifier":"12588976","recognizedBy":{"@type":"GovernmentOrganization","name":"Dirección General de Profesiones, SEP, México"}},{"@type":"EducationalOccupationalCredential","credentialCategory":"Cédula de Especialidad en Neumología","identifier":"15595809","recognizedBy":{"@type":"GovernmentOrganization","name":"Dirección General de Profesiones, SEP, México"}},{"@type":"EducationalOccupationalCredential","credentialCategory":"Certificación del Consejo Nacional de Neumología","identifier":"CNN-2102","recognizedBy":{"@type":"MedicalOrganization","name":"Consejo Nacional de Neumología A.C.","url":"https://www.consejoneumologia.org.mx/"}}],"memberOf":[{"@type":"MedicalOrganization","name":"Sociedad Mexicana de Neumología y Cirugía de Tórax","alternateName":"SMNyCT","url":"https://www.smnyct.org.mx/"},{"@type":"MedicalOrganization","name":"Asociación Latinoamericana del Tórax","alternateName":"ALAT","url":"https://alatorax.org/"},{"@type":"MedicalOrganization","name":"American Thoracic Society","alternateName":"ATS","url":"https://www.thoracic.org/"},{"@type":"MedicalOrganization","name":"Consejo Nacional de Neumología A.C.","alternateName":"CNN","url":"https://www.consejoneumologia.org.mx/"}],"workLocation":{"@type":"Hospital","name":"Hospital Santa Coleta","address":{"@type":"PostalAddress","streetAddress":"Saturnino Herrán 59","addressLocality":"Ciudad de México","addressRegion":"CDMX","postalCode":"03900","addressCountry":"MX"}},"description":"Neumólogo formado en el INER con Alta Especialidad en EPOC. Atiende pacientes con asma, EPOC, apnea del sueño, fibrosis pulmonar y otras enfermedades respiratorias en CDMX."},
-      {"@type":"BreadcrumbList","@id":"https://alveos.mx/sobre-el-doctor/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://alveos.mx/"},{"@type":"ListItem","position":2,"name":"Sobre el Doctor","item":"https://alveos.mx/sobre-el-doctor/"}]}
-    ]}
-    </script>
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MedicalWebPage",
+      "@id": "https://alveos.mx/sobre-el-doctor/#webpage",
+      "url": "https://alveos.mx/sobre-el-doctor/",
+      "name": "Sobre el Dr. William Lara — Neumólogo en CDMX",
+      "description": "Trayectoria, formación, certificaciones y enfoque clínico del Dr. William César Lara Vázquez, neumólogo del INER.",
+      "inLanguage": "es-MX",
+      "primaryImageOfPage": "https://alveos.mx/images/dr-lara-retrato-840.jpg",
+      "datePublished": "2026-04-01",
+      "dateModified": "2026-04-25",
+      "lastReviewed": "2026-04-25",
+      "reviewedBy": {
+        "@id": "https://alveos.mx/#physician"
+      },
+      "author": {
+        "@id": "https://alveos.mx/#physician"
+      },
+      "about": {
+        "@id": "https://alveos.mx/#physician"
+      },
+      "specialty": "https://schema.org/Pulmonary",
+      "audience": {
+        "@type": "MedicalAudience",
+        "audienceType": "Patient"
+      }
+    },
+    {
+      "@type": [
+        "Physician",
+        "Person"
+      ],
+      "@id": "https://alveos.mx/#physician",
+      "name": "Dr. William César Lara Vázquez",
+      "alternateName": "Dr. William Lara",
+      "honorificPrefix": "Dr.",
+      "givenName": "William César",
+      "familyName": "Lara Vázquez",
+      "jobTitle": "Neumólogo",
+      "image": "https://alveos.mx/images/dr-lara-retrato-840.jpg",
+      "url": "https://alveos.mx/sobre-el-doctor/",
+      "telephone": "+525591708334",
+      "email": "dr.william.lara.neumologo@gmail.com",
+      "medicalSpecialty": "https://schema.org/Pulmonary",
+      "knowsLanguage": [
+        "es",
+        "en"
+      ],
+      "availableService": [
+        {
+          "@type": "MedicalTest",
+          "name": "Espirometría simple y con broncodilatador"
+        },
+        {
+          "@type": "MedicalTest",
+          "name": "FeNO (fracción exhalada de óxido nítrico)"
+        },
+        {
+          "@type": "MedicalTest",
+          "name": "Poligrafía respiratoria (estudio de apnea tipo III)"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Titulación de presión positiva (CPAP/BiPAP)"
+        },
+        {
+          "@type": "MedicalTherapy",
+          "name": "Tratamiento para dejar de fumar"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Broncoscopia"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Toracocentesis y manejo de derrames pleurales"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Catéter pleural multipropósito"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Check up respiratorio"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Seguimiento de enfermedades respiratorias crónicas"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Teleconsulta de neumología"
+        }
+      ],
+      "alumniOf": [
+        {
+          "@type": "EducationalOrganization",
+          "name": "Benemérita Universidad Autónoma de Puebla (BUAP)",
+          "url": "https://www.buap.mx/"
+        },
+        {
+          "@type": "EducationalOrganization",
+          "name": "Universidad Nacional Autónoma de México (UNAM)",
+          "url": "https://www.unam.mx/"
+        },
+        {
+          "@type": "EducationalOrganization",
+          "name": "Instituto Nacional de Enfermedades Respiratorias (INER)",
+          "url": "https://www.iner.salud.gob.mx/"
+        }
+      ],
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Cédula Profesional de Médico Cirujano",
+          "identifier": "12588976",
+          "recognizedBy": {
+            "@type": "GovernmentOrganization",
+            "name": "Dirección General de Profesiones, SEP, México"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Cédula de Especialidad en Neumología",
+          "identifier": "15595809",
+          "recognizedBy": {
+            "@type": "GovernmentOrganization",
+            "name": "Dirección General de Profesiones, SEP, México"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Certificación del Consejo Nacional de Neumología",
+          "identifier": "CNN-2102",
+          "recognizedBy": {
+            "@type": "MedicalOrganization",
+            "name": "Consejo Nacional de Neumología A.C.",
+            "url": "https://www.consejoneumologia.org.mx/"
+          }
+        }
+      ],
+      "memberOf": [
+        {
+          "@type": "MedicalOrganization",
+          "name": "Sociedad Mexicana de Neumología y Cirugía de Tórax",
+          "alternateName": "SMNyCT",
+          "url": "https://www.smnyct.org.mx/"
+        },
+        {
+          "@type": "MedicalOrganization",
+          "name": "Asociación Latinoamericana del Tórax",
+          "alternateName": "ALAT",
+          "url": "https://alatorax.org/"
+        },
+        {
+          "@type": "MedicalOrganization",
+          "name": "American Thoracic Society",
+          "alternateName": "ATS",
+          "url": "https://www.thoracic.org/"
+        },
+        {
+          "@type": "MedicalOrganization",
+          "name": "Consejo Nacional de Neumología A.C.",
+          "alternateName": "CNN",
+          "url": "https://www.consejoneumologia.org.mx/"
+        }
+      ],
+      "workLocation": {
+        "@id": "https://alveos.mx/#clinic-santa-coleta"
+      },
+      "description": "Neumólogo formado en el INER con Alta Especialidad en EPOC. Atiende pacientes con asma, EPOC, apnea del sueño, fibrosis pulmonar y otras enfermedades respiratorias en CDMX.",
+      "knowsAbout": [
+        {
+          "@type": "MedicalCondition",
+          "name": "EPOC (Enfermedad Pulmonar Obstructiva Crónica)"
+        },
+        {
+          "@type": "MedicalCondition",
+          "name": "Asma"
+        },
+        {
+          "@type": "MedicalCondition",
+          "name": "Neumonía"
+        },
+        {
+          "@type": "MedicalCondition",
+          "name": "Apnea Obstructiva del Sueño"
+        },
+        {
+          "@type": "MedicalCondition",
+          "name": "Derrames Pleurales"
+        },
+        {
+          "@type": "MedicalCondition",
+          "name": "Fibrosis Pulmonar"
+        },
+        {
+          "@type": "MedicalCondition",
+          "name": "Hipertensión Pulmonar"
+        },
+        {
+          "@type": "MedicalCondition",
+          "name": "Embolia Pulmonar"
+        },
+        {
+          "@type": "MedicalCondition",
+          "name": "Bronquiectasias"
+        },
+        {
+          "@type": "MedicalCondition",
+          "name": "Secuelas respiratorias de COVID-19"
+        },
+        {
+          "@type": "MedicalCondition",
+          "name": "Tabaquismo"
+        }
+      ],
+      "nationality": {
+        "@type": "Country",
+        "name": "México"
+      },
+      "publishingPrinciples": "https://alveos.mx/informacion-regulatoria/",
+      "sameAs": [
+        "https://www.instagram.com/dr.williamlara/"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://alveos.mx/sobre-el-doctor/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://alveos.mx/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sobre el Doctor",
+          "item": "https://alveos.mx/sobre-el-doctor/"
+        }
+      ]
+    }
+  ]
+}
+</script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,8 +291,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,700&display=swap" rel="stylesheet"></noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"></noscript>
     <link rel="icon" href="/favicon.png" type="image/png">
     <link rel="stylesheet" href="/enfermedades/_shared/disease.css">
 
