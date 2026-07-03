@@ -1,0 +1,41 @@
+name: Reintentar deploy de Pages
+
+# GitHub Pages falla a ratos con "Deployment failed, try again later"
+# (transitorio de la plataforma; el build sí pasa). Este workflow escucha el
+# estado de los deployments y, si uno falla, pide un build nuevo — lo mismo
+# que hacer a mano `gh api -X POST repos/.../pages/builds`.
+
+on:
+  deployment_status:
+
+permissions:
+  contents: read
+  pages: write
+
+concurrency:
+  group: retry-pages-deploy
+  cancel-in-progress: false
+
+jobs:
+  retry:
+    if: github.event.deployment_status.state == 'failure' || github.event.deployment_status.state == 'error'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pedir rebuild de Pages (con tope anti-bucle)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          # Tope: si Pages ya construyó >6 veces en la última hora, algo más
+          # está mal y reintentar solo haría ruido — mejor dejar de insistir.
+          cutoff=$(date -u -d '1 hour ago' +%Y-%m-%dT%H:%M:%SZ)
+          recent=$(gh api "repos/$REPO/pages/builds?per_page=20" \
+            --jq "[.[] | select(.created_at > \"$cutoff\")] | length")
+          echo "Builds de Pages en la última hora: $recent"
+          if [ "$recent" -gt 6 ]; then
+            echo "Tope alcanzado; no reintento (revisar githubstatus.com)."
+            exit 0
+          fi
+          sleep 30
+          gh api -X POST "repos/$REPO/pages/builds"
+          echo "Rebuild solicitado."
