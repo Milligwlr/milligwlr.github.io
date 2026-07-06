@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // Sincroniza ratingValue + reviewCount de Google Business Profile en el HTML:
-// JSON-LD aggregateRating + textos visibles (widget .gbp-rating-widget, hero,
-// selector de idioma, facturación) en TODOS los .html del sitio.
+// JSON-LD aggregateRating + textos visibles (widget .gbp-rating-widget, hero
+// proof, chips de confianza del hero, selector de idioma, facturación) en
+// TODOS los .html del sitio.
 //
 // No hay lista de archivos: el script recorre el repo y aplica cada patch
 // donde detecta su marcador (`expect`). Una página nueva con el widget o el
@@ -15,13 +16,47 @@
 //   node scripts/update-gbp-rating.mjs --dry-run --rating 5.0 --count 36
 
 import { readFile, writeFile, readdir } from "node:fs/promises";
+import { readFileSync } from "node:fs";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
-const PLACE_QUERY = "Dr. William César Lara Vázquez Neumólogo Hospital Santa Coleta CDMX";
-const LOCATION_BIAS = { lat: 19.3678, lng: -99.1865, radiusMeters: 500 };
+// PORTABLE multi-proyecto: el place_query y el geo-bias se leen del site.json del
+// proyecto activo. Si no hay site.json (o no trae esos datos), cae a los valores de
+// alveos (instancia insignia) para no romper el workflow existente.
+const ALVEOS_FALLBACK = {
+  placeQuery: "Dr. William César Lara Vázquez Neumólogo Hospital Santa Coleta CDMX",
+  locationBias: { lat: 19.3678, lng: -99.1865, radiusMeters: 500 },
+};
+
+function resolveConfig() {
+  const candidatos = [
+    process.env.GBP_SITE_JSON,
+    join(ROOT, "assets", "site.json"),
+    join(ROOT, "assets", "alveos.site.json"),
+  ].filter(Boolean);
+  for (const ruta of candidatos) {
+    try {
+      const s = JSON.parse(readFileSync(ruta, "utf8"));
+      const prof = s?.profesional ?? {};
+      const ub = s?.ubicacion ?? {};
+      const geo = ub.geo;
+      const placeQuery =
+        s?.reputacion?.place_query ||
+        [prof.nombre_completo, prof.especialidad, ub.clinica, ub.ciudad].filter(Boolean).join(" ") ||
+        ALVEOS_FALLBACK.placeQuery;
+      const locationBias =
+        geo && typeof geo.lat === "number" && typeof geo.lng === "number" && (geo.lat || geo.lng)
+          ? { lat: geo.lat, lng: geo.lng, radiusMeters: 500 }
+          : ALVEOS_FALLBACK.locationBias;
+      return { placeQuery, locationBias, source: ruta };
+    } catch {
+      // archivo ausente o invalido -> probar el siguiente candidato
+    }
+  }
+  return { ...ALVEOS_FALLBACK, source: "(fallback alveos hardcoded)" };
+}
 
 // Cada patch declara:
 //   expect — marcador que indica que el archivo DEBE contener el patrón
@@ -92,6 +127,21 @@ const PATCHES = [
     build: (m, r, c) => `${m[1]}${r}${m[2]}${c}${m[3]}`,
   },
   {
+    // Chip de confianza del hero EN (en-hero__trust): "5.0 · 37 Google reviews"
+    name: "hero trust chip EN",
+    expect: /· \d+ Google reviews/,
+    find: /(<i class="bi bi-star-fill"><\/i> )[\d.]+( · )\d+( Google reviews)/,
+    build: (m, r, c) => `${m[1]}${r}${m[2]}${c}${m[3]}`,
+  },
+  {
+    // Gemelo ES (mal-de-altura): "5.0 · 37 reseñas en Google". El "· " del expect
+    // evita disparar sobre facturación ("<img …> 37 reseñas en Google", sin punto medio).
+    name: "hero trust chip ES",
+    expect: /· \d+ reseñas en Google/,
+    find: /(<i class="bi bi-star-fill"><\/i> )[\d.]+( · )\d+( reseñas en Google)/,
+    build: (m, r, c) => `${m[1]}${r}${m[2]}${c}${m[3]}`,
+  },
+  {
     name: "toggle small ES",
     expect: /en Google<small>/,
     find: /(<span class="t">)[\d.]+( en Google<small>)\d+( reseñas<\/small>)/,
@@ -104,8 +154,10 @@ const PATCHES = [
     build: (m, r, c) => `${m[1]}${r}${m[2]}${c}${m[3]}`,
   },
   {
+    // expect anclado a la clase del bloque (no al texto) para no disparar sobre el
+    // chip ES del hero, que también termina en "reseñas en Google</span>".
     name: "facturación visible",
-    expect: / reseñas en Google<\/span>/,
+    expect: /fact-reviews__gmeta/,
     find: /(loading="lazy"> )\d+( reseñas en Google<\/span>)/,
     build: (m, _r, c) => `${m[1]}${c}${m[2]}`,
   },
@@ -134,7 +186,7 @@ async function findHtmlFiles(dir, rel = "") {
   return out.sort();
 }
 
-async function fetchGbpStats() {
+async function fetchGbpStats(cfg) {
   const apiKey = process.env.GOOGLE_MAPS_API_KEY;
   if (!apiKey) throw new Error("GOOGLE_MAPS_API_KEY no está definida");
 
@@ -146,11 +198,11 @@ async function fetchGbpStats() {
       "X-Goog-FieldMask": "places.id,places.displayName,places.rating,places.userRatingCount",
     },
     body: JSON.stringify({
-      textQuery: PLACE_QUERY,
+      textQuery: cfg.placeQuery,
       locationBias: {
         circle: {
-          center: { latitude: LOCATION_BIAS.lat, longitude: LOCATION_BIAS.lng },
-          radius: LOCATION_BIAS.radiusMeters,
+          center: { latitude: cfg.locationBias.lat, longitude: cfg.locationBias.lng },
+          radius: cfg.locationBias.radiusMeters,
         },
       },
       maxResultCount: 1,
@@ -229,8 +281,11 @@ async function main() {
     stats = { rating: args.rating, count: args.count };
     console.log(`→ Usando valores manuales: rating=${stats.rating} count=${stats.count}`);
   } else {
+    const cfg = resolveConfig();
+    console.log(`→ Config: ${cfg.source}`);
+    console.log(`  query="${cfg.placeQuery}"`);
     console.log("→ Consultando Places API…");
-    stats = await fetchGbpStats();
+    stats = await fetchGbpStats(cfg);
     console.log(`  ${stats.name} (${stats.placeId})`);
     console.log(`  rating=${stats.rating} count=${stats.count}`);
   }
@@ -286,7 +341,7 @@ async function main() {
   }
 }
 
-export { PATCHES, ROOT, applyPatches, fetchGbpStats, findHtmlFiles };
+export { PATCHES, ROOT, applyPatches, fetchGbpStats, findHtmlFiles, resolveConfig };
 
 // Ejecuta solo si se invoca directamente (importable en tests sin disparar la API).
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
