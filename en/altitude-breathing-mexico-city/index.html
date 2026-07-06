@@ -42,17 +42,18 @@
 <link rel="stylesheet" href="/enfermedades/_shared/disease.css">
 <link rel="stylesheet" href="/assets/agenda-modal.css">
 <style>
-:root{--svc:#c2701c;--svc-light:#e89a4d;--svc-dark:#8f4f0e;--en-ease:cubic-bezier(.16,1,.3,1)}
+:root{--svc:#0984e3;--svc-light:#48b0f7;--svc-dark:#0a4f8a;--en-ease:cubic-bezier(.16,1,.3,1)}
 .disease-content{padding:48px 0 24px}
 @media(min-width:768px){.disease-content{padding:64px 0 32px}}
 /* Focus visible for keyboard nav (a11y) */
 .en-page a:focus-visible,.en-page summary:focus-visible,.en-page button:focus-visible{outline:3px solid var(--svc-light);outline-offset:3px;border-radius:8px}
 .en-section{margin-bottom:52px}
+.en-hero+.en-section{padding-top:48px}
 .en-section h2{font-family:var(--sans);font-size:clamp(1.55rem,5vw,2.2rem);font-weight:800;color:var(--navy);letter-spacing:-.015em;line-height:1.15;margin-bottom:16px}
 .en-section h2 em{font-style:normal;font-weight:600;background:linear-gradient(135deg,var(--svc),var(--svc-light));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .en-lead{font-size:1.07rem;color:#4a5568;line-height:1.72;max-width:68ch;margin:0 0 22px}
 /* HERO */
-.en-hero{padding:120px 0 60px;position:relative;overflow:hidden;background:linear-gradient(150deg,#0a1628 0%,#0d2236 55%,#0c2b44 100%)}
+.en-hero{padding:96px 0 56px;position:relative;overflow:hidden;background:linear-gradient(150deg,#0a1628 0%,#0d2236 55%,#0c2b44 100%)}
 @media(min-width:768px){.en-hero{padding:152px 0 88px}}
 .en-hero__bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 12% 18%,color-mix(in oklab,var(--svc) 38%,transparent),transparent 60%),radial-gradient(ellipse 50% 55% at 88% 82%,color-mix(in oklab,var(--svc-light) 22%,transparent),transparent 60%);pointer-events:none}
 .en-hero__grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:54px 54px;mask-image:radial-gradient(ellipse 75% 65% at 50% 40%,#000 25%,transparent 78%);-webkit-mask-image:radial-gradient(ellipse 75% 65% at 50% 40%,#000 25%,transparent 78%);pointer-events:none;opacity:.6}
@@ -114,6 +115,8 @@
 }
 .en-card--good::before{background:linear-gradient(180deg,#00b894,#5eead4)}
 .en-grid{align-items:stretch}
+.en-hero::after{content:"";position:absolute;top:-30%;right:-12%;width:56%;height:170%;pointer-events:none;background:radial-gradient(circle at 60% 40%,color-mix(in srgb,var(--svc) 22%,transparent),transparent 62%)}
+.en-hero .container{position:relative;z-index:1}
 </style>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is it hard to breathe in Mexico City?", "acceptedAnswer": {"@type": "Answer", "text": "For most visitors, yes, a little, and only for the first few days. Mexico City sits at about 2,240 m (7,350 ft), where each breath brings in roughly a quarter less oxygen than at sea level. Climbing stairs feels harder, your heart beats faster and sleep can be lighter; in most healthy people this settles within 1-3 days. If you have asthma or COPD, or the breathlessness isn't improving, or comes with chest pain or breathlessness at rest, that's when a check-up makes sense."}}, {"@type": "Question", "name": "How long does it take to acclimatize to Mexico City's altitude?", "acceptedAnswer": {"@type": "Answer", "text": "Most healthy people adjust within 1–3 days. People with lung or heart conditions may take longer and should watch for warning signs."}}, {"@type": "Question", "name": "Is Mexico City high enough to cause altitude sickness?", "acceptedAnswer": {"@type": "Answer", "text": "At ~2,240 m, classic severe altitude sickness is uncommon but mild symptoms (breathlessness, headache, poor sleep) do occur. Severe symptoms at this elevation warrant medical attention."}}, {"@type": "Question", "name": "I have asthma, will the altitude make it worse?", "acceptedAnswer": {"@type": "Answer", "text": "It can, especially combined with pollution and cold dry air. Keep your controller inhaler going and your rescue inhaler with you. If you're flaring, get checked, we can confirm control with spirometry."}}, {"@type": "Question", "name": "Does the pollution really affect breathing that much?", "acceptedAnswer": {"@type": "Answer", "text": "On high-ozone or high-particulate days, sensitive airways can become irritated and reactive. Healthy lungs tolerate it better; asthma and COPD lungs feel it more."}}, {"@type": "Question", "name": "Should I see a pulmonologist or is this just normal?", "acceptedAnswer": {"@type": "Answer", "text": "If your symptoms are the mild, settling kind, give it a day or two and hydrate. If you have breathlessness at rest, chest pain, or a flare that won't respond, or you simply want reassurance, see a lung doctor."}}]}
