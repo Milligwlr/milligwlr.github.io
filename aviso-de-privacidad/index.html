@@ -24,7 +24,7 @@
     <link rel="apple-touch-icon" href="/favicon.png">
 
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"WebPage","name":"Aviso de Privacidad","url":"https://alveos.mx/aviso-de-privacidad/","description":"Aviso de privacidad del Dr. William César Lara Vázquez conforme a la LFPDPPP y reforma 2025.","inLanguage":"es-MX","isPartOf":{"@type":"WebSite","@id":"https://alveos.mx/#website","name":"Alveos — Dr. William Lara Vázquez","url":"https://alveos.mx/"},"author":{"@type":"Physician","@id":"https://alveos.mx/#physician","name":"Dr. William César Lara Vázquez"},"datePublished":"2026-04-24","dateModified":"2026-06-12","lastReviewed":"2026-06-12"}
+    {"@context":"https://schema.org","@type":"WebPage","name":"Aviso de Privacidad","url":"https://alveos.mx/aviso-de-privacidad/","description":"Aviso de privacidad del Dr. William César Lara Vázquez conforme a la LFPDPPP y reforma 2025.","inLanguage":"es-MX","isPartOf":{"@type":"WebSite","@id":"https://alveos.mx/#website","name":"Alveos — Dr. William Lara Vázquez","url":"https://alveos.mx/"},"author":{"@type":"Physician","@id":"https://alveos.mx/#physician","name":"Dr. William César Lara Vázquez"},"datePublished":"2026-04-24","dateModified":"2026-07-03","lastReviewed":"2026-07-03"}
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -166,7 +166,7 @@
     <h1>Aviso de Privacidad</h1>
     <p>Dr. William César Lara Vázquez · Neumólogo · CDMX</p>
     <div class="hero__meta">
-      <span>📅 Última actualización: 12 de junio de 2026</span>
+      <span>📅 Última actualización: 3 de julio de 2026</span>
       <span>📋 LFPDPPP + Reforma 2025</span>
     </div>
   </div>
@@ -270,11 +270,13 @@
         <li>Realizar diagnóstico, prescripción y seguimiento de tratamientos</li>
         <li>Coordinar la atención con otros especialistas cuando sea necesario para su salud</li>
         <li>Confirmar, reagendar o cancelar citas médicas</li>
+        <li>Enviarle por WhatsApp <strong>recordatorios de sus citas</strong> mediante un asistente automatizado del consultorio, y registrar su respuesta (confirmar o solicitar cambio de fecha). Estos mensajes son de logística: no contienen diagnósticos, resultados ni motivo de consulta</li>
         <li>Dar seguimiento a su evolución clínica por medios electrónicos (WhatsApp, correo)</li>
       </ul>
 
       <h3>Finalidades secundarias (puede oponerse en cualquier momento)</h3>
       <ul>
+        <li>Invitarle, de forma ocasional y por una sola vez, a <strong>dejar una reseña</strong> sobre su experiencia en el consultorio. Esta invitación es independiente de los recordatorios de cita: usted puede aceptar los recordatorios y rechazar la invitación a reseña</li>
         <li>Envío de información sobre salud respiratoria, prevención y bienestar</li>
         <li>Comunicación sobre nuevos servicios disponibles en el consultorio</li>
       </ul>
@@ -311,9 +313,14 @@
               <td>Agendamiento de consultas</td>
             </tr>
             <tr>
-              <td><strong>WhatsApp</strong><br><small>Meta Platforms</small></td>
-              <td>Número de teléfono, mensajes de texto (pueden incluir información de salud) <span class="tag tag--sensitive">Sensibles</span></td>
-              <td>Comunicación directa, seguimiento de pacientes, confirmación de citas</td>
+              <td><strong>WhatsApp</strong><br><small>Meta Platforms (WhatsApp Cloud API)</small></td>
+              <td>Número de teléfono, nombre y mensajes de texto (pueden incluir información de salud) <span class="tag tag--sensitive">Sensibles</span></td>
+              <td>Comunicación directa y envío de recordatorios de cita e invitación a reseña mediante el asistente automatizado del consultorio</td>
+            </tr>
+            <tr>
+              <td><strong>Google Apps Script / Sheets / Calendar</strong><br><small>Google LLC</small></td>
+              <td>Nombre, número de teléfono, fecha y estado de la cita (agendada, recordada, confirmada, reagendada). El texto libre que usted escriba por WhatsApp <strong>no se almacena</strong>; solo se reenvía al médico para atenderle <span class="tag tag--regular">Ordinarios</span></td>
+              <td>Motor del asistente de citas: leer la agenda, enviar los recordatorios y registrar su respuesta</td>
             </tr>
             <tr>
               <td><strong>Google Sheets / Google Drive</strong><br><small>Google LLC</small></td>
@@ -342,7 +349,7 @@
       <ul>
         <li><strong>Otros médicos especialistas:</strong> únicamente cuando usted lo solicite o cuando sea médicamente necesario para su atención y con su conocimiento.</li>
         <li><strong>Autoridades sanitarias:</strong> IMSS, ISSSTE, Secretaría de Salud u otras autoridades, cuando sea requerido por ley (enfermedades de notificación obligatoria, etc.).</li>
-        <li><strong>Proveedores de servicio:</strong> Nimbo, Cal.com y Google LLC (Google Sheets y Google Drive, para los datos de facturación) actúan como encargados del tratamiento bajo sus propias políticas de privacidad. No utilizan sus datos para fines distintos a los contratados.</li>
+        <li><strong>Proveedores de servicio:</strong> Nimbo, Cal.com, Meta Platforms (WhatsApp Cloud API, para el envío de los recordatorios y la comunicación) y Google LLC (Google Apps Script, Sheets, Calendar y Drive, para el motor del asistente de citas y los datos de facturación) actúan como <strong>encargados</strong> del tratamiento bajo sus propias políticas de privacidad. No utilizan sus datos para fines distintos a los contratados.</li>
         <li><strong>Autoridad fiscal:</strong> los datos contenidos en su factura se transmiten al Servicio de Administración Tributaria (SAT) a través de un proveedor autorizado de certificación, por obligación legal.</li>
       </ul>
       <p>Estas transferencias no requieren su consentimiento conforme al artículo 37 de la LFPDPPP.</p>
@@ -398,6 +405,10 @@
       <h2><span class="num">7</span> Revocación del consentimiento</h2>
       <p>Usted puede revocar su consentimiento para el tratamiento de sus datos personales en cualquier momento, siempre que no sea impedido por una obligación legal.</p>
       <p>Para revocar su consentimiento, envíe un correo a <a href="mailto:dr.william.lara.neumologo@gmail.com"><strong>dr.william.lara.neumologo@gmail.com</strong></a> indicando "Revocación de consentimiento".</p>
+      <div class="box box--blue">
+        <div class="box__title">💬 Baja de los mensajes de WhatsApp</div>
+        <p style="margin:0">Para dejar de recibir los recordatorios de cita y la invitación a reseña por WhatsApp en cualquier momento, basta con responder <strong>BAJA</strong> a cualquiera de esos mensajes. El asistente dejará de enviarle mensajes de inmediato. Esto no cancela su atención médica ni sus citas ya agendadas.</p>
+      </div>
       <div class="box box--warn">
         <div class="box__title">⚠️ Importante</div>
         <p style="margin:0">La revocación del consentimiento para el tratamiento de datos de salud implica que no podremos continuar brindándole atención médica. El expediente clínico se conservará por el tiempo que exige la normatividad sanitaria aplicable.</p>
