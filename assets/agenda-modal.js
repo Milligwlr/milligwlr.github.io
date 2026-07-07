@@ -36,6 +36,10 @@
     'titulacion-presion-positiva': {
       es: 'la promoción de titulación de presión positiva a $3,900',
       en: 'the $3,900 positive pressure titration promotion'
+    },
+    'dejar-de-fumar': {
+      es: 'la promoción para dejar de fumar a $1,300',
+      en: 'the $1,300 quit-smoking program promotion'
     }
   };
   var promoKey = null;
