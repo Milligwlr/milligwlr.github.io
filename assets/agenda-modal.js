@@ -65,6 +65,42 @@
   var waHref = waBase + encodeURIComponent(waMessage);
   var waHomeHref = waBase + encodeURIComponent(waHomeMessage);
 
+  // --- 1b. Asistente virtual de citas (bot WhatsApp, 7-jul-2026) ----------
+  // Mensaje pre-llenado ADAPTADO a la pagina: el bot detecta "agendar" +
+  // "Dr. Lara" y entra directo a su agenda con horarios reales. En paginas de
+  // estudios pide el estudio; en promos menciona la promocion; en el resto,
+  // el titulo corto de la pagina da contexto al doctor. Solo ES por ahora
+  // (el bot aun no conversa en ingles).
+  var ESTUDIOS_BOT = {
+    '/servicios/espirometria': 'una espirometría',
+    '/servicios/feno': 'una prueba FeNO',
+    '/servicios/poligrafia-respiratoria': 'una poligrafía respiratoria',
+    '/servicios/polisomnografia': 'una polisomnografía'
+  };
+  var botQue = 'una cita';
+  for (var eb in ESTUDIOS_BOT) {
+    if (path.indexOf(eb) === 0) { botQue = ESTUDIOS_BOT[eb]; break; }
+  }
+  var tituloCorto = (document.title || '').split('|')[0].trim().slice(0, 70);
+  var botContexto = isPromo
+    ? ' Vengo de ' + promoPhrase + ' (alveos.mx).'
+    : ((tituloCorto && path !== '/' && path !== '/index.html')
+      ? ' Vengo de la página: ' + tituloCorto + ' (alveos.mx).'
+      : ' Vengo de su sitio web alveos.mx.');
+  var botHref = 'https://wa.me/522224926718?text=' +
+    encodeURIComponent('Hola, quiero agendar ' + botQue + ' con el Dr. Lara.' + botContexto);
+  var botBlock = isEN ? '' : (''
+    + '<a class="agenda-block agenda-block--bot" href="' + botHref + '" target="_blank" rel="noopener noreferrer" data-cta="agenda-modal-bot" aria-labelledby="agenda-bot-t agenda-bot-d">'
+    +   '<div class="agenda-block__head">'
+    +     '<div class="agenda-block__icon agenda-block__icon--bot"><i class="bi bi-robot" aria-hidden="true"></i></div>'
+    +     '<div style="flex:1;min-width:0;">'
+    +       '<h3 id="agenda-bot-t" class="agenda-block__title">Agendar cita con asistente virtual <span class="agenda-bot-badge">Nuevo</span></h3>'
+    +       '<p id="agenda-bot-d" class="agenda-block__desc">Por WhatsApp: horarios reales del consultorio, confirmación al instante y recordatorios automáticos.</p>'
+    +     '</div>'
+    +     '<i class="bi bi-arrow-right agenda-home-arrow" aria-hidden="true"></i>'
+    +   '</div>'
+    + '</a>');
+
   // --- 2. HTML del modal --------------------------------------------------
   var html = ''
     + '<div class="agenda-modal" id="agendaModal" role="dialog" aria-modal="true" aria-labelledby="agendaModalTitle" aria-describedby="agendaModalSub" hidden>'
@@ -80,6 +116,9 @@
     +     '</header>'
 
     +     '<div class="agenda-modal__body">'
+
+    // 0) Asistente virtual de citas (bot) — protagonista, ancho completo
+    +       botBlock
 
     // 1) Dos formas primarias, lado a lado (simétricas): WhatsApp + Agenda en línea
     +       '<div class="agenda-primary-grid">'

@@ -539,3 +539,36 @@
             .agenda-choice__desc { width: calc(100% - 60px); margin: 0 0 10px; }
             .agenda-choice__cta { flex-basis: 100%; }
         }
+
+
+/* ===== Asistente virtual de citas (bot WhatsApp) — 7-jul-2026 ===== */
+.agenda-block--bot {
+    display: block;
+    text-decoration: none;
+    background: linear-gradient(160deg, #fff 0%, rgba(37, 211, 102, .07) 55%, rgba(37, 211, 102, .14) 100%);
+    border-color: rgba(37, 211, 102, .30);
+    position: relative;
+    transition: transform .18s var(--ease), box-shadow .2s var(--ease), border-color .2s var(--ease);
+}
+a.agenda-block--bot:hover {
+    border-color: rgba(18, 140, 126, .55);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 26px rgba(18, 140, 126, .14);
+}
+.agenda-block__icon--bot {
+    background: rgba(37, 211, 102, .14);
+    color: #128C7E;
+}
+.agenda-bot-badge {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 2px 8px;
+    font-size: .62rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: #0d7a4f;
+    background: rgba(37, 211, 102, .16);
+    border-radius: 999px;
+    vertical-align: middle;
+}
