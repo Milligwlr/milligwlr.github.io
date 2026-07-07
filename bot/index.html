@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Visor del bot — alveos</title>
+<style>
+  :root {
+    --fondo: #0b141a; --panel: #111b21; --borde: #1f2c34;
+    --texto: #e9edef; --tenue: #8696a0;
+    --in: #202c33; --out: #005c4b; --acento: #00a884; --rojo: #f15c6d;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--fondo); color: var(--texto); min-height: 100vh;
+    font: 15px/1.45 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  header {
+    position: sticky; top: 0; z-index: 5; background: var(--panel);
+    border-bottom: 1px solid var(--borde); padding: 12px 16px;
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  header h1 { font-size: 19px; font-weight: 600; }
+  header .estado { color: var(--tenue); font-size: 12px; flex: 1; min-width: 140px; }
+  header button {
+    background: none; border: 1px solid var(--borde); color: var(--tenue);
+    border-radius: 8px; padding: 6px 12px; font-size: 12px; cursor: pointer;
+  }
+  header button:hover { color: var(--texto); border-color: var(--tenue); }
+  main { max-width: 760px; margin: 0 auto; padding: 16px 12px 60px; }
+  .hilo {
+    background: var(--panel); border: 1px solid var(--borde);
+    border-radius: 12px; margin-bottom: 14px; overflow: hidden;
+  }
+  .hilo-cab {
+    padding: 10px 14px; border-bottom: 1px solid var(--borde);
+    display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+  }
+  .hilo-cab .nombre { font-weight: 600; }
+  .hilo-cab .tel { color: var(--tenue); font-size: 12px; }
+  .hilo-cab .interno {
+    color: var(--acento); font-size: 12px; border: 1px solid var(--acento);
+    border-radius: 999px; padding: 1px 8px;
+  }
+  .msgs { padding: 12px 12px 6px; display: flex; flex-direction: column; }
+  .msg {
+    max-width: 82%; border-radius: 10px; padding: 7px 10px 5px;
+    margin-bottom: 7px; word-wrap: break-word; white-space: pre-wrap;
+  }
+  .msg.in  { background: var(--in);  align-self: flex-start; border-top-left-radius: 3px; }
+  .msg.out { background: var(--out); align-self: flex-end;   border-top-right-radius: 3px; }
+  .msg .meta {
+    display: block; color: var(--tenue); font-size: 12px; margin-top: 3px; text-align: right;
+  }
+  .msg.in .meta { text-align: left; }
+  .msg.expirado { font-style: italic; color: var(--tenue); }
+  .vacio, .error { text-align: center; color: var(--tenue); padding: 46px 20px; }
+  .error { color: var(--rojo); }
+  details.sistema {
+    background: var(--panel); border: 1px solid var(--borde);
+    border-radius: 12px; margin-top: 18px;
+  }
+  details.sistema summary { padding: 10px 14px; cursor: pointer; color: var(--tenue); font-size: 12px; }
+  details.sistema div { padding: 4px 14px 12px; color: var(--tenue); font-size: 12px; }
+  details.sistema p { margin-bottom: 6px; word-wrap: break-word; }
+  /* Puerta de acceso */
+  #puerta {
+    position: fixed; inset: 0; background: var(--fondo); z-index: 10;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #puerta[hidden] { display: none; }
+  #puerta form {
+    background: var(--panel); border: 1px solid var(--borde); border-radius: 14px;
+    padding: 26px 22px; width: 100%; max-width: 360px;
+  }
+  #puerta h2 { font-size: 19px; margin-bottom: 6px; }
+  #puerta p { color: var(--tenue); font-size: 12px; margin-bottom: 16px; }
+  #puerta input {
+    width: 100%; background: var(--fondo); border: 1px solid var(--borde);
+    border-radius: 8px; color: var(--texto); padding: 10px 12px; font-size: 15px;
+    margin-bottom: 12px;
+  }
+  #puerta button {
+    width: 100%; background: var(--acento); border: 0; border-radius: 8px;
+    color: #062e26; font-weight: 700; padding: 11px; font-size: 15px; cursor: pointer;
+  }
+  #puerta .fallo { color: var(--rojo); font-size: 12px; margin-top: 10px; display: none; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Visor del bot</h1>
+  <span class="estado" id="estado">Conectando…</span>
+  <button type="button" id="btnRefrescar">Actualizar</button>
+  <button type="button" id="btnSalir" title="Borrar la clave guardada en este dispositivo">Salir</button>
+</header>
+<main id="contenido"><p class="vacio">Cargando conversaciones…</p></main>
+
+<div id="puerta" hidden>
+  <form id="formaClave">
+    <h2>Acceso restringido</h2>
+    <p>Visor interno de conversaciones del asistente de citas (últimas 6 horas). Ingrese la clave de acceso.</p>
+    <input type="password" id="clave" autocomplete="current-password" placeholder="Clave de acceso">
+    <button type="submit">Entrar</button>
+    <p class="fallo" id="fallo">Clave incorrecta.</p>
+  </form>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var API = 'https://script.google.com/macros/s/AKfycbwXhrEW73jRoPajdNnATA6q7Rrnc18n0yzMG07J5QaJvqKDhuHkDQEpm8qumH08UCFeEA/exec';
+  var LS = 'visor_bot_key';
+  var INTERVALO_MS = 30000;
+  var temporizador = null;
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  function claveGuardada() { try { return localStorage.getItem(LS) || ''; } catch (e) { return ''; } }
+  function guardaClave(v) { try { localStorage.setItem(LS, v); } catch (e) {} }
+  function borraClave() { try { localStorage.removeItem(LS); } catch (e) {} }
+
+  function muestraPuerta(conError) {
+    $('puerta').hidden = false;
+    $('fallo').style.display = conError ? 'block' : 'none';
+    $('estado').textContent = 'Sin acceso';
+  }
+
+  function fechaCorta(ts) {
+    // ts = 'yyyy-MM-dd HH:mm:ss' (hora de CDMX). Mostrar HH:mm, con fecha si no es hoy.
+    var hoy = new Date();
+    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+    var hoyStr = hoy.getFullYear() + '-' + pad(hoy.getMonth() + 1) + '-' + pad(hoy.getDate());
+    if (ts.slice(0, 10) === hoyStr) return ts.slice(11, 16);
+    return ts.slice(5, 10) + ' ' + ts.slice(11, 16);
+  }
+
+  function nodo(tag, clase, texto) {
+    var el = document.createElement(tag);
+    if (clase) el.className = clase;
+    if (texto !== undefined) el.textContent = texto; // SIEMPRE textContent: jamas HTML de datos
+    return el;
+  }
+
+  function pinta(datos) {
+    var cont = $('contenido');
+    cont.textContent = '';
+    if (!datos.hilos || !datos.hilos.length) {
+      cont.appendChild(nodo('p', 'vacio', 'Sin conversaciones en las últimas ' + (datos.ventana_horas || 6) + ' horas.'));
+    }
+    (datos.hilos || []).forEach(function (h) {
+      var card = nodo('div', 'hilo');
+      var cab = nodo('div', 'hilo-cab');
+      cab.appendChild(nodo('span', 'nombre', h.nombre || 'Sin nombre'));
+      cab.appendChild(nodo('span', 'tel', '+' + String(h.telefono || '').replace(/^\+/, '')));
+      if (h.interno) cab.appendChild(nodo('span', 'interno', 'interno'));
+      card.appendChild(cab);
+      var msgs = nodo('div', 'msgs');
+      (h.mensajes || []).forEach(function (m) {
+        var b = nodo('div', 'msg ' + (m.dir === 'in' ? 'in' : 'out') + (m.expirado ? ' expirado' : ''));
+        b.appendChild(document.createTextNode(m.texto || ''));
+        b.appendChild(nodo('span', 'meta', fechaCorta(m.ts) + (m.tipo && m.tipo !== 'otro' ? ' · ' + m.tipo : '')));
+        msgs.appendChild(b);
+      });
+      card.appendChild(msgs);
+      cont.appendChild(card);
+    });
+    if (datos.sistema && datos.sistema.length) {
+      var det = document.createElement('details');
+      det.className = 'sistema';
+      det.appendChild(nodo('summary', '', 'Bitácora del sistema (' + datos.sistema.length + ')'));
+      var caja = document.createElement('div');
+      datos.sistema.forEach(function (m) {
+        caja.appendChild(nodo('p', '', fechaCorta(m.ts) + ' — ' + m.texto));
+      });
+      det.appendChild(caja);
+      cont.appendChild(det);
+    }
+    $('estado').textContent = 'Actualizado ' + fechaCorta(datos.generado) + ' · cada 30 s';
+  }
+
+  function carga() {
+    var clave = claveGuardada();
+    if (!clave) { muestraPuerta(false); return; }
+    $('estado').textContent = 'Actualizando…';
+    fetch(API + '?visor=1&key=' + encodeURIComponent(clave))
+      .then(function (r) { return r.json(); })
+      .then(function (datos) {
+        if (!datos.ok) {
+          if (datos.error === 'no autorizado') { borraClave(); muestraPuerta(true); return; }
+          throw new Error(datos.error || 'respuesta invalida');
+        }
+        $('puerta').hidden = true;
+        pinta(datos);
+      })
+      .catch(function (err) {
+        $('estado').textContent = 'Error de conexión (reintenta solo)';
+        var cont = $('contenido');
+        if (!cont.querySelector('.hilo')) {
+          cont.textContent = '';
+          cont.appendChild(nodo('p', 'error', 'No se pudo cargar: ' + err.message));
+        }
+      });
+  }
+
+  function arranca() {
+    if (temporizador) clearInterval(temporizador);
+    temporizador = setInterval(carga, INTERVALO_MS);
+    carga();
+  }
+
+  $('formaClave').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var v = $('clave').value.trim();
+    if (!v) return;
+    guardaClave(v);
+    $('clave').value = '';
+    $('puerta').hidden = true;
+    arranca();
+  });
+  $('btnRefrescar').addEventListener('click', carga);
+  $('btnSalir').addEventListener('click', function () {
+    borraClave();
+    if (temporizador) clearInterval(temporizador);
+    $('contenido').textContent = '';
+    $('contenido').appendChild(nodo('p', 'vacio', 'Sesión cerrada.'));
+    muestraPuerta(false);
+  });
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden && claveGuardada()) carga();
+  });
+
+  arranca();
+})();
+</script>
+</body>
+</html>
