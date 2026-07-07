@@ -61,6 +61,25 @@
   #busqueda svg { width: 16px; height: 16px; fill: var(--tenue); flex: none; }
   #busqueda input { flex: 1; background: none; border: 0; outline: 0; color: var(--texto); font-size: 14px; }
   #busqueda input::placeholder { color: var(--tenue); }
+  #solicitudes { border-bottom: 1px solid var(--borde); background: color-mix(in srgb, var(--acento) 7%, var(--panel)); }
+  #solicitudes[hidden] { display: none; }
+  .sol-cab {
+    display: flex; align-items: center; gap: 8px; padding: 11px 16px 5px;
+  }
+  .sol-titulo { font-size: 13px; font-weight: 600; color: var(--acento); letter-spacing: .01em; }
+  .sol-num {
+    background: var(--acento); color: #fff; font-size: 12px; font-weight: 700;
+    min-width: 20px; height: 20px; border-radius: 999px; display: inline-flex;
+    align-items: center; justify-content: center; padding: 0 6px;
+  }
+  .sol-item {
+    display: block; text-decoration: none; color: inherit; padding: 8px 16px;
+  }
+  .sol-item:hover { background: color-mix(in srgb, var(--acento) 12%, transparent); }
+  .sol-nombre { font-size: 15px; font-weight: 500; }
+  .sol-meta { font-size: 12.5px; color: var(--tenue); margin-top: 1px; }
+  .sol-cta { font-size: 12px; color: var(--acento); font-weight: 600; }
+  .sol-aviso { padding: 11px 16px; font-size: 13px; color: var(--tenue); }
   #items { flex: 1; overflow-y: auto; }
   .item {
     display: flex; gap: 14px; padding: 0 16px; cursor: pointer; align-items: center;
@@ -210,6 +229,7 @@
         <input type="search" id="q" placeholder="Buscar chat o mensaje" autocomplete="off">
       </div>
     </div>
+    <div id="solicitudes" hidden></div>
     <div id="items"></div>
   </aside>
 
@@ -326,6 +346,7 @@
     $('convVacia').style.display = '';
     $('msgs').textContent = '';
     $('items').textContent = '';
+    var sol = $('solicitudes'); if (sol) { sol.textContent = ''; sol.hidden = true; }
     $('convNombre').textContent = '';
     $('convTel').textContent = '';
     var q = $('q'); if (q) q.value = '';
@@ -391,7 +412,40 @@
     });
   }
 
+  function pintaSolicitudes() {
+    var caja = $('solicitudes');
+    caja.textContent = '';
+    var sol = (estado.datos && estado.datos.solicitudes) || [];
+    var est = estado.datos && estado.datos.solicitudes_estado;
+    if (est === 'error') {
+      // Nunca afirmar "0 pendientes" si no se pudo consultar cal.com.
+      caja.hidden = false;
+      var av = nodo('div', 'sol-aviso', 'No se pudo consultar las solicitudes en cal.com ahora. Reintentando…');
+      caja.appendChild(av);
+      return;
+    }
+    if (!sol.length) { caja.hidden = true; return; }
+    caja.hidden = false;
+    var cab = nodo('div', 'sol-cab');
+    cab.appendChild(nodo('span', 'sol-titulo', 'Solicitudes pendientes de aprobar'));
+    cab.appendChild(nodo('span', 'sol-num', String(sol.length)));
+    caja.appendChild(cab);
+    sol.forEach(function (s) {
+      var row = nodo('a', 'sol-item');
+      row.href = 'https://app.cal.com/bookings/unconfirmed';
+      row.target = '_blank';
+      row.rel = 'noopener';
+      row.appendChild(nodo('div', 'sol-nombre', s.nombre || 'Paciente'));
+      var meta = nodo('div', 'sol-meta', s.cuando || '');
+      if (s.titulo) meta.textContent += ' · ' + s.titulo;
+      row.appendChild(meta);
+      row.appendChild(nodo('span', 'sol-cta', 'Aprobar en cal.com ›'));
+      caja.appendChild(row);
+    });
+  }
+
   function pintaLista() {
+    pintaSolicitudes();
     var cont = $('items');
     cont.textContent = '';
     var hilos = hilosFiltrados();
