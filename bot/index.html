@@ -4,103 +4,244 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Visor del bot — alveos</title>
+<title>Chats del asistente — alveos</title>
 <style>
   :root {
-    --fondo: #0b141a; --panel: #111b21; --borde: #1f2c34;
-    --texto: #e9edef; --tenue: #8696a0;
-    --in: #202c33; --out: #005c4b; --acento: #00a884; --rojo: #f15c6d;
+    --app-bg: #f0f2f5; --panel: #ffffff; --panel-2: #f0f2f5; --borde: #e9edef;
+    --texto: #111b21; --tenue: #667781; --acento: #00a884; --acento-txt: #ffffff;
+    --chat-bg: #efeae2; --in-bg: #ffffff; --out-bg: #d9fdd3; --burbuja-txt: #111b21;
+    --hora: #667781; --chip-fecha: rgba(255,255,255,.92); --hover: #f5f6f6;
+    --activo: #f0f2f5; --rojo: #ea4335; --sombra: rgba(11,20,26,.13);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --app-bg: #0b141a; --panel: #111b21; --panel-2: #202c33; --borde: #222d34;
+      --texto: #e9edef; --tenue: #8696a0; --acento: #00a884; --acento-txt: #ffffff;
+      --chat-bg: #0b141a; --in-bg: #202c33; --out-bg: #005c4b; --burbuja-txt: #e9edef;
+      --hora: #ffffff99; --chip-fecha: #182229; --hover: #202c33;
+      --activo: #2a3942; --rojo: #f15c6d; --sombra: rgba(0,0,0,.3);
+    }
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  [hidden] { display: none !important; }
+  html, body { height: 100%; }
   body {
-    background: var(--fondo); color: var(--texto); min-height: 100vh;
-    font: 15px/1.45 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--app-bg); color: var(--texto); overflow: hidden;
+    font: 15px/1.4 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
-  header {
-    position: sticky; top: 0; z-index: 5; background: var(--panel);
-    border-bottom: 1px solid var(--borde); padding: 12px 16px;
-    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  button { font: inherit; background: none; border: 0; cursor: pointer; color: inherit; }
+  #app { display: flex; height: 100%; max-width: 1600px; margin: 0 auto; }
+
+  /* ---------- Lista de chats ---------- */
+  #lista {
+    width: 400px; min-width: 300px; background: var(--panel);
+    border-right: 1px solid var(--borde); display: flex; flex-direction: column;
   }
-  header h1 { font-size: 19px; font-weight: 600; }
-  header .estado { color: var(--tenue); font-size: 12px; flex: 1; min-width: 140px; }
-  header button {
-    background: none; border: 1px solid var(--borde); color: var(--tenue);
-    border-radius: 8px; padding: 6px 12px; font-size: 12px; cursor: pointer;
+  #perfil {
+    background: var(--panel-2); padding: 10px 16px; min-height: 59px;
+    display: flex; align-items: center; gap: 12px;
   }
-  header button:hover { color: var(--texto); border-color: var(--tenue); }
-  main { max-width: 760px; margin: 0 auto; padding: 16px 12px 60px; }
-  .hilo {
-    background: var(--panel); border: 1px solid var(--borde);
-    border-radius: 12px; margin-bottom: 14px; overflow: hidden;
+  #perfil .avatar { width: 40px; height: 40px; font-size: 15px; background: var(--acento); color: #fff; }
+  #perfil .quien { flex: 1; min-width: 0; }
+  #perfil .quien .n { font-weight: 600; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #perfil .quien .s { color: var(--tenue); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .icono {
+    width: 38px; height: 38px; border-radius: 50%; display: inline-flex;
+    align-items: center; justify-content: center; color: var(--tenue); flex: none;
   }
-  .hilo-cab {
-    padding: 10px 14px; border-bottom: 1px solid var(--borde);
-    display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+  .icono:hover { background: var(--hover); }
+  .icono svg { width: 21px; height: 21px; fill: currentColor; }
+  .icono.girando svg { animation: gira 1s linear infinite; }
+  @keyframes gira { to { transform: rotate(360deg); } }
+  #busqueda { padding: 7px 12px; background: var(--panel); border-bottom: 1px solid var(--borde); }
+  #busqueda .caja {
+    background: var(--panel-2); border-radius: 8px; display: flex; align-items: center;
+    gap: 10px; padding: 0 12px; height: 35px;
   }
-  .hilo-cab .nombre { font-weight: 600; }
-  .hilo-cab .tel { color: var(--tenue); font-size: 12px; }
-  .hilo-cab .interno {
-    color: var(--acento); font-size: 12px; border: 1px solid var(--acento);
-    border-radius: 999px; padding: 1px 8px;
+  #busqueda svg { width: 16px; height: 16px; fill: var(--tenue); flex: none; }
+  #busqueda input { flex: 1; background: none; border: 0; outline: 0; color: var(--texto); font-size: 14px; }
+  #busqueda input::placeholder { color: var(--tenue); }
+  #items { flex: 1; overflow-y: auto; }
+  .item {
+    display: flex; gap: 14px; padding: 0 16px; cursor: pointer; align-items: center;
   }
-  .msgs { padding: 12px 12px 6px; display: flex; flex-direction: column; }
+  .item:hover { background: var(--hover); }
+  .item.activo { background: var(--activo); }
+  .avatar {
+    width: 49px; height: 49px; border-radius: 50%; flex: none; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 600; user-select: none;
+  }
+  .item .cuerpo {
+    flex: 1; min-width: 0; border-bottom: 1px solid var(--borde);
+    padding: 11px 0; display: flex; flex-direction: column; gap: 3px;
+  }
+  .item:last-child .cuerpo { border-bottom: 0; }
+  .item .fila1 { display: flex; align-items: baseline; gap: 8px; }
+  .item .nombre { flex: 1; min-width: 0; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .item .cuando { color: var(--tenue); font-size: 12px; flex: none; }
+  .item .fila2 { display: flex; align-items: center; gap: 6px; }
+  .item .preview { flex: 1; min-width: 0; color: var(--tenue); font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .chipint {
+    flex: none; color: var(--acento); border: 1px solid var(--acento);
+    font-size: 11px; border-radius: 999px; padding: 0 7px;
+  }
+  #sinResultados { text-align: center; color: var(--tenue); padding: 40px 20px; font-size: 14px; }
+
+  /* ---------- Conversacion ---------- */
+  #conv { flex: 1; min-width: 0; display: flex; flex-direction: column; background: var(--chat-bg); position: relative; }
+  #conv::before {
+    content: ''; position: absolute; inset: 0; opacity: .4; pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23888' stroke-opacity='.14' stroke-width='1.4'%3E%3Ccircle cx='22' cy='24' r='6'/%3E%3Cpath d='M78 18l8 8m0-8l-8 8'/%3E%3Crect x='92' y='58' width='12' height='12' rx='3'/%3E%3Cpath d='M30 84c4-6 12-6 16 0'/%3E%3Ccircle cx='64' cy='98' r='5'/%3E%3Cpath d='M12 58h12M18 52v12'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  #convVacia {
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 12px; color: var(--tenue); text-align: center; padding: 30px; position: relative;
+  }
+  #convVacia svg { width: 72px; height: 72px; fill: var(--tenue); opacity: .5; }
+  #convVacia h2 { font-weight: 400; font-size: 26px; color: var(--texto); }
+  #convVacia p { font-size: 14px; max-width: 420px; }
+  #convUI { flex: 1; display: flex; flex-direction: column; min-height: 0; position: relative; }
+  #convCab {
+    background: var(--panel-2); padding: 8px 16px; min-height: 59px;
+    display: flex; align-items: center; gap: 12px; z-index: 2;
+  }
+  #convCab .avatar { width: 40px; height: 40px; font-size: 15px; }
+  #convCab .quien { flex: 1; min-width: 0; }
+  #convCab .quien .n { font-weight: 500; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #convCab .quien .s { color: var(--tenue); font-size: 12.5px; }
+  #btnVolver { display: none; }
+  #msgs {
+    flex: 1; overflow-y: auto; padding: 18px 6% 24px; z-index: 1;
+    display: flex; flex-direction: column;
+  }
+  .fecha-chip {
+    align-self: center; background: var(--chip-fecha); color: var(--tenue);
+    font-size: 12px; padding: 5px 12px; border-radius: 8px; margin: 10px 0 12px;
+    box-shadow: 0 1px .5px var(--sombra); text-transform: uppercase;
+  }
+  .aviso-recorte { align-self: center; color: var(--tenue); font-size: 12px; margin-bottom: 8px; }
   .msg {
-    max-width: 82%; border-radius: 10px; padding: 7px 10px 5px;
-    margin-bottom: 7px; word-wrap: break-word; white-space: pre-wrap;
+    position: relative; max-width: 65%; border-radius: 8px; padding: 6px 8px 8px 9px;
+    margin-bottom: 4px; color: var(--burbuja-txt); font-size: 14.5px;
+    box-shadow: 0 1px .5px var(--sombra); white-space: pre-wrap; word-wrap: break-word;
   }
-  .msg.in  { background: var(--in);  align-self: flex-start; border-top-left-radius: 3px; }
-  .msg.out { background: var(--out); align-self: flex-end;   border-top-right-radius: 3px; }
-  .msg .meta {
-    display: block; color: var(--tenue); font-size: 12px; margin-top: 3px; text-align: right;
+  .msg .txt { display: inline; }
+  .msg .hora {
+    display: inline-block; color: var(--hora); font-size: 11px;
+    margin: 0 0 -4px 8px; float: right; position: relative; top: 6px;
   }
-  .msg.in .meta { text-align: left; }
-  .msg.expirado { font-style: italic; color: var(--tenue); }
-  .vacio, .error { text-align: center; color: var(--tenue); padding: 46px 20px; }
-  .error { color: var(--rojo); }
-  details.sistema {
-    background: var(--panel); border: 1px solid var(--borde);
-    border-radius: 12px; margin-top: 18px;
+  .msg.in { background: var(--in-bg); align-self: flex-start; border-top-left-radius: 0; }
+  .msg.out { background: var(--out-bg); align-self: flex-end; border-top-right-radius: 0; }
+  .msg.primero.in::before, .msg.primero.out::before {
+    content: ''; position: absolute; top: 0; width: 0; height: 0; border: 6px solid transparent;
   }
-  details.sistema summary { padding: 10px 14px; cursor: pointer; color: var(--tenue); font-size: 12px; }
-  details.sistema div { padding: 4px 14px 12px; color: var(--tenue); font-size: 12px; }
-  details.sistema p { margin-bottom: 6px; word-wrap: break-word; }
-  /* Puerta de acceso */
+  .msg.primero.in::before { left: -6px; border-top-color: var(--in-bg); border-right-color: var(--in-bg); }
+  .msg.primero.out::before { right: -6px; border-top-color: var(--out-bg); border-left-color: var(--out-bg); }
+  .msg.sistema {
+    align-self: center; background: var(--chip-fecha); color: var(--tenue);
+    font-size: 12.5px; max-width: 86%; border-radius: 8px;
+  }
+  .msg.marcador .txt { font-style: italic; color: var(--tenue); }
+
+  /* ---------- Puerta de acceso ---------- */
   #puerta {
-    position: fixed; inset: 0; background: var(--fondo); z-index: 10;
+    position: fixed; inset: 0; background: var(--app-bg); z-index: 20;
     display: flex; align-items: center; justify-content: center; padding: 24px;
   }
   #puerta[hidden] { display: none; }
   #puerta form {
     background: var(--panel); border: 1px solid var(--borde); border-radius: 14px;
-    padding: 26px 22px; width: 100%; max-width: 360px;
+    padding: 28px 24px; width: 100%; max-width: 380px; box-shadow: 0 2px 12px var(--sombra);
   }
-  #puerta h2 { font-size: 19px; margin-bottom: 6px; }
-  #puerta p { color: var(--tenue); font-size: 12px; margin-bottom: 16px; }
+  #puerta .logo {
+    width: 52px; height: 52px; border-radius: 50%; background: var(--acento);
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;
+  }
+  #puerta .logo svg { width: 28px; height: 28px; fill: #fff; }
+  #puerta h2 { font-size: 19px; margin-bottom: 6px; text-align: center; }
+  #puerta p { color: var(--tenue); font-size: 13px; margin-bottom: 18px; text-align: center; }
   #puerta input {
-    width: 100%; background: var(--fondo); border: 1px solid var(--borde);
-    border-radius: 8px; color: var(--texto); padding: 10px 12px; font-size: 15px;
-    margin-bottom: 12px;
+    width: 100%; background: var(--panel-2); border: 1px solid var(--borde);
+    border-radius: 8px; color: var(--texto); padding: 11px 12px; font-size: 15px;
+    margin-bottom: 12px; outline: none;
   }
-  #puerta button {
-    width: 100%; background: var(--acento); border: 0; border-radius: 8px;
-    color: #062e26; font-weight: 700; padding: 11px; font-size: 15px; cursor: pointer;
+  #puerta input:focus { border-color: var(--acento); }
+  #puerta button[type=submit] {
+    width: 100%; background: var(--acento); border-radius: 8px; color: var(--acento-txt);
+    font-weight: 600; padding: 12px; font-size: 15px;
   }
-  #puerta .fallo { color: var(--rojo); font-size: 12px; margin-top: 10px; display: none; }
+  #puerta .fallo { color: var(--rojo); font-size: 13px; margin-top: 12px; text-align: center; display: none; }
+
+  /* ---------- Movil ---------- */
+  @media (max-width: 760px) {
+    #lista { width: 100%; border-right: 0; }
+    #conv {
+      position: fixed; inset: 0; transform: translateX(102%);
+      transition: transform .25s ease; z-index: 10;
+    }
+    body.chat-abierto #conv { transform: translateX(0); }
+    #btnVolver { display: inline-flex; margin-left: -8px; }
+    .msg { max-width: 85%; }
+    #msgs { padding: 14px 12px 20px; }
+  }
 </style>
 </head>
 <body>
-<header>
-  <h1>Visor del bot</h1>
-  <span class="estado" id="estado">Conectando…</span>
-  <button type="button" id="btnRefrescar">Actualizar</button>
-  <button type="button" id="btnSalir" title="Borrar la clave guardada en este dispositivo">Salir</button>
-</header>
-<main id="contenido"><p class="vacio">Cargando conversaciones…</p></main>
 
-<div id="puerta" hidden>
+<div id="app" hidden>
+  <aside id="lista">
+    <div id="perfil">
+      <div class="avatar" id="avatarDr">D</div>
+      <div class="quien">
+        <div class="n" id="nombreDr">Cargando…</div>
+        <div class="s" id="estadoDr">conectando…</div>
+      </div>
+      <button type="button" class="icono" id="btnRefrescar" title="Actualizar ahora">
+        <svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.96 7.96 0 0 0 12 4a8 8 0 1 0 7.73 10h-2.08A6 6 0 1 1 12 6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+      </button>
+      <button type="button" class="icono" id="btnSalir" title="Cerrar sesión en este dispositivo">
+        <svg viewBox="0 0 24 24"><path d="M10.09 15.59 11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5a2 2 0 0 0-2 2v4h2V5h14v14H5v-4H3v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/></svg>
+      </button>
+    </div>
+    <div id="busqueda">
+      <div class="caja">
+        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg>
+        <input type="search" id="q" placeholder="Buscar chat o mensaje" autocomplete="off">
+      </div>
+    </div>
+    <div id="items"></div>
+  </aside>
+
+  <section id="conv">
+    <div id="convVacia">
+      <svg viewBox="0 0 24 24"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
+      <h2>Chats del asistente</h2>
+      <p>Selecciona una conversación para leerla. Todo lo que el asistente envía y recibe queda registrado aquí.</p>
+    </div>
+    <div id="convUI" hidden>
+      <header id="convCab">
+        <button type="button" class="icono" id="btnVolver" title="Volver a la lista">
+          <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        </button>
+        <div class="avatar" id="convAvatar"></div>
+        <div class="quien">
+          <div class="n" id="convNombre"></div>
+          <div class="s" id="convTel"></div>
+        </div>
+      </header>
+      <div id="msgs"></div>
+    </div>
+  </section>
+</div>
+
+<div id="puerta">
   <form id="formaClave">
-    <h2>Acceso restringido</h2>
-    <p>Visor interno de conversaciones del asistente de citas (últimas 6 horas). Ingrese la clave de acceso.</p>
+    <div class="logo">
+      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.94 14.47L2 22l5.71-1.02A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-3.87-1l-.28-.16-3.39.6.62-3.3-.18-.29A8 8 0 1 1 12 20z"/></svg>
+    </div>
+    <h2>Chats del asistente</h2>
+    <p>Acceso restringido. Ingrese la clave que le entregó su asistente; cada doctor ve únicamente a sus pacientes.</p>
     <input type="password" id="clave" autocomplete="current-password" placeholder="Clave de acceso">
     <button type="submit">Entrar</button>
     <p class="fallo" id="fallo">Clave incorrecta.</p>
@@ -113,28 +254,17 @@
   var API = 'https://script.google.com/macros/s/AKfycbwXhrEW73jRoPajdNnATA6q7Rrnc18n0yzMG07J5QaJvqKDhuHkDQEpm8qumH08UCFeEA/exec';
   var LS = 'visor_bot_key';
   var INTERVALO_MS = 30000;
-  var temporizador = null;
+  var COLORES = ['#00a884', '#53bdeb', '#e542a3', '#91ab01', '#fe7c7f', '#ba68c8', '#ffa726', '#7986cb'];
+  var MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio',
+    'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 
   var $ = function (id) { return document.getElementById(id); };
+  var estado = { datos: null, sel: null, temporizador: null, cargando: false };
 
+  /* ---------- utilerias ---------- */
   function claveGuardada() { try { return localStorage.getItem(LS) || ''; } catch (e) { return ''; } }
   function guardaClave(v) { try { localStorage.setItem(LS, v); } catch (e) {} }
   function borraClave() { try { localStorage.removeItem(LS); } catch (e) {} }
-
-  function muestraPuerta(conError) {
-    $('puerta').hidden = false;
-    $('fallo').style.display = conError ? 'block' : 'none';
-    $('estado').textContent = 'Sin acceso';
-  }
-
-  function fechaCorta(ts) {
-    // ts = 'yyyy-MM-dd HH:mm:ss' (hora de CDMX). Mostrar HH:mm, con fecha si no es hoy.
-    var hoy = new Date();
-    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
-    var hoyStr = hoy.getFullYear() + '-' + pad(hoy.getMonth() + 1) + '-' + pad(hoy.getDate());
-    if (ts.slice(0, 10) === hoyStr) return ts.slice(11, 16);
-    return ts.slice(5, 10) + ' ' + ts.slice(11, 16);
-  }
 
   function nodo(tag, clase, texto) {
     var el = document.createElement(tag);
@@ -142,48 +272,80 @@
     if (texto !== undefined) el.textContent = texto; // SIEMPRE textContent: jamas HTML de datos
     return el;
   }
-
-  function pinta(datos) {
-    var cont = $('contenido');
-    cont.textContent = '';
-    if (!datos.hilos || !datos.hilos.length) {
-      cont.appendChild(nodo('p', 'vacio', 'Sin conversaciones en las últimas ' + (datos.ventana_horas || 6) + ' horas.'));
-    }
-    (datos.hilos || []).forEach(function (h) {
-      var card = nodo('div', 'hilo');
-      var cab = nodo('div', 'hilo-cab');
-      cab.appendChild(nodo('span', 'nombre', h.nombre || 'Sin nombre'));
-      cab.appendChild(nodo('span', 'tel', '+' + String(h.telefono || '').replace(/^\+/, '')));
-      if (h.interno) cab.appendChild(nodo('span', 'interno', 'interno'));
-      card.appendChild(cab);
-      var msgs = nodo('div', 'msgs');
-      (h.mensajes || []).forEach(function (m) {
-        var b = nodo('div', 'msg ' + (m.dir === 'in' ? 'in' : 'out') + (m.expirado ? ' expirado' : ''));
-        b.appendChild(document.createTextNode(m.texto || ''));
-        b.appendChild(nodo('span', 'meta', fechaCorta(m.ts) + (m.tipo && m.tipo !== 'otro' ? ' · ' + m.tipo : '')));
-        msgs.appendChild(b);
-      });
-      card.appendChild(msgs);
-      cont.appendChild(card);
-    });
-    if (datos.sistema && datos.sistema.length) {
-      var det = document.createElement('details');
-      det.className = 'sistema';
-      det.appendChild(nodo('summary', '', 'Bitácora del sistema (' + datos.sistema.length + ')'));
-      var caja = document.createElement('div');
-      datos.sistema.forEach(function (m) {
-        caja.appendChild(nodo('p', '', fechaCorta(m.ts) + ' — ' + m.texto));
-      });
-      det.appendChild(caja);
-      cont.appendChild(det);
-    }
-    $('estado').textContent = 'Actualizado ' + fechaCorta(datos.generado) + ' · cada 30 s';
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function hoyStr() {
+    var d = new Date();
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+  }
+  function ayerStr() {
+    var d = new Date(); d.setDate(d.getDate() - 1);
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+  }
+  // ts = 'yyyy-MM-dd HH:mm:ss' (hora CDMX del servidor)
+  function horaDe(ts) { return ts.slice(11, 16); }
+  function fechaDe(ts) { return ts.slice(0, 10); }
+  function etiquetaFecha(f) {
+    if (f === hoyStr()) return 'Hoy';
+    if (f === ayerStr()) return 'Ayer';
+    var y = f.slice(0, 4), m = Number(f.slice(5, 7)), d = Number(f.slice(8, 10));
+    return d + ' de ' + (MESES[m - 1] || '?') + ' de ' + y;
+  }
+  function cuandoLista(ts) {
+    var f = fechaDe(ts);
+    if (f === hoyStr()) return horaDe(ts);
+    if (f === ayerStr()) return 'ayer';
+    return ts.slice(8, 10) + '/' + ts.slice(5, 7) + '/' + ts.slice(2, 4);
+  }
+  function colorDe(clave) {
+    var h = 0;
+    for (var i = 0; i < clave.length; i++) h = (h * 31 + clave.charCodeAt(i)) >>> 0;
+    return COLORES[h % COLORES.length];
+  }
+  function iniciales(nombre, tel) {
+    var n = String(nombre || '').trim();
+    if (!n) return String(tel || '#').slice(-2);
+    var partes = n.split(/\s+/);
+    return (partes[0][0] + (partes.length > 1 ? partes[1][0] : '')).toUpperCase();
+  }
+  function claveHilo(h) { return String(h.telefono || '').replace(/\D/g, '').slice(-10); }
+  function previewDe(m) {
+    var t = String(m.texto || '').replace(/\n\[Botones: [^\]]*\]$/, '').replace(/\s+/g, ' ').trim();
+    return (m.dir === 'out' ? '✓ ' : '') + t;
+  }
+  function esMarcador(texto) {
+    return texto === '[mensaje anterior al registro]' || /^\[(plantilla enviada|CONSENTIMIENTO|RESERVA)/.test(texto);
   }
 
-  function carga() {
-    var clave = claveGuardada();
+  /* ---------- puerta ---------- */
+  function limpiaConversacionDOM() {
+    // Dispositivo compartido: al cerrar sesion o perder acceso, ningun rastro
+    // del paciente anterior debe quedar en pantalla.
+    estado.sel = null;
+    document.body.classList.remove('chat-abierto');
+    $('convUI').hidden = true;
+    $('convVacia').style.display = '';
+    $('msgs').textContent = '';
+    $('items').textContent = '';
+    $('convNombre').textContent = '';
+    $('convTel').textContent = '';
+    var q = $('q'); if (q) q.value = '';
+  }
+  function muestraPuerta(conError) {
+    limpiaConversacionDOM();
+    estado.datos = null;
+    $('puerta').hidden = false;
+    $('app').hidden = true;
+    $('fallo').style.display = conError ? 'block' : 'none';
+  }
+
+  /* ---------- red ---------- */
+  function carga(claveDirecta) {
+    var clave = claveDirecta || claveGuardada();
     if (!clave) { muestraPuerta(false); return; }
-    $('estado').textContent = 'Actualizando…';
+    if (estado.cargando) return;
+    estado.cargando = true;
+    $('btnRefrescar').classList.add('girando');
+    $('estadoDr').textContent = 'actualizando…';
     fetch(API + '?visor=1&key=' + encodeURIComponent(clave))
       .then(function (r) { return r.json(); })
       .then(function (datos) {
@@ -191,47 +353,208 @@
           if (datos.error === 'no autorizado') { borraClave(); muestraPuerta(true); return; }
           throw new Error(datos.error || 'respuesta invalida');
         }
+        estado.datos = datos;
         $('puerta').hidden = true;
-        pinta(datos);
+        $('app').hidden = false;
+        pintaTodo();
       })
-      .catch(function (err) {
-        $('estado').textContent = 'Error de conexión (reintenta solo)';
-        var cont = $('contenido');
-        if (!cont.querySelector('.hilo')) {
-          cont.textContent = '';
-          cont.appendChild(nodo('p', 'error', 'No se pudo cargar: ' + err.message));
-        }
+      .catch(function () {
+        $('estadoDr').textContent = 'sin conexión — reintenta solo';
+      })
+      .then(function () {
+        estado.cargando = false;
+        $('btnRefrescar').classList.remove('girando');
       });
   }
 
-  function arranca() {
-    if (temporizador) clearInterval(temporizador);
-    temporizador = setInterval(carga, INTERVALO_MS);
-    carga();
+  /* ---------- render ---------- */
+  function pintaTodo() {
+    var d = estado.datos;
+    var nombreDr = d.doctor === 'Mauricio' ? 'Dr. Mauricio Castañeda' : 'Dr. William Lara';
+    $('nombreDr').textContent = nombreDr;
+    $('avatarDr').textContent = iniciales(nombreDr.replace(/^Dr\. /, ''), '');
+    $('estadoDr').textContent = 'actualizado ' + horaDe(d.generado) + ' · cada 30 s';
+    pintaLista();
+    if (estado.sel !== null) pintaConversacion(false);
   }
 
+  function hilosFiltrados() {
+    var q = $('q').value.trim().toLowerCase();
+    var hilos = (estado.datos && estado.datos.hilos) || [];
+    if (!q) return hilos;
+    return hilos.filter(function (h) {
+      if ((h.nombre || '').toLowerCase().indexOf(q) !== -1) return true;
+      if (String(h.telefono || '').indexOf(q) !== -1) return true;
+      return (h.mensajes || []).some(function (m) {
+        return String(m.texto || '').toLowerCase().indexOf(q) !== -1;
+      });
+    });
+  }
+
+  function pintaLista() {
+    var cont = $('items');
+    cont.textContent = '';
+    var hilos = hilosFiltrados();
+    hilos.forEach(function (h) {
+      var k = claveHilo(h);
+      var ultimo = h.mensajes[h.mensajes.length - 1];
+      var item = nodo('div', 'item' + (estado.sel === k ? ' activo' : ''));
+      var av = nodo('div', 'avatar', iniciales(h.nombre, h.telefono));
+      av.style.background = h.interno ? 'var(--acento)' : colorDe(k);
+      item.appendChild(av);
+      var cuerpo = nodo('div', 'cuerpo');
+      var f1 = nodo('div', 'fila1');
+      f1.appendChild(nodo('div', 'nombre', h.nombre || ('+' + h.telefono)));
+      f1.appendChild(nodo('div', 'cuando', ultimo ? cuandoLista(ultimo.ts) : ''));
+      cuerpo.appendChild(f1);
+      var f2 = nodo('div', 'fila2');
+      f2.appendChild(nodo('div', 'preview', ultimo ? previewDe(ultimo) : ''));
+      if (h.interno) f2.appendChild(nodo('span', 'chipint', 'interno'));
+      cuerpo.appendChild(f2);
+      item.appendChild(cuerpo);
+      item.setAttribute('role', 'button');
+      item.setAttribute('tabindex', '0');
+      item.setAttribute('aria-label', 'Abrir chat de ' + (h.nombre || h.telefono));
+      item.addEventListener('click', function () { abreHilo(k); });
+      item.addEventListener('keydown', function (ev) {
+        if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); abreHilo(k); }
+      });
+      cont.appendChild(item);
+    });
+    // Bitacora del sistema (solo llega en la vista de William)
+    var sis = (estado.datos && estado.datos.sistema) || [];
+    if (sis.length && !$('q').value.trim()) {
+      var itemS = nodo('div', 'item' + (estado.sel === '__sistema__' ? ' activo' : ''));
+      var avS = nodo('div', 'avatar', '⚙');
+      avS.style.background = '#54656f';
+      itemS.appendChild(avS);
+      var cuerpoS = nodo('div', 'cuerpo');
+      var f1S = nodo('div', 'fila1');
+      f1S.appendChild(nodo('div', 'nombre', 'Bitácora del sistema'));
+      f1S.appendChild(nodo('div', 'cuando', cuandoLista(sis[sis.length - 1].ts)));
+      cuerpoS.appendChild(f1S);
+      var f2S = nodo('div', 'fila2');
+      f2S.appendChild(nodo('div', 'preview', sis[sis.length - 1].texto));
+      cuerpoS.appendChild(f2S);
+      itemS.appendChild(cuerpoS);
+      itemS.addEventListener('click', function () { abreHilo('__sistema__'); });
+      cont.appendChild(itemS);
+    }
+    if (!hilos.length && !sis.length) {
+      cont.appendChild(nodo('p', '', $('q').value.trim()
+        ? 'Sin resultados para la búsqueda.'
+        : 'Todavía no hay conversaciones registradas.')).id = 'sinResultados';
+    }
+  }
+
+  function hiloSeleccionado() {
+    if (!estado.datos) return null;
+    if (estado.sel === '__sistema__') return null;
+    var hilos = estado.datos.hilos || [];
+    for (var i = 0; i < hilos.length; i++) {
+      if (claveHilo(hilos[i]) === estado.sel) return hilos[i];
+    }
+    return null;
+  }
+
+  function abreHilo(k) {
+    estado.sel = k;
+    document.body.classList.add('chat-abierto');
+    pintaLista();
+    pintaConversacion(true);
+  }
+  function cierraHilo() {
+    estado.sel = null;
+    document.body.classList.remove('chat-abierto');
+    pintaLista();
+    $('convUI').hidden = true;
+    $('convVacia').style.display = '';
+  }
+
+  function pintaConversacion(esApertura) {
+    var msgs = $('msgs');
+    var pegadoAbajo = esApertura ||
+      (msgs.scrollHeight - msgs.scrollTop - msgs.clientHeight < 60);
+    var scrollPrev = msgs.scrollTop; // lector en el historial: no moverlo
+
+    if (estado.sel === '__sistema__') {
+      $('convVacia').style.display = 'none';
+      $('convUI').hidden = false;
+      $('convAvatar').textContent = '⚙';
+      $('convAvatar').style.background = '#54656f';
+      $('convNombre').textContent = 'Bitácora del sistema';
+      $('convTel').textContent = 'últimas 48 horas · autoprovisiones y autorreparaciones';
+      msgs.textContent = '';
+      ((estado.datos && estado.datos.sistema) || []).forEach(function (m) {
+        var b = nodo('div', 'msg sistema');
+        b.appendChild(nodo('span', 'txt', horaDe(m.ts) + ' — ' + m.texto));
+        msgs.appendChild(b);
+      });
+      msgs.scrollTop = pegadoAbajo ? msgs.scrollHeight : scrollPrev;
+      return;
+    }
+
+    var h = hiloSeleccionado();
+    if (!h) { cierraHilo(); return; } // el hilo dejo de ser visible: cerrar, no dejar vista vieja
+    $('convVacia').style.display = 'none';
+    $('convUI').hidden = false;
+    var k = claveHilo(h);
+    $('convAvatar').textContent = iniciales(h.nombre, h.telefono);
+    $('convAvatar').style.background = h.interno ? 'var(--acento)' : colorDe(k);
+    $('convNombre').textContent = h.nombre || ('+' + h.telefono);
+    $('convTel').textContent = '+' + h.telefono + (h.interno ? ' · avisos internos del asistente' : '');
+
+    msgs.textContent = '';
+    if (h.recortado) {
+      msgs.appendChild(nodo('div', 'aviso-recorte',
+        h.recortado + ' mensajes anteriores no mostrados'));
+    }
+    var fechaPrev = '';
+    var dirPrev = '';
+    (h.mensajes || []).forEach(function (m) {
+      var f = fechaDe(m.ts);
+      if (f !== fechaPrev) {
+        msgs.appendChild(nodo('div', 'fecha-chip', etiquetaFecha(f)));
+        fechaPrev = f;
+        dirPrev = '';
+      }
+      var clases = 'msg ' + (m.dir === 'in' ? 'in' : 'out') +
+        (m.dir !== dirPrev ? ' primero' : '') +
+        (esMarcador(String(m.texto || '')) ? ' marcador' : '');
+      var b = nodo('div', clases);
+      b.appendChild(nodo('span', 'txt', m.texto || ''));
+      b.appendChild(nodo('span', 'hora', horaDe(m.ts)));
+      b.title = m.tipo || '';
+      msgs.appendChild(b);
+      dirPrev = m.dir;
+    });
+    msgs.scrollTop = pegadoAbajo ? msgs.scrollHeight : scrollPrev;
+  }
+
+  /* ---------- eventos ---------- */
   $('formaClave').addEventListener('submit', function (ev) {
     ev.preventDefault();
     var v = $('clave').value.trim();
     if (!v) return;
     guardaClave(v);
     $('clave').value = '';
-    $('puerta').hidden = true;
-    arranca();
+    carga(v); // clave directa: funciona aun si localStorage esta bloqueado
   });
-  $('btnRefrescar').addEventListener('click', carga);
+  $('btnRefrescar').addEventListener('click', function () { carga(); });
   $('btnSalir').addEventListener('click', function () {
     borraClave();
-    if (temporizador) clearInterval(temporizador);
-    $('contenido').textContent = '';
-    $('contenido').appendChild(nodo('p', 'vacio', 'Sesión cerrada.'));
-    muestraPuerta(false);
+    muestraPuerta(false); // limpia todo el DOM del chat anterior
   });
+  $('btnVolver').addEventListener('click', cierraHilo);
+  $('q').addEventListener('input', pintaLista);
   document.addEventListener('visibilitychange', function () {
     if (!document.hidden && claveGuardada()) carga();
   });
 
-  arranca();
+  estado.temporizador = setInterval(function () {
+    if (claveGuardada() && !document.hidden) carga();
+  }, INTERVALO_MS);
+  carga();
 })();
 </script>
 </body>
