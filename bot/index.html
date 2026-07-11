@@ -12,6 +12,7 @@
     --chat-bg: #efeae2; --in-bg: #ffffff; --out-bg: #d9fdd3; --burbuja-txt: #111b21;
     --hora: #667781; --chip-fecha: rgba(255,255,255,.92); --hover: #f5f6f6;
     --activo: #f0f2f5; --rojo: #ea4335; --ambar: #b26a00; --sombra: rgba(11,20,26,.13);
+    --verde: #1a8f5c; --violeta: #7c3aed;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -20,6 +21,7 @@
       --chat-bg: #0b141a; --in-bg: #202c33; --out-bg: #005c4b; --burbuja-txt: #e9edef;
       --hora: #ffffff99; --chip-fecha: #182229; --hover: #202c33;
       --activo: #2a3942; --rojo: #f15c6d; --ambar: #ffb757; --sombra: rgba(0,0,0,.3);
+      --verde: #4ade80; --violeta: #b794f6;
     }
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -61,6 +63,105 @@
   #busqueda svg { width: 16px; height: 16px; fill: var(--tenue); flex: none; }
   #busqueda input { flex: 1; background: none; border: 0; outline: 0; color: var(--texto); font-size: 14px; }
   #busqueda input::placeholder { color: var(--tenue); }
+
+  /* ---------- Filtros de seguimiento ---------- */
+  #filtros {
+    display: flex; gap: 6px; padding: 4px 12px 9px; background: var(--panel);
+    border-bottom: 1px solid var(--borde); overflow-x: auto; scrollbar-width: none;
+  }
+  #filtros::-webkit-scrollbar { display: none; }
+  .chipf {
+    flex: none; display: inline-flex; align-items: center; gap: 5px;
+    border: 1px solid var(--borde); border-radius: 999px; padding: 4px 11px;
+    font-size: 12.5px; color: var(--tenue); background: var(--panel);
+    white-space: nowrap;
+  }
+  .chipf:hover { background: var(--hover); }
+  .chipf.activo { background: var(--acento); border-color: var(--acento); color: var(--acento-txt); }
+  .chipf .n {
+    font-size: 11px; font-weight: 700; min-width: 16px; height: 16px; padding: 0 4px;
+    border-radius: 999px; background: var(--panel-2); color: var(--tenue);
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .chipf.activo .n { background: rgba(255,255,255,.25); color: var(--acento-txt); }
+
+  /* ---------- Citas de hoy ---------- */
+  #hoy { border-bottom: 1px solid var(--borde); background: var(--panel); }
+  #hoy[hidden] { display: none; }
+  .hoy-cab {
+    display: flex; align-items: center; gap: 8px; padding: 10px 16px;
+    cursor: pointer; user-select: none;
+  }
+  .hoy-titulo { font-size: 13px; font-weight: 600; letter-spacing: .01em; }
+  .hoy-num {
+    background: var(--panel-2); color: var(--texto); font-size: 12px; font-weight: 700;
+    min-width: 20px; height: 20px; border-radius: 999px; display: inline-flex;
+    align-items: center; justify-content: center; padding: 0 6px;
+  }
+  .hoy-flecha { margin-left: auto; color: var(--tenue); font-size: 11px; }
+  .hoy-item {
+    display: flex; align-items: center; gap: 9px; padding: 7px 16px; cursor: pointer;
+  }
+  .hoy-item:hover { background: var(--hover); }
+  .hoy-item:last-child { padding-bottom: 11px; }
+  .hoy-hora { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; flex: none; }
+  .hoy-nombre { flex: 1; min-width: 0; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hoy-estado { font-size: 11.5px; color: var(--tenue); flex: none; }
+  .punto { width: 9px; height: 9px; border-radius: 50%; flex: none; display: inline-block; }
+  .punto.pv { background: var(--verde); }
+  .punto.pa { background: var(--ambar); }
+  .punto.pr { background: var(--rojo); }
+
+  /* ---------- Chips por hilo ---------- */
+  .chipcita {
+    flex: none; display: inline-flex; align-items: center; gap: 4px;
+    color: var(--tenue); border: 1px solid var(--borde); background: var(--panel-2);
+    font-size: 11px; border-radius: 999px; padding: 1px 7px; white-space: nowrap;
+  }
+  .chipcita .punto { width: 7px; height: 7px; }
+  .chipseg {
+    flex: none; color: var(--violeta); border: 1px solid var(--violeta);
+    font-size: 11px; border-radius: 999px; padding: 0 7px; white-space: nowrap;
+  }
+
+  /* ---------- Ficha de paciente ---------- */
+  #btnFicha.abierto { background: var(--activo); color: var(--texto); }
+  #ficha {
+    position: absolute; top: 59px; left: 0; right: 0; z-index: 5;
+    background: var(--panel); border-bottom: 1px solid var(--borde);
+    box-shadow: 0 8px 18px var(--sombra); padding: 14px 18px 16px;
+    max-height: calc(100% - 70px); overflow-y: auto;
+  }
+  #ficha[hidden] { display: none; }
+  .ficha-fila { display: flex; gap: 10px; padding: 5px 0; font-size: 13.5px; align-items: baseline; }
+  .ficha-fila .et { color: var(--tenue); flex: none; width: 118px; font-size: 12.5px; }
+  .ficha-fila .v { flex: 1; min-width: 0; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .ficha-alerta {
+    margin: 6px 0 2px; padding: 8px 11px; border-radius: 8px; font-size: 12.5px;
+    background: color-mix(in srgb, var(--rojo) 12%, var(--panel)); color: var(--rojo);
+  }
+  .ficha-seg { border-top: 1px solid var(--borde); margin-top: 10px; padding-top: 11px; }
+  .ficha-seg .cab { display: flex; align-items: center; gap: 10px; }
+  .ficha-seg .cab .t { font-size: 13px; font-weight: 600; }
+  .btnseg {
+    border: 1px solid var(--borde); border-radius: 999px; padding: 5px 13px;
+    font-size: 12.5px; color: var(--tenue);
+  }
+  .btnseg.on { background: var(--violeta); border-color: var(--violeta); color: #fff; }
+  #segNota {
+    width: 100%; margin-top: 9px; background: var(--panel-2); color: var(--texto);
+    border: 1px solid var(--borde); border-radius: 8px; padding: 8px 10px;
+    font: 13.5px/1.4 inherit; font-family: inherit; resize: vertical; min-height: 54px;
+    outline: none;
+  }
+  #segNota:focus { border-color: var(--acento); }
+  .ficha-seg .acciones { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+  #btnSegGuardar {
+    background: var(--acento); color: var(--acento-txt); border-radius: 8px;
+    padding: 7px 16px; font-size: 13px; font-weight: 600;
+  }
+  #btnSegGuardar:disabled { opacity: .55; cursor: default; }
+  #segEstado { font-size: 12px; color: var(--tenue); }
   #solicitudes { border-bottom: 1px solid var(--borde); background: color-mix(in srgb, var(--acento) 7%, var(--panel)); }
   #solicitudes[hidden] { display: none; }
   .sol-cab {
@@ -239,6 +340,8 @@
         <input type="search" id="q" placeholder="Buscar chat o mensaje" autocomplete="off">
       </div>
     </div>
+    <div id="filtros"></div>
+    <div id="hoy" hidden></div>
     <div id="solicitudes" hidden></div>
     <div id="items"></div>
   </aside>
@@ -258,12 +361,18 @@
         <div class="quien">
           <div class="n" id="convNombre"></div>
           <div class="s" id="convTel"></div>
+          <div class="s" id="convCita" hidden></div>
         </div>
+        <button type="button" class="icono" id="btnFicha" hidden
+                title="Ficha del paciente" aria-label="Ficha del paciente">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        </button>
         <a class="icono" id="btnWa" target="_blank" rel="noopener" hidden
            title="Abrir en WhatsApp" aria-label="Abrir en WhatsApp">
           <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.94 14.47L2 22l5.71-1.02A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-3.87-1l-.28-.16-3.39.6.62-3.3-.18-.29A8 8 0 1 1 12 20zm4.52-5.33c-.25-.12-1.47-.72-1.69-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.73-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.13.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
         </a>
       </header>
+      <div id="ficha" hidden></div>
       <div id="msgs"></div>
     </div>
   </section>
@@ -293,7 +402,19 @@
     'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 
   var $ = function (id) { return document.getElementById(id); };
-  var estado = { datos: null, sel: null, temporizador: null, cargando: false };
+  var estado = { datos: null, sel: null, temporizador: null, cargando: false,
+    filtro: 'todos', fichaAbierta: false, fichaTel: '', guardandoSeg: false };
+  try { estado.filtro = localStorage.getItem('visor_filtro') || 'todos'; } catch (e) {}
+
+  // Filtros de seguimiento (v3): cada uno es un predicado sobre el hilo.
+  var FILTROS = [
+    { id: 'todos', label: 'Todos' },
+    { id: 'noleidos', label: 'No leídos' },
+    { id: 'leads', label: 'Leads' },
+    { id: 'hoy', label: 'Hoy' },
+    { id: 'porconf', label: 'Por confirmar' },
+    { id: 'seg', label: 'Seguimiento' }
+  ];
 
   /* ---------- utilerias ---------- */
   function claveGuardada() { try { return localStorage.getItem(LS) || ''; } catch (e) { return ''; } }
@@ -364,6 +485,50 @@
     return texto === '[mensaje anterior al registro]' || /^\[(plantilla enviada|CONSENTIMIENTO|RESERVA)/.test(texto);
   }
 
+  /* ---------- seguimiento: predicados y formato de citas ---------- */
+  function esNoLeido(h) {
+    var ultimoIn = ultimoInDe(h);
+    return !h.interno && !!ultimoIn && ultimoIn > vistoDe(claveHilo(h)) && estado.sel !== claveHilo(h);
+  }
+  function esLead(h) {
+    var ultimo = (h.mensajes || [])[(h.mensajes || []).length - 1];
+    return !h.interno && h.tiene_cita_futura === false && !!ultimo && ultimo.dir === 'in';
+  }
+  function cumpleFiltro(h, f) {
+    if (f === 'noleidos') return esNoLeido(h);
+    if (f === 'leads') return esLead(h);
+    if (f === 'hoy') return !!h.prox_cita && fechaDe(h.prox_cita.t) === hoyStr();
+    if (f === 'porconf') return !!h.prox_cita && h.prox_cita.estado === 'agendada';
+    if (f === 'seg') return !!(h.seg && h.seg.p);
+    return true;
+  }
+  // Semaforo del estado de cita (mismo codigo de color que el calendario).
+  function clasePunto(estado_) {
+    if (estado_ === 'confirmada') return 'pv';
+    if (estado_ === 'reagendar') return 'pr';
+    return 'pa'; // agendada = por confirmar
+  }
+  function etiquetaEstadoCita(estado_) {
+    if (estado_ === 'confirmada') return 'confirmada';
+    if (estado_ === 'reagendar') return 'pidió reagendar';
+    return 'por confirmar';
+  }
+  // t = 'yyyy-MM-dd HH:mm' -> corto para chips: 'hoy 17:00' | '15/07 17:00'.
+  function citaCorta(t) {
+    var f = fechaDe(t);
+    var hhmm = t.slice(11, 16);
+    if (f === hoyStr()) return 'hoy ' + hhmm;
+    return t.slice(8, 10) + '/' + t.slice(5, 7) + ' ' + hhmm;
+  }
+  // t -> largo para la ficha: 'martes 15 de julio, 17:00'.
+  function citaLarga(t) {
+    var d = new Date(t.replace(' ', 'T'));
+    if (isNaN(d.getTime())) return t;
+    var dias = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+    return dias[d.getDay()] + ' ' + d.getDate() + ' de ' + (MESES[d.getMonth()] || '?') +
+      (t.length >= 16 ? ', ' + t.slice(11, 16) : '');
+  }
+
   /* ---------- puerta ---------- */
   function limpiaConversacionDOM() {
     // Dispositivo compartido: al cerrar sesion o perder acceso, ningun rastro
@@ -375,6 +540,13 @@
     $('msgs').textContent = '';
     $('items').textContent = '';
     var sol = $('solicitudes'); if (sol) { sol.textContent = ''; sol.hidden = true; }
+    var hoy = $('hoy'); if (hoy) { hoy.textContent = ''; hoy.hidden = true; }
+    var fil = $('filtros'); if (fil) fil.textContent = '';
+    cierraFicha();
+    $('ficha').textContent = '';
+    $('btnFicha').hidden = true;
+    $('convCita').textContent = '';
+    $('convCita').hidden = true;
     $('convNombre').textContent = '';
     $('convTel').textContent = '';
     var q = $('q'); if (q) q.value = '';
@@ -448,6 +620,8 @@
     $('nombreDr').textContent = nombreDr;
     $('avatarDr').textContent = iniciales(nombreDr.replace(/^Dr\. /, ''), '');
     $('estadoDr').textContent = 'actualizado ' + horaDe(d.generado) + ' · cada 30 s';
+    pintaFiltros();
+    pintaHoy();
     pintaLista();
     if (estado.sel !== null) pintaConversacion(false);
   }
@@ -455,6 +629,9 @@
   function hilosFiltrados() {
     var q = sinAcentos($('q').value.trim());
     var hilos = (estado.datos && estado.datos.hilos) || [];
+    if (estado.filtro !== 'todos') {
+      hilos = hilos.filter(function (h) { return cumpleFiltro(h, estado.filtro); });
+    }
     if (!q) return hilos;
     var esDigitos = /^\d+$/.test(q);
     return hilos.filter(function (h) {
@@ -464,6 +641,75 @@
       return (h.mensajes || []).some(function (m) {
         return sinAcentos(m.texto).indexOf(q) !== -1;
       });
+    });
+  }
+
+  function pintaFiltros() {
+    var cont = $('filtros');
+    cont.textContent = '';
+    var hilos = (estado.datos && estado.datos.hilos) || [];
+    FILTROS.forEach(function (f) {
+      var n = f.id === 'todos'
+        ? hilos.length
+        : hilos.filter(function (h) { return cumpleFiltro(h, f.id); }).length;
+      // Filtros de cita solo tienen sentido cuando el servidor ya manda la
+      // ficha (degradacion limpia con el servidor anterior).
+      if (n === 0 && (f.id === 'hoy' || f.id === 'porconf' || f.id === 'seg') &&
+          estado.filtro !== f.id) {
+        return;
+      }
+      var b = nodo('button', 'chipf' + (estado.filtro === f.id ? ' activo' : ''), f.label);
+      b.type = 'button';
+      if (n > 0 && f.id !== 'todos') b.appendChild(nodo('span', 'n', String(n)));
+      b.addEventListener('click', function () {
+        estado.filtro = f.id;
+        try { localStorage.setItem('visor_filtro', f.id); } catch (e) {}
+        pintaFiltros();
+        pintaLista();
+      });
+      cont.appendChild(b);
+    });
+  }
+
+  function hoyPlegado() { try { return localStorage.getItem('visor_hoy_plegado') === '1'; } catch (e) { return false; } }
+  function pintaHoy() {
+    var caja = $('hoy');
+    caja.textContent = '';
+    var citas = (estado.datos && estado.datos.citas_hoy) || [];
+    if (!citas.length) { caja.hidden = true; return; }
+    caja.hidden = false;
+    var plegado = hoyPlegado();
+    var cab = nodo('div', 'hoy-cab');
+    cab.appendChild(nodo('span', 'hoy-titulo', 'Citas de hoy'));
+    cab.appendChild(nodo('span', 'hoy-num', String(citas.length)));
+    cab.appendChild(nodo('span', 'hoy-flecha', plegado ? '▼ mostrar' : '▲ ocultar'));
+    cab.addEventListener('click', function () {
+      try { localStorage.setItem('visor_hoy_plegado', plegado ? '0' : '1'); } catch (e) {}
+      pintaHoy();
+    });
+    caja.appendChild(cab);
+    if (plegado) return;
+    citas.forEach(function (c) {
+      var row = nodo('div', 'hoy-item');
+      row.appendChild(nodo('span', 'hoy-hora', c.hora || ''));
+      row.appendChild(nodo('span', 'punto ' + clasePunto(c.estado)));
+      row.appendChild(nodo('div', 'hoy-nombre', c.nombre || ('+' + (c.telefono || ''))));
+      row.appendChild(nodo('span', 'hoy-estado', etiquetaEstadoCita(c.estado)));
+      row.setAttribute('role', 'button');
+      row.setAttribute('tabindex', '0');
+      var abre = function () {
+        // Con chat registrado se abre el hilo; sin chat, WhatsApp directo.
+        var hayHilo = ((estado.datos && estado.datos.hilos) || []).some(function (h) {
+          return claveHilo(h) === c.tel10;
+        });
+        if (hayHilo) abreHilo(c.tel10);
+        else if (c.telefono) window.open('https://wa.me/' + c.telefono, '_blank', 'noopener');
+      };
+      row.addEventListener('click', abre);
+      row.addEventListener('keydown', function (ev) {
+        if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); abre(); }
+      });
+      caja.appendChild(row);
     });
   }
 
@@ -524,9 +770,19 @@
       var f2 = nodo('div', 'fila2');
       f2.appendChild(nodo('div', 'preview', ultimo ? previewDe(ultimo) : ''));
       if (h.interno) f2.appendChild(nodo('span', 'chipint', 'interno'));
+      // Marca de seguimiento pendiente del doctor (v3).
+      if (h.seg && h.seg.p) f2.appendChild(nodo('span', 'chipseg', 'seguimiento'));
       // Lead caliente: el paciente escribio al final y NO tiene cita futura.
-      if (!h.interno && h.tiene_cita_futura === false && ultimo && ultimo.dir === 'in') {
+      if (esLead(h)) {
         f2.appendChild(nodo('span', 'chiplead', 'lead'));
+      }
+      // Proxima cita con semaforo (v3): 'hoy 17:00' / '15/07 17:00'.
+      if (!h.interno && h.prox_cita && h.prox_cita.t) {
+        var chipC = nodo('span', 'chipcita');
+        chipC.appendChild(nodo('span', 'punto ' + clasePunto(h.prox_cita.estado)));
+        chipC.appendChild(document.createTextNode(citaCorta(h.prox_cita.t)));
+        chipC.title = 'Cita ' + etiquetaEstadoCita(h.prox_cita.estado);
+        f2.appendChild(chipC);
       }
       if (noLeido) {
         var nuevos = 0;
@@ -548,7 +804,8 @@
     });
     // Bitacora del sistema (solo llega en la vista de William)
     var sis = (estado.datos && estado.datos.sistema) || [];
-    if (sis.length && !$('q').value.trim()) {
+    var muestraSistema = sis.length && !$('q').value.trim() && estado.filtro === 'todos';
+    if (muestraSistema) {
       var itemS = nodo('div', 'item' + (estado.sel === '__sistema__' ? ' activo' : ''));
       var avS = nodo('div', 'avatar', '⚙');
       avS.style.background = '#54656f';
@@ -565,10 +822,15 @@
       itemS.addEventListener('click', function () { abreHilo('__sistema__'); });
       cont.appendChild(itemS);
     }
-    if (!hilos.length && !sis.length) {
-      cont.appendChild(nodo('p', '', $('q').value.trim()
-        ? 'Sin resultados para la búsqueda.'
-        : 'Todavía no hay conversaciones registradas.')).id = 'sinResultados';
+    if (!hilos.length && !muestraSistema) {
+      var msjVacio = 'Todavía no hay conversaciones registradas.';
+      if ($('q').value.trim()) msjVacio = 'Sin resultados para la búsqueda.';
+      else if (estado.filtro === 'noleidos') msjVacio = 'Sin chats por leer. ✓';
+      else if (estado.filtro === 'leads') msjVacio = 'Sin leads pendientes. ✓';
+      else if (estado.filtro === 'hoy') msjVacio = 'Nadie con cita hoy ha escrito.';
+      else if (estado.filtro === 'porconf') msjVacio = 'Sin citas por confirmar. ✓';
+      else if (estado.filtro === 'seg') msjVacio = 'Sin seguimientos marcados. Ábralos desde la ficha ⓘ del chat.';
+      cont.appendChild(nodo('p', '', msjVacio)).id = 'sinResultados';
     }
     cont.scrollTop = scrollPrev;
   }
@@ -602,6 +864,7 @@
   }
   function cierraHilo() {
     estado.sel = null;
+    cierraFicha();
     document.body.classList.remove('chat-abierto');
     pintaLista();
     $('convUI').hidden = true;
@@ -618,6 +881,9 @@
       $('convVacia').style.display = 'none';
       $('convUI').hidden = false;
       $('btnWa').hidden = true;
+      $('btnFicha').hidden = true;
+      $('convCita').hidden = true;
+      cierraFicha();
       $('convAvatar').textContent = '⚙';
       $('convAvatar').style.background = '#54656f';
       $('convNombre').textContent = 'Bitácora del sistema';
@@ -650,6 +916,24 @@
     } else {
       btnWa.hidden = true;
     }
+    // Linea de cita bajo el nombre (v3): proxima con semaforo o la ultima.
+    var convCita = $('convCita');
+    convCita.textContent = '';
+    if (!h.interno && h.prox_cita && h.prox_cita.t) {
+      convCita.appendChild(nodo('span', 'punto ' + clasePunto(h.prox_cita.estado)));
+      convCita.appendChild(document.createTextNode(
+        ' Cita ' + citaCorta(h.prox_cita.t) + ' · ' + etiquetaEstadoCita(h.prox_cita.estado)));
+      convCita.hidden = false;
+    } else if (!h.interno && h.ult_cita && h.ult_cita.t) {
+      convCita.appendChild(document.createTextNode('Última cita: ' + citaCorta(h.ult_cita.t)));
+      convCita.hidden = false;
+    } else {
+      convCita.hidden = true;
+    }
+    // Ficha del paciente (v3): boton ⓘ solo en hilos de pacientes.
+    $('btnFicha').hidden = !!h.interno;
+    if (h.interno) cierraFicha();
+    else if (estado.fichaAbierta) pintaFicha(h);
 
     msgs.textContent = '';
     if (h.recortado) {
@@ -682,6 +966,129 @@
     }
   }
 
+  /* ---------- ficha de paciente y seguimiento (v3) ---------- */
+  function cierraFicha() {
+    estado.fichaAbierta = false;
+    estado.fichaTel = '';
+    $('ficha').hidden = true;
+    $('btnFicha').classList.remove('abierto');
+  }
+
+  function pintaFicha(h) {
+    var k = claveHilo(h);
+    var caja = $('ficha');
+    // El poll de 30 s repinta la vista: JAMAS pisar una nota a medio escribir.
+    if (estado.fichaTel === k) {
+      var taPrev = $('segNota');
+      if (taPrev && (document.activeElement === taPrev ||
+          taPrev.value !== ((h.seg && h.seg.nota) || ''))) {
+        return;
+      }
+    }
+    estado.fichaAbierta = true;
+    estado.fichaTel = k;
+    $('btnFicha').classList.add('abierto');
+    caja.hidden = false;
+    caja.textContent = '';
+
+    var fila = function (etiqueta, contenido) {
+      var f = nodo('div', 'ficha-fila');
+      f.appendChild(nodo('span', 'et', etiqueta));
+      var v = nodo('div', 'v');
+      (Array.isArray(contenido) ? contenido : [contenido]).forEach(function (c) {
+        v.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
+      });
+      f.appendChild(v);
+      return f;
+    };
+
+    if (h.opt_out) {
+      caja.appendChild(nodo('div', 'ficha-alerta',
+        'Pidió BAJA: el asistente ya no le envía mensajes. Cualquier contacto debe ser personal.'));
+    }
+    if (h.prox_cita && h.prox_cita.t) {
+      caja.appendChild(fila('Próxima cita', [
+        nodo('span', 'punto ' + clasePunto(h.prox_cita.estado)),
+        citaLarga(h.prox_cita.t) + ' · ' + etiquetaEstadoCita(h.prox_cita.estado)
+      ]));
+    } else {
+      caja.appendChild(fila('Próxima cita', h.n_citas === undefined
+        ? '— (requiere actualizar el servidor)' : 'sin cita futura'));
+    }
+    if (h.ult_cita && h.ult_cita.t) {
+      caja.appendChild(fila('Última cita', citaLarga(h.ult_cita.t)));
+    }
+    if (h.n_citas !== undefined) {
+      caja.appendChild(fila('Citas registradas', String(h.n_citas)));
+    }
+    if (h.origen) {
+      caja.appendChild(fila('Vino de', h.origen));
+    }
+    if (h.resena !== undefined) {
+      caja.appendChild(fila('Reseña', h.resena ? 'invitación enviada' : 'aún no invitado'));
+    }
+
+    var seg = nodo('div', 'ficha-seg');
+    var cab = nodo('div', 'cab');
+    cab.appendChild(nodo('span', 't', 'Seguimiento'));
+    var pend = !!(h.seg && h.seg.p);
+    var btnP = nodo('button', 'btnseg' + (pend ? ' on' : ''),
+      pend ? '✓ Pendiente de seguimiento' : 'Marcar seguimiento');
+    btnP.type = 'button';
+    btnP.addEventListener('click', function () { guardaSeguimientoUI(h, !pend); });
+    cab.appendChild(btnP);
+    seg.appendChild(cab);
+    var ta = document.createElement('textarea');
+    ta.id = 'segNota';
+    ta.maxLength = 300;
+    ta.placeholder = 'Nota para usted (ej. "revisar espirometría en 2 semanas")';
+    ta.value = (h.seg && h.seg.nota) || '';
+    seg.appendChild(ta);
+    var acciones = nodo('div', 'acciones');
+    var btnG = nodo('button', '', 'Guardar nota');
+    btnG.id = 'btnSegGuardar';
+    btnG.type = 'button';
+    btnG.addEventListener('click', function () { guardaSeguimientoUI(h, pend); });
+    acciones.appendChild(btnG);
+    var est = nodo('span', '', h.seg && h.seg.ts ? 'actualizado ' + h.seg.ts.slice(0, 16) : '');
+    est.id = 'segEstado';
+    acciones.appendChild(est);
+    seg.appendChild(acciones);
+    caja.appendChild(seg);
+  }
+
+  function guardaSeguimientoUI(h, pendiente) {
+    if (estado.guardandoSeg) return;
+    var k = claveHilo(h);
+    var ta = $('segNota');
+    var nota = (ta ? ta.value : '').slice(0, 300);
+    estado.guardandoSeg = true;
+    var btn = $('btnSegGuardar');
+    if (btn) btn.disabled = true;
+    var est = $('segEstado');
+    if (est) est.textContent = 'guardando…';
+    fetch(API + '?visor=1&key=' + encodeURIComponent(claveGuardada()) +
+      '&seg=1&tel=' + encodeURIComponent(k) +
+      '&p=' + (pendiente ? '1' : '0') + '&nota=' + encodeURIComponent(nota))
+      .then(function (r) { return r.json(); })
+      .then(function (resp) {
+        if (!resp.ok || !resp.seg) {
+          throw new Error(resp.error || 'el servidor aún no tiene seguimiento');
+        }
+        h.seg = resp.seg;
+        estado.guardandoSeg = false;
+        estado.fichaTel = ''; // forzar repintado limpio con lo guardado
+        pintaFicha(h);
+        pintaFiltros();
+        pintaLista();
+      })
+      .catch(function (err) {
+        estado.guardandoSeg = false;
+        if (btn) btn.disabled = false;
+        if (est) est.textContent = 'No se guardó: ' + ((err && err.message) || 'sin conexión');
+      });
+  }
+
   /* ---------- eventos ---------- */
   $('formaClave').addEventListener('submit', function (ev) {
     ev.preventDefault();
@@ -695,6 +1102,11 @@
   $('btnSalir').addEventListener('click', function () {
     borraClave();
     muestraPuerta(false); // limpia todo el DOM del chat anterior
+  });
+  $('btnFicha').addEventListener('click', function () {
+    if (estado.fichaAbierta) { cierraFicha(); return; }
+    var h = hiloSeleccionado();
+    if (h && !h.interno) pintaFicha(h);
   });
   $('btnVolver').addEventListener('click', function () {
     // Si abrir el chat apilo una entrada de historial, volver = history.back()
