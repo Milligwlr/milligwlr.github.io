@@ -11,7 +11,7 @@
     --texto: #111b21; --tenue: #667781; --acento: #00a884; --acento-txt: #ffffff;
     --chat-bg: #efeae2; --in-bg: #ffffff; --out-bg: #d9fdd3; --burbuja-txt: #111b21;
     --hora: #667781; --chip-fecha: rgba(255,255,255,.92); --hover: #f5f6f6;
-    --activo: #f0f2f5; --rojo: #ea4335; --sombra: rgba(11,20,26,.13);
+    --activo: #f0f2f5; --rojo: #ea4335; --ambar: #b26a00; --sombra: rgba(11,20,26,.13);
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -19,7 +19,7 @@
       --texto: #e9edef; --tenue: #8696a0; --acento: #00a884; --acento-txt: #ffffff;
       --chat-bg: #0b141a; --in-bg: #202c33; --out-bg: #005c4b; --burbuja-txt: #e9edef;
       --hora: #ffffff99; --chip-fecha: #182229; --hover: #202c33;
-      --activo: #2a3942; --rojo: #f15c6d; --sombra: rgba(0,0,0,.3);
+      --activo: #2a3942; --rojo: #f15c6d; --ambar: #ffb757; --sombra: rgba(0,0,0,.3);
     }
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -104,6 +104,16 @@
   .chipint {
     flex: none; color: var(--acento); border: 1px solid var(--acento);
     font-size: 11px; border-radius: 999px; padding: 0 7px;
+  }
+  .chiplead {
+    flex: none; color: var(--ambar); border: 1px solid var(--ambar);
+    font-size: 11px; border-radius: 999px; padding: 0 7px;
+  }
+  .item .nombre.noleido { font-weight: 700; }
+  .badge-nuevo {
+    flex: none; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px;
+    background: var(--acento); color: var(--acento-txt); font-size: 11px; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
   }
   #sinResultados { text-align: center; color: var(--tenue); padding: 40px 20px; font-size: 14px; }
 
@@ -249,6 +259,10 @@
           <div class="n" id="convNombre"></div>
           <div class="s" id="convTel"></div>
         </div>
+        <a class="icono" id="btnWa" target="_blank" rel="noopener" hidden
+           title="Abrir en WhatsApp" aria-label="Abrir en WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.94 14.47L2 22l5.71-1.02A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-3.87-1l-.28-.16-3.39.6.62-3.3-.18-.29A8 8 0 1 1 12 20zm4.52-5.33c-.25-.12-1.47-.72-1.69-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.73-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.13.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+        </a>
       </header>
       <div id="msgs"></div>
     </div>
@@ -261,9 +275,9 @@
       <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.94 14.47L2 22l5.71-1.02A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-3.87-1l-.28-.16-3.39.6.62-3.3-.18-.29A8 8 0 1 1 12 20z"/></svg>
     </div>
     <h2>Chats del asistente</h2>
-    <p>Acceso restringido. Ingrese la clave que le entregó su asistente; cada doctor ve únicamente a sus pacientes.</p>
+    <p id="puertaTexto">Acceso restringido. Ingrese la clave que le entregó su asistente; cada doctor ve únicamente a sus pacientes.</p>
     <input type="password" id="clave" autocomplete="current-password" placeholder="Clave de acceso">
-    <button type="submit">Entrar</button>
+    <button type="submit" id="btnEntrar">Entrar</button>
     <p class="fallo" id="fallo">Clave incorrecta.</p>
   </form>
 </div>
@@ -328,6 +342,20 @@
     return (partes[0][0] + (partes.length > 1 ? partes[1][0] : '')).toUpperCase();
   }
   function claveHilo(h) { return String(h.telefono || '').replace(/\D/g, '').slice(-10); }
+  function sinAcentos(s) {
+    return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  }
+  // "Visto": marcador local por hilo (solo frontend, por dispositivo).
+  function vistoDe(k) { try { return localStorage.getItem('visto_' + k) || ''; } catch (e) { return ''; } }
+  function marcaVisto(k, ts) { try { if (k && ts) localStorage.setItem('visto_' + k, ts); } catch (e) {} }
+  function ultimoInDe(h) {
+    if (h.ultimo_in_ts) return String(h.ultimo_in_ts);
+    var ms = h.mensajes || [];
+    for (var i = ms.length - 1; i >= 0; i--) {
+      if (ms[i].dir === 'in') return ms[i].ts;
+    }
+    return '';
+  }
   function previewDe(m) {
     var t = String(m.texto || '').replace(/\n\[Botones: [^\]]*\]$/, '').replace(/\s+/g, ' ').trim();
     return (m.dir === 'out' ? '✓ ' : '') + t;
@@ -351,11 +379,22 @@
     $('convTel').textContent = '';
     var q = $('q'); if (q) q.value = '';
   }
+  // Puerta en modo "cargando": con sesion guardada no se pide la clave otra
+  // vez; se avisa que se estan trayendo las conversaciones.
+  function puertaCargando(cargando) {
+    $('clave').hidden = cargando;
+    $('btnEntrar').hidden = cargando;
+    $('puertaTexto').textContent = cargando
+      ? 'Cargando conversaciones…'
+      : 'Acceso restringido. Ingrese la clave que le entregó su asistente; cada doctor ve únicamente a sus pacientes.';
+  }
   function muestraPuerta(conError) {
     limpiaConversacionDOM();
     estado.datos = null;
+    puertaCargando(false);
     $('puerta').hidden = false;
     $('app').hidden = true;
+    $('fallo').textContent = 'Clave incorrecta.';
     $('fallo').style.display = conError ? 'block' : 'none';
   }
 
@@ -374,13 +413,27 @@
           if (datos.error === 'no autorizado') { borraClave(); muestraPuerta(true); return; }
           throw new Error(datos.error || 'respuesta invalida');
         }
+        // Si el servidor no genero datos nuevos, no hay nada que re-pintar
+        // (evita rehacer el DOM y mover el scroll sin necesidad).
+        var sinCambios = !!(estado.datos && estado.datos.generado === datos.generado);
         estado.datos = datos;
         $('puerta').hidden = true;
         $('app').hidden = false;
-        pintaTodo();
+        if (sinCambios) {
+          $('estadoDr').textContent = 'actualizado ' + horaDe(datos.generado) + ' · cada 30 s';
+        } else {
+          pintaTodo();
+        }
       })
       .catch(function () {
-        $('estadoDr').textContent = 'sin conexión — reintenta solo';
+        if ($('app').hidden) {
+          // Seguimos en la puerta (arranque con sesion guardada): avisar ahi
+          // mismo; el temporizador de 30 s reintenta solo.
+          $('fallo').textContent = 'Sin conexión, reintentando…';
+          $('fallo').style.display = 'block';
+        } else {
+          $('estadoDr').textContent = 'sin conexión — reintenta solo';
+        }
       })
       .then(function () {
         estado.cargando = false;
@@ -400,14 +453,16 @@
   }
 
   function hilosFiltrados() {
-    var q = $('q').value.trim().toLowerCase();
+    var q = sinAcentos($('q').value.trim());
     var hilos = (estado.datos && estado.datos.hilos) || [];
     if (!q) return hilos;
+    var esDigitos = /^\d+$/.test(q);
     return hilos.filter(function (h) {
-      if ((h.nombre || '').toLowerCase().indexOf(q) !== -1) return true;
+      if (esDigitos && String(h.telefono || '').replace(/\D/g, '').indexOf(q) !== -1) return true;
+      if (sinAcentos(h.nombre).indexOf(q) !== -1) return true;
       if (String(h.telefono || '').indexOf(q) !== -1) return true;
       return (h.mensajes || []).some(function (m) {
-        return String(m.texto || '').toLowerCase().indexOf(q) !== -1;
+        return sinAcentos(m.texto).indexOf(q) !== -1;
       });
     });
   }
@@ -438,6 +493,7 @@
       row.appendChild(nodo('div', 'sol-nombre', s.nombre || 'Paciente'));
       var meta = nodo('div', 'sol-meta', s.cuando || '');
       if (s.titulo) meta.textContent += ' · ' + s.titulo;
+      if (s.telefono) meta.textContent += ' · ' + s.telefono;
       row.appendChild(meta);
       row.appendChild(nodo('span', 'sol-cta', 'Aprobar en cal.com ›'));
       caja.appendChild(row);
@@ -447,23 +503,38 @@
   function pintaLista() {
     pintaSolicitudes();
     var cont = $('items');
+    var scrollPrev = cont.scrollTop; // el auto-refresh no debe mover la lista
     cont.textContent = '';
     var hilos = hilosFiltrados();
     hilos.forEach(function (h) {
       var k = claveHilo(h);
       var ultimo = h.mensajes[h.mensajes.length - 1];
+      var visto = vistoDe(k);
+      var ultimoIn = ultimoInDe(h);
+      var noLeido = !h.interno && !!ultimoIn && ultimoIn > visto && estado.sel !== k;
       var item = nodo('div', 'item' + (estado.sel === k ? ' activo' : ''));
       var av = nodo('div', 'avatar', iniciales(h.nombre, h.telefono));
       av.style.background = h.interno ? 'var(--acento)' : colorDe(k);
       item.appendChild(av);
       var cuerpo = nodo('div', 'cuerpo');
       var f1 = nodo('div', 'fila1');
-      f1.appendChild(nodo('div', 'nombre', h.nombre || ('+' + h.telefono)));
+      f1.appendChild(nodo('div', 'nombre' + (noLeido ? ' noleido' : ''), h.nombre || ('+' + h.telefono)));
       f1.appendChild(nodo('div', 'cuando', ultimo ? cuandoLista(ultimo.ts) : ''));
       cuerpo.appendChild(f1);
       var f2 = nodo('div', 'fila2');
       f2.appendChild(nodo('div', 'preview', ultimo ? previewDe(ultimo) : ''));
       if (h.interno) f2.appendChild(nodo('span', 'chipint', 'interno'));
+      // Lead caliente: el paciente escribio al final y NO tiene cita futura.
+      if (!h.interno && h.tiene_cita_futura === false && ultimo && ultimo.dir === 'in') {
+        f2.appendChild(nodo('span', 'chiplead', 'lead'));
+      }
+      if (noLeido) {
+        var nuevos = 0;
+        (h.mensajes || []).forEach(function (m) {
+          if (m.dir === 'in' && m.ts > visto) nuevos++;
+        });
+        f2.appendChild(nodo('span', 'badge-nuevo', nuevos > 0 ? String(nuevos) : '•'));
+      }
       cuerpo.appendChild(f2);
       item.appendChild(cuerpo);
       item.setAttribute('role', 'button');
@@ -499,6 +570,7 @@
         ? 'Sin resultados para la búsqueda.'
         : 'Todavía no hay conversaciones registradas.')).id = 'sinResultados';
     }
+    cont.scrollTop = scrollPrev;
   }
 
   function hiloSeleccionado() {
@@ -512,10 +584,21 @@
   }
 
   function abreHilo(k) {
+    var yaAbierto = estado.sel !== null;
     estado.sel = k;
+    var h = hiloSeleccionado();
+    if (h && h.mensajes && h.mensajes.length) {
+      marcaVisto(k, h.mensajes[h.mensajes.length - 1].ts); // antes de pintaLista: apaga el badge
+    }
     document.body.classList.add('chat-abierto');
     pintaLista();
     pintaConversacion(true);
+    // Boton atras de Android: una sola entrada de historial mientras haya un
+    // chat abierto (cambiar de chat la reemplaza, no la apila).
+    try {
+      if (yaAbierto) history.replaceState({ chat: k }, '');
+      else history.pushState({ chat: k }, '');
+    } catch (e) {}
   }
   function cierraHilo() {
     estado.sel = null;
@@ -534,6 +617,7 @@
     if (estado.sel === '__sistema__') {
       $('convVacia').style.display = 'none';
       $('convUI').hidden = false;
+      $('btnWa').hidden = true;
       $('convAvatar').textContent = '⚙';
       $('convAvatar').style.background = '#54656f';
       $('convNombre').textContent = 'Bitácora del sistema';
@@ -557,6 +641,15 @@
     $('convAvatar').style.background = h.interno ? 'var(--acento)' : colorDe(k);
     $('convNombre').textContent = h.nombre || ('+' + h.telefono);
     $('convTel').textContent = '+' + h.telefono + (h.interno ? ' · avisos internos del asistente' : '');
+    // Intervenir: abrir el chat en el WhatsApp del doctor (su propio numero).
+    var telDigitos = String(h.telefono || '').replace(/\D/g, '');
+    var btnWa = $('btnWa');
+    if (telDigitos) {
+      btnWa.href = 'https://wa.me/' + telDigitos;
+      btnWa.hidden = false;
+    } else {
+      btnWa.hidden = true;
+    }
 
     msgs.textContent = '';
     if (h.recortado) {
@@ -583,6 +676,10 @@
       dirPrev = m.dir;
     });
     msgs.scrollTop = pegadoAbajo ? msgs.scrollHeight : scrollPrev;
+    // El hilo abierto se considera leido hasta su ultimo mensaje.
+    if (h.mensajes && h.mensajes.length) {
+      marcaVisto(k, h.mensajes[h.mensajes.length - 1].ts);
+    }
   }
 
   /* ---------- eventos ---------- */
@@ -599,7 +696,15 @@
     borraClave();
     muestraPuerta(false); // limpia todo el DOM del chat anterior
   });
-  $('btnVolver').addEventListener('click', cierraHilo);
+  $('btnVolver').addEventListener('click', function () {
+    // Si abrir el chat apilo una entrada de historial, volver = history.back()
+    // (asi el boton fisico de atras y el de la UI no duplican entradas).
+    if (history.state && history.state.chat) history.back();
+    else cierraHilo();
+  });
+  window.addEventListener('popstate', function () {
+    if (estado.sel !== null) cierraHilo();
+  });
   $('q').addEventListener('input', pintaLista);
   document.addEventListener('visibilitychange', function () {
     if (!document.hidden && claveGuardada()) carga();
@@ -608,6 +713,8 @@
   estado.temporizador = setInterval(function () {
     if (claveGuardada() && !document.hidden) carga();
   }, INTERVALO_MS);
+  // Con sesion guardada no se vuelve a pedir la clave: puerta en modo carga.
+  if (claveGuardada()) puertaCargando(true);
   carga();
 })();
 </script>
