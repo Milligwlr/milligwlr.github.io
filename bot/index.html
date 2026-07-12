@@ -123,6 +123,10 @@
     flex: none; color: var(--violeta); border: 1px solid var(--violeta);
     font-size: 11px; border-radius: 999px; padding: 0 7px; white-space: nowrap;
   }
+  .chipetq {
+    flex: none; color: var(--verde); border: 1px solid var(--verde);
+    font-size: 11px; border-radius: 999px; padding: 0 7px; white-space: nowrap;
+  }
 
   /* ---------- Ficha de paciente ---------- */
   #btnFicha.abierto { background: var(--activo); color: var(--texto); }
@@ -434,12 +438,14 @@
   ];
   // Etiquetas clínicas (v4): alimentan la reactivación de crónicos y la
   // campaña de vacunación (>55: ofrecer neumococo y zóster). Los ids deben
-  // coincidir con ETIQUETAS_VALIDAS_ del servidor.
+  // coincidir con ETIQUETAS_VALIDAS_ del servidor. "Crónico" (pedido del Dr.)
+  // cubre otros padecimientos crónicos: fibrosis, SAOS, bronquiectasias…
   var ETIQUETAS = [
-    { id: 'EPOC', label: 'EPOC' },
-    { id: 'ASMA', label: 'Asma' },
-    { id: 'EPID', label: 'EPID' },
-    { id: 'MAYOR55', label: '>55 años' }
+    { id: 'EPOC', label: 'EPOC', corto: 'EPOC' },
+    { id: 'ASMA', label: 'Asma', corto: 'Asma' },
+    { id: 'EPID', label: 'EPID', corto: 'EPID' },
+    { id: 'CRONICO', label: 'Crónico', corto: 'Crón' },
+    { id: 'MAYOR55', label: '>55 años', corto: '>55' }
   ];
 
   /* ---------- utilerias ---------- */
@@ -569,7 +575,14 @@
   /* ---------- etiquetas clínicas (v4) ---------- */
   function tagsDe(h) { return (h.seg && h.seg.tags) || ''; }
   function tieneTag(h, t) { return (',' + tagsDe(h) + ',').indexOf(',' + t + ',') !== -1; }
-  function esCronico(h) { return /(^|,)(EPOC|ASMA|EPID)(,|$)/.test(tagsDe(h)); }
+  function esCronico(h) { return /(^|,)(EPOC|ASMA|EPID|CRONICO)(,|$)/.test(tagsDe(h)); }
+  // Etiquetas en versión corta para el renglón de la lista: 'EPOC · >55'.
+  function tagsCortas(h) {
+    var t = tagsDe(h);
+    if (!t) return '';
+    return ETIQUETAS.filter(function (e) { return tieneTag(h, e.id); })
+      .map(function (e) { return e.corto; }).join(' · ');
+  }
   // Semaforo del estado de cita (mismo codigo de color que el calendario).
   function clasePunto(estado_) {
     if (estado_ === 'confirmada') return 'pv';
@@ -738,6 +751,10 @@
       if (esDigitos && String(h.telefono || '').replace(/\D/g, '').indexOf(q) !== -1) return true;
       if (sinAcentos(h.nombre).indexOf(q) !== -1) return true;
       if (String(h.telefono || '').indexOf(q) !== -1) return true;
+      // v4.1: la busqueda tambien encuentra por ETIQUETA ("epoc", "cronico")
+      // y por la NOTA de seguimiento ("espirometria" halla al de la nota).
+      if (sinAcentos(tagsDe(h)).indexOf(q) !== -1) return true;
+      if (h.seg && h.seg.nota && sinAcentos(h.seg.nota).indexOf(q) !== -1) return true;
       return (h.mensajes || []).some(function (m) {
         return sinAcentos(m.texto).indexOf(q) !== -1;
       });
@@ -899,6 +916,9 @@
         : (ultimo ? previewDe(ultimo) : (h.seg && h.seg.nota ? 'Nota: ' + h.seg.nota : ''));
       f2.appendChild(nodo('div', 'preview', pv));
       if (h.interno) f2.appendChild(nodo('span', 'chipint', 'interno'));
+      // Etiquetas clínicas a la vista (v4.1): 'EPOC · >55' sin abrir la ficha.
+      var etq = tagsCortas(h);
+      if (etq) f2.appendChild(nodo('span', 'chipetq', etq));
       // Marca de seguimiento pendiente del doctor (v3); la nota como tooltip.
       if (h.seg && h.seg.p) {
         var chipS = nodo('span', 'chipseg', 'seguimiento');
