@@ -229,6 +229,7 @@
     { clave: 'CITAS_POR_BOT', t: 'Citas por el bot', d: 'El asistente puede reservar citas él solo.', peligroApagar: 'Los pacientes YA NO podrán agendar por WhatsApp (solo recibirán el enlace de agenda). ¿Apagar?' },
     { clave: 'SEGUIMIENTO_POST_CITA', t: 'Mensaje post-consulta', d: '"¿Cómo se ha sentido?" 24–48 h después de cada cita (con oferta de vacunas).' },
     { clave: 'SEGUNDO_RECORDATORIO', t: 'Recordatorio del día', d: 'Recordatorio extra ~4 h antes de la cita.' },
+    { clave: 'LISTA_ESPERA', t: 'Lista de espera inteligente', d: 'Un hueco que se libera se ofrece al último paciente del día del mismo doctor (compacta su agenda).' },
     { clave: 'COLOREAR_CALENDARIO', t: 'Semáforo en el calendario', d: 'Bolita 🟡/🟢/🔴 en el título del evento.' },
     { clave: 'DIGEST_WHATSAPP', t: 'Digest por WhatsApp', d: 'El resumen de las 6 am también por WhatsApp (además del correo).' },
     { clave: 'MODO_PRUEBA', t: 'Modo prueba', d: 'PELIGRO: encendido, el bot solo contesta al número de prueba — los pacientes quedan sin respuesta.', peligro: true, peligroEncender: 'Con MODO PRUEBA encendido el bot DEJA de responder a los pacientes reales. ¿Encender?' }
@@ -262,7 +263,10 @@
     { clave: 'RECONFIRMA_HORAS', t: 'Horas antes de re-preguntar', peq: 'si no contestó la confirmación (0 = apagado)' },
     { clave: 'POSTCITA_HORAS', t: 'Horas después de la cita para el post-consulta', peq: 'entre 4 y 47' },
     { clave: 'CORTESIA_INICIO', t: 'Inicio del horario de cortesía', peq: 'antes de esta hora no salen mensajes (HH:MM)' },
-    { clave: 'CORTESIA_FIN', t: 'Fin del horario de cortesía', peq: 'después de esta hora no salen mensajes (HH:MM)' }
+    { clave: 'CORTESIA_FIN', t: 'Fin del horario de cortesía', peq: 'después de esta hora no salen mensajes (HH:MM)' },
+    { clave: 'ADELANTO_MIN_HORAS', t: 'Lista de espera: anticipación mínima', peq: 'horas mínimas al hueco para ofrecerlo (ej. 2)' },
+    { clave: 'ADELANTO_MEJORA_MIN', t: 'Lista de espera: mejora mínima', peq: 'minutos que debe adelantar para valer la pena (ej. 60)' },
+    { clave: 'ADELANTO_DIAS', t: 'Lista de espera: días a futuro', peq: 'huecos de hoy a N días se procesan (ej. 7)' }
   ];
   var ETIQUETAS_UI = [
     { id: 'EPOC', t: 'EPOC' }, { id: 'ASMA', t: 'Asma' }, { id: 'EPID', t: 'EPID' },
