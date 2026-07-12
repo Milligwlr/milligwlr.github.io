@@ -433,6 +433,7 @@
     { id: 'leads', label: 'Leads' },
     { id: 'hoy', label: 'Hoy' },
     { id: 'porconf', label: 'Por confirmar' },
+    { id: 'conf', label: 'Confirmadas' },
     { id: 'seg', label: 'Seguimiento' },
     { id: 'cron', label: 'Crónicos' }
   ];
@@ -589,6 +590,14 @@
     if (f === 'leads') return esLead(h);
     if (f === 'hoy') return !!h.prox_cita && fechaDe(h.prox_cita.t) === hoyStr();
     if (f === 'porconf') return !!h.prox_cita && h.prox_cita.estado === 'agendada';
+    if (f === 'conf') {
+      // Citas ya CONFIRMADAS de las próximas 48 h (pedido del Dr., 12-jul):
+      // su pase de lista de pacientes seguros de mañana y pasado.
+      if (!h.prox_cita || h.prox_cita.estado !== 'confirmada') return false;
+      var dConf = new Date(String(h.prox_cita.t).replace(' ', 'T'));
+      return !isNaN(dConf.getTime()) &&
+        dConf.getTime() - Date.now() < 48 * 3600 * 1000;
+    }
     if (f === 'seg') return !!(h.seg && h.seg.p);
     if (f === 'cron') return esCronico(h);
     return true;
@@ -792,8 +801,8 @@
         : hilos.filter(function (h) { return cumpleFiltro(h, f.id); }).length;
       // Filtros de cita solo tienen sentido cuando el servidor ya manda la
       // ficha (degradacion limpia con el servidor anterior).
-      if (n === 0 && (f.id === 'hoy' || f.id === 'porconf' || f.id === 'seg' ||
-          f.id === 'cron') && estado.filtro !== f.id) {
+      if (n === 0 && (f.id === 'hoy' || f.id === 'porconf' || f.id === 'conf' ||
+          f.id === 'seg' || f.id === 'cron') && estado.filtro !== f.id) {
         return;
       }
       var b = nodo('button', 'chipf' + (estado.filtro === f.id ? ' activo' : ''), f.label);
@@ -1009,6 +1018,7 @@
       else if (estado.filtro === 'leads') msjVacio = 'Sin leads pendientes. ✓';
       else if (estado.filtro === 'hoy') msjVacio = 'Nadie con cita hoy ha escrito.';
       else if (estado.filtro === 'porconf') msjVacio = 'Sin citas por confirmar. ✓';
+      else if (estado.filtro === 'conf') msjVacio = 'Sin citas confirmadas en las próximas 48 h.';
       else if (estado.filtro === 'seg') msjVacio = 'Sin seguimientos marcados. Ábralos desde la ficha ⓘ del chat.';
       cont.appendChild(nodo('p', '', msjVacio)).id = 'sinResultados';
     }
