@@ -498,6 +498,27 @@
     return (partes[0][0] + (partes.length > 1 ? partes[1][0] : '')).toUpperCase();
   }
   function claveHilo(h) { return String(h.telefono || '').replace(/\D/g, '').slice(-10); }
+  /* ---------- WhatsApp del doctor (v4.2, petición del Dr. 12-jul): en
+     Android el link fuerza WhatsApp BUSINESS (paquete com.whatsapp.w4b, donde
+     vive su número personal en el Poco). Si Business no está instalada, el
+     fallback abre wa.me normal — cero configuración en el teléfono. En
+     iPhone/PC la web no puede elegir app: sale wa.me de siempre. ---------- */
+  var ES_ANDROID = /Android/i.test(navigator.userAgent);
+  function linkWa(telDigitos, texto, androidOverride) {
+    var waMe = 'https://wa.me/' + telDigitos + (texto ? '?text=' + encodeURIComponent(texto) : '');
+    var android = androidOverride === undefined ? ES_ANDROID : androidOverride;
+    if (!android) return waMe;
+    return 'intent://send?phone=' + telDigitos +
+      (texto ? '&text=' + encodeURIComponent(texto) : '') +
+      '#Intent;scheme=whatsapp;package=com.whatsapp.w4b;S.browser_fallback_url=' +
+      encodeURIComponent(waMe) + ';end';
+  }
+  function abreWa(telDigitos, texto) {
+    var url = linkWa(telDigitos, texto);
+    if (ES_ANDROID) { window.location.href = url; }
+    else { window.open(url, '_blank', 'noopener'); }
+  }
+  window.__waLink = linkWa; // hook de verificación (sin datos sensibles)
   function sinAcentos(s) {
     return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
   }
@@ -826,7 +847,7 @@
           return claveHilo(h) === c.tel10;
         });
         if (hayHilo) abreHilo(c.tel10);
-        else if (c.telefono) window.open('https://wa.me/' + c.telefono, '_blank', 'noopener');
+        else if (c.telefono) abreWa(c.telefono, '');
       };
       row.addEventListener('click', abre);
       row.addEventListener('keydown', function (ev) {
@@ -1073,7 +1094,7 @@
     var telDigitos = String(h.telefono || '').replace(/\D/g, '');
     var btnWa = $('btnWa');
     if (telDigitos) {
-      btnWa.href = 'https://wa.me/' + telDigitos;
+      btnWa.href = linkWa(telDigitos, '');
       btnWa.hidden = false;
     } else {
       btnWa.hidden = true;
@@ -1253,7 +1274,7 @@
       var msjSeg = 'Hola' + (primerNombre ? ' ' + primerNombre : '') + ', le saluda el ' +
         drSeg + '. ¿Cómo ha seguido desde su consulta?';
       var aWa = nodo('a', 'btnseg', 'Escribir por WhatsApp');
-      aWa.href = 'https://wa.me/' + telDig + '?text=' + encodeURIComponent(msjSeg);
+      aWa.href = linkWa(telDig, msjSeg);
       aWa.target = '_blank';
       aWa.rel = 'noopener';
       acciones.appendChild(aWa);
