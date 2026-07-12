@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Panel de control del bot — alveos</title>
+<style>
+  :root {
+    --app-bg: #f0f2f5; --panel: #ffffff; --panel-2: #f0f2f5; --borde: #e9edef;
+    --texto: #111b21; --tenue: #667781; --acento: #00a884; --acento-txt: #ffffff;
+    --rojo: #ea4335; --ambar: #b26a00; --verde: #1a8f5c; --violeta: #7c3aed;
+    --sombra: rgba(11,20,26,.13);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --app-bg: #0b141a; --panel: #111b21; --panel-2: #202c33; --borde: #222d34;
+      --texto: #e9edef; --tenue: #8696a0; --acento: #00a884; --acento-txt: #ffffff;
+      --rojo: #f15c6d; --ambar: #ffb757; --verde: #4ade80; --violeta: #b794f6;
+      --sombra: rgba(0,0,0,.3);
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  [hidden] { display: none !important; }
+  html { height: 100%; }
+  body {
+    min-height: 100%; background: var(--app-bg); color: var(--texto);
+    font: 15px/1.45 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  button { font: inherit; background: none; border: 0; cursor: pointer; color: inherit; }
+  input, textarea, select { font: inherit; color: var(--texto); }
+
+  #cabecera {
+    position: sticky; top: 0; z-index: 10; background: var(--panel-2);
+    border-bottom: 1px solid var(--borde); padding: 10px 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  #cabecera .logo {
+    width: 40px; height: 40px; border-radius: 50%; background: var(--acento);
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex: none;
+  }
+  #cabecera .quien { flex: 1; min-width: 0; }
+  #cabecera .quien .n { font-weight: 600; font-size: 15px; }
+  #cabecera .quien .s { color: var(--tenue); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .icono {
+    width: 38px; height: 38px; border-radius: 50%; display: inline-flex;
+    align-items: center; justify-content: center; color: var(--tenue); flex: none;
+  }
+  .icono:hover { background: var(--panel); }
+  .icono svg { width: 21px; height: 21px; fill: currentColor; }
+  .icono.girando svg { animation: gira 1s linear infinite; }
+  @keyframes gira { to { transform: rotate(360deg); } }
+
+  #contenido { max-width: 880px; margin: 0 auto; padding: 14px 12px 60px; }
+  .tarjeta {
+    background: var(--panel); border: 1px solid var(--borde); border-radius: 14px;
+    padding: 16px; margin-bottom: 14px; box-shadow: 0 1px 2px var(--sombra);
+  }
+  .tarjeta h2 { font-size: 15px; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+  .tarjeta .sub { color: var(--tenue); font-size: 12.5px; margin-bottom: 12px; }
+
+  .punto { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex: none; }
+  .punto.ok { background: var(--verde); }
+  .punto.mal { background: var(--rojo); }
+  .salud-fila { display: flex; align-items: center; gap: 9px; padding: 5px 0; font-size: 14px; }
+  .salud-fila .det { color: var(--tenue); font-size: 12.5px; margin-left: auto; }
+
+  .btn {
+    background: var(--acento); color: var(--acento-txt); border-radius: 9px;
+    padding: 9px 16px; font-size: 13.5px; font-weight: 600;
+  }
+  .btn:disabled { opacity: .55; cursor: default; }
+  .btn.fantasma { background: var(--panel-2); color: var(--texto); border: 1px solid var(--borde); font-weight: 500; }
+
+  /* Embudo */
+  .tabs { display: inline-flex; background: var(--panel-2); border-radius: 999px; padding: 3px; margin-bottom: 12px; }
+  .tabs button { border-radius: 999px; padding: 5px 14px; font-size: 12.5px; color: var(--tenue); }
+  .tabs button.activo { background: var(--acento); color: var(--acento-txt); }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .tile {
+    background: var(--panel-2); border-radius: 11px; padding: 11px 13px;
+  }
+  .tile .v { font-size: 23px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .tile .e { color: var(--tenue); font-size: 11.5px; margin-top: 1px; }
+  .tile.destacado { background: color-mix(in srgb, var(--acento) 14%, var(--panel)); }
+  .tile.destacado .v { color: var(--acento); }
+
+  /* Plantillas */
+  .plantilla {
+    display: flex; align-items: center; gap: 8px; padding: 7px 0;
+    border-bottom: 1px solid var(--borde); font-size: 13.5px; flex-wrap: wrap;
+  }
+  .plantilla:last-child { border-bottom: 0; }
+  .plantilla .nom { flex: 1; min-width: 180px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px; }
+  .chip { border-radius: 999px; padding: 1px 9px; font-size: 11px; border: 1px solid var(--borde); color: var(--tenue); white-space: nowrap; }
+  .chip.aprobada { color: var(--verde); border-color: var(--verde); }
+  .chip.pendiente { color: var(--ambar); border-color: var(--ambar); }
+  .chip.rechazada { color: var(--rojo); border-color: var(--rojo); }
+  .chip.marketing { color: var(--violeta); border-color: var(--violeta); }
+  .nota { font-size: 12px; color: var(--tenue); margin-top: 9px; }
+
+  /* Interruptores */
+  .sw-fila { display: flex; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--borde); }
+  .sw-fila:last-child { border-bottom: 0; }
+  .sw-fila .txts { flex: 1; min-width: 0; }
+  .sw-fila .t { font-size: 14px; }
+  .sw-fila .d { font-size: 12px; color: var(--tenue); }
+  .sw {
+    position: relative; width: 46px; height: 26px; border-radius: 999px; flex: none;
+    background: var(--borde); transition: background .15s ease;
+  }
+  .sw::after {
+    content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px;
+    border-radius: 50%; background: #fff; transition: left .15s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,.3);
+  }
+  .sw.on { background: var(--acento); }
+  .sw.on::after { left: 23px; }
+  .sw.peligro.on { background: var(--rojo); }
+  .sw:disabled { opacity: .5; }
+
+  /* Campos editables */
+  .campo { display: flex; align-items: center; gap: 8px; padding: 6px 0; flex-wrap: wrap; }
+  .campo label { flex: 1 1 200px; font-size: 13.5px; min-width: 0; }
+  .campo label .peq { display: block; color: var(--tenue); font-size: 11.5px; }
+  .campo input[type=text], .campo textarea {
+    flex: 1 1 190px; background: var(--panel-2); border: 1px solid var(--borde);
+    border-radius: 8px; padding: 8px 10px; font-size: 13.5px; outline: none; min-width: 0;
+  }
+  .campo textarea { min-height: 56px; resize: vertical; width: 100%; flex-basis: 100%; }
+  .campo input:focus, .campo textarea:focus { border-color: var(--acento); }
+  .campo .guardar {
+    background: var(--panel-2); border: 1px solid var(--borde); border-radius: 8px;
+    padding: 8px 13px; font-size: 12.5px; color: var(--tenue); flex: none;
+  }
+  .campo .guardar.cambiado { background: var(--acento); border-color: var(--acento); color: var(--acento-txt); }
+  .campo input::placeholder { color: var(--tenue); opacity: .8; }
+
+  .etq-fila { display: flex; gap: 8px; flex-wrap: wrap; }
+  .etq {
+    border: 1px solid var(--verde); color: var(--verde); border-radius: 999px;
+    padding: 4px 12px; font-size: 12.5px;
+  }
+  .etq b { font-size: 14px; }
+
+  .cambio { font-size: 12.5px; color: var(--tenue); padding: 3px 0; font-variant-numeric: tabular-nums; }
+
+  #aviso {
+    position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%);
+    background: var(--texto); color: var(--app-bg); border-radius: 999px;
+    padding: 9px 18px; font-size: 13px; box-shadow: 0 4px 14px var(--sombra);
+    opacity: 0; pointer-events: none; transition: opacity .2s ease; z-index: 30;
+    max-width: 92vw; text-align: center;
+  }
+  #aviso.visible { opacity: 1; }
+
+  /* Puerta */
+  #puerta {
+    position: fixed; inset: 0; background: var(--app-bg); z-index: 20;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #puerta form {
+    background: var(--panel); border: 1px solid var(--borde); border-radius: 14px;
+    padding: 28px 24px; width: 100%; max-width: 380px; box-shadow: 0 2px 12px var(--sombra);
+  }
+  #puerta .logo {
+    width: 52px; height: 52px; border-radius: 50%; background: var(--acento);
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;
+    font-size: 24px; color: #fff;
+  }
+  #puerta h2 { font-size: 19px; margin-bottom: 6px; text-align: center; }
+  #puerta p { color: var(--tenue); font-size: 13px; margin-bottom: 18px; text-align: center; }
+  #puerta input {
+    width: 100%; background: var(--panel-2); border: 1px solid var(--borde);
+    border-radius: 8px; padding: 11px 12px; font-size: 15px; margin-bottom: 12px; outline: none;
+  }
+  #puerta input:focus { border-color: var(--acento); }
+  #puerta button[type=submit] {
+    width: 100%; background: var(--acento); border-radius: 8px; color: var(--acento-txt);
+    font-weight: 600; padding: 12px; font-size: 15px;
+  }
+  #puerta .fallo { color: var(--rojo); font-size: 13px; margin-top: 12px; text-align: center; display: none; }
+</style>
+</head>
+<body>
+
+<div id="app" hidden>
+  <header id="cabecera">
+    <div class="logo">⚙️</div>
+    <div class="quien">
+      <div class="n">Panel de control del bot</div>
+      <div class="s" id="estado">cargando…</div>
+    </div>
+    <button type="button" class="icono" id="btnRefrescar" title="Actualizar">
+      <svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.96 7.96 0 0 0 12 4a8 8 0 1 0 7.73 10h-2.08A6 6 0 1 1 12 6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+    </button>
+    <button type="button" class="icono" id="btnSalir" title="Cerrar sesión">
+      <svg viewBox="0 0 24 24"><path d="M10.09 15.59 11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5a2 2 0 0 0-2 2v4h2V5h14v14H5v-4H3v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/></svg>
+    </button>
+  </header>
+  <main id="contenido"></main>
+</div>
+
+<div id="puerta">
+  <form id="formaClave">
+    <div class="logo">⚙️</div>
+    <h2>Panel de control del bot</h2>
+    <p id="puertaTexto">Acceso exclusivo del Dr. William Lara. Ingrese su clave (la misma del visor de chats).</p>
+    <input type="password" id="clave" autocomplete="current-password" placeholder="Clave de acceso">
+    <button type="submit" id="btnEntrar">Entrar</button>
+    <p class="fallo" id="fallo">Clave incorrecta.</p>
+  </form>
+</div>
+
+<div id="aviso" role="status"></div>
+
+<script>
+(function () {
+  'use strict';
+  var API = 'https://script.google.com/macros/s/AKfycbwXhrEW73jRoPajdNnATA6q7Rrnc18n0yzMG07J5QaJvqKDhuHkDQEpm8qumH08UCFeEA/exec';
+  var LS = 'panel_bot_key';
+  var $ = function (id) { return document.getElementById(id); };
+  var estado = { datos: null, cargando: false, ventana: 'd7' };
+
+  /* Definición de la UI de cada clave editable (el servidor manda tipo/grupo;
+     aquí van las etiquetas humanas y las advertencias). */
+  var INTERRUPTORES = [
+    { clave: 'CITAS_POR_BOT', t: 'Citas por el bot', d: 'El asistente puede reservar citas él solo.', peligroApagar: 'Los pacientes YA NO podrán agendar por WhatsApp (solo recibirán el enlace de agenda). ¿Apagar?' },
+    { clave: 'SEGUIMIENTO_POST_CITA', t: 'Mensaje post-consulta', d: '"¿Cómo se ha sentido?" 24–48 h después de cada cita (con oferta de vacunas).' },
+    { clave: 'SEGUNDO_RECORDATORIO', t: 'Recordatorio del día', d: 'Recordatorio extra ~4 h antes de la cita.' },
+    { clave: 'COLOREAR_CALENDARIO', t: 'Semáforo en el calendario', d: 'Bolita 🟡/🟢/🔴 en el título del evento.' },
+    { clave: 'DIGEST_WHATSAPP', t: 'Digest por WhatsApp', d: 'El resumen de las 6 am también por WhatsApp (además del correo).' },
+    { clave: 'MODO_PRUEBA', t: 'Modo prueba', d: 'PELIGRO: encendido, el bot solo contesta al número de prueba — los pacientes quedan sin respuesta.', peligro: true, peligroEncender: 'Con MODO PRUEBA encendido el bot DEJA de responder a los pacientes reales. ¿Encender?' }
+  ];
+  var PRECIOS = [
+    { clave: 'PRECIO_CONSULTA_WILLIAM', t: 'Consulta (regular / subsecuente)' },
+    { clave: 'PRECIO_CONSULTA_PROMO_WILLIAM', t: 'Consulta con promoción (primera vez)' },
+    { clave: 'PRECIO_ESPIROMETRIA', t: 'Espirometría' },
+    { clave: 'PRECIO_POLIGRAFIA', t: 'Poligrafía respiratoria (consultorio)' },
+    { clave: 'PRECIO_POLIGRAFIA_DOMICILIO', t: 'Poligrafía a domicilio' },
+    { clave: 'PRECIO_DEJAR_FUMAR', t: 'Dejar de fumar (valoración)' },
+    { clave: 'PRECIO_TITULACION', t: 'Titulación CPAP/BiPAP' }
+  ];
+  var VACUNAS = [
+    { clave: 'PRECIO_VACUNA_INFLUENZA', t: 'Influenza tetravalente (actualizada)' },
+    { clave: 'PRECIO_VACUNA_PREVENAR20', t: 'Neumococo (Prevenar 20)' },
+    { clave: 'PRECIO_VACUNA_SHINGRIX', t: 'Herpes zóster (Shingrix)' },
+    { clave: 'PRECIO_VACUNA_ABRYSVO', t: 'Virus sincicial respiratorio (Abrysvo)' },
+    { clave: 'PRECIO_VACUNA_COMIRNATY', t: 'COVID-19 (Comirnaty)' },
+    { clave: 'PRECIO_VACUNA_TDAP', t: 'Tdap (tétanos, difteria, tos ferina)' },
+    { clave: 'VACUNAS_URL', t: 'Página de vacunas (link que envía el bot)' }
+  ];
+  var TEXTOS = [
+    { clave: 'HORARIO_TEXTO', t: 'Horario de atención', area: true },
+    { clave: 'ESTACIONAMIENTO_TEXTO', t: 'Respuesta de estacionamiento', area: true },
+    { clave: 'PAGO_TEXTO', t: 'Formas de pago (vacío = se canaliza con usted)', area: true },
+    { clave: 'DIRECCION_CORTA', t: 'Dirección corta del consultorio', area: true }
+  ];
+  var CADENCIA = [
+    { clave: 'HORA_CONFIRMACION', t: 'Hora del mensaje de confirmación', peq: 'la mañana del día anterior (ej. 9)' },
+    { clave: 'RECONFIRMA_HORAS', t: 'Horas antes de re-preguntar', peq: 'si no contestó la confirmación (0 = apagado)' },
+    { clave: 'POSTCITA_HORAS', t: 'Horas después de la cita para el post-consulta', peq: 'entre 4 y 47' },
+    { clave: 'CORTESIA_INICIO', t: 'Inicio del horario de cortesía', peq: 'antes de esta hora no salen mensajes (HH:MM)' },
+    { clave: 'CORTESIA_FIN', t: 'Fin del horario de cortesía', peq: 'después de esta hora no salen mensajes (HH:MM)' }
+  ];
+  var ETIQUETAS_UI = [
+    { id: 'EPOC', t: 'EPOC' }, { id: 'ASMA', t: 'Asma' }, { id: 'EPID', t: 'EPID' },
+    { id: 'CRONICO', t: 'Crónico' }, { id: 'MAYOR55', t: '>55 años' }
+  ];
+
+  function claveGuardada() { try { return localStorage.getItem(LS) || ''; } catch (e) { return ''; } }
+  function guardaClave(v) { try { localStorage.setItem(LS, v); } catch (e) {} }
+  function borraClave() { try { localStorage.removeItem(LS); } catch (e) {} }
+  function nodo(tag, clase, texto) {
+    var el = document.createElement(tag);
+    if (clase) el.className = clase;
+    if (texto !== undefined) el.textContent = texto; // SIEMPRE textContent
+    return el;
+  }
+  var avisoTimer = null;
+  function avisa(txt) {
+    var a = $('aviso');
+    a.textContent = txt;
+    a.classList.add('visible');
+    clearTimeout(avisoTimer);
+    avisoTimer = setTimeout(function () { a.classList.remove('visible'); }, 2600);
+  }
+
+  /* ---------- red ---------- */
+  function api(params) {
+    var url = API + '?panel=1&key=' + encodeURIComponent(claveGuardada());
+    Object.keys(params || {}).forEach(function (k) {
+      url += '&' + k + '=' + encodeURIComponent(params[k]);
+    });
+    return fetch(url).then(function (r) { return r.json(); });
+  }
+  function carga(claveDirecta) {
+    var clave = claveDirecta || claveGuardada();
+    if (!clave) { muestraPuerta(false); return; }
+    if (claveDirecta) guardaClave(claveDirecta);
+    if (estado.cargando) return;
+    estado.cargando = true;
+    $('btnRefrescar').classList.add('girando');
+    $('estado').textContent = 'actualizando…';
+    api({})
+      .then(function (d) {
+        if (!d.ok) {
+          if (d.error === 'no autorizado') { borraClave(); muestraPuerta(true); return; }
+          throw new Error(d.error || 'respuesta inválida');
+        }
+        estado.datos = d;
+        $('puerta').hidden = true;
+        $('app').hidden = false;
+        pinta();
+      })
+      .catch(function () {
+        if ($('app').hidden) {
+          $('fallo').textContent = 'Sin conexión, intente de nuevo.';
+          $('fallo').style.display = 'block';
+          puertaCargando(false);
+        } else {
+          $('estado').textContent = 'sin conexión — toque actualizar';
+        }
+      })
+      .then(function () {
+        estado.cargando = false;
+        $('btnRefrescar').classList.remove('girando');
+      });
+  }
+  function puertaCargando(cargando) {
+    $('clave').hidden = cargando;
+    $('btnEntrar').hidden = cargando;
+    $('puertaTexto').textContent = cargando
+      ? 'Cargando su panel…'
+      : 'Acceso exclusivo del Dr. William Lara. Ingrese su clave (la misma del visor de chats).';
+  }
+  function muestraPuerta(conError) {
+    estado.datos = null;
+    $('contenido').textContent = '';
+    puertaCargando(false);
+    $('puerta').hidden = false;
+    $('app').hidden = true;
+    $('fallo').textContent = 'Clave incorrecta.';
+    $('fallo').style.display = conError ? 'block' : 'none';
+  }
+
+  /* Guardado de una clave de Config; el servidor valida contra su lista blanca. */
+  function guardaConfig(clave, valor, alTerminar) {
+    api({ set: clave, valor: valor })
+      .then(function (r) {
+        if (!r.ok) throw new Error(r.error || 'no se guardó');
+        estado.datos.config[clave] = r.valor;
+        avisa('Guardado ✓ El bot ya usa el valor nuevo.');
+        if (alTerminar) alTerminar(true);
+      })
+      .catch(function (err) {
+        avisa('No se guardó: ' + ((err && err.message) || 'sin conexión'));
+        if (alTerminar) alTerminar(false);
+      });
+  }
+
+  /* ---------- render ---------- */
+  function pinta() {
+    var d = estado.datos;
+    $('estado').textContent = 'actualizado ' + String(d.generado || '').slice(11, 16) +
+      ' · versión ' + (d.version_head || '');
+    var c = $('contenido');
+    c.textContent = '';
+    c.appendChild(tarjetaSalud(d));
+    c.appendChild(tarjetaEmbudo(d));
+    c.appendChild(tarjetaInterruptores(d));
+    c.appendChild(tarjetaCampos(d, '💉 Vacunación', 'Precios que el bot cita a los pacientes. Vacío = "precio por confirmar" (no lo inventa).', VACUNAS));
+    c.appendChild(tarjetaCampos(d, '💰 Precios de servicios', 'Se citan al preguntar precio y en las promociones.', PRECIOS));
+    c.appendChild(tarjetaCampos(d, '📝 Textos de respuesta', 'Lo que el bot contesta tal cual. Vacío = esa pregunta se canaliza con usted.', TEXTOS));
+    c.appendChild(tarjetaCampos(d, '⏰ Cadencia de mensajes', 'Cuándo salen los mensajes automáticos.', CADENCIA));
+    c.appendChild(tarjetaPlantillas(d));
+    c.appendChild(tarjetaCampanas(d));
+    c.appendChild(tarjetaHerramientas(d));
+  }
+
+  function tarjeta(titulo, sub) {
+    var t = nodo('section', 'tarjeta');
+    t.appendChild(nodo('h2', '', titulo));
+    if (sub) t.appendChild(nodo('div', 'sub', sub));
+    return t;
+  }
+
+  function tarjetaSalud(d) {
+    var t = tarjeta('🩺 Salud del bot', 'Verificación en vivo de las piezas que atienden a sus pacientes.');
+    var s = d.salud || { deployments: [], worker_ok: false };
+    (s.deployments || []).forEach(function (dep, i) {
+      var f = nodo('div', 'salud-fila');
+      f.appendChild(nodo('span', 'punto ' + (dep.al_dia ? 'ok' : 'mal')));
+      f.appendChild(nodo('span', '', 'Servidor ' + (i + 1)));
+      f.appendChild(nodo('span', 'det', dep.v ? ('versión ' + dep.v + (dep.al_dia ? ' · al día' : ' · DESACTUALIZADO')) : 'sin respuesta'));
+      t.appendChild(f);
+    });
+    var fw = nodo('div', 'salud-fila');
+    fw.appendChild(nodo('span', 'punto ' + (s.worker_ok ? 'ok' : 'mal')));
+    fw.appendChild(nodo('span', '', 'Recepción de mensajes (Cloudflare)'));
+    fw.appendChild(nodo('span', 'det', s.worker_ok ? 'operando' : 'revisar'));
+    t.appendChild(fw);
+    var acc = nodo('div', '');
+    acc.style.marginTop = '10px';
+    var btn = nodo('button', 'btn fantasma', '📲 Enviarme un mensaje de prueba');
+    btn.type = 'button';
+    btn.addEventListener('click', function () {
+      btn.disabled = true;
+      api({ probar: '1' })
+        .then(function (r) {
+          avisa(r.ok ? 'Enviado: revise su WhatsApp personal.' : ('No salió: ' + (r.error || '')));
+        })
+        .catch(function () { avisa('Sin conexión.'); })
+        .then(function () { btn.disabled = false; });
+    });
+    acc.appendChild(btn);
+    t.appendChild(acc);
+    return t;
+  }
+
+  function tarjetaEmbudo(d) {
+    var t = tarjeta('📈 Resultados', 'Su embudo: conversaciones → citas. La ventana de 30 días es lo que guarda la bitácora.');
+    var m = (d.metricas || {});
+    var tabs = nodo('div', 'tabs');
+    [['d7', '7 días'], ['d30', '30 días']].forEach(function (par) {
+      var b = nodo('button', estado.ventana === par[0] ? 'activo' : '', par[1]);
+      b.type = 'button';
+      b.addEventListener('click', function () { estado.ventana = par[0]; pinta(); });
+      tabs.appendChild(b);
+    });
+    t.appendChild(tabs);
+    var v = m[estado.ventana] || {};
+    var conv = (v.flujos > 0) ? Math.round(100 * (v.reservas || 0) / v.flujos) + '%' : '—';
+    var tiles = nodo('div', 'tiles');
+    [
+      ['Conversaciones', v.conversaciones, 'pacientes distintos que escribieron'],
+      ['Flujos de cita', v.flujos, 'empezaron a agendar con el bot'],
+      ['Reservas por bot', v.reservas, 'citas agendadas solas', true],
+      ['Conversión', conv, 'flujos que terminaron en reserva'],
+      ['Citas confirmadas', v.confirmadas, 'con fecha en la ventana'],
+      ['Reseñas invitadas', v.resenas, 'invitaciones de Google enviadas'],
+      ['Post-consultas', v.postcitas, 'mensajes de seguimiento'],
+      ['Leads rescatables', v.abandonos, 'avisos de flujo abandonado']
+    ].forEach(function (def) {
+      var tile = nodo('div', 'tile' + (def[3] ? ' destacado' : ''));
+      tile.appendChild(nodo('div', 'v', String(def[1] === undefined ? '—' : def[1])));
+      tile.appendChild(nodo('div', 'e', def[0] + ' · ' + def[2]));
+      tiles.appendChild(tile);
+    });
+    t.appendChild(tiles);
+    t.appendChild(nodo('div', 'nota', 'Hoy: ' + (m.citas_hoy === undefined ? '—' : m.citas_hoy) +
+      ' citas · Próximas (todas): ' + (m.proximas === undefined ? '—' : m.proximas)));
+    return t;
+  }
+
+  function tarjetaInterruptores(d) {
+    var t = tarjeta('🎛️ Interruptores', 'Cambios inmediatos: el bot los usa desde el siguiente mensaje.');
+    INTERRUPTORES.forEach(function (def) {
+      var on = String(d.config[def.clave] || '').toUpperCase() === 'TRUE';
+      var f = nodo('div', 'sw-fila');
+      var txts = nodo('div', 'txts');
+      txts.appendChild(nodo('div', 't', def.t));
+      txts.appendChild(nodo('div', 'd', def.d));
+      f.appendChild(txts);
+      var sw = nodo('button', 'sw' + (on ? ' on' : '') + (def.peligro ? ' peligro' : ''));
+      sw.type = 'button';
+      sw.setAttribute('role', 'switch');
+      sw.setAttribute('aria-checked', on ? 'true' : 'false');
+      sw.setAttribute('aria-label', def.t);
+      sw.addEventListener('click', function () {
+        var nuevo = !on;
+        var advertencia = nuevo ? def.peligroEncender : def.peligroApagar;
+        if (advertencia && !window.confirm(advertencia)) return;
+        sw.disabled = true;
+        guardaConfig(def.clave, nuevo ? 'TRUE' : 'FALSE', function (okG) {
+          sw.disabled = false;
+          if (okG) pinta();
+        });
+      });
+      f.appendChild(sw);
+      t.appendChild(f);
+    });
+    return t;
+  }
+
+  function tarjetaCampos(d, titulo, sub, defs) {
+    var t = tarjeta(titulo, sub);
+    defs.forEach(function (def) {
+      var actual = String(d.config[def.clave] === undefined ? '' : d.config[def.clave]);
+      var f = nodo('div', 'campo');
+      var lab = nodo('label', '', def.t);
+      if (def.peq) lab.appendChild(nodo('span', 'peq', def.peq));
+      f.appendChild(lab);
+      var inp = document.createElement(def.area ? 'textarea' : 'input');
+      if (!def.area) inp.type = 'text';
+      inp.value = actual;
+      inp.placeholder = 'por confirmar';
+      var btn = nodo('button', 'guardar', 'Guardar');
+      btn.type = 'button';
+      inp.addEventListener('input', function () {
+        btn.classList.toggle('cambiado', inp.value !== actual);
+        btn.textContent = inp.value !== actual ? 'Guardar' : 'Guardado';
+      });
+      btn.textContent = 'Guardado';
+      btn.addEventListener('click', function () {
+        if (inp.value === actual) return;
+        btn.disabled = true;
+        guardaConfig(def.clave, inp.value, function (okG) {
+          btn.disabled = false;
+          if (okG) {
+            actual = String(estado.datos.config[def.clave]);
+            inp.value = actual;
+            btn.classList.remove('cambiado');
+            btn.textContent = 'Guardado';
+          }
+        });
+      });
+      if (def.area) { f.appendChild(btn); f.appendChild(inp); }
+      else { f.appendChild(inp); f.appendChild(btn); }
+      t.appendChild(f);
+    });
+    return t;
+  }
+
+  function tarjetaPlantillas(d) {
+    var t = tarjeta('📨 Plantillas de Meta', 'Los mensajes que salen fuera de la ventana de 24 h usan estas plantillas. La categoría define el costo por envío.');
+    var p = d.plantillas || { items: [], estado: 'error' };
+    if (p.estado !== 'ok') {
+      t.appendChild(nodo('div', 'nota', 'No se pudo consultar Meta en este momento; toque actualizar.'));
+      return t;
+    }
+    p.items.forEach(function (pl) {
+      var f = nodo('div', 'plantilla');
+      f.appendChild(nodo('span', 'nom', pl.nombre + ' · ' + pl.idioma));
+      var est = String(pl.estatus || '').toUpperCase();
+      var claseEst = est === 'APPROVED' ? 'aprobada' : (est === 'PENDING' || est === 'IN_APPEAL' ? 'pendiente' : 'rechazada');
+      f.appendChild(nodo('span', 'chip ' + claseEst,
+        est === 'APPROVED' ? 'aprobada' : (est === 'PENDING' ? 'en revisión' : est.toLowerCase())));
+      var cat = String(pl.categoria || '').toUpperCase();
+      if (cat) {
+        f.appendChild(nodo('span', 'chip' + (cat === 'MARKETING' ? ' marketing' : ''),
+          cat === 'MARKETING' ? 'marketing · ~$0.55/envío' : cat.toLowerCase() + ' · ~$0.15/envío'));
+      }
+      t.appendChild(f);
+    });
+    t.appendChild(nodo('div', 'nota', 'Si Meta recategoriza una plantilla a "marketing", todo sigue funcionando — solo sube el costo de ese envío (pesos, no funcionalidad). Los precios son aproximados en MXN.'));
+    return t;
+  }
+
+  function tarjetaCampanas(d) {
+    var t = tarjeta('🎯 Campañas', 'Pacientes etiquetados desde la ficha del visor. Alimentan la reactivación de crónicos y la campaña de vacunación (octubre 2026).');
+    var fila = nodo('div', 'etq-fila');
+    var etq = d.etiquetas || {};
+    ETIQUETAS_UI.forEach(function (e) {
+      var chip = nodo('span', 'etq');
+      chip.appendChild(nodo('b', '', String(etq[e.id] === undefined ? 0 : etq[e.id])));
+      chip.appendChild(document.createTextNode(' ' + e.t));
+      fila.appendChild(chip);
+    });
+    t.appendChild(fila);
+    t.appendChild(nodo('div', 'nota', 'Etiquete a sus pacientes desde la ficha ⓘ de cada chat en el visor: entre más etiquetados llegue octubre, más grande será la campaña.'));
+    return t;
+  }
+
+  function tarjetaHerramientas(d) {
+    var t = tarjeta('🧰 Herramientas', '');
+    var fila = nodo('div', 'etq-fila');
+    var btnWa = nodo('button', 'btn fantasma', '🔗 Copiar link del bot (wa.me)');
+    btnWa.type = 'button';
+    btnWa.addEventListener('click', function () {
+      var link = 'https://wa.me/' + (d.bot_tel || '') + '?text=' +
+        encodeURIComponent('Hola, quiero agendar una cita');
+      (navigator.clipboard ? navigator.clipboard.writeText(link) : Promise.reject())
+        .then(function () { avisa('Link copiado: péguelo en Ads, redes o material impreso.'); })
+        .catch(function () { window.prompt('Copie el link:', link); });
+    });
+    fila.appendChild(btnWa);
+    var aVisor = nodo('a', 'btn fantasma', '💬 Abrir el visor de chats');
+    aVisor.href = 'https://alveos.mx/bot/';
+    aVisor.style.textDecoration = 'none';
+    fila.appendChild(aVisor);
+    t.appendChild(fila);
+    var cambios = d.cambios || [];
+    if (cambios.length) {
+      var sub = nodo('div', 'sub', 'Últimos cambios hechos desde este panel:');
+      sub.style.marginTop = '13px';
+      t.appendChild(sub);
+      cambios.forEach(function (c) {
+        t.appendChild(nodo('div', 'cambio', c.ts + ' — ' + c.texto));
+      });
+    }
+    return t;
+  }
+
+  /* ---------- eventos ---------- */
+  $('formaClave').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var v = $('clave').value.trim();
+    if (!v) return;
+    $('clave').value = '';
+    puertaCargando(true);
+    carga(v);
+  });
+  $('btnRefrescar').addEventListener('click', function () { carga(); });
+  $('btnSalir').addEventListener('click', function () {
+    borraClave();
+    muestraPuerta(false);
+  });
+
+  if (claveGuardada()) puertaCargando(true);
+  carga();
+})();
+</script>
+</body>
+</html>
