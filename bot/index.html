@@ -140,6 +140,7 @@
   .ficha-fila { display: flex; gap: 10px; padding: 5px 0; font-size: 13.5px; align-items: baseline; }
   .ficha-fila .et { color: var(--tenue); flex: none; width: 118px; font-size: 12.5px; }
   .ficha-fila .v { flex: 1; min-width: 0; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .ficha-nota { font-size: 12px; color: var(--tenue); }
   .ficha-alerta {
     margin: 6px 0 2px; padding: 8px 11px; border-radius: 8px; font-size: 12.5px;
     background: color-mix(in srgb, var(--rojo) 12%, var(--panel)); color: var(--rojo);
@@ -536,6 +537,16 @@
     } catch (e) { return ''; }
   }
   function marcaVisto(k, ts) { try { if (k && ts) localStorage.setItem(claveVisto(k), ts); } catch (e) {} }
+  // "Lead atendido" (descartar, 12-jul): marcador local POR DOCTOR con el ts
+  // del último mensaje entrante al momento de descartar. Si el paciente
+  // vuelve a escribir DESPUÉS, el lead REVIVE solo (el marcador queda atrás).
+  function claveLeadDesc(k) {
+    var d = (estado.datos && estado.datos.doctor) || '';
+    return 'leaddesc_' + (d ? d + '_' : '') + k;
+  }
+  function leadDescDe(k) { try { return localStorage.getItem(claveLeadDesc(k)) || ''; } catch (e) { return ''; } }
+  function marcaLeadDesc(k, ts) { try { if (k && ts) localStorage.setItem(claveLeadDesc(k), ts); } catch (e) {} }
+  function quitaLeadDesc(k) { try { localStorage.removeItem(claveLeadDesc(k)); } catch (e) {} }
   function ultimoInDe(h) {
     if (h.ultimo_in_ts) return String(h.ultimo_in_ts);
     var ms = h.mensajes || [];
@@ -581,9 +592,14 @@
     var ultimoIn = ultimoInDe(h);
     return !h.interno && !!ultimoIn && ultimoIn > vistoDe(claveHilo(h)) && estado.sel !== claveHilo(h);
   }
-  function esLead(h) {
+  function esLeadBase_(h) {
     var ultimo = (h.mensajes || [])[(h.mensajes || []).length - 1];
     return !h.interno && h.tiene_cita_futura === false && !!ultimo && ultimo.dir === 'in';
+  }
+  function esLead(h) {
+    if (!esLeadBase_(h)) return false;
+    var desc = leadDescDe(claveHilo(h));
+    return !(desc && ultimoInDe(h) <= desc); // descartado Y sin mensajes nuevos
   }
   function cumpleFiltro(h, f) {
     if (f === 'noleidos') return esNoLeido(h);
@@ -1246,6 +1262,25 @@
       return b;
     });
     caja.appendChild(fila('Etiquetas', chipsTags));
+    // Descartar lead (12-jul, pedido del Dr.): un lead ya gestionado (usted le
+    // llamó o no le interesó) deja de contar en la vista Leads; si vuelve a
+    // escribir, revive solo. Marcador local por dispositivo, como los vistos.
+    if (esLeadBase_(h)) {
+      var descartadoL = Boolean(leadDescDe(k) && ultimoInDe(h) <= leadDescDe(k));
+      var btnL = nodo('button', 'btnseg' + (descartadoL ? '' : ' on'),
+        descartadoL ? 'Restaurar como lead' : '✓ Lead atendido — descartar');
+      btnL.type = 'button';
+      btnL.addEventListener('click', function () {
+        if (descartadoL) quitaLeadDesc(k);
+        else marcaLeadDesc(k, ultimoInDe(h) || (h.mensajes[h.mensajes.length - 1] || {}).ts || '');
+        estado.fichaTel = ''; // repintado limpio con el estado nuevo
+        pintaFicha(h);
+        pintaFiltros();
+        pintaLista();
+      });
+      caja.appendChild(fila('Lead', [btnL,
+        nodo('span', 'ficha-nota', descartadoL ? 'descartado en este dispositivo' : 'cuenta en la vista Leads')]));
+    }
 
     var seg = nodo('div', 'ficha-seg');
     var cab = nodo('div', 'cab');
