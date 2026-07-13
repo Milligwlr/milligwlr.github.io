@@ -737,8 +737,8 @@
 })();
 </script>
 <script>
-/* Lucecitas (sparkle-field) en los CTA, mismo efecto y codigo que el home */
-(function(){
+/* Lucecitas (sparkle-field) en los CTA, mismo efecto y codigo que el home; tras load para no pagar su DOM antes del primer paint */
+window.addEventListener('load', function(){
   var fields = document.querySelectorAll('.cta-inline .sparkle-field');
   fields.forEach(function(field){
     var n = window.innerWidth <= 768 ? 22 : 44;
@@ -752,22 +752,35 @@
     }
     field.appendChild(frag);
   });
-})();
+});
 </script>
 <script>
-/* Marquee de reseñas (columnas que se desplazan), mismo código que el home */
-document.querySelectorAll('.testimonial-col').forEach(function(col, idx) {
-  var pxPerSec = [16.5, 13.5, 18][idx] || 16.5;
-  var origCards = Array.prototype.slice.call(col.querySelectorAll('.testi-card'));
-  if (!origCards.length) return;
-  origCards.forEach(function(c) { col.appendChild(c.cloneNode(true)); });
-  var gap = parseFloat(getComputedStyle(col).rowGap) || 16;
-  var setHeight = 0;
-  origCards.forEach(function(c) { setHeight += c.offsetHeight + gap; });
-  col.style.setProperty('--t-dur', (setHeight / pxPerSec).toFixed(1) + 's');
-  col.style.setProperty('--tgap', (gap / 2) + 'px');
-  if (idx === 1) col.classList.add('testimonial-col--down');
-});
+/* Marquee de reseñas (columnas que se desplazan), mismo código que el home.
+   Se inicia tras load: clonar tarjetas y leer offsetHeight antes del primer
+   paint costaba Style&Layout en el camino critico del LCP. */
+(function(){
+  var done = false;
+  function initMarquee(){
+    if (done) return; done = true;
+    document.querySelectorAll('.testimonial-col').forEach(function(col, idx) {
+      var pxPerSec = [16.5, 13.5, 18][idx] || 16.5;
+      var origCards = Array.prototype.slice.call(col.querySelectorAll('.testi-card'));
+      if (!origCards.length) return;
+      origCards.forEach(function(c) { col.appendChild(c.cloneNode(true)); });
+      var gap = parseFloat(getComputedStyle(col).rowGap) || 16;
+      var setHeight = 0;
+      origCards.forEach(function(c) { setHeight += c.offsetHeight + gap; });
+      if (setHeight < 200) setHeight = origCards.length * 360;
+      col.style.setProperty('--t-dur', (setHeight / pxPerSec).toFixed(1) + 's');
+      col.style.setProperty('--tgap', (gap / 2) + 'px');
+      if (idx === 1) col.classList.add('testimonial-col--down');
+    });
+  }
+  function start(){ requestAnimationFrame(function(){ requestAnimationFrame(initMarquee); }); }
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(start); }
+  if (document.readyState === 'complete') { start(); }
+  else { window.addEventListener('load', start); }
+})();
 </script>
 
 <!-- WhatsApp flotante (desktop) -->

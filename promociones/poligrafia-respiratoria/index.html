@@ -1023,8 +1023,8 @@
 })();
 </script>
 <script>
-/* Lucecitas (sparkle-field) en los CTA, mismo efecto y codigo que el home */
-(function(){
+/* Lucecitas (sparkle-field) en los CTA, mismo efecto y codigo que el home; tras load para no pagar su DOM antes del primer paint */
+window.addEventListener('load', function(){
   var fields = document.querySelectorAll('.cta-inline .sparkle-field');
   fields.forEach(function(field){
     var n = window.innerWidth <= 768 ? 22 : 44;
@@ -1038,7 +1038,7 @@
     }
     field.appendChild(frag);
   });
-})();
+});
 </script>
 <script>
 /* Marquee de reseñas (columnas que se desplazan).
