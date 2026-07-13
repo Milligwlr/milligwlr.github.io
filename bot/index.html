@@ -693,6 +693,10 @@
     estado.clave = '';
     limpiaConversacionDOM();
     estado.datos = null;
+    // (fix 12-jul, auditoria) los borradores de nota son PII clinica y viven
+    // por telefono (sin doctor): al cerrar sesion se purgan para que en una
+    // tableta compartida el otro doctor no herede una nota a medio escribir.
+    estado.borradores = {};
     puertaCargando(false);
     $('puerta').hidden = false;
     $('app').hidden = true;
