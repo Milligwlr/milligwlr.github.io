@@ -544,6 +544,27 @@
         .sb-result__cta{min-height:48px}
         .sb-quiz{gap:8px}
     }
+    /* Escalera de precio: una sola verdad (ancla $6,500 y "Ahorras $2,000" preservados) */
+    .price-ladder{display:grid;gap:10px;margin:4px 0 14px;max-width:520px}
+    .price-tier{position:relative;border-radius:16px;padding:14px 16px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05)}
+    .price-tier__label{font-size:.72rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:rgba(255,255,255,.74);margin-bottom:4px}
+    .price-tier__desc{font-size:.85rem;color:rgba(255,255,255,.82);line-height:1.4}
+    .price-tier--promo{background:linear-gradient(135deg,rgba(0,206,201,.16),rgba(9,132,227,.10));border:1.5px solid rgba(0,206,201,.55);box-shadow:0 14px 40px -18px rgba(0,206,201,.5)}
+    .price-tier--promo .price-tier__label{color:#7fffe6}
+    .price-tier__row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+    .price-tier__big{font-size:2rem;font-weight:800;color:#7fffe6;line-height:1;letter-spacing:-.02em}
+    .price-tier__was{font-size:.9rem;color:rgba(255,255,255,.62);text-decoration:line-through;font-weight:600}
+    .price-tier__ribbon{position:absolute;top:-10px;right:14px;background:#ff7a45;color:#fff;font-size:.66rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:4px 10px;border-radius:999px;box-shadow:0 6px 16px -4px rgba(230,74,25,.6)}
+    .price-tier__math{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;font-size:.9rem;color:#e8f4ff}
+    .price-tier__math b{color:#fff;font-weight:800}
+    .price-tier__eq{color:rgba(255,255,255,.5);font-weight:700}
+    .price-tier--home{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.035);border-style:dashed}
+    .price-tier--home i{font-size:1.3rem;color:#7fffe6;flex-shrink:0}
+    .price-tier--home .price-tier__amount{font-weight:800;color:#fff}
+    @media(max-width:480px){.price-tier__big{font-size:1.7rem}.price-tier__ribbon{right:10px;font-size:.6rem}}
+    .honesty-note{display:flex;align-items:flex-start;gap:9px;background:rgba(255,255,255,.06);border:1px solid rgba(127,255,230,.28);border-radius:12px;padding:10px 14px;font-size:.86rem;color:#e8f4ff;line-height:1.45;margin:0 0 14px;max-width:520px}
+    .honesty-note i{color:#7fffe6;font-size:1.05rem;flex-shrink:0;margin-top:1px}
+    .honesty-note b{color:#fff;font-weight:800}
     </style>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <link rel="stylesheet" href="/assets/agenda-modal.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/agenda-modal.css"></noscript>
@@ -593,41 +614,32 @@
                 <h1>Estudio de apnea del sueño en casa + consulta · <em>$4,500</em></h1>
                 <p class="hero__sub">Clínica del sueño en CDMX: valoración con neumólogo certificado del INER y tu estudio del sueño (poligrafía respiratoria) interpretado por él mismo. Duermes una noche en tu propia cama.</p>
 
-                <div class="price-highlight" role="text" aria-label="Consulta más estudio por 4500 pesos, por separado costarían 6500">
-                    <span class="price-highlight__from">Consulta + estudio</span>
-                    <span class="price-highlight__new">$4,500</span>
-                    <span class="price-highlight__old">$6,500 por separado</span>
-                    <span class="price-highlight__save">Ahorras $2,000</span>
+                <div class="price-ladder" role="region" aria-label="Opciones y precios">
+                    <div class="price-tier price-tier--promo">
+                        <span class="price-tier__ribbon">Ahorras $2,000</span>
+                        <div class="price-tier__label"><i class="bi bi-hospital"></i> Paquete en consultorio · esta promo</div>
+                        <div class="price-tier__desc" style="margin-bottom:6px">Consulta + estudio del sueño, juntos, un solo pago.</div>
+                        <div class="price-tier__row"><span class="price-tier__big">$4,500</span><span class="price-tier__was">$6,500 por separado</span></div>
+                    </div>
+                    <div class="price-tier price-tier--alacarte">
+                        <div class="price-tier__label">Si lo tomas por separado</div>
+                        <div class="price-tier__math"><span>Estudio <b>$5,000</b></span><span class="price-tier__eq">+</span><span>consulta <b>$1,500</b></span><span class="price-tier__eq">=</span><b>$6,500</b></div>
+                    </div>
+                    <div class="price-tier price-tier--home">
+                        <i class="bi bi-house-heart-fill" aria-hidden="true"></i>
+                        <div><div class="price-tier__label" style="margin-bottom:2px">¿Prefieres el estudio en tu casa?</div><div class="price-tier__desc">Estudio <span class="price-tier__amount">a domicilio $5,000</span> · consulta aparte.</div></div>
+                    </div>
                 </div>
-                <p style="font-size:.8rem;color:rgba(255,255,255,.6);margin:6px 0 0">Promoción vigente hasta el 21 de julio de 2026.</p>
+                <div class="honesty-note">
+                    <i class="bi bi-hand-thumbs-up-fill" aria-hidden="true"></i>
+                    <span>Si al valorarte <b>no eres candidato</b> al estudio en casa, te lo digo antes de cobrarte el estudio. Sin sorpresas.</span>
+                </div>
+                <p style="font-size:.8rem;color:rgba(255,255,255,.82);margin:6px 0 0">Promoción vigente hasta el 21 de julio de 2026.</p>
 
                 <div class="hero__cta" style="margin-bottom:18px">
                     <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="hero-wa-top">
                         <i class="bi bi-whatsapp"></i> Apartar mi estudio, $4,500
                     </a>
-                </div>
-
-                <!-- Comparación: precio a la carta (propio) vs. paquete con descuento -->
-                <div class="compare-strip" role="region" aria-label="Comparación de precios">
-                    <div class="compare-col compare-col--other">
-                        <div class="compare-col__label">Por separado (a la carta)</div>
-                        <div class="compare-col__price">≈ $6,500</div>
-                        <ul class="compare-col__list">
-                            <li>Estudio $5,000 + consulta $1,500</li>
-                            <li>Dos citas, dos pagos</li>
-                            <li>Sin el ahorro del paquete</li>
-                        </ul>
-                    </div>
-                    <div class="compare-col compare-col--vs" aria-hidden="true">VS</div>
-                    <div class="compare-col compare-col--alveos">
-                        <div class="compare-col__label">ALVEOS · Esta promo</div>
-                        <div class="compare-col__price">$4,500 <s>$6,500</s></div>
-                        <ul class="compare-col__list">
-                            <li>Consulta + estudio juntos</li>
-                            <li>Egresado del INER</li>
-                            <li>Lectura personal + plan</li>
-                        </ul>
-                    </div>
                 </div>
 
                 <ul class="hero__bullets">
