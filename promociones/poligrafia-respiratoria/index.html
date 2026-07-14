@@ -646,6 +646,44 @@
         .why-tile--feat .why-ic{margin-bottom:0}
         .why-data__num{font-size:2.5rem}
     }
+
+    /* ---------- PASOS · 3 pasos con linea de progreso (timeline premium) ---------- */
+    .steps3{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:16px}
+    .steps3__track{position:absolute;top:39px;left:16.667%;right:16.667%;height:3px;border-radius:3px;background:rgba(9,132,227,.15);z-index:0;overflow:hidden}
+    .steps3__fill{position:absolute;inset:0;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--electric),var(--cyan));border-radius:3px}
+    .step3{position:relative;text-align:center;padding:0 12px;z-index:1}
+    .step3__node{position:relative;width:78px;height:78px;margin:0 auto 18px;border-radius:50%;background:#fff;border:2px solid rgba(9,132,227,.28);display:flex;align-items:center;justify-content:center;box-shadow:var(--e2),var(--ring-hi);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+    .step3__node i{font-size:1.9rem;color:var(--electric)}
+    .step3__num{position:absolute;top:-6px;left:-6px;width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;font-weight:800;font-size:.92rem;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px -4px rgba(9,44,84,.5);font-variant-numeric:tabular-nums}
+    .step3__time{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--electric);background:rgba(9,132,227,.09);border:1px solid rgba(9,132,227,.16);padding:4px 11px;border-radius:999px;margin-bottom:10px}
+    .step3__title{font-size:1.12rem;font-weight:800;color:var(--navy);margin:0 0 8px;letter-spacing:-.01em;text-wrap:balance}
+    .step3__desc{font-size:.93rem;color:var(--muted);line-height:1.58;margin:0 auto;max-width:260px;text-wrap:pretty}
+    @supports (animation-timeline: view()){
+        @media(prefers-reduced-motion:no-preference){
+            .steps3__fill{animation:stepsFill linear both;animation-timeline:view();animation-range:entry 30% cover 55%}
+            @keyframes stepsFill{to{transform:scaleX(1)}}
+        }
+    }
+    @media(hover:hover) and (pointer:fine){
+        .step3:hover .step3__node{transform:translateY(-4px);box-shadow:var(--e3),var(--ring-hi)}
+    }
+    @media(max-width:700px){
+        .steps3{grid-template-columns:1fr;gap:0}
+        .step3{display:grid;grid-template-columns:auto 1fr;gap:16px;text-align:left;padding:0 0 26px;align-items:start}
+        .step3:last-child{padding-bottom:0}
+        .step3__node{margin:0;width:64px;height:64px}
+        .step3__node i{font-size:1.5rem}
+        .step3__body{padding-top:4px}
+        .step3__desc{max-width:none}
+        .steps3__track{top:8px;bottom:8px;left:30px;right:auto;width:3px;height:auto}
+        .steps3__fill{background:linear-gradient(180deg,var(--electric),var(--cyan));transform:scaleY(0);transform-origin:top}
+        @supports (animation-timeline: view()){
+            @media(prefers-reduced-motion:no-preference){
+                .steps3__fill{animation:stepsFillV linear both;animation-timeline:view();animation-range:entry 15% cover 62%}
+                @keyframes stepsFillV{to{transform:scaleY(1)}}
+            }
+        }
+    }
     </style>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <link rel="stylesheet" href="/assets/agenda-modal.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/agenda-modal.css"></noscript>
@@ -1028,32 +1066,33 @@
     <div class="container">
         <div class="block__head">
             <span class="block__kicker">Cómo funciona</span>
-            <h2 class="block__title">4 pasos · de la duda al <em>plan claro</em></h2>
+            <h2 class="block__title">3 pasos · de la duda al <em>plan claro</em></h2>
         </div>
-        <div class="timeline">
-            <div class="tl-step">
-                <div class="tl-step__circle"><span class="tl-step__num">1</span><i class="bi bi-whatsapp"></i></div>
-                <h3 class="tl-step__title">Contacto inicial</h3>
-                <p class="tl-step__desc">Escríbeme por WhatsApp. Validamos si eres candidato y agendamos consulta de evaluación.</p>
-                <span class="tl-step__time">5 min</span>
+        <div class="steps3" role="list">
+            <div class="steps3__track" aria-hidden="true"><span class="steps3__fill"></span></div>
+            <div class="step3" role="listitem">
+                <div class="step3__node"><i class="bi bi-clipboard2-pulse-fill"></i><span class="step3__num">1</span></div>
+                <div class="step3__body">
+                    <span class="step3__time">Consulta 45 min</span>
+                    <h3 class="step3__title">Agenda y valoración</h3>
+                    <p class="step3__desc">Escríbeme por WhatsApp, validamos que eres candidato y te valoro en consulta. Te entrego el equipo y te enseño a usarlo en minutos.</p>
+                </div>
             </div>
-            <div class="tl-step">
-                <div class="tl-step__circle"><span class="tl-step__num">2</span><i class="bi bi-clipboard2-pulse-fill"></i></div>
-                <h3 class="tl-step__title">Valoración + entrega</h3>
-                <p class="tl-step__desc">En consulta hago la valoración neumológica y te enseño a colocar los sensores en menos de 10 min.</p>
-                <span class="tl-step__time">45 min</span>
+            <div class="step3" role="listitem">
+                <div class="step3__node"><i class="bi bi-moon-stars-fill"></i><span class="step3__num">2</span></div>
+                <div class="step3__body">
+                    <span class="step3__time">1 noche</span>
+                    <h3 class="step3__title">Tu noche en casa</h3>
+                    <p class="step3__desc">Duermes con el equipo en tu propia cama, una sola noche. Al día siguiente lo devuelves, sin complicaciones.</p>
+                </div>
             </div>
-            <div class="tl-step">
-                <div class="tl-step__circle"><span class="tl-step__num">3</span><i class="bi bi-moon-stars-fill"></i></div>
-                <h3 class="tl-step__title">Tu noche en casa</h3>
-                <p class="tl-step__desc">Duermes con el equipo en tu cama habitual. Al despertar lo apagas y lo regresas al día siguiente.</p>
-                <span class="tl-step__time">1 noche</span>
-            </div>
-            <div class="tl-step">
-                <div class="tl-step__circle"><span class="tl-step__num">4</span><i class="bi bi-file-earmark-medical-fill"></i></div>
-                <h3 class="tl-step__title">Reporte y plan</h3>
-                <p class="tl-step__desc">Recibes reporte interpretado y plan terapéutico claro: CPAP, dispositivo, hábitos o seguimiento.</p>
-                <span class="tl-step__time">48 hrs</span>
+            <div class="step3" role="listitem">
+                <div class="step3__node"><i class="bi bi-file-earmark-medical-fill"></i><span class="step3__num">3</span></div>
+                <div class="step3__body">
+                    <span class="step3__time">48 h</span>
+                    <h3 class="step3__title">Reporte y plan claro</h3>
+                    <p class="step3__desc">El Dr. Lara interpreta tu estudio y te explica el plan a seguir: CPAP, dispositivo o hábitos, según tu caso.</p>
+                </div>
             </div>
         </div>
     </div>
