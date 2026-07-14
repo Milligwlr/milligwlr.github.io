@@ -465,15 +465,24 @@
     return el;
   }
   function pad(n) { return (n < 10 ? '0' : '') + n; }
-  function hoyStr() {
-    var d = new Date();
-    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+  // 'yyyy-MM-dd' de HOY en CDMX, sin depender de la zona horaria del
+  // dispositivo (en-CA da exactamente ese formato).
+  function fechaCDMX(d) {
+    try {
+      return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Mexico_City' }).format(d);
+    } catch (e) {
+      return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+    }
   }
-  function ayerStr() {
-    var d = new Date(); d.setDate(d.getDate() - 1);
-    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
-  }
+  function hoyStr() { return fechaCDMX(new Date()); }
+  function ayerStr() { return fechaCDMX(new Date(Date.now() - 864e5)); }
   // ts = 'yyyy-MM-dd HH:mm:ss' (hora CDMX del servidor)
+  // Instante absoluto de un ts CDMX: offset fijo -06:00 (CDMX abolió el
+  // horario de verano en 2022), para comparar contra Date.now() sin que
+  // importe la zona horaria del dispositivo.
+  function msDeTs(ts) {
+    return new Date(String(ts).replace(' ', 'T') + '-06:00').getTime();
+  }
   function horaDe(ts) { return ts.slice(11, 16); }
   function fechaDe(ts) { return ts.slice(0, 10); }
   function etiquetaFecha(f) {
@@ -610,9 +619,13 @@
       // Citas ya CONFIRMADAS de las próximas 48 h (pedido del Dr., 12-jul):
       // su pase de lista de pacientes seguros de mañana y pasado.
       if (!h.prox_cita || h.prox_cita.estado !== 'confirmada') return false;
-      var dConf = new Date(String(h.prox_cita.t).replace(' ', 'T'));
-      return !isNaN(dConf.getTime()) &&
-        dConf.getTime() - Date.now() < 48 * 3600 * 1000;
+      var msConf = msDeTs(h.prox_cita.t);
+      var ahora = Date.now();
+      // Cota inferior con 1 h de gracia: la cita en curso sigue visible,
+      // las ya terminadas de más temprano hoy quedan fuera.
+      return !isNaN(msConf) &&
+        msConf - ahora < 48 * 3600 * 1000 &&
+        msConf > ahora - 60 * 60 * 1000;
     }
     if (f === 'seg') return !!(h.seg && h.seg.p);
     if (f === 'cron') return esCronico(h);
@@ -1040,6 +1053,7 @@
       else if (estado.filtro === 'porconf') msjVacio = 'Sin citas por confirmar. ✓';
       else if (estado.filtro === 'conf') msjVacio = 'Sin citas confirmadas en las próximas 48 h.';
       else if (estado.filtro === 'seg') msjVacio = 'Sin seguimientos marcados. Ábralos desde la ficha ⓘ del chat.';
+      else if (estado.filtro === 'cron') msjVacio = 'Sin pacientes crónicos etiquetados. Etiquételos desde la ficha ⓘ del chat.';
       cont.appendChild(nodo('p', '', msjVacio)).id = 'sinResultados';
     }
     cont.scrollTop = scrollPrev;
@@ -1123,7 +1137,7 @@
     // Intervenir: abrir el chat en el WhatsApp del doctor (su propio numero).
     var telDigitos = String(h.telefono || '').replace(/\D/g, '');
     var btnWa = $('btnWa');
-    if (telDigitos) {
+    if (telDigitos && !h.interno) { // en el hilo interno abriría un chat consigo mismo
       btnWa.href = linkWa(telDigitos, '');
       btnWa.hidden = false;
     } else {
@@ -1346,7 +1360,7 @@
     if (btn) btn.disabled = true;
     var est = $('segEstado');
     if (est) est.textContent = 'guardando…';
-    fetch(API + '?visor=1&key=' + encodeURIComponent(claveGuardada()) +
+    fetch(API + '?visor=1&key=' + encodeURIComponent(claveActiva()) +
       '&seg=1&tel=' + encodeURIComponent(k) +
       '&p=' + (pendiente ? '1' : '0') + '&nota=' + encodeURIComponent(nota) +
       '&tags=' + encodeURIComponent(tags))
@@ -1415,11 +1429,11 @@
   });
   $('q').addEventListener('input', pintaLista);
   document.addEventListener('visibilitychange', function () {
-    if (!document.hidden && claveGuardada()) carga();
+    if (!document.hidden && claveActiva()) carga();
   });
 
   estado.temporizador = setInterval(function () {
-    if (claveGuardada() && !document.hidden) carga();
+    if (claveActiva() && !document.hidden) carga();
   }, INTERVALO_MS);
   // Con sesion guardada no se vuelve a pedir la clave: puerta en modo carga.
   if (claveGuardada()) puertaCargando(true);
