@@ -565,6 +565,12 @@
     .honesty-note{display:flex;align-items:flex-start;gap:9px;background:rgba(255,255,255,.06);border:1px solid rgba(127,255,230,.28);border-radius:12px;padding:10px 14px;font-size:.86rem;color:#e8f4ff;line-height:1.45;margin:0 0 14px;max-width:520px}
     .honesty-note i{color:#7fffe6;font-size:1.05rem;flex-shrink:0;margin-top:1px}
     .honesty-note b{color:#fff;font-weight:800}
+    /* Seccion pareja: iconos rediseñados en tiles con jerarquia (antes: 2 iconos gigantes planos) */
+    .partner-facts{display:grid;gap:12px}
+    .partner-fact{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid rgba(9,132,227,.12);border-radius:16px;padding:15px 18px;box-shadow:var(--e2),var(--ring-hi);text-align:left}
+    .partner-fact__ic{width:48px;height:48px;flex-shrink:0;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#fff;background:linear-gradient(135deg,var(--electric),var(--cyan));box-shadow:0 8px 18px -8px rgba(9,132,227,.55)}
+    .partner-fact strong{display:block;font-size:.98rem;color:var(--navy);font-weight:800;margin-bottom:2px}
+    .partner-fact small{font-size:.83rem;color:var(--muted);line-height:1.4}
     </style>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <link rel="stylesheet" href="/assets/agenda-modal.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/agenda-modal.css"></noscript>
@@ -634,7 +640,7 @@
                     <i class="bi bi-hand-thumbs-up-fill" aria-hidden="true"></i>
                     <span>Si al valorarte <b>no eres candidato</b> al estudio en casa, te lo digo antes de cobrarte el estudio. Sin sorpresas.</span>
                 </div>
-                <p style="font-size:.8rem;color:rgba(255,255,255,.82);margin:6px 0 0">Promoción vigente hasta el 21 de julio de 2026.</p>
+                <p style="font-size:.8rem;color:rgba(255,255,255,.82);margin:6px 0 0">Promoción vigente únicamente esta semana.</p>
 
                 <div class="hero__cta" style="margin-bottom:18px">
                     <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="hero-wa-top">
@@ -706,14 +712,11 @@
                         <i class="bi bi-whatsapp"></i> Agendar el estudio de sueño, $4,500
                     </a>
                 </div>
-                <div class="col-lg-4 text-center d-none d-lg-block">
-                    <div style="background:linear-gradient(135deg,rgba(0,206,201,.1),rgba(9,132,227,.08));border-radius:20px;padding:28px 20px">
-                        <i class="bi bi-moon-stars" style="font-size:3rem;color:var(--electric);display:block;margin-bottom:12px"></i>
-                        <p style="font-size:.93rem;color:var(--navy);font-weight:600;margin-bottom:4px">Estudio no invasivo</p>
-                        <p style="font-size:.85rem;color:var(--muted);margin-bottom:18px">Solo sensores en casa, una noche</p>
-                        <i class="bi bi-house-heart" style="font-size:3rem;color:var(--cyan);display:block;margin-bottom:12px"></i>
-                        <p style="font-size:.93rem;color:var(--navy);font-weight:600;margin-bottom:4px">En su propia cama</p>
-                        <p style="font-size:.85rem;color:var(--muted);margin:0">Sin hospital, sin internamiento</p>
+                <div class="col-lg-4 d-none d-lg-block">
+                    <div class="partner-facts">
+                        <div class="partner-fact"><span class="partner-fact__ic"><i class="bi bi-shield-fill-check"></i></span><div><strong>Estudio no invasivo</strong><small>Solo sensores en casa, una noche</small></div></div>
+                        <div class="partner-fact"><span class="partner-fact__ic"><i class="bi bi-house-heart-fill"></i></span><div><strong>En su propia cama</strong><small>Sin hospital, sin internamiento</small></div></div>
+                        <div class="partner-fact"><span class="partner-fact__ic"><i class="bi bi-people-fill"></i></span><div><strong>Pueden agendar juntos</strong><small>Un solo mensaje por WhatsApp</small></div></div>
                     </div>
                 </div>
             </div>
@@ -974,11 +977,9 @@
         </div>
         <div class="testimonial-columns">
             <div class="testimonial-col">
-                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Very kind and generous, he also does check up on you daily until recovery. Great job! I recommend him a lot."</p><div class="testi-author"><div class="testi-avatar">T</div><div><p class="testi-name">Thulie M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
                 <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Muy buen médico, muy amable y siempre pendiente de sus pacientes. Lo recomiendo ampliamente."</p><div class="testi-author"><div class="testi-avatar">R</div><div><p class="testi-name">Rossana R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
                 <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Si estás buscando a un neumólogo que combine conocimiento, dedicación y un trato genuinamente humano, lo recomiendo sin duda."</p><div class="testi-author"><div class="testi-avatar">C</div><div><p class="testi-name">Ces R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
                 <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Muy buena atención por parte del Dr. Lara, sabe explicar muy bien a sus pacientes. Excelente desde el primer contacto."</p><div class="testi-author"><div class="testi-avatar">F</div><div><p class="testi-name">Fabiola G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
-                <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Very kind and generous, he also does check up on you daily until recovery. Great job! I recommend him a lot."</p><div class="testi-author"><div class="testi-avatar">T</div><div><p class="testi-name">Thulie M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
                 <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Muy buen médico, muy amable y siempre pendiente de sus pacientes. Lo recomiendo ampliamente."</p><div class="testi-author"><div class="testi-avatar">R</div><div><p class="testi-name">Rossana R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
                 <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Si estás buscando a un neumólogo que combine conocimiento, dedicación y un trato genuinamente humano, lo recomiendo sin duda."</p><div class="testi-author"><div class="testi-avatar">C</div><div><p class="testi-name">Ces R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
                 <div class="testi-card"><div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="testi-text">"Muy buena atención por parte del Dr. Lara, sabe explicar muy bien a sus pacientes. Excelente desde el primer contacto."</p><div class="testi-author"><div class="testi-avatar">F</div><div><p class="testi-name">Fabiola G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div>
