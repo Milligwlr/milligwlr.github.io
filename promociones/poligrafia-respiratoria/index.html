@@ -572,6 +572,81 @@
     .partner-fact strong{display:block;font-size:.98rem;color:var(--navy);font-weight:800;margin-bottom:2px}
     .partner-fact small{font-size:.83rem;color:var(--muted);line-height:1.4}
     </style>
+
+    <style id="lp-redesign">
+    /* ============================================================
+       REDISEÑO jul-2026 (impeccable + emil, dentro de marca)
+       Beneficios bento · Pasos 3 · CTA final · Seccion salud
+       ============================================================ */
+
+    /* ---------- BENEFICIOS · BENTO asimetrico (anti card-grid) ---------- */
+    .why-bento{display:grid;gap:14px;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(96px,auto);
+        grid-template-areas:
+            "feat feat noche noche h48 h48"
+            "feat feat econ econ certi certi"
+            "apoyo apoyo apoyo apoyo apoyo apoyo";}
+    .why-tile{position:relative;border-radius:20px;padding:24px;background:#fff;border:1px solid rgba(9,44,84,.07);box-shadow:var(--e2),var(--ring-hi);overflow:hidden}
+    .why-tile h3{font-size:1.06rem;font-weight:800;color:var(--navy);margin:0 0 6px;letter-spacing:-.01em;line-height:1.25;text-wrap:balance}
+    .why-tile p{font-size:.92rem;color:var(--muted);margin:0;line-height:1.55;text-wrap:pretty}
+    .why-ic{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:14px;background:linear-gradient(160deg,rgba(9,132,227,.12),rgba(0,206,201,.10));color:var(--electric);border:1px solid rgba(9,132,227,.14);box-shadow:var(--ring-hi),0 6px 16px -10px rgba(9,132,227,.5)}
+
+    /* Tile ancla (oscuro, art-direction del hero) */
+    .why-tile--feat{grid-area:feat;display:flex;flex-direction:column;justify-content:space-between;gap:20px;color:#fff;background:linear-gradient(155deg,#0a2540 0%,#0e3a6b 68%,#0f4a86 100%);border:1px solid rgba(127,255,230,.18)}
+    .why-tile--feat::after{content:'';position:absolute;inset:0;background:radial-gradient(440px 240px at 88% 8%,rgba(0,206,201,.22),transparent 62%);pointer-events:none}
+    .why-tile--feat > *{position:relative;z-index:1}
+    .why-tile--feat .why-ic{width:54px;height:54px;font-size:1.55rem;background:rgba(0,206,201,.16);border-color:rgba(127,255,230,.35);color:#7fffe6}
+    .why-tile--feat h3{color:#fff;font-size:1.42rem;line-height:1.16}
+    .why-tile--feat p{color:rgba(232,244,255,.9);font-size:.98rem;line-height:1.6}
+    .why-feat__chip{display:inline-flex;align-items:center;gap:7px;align-self:flex-start;background:rgba(127,255,230,.12);border:1px solid rgba(127,255,230,.3);color:#8ffdec;border-radius:999px;padding:6px 13px;font-size:.78rem;font-weight:700;letter-spacing:.3px}
+
+    /* Tiles de dato */
+    .why-tile--data{display:flex;flex-direction:column;justify-content:center;gap:0;background:linear-gradient(180deg,#fff,#f2f8ff)}
+    .why-tile--noche{grid-area:noche}
+    .why-tile--h48{grid-area:h48}
+    .why-data__num{font-size:2.9rem;font-weight:800;color:var(--navy);line-height:.92;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+    .why-data__num small{font-size:1.15rem;font-weight:800;color:var(--electric);margin-left:3px;letter-spacing:0}
+    .why-data__label{font-size:.9rem;color:var(--muted);line-height:1.42;margin-top:9px;font-weight:600;text-wrap:pretty}
+    .why-data__label b{color:var(--navy);font-weight:800}
+
+    .why-tile--econ{grid-area:econ}
+    .why-tile--certi{grid-area:certi}
+
+    /* Tile ancho inferior (acompañamiento) */
+    .why-tile--apoyo{grid-area:apoyo;display:flex;align-items:center;gap:18px;background:linear-gradient(135deg,rgba(29,168,81,.06),rgba(0,206,201,.05));border-color:rgba(29,168,81,.16)}
+    .why-tile--apoyo .why-ic{margin-bottom:0;flex-shrink:0;background:linear-gradient(160deg,rgba(29,168,81,.14),rgba(0,206,201,.10));color:var(--green);border-color:rgba(29,168,81,.2)}
+    .why-tile--apoyo > div{flex:1}
+
+    @media(hover:hover) and (pointer:fine){
+        .why-tile{transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+        .why-tile:hover{transform:translateY(-4px);box-shadow:var(--e3),var(--ring-hi)}
+        .why-tile--feat:hover{box-shadow:0 30px 64px -28px rgba(0,206,201,.42),var(--ring-hi)}
+    }
+    /* Entrada atada al scroll (CSS nativo, 0 JS, 0 GSAP); arranca visible-ish */
+    @supports (animation-timeline: view()){
+        @media(prefers-reduced-motion:no-preference){
+            .why-tile{animation:tileRise linear both;animation-timeline:view();animation-range:entry 0% entry 58%}
+            @keyframes tileRise{from{transform:translateY(22px);opacity:.4}to{transform:none;opacity:1}}
+        }
+    }
+    @media(max-width:900px){
+        .why-bento{grid-template-columns:repeat(2,1fr);
+            grid-template-areas:
+                "feat feat"
+                "noche h48"
+                "econ certi"
+                "apoyo apoyo";}
+        .why-tile--feat{flex-direction:row;align-items:center;gap:18px}
+        .why-tile--feat .why-feat__txt{flex:1}
+        .why-tile--feat .why-ic{margin-bottom:0}
+    }
+    @media(max-width:560px){
+        .why-bento{grid-template-columns:1fr;grid-template-areas:"feat" "noche" "h48" "econ" "certi" "apoyo";}
+        .why-tile{padding:20px}
+        .why-tile--feat{flex-direction:column;align-items:flex-start}
+        .why-tile--feat .why-ic{margin-bottom:0}
+        .why-data__num{font-size:2.5rem}
+    }
+    </style>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <link rel="stylesheet" href="/assets/agenda-modal.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/agenda-modal.css"></noscript>
 <script type="application/ld+json" data-promo-schema>
@@ -910,13 +985,40 @@
             <h2 class="block__title">Diagnóstico válido <em>sin pasar la noche en hospital</em></h2>
             <p class="block__lead">La poligrafía respiratoria es un estudio nivel III validado por la AASM. Para la mayoría de pacientes con sospecha clara de apnea, es suficiente para confirmar el diagnóstico, sin la incomodidad ni el costo de una polisomnografía hospitalaria.</p>
         </div>
-        <div class="benefits-grid">
-            <div class="benefit"><div class="benefit__icon"><i class="bi bi-house-heart-fill"></i></div><h3>Duermes en tu cama</h3><p>Sin cuarto de hospital, sin cambiar tu rutina. Tu noche real, tu diagnóstico real.</p></div>
-            <div class="benefit"><div class="benefit__icon"><i class="bi bi-piggy-bank-fill"></i></div><h3>Más económico</h3><p>Significativamente menos costoso que una polisomnografía hospitalaria, sin sacrificar precisión diagnóstica en casos típicos.</p></div>
-            <div class="benefit"><div class="benefit__icon"><i class="bi bi-stopwatch-fill"></i></div><h3>Resultados en 48 horas</h3><p>Recoges el equipo, duermes una noche, lo regresas. Tu reporte y plan terapéutico listos en dos días.</p></div>
-            <div class="benefit"><div class="benefit__icon"><i class="bi bi-person-badge-fill"></i></div><h3>Lectura por neumólogo egresado del INER</h3><p>No es un reporte automatizado. Yo personalmente reviso e interpreto cada estudio, con criterio clínico.</p></div>
-            <div class="benefit"><div class="benefit__icon"><i class="bi bi-shield-fill-check"></i></div><h3>Equipo certificado</h3><p>Tecnología validada internacionalmente, calibrada y con consumibles nuevos por paciente.</p></div>
-            <div class="benefit"><div class="benefit__icon"><i class="bi bi-chat-heart-fill"></i></div><h3>Acompañamiento real</h3><p>Te resuelvo dudas por WhatsApp antes y después. No te dejo solo con un PDF.</p></div>
+        <div class="why-bento">
+            <div class="why-tile why-tile--feat">
+                <div class="why-feat__txt">
+                    <span class="why-feat__chip"><i class="bi bi-mortarboard-fill"></i> Egresado del INER</span>
+                    <div class="why-ic"><i class="bi bi-person-badge-fill"></i></div>
+                    <h3>Lo interpreta un neumólogo, no un software</h3>
+                    <p>Cada estudio del sueño lo lee y te lo explica el Dr. Lara en persona, con criterio clínico. No un reporte automático.</p>
+                </div>
+            </div>
+            <div class="why-tile why-tile--data why-tile--noche">
+                <div class="why-data__num">1</div>
+                <div class="why-data__label"><b>noche</b> en tu propia cama, sin cuarto de hospital</div>
+            </div>
+            <div class="why-tile why-tile--data why-tile--h48">
+                <div class="why-data__num">48<small>h</small></div>
+                <div class="why-data__label">y tienes tu <b>reporte y plan</b> en las manos</div>
+            </div>
+            <div class="why-tile why-tile--econ">
+                <div class="why-ic"><i class="bi bi-piggy-bank-fill"></i></div>
+                <h3>Sin la cuenta de un hospital</h3>
+                <p>Cuesta menos que una polisomnografía de laboratorio, sin sacrificar precisión en los casos típicos.</p>
+            </div>
+            <div class="why-tile why-tile--certi">
+                <div class="why-ic"><i class="bi bi-shield-fill-check"></i></div>
+                <h3>Equipo certificado</h3>
+                <p>Tecnología validada internacionalmente, calibrada y con consumibles nuevos para cada paciente.</p>
+            </div>
+            <div class="why-tile why-tile--apoyo">
+                <div class="why-ic"><i class="bi bi-chat-heart-fill"></i></div>
+                <div>
+                    <h3>No te quedas solo con un PDF</h3>
+                    <p>Resuelvo tus dudas por WhatsApp antes y después del estudio, con seguimiento real.</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
