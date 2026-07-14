@@ -2,305 +2,657 @@
 <html lang="es-MX">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Panel de control del bot — alveos</title>
+<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<title>Panel del bot — alveos</title>
 <style>
+  /* ===== Tokens (estilo Ajustes de iOS, con la identidad verde del bot) ===== */
   :root {
-    --app-bg: #f0f2f5; --panel: #ffffff; --panel-2: #f0f2f5; --borde: #e9edef;
-    --texto: #111b21; --tenue: #667781; --acento: #00a884; --acento-txt: #ffffff;
-    --rojo: #ea4335; --ambar: #b26a00; --verde: #1a8f5c; --violeta: #7c3aed;
-    --sombra: rgba(11,20,26,.13);
+    --bg: #f2f2f7; --surface: #ffffff; --surface-2: #ffffff; --inset: #efeff4;
+    --ink: #1c1c1e; --ink-2: #545459; --ink-3: #6d6d72;
+    --sep: rgba(60,60,67,.16); --sep-fuerte: rgba(60,60,67,.28);
+    --acento: #00a884; --acento-2: #12b886; --acento-txt: #ffffff;
+    --rojo: #e53935; --ambar: #b26a00; --verde: #1a8f5c; --azul: #0a84c4;
+    --naranja: #d9730d; --indigo: #5b5bd6; --rosa: #c2418a;
+    --chip-bg: rgba(120,120,128,.12);
+    --sombra: 0 1px 2px rgba(11,20,26,.06);
+    --sombra-flotante: 0 8px 30px rgba(11,20,26,.16);
+    --nav-bg: rgba(248,248,250,.82);
+    --r-grande: 18px; --r-media: 12px; --r-chica: 9px;
+    --ease-out: cubic-bezier(.23,1,.32,1);
+    --ease-drawer: cubic-bezier(.32,.72,0,1);
+    --tab-h: 58px;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --app-bg: #0b141a; --panel: #111b21; --panel-2: #202c33; --borde: #222d34;
-      --texto: #e9edef; --tenue: #8696a0; --acento: #00a884; --acento-txt: #ffffff;
-      --rojo: #f15c6d; --ambar: #ffb757; --verde: #4ade80; --violeta: #b794f6;
-      --sombra: rgba(0,0,0,.3);
+      --bg: #000000; --surface: #1c1c1e; --surface-2: #1c1c1e; --inset: #2c2c2e;
+      --ink: #f5f5f7; --ink-2: #a9a9b0; --ink-3: #8a8a8f;
+      --sep: rgba(84,84,88,.4); --sep-fuerte: rgba(120,120,128,.5);
+      --acento: #16c295; --acento-2: #1ad1a3; --acento-txt: #00110c;
+      --rojo: #ff453a; --ambar: #ffb757; --verde: #30d38b; --azul: #4ab8ec;
+      --naranja: #ff9f45; --indigo: #7d7dee; --rosa: #e06aa8;
+      --chip-bg: rgba(120,120,128,.24);
+      --sombra: 0 1px 2px rgba(0,0,0,.4);
+      --sombra-flotante: 0 10px 34px rgba(0,0,0,.55);
+      --nav-bg: rgba(20,20,22,.78);
     }
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   [hidden] { display: none !important; }
   html { height: 100%; }
   body {
-    min-height: 100%; background: var(--app-bg); color: var(--texto);
-    font: 15px/1.45 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100%; background: var(--bg); color: var(--ink);
+    font: 17px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    overscroll-behavior-y: none;
   }
   button { font: inherit; background: none; border: 0; cursor: pointer; color: inherit; }
-  input, textarea, select { font: inherit; color: var(--texto); }
+  input, textarea, select { font: inherit; color: var(--ink); }
+  svg { display: block; }
+  h1, h2, h3 { font-weight: 700; letter-spacing: -.02em; }
 
+  /* ===== Cabecera ===== */
   #cabecera {
-    position: sticky; top: 0; z-index: 10; background: var(--panel-2);
-    border-bottom: 1px solid var(--borde); padding: 10px 16px;
-    display: flex; align-items: center; gap: 12px;
+    position: sticky; top: 0; z-index: 40; display: flex; align-items: center; gap: 6px;
+    padding: calc(env(safe-area-inset-top) + 8px) 12px 8px;
+    background: var(--nav-bg); backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: .5px solid var(--sep);
   }
-  #cabecera .logo {
-    width: 40px; height: 40px; border-radius: 50%; background: var(--acento);
-    color: #fff; display: flex; align-items: center; justify-content: center;
-    font-size: 18px; flex: none;
+  #cabecera .titulo { flex: 1; min-width: 0; font-size: 17px; font-weight: 600; text-align: center;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: -.01em; }
+  .btn-nav {
+    width: 40px; height: 34px; border-radius: 9px; display: inline-flex; align-items: center;
+    justify-content: center; color: var(--acento); flex: none; transition: transform .16s var(--ease-out), background .16s;
   }
-  #cabecera .quien { flex: 1; min-width: 0; }
-  #cabecera .quien .n { font-weight: 600; font-size: 15px; }
-  #cabecera .quien .s { color: var(--tenue); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .icono {
-    width: 38px; height: 38px; border-radius: 50%; display: inline-flex;
-    align-items: center; justify-content: center; color: var(--tenue); flex: none;
-  }
-  .icono:hover { background: var(--panel); }
-  .icono svg { width: 21px; height: 21px; fill: currentColor; }
-  .icono.girando svg { animation: gira 1s linear infinite; }
+  .btn-nav:active { transform: scale(.9); background: var(--chip-bg); }
+  .btn-nav svg { width: 24px; height: 24px; }
+  .btn-nav.atras { width: auto; padding: 0 6px 0 2px; gap: 1px; font-size: 17px; font-weight: 400; }
+  .btn-nav.girando svg { animation: gira 1s linear infinite; }
   @keyframes gira { to { transform: rotate(360deg); } }
 
-  #contenido { max-width: 880px; margin: 0 auto; padding: 14px 12px 60px; }
-  .tarjeta {
-    background: var(--panel); border: 1px solid var(--borde); border-radius: 14px;
-    padding: 16px; margin-bottom: 14px; box-shadow: 0 1px 2px var(--sombra);
+  /* ===== Vista / layout ===== */
+  #vista { max-width: 720px; margin: 0 auto; padding: 4px 16px calc(var(--tab-h) + env(safe-area-inset-bottom) + 40px); }
+  .grande { font-size: 30px; line-height: 1.1; margin: 16px 2px 4px; letter-spacing: -.03em; }
+  .grande-sub { color: var(--ink-2); font-size: 14.5px; margin: 0 2px 18px; }
+  .seccion-tit { font-size: 13px; font-weight: 600; letter-spacing: .01em; text-transform: uppercase;
+    color: var(--ink-3); margin: 26px 16px 7px; }
+  .seccion-tit:first-child { margin-top: 10px; }
+
+  /* Grupo de lista tipo iOS */
+  .grupo { background: var(--surface); border-radius: var(--r-media); box-shadow: var(--sombra); overflow: hidden; }
+  .grupo + .grupo-nota, .nota { color: var(--ink-3); font-size: 12.5px; margin: 7px 16px 0; line-height: 1.4; }
+  .fila {
+    display: flex; align-items: center; gap: 12px; padding: 12px 16px; min-height: 52px;
+    position: relative; background: var(--surface); text-align: left; width: 100%;
   }
-  .tarjeta h2 { font-size: 15px; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
-  .tarjeta .sub { color: var(--tenue); font-size: 12.5px; margin-bottom: 12px; }
-
-  .punto { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex: none; }
-  .punto.ok { background: var(--verde); }
-  .punto.mal { background: var(--rojo); }
-  .salud-fila { display: flex; align-items: center; gap: 9px; padding: 5px 0; font-size: 14px; }
-  .salud-fila .det { color: var(--tenue); font-size: 12.5px; margin-left: auto; }
-
-  .btn {
-    background: var(--acento); color: var(--acento-txt); border-radius: 9px;
-    padding: 9px 16px; font-size: 13.5px; font-weight: 600;
+  .fila + .fila::before {
+    content: ''; position: absolute; top: 0; left: 16px; right: 0; height: .5px; background: var(--sep);
   }
-  .btn:disabled { opacity: .55; cursor: default; }
-  .btn.fantasma { background: var(--panel-2); color: var(--texto); border: 1px solid var(--borde); font-weight: 500; }
+  .fila.tocable { transition: background .12s; }
+  .fila.tocable:active { background: var(--inset); }
+  .fila .cuerpo { flex: 1; min-width: 0; }
+  .fila .t { font-size: 16px; line-height: 1.25; }
+  .fila .d { font-size: 12.7px; color: var(--ink-2); line-height: 1.35; margin-top: 2px; }
+  .fila .chevron { color: var(--ink-3); flex: none; }
+  .fila .chevron svg { width: 18px; height: 18px; }
+  .fila .valor-der { color: var(--ink-2); font-size: 15px; flex: none; max-width: 45%;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: right; }
 
-  /* Embudo */
-  .tabs { display: inline-flex; background: var(--panel-2); border-radius: 999px; padding: 3px; margin-bottom: 12px; }
-  .tabs button { border-radius: 999px; padding: 5px 14px; font-size: 12.5px; color: var(--tenue); }
-  .tabs button.activo { background: var(--acento); color: var(--acento-txt); }
-  .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
-  .tile {
-    background: var(--panel-2); border-radius: 11px; padding: 11px 13px;
-  }
-  .tile .v { font-size: 23px; font-weight: 700; font-variant-numeric: tabular-nums; }
-  .tile .e { color: var(--tenue); font-size: 11.5px; margin-top: 1px; }
-  .tile.destacado { background: color-mix(in srgb, var(--acento) 14%, var(--panel)); }
-  .tile.destacado .v { color: var(--acento); }
+  /* Ícono cuadrado tipo iOS */
+  .ico-cuad { width: 30px; height: 30px; border-radius: 7px; flex: none; display: flex;
+    align-items: center; justify-content: center; font-size: 17px; color: #fff; }
 
-  /* Plantillas */
-  .plantilla {
-    display: flex; align-items: center; gap: 8px; padding: 7px 0;
-    border-bottom: 1px solid var(--borde); font-size: 13.5px; flex-wrap: wrap;
-  }
-  .plantilla:last-child { border-bottom: 0; }
-  .plantilla .nom { flex: 1; min-width: 180px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px; }
-  .chip { border-radius: 999px; padding: 1px 9px; font-size: 11px; border: 1px solid var(--borde); color: var(--tenue); white-space: nowrap; }
-  .chip.aprobada { color: var(--verde); border-color: var(--verde); }
-  .chip.pendiente { color: var(--ambar); border-color: var(--ambar); }
-  .chip.rechazada { color: var(--rojo); border-color: var(--rojo); }
-  .chip.marketing { color: var(--violeta); border-color: var(--violeta); }
-  .nota { font-size: 12px; color: var(--tenue); margin-top: 9px; }
-
-  /* Interruptores */
-  .sw-fila { display: flex; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--borde); }
-  .sw-fila:last-child { border-bottom: 0; }
-  .sw-fila .txts { flex: 1; min-width: 0; }
-  .sw-fila .t { font-size: 14px; }
-  .sw-fila .d { font-size: 12px; color: var(--tenue); }
+  /* ===== Switch ===== */
   .sw {
-    position: relative; width: 46px; height: 26px; border-radius: 999px; flex: none;
-    background: var(--borde); transition: background .15s ease;
+    position: relative; width: 51px; height: 31px; border-radius: 999px; flex: none;
+    background: var(--sep-fuerte); transition: background .22s var(--ease-out); cursor: pointer;
   }
   .sw::after {
-    content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px;
-    border-radius: 50%; background: #fff; transition: left .15s ease;
-    box-shadow: 0 1px 2px rgba(0,0,0,.3);
+    content: ''; position: absolute; top: 2px; left: 2px; width: 27px; height: 27px; border-radius: 50%;
+    background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,.28), 0 0 1px rgba(0,0,0,.2);
+    transition: transform .22s var(--ease-drawer);
   }
   .sw.on { background: var(--acento); }
-  .sw.on::after { left: 23px; }
+  .sw.on::after { transform: translateX(20px); }
   .sw.peligro.on { background: var(--rojo); }
-  .sw:disabled { opacity: .5; }
+  .sw:active::after { width: 30px; }
+  .sw.on:active::after { transform: translateX(17px); }
+  .sw[aria-disabled="true"] { opacity: .5; pointer-events: none; }
 
-  /* Campos editables */
-  .campo { display: flex; align-items: center; gap: 8px; padding: 6px 0; flex-wrap: wrap; }
-  .campo label { flex: 1 1 200px; font-size: 13.5px; min-width: 0; }
-  .campo label .peq { display: block; color: var(--tenue); font-size: 11.5px; }
-  .campo input[type=text], .campo textarea {
-    flex: 1 1 190px; background: var(--panel-2); border: 1px solid var(--borde);
-    border-radius: 8px; padding: 8px 10px; font-size: 13.5px; outline: none; min-width: 0;
+  /* ===== Campo de texto / precio ===== */
+  .campo-fila { flex-wrap: wrap; }
+  .campo-fila .cuerpo { flex: 1 1 100%; }
+  .entrada-linea { display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 8px; }
+  .entrada {
+    flex: 1; background: var(--inset); border: 1px solid transparent; border-radius: var(--r-chica);
+    padding: 10px 12px; font-size: 16px; outline: none; min-width: 0; transition: border-color .15s, background .15s;
   }
-  .campo textarea { min-height: 56px; resize: vertical; width: 100%; flex-basis: 100%; }
-  .campo input:focus, .campo textarea:focus { border-color: var(--acento); }
-  .campo .guardar {
-    background: var(--panel-2); border: 1px solid var(--borde); border-radius: 8px;
-    padding: 8px 13px; font-size: 12.5px; color: var(--tenue); flex: none;
+  textarea.entrada { min-height: 46px; resize: vertical; line-height: 1.4; }
+  .entrada:focus { border-color: var(--acento); background: var(--surface); }
+  .entrada::placeholder { color: var(--ink-3); }
+  .btn-guardar {
+    flex: none; background: var(--inset); color: var(--ink-3); border-radius: var(--r-chica);
+    padding: 10px 15px; font-size: 14.5px; font-weight: 600; min-width: 92px; text-align: center;
+    transition: transform .14s var(--ease-out), background .18s, color .18s;
   }
-  .campo .guardar.cambiado { background: var(--acento); border-color: var(--acento); color: var(--acento-txt); }
-  .campo input::placeholder { color: var(--tenue); opacity: .8; }
+  .btn-guardar:active { transform: scale(.96); }
+  .btn-guardar.cambiado { background: var(--acento); color: var(--acento-txt); }
+  .btn-guardar[disabled] { opacity: .6; }
 
-  .etq-fila { display: flex; gap: 8px; flex-wrap: wrap; }
-  .etq {
-    border: 1px solid var(--verde); color: var(--verde); border-radius: 999px;
-    padding: 4px 12px; font-size: 12.5px;
+  /* ===== Stepper ===== */
+  .stepper { display: inline-flex; align-items: center; background: var(--inset); border-radius: 9px; flex: none; }
+  .stepper button {
+    width: 42px; height: 34px; display: flex; align-items: center; justify-content: center; color: var(--acento);
+    transition: transform .12s var(--ease-out), background .12s;
   }
-  .etq b { font-size: 14px; }
+  .stepper button:active { transform: scale(.86); }
+  .stepper button[disabled] { color: var(--ink-3); opacity: .5; }
+  .stepper button svg { width: 19px; height: 19px; }
+  .stepper .div { width: .5px; align-self: stretch; background: var(--sep-fuerte); }
+  .stepper-val { min-width: 62px; text-align: center; font-size: 15px; font-variant-numeric: tabular-nums;
+    color: var(--ink-2); flex: none; }
+  input[type="time"].entrada { flex: none; width: auto; }
 
-  .cambio { font-size: 12.5px; color: var(--tenue); padding: 3px 0; font-variant-numeric: tabular-nums; }
+  /* ===== Estado / salud ===== */
+  .estado-hero { display: flex; align-items: center; gap: 14px; padding: 16px; background: var(--surface);
+    border-radius: var(--r-media); box-shadow: var(--sombra); }
+  .estado-hero .medallon { width: 46px; height: 46px; border-radius: 50%; flex: none; display: flex;
+    align-items: center; justify-content: center; }
+  .estado-hero .medallon.ok { background: color-mix(in srgb, var(--verde) 18%, transparent); color: var(--verde); }
+  .estado-hero .medallon.mal { background: color-mix(in srgb, var(--rojo) 18%, transparent); color: var(--rojo); }
+  .estado-hero .medallon svg { width: 26px; height: 26px; }
+  .estado-hero .et { font-size: 17px; font-weight: 600; }
+  .estado-hero .es { font-size: 13px; color: var(--ink-2); margin-top: 1px; }
 
+  .punto { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+  .punto.ok { background: var(--verde); } .punto.mal { background: var(--rojo); }
+
+  /* ===== Alertas ===== */
+  .alerta { display: flex; align-items: flex-start; gap: 11px; padding: 13px 14px; border-radius: var(--r-media);
+    background: var(--surface); box-shadow: var(--sombra); margin-bottom: 10px; }
+  .alerta .barra { width: 3px; align-self: stretch; border-radius: 3px; flex: none; }
+  .alerta.warn .barra { background: var(--ambar); } .alerta.mal .barra { background: var(--rojo); }
+  .alerta.info .barra { background: var(--azul); }
+  .alerta .ico { flex: none; margin-top: 1px; }
+  .alerta .ico svg { width: 20px; height: 20px; }
+  .alerta.warn .ico { color: var(--ambar); } .alerta.mal .ico { color: var(--rojo); } .alerta.info .ico { color: var(--azul); }
+  .alerta .txt { flex: 1; min-width: 0; }
+  .alerta .txt b { font-size: 15px; font-weight: 600; display: block; }
+  .alerta .txt span { font-size: 13px; color: var(--ink-2); display: block; margin-top: 1px; }
+  .alerta .ir { color: var(--acento); flex: none; align-self: center; }
+  .alerta .ir svg { width: 18px; height: 18px; }
+
+  /* ===== Mosaicos de métricas ===== */
+  .mosaicos { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 11px; }
+  .mosaico { background: var(--surface); border-radius: var(--r-media); padding: 14px; box-shadow: var(--sombra); position: relative; }
+  .mosaico .v { font-size: 28px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -.02em; line-height: 1; }
+  .mosaico .e { color: var(--ink-2); font-size: 12.5px; margin-top: 6px; line-height: 1.3; }
+  .mosaico .e b { color: var(--ink); font-weight: 600; display: block; font-size: 13px; }
+  .mosaico.destacado { background: color-mix(in srgb, var(--acento) 12%, var(--surface)); }
+  .mosaico.destacado .v { color: var(--acento); }
+
+  /* Segmented control */
+  .segmento { display: inline-flex; background: var(--chip-bg); border-radius: 9px; padding: 2px; margin: 2px 0 14px; }
+  .segmento button { border-radius: 7px; padding: 6px 16px; font-size: 13.5px; font-weight: 600; color: var(--ink-2);
+    transition: color .15s; position: relative; }
+  .segmento button.activo { color: var(--ink); background: var(--surface); box-shadow: var(--sombra); }
+
+  /* ===== Agenda ===== */
+  .cita { display: flex; align-items: center; gap: 12px; padding: 11px 16px; position: relative; }
+  .cita + .cita::before { content: ''; position: absolute; top: 0; left: 16px; right: 0; height: .5px; background: var(--sep); }
+  .cita .hora { font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; min-width: 52px; flex: none; }
+  .cita .hora .dia { display: block; font-size: 11px; color: var(--ink-3); font-weight: 500; }
+  .cita .quien { flex: 1; min-width: 0; }
+  .cita .quien .n { font-size: 15.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cita .quien .m { font-size: 12.5px; color: var(--ink-2); }
+  .cita .semaforo { font-size: 13px; flex: none; }
+
+  /* Chips de plantillas / campañas */
+  .plantilla { display: flex; align-items: center; gap: 8px; padding: 11px 16px; flex-wrap: wrap; position: relative; }
+  .plantilla + .plantilla::before { content: ''; position: absolute; top: 0; left: 16px; right: 0; height: .5px; background: var(--sep); }
+  .plantilla .nom { flex: 1; min-width: 150px; font-size: 14px; }
+  .chip { border-radius: 999px; padding: 2px 10px; font-size: 11.5px; font-weight: 600; background: var(--chip-bg); color: var(--ink-2); white-space: nowrap; }
+  .chip.aprobada { color: var(--verde); background: color-mix(in srgb, var(--verde) 15%, transparent); }
+  .chip.pendiente { color: var(--ambar); background: color-mix(in srgb, var(--ambar) 15%, transparent); }
+  .chip.rechazada { color: var(--rojo); background: color-mix(in srgb, var(--rojo) 15%, transparent); }
+  .chip.marketing { color: var(--indigo); background: color-mix(in srgb, var(--indigo) 15%, transparent); }
+  .etq-fila { display: flex; gap: 9px; flex-wrap: wrap; padding: 14px 16px; }
+  .etq { display: inline-flex; align-items: baseline; gap: 6px; border-radius: 999px; padding: 6px 13px;
+    background: var(--chip-bg); font-size: 13px; }
+  .etq b { font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  /* Botones grandes de acción */
+  .accion { display: flex; align-items: center; gap: 13px; padding: 13px 16px; position: relative; width: 100%; text-align: left; text-decoration: none; color: inherit; }
+  .accion + .accion::before { content: ''; position: absolute; top: 0; left: 16px; right: 0; height: .5px; background: var(--sep); }
+  .accion:active { background: var(--inset); }
+  .accion .ico-cuad { }
+  .accion .txt { flex: 1; }
+  .accion .txt .t { font-size: 16px; }
+  .accion .txt .d { font-size: 12.5px; color: var(--ink-2); }
+  .accion .chevron { color: var(--ink-3); }
+  .accion .chevron svg { width: 18px; height: 18px; }
+
+  /* Cambios recientes */
+  .cambio { font-size: 12.7px; color: var(--ink-2); padding: 8px 16px; position: relative; font-variant-numeric: tabular-nums; }
+  .cambio + .cambio::before { content: ''; position: absolute; top: 0; left: 16px; right: 0; height: .5px; background: var(--sep); }
+  .cambio .h { color: var(--ink-3); }
+
+  /* ===== Modo edición (personalización) ===== */
+  .tarjeta-mov { position: relative; }
+  .tarjeta-mov.arrastrando { z-index: 5; box-shadow: var(--sombra-flotante); transform: scale(1.02); opacity: .97; }
+  .mando-edit { display: flex; align-items: center; gap: 6px; padding: 6px 4px 10px; }
+  .mando-edit .agarre { color: var(--ink-3); touch-action: none; cursor: grab; padding: 4px; }
+  .mando-edit .agarre svg { width: 22px; height: 22px; }
+  .mando-edit .titmov { flex: 1; font-size: 13px; font-weight: 600; color: var(--ink-2); text-transform: uppercase; letter-spacing: .02em; }
+  .mando-edit .mini { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    background: var(--chip-bg); color: var(--acento); }
+  .mando-edit .mini[disabled] { opacity: .35; color: var(--ink-3); }
+  .mando-edit .mini svg { width: 18px; height: 18px; }
+  .mando-edit .ojo.oculto { color: var(--ink-3); }
+  .oculto-en-edit { opacity: .5; }
+  .tile-check { position: absolute; top: 9px; right: 9px; width: 22px; height: 22px; border-radius: 50%;
+    border: 1.5px solid var(--sep-fuerte); display: flex; align-items: center; justify-content: center; color: transparent; }
+  .tile-check.on { background: var(--acento); border-color: var(--acento); color: #fff; }
+  .tile-check svg { width: 14px; height: 14px; }
+  .banner-edit { background: color-mix(in srgb, var(--acento) 14%, var(--surface)); border-radius: var(--r-media);
+    padding: 11px 14px; font-size: 13px; color: var(--ink); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .banner-edit .restaurar { margin-left: auto; color: var(--acento); font-weight: 600; font-size: 13.5px; flex: none; }
+
+  /* ===== Tab bar ===== */
+  #tabbar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 45; display: flex;
+    padding-bottom: env(safe-area-inset-bottom);
+    background: var(--nav-bg); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-top: .5px solid var(--sep);
+  }
+  #tabbar button { flex: 1; height: var(--tab-h); display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 3px; color: var(--ink-3); transition: color .15s; }
+  #tabbar button.activo { color: var(--acento); }
+  #tabbar button svg { width: 26px; height: 26px; }
+  #tabbar button .lbl { font-size: 10.5px; font-weight: 500; letter-spacing: .01em; }
+  #tabbar button:active svg { transform: scale(.88); transition: transform .12s var(--ease-out); }
+
+  /* ===== Toast ===== */
   #aviso {
-    position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%);
-    background: var(--texto); color: var(--app-bg); border-radius: 999px;
-    padding: 9px 18px; font-size: 13px; box-shadow: 0 4px 14px var(--sombra);
-    opacity: 0; pointer-events: none; transition: opacity .2s ease; z-index: 30;
-    max-width: 92vw; text-align: center;
+    position: fixed; left: 50%; bottom: calc(var(--tab-h) + env(safe-area-inset-bottom) + 14px);
+    transform: translateX(-50%) translateY(14px); z-index: 60;
+    background: var(--ink); color: var(--bg); border-radius: 14px; padding: 11px 8px 11px 16px;
+    font-size: 14px; box-shadow: var(--sombra-flotante); display: flex; align-items: center; gap: 10px;
+    max-width: min(92vw, 440px); opacity: 0; pointer-events: none;
+    transition: opacity .22s var(--ease-out), transform .22s var(--ease-out);
   }
-  #aviso.visible { opacity: 1; }
+  #aviso.visible { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+  #aviso .msg { flex: 1; }
+  #aviso .accion-toast { flex: none; color: var(--acento-2); font-weight: 700; padding: 4px 10px; border-radius: 8px; }
+  #aviso .accion-toast:active { background: rgba(255,255,255,.12); }
 
-  /* Puerta */
-  #puerta {
-    position: fixed; inset: 0; background: var(--app-bg); z-index: 20;
-    display: flex; align-items: center; justify-content: center; padding: 24px;
-  }
-  #puerta form {
-    background: var(--panel); border: 1px solid var(--borde); border-radius: 14px;
-    padding: 28px 24px; width: 100%; max-width: 380px; box-shadow: 0 2px 12px var(--sombra);
-  }
-  #puerta .logo {
-    width: 52px; height: 52px; border-radius: 50%; background: var(--acento);
-    display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;
-    font-size: 24px; color: #fff;
-  }
-  #puerta h2 { font-size: 19px; margin-bottom: 6px; text-align: center; }
-  #puerta p { color: var(--tenue); font-size: 13px; margin-bottom: 18px; text-align: center; }
-  #puerta input {
-    width: 100%; background: var(--panel-2); border: 1px solid var(--borde);
-    border-radius: 8px; padding: 11px 12px; font-size: 15px; margin-bottom: 12px; outline: none;
-  }
+  /* ===== Action sheet ===== */
+  #hoja-fondo { position: fixed; inset: 0; z-index: 70; background: rgba(0,0,0,.4); opacity: 0;
+    transition: opacity .25s var(--ease-out); pointer-events: none; }
+  #hoja-fondo.visible { opacity: 1; pointer-events: auto; }
+  #hoja { position: fixed; left: 0; right: 0; bottom: 0; z-index: 71; padding: 8px 8px calc(env(safe-area-inset-bottom) + 8px);
+    transform: translateY(110%); transition: transform .32s var(--ease-drawer); }
+  #hoja.visible { transform: translateY(0); }
+  #hoja .panel { background: var(--surface); border-radius: 16px; overflow: hidden; margin-bottom: 8px; }
+  #hoja .cab { padding: 16px; text-align: center; border-bottom: .5px solid var(--sep); }
+  #hoja .cab .ti { font-size: 16px; font-weight: 700; }
+  #hoja .cab .ms { font-size: 13.5px; color: var(--ink-2); margin-top: 5px; line-height: 1.4; }
+  #hoja .opt { width: 100%; padding: 15px; font-size: 17px; color: var(--azul); text-align: center; }
+  #hoja .opt + .opt { border-top: .5px solid var(--sep); }
+  #hoja .opt:active { background: var(--inset); }
+  #hoja .opt.peligro { color: var(--rojo); font-weight: 600; }
+  #hoja .cancelar { width: 100%; padding: 16px; font-size: 17px; font-weight: 700; color: var(--acento);
+    background: var(--surface); border-radius: 16px; }
+  #hoja .cancelar:active { background: var(--inset); }
+
+  /* ===== Skeleton ===== */
+  .sk { background: linear-gradient(90deg, var(--inset) 25%, color-mix(in srgb, var(--inset) 60%, var(--surface)) 50%, var(--inset) 75%);
+    background-size: 200% 100%; animation: brillo 1.3s ease-in-out infinite; border-radius: 8px; }
+  @keyframes brillo { to { background-position: -200% 0; } }
+  .sk-fila { height: 52px; margin-bottom: 1px; }
+
+  /* ===== Puerta ===== */
+  #puerta { position: fixed; inset: 0; background: var(--bg); z-index: 90; display: flex; align-items: center;
+    justify-content: center; padding: 24px; }
+  #puerta form { width: 100%; max-width: 360px; text-align: center; }
+  #puerta .marca { width: 66px; height: 66px; border-radius: 20px; background: var(--acento); display: flex;
+    align-items: center; justify-content: center; margin: 0 auto 18px; box-shadow: var(--sombra-flotante); }
+  #puerta .marca svg { width: 36px; height: 36px; color: #fff; }
+  #puerta h2 { font-size: 23px; margin-bottom: 8px; letter-spacing: -.03em; }
+  #puerta p { color: var(--ink-2); font-size: 14px; margin-bottom: 22px; line-height: 1.45; }
+  #puerta input { width: 100%; background: var(--surface); border: 1px solid var(--sep-fuerte); border-radius: 12px;
+    padding: 14px; font-size: 17px; margin-bottom: 12px; outline: none; text-align: center; }
   #puerta input:focus { border-color: var(--acento); }
-  #puerta button[type=submit] {
-    width: 100%; background: var(--acento); border-radius: 8px; color: var(--acento-txt);
-    font-weight: 600; padding: 12px; font-size: 15px;
+  #puerta button[type=submit] { width: 100%; background: var(--acento); border-radius: 12px; color: var(--acento-txt);
+    font-weight: 700; padding: 15px; font-size: 17px; transition: transform .14s var(--ease-out); }
+  #puerta button[type=submit]:active { transform: scale(.98); }
+  #puerta .fallo { color: var(--rojo); font-size: 14px; margin-top: 14px; display: none; }
+
+  /* Foco de teclado visible (no depender del outline por defecto del navegador) */
+  .sw:focus-visible, .stepper button:focus-visible, #tabbar button:focus-visible, .btn-nav:focus-visible,
+  .fila.tocable:focus-visible, .accion:focus-visible, .btn-guardar:focus-visible,
+  #hoja .opt:focus-visible, #hoja .cancelar:focus-visible, .alerta[role="button"]:focus-visible,
+  .mando-edit .mini:focus-visible, .segmento button:focus-visible {
+    outline: 2px solid var(--acento); outline-offset: 2px;
   }
-  #puerta .fallo { color: var(--rojo); font-size: 13px; margin-top: 12px; text-align: center; display: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+    .tarjeta-mov.arrastrando { transform: none; }
+  }
 </style>
 </head>
 <body>
 
 <div id="app" hidden>
   <header id="cabecera">
-    <div class="logo">⚙️</div>
-    <div class="quien">
-      <div class="n">Panel de control del bot</div>
-      <div class="s" id="estado">cargando…</div>
-    </div>
-    <button type="button" class="icono" id="btnRefrescar" title="Actualizar">
-      <svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.96 7.96 0 0 0 12 4a8 8 0 1 0 7.73 10h-2.08A6 6 0 1 1 12 6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
-    </button>
-    <button type="button" class="icono" id="btnSalir" title="Cerrar sesión">
-      <svg viewBox="0 0 24 24"><path d="M10.09 15.59 11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5a2 2 0 0 0-2 2v4h2V5h14v14H5v-4H3v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/></svg>
-    </button>
+    <button type="button" class="btn-nav atras" id="btnAtras" hidden></button>
+    <div class="titulo" id="tituloBarra">Inicio</div>
+    <button type="button" class="btn-nav" id="btnEditar" title="Personalizar" aria-label="Personalizar Inicio" hidden></button>
+    <button type="button" class="btn-nav" id="btnRefrescar" title="Actualizar" aria-label="Actualizar"></button>
   </header>
-  <main id="contenido"></main>
+  <main id="vista"></main>
+  <nav id="tabbar"></nav>
 </div>
 
 <div id="puerta">
   <form id="formaClave">
-    <div class="logo">⚙️</div>
-    <h2>Panel de control del bot</h2>
+    <div class="marca">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
+    </div>
+    <h2>Panel del bot</h2>
     <p id="puertaTexto">Acceso exclusivo del Dr. William Lara. Ingrese su clave (la misma del visor de chats).</p>
-    <input type="password" id="clave" autocomplete="current-password" placeholder="Clave de acceso">
+    <input type="password" id="clave" autocomplete="current-password" placeholder="Clave de acceso" inputmode="text">
     <button type="submit" id="btnEntrar">Entrar</button>
     <p class="fallo" id="fallo">Clave incorrecta.</p>
   </form>
 </div>
 
-<div id="aviso" role="status"></div>
+<div id="aviso" role="status" aria-live="polite">
+  <span class="msg"></span>
+  <button type="button" class="accion-toast" hidden></button>
+</div>
+
+<div id="hoja-fondo"></div>
+<div id="hoja" role="dialog" aria-modal="true"></div>
 
 <script>
 (function () {
   'use strict';
+
+  /* ================== Config y estado ================== */
   var API = 'https://script.google.com/macros/s/AKfycbwXhrEW73jRoPajdNnATA6q7Rrnc18n0yzMG07J5QaJvqKDhuHkDQEpm8qumH08UCFeEA/exec';
-  var LS = 'panel_bot_key';
+  var LS_CLAVE = 'panel_bot_key';
+  var LS_LAYOUT = 'panel_bot_layout';
   var $ = function (id) { return document.getElementById(id); };
-  var estado = { datos: null, cargando: false, ventana: 'd7' };
 
-  /* Definición de la UI de cada clave editable (el servidor manda tipo/grupo;
-     aquí van las etiquetas humanas y las advertencias). */
-  var INTERRUPTORES = [
-    { clave: 'CITAS_POR_BOT', t: 'Citas por el bot', d: 'El asistente puede reservar citas él solo.', peligroApagar: 'Los pacientes YA NO podrán agendar por WhatsApp (solo recibirán el enlace de agenda). ¿Apagar?' },
-    { clave: 'SEGUIMIENTO_POST_CITA', t: 'Mensaje post-consulta', d: '"¿Cómo se ha sentido?" 24–48 h después de cada cita (con oferta de vacunas).' },
-    { clave: 'SEGUNDO_RECORDATORIO', t: 'Recordatorio del día', d: 'Recordatorio extra ~4 h antes de la cita.' },
-    { clave: 'LISTA_ESPERA', t: 'Lista de espera inteligente', d: 'Un hueco que se libera se ofrece al último paciente del día del mismo doctor (compacta su agenda).' },
-    { clave: 'CORREOS_SOLO_CRITICOS', t: 'Correos solo críticos', d: 'Los avisos cotidianos (dudas, leads, reagendados) llegan solo por WhatsApp; el correo queda para alertas del sistema y el resumen de las 6 am.' },
-    { clave: 'ANOTA_PRECIO_CALENDARIO', t: 'Precio en el calendario', d: 'Escribe en la descripción de sus eventos (solo Dr. William) el precio según promoción/estudio y si es primera vez o subsecuente.' },
-    { clave: 'COLOREAR_CALENDARIO', t: 'Semáforo en el calendario', d: 'Bolita 🟡/🟢/🔴 en el título del evento.' },
-    { clave: 'DIGEST_WHATSAPP', t: 'Digest por WhatsApp', d: 'El resumen de las 6 am también por WhatsApp (además del correo).' },
-    { clave: 'MODO_PRUEBA', t: 'Modo prueba', d: 'PELIGRO: encendido, el bot solo contesta al número de prueba — los pacientes quedan sin respuesta.', peligro: true, peligroEncender: 'Con MODO PRUEBA encendido el bot DEJA de responder a los pacientes reales. ¿Encender?' }
-  ];
-  var PRECIOS = [
-    { clave: 'PRECIO_CONSULTA_WILLIAM', t: 'Consulta (regular / subsecuente)' },
-    { clave: 'PRECIO_CONSULTA_PROMO_WILLIAM', t: 'Consulta con promoción (primera vez)' },
-    { clave: 'PRECIO_ESPIROMETRIA', t: 'Espirometría' },
-    { clave: 'PRECIO_POLIGRAFIA', t: 'Poligrafía respiratoria (consultorio)' },
-    { clave: 'PRECIO_POLIGRAFIA_DOMICILIO', t: 'Poligrafía a domicilio' },
-    { clave: 'PRECIO_DEJAR_FUMAR', t: 'Dejar de fumar (valoración)' },
-    { clave: 'PRECIO_TITULACION', t: 'Titulación CPAP/BiPAP' }
-  ];
-  var VACUNAS = [
-    { clave: 'PRECIO_VACUNA_INFLUENZA', t: 'Influenza tetravalente (actualizada)' },
-    { clave: 'PRECIO_VACUNA_PREVENAR20', t: 'Neumococo (Prevenar 20)' },
-    { clave: 'PRECIO_VACUNA_SHINGRIX', t: 'Herpes zóster (Shingrix)' },
-    { clave: 'PRECIO_VACUNA_ABRYSVO', t: 'Virus sincicial respiratorio (Abrysvo)' },
-    { clave: 'PRECIO_VACUNA_COMIRNATY', t: 'COVID-19 (Comirnaty)' },
-    { clave: 'PRECIO_VACUNA_TDAP', t: 'Tdap (tétanos, difteria, tos ferina)' },
-    { clave: 'VACUNAS_URL', t: 'Página de vacunas (link que envía el bot)' }
-  ];
-  var TEXTOS = [
-    { clave: 'HORARIO_TEXTO', t: 'Horario de atención', area: true },
-    { clave: 'ESTACIONAMIENTO_TEXTO', t: 'Respuesta de estacionamiento', area: true },
-    { clave: 'PAGO_TEXTO', t: 'Formas de pago (vacío = se canaliza con usted)', area: true },
-    { clave: 'DIRECCION_CORTA', t: 'Dirección corta del consultorio', area: true }
-  ];
-  var CADENCIA = [
-    { clave: 'HORA_CONFIRMACION', t: 'Hora del mensaje de confirmación', peq: 'la mañana del día anterior (ej. 9)' },
-    { clave: 'RECONFIRMA_HORAS', t: 'Horas antes de re-preguntar', peq: 'si no contestó la confirmación (0 = apagado)' },
-    { clave: 'POSTCITA_HORAS', t: 'Horas después de la cita para el post-consulta', peq: 'entre 4 y 47' },
-    { clave: 'CORTESIA_INICIO', t: 'Inicio del horario de cortesía', peq: 'antes de esta hora no salen mensajes (HH:MM)' },
-    { clave: 'CORTESIA_FIN', t: 'Fin del horario de cortesía', peq: 'después de esta hora no salen mensajes (HH:MM)' },
-    { clave: 'ADELANTO_MIN_HORAS', t: 'Lista de espera: anticipación mínima', peq: 'horas mínimas al hueco para ofrecerlo (ej. 2)' },
-    { clave: 'ADELANTO_MEJORA_MIN', t: 'Lista de espera: mejora mínima', peq: 'minutos que debe adelantar para valer la pena (ej. 60)' },
-    { clave: 'ADELANTO_DIAS', t: 'Lista de espera: días a futuro', peq: 'huecos de hoy a N días se procesan (ej. 7)' }
-  ];
-  var ETIQUETAS_UI = [
-    { id: 'EPOC', t: 'EPOC' }, { id: 'ASMA', t: 'Asma' }, { id: 'EPID', t: 'EPID' },
-    { id: 'CRONICO', t: 'Crónico' }, { id: 'MAYOR55', t: '>55 años' }
-  ];
+  var estado = {
+    datos: null, cargando: false, vista: 'inicio', ventana: 'd7',
+    editando: false, layout: null, guardando: {},
+    clave: '' // copia en memoria: el panel sigue vivo si localStorage está bloqueado
+  };
 
-  function claveGuardada() { try { return localStorage.getItem(LS) || ''; } catch (e) { return ''; } }
-  function guardaClave(v) { try { localStorage.setItem(LS, v); } catch (e) {} }
-  function borraClave() { try { localStorage.removeItem(LS); } catch (e) {} }
+  /* Layout por defecto (personalizable por el Dr.) */
+  var LAYOUT_DEF = {
+    orden: ['agenda', 'metricas', 'acciones'],
+    ocultos: {},
+    tiles: ['reservas', 'conversion', 'confirmadas', 'abandonos'],
+    ventana: 'd7'
+  };
+
+  /* ================== Íconos (SVG en línea, estilo SF) ================== */
+  var PATHS = {
+    inicio: 'M3 10.6 12 3l9 7.6M5.5 9v10.5a1 1 0 0 0 1 1H17.5a1 1 0 0 0 1-1V9',
+    ajustes: 'M6 5v5M6 14v5M12 5v2M12 11v8M18 5v8M18 17v2',
+    resultados: 'M4 20h16M7.5 20v-6M12 20V7M16.5 20v-9',
+    atras: 'M14.5 5 8 12l6.5 7',
+    chevron: 'M9 5.5 15.5 12 9 18.5',
+    refrescar: 'M20.5 12a8.5 8.5 0 1 1-2.4-5.9M20.5 4.2v3.5H17',
+    salir: 'M15 12H4.5M11 7.5 6.5 12l4.5 4.5M14 4h5.5v16H14',
+    editar: 'M4 20h4L18.5 9.5l-4-4L4 16zM13 7l4 4',
+    mas: 'M12 5.5v13M5.5 12h13',
+    menos: 'M5.5 12h13',
+    check: 'M5 12.5 10 17.5 19 6.5',
+    escudo: 'M12 3 5 6v6c0 4.4 3 7.4 7 9 4-1.6 7-4.6 7-9V6l-7-3Z',
+    alerta: 'M12 4 2.5 20.5h19zM12 10v5M12 18.5v.2',
+    agarre: 'M9 6h.01M15 6h.01M9 12h.01M15 12h.01M9 18h.01M15 18h.01',
+    ojo: 'M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12ZM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z',
+    ojoOff: 'M4 4l16 16M9.5 9.6A3 3 0 0 0 14.4 14.4M6.7 6.8C3.9 8.4 2.5 12 2.5 12s3.5 6.5 9.5 6.5c1.6 0 3-.4 4.2-1M17.3 17.2C20.1 15.6 21.5 12 21.5 12s-3.5-6.5-9.5-6.5c-.7 0-1.4.1-2 .3',
+    campana: 'M18 9a6 6 0 1 0-12 0c0 6-2.5 7.5-2.5 7.5h17S18 15 18 9ZM10 20.5a2 2 0 0 0 4 0',
+    mensaje: 'M20 4H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h3v3l4-3h9a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1Z',
+    link: 'M9.5 14.5 14.5 9.5M8 12l-2 2a3.5 3.5 0 0 0 5 5l2-2M16 12l2-2a3.5 3.5 0 0 0-5-5l-2 2',
+    visor: 'M20 4H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h3v3l4-3h9a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1ZM7.5 9h9M7.5 12.5h6',
+    reloj: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18ZM12 7.5V12l3 2'
+  };
+  function ico(nombre, tam) {
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24'); svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor'); svg.setAttribute('stroke-width', '1.9');
+    svg.setAttribute('stroke-linecap', 'round'); svg.setAttribute('stroke-linejoin', 'round');
+    if (tam) { svg.style.width = tam + 'px'; svg.style.height = tam + 'px'; }
+    if (nombre === 'mas-dots') {
+      [6, 12, 18].forEach(function (cx) {
+        var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        c.setAttribute('cx', cx); c.setAttribute('cy', 12); c.setAttribute('r', 1.6);
+        c.setAttribute('fill', 'currentColor'); c.setAttribute('stroke', 'none'); svg.appendChild(c);
+      });
+      return svg;
+    }
+    var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    p.setAttribute('d', PATHS[nombre] || '');
+    svg.appendChild(p);
+    return svg;
+  }
+
+  /* ================== Helpers DOM ================== */
   function nodo(tag, clase, texto) {
     var el = document.createElement(tag);
     if (clase) el.className = clase;
-    if (texto !== undefined) el.textContent = texto; // SIEMPRE textContent
+    if (texto !== undefined && texto !== null) el.textContent = texto; // SIEMPRE textContent
     return el;
   }
-  var avisoTimer = null;
-  function avisa(txt) {
-    var a = $('aviso');
-    a.textContent = txt;
-    a.classList.add('visible');
-    clearTimeout(avisoTimer);
-    avisoTimer = setTimeout(function () { a.classList.remove('visible'); }, 2600);
+  function conIco(el, nombre) { el.appendChild(ico(nombre)); return el; }
+
+  /* ================== Catálogo (metadatos de respaldo del frontend) ==================
+     El servidor manda tipo/grupo (y, cuando se enriquezca, etiqueta/ayuda/advertencias).
+     Aquí van etiquetas legibles de respaldo para las claves de hoy; una clave que el
+     servidor whiteliste y aquí no exista se humaniza sola. */
+  var GRUPOS_DEF = {
+    interruptores: { titulo: 'Lo que hace el bot', glifo: '🎛️', color: 'var(--verde)', sub: 'Cambios inmediatos: el bot los aplica desde el siguiente mensaje.', orden: 1 },
+    precios: { titulo: 'Precios de servicios', glifo: '💰', color: 'var(--azul)', sub: 'Se citan al preguntar precio y en las promociones. Si lo deja vacío, el bot dice "precio por confirmar".', orden: 2 },
+    vacunas: { titulo: 'Vacunas', glifo: '💉', color: 'var(--rosa)', sub: 'Precios que el bot cita. Si lo deja vacío, dice "por confirmar" (no lo inventa).', orden: 3 },
+    textos: { titulo: 'Textos que responde', glifo: '💬', color: 'var(--naranja)', sub: 'Lo que el bot contesta tal cual. Si lo deja vacío, esa pregunta se canaliza con usted.', orden: 4 },
+    cadencia: { titulo: 'Cuándo escribe', glifo: '⏰', color: 'var(--indigo)', sub: 'A qué hora salen los mensajes automáticos.', orden: 5 }
+  };
+  var CAMPOS_DEF = {
+    // interruptores
+    CITAS_POR_BOT: { etiqueta: 'Agendar citas', ayuda: 'El asistente reserva citas él solo.', advApagar: 'Los pacientes ya no podrán agendar por WhatsApp; solo recibirán el enlace de agenda.' },
+    SEGUIMIENTO_POST_CITA: { etiqueta: 'Mensaje después de la cita', ayuda: 'Un "¿cómo se ha sentido?" 24–48 h después, con oferta de vacunas.' },
+    SEGUNDO_RECORDATORIO: { etiqueta: 'Recordatorio el día de la cita', ayuda: 'Un recordatorio extra unas 4 h antes.' },
+    LISTA_ESPERA: { etiqueta: 'Adelantar citas (lista de espera)', ayuda: 'Si se libera un hueco, se lo ofrece al último paciente del día para compactar su agenda.' },
+    CORREOS_SOLO_CRITICOS: { etiqueta: 'Correos solo para lo importante', ayuda: 'Los avisos del día llegan por WhatsApp; el correo queda para alertas y el resumen de la mañana.' },
+    ANOTA_PRECIO_CALENDARIO: { etiqueta: 'Anotar el precio en el calendario', ayuda: 'Escribe el precio en la descripción de sus eventos (solo usted).' },
+    COLOREAR_CALENDARIO: { etiqueta: 'Semáforo en el calendario', ayuda: 'Bolita amarilla/verde/roja en el título del evento según el estado.' },
+    DIGEST_WHATSAPP: { etiqueta: 'Resumen de la mañana por WhatsApp', ayuda: 'Además del correo, el resumen de las 6 am por WhatsApp.' },
+    AVISA_CANCELACION_PACIENTE: { etiqueta: 'Avisar al paciente si cancela', ayuda: 'Si borra una cita del calendario, el bot le avisa e invita a reagendar.' },
+    PROPAGA_CANCELACION_CALCOM: { etiqueta: 'Cancelar también en la agenda en línea', ayuda: 'Al borrar del calendario, cancela también la reserva en línea (evita huecos fantasma).' },
+    MODO_PRUEBA: { etiqueta: 'Modo prueba', ayuda: 'Encendido, el bot solo contesta a su número de prueba; los pacientes quedan sin respuesta.', peligro: true, advEncender: 'Con Modo prueba encendido el bot DEJA de responder a los pacientes reales.' },
+    // precios
+    PRECIO_CONSULTA_WILLIAM: { etiqueta: 'Consulta (primera vez, sin promoción)' },
+    PRECIO_CONSULTA_PROMO_WILLIAM: { etiqueta: 'Consulta con promoción (primera vez)' },
+    PRECIO_CONSULTA_SUBSECUENTE_WILLIAM: { etiqueta: 'Consulta subsecuente' },
+    PRECIO_ESPIROMETRIA: { etiqueta: 'Espirometría (incluye broncodilatador)' },
+    PRECIO_FENO: { etiqueta: 'Óxido nítrico exhalado (FeNO)' },
+    PRECIO_POLIGRAFIA: { etiqueta: 'Poligrafía respiratoria (consultorio)' },
+    PRECIO_POLIGRAFIA_DOMICILIO: { etiqueta: 'Poligrafía a domicilio' },
+    PRECIO_DEJAR_FUMAR: { etiqueta: 'Dejar de fumar (valoración)' },
+    PRECIO_TITULACION: { etiqueta: 'Titulación CPAP/BiPAP' },
+    // vacunas
+    PRECIO_VACUNA_INFLUENZA: { etiqueta: 'Influenza (tetravalente actualizada)' },
+    PRECIO_VACUNA_PREVENAR20: { etiqueta: 'Neumococo (Prevenar 20)' },
+    PRECIO_VACUNA_SHINGRIX: { etiqueta: 'Herpes zóster (Shingrix)' },
+    PRECIO_VACUNA_ABRYSVO: { etiqueta: 'Virus sincicial (Abrysvo)' },
+    PRECIO_VACUNA_COMIRNATY: { etiqueta: 'COVID-19 (Comirnaty)' },
+    PRECIO_VACUNA_TDAP: { etiqueta: 'Tdap (tétanos, difteria, tos ferina)' },
+    VACUNAS_URL: { etiqueta: 'Página de vacunas', ayuda: 'El link que el bot envía a quien pregunta por vacunas.' },
+    // textos
+    HORARIO_TEXTO: { etiqueta: 'Horario de atención' },
+    ESTACIONAMIENTO_TEXTO: { etiqueta: 'Estacionamiento' },
+    PAGO_TEXTO: { etiqueta: 'Formas de pago', peq: 'Si lo deja vacío, se canaliza con usted' },
+    DIRECCION_CORTA: { etiqueta: 'Dirección corta del consultorio' },
+    // cadencia
+    HORA_CONFIRMACION: { etiqueta: 'Hora del mensaje de confirmación', peq: 'la mañana del día anterior', unidad: 'reloj', min: 6, max: 14, paso: 1 },
+    RECONFIRMA_HORAS: { etiqueta: 'Volver a preguntar después de', peq: 'si no contestó (ponga 0 para no repreguntar)', unidad: 'h', min: 0, max: 24, paso: 1 },
+    POSTCITA_HORAS: { etiqueta: 'Mensaje después de la cita, a las', peq: 'horas después de terminar', unidad: 'h', min: 4, max: 47, paso: 1 },
+    CORTESIA_INICIO: { etiqueta: 'No escribir antes de' },
+    CORTESIA_FIN: { etiqueta: 'No escribir después de' },
+    ADELANTO_MIN_HORAS: { etiqueta: 'Adelantos: anticipación mínima', peq: 'horas mínimas al hueco', unidad: 'h', min: 1, max: 24, paso: 1 },
+    ADELANTO_MEJORA_MIN: { etiqueta: 'Adelantos: mejora mínima', peq: 'minutos que debe adelantar', unidad: 'min', min: 15, max: 300, paso: 15 },
+    ADELANTO_DIAS: { etiqueta: 'Adelantos: días a futuro', peq: 'de hoy a N días', unidad: 'd', min: 1, max: 14, paso: 1 }
+  };
+  var CLAVES_OCULTAS = { PANEL_LAYOUT: true }; // internas: nunca se muestran como campo editable
+
+  function humaniza(clave) {
+    var s = String(clave).toLowerCase().replace(/_/g, ' ')
+      .replace(/\bprecio\b/, 'precio').replace(/\bwilliam\b/g, '').replace(/\burl\b/g, '(link)').trim();
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+  /* Une metadatos del servidor con los de respaldo. Devuelve def normalizada por clave. */
+  function defDe(clave) {
+    var srv = (estado.datos && estado.datos.editables && estado.datos.editables[clave]) || {};
+    var loc = CAMPOS_DEF[clave] || {};
+    var def = {
+      clave: clave,
+      tipo: srv.tipo || loc.tipo || 'texto',
+      grupo: srv.grupo || loc.grupo || 'otros',
+      etiqueta: srv.etiqueta || loc.etiqueta || humaniza(clave),
+      ayuda: srv.ayuda || loc.ayuda || '',
+      peq: srv.peq || loc.peq || '',
+      unidad: srv.unidad || loc.unidad || '',
+      min: srv.min !== undefined ? srv.min : loc.min,
+      max: srv.max !== undefined ? srv.max : loc.max,
+      paso: srv.paso !== undefined ? srv.paso : (loc.paso || 1),
+      peligro: srv.peligro !== undefined ? srv.peligro : loc.peligro,
+      advEncender: srv.advEncender || loc.advEncender || '',
+      advApagar: srv.advApagar || loc.advApagar || ''
+    };
+    return def;
+  }
+  /* Lista de grupos (con metadatos) en orden, según el servidor o el respaldo. */
+  function gruposOrdenados() {
+    var srvG = (estado.datos && estado.datos.grupos) || null;
+    var mapa = {};
+    Object.keys(GRUPOS_DEF).forEach(function (id) { mapa[id] = Object.assign({ id: id }, GRUPOS_DEF[id]); });
+    if (srvG && typeof srvG === 'object') {
+      Object.keys(srvG).forEach(function (id) {
+        mapa[id] = Object.assign({ id: id }, mapa[id] || {}, srvG[id]);
+      });
+    }
+    // asegurar que cada grupo con claves aparezca
+    clavesEditables().forEach(function (k) {
+      var g = defDe(k).grupo;
+      if (!mapa[g]) mapa[g] = { id: g, titulo: humaniza(g), glifo: '⚙️', color: 'var(--ink-3)', sub: '', orden: 99 };
+    });
+    return Object.keys(mapa).map(function (id) { return mapa[id]; })
+      .filter(function (g) { return clavesDeGrupo(g.id).length; })
+      .sort(function (a, b) { return (a.orden || 50) - (b.orden || 50); });
+  }
+  function clavesEditables() {
+    var ed = (estado.datos && estado.datos.editables) || {};
+    var claves = Object.keys(ed).length ? Object.keys(ed) : Object.keys(CAMPOS_DEF);
+    return claves.filter(function (k) { return !CLAVES_OCULTAS[k] && defDe(k).grupo !== 'interno'; });
+  }
+  function clavesDeGrupo(gid) {
+    return clavesEditables().filter(function (k) { return defDe(k).grupo === gid; });
   }
 
-  /* ---------- red ---------- */
-  function api(params) {
+  /* ================== Red ================== */
+  function pedir(params) {
+    // Semilla de prueba: en producción window.__panelMock es undefined -> fetch real.
+    // El executor de Promise convierte un throw síncrono en rechazo (lo maneja .catch).
+    if (window.__panelMock) { return new Promise(function (res) { res(window.__panelMock(params || {})); }); }
     var url = API + '?panel=1&key=' + encodeURIComponent(claveGuardada());
-    Object.keys(params || {}).forEach(function (k) {
-      url += '&' + k + '=' + encodeURIComponent(params[k]);
+    Object.keys(params || {}).forEach(function (k) { url += '&' + k + '=' + encodeURIComponent(params[k]); });
+    var ctrl = null, t = null;
+    var carrera = new Promise(function (_res, rej) {
+      t = setTimeout(function () { if (ctrl) { try { ctrl.abort(); } catch (e) {} } rej(new Error('tardo')); }, 15000);
     });
-    return fetch(url).then(function (r) { return r.json(); });
+    try { ctrl = new AbortController(); } catch (e) { ctrl = null; }
+    var f = fetch(url, ctrl ? { signal: ctrl.signal } : {}).then(function (r) { return r.json(); });
+    return Promise.race([f, carrera]).then(function (j) { clearTimeout(t); return j; },
+      function (err) { clearTimeout(t); throw err; });
   }
+  function claveGuardada() {
+    try { var v = localStorage.getItem(LS_CLAVE); if (v) return v; } catch (e) {}
+    return estado.clave || ''; // respaldo en memoria si localStorage está bloqueado
+  }
+  function guardaClave(v) { estado.clave = v; try { localStorage.setItem(LS_CLAVE, v); } catch (e) {} }
+  function borraClave() { estado.clave = ''; try { localStorage.removeItem(LS_CLAVE); } catch (e) {} }
+
+  /* ================== Toast + Action sheet ================== */
+  var avisoTimer = null;
+  function avisa(txt, accion) {
+    var a = $('aviso'), b = a.querySelector('.accion-toast');
+    a.querySelector('.msg').textContent = txt;
+    if (accion && accion.etiqueta) {
+      b.hidden = false; b.textContent = accion.etiqueta;
+      b.onclick = function () { ocultaAviso(); accion.fn(); };
+    } else { b.hidden = true; b.onclick = null; }
+    a.classList.add('visible');
+    clearTimeout(avisoTimer);
+    avisoTimer = setTimeout(ocultaAviso, accion ? 5200 : 2600);
+  }
+  function ocultaAviso() {
+    var a = $('aviso');
+    a.classList.remove('visible');
+    var b = a.querySelector('.accion-toast'); // sácalo del orden de foco al ocultarse
+    if (b) { b.hidden = true; b.onclick = null; }
+  }
+
+  function accionSheet(opts) {
+    // opts: {titulo, mensaje, opciones:[{texto, peligro, fn}]}
+    return new Promise(function (resolve) {
+      var hoja = $('hoja'), fondo = $('hoja-fondo');
+      hoja.textContent = '';
+      var panel = nodo('div', 'panel');
+      if (opts.titulo || opts.mensaje) {
+        var cab = nodo('div', 'cab');
+        if (opts.titulo) cab.appendChild(nodo('div', 'ti', opts.titulo));
+        if (opts.mensaje) cab.appendChild(nodo('div', 'ms', opts.mensaje));
+        panel.appendChild(cab);
+      }
+      (opts.opciones || []).forEach(function (o) {
+        var btn = nodo('button', 'opt' + (o.peligro ? ' peligro' : ''), o.texto);
+        btn.type = 'button';
+        btn.addEventListener('click', function () { cierra(); if (o.fn) o.fn(); resolve(true); });
+        panel.appendChild(btn);
+      });
+      hoja.appendChild(panel);
+      var cancel = nodo('button', 'cancelar', 'Cancelar');
+      cancel.type = 'button';
+      cancel.addEventListener('click', function () { cierra(); resolve(false); });
+      hoja.appendChild(cancel);
+      var disparador = document.activeElement;
+      function alTeclado(e) { if (e.key === 'Escape') { e.preventDefault(); cierra(); resolve(false); } }
+      function cierra() {
+        hoja.classList.remove('visible'); fondo.classList.remove('visible');
+        fondo.onclick = null;
+        document.removeEventListener('keydown', alTeclado, true);
+        try { $('app').inert = false; } catch (e) {}
+        try { if (disparador && disparador.focus) disparador.focus(); } catch (e) {}
+      }
+      fondo.onclick = function () { cierra(); resolve(false); };
+      try { $('app').inert = true; } catch (e) {} // atrapa el foco/tab fuera de la hoja
+      document.addEventListener('keydown', alTeclado, true);
+      fondo.classList.add('visible');
+      requestAnimationFrame(function () { hoja.classList.add('visible'); try { cancel.focus(); } catch (e) {} });
+    });
+  }
+
+  /* ================== Carga ================== */
   function carga(claveDirecta) {
     var clave = claveDirecta || claveGuardada();
     if (!clave) { muestraPuerta(false); return; }
@@ -308,313 +660,825 @@
     if (estado.cargando) return;
     estado.cargando = true;
     $('btnRefrescar').classList.add('girando');
-    $('estado').textContent = 'actualizando…';
-    api({})
-      .then(function (d) {
-        if (!d.ok) {
-          if (d.error === 'no autorizado') { borraClave(); muestraPuerta(true); return; }
-          throw new Error(d.error || 'respuesta inválida');
-        }
-        estado.datos = d;
-        $('puerta').hidden = true;
-        $('app').hidden = false;
-        pinta();
-      })
-      .catch(function () {
-        if ($('app').hidden) {
-          $('fallo').textContent = 'Sin conexión, intente de nuevo.';
-          $('fallo').style.display = 'block';
-          puertaCargando(false);
-        } else {
-          $('estado').textContent = 'sin conexión — toque actualizar';
-        }
-      })
-      .then(function () {
-        estado.cargando = false;
-        $('btnRefrescar').classList.remove('girando');
-      });
+    if (!$('app').hidden && estado.datos) setBarra();
+    pedir({}).then(function (d) {
+      if (!d || !d.ok) {
+        if (d && d.error === 'no autorizado') { borraClave(); muestraPuerta(true); return; }
+        throw new Error((d && d.error) || 'respuesta inválida');
+      }
+      estado.datos = d;
+      if (estado.layout === null) cargaLayout(d);
+      if (estado.ventana === 'd7' && estado.layout && estado.layout.ventana) estado.ventana = estado.layout.ventana;
+      $('puerta').hidden = true; $('app').hidden = false;
+      pinta();
+    }).catch(function () {
+      if ($('app').hidden) {
+        $('fallo').textContent = 'No hay conexión. Intente de nuevo.';
+        $('fallo').style.display = 'block';
+        puertaCargando(false);
+      } else {
+        avisa('No hay conexión. Toque actualizar para reintentar.');
+        if (!estado.datos) { pinta(); }
+      }
+    }).then(function () {
+      estado.cargando = false; $('btnRefrescar').classList.remove('girando');
+      setBarra();
+    });
   }
-  function puertaCargando(cargando) {
-    $('clave').hidden = cargando;
-    $('btnEntrar').hidden = cargando;
-    $('puertaTexto').textContent = cargando
-      ? 'Cargando su panel…'
+  function puertaCargando(c) {
+    $('clave').hidden = c; $('btnEntrar').hidden = c;
+    $('puertaTexto').textContent = c ? 'Abriendo su panel…'
       : 'Acceso exclusivo del Dr. William Lara. Ingrese su clave (la misma del visor de chats).';
   }
   function muestraPuerta(conError) {
-    estado.datos = null;
-    $('contenido').textContent = '';
-    puertaCargando(false);
-    $('puerta').hidden = false;
-    $('app').hidden = true;
-    $('fallo').textContent = 'Clave incorrecta.';
-    $('fallo').style.display = conError ? 'block' : 'none';
+    estado.datos = null; estado.editando = false; $('vista').textContent = '';
+    puertaCargando(false); $('puerta').hidden = false; $('app').hidden = true;
+    $('fallo').textContent = 'Clave incorrecta.'; $('fallo').style.display = conError ? 'block' : 'none';
   }
 
-  /* Guardado de una clave de Config; el servidor valida contra su lista blanca. */
-  function guardaConfig(clave, valor, alTerminar) {
-    api({ set: clave, valor: valor })
-      .then(function (r) {
-        if (!r.ok) throw new Error(r.error || 'no se guardó');
-        estado.datos.config[clave] = r.valor;
-        avisa('Guardado ✓ El bot ya usa el valor nuevo.');
-        if (alTerminar) alTerminar(true);
-      })
-      .catch(function (err) {
-        avisa('No se guardó: ' + ((err && err.message) || 'sin conexión'));
-        if (alTerminar) alTerminar(false);
-      });
-  }
-
-  /* ---------- render ---------- */
-  function pinta() {
-    var d = estado.datos;
-    $('estado').textContent = 'actualizado ' + String(d.generado || '').slice(11, 16) +
-      ' · versión ' + (d.version_head || '');
-    var c = $('contenido');
-    c.textContent = '';
-    c.appendChild(tarjetaSalud(d));
-    c.appendChild(tarjetaEmbudo(d));
-    c.appendChild(tarjetaInterruptores(d));
-    c.appendChild(tarjetaCampos(d, '💉 Vacunación', 'Precios que el bot cita a los pacientes. Vacío = "precio por confirmar" (no lo inventa).', VACUNAS));
-    c.appendChild(tarjetaCampos(d, '💰 Precios de servicios', 'Se citan al preguntar precio y en las promociones.', PRECIOS));
-    c.appendChild(tarjetaCampos(d, '📝 Textos de respuesta', 'Lo que el bot contesta tal cual. Vacío = esa pregunta se canaliza con usted.', TEXTOS));
-    c.appendChild(tarjetaCampos(d, '⏰ Cadencia de mensajes', 'Cuándo salen los mensajes automáticos.', CADENCIA));
-    c.appendChild(tarjetaPlantillas(d));
-    c.appendChild(tarjetaCampanas(d));
-    c.appendChild(tarjetaHerramientas(d));
-  }
-
-  function tarjeta(titulo, sub) {
-    var t = nodo('section', 'tarjeta');
-    t.appendChild(nodo('h2', '', titulo));
-    if (sub) t.appendChild(nodo('div', 'sub', sub));
-    return t;
-  }
-
-  function tarjetaSalud(d) {
-    var t = tarjeta('🩺 Salud del bot', 'Verificación en vivo de las piezas que atienden a sus pacientes.');
-    var s = d.salud || { deployments: [], worker_ok: false };
-    (s.deployments || []).forEach(function (dep, i) {
-      var f = nodo('div', 'salud-fila');
-      f.appendChild(nodo('span', 'punto ' + (dep.al_dia ? 'ok' : 'mal')));
-      f.appendChild(nodo('span', '', 'Servidor ' + (i + 1)));
-      f.appendChild(nodo('span', 'det', dep.v ? ('versión ' + dep.v + (dep.al_dia ? ' · al día' : ' · DESACTUALIZADO')) : 'sin respuesta'));
-      t.appendChild(f);
-    });
-    var fw = nodo('div', 'salud-fila');
-    fw.appendChild(nodo('span', 'punto ' + (s.worker_ok ? 'ok' : 'mal')));
-    fw.appendChild(nodo('span', '', 'Recepción de mensajes (Cloudflare)'));
-    fw.appendChild(nodo('span', 'det', s.worker_ok ? 'operando' : 'revisar'));
-    t.appendChild(fw);
-    var acc = nodo('div', '');
-    acc.style.marginTop = '10px';
-    var btn = nodo('button', 'btn fantasma', '📲 Enviarme un mensaje de prueba');
-    btn.type = 'button';
-    btn.addEventListener('click', function () {
-      btn.disabled = true;
-      api({ probar: '1' })
-        .then(function (r) {
-          avisa(r.ok ? 'Enviado: revise su WhatsApp personal.' : ('No salió: ' + (r.error || '')));
-        })
-        .catch(function () { avisa('Sin conexión.'); })
-        .then(function () { btn.disabled = false; });
-    });
-    acc.appendChild(btn);
-    t.appendChild(acc);
-    return t;
-  }
-
-  function tarjetaEmbudo(d) {
-    var t = tarjeta('📈 Resultados', 'Su embudo: conversaciones → citas. La ventana de 30 días es lo que guarda la bitácora.');
-    var m = (d.metricas || {});
-    var tabs = nodo('div', 'tabs');
-    [['d7', '7 días'], ['d30', '30 días']].forEach(function (par) {
-      var b = nodo('button', estado.ventana === par[0] ? 'activo' : '', par[1]);
-      b.type = 'button';
-      b.addEventListener('click', function () { estado.ventana = par[0]; pinta(); });
-      tabs.appendChild(b);
-    });
-    t.appendChild(tabs);
-    var v = m[estado.ventana] || {};
-    var conv = (v.flujos > 0) ? Math.round(100 * (v.reservas || 0) / v.flujos) + '%' : '—';
-    var tiles = nodo('div', 'tiles');
-    [
-      ['Conversaciones', v.conversaciones, 'pacientes distintos que escribieron'],
-      ['Flujos de cita', v.flujos, 'empezaron a agendar con el bot'],
-      ['Reservas por bot', v.reservas, 'citas agendadas solas', true],
-      ['Conversión', conv, 'flujos que terminaron en reserva'],
-      ['Citas confirmadas', v.confirmadas, 'con fecha en la ventana'],
-      ['Reseñas invitadas', v.resenas, 'invitaciones de Google enviadas'],
-      ['Post-consultas', v.postcitas, 'mensajes de seguimiento'],
-      ['Leads rescatables', v.abandonos, 'avisos de flujo abandonado']
-    ].forEach(function (def) {
-      var tile = nodo('div', 'tile' + (def[3] ? ' destacado' : ''));
-      tile.appendChild(nodo('div', 'v', String(def[1] === undefined ? '—' : def[1])));
-      tile.appendChild(nodo('div', 'e', def[0] + ' · ' + def[2]));
-      tiles.appendChild(tile);
-    });
-    t.appendChild(tiles);
-    t.appendChild(nodo('div', 'nota', 'Hoy: ' + (m.citas_hoy === undefined ? '—' : m.citas_hoy) +
-      ' citas · Próximas (todas): ' + (m.proximas === undefined ? '—' : m.proximas)));
-    return t;
-  }
-
-  function tarjetaInterruptores(d) {
-    var t = tarjeta('🎛️ Interruptores', 'Cambios inmediatos: el bot los usa desde el siguiente mensaje.');
-    INTERRUPTORES.forEach(function (def) {
-      var on = String(d.config[def.clave] || '').toUpperCase() === 'TRUE';
-      var f = nodo('div', 'sw-fila');
-      var txts = nodo('div', 'txts');
-      txts.appendChild(nodo('div', 't', def.t));
-      txts.appendChild(nodo('div', 'd', def.d));
-      f.appendChild(txts);
-      var sw = nodo('button', 'sw' + (on ? ' on' : '') + (def.peligro ? ' peligro' : ''));
-      sw.type = 'button';
-      sw.setAttribute('role', 'switch');
-      sw.setAttribute('aria-checked', on ? 'true' : 'false');
-      sw.setAttribute('aria-label', def.t);
-      sw.addEventListener('click', function () {
-        var nuevo = !on;
-        var advertencia = nuevo ? def.peligroEncender : def.peligroApagar;
-        if (advertencia && !window.confirm(advertencia)) return;
-        sw.disabled = true;
-        guardaConfig(def.clave, nuevo ? 'TRUE' : 'FALSE', function (okG) {
-          sw.disabled = false;
-          if (okG) pinta();
-        });
-      });
-      f.appendChild(sw);
-      t.appendChild(f);
-    });
-    return t;
-  }
-
-  function tarjetaCampos(d, titulo, sub, defs) {
-    var t = tarjeta(titulo, sub);
-    defs.forEach(function (def) {
-      var actual = String(d.config[def.clave] === undefined ? '' : d.config[def.clave]);
-      var f = nodo('div', 'campo');
-      var lab = nodo('label', '', def.t);
-      if (def.peq) lab.appendChild(nodo('span', 'peq', def.peq));
-      f.appendChild(lab);
-      var inp = document.createElement(def.area ? 'textarea' : 'input');
-      if (!def.area) inp.type = 'text';
-      inp.value = actual;
-      inp.placeholder = 'por confirmar';
-      var btn = nodo('button', 'guardar', 'Guardar');
-      btn.type = 'button';
-      inp.addEventListener('input', function () {
-        btn.classList.toggle('cambiado', inp.value !== actual);
-        btn.textContent = inp.value !== actual ? 'Guardar' : 'Guardado';
-      });
-      btn.textContent = 'Guardado';
-      btn.addEventListener('click', function () {
-        if (inp.value === actual) return;
-        btn.disabled = true;
-        guardaConfig(def.clave, inp.value, function (okG) {
-          btn.disabled = false;
-          if (okG) {
-            actual = String(estado.datos.config[def.clave]);
-            inp.value = actual;
-            btn.classList.remove('cambiado');
-            btn.textContent = 'Guardado';
-          }
-        });
-      });
-      if (def.area) { f.appendChild(btn); f.appendChild(inp); }
-      else { f.appendChild(inp); f.appendChild(btn); }
-      t.appendChild(f);
-    });
-    return t;
-  }
-
-  function tarjetaPlantillas(d) {
-    var t = tarjeta('📨 Plantillas de Meta', 'Los mensajes que salen fuera de la ventana de 24 h usan estas plantillas. La categoría define el costo por envío.');
-    var p = d.plantillas || { items: [], estado: 'error' };
-    if (p.estado !== 'ok') {
-      t.appendChild(nodo('div', 'nota', 'No se pudo consultar Meta en este momento; toque actualizar.'));
-      return t;
-    }
-    p.items.forEach(function (pl) {
-      var f = nodo('div', 'plantilla');
-      f.appendChild(nodo('span', 'nom', pl.nombre + ' · ' + pl.idioma));
-      var est = String(pl.estatus || '').toUpperCase();
-      var claseEst = est === 'APPROVED' ? 'aprobada' : (est === 'PENDING' || est === 'IN_APPEAL' ? 'pendiente' : 'rechazada');
-      f.appendChild(nodo('span', 'chip ' + claseEst,
-        est === 'APPROVED' ? 'aprobada' : (est === 'PENDING' ? 'en revisión' : est.toLowerCase())));
-      var cat = String(pl.categoria || '').toUpperCase();
-      if (cat) {
-        f.appendChild(nodo('span', 'chip' + (cat === 'MARKETING' ? ' marketing' : ''),
-          cat === 'MARKETING' ? 'marketing · ~$0.55/envío' : cat.toLowerCase() + ' · ~$0.15/envío'));
+  /* ================== Guardado de Config ================== */
+  function guardaConfig(clave, valor, opts) {
+    opts = opts || {};
+    if (estado.guardando[clave]) return; // evita doble guardado
+    estado.guardando[clave] = true;
+    if (opts.antes) opts.antes();
+    pedir({ set: clave, valor: valor }).then(function (r) {
+      estado.guardando[clave] = false;
+      if (!r || !r.ok) throw new Error((r && r.error) || 'no se guardó');
+      if (!estado.datos.config) estado.datos.config = {};
+      estado.datos.config[clave] = r.valor;
+      if (opts.ok) opts.ok(r.valor);
+      if (!opts.silencioso) {
+        if (opts.prev !== undefined && opts.prev !== r.valor) {
+          avisa('Guardado. El bot ya usa el valor nuevo.', {
+            etiqueta: 'Deshacer',
+            fn: function () { guardaConfig(clave, opts.prev, { ok: opts.ok, silencioso: false, restaurar: true }); }
+          });
+        } else {
+          avisa(opts.restaurar ? 'Valor anterior restaurado.' : 'Guardado. El bot ya usa el valor nuevo.');
+        }
       }
-      t.appendChild(f);
+    }).catch(function (err) {
+      estado.guardando[clave] = false;
+      if (opts.err) opts.err();
+      var m = (err && err.message === 'tardo') ? 'La conexión tardó demasiado. Intente de nuevo.'
+        : (err && err.message) ? err.message : 'No hay conexión.';
+      avisa('No se guardó: ' + m);
     });
-    t.appendChild(nodo('div', 'nota', 'Si Meta recategoriza una plantilla a "marketing", todo sigue funcionando — solo sube el costo de ese envío (pesos, no funcionalidad). Los precios son aproximados en MXN.'));
-    return t;
   }
 
-  function tarjetaCampanas(d) {
-    var t = tarjeta('🎯 Campañas', 'Pacientes etiquetados desde la ficha del visor. Alimentan la reactivación de crónicos y la campaña de vacunación (octubre 2026).');
+  /* ================== Layout (personalización) ================== */
+  function cargaLayout(d) {
+    var l = null;
+    try {
+      if (d && d.config && d.config.PANEL_LAYOUT) l = JSON.parse(d.config.PANEL_LAYOUT);
+    } catch (e) { l = null; }
+    if (!l) { try { l = JSON.parse(localStorage.getItem(LS_LAYOUT) || 'null'); } catch (e2) { l = null; } }
+    estado.layout = normalizaLayout(l);
+  }
+  function normalizaLayout(l) {
+    l = l || {};
+    var def = LAYOUT_DEF;
+    var orden = Array.isArray(l.orden) ? l.orden.filter(function (x) { return def.orden.indexOf(x) !== -1; }) : [];
+    def.orden.forEach(function (x) { if (orden.indexOf(x) === -1) orden.push(x); });
+    var tiles = Array.isArray(l.tiles) ? l.tiles.filter(function (x) { return TILES_TODOS.some(function (t) { return t.id === x; }); }) : def.tiles.slice();
+    if (!tiles.length) tiles = def.tiles.slice();
+    return { orden: orden, ocultos: (l.ocultos && typeof l.ocultos === 'object') ? l.ocultos : {}, tiles: tiles, ventana: l.ventana === 'd30' ? 'd30' : 'd7' };
+  }
+  var layoutTimer = null;
+  function guardaLayout() {
+    var l = estado.layout;
+    try { localStorage.setItem(LS_LAYOUT, JSON.stringify(l)); } catch (e) {} // local: inmediato
+    // A Config (entre dispositivos) con debounce: reordenar/ocultar dispara muchas micro-acciones;
+    // así se escribe UNA sola vez al terminar y no se compite por el ScriptLock del bot.
+    if (!(estado.datos && estado.datos.editables && estado.datos.editables.PANEL_LAYOUT)) return;
+    clearTimeout(layoutTimer);
+    layoutTimer = setTimeout(function () {
+      pedir({ set: 'PANEL_LAYOUT', valor: JSON.stringify(estado.layout) }).then(function (r) {
+        if (r && r.ok && estado.datos && estado.datos.config) estado.datos.config.PANEL_LAYOUT = r.valor;
+      }).catch(function () {});
+    }, 1200);
+  }
+
+  /* ================== Navegación ================== */
+  function irA(vista, push) {
+    estado.vista = vista;
+    if (estado.editando && vista !== 'inicio') estado.editando = false;
+    if (push !== false) {
+      try { history.pushState({ vista: vista }, '', '#' + vista); } catch (e) {}
+    }
+    pinta();
+    $('vista').scrollTop = 0; window.scrollTo(0, 0);
+  }
+  window.addEventListener('popstate', function (ev) {
+    if ($('app').hidden) return;
+    var v = (ev.state && ev.state.vista) || (location.hash || '').replace('#', '') || 'inicio';
+    estado.vista = v; estado.editando = false; pinta();
+  });
+
+  /* ================== Render principal ================== */
+  function pinta() {
+    if (!estado.datos) { pintaEsqueleto(); setBarra(); construyeTabs(); return; }
+    var v = $('vista'); v.textContent = '';
+    var vista = estado.vista;
+    if (vista.indexOf('grupo:') === 0) vistaGrupo(v, vista.slice(6));
+    else if (vista === 'ajustes') vistaAjustes(v);
+    else if (vista === 'resultados') vistaResultados(v);
+    else if (vista === 'mas') vistaMas(v);
+    else vistaInicio(v);
+    setBarra(); construyeTabs();
+  }
+  function setBarra() {
+    var d = estado.datos, vista = estado.vista;
+    var esGrupo = vista.indexOf('grupo:') === 0;
+    var titulos = { inicio: 'Inicio', ajustes: 'Ajustes', resultados: 'Resultados', mas: 'Más' };
+    var t = esGrupo ? 'Ajustes' : (titulos[vista] || 'Panel');
+    $('tituloBarra').textContent = t;
+    var atras = $('btnAtras');
+    if (esGrupo) {
+      atras.hidden = false; atras.textContent = ''; atras.appendChild(ico('atras'));
+      atras.appendChild(nodo('span', '', 'Ajustes'));
+    } else { atras.hidden = true; }
+    var be = $('btnEditar');
+    if (vista === 'inicio' && d) {
+      be.hidden = false; be.textContent = '';
+      be.setAttribute('aria-label', estado.editando ? 'Terminar de personalizar' : 'Personalizar Inicio');
+      be.appendChild(estado.editando ? nodo('span', '', 'Listo') : ico('editar'));
+      if (estado.editando) { be.querySelector('span').style.color = 'var(--acento)'; be.querySelector('span').style.fontWeight = '600'; }
+    } else { be.hidden = true; }
+  }
+  function construyeTabs() {
+    var tb = $('tabbar'); if (tb.__hecho) { marcaTabActiva(); return; }
+    tb.textContent = '';
+    [['inicio', 'Inicio', 'inicio'], ['ajustes', 'Ajustes', 'ajustes'],
+     ['resultados', 'Resultados', 'resultados'], ['mas', 'Más', 'mas-dots']].forEach(function (par) {
+      var b = nodo('button', ''); b.type = 'button'; b.dataset.raiz = par[0];
+      b.appendChild(ico(par[2])); b.appendChild(nodo('span', 'lbl', par[1]));
+      b.addEventListener('click', function () {
+        if (estado.vista === par[0]) { $('vista').scrollTop = 0; window.scrollTo(0, 0); return; }
+        irA(par[0]);
+      });
+      tb.appendChild(b);
+    });
+    tb.__hecho = true; marcaTabActiva();
+  }
+  function marcaTabActiva() {
+    var raiz = estado.vista.indexOf('grupo:') === 0 ? 'ajustes' : estado.vista;
+    Array.prototype.forEach.call($('tabbar').children, function (b) {
+      b.classList.toggle('activo', b.dataset.raiz === raiz);
+    });
+  }
+  function pintaEsqueleto() {
+    var v = $('vista'); v.textContent = '';
+    v.appendChild(nodo('div', 'grande', 'Inicio'));
+    var g = nodo('div', 'grupo');
+    for (var i = 0; i < 5; i++) { var f = nodo('div', 'sk sk-fila'); g.appendChild(f); }
+    v.appendChild(g);
+  }
+
+  /* ================== Bloques reutilizables ================== */
+  function seccion(v, titulo) { if (titulo) v.appendChild(nodo('div', 'seccion-tit', titulo)); var g = nodo('div', 'grupo'); v.appendChild(g); return g; }
+  function notaBajo(v, txt) { v.appendChild(nodo('div', 'nota', txt)); }
+
+  function iconoCuad(glifo, color) {
+    var el = nodo('div', 'ico-cuad', glifo); el.style.background = color; return el;
+  }
+
+  /* ---- Inicio ---- */
+  var TILES_TODOS = [
+    { id: 'conversaciones', et: 'Conversaciones', sub: 'personas que escribieron' },
+    { id: 'flujos', et: 'Citas iniciadas', sub: 'empezaron a agendar' },
+    { id: 'reservas', et: 'Reservas por bot', sub: 'citas agendadas solas', destacado: true },
+    { id: 'conversion', et: 'Conversión', sub: 'de los que empezaron, reservaron' },
+    { id: 'confirmadas', et: 'Citas confirmadas', sub: 'en el periodo' },
+    { id: 'resenas', et: 'Reseñas invitadas', sub: 'invitaciones de Google' },
+    { id: 'postcitas', et: 'Post-consultas', sub: 'mensajes de seguimiento' },
+    { id: 'abandonos', et: 'Pacientes por recuperar', sub: 'empezaron y no terminaron' }
+  ];
+  function valorTile(id, m) {
+    var v = m[estado.ventana] || {};
+    if (id === 'conversion') return (v.flujos > 0) ? Math.round(100 * (v.reservas || 0) / v.flujos) + '%' : '—';
+    var mapa = { conversaciones: v.conversaciones, flujos: v.flujos, reservas: v.reservas, confirmadas: v.confirmadas, resenas: v.resenas, postcitas: v.postcitas, abandonos: v.abandonos };
+    var x = mapa[id];
+    return x === undefined ? '—' : String(x);
+  }
+
+  function vistaInicio(v) {
+    var d = estado.datos;
+    v.appendChild(nodo('div', 'grande', 'Inicio'));
+    v.appendChild(nodo('div', 'grande-sub', saludoFecha()));
+
+    if (estado.editando) {
+      var banner = nodo('div', 'banner-edit');
+      banner.appendChild(nodo('span', '', 'Arrastre para reordenar, toque el ojo para ocultar. Sus cambios se guardan solos.'));
+      var rest = nodo('button', 'restaurar', 'Restaurar');
+      rest.type = 'button';
+      rest.addEventListener('click', function () {
+        estado.layout = normalizaLayout(null); guardaLayout(); pinta();
+        avisa('Se restauró la vista de Inicio.');
+      });
+      banner.appendChild(rest); v.appendChild(banner);
+    }
+
+    // Estado + alertas (fijos, siempre arriba)
+    bloqueEstado(v);
+    var alertas = calculaAlertas();
+    alertas.forEach(function (al) { v.appendChild(nodoAlerta(al)); });
+
+    // Tarjetas reordenables
+    var cont = nodo('div', 'inicio-cards');
+    estado.layout.orden.forEach(function (id) {
+      if (estado.layout.ocultos[id] && !estado.editando) return;
+      var card = nodo('div', 'tarjeta-mov'); card.dataset.card = id;
+      if (estado.layout.ocultos[id]) card.classList.add('oculto-en-edit');
+      if (estado.editando) card.appendChild(mandoEdit(id, 'card'));
+      if (id === 'agenda') cardAgenda(card);
+      else if (id === 'metricas') cardMetricas(card);
+      else if (id === 'acciones') cardAcciones(card);
+      cont.appendChild(card);
+    });
+    v.appendChild(cont);
+    if (estado.editando) activaReorden(cont, 'card', function (nuevoOrden) {
+      estado.layout.orden = nuevoOrden; guardaLayout();
+    });
+  }
+
+  function bloqueEstado(v) {
+    var s = (estado.datos && estado.datos.salud) || { deployments: [], worker_ok: false };
+    var deployMal = (s.deployments || []).some(function (x) { return !x.al_dia; });
+    var bien = s.worker_ok && !deployMal && (s.deployments || []).length > 0;
+    var modoPrueba = String((estado.datos.config || {}).MODO_PRUEBA || '').toUpperCase() === 'TRUE';
+    var ok = bien && !modoPrueba;
+    var hero = nodo('div', 'estado-hero');
+    var med = nodo('div', 'medallon ' + (ok ? 'ok' : 'mal'));
+    med.appendChild(ico(ok ? 'escudo' : 'alerta', 26));
+    hero.appendChild(med);
+    var txt = nodo('div', '');
+    txt.appendChild(nodo('div', 'et', ok ? 'Su bot está funcionando' : (modoPrueba ? 'Modo prueba encendido' : 'Necesita su atención')));
+    txt.appendChild(nodo('div', 'es', ok ? 'Atiende a sus pacientes con normalidad.'
+      : (modoPrueba ? 'Los pacientes no reciben respuesta ahora.' : 'Revise las alertas de abajo.')));
+    hero.appendChild(txt);
+    v.appendChild(hero);
+  }
+
+  function calculaAlertas() {
+    var d = estado.datos, out = [];
+    var cfg = d.config || {};
+    var s = d.salud || {};
+    if (String(cfg.MODO_PRUEBA || '').toUpperCase() === 'TRUE') {
+      out.push({ sev: 'mal', t: 'Modo prueba encendido', s: 'Los pacientes no reciben respuesta. Apáguelo cuando termine de probar.', ir: function () { irA('grupo:interruptores'); } });
+    }
+    if (s.worker_ok === false) {
+      out.push({ sev: 'mal', t: 'La recepción de mensajes necesita revisión', s: 'El bot podría no estar recibiendo mensajes en este momento.' });
+    }
+    if ((s.deployments || []).some(function (x) { return !x.al_dia; })) {
+      out.push({ sev: 'warn', t: 'Un servidor del bot está desactualizado', s: 'Suele resolverse solo. Si continúa, avísele a su asistente técnico.' });
+    }
+    var p = d.plantillas || {};
+    (p.items || []).forEach(function (pl) {
+      if (String(pl.estatus || '').toUpperCase() === 'REJECTED') {
+        out.push({ sev: 'warn', t: 'Meta rechazó una plantilla', s: 'La plantilla "' + pl.nombre + '" fue rechazada; el bot usa una alternativa mientras tanto.' });
+      }
+    });
+    if (String(cfg.CITAS_POR_BOT || '').toUpperCase() === 'FALSE') {
+      out.push({ sev: 'info', t: 'El agendado por el bot está apagado', s: 'Los pacientes reciben el enlace de agenda en vez de reservar por chat.', ir: function () { irA('grupo:interruptores'); } });
+    }
+    return out;
+  }
+  function nodoAlerta(al) {
+    var el = nodo('div', 'alerta ' + al.sev);
+    el.appendChild(nodo('div', 'barra'));
+    var ic = nodo('div', 'ico'); ic.appendChild(ico('alerta', 20)); el.appendChild(ic);
+    var t = nodo('div', 'txt'); t.appendChild(nodo('b', '', al.t)); t.appendChild(nodo('span', '', al.s)); el.appendChild(t);
+    if (al.ir) {
+      var ir = nodo('span', 'ir'); ir.appendChild(ico('chevron', 18)); el.appendChild(ir);
+      el.style.cursor = 'pointer';
+      el.setAttribute('role', 'button'); el.setAttribute('tabindex', '0'); // toda la alerta es tocable
+      el.addEventListener('click', al.ir);
+      el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); al.ir(); } });
+    }
+    return el;
+  }
+
+  function cardAgenda(card) {
+    card.appendChild(nodo('div', 'seccion-tit', 'Agenda'));
+    var g = nodo('div', 'grupo'); card.appendChild(g);
+    var d = estado.datos;
+    var citas = (d.agenda && Array.isArray(d.agenda.citas)) ? d.agenda.citas : null;
+    if (citas && citas.length) {
+      citas.slice(0, 6).forEach(function (c) { g.appendChild(filaCita(c)); });
+    } else {
+      // Respaldo con los conteos que ya trae el backend actual
+      var m = d.metricas || {};
+      var hoy = (m.citas_hoy === undefined) ? '—' : m.citas_hoy;
+      var prox = (m.proximas === undefined) ? '—' : m.proximas;
+      var f = nodo('div', 'fila');
+      var cuerpo = nodo('div', 'cuerpo');
+      cuerpo.appendChild(nodo('div', 't', 'Hoy: ' + hoy + (hoy === 1 ? ' cita' : ' citas')));
+      cuerpo.appendChild(nodo('div', 'd', 'Próximas (todas): ' + prox));
+      f.appendChild(cuerpo);
+      g.appendChild(f);
+    }
+    var abrir = enlaceAccion('Ver todas en el visor de chats', 'visor', 'https://alveos.mx/bot/');
+    g.appendChild(abrir);
+  }
+  function filaCita(c) {
+    var f = nodo('div', 'cita');
+    var h = nodo('div', 'hora', c.hora || '—');
+    if (c.dia) h.appendChild(nodo('span', 'dia', c.dia));
+    f.appendChild(h);
+    var q = nodo('div', 'quien');
+    q.appendChild(nodo('div', 'n', c.paciente || 'Paciente'));
+    var meta = [c.doctor, c.motivo].filter(Boolean).join(' · ');
+    if (meta) q.appendChild(nodo('div', 'm', meta));
+    f.appendChild(q);
+    var sem = String(c.estado || '').toLowerCase();
+    var glifo = sem === 'confirmada' ? '🟢' : (sem === 'reagendar' ? '🔴' : '🟡');
+    f.appendChild(nodo('div', 'semaforo', glifo));
+    return f;
+  }
+
+  function cardMetricas(card) {
+    var tit = nodo('div', 'seccion-tit', estado.editando ? 'Métricas · elija las que quiere ver' : 'Sus resultados (' + (estado.ventana === 'd7' ? '7 días' : '30 días') + ')');
+    card.appendChild(tit);
+    var m = estado.datos.metricas || {};
+    var mos = nodo('div', 'mosaicos');
+    var lista = estado.editando ? TILES_TODOS : TILES_TODOS.filter(function (t) { return estado.layout.tiles.indexOf(t.id) !== -1; });
+    if (!lista.length) lista = TILES_TODOS.slice(0, 4);
+    lista.forEach(function (t) {
+      var elegido = estado.layout.tiles.indexOf(t.id) !== -1;
+      var mo = nodo('div', 'mosaico' + (t.destacado && elegido ? ' destacado' : ''));
+      mo.appendChild(nodo('div', 'v', valorTile(t.id, m)));
+      var e = nodo('div', 'e'); e.appendChild(nodo('b', '', t.et)); e.appendChild(document.createTextNode(t.sub)); mo.appendChild(e);
+      if (estado.editando) {
+        var chk = nodo('div', 'tile-check' + (elegido ? ' on' : '')); chk.appendChild(ico('check', 14));
+        mo.appendChild(chk); mo.style.cursor = 'pointer';
+        mo.addEventListener('click', function () {
+          var i = estado.layout.tiles.indexOf(t.id);
+          if (i === -1) estado.layout.tiles.push(t.id); else estado.layout.tiles.splice(i, 1);
+          guardaLayout(); pinta();
+        });
+      }
+      mos.appendChild(mo);
+    });
+    card.appendChild(mos);
+  }
+
+  function cardAcciones(card) {
+    card.appendChild(nodo('div', 'seccion-tit', 'Acciones rápidas'));
+    var g = nodo('div', 'grupo'); card.appendChild(g);
+    g.appendChild(accionBtn('Enviarme un mensaje de prueba', 'Verifica que el bot está vivo', 'mensaje', 'var(--verde)', function (btn) {
+      if (btn.dataset.busy) return; btn.dataset.busy = '1';
+      pedir({ probar: '1' }).then(function (r) {
+        avisa(r && r.ok ? 'Enviado: revise su WhatsApp personal.' : ('No salió: ' + ((r && r.error) || 'intente de nuevo')));
+      }).catch(function () { avisa('No hay conexión.'); }).then(function () { delete btn.dataset.busy; });
+    }));
+    g.appendChild(accionBtn('Copiar el link del bot', 'Para Ads, redes o material impreso', 'link', 'var(--azul)', function () {
+      var link = 'https://wa.me/' + ((estado.datos && estado.datos.bot_tel) || '') + '?text=' + encodeURIComponent('Hola, quiero agendar una cita');
+      (navigator.clipboard ? navigator.clipboard.writeText(link) : Promise.reject())
+        .then(function () { avisa('Link copiado.'); }).catch(function () { window.prompt('Copie el link:', link); });
+    }));
+    g.appendChild(enlaceAccion('Abrir el visor de chats', 'visor', 'https://alveos.mx/bot/'));
+  }
+  function accionBtn(t, d, glifo, color, fn) {
+    var b = nodo('button', 'accion'); b.type = 'button';
+    b.appendChild(iconoCuad('', color)); // usa svg dentro
+    b.firstChild.textContent = ''; b.firstChild.appendChild(icoBlanco(glifo));
+    var tx = nodo('div', 'txt'); tx.appendChild(nodo('div', 't', t)); tx.appendChild(nodo('div', 'd', d)); b.appendChild(tx);
+    var ch = nodo('div', 'chevron'); ch.appendChild(ico('chevron', 18)); b.appendChild(ch);
+    b.addEventListener('click', function () { fn(b); });
+    return b;
+  }
+  function enlaceAccion(t, glifo, href) {
+    var a = document.createElement('a'); a.className = 'accion'; a.href = href; a.target = '_blank'; a.rel = 'noopener';
+    var cuad = iconoCuad('', 'var(--acento)'); cuad.textContent = ''; cuad.appendChild(icoBlanco(glifo)); a.appendChild(cuad);
+    var tx = nodo('div', 'txt'); tx.appendChild(nodo('div', 't', t)); a.appendChild(tx);
+    var ch = nodo('div', 'chevron'); ch.appendChild(ico('chevron', 18)); a.appendChild(ch);
+    return a;
+  }
+  function icoBlanco(glifo) { var s = ico(glifo, 18); s.setAttribute('stroke', '#fff'); return s; }
+
+  /* ---- Ajustes (hub) ---- */
+  function vistaAjustes(v) {
+    v.appendChild(nodo('div', 'grande', 'Ajustes'));
+    v.appendChild(nodo('div', 'grande-sub', 'Todo lo que puede personalizar del bot, en un solo lugar.'));
+    var g = seccion(v, '');
+    gruposOrdenados().forEach(function (gr) {
+      var f = nodo('button', 'fila tocable'); f.type = 'button';
+      f.appendChild(iconoCuad(gr.glifo || '⚙️', gr.color || 'var(--ink-3)'));
+      var cuerpo = nodo('div', 'cuerpo');
+      cuerpo.appendChild(nodo('div', 't', gr.titulo));
+      cuerpo.appendChild(nodo('div', 'd', gr.sub || ''));
+      f.appendChild(cuerpo);
+      f.appendChild(nodo('div', 'valor-der', String(clavesDeGrupo(gr.id).length)));
+      var ch = nodo('div', 'chevron'); ch.appendChild(ico('chevron')); f.appendChild(ch);
+      f.addEventListener('click', function () { irA('grupo:' + gr.id); });
+      g.appendChild(f);
+    });
+  }
+
+  /* ---- Grupo (detalle) ---- */
+  function vistaGrupo(v, gid) {
+    var meta = gruposOrdenados().filter(function (g) { return g.id === gid; })[0]
+      || { titulo: humaniza(gid), sub: '' };
+    v.appendChild(nodo('div', 'grande', meta.titulo));
+    if (meta.sub) v.appendChild(nodo('div', 'grande-sub', meta.sub));
+    var claves = clavesDeGrupo(gid);
+    if (!claves.length) { var g0 = seccion(v, ''); g0.appendChild(filaTexto('Nada que configurar aquí por ahora.')); return; }
+    var g = seccion(v, '');
+    claves.forEach(function (k) { g.appendChild(campoDe(k)); });
+    if (gid === 'interruptores') notaBajo(v, 'Los cambios son inmediatos: el bot los usa desde el siguiente mensaje.');
+  }
+  function filaTexto(t) { var f = nodo('div', 'fila'); f.appendChild(nodo('div', 'cuerpo', t)); return f; }
+
+  /* Un campo editable según su tipo */
+  function campoDe(clave) {
+    var def = defDe(clave);
+    if (def.tipo === 'bool') return campoSwitch(def);
+    if (def.tipo === 'numero') return campoStepper(def);
+    if (def.tipo === 'hora') return campoHora(def);
+    return campoTextoEditable(def); // texto, precio, url
+  }
+  function valorActual(clave) { var c = (estado.datos.config || {}); return String(c[clave] === undefined ? '' : c[clave]); }
+
+  function campoSwitch(def) {
+    var on = valorActual(def.clave).toUpperCase() === 'TRUE';
+    var f = nodo('div', 'fila');
+    var cuerpo = nodo('div', 'cuerpo');
+    cuerpo.appendChild(nodo('div', 't', def.etiqueta));
+    if (def.ayuda) cuerpo.appendChild(nodo('div', 'd', def.ayuda));
+    f.appendChild(cuerpo);
+    var sw = nodo('div', 'sw' + (on ? ' on' : '') + (def.peligro ? ' peligro' : ''));
+    sw.setAttribute('role', 'switch'); sw.setAttribute('tabindex', '0');
+    sw.setAttribute('aria-checked', on ? 'true' : 'false'); sw.setAttribute('aria-label', def.etiqueta);
+    function alternar() {
+      var nuevo = sw.getAttribute('aria-checked') !== 'true';
+      var adv = nuevo ? def.advEncender : def.advApagar;
+      var aplicar = function () {
+        var antesVal = valorActual(def.clave);
+        sw.setAttribute('aria-disabled', 'true');
+        guardaConfig(def.clave, nuevo ? 'TRUE' : 'FALSE', {
+          // Actualiza config de forma optimista: si el Dr. navega durante el guardado, un
+          // re-render muestra el estado que eligió (no el viejo). Se revierte si falla.
+          antes: function () { sw.classList.toggle('on', nuevo); sw.setAttribute('aria-checked', nuevo ? 'true' : 'false'); if (estado.datos.config) estado.datos.config[def.clave] = nuevo ? 'TRUE' : 'FALSE'; },
+          ok: function () { sw.removeAttribute('aria-disabled'); },
+          err: function () { sw.classList.toggle('on', !nuevo); sw.setAttribute('aria-checked', !nuevo ? 'true' : 'false'); sw.removeAttribute('aria-disabled'); if (estado.datos.config) estado.datos.config[def.clave] = antesVal; }
+        });
+      };
+      if (adv) {
+        accionSheet({
+          titulo: '¿Está seguro?', mensaje: adv,
+          opciones: [{ texto: nuevo ? 'Sí, encender' : 'Sí, apagar', peligro: !!def.peligro || !nuevo, fn: aplicar }]
+        });
+      } else { aplicar(); }
+    }
+    sw.addEventListener('click', alternar);
+    sw.addEventListener('keydown', function (e) { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); alternar(); } });
+    f.appendChild(sw);
+    return f;
+  }
+
+  function campoTextoEditable(def) {
+    var actual = valorActual(def.clave);
+    var esArea = def.tipo === 'texto';
+    var f = nodo('div', 'fila campo-fila');
+    var cuerpo = nodo('div', 'cuerpo');
+    cuerpo.appendChild(nodo('div', 't', def.etiqueta));
+    if (def.ayuda) cuerpo.appendChild(nodo('div', 'd', def.ayuda));
+    var linea = nodo('div', 'entrada-linea');
+    var inp = document.createElement(esArea ? 'textarea' : 'input');
+    inp.className = 'entrada';
+    if (!esArea) { inp.type = def.tipo === 'url' ? 'url' : 'text'; if (def.tipo === 'url') inp.inputMode = 'url'; }
+    inp.value = actual;
+    inp.placeholder = def.peq || (def.tipo === 'precio' ? 'ej. $1,200 MXN' : (def.tipo === 'url' ? 'https://…' : 'por confirmar'));
+    inp.setAttribute('aria-label', def.etiqueta);
+    var btn = nodo('button', 'btn-guardar', 'Guardado'); btn.type = 'button';
+    function sync() { var camb = inp.value !== actual; btn.classList.toggle('cambiado', camb); btn.textContent = camb ? 'Guardar' : 'Guardado'; }
+    inp.addEventListener('input', sync);
+    btn.addEventListener('click', function () {
+      if (inp.value === actual) return;
+      var prev = actual, enviado = inp.value;
+      guardaConfig(def.clave, enviado, {
+        prev: prev,
+        antes: function () { btn.disabled = true; btn.textContent = 'Guardando…'; },
+        // No pisa lo que el Dr. siga escribiendo mientras se guarda (solo repone si no cambió).
+        ok: function (val) { actual = String(val); btn.disabled = false; if (inp.value === enviado) inp.value = actual; sync(); },
+        err: function () { btn.disabled = false; sync(); }
+      });
+    });
+    linea.appendChild(inp); if (!esArea) linea.appendChild(btn);
+    cuerpo.appendChild(linea);
+    if (esArea) { var linea2 = nodo('div', 'entrada-linea'); linea2.style.justifyContent = 'flex-end'; linea2.appendChild(btn); cuerpo.appendChild(linea2); }
+    f.appendChild(cuerpo);
+    return f;
+  }
+
+  function campoStepper(def) {
+    var min = def.min !== undefined ? Number(def.min) : 0;
+    var max = def.max !== undefined ? Number(def.max) : 999;
+    var paso = Number(def.paso) || 1;
+    var actual = parseInt(valorActual(def.clave), 10); if (isNaN(actual)) actual = min;
+    var f = nodo('div', 'fila');
+    var cuerpo = nodo('div', 'cuerpo');
+    cuerpo.appendChild(nodo('div', 't', def.etiqueta));
+    if (def.peq) cuerpo.appendChild(nodo('div', 'd', def.peq));
+    f.appendChild(cuerpo);
+    var st = nodo('div', 'stepper');
+    var bMenos = nodo('button', ''); bMenos.type = 'button'; bMenos.appendChild(ico('menos')); bMenos.setAttribute('aria-label', 'menos');
+    var val = nodo('div', 'stepper-val', etiquetaNumero(actual, def));
+    var bMas = nodo('button', ''); bMas.type = 'button'; bMas.appendChild(ico('mas')); bMas.setAttribute('aria-label', 'más');
+    st.appendChild(bMenos); st.appendChild(nodo('div', 'div')); st.appendChild(val); st.appendChild(nodo('div', 'div')); st.appendChild(bMas);
+    var pendiente = actual, timer = null;
+    function refresca() { val.textContent = etiquetaNumero(pendiente, def); bMenos.disabled = pendiente <= min; bMas.disabled = pendiente >= max; }
+    function commit() {
+      if (pendiente === actual) return;
+      // Si un guardado de esta clave sigue en vuelo, reintenta luego (no pierde el último cambio).
+      if (estado.guardando[def.clave]) { clearTimeout(timer); timer = setTimeout(commit, 350); return; }
+      var prev = actual;
+      guardaConfig(def.clave, String(pendiente), {
+        prev: String(prev),
+        // Sincroniza SIEMPRE el control con el valor guardado (también al Deshacer).
+        ok: function (v) { actual = parseInt(v, 10); pendiente = actual; refresca(); }
+      });
+    }
+    function ajusta(delta) {
+      var nv = pendiente + delta * paso; if (nv < min) nv = min; if (nv > max) nv = max;
+      if (nv === pendiente) return;
+      pendiente = nv; refresca();
+      clearTimeout(timer); timer = setTimeout(commit, 650);
+    }
+    bMenos.addEventListener('click', function () { ajusta(-1); });
+    bMas.addEventListener('click', function () { ajusta(1); });
+    refresca();
+    f.appendChild(st);
+    return f;
+  }
+  function etiquetaNumero(n, def) {
+    if (def.unidad === 'reloj') return n + ':00';
+    if (def.unidad === 'h') return n + ' h';
+    if (def.unidad === 'min') return n + ' min';
+    if (def.unidad === 'd') return n + (n === 1 ? ' día' : ' días');
+    return String(n);
+  }
+
+  function campoHora(def) {
+    var actual = valorActual(def.clave);
+    function normHora(v) { v = String(v || ''); return /^\d{1,2}:\d{2}$/.test(v) ? (v.length === 4 ? '0' + v : v) : ''; }
+    var f = nodo('div', 'fila');
+    var cuerpo = nodo('div', 'cuerpo');
+    cuerpo.appendChild(nodo('div', 't', def.etiqueta));
+    if (def.peq) cuerpo.appendChild(nodo('div', 'd', def.peq));
+    f.appendChild(cuerpo);
+    var inp = document.createElement('input'); inp.type = 'time'; inp.className = 'entrada';
+    inp.value = normHora(actual);
+    inp.setAttribute('aria-label', def.etiqueta);
+    inp.addEventListener('change', function () {
+      if (!inp.value || inp.value === actual) return;
+      var prev = actual;
+      // Sincroniza el control con el valor guardado (también al Deshacer).
+      guardaConfig(def.clave, inp.value, { prev: prev, ok: function (v) { actual = String(v); inp.value = normHora(actual); } });
+    });
+    f.appendChild(inp);
+    return f;
+  }
+
+  /* ---- Resultados ---- */
+  function vistaResultados(v) {
+    v.appendChild(nodo('div', 'grande', 'Resultados'));
+    v.appendChild(nodo('div', 'grande-sub', 'Su embudo: conversaciones que se vuelven citas.'));
+    var seg = nodo('div', 'segmento');
+    [['d7', '7 días'], ['d30', '30 días']].forEach(function (par) {
+      var b = nodo('button', estado.ventana === par[0] ? 'activo' : '', par[1]); b.type = 'button';
+      b.addEventListener('click', function () {
+        estado.ventana = par[0]; if (estado.layout) { estado.layout.ventana = par[0]; guardaLayout(); } pinta();
+      });
+      seg.appendChild(b);
+    });
+    v.appendChild(seg);
+    var m = estado.datos.metricas || {};
+    var mos = nodo('div', 'mosaicos');
+    TILES_TODOS.forEach(function (t) {
+      var mo = nodo('div', 'mosaico' + (t.destacado ? ' destacado' : ''));
+      mo.appendChild(nodo('div', 'v', valorTile(t.id, m)));
+      var e = nodo('div', 'e'); e.appendChild(nodo('b', '', t.et)); e.appendChild(document.createTextNode(t.sub)); mo.appendChild(e);
+      mos.appendChild(mo);
+    });
+    v.appendChild(mos);
+    notaBajo(v, 'El bot guarda el historial de los últimos 30 días.');
+
+    // Agenda completa
+    var d = estado.datos;
+    var citas = (d.agenda && Array.isArray(d.agenda.citas)) ? d.agenda.citas : null;
+    if (citas && citas.length) {
+      var g = seccion(v, 'Próximas citas');
+      citas.forEach(function (c) { g.appendChild(filaCita(c)); });
+    } else {
+      var g2 = seccion(v, 'Agenda');
+      var f = nodo('div', 'fila'); var cu = nodo('div', 'cuerpo');
+      cu.appendChild(nodo('div', 't', 'Hoy: ' + (m.citas_hoy === undefined ? '—' : m.citas_hoy) + ' · Próximas: ' + (m.proximas === undefined ? '—' : m.proximas)));
+      cu.appendChild(nodo('div', 'd', 'El detalle de cada cita vive en el visor de chats.'));
+      f.appendChild(cu); g2.appendChild(f);
+      g2.appendChild(enlaceAccion('Abrir el visor de chats', 'visor', 'https://alveos.mx/bot/'));
+    }
+  }
+
+  /* ---- Más ---- */
+  function estatusPlantillaES(e) {
+    var m = { APPROVED: 'aprobada', PENDING: 'en revisión', IN_APPEAL: 'en apelación', REJECTED: 'rechazada', DISABLED: 'desactivada', PAUSED: 'pausada', FLAGGED: 'marcada' };
+    return m[e] || String(e || '').toLowerCase();
+  }
+  function categoriaPlantillaES(c) {
+    var m = { MARKETING: 'marketing · ~$0.55/envío', UTILITY: 'de servicio · ~$0.15/envío', AUTHENTICATION: 'autenticación' };
+    return m[c] || String(c || '').toLowerCase();
+  }
+  function idiomaES(x) { x = String(x || ''); if (/^es/i.test(x)) return 'español'; if (/^en/i.test(x)) return 'inglés'; return x; }
+  function vistaMas(v) {
+    v.appendChild(nodo('div', 'grande', 'Más'));
+
+    // Estado del sistema
+    var g = seccion(v, 'Estado del sistema');
+    var s = (estado.datos.salud) || { deployments: [], worker_ok: false };
+    (s.deployments || []).forEach(function (dep, i) {
+      var f = nodo('div', 'fila');
+      f.appendChild(nodo('span', 'punto ' + (dep.al_dia ? 'ok' : 'mal')));
+      var cu = nodo('div', 'cuerpo'); cu.appendChild(nodo('div', 't', 'Servidor ' + (i + 1)));
+      if (dep.v) cu.appendChild(nodo('div', 'd', 'versión ' + dep.v));
+      f.appendChild(cu);
+      f.appendChild(nodo('div', 'valor-der', dep.al_dia ? 'al día' : (dep.v ? 'actualizándose' : 'sin respuesta')));
+      g.appendChild(f);
+    });
+    var fw = nodo('div', 'fila');
+    fw.appendChild(nodo('span', 'punto ' + (s.worker_ok ? 'ok' : 'mal')));
+    var cw = nodo('div', 'cuerpo'); cw.appendChild(nodo('div', 't', 'Recepción de mensajes')); fw.appendChild(cw);
+    fw.appendChild(nodo('div', 'valor-der', s.worker_ok ? 'operando' : 'revisar'));
+    g.appendChild(fw);
+
+    // Plantillas
+    var p = estado.datos.plantillas || { items: [], estado: 'error' };
+    var gp = seccion(v, 'Mensajes automáticos (plantillas)');
+    if (p.estado !== 'ok') {
+      gp.appendChild(filaTexto('No se pudo consultar Meta ahora; toque actualizar.'));
+    } else if (!p.items.length) {
+      gp.appendChild(filaTexto('Sin plantillas registradas.'));
+    } else {
+      p.items.forEach(function (pl) {
+        var f = nodo('div', 'plantilla');
+        f.appendChild(nodo('span', 'nom', pl.nombre + ' · ' + idiomaES(pl.idioma)));
+        var est = String(pl.estatus || '').toUpperCase();
+        var claseEst = est === 'APPROVED' ? 'aprobada' : (est === 'PENDING' || est === 'IN_APPEAL' ? 'pendiente' : 'rechazada');
+        f.appendChild(nodo('span', 'chip ' + claseEst, estatusPlantillaES(est)));
+        var cat = String(pl.categoria || '').toUpperCase();
+        if (cat) f.appendChild(nodo('span', 'chip' + (cat === 'MARKETING' ? ' marketing' : ''), categoriaPlantillaES(cat)));
+        gp.appendChild(f);
+      });
+    }
+    notaBajo(v, 'Si Meta recategoriza una plantilla a "marketing", todo sigue funcionando; solo sube un poco el costo de ese envío.');
+
+    // Campañas / etiquetas
+    var etq = estado.datos.etiquetas || {};
+    var ETQ = [['EPOC', 'EPOC'], ['ASMA', 'Asma'], ['EPID', 'EPID'], ['CRONICO', 'Crónico'], ['MAYOR55', '>55 años']];
+    var gc = seccion(v, 'Campañas (pacientes etiquetados)');
     var fila = nodo('div', 'etq-fila');
-    var etq = d.etiquetas || {};
-    ETIQUETAS_UI.forEach(function (e) {
+    ETQ.forEach(function (e) {
       var chip = nodo('span', 'etq');
-      chip.appendChild(nodo('b', '', String(etq[e.id] === undefined ? 0 : etq[e.id])));
-      chip.appendChild(document.createTextNode(' ' + e.t));
+      chip.appendChild(nodo('b', '', String(etq[e[0]] === undefined ? 0 : etq[e[0]])));
+      chip.appendChild(document.createTextNode(e[1]));
       fila.appendChild(chip);
     });
-    t.appendChild(fila);
-    t.appendChild(nodo('div', 'nota', 'Etiquete a sus pacientes desde la ficha ⓘ de cada chat en el visor: entre más etiquetados llegue octubre, más grande será la campaña.'));
-    return t;
-  }
+    gc.appendChild(fila);
+    notaBajo(v, 'Etiquete pacientes desde la ficha ⓘ de cada chat en el visor. Alimentan la reactivación de crónicos y la campaña de vacunación (octubre 2026).');
 
-  function tarjetaHerramientas(d) {
-    var t = tarjeta('🧰 Herramientas', '');
-    var fila = nodo('div', 'etq-fila');
-    var btnWa = nodo('button', 'btn fantasma', '🔗 Copiar link del bot (wa.me)');
-    btnWa.type = 'button';
-    btnWa.addEventListener('click', function () {
-      var link = 'https://wa.me/' + (d.bot_tel || '') + '?text=' +
-        encodeURIComponent('Hola, quiero agendar una cita');
-      (navigator.clipboard ? navigator.clipboard.writeText(link) : Promise.reject())
-        .then(function () { avisa('Link copiado: péguelo en Ads, redes o material impreso.'); })
-        .catch(function () { window.prompt('Copie el link:', link); });
-    });
-    fila.appendChild(btnWa);
-    var aVisor = nodo('a', 'btn fantasma', '💬 Abrir el visor de chats');
-    aVisor.href = 'https://alveos.mx/bot/';
-    aVisor.style.textDecoration = 'none';
-    fila.appendChild(aVisor);
-    t.appendChild(fila);
-    var cambios = d.cambios || [];
+    // Cambios recientes
+    var cambios = estado.datos.cambios || [];
     if (cambios.length) {
-      var sub = nodo('div', 'sub', 'Últimos cambios hechos desde este panel:');
-      sub.style.marginTop = '13px';
-      t.appendChild(sub);
+      var gch = seccion(v, 'Últimos cambios que usted hizo');
       cambios.forEach(function (c) {
-        t.appendChild(nodo('div', 'cambio', c.ts + ' — ' + c.texto));
+        var el = nodo('div', 'cambio');
+        el.appendChild(nodo('span', 'h', (c.ts || '') + '  '));
+        el.appendChild(document.createTextNode(legibleCambio(c.texto)));
+        gch.appendChild(el);
       });
     }
+
+    // Cerrar sesión
+    var gs = seccion(v, '');
+    var salir = nodo('button', 'fila tocable'); salir.type = 'button';
+    salir.appendChild(iconoCuad('', 'var(--rojo)')); salir.firstChild.appendChild(icoBlanco('salir'));
+    var cs = nodo('div', 'cuerpo'); cs.appendChild(nodo('div', 't', 'Cerrar sesión')); salir.appendChild(cs);
+    salir.addEventListener('click', function () {
+      accionSheet({ titulo: 'Cerrar sesión', mensaje: 'Tendrá que ingresar su clave la próxima vez.',
+        opciones: [{ texto: 'Cerrar sesión', peligro: true, fn: function () { borraClave(); muestraPuerta(false); } }] });
+    });
+    gs.appendChild(salir);
+
+    v.appendChild(nodo('div', 'nota', 'Panel del Dr. William Lara · versión ' + ((estado.datos && estado.datos.version_head) || '') +
+      ' · actualizado ' + String((estado.datos && estado.datos.generado) || '').slice(11, 16)));
+  }
+  function legibleCambio(t) {
+    t = String(t || '');
+    var m = t.match(/^([A-Z0-9_]+)\s*->\s*(.*)$/);
+    if (m) { var def = CAMPOS_DEF[m[1]]; return (def ? def.etiqueta : humaniza(m[1])) + ' → ' + m[2]; }
     return t;
   }
 
-  /* ---------- eventos ---------- */
+  /* ================== Reordenamiento (modo edición) ================== */
+  function mandoEdit(id, tipo) {
+    var m = nodo('div', 'mando-edit');
+    var agarre = nodo('div', 'agarre'); agarre.appendChild(ico('agarre')); agarre.dataset.agarre = '1';
+    m.appendChild(agarre);
+    m.appendChild(nodo('div', 'titmov', nombreCard(id)));
+    var subir = nodo('button', 'mini'); subir.type = 'button'; subir.appendChild(rot(ico('atras'), 90)); subir.title = 'Subir';
+    var bajar = nodo('button', 'mini'); bajar.type = 'button'; bajar.appendChild(rot(ico('atras'), -90)); bajar.title = 'Bajar';
+    var ojo = nodo('button', 'mini ojo'); ojo.type = 'button';
+    var oculto = !!estado.layout.ocultos[id];
+    ojo.appendChild(ico(oculto ? 'ojoOff' : 'ojo')); if (oculto) ojo.classList.add('oculto');
+    subir.addEventListener('click', function () { mueveCard(id, -1); });
+    bajar.addEventListener('click', function () { mueveCard(id, 1); });
+    ojo.addEventListener('click', function () {
+      estado.layout.ocultos[id] = !estado.layout.ocultos[id]; guardaLayout(); pinta();
+    });
+    var idx = estado.layout.orden.indexOf(id);
+    subir.disabled = idx <= 0; bajar.disabled = idx >= estado.layout.orden.length - 1;
+    m.appendChild(subir); m.appendChild(bajar); m.appendChild(ojo);
+    return m;
+  }
+  function rot(svg, deg) { svg.style.transform = 'rotate(' + deg + 'deg)'; return svg; }
+  function nombreCard(id) { return ({ agenda: 'Agenda', metricas: 'Métricas', acciones: 'Acciones rápidas' })[id] || id; }
+  function mueveCard(id, dir) {
+    var o = estado.layout.orden, i = o.indexOf(id), j = i + dir;
+    if (i === -1 || j < 0 || j >= o.length) return;
+    o.splice(i, 1); o.splice(j, 0, id); guardaLayout(); pinta();
+  }
+  function activaReorden(cont, tipo, alSoltar) {
+    var arrastrando = null;
+    cont.querySelectorAll('[data-agarre]').forEach(function (agarre) {
+      agarre.addEventListener('pointerdown', function (e) {
+        e.preventDefault();
+        var card = agarre.closest('.tarjeta-mov'); if (!card) return;
+        arrastrando = card; card.classList.add('arrastrando');
+        try { agarre.setPointerCapture(e.pointerId); } catch (er) {}
+        function mover(ev) {
+          if (!arrastrando) return;
+          var hijos = Array.prototype.slice.call(cont.children).filter(function (c) { return c !== arrastrando; });
+          var puestoAntes = null;
+          hijos.forEach(function (sib) {
+            var r = sib.getBoundingClientRect();
+            if (ev.clientY > r.top + r.height / 2) puestoAntes = sib;
+          });
+          if (puestoAntes) { if (puestoAntes.nextSibling !== arrastrando) cont.insertBefore(arrastrando, puestoAntes.nextSibling); }
+          else { if (cont.firstElementChild !== arrastrando) cont.insertBefore(arrastrando, cont.firstElementChild); }
+        }
+        function soltar() {
+          if (!arrastrando) return;
+          arrastrando.classList.remove('arrastrando'); arrastrando = null;
+          agarre.removeEventListener('pointermove', mover);
+          agarre.removeEventListener('pointerup', soltar);
+          agarre.removeEventListener('pointercancel', soltar);
+          var nuevo = Array.prototype.slice.call(cont.children).map(function (c) { return c.dataset.card; }).filter(Boolean);
+          alSoltar(nuevo); pinta();
+        }
+        agarre.addEventListener('pointermove', mover);
+        agarre.addEventListener('pointerup', soltar);
+        agarre.addEventListener('pointercancel', soltar);
+      });
+    });
+  }
+
+  /* ================== Utilidades ================== */
+  function saludoFecha() {
+    var d = new Date(); var hh = d.getHours();
+    var saludo = hh < 12 ? 'Buenos días' : (hh < 19 ? 'Buenas tardes' : 'Buenas noches');
+    return saludo + ', doctor.';
+  }
+
+  /* ================== Eventos globales ================== */
   $('formaClave').addEventListener('submit', function (ev) {
     ev.preventDefault();
-    var v = $('clave').value.trim();
-    if (!v) return;
-    $('clave').value = '';
-    puertaCargando(true);
-    carga(v);
+    var val = $('clave').value.trim(); if (!val) return;
+    $('clave').value = ''; puertaCargando(true); $('fallo').style.display = 'none';
+    carga(val);
   });
-  $('btnRefrescar').addEventListener('click', function () { carga(); });
-  $('btnSalir').addEventListener('click', function () {
-    borraClave();
-    muestraPuerta(false);
+  $('btnRefrescar').addEventListener('click', function () { if (!estado.cargando) carga(); });
+  $('btnAtras').addEventListener('click', function () { try { history.back(); } catch (e) { irA('ajustes'); } });
+  $('btnEditar').addEventListener('click', function () {
+    estado.editando = !estado.editando; pinta();
+    if (!estado.editando) avisa('Vista de Inicio guardada.');
   });
 
+  /* ================== Arranque ================== */
+  try {
+    var vh = (location.hash || '').replace('#', '');
+    if (vh && (vh === 'ajustes' || vh === 'resultados' || vh === 'mas' || vh.indexOf('grupo:') === 0)) estado.vista = vh;
+    // Siembra el historial para que "Atrás" funcione al entrar directo a un grupo por enlace.
+    if (estado.vista.indexOf('grupo:') === 0) {
+      history.replaceState({ vista: 'ajustes' }, '', '#ajustes');
+      history.pushState({ vista: estado.vista }, '', '#' + estado.vista);
+    } else {
+      history.replaceState({ vista: estado.vista }, '', '#' + estado.vista);
+    }
+  } catch (e) {}
   if (claveGuardada()) puertaCargando(true);
+  construyeTabs();
   carga();
 })();
 </script>
