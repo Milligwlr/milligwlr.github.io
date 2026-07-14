@@ -480,6 +480,70 @@
     .testi-badge{font-size:.68rem;color:var(--text-muted);margin:1px 0 0}
     @media(max-width:992px){.testimonial-columns{height:440px}}
     @media(max-width:640px){.testimonial-columns{grid-template-columns:1fr 1fr;gap:10px;height:380px}.testimonial-columns > :nth-child(3){display:none}.testimonial-col{gap:10px}.testi-card{padding:14px;border-radius:14px}.testi-text{font-size:.8rem;line-height:1.6}.testi-name{font-size:.75rem}.testi-badge{font-size:.62rem}.testi-avatar{width:32px;height:32px;font-size:.8rem}}
+
+    /* ============ UPGRADE PREMIUM (impeccable + emil, dentro de marca) ============ */
+    /* Material: escalera de elevacion unica + light-catch (superficies que atrapan la luz) */
+    :root{
+        --e1:0 1px 2px rgba(9,44,84,.05),0 2px 8px -2px rgba(9,44,84,.08);
+        --e2:0 2px 4px rgba(9,44,84,.05),0 10px 24px -8px rgba(9,44,84,.13);
+        --e3:0 4px 10px rgba(9,44,84,.06),0 22px 48px -14px rgba(9,44,84,.18);
+        --ring-hi:inset 0 1px 0 rgba(255,255,255,.75);
+    }
+    .benefit,.tl-step,.testi-card{box-shadow:var(--e2),var(--ring-hi);border-color:rgba(9,44,84,.07)}
+    .benefit:hover,.tl-step:hover{box-shadow:var(--e3),var(--ring-hi)}
+    .doc-card,.greviews{box-shadow:var(--e3),var(--ring-hi)}
+    .gbp-rating-widget{box-shadow:var(--e1),var(--ring-hi)}
+    /* Tipografia refinada: sin orphans/widows (critico en espanol) */
+    section.hero h1,.block__title,.cta-inline h2,.hero__card h3,.tl-step__title,.benefit h3{text-wrap:balance}
+    .hero__sub,.block__lead,.partner-callout,.benefit p,.tl-step__desc,.faq-item__answer{text-wrap:pretty}
+    .hero__sub{line-height:1.62}
+    @media(min-width:1200px){section.hero h1{letter-spacing:-.028em}.block__title{letter-spacing:-.024em}}
+    /* Iconos de-slopeados: soft-tint, degradado reservado a hover */
+    .benefit__icon{background:linear-gradient(160deg,rgba(9,132,227,.12),rgba(0,206,201,.10));color:var(--electric);border:1px solid rgba(9,132,227,.14);box-shadow:var(--ring-hi),0 6px 16px -10px rgba(9,132,227,.5);transition:background .3s var(--ease),color .3s var(--ease),transform .35s var(--ease)}
+    .benefit:hover .benefit__icon{background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;transform:translateY(-2px)}
+    /* Continuidad entre secciones (hairline horizontal, NO side-stripe) + material del hero */
+    .partner-section{border-top:0;background:linear-gradient(180deg,rgba(0,206,201,.22),rgba(0,206,201,0) 3px),linear-gradient(135deg,#f0f8ff 0%,#e8f4ff 100%)}
+    .benefits,.sb-section{background:linear-gradient(180deg,#ffffff 0,var(--bg) 72px)}
+    .hero{box-shadow:inset 0 -64px 60px -46px rgba(4,14,28,.55)}
+    .hero__card{background:linear-gradient(160deg,rgba(255,255,255,.10),rgba(255,255,255,.045));border:1px solid rgba(255,255,255,.22);box-shadow:0 30px 80px -30px rgba(0,206,201,.28),var(--ring-hi)}
+    .hero__card .subt{color:#8ffdec}
+    /* Foco visible on-brand en todos los CTA (WCAG 2.4.7) */
+    .btn-wa:focus-visible,.btn-cal:focus-visible,.btn-partner-wa:focus-visible,.greviews__btn:focus-visible,.sb-result__cta:focus-visible,.navbar-cta:focus-visible,.sticky-cta a:focus-visible{outline:3px solid #7fffe6;outline-offset:3px;box-shadow:0 0 0 4px rgba(0,206,201,.28)}
+    /* Micro-interacciones premium (solo con movimiento permitido) */
+    @media(prefers-reduced-motion:no-preference){
+        .btn-wa,.btn-partner-wa{position:relative;overflow:hidden}
+        .btn-wa::after,.btn-partner-wa::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(100deg,transparent 20%,rgba(255,255,255,.35) 40%,transparent 60%);transform:translateX(-120%) skewX(-15deg);opacity:0}
+        .btn-wa:hover::after,.btn-partner-wa:hover::after{animation:kn-sheen .85s var(--ease)}
+        @keyframes kn-sheen{0%{opacity:0;transform:translateX(-120%) skewX(-15deg)}15%{opacity:1}100%{opacity:0;transform:translateX(120%) skewX(-15deg)}}
+        .benefit:hover .benefit__icon{transform:translateY(-2px) scale(1.08) rotate(-3deg)}
+    }
+    /* EFECTO SIGNATURE: movimiento atado al scroll con CSS nativo (0 JS, 0 LCP), estilo keynote */
+    @supports (animation-timeline: view()){
+        @media(prefers-reduced-motion:no-preference){
+            .hero::after{animation:heroDrift linear both;animation-timeline:scroll(root);animation-range:0 100vh}
+            @keyframes heroDrift{to{transform:translateY(8%)}}
+            .hero__card{animation:cardRise linear both;animation-timeline:view();animation-range:entry 0% entry 75%}
+            @keyframes cardRise{from{transform:translateY(28px);opacity:.35}to{transform:none;opacity:1}}
+        }
+    }
+    /* Cierra huecos de reduced-motion preexistentes (orbs/pulse/float/marquee) */
+    @media(prefers-reduced-motion:reduce){
+        .hero::before{animation:none}
+        .wa-float{animation:none}
+        .hero__badge .dot{animation:none}
+        .testimonial-col{animation:none!important}
+        .testimonial-columns{height:auto!important;overflow:visible!important;-webkit-mask-image:none!important;mask-image:none!important}
+    }
+    /* Movil: tap targets >=44px (WCAG 2.2) + fin del zoom iOS + disclaimer sin tapar por sticky */
+    body{padding-bottom:calc(100px + env(safe-area-inset-bottom,0px))}
+    @media(min-width:992px){body{padding-bottom:0}}
+    @media(max-width:768px){
+        .sb-btn{min-height:46px;padding:11px 0}
+        .sb-bmi-row input{font-size:16px;min-height:44px;padding:9px 12px;flex:1 1 120px;width:auto}
+        .sb-bmi-calc-btn{min-height:44px;padding:10px 18px}
+        .sb-result__cta{min-height:48px}
+        .sb-quiz{gap:8px}
+    }
     </style>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <link rel="stylesheet" href="/assets/agenda-modal.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/agenda-modal.css"></noscript>
