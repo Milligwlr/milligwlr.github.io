@@ -700,6 +700,41 @@
         .cta-final .btn-wa{width:100%;min-width:0}
         .cta-final__ease{font-size:.82rem}
     }
+
+    /* ---------- SALUD · por que revisarla (COFEPRIS-safe, esperanzador; anti-grid) ---------- */
+    .osa-section{background:linear-gradient(180deg,#f5fbff 0%,#eaf4ff 100%)}
+    .osa-grid{display:grid;grid-template-columns:5fr 7fr;gap:30px;align-items:start}
+    .osa-thesis{position:relative;background:linear-gradient(160deg,#ffffff 0%,#eef8ff 100%);border:1px solid rgba(9,132,227,.12);border-radius:22px;padding:30px 28px;box-shadow:var(--e2),var(--ring-hi)}
+    .osa-thesis__ic{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:#fff;background:linear-gradient(135deg,var(--electric),var(--cyan));box-shadow:0 10px 24px -10px rgba(9,132,227,.55);margin-bottom:16px}
+    .osa-thesis h3{font-size:1.3rem;font-weight:800;color:var(--navy);margin:0 0 10px;letter-spacing:-.01em;line-height:1.2;text-wrap:balance}
+    .osa-thesis p{font-size:.97rem;color:var(--ink);line-height:1.6;margin:0 0 18px;text-wrap:pretty}
+    .osa-thesis__cta{display:inline-flex;align-items:center;gap:9px;background:var(--green);color:#fff;padding:13px 22px;border-radius:13px;font-weight:800;font-size:.97rem;text-decoration:none;box-shadow:0 8px 22px -8px rgba(29,168,81,.4);transition:transform .2s var(--ease),background .2s var(--ease)}
+    .osa-thesis__cta:hover{background:var(--green-dark);color:#fff;transform:translateY(-2px)}
+    .osa-thesis__cta:active{transform:scale(.97)}
+    .osa-thesis__cta:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+    .osa-thesis__note{display:flex;align-items:flex-start;gap:8px;font-size:.85rem;color:var(--muted);line-height:1.5;margin:14px 0 0}
+    .osa-thesis__note i{color:var(--cyan);margin-top:2px;flex-shrink:0}
+
+    .osa-list{margin:0;padding:0;list-style:none}
+    .osa-item{display:flex;gap:16px;align-items:flex-start;padding:18px 4px}
+    .osa-item + .osa-item{border-top:1px solid rgba(9,44,84,.10)}
+    .osa-item__ic{width:46px;height:46px;flex-shrink:0;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;color:var(--electric);background:linear-gradient(160deg,rgba(9,132,227,.12),rgba(0,206,201,.10));border:1px solid rgba(9,132,227,.14);box-shadow:var(--ring-hi)}
+    .osa-item h4{font-size:1.02rem;font-weight:800;color:var(--navy);margin:0 0 4px;letter-spacing:-.01em}
+    .osa-item p{font-size:.92rem;color:var(--ink);line-height:1.55;margin:0;text-wrap:pretty}
+    .osa-item__tag{display:inline-block;font-size:.72rem;font-weight:700;color:#0a6e4a;background:rgba(29,168,81,.10);border:1px solid rgba(29,168,81,.22);border-radius:999px;padding:2px 10px;margin-top:9px}
+    @supports (animation-timeline: view()){
+        @media(prefers-reduced-motion:no-preference){
+            .osa-item{animation:osaRise linear both;animation-timeline:view();animation-range:entry 0% entry 52%}
+            @keyframes osaRise{from{opacity:.45;transform:translateY(14px)}to{opacity:1;transform:none}}
+        }
+    }
+    @media(max-width:860px){
+        .osa-grid{grid-template-columns:1fr;gap:22px}
+    }
+    @media(max-width:560px){
+        .osa-thesis{padding:24px 20px}
+        .osa-item{gap:13px;padding:16px 2px}
+    }
     </style>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <link rel="stylesheet" href="/assets/agenda-modal.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/agenda-modal.css"></noscript>
@@ -1027,6 +1062,61 @@
             </a>
             <br>
             <button type="button" class="sb-reset-btn" onclick="sbReset()">Reiniciar cuestionario</button>
+        </div>
+    </div>
+</section>
+
+<!-- ============ SALUD · POR QUÉ CONVIENE REVISARLA (nueva, COFEPRIS-safe, esperanzadora) ============ -->
+<!-- Tono medido y esperanzador: asociaciones ("se asocia con"), nunca causalidad/alarmismo/cura. Verificado con literatura (OSA-HTA, OSA-CV, EDS-accidentes, CPAP mejora sintomas). -->
+<section class="block osa-section" id="por-que-revisarla" aria-label="Por qué conviene revisar la apnea del sueño">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">Por qué conviene revisarla</span>
+            <h2 class="block__title">La apnea del sueño <em>tiene tratamiento</em>. Lo importante es detectarla a tiempo</h2>
+            <p class="block__lead">Cuando no se atiende, el descanso se interrumpe muchas veces cada noche. Con el tiempo, eso se asocia con otras partes de tu salud. La buena noticia: es una condición tratable, y todo empieza con una valoración.</p>
+        </div>
+        <div class="osa-grid">
+            <aside class="osa-thesis">
+                <div class="osa-thesis__ic"><i class="bi bi-heart-pulse-fill"></i></div>
+                <h3>Detectarla a tiempo está en tus manos</h3>
+                <p>Una valoración con estudio del sueño confirma si hay apnea y qué tan importante es. A partir de ahí, el Dr. Lara te propone un tratamiento y le da seguimiento.</p>
+                <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="osa-thesis__cta" data-cta="osa-wa"><i class="bi bi-whatsapp"></i> Agendar mi valoración</a>
+                <p class="osa-thesis__note"><i class="bi bi-shield-fill-check" aria-hidden="true"></i> Es un paso sencillo y no invasivo. La valoración la hace tu neumólogo en consulta.</p>
+            </aside>
+            <ul class="osa-list">
+                <li class="osa-item">
+                    <span class="osa-item__ic" aria-hidden="true"><i class="bi bi-activity"></i></span>
+                    <div>
+                        <h4>Presión arterial</h4>
+                        <p>Se asocia con presión más alta, sobre todo durante la noche. Al tratar la apnea suele ser más fácil de controlar.</p>
+                        <span class="osa-item__tag">Suele mejorar con tratamiento</span>
+                    </div>
+                </li>
+                <li class="osa-item">
+                    <span class="osa-item__ic" aria-hidden="true"><i class="bi bi-heart-fill"></i></span>
+                    <div>
+                        <h4>Corazón y circulación</h4>
+                        <p>El descanso interrumpido, noche tras noche, se asocia con la salud cardiovascular. Detectarla a tiempo te permite cuidarte antes.</p>
+                        <span class="osa-item__tag">Conviene detectarla a tiempo</span>
+                    </div>
+                </li>
+                <li class="osa-item">
+                    <span class="osa-item__ic" aria-hidden="true"><i class="bi bi-cup-hot-fill"></i></span>
+                    <div>
+                        <h4>Somnolencia durante el día</h4>
+                        <p>El sueño fragmentado se asocia con somnolencia y microsueños, por ejemplo al conducir. Suele ceder cuando se trata.</p>
+                        <span class="osa-item__tag">Suele mejorar con tratamiento</span>
+                    </div>
+                </li>
+                <li class="osa-item">
+                    <span class="osa-item__ic" aria-hidden="true"><i class="bi bi-lightning-charge-fill"></i></span>
+                    <div>
+                        <h4>Energía y concentración</h4>
+                        <p>La fatiga y la falta de concentración que arrastras de día suelen mejorar cuando la apnea se atiende.</p>
+                        <span class="osa-item__tag">Suele mejorar con tratamiento</span>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 </section>
