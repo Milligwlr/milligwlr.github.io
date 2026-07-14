@@ -684,6 +684,22 @@
             }
         }
     }
+
+    /* ---------- CTA FINAL · WhatsApp primario unico + agenda ghost ---------- */
+    .cta-final .cta-final__price{display:inline-flex;align-items:center;gap:8px;background:rgba(0,206,201,.14);border:1px solid rgba(127,255,230,.3);color:#8ffdec;border-radius:999px;padding:8px 16px;font-weight:700;font-size:.9rem;margin:2px auto 22px}
+    .cta-final .cta-final__price b{color:#fff;font-weight:800}
+    .cta-final__actions{display:flex;flex-direction:column;align-items:center;gap:14px}
+    .cta-final .btn-wa{font-size:1.06rem;padding:17px 30px;min-width:min(360px,92%)}
+    .btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1.5px solid rgba(255,255,255,.34);color:#fff;padding:11px 22px;border-radius:12px;font-weight:700;font-size:.95rem;text-decoration:none;transition:background .25s var(--ease),border-color .25s var(--ease),transform .2s var(--ease)}
+    .btn-ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.55);color:#fff}
+    .btn-ghost:active{transform:scale(.97)}
+    .btn-ghost:focus-visible{outline:3px solid #7fffe6;outline-offset:3px;box-shadow:0 0 0 4px rgba(0,206,201,.28)}
+    .cta-final__ease{display:inline-flex;align-items:flex-start;gap:8px;font-size:.86rem;color:rgba(255,255,255,.8);margin:16px auto 0;max-width:460px;line-height:1.5;text-align:left}
+    .cta-final__ease i{color:#7fffe6;font-size:1rem;margin-top:2px;flex-shrink:0}
+    @media(max-width:560px){
+        .cta-final .btn-wa{width:100%;min-width:0}
+        .cta-final__ease{font-size:.82rem}
+    }
     </style>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <link rel="stylesheet" href="/assets/agenda-modal.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/agenda-modal.css"></noscript>
@@ -1204,14 +1220,16 @@
 <!-- ============ CTA FINAL ============ -->
 <section class="block benefits" style="padding-bottom:80px">
     <div class="container">
-        <div class="cta-inline">
+        <div class="cta-inline cta-final">
             <div class="sparkle-field" aria-hidden="true"></div>
-            <h2>Agenda tu poligrafía respiratoria hoy</h2>
-            <p>Atención por WhatsApp en horario hábil. Resolvemos dudas y apartamos tu fecha en minutos.</p>
-            <div class="cta-inline__btns">
-                <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="final-wa"><i class="bi bi-whatsapp"></i> Apartar mi estudio de sueño, $4,500</a>
-                <a href="#agendaModal" class="btn-cal" data-cta="final-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+            <h2>Da el primer paso hacia dormir tranquilo</h2>
+            <p>Un mensaje por WhatsApp basta para resolver tus dudas, ver disponibilidad y apartar tu estudio. Atendemos también sábado y domingo.</p>
+            <div class="cta-final__price"><i class="bi bi-tag-fill" aria-hidden="true"></i> Paquete consulta + estudio <b>$4,500</b> · ahorras $2,000</div>
+            <div class="cta-final__actions">
+                <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="final-wa"><i class="bi bi-whatsapp"></i> Apartar mi estudio, $4,500</a>
+                <a href="#agendaModal" class="btn-ghost" data-cta="final-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Prefiero agendar en línea</a>
             </div>
+            <p class="cta-final__ease"><i class="bi bi-shield-check" aria-hidden="true"></i> Escribir por WhatsApp no cuesta ni te compromete: resolvemos tus dudas antes de que decidas.</p>
         </div>
     </div>
 </section>
