@@ -735,6 +735,35 @@
         .osa-thesis{padding:24px 20px}
         .osa-item{gap:13px;padding:16px 2px}
     }
+
+    /* ---------- QUIEN HACE TU ESTUDIO · banda de retrato (impacto, texto minimo) ---------- */
+    section.doc-band{position:relative;background:linear-gradient(155deg,#061a30 0%,#0a2540 45%,#0e3a6b 100%);color:#fff;overflow:hidden;padding:58px 0}
+    .doc-band::before{content:'';position:absolute;inset:0;background:radial-gradient(640px 320px at 80% 12%,rgba(0,206,201,.20),transparent 62%);pointer-events:none}
+    .doc-band > .container{position:relative;z-index:1}
+    .doc-band__grid{display:grid;grid-template-columns:280px 1fr;gap:36px;align-items:center;max-width:880px;margin:0 auto}
+    .doc-portrait{margin:0;position:relative;border-radius:20px;overflow:hidden;line-height:0;border:1px solid rgba(127,255,230,.28);box-shadow:0 30px 70px -26px rgba(0,206,201,.45),var(--ring-hi)}
+    .doc-portrait img{width:100%;height:auto;display:block}
+    .doc-band__kicker{display:inline-block;font-size:.75rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#7fffe6;background:rgba(0,206,201,.14);border:1px solid rgba(127,255,230,.3);padding:5px 13px;border-radius:999px;margin-bottom:14px}
+    .doc-band__name{font-size:clamp(1.55rem,3.1vw,2.15rem);font-weight:800;letter-spacing:-.025em;line-height:1.1;margin:0 0 8px;color:#fff;text-wrap:balance}
+    .doc-band__role{font-size:.95rem;font-weight:700;color:#8ffdec;margin:0 0 16px;line-height:1.45}
+    .doc-band__line{font-size:1.1rem;line-height:1.5;color:#e8f4ff;margin:0 0 20px;font-weight:600;text-wrap:pretty}
+    .doc-band__creds{display:flex;flex-wrap:wrap;gap:8px}
+    .doc-band__creds span{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#dbeafe;padding:5px 12px;border-radius:999px;font-size:.74rem;font-weight:600}
+    .doc-band__creds i{color:#7fffe6}
+    .doc-band__creds a{color:inherit;text-decoration:none}
+    .doc-band__creds a:hover{color:#fff}
+    @supports (animation-timeline: view()){
+        @media(prefers-reduced-motion:no-preference){
+            .doc-portrait{animation:docRise linear both;animation-timeline:view();animation-range:entry 0% entry 62%}
+            @keyframes docRise{from{transform:translateY(20px) scale(.95);opacity:.5}to{transform:none;opacity:1}}
+        }
+    }
+    @media(max-width:768px){
+        section.doc-band{padding:40px 0}
+        .doc-band__grid{grid-template-columns:1fr;gap:22px;justify-items:center;text-align:center}
+        .doc-portrait{width:200px}
+        .doc-band__creds{justify-content:center}
+    }
     </style>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <link rel="stylesheet" href="/assets/agenda-modal.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/agenda-modal.css"></noscript>
@@ -888,25 +917,28 @@
     </div>
 </section>
 
-<!-- ============ DOCTOR / E-E-A-T (subido para reforzar confianza temprano) ============ -->
-<section class="block">
+<!-- ============ QUIÉN HACE TU ESTUDIO · banda de retrato (E-E-A-T) ============ -->
+<!-- Regla del Dr.: texto minimo, impacto. Retrato vertical grande + nombre + 1 linea + cedulas/folio (obligatorios por compliance). -->
+<section class="block doc-band">
     <div class="container">
-        <div class="block__head">
-            <span class="block__kicker">Quién hace tu estudio</span>
-            <h2 class="block__title">Neumólogo certificado, egresado del INER: <em>no un laboratorio sin médico</em></h2>
-        </div>
-        <div class="doc-card" style="max-width:820px;margin:0 auto">
-            <img src="/images/dr-william-lara-280.webp" alt="Dr. William César Lara Vázquez, neumólogo egresado del INER" class="doc-card__avatar" width="120" height="120" loading="lazy" style="object-fit:cover">
+        <div class="doc-band__grid">
+            <figure class="doc-portrait">
+                <img src="/images/dr-lara-retrato-560.webp"
+                     srcset="/images/dr-lara-retrato-420.webp 420w, /images/dr-lara-retrato-560.webp 560w, /images/dr-lara-retrato-840.webp 840w"
+                     sizes="(max-width: 768px) 200px, 280px"
+                     width="560" height="750" loading="lazy" decoding="async"
+                     alt="Dr. William César Lara Vázquez, neumólogo egresado del INER, en su consultorio">
+            </figure>
             <div>
-                <h3>Dr. William César Lara Vázquez</h3>
-                <div class="role">Médico Neumólogo · Alta Especialidad en EPOC · Egresado del INER</div>
-                <p>Egresado del Instituto Nacional de Enfermedades Respiratorias (INER), la institución de referencia en neumología en México. Atención personalizada en CDMX, con interpretación directa de cada estudio y plan terapéutico explicado en lenguaje claro, sin tercerizar la lectura a un software.</p>
-                <p style="margin-top:10px;font-weight:700;color:var(--navy);background:rgba(9,132,227,.08);border:1px solid rgba(9,132,227,.18);padding:8px 12px;border-radius:8px;font-size:.92rem"><i class="bi bi-graph-up-arrow" style="color:var(--electric);margin-right:4px"></i> Cada estudio de sueño lo interpreta personalmente el Dr. Lara, con plan terapéutico explicado a cada paciente.</p>
-                <div class="doc-card__creds">
-                    <span><i class="bi bi-patch-check-fill"></i> Cédula Prof. 12588976</span>
-                    <span><i class="bi bi-patch-check-fill"></i> Cédula Esp. 15595809</span>
-                    <span><i class="bi bi-patch-check-fill"></i> <a href="https://conacem.org.mx/buscador"  target="_blank" rel="noopener noreferrer" style="color:inherit">CNN-2102</a></span>
-                    <span><i class="bi bi-shield-check"></i> Cofepris 2609142002A00265</span>
+                <span class="doc-band__kicker">Quién hace tu estudio</span>
+                <h2 class="doc-band__name">Dr. William César Lara Vázquez</h2>
+                <p class="doc-band__role">Neumólogo · Alta Especialidad en EPOC · Egresado del INER</p>
+                <p class="doc-band__line">Él te valora, él lee tu estudio y él te explica el plan.</p>
+                <div class="doc-band__creds">
+                    <span><i class="bi bi-patch-check-fill" aria-hidden="true"></i> Céd. Prof. 12588976</span>
+                    <span><i class="bi bi-patch-check-fill" aria-hidden="true"></i> Céd. Esp. 15595809</span>
+                    <span><i class="bi bi-patch-check-fill" aria-hidden="true"></i> <a href="https://conacem.org.mx/buscador" target="_blank" rel="noopener noreferrer">CONACEM CNN-2102</a></span>
+                    <span><i class="bi bi-shield-check" aria-hidden="true"></i> Cofepris 2609142002A00265</span>
                 </div>
             </div>
         </div>
