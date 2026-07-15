@@ -1264,7 +1264,11 @@
       mos.appendChild(mo);
     });
     v.appendChild(mos);
-    notaBajo(v, 'El bot guarda el historial de los últimos 30 días.');
+    notaBajo(v, 'El bot guarda el historial de los últimos 30 días. Estos números son del asistente completo: incluyen también al Dr. Castañeda.');
+
+    // Sus citas por semana (Fase 0 del tablero, 15-jul). Solo si el servidor la
+    // manda: con un backend viejo el módulo no existe y el panel sigue igual.
+    if (estado.datos.tendencia) moduloTendencia(v, estado.datos.tendencia);
 
     // Agenda completa
     var d = estado.datos;
@@ -1280,6 +1284,119 @@
       f.appendChild(cu); g2.appendChild(f);
       g2.appendChild(enlaceAccion('Abrir el visor de chats', 'visor', 'https://alveos.mx/bot/'));
     }
+  }
+
+  /* ---- Sus citas por semana (Fase 0 del tablero de decisiones, 15-jul) ----
+     Regla que gobierna este módulo: JAMÁS inventar. Si el calendario no
+     responde, lo dice; si no hay semanas suficientes, lo dice; y la banda de
+     ruido existe para que el Dr. NO reaccione a la suerte. */
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  function svgNodo(tag, attrs, estilos) {
+    var e = document.createElementNS(SVGNS, tag);
+    Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    // Los colores van por STYLE, no por atributo: var(--token) no resuelve como
+    // atributo de presentación, y así el dark mode funciona solo.
+    Object.keys(estilos || {}).forEach(function (k) { e.style[k] = estilos[k]; });
+    return e;
+  }
+  function svgTexto(x, y, txt, tam, color, ancla) {
+    var t = svgNodo('text', { x: x, y: y, 'text-anchor': ancla || 'middle', 'font-size': tam },
+      { fill: color, fontWeight: '600' });
+    t.textContent = txt; // textContent, nunca innerHTML
+    return t;
+  }
+  function graficaTendencia(t) {
+    var sem = t.semanas || [];
+    var W = 320, H = 138, padL = 8, padR = 8, padT = 14, padB = 20;
+    var svg = svgNodo('svg', {
+      viewBox: '0 0 ' + W + ' ' + H,
+      preserveAspectRatio: 'xMidYMid meet',
+      role: 'img',
+      'aria-label': resumenTendenciaTexto(t)
+    }, { width: '100%', height: 'auto', display: 'block' });
+    var techo = Math.max.apply(null, sem.map(function (s) { return s.citas; })
+      .concat([t.banda_alta || 0, 1]));
+    var y = function (v) { return padT + (H - padT - padB) * (1 - v / techo); };
+    // Banda de ruido: el rango donde una semana NO significa nada.
+    if (t.suficiente && t.banda_alta !== null && t.banda_alta !== undefined) {
+      svg.appendChild(svgNodo('rect', {
+        x: padL, y: y(t.banda_alta), width: W - padL - padR,
+        height: Math.max(1, y(t.banda_baja) - y(t.banda_alta)), rx: 4
+      }, { fill: 'var(--acento)', opacity: '.14' }));
+      svg.appendChild(svgNodo('line', {
+        x1: padL, x2: W - padR, y1: y(t.promedio), y2: y(t.promedio), 'stroke-dasharray': '4 3'
+      }, { stroke: 'var(--acento)', strokeWidth: '1.5', opacity: '.9' }));
+    }
+    var paso = (W - padL - padR) / (sem.length || 1);
+    var ancho = Math.min(24, paso * 0.55);
+    sem.forEach(function (s, i) {
+      var cx = padL + paso * (i + 0.5);
+      var yv = y(s.citas);
+      // Fuera de la banda = merece mirada; dentro = ruido. El color NO es el
+      // único portador: el número va escrito encima de cada barra.
+      var fuera = t.suficiente && (s.citas > t.banda_alta || s.citas < t.banda_baja);
+      svg.appendChild(svgNodo('rect', {
+        x: cx - ancho / 2, y: yv, width: ancho, height: Math.max(2, (H - padB) - yv), rx: 3
+      }, { fill: fuera ? 'var(--ambar)' : 'var(--ink-3)', opacity: fuera ? '.95' : '.6' }));
+      svg.appendChild(svgTexto(cx, yv - 4, String(s.citas), 9.5, 'var(--ink-2)'));
+      svg.appendChild(svgTexto(cx, H - 6, s.etiqueta, 8.5, 'var(--ink-3)'));
+    });
+    return svg;
+  }
+  function resumenTendenciaTexto(t) {
+    if (!t.suficiente) return 'Citas por semana: aún no hay suficientes semanas para un promedio.';
+    return 'Citas por semana. Promedio ' + t.promedio + '. Lo normal va de ' +
+      t.banda_baja + ' a ' + t.banda_alta + ' citas por semana.';
+  }
+  function moduloTendencia(v, t) {
+    var g = seccion(v, 'Sus citas por semana');
+    var f = nodo('div', 'fila'); var cu = nodo('div', 'cuerpo');
+    if (t.error) {
+      cu.appendChild(nodo('div', 't', 'No disponible en este momento'));
+      cu.appendChild(nodo('div', 'd', t.error === 'sin_calendario'
+        ? 'Falta el calendario en la configuración. Sus citas no se perdieron; solo esta gráfica no se puede dibujar.'
+        : 'No pudimos leer su calendario ahorita. Sus citas no se perdieron; solo esta gráfica no está disponible. Vuelva a entrar más tarde.'));
+      f.appendChild(cu); g.appendChild(f);
+      return;
+    }
+    if (!(t.semanas || []).length) {
+      cu.appendChild(nodo('div', 't', 'Todavía sin semanas que mostrar'));
+      cu.appendChild(nodo('div', 'd', 'En cuanto se cierre la primera semana completa, aquí aparece.'));
+      f.appendChild(cu); g.appendChild(f);
+      return;
+    }
+    // El titular: el promedio. Un solo número grande, no cinco.
+    if (t.suficiente) {
+      cu.appendChild(nodo('div', 't', 'En promedio, ' + t.promedio + ' citas por semana'));
+      cu.appendChild(nodo('div', 'd', 'Cualquier semana entre ' + t.banda_baja + ' y ' + t.banda_alta +
+        ' citas es normal: es el vaivén de la suerte, no una señal. Solo vale la pena preocuparse si se sale de ahí varias semanas seguidas.'));
+    } else {
+      cu.appendChild(nodo('div', 't', 'Aún no puedo darle un promedio confiable'));
+      cu.appendChild(nodo('div', 'd', 'Llevamos ' + t.semanas.length +
+        (t.semanas.length === 1 ? ' semana cerrada' : ' semanas cerradas') +
+        '. Con menos de 4 cualquier promedio engaña. Le muestro lo que llevamos, sin conclusiones.'));
+    }
+    f.appendChild(cu); g.appendChild(f);
+
+    var fg = nodo('div', 'fila'); var cg = nodo('div', 'cuerpo');
+    cg.appendChild(graficaTendencia(t));
+    fg.appendChild(cg); g.appendChild(fg);
+
+    // Honestidad sobre lo que NO está contado.
+    var avisos = [];
+    if (t.semana_en_curso !== null && t.semana_en_curso !== undefined) {
+      avisos.push('La semana en curso (' + t.semana_en_curso +
+        (t.semana_en_curso === 1 ? ' cita' : ' citas') + ' hasta hoy) no se grafica: todavía no termina.');
+    }
+    if (t.excluidas_mauricio) {
+      avisos.push('No se contaron ' + t.excluidas_mauricio + ' citas del Dr. Castañeda.');
+    }
+    if (t.sin_identificar) {
+      avisos.push(t.sin_identificar + (t.sin_identificar === 1 ? ' cita no dice' : ' citas no dicen') +
+        ' de qué doctor son en el título del calendario, así que no se contaron.');
+    }
+    avisos.push('Las consultas a domicilio no se registran en el calendario, así que aquí no aparecen.');
+    notaBajo(v, avisos.join(' '));
   }
 
   /* ---- Más ---- */
