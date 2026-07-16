@@ -863,6 +863,27 @@
     var x = mapa[id];
     return x === undefined ? '—' : String(x);
   }
+  // Subtitulo del mosaico. Para 'abandonos' es DINAMICO (16-jul): si el
+  // servidor ya manda el desglose por paso (abandono_slot, etc.) y un paso
+  // domina (mas de la mitad de los conocidos), se dice en cual se quedan.
+  // Backend viejo (sin campos) o todo en abandono_na -> subtitulo de siempre.
+  function subTile(t, m) {
+    if (t.id !== 'abandonos') return t.sub;
+    var v = m[estado.ventana] || {};
+    if (v.abandono_slot === undefined) return t.sub;
+    var pasos = {
+      doctor: 'al elegir doctor', slot: 'al elegir horario', nombre: 'al dar su nombre',
+      motivo: 'al contar el motivo', aviso: 'en el aviso de privacidad'
+    };
+    var mejor = '', nMejor = 0, total = 0;
+    Object.keys(pasos).forEach(function (k) {
+      var n = Number(v['abandono_' + k] || 0);
+      total += n;
+      if (n > nMejor) { nMejor = n; mejor = k; }
+    });
+    if (!total || nMejor * 2 <= total) return t.sub;
+    return 'la mayoría ' + pasos[mejor];
+  }
 
   function vistaInicio(v) {
     var d = estado.datos;
@@ -1010,7 +1031,7 @@
       var elegido = estado.layout.tiles.indexOf(t.id) !== -1;
       var mo = nodo('div', 'mosaico' + (t.destacado && elegido ? ' destacado' : ''));
       mo.appendChild(nodo('div', 'v', valorTile(t.id, m)));
-      var e = nodo('div', 'e'); e.appendChild(nodo('b', '', t.et)); e.appendChild(document.createTextNode(t.sub)); mo.appendChild(e);
+      var e = nodo('div', 'e'); e.appendChild(nodo('b', '', t.et)); e.appendChild(document.createTextNode(subTile(t, m))); mo.appendChild(e);
       if (estado.editando) {
         var chk = nodo('div', 'tile-check' + (elegido ? ' on' : '')); chk.appendChild(ico('check', 14));
         mo.appendChild(chk); mo.style.cursor = 'pointer';
@@ -1261,7 +1282,7 @@
     TILES_TODOS.forEach(function (t) {
       var mo = nodo('div', 'mosaico' + (t.destacado ? ' destacado' : ''));
       mo.appendChild(nodo('div', 'v', valorTile(t.id, m)));
-      var e = nodo('div', 'e'); e.appendChild(nodo('b', '', t.et)); e.appendChild(document.createTextNode(t.sub)); mo.appendChild(e);
+      var e = nodo('div', 'e'); e.appendChild(nodo('b', '', t.et)); e.appendChild(document.createTextNode(subTile(t, m))); mo.appendChild(e);
       mos.appendChild(mo);
     });
     v.appendChild(mos);
