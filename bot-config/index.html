@@ -1270,6 +1270,9 @@
     // manda: con un backend viejo el módulo no existe y el panel sigue igual.
     if (estado.datos.tendencia) moduloTendencia(v, estado.datos.tendencia);
 
+    // Su dinero en Google (Fase 1). Solo si el servidor lo manda.
+    if (estado.datos.ads) moduloAds(v, estado.datos.ads, estado.datos.tendencia);
+
     // Agenda completa
     var d = estado.datos;
     var citas = (d.agenda && Array.isArray(d.agenda.citas)) ? d.agenda.citas : null;
@@ -1397,6 +1400,123 @@
     }
     avisos.push('Las consultas a domicilio no se registran en el calendario, así que aquí no aparecen.');
     notaBajo(v, avisos.join(' '));
+  }
+
+  /* ---- Su dinero en Google (Fase 1 del tablero, 15-jul) ----
+     Regla: el panel JAMÁS inventa. Si el script no corrió, lo dice; si Google
+     no reporta un dato, lo dice; y nunca recomienda BAJAR el presupuesto (la
+     asimetría: una cita perdida cuesta más que lo que se ahorra). */
+  // Cada veredicto trae su FRASE COMPLETA, no un sufijo pegado: con una
+  // plantilla común salía "SIN DATO el presupuesto" y "EN CAMBIO el
+  // presupuesto", que no son español.
+  var VEREDICTOS = {
+    'SUBIR': { color: 'var(--verde)', glifo: '▲', frase: 'SUBIR el presupuesto' },
+    'MANTENER': { color: 'var(--ink-3)', glifo: '=', frase: 'MANTENER el presupuesto' },
+    'EN CAMBIO': { color: 'var(--azul)', glifo: '◔', frase: 'ESPERAR: cambio reciente' },
+    'SIN DATO': { color: 'var(--ink-3)', glifo: '?', frase: 'SIN DATOS suficientes' }
+  };
+  function barraIS(pctPres, pctRank) {
+    // Dos barras comparables: presupuesto vs ranking. La FORMA y el número
+    // portan el significado; el color solo acompaña.
+    var W = 320, H = 44;
+    var svg = svgNodo('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img',
+      'aria-label': 'Dejó de aparecer ' + pctPres + '% por presupuesto y ' + pctRank + '% porque otros quedaron arriba.' },
+      { width: '100%', height: 'auto', display: 'block' });
+    [{ p: pctPres, y: 4, et: 'por presupuesto', c: 'var(--ambar)' },
+     { p: pctRank, y: 26, et: 'por calidad del anuncio', c: 'var(--indigo)' }].forEach(function (b) {
+      svg.appendChild(svgNodo('rect', { x: 108, y: b.y, width: W - 116, height: 12, rx: 6 },
+        { fill: 'var(--chip-bg)' }));
+      svg.appendChild(svgNodo('rect', { x: 108, y: b.y, width: Math.max(2, (W - 116) * (b.p / 100)), height: 12, rx: 6 },
+        { fill: b.c }));
+      svg.appendChild(svgTexto(104, b.y + 10, b.et, 8.5, 'var(--ink-3)', 'end'));
+      svg.appendChild(svgTexto(W - 4, b.y + 10, b.p + '%', 9, 'var(--ink-2)', 'end'));
+    });
+    return svg;
+  }
+  function filaCampana(c) {
+    var f = nodo('div', 'fila');
+    var cu = nodo('div', 'cuerpo');
+    var v = VEREDICTOS[c.veredicto] || VEREDICTOS['SIN DATO'];
+    var t = nodo('div', 't', c.nombre);
+    cu.appendChild(t);
+    // El veredicto va como PALABRA, no como color: el color nunca es el único
+    // portador del significado.
+    var chip = nodo('div', 'd');
+    var b = nodo('b', '', v.glifo + ' ' + v.frase);
+    b.style.color = v.color;
+    chip.appendChild(b);
+    cu.appendChild(chip);
+    cu.appendChild(nodo('div', 'd', c.porque));
+    var det = 'Gasta $' + c.gasto.toLocaleString('es-MX') + ' en 4 semanas' +
+      (c.presupuesto_diario ? ' · tope de $' + c.presupuesto_diario.toLocaleString('es-MX') + ' al día' : '');
+    cu.appendChild(nodo('div', 'd', det));
+    if (c.perdido_presupuesto !== null && c.perdido_ranking !== null) {
+      cu.appendChild(barraIS(c.perdido_presupuesto, c.perdido_ranking));
+    }
+    f.appendChild(cu);
+    return f;
+  }
+  function moduloAds(v, a, tend) {
+    var g = seccion(v, 'Su dinero en Google');
+    var f = nodo('div', 'fila'); var cu = nodo('div', 'cuerpo');
+
+    if (a.estado === 'sin_configurar') {
+      cu.appendChild(nodo('div', 't', 'Aún no conectado'));
+      cu.appendChild(nodo('div', 'd', 'Falta un paso suyo de 2 minutos, una sola vez: autorizar el informe dentro de Google Ads. ' +
+        'Mientras tanto no puedo mostrarle su gasto, y prefiero decírselo a inventarlo. Pídame los pasos y se los doy.'));
+      f.appendChild(cu); g.appendChild(f);
+      return;
+    }
+    if (a.estado === 'rancio') {
+      cu.appendChild(nodo('div', 't', 'No pude actualizar sus números de Google'));
+      cu.appendChild(nodo('div', 'd', 'El último dato es del ' + (a.ultima_actualizacion || 'hace tiempo') +
+        '. No se los muestro porque se verían sanos y serían viejos. Sus citas sí están al día, aquí arriba. William ya está enterado.'));
+      f.appendChild(cu); g.appendChild(f);
+      return;
+    }
+
+    // 1) Lo que gastó y lo que llegó, lado a lado. Es lo que hoy nadie ve junto.
+    var citas4 = null;
+    if (tend && (tend.semanas || []).length >= 4) {
+      citas4 = tend.semanas.slice(-4).reduce(function (s, x) { return s + x.citas; }, 0);
+    }
+    cu.appendChild(nodo('div', 't', 'En 4 semanas gastó $' + (a.gasto_28d || 0).toLocaleString('es-MX') +
+      (citas4 !== null ? ' y tuvo ' + citas4 + ' citas' : '')));
+    if (citas4 !== null && citas4 > 0) {
+      var porCita = Math.round((a.gasto_28d || 0) / citas4);
+      // ROTULO HONESTO: no es el costo por cita que trajo Google. El
+      // denominador incluye TODAS sus citas (orgánicas, recurrentes, boca en
+      // boca), así que el costo real de Google por cita es MAYOR que esto.
+      // Cuánto, no se sabe: no hay forma de saber de qué campaña vino cada
+      // paciente. Rotularlo "CPA" sería mentir.
+      cu.appendChild(nodo('div', 'd', 'Son $' + porCita.toLocaleString('es-MX') +
+        ' de gasto de Google por cada una de TODAS sus citas — incluidas las que Google no le trajo. ' +
+        'Su costo real por paciente de Google es mayor que eso; cuánto, no se puede saber todavía.'));
+    }
+    cu.appendChild(nodo('div', 'd', 'Datos de Google al ' + (a.ultima_actualizacion || '—') + '.'));
+    f.appendChild(cu); g.appendChild(f);
+
+    // 2) Campaña por campaña, con la decisión escrita.
+    if ((a.campanas || []).length) {
+      var g2 = seccion(v, '¿Le subo o le bajo a cada campaña?');
+      a.campanas.forEach(function (c) { g2.appendChild(filaCampana(c)); });
+      notaBajo(v, 'Nunca le voy a recomendar bajarle a una campaña por una mala racha: con este número de pacientes, ' +
+        'una semana floja casi siempre es suerte, y una cita perdida cuesta más que lo que se ahorra.');
+    }
+
+    // 3) Dónde se va el dinero sin producir un solo contacto.
+    if ((a.desperdicio || []).length) {
+      var g3 = seccion(v, 'Búsquedas que le costaron sin traer a nadie');
+      a.desperdicio.slice(0, 8).forEach(function (d) {
+        var fd = nodo('div', 'fila'); var cd = nodo('div', 'cuerpo');
+        cd.appendChild(nodo('div', 't', '"' + d.termino + '"'));
+        cd.appendChild(nodo('div', 'd', '$' + d.gasto.toLocaleString('es-MX') + ' en 4 semanas · ' +
+          d.clics + (d.clics === 1 ? ' clic' : ' clics') + ' · ningún contacto'));
+        fd.appendChild(cd); g3.appendChild(fd);
+      });
+      notaBajo(v, 'Son búsquedas reales por las que pagó. Dígame cuáles NO son de lo suyo y las bloqueo. ' +
+        'Ojo: que alguien busque precio no es motivo para bloquearla.');
+    }
   }
 
   /* ---- Más ---- */
