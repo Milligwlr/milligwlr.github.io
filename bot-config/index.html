@@ -470,7 +470,8 @@
   var CAMPOS_DEF = {
     // interruptores
     CITAS_POR_BOT: { etiqueta: 'Agendar citas', ayuda: 'El asistente reserva citas él solo.', advApagar: 'Los pacientes ya no podrán agendar por WhatsApp; solo recibirán el enlace de agenda.' },
-    SEGUIMIENTO_POST_CITA: { etiqueta: 'Mensaje después de la cita', ayuda: 'Un "¿cómo se ha sentido?" 24–48 h después, con oferta de vacunas.' },
+    SEGUIMIENTO_POST_CITA: { etiqueta: 'Mensaje después de la cita', ayuda: 'Un solo mensaje 24 h después: cómo se ha sentido, reseña de Google (primera vez), cita de seguimiento, factura y vacunas. Si lo apaga, también se apagan las invitaciones de reseña.', advApagar: 'Si lo apaga, sus pacientes ya no recibirán el seguimiento NI la invitación de reseña de Google.' },
+    PREGUNTA_ASISTENCIA: { etiqueta: 'Preguntarme si el paciente asistió', ayuda: 'Después de cada cita le pregunto por WhatsApp con botones; si responde "No asistió", no le envío el seguimiento al paciente.' },
     SEGUNDO_RECORDATORIO: { etiqueta: 'Recordatorio el día de la cita', ayuda: 'Un recordatorio extra unas 4 h antes.' },
     LISTA_ESPERA: { etiqueta: 'Adelantar citas (lista de espera)', ayuda: 'Si se libera un hueco, se lo ofrece al último paciente del día para compactar su agenda.' },
     CORREOS_SOLO_CRITICOS: { etiqueta: 'Correos solo para lo importante', ayuda: 'Los avisos del día llegan por WhatsApp; el correo queda para alertas y el resumen de la mañana.' },
@@ -506,7 +507,7 @@
     // cadencia
     HORA_CONFIRMACION: { etiqueta: 'Hora del mensaje de confirmación', peq: 'la mañana del día anterior', unidad: 'reloj', min: 6, max: 14, paso: 1 },
     RECONFIRMA_HORAS: { etiqueta: 'Volver a preguntar después de', peq: 'si no contestó (ponga 0 para no repreguntar)', unidad: 'h', min: 0, max: 24, paso: 1 },
-    POSTCITA_HORAS: { etiqueta: 'Mensaje después de la cita, a las', peq: 'horas después de terminar', unidad: 'h', min: 4, max: 47, paso: 1 },
+    POSTCITA_HORAS: { etiqueta: 'Mensaje después de la cita, a las', peq: 'horas después de terminar', ayuda: 'También es cuándo sale la invitación de reseña de Google (va en el mismo mensaje).', unidad: 'h', min: 4, max: 47, paso: 1 },
     CORTESIA_INICIO: { etiqueta: 'No escribir antes de' },
     CORTESIA_FIN: { etiqueta: 'No escribir después de' },
     ADELANTO_MIN_HORAS: { etiqueta: 'Adelantos: anticipación mínima', peq: 'horas mínimas al hueco', unidad: 'h', min: 1, max: 24, paso: 1 },
