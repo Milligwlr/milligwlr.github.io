@@ -1117,7 +1117,7 @@ var FACT_REVIEWS = [
                 var errMonto = f.querySelector('.err');
                 var monto = parseFloat(el.value.replace(/,/g, ''));
                 if (el.value && (isNaN(monto) || monto < 1)) { valid = false; if (errMonto) errMonto.textContent = 'Escribe el monto pagado.'; }
-                else if (el.value && monto > 20000) { valid = false; if (errMonto) errMonto.textContent = 'Verifica el monto: parece demasiado alto (máx. $20,000).'; }
+                else if (el.value && monto > 25000) { valid = false; if (errMonto) errMonto.textContent = 'Verifica el monto: parece demasiado alto (máx. $25,000).'; }
                 else if (errMonto) errMonto.textContent = 'Escribe el monto pagado.';
             }
             if (f) f.classList.toggle('is-invalid', !valid);
