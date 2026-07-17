@@ -1286,7 +1286,12 @@
       mos.appendChild(mo);
     });
     v.appendChild(mos);
-    notaBajo(v, 'El bot guarda el historial de los últimos 30 días. Estos números son del asistente completo: incluyen también al Dr. Castañeda.');
+    // El embudo de arriba (conversaciones, reservas) es del bot COMPLETO a
+    // propósito: un lead que apenas escribe "hola" todavía no eligió doctor, así
+    // que no se puede separar sin inventar. Lo que SÍ tiene doctor son las
+    // citas, y eso se desglosa abajo (petición del Dr., 15-jul).
+    notaBajo(v, 'El bot guarda el historial de los últimos 30 días. Conversaciones y reservas son de todo el asistente: cuando alguien apenas escribe, aún no eligió doctor.');
+    moduloDesgloseDoctor(v, m);
 
     // Sus citas por semana (Fase 0 del tablero, 15-jul). Solo si el servidor la
     // manda: con un backend viejo el módulo no existe y el panel sigue igual.
@@ -1373,6 +1378,39 @@
     return 'Citas por semana. Promedio ' + t.promedio + '. Lo normal va de ' +
       t.banda_baja + ' a ' + t.banda_alta + ' citas por semana.';
   }
+  /* ---- Sus citas vs las del Dr. Castañeda (petición del Dr., 15-jul) ----
+     Separa SOLO lo que tiene doctor de verdad (las citas). Si el servidor no
+     manda el desglose (backend viejo), el módulo no aparece. */
+  function filaDesglose(etiqueta, w, mau) {
+    var f = nodo('div', 'fila'); var cu = nodo('div', 'cuerpo');
+    cu.appendChild(nodo('div', 't', etiqueta));
+    var d = nodo('div', 'd');
+    var b = nodo('b', '', 'Usted: ' + w);
+    b.style.color = 'var(--acento)';
+    d.appendChild(b);
+    d.appendChild(document.createTextNode('   ·   Dr. Castañeda: ' + mau));
+    cu.appendChild(d);
+    f.appendChild(cu);
+    return f;
+  }
+  function moduloDesgloseDoctor(v, m) {
+    var pd = m && m.citas_por_doctor;
+    if (!pd || !pd.william) return; // backend viejo o Citas no se pudo leer
+    var w = pd.william, mau = pd.mauricio || { conf30: 0, proximas: 0, hoy: 0 };
+    var g = seccion(v, 'Sus citas y las del Dr. Castañeda');
+    g.appendChild(filaDesglose('Hoy', w.hoy, mau.hoy));
+    g.appendChild(filaDesglose('Próximas', w.proximas, mau.proximas));
+    g.appendChild(filaDesglose('Confirmadas (últimos 30 días)', w.conf30, mau.conf30));
+    var sin = pd.sin_identificar || { conf30: 0, proximas: 0, hoy: 0 };
+    var totalSin = sin.hoy + sin.proximas + sin.conf30;
+    if (totalSin > 0) {
+      notaBajo(v, totalSin + (totalSin === 1
+        ? ' cita no dice de qué doctor es'
+        : ' citas no dicen de qué doctor son') +
+        ' en el título del calendario, así que no se contaron de ninguno de los dos.');
+    }
+  }
+
   function moduloTendencia(v, t) {
     var g = seccion(v, 'Sus citas por semana');
     var f = nodo('div', 'fila'); var cu = nodo('div', 'cuerpo');
