@@ -302,7 +302,98 @@
         .nav-link--recursos.active::after{background:#1e3799!important}
         .nav-link--recursos:hover{color:#0984e3!important}
         .nav-link--recursos i{opacity:.85}
-        </style>
+        
+/* ===== A. POR QUÉ TRATARLA: grid de desenlaces (índigo #6c5ce7) ===== */
+.why-lead{max-width:760px;padding:20px 24px;background:rgba(108,92,231,.06);border-left:4px solid #6c5ce7;border-radius:12px;margin:0 0 32px;color:#3a4a5c;font-size:1rem;line-height:1.65}
+@media(min-width:768px){.why-lead{font-size:1.05rem;line-height:1.7}}
+.why-lead strong{color:var(--navy);font-weight:700}
+.why-grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:600px){.why-grid{grid-template-columns:1fr 1fr;gap:14px}}
+@media(min-width:992px){.why-grid{grid-template-columns:repeat(3,1fr);gap:16px}}
+.why-tile{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:18px;padding:20px 18px;display:flex;flex-direction:column;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);box-shadow:0 4px 14px rgba(10,22,40,.04)}
+.why-tile:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(108,92,231,.12);border-color:rgba(108,92,231,.22)}
+.why-tile--good{border-color:rgba(46,204,113,.28);background:linear-gradient(180deg,rgba(46,204,113,.05),#fff)}
+.why-tile--good:hover{box-shadow:0 16px 40px rgba(46,204,113,.14);border-color:rgba(46,204,113,.4)}
+.why-tile__icon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;margin-bottom:14px;flex-shrink:0}
+.why-tile__icon--risk{background:linear-gradient(135deg,#6c5ce7,#4834d4);box-shadow:0 8px 20px rgba(108,92,231,.3)}
+.why-tile--good .why-tile__icon{background:linear-gradient(135deg,#2ecc71,#00b894);box-shadow:0 8px 20px rgba(46,204,113,.3)}
+.why-tile h3{font-size:.98rem;font-weight:800;color:var(--navy);margin:0 0 6px;line-height:1.3}
+.why-tile p{font-size:.84rem;color:var(--text-muted);line-height:1.5;margin:0 0 14px}
+.why-tile__pill{margin-top:auto;display:flex;align-items:flex-start;gap:8px;font-size:.76rem;line-height:1.42;font-weight:600;color:#4a4368;background:rgba(108,92,231,.08);border:1px solid rgba(108,92,231,.16);border-radius:10px;padding:9px 11px}
+.why-tile__pill i{color:#6c5ce7;font-size:.82rem;margin-top:2px;flex-shrink:0}
+.why-tile__pill strong{font-weight:800;color:inherit}
+.why-tile--good .why-tile__pill{color:#1e7a52;background:rgba(46,204,113,.1);border-color:rgba(46,204,113,.22)}
+.why-tile--good .why-tile__pill i{color:#00b894}
+/* Nota de franqueza: voz honesta del Dr., banda aparte, tono calmado */
+.why-frank{margin-top:22px;background:#f6f7fb;border:1px solid rgba(10,22,40,.08);border-radius:14px;padding:22px 24px;display:flex;gap:16px;align-items:flex-start}
+.why-frank__icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#a29bfe,#6c5ce7);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;box-shadow:0 8px 20px rgba(108,92,231,.28)}
+.why-frank h3{font-size:1rem;font-weight:800;color:var(--navy);margin:0 0 6px;line-height:1.3}
+.why-frank p{font-size:.9rem;color:#3a4a5c;line-height:1.65;margin:0}
+@media(max-width:575px){.why-frank{flex-direction:column;gap:12px;padding:20px}}
+/* CTA compacto en fondo claro */
+.why-cta{margin-top:22px;background:linear-gradient(135deg,rgba(108,92,231,.08),rgba(162,155,254,.05));border:1px solid rgba(108,92,231,.18);border-radius:16px;padding:22px 20px;display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center}
+.why-cta__txt{font-size:.98rem;font-weight:700;color:var(--navy);line-height:1.4;margin:0}
+.why-cta__btns{display:flex;flex-direction:column;gap:10px;width:100%}
+@media(min-width:480px){.why-cta__btns{flex-direction:row;justify-content:center;width:auto}}
+.why-cta__btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:12px;font-weight:700;font-size:.92rem;text-decoration:none;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s var(--ease);min-height:50px;cursor:pointer}
+.why-cta__btn--wa{background:#25d366;color:#fff!important;box-shadow:0 6px 18px rgba(37,211,102,.32)}
+.why-cta__btn--wa:hover{background:#1da851;transform:translateY(-2px)}
+.why-cta__btn--cal{background:linear-gradient(135deg,#6c5ce7,#4834d4);color:#fff!important;box-shadow:0 6px 18px rgba(108,92,231,.32)}
+.why-cta__btn--cal:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(108,92,231,.42)}
+/* ===== B. ENRUTADOR poligrafía vs polisomnografía (índigo #6c5ce7) ===== */
+.compare-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:20px}
+@media(min-width:768px){.compare-grid{grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}}
+.compare-card{border-radius:20px;padding:24px 22px;position:relative;display:flex;flex-direction:column;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.compare-card--primary{background:linear-gradient(160deg,rgba(108,92,231,.08),rgba(162,155,254,.04));border:1.5px solid rgba(108,92,231,.35);box-shadow:0 12px 34px rgba(108,92,231,.12)}
+.compare-card--primary:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(108,92,231,.18)}
+.compare-card--neutral{background:#fff;border:1px solid rgba(10,22,40,.1)}
+.compare-card__badge{align-self:flex-start;display:inline-flex;align-items:center;gap:7px;font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:1.4px;padding:6px 12px;border-radius:100px;margin-bottom:14px}
+.compare-card--primary .compare-card__badge{color:#fff;background:linear-gradient(135deg,#6c5ce7,#4834d4);box-shadow:0 6px 16px rgba(108,92,231,.35)}
+.compare-card--neutral .compare-card__badge{color:#64708a;background:rgba(10,22,40,.05);border:1px solid rgba(10,22,40,.1)}
+.compare-card__head{display:flex;align-items:center;gap:12px}
+.compare-card__icon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0}
+.compare-card--primary .compare-card__icon{background:linear-gradient(135deg,#6c5ce7,#4834d4);color:#fff;box-shadow:0 8px 20px rgba(108,92,231,.3)}
+.compare-card--neutral .compare-card__icon{background:rgba(10,22,40,.05);color:#0a2540}
+.compare-card__name{font-size:1.18rem;font-weight:800;color:var(--navy);line-height:1.2;margin:0}
+.compare-card__type{font-size:.78rem;font-weight:700;margin:2px 0 0}
+.compare-card--primary .compare-card__type{color:#6c5ce7}
+.compare-card--neutral .compare-card__type{color:#64708a}
+.compare-card__body{font-size:.9rem;color:#3a4a5c;line-height:1.6;margin:14px 0 0}
+.compare-card__body strong{color:var(--navy);font-weight:700}
+/* Banda de reaseguramiento con dato-ancla 0.92 */
+.compare-reassure{background:linear-gradient(140deg,#0a1628 0%,#12143a 100%);border-radius:22px;padding:28px 24px;color:#fff;position:relative;overflow:hidden;box-shadow:0 16px 48px rgba(108,92,231,.2);margin-bottom:20px}
+@media(min-width:768px){.compare-reassure{padding:36px 40px;display:flex;align-items:center;gap:38px}}
+.compare-reassure::before{content:'';position:absolute;inset:-40%;background:radial-gradient(circle at 20% 50%,rgba(108,92,231,.2),transparent 55%),radial-gradient(circle at 85% 60%,rgba(162,155,254,.12),transparent 55%);pointer-events:none}
+.compare-reassure__stat{position:relative;z-index:1;text-align:center;flex-shrink:0;margin-bottom:18px}
+@media(min-width:768px){.compare-reassure__stat{margin-bottom:0}}
+.compare-reassure__num{font-size:clamp(3rem,12vw,4.4rem);font-weight:800;background:linear-gradient(135deg,#a29bfe,#6c5ce7);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;letter-spacing:-.04em}
+.compare-reassure__num-lbl{font-size:.72rem;color:rgba(255,255,255,.6);font-weight:600;margin-top:8px;line-height:1.45;max-width:210px;margin-inline:auto}
+.compare-reassure__body{position:relative;z-index:1}
+.compare-reassure__body h3{font-size:clamp(1.1rem,3.5vw,1.4rem);font-weight:800;color:#fff;line-height:1.28;margin:0 0 10px}
+.compare-reassure__body p{font-size:.9rem;color:rgba(255,255,255,.75);line-height:1.62;margin:0}
+.compare-reassure__body strong{color:#a29bfe;font-weight:700}
+/* Cuándo SÍ conviene el laboratorio */
+.compare-when{background:#fff;border:1px solid rgba(108,92,231,.16);border-radius:18px;padding:24px 22px;margin-bottom:20px;box-shadow:0 4px 14px rgba(10,22,40,.04)}
+.compare-when__head{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.compare-when__head-icon{width:44px;height:44px;border-radius:12px;background:rgba(108,92,231,.1);color:#6c5ce7;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.compare-when__head h3{font-size:1.08rem;font-weight:800;color:var(--navy);margin:0;line-height:1.3}
+.compare-when__list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr;gap:11px}
+@media(min-width:600px){.compare-when__list{grid-template-columns:1fr 1fr;gap:11px 24px}}
+.compare-when__list li{display:flex;align-items:flex-start;gap:10px;font-size:.86rem;color:#3a4a5c;line-height:1.5}
+.compare-when__list li i{color:#6c5ce7;font-size:1rem;flex-shrink:0;margin-top:2px}
+.compare-when__note{margin:18px 0 0;padding-top:15px;border-top:1px solid rgba(10,22,40,.07);font-size:.86rem;color:#3a4a5c;line-height:1.6}
+.compare-when__note strong{color:var(--navy);font-weight:700}
+/* Cierre + doble CTA */
+.compare-close{font-size:.94rem;color:#3a4a5c;line-height:1.65;max-width:720px;margin:0 0 20px}
+.compare-close strong{color:var(--navy);font-weight:700}
+.compare-cta{display:flex;flex-direction:column;gap:12px}
+@media(min-width:600px){.compare-cta{flex-direction:row}}
+.compare-cta__btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 22px;border-radius:14px;font-weight:700;font-size:.94rem;text-decoration:none;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s var(--ease);min-height:56px;text-align:center;line-height:1.3}
+.compare-cta__btn--primary{background:linear-gradient(135deg,#6c5ce7,#4834d4);color:#fff!important;box-shadow:0 8px 24px rgba(108,92,231,.35)}
+.compare-cta__btn--primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(108,92,231,.45)}
+.compare-cta__btn--ghost{background:#fff;color:#4834d4!important;border:1.5px solid rgba(108,92,231,.35)}
+.compare-cta__btn--ghost:hover{background:rgba(108,92,231,.06);transform:translateY(-2px)}
+</style>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -705,6 +796,102 @@
 </div>
 </div>
 
+<!-- POR QUÉ TRATARLA / QUÉ LE QUITAS DE ENCIMA -->
+<div class="apn-section reveal">
+<span class="apn-section__eyebrow"><i class="bi bi-heart-pulse"></i> Por qué vale la pena tratarla</span>
+<h2 class="apn-section__title">Tratarla no es solo dormir mejor: es cuidar tu <em>corazón, tu cerebro y tu metabolismo</em> cada noche</h2>
+
+<p class="why-lead">La apnea no es solo roncar. Cada noche tu garganta se cierra decenas de veces, dejas de respirar por segundos, tu oxígeno baja y tu descanso se rompe en pedazos. Aunque casi nunca te acuerdas, tu cuerpo sí se entera: el corazón se acelera, la presión sube y tu metabolismo trabaja a contracorriente. Por eso no descansas aunque duermas ocho horas. La buena noticia es que <strong>se estudia y se trata</strong>, y muchas personas se sienten distintas desde las primeras noches.</p>
+
+<div class="why-grid">
+
+  <!-- 1 · Descanso (positivo) -->
+  <div class="why-tile why-tile--good">
+    <div class="why-tile__icon"><i class="bi bi-emoji-smile"></i></div>
+    <h3>Vuelves a despertar descansado</h3>
+    <p>Es el cambio más seguro y honesto: baja la somnolencia de día, mejoran la concentración y el ánimo, muchas veces desde las primeras noches. No prometo milagros, sí un cambio que se siente.</p>
+    <div class="why-tile__pill"><i class="bi bi-check-circle-fill"></i><span>El beneficio es mayor mientras más parejo uses el equipo: idealmente <strong>3 a 4 horas o más</strong> por noche.</span></div>
+  </div>
+
+  <!-- 2 · Sueño al volante (positivo) -->
+  <div class="why-tile why-tile--good">
+    <div class="why-tile__icon"><i class="bi bi-car-front"></i></div>
+    <h3>El sueño al volante no es descuido, puede ser apnea</h3>
+    <p>Sin tratar, la somnolencia crece y con ella el riesgo real de un accidente por quedarte dormido. Aquí el tratamiento ayuda mucho y rápido.</p>
+    <div class="why-tile__pill"><i class="bi bi-check-circle-fill"></i><span>El CPAP, usado cada noche, se asoció con cerca de <strong>70% menos riesgo</strong> de accidente de tráfico.</span></div>
+  </div>
+
+  <!-- 3 · Cerebro / derrame (riesgo, honestidad-primero) -->
+  <div class="why-tile">
+    <div class="why-tile__icon why-tile__icon--risk"><i class="bi bi-activity"></i></div>
+    <h3>Es un factor de riesgo para el derrame cerebral</h3>
+    <p>Suma como fumar o la presión alta: no actúa solo, pero carga la balanza en tu contra. Detectarla y tratarla a tiempo es una forma real de cuidar tu cerebro.</p>
+    <div class="why-tile__pill"><i class="bi bi-bar-chart-fill"></i><span>En un estudio importante, las personas con apnea <strong>casi duplicaron</strong> su riesgo de sufrir un derrame o de fallecer, aun descontando edad, peso, tabaco, diabetes y presión.</span></div>
+  </div>
+
+  <!-- 4 · Corazón / infarto (riesgo) -->
+  <div class="why-tile">
+    <div class="why-tile__icon why-tile__icon--risk"><i class="bi bi-heart-pulse"></i></div>
+    <h3>Tu corazón también trabaja de noche</h3>
+    <p>La apnea grave lo desgasta. Te hablo con la verdad: es de las cosas concretas que puedes hacer a favor de tu corazón, aunque no borra todo el riesgo.</p>
+    <div class="why-tile__pill"><i class="bi bi-bar-chart-fill"></i><span>La apnea grave sin tratar se asocia, a 10 años, con cerca del <strong>triple de eventos graves</strong> del corazón; quienes usaban su CPAP tenían un riesgo parecido al de personas sin apnea.</span></div>
+  </div>
+
+  <!-- 5 · Presión resistente (riesgo) -->
+  <div class="why-tile">
+    <div class="why-tile__icon why-tile__icon--risk"><i class="bi bi-speedometer2"></i></div>
+    <h3>Si tu presión no baja con tres medicamentos, puede ser la pieza que falta</h3>
+    <p>En la hipertensión resistente es una de las causas escondidas más frecuentes. Ojo: el CPAP acompaña a tus pastillas, no las reemplaza.</p>
+    <div class="why-tile__pill"><i class="bi bi-bar-chart-fill"></i><span>Tratarla con CPAP bajó la presión de 24 horas cerca de <strong>3 mmHg</strong> en promedio, y más mientras más se usa el equipo.</span></div>
+  </div>
+
+  <!-- 6 · Presión futura (riesgo) -->
+  <div class="why-tile">
+    <div class="why-tile__icon why-tile__icon--risk"><i class="bi bi-graph-up-arrow"></i></div>
+    <h3>Dejarla sin tratar hoy sube la probabilidad de presión alta mañana</h3>
+    <p>Aunque hoy tu presión esté bien, la apnea sin tratar empuja tu cuerpo hacia la hipertensión.</p>
+    <div class="why-tile__pill"><i class="bi bi-bar-chart-fill"></i><span>En un seguimiento a 4 años, quienes tenían apnea moderada o grave llegaron a <strong>casi triplicar</strong> su probabilidad de desarrollarla.</span></div>
+  </div>
+
+  <!-- 7 · Arritmia / fibrilación auricular (riesgo) -->
+  <div class="why-tile">
+    <div class="why-tile__icon why-tile__icon--risk"><i class="bi bi-heart"></i></div>
+    <h3>Si tu corazón se acelera o late irregular, puede estar detrás</h3>
+    <p>Le facilita al corazón caer en fibrilación auricular, y si ya te trataron esa arritmia (ablación o cardioversión), la apnea sin atender hace más fácil que regrese.</p>
+    <div class="why-tile__pill"><i class="bi bi-bar-chart-fill"></i><span>Usar el CPAP de forma pareja se asoció con cerca de <strong>70% menos recaídas</strong> de la arritmia.</span></div>
+  </div>
+
+  <!-- 8 · Metabolismo / diabetes tipo 2 (riesgo) -->
+  <div class="why-tile">
+    <div class="why-tile__icon why-tile__icon--risk"><i class="bi bi-droplet-half"></i></div>
+    <h3>La apnea y el azúcar en la sangre están más conectadas de lo que crees</h3>
+    <p>Dormir mal por apnea hace que tu cuerpo maneje peor el azúcar. Con honestidad: tratar la apnea no controla el azúcar por sí solo, pero si la tienes es razón de peso para vigilarte.</p>
+    <div class="why-tile__pill"><i class="bi bi-bar-chart-fill"></i><span>Se asocia con más riesgo de <strong>diabetes tipo 2</strong>, sobre todo cuando es grave; la sensibilidad a la insulina puede caer alrededor de <strong>40%</strong>.</span></div>
+  </div>
+
+</div>
+
+<!-- NOTA DE FRANQUEZA -->
+<div class="why-frank">
+  <div class="why-frank__icon"><i class="bi bi-chat-heart"></i></div>
+  <div>
+    <h3>Lo que el CPAP sí hace y lo que no promete</h3>
+    <p>En los estudios más grandes, en personas que ya tenían enfermedad del corazón, el CPAP por sí solo no redujo de forma clara nuevos infartos o derrames medido a todos por igual; lo que sí se vio es que quienes lo usaban 4 o más horas por noche tendían a tener menos eventos. Por eso mi compromiso no es prometerte un resultado, sino acompañarte para que el equipo te resulte cómodo y lo uses bien cada noche.</p>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="why-cta">
+  <p class="why-cta__txt">Empieza por saber qué tan grave es, con un estudio del sueño en tu propia casa.</p>
+  <div class="why-cta__btns">
+    <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20p%C3%A1gina%3A%20Apnea%20del%20Sue%C3%B1o%20en%20CDMX%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" class="why-cta__btn why-cta__btn--wa"><i class="bi bi-whatsapp"></i> Agenda tu estudio del sueño en casa</a>
+    <a href="#agendaModal" class="why-cta__btn why-cta__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar consulta</a>
+  </div>
+</div>
+
+</div>
+<!-- /POR QUÉ TRATARLA -->
+
 <!-- FACTORES DE RIESGO -->
 <div class="apn-section reveal">
 <span class="apn-section__eyebrow"><i class="bi bi-shield-exclamation"></i> ¿Quién tiene más riesgo?</span>
@@ -784,6 +971,84 @@
 </div>
 </div>
 </div>
+
+<!-- POLIGRAFÍA VS POLISOMNOGRAFÍA: CUÁL NECESITAS -->
+<div class="apn-section reveal">
+<span class="apn-section__eyebrow"><i class="bi bi-signpost-split"></i> Qué estudio necesitas</span>
+<h2 class="apn-section__title">Poligrafía o polisomnografía: <em>cuál necesitas de verdad</em></h2>
+<p class="apn-section__lead">Aquí está la duda que trae a muchos pacientes. Son dos estudios distintos, y cada uno tiene su lugar según tu caso. La buena noticia: para la apnea típica, el estudio en casa suele bastar, y así lo respaldan las guías internacionales del sueño. Mi trabajo no es venderte el estudio más caro, sino decidir contigo cuál necesitas.</p>
+
+<!-- Comparativa a dos columnas -->
+<div class="compare-grid">
+
+  <div class="compare-card compare-card--primary">
+    <span class="compare-card__badge"><i class="bi bi-star-fill"></i> La más común</span>
+    <div class="compare-card__head">
+      <div class="compare-card__icon"><i class="bi bi-house-heart-fill"></i></div>
+      <div>
+        <p class="compare-card__name">Poligrafía respiratoria</p>
+        <p class="compare-card__type">El estudio en tu casa (tipo III)</p>
+      </div>
+    </div>
+    <p class="compare-card__body">Duermes en tu propia cama, sin un técnico a tu lado. Mide sobre todo tu respiración, el esfuerzo del pecho y tu oxígeno, que es justo lo que hace falta para identificar la apnea. <strong>Es cómoda y muchas veces empieza el tratamiento más pronto.</strong> Su resultado nunca se decide con el número automático del aparato: yo reviso el trazo completo.</p>
+  </div>
+
+  <div class="compare-card compare-card--neutral">
+    <span class="compare-card__badge"><i class="bi bi-hospital"></i> En laboratorio</span>
+    <div class="compare-card__head">
+      <div class="compare-card__icon"><i class="bi bi-clipboard2-pulse"></i></div>
+      <div>
+        <p class="compare-card__name">Polisomnografía</p>
+        <p class="compare-card__type">El estudio de laboratorio (tipo I)</p>
+      </div>
+    </div>
+    <p class="compare-card__body">Pasas la noche en una clínica con un técnico y sensores en la cabeza que miden las ondas del cerebro (EEG), además de la respiración y el oxígeno. <strong>Es el más completo:</strong> sabe exactamente cuánto dormiste y detecta otros trastornos del sueño, no solo la apnea. En el consultorio no lo realizamos; cuando de verdad se necesita, te orientamos y te canalizamos con la unidad del sueño que corresponde.</p>
+  </div>
+
+</div>
+
+<!-- Banda de reaseguramiento con dato-ancla 0.92 -->
+<div class="compare-reassure">
+  <div class="compare-reassure__stat">
+    <div class="compare-reassure__num">0.92</div>
+    <div class="compare-reassure__num-lbl">Las apneas por hora en casa concuerdan muy de cerca con las del laboratorio</div>
+  </div>
+  <div class="compare-reassure__body">
+    <h3>El estudio en casa no es "de segunda": para la mayoría es el correcto</h3>
+    <p>Para un adulto con síntomas que hacen muy probable una apnea moderada a severa y sin otras enfermedades importantes del corazón o el pulmón, las guías del sueño (AASM) dicen con claridad, como <strong>recomendación fuerte</strong>, que se diagnostica igual de bien en casa que en laboratorio. Así no gastas de más en un estudio más complejo cuando solo quieres abordar tu apnea.</p>
+  </div>
+</div>
+
+<!-- Cuándo SÍ conviene el laboratorio -->
+<div class="compare-when">
+  <div class="compare-when__head">
+    <span class="compare-when__head-icon"><i class="bi bi-clipboard2-check"></i></span>
+    <h3>En estos casos sí te oriento al laboratorio</h3>
+  </div>
+  <ul class="compare-when__list">
+    <li><i class="bi bi-check-circle-fill"></i> Enfermedad importante del corazón o del pulmón (insuficiencia cardiaca, EPOC relevante)</li>
+    <li><i class="bi bi-check-circle-fill"></i> Enfermedad neuromuscular</li>
+    <li><i class="bi bi-check-circle-fill"></i> Problemas para ventilar bien, incluida la asociada a la obesidad</li>
+    <li><i class="bi bi-check-circle-fill"></i> Uso crónico de opioides</li>
+    <li><i class="bi bi-check-circle-fill"></i> Antecedente de infarto o embolia</li>
+    <li><i class="bi bi-check-circle-fill"></i> Insomnio grave</li>
+    <li><i class="bi bi-check-circle-fill"></i> Sospecha de apnea central u otros trastornos del sueño (movimientos de piernas, narcolepsia, pesadillas intensas)</li>
+    <li><i class="bi bi-check-circle-fill"></i> Estudio en casa negativo, dudoso o de mala calidad técnica cuando tus síntomas siguen apuntando a apnea</li>
+  </ul>
+  <p class="compare-when__note">Lee si alguno es tu caso; si lo es, <strong>te lo digo de frente y te canalizo</strong> con la unidad del sueño que corresponde. En ese escenario, el siguiente paso correcto es la polisomnografía.</p>
+</div>
+
+<!-- Cierre de posicionamiento -->
+<p class="compare-close">Como neumólogo te valoro y decidimos juntos el estudio correcto, ni más ni menos. Aquí te ofrezco la consulta, la <a href="/servicios/poligrafia-respiratoria/" style="color:#6c5ce7;font-weight:700">poligrafía respiratoria en casa</a> y, si sales con apnea, la <a href="/servicios/titulacion-presion-positiva/" style="color:#6c5ce7;font-weight:700">titulación de tu CPAP</a>. Si tu caso necesita polisomnografía de laboratorio, te oriento a dónde hacerla.</p>
+
+<!-- Doble CTA -->
+<div class="compare-cta">
+  <a href="/poligrafia-vs-polisomnografia/" class="compare-cta__btn compare-cta__btn--primary"><i class="bi bi-list-check"></i> Ver la comparación completa, punto por punto</a>
+  <a href="/promociones/poligrafia-respiratoria/" class="compare-cta__btn compare-cta__btn--ghost"><i class="bi bi-moon-stars"></i> Conoce el estudio del sueño en casa</a>
+</div>
+
+</div>
+<!-- /POLIGRAFÍA VS POLISOMNOGRAFÍA -->
 
 <!-- SEÑALES DE ALARMA -->
 <div class="apn-section reveal">
