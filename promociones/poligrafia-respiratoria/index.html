@@ -885,6 +885,55 @@
 <script type="application/ld+json" data-promo-schema>
 {"@context": "https://schema.org", "@type": "MedicalBusiness", "name": "Alveos · Dr. William César Lara Vázquez", "medicalSpecialty": "Pulmonary", "url": "https://alveos.mx/promociones/poligrafia-respiratoria/", "telephone": "+525591708334", "image": "https://alveos.mx/images/dr-william-lara.png", "address": {"@type": "PostalAddress", "streetAddress": "Saturnino Herrán 59, Consultorio 507, Hospital Santa Coleta", "addressLocality": "San José Insurgentes, Benito Juárez", "addressRegion": "CDMX", "postalCode": "03900", "addressCountry": "MX"}, "physician": {"@type": "Physician", "@id": "https://alveos.mx/#physician", "name": "Dr. William César Lara Vázquez", "medicalSpecialty": "Pulmonary"}, "makesOffer": {"@type": "Offer", "itemOffered": {"@type": "MedicalProcedure", "name": "Poligrafía respiratoria"}, "price": "4500", "priceCurrency": "MXN", "priceSpecification": {"@type": "PriceSpecification", "price": "4500", "priceCurrency": "MXN"}, "availability": "https://schema.org/InStock"}}
 </script>
+<style id="mv-movil">
+/* ===== Parches móvil (auditoría jul-2026) ===== */
+
+/* 1) Restaura el ritmo compacto móvil pisado por "Página más compacta" */
+@media(max-width:768px){
+    section.block{padding:36px 0}
+    .hero{padding:30px 0 38px}
+    .block__head{margin-bottom:22px}
+    .cta-inline{padding:32px 20px;border-radius:18px}
+}
+
+/* 2) Banner promo: liga con área táctil digna */
+@media(max-width:600px){
+    .promo-banner{padding:6px 0}
+    .promo-banner a{font-size:.78rem;padding:8px 14px;min-height:38px;display:inline-flex;align-items:center}
+}
+
+/* 3) Quiz STOP-BANG: tap targets AA reales */
+@media(max-width:768px){
+    .sb-btn{min-height:48px}
+    .sb-bmi-toggle{min-height:44px;display:inline-flex;align-items:center}
+}
+
+/* 4) Sticky CTA (3 botones): altura 48px y sin desborde a 360px */
+@media(max-width:991px){
+    .sticky-cta a{min-height:48px}
+    .sticky-cta > div:first-child{font-size:.76rem!important}
+}
+@media(max-width:400px){
+    .sticky-cta{padding-left:8px;padding-right:8px}
+    .sticky-cta a{font-size:.85rem;gap:5px;padding:12px 6px}
+}
+
+/* 5) Reseñas: legibilidad (texto real >= .85rem) y 1 columna en chico */
+@media(max-width:640px){
+    .testi-text{font-size:.85rem}
+    .testi-badge{font-size:.68rem}
+}
+@media(max-width:480px){
+    .testimonial-columns{grid-template-columns:1fr;height:340px}
+    .testimonial-columns > :nth-child(2){display:none}
+}
+
+/* 6) Tarjetas de secciones nuevas: menos acolchado en 360px */
+@media(max-width:560px){
+    .orient-route,.tstudy{padding:22px 18px}
+    .rv-stat{padding:28px 22px}
+}
+</style>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG8Z6FKF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -1190,6 +1239,69 @@
     </div>
 </section>
 
+<!-- ============ B · SALUD · POR QUÉ VALE LA PENA HACÉRTELO (osa mejorada) ============ -->
+<!-- REGLA DE EVIDENCIA (jul-2026; decision clinica del Dr. Lara, neumologo INER = Capa 3 del gate).
+     RIESGOS de la apnea NO TRATADA: se NOMBRAN tal cual (hipertension -sobre todo resistente-, diabetes tipo 2, fibrilacion auricular, infarto, evento vascular cerebral, somnolencia/accidentes). Asociacion fuerte y bien documentada (AHA/Mayo/Cleveland/NHLBI). NO es alarmismo.
+     DESENLACES de la apnea TRATADA (encabezados por el lead "esto es lo que se ha estudiado"): presion arterial, somnolencia, mortalidad cardiovascular (desenlace duro; Marin/Lancet + cohorte de Wisconsin: la apnea severa tratada tiene riesgo cercano al de quien no la tiene).
+     LINEA QUE NO SE CRUZA: no se promete el desenlace individual ni se usa verbo causal de garantia ("previene/elimina/cura"); el encuadre es lo ESTUDIADO/ASOCIADO. Los ensayos CPAP de prevencion CV secundaria (SAVE/RICCADSA/ISAACC) fueron neutrales; por eso se dice explicitamente "el tratamiento no borra todo el riesgo".
+     ESTILO (regla del Dr.): en los items de la lista, texto MINIMO, frases cortas, sin numeros ni nombres de estudios ni superlativos. La profundidad vive en /enfermedades/apnea-del-sueno/ (enlace osa-more). -->
+<section class="block osa-section" id="por-que-revisarla" aria-label="Por qué vale la pena atender la apnea del sueño">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">Por qué vale la pena hacértelo</span>
+            <h2 class="block__title">Por lo que <em>está en juego cada noche</em></h2>
+            <p class="block__lead">Sin tratar, la apnea del sueño se asocia con presión alta (sobre todo la difícil de controlar con varios medicamentos), diabetes tipo 2, arritmias como la fibrilación auricular, infarto y evento vascular cerebral, además de somnolencia que sube el riesgo de accidentes al volante. Cuando se confirma y se atiende, esto es lo que se ha estudiado:</p>
+        </div>
+        <div class="osa-grid">
+            <aside class="osa-thesis">
+                <div class="osa-thesis__ic"><i class="bi bi-clipboard2-pulse-fill"></i></div>
+                <h3>Todo empieza por un dato: si la tienes y qué tan grave</h3>
+                <p>Eso es justo lo que te dice este estudio. Con ese dato, el Dr. Lara arma tu tratamiento. Te hablo con la verdad: el tratamiento no borra todo el riesgo, pero saber si la tienes y atenderla a tiempo es de las cosas concretas que puedes hacer por tu salud.</p>
+                <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="osa-thesis__cta" data-cta="porque-wa"><i class="bi bi-whatsapp"></i> Dar el primer paso, apartar mi estudio $4,500</a>
+                <p class="osa-thesis__note"><i class="bi bi-shield-fill-check" aria-hidden="true"></i> Paso sencillo y no invasivo. La valoración es en consulta con tu neumólogo. ¿Prefieres el estudio en tu casa? A domicilio $5,000, consulta aparte.</p>
+            </aside>
+            <ul class="osa-list">
+                <li class="osa-item">
+                    <span class="osa-item__ic" aria-hidden="true"><i class="bi bi-activity"></i></span>
+                    <div>
+                        <h4>Presión arterial más controlada</h4>
+                        <p>Sobre todo la difícil de controlar con varios medicamentos.</p>
+                    </div>
+                </li>
+                <li class="osa-item">
+                    <span class="osa-item__ic" aria-hidden="true"><i class="bi bi-lightning-charge-fill"></i></span>
+                    <div>
+                        <h4>Menos somnolencia, desde las primeras noches</h4>
+                        <p>Para volver a despertar con la cabeza despejada.</p>
+                    </div>
+                </li>
+                <li class="osa-item">
+                    <span class="osa-item__ic" aria-hidden="true"><i class="bi bi-heart-pulse-fill"></i></span>
+                    <div>
+                        <h4>Menor riesgo cardiovascular estudiado</h4>
+                        <p>En apnea severa tratada, el riesgo se acerca al de quien no la tiene.</p>
+                    </div>
+                </li>
+                <li class="osa-item">
+                    <span class="osa-item__ic" aria-hidden="true"><i class="bi bi-heart-fill"></i></span>
+                    <div>
+                        <h4>Menos arritmias</h4>
+                        <p>Menos fibrilación auricular.</p>
+                    </div>
+                </li>
+                <li class="osa-item">
+                    <span class="osa-item__ic" aria-hidden="true"><i class="bi bi-car-front-fill"></i></span>
+                    <div>
+                        <h4>Menos accidentes al volante</h4>
+                        <p>La somnolencia y los microsueños suelen disminuir.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <p class="osa-more"><i class="bi bi-book-half" aria-hidden="true"></i> ¿Quieres entender a fondo por qué conviene atenderla, enfermedad por enfermedad? <a href="/enfermedades/apnea-del-sueno/" data-cta="osa-apnea-link">Léelo en la página de apnea del sueño</a>.</p>
+    </div>
+</section>
+
 <!-- ============ A · ORIENTADOR: ¿es este el estudio que necesitas? ============ -->
 <section class="block orient-section" id="que-estudio-necesito" aria-label="¿Es este el estudio que necesitas?">
     <div class="container">
@@ -1266,31 +1378,98 @@
     </div>
 </section>
 
+<style id="rv-styles">
+/* ---- Reaseguramiento visual (rv-*) · mobile-first ---- */
+.rv-section{background:linear-gradient(180deg,#f5fbff 0%,#eaf4ff 100%)}
+.rv-grid{display:grid;gap:20px;align-items:center}
+
+/* Tile oscuro del dato ancla (~0.92) */
+.rv-stat{position:relative;background:linear-gradient(160deg,#0a2540 0%,#0e3a6b 70%,#0f4a86 100%);color:#fff;border-radius:24px;padding:32px 26px;text-align:center;box-shadow:var(--e3);border:1px solid rgba(127,255,230,.18);overflow:hidden}
+.rv-stat::after{content:'';position:absolute;inset:0;background:radial-gradient(420px 240px at 80% 6%,rgba(0,206,201,.22),transparent 62%);pointer-events:none}
+.rv-stat>*{position:relative;z-index:1}
+.rv-stat__eyebrow{font-size:.74rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8ffdec;margin-bottom:10px}
+.rv-stat__num{font-size:clamp(3.2rem,8vw,4.2rem);font-weight:800;color:#7fffe6;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.rv-stat__cap{font-size:.92rem;color:rgba(232,244,255,.92);line-height:1.5;margin:12px 0 0;text-wrap:pretty}
+.rv-stat__cap b{color:#fff;font-weight:800}
+.rv-stat__foot{font-size:.74rem;color:rgba(255,255,255,.62);margin:14px 0 0;line-height:1.45}
+
+/* Mini-tarjetas escaneables: icono + palabra clave + 1 linea */
+.rv-cards{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.rv-card{display:flex;gap:14px;align-items:center;background:#fff;border:1px solid rgba(9,44,84,.08);border-radius:16px;padding:14px 16px;box-shadow:var(--e2),var(--ring-hi)}
+.rv-card__ic{width:46px;height:46px;flex-shrink:0;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;background:linear-gradient(160deg,rgba(9,132,227,.13),rgba(0,206,201,.12));color:var(--electric);border:1px solid rgba(9,132,227,.16)}
+.rv-card__kw{font-size:.98rem;font-weight:800;color:var(--navy);line-height:1.25;margin:0 0 3px;letter-spacing:-.01em;text-wrap:balance}
+.rv-card__line{font-size:.88rem;color:var(--muted);line-height:1.45;margin:0;text-wrap:pretty}
+.rv-card__line b{color:var(--navy);font-weight:700}
+
+/* Pull-quote del posicionamiento (comilla decorativa, sin borde lateral) */
+.rv-quote{position:relative;font-size:1.02rem;font-style:italic;font-weight:600;color:var(--navy);line-height:1.5;padding:6px 0 6px 34px;margin:18px 0 20px;text-wrap:pretty}
+.rv-quote::before{content:'\201C';position:absolute;left:0;top:-6px;font-size:2.6rem;line-height:1;font-style:normal;font-weight:800;color:var(--cyan);opacity:.85}
+
+/* Desktop: tile a la izquierda, tarjetas + quote + CTA a la derecha */
+@media(min-width:861px){
+    .rv-grid{grid-template-columns:5fr 7fr;gap:32px}
+    .rv-stat{padding:36px 30px}
+}
+
+/* Motion fino: aparicion al entrar en viewport, solo si el navegador y el usuario lo permiten */
+@media (prefers-reduced-motion:no-preference){
+    @supports (animation-timeline:view()){
+        .rv-stat,.rv-card{animation:rvRise linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
+        .rv-card:nth-child(2){animation-range:entry 5% entry 60%}
+        .rv-card:nth-child(3){animation-range:entry 10% entry 65%}
+    }
+}
+@keyframes rvRise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+</style>
+
 <!-- ============ C · REASEGURAMIENTO: ¿es un estudio de segunda? ============ -->
-<section class="block reassure-section" id="es-de-segunda" aria-label="¿El estudio en casa es de segunda?">
+<section class="block rv-section" id="es-de-segunda" aria-label="¿El estudio en casa es de segunda?">
     <div class="container">
         <div class="block__head">
             <span class="block__kicker">Sin quedarte con la duda</span>
             <h2 class="block__title">¿El estudio en casa es de segunda? <em>No: es el correcto para la mayoría</em></h2>
         </div>
 
-        <div class="reassure-grid">
-            <div class="reassure-body">
-                <p>Entiendo la duda de quedarte corto, y te la respondo con claridad: la poligrafía respiratoria en casa <b>no es un estudio inferior</b> ni una versión barata de la polisomnografía. Para la mayoría de las personas con sospecha de apnea, es justo el estudio indicado, y así lo respaldan las guías internacionales. La polisomnografía de laboratorio es un estudio excelente y necesario para ciertos casos, no un estudio mejor para todos.</p>
-                <p>En adultos con alta probabilidad de apnea moderada a severa, el resultado del estudio en casa concuerda muy de cerca con el de laboratorio: en los estudios que los compararon, el índice de eventos por hora se pareció mucho entre ambos. Por eso las guías del sueño (AASM) lo recomiendan de forma firme para ese perfil.</p>
-                <p class="reassure-principle">Mi trabajo como neumólogo no es venderte el estudio más caro, sino decidir contigo cuál necesitas, y canalizarte al laboratorio cuando de verdad hace falta.</p>
+        <div class="rv-grid">
+            <aside class="rv-stat" role="figure" aria-label="Correlación entre el estudio en casa y el de laboratorio">
+                <div class="rv-stat__eyebrow">Concordancia con el laboratorio</div>
+                <div class="rv-stat__num">~0.92</div>
+                <p class="rv-stat__cap">de correlación entre el <b>índice de eventos por hora</b> del estudio en casa y el de laboratorio, donde <b>1 sería coincidencia total</b>.</p>
+                <p class="rv-stat__foot">Estudios que compararon ambos métodos en adultos con alta probabilidad de apnea moderada a severa.</p>
+            </aside>
+
+            <div class="rv-main">
+                <ul class="rv-cards">
+                    <li class="rv-card">
+                        <span class="rv-card__ic" aria-hidden="true"><i class="bi bi-journal-check"></i></span>
+                        <div>
+                            <p class="rv-card__kw">Respaldado por guías internacionales</p>
+                            <p class="rv-card__line">Las guías del sueño <b>(AASM)</b> lo recomiendan de forma firme para el caso típico de apnea.</p>
+                        </div>
+                    </li>
+                    <li class="rv-card">
+                        <span class="rv-card__ic" aria-hidden="true"><i class="bi bi-bullseye"></i></span>
+                        <div>
+                            <p class="rv-card__kw">Mismo índice clave</p>
+                            <p class="rv-card__line">Concordancia <b>~0.92</b> en el índice de eventos por hora, el dato con el que se diagnostica.</p>
+                        </div>
+                    </li>
+                    <li class="rv-card">
+                        <span class="rv-card__ic" aria-hidden="true"><i class="bi bi-patch-check"></i></span>
+                        <div>
+                            <p class="rv-card__kw">No es la versión barata</p>
+                            <p class="rv-card__line">Es el estudio <b>indicado</b> para la mayoría con sospecha de apnea; el laboratorio queda para casos concretos.</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <p class="rv-quote">Mi trabajo como neumólogo no es venderte el estudio más caro, sino decidir contigo cuál necesitas, y canalizarte al laboratorio cuando de verdad hace falta.</p>
+
                 <a href="https://wa.me/522224926718?text=Hola%2C%20tengo%20una%20duda%3A%20quiero%20saber%20si%20el%20estudio%20en%20casa%20es%20suficiente%20para%20mi%20caso.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500%20%28alveos.mx%29."
                    target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="reasegura-wa">
                     <i class="bi bi-whatsapp"></i> Resolver mi duda por WhatsApp
                 </a>
             </div>
-
-            <aside class="reassure-stat" role="figure" aria-label="Correlación entre el estudio en casa y el de laboratorio">
-                <div class="reassure-stat__eyebrow">Concordancia con el laboratorio</div>
-                <div class="reassure-stat__num">~0.92</div>
-                <p class="reassure-stat__cap">de correlación entre el <b>índice de eventos por hora</b> del estudio en casa y el de laboratorio, donde <b>1 sería coincidencia total</b>.</p>
-                <p class="reassure-stat__foot">Estudios que compararon ambos métodos en adultos con alta probabilidad de apnea moderada a severa.</p>
-            </aside>
         </div>
     </div>
 </section>
@@ -1348,7 +1527,7 @@
 
         <p class="twostudy-honesty">
             <i class="bi bi-shield-fill-check" aria-hidden="true"></i>
-            <span>Con honestidad: como el estudio en casa no mide las ondas del cerebro, calcula la apnea sobre el tiempo que grabó y en algunos casos puede quedarse corta. Por eso, si sale negativa pero tus síntomas siguen apuntando a apnea, o si sale de mala calidad técnica, <b>el siguiente paso correcto es la polisomnografía</b>. No es venderte de más: es no dejar tu caso a medias.</span>
+            <span>Como el estudio en casa no mide las ondas del cerebro, calcula la apnea sobre el tiempo que grabó y en algunos casos puede quedarse corta. Por eso, si sale negativa pero tus síntomas siguen apuntando a apnea, o si sale de mala calidad técnica, <b>el siguiente paso correcto es la polisomnografía</b>. No es venderte de más: es no dejar tu caso a medias.</span>
         </p>
 
         <div class="twostudy-actions">
@@ -1356,69 +1535,6 @@
                 <i class="bi bi-layout-split" aria-hidden="true"></i> Ver los dos estudios comparados punto por punto
             </a>
         </div>
-    </div>
-</section>
-
-<!-- ============ B · SALUD · POR QUÉ VALE LA PENA HACÉRTELO (osa mejorada) ============ -->
-<!-- REGLA DE EVIDENCIA (jul-2026; decision clinica del Dr. Lara, neumologo INER = Capa 3 del gate).
-     RIESGOS de la apnea NO TRATADA: se NOMBRAN tal cual (hipertension -sobre todo resistente-, diabetes tipo 2, fibrilacion auricular, infarto, evento vascular cerebral, somnolencia/accidentes). Asociacion fuerte y bien documentada (AHA/Mayo/Cleveland/NHLBI). NO es alarmismo.
-     DESENLACES de la apnea TRATADA (encabezados por el lead "esto es lo que se ha estudiado"): presion arterial, somnolencia, mortalidad cardiovascular (desenlace duro; Marin/Lancet + cohorte de Wisconsin: la apnea severa tratada tiene riesgo cercano al de quien no la tiene).
-     LINEA QUE NO SE CRUZA: no se promete el desenlace individual ni se usa verbo causal de garantia ("previene/elimina/cura"); el encuadre es lo ESTUDIADO/ASOCIADO. Los ensayos CPAP de prevencion CV secundaria (SAVE/RICCADSA/ISAACC) fueron neutrales; por eso se dice explicitamente "el tratamiento no borra todo el riesgo".
-     ESTILO (regla del Dr.): en los items de la lista, texto MINIMO, frases cortas, sin numeros ni nombres de estudios ni superlativos. La profundidad vive en /enfermedades/apnea-del-sueno/ (enlace osa-more). -->
-<section class="block osa-section" id="por-que-revisarla" aria-label="Por qué vale la pena atender la apnea del sueño">
-    <div class="container">
-        <div class="block__head">
-            <span class="block__kicker">Por qué vale la pena hacértelo</span>
-            <h2 class="block__title">Por lo que <em>está en juego cada noche</em></h2>
-            <p class="block__lead">Sin tratar, la apnea del sueño se asocia con presión alta (sobre todo la difícil de controlar con varios medicamentos), diabetes tipo 2, arritmias como la fibrilación auricular, infarto y evento vascular cerebral, además de somnolencia que sube el riesgo de accidentes al volante. Cuando se confirma y se atiende, esto es lo que se ha estudiado:</p>
-        </div>
-        <div class="osa-grid">
-            <aside class="osa-thesis">
-                <div class="osa-thesis__ic"><i class="bi bi-clipboard2-pulse-fill"></i></div>
-                <h3>Todo empieza por un dato: si la tienes y qué tan grave</h3>
-                <p>Eso es justo lo que te dice este estudio. Con ese dato, el Dr. Lara arma tu tratamiento. Te hablo con la verdad: el tratamiento no borra todo el riesgo, pero saber si la tienes y atenderla a tiempo es de las cosas concretas que puedes hacer por tu salud.</p>
-                <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="osa-thesis__cta" data-cta="porque-wa"><i class="bi bi-whatsapp"></i> Dar el primer paso, apartar mi estudio $4,500</a>
-                <p class="osa-thesis__note"><i class="bi bi-shield-fill-check" aria-hidden="true"></i> Paso sencillo y no invasivo. La valoración es en consulta con tu neumólogo. ¿Prefieres el estudio en tu casa? A domicilio $5,000, consulta aparte.</p>
-            </aside>
-            <ul class="osa-list">
-                <li class="osa-item">
-                    <span class="osa-item__ic" aria-hidden="true"><i class="bi bi-activity"></i></span>
-                    <div>
-                        <h4>Presión arterial más controlada</h4>
-                        <p>Sobre todo la difícil de controlar con varios medicamentos.</p>
-                    </div>
-                </li>
-                <li class="osa-item">
-                    <span class="osa-item__ic" aria-hidden="true"><i class="bi bi-lightning-charge-fill"></i></span>
-                    <div>
-                        <h4>Menos somnolencia, desde las primeras noches</h4>
-                        <p>Vuelves a despertar descansado y con la cabeza despejada.</p>
-                    </div>
-                </li>
-                <li class="osa-item">
-                    <span class="osa-item__ic" aria-hidden="true"><i class="bi bi-heart-pulse-fill"></i></span>
-                    <div>
-                        <h4>Menor riesgo cardiovascular estudiado</h4>
-                        <p>En apnea severa tratada, el riesgo se acerca al de quien no la tiene.</p>
-                    </div>
-                </li>
-                <li class="osa-item">
-                    <span class="osa-item__ic" aria-hidden="true"><i class="bi bi-heart-fill"></i></span>
-                    <div>
-                        <h4>Menos arritmias</h4>
-                        <p>Menos fibrilación auricular.</p>
-                    </div>
-                </li>
-                <li class="osa-item">
-                    <span class="osa-item__ic" aria-hidden="true"><i class="bi bi-car-front-fill"></i></span>
-                    <div>
-                        <h4>Menos accidentes al volante</h4>
-                        <p>Se van la somnolencia y los microsueños.</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <p class="osa-more"><i class="bi bi-book-half" aria-hidden="true"></i> ¿Quieres entender a fondo por qué conviene atenderla, enfermedad por enfermedad? <a href="/enfermedades/apnea-del-sueno/" data-cta="osa-apnea-link">Léelo en la página de apnea del sueño</a>.</p>
     </div>
 </section>
 
@@ -1603,21 +1719,6 @@
     </div>
 </section>
 
-<!-- ============ UBICACIÓN (responde la intención "clínica del sueño" = lugar) ============ -->
-<section class="block" id="ubicacion">
-    <div class="container" style="max-width:820px">
-        <div class="block__head">
-            <span class="block__kicker">Dónde te atendemos</span>
-            <h2 class="block__title">Consultorio en <em>Hospital Santa Coleta</em></h2>
-            <p class="block__lead">Saturnino Herrán 59, Consultorio 507, San José Insurgentes, Benito Juárez, 03900 CDMX. Al sur de la ciudad, a unos minutos del Periférico Sur, con estacionamiento del hospital.</p>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:10px 14px;justify-content:center;align-items:center">
-            <span style="display:inline-flex;align-items:center;gap:8px;background:#f0f7ff;border:1px solid rgba(9,132,227,.18);border-radius:999px;padding:8px 16px;font-weight:700;font-size:.88rem;color:var(--navy)"><i class="bi bi-clock-fill" style="color:var(--electric)"></i> L-V 16:00-21:00 · Sáb-Dom 10:00-17:00</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=Dr.+William+C%C3%A9sar+Lara+V%C3%A1zquez+Neum%C3%B3logo+Saturnino+Herr%C3%A1n+59+San+Jos%C3%A9+Insurgentes" target="_blank" rel="noopener noreferrer" data-cta="ubi-maps" style="display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;border-radius:999px;padding:8px 18px;font-weight:700;font-size:.88rem;text-decoration:none"><i class="bi bi-geo-alt-fill"></i> Cómo llegar</a>
-        </div>
-    </div>
-</section>
-
 <!-- ============ FAQ DE OBJECIONES ============ -->
 <section class="block">
     <div class="container" style="max-width:820px">
@@ -1634,6 +1735,21 @@
         <details class="faq-item"><summary>¿Cuándo recibo los resultados?</summary><div class="faq-item__answer">El reporte se entrega en consulta dentro de las 48 horas siguientes a la devolución del equipo, con explicación clara y plan terapéutico.</div></details>
         <details class="faq-item"><summary>¿Aceptan tarjeta o transferencia?</summary><div class="faq-item__answer">Sí: efectivo, transferencia, tarjeta de crédito y débito. Por WhatsApp te confirmamos la modalidad de pago antes de la cita.</div></details>
         <details class="faq-item"><summary>¿Dónde están ubicados?</summary><div class="faq-item__answer">Hospital Santa Coleta, Saturnino Herrán 59, San José Insurgentes, Benito Juárez, CDMX 03900. A unos minutos del Periférico Sur y con estacionamiento en el hospital.</div></details>
+    </div>
+</section>
+
+<!-- ============ UBICACIÓN (responde la intención "clínica del sueño" = lugar) ============ -->
+<section class="block" id="ubicacion">
+    <div class="container" style="max-width:820px">
+        <div class="block__head">
+            <span class="block__kicker">Dónde te atendemos</span>
+            <h2 class="block__title">Consultorio en <em>Hospital Santa Coleta</em></h2>
+            <p class="block__lead">Saturnino Herrán 59, Consultorio 507, San José Insurgentes, Benito Juárez, 03900 CDMX. Al sur de la ciudad, a unos minutos del Periférico Sur, con estacionamiento del hospital.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px 14px;justify-content:center;align-items:center">
+            <span style="display:inline-flex;align-items:center;gap:8px;background:#f0f7ff;border:1px solid rgba(9,132,227,.18);border-radius:999px;padding:8px 16px;font-weight:700;font-size:.88rem;color:var(--navy)"><i class="bi bi-clock-fill" style="color:var(--electric)"></i> L-V 16:00-21:00 · Sáb-Dom 10:00-17:00</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Dr.+William+C%C3%A9sar+Lara+V%C3%A1zquez+Neum%C3%B3logo+Saturnino+Herr%C3%A1n+59+San+Jos%C3%A9+Insurgentes" target="_blank" rel="noopener noreferrer" data-cta="ubi-maps" style="display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;border-radius:999px;padding:8px 18px;font-weight:700;font-size:.88rem;text-decoration:none"><i class="bi bi-geo-alt-fill"></i> Cómo llegar</a>
+        </div>
     </div>
 </section>
 

@@ -506,6 +506,62 @@ a.zhero__cred:hover{background:rgba(255,255,255,.2);color:#fff}
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
 </style>
     <link rel="stylesheet" href="/assets/agenda-modal.css">
+<style id="mv-movil">
+/* ===== Parches móvil (auditoría jul-2026) · NO toca FAQ ni schema ===== */
+
+/* 1) Paddings de sección comprimidos en móvil (scroll más corto) */
+@media(max-width:768px){
+    .zhero{padding:48px 0 36px}
+    section.block{padding:36px 0}
+    .block__head{margin-bottom:22px}
+    .ubi-arrive,.ubi-coverage{padding:38px 0}
+    .ubi-main{padding:38px 0 44px}
+    .faq-section{padding:38px 0 46px}
+    .hub-cta-band{padding:48px 0}
+}
+
+/* 2) CTAs del hero a ancho completo */
+@media(max-width:768px){
+    .zhero__cta{flex-direction:column;gap:10px}
+    .zhero__cta .btn-wa,.zhero__cta .btn-cal{width:100%;min-width:0}
+}
+
+/* 3) Grid del hero card: 3 columnas no caben en 360px */
+@media(max-width:768px){
+    .zhero__card{padding:20px;border-radius:18px}
+    .zhero__card-foot{font-size:.76rem}
+}
+@media(max-width:480px){
+    .zhero__grid{grid-template-columns:repeat(2,1fr);gap:10px}
+    .zhero__lbl{font-size:.8rem}
+}
+
+/* 4) Mapa sin min-height fija (el aspect-ratio 4/3 manda) */
+@media(max-width:600px){
+    .ubi-map-card{min-height:0}
+}
+
+/* 5) Reseñas: legibilidad y 1 columna en chico */
+@media(max-width:640px){
+    .testi-text{font-size:.85rem}
+    .testi-badge{font-size:.68rem}
+}
+@media(max-width:480px){
+    .testimonial-columns{grid-template-columns:1fr;height:340px}
+    .testimonial-columns > :nth-child(2){display:none}
+}
+
+/* 6) Padecimientos: tarjetas menos acolchadas en la retícula 2-col */
+@media(max-width:480px){
+    .cond-card{padding:18px 12px 16px}
+    .cond-card__icon{width:52px;height:52px;font-size:1.4rem}
+}
+
+/* 7) Chips de cobertura (links): área táctil */
+@media(max-width:768px){
+    a.ubi-coverage__chip{min-height:44px}
+}
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -646,6 +702,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <hr class="section-divider">
 
+<!-- PERFIL: enfermedades top del barrio -->
+<section class="ubi-arrive" aria-labelledby="zona-perfil-h2" style="background:#fff;">
+    <div class="container">
+        <div class="block__head zsec-head">
+            <h2 class="block__title" id="zona-perfil-h2">¿Cuándo se indica cada estudio?</h2>
+            <p class="block__lead">La elección no es de precio ni de preferencia: depende de tu cuadro clínico y se define en la valoración.</p>
+            </div>
+        <ul class="zsym-list">
+            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong><a href="/servicios/poligrafia-respiratoria/">Poligrafía: sospecha típica de apnea</a></strong><br>Ronquido con pausas, somnolencia de día, sin otras enfermedades del sueño.</span></li>
+            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong>Polisomnografía: insomnio grave</strong><br>Cuando el problema principal es no poder dormir, no solo roncar.</span></li>
+            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong>Polisomnografía: sospecha de apnea central</strong><br>O de otros trastornos del sueño (movimientos, parasomnias) que requieren EEG.</span></li>
+            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong><a href="/enfermedades/apnea-del-sueno/">Poligrafía normal + síntomas persistentes</a></strong><br>Ahí el siguiente paso sí puede ser la polisomnografía en laboratorio.</span></li>
+        </ul>
+    </div>
+</section>
+
 <!-- QUIEN TE ATIENDE (E-E-A-T) -->
 <section class="ubi-arrive" aria-labelledby="zona-doc-h2" style="background:var(--cloud-alt,#f8faff);">
     <div class="container">
@@ -741,22 +813,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a class="zsvc-row" href="/servicios/poligrafia-respiratoria/precio/"><span class="zsvc-row__icon"><i class="bi bi-cash-coin" aria-hidden="true"></i></span><span class="zsvc-row__body"><h3>Precio de la poligrafía</h3><p>Desglose completo: qué incluye el paquete de $4,500 y la modalidad a domicilio de $5,000.</p></span><i class="bi bi-arrow-right zsvc-row__go" aria-hidden="true"></i></a>
             <a class="zsvc-row" href="/enfermedades/apnea-del-sueno/"><span class="zsvc-row__icon"><i class="bi bi-moon-stars-fill" aria-hidden="true"></i></span><span class="zsvc-row__body"><h3>Apnea del sueño</h3><p>Síntomas, riesgos y tratamiento de la enfermedad que estos estudios buscan.</p></span><i class="bi bi-arrow-right zsvc-row__go" aria-hidden="true"></i></a>
         </div>
-    </div>
-</section>
-
-<!-- PERFIL: enfermedades top del barrio -->
-<section class="ubi-arrive" aria-labelledby="zona-perfil-h2" style="background:#fff;">
-    <div class="container">
-        <div class="block__head zsec-head">
-            <h2 class="block__title" id="zona-perfil-h2">¿Cuándo se indica cada estudio?</h2>
-            <p class="block__lead">La elección no es de precio ni de preferencia: depende de tu cuadro clínico y se define en la valoración.</p>
-            </div>
-        <ul class="zsym-list">
-            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong><a href="/servicios/poligrafia-respiratoria/">Poligrafía: sospecha típica de apnea</a></strong><br>Ronquido con pausas, somnolencia de día, sin otras enfermedades del sueño.</span></li>
-            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong>Polisomnografía: insomnio grave</strong><br>Cuando el problema principal es no poder dormir, no solo roncar.</span></li>
-            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong>Polisomnografía: sospecha de apnea central</strong><br>O de otros trastornos del sueño (movimientos, parasomnias) que requieren EEG.</span></li>
-            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong><a href="/enfermedades/apnea-del-sueno/">Poligrafía normal + síntomas persistentes</a></strong><br>Ahí el siguiente paso sí puede ser la polisomnografía en laboratorio.</span></li>
-        </ul>
     </div>
 </section>
 
