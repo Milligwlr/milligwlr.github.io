@@ -1553,7 +1553,7 @@
         ' de gasto de Google por cada una de TODAS sus citas — incluidas las que Google no le trajo. ' +
         'Su costo real por paciente de Google es mayor que eso; cuánto, no se puede saber todavía.'));
     }
-    cu.appendChild(nodo('div', 'd', 'Datos de Google al ' + (a.ultima_actualizacion || '—') + '.'));
+    cu.appendChild(nodo('div', 'd', 'Datos de Google al ' + (a.ultima_actualizacion || '—') + '. Se actualizan solos cada noche.'));
     f.appendChild(cu); g.appendChild(f);
 
     // 2) Campaña por campaña, con la decisión escrita.
@@ -1562,6 +1562,36 @@
       a.campanas.forEach(function (c) { g2.appendChild(filaCampana(c)); });
       notaBajo(v, 'Nunca le voy a recomendar bajarle a una campaña por una mala racha: con este número de pacientes, ' +
         'una semana floja casi siempre es suerte, y una cita perdida cuesta más que lo que se ahorra.');
+    }
+
+    // 2.5) En qué servicio se va el dinero (grupos de anuncio). "Contactos"
+    // son los que cuenta Google (clic al WhatsApp), NO citas confirmadas: el
+    // rótulo lo dice para no vestir de cita lo que solo es un clic.
+    if ((a.grupos || []).length) {
+      var g25 = seccion(v, 'En qué se va su dinero, servicio por servicio');
+      var maxG = a.grupos[0].gasto || 1;
+      a.grupos.forEach(function (gr) {
+        var fg = nodo('div', 'fila'); var cg = nodo('div', 'cuerpo');
+        cg.appendChild(nodo('div', 't', gr.nombre));
+        var det = '$' + gr.gasto.toLocaleString('es-MX') + ' en 4 semanas · ' +
+          gr.clics + (gr.clics === 1 ? ' clic' : ' clics') + ' · ' +
+          (gr.contactos > 0
+            ? gr.contactos + ' contactos (~$' + Math.round(gr.gasto / gr.contactos).toLocaleString('es-MX') + ' cada uno)'
+            : 'ningún contacto');
+        cg.appendChild(nodo('div', 'd', det));
+        // Barra de proporción del gasto (la más cara = barra llena). El número
+        // va escrito arriba: el largo solo acompaña, no es el único portador.
+        var barra = nodo('div', '');
+        barra.style.cssText = 'height:8px;border-radius:4px;background:var(--chip-bg);margin-top:6px;overflow:hidden;';
+        var seg = nodo('div', '');
+        seg.style.cssText = 'height:100%;border-radius:4px;background:var(--indigo);width:' +
+          Math.max(3, Math.round(gr.gasto / maxG * 100)) + '%;';
+        barra.appendChild(seg);
+        cg.appendChild(barra);
+        fg.appendChild(cg); g25.appendChild(fg);
+      });
+      notaBajo(v, 'Un "contacto" es lo que Google alcanza a contar: alguien que tocó su anuncio y abrió el WhatsApp. ' +
+        'No toda persona que abre el chat agenda, así que el costo por paciente real es mayor.');
     }
 
     // 3) Dónde se va el dinero sin producir un solo contacto.
