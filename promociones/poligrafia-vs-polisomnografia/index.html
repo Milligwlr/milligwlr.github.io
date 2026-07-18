@@ -290,6 +290,48 @@
 <script type="application/ld+json" data-promo-schema>
 {"@context": "https://schema.org", "@type": "MedicalBusiness", "name": "Alveos · Dr. William César Lara Vázquez", "medicalSpecialty": "Pulmonary", "url": "https://alveos.mx/promociones/poligrafia-vs-polisomnografia/", "telephone": "+525591708334", "image": "https://alveos.mx/images/dr-william-lara.png", "address": {"@type": "PostalAddress", "streetAddress": "Saturnino Herrán 59, Consultorio 507, Hospital Santa Coleta", "addressLocality": "San José Insurgentes, Benito Juárez", "addressRegion": "CDMX", "postalCode": "03900", "addressCountry": "MX"}, "physician": {"@type": "Physician", "@id": "https://alveos.mx/#physician", "name": "Dr. William César Lara Vázquez", "medicalSpecialty": "Pulmonary"}, "makesOffer": {"@type": "Offer", "itemOffered": {"@type": "MedicalProcedure", "name": "Poligrafía respiratoria"}, "price": "4500", "priceCurrency": "MXN", "priceSpecification": {"@type": "PriceSpecification", "price": "4500", "priceCurrency": "MXN"}, "availability": "https://schema.org/InStock"}}
 </script>
+<style id="orient-styles">
+/* ORIENTADOR (ubícate) · mismo lenguaje visual de la promo poligrafía */
+.orient-section{background:linear-gradient(180deg,#ffffff 0,var(--bg) 72px)}
+.orient-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
+.orient-route{position:relative;border-radius:22px;padding:26px 24px;background:#fff;border:1px solid rgba(9,44,84,.08);box-shadow:var(--e2),var(--ring-hi);display:flex;flex-direction:column}
+.orient-route__badge{position:absolute;top:-12px;left:24px;display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:5px 13px;border-radius:999px}
+.orient-route__img{width:100%;height:auto;aspect-ratio:640/480;object-fit:cover;border-radius:14px;margin-bottom:16px;box-shadow:var(--ring-hi)}
+.orient-route__head{display:flex;align-items:center;gap:13px;margin-bottom:2px}
+.orient-route__ic{width:50px;height:50px;flex-shrink:0;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.45rem}
+.orient-route__rt{font-size:.72rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin-bottom:1px}
+.orient-route__title{font-size:1.16rem;font-weight:800;color:var(--navy);letter-spacing:-.01em;line-height:1.2;margin:0;text-wrap:balance}
+.orient-route__lead{font-size:.93rem;color:var(--ink);line-height:1.55;margin:12px 0 14px;text-wrap:pretty}
+.orient-route__lead b{color:var(--navy);font-weight:800}
+.orient-check{list-style:none;padding:0;margin:0 0 16px;display:grid;gap:9px}
+.orient-check li{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;color:var(--ink);line-height:1.45}
+.orient-check li i{flex-shrink:0;margin-top:2px;font-size:1rem}
+.orient-check li b{color:var(--navy);font-weight:800}
+.orient-route__foot{margin-top:auto}
+.orient-route--a{border:1.5px solid rgba(0,206,201,.55);box-shadow:0 16px 44px -20px rgba(0,206,201,.42),var(--ring-hi)}
+.orient-route--a .orient-route__badge{background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;box-shadow:0 8px 18px -6px rgba(9,132,227,.5)}
+.orient-route--a .orient-route__ic{background:linear-gradient(160deg,rgba(9,132,227,.14),rgba(0,206,201,.12));color:var(--electric);border:1px solid rgba(9,132,227,.16)}
+.orient-route--a .orient-check li i{color:var(--cyan)}
+.orient-route__chip{display:inline-flex;align-items:center;gap:7px;background:rgba(0,206,201,.12);border:1px solid rgba(0,206,201,.32);color:#06807b;border-radius:999px;padding:7px 14px;font-size:.8rem;font-weight:800;line-height:1.35}
+.orient-route__chip i{flex-shrink:0}
+.orient-route--b{background:linear-gradient(180deg,#fbfcfe,#f4f7fb);border:1px solid rgba(9,44,84,.1)}
+.orient-route--b .orient-route__badge{background:#e8edf3;color:#5a6b7d;border:1px solid rgba(9,44,84,.1)}
+.orient-route--b .orient-route__ic{background:#eef2f7;color:#5a6b7d;border:1px solid rgba(9,44,84,.08)}
+.orient-route--b .orient-route__title{color:#33445a}
+.orient-route--b .orient-check li i{color:#7a8aa0}
+.orient-route__note{display:flex;gap:9px;align-items:flex-start;font-size:.86rem;color:var(--muted);line-height:1.5;background:rgba(9,44,84,.03);border:1px solid rgba(9,44,84,.07);border-radius:12px;padding:11px 14px}
+.orient-route__note i{color:var(--electric);margin-top:2px;flex-shrink:0}
+.orient-route__note b{color:var(--navy);font-weight:800}
+.orient-close{margin-top:24px;display:flex;flex-direction:column;align-items:center;gap:15px;text-align:center}
+.orient-close__line{font-size:.98rem;color:var(--ink);max-width:600px;line-height:1.55;margin:0;text-wrap:pretty}
+.orient-close__line b{color:var(--navy);font-weight:800}
+.orient-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.orient-pill{display:inline-flex;align-items:center;gap:9px;background:#fff;color:var(--navy);border:1.5px solid rgba(9,132,227,.35);padding:13px 22px;border-radius:999px;font-weight:800;font-size:.95rem;text-decoration:none;transition:transform .2s var(--ease),border-color .2s var(--ease),background .2s var(--ease)}
+.orient-pill:hover{border-color:var(--electric);background:rgba(9,132,227,.05);color:var(--navy);transform:translateY(-2px)}
+.orient-pill:focus-visible{outline:3px solid var(--electric);outline-offset:3px}
+@media(max-width:860px){.orient-grid{grid-template-columns:1fr;gap:28px}}
+</style>
+
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG8Z6FKF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -329,8 +371,6 @@
             <div class="col-lg-7 hero__content">
                 <div class="hero__badge"><span class="dot"></span> Comparativa honesta · Sin letra chica</div>
                 <h1>¿Poligrafía o polisomnografía? Para la mayoría, <em>poligrafía en casa</em></h1>
-                <p class="hero__sub">Respuesta directa: si la sospecha es apnea obstructiva del sueño y no tienes otras enfermedades del sueño, el estudio inicial recomendado es la poligrafía respiratoria (tipo III), que haces durmiendo en tu propia cama. La polisomnografía en laboratorio se reserva para casos complejos, y si tu caso la amerita, aquí te lo decimos y te referimos.</p>
-
                 <div class="price-ladder" role="region" aria-label="Opciones y precios">
                     <div class="price-tier price-tier--promo">
                         <span class="price-tier__ribbon">Ahorras $2,000</span>
@@ -346,10 +386,6 @@
                         <i class="bi bi-house-heart-fill" aria-hidden="true"></i>
                         <div><div class="price-tier__label" style="margin-bottom:2px">¿Prefieres el estudio en tu casa?</div><div class="price-tier__desc">Estudio <span class="price-tier__amount">a domicilio $5,000</span> · consulta aparte.</div></div>
                     </div>
-                </div>
-                <div class="honesty-note">
-                    <i class="bi bi-hand-thumbs-up-fill" aria-hidden="true"></i>
-                    <span>Si tu caso amerita <b>polisomnografía en laboratorio</b>, te lo decimos en la valoración y te referimos: aquí no se realiza y no vamos a venderte un estudio que no te corresponde.</span>
                 </div>
 
                 <div class="hero__cta">
@@ -383,25 +419,73 @@
     </div>
 </section>
 
-<!-- ============ CUÁNDO SE INDICA CADA ESTUDIO ============ -->
-<section class="block" style="background:var(--cloud-alt)">
+<!-- ============ ORIENTADOR: ¿es este el estudio que necesitas? (ubícate) ============ -->
+<section class="block orient-section" id="que-estudio-necesito" aria-label="¿Es este el estudio que necesitas?">
     <div class="container">
         <div class="block__head">
-            <span class="block__kicker">Cómo se decide</span>
-            <h2 class="block__title">¿Cuándo se indica <em>cada estudio</em>?</h2>
-            <p class="block__lead">La elección no es de precio ni de preferencia: depende de tu cuadro clínico y se define en la valoración.</p>
+            <span class="block__kicker">Ubícate en 30 segundos</span>
+            <h2 class="block__title">¿Es este el estudio <em>que necesitas?</em></h2>
+            <p class="block__lead"><b>Respuesta directa:</b> si la sospecha es apnea obstructiva del sueño y no tienes otras enfermedades del sueño, el estudio inicial recomendado es la poligrafía respiratoria (tipo III), que haces durmiendo en tu propia cama. La polisomnografía en laboratorio se reserva para casos complejos, y si tu caso la amerita, aquí te lo decimos y te referimos.</p>
         </div>
-        <ul class="zsym-list">
-            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong>Poligrafía: sospecha típica de apnea</strong><br>Ronquido con pausas, somnolencia de día, sin otras enfermedades del sueño.</span></li>
-            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong>Polisomnografía: insomnio grave</strong><br>Cuando el problema principal es no poder dormir, no solo roncar.</span></li>
-            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong>Polisomnografía: sospecha de apnea central</strong><br>O de otros trastornos del sueño (movimientos, parasomnias) que requieren EEG.</span></li>
-            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong>Poligrafía normal + síntomas persistentes</strong><br>Ahí el siguiente paso sí puede ser la polisomnografía en laboratorio.</span></li>
-        </ul>
+        <div class="orient-grid">
+            <article class="orient-route orient-route--a">
+                <span class="orient-route__badge"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> La mayoría</span>
+                <img class="orient-route__img" src="/images/poligrafia-cama-640.webp" srcset="/images/poligrafia-cama-420.webp 420w, /images/poligrafia-cama-640.webp 640w, /images/poligrafia-cama-960.webp 960w" sizes="(max-width:860px) 92vw, 40vw" width="640" height="480" loading="lazy" decoding="async" alt="Persona durmiendo en su propia cama con la cánula nasal, la banda torácica y el oxímetro de la poligrafía respiratoria; su pareja descansa a un lado">
+                <div class="orient-route__head">
+                    <span class="orient-route__ic" aria-hidden="true"><i class="bi bi-house-heart-fill"></i></span>
+                    <div>
+                        <div class="orient-route__rt">Ruta A</div>
+                        <h3 class="orient-route__title">Poligrafía respiratoria en casa <span style="font-weight:700;color:var(--electric)">(este estudio)</span></h3>
+                    </div>
+                </div>
+                <p class="orient-route__lead">Es tu ruta si eres una persona adulta con señales claras de apnea y no cargas una enfermedad importante del corazón o el pulmón. Para este perfil, que es <b>el más común</b>, las guías del sueño (AASM) respaldan el estudio en casa como una <b>opción válida</b> para diagnosticar la apnea, y muchas veces empieza el tratamiento más pronto.</p>
+                <ul class="orient-check">
+                    <li><i class="bi bi-check-lg" aria-hidden="true"></i> Roncas fuerte.</li>
+                    <li><i class="bi bi-check-lg" aria-hidden="true"></i> Te han visto <b>dejar de respirar</b> mientras duermes.</li>
+                    <li><i class="bi bi-check-lg" aria-hidden="true"></i> Amaneces cansado o te gana el sueño de día.</li>
+                    <li><i class="bi bi-check-lg" aria-hidden="true"></i> No tienes una enfermedad importante del corazón ni del pulmón.</li>
+                </ul>
+                <div class="orient-route__foot">
+                    <span class="orient-route__chip"><i class="bi bi-clipboard2-check-fill" aria-hidden="true"></i> Empiezas desde tu propia cama, una sola noche</span>
+                </div>
+            </article>
+            <article class="orient-route orient-route--b">
+                <span class="orient-route__badge"><i class="bi bi-signpost-2-fill" aria-hidden="true"></i> Casos concretos</span>
+                <div class="orient-route__head">
+                    <span class="orient-route__ic" aria-hidden="true"><i class="bi bi-hospital"></i></span>
+                    <div>
+                        <div class="orient-route__rt">Ruta B</div>
+                        <h3 class="orient-route__title">Polisomnografía de laboratorio <span style="font-weight:700;color:#5a6b7d">(te oriento a ella)</span></h3>
+                    </div>
+                </div>
+                <p class="orient-route__lead">Hay casos concretos en los que conviene el estudio de laboratorio, con sensores del cerebro, y no el de casa. Lee si alguno es tu caso:</p>
+                <ul class="orient-check">
+                    <li><i class="bi bi-dot" aria-hidden="true"></i> Enfermedad importante del corazón o del pulmón (insuficiencia cardiaca, EPOC relevante).</li>
+                    <li><i class="bi bi-dot" aria-hidden="true"></i> Problemas para ventilar bien, incluida la asociada a la obesidad.</li>
+                    <li><i class="bi bi-dot" aria-hidden="true"></i> Enfermedad neuromuscular o uso crónico de opioides.</li>
+                    <li><i class="bi bi-dot" aria-hidden="true"></i> Antecedente de infarto o embolia, o insomnio grave.</li>
+                    <li><i class="bi bi-dot" aria-hidden="true"></i> Sospecha de apnea central u otros trastornos del sueño (piernas inquietas, narcolepsia, pesadillas intensas).</li>
+                    <li><i class="bi bi-dot" aria-hidden="true"></i> Poligrafía en casa normal pero con síntomas que siguen apuntando a apnea.</li>
+                </ul>
+                <p class="orient-route__note"><i class="bi bi-info-circle-fill" aria-hidden="true"></i> <span>Si es tu caso, <b>te lo digo de frente</b> y te oriento a dónde realizarla. Aquí no hacemos polisomnografía; lo que sí hago es valorarte y dirigirte al estudio correcto.</span></p>
+            </article>
+        </div>
+        <div class="orient-close">
+            <p class="orient-close__line">Cuéntame tus síntomas por WhatsApp y <b>te digo qué estudio necesitas</b>, sin que gastes de más.</p>
+            <div class="orient-actions">
+                <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20contarle%20mis%20s%C3%ADntomas%20al%20Dr.%20Lara%20para%20saber%20qu%C3%A9%20estudio%20de%20sue%C3%B1o%20necesito.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="triaje-wa">
+                    <i class="bi bi-whatsapp"></i> Cuéntame mi caso y dime qué estudio necesito
+                </a>
+                <a href="#comparativa" class="orient-pill" data-cta="orient-comparativa">
+                    <i class="bi bi-layout-split" aria-hidden="true"></i> Ver los dos estudios comparados punto por punto
+                </a>
+            </div>
+        </div>
     </div>
 </section>
 
 <!-- ============ PUNTO POR PUNTO ============ -->
-<section class="block">
+<section class="block" id="comparativa">
     <div class="container">
         <div class="block__head">
             <span class="block__kicker">La comparativa</span>
