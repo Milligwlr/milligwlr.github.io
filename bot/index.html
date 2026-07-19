@@ -745,6 +745,17 @@
     // por telefono (sin doctor): al cerrar sesion se purgan para que en una
     // tableta compartida el otro doctor no herede una nota a medio escribir.
     estado.borradores = {};
+    // (fix 19-jul) misma regla para el COMPOSER de mensajes dirigidos: sus
+    // borradores/banderas quedaban vivos tras cerrar sesion (regresion
+    // silenciosa de la Etapa 1) y un mensaje clinico a medio escribir podia
+    // resurgir en la sesion del otro doctor. Tambien se limpia el textarea.
+    estado.msgBorradores = {};
+    estado.msgBaja = {};
+    estado.enviando = {};
+    try {
+      var taPuerta = $('compTexto');
+      if (taPuerta) taPuerta.value = '';
+    } catch (ePurga) { /* best-effort */ }
     puertaCargando(false);
     $('puerta').hidden = false;
     $('app').hidden = true;
