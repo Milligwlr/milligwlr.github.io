@@ -454,6 +454,24 @@
     'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 
   var $ = function (id) { return document.getElementById(id); };
+  // TAREA B (19-jul-2026): TODAS las llamadas al visor van por POST — el token
+  // y el texto clínico viajan en el CUERPO, ya no en la URL (una query GET
+  // queda en historiales del navegador y bitácoras intermedias). Content-Type
+  // text/plain a propósito: evita el preflight OPTIONS que Apps Script no
+  // puede responder. SIN fallback a GET a propósito (revisión adversarial
+  // 19-jul): el único estado en que el POST falla y el GET funciona es un
+  // backend viejo — y el orden de despliegue obligatorio (backend primero,
+  // humo verificado, frontend después) lo elimina; en cualquier avería real
+  // del deployment AMBOS verbos devuelven HTML, así que el fallback solo
+  // re-exponía el token/nota en la URL en silencio. Un cuerpo no-JSON
+  // rechaza y el llamador pinta su estado de error de siempre.
+  function apiVisor(params) {
+    return fetch(API + '?visor=1', {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(params)
+    }).then(function (r) { return r.json(); });
+  }
   var estado = { datos: null, sel: null, temporizador: null, cargando: false,
     filtro: 'todos', fichaAbierta: false, fichaTel: '', guardandoSeg: false,
     clave: '',          // copia en memoria: el visor sigue vivo con localStorage bloqueado
@@ -778,8 +796,7 @@
     estado.cargando = true;
     $('btnRefrescar').classList.add('girando');
     $('estadoDr').textContent = 'actualizando…';
-    fetch(API + '?visor=1&key=' + encodeURIComponent(clave))
-      .then(function (r) { return r.json(); })
+    apiVisor({ key: clave })
       .then(function (datos) {
         if (gen !== estado.sesionGen) {
           // Sesion cerrada mientras la respuesta volaba (dispositivo
@@ -1437,10 +1454,14 @@
     // si el hilo mostrado sigue siendo k; el dato por-hilo (msgBaja/borrador) se
     // guarda SIEMPRE. Se envia el telefono COMPLETO (con pais), no truncado, para
     // no mexicanizar wa_ids extranjeros en el servidor.
-    fetch(API + '?visor=1&key=' + encodeURIComponent(claveActiva()) +
-      '&msg=1&tel=' + encodeURIComponent(h.telefono || k) + '&texto=' + encodeURIComponent(texto))
-      .then(function (r) { return r.json(); })
+    // Guard de SESION (revision adversarial 19-jul): si el Dr. cierra sesion
+    // mientras la respuesta vuela (tableta compartida), la respuesta tardia no
+    // debe escribir msgBaja/msgBorradores/enviando en el estado FRESCO de la
+    // sesion siguiente — mismo patron sesionGen que carga().
+    var genMsg = estado.sesionGen;
+    apiVisor({ key: claveActiva(), msg: '1', tel: (h.telefono || k), texto: texto })
       .then(function (resp) {
+        if (genMsg !== estado.sesionGen) return;
         estado.enviando[k] = false;
         if (!estado.msgBaja) estado.msgBaja = {};
         estado.msgBaja[k] = !!resp.baja;
@@ -1462,12 +1483,18 @@
         }
       })
       .catch(function (err) {
+        if (genMsg !== estado.sesionGen) return;
         estado.enviando[k] = false;
         var actual = hiloSeleccionado();
         if (!actual || claveHilo(actual) !== k) return;
         $('btnEnviarMsg').disabled = false;
         est.className = 'comp-estado err';
-        est.textContent = 'No se envió: ' + ((err && err.message) || 'sin conexión');
+        // Copy HONESTO (revision adversarial 19-jul): el doPost corre en el
+        // PRIMER salto y la respuesta viaja en el redirect — un fallo aqui NO
+        // demuestra que el mensaje no salio. Afirmar "no se envio" invitaba
+        // al reenvio manual duplicado.
+        est.textContent = 'No pude confirmar el envío 🙏 Revise la conversación antes de reintentar.';
+        carga();
       });
   }
 
@@ -1482,11 +1509,8 @@
     if (btn) btn.disabled = true;
     var est = $('segEstado');
     if (est) est.textContent = 'guardando…';
-    fetch(API + '?visor=1&key=' + encodeURIComponent(claveActiva()) +
-      '&seg=1&tel=' + encodeURIComponent(k) +
-      '&p=' + (pendiente ? '1' : '0') + '&nota=' + encodeURIComponent(nota) +
-      '&tags=' + encodeURIComponent(tags))
-      .then(function (r) { return r.json(); })
+    apiVisor({ key: claveActiva(), seg: '1', tel: k,
+      p: (pendiente ? '1' : '0'), nota: nota, tags: tags })
       .then(function (resp) {
         if (!resp.ok || !resp.seg) {
           throw new Error(resp.error || 'el servidor aún no tiene seguimiento');
