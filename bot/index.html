@@ -166,6 +166,13 @@
     outline: none;
   }
   #segNota:focus { border-color: var(--acento); }
+  .nombre-ed { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .inp-nombre {
+    background: var(--panel-2); color: var(--texto);
+    border: 1px solid var(--borde); border-radius: 8px; padding: 6px 9px;
+    font: 13.5px/1.4 inherit; font-family: inherit; outline: none; min-width: 150px; flex: 1;
+  }
+  .inp-nombre:focus { border-color: var(--acento); }
   .ficha-seg .acciones { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
   #btnSegGuardar {
     background: var(--acento); color: var(--acento-txt); border-radius: 8px;
@@ -1298,6 +1305,51 @@
       return f;
     };
 
+    // Nombre EDITABLE (21-jul, pedido del Dr.): el nombre que usted ve aquí y en
+    // la lista, y con el que el bot SALUDA al paciente en sus mensajes (cambia
+    // nombre_preferido, que manda sobre el nombre de la cita). NO renombra el
+    // evento del calendario. Permiso/alcance: los del token del visor.
+    (function () {
+      var nombreActual = String(h.nombre || '').trim();
+      var cont = nodo('div', 'nombre-ed');
+      vistaNombre();
+      caja.appendChild(fila('Nombre', cont));
+
+      function vistaNombre() {
+        cont.textContent = '';
+        cont.appendChild(document.createTextNode(nombreActual || '— sin nombre —'));
+        var b = nodo('button', 'btnseg', 'Editar');
+        b.type = 'button';
+        b.addEventListener('click', edicionNombre);
+        cont.appendChild(b);
+      }
+      function edicionNombre() {
+        cont.textContent = '';
+        var inp = document.createElement('input');
+        inp.type = 'text'; inp.maxLength = 80; inp.className = 'inp-nombre';
+        inp.value = nombreActual;
+        var g = nodo('button', 'btnseg on', 'Guardar');
+        g.type = 'button';
+        var c = nodo('button', 'btnseg', 'Cancelar');
+        c.type = 'button';
+        var msj = nodo('span', 'ficha-nota', '');
+        function guarda() {
+          var nuevo = (inp.value || '').replace(/\s+/g, ' ').trim();
+          if (!nuevo) { msj.textContent = 'El nombre no puede quedar vacío.'; return; }
+          g.disabled = true; c.disabled = true; msj.textContent = 'guardando…';
+          renombraPacienteUI(h, nuevo, msj);
+        }
+        g.addEventListener('click', guarda);
+        c.addEventListener('click', vistaNombre);
+        inp.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') { e.preventDefault(); guarda(); }
+          else if (e.key === 'Escape') vistaNombre();
+        });
+        cont.appendChild(inp); cont.appendChild(g); cont.appendChild(c); cont.appendChild(msj);
+        inp.focus(); inp.select();
+      }
+    })();
+
     if (h.opt_out) {
       caja.appendChild(nodo('div', 'ficha-alerta',
         'Pidió BAJA: el asistente ya no le envía mensajes. Cualquier contacto debe ser personal.'));
@@ -1530,6 +1582,27 @@
         estado.guardandoSeg = false;
         if (btn) btn.disabled = false;
         if (est) est.textContent = 'No se guardó: ' + ((err && err.message) || 'sin conexión');
+      });
+  }
+
+  // Renombrar paciente (21-jul): cambia nombre_preferido en el servidor y
+  // refleja el nuevo nombre en la cabecera, la lista y la ficha. El poll de 30 s
+  // lo confirma (el servidor ya devuelve el nombre nuevo). Si el servidor aún no
+  // trae el endpoint, avisa honesto (degradación limpia, no finge éxito).
+  function renombraPacienteUI(h, nuevo, msjEl) {
+    var k = claveHilo(h);
+    apiVisor({ key: claveActiva(), ren: '1', tel: (h.telefono || k), nombre: nuevo })
+      .then(function (resp) {
+        if (!resp || !resp.ok) {
+          throw new Error((resp && resp.error) || 'el servidor aún no permite renombrar');
+        }
+        h.nombre = resp.nombre || nuevo;
+        estado.fichaTel = '';       // repintado limpio de la ficha
+        pintaConversacion(false);   // cabecera de la conversación + ficha
+        pintaLista();               // nombre en la lista
+      })
+      .catch(function (err) {
+        if (msjEl) msjEl.textContent = 'No se guardó: ' + ((err && err.message) || 'sin conexión');
       });
   }
 
