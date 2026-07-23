@@ -55,6 +55,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  --serif:'Fraunces','Plus Jakarta Sans',Georgia,serif;
  --sans:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',Inter,system-ui,sans-serif;
  --ease:cubic-bezier(.22,1,.36,1);
+ --ease-out:cubic-bezier(.23,1,.32,1);
+ --ease-io:cubic-bezier(.77,0,.175,1);
+ --z-toast:50;
 }
 html,body{height:100%}
 body{
@@ -131,20 +134,22 @@ body{
  padding:15px 16px;border-radius:18px;background:var(--card);
  color:var(--ink);text-decoration:none;font-weight:700;font-size:.96rem;
  border:1px solid var(--line);box-shadow:var(--shadow-sm),var(--shadow-md);
- transition:transform .25s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
+ transition:transform .22s var(--ease-out),box-shadow .3s var(--ease-out),border-color .3s var(--ease-out);
  -webkit-tap-highlight-color:transparent;cursor:pointer;overflow:hidden;letter-spacing:-.005em;
 }
-.btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm),var(--shadow-lg);border-color:var(--line-2)}
-.btn:active{transform:translateY(0) scale(.98)}
+@media (hover:hover) and (pointer:fine){
+ .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm),var(--shadow-lg);border-color:var(--line-2)}
+ .btn:hover .btn__ic{transform:scale(1.07)}
+ .btn:hover .btn__chev{color:var(--electric);transform:translateX(3px)}
+}
+.btn:active{transform:scale(.978);transition-duration:.11s}
 .btn:focus-visible{outline:2px solid var(--electric);outline-offset:3px}
 
-.btn__ic{flex:0 0 42px;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#eaf2ff 0%,#dff3f3 100%);color:var(--electric);transition:transform .3s var(--ease)}
-.btn:hover .btn__ic{transform:scale(1.06)}
+.btn__ic{flex:0 0 42px;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#eaf2ff 0%,#dff3f3 100%);color:var(--electric);transition:transform .28s var(--ease-out)}
 .btn__ic svg{width:22px;height:22px;display:block}
 .btn__lbl{flex:1;line-height:1.25;min-width:0}
 .btn__sub{display:block;font-weight:500;font-size:.74rem;color:var(--muted);margin-top:2px;letter-spacing:.005em}
-.btn__chev{color:var(--soft);flex:0 0 auto;transition:transform .3s var(--ease),color .3s var(--ease)}
-.btn:hover .btn__chev{color:var(--electric);transform:translateX(3px)}
+.btn__chev{color:var(--soft);flex:0 0 auto;transition:transform .28s var(--ease-out),color .28s var(--ease-out)}
 
 /* ===== CTA sólidos llamativos (sistema compartido) ===== */
 .btn--solid{color:#fff;border-color:transparent}
@@ -166,12 +171,16 @@ body{
 .btn--wa-solid:hover{box-shadow:0 14px 38px rgba(37,211,102,.44),0 4px 10px rgba(7,94,84,.24)}
 .btn--fact{background:linear-gradient(135deg,#7c3a08 0%,#9a4a08 48%,#b5590a 100%);box-shadow:0 8px 28px rgba(180,83,9,.34),0 2px 6px rgba(124,58,8,.22)}
 .btn--fact:hover{box-shadow:0 14px 38px rgba(217,119,6,.46),0 4px 10px rgba(180,83,9,.28)}
-.btn--site{background:linear-gradient(135deg,#1f2d6e 0%,#6c5ce7 48%,#0a93a0 100%);box-shadow:0 8px 28px rgba(108,92,231,.32),0 2px 6px rgba(10,147,160,.18)}
-.btn--site:hover{box-shadow:0 14px 38px rgba(108,92,231,.46),0 4px 10px rgba(10,147,160,.28)}
-.btn--share{background:linear-gradient(135deg,#9a2b2b 0%,#c13c1f 52%,#c95f16 100%);box-shadow:0 8px 28px rgba(193,60,31,.32),0 2px 6px rgba(154,43,43,.18)}
-.btn--share:hover{box-shadow:0 14px 38px rgba(193,60,31,.46),0 4px 10px rgba(154,43,43,.26)}
-.btn--air{background:linear-gradient(135deg,#024e86 0%,#0784a8 50%,#0b92b4 100%);box-shadow:0 8px 28px rgba(7,132,168,.32),0 2px 6px rgba(2,78,134,.18)}
-.btn--air:hover{box-shadow:0 14px 38px rgba(7,132,168,.46),0 4px 10px rgba(2,78,134,.26)}
+
+/* ===== Botón HÉROE: la acción #1 domina (Agendar en línea) ===== */
+.btn--hero{padding:19px 18px;border-radius:22px}
+.btn--hero .btn__ic{flex-basis:48px;width:48px;height:48px;border-radius:14px}
+.btn--hero .btn__ic svg{width:25px;height:25px}
+.btn--hero .btn__lbl{font-size:1.04rem;letter-spacing:-.015em}
+.btn--hero .btn__sub{font-size:.76rem;margin-top:3px}
+.btn--hero .btn__chev{width:20px;height:20px}
+/* borde superior con luz, para dar volumen al héroe (contenido en overflow:hidden) */
+.btn--hero::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(160deg,rgba(255,255,255,.6),rgba(255,255,255,0) 42%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.9;z-index:1}
 
 /* ===== Tarjetas calmadas: ícono con tinte ===== */
 .btn--tele .btn__ic{background:linear-gradient(135deg,#ede9fe 0%,#ddd6fe 100%);color:var(--purple)}
@@ -179,9 +188,12 @@ body{
 .btn--loc .btn__ic{background:linear-gradient(135deg,#ffe9dc 0%,#ffd9c2 100%);color:#c2410c}
 .btn--ig .btn__ic{background:linear-gradient(135deg,#feda75 0%,#fa7e1e 35%,#d62976 65%,#962fbf 100%);color:#fff}
 .btn--x .btn__ic{background:linear-gradient(135deg,#1a1a1a 0%,#000 100%);color:#fff}
+.btn--site .btn__ic{background:linear-gradient(135deg,#eef0ff 0%,#e6e2fe 100%);color:var(--purple)}
+.btn--air .btn__ic{background:linear-gradient(135deg,#dbf3fb 0%,#cbeef7 100%);color:#0784a8}
+.btn--share .btn__ic{background:linear-gradient(135deg,#ffe4e6 0%,#fecdd3 100%);color:#be123c}
 
-/* Section divider */
-.divider{display:flex;align-items:center;gap:12px;width:100%;margin:14px 0 2px;color:var(--muted);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700}
+/* Section divider — más aire entre grupos para dar ritmo */
+.divider{display:flex;align-items:center;gap:12px;width:100%;margin:22px 0 4px;color:var(--muted);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700}
 .divider::before,.divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(9,132,227,.22),transparent)}
 
 /* Foot */
@@ -219,6 +231,12 @@ body{
  .brand__creds span{background:rgba(255,255,255,.04)}
  .btn__ic{background:rgba(9,132,227,.14);color:#7fa2dd}
  .btn--tele .btn__ic{background:rgba(108,92,231,.16);color:#a78bfa}
+ .btn--call .btn__ic{background:rgba(0,206,201,.14);color:#4fd1c5}
+ .btn--loc .btn__ic{background:rgba(194,65,12,.18);color:#fb923c}
+ .btn--site .btn__ic{background:rgba(108,92,231,.16);color:#a78bfa}
+ .btn--air .btn__ic{background:rgba(7,132,168,.18);color:#5cc7e0}
+ .btn--share .btn__ic{background:rgba(190,18,60,.18);color:#fb7185}
+ .btn--hero::before{opacity:.45}
 }
 </style>
 
@@ -303,7 +321,7 @@ body{
 
  <nav class="stack" aria-label="Acciones de contacto">
 
-  <a class="btn btn--primary btn--solid" style="--i:1" href="https://cal.com/dr-william-lara/agendar-cita?utm_source=qr-receta&utm_medium=qr&utm_campaign=contacto" rel="noopener noreferrer"  target="_blank">
+  <a class="btn btn--primary btn--solid btn--hero" style="--i:1" href="https://cal.com/dr-william-lara/agendar-cita?utm_source=qr-receta&utm_medium=qr&utm_campaign=contacto" rel="noopener noreferrer"  target="_blank">
    <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 10h18M8 2v4M16 2v4"/><path d="M9 15l2 2 4-4"/></svg></span>
    <span class="btn__lbl">Agendar cita en línea<span class="btn__sub">Elige el día y la hora</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
@@ -335,7 +353,7 @@ body{
 
   <h2 class="divider" style="--i:6">Conoce más</h2>
 
-  <a class="btn btn--site btn--solid" style="--i:7" href="https://alveos.mx/?utm_source=qr-receta&utm_medium=qr&utm_campaign=home" rel="noopener">
+  <a class="btn btn--site" style="--i:7" href="https://alveos.mx/?utm_source=qr-receta&utm_medium=qr&utm_campaign=home" rel="noopener">
    <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
    <span class="btn__lbl">Sitio web oficial<span class="btn__sub">alveos.mx · conoce más del Dr. Lara</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
@@ -355,7 +373,7 @@ body{
 
   <h2 class="divider" style="--i:10">Recursos del paciente</h2>
 
-  <a class="btn btn--air btn--solid" style="--i:11" href="https://alveos.mx/contingencia-ambiental-cdmx/?utm_source=qr-receta&utm_medium=qr&utm_campaign=contingencia" rel="noopener">
+  <a class="btn btn--air" style="--i:11" href="https://alveos.mx/contingencia-ambiental-cdmx/?utm_source=qr-receta&utm_medium=qr&utm_campaign=contingencia" rel="noopener">
    <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15h13a3 3 0 1 0-3-3"/><path d="M3 19h17a2 2 0 1 0-2-2"/><path d="M3 11h9a2.5 2.5 0 1 0-2.5-2.5"/></svg></span>
    <span class="btn__lbl">Calidad del aire en CDMX<span class="btn__sub">Recomendaciones según contingencia</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
@@ -375,7 +393,7 @@ body{
 
   <h2 class="divider" style="--i:14">Tu contacto</h2>
 
-  <button class="btn btn--share btn--solid" id="shareBtn" type="button" style="--i:15">
+  <button class="btn btn--share" id="shareBtn" type="button" style="--i:15">
    <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span>
    <span class="btn__lbl">Compartir con un familiar<span class="btn__sub">Envía este contacto por mensaje</span></span>
    <svg class="btn__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
