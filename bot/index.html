@@ -230,6 +230,10 @@
   }
   .chiplead.urgente { color: var(--rojo); border-color: var(--rojo); font-weight: 600; }
   .item .nombre.noleido { font-weight: 700; }
+  .nota-ocultas {
+    padding: 14px 16px; text-align: center; font-size: 12px;
+    color: var(--tenue); line-height: 1.5; border-top: 1px solid var(--borde);
+  }
   .badge-nuevo {
     flex: none; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px;
     background: var(--acento); color: var(--acento-txt); font-size: 11px; font-weight: 700;
@@ -486,6 +490,16 @@
     sesionGen: 0,       // generacion de sesion: una respuesta tardia de una sesion cerrada se descarta
     borradores: {} };   // notas de seguimiento a medio escribir, por telefono
   try { estado.filtro = localStorage.getItem('visor_filtro') || 'todos'; } catch (e) {}
+
+  // ---- Vista principal "reciente" (petición del Dr., 24-jul) ----
+  // En "Todos" y SIN búsqueda, la lista muestra las conversaciones con actividad
+  // en los últimos VISOR_VIGENCIA_DIAS días, hasta VISOR_MAX_HILOS (las más
+  // recientes). SIEMPRE visibles además, sin contar contra el tope: los NO LEÍDOS,
+  // los AVISOS DEL ASISTENTE y el chat abierto. El buscador y los demás filtros
+  // alcanzan a TODAS: el recorte es solo de la vista por defecto. Ajusta estos dos
+  // números si hace falta.
+  var VISOR_VIGENCIA_DIAS = 10;
+  var VISOR_MAX_HILOS = 30;
 
   // Filtros de seguimiento (v3): cada uno es un predicado sobre el hilo.
   var FILTROS = [
@@ -865,6 +879,29 @@
     if (estado.sel !== null) pintaConversacion(false);
   }
 
+  // Recencia de un hilo = ts del ÚLTIMO mensaje (de cualquier dirección: una
+  // respuesta del paciente o un envío del bot lo reactivan por igual).
+  function tsUltimoDe(h) {
+    var m = h.mensajes || [];
+    return m.length ? msDeTs(m[m.length - 1].ts) : NaN;
+  }
+  // Recorte de la vista principal: SOLO conversaciones con actividad en los
+  // últimos VISOR_VIGENCIA_DIAS días, hasta VISOR_MAX_HILOS (las más recientes;
+  // la lista ya viene ordenada por recencia desde el servidor). SIEMPRE visibles,
+  // sin contar contra el tope: no leídos, avisos internos y el chat abierto.
+  function recorteVigencia(hilos) {
+    var ahora = Date.now();
+    var limite = VISOR_VIGENCIA_DIAS * 86400000;
+    var vistos = 0;
+    return hilos.filter(function (h) {
+      if (h.interno || esNoLeido(h) || claveHilo(h) === estado.sel) return true;
+      var t = tsUltimoDe(h);
+      if (isNaN(t) || (ahora - t) > limite) return false;
+      vistos++;
+      return vistos <= VISOR_MAX_HILOS;
+    });
+  }
+
   function hilosFiltrados() {
     var q = sinAcentos($('q').value.trim());
     var hilos = (estado.datos && estado.datos.hilos) || [];
@@ -878,7 +915,19 @@
         return ultimoInDe(a) < ultimoInDe(b) ? -1 : 1;
       });
     }
-    if (!q) return hilos;
+    if (!q) {
+      // Vista principal "Todos": recorte a lo reciente (24-jul). Con un filtro
+      // específico o con búsqueda NO se recorta (se alcanza a TODAS).
+      if (estado.filtro === 'todos') {
+        var todas = hilos.length;
+        hilos = recorteVigencia(hilos);
+        estado.ocultas = todas - hilos.length;
+      } else {
+        estado.ocultas = 0;
+      }
+      return hilos;
+    }
+    estado.ocultas = 0;
     var esDigitos = /^\d+$/.test(q);
     return hilos.filter(function (h) {
       if (esDigitos && String(h.telefono || '').replace(/\D/g, '').indexOf(q) !== -1) return true;
@@ -1094,6 +1143,17 @@
       });
       cont.appendChild(item);
     });
+    // Aviso "N ocultas" (24-jul): en la vista principal, cuando el recorte a lo
+    // reciente escondió conversaciones, avisa que NO se borraron (siguen en el
+    // buscador y en los filtros).
+    var enPrincipal = estado.filtro === 'todos' && !$('q').value.trim();
+    if (enPrincipal && estado.ocultas > 0) {
+      var txtOc = (estado.ocultas === 1
+        ? '1 conversación más oculta'
+        : estado.ocultas + ' conversaciones más ocultas') +
+        ' (sin actividad en ' + VISOR_VIGENCIA_DIAS + ' días) · búscala por nombre o usa un filtro';
+      cont.appendChild(nodo('div', 'nota-ocultas', txtOc));
+    }
     // Bitacora del sistema (solo llega en la vista de William)
     var sis = (estado.datos && estado.datos.sistema) || [];
     var muestraSistema = sis.length && !$('q').value.trim() && estado.filtro === 'todos';
@@ -1114,7 +1174,7 @@
       itemS.addEventListener('click', function () { abreHilo('__sistema__'); });
       cont.appendChild(itemS);
     }
-    if (!hilos.length && !muestraSistema) {
+    if (!hilos.length && !muestraSistema && !(enPrincipal && estado.ocultas > 0)) {
       var msjVacio = 'Todavía no hay conversaciones registradas.';
       if ($('q').value.trim()) msjVacio = 'Sin resultados para la búsqueda.';
       else if (estado.filtro === 'noleidos') msjVacio = 'Sin chats por leer. ✓';
