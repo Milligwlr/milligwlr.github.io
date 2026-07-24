@@ -1,0 +1,1033 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Generador de recetas — Alveos (impresión directa)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand:#0984E3; --brand-deep:#1E3799; --brand-tint:#E6F1FB;
+    --bg:#F6F9FD; --surface:#FFFFFF; --surface-2:#F8FAFF;
+    --ink:#0F1D30; --muted:#64748B; --faint:#94A0B4;
+    --line:#E2E8F2; --line-strong:#C9D6E6;
+    --add:#00B894; --danger:#E17055; --warn:#F59E0B; --warn-tint:#FEF3E2;
+    --radius:10px; --shadow:0 1px 2px rgba(15,29,48,.06),0 6px 20px rgba(15,29,48,.07);
+    --font-ui:"Plus Jakarta Sans","Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    --font-rx:"Aptos","Aptos Display","Segoe UI",Calibri,system-ui,sans-serif;
+    --ease-out:cubic-bezier(0.23,1,0.32,1); --ease-in-out:cubic-bezier(0.77,0,0.175,1);
+  }
+  @media (prefers-color-scheme: dark){ :root{ --brand:#4AA3EF;--brand-deep:#74B9FF;--brand-tint:#12263E;--bg:#0A1628;--surface:#122040;--surface-2:#0E1B33;--ink:#E6EDF5;--muted:#9AA7B8;--faint:#6B7688;--line:#1E3050;--line-strong:#2C4062;--add:#10D0A8;--danger:#F08A6E;--warn:#F5B94A;--warn-tint:#2A2210;--shadow:0 1px 2px rgba(0,0,0,.35),0 8px 24px rgba(0,0,0,.4);} }
+  :root[data-theme="dark"]{ --brand:#4AA3EF;--brand-deep:#74B9FF;--brand-tint:#12263E;--bg:#0A1628;--surface:#122040;--surface-2:#0E1B33;--ink:#E6EDF5;--muted:#9AA7B8;--faint:#6B7688;--line:#1E3050;--line-strong:#2C4062;--add:#10D0A8;--danger:#F08A6E;--warn:#F5B94A;--warn-tint:#2A2210;--shadow:0 1px 2px rgba(0,0,0,.35),0 8px 24px rgba(0,0,0,.4); }
+  :root[data-theme="light"]{ --brand:#0984E3;--brand-deep:#1E3799;--brand-tint:#E6F1FB;--bg:#F6F9FD;--surface:#FFFFFF;--surface-2:#F8FAFF;--ink:#0F1D30;--muted:#64748B;--faint:#94A0B4;--line:#E2E8F2;--line-strong:#C9D6E6;--add:#00B894;--danger:#E17055;--warn:#F59E0B;--warn-tint:#FEF3E2;--shadow:0 1px 2px rgba(15,29,48,.06),0 6px 20px rgba(15,29,48,.07); }
+
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-ui); font-size:14px; line-height:1.5; }
+  button { font-family:inherit; cursor:pointer; }
+  input, select, textarea { font-family:inherit; }
+
+  .topbar { display:flex; align-items:center; gap:14px; padding:12px 20px; background:var(--surface); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:20; }
+  .logo { display:flex; align-items:center; gap:10px; }
+  .logo-mark { width:30px; height:30px; border-radius:8px; background:linear-gradient(135deg,var(--brand),var(--brand-deep)); display:grid; place-items:center; color:#fff; font-weight:700; font-size:15px; }
+  .logo-txt { font-weight:650; }
+  .logo-txt small { display:block; font-weight:400; color:var(--faint); font-size:11px; letter-spacing:.3px; text-transform:uppercase; }
+  .topbar .spacer { flex:1; }
+  .badge { font-size:11px; color:var(--muted); border:1px solid var(--line-strong); padding:3px 9px; border-radius:999px; }
+  .theme-btn { background:transparent; border:1px solid var(--line-strong); color:var(--muted); border-radius:8px; padding:6px 10px; font-size:12px; }
+  .theme-btn:hover { color:var(--ink); border-color:var(--brand); }
+
+  .app { display:grid; grid-template-columns:260px minmax(480px,1fr); height:calc(100vh - 55px); }
+  .col { height:100%; overflow-y:auto; }
+  .col-cat { border-right:1px solid var(--line); background:var(--surface-2); }
+
+  .col-head { padding:14px 16px 8px; }
+  .col-head h2 { margin:0; font-size:12px; text-transform:uppercase; letter-spacing:.8px; color:var(--faint); font-weight:650; }
+  .col-head p { margin:4px 0 0; font-size:12px; color:var(--muted); }
+
+  .conds { padding:4px 10px 8px; display:flex; flex-direction:column; gap:2px; }
+  .cond { display:flex; align-items:center; gap:10px; width:100%; text-align:left; background:transparent; border:none; border-radius:8px; padding:9px 10px; color:var(--ink); font-size:13.5px; font-weight:500; transition:background .12s,color .12s; }
+  .cond:hover { background:var(--brand-tint); }
+  .cond:active { background:var(--line); }
+  .cond:focus-visible { outline:none; box-shadow:0 0 0 2px var(--brand-tint); }
+  .cond.active { background:var(--brand); color:#fff; }
+  .cond.active .cond-count { background:rgba(255,255,255,.25); color:#fff; }
+  .cond .dot { width:8px; height:8px; border-radius:50%; flex:none; }
+  .cond-count { margin-left:auto; font-size:11px; background:var(--line); color:var(--muted); border-radius:999px; padding:1px 7px; font-variant-numeric:tabular-nums; }
+  .divider { height:1px; background:var(--line); margin:8px 14px; }
+
+  .searchbox { padding:0 12px 6px; }
+  .searchbox input { width:100%; background:var(--surface); border:1px solid var(--line-strong); border-radius:8px; padding:7px 10px; font-size:13px; color:var(--ink); }
+  .searchbox input:focus { outline:none; border-color:var(--brand); box-shadow:0 0 0 3px var(--brand-tint); }
+
+  .meds { padding:6px 12px 24px; display:flex; flex-direction:column; gap:6px; }
+  .med { text-align:left; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:9px 12px; display:flex; flex-direction:column; gap:2px; transition:border-color .12s,box-shadow .12s,transform .1s var(--ease-out); }
+  .med:hover { border-color:var(--brand); box-shadow:0 1px 2px rgba(27,36,48,.05); }
+  .med:active { transform:scale(.985); }
+  .med:focus-visible { outline:none; border-color:var(--brand); box-shadow:0 0 0 3px var(--brand-tint); }
+  .med-name { font-weight:600; font-size:13.5px; display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+  .med-sub { font-size:12px; color:var(--muted); }
+  .med-gen { font-size:11.5px; color:var(--faint); font-style:italic; }
+  .med-tag { align-self:flex-start; margin-top:3px; font-size:10.5px; text-transform:uppercase; letter-spacing:.4px; padding:1px 7px; border-radius:999px; background:var(--brand-tint); color:var(--brand-deep); }
+  .lock { font-size:10px; font-weight:700; color:var(--warn); background:var(--warn-tint); border:1px solid var(--warn); border-radius:5px; padding:0 5px; letter-spacing:.3px; }
+  .saved-star { color:var(--warn); display:inline-flex; align-items:center; }
+  .meds-empty { color:var(--faint); font-size:12.5px; font-style:italic; padding:10px 4px; }
+
+  /* Mis plantillas */
+  .tpls { padding:4px 12px 8px; display:flex; flex-direction:column; gap:6px; }
+  .tpl { display:flex; align-items:stretch; gap:4px; }
+  .tpl-apply { flex:1; min-width:0; text-align:left; background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:8px 10px; display:flex; flex-direction:column; gap:2px; transition:border-color .12s,box-shadow .12s,transform .1s var(--ease-out); }
+  .tpl-apply:hover { border-color:var(--brand); box-shadow:0 1px 2px rgba(27,36,48,.05); }
+  .tpl-apply:active { transform:scale(.99); }
+  .tpl-apply:focus-visible { outline:none; box-shadow:0 0 0 3px var(--brand-tint); }
+  .tpl-name { font-weight:600; font-size:13px; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .tpl-meta { font-size:11px; color:var(--faint); }
+  .tpl-del { flex:none; align-self:center; }
+  .tpl-empty { color:var(--faint); font-size:12px; font-style:italic; padding:4px 2px 8px; line-height:1.5; }
+
+  /* Lista compacta de medicamentos (solo nombre) */
+  .med-group { font-size:10.5px; text-transform:uppercase; letter-spacing:.5px; color:var(--faint); font-weight:650; padding:10px 4px 3px; display:flex; align-items:center; gap:7px; }
+  .med-group .gd { width:7px; height:7px; border-radius:50%; flex:none; }
+  .med-line { text-align:left; background:transparent; border:1px solid transparent; border-radius:7px; padding:6px 9px; display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:13px; color:var(--ink); transition:background .12s,border-color .12s,transform .1s var(--ease-out); }
+  .med-line:hover { background:var(--surface); border-color:var(--line); }
+  .med-line:active { transform:scale(.99); }
+  .med-line:focus-visible { outline:none; border-color:var(--brand); box-shadow:0 0 0 3px var(--brand-tint); }
+  .med-line .ml-full { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .med-line .ml-full b { font-weight:600; }
+  .med-line .ml-full .ml-dim { color:var(--faint); font-weight:400; font-size:12px; }
+  .med-line .ml-full svg { color:var(--warn); vertical-align:-2px; margin-right:2px; }
+
+  /* Categorías colapsables (acordeón) */
+  .cat { border-bottom:1px solid var(--line); }
+  .cat-head { width:100%; display:flex; align-items:center; gap:8px; background:transparent; border:none; padding:10px 6px; font-size:12.5px; font-weight:600; color:var(--ink); text-align:left; border-radius:7px; transition:background .12s,color .12s; }
+  .cat-head:hover { background:var(--brand-tint); }
+  .cat-head:focus-visible { outline:none; box-shadow:0 0 0 2px var(--brand-tint); }
+  .cat-head .gd { width:8px; height:8px; border-radius:50%; flex:none; }
+  .cat-head .cat-lbl { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .cat-head .cat-count { font-size:11px; color:var(--muted); background:var(--line); border-radius:999px; padding:1px 7px; font-variant-numeric:tabular-nums; }
+  .cat-head .cat-caret { color:var(--faint); font-size:11px; transition:transform .15s var(--ease-out); }
+  .cat-head.open .cat-caret { transform:rotate(180deg); }
+  .cat-body { display:flex; flex-direction:column; gap:3px; padding:2px 0 8px; }
+  .cat-body[hidden] { display:none; }
+
+  .work { padding:14px 22px 120px; max-width:none; }
+  .card { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:14px 16px; margin-bottom:14px; }
+  .card > .card-title { font-size:12px; text-transform:uppercase; letter-spacing:.7px; color:var(--faint); font-weight:650; margin:0 0 12px; display:flex; align-items:center; gap:8px; }
+  .card > .card-title .step { width:20px; height:20px; border-radius:50%; background:var(--brand); color:#fff; font-size:11px; display:grid; place-items:center; font-weight:700; }
+  .card > .card-title .muted { font-weight:400; text-transform:none; letter-spacing:0; color:var(--faint); }
+
+  .field { margin-bottom:12px; }
+  .field label { display:block; font-size:11px; text-transform:uppercase; letter-spacing:.6px; color:var(--faint); font-weight:650; margin-bottom:5px; }
+  .field input, .field select, .field textarea { width:100%; background:var(--surface-2); border:1px solid var(--line-strong); border-radius:8px; padding:8px 10px; font-size:13.5px; color:var(--ink); }
+  .field input:focus, .field select:focus, .field textarea:focus { outline:none; border-color:var(--brand); box-shadow:0 0 0 3px var(--brand-tint); background:var(--surface); }
+  .field input[readonly] { background:var(--brand-tint); color:var(--brand-deep); font-weight:600; }
+  .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+
+  /* --- Paciente: campos compactos (labels discretos) --- */
+  .pgrid { display:grid; grid-template-columns:2fr 1.1fr .85fr 1.1fr; gap:10px; margin-bottom:10px; }
+  .pfield { display:flex; flex-direction:column; gap:4px; min-width:0; }
+  .pfield.pf-dx { margin-bottom:2px; }
+  .pfield > label { font-size:11px; font-weight:600; letter-spacing:.1px; color:var(--muted); }
+  .pfield input { width:100%; height:34px; background:var(--surface-2); border:1px solid var(--line-strong); border-radius:8px; padding:7px 10px; font-size:13.5px; color:var(--ink); transition:border-color .12s,box-shadow .12s,background .12s; }
+  .pfield input::placeholder { color:var(--muted); }
+  .pfield input:focus { outline:none; border-color:var(--brand); box-shadow:0 0 0 3px var(--brand-tint); background:var(--surface); }
+  .pfield input[readonly] { background:var(--brand-tint); color:var(--brand-deep); font-weight:600; border-color:var(--line-strong); }
+
+  /* --- Signos vitales: tira compacta segmentada --- */
+  .vitals-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:14px 0 9px; padding-top:12px; border-top:1px solid var(--line); }
+  .vitals-title { font-size:11px; text-transform:uppercase; letter-spacing:.6px; color:var(--faint); font-weight:650; display:inline-flex; align-items:center; gap:7px; }
+  .vitals-title .opt { text-transform:none; letter-spacing:0; font-weight:400; color:var(--faint); font-size:11px; }
+  .vitals-print { font-size:12px; color:var(--muted); display:inline-flex; gap:6px; align-items:center; cursor:pointer; white-space:nowrap; }
+  .vitals-strip { display:flex; flex-wrap:wrap; gap:8px; }
+  .vital { display:flex; align-items:stretch; border:1px solid var(--line-strong); border-radius:8px; overflow:hidden; background:var(--surface-2); transition:border-color .12s,box-shadow .12s; }
+  .vital:focus-within { border-color:var(--brand); box-shadow:0 0 0 3px var(--brand-tint); }
+  .vital > span { display:flex; align-items:center; padding:0 9px; font-size:11px; font-weight:650; color:var(--muted); background:var(--surface); border-right:1px solid var(--line); white-space:nowrap; }
+  .vital input { width:60px; border:none; background:transparent; padding:7px 9px; font-size:13px; color:var(--ink); }
+  .vital input:focus { outline:none; }
+  .vital input::placeholder { color:var(--faint); }
+  .vital.v-ta input { width:66px; }
+  .vital input[readonly] { color:var(--brand-deep); font-weight:600; }
+  @media (max-width:640px){ .pgrid { grid-template-columns:1fr 1fr; } .pf-nombre { grid-column:1 / -1; } .vital input { width:100%; } .vital { flex:1 1 128px; } }
+
+  /* Tabla de receta estilo Nimbo */
+  .rx-table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:8px; }
+  table.rxt { width:100%; border-collapse:collapse; min-width:640px; }
+  table.rxt.no-surtir .col-surtir { display:none; }
+  table.rxt thead th { text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.5px; color:var(--faint); font-weight:650; padding:9px 8px; background:var(--surface-2); border-bottom:1px solid var(--line); white-space:nowrap; }
+  table.rxt td { padding:6px 6px; border-bottom:1px solid var(--line); vertical-align:middle; transition:background .12s; }
+  table.rxt tr:last-child td { border-bottom:none; }
+  table.rxt tbody tr.rrow:hover td { background:var(--surface-2); }
+  table.rxt input { width:100%; background:var(--surface); border:1px solid var(--line-strong); border-radius:7px; padding:7px 8px; font-size:13px; color:var(--ink); }
+  table.rxt input:focus { outline:none; border-color:var(--brand); box-shadow:0 0 0 2px var(--brand-tint); }
+  .col-med { min-width:210px; } .col-forma { min-width:105px; } .col-pres { min-width:130px; } .col-dosis{ min-width:100px; } .col-frec{ min-width:108px; } .col-dur{ min-width:104px; } .col-via{ min-width:90px; } .col-surtir{ min-width:88px; }
+  .col-med .med-row { display:flex; align-items:center; gap:7px; }
+  .col-med .ac-name { flex:1; min-width:70px; }
+  .med-gen-in { flex:none; color:var(--faint); font-size:12px; font-style:italic; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:130px; }
+  .rxt .acts { white-space:nowrap; text-align:right; }
+  .icon-btn { width:30px; height:30px; display:inline-grid; place-items:center; border:1px solid transparent; background:transparent; color:var(--faint); border-radius:7px; font-size:14px; transition:background .12s,color .12s,transform .1s var(--ease-out); }
+  .icon-btn svg { display:block; }
+  .icon-btn:hover { background:var(--line); color:var(--ink); }
+  .icon-btn:active { transform:scale(.9); }
+  .icon-btn:focus-visible { outline:none; box-shadow:0 0 0 2px var(--brand-tint); }
+  .icon-btn.on { color:var(--brand); background:var(--brand-tint); }
+  .icon-btn.del:hover { background:#FBEAE6; color:var(--danger); }
+  @media (prefers-color-scheme: dark){ .icon-btn.del:hover{ background:#2E1A15; } }
+  .surtir-na { color:var(--faint); font-size:12px; text-align:center; }
+  tr.rdet td { padding-top:0; }
+  .detbox { background:var(--surface-2); border:1px solid var(--line); border-radius:8px; padding:10px 12px; margin:2px 0 6px; }
+  .detbox .drow { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:8px; }
+  .detbox .drow .field { margin:0; }
+  .detbox textarea { min-height:44px; resize:vertical; }
+  .rxt-empty { padding:18px 12px; color:var(--faint); font-size:13px; font-style:italic; text-align:center; }
+  .addblank { margin-top:10px; }
+
+  .btn { border:1px solid var(--line-strong); background:var(--surface); color:var(--ink); border-radius:8px; padding:9px 14px; font-size:13px; font-weight:550; display:inline-flex; align-items:center; gap:7px; transition:transform .12s var(--ease-out),border-color .12s,background .12s,box-shadow .12s,filter .12s; }
+  .btn:hover { border-color:var(--brand); }
+  .btn:active { transform:scale(.97); }
+  .btn:focus-visible { outline:none; box-shadow:0 0 0 3px var(--brand-tint); }
+  .btn svg { display:block; }
+  .btn-primary { background:var(--add); border-color:var(--add); color:#fff; } .btn-primary:hover{ filter:brightness(1.05); border-color:var(--add); }
+  .btn-brand { background:linear-gradient(135deg,var(--brand-deep),var(--brand)); border-color:var(--brand); color:#fff; } .btn-brand:hover{ filter:brightness(1.06); border-color:var(--brand); }
+  .btn-lg { padding:12px 20px; font-size:14px; }
+  .btn-ghost { background:transparent; }
+  .btn-row { display:flex; gap:10px; flex-wrap:wrap; }
+  .btn:disabled { opacity:.45; cursor:not-allowed; }
+
+  .estgroup { margin-bottom:10px; }
+  .estgroup h4 { margin:0 0 6px; font-size:11px; text-transform:uppercase; letter-spacing:.5px; color:var(--faint); font-weight:650; }
+  .chips { display:flex; flex-wrap:wrap; gap:6px; }
+  .chip { padding:5px 11px; font-size:12.5px; border-radius:999px; border:1px solid var(--line-strong); background:var(--surface-2); color:var(--ink); transition:background .12s,color .12s,border-color .12s,transform .1s var(--ease-out); }
+  .chip:hover { border-color:var(--brand); }
+  .chip:active { transform:scale(.96); }
+  .chip:focus-visible { outline:none; box-shadow:0 0 0 3px var(--brand-tint); }
+  .chip.on { background:var(--brand); color:#fff; border-color:var(--brand); }
+  .chip.on:hover { filter:brightness(1.05); }
+  .est-oneline { margin-top:12px; background:var(--surface-2); border:1px dashed var(--line-strong); border-radius:8px; padding:10px 12px; font-size:13px; color:var(--ink); min-height:20px; }
+  .est-oneline .ph { color:var(--faint); font-style:italic; }
+  .est-dd { position:relative; }
+  .est-trigger { display:inline-flex; align-items:center; gap:12px; justify-content:space-between; min-width:260px; background:var(--surface-2); border:1px solid var(--line-strong); border-radius:8px; padding:9px 12px; font-size:13.5px; color:var(--ink); transition:border-color .12s,box-shadow .12s; }
+  .est-trigger:hover { border-color:var(--brand); }
+  .est-trigger:focus-visible { outline:none; box-shadow:0 0 0 3px var(--brand-tint); }
+  .est-trigger .caret { color:var(--faint); font-size:11px; }
+  .est-trigger[aria-expanded="true"] .caret { transform:rotate(180deg); }
+  .est-panel { position:absolute; top:calc(100% + 6px); left:0; z-index:30; width:100%; max-width:640px; max-height:340px; overflow:auto; background:var(--surface); border:1px solid var(--line-strong); border-radius:10px; box-shadow:var(--shadow); padding:8px; }
+  .est-panel .estgroup { margin:0 0 4px; padding:6px 6px 0; }
+  .est-panel .estgroup h4 { margin:0 0 4px; }
+  .est-opt { display:flex; align-items:center; gap:9px; padding:6px 8px; border-radius:7px; font-size:13px; cursor:pointer; }
+  .est-opt:hover { background:var(--surface-2); }
+  .est-opt input { width:16px; height:16px; accent-color:var(--brand); flex:none; margin:0; }
+  .est-opt { justify-content:flex-start; }
+  .est-opt .est-del { margin-left:auto; width:22px; height:22px; display:grid; place-items:center; color:var(--faint); border-radius:6px; }
+  .est-opt .est-del:hover { background:#FBEAE6; color:var(--danger); }
+  @media (prefers-color-scheme: dark){ .est-opt .est-del:hover{ background:#2E1A15; } }
+  .est-search { width:100%; background:var(--surface-2); border:1px solid var(--line-strong); border-radius:8px; padding:8px 10px; font-size:13px; color:var(--ink); margin-bottom:6px; position:sticky; top:0; }
+  .est-search:focus { outline:none; border-color:var(--brand); box-shadow:0 0 0 3px var(--brand-tint); background:var(--surface); }
+  .est-add { display:block; width:100%; text-align:left; background:var(--brand-tint); border:1px dashed var(--brand); color:var(--brand-deep); border-radius:8px; padding:8px 10px; font-size:13px; font-weight:600; margin-top:4px; }
+  .est-add:hover { filter:brightness(1.02); }
+
+  .ctrl-banner { display:none; background:var(--warn-tint); border:1px solid var(--warn); border-radius:8px; padding:10px 12px; margin-bottom:12px; font-size:12.5px; line-height:1.5; }
+  .ctrl-banner.on { display:block; }
+  .ctrl-banner b { color:var(--warn); }
+
+  .createbar { position:fixed; bottom:0; left:260px; right:0; background:var(--surface); border-top:1px solid var(--line); padding:12px 20px; display:flex; align-items:center; gap:14px; z-index:15; box-shadow:0 -4px 16px rgba(27,36,48,.05); }
+  .createbar .info { font-size:12.5px; color:var(--muted); }
+  .createbar .spacer { flex:1; }
+  @media (max-width:900px){ .createbar{ left:0; } }
+
+  .overlay { position:fixed; inset:0; background:rgba(12,18,26,.6); z-index:40; display:none; overflow:auto; padding:24px 16px; }
+  .overlay.open { display:block; animation:pvFade .18s ease both; }
+  .pv-card { max-width:980px; margin:0 auto; background:var(--surface); border-radius:14px; box-shadow:var(--shadow); overflow:hidden; }
+  .overlay.open .pv-card { animation:pvIn .22s var(--ease-out) both; }
+  @keyframes pvFade { from{ opacity:0; } to{ opacity:1; } }
+  @keyframes pvIn { from{ opacity:0; transform:scale(.975) translateY(6px); } to{ opacity:1; transform:none; } }
+  .pv-head { display:flex; align-items:center; gap:12px; padding:14px 18px; border-bottom:1px solid var(--line); }
+  .pv-head h3 { margin:0; font-size:15px; }
+  .pv-head .spacer { flex:1; }
+  .pv-body { padding:18px; background:var(--surface-2); }
+  .pv-warn { border-radius:8px; padding:10px 12px; margin-bottom:12px; font-size:12.5px; line-height:1.5; }
+  .pv-warn.amber { background:var(--warn-tint); border:1px solid var(--warn); }
+  .pv-warn.red { background:#FBEAE6; border:1px solid var(--danger); color:#7a2c1c; }
+  @media (prefers-color-scheme: dark){ .pv-warn.red{ background:#2E1A15; color:#E39079; } }
+  .pv-note { font-size:12px; color:var(--muted); margin:12px 2px 0; line-height:1.5; }
+  .pv-foot { display:flex; gap:10px; padding:14px 18px; border-top:1px solid var(--line); flex-wrap:wrap; align-items:center; }
+  .sublabel { font-size:11px; text-transform:uppercase; letter-spacing:.6px; color:var(--faint); font-weight:650; margin-bottom:6px; }
+
+  .stage { display:flex; justify-content:center; background:repeating-linear-gradient(45deg,var(--surface),var(--surface) 10px,var(--surface-2) 10px,var(--surface-2) 20px); border:1px solid var(--line); border-radius:8px; padding:16px; overflow:hidden; }
+  .scaler { transform-origin:top center; }
+  .sheet { position:relative; width:215.9mm; height:139.7mm; background:#fff; color:#000; font-family:var(--font-rx); box-shadow:0 4px 18px rgba(0,0,0,.18); padding:32mm 13mm 15mm 13mm; overflow:hidden; --rx-fs:11pt; }
+  .sheet .rx-head { font-size:var(--rx-fs); line-height:1.35; margin-bottom:7pt; }
+  .sheet .rx-head b { font-weight:700; }
+  .sheet .rx-head .l2 { display:block; margin-top:2pt; }
+  .sheet .rx-vitals { display:block; margin-top:2pt; font-size:calc(var(--rx-fs) - 1pt); }
+  .sheet ul.rx { list-style:none; margin:0; padding:0; }
+  .sheet ul.rx li { position:relative; font-size:var(--rx-fs); line-height:1.32; margin-bottom:4pt; }
+  .sheet .rx-est { margin-top:10pt; }
+  .sheet .rx-empty { color:#bbb; font-style:italic; font-size:var(--rx-fs); }
+  .sheet[contenteditable="true"]:focus-within { box-shadow:0 0 0 2px var(--brand), 0 4px 18px rgba(0,0,0,.18); }
+  #sheet:focus, #sheet *:focus { outline:none; }
+  #sheet .rx-head, #sheet ul.rx li, #sheet .rx-est { border-radius:3px; }
+  #sheet ul.rx li:hover { background:rgba(9,132,227,.06); }
+  .sheet.guides::after { content:""; position:absolute; top:32mm; left:13mm; right:13mm; bottom:15mm; border:1px dashed #C6553F; pointer-events:none; }
+  .sheet .memb { display:none; }
+  .sheet.guides .memb { display:block; position:absolute; top:0; left:0; right:0; height:32mm; background:rgba(62,111,168,.06); border-bottom:1px dashed #3E6BA8; }
+  .sheet.guides .memb::after { content:"membrete pre-impreso (Dr., cédula, logo, QR)"; position:absolute; top:6px; left:8px; font-family:var(--font-ui); font-size:9px; text-transform:uppercase; letter-spacing:.4px; color:#3E6BA8; }
+
+  .nimbo-wrap { display:flex; flex-direction:column; gap:10px; align-items:flex-start; }
+  .nimbo-box { margin:0; width:100%; background:var(--surface); border:1px solid var(--line-strong); border-radius:8px; padding:12px 14px; font-family:"Consolas",ui-monospace,Menlo,monospace; font-size:13px; line-height:1.6; color:var(--ink); white-space:pre-wrap; min-height:56px; }
+
+  .toast { position:fixed; bottom:20px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--ink); color:var(--bg); padding:10px 18px; border-radius:8px; font-size:13px; font-weight:550; opacity:0; pointer-events:none; transition:all .2s; z-index:60; }
+  .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+  .hint { font-size:11.5px; color:var(--faint); margin-top:4px; }
+
+  /* Autocompletado propio de Medicamento */
+  .ac-dd { position:fixed; z-index:70; background:var(--surface); border:1px solid var(--line-strong); border-radius:10px; box-shadow:var(--shadow); max-height:340px; overflow:auto; padding:5px; }
+  .ac-dd[hidden] { display:none; }
+  .ac-item { display:block; width:100%; text-align:left; background:transparent; border:none; border-radius:7px; padding:8px 11px; font-size:13px; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; cursor:pointer; }
+  .ac-item:hover, .ac-item.sel { background:var(--brand-tint); }
+  .ac-item b { font-weight:600; }
+  .ac-item .dim { color:var(--faint); font-weight:400; font-size:12px; }
+  .ac-item .rx { font-size:10px; font-weight:700; color:var(--warn); border:1px solid var(--warn); border-radius:4px; padding:0 4px; margin-left:6px; }
+
+  @media (max-width:900px){ .app{ grid-template-columns:1fr; height:auto; } .col{ height:auto; overflow:visible; } .col-cat{ border-right:none; border-bottom:1px solid var(--line); } }
+
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after { transition-duration:.01ms !important; animation-duration:.01ms !important; scroll-behavior:auto !important; }
+    .btn:active, .icon-btn:active, .med:active, .chip:active, .cond:active { transform:none !important; }
+  }
+
+  @page { size:215.9mm 139.7mm; margin:0; }
+  @media print {
+    body * { visibility:hidden !important; }
+    #sheet, #sheet * { visibility:visible !important; }
+    #sheet { position:fixed !important; left:0; top:0; transform:none !important; box-shadow:none !important; margin:0 !important; width:215.9mm !important; height:139.7mm !important; }
+    #sheet.guides::after, #sheet .memb { display:none !important; }
+    .overlay { background:none !important; position:static !important; padding:0 !important; overflow:visible !important; animation:none !important; }
+    .pv-card { transform:none !important; animation:none !important; }
+    .scaler { transform:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div id="alv-gate">
+  <form id="alv-gate-form">
+    <div class="alv-logo">A</div>
+    <h1>Acceso privado</h1>
+    <p>Herramienta interna del Dr. William Lara.</p>
+    <input type="password" id="alv-gate-pass" placeholder="Contraseña" autocomplete="current-password" autofocus>
+    <button type="submit">Entrar</button>
+    <div id="alv-gate-err"></div>
+  </form>
+</div>
+<style>
+  #alv-gate{position:fixed;inset:0;z-index:100000;background:#0A1628;display:grid;place-items:center;font-family:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;color:#E6EDF5;}
+  #alv-gate-form{width:min(340px,90vw);text-align:center;display:flex;flex-direction:column;gap:12px;padding:8px;}
+  #alv-gate .alv-logo{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#1E3799,#0984E3);display:grid;place-items:center;color:#fff;font-weight:800;font-size:26px;margin:0 auto 6px;}
+  #alv-gate h1{margin:0;font-size:20px;font-weight:700;}
+  #alv-gate p{margin:0 0 8px;font-size:13px;color:#9AA7B8;}
+  #alv-gate input{padding:12px 14px;border-radius:10px;border:1px solid #2C4062;background:#122040;color:#E6EDF5;font-size:15px;}
+  #alv-gate input:focus{outline:none;border-color:#4AA3EF;box-shadow:0 0 0 3px rgba(74,163,239,.25);}
+  #alv-gate button{padding:12px 14px;border-radius:10px;border:none;background:linear-gradient(135deg,#1E3799,#0984E3);color:#fff;font-weight:700;font-size:15px;cursor:pointer;}
+  #alv-gate button:hover{filter:brightness(1.06);}
+  #alv-gate-err{color:#F08A6E;font-size:13px;min-height:16px;}
+</style>
+<script>
+(function(){
+  var PASS="Alveos-507-2026"; // <-- CAMBIA ESTA CONTRASEÑA
+  var g=document.getElementById("alv-gate");
+  try{ if(localStorage.getItem("alveos_recetas_gate")==="ok"){ g.style.display="none"; return; } }catch(e){}
+  document.getElementById("alv-gate-form").addEventListener("submit",function(e){
+    e.preventDefault();
+    if(document.getElementById("alv-gate-pass").value===PASS){ try{localStorage.setItem("alveos_recetas_gate","ok");}catch(e){} g.style.display="none"; }
+    else { document.getElementById("alv-gate-err").textContent="Contraseña incorrecta"; }
+  });
+})();
+</script>
+
+
+<div class="topbar">
+  <div class="logo"><div class="logo-mark">A</div><div class="logo-txt">Generador de recetas <small>Alveos · impresión directa</small></div></div>
+  <div class="spacer"></div>
+  <span class="badge" id="count-badge">0 medicamentos</span>
+  <button class="theme-btn" id="themeToggle">Tema</button>
+</div>
+
+<div class="app">
+  <div class="col col-cat">
+    <div class="col-head"><h2>Mis plantillas</h2><p>Guarda una receta y cárgala con un clic.</p></div>
+    <div class="tpls" id="tpls"></div>
+    <div class="divider"></div>
+    <div class="col-head" style="padding-top:2px;"><h2>Medicamentos</h2></div>
+    <div class="searchbox"><input id="medSearch" placeholder="Buscar en todo el vademécum…"></div>
+    <div class="meds" id="meds"></div>
+  </div>
+
+  <div class="col col-work">
+    <div class="work">
+
+      <div class="card">
+        <div class="card-title"><span class="step">1</span> Paciente</div>
+        <div class="pgrid">
+          <div class="pfield pf-nombre"><label for="p-nombre">Nombre</label><input id="p-nombre" placeholder="Nombre del paciente"></div>
+          <div class="pfield"><label for="p-fn">Nacimiento</label><input id="p-fn" placeholder="dd/mm/aaaa"></div>
+          <div class="pfield"><label for="p-edad">Edad</label><input id="p-edad" placeholder="auto"></div>
+          <div class="pfield"><label for="p-fecha">Fecha receta</label><input id="p-fecha" placeholder="dd/mm/aaaa"></div>
+        </div>
+        <div class="pfield pf-dx"><label for="p-dx">Diagnóstico</label><input id="p-dx" placeholder="Ej. Tos post-infecciosa + probable COVID-19 leve"></div>
+
+        <div class="vitals-head">
+          <span class="vitals-title">Signos vitales <span class="opt">· opcional</span></span>
+          <label class="vitals-print"><input type="checkbox" id="chkVitals"> Imprimir en la receta</label>
+        </div>
+        <div class="vitals-strip">
+          <div class="vital v-ta"><span>TA</span><input id="v-ta" placeholder="120/80"></div>
+          <div class="vital"><span>FC</span><input id="v-fc" placeholder="80"></div>
+          <div class="vital"><span>FR</span><input id="v-fr" placeholder="18"></div>
+          <div class="vital"><span>Temp</span><input id="v-temp" placeholder="36.5"></div>
+          <div class="vital"><span>SpO₂</span><input id="v-spo2" placeholder="94"></div>
+          <div class="vital"><span>Peso</span><input id="v-peso" placeholder="70"></div>
+          <div class="vital"><span>Talla</span><input id="v-talla" placeholder="165"></div>
+          <div class="vital"><span>IMC</span><input id="v-imc" readonly placeholder="—"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="step">2</span> Receta de medicamentos</div>
+        <div class="ctrl-banner" id="ctrlBanner"></div>
+        <div class="rx-table-wrap">
+          <table class="rxt">
+            <thead><tr>
+              <th class="col-med">Medicamento</th><th class="col-forma">Forma</th><th class="col-pres">Presentación</th><th class="col-dosis">Dosis</th>
+              <th class="col-frec">Frecuencia</th><th class="col-via">Vía</th><th class="col-dur">Duración</th>
+              <th class="col-surtir">Surtir</th><th class="acts"></th>
+            </tr></thead>
+            <tbody id="rxBody"></tbody>
+          </table>
+        </div>
+        <div class="btn-row addblank">
+          <button class="btn btn-ghost" id="btnBlank">+ Fila en blanco</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="step">3</span> Estudios <span class="muted">(se agrupan en una sola línea)</span></div>
+        <div class="est-dd">
+          <button class="est-trigger" id="estTrigger" aria-expanded="false"><span id="estTriggerText">Seleccionar estudios</span><span class="caret">▾</span></button>
+          <div class="est-panel" id="estPanel" hidden>
+            <input class="est-search" id="estSearch" placeholder="Buscar o escribir un estudio…">
+            <div id="estResults"></div>
+          </div>
+        </div>
+        <div class="est-oneline" id="estOneline"><span class="ph">Los estudios seleccionados aparecerán aquí en una sola línea…</span></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="createbar">
+  <div class="info" id="createInfo">Agrega al menos un medicamento para crear la receta.</div>
+  <div class="spacer"></div>
+  <button class="btn btn-ghost" id="btnGuardarTpl">Guardar como plantilla</button>
+  <button class="btn btn-ghost" id="btnNueva">Nueva receta</button>
+  <button class="btn btn-brand btn-lg" id="btnCrear" disabled>Crear receta →</button>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="pv-card">
+    <div class="pv-head">
+      <h3>Previsualización de la receta</h3>
+      <span class="badge">media carta horizontal · 21.6 × 14 cm</span>
+      <div class="spacer"></div>
+      <label style="font-size:12px;color:var(--muted);display:inline-flex;gap:5px;align-items:center;"><input type="checkbox" id="chkGuides"> Ver márgenes</label>
+      <button class="icon-btn" id="btnCerrar" title="Cerrar" aria-label="Cerrar"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="pv-body">
+      <div id="pvWarns"></div>
+      <div class="stage"><div class="scaler" id="scaler">
+        <div class="sheet" id="sheet" contenteditable="true" spellcheck="false"><div class="memb" contenteditable="false"></div><div class="rx-head" id="rxHead"></div><ul class="rx" id="rxList"></ul><div class="rx-est" id="rxEst" style="display:none;"></div></div>
+      </div></div>
+      <div class="pv-note"><b>Puedes corregir el texto directamente en la hoja</b> antes de imprimir (haz clic sobre cualquier línea y edítala). Los datos del médico y la firma van pre-impresos/autógrafos en tu recetario físico. Al imprimir: papel <b>“Media carta / Statement horizontal”</b>, márgenes <b>“Ninguno”</b>, y <b>desactiva “Encabezados y pies de página”</b>.</div>
+      <div class="sublabel" style="margin:18px 2px 6px;">Versión para Nimbo · Plan y tratamiento (compacto)</div>
+      <div class="nimbo-wrap"><pre class="nimbo-box" id="nimboBox"></pre><button class="btn btn-brand" id="btnNimbo">Copiar para Nimbo</button></div>
+    </div>
+    <div class="pv-foot" id="pvFoot">
+      <button class="btn btn-brand btn-lg" id="btnImprimir">Imprimir</button>
+      <button class="btn" id="btnCopiar">Copiar texto de receta</button>
+      <div class="spacer"></div>
+      <button class="btn btn-ghost" id="btnVolver">← Volver a editar</button>
+    </div>
+  </div>
+</div>
+
+<div id="datalists" hidden></div>
+<div id="acDropdown" class="ac-dd" hidden></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const CATALOG = {
+  inhaladores:{ label:"Inhaladores", color:"#0984E3", meds:[
+    { n:"Ventolin", generico:"salbutamol", pres:"100 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 4 a 6 horas", dur:"", via:"inhalada", tag:"rescate", nota:"en caso de dificultad respiratoria" },
+    { n:"Ventolin", generico:"salbutamol", pres:"5 mg/mL", forma:"solución para nebulizar", dosis:"2.5 a 5 mg (0.5 a 1 mL)", frec:"cada 6 a 8 horas", dur:"", via:"inhalada", tag:"rescate", nota:"en caso de dificultad respiratoria" },
+    { n:"Atrovent", generico:"bromuro de ipratropio", pres:"20 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 6 a 8 horas", dur:"", via:"inhalada", tag:"SAMA" },
+    { n:"Combivent Respimat", generico:"ipratropio/salbutamol", pres:"20/100 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 6 horas", dur:"", via:"inhalada", tag:"rescate", nota:"en caso de dificultad respiratoria" },
+    { n:"Berodual", generico:"fenoterol/ipratropio", pres:"50/20 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 8 horas", dur:"", via:"inhalada", tag:"rescate" },
+    { n:"Pulmicort", generico:"budesonida", pres:"200 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide inhalado" },
+    { n:"Pulmicort", generico:"budesonida", pres:"0.5 mg/2 mL", forma:"solución para nebulizar", dosis:"1 nebulización", frec:"cada 12 horas", dur:"", via:"inhalada", tag:"corticoide inhalado" },
+    { n:"Flixotide", generico:"fluticasona", pres:"50 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide inhalado" },
+    { n:"Flixotide", generico:"fluticasona", pres:"250 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide inhalado" },
+    { n:"Alvesco", generico:"ciclesonida", pres:"160 mcg", forma:"inhalador", dosis:"1 a 2 inhalaciones", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide inhalado" },
+    { n:"Asmanex", generico:"mometasona", pres:"200 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide inhalado", nota:"por las noches" },
+    { n:"Symbicort", generico:"budesonida/formoterol", pres:"160/4.5 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Symbicort", generico:"budesonida/formoterol", pres:"320/9 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Seretide", generico:"salmeterol/fluticasona", pres:"25/125 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Seretide", generico:"salmeterol/fluticasona", pres:"25/250 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Seretide Diskus", generico:"salmeterol/fluticasona", pres:"50/250 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Seretide Diskus", generico:"salmeterol/fluticasona", pres:"50/500 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Foster", generico:"beclometasona/formoterol", pres:"100/6 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Relvar Ellipta", generico:"fluticasona/vilanterol", pres:"92/22 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Relvar Ellipta", generico:"fluticasona/vilanterol", pres:"184/22 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Spiriva Respimat", generico:"tiotropio", pres:"2.5 mcg", forma:"inhalador", dosis:"2 disparos", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LAMA" },
+    { n:"Spiriva HandiHaler", generico:"tiotropio", pres:"18 mcg", forma:"cápsulas para inhalar", dosis:"1 cápsula", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LAMA" },
+    { n:"Onbrez Breezhaler", generico:"indacaterol", pres:"150 mcg", forma:"cápsulas para inhalar", dosis:"1 cápsula", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LABA" },
+    { n:"Striverdi Respimat", generico:"olodaterol", pres:"2.5 mcg", forma:"inhalador", dosis:"2 disparos", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LABA" },
+    { n:"Seebri Breezhaler", generico:"glicopirronio", pres:"50 mcg", forma:"cápsulas para inhalar", dosis:"1 cápsula", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LAMA" },
+    { n:"Incruse Ellipta", generico:"umeclidinio", pres:"62.5 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LAMA" },
+    { n:"Bretaris Genuair", generico:"aclidinio", pres:"322 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"LAMA" },
+    { n:"Ultibro Breezhaler", generico:"indacaterol/glicopirronio", pres:"110/50 mcg", forma:"cápsulas para inhalar", dosis:"1 cápsula", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LABA + LAMA" },
+    { n:"Anoro Ellipta", generico:"umeclidinio/vilanterol", pres:"62.5/25 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LABA + LAMA" },
+    { n:"Spiolto Respimat", generico:"tiotropio/olodaterol", pres:"2.5/2.5 mcg", forma:"inhalador", dosis:"2 disparos", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LABA + LAMA" },
+    { n:"Duaklir Genuair", generico:"aclidinio/formoterol", pres:"340/12 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"LABA + LAMA" },
+    { n:"Trelegy Ellipta", generico:"fluticasona/umeclidinio/vilanterol", pres:"100/62.5/25 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"triple terapia", nota:"por las mañanas" },
+    { n:"Trelegy Ellipta", generico:"fluticasona/umeclidinio/vilanterol", pres:"200/62.5/25 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"triple terapia", nota:"por las mañanas" },
+    { n:"Trimbow", generico:"beclometasona/formoterol/glicopirronio", pres:"87/5/9 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"triple terapia" },
+  ]},
+  cesacion:{ label:"Cesación tabáquica", color:"#B7791F", meds:[
+    { n:"Champix", generico:"vareniclina", pres:"0.5 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas los días 1 al 3, luego cada 12 horas los días 4 al 7", dur:"", via:"oral", tag:"1a línea" },
+    { n:"Champix", generico:"vareniclina", pres:"1 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 12 horas", dur:"durante 12 semanas", via:"oral", tag:"1a línea" },
+    { n:"Wellbutrin", generico:"bupropión", pres:"150 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas los primeros 3 días, luego cada 12 horas", dur:"durante 7 a 12 semanas", via:"oral", tag:"1a línea" },
+    { n:"Nicorette", generico:"nicotina", pres:"2 mg", forma:"chicle", dosis:"1 chicle", frec:"cada 1 a 2 horas", dur:"", via:"oral", tag:"reemplazo", nota:"en caso de ansiedad por fumar" },
+    { n:"Nicorette", generico:"nicotina", pres:"4 mg", forma:"chicle", dosis:"1 chicle", frec:"cada 1 a 2 horas", dur:"", via:"oral", tag:"reemplazo", nota:"en caso de ansiedad por fumar" },
+    { n:"Parche de nicotina", generico:"nicotina", pres:"21 mg", forma:"parche transdérmico", dosis:"1 parche", frec:"cada 24 horas", dur:"", via:"transdérmica", tag:"reemplazo", nota:"por la mañana, retirar antes de dormir" },
+    { n:"Parche de nicotina", generico:"nicotina", pres:"14 mg", forma:"parche transdérmico", dosis:"1 parche", frec:"cada 24 horas", dur:"", via:"transdérmica", tag:"reemplazo", nota:"por la mañana, retirar antes de dormir" },
+    { n:"Parche de nicotina", generico:"nicotina", pres:"7 mg", forma:"parche transdérmico", dosis:"1 parche", frec:"cada 24 horas", dur:"", via:"transdérmica", tag:"reemplazo", nota:"por la mañana, retirar antes de dormir" },
+  ]},
+  antibioticos:{ label:"Antibióticos", color:"#8A4B9E", meds:[
+    { n:"Amoxil", generico:"amoxicilina", pres:"500 mg", forma:"cápsulas", dosis:"1 cápsula", frec:"cada 8 horas", dur:"durante 7 días", via:"oral", tag:"patente" },
+    { n:"Amoxil", generico:"amoxicilina", pres:"875 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 12 horas", dur:"durante 7 días", via:"oral", tag:"patente" },
+    { n:"Servamox", generico:"amoxicilina", pres:"500 mg", forma:"cápsulas", dosis:"1 cápsula", frec:"cada 8 horas", dur:"durante 7 días", via:"oral", tag:"patente" },
+    { n:"Amoxicilina", generico:"amoxicilina", pres:"500 mg", forma:"cápsulas", dosis:"1 cápsula", frec:"cada 8 horas", dur:"durante 7 días", via:"oral", tag:"genérico" },
+    { n:"Augmentin", generico:"amoxicilina/clavulanato", pres:"875/125 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 12 horas", dur:"durante 7 días", via:"oral", tag:"patente" },
+    { n:"Clavulin", generico:"amoxicilina/clavulanato", pres:"875/125 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 12 horas", dur:"durante 7 días", via:"oral", tag:"patente" },
+    { n:"Amoxicilina con clavulanato", generico:"amoxicilina/clavulanato", pres:"875/125 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 12 horas", dur:"durante 7 días", via:"oral", tag:"genérico" },
+    { n:"Zithromax", generico:"azitromicina", pres:"500 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"por 3 días", via:"oral", tag:"patente" },
+    { n:"Azitrocin", generico:"azitromicina", pres:"500 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"por 3 días", via:"oral", tag:"patente" },
+    { n:"Azitromicina", generico:"azitromicina", pres:"500 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"por 3 días", via:"oral", tag:"genérico" },
+    { n:"Klaricid", generico:"claritromicina", pres:"500 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 12 horas", dur:"durante 7 días", via:"oral", tag:"patente" },
+    { n:"Klaricid UD", generico:"claritromicina", pres:"500 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"durante 7 días", via:"oral", tag:"patente" },
+    { n:"Claritromicina", generico:"claritromicina", pres:"500 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 12 horas", dur:"durante 7 días", via:"oral", tag:"genérico" },
+    { n:"Tavanic", generico:"levofloxacino", pres:"500 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"durante 7 días", via:"oral", tag:"patente" },
+    { n:"Elequine", generico:"levofloxacino", pres:"750 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"por 5 días", via:"oral", tag:"patente" },
+    { n:"Levofloxacino", generico:"levofloxacino", pres:"500 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"durante 7 días", via:"oral", tag:"genérico" },
+    { n:"Avelox", generico:"moxifloxacino", pres:"400 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"por 5 a 7 días", via:"oral", tag:"patente" },
+    { n:"Moxifloxacino", generico:"moxifloxacino", pres:"400 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"por 5 a 7 días", via:"oral", tag:"genérico" },
+    { n:"Vibramicina", generico:"doxiciclina", pres:"100 mg", forma:"cápsulas", dosis:"1 cápsula", frec:"cada 12 horas", dur:"durante 7 días", via:"oral", tag:"patente" },
+    { n:"Doxiciclina", generico:"doxiciclina", pres:"100 mg", forma:"cápsulas", dosis:"1 cápsula", frec:"cada 12 horas", dur:"durante 7 días", via:"oral", tag:"genérico" },
+    { n:"Zinnat", generico:"cefuroxima", pres:"500 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 12 horas", dur:"durante 7 días", via:"oral", tag:"patente" },
+    { n:"Cefuroxima", generico:"cefuroxima", pres:"500 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 12 horas", dur:"durante 7 días", via:"oral", tag:"genérico" },
+    { n:"Bactrim F", generico:"trimetoprima/sulfametoxazol", pres:"160/800 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 12 horas", dur:"durante 7 días", via:"oral", tag:"patente" },
+    { n:"Septrin", generico:"trimetoprima/sulfametoxazol", pres:"160/800 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 12 horas", dur:"durante 7 días", via:"oral", tag:"patente" },
+    { n:"Trimetoprima con sulfametoxazol", generico:"trimetoprima/sulfametoxazol", pres:"160/800 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 12 horas", dur:"durante 7 días", via:"oral", tag:"genérico" },
+  ]},
+  nasales:{ label:"Nasales / rinitis", color:"#3E8AA8", meds:[
+    { n:"Lavados nasales con Sinus Rinse", generico:"solución salina", pres:"", forma:"solución para irrigación nasal", dosis:"1 frasco por fosa nasal", frec:"cada 12 horas", dur:"", via:"intranasal", tag:"aseo", nota:"sin suspender" },
+    { n:"Afrin", generico:"oximetazolina", pres:"0.05%", forma:"solución intranasal", dosis:"2 aplicaciones por fosa nasal", frec:"cada 12 horas", dur:"máximo 3 a 5 días", via:"intranasal", tag:"descongestivo" },
+    { n:"Oximetazolina", generico:"oximetazolina", pres:"0.05%", forma:"solución intranasal", dosis:"2 aplicaciones por fosa nasal", frec:"cada 12 horas", dur:"máximo 3 a 5 días", via:"intranasal", tag:"genérico" },
+    { n:"Nasonex", generico:"mometasona", pres:"50 mcg", forma:"solución intranasal", dosis:"2 aplicaciones por fosa nasal", frec:"cada 24 horas", dur:"durante 30 días", via:"intranasal", tag:"corticoide nasal" },
+    { n:"Avamys", generico:"fluticasona", pres:"27.5 mcg", forma:"solución intranasal", dosis:"2 aplicaciones por fosa nasal", frec:"cada 24 horas", dur:"durante 30 días", via:"intranasal", tag:"corticoide nasal" },
+    { n:"Flixonase", generico:"fluticasona", pres:"50 mcg", forma:"solución intranasal", dosis:"2 aplicaciones por fosa nasal", frec:"cada 24 horas", dur:"durante 30 días", via:"intranasal", tag:"corticoide nasal" },
+    { n:"Rhinocort", generico:"budesonida", pres:"64 mcg", forma:"solución intranasal", dosis:"2 aplicaciones por fosa nasal", frec:"cada 24 horas", dur:"durante 30 días", via:"intranasal", tag:"corticoide nasal" },
+    { n:"Nasacort", generico:"triamcinolona", pres:"55 mcg", forma:"solución intranasal", dosis:"2 aplicaciones por fosa nasal", frec:"cada 24 horas", dur:"durante 30 días", via:"intranasal", tag:"corticoide nasal" },
+    { n:"Astelin", generico:"azelastina", pres:"137 mcg", forma:"solución intranasal", dosis:"1 aplicación por fosa nasal", frec:"cada 12 horas", dur:"durante 30 días", via:"intranasal", tag:"antihistamínico nasal" },
+    { n:"Dymista", generico:"azelastina/fluticasona", pres:"137/50 mcg", forma:"solución intranasal", dosis:"1 aplicación por fosa nasal", frec:"cada 12 horas", dur:"durante 30 días", via:"intranasal", tag:"combinado nasal" },
+  ]},
+  antihistaminicos:{ label:"Antihistamínicos", color:"#5A6BB5", meds:[
+    { n:"Clarityne", generico:"loratadina", pres:"10 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"durante 30 días", via:"oral", tag:"patente" },
+    { n:"Loratadina", generico:"loratadina", pres:"10 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"durante 30 días", via:"oral", tag:"genérico" },
+    { n:"Aerius", generico:"desloratadina", pres:"5 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"durante 30 días", via:"oral", tag:"patente" },
+    { n:"Desloratadina", generico:"desloratadina", pres:"5 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"durante 30 días", via:"oral", tag:"genérico" },
+    { n:"Reactine", generico:"cetirizina", pres:"10 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"durante 30 días", via:"oral", tag:"patente" },
+    { n:"Cetirizina", generico:"cetirizina", pres:"10 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"durante 30 días", via:"oral", tag:"genérico" },
+    { n:"Xuzal", generico:"levocetirizina", pres:"5 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"durante 30 días", via:"oral", tag:"patente" },
+    { n:"Levocetirizina", generico:"levocetirizina", pres:"5 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"durante 30 días", via:"oral", tag:"genérico" },
+    { n:"Allegra", generico:"fexofenadina", pres:"180 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"durante 30 días", via:"oral", tag:"patente" },
+    { n:"Ebastel", generico:"ebastina", pres:"20 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"durante 30 días", via:"oral", tag:"patente" },
+    { n:"Bilaxten", generico:"bilastina", pres:"20 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"durante 30 días", via:"oral", tag:"patente" },
+    { n:"Rupafin", generico:"rupatadina", pres:"10 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"durante 30 días", via:"oral", tag:"patente" },
+  ]},
+  tos:{ label:"Tos / antitusivos", color:"#6C5CE7", meds:[
+    { n:"Romilar", generico:"dextrometorfano", pres:"15 mg/5 mL", forma:"jarabe", dosis:"10 a 15 mL", frec:"cada 6 a 8 horas", dur:"", via:"oral", tag:"antitusivo" },
+    { n:"Graneodín B", generico:"benzocaína", pres:"10 mg", forma:"pastillas", dosis:"1 pastilla lentamente en la boca", frec:"cada 4 a 6 horas", dur:"por 5 días", via:"oral", tag:"faríngeo" },
+    { n:"Kodel", generico:"codeína fosfato", pres:"15 mg / 5 mL", forma:"jarabe", dosis:"5 mL", frec:"cada 8 horas", dur:"por 5 días", via:"oral", tag:"antitusivo", ctrl:{ fraccion:"III (confirmar)", vigencia:"180 días", unidad:"frascos", max:2 } },
+  ]},
+  mucoliticos:{ label:"Mucolíticos", color:"#2E7D6B", meds:[
+    { n:"Fluimucil", generico:"acetilcisteína", pres:"600 mg", forma:"sobres", dosis:"1 sobre", frec:"cada 24 horas", dur:"durante 30 días", via:"oral", tag:"patente" },
+    { n:"Acetilcisteína", generico:"acetilcisteína", pres:"600 mg", forma:"sobres", dosis:"1 sobre", frec:"cada 24 horas", dur:"durante 30 días", via:"oral", tag:"genérico" },
+    { n:"Mucosolvan", generico:"ambroxol", pres:"30 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 8 horas", dur:"", via:"oral", tag:"patente" },
+    { n:"Ambroxol", generico:"ambroxol", pres:"30 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 8 horas", dur:"", via:"oral", tag:"genérico" },
+    { n:"Bisolvon", generico:"bromhexina", pres:"8 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 8 horas", dur:"", via:"oral", tag:"patente" },
+    { n:"Carbocisteína", generico:"carbocisteína", pres:"375 mg", forma:"cápsulas", dosis:"1 cápsula", frec:"cada 8 horas", dur:"", via:"oral", tag:"genérico" },
+    { n:"Erdosteína", generico:"erdosteína", pres:"300 mg", forma:"cápsulas", dosis:"1 cápsula", frec:"cada 12 horas", dur:"", via:"oral", tag:"genérico" },
+  ]},
+  reflujo:{ label:"Reflujo / gástrico", color:"#E17055", meds:[
+    { n:"Losec", generico:"omeprazol", pres:"20 mg", forma:"cápsulas", dosis:"1 cápsula", frec:"cada 24 horas", dur:"durante 30 días", via:"oral", tag:"patente", nota:"30 minutos antes del desayuno" },
+    { n:"Omeprazol", generico:"omeprazol", pres:"20 mg", forma:"cápsulas", dosis:"1 cápsula", frec:"cada 24 horas", dur:"durante 30 días", via:"oral", tag:"genérico", nota:"30 minutos antes del desayuno" },
+    { n:"Nexium", generico:"esomeprazol", pres:"40 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"durante 30 días", via:"oral", tag:"patente", nota:"antes del desayuno" },
+    { n:"Esomeprazol", generico:"esomeprazol", pres:"40 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"durante 30 días", via:"oral", tag:"genérico", nota:"antes del desayuno" },
+    { n:"Pantozol", generico:"pantoprazol", pres:"40 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"durante 30 días", via:"oral", tag:"patente", nota:"antes del desayuno" },
+    { n:"Pantoprazol", generico:"pantoprazol", pres:"40 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"durante 30 días", via:"oral", tag:"genérico", nota:"antes del desayuno" },
+    { n:"Dexilant", generico:"dexlansoprazol", pres:"60 mg", forma:"cápsulas", dosis:"1 cápsula", frec:"cada 24 horas", dur:"por 1 mes", via:"oral", tag:"patente", nota:"30 minutos antes del desayuno" },
+    { n:"Ganaton", generico:"itoprida", pres:"50 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 8 horas", dur:"", via:"oral", tag:"procinético", nota:"antes de los alimentos" },
+    { n:"Plasil", generico:"metoclopramida", pres:"10 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 8 horas", dur:"", via:"oral", tag:"procinético", nota:"antes de los alimentos" },
+    { n:"Gaviscon", generico:"alginato de sodio", pres:"suspensión", forma:"suspensión oral", dosis:"10 a 20 mL", frec:"", dur:"", via:"oral", tag:"alginato", nota:"después de cada comida y al acostarse" },
+    { n:"Famotidina", generico:"famotidina", pres:"40 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"durante 30 días", via:"oral", tag:"antagonista H2" },
+  ]},
+  dolor:{ label:"Dolor / AINEs / neuromod.", color:"#C6553F", meds:[
+    { n:"Advil", generico:"ibuprofeno", pres:"400 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 8 horas", dur:"", via:"oral", tag:"AINE", nota:"con alimentos" },
+    { n:"Ibuprofeno", generico:"ibuprofeno", pres:"600 mg", forma:"cápsulas", dosis:"1 cápsula", frec:"cada 24 horas", dur:"por 3 días", via:"oral", tag:"AINE", nota:"con alimentos, y suspender" },
+    { n:"Flanax", generico:"naproxeno", pres:"550 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 12 horas", dur:"", via:"oral", tag:"AINE", nota:"con alimentos" },
+    { n:"Naproxeno", generico:"naproxeno", pres:"500 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 12 horas", dur:"", via:"oral", tag:"genérico", nota:"con alimentos" },
+    { n:"Dolac", generico:"ketorolaco", pres:"10 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 6 horas", dur:"máximo 5 días", via:"oral", tag:"AINE" },
+    { n:"Ketorolaco", generico:"ketorolaco", pres:"10 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 6 horas", dur:"máximo 5 días", via:"oral", tag:"genérico" },
+    { n:"Voltaren", generico:"diclofenaco", pres:"50 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 8 horas", dur:"", via:"oral", tag:"AINE", nota:"con alimentos" },
+    { n:"Diclofenaco", generico:"diclofenaco", pres:"100 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 12 horas", dur:"", via:"oral", tag:"genérico", nota:"con alimentos" },
+    { n:"Celebrex", generico:"celecoxib", pres:"200 mg", forma:"cápsulas", dosis:"1 cápsula", frec:"cada 12 horas", dur:"", via:"oral", tag:"COX-2" },
+    { n:"Celecoxib", generico:"celecoxib", pres:"200 mg", forma:"cápsulas", dosis:"1 cápsula", frec:"cada 12 horas", dur:"", via:"oral", tag:"genérico" },
+    { n:"Arcoxia", generico:"etoricoxib", pres:"90 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"", via:"oral", tag:"COX-2" },
+    { n:"Mobic", generico:"meloxicam", pres:"15 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"", via:"oral", tag:"AINE", nota:"con alimentos" },
+    { n:"Lyrica", generico:"pregabalina", pres:"75 mg", forma:"cápsulas", dosis:"1 cápsula", frec:"cada 12 horas", dur:"", via:"oral", tag:"neuromodulador" },
+    { n:"Neurontin", generico:"gabapentina", pres:"300 mg", forma:"cápsulas", dosis:"1 cápsula", frec:"cada 8 horas", dur:"", via:"oral", tag:"neuromodulador" },
+    { n:"Paracetamol", generico:"paracetamol", pres:"500 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 8 horas", dur:"", via:"oral", tag:"analgésico", nota:"en caso de fiebre o dolor" },
+  ]},
+  diureticos:{ label:"Diuréticos", color:"#00B894", meds:[
+    { n:"Lasix", generico:"furosemida", pres:"40 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"", via:"oral", tag:"patente", nota:"por la mañana" },
+    { n:"Furosemida", generico:"furosemida", pres:"40 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"", via:"oral", tag:"genérico", nota:"por la mañana" },
+    { n:"Aldactone", generico:"espironolactona", pres:"25 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"", via:"oral", tag:"patente" },
+    { n:"Espironolactona", generico:"espironolactona", pres:"25 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"", via:"oral", tag:"genérico" },
+    { n:"Hidroclorotiazida", generico:"hidroclorotiazida", pres:"25 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"", via:"oral", tag:"genérico", nota:"por la mañana" },
+    { n:"Higrotona", generico:"clortalidona", pres:"50 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"", via:"oral", tag:"patente", nota:"por la mañana" },
+    { n:"Natrilix", generico:"indapamida", pres:"1.5 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"", via:"oral", tag:"patente", nota:"por la mañana" },
+  ]},
+  corticoides:{ label:"Corticoides sistémicos", color:"#F59E0B", meds:[
+    { n:"Prednisona", generico:"prednisona", pres:"50 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"por 5 días", via:"oral", tag:"exacerbación", nota:"con el desayuno, y suspender" },
+    { n:"Prednisona", generico:"prednisona", pres:"5 mg", forma:"tabletas", dosis:"según esquema de reducción", frec:"cada 24 horas", dur:"", via:"oral", tag:"ajuste", nota:"con el desayuno" },
+    { n:"Deflazacort", generico:"deflazacort", pres:"6 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas", dur:"", via:"oral", tag:"corticoide" },
+  ]},
+  dispositivos:{ label:"Dispositivos", color:"#64748B", meds:[
+    { n:"Aerobika", generico:"dispositivo de presión espiratoria positiva oscilante", pres:"", forma:"dispositivo", dosis:"10 a 15 respiraciones", frec:"cada 12 horas", dur:"", via:"", tag:"higiene bronquial" },
+    { n:"Acapella", generico:"dispositivo de presión espiratoria positiva oscilante", pres:"", forma:"dispositivo", dosis:"10 a 15 respiraciones", frec:"cada 12 horas", dur:"", via:"", tag:"higiene bronquial" },
+    { n:"Aerochamber", generico:"cámara espaciadora", pres:"", forma:"dispositivo", dosis:"1 disparo del inhalador, 5 a 10 respiraciones", frec:"con cada uso del inhalador", dur:"", via:"", tag:"espaciador" },
+    { n:"Inspirómetro incentivo", generico:"inspirómetro de incentivo", pres:"", forma:"dispositivo", dosis:"10 respiraciones profundas sostenidas", frec:"cada 1 a 2 horas", dur:"", via:"", tag:"expansión pulmonar" },
+  ]},
+  apnea:{ label:"Apnea del sueño", color:"#274A78", meds:[
+    { n:"Modiodal", generico:"modafinilo", pres:"100 mg", forma:"tabletas", dosis:"1 a 2 tabletas", frec:"cada 24 horas", dur:"", via:"oral", tag:"somnolencia diurna", nota:"por la mañana", ctrl:{ fraccion:"III (confirmar)", vigencia:"180 días", unidad:"cajas", max:2 } },
+  ]},
+};
+
+// Estudios agrupados (se refinan con el vademécum de estudios)
+const EST_GROUPS = {
+  "Imagen": [ ["radiografía de tórax PA y lateral","Rx tórax"], ["tomografía computarizada de tórax simple","TC tórax"], ["tomografía computarizada de tórax de alta resolución","TCAR"], ["tomografía computarizada de tórax con contraste","TC tórax c/cte"], ["angiotomografía pulmonar (protocolo para tromboembolia)","AngioTC pulmonar"], ["tomografía computarizada de tórax de baja dosis (tamizaje)","TC baja dosis"], ["ultrasonido pleural / de tórax","US pleural"], ["radiografía de senos paranasales","Rx SPN"] ],
+  "Función pulmonar": [ ["espirometría simple","Espiro"], ["espirometría pre y post broncodilatador","Espiro c/BD"], ["capacidad de difusión de monóxido de carbono","DLCO"], ["pletismografía corporal (volúmenes pulmonares)","Pletismografía"], ["fracción exhalada de óxido nítrico","FeNO"], ["prueba de caminata de 6 minutos","C6M"], ["oscilometría de impulso","Oscilometría"], ["prueba de broncoprovocación (reto con metacolina)","Broncoprovocación"], ["medición de presiones inspiratoria y espiratoria máximas","PIM/PEM"], ["oximetría de pulso en reposo y esfuerzo","Oximetría"] ],
+  "Laboratorio": [ ["biometría hemática completa","BH"], ["proteína C reactiva","PCR"], ["procalcitonina","PCT"], ["gasometría arterial","GA"], ["dímero D","Dímero D"], ["péptido natriurético NT-proBNP","NT-proBNP"], ["inmunoglobulina E total","IgE total"], ["alfa-1 antitripsina sérica","A1AT"], ["baciloscopía (BAAR) en expectoración seriada","BAAR"], ["cultivo de expectoración con antibiograma","Cultivo esputo"], ["panel viral respiratorio (PCR múltiple)","Panel viral"], ["química sanguínea y perfil metabólico","QS"] ],
+  "Sueño": [ ["poligrafía respiratoria (estudio de sueño domiciliario)","Poligrafía"], ["polisomnografía nocturna completa","PSG"], ["polisomnografía con titulación de CPAP","PSG + CPAP"], ["oximetría nocturna","Oximetría nocturna"], ["escala de somnolencia de Epworth","Epworth"] ],
+};
+const EST_SHORT = {}; Object.values(EST_GROUPS).forEach(a=>a.forEach(([l,s])=>EST_SHORT[l]=s));
+
+const LS_KEY="alveos_recetas_saved_meds_v2";
+let savedMeds=[]; try{ savedMeds=JSON.parse(localStorage.getItem(LS_KEY)||"[]"); }catch(e){ savedMeds=[]; }
+function persistSaved(){ try{ localStorage.setItem(LS_KEY, JSON.stringify(savedMeds)); }catch(e){} }
+
+const LS_TPL="alveos_recetas_templates_v1";
+let templates=[]; try{ templates=JSON.parse(localStorage.getItem(LS_TPL)||"[]"); }catch(e){ templates=[]; }
+function persistTpls(){ try{ localStorage.setItem(LS_TPL, JSON.stringify(templates)); }catch(e){} }
+
+const LS_EST="alveos_recetas_estudios_custom_v1";
+let savedEstudios=[]; try{ savedEstudios=JSON.parse(localStorage.getItem(LS_EST)||"[]"); }catch(e){ savedEstudios=[]; }
+function persistEst(){ try{ localStorage.setItem(LS_EST, JSON.stringify(savedEstudios)); }catch(e){} }
+
+// Datalists (desplegable + texto libre) por columna
+const DL_EXTRA = {
+  n:[], pres:[],
+  dosis:["1 tableta","2 tabletas","media tableta","1 cápsula","2 cápsulas","1 inhalación","2 inhalaciones","1 disparo por fosa","2 disparos por fosa","5 mL","10 mL","15 mL","1 sobre","1 parche","1 ampolleta","20 gotas"],
+  frec:["cada 6 hrs","cada 8 hrs","cada 12 hrs","cada 24 hrs","cada 48 hrs","cada 4 – 6 hrs","cada 6 – 8 hrs","una vez al día","dos veces al día","tres veces al día"],
+  dur:["por 3 días","por 5 días","por 7 días","por 10 días","por 14 días","por 1 mes","durante 30 días","durante 3 meses","sin suspender","de forma permanente"],
+  via:["oral","inhalada","intranasal","transdérmica","sublingual","intramuscular","intravenosa","subcutánea","oftálmica","ótica","tópica","rectal"],
+  forma:["tabletas","cápsulas","inhalador","jarabe","suspensión","solución intranasal","solución para nebulizar","sobres","parche transdérmico","pastillas","gotas","ampolletas","óvulos","crema"],
+  acc:["tomar","administrar","aplicar","inhalar","disolver","nebulizar","realizar","colocar"]
+};
+function dlDistinct(key){ const s=new Set(); Object.values(CATALOG).forEach(c=>c.meds.forEach(m=>{ if(m[key]) s.add(m[key]); })); savedMeds.forEach(m=>{ if(m[key]) s.add(m[key]); }); return [...s]; }
+function buildDatalists(){
+  const cont=$("datalists"); if(!cont) return; cont.innerHTML="";
+  ["n","pres","dosis","frec","dur","via","forma","acc"].forEach(k=>{
+    const opts=[...new Set(dlDistinct(k).concat(DL_EXTRA[k]||[]))].filter(Boolean).sort((a,b)=>a.localeCompare(b,'es'));
+    const dl=document.createElement("datalist"); dl.id="dl-"+k;
+    dl.innerHTML=opts.map(o=>`<option value="${esc(o)}"></option>`).join("");
+    cont.appendChild(dl);
+  });
+}
+
+let currentCond="asma", rxRows=[], estudiosSel=[];
+const $ = id => document.getElementById(id);
+const esc = s => String(s==null?"":s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const SVG = {
+  comment:'<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11.4a7.6 7.6 0 0 1-10.9 6.9L4 20l1.4-4.4A7.6 7.6 0 1 1 20.5 11.4z"/></svg>',
+  star:'<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3.6l2.6 5.2 5.8.9-4.2 4 1 5.7L12 16.9l-5.2 2.5 1-5.7-4.2-4 5.8-.9z"/></svg>',
+  starFill:'<svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 3.6l2.6 5.2 5.8.9-4.2 4 1 5.7L12 16.9l-5.2 2.5 1-5.7-4.2-4 5.8-.9z"/></svg>',
+  x:'<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>'
+};
+
+(function(){ const d=new Date(); $("p-fecha").value=`${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`; })();
+
+// edad
+function parseDMY(s){ const m=String(s||"").trim().match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/); if(!m) return null; const d=new Date(+m[3],+m[2]-1,+m[1]); return (d && d.getMonth()===+m[2]-1)?d:null; }
+function calcEdad(){ const fn=parseDMY($("p-fn").value); if(!fn) return; const ref=parseDMY($("p-fecha").value)||new Date(); let a=ref.getFullYear()-fn.getFullYear(); const mm=ref.getMonth()-fn.getMonth(); if(mm<0||(mm===0&&ref.getDate()<fn.getDate())) a--; if(a>=0&&a<130) $("p-edad").value=a+" años"; }
+$("p-fn").addEventListener("input",calcEdad); $("p-fecha").addEventListener("input",calcEdad);
+function calcIMC(){ const p=parseFloat($("v-peso").value), t=parseFloat($("v-talla").value); if(p>0&&t>0){ const m=t/100; $("v-imc").value=(p/(m*m)).toFixed(1); } else $("v-imc").value=""; }
+["v-peso","v-talla"].forEach(id=>$(id).addEventListener("input",calcIMC));
+
+// ---- catálogo ----
+function condMeds(){ return savedMeds.filter(m=>m.cond===currentCond).concat(CATALOG[currentCond].meds); }
+function allMeds(){ let a=[]; Object.entries(CATALOG).forEach(([k,c])=>c.meds.forEach(m=>a.push(Object.assign({cond:k},m)))); savedMeds.forEach(m=>a.push(m)); return a; }
+function medLabel(med){
+  const gen=(med.generico||"").trim(), pres=(med.pres||"").trim(), forma=(med.forma||"").trim();
+  let paren = gen&&pres ? `${gen} ${pres}` : (pres||gen||"");
+  if(paren) paren = paren.charAt(0).toUpperCase()+paren.slice(1);
+  const full = `${med.n}${paren?` (${paren})`:''}${forma?` ${forma}`:''}`;
+  return { paren, forma, full };
+}
+function medItem(med){
+  const el=document.createElement("button"); el.className="med-line";
+  const L=medLabel(med); el.title=L.full;
+  el.innerHTML=`<span class="ml-full">${med._saved?SVG.starFill:''}<b>${esc(med.n)}</b>${L.paren?` <span class="ml-dim">(${esc(L.paren)})</span>`:''}${L.forma?` <span class="ml-dim">${esc(L.forma)}</span>`:''}</span>${med.ctrl?'<span class="lock">RX</span>':''}`;
+  el.onclick=()=>addRow(med);
+  return el;
+}
+function catBlock(key,label,color,meds){
+  const wrap=document.createElement("div"); wrap.className="cat";
+  const head=document.createElement("button"); head.className="cat-head";
+  head.innerHTML=`${color?`<span class="gd" style="background:${color}"></span>`:''}<span class="cat-lbl">${esc(label)}</span><span class="cat-count">${meds.length}</span><span class="cat-caret">▾</span>`;
+  const body=document.createElement("div"); body.className="cat-body"; body.hidden=true;
+  meds.forEach(md=>body.appendChild(medItem(md)));
+  head.onclick=()=>{ const willOpen=body.hidden; body.hidden=!willOpen; head.classList.toggle("open", willOpen); };
+  wrap.appendChild(head); wrap.appendChild(body); return wrap;
+}
+function renderMeds(){
+  const q=($("medSearch").value||"").trim().toLowerCase();
+  const m=$("meds"); m.innerHTML="";
+  if(q){
+    const list=allMeds().filter(md=>(md.n+" "+(md.generico||"")+" "+(md.pres||"")+" "+(md.tag||"")).toLowerCase().includes(q));
+    if(!list.length){ m.innerHTML='<div class="meds-empty">Sin resultados.</div>'; return; }
+    list.forEach(md=>m.appendChild(medItem(md)));
+    return;
+  }
+  if(savedMeds.length) m.appendChild(catBlock("_saved","★ Mis guardados","",savedMeds));
+  Object.entries(CATALOG).forEach(([k,c])=> m.appendChild(catBlock(k,c.label,c.color,c.meds.map(md=>Object.assign({cond:k},md)))));
+}
+$("medSearch").addEventListener("input",renderMeds);
+
+// ---- Mis plantillas (recetas completas con nombre) ----
+function renderTpls(){
+  const box=$("tpls"); box.innerHTML="";
+  if(!templates.length){ box.innerHTML='<div class="tpl-empty">Aún no tienes plantillas. Arma una receta y pulsa “Guardar como plantilla”.</div>'; return; }
+  templates.forEach((t,i)=>{
+    const el=document.createElement("div"); el.className="tpl";
+    el.innerHTML=`<button class="tpl-apply" title="Cargar esta plantilla"><span class="tpl-name">${esc(t.name)}</span><span class="tpl-meta">${t.rows.length} med${t.rows.length!==1?'s':''}${t.est&&t.est.length?' · '+t.est.length+' est':''}</span></button><button class="icon-btn del tpl-del" title="Borrar plantilla" aria-label="Borrar">${SVG.x}</button>`;
+    el.querySelector(".tpl-apply").onclick=()=>applyTpl(i);
+    el.querySelector(".tpl-del").onclick=()=>{ if(confirm(`¿Borrar la plantilla “${t.name}”?`)){ templates.splice(i,1); persistTpls(); renderTpls(); } };
+    box.appendChild(el);
+  });
+}
+function applyTpl(i){ const t=templates[i]; rxRows=(t.rows||[]).map(r=>Object.assign({},r,{_open:false})); estudiosSel=(t.est||[]).slice(); renderTable(); renderEst(); updateEstLine(); updateCreate(); toast(`Plantilla “${t.name}” cargada`); }
+function saveTpl(){
+  if(!rxRows.length){ toast("Agrega medicamentos primero"); return; }
+  const name=(prompt("Nombre de la plantilla (ej. EPOC exacerbado):")||"").trim();
+  if(!name) return;
+  const rows=rxRows.map(r=>{ const c=Object.assign({},r); delete c._open; return c; });
+  const dup=templates.findIndex(t=>t.name.toLowerCase()===name.toLowerCase());
+  const tpl={name, rows, est:estudiosSel.slice()};
+  if(dup>=0){ if(!confirm(`Ya existe “${name}”. ¿Reemplazarla?`)) return; templates[dup]=tpl; } else templates.push(tpl);
+  persistTpls(); renderTpls(); toast(`Plantilla “${name}” guardada`);
+}
+$("btnGuardarTpl").onclick=saveTpl;
+
+// ---- tabla de receta ----
+const RINSE_TXT="enjuagar la boca después de usarlo";
+function needsRinse(m){ return (/inhalad/i.test(m.forma||"") || /inhalada/i.test(m.via||"")) && /budesonida|fluticasona|beclometasona|ciclesonida|flunisolida|mometasona/i.test(m.generico||""); }
+function presOptsFor(name){ const n=(name||"").toLowerCase(); return [...new Set(allMeds().filter(m=>(m.n||"").toLowerCase()===n).map(m=>m.pres).filter(Boolean))]; }
+function addRow(med){
+  const row={ n:med.n||"", generico:med.generico||"", pres:med.pres||"", forma:med.forma||"", acc:med.acc||"tomar", dosis:med.dosis||"", frec:med.frec||"", dur:med.dur||"", via:med.via||"", nota:med.nota||"", ctrl:med.ctrl||null, surtir:"", _open:false, cond:(med.cond||currentCond) };
+  row._presOpts=presOptsFor(row.n);
+  if(needsRinse(row) && !row.nota.includes(RINSE_TXT)) row.nota = row.nota ? (row.nota+"; "+RINSE_TXT) : RINSE_TXT;
+  rxRows.push(row);
+  renderTable(); updateCreate(); toast("Medicamento agregado");
+}
+function autofillFromName(i){
+  const r=rxRows[i]; if(!r) return;
+  const name=(r.n||"").trim();
+  const matches=name?allMeds().filter(m=>(m.n||"").toLowerCase()===name.toLowerCase()):[];
+  if(matches.length){
+    // solo rellena si el genérico actual NO corresponde al nombre (nombre cambiado a otro fármaco);
+    // si ya coincide, respeta la presentación/campos elegidos y no los pisa
+    const genOk = r.generico && matches.some(m=>(m.generico||"").toLowerCase()===r.generico.toLowerCase());
+    if(!genOk) fillRowFromMed(i, matches[0]);
+  } else if(r.generico){
+    // nombre sin coincidencia en el catálogo: quita el genérico/forma "fantasma" de una selección previa
+    r.generico=""; r._presOpts=[]; renderTable();
+  }
+}
+$("btnBlank").onclick=()=>{ rxRows.push({n:"",generico:"",pres:"",forma:"",acc:"tomar",dosis:"",frec:"",dur:"",via:"",nota:"",ctrl:null,surtir:"",_open:true,cond:currentCond}); renderTable(); updateCreate(); };
+
+function renderTable(){
+  const tb=$("rxBody"); tb.innerHTML="";
+  const tbl=document.querySelector(".rxt"); if(tbl) tbl.classList.toggle("no-surtir", !rxRows.some(r=>r.ctrl));
+  if(rxRows.length===0){ tb.innerHTML='<tr><td colspan="9" class="rxt-empty">Toca un medicamento del panel, o escribe uno en la columna Medicamento.</td></tr>'; refreshCtrlBanner(); return; }
+  rxRows.forEach((r,i)=>{
+    const tr=document.createElement("tr"); tr.className="rrow";
+    const inp=(k)=>`<input data-i="${i}" data-k="${k}" list="dl-${k}" value="${esc(r[k])}">`;
+    const surtirCell = r.ctrl ? `<input data-i="${i}" data-k="surtir" value="${esc(r.surtir)}" placeholder="máx ${r.ctrl.max||''} ${esc(r.ctrl.unidad||'')}">` : '<div class="surtir-na">—</div>';
+    const presList = (r._presOpts && r._presOpts.length) ? `dlp-${i}` : 'dl-pres';
+    const presDL = (r._presOpts && r._presOpts.length) ? `<datalist id="dlp-${i}">${r._presOpts.map(o=>`<option value="${esc(o)}"></option>`).join('')}</datalist>` : '';
+    tr.innerHTML=
+      `<td class="col-med"><div class="med-row">${r.ctrl?'<span class="lock">RX</span>':''}<input data-i="${i}" data-k="n" class="ac-name" autocomplete="off" value="${esc(nameDisplay(r))}" placeholder="escribe o elige…"></div></td>`+
+      `<td class="col-forma">${inp('forma')}</td>`+
+      `<td class="col-pres"><input data-i="${i}" data-k="pres" list="${presList}" value="${esc(r.pres)}" placeholder="${r._presOpts&&r._presOpts.length?'elige…':''}">${presDL}</td>`+
+      `<td class="col-dosis">${inp('dosis')}</td>`+
+      `<td class="col-frec">${inp('frec')}</td>`+
+      `<td class="col-via">${inp('via')}</td>`+
+      `<td class="col-dur">${inp('dur')}</td>`+
+      `<td class="col-surtir">${surtirCell}</td>`+
+      `<td class="acts">`+
+        `<button class="icon-btn ${r.nota?'on':''}" data-act="cmt" data-i="${i}" title="Comentario" aria-label="Comentario">${SVG.comment}</button>`+
+        `<button class="icon-btn del" data-act="del" data-i="${i}" title="Quitar" aria-label="Quitar">${SVG.x}</button>`+
+      `</td>`;
+    tb.appendChild(tr);
+    const det=document.createElement("tr"); det.className="rdet"; det.style.display=r._open?'':'none';
+    det.innerHTML=`<td colspan="9"><div class="detbox">
+      <div class="field" style="margin:0;"><label>Comentario para este medicamento</label><textarea data-i="${i}" data-k="nota" placeholder="Ej. por las noches · con alimentos · en ayunas">${esc(r.nota)}</textarea></div>
+    </div></td>`;
+    tb.appendChild(det);
+  });
+  refreshCtrlBanner();
+}
+$("rxBody").addEventListener("input",e=>{ const t=e.target; if(t.dataset && t.dataset.k){ const i=+t.dataset.i, k=t.dataset.k; if(rxRows[i]){ if(k==='n'){ rxRows[i].n=t.value.split(' (')[0]; openAC(t); } else { rxRows[i][k]=t.value; if(k==='nota'){ const btn=document.querySelector(`[data-act="cmt"][data-i="${i}"]`); if(btn) btn.classList.toggle('on', !!t.value.trim()); } } } } });
+$("rxBody").addEventListener("focusin",e=>{ if(e.target.classList && e.target.classList.contains("ac-name")) openAC(e.target); });
+
+// Autocompletado propio (marca + genérico)
+let acList=[];
+function fillRowFromMed(i, med){
+  const r=rxRows[i]; if(!r||!med) return;
+  r.n=med.n||""; r.generico=med.generico||""; r.pres=med.pres||""; r.forma=med.forma||""; r.acc=med.acc||"";
+  r.dosis=med.dosis||""; r.frec=med.frec||""; r.dur=med.dur||""; r.via=med.via||""; r.nota=med.nota||""; r.ctrl=med.ctrl||null;
+  r._presOpts=presOptsFor(med.n);
+  if(needsRinse(r) && !(r.nota||"").includes(RINSE_TXT)) r.nota = r.nota ? (r.nota+"; "+RINSE_TXT) : RINSE_TXT;
+  renderTable();
+}
+function nameDisplay(r){ return (r.generico && r.n && !r.n.toLowerCase().includes(r.generico.toLowerCase())) ? `${r.n} (${cap(r.generico)})` : (r.n||""); }
+function openAC(input){
+  const i=+input.dataset.i; const q=(input.value||"").split(" (")[0].trim().toLowerCase();
+  let list=allMeds();
+  if(q) list=list.filter(m=>((m.n||"")+" "+(m.generico||"")).toLowerCase().includes(q));
+  acList=list.slice(0,60);
+  const dd=$("acDropdown");
+  if(!acList.length){ dd.hidden=true; return; }
+  dd.innerHTML=acList.map((m,idx)=>{ const L=medLabel(m); return `<button class="ac-item" data-idx="${idx}"><b>${esc(m.n)}</b>${L.paren?` <span class="dim">(${esc(L.paren)})</span>`:''}${L.forma?` <span class="dim">${esc(L.forma)}</span>`:''}${m.ctrl?'<span class="rx">RX</span>':''}</button>`; }).join("");
+  const r=input.getBoundingClientRect();
+  dd.style.left=r.left+"px"; dd.style.top=(r.bottom+3)+"px"; dd.style.minWidth=Math.max(r.width,340)+"px";
+  dd.hidden=false;
+  dd.querySelectorAll(".ac-item").forEach(b=>b.onmousedown=(ev)=>{ ev.preventDefault(); dd.hidden=true; fillRowFromMed(i, acList[+b.dataset.idx]); });
+}
+function closeAC(){ const dd=$("acDropdown"); if(dd) dd.hidden=true; }
+document.addEventListener("click",e=>{ if(!e.target.closest(".ac-name") && !e.target.closest("#acDropdown")) closeAC(); });
+window.addEventListener("scroll",closeAC,true);
+window.addEventListener("resize",closeAC);
+$("rxBody").addEventListener("click",e=>{ const b=e.target.closest("[data-act]"); if(!b) return; const i=+b.dataset.i, act=b.dataset.act;
+  if(act==="del"){ rxRows.splice(i,1); renderTable(); updateCreate(); }
+  else if(act==="save"){ saveMed(i); }
+  else if(act==="cmt"){ rxRows[i]._open=!rxRows[i]._open; const rows=$("rxBody").querySelectorAll("tr.rdet"); if(rows[i]) rows[i].style.display=rxRows[i]._open?'':'none'; b.classList.toggle('on', rxRows[i]._open || !!(rxRows[i].nota||"").trim()); if(rxRows[i]._open){ const ta=rows[i].querySelector('textarea'); if(ta) ta.focus(); } }
+});
+function saveMed(i){ const r=rxRows[i]; if(!r.n){ toast("Escribe el nombre primero"); return; } const med={_saved:true,cond:r.cond||currentCond,n:r.n,generico:r.generico,pres:r.pres,forma:r.forma,acc:r.acc,dosis:r.dosis,frec:r.frec,dur:r.dur,via:r.via,nota:r.nota,tag:"guardado",short:deriveShort(r),ctrl:r.ctrl}; const dup=savedMeds.findIndex(m=>m.cond===med.cond&&m.n.toLowerCase()===med.n.toLowerCase()&&(m.pres||"")===(med.pres||"")); if(dup>=0) savedMeds[dup]=med; else savedMeds.push(med); persistSaved(); renderMeds(); buildDatalists(); toast("Medicamento guardado ★"); }
+
+function refreshCtrlBanner(){
+  const ctrl=rxRows.filter(r=>r.ctrl); const b=$("ctrlBanner");
+  if(!ctrl.length){ b.classList.remove("on"); b.innerHTML=""; return; }
+  const c=ctrl[0].ctrl; b.classList.add("on");
+  b.innerHTML=`<b>Medicamento controlado en la receta.</b> Exige recetario especial, <b>firma autógrafa</b> y ser <b>ÚNICA</b> (sin otros medicamentos). Fracción <b>${esc(c.fraccion)}</b> · vigencia <b>${esc(c.vigencia)}</b>. Llena la columna <b>Surtir</b>${c.max?` (máx. ${c.max} ${esc(c.unidad)})`:''}.`;
+}
+
+function deriveShort(r){ if(r.short) return r.short; const q=(String(r.dosis).match(/\d+(?:\.\d+)?/)||[])[0]||""; const h=(String(r.frec).match(/\d+/)||[])[0]||""; const dose=(q&&h)?`${q} c/${h}`:(q?q:""); return (r.n+(dose?" "+dose:"")).trim(); }
+
+// ---- estudios ----
+function estAllGroups(){ const g={}; if(savedEstudios.length) g["Mis estudios"]=savedEstudios.map(l=>[l,l]); Object.assign(g,EST_GROUPS); return g; }
+function addCustomEst(label){ label=(label||"").trim(); if(!label) return; if(!savedEstudios.some(l=>l.toLowerCase()===label.toLowerCase())){ savedEstudios.push(label); persistEst(); } if(!estudiosSel.includes(label)) estudiosSel.push(label); $("estSearch").value=""; renderEst(); updateEstLine(); updateCreate(); $("estSearch").focus(); }
+function delCustomEst(label){ const i=savedEstudios.findIndex(l=>l===label); if(i>=0){ savedEstudios.splice(i,1); persistEst(); } const j=estudiosSel.indexOf(label); if(j>=0) estudiosSel.splice(j,1); renderEst(); updateEstLine(); updateCreate(); }
+function renderEst(){
+  const box=$("estResults"); if(!box) return; box.innerHTML="";
+  const filter=($("estSearch").value||"").trim().toLowerCase();
+  const groups=estAllGroups(); let shown=0;
+  Object.entries(groups).forEach(([g,arr])=>{
+    const opts=arr.filter(([label])=>!filter || label.toLowerCase().includes(filter));
+    if(!opts.length) return; shown+=opts.length;
+    const div=document.createElement("div"); div.className="estgroup"; div.innerHTML=`<h4>${esc(g)}</h4>`;
+    opts.forEach(([label])=>{
+      const lab=document.createElement("label"); lab.className="est-opt";
+      const cb=document.createElement("input"); cb.type="checkbox"; cb.checked=estudiosSel.includes(label);
+      cb.onchange=()=>{ const i=estudiosSel.indexOf(label); if(cb.checked){ if(i<0) estudiosSel.push(label); } else if(i>=0) estudiosSel.splice(i,1); updateEstLine(); updateEstTrigger(); updateCreate(); };
+      lab.appendChild(cb); lab.appendChild(document.createTextNode(" "+label));
+      if(g==="Mis estudios"){ const del=document.createElement("span"); del.className="est-del"; del.innerHTML=SVG.x; del.title="Quitar de mis estudios"; del.onclick=(e)=>{ e.preventDefault(); e.stopPropagation(); delCustomEst(label); }; lab.appendChild(del); }
+      div.appendChild(lab);
+    });
+    box.appendChild(div);
+  });
+  const raw=($("estSearch").value||"").trim();
+  if(raw){
+    const exists=Object.values(groups).some(arr=>arr.some(([l])=>l.toLowerCase()===raw.toLowerCase()));
+    if(!exists){ const b=document.createElement("button"); b.className="est-add"; b.textContent=`+ Agregar y guardar «${raw}»`; b.onclick=()=>addCustomEst(raw); box.appendChild(b); shown++; }
+  }
+  if(!shown) box.innerHTML='<div class="meds-empty" style="padding:8px 6px;">Sin coincidencias.</div>';
+  updateEstTrigger();
+}
+$("estSearch").addEventListener("input",renderEst);
+$("estSearch").addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); const raw=$("estSearch").value.trim(); if(raw){ const groups=estAllGroups(); const exists=Object.values(groups).some(arr=>arr.some(([l])=>l.toLowerCase()===raw.toLowerCase())); if(!exists) addCustomEst(raw); } } });
+function updateEstTrigger(){ const n=estudiosSel.length; $("estTriggerText").textContent = n ? `${n} estudio${n!==1?'s':''} seleccionado${n!==1?'s':''}` : "Seleccionar estudios"; }
+function updateEstLine(){ const el=$("estOneline"); if(!estudiosSel.length){ el.innerHTML='<span class="ph">Los estudios seleccionados aparecerán aquí en una sola línea…</span>'; return; } el.textContent="Favor de realizar "+joinList(estudiosSel); }
+$("estTrigger").onclick=(e)=>{ e.stopPropagation(); const p=$("estPanel"); const willOpen=p.hasAttribute("hidden"); if(willOpen) p.removeAttribute("hidden"); else p.setAttribute("hidden",""); $("estTrigger").setAttribute("aria-expanded", willOpen?"true":"false"); };
+document.addEventListener("click",(e)=>{ const p=$("estPanel"); if(p && !p.hasAttribute("hidden") && !e.target.closest(".est-dd")){ p.setAttribute("hidden",""); $("estTrigger").setAttribute("aria-expanded","false"); } });
+
+// ---- crear / previsualizar ----
+function updateCreate(){ const n=rxRows.length, total=n+(estudiosSel.length?1:0); $("count-badge").textContent=`${n} ${n===1?'medicamento':'medicamentos'}`; $("btnCrear").disabled=total===0; const ctrlN=rxRows.filter(r=>r.ctrl).length; let info=total===0?"Agrega al menos un medicamento para crear la receta.":`${n} medicamento(s)${estudiosSel.length?' + estudios':''}.`; if(ctrlN>0) info+="  ⚠ Contiene controlado."; $("createInfo").textContent=info; }
+$("btnNueva").onclick=()=>{ if(!confirm("¿Vaciar toda la receta y los datos del paciente para empezar una nueva?")) return; ["p-nombre","p-fn","p-edad","p-dx","v-ta","v-fc","v-fr","v-temp","v-spo2","v-peso","v-talla","v-imc"].forEach(id=>$(id).value=""); rxRows=[]; estudiosSel=[]; renderTable(); renderEst(); updateEstLine(); updateCreate(); toast("Receta nueva"); };
+
+function cap(s){ s=String(s||""); return s?s.charAt(0).toUpperCase()+s.slice(1):s; }
+function inferAcc(r){
+  const f=(r.forma||"").toLowerCase(), v=(r.via||"").toLowerCase(), n=(r.n||"").toLowerCase();
+  if(/nebuliz/.test(f)) return "nebulizar";
+  if(/lavado|irrigaci|sinus rinse/.test(f+" "+n)) return "realizar";
+  if(/dispositivo|espaciador|inspir[oó]metro|c[aá]mara/.test(f+" "+n)) return "usar";
+  if(/inhalad|mdi|dpi|respimat|handihaler|breezhaler|ellipta|twisthaler|genuair|turbuhaler|diskus|evohaler/.test(f) || v==="inhalada") return "administrar";
+  if(/intranasal|nasal/.test(f) || v==="intranasal") return "administrar";
+  if(/parche|transd/.test(f) || v==="transdérmica" || v==="transdermica") return "aplicar";
+  if(/pastilla|trocisco/.test(f)) return "disolver";
+  if(/ampolleta|inyectable/.test(f) || v==="im" || v==="iv" || v==="intramuscular" || v==="intravenosa" || v==="subcutánea" || v==="subcutanea") return "administrar";
+  return "tomar";
+}
+function buildLine(r){
+  let s=""; if(r.n) s+=r.n;
+  const gen=(r.generico||"").trim();
+  if(gen && !r.n.toLowerCase().includes(gen.toLowerCase())) s+=` (${cap(gen)})`;
+  if(r.pres) s+=` ${r.pres}`;
+  if(r.forma) s+=` ${r.forma}`;
+  const acc=inferAcc(r);
+  if(acc||r.dosis||r.frec){ s+=","; if(acc) s+=` ${acc}`; if(r.dosis) s+=` ${r.dosis}`; if(r.frec) s+=` ${r.frec}`; }
+  if(r.via) s+=` vía ${r.via}`;
+  if(r.dur) s+=` ${r.dur}`;
+  if(r.nota) s+=` ${r.nota}`;
+  s=s.replace(/\s+/g,' ').replace(/\s,/g,',').trim(); if(s && !/[.]$/.test(s)) s+=".";
+  if(r.ctrl && r.surtir) s+=` Surtir: ${r.surtir}.`;
+  return expandAbbrev(s);
+}
+// Expande abreviaturas SOLO en el texto impreso (claridad para el paciente); Nimbo se queda compacto
+function expandAbbrev(s){
+  s=String(s);
+  s=s.replace(/\s*\(titulaci[oó]n\)/gi,"");
+  s=s.replace(/\bc\/\s*(\d+)\s*[–-]\s*(\d+)\s*h(?:rs?|s|oras?)?\b/gi,"cada $1 a $2 horas");
+  s=s.replace(/\bc\/\s*(\d+)\s*h(?:rs?|s|oras?)?\b/gi,"cada $1 horas");
+  s=s.replace(/\bcada\s+(\d+)\s*[–-]\s*(\d+)\s*hrs?\b/gi,"cada $1 a $2 horas");
+  s=s.replace(/\bcada\s+(\d+)\s*hrs?\b/gi,"cada $1 horas");
+  s=s.replace(/\bhrs?\b/gi,"horas");
+  s=s.replace(/\bPRN\b/gi,"en caso necesario");
+  s=s.replace(/\bd[ií]as\s+(\d+)\s*[–-]\s*(\d+)\b/gi,"los días $1 al $2");
+  s=s.replace(/\bx\s*(\d+)\s*d[ií]as?\b/gi,"por $1 días");
+  return s.replace(/\s+/g," ").replace(/\s+,/g,",").trim();
+}
+function joinList(a){ if(!a.length) return ""; if(a.length===1) return a[0]; const last=a[a.length-1]; const conj=/^(i|hi)(?!e)/i.test(last)?"e":"y"; return a.slice(0,-1).join(", ")+" "+conj+" "+last; }
+function vitalsLine(){ const parts=[]; [["v-ta","TA"],["v-fc","FC"],["v-fr","FR"],["v-temp","Temp"],["v-spo2","SpO₂"],["v-peso","Peso"],["v-talla","Talla"],["v-imc","IMC"]].forEach(([id,lab])=>{ const v=$(id).value.trim(); if(v) parts.push(`${lab} ${v}${lab==='SpO₂'?'%':''}`); }); return parts.join(" · "); }
+
+const bulletStyle=document.createElement("style"); document.head.appendChild(bulletStyle);
+bulletStyle.textContent=`#sheet ul.rx li:not(.rx-empty){padding-left:6mm;} #sheet ul.rx li:not(.rx-empty)::before{content:"•";position:absolute;left:1mm;}`;
+
+function buildSheet(rows, ests){
+  const nombre=$("p-nombre").value.trim(),edad=$("p-edad").value.trim(),fn=$("p-fn").value.trim(),fecha=$("p-fecha").value.trim(),dx=$("p-dx").value.trim();
+  const l1=[]; if(nombre)l1.push(`<b>Nombre:</b> ${esc(nombre)}`); if(edad)l1.push(`<b>Edad:</b> ${esc(edad)}`); if(fn)l1.push(`<b>Fecha de nacimiento:</b> ${esc(fn)}`); if(fecha)l1.push(`<b>Fecha:</b> ${esc(fecha)}`);
+  let head=l1.join(" "); if(dx) head+=`<span class="l2"><b>Diagnóstico:</b> ${esc(dx)}</span>`;
+  if($("chkVitals").checked){ const vl=vitalsLine(); if(vl) head+=`<span class="rx-vitals">${esc(vl)}</span>`; }
+  $("rxHead").innerHTML=head;
+  const ul=$("rxList"); ul.innerHTML="";
+  if(!rows.length){ ul.innerHTML='<li class="rx-empty">— sin medicamentos —</li>'; } else rows.forEach(r=>{ const li=document.createElement("li"); li.textContent=buildLine(r); ul.appendChild(li); });
+  const est=$("rxEst"); if(ests && ests.length){ est.style.display="block"; est.innerHTML=`<ul class="rx"><li>Favor de realizar ${esc(joinList(ests))}</li></ul>`; } else est.style.display="none";
+}
+
+function buildWarns(){
+  const box=$("pvWarns"); box.innerHTML=""; const ctrl=rxRows.filter(r=>r.ctrl); const mixed = ctrl.length && (rxRows.length>1 || estudiosSel.length);
+  if(ctrl.length){ const c=ctrl[0].ctrl; const w=document.createElement("div"); w.className="pv-warn amber"; w.innerHTML=`<b>Receta de medicamento controlado.</b> Recetario especial y <b>firma autógrafa</b> (no digital). Fracción <b>${esc(c.fraccion)}</b> · vigencia <b>${esc(c.vigencia)}</b>.`; box.appendChild(w);
+    ctrl.forEach(r=>{ if(r.ctrl.max && r.surtir){ const m=String(r.surtir).match(/\d+/); if(m && +m[0]>r.ctrl.max){ const x=document.createElement("div"); x.className="pv-warn red"; x.innerHTML=`<b>Excede el máximo:</b> “${esc(r.surtir)}” supera ${r.ctrl.max} ${esc(r.ctrl.unidad)} por receta.`; box.appendChild(x); } } });
+    if(mixed){ const x=document.createElement("div"); x.className="pv-warn red"; x.innerHTML=`<b>Debe ser una receta ÚNICA.</b> Un controlado no puede compartir receta con otros medicamentos. Usa los botones de impresión por separado abajo.`; box.appendChild(x); }
+  }
+  // pie con impresión (bloquea impresión mixta)
+  const foot=$("pvFoot");
+  foot.innerHTML="";
+  if(mixed){
+    foot.innerHTML=`<button class="btn btn-brand btn-lg" id="btnPrintCtrl">Imprimir solo el controlado</button>
+      <button class="btn btn-brand btn-lg" id="btnPrintRest">Imprimir los demás</button>
+      <button class="btn" id="btnCopiar">Copiar texto</button><div class="spacer"></div>
+      <button class="btn btn-ghost" id="btnVolver">← Volver a editar</button>`;
+    $("btnPrintCtrl").onclick=()=>{ buildSheet(rxRows.filter(r=>r.ctrl), []); requestAnimationFrame(()=>{ autoFitSheet(); fitSheet(); window.print(); }); };
+    $("btnPrintRest").onclick=()=>{ buildSheet(rxRows.filter(r=>!r.ctrl), estudiosSel); requestAnimationFrame(()=>{ autoFitSheet(); fitSheet(); window.print(); }); };
+  } else {
+    foot.innerHTML=`<button class="btn btn-brand btn-lg" id="btnImprimir">Imprimir</button>
+      <button class="btn" id="btnCopiar">Copiar texto de receta</button><div class="spacer"></div>
+      <button class="btn btn-ghost" id="btnVolver">← Volver a editar</button>`;
+    $("btnImprimir").onclick=()=>window.print();
+  }
+  $("btnCopiar").onclick=async()=>{ await copyText(plainText()); toast("Texto copiado"); };
+  $("btnVolver").onclick=()=>$("overlay").classList.remove("open");
+}
+
+function nimboText(){ const meds=rxRows.map(r=>deriveShort(r)); const est=estudiosSel.map(e=>EST_SHORT[e]||e); return meds.concat(est).join("\n").trim(); }
+function fillNimbo(){ $("nimboBox").textContent=nimboText()||"— sin medicamentos —"; }
+function plainText(){
+  const nombre=$("p-nombre").value.trim(),edad=$("p-edad").value.trim(),fn=$("p-fn").value.trim(),fecha=$("p-fecha").value.trim(),dx=$("p-dx").value.trim();
+  let out=""; const l1=[]; if(nombre)l1.push(`Nombre: ${nombre}`); if(edad)l1.push(`Edad: ${edad}`); if(fn)l1.push(`Fecha de nacimiento: ${fn}`); if(fecha)l1.push(`Fecha: ${fecha}`);
+  if(l1.length) out+=l1.join("   ")+"\n"; if(dx) out+=`Diagnóstico: ${dx}\n`; if($("chkVitals").checked){ const vl=vitalsLine(); if(vl) out+=vl+"\n"; } if(out) out+="\n";
+  out+=rxRows.map(r=>"• "+buildLine(r)).join("\n"); if(estudiosSel.length) out+="\n\n• Favor de realizar "+joinList(estudiosSel); return out.trim();
+}
+async function copyText(t){ try{ await navigator.clipboard.writeText(t); }catch(e){ const ta=document.createElement("textarea"); ta.value=t; document.body.appendChild(ta); ta.select(); try{document.execCommand("copy");}catch(_){}; document.body.removeChild(ta);} }
+
+$("btnCrear").onclick=()=>{ buildSheet(rxRows, estudiosSel); buildWarns(); fillNimbo(); $("overlay").classList.add("open"); autoFitSheet(); fitSheet(); requestAnimationFrame(()=>{ autoFitSheet(); fitSheet(); }); };
+$("btnCerrar").onclick=()=>$("overlay").classList.remove("open");
+$("btnNimbo").onclick=async()=>{ const t=nimboText(); if(!t){ toast("Nada que copiar"); return; } await copyText(t); toast("Copiado para Nimbo"); };
+$("chkGuides").onchange=e=>$("sheet").classList.toggle("guides", e.target.checked);
+
+const MM=96/25.4, SHEET_W=215.9*MM, SHEET_H=139.7*MM;
+function fitSheet(){ const stage=document.querySelector(".stage"); if(!stage) return; const avail=stage.clientWidth-32; const s=Math.min(1,avail/SHEET_W); const sc=$("scaler"); sc.style.width=SHEET_W+"px"; sc.style.transform=`scale(${s})`; sc.style.height=(SHEET_H*s)+"px"; }
+// Reduce la fuente hasta que todo el texto quepa dentro de los márgenes de la hoja
+function autoFitSheet(){
+  const sheet=$("sheet"); if(!sheet || !$("overlay").classList.contains("open")) return;
+  let fs=11; sheet.style.setProperty("--rx-fs", fs+"pt");
+  let guard=0;
+  while(sheet.scrollHeight > sheet.clientHeight + 1 && fs>6.5 && guard<50){ fs-=0.25; sheet.style.setProperty("--rx-fs", fs+"pt"); guard++; }
+}
+$("sheet").addEventListener("input", autoFitSheet);
+window.addEventListener("resize",()=>{ if($("overlay").classList.contains("open")){ autoFitSheet(); fitSheet(); } });
+
+let toastT; function toast(m){ const t=$("toast"); t.textContent=m; t.classList.add("show"); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove("show"),2400); }
+$("themeToggle").onclick=()=>{ const cur=document.documentElement.getAttribute("data-theme"); const next=cur==="dark"?"light":(cur==="light"?"dark":(matchMedia("(prefers-color-scheme: dark)").matches?"light":"dark")); document.documentElement.setAttribute("data-theme",next); try{ localStorage.setItem("alveos_recetas_theme", next); }catch(e){} };
+try{ const _th=localStorage.getItem("alveos_recetas_theme"); if(_th) document.documentElement.setAttribute("data-theme",_th); }catch(e){}
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ if(!$("acDropdown").hidden) closeAC(); else if($("overlay").classList.contains("open")) $("overlay").classList.remove("open"); } });
+
+buildDatalists(); renderTpls(); renderMeds(); renderTable(); renderEst(); updateEstLine(); updateCreate();
+</script>
+</body>
+</html>
