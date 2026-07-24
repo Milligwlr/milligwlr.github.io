@@ -290,6 +290,9 @@
   .ac-item b { font-weight:600; }
   .ac-item .dim { color:var(--faint); font-weight:400; font-size:12px; }
   .ac-item .rx { font-size:10px; font-weight:700; color:var(--warn); border:1px solid var(--warn); border-radius:4px; padding:0 4px; margin-left:6px; }
+  .pres-wrap { position:relative; }
+  .pres-wrap.has-opts .pres-input { padding-right:22px; }
+  .pres-caret { position:absolute; right:8px; top:50%; transform:translateY(-50%); color:var(--faint); font-size:10px; pointer-events:none; }
 
   @media (max-width:900px){ .app{ grid-template-columns:1fr; height:auto; } .col{ height:auto; overflow:visible; } .col-cat{ border-right:none; border-bottom:1px solid var(--line); } }
 
@@ -311,41 +314,9 @@
 </style>
 </head>
 <body>
-
-<div id="alv-gate">
-  <form id="alv-gate-form">
-    <div class="alv-logo">A</div>
-    <h1>Acceso privado</h1>
-    <p>Herramienta interna del Dr. William Lara.</p>
-    <input type="password" id="alv-gate-pass" placeholder="Contraseña" autocomplete="current-password" autofocus>
-    <button type="submit">Entrar</button>
-    <div id="alv-gate-err"></div>
-  </form>
-</div>
-<style>
-  #alv-gate{position:fixed;inset:0;z-index:100000;background:#0A1628;display:grid;place-items:center;font-family:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;color:#E6EDF5;}
-  #alv-gate-form{width:min(340px,90vw);text-align:center;display:flex;flex-direction:column;gap:12px;padding:8px;}
-  #alv-gate .alv-logo{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#1E3799,#0984E3);display:grid;place-items:center;color:#fff;font-weight:800;font-size:26px;margin:0 auto 6px;}
-  #alv-gate h1{margin:0;font-size:20px;font-weight:700;}
-  #alv-gate p{margin:0 0 8px;font-size:13px;color:#9AA7B8;}
-  #alv-gate input{padding:12px 14px;border-radius:10px;border:1px solid #2C4062;background:#122040;color:#E6EDF5;font-size:15px;}
-  #alv-gate input:focus{outline:none;border-color:#4AA3EF;box-shadow:0 0 0 3px rgba(74,163,239,.25);}
-  #alv-gate button{padding:12px 14px;border-radius:10px;border:none;background:linear-gradient(135deg,#1E3799,#0984E3);color:#fff;font-weight:700;font-size:15px;cursor:pointer;}
-  #alv-gate button:hover{filter:brightness(1.06);}
-  #alv-gate-err{color:#F08A6E;font-size:13px;min-height:16px;}
-</style>
-<script>
-(function(){
-  var PASS="recetas@alveos"; // <-- CAMBIA ESTA CONTRASEÑA
-  var g=document.getElementById("alv-gate");
-  try{ if(localStorage.getItem("alveos_recetas_gate")==="ok"){ g.style.display="none"; return; } }catch(e){}
-  document.getElementById("alv-gate-form").addEventListener("submit",function(e){
-    e.preventDefault();
-    if(document.getElementById("alv-gate-pass").value===PASS){ try{localStorage.setItem("alveos_recetas_gate","ok");}catch(e){} g.style.display="none"; }
-    else { document.getElementById("alv-gate-err").textContent="Contraseña incorrecta"; }
-  });
-})();
-</script>
+<div id="alv-gate"><form id="alv-gate-form"><div class="alv-logo">A</div><h1>Acceso privado</h1><p>Herramienta interna del Dr. William Lara.</p><input type="password" id="alv-gate-pass" placeholder="Contraseña" autocomplete="current-password" autofocus><button type="submit">Entrar</button><div id="alv-gate-err"></div></form></div>
+<style>#alv-gate{position:fixed;inset:0;z-index:100000;background:#0A1628;display:grid;place-items:center;font-family:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;color:#E6EDF5;}#alv-gate-form{width:min(340px,90vw);text-align:center;display:flex;flex-direction:column;gap:12px;padding:8px;}#alv-gate .alv-logo{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#1E3799,#0984E3);display:grid;place-items:center;color:#fff;font-weight:800;font-size:26px;margin:0 auto 6px;}#alv-gate h1{margin:0;font-size:20px;font-weight:700;}#alv-gate p{margin:0 0 8px;font-size:13px;color:#9AA7B8;}#alv-gate input{padding:12px 14px;border-radius:10px;border:1px solid #2C4062;background:#122040;color:#E6EDF5;font-size:15px;}#alv-gate input:focus{outline:none;border-color:#4AA3EF;box-shadow:0 0 0 3px rgba(74,163,239,.25);}#alv-gate button{padding:12px 14px;border-radius:10px;border:none;background:linear-gradient(135deg,#1E3799,#0984E3);color:#fff;font-weight:700;font-size:15px;cursor:pointer;}#alv-gate button:hover{filter:brightness(1.06);}#alv-gate-err{color:#F08A6E;font-size:13px;min-height:16px;}</style>
+<script>(function(){var PASS="recetas@alveos";var g=document.getElementById("alv-gate");try{if(localStorage.getItem("alveos_recetas_gate")==="ok"){g.style.display="none";return;}}catch(e){}document.getElementById("alv-gate-form").addEventListener("submit",function(e){e.preventDefault();if(document.getElementById("alv-gate-pass").value===PASS){try{localStorage.setItem("alveos_recetas_gate","ok");}catch(e){}g.style.display="none";}else{document.getElementById("alv-gate-err").textContent="Contraseña incorrecta";}});})();</script>
 
 
 <div class="topbar">
@@ -465,45 +436,64 @@
 
 <div id="datalists" hidden></div>
 <div id="acDropdown" class="ac-dd" hidden></div>
+<div id="presDropdown" class="ac-dd" hidden></div>
 <div class="toast" id="toast"></div>
 
 <script>
 const CATALOG = {
   inhaladores:{ label:"Inhaladores", color:"#0984E3", meds:[
-    { n:"Ventolin", generico:"salbutamol", pres:"100 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 4 a 6 horas", dur:"", via:"inhalada", tag:"rescate", nota:"en caso de dificultad respiratoria" },
-    { n:"Ventolin", generico:"salbutamol", pres:"5 mg/mL", forma:"solución para nebulizar", dosis:"2.5 a 5 mg (0.5 a 1 mL)", frec:"cada 6 a 8 horas", dur:"", via:"inhalada", tag:"rescate", nota:"en caso de dificultad respiratoria" },
-    { n:"Atrovent", generico:"bromuro de ipratropio", pres:"20 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 6 a 8 horas", dur:"", via:"inhalada", tag:"SAMA" },
-    { n:"Combivent Respimat", generico:"ipratropio/salbutamol", pres:"20/100 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 6 horas", dur:"", via:"inhalada", tag:"rescate", nota:"en caso de dificultad respiratoria" },
-    { n:"Berodual", generico:"fenoterol/ipratropio", pres:"50/20 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 8 horas", dur:"", via:"inhalada", tag:"rescate" },
-    { n:"Pulmicort", generico:"budesonida", pres:"200 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide inhalado" },
-    { n:"Pulmicort", generico:"budesonida", pres:"0.5 mg/2 mL", forma:"solución para nebulizar", dosis:"1 nebulización", frec:"cada 12 horas", dur:"", via:"inhalada", tag:"corticoide inhalado" },
-    { n:"Flixotide", generico:"fluticasona", pres:"50 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide inhalado" },
-    { n:"Flixotide", generico:"fluticasona", pres:"250 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide inhalado" },
-    { n:"Alvesco", generico:"ciclesonida", pres:"160 mcg", forma:"inhalador", dosis:"1 a 2 inhalaciones", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide inhalado" },
-    { n:"Asmanex", generico:"mometasona", pres:"200 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide inhalado", nota:"por las noches" },
-    { n:"Symbicort", generico:"budesonida/formoterol", pres:"160/4.5 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
-    { n:"Symbicort", generico:"budesonida/formoterol", pres:"320/9 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
-    { n:"Seretide", generico:"salmeterol/fluticasona", pres:"25/125 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
-    { n:"Seretide", generico:"salmeterol/fluticasona", pres:"25/250 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
-    { n:"Seretide Diskus", generico:"salmeterol/fluticasona", pres:"50/250 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
-    { n:"Seretide Diskus", generico:"salmeterol/fluticasona", pres:"50/500 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
-    { n:"Foster", generico:"beclometasona/formoterol", pres:"100/6 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
-    { n:"Relvar Ellipta", generico:"fluticasona/vilanterol", pres:"92/22 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
-    { n:"Relvar Ellipta", generico:"fluticasona/vilanterol", pres:"184/22 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
-    { n:"Spiriva Respimat", generico:"tiotropio", pres:"2.5 mcg", forma:"inhalador", dosis:"2 disparos", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LAMA" },
-    { n:"Spiriva HandiHaler", generico:"tiotropio", pres:"18 mcg", forma:"cápsulas para inhalar", dosis:"1 cápsula", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LAMA" },
-    { n:"Onbrez Breezhaler", generico:"indacaterol", pres:"150 mcg", forma:"cápsulas para inhalar", dosis:"1 cápsula", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LABA" },
-    { n:"Striverdi Respimat", generico:"olodaterol", pres:"2.5 mcg", forma:"inhalador", dosis:"2 disparos", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LABA" },
-    { n:"Seebri Breezhaler", generico:"glicopirronio", pres:"50 mcg", forma:"cápsulas para inhalar", dosis:"1 cápsula", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LAMA" },
-    { n:"Incruse Ellipta", generico:"umeclidinio", pres:"62.5 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LAMA" },
-    { n:"Bretaris Genuair", generico:"aclidinio", pres:"322 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"LAMA" },
-    { n:"Ultibro Breezhaler", generico:"indacaterol/glicopirronio", pres:"110/50 mcg", forma:"cápsulas para inhalar", dosis:"1 cápsula", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LABA + LAMA" },
-    { n:"Anoro Ellipta", generico:"umeclidinio/vilanterol", pres:"62.5/25 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LABA + LAMA" },
-    { n:"Spiolto Respimat", generico:"tiotropio/olodaterol", pres:"2.5/2.5 mcg", forma:"inhalador", dosis:"2 disparos", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LABA + LAMA" },
-    { n:"Duaklir Genuair", generico:"aclidinio/formoterol", pres:"340/12 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"LABA + LAMA" },
-    { n:"Trelegy Ellipta", generico:"fluticasona/umeclidinio/vilanterol", pres:"100/62.5/25 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"triple terapia", nota:"por las mañanas" },
-    { n:"Trelegy Ellipta", generico:"fluticasona/umeclidinio/vilanterol", pres:"200/62.5/25 mcg", forma:"inhalador", dosis:"1 inhalación", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"triple terapia", nota:"por las mañanas" },
-    { n:"Trimbow", generico:"beclometasona/formoterol/glicopirronio", pres:"87/5/9 mcg", forma:"inhalador", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"triple terapia" },
+    { n:"Ventolin", generico:"salbutamol", pres:"100 mcg", forma:"inhalador MDI", dosis:"2 inhalaciones", frec:"cada 4 a 6 horas en caso necesario", dur:"", via:"inhalada", tag:"SABA" },
+    { n:"Salbutamol", generico:"salbutamol", pres:"100 mcg", forma:"inhalador MDI", dosis:"2 inhalaciones", frec:"cada 4 a 6 horas en caso necesario", dur:"", via:"inhalada", tag:"SABA genérico" },
+    { n:"Ventolin", generico:"salbutamol", pres:"5 mg/mL", forma:"solución para nebulizar", dosis:"2.5 a 5 mg", frec:"cada 6 a 8 horas en caso necesario", dur:"", via:"inhalada", tag:"SABA" },
+    { n:"Salbutamol", generico:"salbutamol", pres:"5 mg/mL", forma:"solución para nebulizar", dosis:"2.5 a 5 mg", frec:"cada 6 a 8 horas en caso necesario", dur:"", via:"inhalada", tag:"SABA genérico" },
+    { n:"Atrovent", generico:"bromuro de ipratropio", pres:"0.25 mg/mL", forma:"solución para nebulizar", dosis:"250 a 500 mcg", frec:"cada 6 a 8 horas", dur:"", via:"inhalada", tag:"SAMA" },
+    { n:"Combivent Respimat", generico:"salbutamol/ipratropio", pres:"100/20 mcg", forma:"inhalador Respimat", dosis:"1 inhalación", frec:"cada 6 horas (máximo 6 inhalaciones al día)", dur:"", via:"inhalada", tag:"SABA/SAMA" },
+    { n:"Combivent", generico:"salbutamol/ipratropio", pres:"2.5/0.5 mg por ampolleta", forma:"solución para nebulizar", dosis:"1 ampolleta (2.5 mL)", frec:"cada 6 a 8 horas", dur:"", via:"inhalada", tag:"SABA/SAMA" },
+    { n:"Berodual", generico:"fenoterol/ipratropio", pres:"50/20 mcg", forma:"inhalador MDI", dosis:"2 inhalaciones", frec:"cada 8 horas", dur:"", via:"inhalada", tag:"SABA/SAMA" },
+    { n:"Berodual", generico:"fenoterol/ipratropio", pres:"500/250 mcg por mL", forma:"solución para nebulizar", dosis:"10 a 20 gotas (0.5 a 1 mL)", frec:"cada 6 a 8 horas", dur:"", via:"inhalada", tag:"SABA/SAMA" },
+    { n:"Pulmicort Turbuhaler", generico:"budesonida", pres:"100 mcg", forma:"inhalador de polvo (Turbuhaler)", dosis:"1 a 2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide inhalado" },
+    { n:"Pulmicort Turbuhaler", generico:"budesonida", pres:"200 mcg", forma:"inhalador de polvo (Turbuhaler)", dosis:"1 a 2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide inhalado" },
+    { n:"Pulmicort Turbuhaler", generico:"budesonida", pres:"400 mcg", forma:"inhalador de polvo (Turbuhaler)", dosis:"1 inhalación", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide inhalado" },
+    { n:"Pulmicort", generico:"budesonida", pres:"0.250 mg/2 mL", forma:"suspensión para nebulizar", dosis:"0.5 a 1 mg", frec:"cada 12 a 24 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide inhalado" },
+    { n:"Pulmicort", generico:"budesonida", pres:"0.500 mg/2 mL", forma:"suspensión para nebulizar", dosis:"0.5 a 1 mg", frec:"cada 12 a 24 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide inhalado" },
+    { n:"Budesonida", generico:"budesonida", pres:"0.250 mg/2 mL", forma:"suspensión para nebulizar", dosis:"0.5 a 1 mg", frec:"cada 12 a 24 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide genérico" },
+    { n:"Budesonida", generico:"budesonida", pres:"0.500 mg/2 mL", forma:"suspensión para nebulizar", dosis:"0.5 a 1 mg", frec:"cada 12 a 24 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide genérico" },
+    { n:"Flixotide", generico:"fluticasona propionato", pres:"50 mcg", forma:"inhalador MDI", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide inhalado" },
+    { n:"Flixotide", generico:"fluticasona propionato", pres:"250 mcg", forma:"inhalador MDI", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide inhalado" },
+    { n:"Alvesco", generico:"ciclesonida", pres:"100 mcg", forma:"inhalador MDI", dosis:"1 a 2 inhalaciones", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide inhalado" },
+    { n:"Alvesco", generico:"ciclesonida", pres:"200 mcg", forma:"inhalador MDI", dosis:"1 a 2 inhalaciones", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide inhalado" },
+    { n:"Asmanex Twisthaler", generico:"mometasona", pres:"200 mcg", forma:"inhalador de polvo (Twisthaler)", dosis:"1 a 2 inhalaciones", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide inhalado", nota:"por la noche" },
+    { n:"Beclometasona", generico:"beclometasona", pres:"50 mcg", forma:"inhalador MDI", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide inhalado" },
+    { n:"Symbicort Turbuhaler", generico:"budesonida/formoterol", pres:"80/4.5 mcg", forma:"inhalador de polvo (Turbuhaler)", dosis:"1 a 2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Symbicort Turbuhaler", generico:"budesonida/formoterol", pres:"160/4.5 mcg", forma:"inhalador de polvo (Turbuhaler)", dosis:"1 a 2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Symbicort Turbuhaler", generico:"budesonida/formoterol", pres:"320/9 mcg", forma:"inhalador de polvo (Turbuhaler)", dosis:"1 inhalación", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Vannair", generico:"budesonida/formoterol", pres:"80/4.5 mcg", forma:"inhalador MDI", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Vannair", generico:"budesonida/formoterol", pres:"160/4.5 mcg", forma:"inhalador MDI", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Seretide Inhalador", generico:"salmeterol/fluticasona", pres:"25/50 mcg", forma:"inhalador MDI", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Seretide Inhalador", generico:"salmeterol/fluticasona", pres:"25/125 mcg", forma:"inhalador MDI", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Seretide Inhalador", generico:"salmeterol/fluticasona", pres:"25/250 mcg", forma:"inhalador MDI", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Seretide Diskus", generico:"salmeterol/fluticasona", pres:"50/100 mcg", forma:"inhalador de polvo (Diskus)", dosis:"1 inhalación", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Seretide Diskus", generico:"salmeterol/fluticasona", pres:"50/250 mcg", forma:"inhalador de polvo (Diskus)", dosis:"1 inhalación", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Seretide Diskus", generico:"salmeterol/fluticasona", pres:"50/500 mcg", forma:"inhalador de polvo (Diskus)", dosis:"1 inhalación", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Relvare", generico:"fluticasona furoato/vilanterol", pres:"100/25 mcg", forma:"inhalador de polvo (Ellipta)", dosis:"1 inhalación", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Relvare", generico:"fluticasona furoato/vilanterol", pres:"200/25 mcg", forma:"inhalador de polvo (Ellipta)", dosis:"1 inhalación", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Innovair", generico:"beclometasona/formoterol", pres:"100/6 mcg", forma:"inhalador MDI", dosis:"1 a 2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Innovair Nexthaler", generico:"beclometasona/formoterol", pres:"100/6 mcg", forma:"inhalador de polvo (Nexthaler)", dosis:"1 a 2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"corticoide + LABA" },
+    { n:"Foradil", generico:"formoterol", pres:"12 mcg", forma:"cápsulas para inhalar (Aerolizer)", dosis:"1 cápsula", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"LABA" },
+    { n:"Serevent", generico:"salmeterol", pres:"25 mcg", forma:"inhalador MDI", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"LABA" },
+    { n:"Onbrize Breezhaler", generico:"indacaterol", pres:"150 mcg", forma:"cápsulas para inhalar (Breezhaler)", dosis:"1 cápsula", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LABA" },
+    { n:"Onbrize Breezhaler", generico:"indacaterol", pres:"300 mcg", forma:"cápsulas para inhalar (Breezhaler)", dosis:"1 cápsula", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LABA" },
+    { n:"Striverdi Respimat", generico:"olodaterol", pres:"2.5 mcg", forma:"inhalador Respimat", dosis:"2 inhalaciones", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LABA" },
+    { n:"Spiriva Handihaler", generico:"tiotropio", pres:"18 mcg", forma:"cápsulas para inhalar (Handihaler)", dosis:"1 cápsula", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LAMA" },
+    { n:"Spiriva Respimat", generico:"tiotropio", pres:"2.5 mcg", forma:"inhalador Respimat", dosis:"2 inhalaciones", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LAMA" },
+    { n:"Seebri Breezhaler", generico:"glicopirronio", pres:"50 mcg", forma:"cápsulas para inhalar (Breezhaler)", dosis:"1 cápsula", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LAMA" },
+    { n:"Incruse Ellipta", generico:"umeclidinio", pres:"62.5 mcg", forma:"inhalador de polvo (Ellipta)", dosis:"1 inhalación", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LAMA" },
+    { n:"Ultibro Breezhaler", generico:"indacaterol/glicopirronio", pres:"110/50 mcg", forma:"cápsulas para inhalar (Breezhaler)", dosis:"1 cápsula", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LABA + LAMA" },
+    { n:"Anoro Ellipta", generico:"umeclidinio/vilanterol", pres:"62.5/25 mcg", forma:"inhalador de polvo (Ellipta)", dosis:"1 inhalación", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LABA + LAMA" },
+    { n:"Spiolto Respimat", generico:"tiotropio/olodaterol", pres:"2.5/2.5 mcg", forma:"inhalador Respimat", dosis:"2 inhalaciones", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"LABA + LAMA" },
+    { n:"Trelegy Ellipta", generico:"fluticasona furoato/umeclidinio/vilanterol", pres:"100/62.5/25 mcg", forma:"inhalador de polvo (Ellipta)", dosis:"1 inhalación", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"triple terapia", nota:"por las mañanas" },
+    { n:"Trelegy Ellipta", generico:"fluticasona furoato/umeclidinio/vilanterol", pres:"200/62.5/25 mcg", forma:"inhalador de polvo (Ellipta)", dosis:"1 inhalación", frec:"cada 24 horas", dur:"durante 30 días", via:"inhalada", tag:"triple terapia", nota:"por las mañanas" },
+    { n:"Trimbow", generico:"beclometasona/formoterol/glicopirronio", pres:"100/6/12.5 mcg", forma:"inhalador MDI", dosis:"2 inhalaciones", frec:"cada 12 horas", dur:"durante 30 días", via:"inhalada", tag:"triple terapia" },
   ]},
   cesacion:{ label:"Cesación tabáquica", color:"#B7791F", meds:[
     { n:"Champix", generico:"vareniclina", pres:"0.5 mg", forma:"tabletas", dosis:"1 tableta", frec:"cada 24 horas los días 1 al 3, luego cada 12 horas los días 4 al 7", dur:"", via:"oral", tag:"1a línea" },
@@ -798,12 +788,11 @@ function renderTable(){
     const tr=document.createElement("tr"); tr.className="rrow";
     const inp=(k)=>`<input data-i="${i}" data-k="${k}" list="dl-${k}" value="${esc(r[k])}">`;
     const surtirCell = r.ctrl ? `<input data-i="${i}" data-k="surtir" value="${esc(r.surtir)}" placeholder="máx ${r.ctrl.max||''} ${esc(r.ctrl.unidad||'')}">` : '<div class="surtir-na">—</div>';
-    const presList = (r._presOpts && r._presOpts.length) ? `dlp-${i}` : 'dl-pres';
-    const presDL = (r._presOpts && r._presOpts.length) ? `<datalist id="dlp-${i}">${r._presOpts.map(o=>`<option value="${esc(o)}"></option>`).join('')}</datalist>` : '';
+    const hasPres = r._presOpts && r._presOpts.length>1;
     tr.innerHTML=
       `<td class="col-med"><div class="med-row">${r.ctrl?'<span class="lock">RX</span>':''}<input data-i="${i}" data-k="n" class="ac-name" autocomplete="off" value="${esc(nameDisplay(r))}" placeholder="escribe o elige…"></div></td>`+
       `<td class="col-forma">${inp('forma')}</td>`+
-      `<td class="col-pres"><input data-i="${i}" data-k="pres" list="${presList}" value="${esc(r.pres)}" placeholder="${r._presOpts&&r._presOpts.length?'elige…':''}">${presDL}</td>`+
+      `<td class="col-pres"><div class="pres-wrap${hasPres?' has-opts':''}"><input data-i="${i}" data-k="pres" class="pres-input" autocomplete="off" value="${esc(r.pres)}" placeholder="${hasPres?'elige…':''}">${hasPres?'<span class="pres-caret">▾</span>':''}</div></td>`+
       `<td class="col-dosis">${inp('dosis')}</td>`+
       `<td class="col-frec">${inp('frec')}</td>`+
       `<td class="col-via">${inp('via')}</td>`+
@@ -823,7 +812,8 @@ function renderTable(){
   refreshCtrlBanner();
 }
 $("rxBody").addEventListener("input",e=>{ const t=e.target; if(t.dataset && t.dataset.k){ const i=+t.dataset.i, k=t.dataset.k; if(rxRows[i]){ if(k==='n'){ rxRows[i].n=t.value.split(' (')[0]; openAC(t); } else { rxRows[i][k]=t.value; if(k==='nota'){ const btn=document.querySelector(`[data-act="cmt"][data-i="${i}"]`); if(btn) btn.classList.toggle('on', !!t.value.trim()); } } } } });
-$("rxBody").addEventListener("focusin",e=>{ if(e.target.classList && e.target.classList.contains("ac-name")) openAC(e.target); });
+$("rxBody").addEventListener("focusin",e=>{ if(!e.target.classList) return; if(e.target.classList.contains("ac-name")) openAC(e.target); else if(e.target.classList.contains("pres-input")) openPresDD(e.target); });
+$("rxBody").addEventListener("click",e=>{ if(e.target.classList && e.target.classList.contains("pres-input")) openPresDD(e.target); });
 
 // Autocompletado propio (marca + genérico)
 let acList=[];
@@ -850,9 +840,21 @@ function openAC(input){
   dd.querySelectorAll(".ac-item").forEach(b=>b.onmousedown=(ev)=>{ ev.preventDefault(); dd.hidden=true; fillRowFromMed(i, acList[+b.dataset.idx]); });
 }
 function closeAC(){ const dd=$("acDropdown"); if(dd) dd.hidden=true; }
-document.addEventListener("click",e=>{ if(!e.target.closest(".ac-name") && !e.target.closest("#acDropdown")) closeAC(); });
-window.addEventListener("scroll",closeAC,true);
-window.addEventListener("resize",closeAC);
+function closePres(){ const dd=$("presDropdown"); if(dd) dd.hidden=true; }
+function openPresDD(input){
+  const i=+input.dataset.i; const r=rxRows[i]; if(!r) return;
+  const opts=(r._presOpts||[]);
+  const dd=$("presDropdown");
+  if(opts.length<2){ dd.hidden=true; return; } // solo si hay 2+ concentraciones
+  dd.innerHTML=opts.map(o=>`<button class="ac-item" data-val="${esc(o)}"><b>${esc(o)}</b></button>`).join("");
+  const rc=input.getBoundingClientRect();
+  dd.style.left=rc.left+"px"; dd.style.top=(rc.bottom+3)+"px"; dd.style.minWidth=Math.max(rc.width,160)+"px";
+  dd.hidden=false;
+  dd.querySelectorAll(".ac-item").forEach(b=>b.onmousedown=(ev)=>{ ev.preventDefault(); r.pres=b.dataset.val; input.value=r.pres; dd.hidden=true; });
+}
+document.addEventListener("click",e=>{ if(!e.target.closest(".ac-name") && !e.target.closest("#acDropdown")) closeAC(); if(!e.target.closest(".pres-input") && !e.target.closest("#presDropdown")) closePres(); });
+window.addEventListener("scroll",()=>{ closeAC(); closePres(); },true);
+window.addEventListener("resize",()=>{ closeAC(); closePres(); });
 $("rxBody").addEventListener("click",e=>{ const b=e.target.closest("[data-act]"); if(!b) return; const i=+b.dataset.i, act=b.dataset.act;
   if(act==="del"){ rxRows.splice(i,1); renderTable(); updateCreate(); }
   else if(act==="save"){ saveMed(i); }
@@ -1025,7 +1027,7 @@ window.addEventListener("resize",()=>{ if($("overlay").classList.contains("open"
 let toastT; function toast(m){ const t=$("toast"); t.textContent=m; t.classList.add("show"); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove("show"),2400); }
 $("themeToggle").onclick=()=>{ const cur=document.documentElement.getAttribute("data-theme"); const next=cur==="dark"?"light":(cur==="light"?"dark":(matchMedia("(prefers-color-scheme: dark)").matches?"light":"dark")); document.documentElement.setAttribute("data-theme",next); try{ localStorage.setItem("alveos_recetas_theme", next); }catch(e){} };
 try{ const _th=localStorage.getItem("alveos_recetas_theme"); if(_th) document.documentElement.setAttribute("data-theme",_th); }catch(e){}
-document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ if(!$("acDropdown").hidden) closeAC(); else if($("overlay").classList.contains("open")) $("overlay").classList.remove("open"); } });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ if(!$("acDropdown").hidden) closeAC(); else if(!$("presDropdown").hidden) closePres(); else if($("overlay").classList.contains("open")) $("overlay").classList.remove("open"); } });
 
 buildDatalists(); renderTpls(); renderMeds(); renderTable(); renderEst(); updateEstLine(); updateCreate();
 </script>
