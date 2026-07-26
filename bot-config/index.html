@@ -1306,6 +1306,11 @@
     // Su dinero en Google (Fase 1). Solo si el servidor lo manda.
     if (estado.datos.ads) moduloAds(v, estado.datos.ads, estado.datos.tendencia);
 
+    // De dónde llegan sus contactos (25-jul): atribución por prefill del sitio.
+    if (estado.datos.origenes && (estado.datos.origenes.items || []).length) {
+      moduloOrigenes(v, estado.datos.origenes);
+    }
+
     // Agenda completa
     var d = estado.datos;
     var citas = (d.agenda && Array.isArray(d.agenda.citas)) ? d.agenda.citas : null;
@@ -1648,6 +1653,31 @@
       notaBajo(v, 'Son búsquedas reales por las que pagó. Dígame cuáles NO son de lo suyo y las bloqueo. ' +
         'Ojo: que alguien busque precio no es motivo para bloquearla.');
     }
+  }
+
+  /* ---- De dónde llegan sus contactos (25-jul) ----
+     Cada botón del sitio manda un mensaje inicial distinto: por eso sabemos de
+     qué página o promoción vino cada contacto. Solo se cuenta a quien llegó
+     con ese mensaje; el que escribe con sus propias palabras no se etiqueta. */
+  function moduloOrigenes(v, o) {
+    var g = seccion(v, 'De dónde llegan sus contactos (30 días)');
+    var max = (o.items[0] && o.items[0].leads) || 1;
+    o.items.forEach(function (it) {
+      var f = nodo('div', 'fila'); var cu = nodo('div', 'cuerpo');
+      cu.appendChild(nodo('div', 't', it.etiqueta));
+      cu.appendChild(nodo('div', 'd', it.leads + (it.leads === 1 ? ' contacto' : ' contactos') +
+        ' · ' + it.con_cita + (it.con_cita === 1 ? ' llegó a cita' : ' llegaron a cita')));
+      var barra = nodo('div', '');
+      barra.style.cssText = 'height:8px;border-radius:4px;background:var(--chip-bg);margin-top:6px;overflow:hidden;';
+      var seg = nodo('div', '');
+      seg.style.cssText = 'height:100%;border-radius:4px;background:var(--verde);width:' +
+        Math.max(3, Math.round(it.leads / max * 100)) + '%;';
+      barra.appendChild(seg);
+      cu.appendChild(barra);
+      f.appendChild(cu); g.appendChild(f);
+    });
+    notaBajo(v, 'Solo se cuenta a quien llegó tocando un botón del sitio (cada botón manda un mensaje distinto y eso delata la página). ' +
+      'Quien nos escribe con sus propias palabras no aparece aquí — no adivinamos.');
   }
 
   /* ---- Más ---- */
