@@ -601,7 +601,7 @@
     .price-tier__row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
     .price-tier__big{font-size:2rem;font-weight:800;color:#00cec9;line-height:1;letter-spacing:-.02em}
     .price-tier__was{font-size:.9rem;color:rgba(255,255,255,.62);text-decoration:line-through;font-weight:600}
-    .price-tier__ribbon{position:absolute;top:-10px;right:14px;background:#0984e3;color:#fff;font-size:.66rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:4px 10px;border-radius:999px;box-shadow:0 6px 16px -4px rgba(230,74,25,.6)}
+    .price-tier__ribbon{position:absolute;top:-10px;right:14px;background:#0984e3;color:#fff;font-size:.66rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:4px 10px;border-radius:999px;box-shadow:0 6px 16px -4px rgba(9,132,227,.55)}
     .price-tier__math{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;font-size:.9rem;color:#f0f6ff}
     .price-tier__math b{color:#fff;font-weight:800}
     .price-tier__eq{color:rgba(255,255,255,.5);font-weight:700}
@@ -609,9 +609,28 @@
     .price-tier--home i{font-size:1.3rem;color:#00cec9;flex-shrink:0}
     .price-tier--home .price-tier__amount{font-weight:800;color:#fff}
     @media(max-width:480px){.price-tier__big{font-size:1.7rem}.price-tier__ribbon{right:10px;font-size:.6rem}}
-    .honesty-note{display:flex;align-items:flex-start;gap:9px;background:rgba(255,255,255,.06);border:1px solid rgba(127,255,230,.28);border-radius:12px;padding:10px 14px;font-size:.86rem;color:#f0f6ff;line-height:1.45;margin:0 0 14px;max-width:520px}
+    .honesty-note{display:flex;align-items:flex-start;gap:9px;font-size:.86rem;color:rgba(255,255,255,.88);line-height:1.45;margin:0 0 12px;max-width:520px}
     .honesty-note i{color:#00cec9;font-size:1.05rem;flex-shrink:0;margin-top:1px}
     .honesty-note b{color:#fff;font-weight:800}
+    /* Descarga visual del hero (jul-2026): una sola oferta protagonista; el desglose
+       por separado y a domicilio se colapsa en un <details> discreto (los 4 precios siguen ahi) */
+    .price-fine{max-width:520px}
+    .price-fine summary{list-style:none;display:inline-flex;align-items:center;gap:7px;cursor:pointer;font-size:.84rem;font-weight:600;color:rgba(255,255,255,.72);padding:2px 0;transition:color .2s}
+    .price-fine summary::-webkit-details-marker{display:none}
+    .price-fine summary:hover{color:#fff}
+    .price-fine summary i{font-size:.78rem;color:#74b9ff;transition:transform .2s}
+    .price-fine[open] summary i{transform:rotate(180deg)}
+    .price-fine .price-tier{border:none;background:none;box-shadow:none;padding:8px 0 0}
+    /* Escritorio: los bullets duplican la tarjeta "Lo que recibes" -> una sola ubicacion;
+       chips de credenciales pasan a linea de texto quieta (menos cajas compitiendo) */
+    @media(min-width:992px){
+      .hero__bullets{display:none}
+      .hero__cred{background:none;border:none;padding:0;font-size:.85rem;font-weight:600;color:rgba(255,255,255,.78)}
+      a.hero__cred:hover{background:none;color:#fff;text-decoration:underline}
+      .hero__creds{gap:6px 22px;margin:0}
+      .hero__sub{margin-bottom:26px}
+      .price-ladder{margin:6px 0 18px}
+    }
     /* Seccion pareja: iconos rediseñados en tiles con jerarquia (antes: 2 iconos gigantes planos) */
     .partner-facts{display:grid;gap:12px}
     .partner-fact{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid rgba(9,132,227,.12);border-radius:16px;padding:15px 18px;box-shadow:var(--e2),var(--ring-hi);text-align:left}
@@ -1031,14 +1050,17 @@
                         <div class="price-tier__desc" style="margin-bottom:6px">Consulta + estudio del sueño, juntos, un solo pago.</div>
                         <div class="price-tier__row"><span class="price-tier__big">$4,500</span><span class="price-tier__was">$6,500 por separado</span></div>
                     </div>
-                    <div class="price-tier price-tier--alacarte">
-                        <div class="price-tier__label">Si lo tomas por separado</div>
-                        <div class="price-tier__math"><span>Estudio <b>$5,000</b></span><span class="price-tier__eq">+</span><span>consulta <b>$1,500</b></span><span class="price-tier__eq">=</span><b>$6,500</b></div>
-                    </div>
-                    <div class="price-tier price-tier--home">
-                        <i class="bi bi-house-heart-fill" aria-hidden="true"></i>
-                        <div><div class="price-tier__label" style="margin-bottom:2px">¿Prefieres el estudio en tu casa?</div><div class="price-tier__desc">Estudio <span class="price-tier__amount">a domicilio $5,000</span> · consulta aparte.</div></div>
-                    </div>
+                    <details class="price-fine">
+                        <summary><i class="bi bi-chevron-down" aria-hidden="true"></i> Ver precios por separado y a domicilio</summary>
+                        <div class="price-tier price-tier--alacarte">
+                            <div class="price-tier__label">Si lo tomas por separado</div>
+                            <div class="price-tier__math"><span>Estudio <b>$5,000</b></span><span class="price-tier__eq">+</span><span>consulta <b>$1,500</b></span><span class="price-tier__eq">=</span><b>$6,500</b></div>
+                        </div>
+                        <div class="price-tier price-tier--home">
+                            <i class="bi bi-house-heart-fill" aria-hidden="true"></i>
+                            <div><div class="price-tier__label" style="margin-bottom:2px">¿Prefieres el estudio en tu casa?</div><div class="price-tier__desc">Estudio <span class="price-tier__amount">a domicilio $5,000</span> · consulta aparte.</div></div>
+                        </div>
+                    </details>
                 </div>
                 <div class="honesty-note">
                     <i class="bi bi-hand-thumbs-up-fill" aria-hidden="true"></i>
