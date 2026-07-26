@@ -379,12 +379,12 @@ html{scroll-behavior:smooth;scroll-padding-top:96px}
 
 /* --- campo de edad --- */
 .agetool__label{display:block;font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:7px}
-.agetool__row{display:flex;align-items:center;gap:10px;justify-content:center;background:#f6faf9;border:2px solid rgba(0,184,148,.28);border-radius:16px;padding:7px}
-.agetool__step{width:48px;height:48px;flex-shrink:0;border-radius:15px;border:2px solid rgba(0,184,148,.35);background:#fff;color:var(--vax-ink);font-size:1.6rem;font-weight:700;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,transform .12s,border-color .2s}
+.agetool__row{display:flex;align-items:center;gap:8px;justify-content:center;background:#f6faf9;border:2px solid rgba(0,184,148,.28);border-radius:14px;padding:5px;max-width:290px;margin:0 auto}
+.agetool__step{width:44px;height:44px;flex-shrink:0;border-radius:15px;border:2px solid rgba(0,184,148,.35);background:#fff;color:var(--vax-ink);font-size:1.45rem;font-weight:700;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,transform .12s,border-color .2s}
 .agetool__step:hover{background:rgba(0,184,148,.1);border-color:var(--vax)}
 .agetool__step:active{transform:scale(.94);background:rgba(0,184,148,.18)}
 .agetool__step:focus-visible{outline:3px solid var(--vax-ink);outline-offset:2px}
-.agetool__field{flex:1;min-width:0;height:50px;border:none;background:transparent;text-align:center;font-size:2rem;font-weight:800;color:var(--navy);letter-spacing:-.02em;font-family:inherit;-moz-appearance:textfield}
+.agetool__field{flex:1;min-width:0;height:44px;border:none;background:transparent;text-align:center;font-size:1.7rem;font-weight:800;color:var(--navy);letter-spacing:-.02em;font-family:inherit;-moz-appearance:textfield}
 .agetool__field::-webkit-outer-spin-button,.agetool__field::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 .agetool__field::placeholder{color:rgba(10,22,40,.22);font-weight:700}
 .agetool__field:focus{outline:none}
@@ -678,13 +678,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2 class="agetool__title" id="agetool-h">¿Qué vacunas <em>me tocan</em>?</h2>
 
 <div class="agetool__inputwrap">
-<label class="agetool__label" for="edadInput">Tu edad</label>
+<label class="agetool__label" for="edadInput" style="text-align:center">Tu edad (años)</label>
 <div class="agetool__row">
 <button type="button" class="agetool__step" data-step="-1" aria-label="Restar un año">&minus;</button>
-<input type="number" id="edadInput" class="agetool__field" inputmode="numeric" pattern="[0-9]*" min="19" max="110" step="1" placeholder="65" autocomplete="off" aria-describedby="edadUnit">
+<input type="number" id="edadInput" class="agetool__field" inputmode="numeric" pattern="[0-9]*" min="19" max="110" step="1" placeholder="65" autocomplete="off" >
 <button type="button" class="agetool__step" data-step="1" aria-label="Sumar un año">+</button>
 </div>
-<p class="agetool__unit" id="edadUnit">años</p>
 
 <fieldset style="border:none;padding:0;margin:12px 0 0">
 <legend class="agetool__label" style="margin-bottom:7px">¿Tienes alguna? <span style="font-weight:600;color:var(--ink-soft);font-size:.92rem">(opcional)</span></legend>
