@@ -345,22 +345,6 @@
 /* === "QUE ME TOCA A MI" — pivote por edad de la misma tabla resumen === */
 .age-grid{display:grid;grid-template-columns:1fr;gap:16px}
 @media(min-width:820px){.age-grid{grid-template-columns:1fr 1fr;gap:20px}}
-.age-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:20px;overflow:hidden;box-shadow:0 6px 22px rgba(10,22,40,.06);display:flex;flex-direction:column}
-.age-card__band{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;padding:16px 20px;background:linear-gradient(135deg,#0a1628,#0d2a26);color:#fff}
-.age-card__num{font-size:1.75rem;font-weight:800;letter-spacing:-.02em;line-height:1.1}
-.age-card__to{font-size:1.1rem;font-weight:600;color:rgba(255,255,255,.88);line-height:1.3}
-.age-card__body{padding:16px 20px 20px;flex:1}
-.age-card__lead{display:flex;align-items:center;gap:9px;font-size:1rem;font-weight:800;color:var(--vax-ink);margin:0 0 10px;line-height:1.35}
-.age-card__lead--risk{color:#9a5000;margin-top:18px}
-.age-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
-.age-list li{display:flex;align-items:flex-start;gap:11px;font-size:1.0625rem;color:var(--text);line-height:1.5}
-.age-list li i{flex-shrink:0;width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.8rem;margin-top:1px}
-.age-list li strong{color:var(--navy);font-weight:800}
-.age-list--all li i{background:rgba(0,184,148,.16);color:var(--vax-ink)}
-.age-list--risk li i{background:rgba(217,119,6,.16);color:#9a5000}
-.age-note{display:flex;align-items:flex-start;gap:12px;margin-top:18px;padding:15px 18px;background:#f7f9fc;border:1px solid rgba(0,0,0,.07);border-radius:14px;font-size:1.0625rem;color:var(--ink-soft);line-height:1.6}
-.age-note i{color:var(--vax-ink);font-size:1.3rem;flex-shrink:0;margin-top:1px}
-.age-note strong{color:var(--navy)}
 
 /* === STAGGER REVEAL POLISH === */
 /* Desplazamiento corto y rapido: el bloque se asienta antes de que el ojo lo alcance */
@@ -414,8 +398,11 @@ html{scroll-behavior:smooth;scroll-padding-top:96px}
 .agetool__idle{text-align:center;font-size:1rem;color:var(--ink-soft);padding:12px 8px;line-height:1.45}
 .agetool__msg{padding:15px 16px;border-radius:14px;background:#fffbeb;border:1px solid rgba(245,158,11,.35);color:#78350f;font-size:1rem;line-height:1.5;display:flex;gap:10px;align-items:center}
 .agetool__msg i{color:#b45309;font-size:1.15rem;flex-shrink:0}
-.agetool__answer{font-size:1.2rem;font-weight:800;color:var(--navy);line-height:1.3;margin:0 0 10px;text-align:center}
-.agetool__answer strong{color:var(--vax-ink)}
+/* Veredicto como panel (GOV.UK Panel): la respuesta es lo mas grande de la pantalla,
+   verde oscuro 7:1 sobre blanco, y es el UNICO bloque invertido del modulo */
+.agetool__answer{display:flex;align-items:center;gap:16px;background:#047857;color:#fff;border-radius:18px;padding:18px 20px;margin:0 0 14px;font-size:1.15rem;font-weight:700;line-height:1.35;text-align:left}
+.agetool__answer strong{color:#fff}
+.agetool__answer .vnum{flex-shrink:0;width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.16);border:3px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;font-size:1.9rem;font-weight:800;letter-spacing:-.02em}
 .agetool__legend{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;font-size:.87rem;font-weight:600;color:var(--ink-soft);margin:0 0 14px}
 .agetool__legend span{display:inline-flex;align-items:center;gap:6px}
 .agetool__legend b{width:19px;height:19px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:.58rem;color:#fff;flex-shrink:0}
@@ -426,9 +413,9 @@ html{scroll-behavior:smooth;scroll-padding-top:96px}
 .vtile{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;gap:7px;padding:18px 10px 15px;border-radius:18px;border:2px solid rgba(0,0,0,.07);background:#fff;text-decoration:none;min-height:158px;transition:transform .16s var(--ease),box-shadow .16s var(--ease);animation:tilePop .34s var(--ease) both}
 .vtile__ic{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#fff;background:var(--row,#94a3b8);flex-shrink:0}
 .vtile__n{font-size:1.05rem;font-weight:800;color:var(--navy);line-height:1.2;letter-spacing:-.01em}
-.vtile__f{font-size:.9rem;font-weight:600;color:var(--ink-soft);line-height:1.3}
+.vtile__f{font-size:1rem;font-weight:600;color:var(--ink-soft);line-height:1.3}
 .vtile__badge{position:absolute;top:9px;right:9px;width:27px;height:27px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;color:#fff;box-shadow:0 2px 6px rgba(0,0,0,.18)}
-.vtile__cond{font-size:.82rem;line-height:1.3;color:#8a4b06;font-weight:700}
+.vtile__cond{font-size:1rem;line-height:1.3;color:#8a4b06;font-weight:700}
 .vtile--si{border-color:rgba(0,184,148,.55);box-shadow:0 6px 18px rgba(0,184,148,.13)}
 .vtile--si .vtile__badge{background:#0a8f6f}
 .vtile--riesgo{border-style:dashed;border-color:rgba(194,116,10,.6);background:#fffdf6}
@@ -441,6 +428,47 @@ html{scroll-behavior:smooth;scroll-padding-top:96px}
 .vtile:focus-visible{outline:3px solid var(--vax-ink);outline-offset:3px}
 @media(hover:hover){.vtile:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(10,22,40,.12)}}
 .agetool__tap{text-align:center;font-size:.9rem;color:var(--ink-soft);margin:12px 0 0}
+
+/* --- selector de neumopatia: casillas grandes tipo interruptor --- */
+.togs{display:flex;flex-wrap:wrap;gap:9px;margin-top:10px}
+.tog{position:relative;display:inline-flex;align-items:center;gap:9px;min-height:50px;padding:11px 16px;border-radius:100px;border:2px solid rgba(0,0,0,.1);background:#fff;font-size:1rem;font-weight:700;color:var(--navy);cursor:pointer;line-height:1.2;transition:border-color .2s,background .2s,transform .12s;user-select:none}
+.tog input{position:absolute;opacity:0;width:1px;height:1px}
+.tog__box{width:24px;height:24px;border-radius:8px;border:2px solid rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#fff;flex-shrink:0;transition:background .2s,border-color .2s}
+.tog__box i{opacity:0;transition:opacity .15s}
+.tog:active{transform:scale(.97)}
+.tog:has(input:checked){border-color:var(--vax);background:rgba(0,184,148,.09);color:var(--vax-ink)}
+.tog:has(input:checked) .tog__box{background:var(--vax-ink);border-color:var(--vax-ink)}
+.tog:has(input:checked) .tog__box i{opacity:1}
+.tog:has(input:focus-visible){outline:3px solid var(--vax-ink);outline-offset:2px}
+
+/* --- encabezado de grupo: prioritarias / sugeridas / no aplica --- */
+.gh{display:flex;align-items:center;gap:10px;margin:22px 0 12px}
+.gh__t{font-size:1.05rem;font-weight:800;line-height:1.25;color:var(--navy)}
+.gh__n{width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800;color:#fff;flex-shrink:0}
+.gh--pri .gh__n{background:#0a8f6f}
+.gh--sug .gh__n{background:#c2740a}
+.gh--no  .gh__n{background:#94a3b8}
+.gh__d{font-size:.9rem;color:var(--ink-soft);font-weight:600}
+
+/* --- modal breve de vacuna --- */
+.vmodal{border:none;padding:0;border-radius:22px;max-width:430px;width:calc(100% - 28px);background:#fff;box-shadow:0 30px 80px rgba(10,22,40,.4);overflow:visible}
+.vmodal::backdrop{background:rgba(10,22,40,.55);backdrop-filter:blur(4px)}
+.vmodal__in{padding:24px 22px 22px;position:relative}
+.vmodal__x{position:absolute;top:-14px;right:-10px;width:46px;height:46px;border-radius:50%;border:none;background:var(--navy);color:#fff;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(10,22,40,.35)}
+.vmodal__x:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.vmodal__ic{width:60px;height:60px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:#fff;background:var(--row,#94a3b8);margin-bottom:12px}
+.vmodal__n{font-size:1.45rem;font-weight:800;color:var(--navy);line-height:1.2;margin:0 0 8px;letter-spacing:-.015em}
+.vmodal__tag{display:inline-flex;align-items:center;gap:7px;font-size:.92rem;font-weight:700;border-radius:100px;padding:7px 14px;margin-bottom:14px}
+.vmodal__tag--pri{background:rgba(0,184,148,.13);color:#046b4e}
+.vmodal__tag--sug{background:rgba(245,158,11,.16);color:#8a4b06}
+.vmodal__tag--no{background:#eef1f5;color:#64748b}
+.vmodal__row{display:flex;gap:11px;align-items:flex-start;padding:12px 0;border-top:1px solid rgba(0,0,0,.07)}
+.vmodal__row i{width:30px;height:30px;border-radius:10px;background:rgba(0,184,148,.12);color:var(--vax-ink);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0;margin-top:1px}
+.vmodal__k{font-size:.85rem;font-weight:800;color:var(--vax-ink);letter-spacing:.3px;margin:0 0 1px}
+.vmodal__v{font-size:1.0625rem;line-height:1.5;color:var(--ink);margin:0}
+.vmodal__cta{display:flex;gap:9px;margin-top:16px;flex-wrap:wrap}
+.vmodal__b{flex:1;min-width:140px;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:13px 16px;border-radius:13px;font-size:1rem;font-weight:700;text-decoration:none;border:1px solid rgba(0,0,0,.08);background:#f1f5f9;color:var(--navy)}
+.vmodal__b--wa{background:#25d366;color:#fff!important;border-color:transparent}
 
 /* --- fila compacta reutilizable: icono + titulo + una linea --- */
 .crow{display:flex;align-items:center;gap:14px;padding:14px 16px;background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:16px;box-shadow:0 2px 10px rgba(10,22,40,.04)}
@@ -473,16 +501,7 @@ html{scroll-behavior:smooth;scroll-padding-top:96px}
 .agetool__note{display:flex;align-items:flex-start;gap:11px;font-size:1.0625rem;line-height:1.6;color:#78350f;background:linear-gradient(135deg,#fffaeb,#fef3c7);border:1px solid rgba(245,158,11,.3);border-left:5px solid #f59e0b;border-radius:14px;padding:16px 18px;margin-top:24px}
 .agetool__note i{color:#b45309;font-size:1.2rem;margin-top:2px;flex-shrink:0}
 
-/* --- respaldo estatico: los 4 grupos, indexables y sin JS --- */
-.agetool__fallback{margin-top:22px;border:1px solid rgba(0,0,0,.08);border-radius:16px;background:#fbfdfc;overflow:hidden}
-.agetool__fallback>summary{cursor:pointer;list-style:none;padding:16px 18px;min-height:56px;display:flex;align-items:center;gap:11px;font-size:1.0625rem;font-weight:700;color:var(--navy)}
-.agetool__fallback>summary::-webkit-details-marker{display:none}
-.agetool__fallback>summary i.fb-arrow{margin-left:auto;color:var(--vax-ink);transition:transform .3s}
-.agetool__fallback[open]>summary i.fb-arrow{transform:rotate(180deg)}
-.agetool__fallback>summary:focus-visible{outline:3px solid var(--vax-ink);outline-offset:-3px}
-.agetool__fallback .age-grid{padding:0 14px 18px}
 body:not(.js-enabled) .agetool__inputwrap,body:not(.js-enabled) .agetool__out{display:none}
-body:not(.js-enabled) .agetool__fallback{margin-top:0}
 
 /* === REDUCED MOTION === */
 @media (prefers-reduced-motion: reduce){
@@ -655,88 +674,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <button type="button" class="agetool__step" data-step="1" aria-label="Sumar un año">+</button>
 </div>
 <p class="agetool__unit" id="edadUnit">años</p>
-<p class="agetool__privacy"><i class="fas fa-lock" aria-hidden="true"></i>Tu edad no se guarda ni se envía a ningún lado.</p>
+
+<fieldset style="border:none;padding:0;margin:18px 0 0">
+<legend class="agetool__label" style="margin-bottom:10px">¿Tienes alguna de estas? <span style="font-weight:600;color:var(--ink-soft);font-size:.95rem">(opcional)</span></legend>
+<div class="togs" id="condTogs">
+<label class="tog"><input type="checkbox" value="epoc"><span class="tog__box"><i class="fas fa-check" aria-hidden="true"></i></span>EPOC</label>
+<label class="tog"><input type="checkbox" value="asma"><span class="tog__box"><i class="fas fa-check" aria-hidden="true"></i></span>Asma</label>
+<label class="tog"><input type="checkbox" value="epid"><span class="tog__box"><i class="fas fa-check" aria-hidden="true"></i></span>EPID / fibrosis</label>
+<label class="tog"><input type="checkbox" value="tabaco"><span class="tog__box"><i class="fas fa-check" aria-hidden="true"></i></span>Fumo o fumé</label>
+<label class="tog"><input type="checkbox" value="inmuno"><span class="tog__box"><i class="fas fa-check" aria-hidden="true"></i></span>Defensas bajas</label>
+</div>
+</fieldset>
+
+<p class="agetool__privacy"><i class="fas fa-lock" aria-hidden="true"></i>Tus respuestas no se guardan ni se envían a ningún lado.</p>
 </div>
 
 <div class="agetool__out" id="agetoolOut" aria-live="polite">
 <p class="agetool__idle">Escribe tu edad y aquí aparece tu cartilla.</p>
 </div>
 
-<!-- Respaldo estatico: mismos datos, indexables y funcionales sin JavaScript -->
-<details class="agetool__fallback">
-<summary><i class="bi bi-people" aria-hidden="true"></i> Ver todos los grupos de edad <i class="bi bi-chevron-down fb-arrow" aria-hidden="true"></i></summary>
-<div class="age-grid">
 
-<article class="age-card">
-<div class="age-card__band"><span class="age-card__num">19</span><span class="age-card__to">a 49 años</span></div>
-<div class="age-card__body">
-<p class="age-card__lead"><i class="fas fa-check-circle" aria-hidden="true"></i> A esta edad te tocan:</p>
-<ul class="age-list age-list--all">
-<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Influenza</strong> — cada año</span></li>
-<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Tdap</strong> — si no la has recibido después de los 10 años, y luego refuerzo cada 10 años</span></li>
-</ul>
-<p class="age-card__lead age-card__lead--risk"><i class="fas fa-plus-circle" aria-hidden="true"></i> Además, solo si tienes riesgo:</p>
-<ul class="age-list age-list--risk">
-<li><i class="fas fa-plus" aria-hidden="true"></i><span><strong>Neumococo</strong> — con EPOC, asma grave, tabaquismo o inmunocompromiso</span></li>
-<li><i class="fas fa-plus" aria-hidden="true"></i><span><strong>COVID-19</strong> — con factores de riesgo</span></li>
-<li><i class="fas fa-plus" aria-hidden="true"></i><span><strong>Herpes zóster</strong> — con inmunocompromiso</span></li>
-</ul>
-</div>
-</article>
-
-<article class="age-card">
-<div class="age-card__band"><span class="age-card__num">50</span><span class="age-card__to">a 64 años</span></div>
-<div class="age-card__body">
-<p class="age-card__lead"><i class="fas fa-check-circle" aria-hidden="true"></i> A esta edad te tocan:</p>
-<ul class="age-list age-list--all">
-<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Influenza</strong> — cada año</span></li>
-<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Neumococo</strong> — entra a partir de los 50</span></li>
-<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Herpes zóster</strong> — entra a partir de los 50, son 2 dosis</span></li>
-<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Tdap</strong> — refuerzo cada 10 años</span></li>
-</ul>
-<p class="age-card__lead age-card__lead--risk"><i class="fas fa-plus-circle" aria-hidden="true"></i> Además, solo si tienes riesgo:</p>
-<ul class="age-list age-list--risk">
-<li><i class="fas fa-plus" aria-hidden="true"></i><span><strong>VSR</strong> — con EPOC, asma, cardiopatía o inmunocompromiso</span></li>
-<li><i class="fas fa-plus" aria-hidden="true"></i><span><strong>COVID-19</strong> — con factores de riesgo</span></li>
-</ul>
-</div>
-</article>
-
-<article class="age-card">
-<div class="age-card__band"><span class="age-card__num">65</span><span class="age-card__to">a 74 años</span></div>
-<div class="age-card__body">
-<p class="age-card__lead"><i class="fas fa-check-circle" aria-hidden="true"></i> A esta edad te tocan:</p>
-<ul class="age-list age-list--all">
-<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Influenza</strong> — cada año</span></li>
-<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Neumococo</strong></span></li>
-<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Herpes zóster</strong> — 2 dosis</span></li>
-<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>COVID-19</strong> — entra a partir de los 65</span></li>
-<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Tdap</strong> — refuerzo cada 10 años</span></li>
-</ul>
-<p class="age-card__lead age-card__lead--risk"><i class="fas fa-plus-circle" aria-hidden="true"></i> Además, solo si tienes riesgo:</p>
-<ul class="age-list age-list--risk">
-<li><i class="fas fa-plus" aria-hidden="true"></i><span><strong>VSR</strong> — con EPOC, asma, cardiopatía o inmunocompromiso</span></li>
-</ul>
-</div>
-</article>
-
-<article class="age-card">
-<div class="age-card__band"><span class="age-card__num">75</span><span class="age-card__to">años o más</span></div>
-<div class="age-card__body">
-<p class="age-card__lead"><i class="fas fa-check-circle" aria-hidden="true"></i> A esta edad te tocan todas:</p>
-<ul class="age-list age-list--all">
-<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Influenza</strong> — cada año</span></li>
-<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Neumococo</strong></span></li>
-<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Herpes zóster</strong> — 2 dosis</span></li>
-<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>COVID-19</strong></span></li>
-<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>VSR</strong> — entra a partir de los 75</span></li>
-<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Tdap</strong> — refuerzo cada 10 años</span></li>
-</ul>
-</div>
-</article>
-
-</div>
-</details>
 
 <p class="agetool__note"><i class="fas fa-circle-info" aria-hidden="true"></i> <span>Esto es orientación general, no una receta. <strong>En consulta podemos revisar tu cartilla</strong> y decirte cuáles te corresponden según tu edad y tu enfermedad pulmonar.</span></p>
 
@@ -1339,112 +1296,157 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 (function(){try{var KEY='alveos_lang_pref';if(localStorage.getItem(KEY))return;var lang=(navigator.language||navigator.userLanguage||'').toLowerCase();if(lang.indexOf('es')===0)return;var el=document.getElementById('langSuggest');if(!el)return;el.classList.add('show');el.querySelector('[data-lang-target]').addEventListener('click',function(){localStorage.setItem(KEY,'en');});el.querySelector('[data-lang-dismiss]').addEventListener('click',function(){localStorage.setItem(KEY,'es');el.classList.remove('show');});}catch(e){}})();
 </script>
 
+<!-- Modal breve de vacuna (se llena por JS) -->
+<dialog class="vmodal" id="vaxModal" aria-labelledby="vmodalN">
+<div class="vmodal__in">
+<button type="button" class="vmodal__x" id="vmodalX" aria-label="Cerrar"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+<div class="vmodal__ic" id="vmodalIc"><i class="fas fa-syringe" aria-hidden="true"></i></div>
+<h3 class="vmodal__n" id="vmodalN"></h3>
+<span class="vmodal__tag" id="vmodalTag"></span>
+<div class="vmodal__row"><i class="fas fa-bullseye" aria-hidden="true"></i><div><p class="vmodal__k">Para qué es</p><p class="vmodal__v" id="vmodalQue"></p></div></div>
+<div class="vmodal__row"><i class="fas fa-heart-pulse" aria-hidden="true"></i><div><p class="vmodal__k">Por qué importa</p><p class="vmodal__v" id="vmodalPor"></p></div></div>
+<div class="vmodal__row"><i class="fas fa-calendar-check" aria-hidden="true"></i><div><p class="vmodal__k">Esquema</p><p class="vmodal__v" id="vmodalCu"></p></div></div>
+<div class="vmodal__cta">
+<a class="vmodal__b" id="vmodalMas" href="#detalle"><i class="fas fa-circle-arrow-down" aria-hidden="true"></i> Detalle completo</a>
+</div>
+</div>
+</dialog>
+
 <script>
 /* ============================================================
-   SELECTOR DE EDAD -> VACUNAS QUE CORRESPONDEN
-   Las reglas de abajo son las MISMAS de la tabla resumen de esta
-   pagina (seccion #tabla). Si esa tabla cambia, ESTO SE ACTUALIZA.
-   La edad se queda en memoria: no se guarda, no se envia, no va en la URL.
+   SELECTOR EDAD + NEUMOPATIA -> CARTILLA DE VACUNAS
+   Reglas de edad: las de la tabla resumen historica de esta pagina.
+   Las neumopatias solo CONFIRMAN los criterios de riesgo que ya
+   estaban escritos en las tarjetas de detalle (no agregan claims).
+   Las que no aplican a esa edad NO se muestran.
+   Nada se guarda ni se envia: todo vive en memoria del navegador.
    ============================================================ */
 (function(){
   var input = document.getElementById('edadInput');
   var out   = document.getElementById('agetoolOut');
+  var togs  = document.getElementById('condTogs');
   if(!input || !out) return;
 
-  /* Ficha de cada vacuna. Los textos salen de las tarjetas de detalle
-     de esta misma pagina; no se inventa nada. */
   var VAX = {
-    flu:   {nom:'Influenza',     color:'var(--flu)',    href:'#influenza',     icono:'fa-virus',           corto:'Cada año'},
-    pneumo:{nom:'Neumococo',     color:'var(--pneumo)', href:'#neumococo',     icono:'fa-shield-virus',    corto:'1 dosis'},
-    rsv:   {nom:'VSR',           color:'var(--rsv)',    href:'#vsr',           icono:'fa-head-side-cough', corto:'1 dosis'},
-    covid: {nom:'COVID-19',      color:'var(--covid)',  href:'#covid',         icono:'fa-viruses',         corto:'Cada temporada'},
-    tdap:  {nom:'Tdap',          color:'var(--tdap)',   href:'#tdap',          icono:'fa-syringe',         corto:'Cada 10 años'},
-    zoster:{nom:'Herpes zóster', color:'var(--zoster)', href:'#herpes-zoster', icono:'fa-hand-dots',       corto:'2 dosis'}
+    flu:   {nom:'Influenza',     color:'var(--flu)',    href:'#influenza',     icono:'fa-virus',           corto:'Cada año',
+            que:'Protege contra el virus de la influenza, que cambia cada año.',
+            porque:'Reduce crisis de asma y EPOC, hospitalizaciones y mortalidad.',
+            cuando:'Cada año, en octubre o noviembre'},
+    pneumo:{nom:'Neumococo',     color:'var(--pneumo)', href:'#neumococo',     icono:'fa-shield-virus',    corto:'1 dosis',
+            que:'Protege contra la bacteria que más causa neumonía en el adulto.',
+            porque:'Previene neumonía, bacteriemia y meningitis.',
+            cuando:'1 dosis (el esquema varía) · cualquier mes'},
+    rsv:   {nom:'VSR',           color:'var(--rsv)',    href:'#vsr',           icono:'fa-head-side-cough', corto:'1 dosis',
+            que:'Protege contra el virus sincicial respiratorio.',
+            porque:'En adultos mayores reduce la enfermedad grave y los ingresos.',
+            cuando:'Dosis única · antes del otoño'},
+    covid: {nom:'COVID-19',      color:'var(--covid)',  href:'#covid',         icono:'fa-viruses',         corto:'Cada temporada',
+            que:'Fórmula que se actualiza cada temporada.',
+            porque:'Reduce la hospitalización y la enfermedad grave.',
+            cuando:'Cada temporada · otoño'},
+    tdap:  {nom:'Tdap',          color:'var(--tdap)',   href:'#tdap',          icono:'fa-syringe',         corto:'Cada 10 años',
+            que:'Protege contra tétanos, difteria y tos ferina.',
+            porque:'Importante con EPOC o asma, y si convives con bebés.',
+            cuando:'1 dosis y refuerzo cada 10 años'},
+    zoster:{nom:'Herpes zóster', color:'var(--zoster)', href:'#herpes-zoster', icono:'fa-hand-dots',       corto:'2 dosis',
+            que:'Vacuna recombinante contra la culebrilla.',
+            porque:'Más riesgo desde los 50, con EPOC o con corticoides crónicos.',
+            cuando:'2 dosis · cualquier mes'}
   };
-
   var ORDEN = ['flu','pneumo','rsv','covid','tdap','zoster'];
 
-  /* Regla por vacuna. Devuelve:
-       {b:'toca'}   -> le corresponde por edad
-       {b:'riesgo', cond:'...'} -> solo si tiene ese factor de riesgo
-       {b:'no'}     -> no aplica a esa edad */
-  function reglaPara(k, edad){
-    switch(k){
-      case 'flu':    /* toda persona >=6 meses */
-        return {b:'toca'};
-      case 'pneumo': /* >=50 anios, o >=19 con riesgo */
-        return edad>=50 ? {b:'toca'}
-                        : {b:'riesgo', cortoCond:'Con EPOC, asma o si fumas'};
-      case 'rsv':    /* >=75 anios; 50-74 con riesgo */
-        if(edad>=75) return {b:'toca'};
-        if(edad>=50) return {b:'riesgo', cortoCond:'Con EPOC, asma o cardiopatía'};
-        return {b:'no'};
-      case 'covid':  /* >=65 anios; menores con factores de riesgo */
-        return edad>=65 ? {b:'toca'}
-                        : {b:'riesgo', cortoCond:'Con factores de riesgo'};
-      case 'tdap':   /* adultos sin Tdap despues de los 10 anios */
-        return {b:'toca'};
-      case 'zoster': /* >=50 anios; >=19 con inmunocompromiso */
-        return edad>=50 ? {b:'toca'}
-                        : {b:'riesgo', cortoCond:'Con inmunocompromiso'};
-    }
-    return {b:'no'};
+  function condiciones(){
+    var c = {};
+    if(togs) Array.prototype.forEach.call(togs.querySelectorAll('input:checked'), function(i){ c[i.value] = true; });
+    return c;
   }
 
-  function esc(s){
-    return String(s).replace(/[&<>"]/g, function(c){
-      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];
+  /* Devuelve 'pri' (te toca), 'sug' (depende de un riesgo no marcado) o 'no'.
+     Criterios de riesgo: los mismos de las tarjetas de detalle de esta pagina. */
+  function estadoDe(k, edad, c){
+    var pulmonCronico = c.epoc || c.epid;
+    switch(k){
+      case 'flu':  return {e:'pri'};
+      case 'pneumo':
+        if(edad >= 50) return {e:'pri'};
+        if(pulmonCronico || c.tabaco || c.inmuno) return {e:'pri'};
+        if(c.asma) return {e:'sug', cond:'Si tu asma es grave'};
+        return {e:'sug', cond:'Con EPOC, asma grave o si fumas'};
+      case 'rsv':
+        if(edad >= 75) return {e:'pri'};
+        if(edad >= 50){
+          if(pulmonCronico || c.asma || c.inmuno) return {e:'pri'};
+          return {e:'sug', cond:'Con EPOC, asma o cardiopatía'};
+        }
+        return {e:'no'};
+      case 'covid':
+        if(edad >= 65) return {e:'pri'};
+        if(pulmonCronico || c.asma || c.tabaco || c.inmuno) return {e:'pri'};
+        return {e:'sug', cond:'Con factores de riesgo'};
+      case 'tdap': return {e:'pri'};
+      case 'zoster':
+        if(edad >= 50) return {e:'pri'};
+        if(c.inmuno) return {e:'pri'};
+        return {e:'sug', cond:'Con defensas bajas'};
+    }
+    return {e:'no'};
+  }
+
+  function esc(x){
+    return String(x).replace(/[&<>"]/g, function(ch){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch];
     });
   }
 
-  /* Una casilla de la cartilla. Sin parrafos: icono, nombre y una linea. */
   function casilla(k, r, i){
-    var v = VAX[k], est = r.b;
-    var mod   = est === 'toca' ? 'si' : (est === 'riesgo' ? 'riesgo' : 'no');
-    var badge = est === 'toca'   ? '<span class="vtile__badge"><i class="fas fa-check" aria-hidden="true"></i></span>'
-              : est === 'riesgo' ? '<span class="vtile__badge"><i class="fas fa-plus" aria-hidden="true"></i></span>'
-              : '';
-    var estado = est === 'toca'   ? 'Te toca'
-               : est === 'riesgo' ? 'Solo si tienes riesgo'
-               : 'No aplica a tu edad';
-    return '<a class="vtile vtile--' + mod + '" href="' + v.href + '" data-abrir' +
+    var v = VAX[k];
+    var mod   = r.e === 'pri' ? 'si' : 'riesgo';
+    var badge = r.e === 'pri' ? '<span class="vtile__badge"><i class="fas fa-check" aria-hidden="true"></i></span>'
+                              : '<span class="vtile__badge"><i class="fas fa-plus" aria-hidden="true"></i></span>';
+    var lbl   = r.e === 'pri' ? 'Prioritaria para ti' : 'Sugerida según tu caso';
+    return '<button type="button" class="vtile vtile--' + mod + '" data-vax="' + k + '" data-estado="' + r.e + '"' +
+             (r.cond ? ' data-cond="' + esc(r.cond) + '"' : '') +
              ' style="--row:' + v.color + ';animation-delay:' + (i * 45) + 'ms"' +
-             ' aria-label="' + esc(v.nom) + ': ' + estado + '">' +
+             ' aria-label="' + esc(v.nom) + ': ' + lbl + '. Ver detalle">' +
         badge +
         '<span class="vtile__ic"><i class="fas ' + v.icono + '" aria-hidden="true"></i></span>' +
         '<span class="vtile__n">' + esc(v.nom) + '</span>' +
-        '<span class="vtile__f">' + esc(est === 'no' ? 'No aplica' : v.corto) + '</span>' +
-        (est === 'riesgo' ? '<span class="vtile__cond">' + esc(r.cortoCond) + '</span>' : '') +
-      '</a>';
+        '<span class="vtile__f">' + esc(v.corto) + '</span>' +
+        (r.cond ? '<span class="vtile__cond">' + esc(r.cond) + '</span>' : '') +
+      '</button>';
   }
 
   function pintar(edad){
-    var casillas = [], nTocan = 0;
-    ORDEN.forEach(function(k, i){
-      var r = reglaPara(k, edad);
-      if(r.b === 'toca') nTocan++;
-      casillas.push(casilla(k, r, i));
+    var c = condiciones();
+    var pri = [], sug = [], idx = 0;
+    ORDEN.forEach(function(k){
+      var r = estadoDe(k, edad, c);
+      if(r.e === 'no') return;                 /* no aplica: no se muestra */
+      var html = casilla(k, r, idx++);
+      if(r.e === 'pri') pri.push(html); else sug.push(html);
     });
 
-    out.innerHTML =
-      '<p class="agetool__answer">A los <strong>' + edad + ' años</strong> te tocan ' +
-        '<strong>' + nTocan + ' de 6</strong></p>' +
-      '<p class="agetool__legend">' +
-        '<span><b style="background:#0a8f6f" aria-hidden="true"><i class="fas fa-check"></i></b> Te toca</span>' +
-        '<span><b style="background:#c2740a" aria-hidden="true"><i class="fas fa-plus"></i></b> Solo con riesgo</span>' +
-        '<span><b style="background:#cbd5e1" aria-hidden="true"></b> No aplica</span>' +
-      '</p>' +
-      '<div class="vgrid">' + casillas.join('') + '</div>' +
-      '<p class="agetool__tap"><i class="fas fa-hand-pointer" aria-hidden="true"></i> Toca una vacuna para ver el detalle</p>';
+    var html = '<div class="agetool__answer"><span class="vnum">' + pri.length + '</span>' +
+               '<span>vacuna' + (pri.length === 1 ? '' : 's') + ' prioritaria' + (pri.length === 1 ? '' : 's') +
+               ' a los <strong>' + edad + ' años</strong>' +
+               (Object.keys(c).length ? ', con lo que marcaste' : '') + '</span></div>';
+
+    html += '<div class="gh gh--pri"><span class="gh__n">' + pri.length + '</span>' +
+            '<span class="gh__t">Prioritarias para ti</span></div>' +
+            '<div class="vgrid">' + pri.join('') + '</div>';
+
+    if(sug.length){
+      html += '<div class="gh gh--sug"><span class="gh__n">' + sug.length + '</span>' +
+              '<div><span class="gh__t">Sugeridas</span> <span class="gh__d">· depende de tu caso, se valora en consulta</span></div></div>' +
+              '<div class="vgrid">' + sug.join('') + '</div>';
+    }
+    html += '<p class="agetool__tap"><i class="fas fa-hand-pointer" aria-hidden="true"></i> Toca una vacuna para ver el detalle</p>';
+    out.innerHTML = html;
   }
 
-  function idle(){
-    out.innerHTML = '<p class="agetool__idle">Escribe tu edad y aquí aparece tu cartilla.</p>';
-  }
-
-  function aviso(txt){
-    out.innerHTML = '<p class="agetool__msg"><i class="fas fa-circle-exclamation" aria-hidden="true"></i>' +
-      '<span>' + esc(txt) + '</span></p>';
+  function idle(){ out.innerHTML = '<p class="agetool__idle">Escribe tu edad y aquí aparece tu cartilla.</p>'; }
+  function aviso(t){
+    out.innerHTML = '<p class="agetool__msg"><i class="fas fa-circle-exclamation" aria-hidden="true"></i><span>' + esc(t) + '</span></p>';
   }
 
   function evaluar(){
@@ -1452,7 +1454,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     if(crudo === ''){ idle(); return; }
     var edad = parseInt(crudo, 10);
     if(isNaN(edad)){ idle(); return; }
-    /* Un solo digito casi siempre es alguien a medio escribir: no lo regañamos todavia. */
     if(crudo.length < 2 && edad < 19){ idle(); return; }
     if(edad < 19){ aviso('Esta guía cubre las vacunas del adulto, desde los 19 años.'); return; }
     if(edad > 110){ aviso('Revisa la edad, por favor: escribe un número entre 19 y 110.'); return; }
@@ -1460,30 +1461,51 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 
   input.addEventListener('input', evaluar);
+  if(togs) togs.addEventListener('change', evaluar);
 
-  /* Botones - / + : suben y bajan un anio sin necesidad de teclado. */
   Array.prototype.forEach.call(document.querySelectorAll('.agetool__step'), function(btn){
     btn.addEventListener('click', function(){
-      var paso  = parseInt(btn.getAttribute('data-step'), 10);
-      var actual = parseInt(input.value, 10);
-      if(isNaN(actual)) actual = 65;            /* punto de partida util para esta pagina */
-      else actual = actual + paso;
-      if(actual < 19)  actual = 19;
-      if(actual > 110) actual = 110;
-      input.value = actual;
+      var paso = parseInt(btn.getAttribute('data-step'), 10);
+      var v = parseInt(input.value, 10);
+      if(isNaN(v)) v = 65; else v += paso;
+      input.value = Math.min(110, Math.max(19, v));
       evaluar();
     });
   });
 
-  /* "Ver el detalle completo" abre la tarjeta desplegable de esa vacuna
-     antes de saltar, para que no aterrice en un acordeon cerrado. */
+  /* --- modal breve --- */
+  var dlg = document.getElementById('vaxModal');
+  function abrirModal(k, estado, cond){
+    if(!dlg || !dlg.showModal){ location.hash = VAX[k].href.slice(1); return; }
+    var v = VAX[k];
+    document.getElementById('vmodalIc').innerHTML = '<i class="fas ' + v.icono + '" aria-hidden="true"></i>';
+    document.getElementById('vmodalIc').style.background = v.color;
+    document.getElementById('vmodalN').textContent = v.nom;
+    var tag = document.getElementById('vmodalTag');
+    if(estado === 'pri'){ tag.className = 'vmodal__tag vmodal__tag--pri'; tag.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Prioritaria para ti'; }
+    else { tag.className = 'vmodal__tag vmodal__tag--sug'; tag.innerHTML = '<i class="fas fa-plus" aria-hidden="true"></i> ' + esc(cond || 'Sugerida según tu caso'); }
+    document.getElementById('vmodalQue').textContent = v.que;
+    document.getElementById('vmodalPor').textContent = v.porque;
+    document.getElementById('vmodalCu').textContent  = v.cuando;
+    document.getElementById('vmodalMas').href = v.href;
+    dlg.showModal();
+  }
   out.addEventListener('click', function(ev){
-    var a = ev.target.closest ? ev.target.closest('a[data-abrir]') : null;
-    if(!a) return;
-    var destino = document.querySelector(a.getAttribute('href'));
-    if(destino && destino.tagName === 'DETAILS') destino.open = true;
+    var t = ev.target.closest ? ev.target.closest('.vtile') : null;
+    if(!t) return;
+    abrirModal(t.getAttribute('data-vax'), t.getAttribute('data-estado'), t.getAttribute('data-cond'));
   });
+  if(dlg){
+    document.getElementById('vmodalX').addEventListener('click', function(){ dlg.close(); });
+    dlg.addEventListener('click', function(ev){ if(ev.target === dlg) dlg.close(); });
+    document.getElementById('vmodalMas').addEventListener('click', function(){
+      dlg.close();
+      var d = document.querySelector(this.getAttribute('href'));
+      if(d && d.tagName === 'DETAILS') d.open = true;
+    });
+  }
 })();
 </script>
+
 </body>
 </html>
