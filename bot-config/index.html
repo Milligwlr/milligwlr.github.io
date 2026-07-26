@@ -591,7 +591,12 @@
     return estado.clave || ''; // respaldo en memoria si localStorage está bloqueado
   }
   function guardaClave(v) { estado.clave = v; try { localStorage.setItem(LS_CLAVE, v); } catch (e) {} }
-  function borraClave() { estado.clave = ''; try { localStorage.removeItem(LS_CLAVE); } catch (e) {} }
+  function borraClave() {
+    estado.clave = '';
+    try { localStorage.removeItem(LS_CLAVE); } catch (e) {}
+    // La foto del tablero sale con la sesión (dispositivo prestado = cero rastro).
+    try { localStorage.removeItem('panel_cache_v1'); } catch (e) {}
+  }
 
   /* ================== Toast + Action sheet ================== */
   var avisoTimer = null;
@@ -654,6 +659,23 @@
   }
 
   /* ================== Carga ================== */
+  // Caché de arranque (25-jul (6), el Dr. reporta carga lenta, sobre todo en
+  // datos móviles): lo ÚLTIMO recibido se guarda en el teléfono y se pinta AL
+  // INSTANTE al abrir, mientras lo fresco llega por detrás. Se purga al cerrar
+  // sesión (borraClave). Solo es una foto: cualquier dato viejo se reemplaza
+  // en cuanto responde el servidor.
+  var LS_CACHE = 'panel_cache_v1';
+  function leeCachePanel() {
+    try {
+      var raw = localStorage.getItem(LS_CACHE);
+      if (!raw) return null;
+      var o = JSON.parse(raw);
+      return (o && o.datos && o.datos.ok) ? o : null;
+    } catch (e) { return null; }
+  }
+  function guardaCachePanel(d) {
+    try { localStorage.setItem(LS_CACHE, JSON.stringify({ ts: Date.now(), datos: d })); } catch (e) {}
+  }
   function carga(claveDirecta) {
     var clave = claveDirecta || claveGuardada();
     if (!clave) { muestraPuerta(false); return; }
@@ -661,12 +683,26 @@
     if (estado.cargando) return;
     estado.cargando = true;
     $('btnRefrescar').classList.add('girando');
+    // Foto guardada -> pintar YA (solo si aún no hay datos en pantalla).
+    if (!estado.datos && !claveDirecta) {
+      var cachePan = leeCachePanel();
+      if (cachePan) {
+        estado.datos = cachePan.datos;
+        if (estado.layout === null) cargaLayout(cachePan.datos);
+        $('puerta').hidden = true; $('app').hidden = false;
+        pinta();
+        var min = Math.round((Date.now() - cachePan.ts) / 60000);
+        avisa(min <= 1 ? 'Mostrando lo último guardado; actualizando…'
+          : 'Mostrando lo de hace ' + min + ' min; actualizando…');
+      }
+    }
     if (!$('app').hidden && estado.datos) setBarra();
     pedir({}).then(function (d) {
       if (!d || !d.ok) {
         if (d && d.error === 'no autorizado') { borraClave(); muestraPuerta(true); return; }
         throw new Error((d && d.error) || 'respuesta inválida');
       }
+      guardaCachePanel(d);
       estado.datos = d;
       if (estado.layout === null) cargaLayout(d);
       if (estado.ventana === 'd7' && estado.layout && estado.layout.ventana) estado.ventana = estado.layout.ventana;
@@ -1292,11 +1328,16 @@
       mos.appendChild(mo);
     });
     v.appendChild(mos);
+    // Embudo VISUAL (25-jul (6)): los mismos números de los mosaicos, dibujados
+    // como cascada — se ve de un vistazo DÓNDE se angosta.
+    moduloEmbudo(v, m[estado.ventana] || {});
     // El embudo de arriba (conversaciones, reservas) es del bot COMPLETO a
     // propósito: un lead que apenas escribe "hola" todavía no eligió doctor, así
     // que no se puede separar sin inventar. Lo que SÍ tiene doctor son las
     // citas, y eso se desglosa abajo (petición del Dr., 15-jul).
     notaBajo(v, 'El bot guarda el historial de los últimos 30 días. Conversaciones y reservas son de todo el asistente: cuando alguien apenas escribe, aún no eligió doctor.');
+    // Su clientela (25-jul (6)): contactos nuevos por semana + acumulado.
+    if (estado.datos.clientela) moduloClientela(v, estado.datos.clientela);
     moduloDesgloseDoctor(v, m);
 
     // Sus citas por semana (Fase 0 del tablero, 15-jul). Solo si el servidor la
@@ -1498,6 +1539,89 @@
     });
     notaBajo(v, 'Estas recomendaciones se arman solas cruzando sus citas, el embudo del bot y sus números de Google. ' +
       'Nunca le voy a recomendar bajarle a una campaña: una cita perdida cuesta más que lo que se ahorra.');
+  }
+
+  /* ---- Embudo visual (25-jul (6)) ----
+     Los MISMOS números de los mosaicos, como cascada: cada barra es un paso y
+     su ancho es proporcional al paso anterior. El número va escrito SIEMPRE
+     (el largo solo acompaña). */
+  function moduloEmbudo(v, m) {
+    var pasos = [
+      ['Conversaciones', Number(m.conversaciones) || 0],
+      ['Empezaron a agendar', Number(m.flujos) || 0],
+      ['Reservaron', Number(m.reservas) || 0],
+      ['Confirmaron', Number(m.confirmadas) || 0]
+    ];
+    if (!pasos[0][1]) return; // sin boca de embudo no hay nada que dibujar
+    var g = seccion(v, 'Su embudo, de un vistazo');
+    var f = nodo('div', 'fila'); var cu = nodo('div', 'cuerpo');
+    var W = 320, alto = 26, gap = 20, H = pasos.length * (alto + gap) - gap + 6;
+    var svg = svgNodo('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img',
+      'aria-label': pasos.map(function (p) { return p[0] + ': ' + p[1]; }).join('. ') },
+      { width: '100%', height: 'auto', display: 'block' });
+    var max = pasos[0][1];
+    var colores = ['var(--indigo)', 'var(--azul)', 'var(--acento)', 'var(--verde)'];
+    pasos.forEach(function (p, i) {
+      var y = i * (alto + gap);
+      var w = Math.max(6, Math.round((W - 4) * (p[1] / max)));
+      svg.appendChild(svgNodo('rect', { x: 2, y: y, width: W - 4, height: alto, rx: 6 },
+        { fill: 'var(--chip-bg)' }));
+      svg.appendChild(svgNodo('rect', { x: 2, y: y, width: w, height: alto, rx: 6 },
+        { fill: colores[i], opacity: '.85' }));
+      svg.appendChild(svgTexto(8, y + alto - 8, p[0] + ': ' + p[1], 11, 'var(--ink)', 'start'));
+      // % de conversión respecto al paso ANTERIOR, escrito entre barras.
+      if (i > 0 && pasos[i - 1][1] > 0) {
+        var pct = Math.round(p[1] / pasos[i - 1][1] * 100);
+        svg.appendChild(svgTexto(W - 4, y - 6, '↓ ' + pct + '%', 9.5, 'var(--ink-3)', 'end'));
+      }
+    });
+    cu.appendChild(svg);
+    f.appendChild(cu); g.appendChild(f);
+  }
+
+  /* ---- Su clientela (25-jul (6)) ----
+     Contactos NUEVOS por semana (boca del embudo, ventana viva de 30 días) y
+     el acumulado real: pacientes que ya llegaron a cita desde que el bot
+     arrancó. Honesto: "nuevo" = primer mensaje en 30 días (no hay más
+     historia), y el conteo junta a los dos doctores. */
+  function moduloClientela(v, c) {
+    var g = seccion(v, 'Su clientela');
+    if (c.con_cita !== null && c.con_cita !== undefined) {
+      var f0 = nodo('div', 'fila'); var cu0 = nodo('div', 'cuerpo');
+      cu0.appendChild(nodo('div', 't', c.con_cita + ' pacientes han llegado a cita desde que el asistente arrancó'));
+      cu0.appendChild(nodo('div', 'd', 'De ' + (c.total_pacientes || 0) +
+        ' personas registradas que han escrito. Es su clientela acumulada por WhatsApp (ambos consultorios), desde julio.'));
+      f0.appendChild(cu0); g.appendChild(f0);
+    }
+    var sem = c.semanas || [];
+    if (sem.length) {
+      var f1 = nodo('div', 'fila'); var cu1 = nodo('div', 'cuerpo');
+      cu1.appendChild(nodo('div', 't', 'Personas nuevas que escriben, por semana'));
+      var W = 320, H = 120, padT = 14, padB = 20;
+      var svg = svgNodo('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img',
+        'aria-label': 'Contactos nuevos por semana: ' + sem.map(function (s) { return s.nuevos; }).join(', ') },
+        { width: '100%', height: 'auto', display: 'block' });
+      var techo = Math.max.apply(null, sem.map(function (s) { return s.nuevos; }).concat([1]));
+      var paso = W / sem.length;
+      var ancho = Math.min(30, paso * 0.55);
+      sem.forEach(function (s, i) {
+        var cx = paso * (i + 0.5);
+        var hBar = Math.max(2, (H - padT - padB) * (s.nuevos / techo));
+        var y = H - padB - hBar;
+        svg.appendChild(svgNodo('rect', { x: cx - ancho / 2, y: y, width: ancho, height: hBar, rx: 3 },
+          { fill: 'var(--verde)', opacity: '.8' }));
+        svg.appendChild(svgTexto(cx, y - 4, String(s.nuevos), 9.5, 'var(--ink-2)'));
+        svg.appendChild(svgTexto(cx, H - 6, s.etiqueta, 8.5, 'var(--ink-3)'));
+      });
+      cu1.appendChild(svg);
+      if (c.semana_en_curso !== null && c.semana_en_curso !== undefined) {
+        cu1.appendChild(nodo('div', 'd', 'La semana en curso lleva ' + c.semana_en_curso +
+          (c.semana_en_curso === 1 ? ' persona nueva' : ' personas nuevas') + '; no se grafica porque no ha terminado.'));
+      }
+      f1.appendChild(cu1); g.appendChild(f1);
+    }
+    notaBajo(v, '"Nueva" = su primer mensaje en los últimos 30 días (el historial del bot no guarda más). ' +
+      'El acumulado de pacientes sí es desde el arranque, porque vive en su lista de pacientes, no en el historial.');
   }
 
   /* ---- Su dinero en Google (Fase 1 del tablero, 15-jul) ----

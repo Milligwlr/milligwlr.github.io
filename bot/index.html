@@ -477,12 +477,44 @@
   // re-exponía el token/nota en la URL en silencio. Un cuerpo no-JSON
   // rechaza y el llamador pinta su estado de error de siempre.
   function apiVisor(params) {
-    return fetch(API + '?visor=1', {
+    // TIMEOUT de 25 s (25-jul (6), reporte del Dr.: en datos móviles el visor
+    // "no abre" — era un fetch SIN tope que se quedaba colgado para siempre en
+    // una red lenta). Al vencer se aborta y el catch existente avisa; el poll
+    // de 30 s reintenta solo.
+    var ctrl = null, t = null;
+    try { ctrl = new AbortController(); } catch (e) { ctrl = null; }
+    var carrera = new Promise(function (_res, rej) {
+      t = setTimeout(function () {
+        if (ctrl) { try { ctrl.abort(); } catch (e) {} }
+        rej(new Error('tardo demasiado'));
+      }, 25000);
+    });
+    var f = fetch(API + '?visor=1', {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify(params)
+      body: JSON.stringify(params),
+      signal: ctrl ? ctrl.signal : undefined
     }).then(function (r) { return r.json(); });
+    return Promise.race([f, carrera]).then(
+      function (j) { clearTimeout(t); return j; },
+      function (err) { clearTimeout(t); throw err; });
   }
+  // Foto local del visor (25-jul (6)): lo último recibido se guarda en el
+  // dispositivo y se pinta AL INSTANTE al abrir (clave para datos móviles
+  // lentos); lo fresco la reemplaza en cuanto llega. Sale con la sesión.
+  var LS_FOTO = 'visor_cache_v1';
+  function leeFotoVisor() {
+    try {
+      var o = JSON.parse(localStorage.getItem(LS_FOTO) || 'null');
+      return (o && o.ok) ? o : null;
+    } catch (e) { return null; }
+  }
+  function guardaFotoVisor(d) {
+    // best-effort: si el historial no cabe en localStorage, simplemente no
+    // hay foto (el visor sigue igual que siempre).
+    try { localStorage.setItem(LS_FOTO, JSON.stringify(d)); } catch (e) {}
+  }
+  function borraFotoVisor() { try { localStorage.removeItem(LS_FOTO); } catch (e) {} }
   var estado = { datos: null, sel: null, temporizador: null, cargando: false,
     filtro: 'todos', fichaAbierta: false, fichaTel: '', guardandoSeg: false,
     clave: '',          // copia en memoria: el visor sigue vivo con localStorage bloqueado
@@ -791,6 +823,8 @@
     estado.msgBorradores = {};
     estado.msgBaja = {};
     estado.enviando = {};
+    // (25-jul (6)) la FOTO local del visor son chats con PII: sale con la sesion.
+    borraFotoVisor();
     try {
       var taPuerta = $('compTexto');
       if (taPuerta) taPuerta.value = '';
@@ -817,6 +851,19 @@
     estado.cargando = true;
     $('btnRefrescar').classList.add('girando');
     $('estadoDr').textContent = 'actualizando…';
+    // Foto local -> pintar YA (solo en el arranque, con sesión guardada y sin
+    // datos en pantalla). En datos móviles lentos esto es la diferencia entre
+    // "no abre" y "abre al instante y se actualiza solo".
+    if (!estado.datos && !claveDirecta) {
+      var foto = leeFotoVisor();
+      if (foto) {
+        estado.datos = foto;
+        $('puerta').hidden = true;
+        $('app').hidden = false;
+        pintaTodo();
+        $('estadoDr').textContent = 'mostrando lo último guardado — actualizando…';
+      }
+    }
     apiVisor({ key: clave })
       .then(function (datos) {
         if (gen !== estado.sesionGen) {
@@ -834,6 +881,7 @@
           throw new Error(datos.error || 'respuesta invalida');
         }
         estado.clave = clave; // sobrevive con localStorage bloqueado
+        guardaFotoVisor(datos);
         // Si el servidor no genero datos nuevos, no hay nada que re-pintar
         // (evita rehacer el DOM y mover el scroll sin necesidad).
         var sinCambios = !!(estado.datos && estado.datos.generado === datos.generado);
