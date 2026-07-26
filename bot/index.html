@@ -976,9 +976,14 @@
       return hilos;
     }
     estado.ocultas = 0;
-    var esDigitos = /^\d+$/.test(q);
+    // Búsqueda por TELÉFONO robusta (26-jul, petición del Dr.): también con
+    // formato — "+52 56 2189 2638", espacios o guiones. Se comparan solo los
+    // DÍGITOS de lo tecleado contra los del teléfono; mínimo 4 para que un
+    // "2" suelto no iguale todos los chats (y un texto con números, como una
+    // dirección, siga buscando por texto normalmente).
+    var qDig = q.replace(/\D/g, '');
     return hilos.filter(function (h) {
-      if (esDigitos && String(h.telefono || '').replace(/\D/g, '').indexOf(q) !== -1) return true;
+      if (qDig.length >= 4 && String(h.telefono || '').replace(/\D/g, '').indexOf(qDig) !== -1) return true;
       if (sinAcentos(h.nombre).indexOf(q) !== -1) return true;
       if (String(h.telefono || '').indexOf(q) !== -1) return true;
       // v4.1: la busqueda tambien encuentra por ETIQUETA ("epoc", "cronico")
