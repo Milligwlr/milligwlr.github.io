@@ -561,6 +561,19 @@ a.zhero__cred:hover{background:rgba(255,255,255,.2);color:#fff}
 @media(max-width:768px){
     a.ubi-coverage__chip{min-height:44px}
 }
+
+/* === COMPACTACION MOVIL 60+ (jul-2026) =========================
+   Piso de 16.5px en el texto que el paciente tiene que leer, y
+   menos aire vertical para compensar. Solo movil. ============== */
+@media(max-width:767px){
+  section p,
+  section li,
+  .faq-item__answer,
+  details p,
+  details li{font-size:1.03rem!important;line-height:1.5!important}
+  .footer-meta{font-size:.91rem!important}
+  section{padding-top:32px!important;padding-bottom:32px!important}
+}
 </style>
 </head>
 <body>
