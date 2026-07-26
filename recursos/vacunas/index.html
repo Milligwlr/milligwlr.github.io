@@ -64,55 +64,64 @@
 <link rel="stylesheet" href="/enfermedades/_shared/disease.css">
 <style>
 :root{--vax:#00b894;--vax-light:#5eead4;--vax-mid:#00cec9;--vax-dark:#047857;
-  --flu:#0ea5e9;--pneumo:#7c3aed;--rsv:#0d9488;--covid:#dc2626;--tdap:#ea580c;--zoster:#c026d3}
+  --flu:#0ea5e9;--pneumo:#7c3aed;--rsv:#0d9488;--covid:#dc2626;--tdap:#ea580c;--zoster:#c026d3;
+  /* Legibilidad 60+: tinta de acento con contraste AA sobre fondo claro (6.6:1) y gris de cuerpo reforzado (7.6:1) */
+  --vax-ink:#046a52;--ink-soft:#475569}
 
 /* === SECTION SCAFFOLD === */
 .disease-content{padding:48px 0 24px}
 @media(min-width:768px){.disease-content{padding:64px 0 32px}}
 .vax-section{margin-bottom:56px;position:relative}
 @media(min-width:768px){.vax-section{margin-bottom:80px}}
-.vax-section__eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;font-weight:800;color:var(--vax);text-transform:uppercase;letter-spacing:2.5px;background:rgba(0,184,148,.08);border:1px solid rgba(0,184,148,.18);border-radius:100px;padding:6px 14px;margin-bottom:14px}
-.vax-section__eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--vax);animation:pulse-dot 2s ease-in-out infinite}
-@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.85)}}
-.vax-section__title{font-size:clamp(1.5rem,5.5vw,2.2rem);font-weight:800;color:var(--navy);letter-spacing:-.025em;line-height:1.15;margin-bottom:14px}
-.vax-section__title em{font-style:normal;background:linear-gradient(135deg,var(--vax) 0%,var(--vax-mid) 60%,var(--vax-light) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.vax-section__lead{font-size:1rem;color:var(--text-muted);line-height:1.6;max-width:680px;margin:0 0 24px}
+.vax-section__eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.88rem;font-weight:800;color:var(--vax-ink);text-transform:uppercase;letter-spacing:.9px;background:rgba(0,184,148,.1);border:1px solid rgba(4,106,82,.26);border-radius:100px;padding:8px 16px;margin-bottom:14px;line-height:1.25}
+.vax-section__eyebrow::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--vax-ink);flex-shrink:0}
+.vax-section__title{font-size:clamp(1.65rem,6vw,2.2rem);font-weight:800;color:var(--navy);letter-spacing:-.02em;line-height:1.2;margin-bottom:14px}
+.vax-section__title em{font-style:normal;color:var(--vax-ink);-webkit-text-fill-color:var(--vax-ink);background:none;text-decoration:underline;text-decoration-color:rgba(0,184,148,.5);text-decoration-thickness:.085em;text-underline-offset:.14em}
+.vax-section__lead{font-size:1.0625rem;color:var(--ink-soft);line-height:1.65;max-width:680px;margin:0 0 24px}
+@media(min-width:768px){.vax-section__lead{font-size:1.1rem}}
 
 /* === HERO === */
 .disease-hero{padding:110px 0 56px!important;min-height:auto!important;position:relative;overflow:hidden}
 @media(min-width:768px){.disease-hero{padding:140px 0 80px!important}}
 .disease-hero__bg{position:absolute;inset:0;background:radial-gradient(circle at 15% 25%,rgba(0,184,148,.28),transparent 55%),radial-gradient(circle at 85% 75%,rgba(0,206,201,.16),transparent 55%);pointer-events:none}
-.disease-hero__bg::after{content:'';position:absolute;top:-10%;right:-5%;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(0,184,148,.4),transparent 70%);filter:blur(40px);animation:heroFxBlob 12s ease-in-out infinite;pointer-events:none}
-@keyframes heroFxBlob{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-30px,20px) scale(1.1)}66%{transform:translate(20px,-15px) scale(.95)}}
+.disease-hero__bg::after{content:'';position:absolute;top:-10%;right:-5%;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(0,184,148,.4),transparent 70%);filter:blur(40px);animation:heroFxBlob 22s ease-in-out infinite;pointer-events:none}
+/* Amplitud reducida: el fondo respira, ya no se desplaza detras del texto */
+@keyframes heroFxBlob{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-10px,8px) scale(1.04)}}
 .hero-fx-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,184,148,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,184,148,.05) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,#000 30%,transparent 75%);pointer-events:none;opacity:.6}
 .hero-fx-spark{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--vax);box-shadow:0 0 14px 2px rgba(0,184,148,.7);opacity:.7;pointer-events:none;animation:heroFxSpark 8s ease-in-out infinite}
 @keyframes heroFxSpark{0%,100%{transform:translate(0,0);opacity:0}10%,90%{opacity:.85}50%{transform:translate(20px,-30px);opacity:1}}
-.vax-hero-tag{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--vax),var(--vax-dark));padding:7px 14px;border-radius:100px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1.4px;box-shadow:0 6px 20px rgba(0,184,148,.4)}
-.vax-hero-tag .pulse{width:8px;height:8px;border-radius:50%;background:#fff;animation:pulse-dot 1.5s ease-in-out infinite}
-.vax-hero-title{font-size:clamp(1.9rem,7vw,3.4rem)!important;color:#fff;font-weight:800;line-height:1.05;letter-spacing:-.025em;margin-bottom:14px}
-.vax-hero-title em{font-style:normal;font-size:.62em;display:block;margin-top:10px;background:linear-gradient(135deg,var(--vax-light) 0%,var(--vax-mid) 50%,var(--vax) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;letter-spacing:-.015em;line-height:1.2;background-size:200% 100%;animation:emShimmer 6s ease-in-out infinite}
-@keyframes emShimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-.vax-hero-sub{font-size:1rem;color:rgba(255,255,255,.75);line-height:1.55;margin-bottom:22px;max-width:560px}
-@media(min-width:768px){.vax-hero-sub{font-size:1.08rem}}
+.vax-hero-tag{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--vax),var(--vax-dark));padding:9px 17px;border-radius:100px;margin-bottom:14px;text-transform:uppercase;letter-spacing:.7px;box-shadow:0 6px 20px rgba(0,184,148,.4);line-height:1.25}
+.vax-hero-tag .pulse{width:8px;height:8px;border-radius:50%;background:#fff;flex-shrink:0}
+.vax-hero-title{font-size:clamp(1.9rem,7vw,3.4rem)!important;color:#fff;font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:14px}
+/* Color solido en vez de degradado transparente: sube el contraste del subtitulo del hero y quita el brillo animado sobre el texto */
+.vax-hero-title em{font-style:normal;font-size:.64em;display:block;margin-top:12px;color:var(--vax-light);-webkit-text-fill-color:var(--vax-light);font-weight:700;letter-spacing:-.01em;line-height:1.28}
+.vax-hero-sub{font-size:1.0625rem;color:rgba(255,255,255,.88);line-height:1.6;margin-bottom:22px;max-width:560px}
+@media(min-width:768px){.vax-hero-sub{font-size:1.12rem}}
 .vax-hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-.vax-hero-meta span{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;font-weight:600;color:rgba(255,255,255,.78);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);padding:6px 12px;border-radius:100px;backdrop-filter:blur(8px)}
+.vax-hero-meta span{display:inline-flex;align-items:center;gap:7px;font-size:.9rem;font-weight:600;color:rgba(255,255,255,.9);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:8px 14px;border-radius:100px;backdrop-filter:blur(8px);line-height:1.3}
 .vax-hero-meta i{color:var(--vax-light)}
+
+/* Miga de pan: el enlace "Inicio" medía 19px de alto; se le da area tactil sin tocar disease.css */
+.disease-hero__breadcrumb{font-size:.95rem}
+.disease-hero__breadcrumb a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px}
+.disease-hero__breadcrumb a:focus-visible{outline:3px solid var(--vax-light);outline-offset:2px;border-radius:6px}
 
 /* === HERO SAFEGUARD CARD === */
 .vax-hero-safe{background:linear-gradient(140deg,rgba(0,184,148,.18),rgba(0,206,201,.06));border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:26px 24px;backdrop-filter:blur(20px);position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3)}
 .vax-hero-safe::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--vax-light),var(--vax),var(--vax-light));background-size:200% 100%;animation:bandStripe 5s linear infinite}
 @keyframes bandStripe{to{background-position:-200% 0}}
 .vax-hero-safe__icon{width:54px;height:54px;border-radius:15px;background:linear-gradient(135deg,#fde68a,#f59e0b);display:flex;align-items:center;justify-content:center;color:#7c2d12;font-size:1.4rem;margin-bottom:14px;box-shadow:0 8px 22px rgba(245,158,11,.4)}
-.vax-hero-safe__title{font-size:1.05rem;font-weight:800;color:#fff;line-height:1.3;margin-bottom:10px;letter-spacing:-.01em}
-.vax-hero-safe__txt{font-size:.88rem;color:rgba(255,255,255,.78);line-height:1.55;margin:0}
+.vax-hero-safe__title{font-size:1.15rem;font-weight:800;color:#fff;line-height:1.3;margin-bottom:10px;letter-spacing:-.01em}
+.vax-hero-safe__txt{font-size:1.0625rem;color:rgba(255,255,255,.9);line-height:1.62;margin:0}
 .vax-hero-safe__txt strong{color:#fff}
 
 /* === STAT STRIP === */
 .vax-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
-.vax-stat{padding:14px 12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;backdrop-filter:blur(10px)}
-.vax-stat__num{font-size:clamp(1.05rem,4vw,1.6rem);font-weight:800;background:linear-gradient(135deg,#fff,var(--vax-light));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;letter-spacing:-.02em;white-space:nowrap}
-.vax-stat__lbl{font-size:.68rem;color:rgba(255,255,255,.65);margin-top:6px;line-height:1.3;font-weight:600}
-@media(min-width:768px){.vax-stat{padding:16px 14px}.vax-stat__lbl{font-size:.74rem}}
+.vax-stat{padding:15px 12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:14px;backdrop-filter:blur(10px)}
+/* Blanco solido: el degradado transparente aclaraba la cifra justo donde mas importa */
+.vax-stat__num{font-size:clamp(1.15rem,4.4vw,1.6rem);font-weight:800;color:#fff;-webkit-text-fill-color:#fff;line-height:1.1;letter-spacing:-.02em;white-space:nowrap}
+.vax-stat__lbl{font-size:.85rem;color:rgba(255,255,255,.85);margin-top:7px;line-height:1.35;font-weight:600}
+@media(min-width:768px){.vax-stat{padding:16px 14px}.vax-stat__lbl{font-size:.88rem}}
 
 /* === WHY CARDS (BENTO) === */
 .why-bento{display:grid;grid-template-columns:1fr;gap:14px}
@@ -121,31 +130,44 @@
 .why-bento__card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,184,148,.06),transparent 60%);opacity:0;transition:opacity .35s}
 .why-bento__card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,184,148,.14);border-color:rgba(0,184,148,.25)}
 .why-bento__card:hover::after{opacity:1}
-.why-bento__icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;margin-bottom:14px;position:relative;z-index:1}
-.why-bento__card h3{font-size:1.02rem;font-weight:800;color:var(--navy);margin:0 0 8px;line-height:1.25;position:relative;z-index:1}
-.why-bento__card p{font-size:.86rem;color:var(--text-muted);line-height:1.55;margin:0;position:relative;z-index:1}
+.why-bento__icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.35rem;margin-bottom:14px;position:relative;z-index:1}
+.why-bento__card h3{font-size:1.2rem;font-weight:800;color:var(--navy);margin:0 0 9px;line-height:1.3;position:relative;z-index:1}
+.why-bento__card p{font-size:1.0625rem;color:var(--ink-soft);line-height:1.62;margin:0;position:relative;z-index:1}
 
 /* === COMPACT TABLE === */
 .vax-table-wrap{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:20px;overflow:hidden;box-shadow:0 6px 24px rgba(10,22,40,.06)}
-.vax-table{width:100%;border-collapse:collapse;font-size:.88rem}
+.vax-table{width:100%;border-collapse:collapse;font-size:1rem}
 .vax-table thead{background:linear-gradient(135deg,#0a1628,#0d2a26);color:#fff}
-.vax-table th{text-align:left;padding:14px 16px;font-size:.7rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
-.vax-table td{padding:14px 16px;border-bottom:1px solid rgba(0,0,0,.06);vertical-align:top;font-size:.85rem;color:var(--text);line-height:1.5}
+.vax-table th{text-align:left;padding:14px 16px;font-size:.85rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase}
+.vax-table td{padding:15px 16px;border-bottom:1px solid rgba(0,0,0,.06);vertical-align:top;font-size:1.0625rem;color:var(--text);line-height:1.6}
 .vax-table tbody tr:last-child td{border-bottom:none}
 .vax-table tbody tr{transition:background .25s}
 .vax-table tbody tr:hover{background:rgba(0,184,148,.04)}
-.vp{display:inline-block;font-size:.7rem;font-weight:800;padding:4px 10px;border-radius:100px;letter-spacing:.04em;white-space:nowrap}
+.vp{display:inline-block;font-size:.95rem;font-weight:800;padding:6px 14px;border-radius:100px;letter-spacing:.01em;white-space:nowrap}
 .vp--flu{background:rgba(14,165,233,.12);color:#0369a1}
 .vp--pneumo{background:rgba(124,58,237,.12);color:#5b21b6}
 .vp--rsv{background:rgba(13,148,136,.12);color:#0f766e}
 .vp--covid{background:rgba(220,38,38,.12);color:#991b1b}
 .vp--tdap{background:rgba(234,88,12,.12);color:#9a3412}
 .vp--zoster{background:rgba(192,38,211,.12);color:#86198f}
+/* Movil: cada fila se vuelve una tarjeta con el nombre de la vacuna como titulo,
+   en vez de un bloque de texto encabezado por la etiqueta "VACUNA" */
 @media(max-width:760px){
+  .vax-table-wrap{background:transparent;border:none;box-shadow:none;border-radius:0;overflow:visible}
   .vax-table thead{display:none}
-  .vax-table tbody tr{display:block;padding:14px 0;border-bottom:1px solid rgba(0,0,0,.08)}
-  .vax-table td{display:block;border:none;padding:5px 18px}
-  .vax-table td::before{content:attr(data-th);display:block;font-size:.66rem;color:var(--text-muted);font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px}
+  /* Ojo: la clase de fila NO puede llamarse "vr" — Bootstrap ya usa .vr como regla vertical
+     (width:1px;opacity:.25) y aplastaba las filas. De ahi el prefijo vaxrow--. */
+  .vax-table{display:block;width:100%;border-collapse:separate;border-spacing:0}
+  .vax-table tbody,.vax-table tr,.vax-table td{display:block;width:100%;box-sizing:border-box}
+  .vax-table tbody tr{background:#fff;border:1px solid rgba(0,0,0,.08);border-left:6px solid var(--row,#94a3b8);border-radius:16px;padding:16px 0 12px;margin-bottom:14px;box-shadow:0 4px 16px rgba(10,22,40,.06)}
+  .vax-table tbody tr:last-child{margin-bottom:0;border-bottom:1px solid rgba(0,0,0,.08)}
+  .vax-table td{border:none;padding:9px 18px 0}
+  .vax-table td::before{content:attr(data-th);display:block;font-size:.85rem;color:var(--ink-soft);font-weight:700;text-transform:none;letter-spacing:.2px;margin-bottom:2px}
+  .vax-table td:first-child{padding:0 18px 13px;margin-bottom:4px;border-bottom:1px solid rgba(0,0,0,.07)}
+  .vax-table td:first-child::before{display:none}
+  .vax-table td:first-child .vp{font-size:1.22rem;padding:8px 16px;letter-spacing:-.01em}
+  .vaxrow--flu{--row:var(--flu)}.vaxrow--pneumo{--row:var(--pneumo)}.vaxrow--rsv{--row:var(--rsv)}
+  .vaxrow--covid{--row:var(--covid)}.vaxrow--tdap{--row:var(--tdap)}.vaxrow--zoster{--row:var(--zoster)}
 }
 
 /* === VACCINE ACCORDION CARDS === */
@@ -158,9 +180,11 @@
 .vax-acc__item--covid{border-left:4px solid var(--covid)}
 .vax-acc__item--tdap{border-left:4px solid var(--tdap)}
 .vax-acc__item--zoster{border-left:4px solid var(--zoster)}
-.vax-acc__sum{cursor:pointer;list-style:none;padding:18px 22px;display:flex;align-items:center;gap:14px}
+.vax-acc__sum{cursor:pointer;list-style:none;padding:18px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .vax-acc__sum::-webkit-details-marker{display:none}
-.vax-acc__icon{width:46px;height:46px;border-radius:13px;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.vax-acc__sum:focus-visible{outline:3px solid var(--vax-ink);outline-offset:-3px;border-radius:16px}
+.vax-acc__sum:active{background:rgba(0,184,148,.09)}
+.vax-acc__icon{width:52px;height:52px;border-radius:14px;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.35rem;flex-shrink:0}
 .vax-acc__item--flu .vax-acc__icon{background:linear-gradient(135deg,var(--flu),#0369a1)}
 .vax-acc__item--pneumo .vax-acc__icon{background:linear-gradient(135deg,var(--pneumo),#5b21b6)}
 .vax-acc__item--rsv .vax-acc__icon{background:linear-gradient(135deg,var(--rsv),#0f766e)}
@@ -168,24 +192,32 @@
 .vax-acc__item--tdap .vax-acc__icon{background:linear-gradient(135deg,var(--tdap),#9a3412)}
 .vax-acc__item--zoster .vax-acc__icon{background:linear-gradient(135deg,var(--zoster),#86198f)}
 .vax-acc__head{flex:1;min-width:0}
-.vax-acc__abbr{font-size:.66rem;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px}
-.vax-acc__title{font-size:1.05rem;font-weight:800;color:var(--navy);margin:0;line-height:1.2}
-.vax-acc__sub{font-size:.78rem;color:var(--text-muted);margin:3px 0 0;line-height:1.35}
+.vax-acc__abbr{font-size:.85rem;font-weight:700;letter-spacing:.2px;text-transform:none;color:var(--ink-soft);margin-bottom:3px;line-height:1.3}
+.vax-acc__title{font-size:1.35rem;font-weight:800;color:var(--navy);margin:0;line-height:1.25}
+.vax-acc__sub{font-size:1rem;color:var(--ink-soft);margin:5px 0 0;line-height:1.5}
 .vax-acc__chev{display:none}
-.vax-acc__cta{flex-shrink:0;display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--vax),var(--vax-dark));color:#fff;font-size:.74rem;font-weight:700;letter-spacing:.4px;text-transform:uppercase;padding:8px 14px;border-radius:999px;box-shadow:0 6px 16px rgba(0,184,148,.28);transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s}
-.vax-acc__cta i{font-size:.85rem;transition:transform .35s var(--ease)}
-.vax-acc__item:hover .vax-acc__cta{transform:translateY(-1px) scale(1.04);box-shadow:0 10px 22px rgba(0,184,148,.38)}
-.vax-acc__item[open] .vax-acc__cta{background:linear-gradient(135deg,#64748b,#334155);box-shadow:0 4px 12px rgba(51,65,85,.25)}
+/* Boton de abrir: siempre con texto y siempre >=48px de alto (WCAG 2.5.8) */
+.vax-acc__cta{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(135deg,var(--vax),var(--vax-dark));color:#fff;font-size:1rem;font-weight:700;letter-spacing:.1px;text-transform:none;padding:12px 20px;min-height:48px;border-radius:999px;box-shadow:0 6px 16px rgba(0,184,148,.28);transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s}
+.vax-acc__cta i{font-size:1rem;transition:transform .35s var(--ease)}
+.vax-acc__item:hover .vax-acc__cta{transform:translateY(-1px) scale(1.03);box-shadow:0 10px 22px rgba(0,184,148,.38)}
+.vax-acc__item[open] .vax-acc__cta{background:linear-gradient(135deg,#475569,#1e293b);box-shadow:0 4px 12px rgba(51,65,85,.25)}
 .vax-acc__item[open] .vax-acc__cta i{transform:rotate(180deg)}
 .vax-acc__cta__txt::before{content:'Ver detalles'}
-.vax-acc__item[open] .vax-acc__cta__txt::before{content:'Ocultar'}
-@media(max-width:520px){.vax-acc__cta{padding:7px 11px;font-size:.68rem}.vax-acc__cta__txt{display:none}}
+.vax-acc__item[open] .vax-acc__cta__txt::before{content:'Ocultar detalles'}
+/* En pantalla angosta el boton pasa a ancho completo debajo del titulo: imposible no verlo */
+@media(max-width:640px){
+  .vax-acc__sum{padding:18px 18px 18px;gap:13px}
+  .vax-acc__head{flex:1 1 auto;width:calc(100% - 65px)}
+  .vax-acc__cta{flex:1 0 100%;width:100%;margin-top:14px;font-size:1.05rem;min-height:52px}
+}
 .vax-acc__sum:hover{background:linear-gradient(135deg,rgba(0,184,148,.04),rgba(0,206,201,.02))}
 .vax-acc__item:not([open]):hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(10,22,40,.1)}
+.vax-acc__item:not([open]):active{box-shadow:0 4px 14px rgba(10,22,40,.12)}
 .vax-acc__body{padding:0 22px 22px;display:grid;grid-template-columns:1fr;gap:14px;border-top:1px dashed rgba(0,0,0,.08);margin-top:4px;padding-top:18px}
 @media(min-width:768px){.vax-acc__body{grid-template-columns:1fr 1fr;gap:16px 22px}}
-.vax-tab{padding:14px 16px;border-radius:13px;background:linear-gradient(135deg,#fafbff,#f4f7fc);border:1px solid rgba(0,0,0,.04)}
-.vax-tab__h{display:flex;align-items:center;gap:8px;font-size:.7rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:10px}
+.vax-tab{padding:16px 18px;border-radius:13px;background:linear-gradient(135deg,#fafbff,#f4f7fc);border:1px solid rgba(0,0,0,.04)}
+/* Estas 4 palabras son las que el paciente busca: caja y peso, no versalitas diminutas */
+.vax-tab__h{display:flex;align-items:center;gap:9px;font-size:1.1rem;font-weight:800;letter-spacing:-.01em;text-transform:none;margin-bottom:11px;line-height:1.3}
 .vax-tab--good{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-color:rgba(5,150,105,.15)}
 .vax-tab--good .vax-tab__h{color:#047857}
 .vax-tab--cal{background:linear-gradient(135deg,#eff6ff,#dbeafe);border-color:rgba(29,78,216,.15)}
@@ -194,18 +226,19 @@
 .vax-tab--warn .vax-tab__h{color:#b45309}
 .vax-tab--bad{background:linear-gradient(135deg,#fef2f2,#fee2e2);border-color:rgba(220,38,38,.15)}
 .vax-tab--bad .vax-tab__h{color:#b91c1c}
-.vax-tab ul{margin:0;padding-left:18px;font-size:.83rem;line-height:1.55;color:var(--text)}
-.vax-tab ul li{margin-bottom:4px}
-.vax-tab p{margin:0 0 6px;font-size:.83rem;line-height:1.55;color:var(--text)}
+.vax-tab ul{margin:0;padding-left:20px;font-size:1.0625rem;line-height:1.62;color:var(--text)}
+.vax-tab ul li{margin-bottom:9px}
+.vax-tab ul li:last-child{margin-bottom:0}
+.vax-tab p{margin:0 0 9px;font-size:1.0625rem;line-height:1.62;color:var(--text)}
 .vax-tab p:last-child{margin-bottom:0}
 .vax-tab strong{color:var(--navy)}
 
 /* === SAFEGUARD BANNER === */
 .safeguard{background:linear-gradient(135deg,#fffaeb,#fef3c7);border:1px solid rgba(245,158,11,.3);border-left:5px solid #f59e0b;border-radius:18px;padding:22px 24px;display:flex;gap:16px;align-items:flex-start;box-shadow:0 4px 14px rgba(245,158,11,.08)}
 .safeguard__icon{width:46px;height:46px;border-radius:13px;background:linear-gradient(135deg,#f59e0b,#b45309);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;box-shadow:0 6px 18px rgba(245,158,11,.3)}
-.safeguard h4{font-size:.95rem;color:#7c2d12;margin:0 0 6px;font-weight:800;line-height:1.3}
-.safeguard p{font-size:.86rem;color:#78350f;line-height:1.55;margin:0}
-.safeguard p strong{color:#5b3e02}
+.safeguard h4{font-size:1.18rem;color:#7c2d12;margin:0 0 7px;font-weight:800;line-height:1.3}
+.safeguard p{font-size:1.0625rem;color:#6b2f0c;line-height:1.62;margin:0}
+.safeguard p strong{color:#4a2f02}
 
 /* === TEMPORADA === */
 .season{display:grid;grid-template-columns:1fr;gap:18px}
@@ -214,29 +247,30 @@
 .season-dark::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--vax-light),var(--vax),var(--vax-light));background-size:200% 100%;animation:bandStripe 5s linear infinite}
 .season-dark::after{content:'';position:absolute;top:-30%;right:-20%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(0,184,148,.22),transparent 65%);pointer-events:none}
 .season-dark__inner{position:relative;z-index:1}
-.season-dark h3{color:#fff;font-size:1.15rem;font-weight:800;margin:0 0 6px;letter-spacing:-.01em}
-.season-dark .season-tag{display:inline-flex;align-items:center;gap:8px;font-size:.66rem;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--vax-light);background:rgba(94,234,212,.12);border:1px solid rgba(94,234,212,.25);padding:5px 11px;border-radius:100px;margin-bottom:12px}
-.season-dark p{color:rgba(255,255,255,.78);font-size:.92rem;line-height:1.6;margin:0 0 14px}
+.season-dark h3{color:#fff;font-size:1.3rem;font-weight:800;margin:0 0 7px;letter-spacing:-.01em}
+.season-dark .season-tag{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--vax-light);background:rgba(94,234,212,.14);border:1px solid rgba(94,234,212,.3);padding:7px 14px;border-radius:100px;margin-bottom:12px;line-height:1.25}
+.season-dark p{color:rgba(255,255,255,.9);font-size:1.0625rem;line-height:1.65;margin:0 0 14px}
 .season-list{list-style:none;padding:0;margin:0}
-.season-list li{padding:11px 0 11px 32px;position:relative;font-size:.88rem;color:rgba(255,255,255,.88);border-bottom:1px solid rgba(255,255,255,.08)}
+.season-list li{padding:13px 0 13px 38px;position:relative;font-size:1.0625rem;line-height:1.55;color:rgba(255,255,255,.94);border-bottom:1px solid rgba(255,255,255,.08)}
 .season-list li:last-child{border-bottom:none}
-.season-list li::before{content:"\f00c";font-family:"Font Awesome 6 Free";font-weight:900;position:absolute;left:0;top:11px;width:22px;height:22px;border-radius:7px;background:rgba(0,184,148,.2);color:var(--vax-light);font-size:.7rem;display:flex;align-items:center;justify-content:center}
+.season-list li::before{content:"\f00c";font-family:"Font Awesome 6 Free";font-weight:900;position:absolute;left:0;top:13px;width:26px;height:26px;border-radius:8px;background:rgba(0,184,148,.24);color:var(--vax-light);font-size:.8rem;display:flex;align-items:center;justify-content:center}
 .season-list li strong{color:#fff}
 .season-light{padding:28px 26px;border-radius:22px;background:#fff;border:1px solid rgba(0,0,0,.06);box-shadow:0 6px 24px rgba(10,22,40,.06)}
-.season-light h3{font-size:1.1rem;font-weight:800;color:var(--navy);margin:0 0 12px;letter-spacing:-.01em}
-.season-light p{font-size:.92rem;color:var(--text-muted);line-height:1.6;margin:0 0 12px}
-.season-light a{color:var(--vax-dark);font-weight:700;text-decoration:none;border-bottom:1px dotted rgba(4,120,87,.4)}
+.season-light h3{font-size:1.3rem;font-weight:800;color:var(--navy);margin:0 0 12px;letter-spacing:-.01em}
+.season-light p{font-size:1.0625rem;color:var(--ink-soft);line-height:1.65;margin:0 0 12px}
+.season-light a{color:var(--vax-ink);font-weight:700;text-decoration:underline;text-underline-offset:.16em;text-decoration-thickness:1px}
+.season-light a:focus-visible{outline:3px solid var(--vax-ink);outline-offset:2px;border-radius:4px}
 
 /* === MITOS BENTO === */
 .myth-bento{display:grid;grid-template-columns:1fr;gap:14px}
 @media(min-width:768px){.myth-bento{grid-template-columns:1fr 1fr;gap:16px}}
 .myth-card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:18px;padding:20px 22px;box-shadow:0 4px 14px rgba(10,22,40,.04);transition:all .3s var(--ease)}
 .myth-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(10,22,40,.08)}
-.myth-card__myth{display:flex;align-items:flex-start;gap:10px;font-size:.92rem;font-weight:800;color:#b91c1c;margin-bottom:12px;line-height:1.35}
-.myth-card__myth i{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#fee2e2,#fecaca);display:flex;align-items:center;justify-content:center;font-size:.65rem;flex-shrink:0;margin-top:2px}
-.myth-card__truth{display:flex;align-items:flex-start;gap:10px;font-size:.84rem;color:var(--text);line-height:1.55;background:linear-gradient(135deg,#ecfdf5,#d1fae5);padding:12px 14px;border-radius:12px;border:1px solid rgba(5,150,105,.12)}
-.myth-card__truth i{color:#047857;margin-top:3px;flex-shrink:0;font-size:.95rem}
-.myth-card__truth strong{display:block;font-size:.7rem;color:#047857;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px}
+.myth-card__myth{display:flex;align-items:flex-start;gap:11px;font-size:1.12rem;font-weight:800;color:#a81a1a;margin-bottom:13px;line-height:1.4}
+.myth-card__myth i{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#fee2e2,#fecaca);display:flex;align-items:center;justify-content:center;font-size:.78rem;flex-shrink:0;margin-top:2px}
+.myth-card__truth{display:flex;align-items:flex-start;gap:11px;font-size:1.0625rem;color:var(--text);line-height:1.62;background:linear-gradient(135deg,#ecfdf5,#d1fae5);padding:14px 16px;border-radius:12px;border:1px solid rgba(5,150,105,.12)}
+.myth-card__truth i{color:#046a52;margin-top:4px;flex-shrink:0;font-size:1.1rem}
+.myth-card__truth strong{display:block;font-size:.95rem;color:#046a52;letter-spacing:.4px;text-transform:uppercase;margin-bottom:4px}
 
 /* === CTA === */
 .vax-cta{background:linear-gradient(140deg,#0a1628,#0d2a26);border-radius:24px;padding:32px 24px;color:#fff;position:relative;overflow:hidden;border:1px solid rgba(0,184,148,.25);box-shadow:0 20px 50px rgba(0,184,148,.18)}
@@ -245,15 +279,17 @@
 .vax-cta::after{content:'';position:absolute;top:-50%;right:-15%;width:55%;padding-bottom:55%;border-radius:50%;background:radial-gradient(circle,rgba(0,184,148,.25),transparent 65%);pointer-events:none}
 .vax-cta__inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:24px;align-items:center}
 @media(min-width:992px){.vax-cta__inner{grid-template-columns:1.4fr 1fr;gap:40px}}
-.vax-cta__eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:800;color:var(--vax-light);background:rgba(94,234,212,.12);border:1px solid rgba(94,234,212,.3);padding:6px 14px;border-radius:100px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1.5px}
-.vax-cta__title{font-size:clamp(1.25rem,4vw,1.7rem);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.25;margin-bottom:18px}
-.vax-cta__list{list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:8px}
-.vax-cta__list li{display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:rgba(255,255,255,.85);line-height:1.45}
-.vax-cta__list li i{color:var(--vax-light);font-size:1rem;flex-shrink:0;margin-top:2px}
-.vax-cta__safe{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);border-radius:12px;padding:10px 14px;font-size:.78rem;color:rgba(255,255,255,.78);line-height:1.5;margin-bottom:14px}
+.vax-cta__eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:800;color:var(--vax-light);background:rgba(94,234,212,.14);border:1px solid rgba(94,234,212,.34);padding:8px 16px;border-radius:100px;margin-bottom:14px;text-transform:uppercase;letter-spacing:.6px;line-height:1.25}
+.vax-cta__title{font-size:clamp(1.4rem,4.6vw,1.7rem);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.3;margin-bottom:18px}
+.vax-cta__list{list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:11px}
+.vax-cta__list li{display:flex;align-items:flex-start;gap:11px;font-size:1.0625rem;color:rgba(255,255,255,.93);line-height:1.55}
+.vax-cta__list li i{color:var(--vax-light);font-size:1.15rem;flex-shrink:0;margin-top:2px}
+.vax-cta__safe{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:12px;padding:13px 16px;font-size:1rem;color:rgba(255,255,255,.92);line-height:1.6;margin-bottom:14px}
 .vax-cta__safe strong{color:#fcd34d}
-.vax-cta__btns{display:flex;flex-direction:column;gap:10px}
-.vax-cta__btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:12px;font-weight:700;font-size:.92rem;text-decoration:none;transition:all .3s var(--ease);min-height:50px;cursor:pointer}
+.vax-cta__btns{display:flex;flex-direction:column;gap:12px}
+.vax-cta__btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 22px;border-radius:12px;font-weight:700;font-size:1.08rem;text-decoration:none;transition:all .3s var(--ease);min-height:58px;cursor:pointer}
+.vax-cta__btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.vax-cta__btn:active{transform:translateY(1px)}
 .vax-cta__btn--wa{background:#25d366;color:#fff!important;box-shadow:0 8px 22px rgba(37,211,102,.4)}
 .vax-cta__btn--wa:hover{background:#1da851;transform:translateY(-2px);box-shadow:0 12px 28px rgba(37,211,102,.5)}
 .vax-cta__btn--cal{background:#fff;color:var(--navy)!important}
@@ -264,17 +300,20 @@
 .refs-collapse summary{cursor:pointer;list-style:none;padding:22px 26px;display:flex;align-items:center;gap:14px;color:#fff;font-weight:700}
 .refs-collapse summary::-webkit-details-marker{display:none}
 .refs-collapse summary i.refs-ico{width:42px;height:42px;border-radius:12px;background:rgba(116,185,255,.15);color:var(--sky);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-.refs-collapse summary .refs-ttl{font-size:1rem;letter-spacing:-.01em}
-.refs-collapse summary .refs-sub{display:block;font-size:.74rem;color:rgba(255,255,255,.55);font-weight:500;margin-top:2px}
-.refs-collapse summary .refs-arrow{margin-left:auto;color:var(--sky);transition:transform .3s}
+.refs-collapse summary{min-height:56px}
+.refs-collapse summary .refs-ttl{font-size:1.15rem;letter-spacing:-.01em}
+.refs-collapse summary .refs-sub{display:block;font-size:.92rem;color:rgba(255,255,255,.72);font-weight:500;margin-top:3px;line-height:1.4}
+.refs-collapse summary .refs-arrow{margin-left:auto;color:var(--sky);transition:transform .3s;font-size:1.2rem}
+.refs-collapse summary:focus-visible{outline:3px solid var(--sky);outline-offset:-3px}
 .refs-collapse[open] summary .refs-arrow{transform:rotate(180deg)}
-.refs-collapse ol{counter-reset:ref;list-style:none;padding:0 26px 22px;margin:0;font-size:.82rem;line-height:1.55}
-.refs-collapse ol li{counter-increment:ref;padding:12px 0 12px 38px;position:relative;border-bottom:1px solid rgba(255,255,255,.06)}
+.refs-collapse ol{counter-reset:ref;list-style:none;padding:0 26px 22px;margin:0;font-size:1rem;line-height:1.62}
+.refs-collapse ol li{counter-increment:ref;padding:14px 0 14px 40px;position:relative;border-bottom:1px solid rgba(255,255,255,.06)}
 .refs-collapse ol li:last-child{border-bottom:none}
-.refs-collapse ol li::before{content:counter(ref);position:absolute;left:0;top:14px;width:26px;height:26px;border-radius:50%;background:rgba(116,185,255,.14);color:var(--sky);font-weight:800;font-size:.72rem;display:flex;align-items:center;justify-content:center;border:1px solid rgba(116,185,255,.22)}
-.refs-collapse a{color:var(--sky);text-decoration:none;font-weight:600;border-bottom:1px dotted rgba(116,185,255,.4)}
+.refs-collapse ol li::before{content:counter(ref);position:absolute;left:0;top:16px;width:28px;height:28px;border-radius:50%;background:rgba(116,185,255,.14);color:var(--sky);font-weight:800;font-size:.88rem;display:flex;align-items:center;justify-content:center;border:1px solid rgba(116,185,255,.22)}
+.refs-collapse a{color:var(--sky);text-decoration:none;font-weight:600;border-bottom:1px dotted rgba(116,185,255,.4);display:inline-block;padding:3px 0}
 .refs-collapse a:hover{color:#fff}
-.refs-collapse .refs__cite{display:block;color:rgba(255,255,255,.55);font-size:.74rem;margin-top:3px}
+.refs-collapse a:focus-visible{outline:3px solid var(--sky);outline-offset:2px;border-radius:4px}
+.refs-collapse .refs__cite{display:block;color:rgba(255,255,255,.72);font-size:.92rem;margin-top:5px;line-height:1.5}
 
 .nav-link--recursos.active{color:#047857!important;font-weight:700!important}
 .nav-link--recursos.active::after{background:#047857!important}
@@ -285,46 +324,49 @@
 .read-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:9999;pointer-events:none;background:transparent}
 .read-progress__bar{height:100%;width:0;background:linear-gradient(90deg,var(--vax),var(--vax-light),var(--vax-mid));box-shadow:0 0 12px rgba(0,184,148,.55);transition:width .12s linear;border-radius:0 3px 3px 0}
 
-/* === STICKY TOC RAIL (DESKTOP) === */
-.toc-rail{display:none}
-@media(min-width:1280px){
-  .toc-rail{display:flex;flex-direction:column;gap:4px;position:fixed;right:24px;top:50%;transform:translate(20px,-50%);z-index:1020;background:rgba(255,255,255,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(0,0,0,.06);padding:14px 12px;border-radius:18px;box-shadow:0 14px 36px rgba(10,22,40,.1);max-width:236px;opacity:0;transition:opacity .4s var(--ease),transform .4s var(--ease)}
-  .toc-rail.is-visible{opacity:1;transform:translate(0,-50%)}
-  .toc-rail__lbl{font-size:.62rem;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--vax-dark);padding:4px 10px 8px;border-bottom:1px dashed rgba(0,0,0,.08);margin-bottom:6px}
-  .toc-rail a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;text-decoration:none;color:var(--text-muted);font-size:.79rem;font-weight:600;line-height:1.3;transition:all .25s var(--ease);border-left:2px solid transparent;position:relative}
-  .toc-rail a:hover{color:var(--vax-dark);background:rgba(0,184,148,.07)}
-  .toc-rail a.is-current{color:var(--vax-dark);background:linear-gradient(90deg,rgba(0,184,148,.12),transparent);border-left-color:var(--vax)}
-  .toc-rail a i{width:18px;text-align:center;color:var(--vax);opacity:.7;font-size:.85rem;flex-shrink:0}
-  .toc-rail a.is-current i{opacity:1}
-}
+/* === INDICE "EN ESTA PAGINA" ===
+   Sustituye al rail/FAB/drawer que estaban en el CSS pero nunca existieron en el DOM.
+   Un indice inline y estatico: patron que un lector mayor ya conoce, sin JS y sin
+   competir con el boton flotante de WhatsApp. */
+.vax-toc{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:20px;padding:18px 16px 14px;margin-bottom:44px;box-shadow:0 6px 24px rgba(10,22,40,.06)}
+@media(min-width:768px){.vax-toc{padding:22px 24px 18px;margin-bottom:60px}}
+.vax-toc__h{display:flex;align-items:center;gap:10px;font-size:1.05rem;font-weight:800;color:var(--navy);margin:0 0 12px;line-height:1.3}
+.vax-toc__h i{width:34px;height:34px;border-radius:11px;background:rgba(0,184,148,.12);color:var(--vax-ink);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.vax-toc__list{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+@media(min-width:768px){.vax-toc__list{grid-template-columns:1fr 1fr;gap:10px}}
+.vax-toc__list a{display:flex;align-items:center;gap:13px;min-height:58px;padding:11px 14px;border-radius:14px;background:#f7f9fc;border:1px solid rgba(0,0,0,.06);text-decoration:none;color:var(--navy);font-size:1.05rem;font-weight:700;line-height:1.35;transition:background .2s var(--ease),border-color .2s var(--ease)}
+.vax-toc__list a:hover{background:rgba(0,184,148,.09);border-color:rgba(0,184,148,.3)}
+.vax-toc__list a:active{background:rgba(0,184,148,.16)}
+.vax-toc__list a:focus-visible{outline:3px solid var(--vax-ink);outline-offset:2px}
+.vax-toc__n{flex-shrink:0;width:34px;height:34px;border-radius:11px;background:var(--vax-ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800}
+.vax-toc__t{flex:1;min-width:0}
+.vax-toc__list a > i{color:var(--vax-ink);font-size:1.25rem;flex-shrink:0}
 
-/* === MOBILE FAB + BOTTOM-SHEET TOC === */
-.toc-fab{position:fixed;bottom:90px;left:18px;z-index:1040;width:54px;height:54px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--vax),var(--vax-dark));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.25rem;box-shadow:0 14px 32px rgba(0,184,148,.45),0 0 0 1px rgba(255,255,255,.06) inset;cursor:pointer;opacity:0;transform:scale(.4) translateY(10px);transition:all .35s cubic-bezier(.2,.9,.3,1.4)}
-.toc-fab.is-visible{opacity:1;transform:scale(1) translateY(0)}
-.toc-fab:hover{transform:scale(1.06)}
-.toc-fab:focus-visible{outline:3px solid #fff;outline-offset:3px}
-.toc-fab__pulse{position:absolute;inset:0;border-radius:50%;border:2px solid var(--vax-light);animation:fabPulse 2.4s ease-out infinite;pointer-events:none}
-@keyframes fabPulse{0%{transform:scale(.95);opacity:.7}80%,100%{transform:scale(1.55);opacity:0}}
-@media(min-width:1280px){.toc-fab{display:none}}
-
-.toc-drawer{position:fixed;inset:0;background:rgba(10,22,40,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:1050;display:flex;align-items:flex-end;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
-.toc-drawer.is-open{opacity:1;visibility:visible}
-.toc-drawer__panel{width:100%;max-width:520px;background:#fff;border-radius:24px 24px 0 0;padding:14px 18px 28px;max-height:80vh;overflow-y:auto;transform:translateY(100%);transition:transform .4s cubic-bezier(.2,.85,.3,1);box-shadow:0 -20px 60px rgba(0,0,0,.3)}
-.toc-drawer.is-open .toc-drawer__panel{transform:translateY(0)}
-.toc-drawer__handle{width:48px;height:5px;border-radius:100px;background:rgba(0,0,0,.15);margin:0 auto 16px}
-.toc-drawer__title{display:flex;align-items:center;gap:10px;font-size:.7rem;font-weight:800;letter-spacing:1.7px;text-transform:uppercase;color:var(--vax-dark);margin-bottom:14px;padding:0 4px}
-.toc-drawer__title i{width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,rgba(0,184,148,.14),rgba(0,206,201,.06));display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--vax)}
-.toc-drawer ol{list-style:none;padding:0;margin:0;counter-reset:tocnum}
-.toc-drawer li{counter-increment:tocnum;margin-bottom:6px}
-.toc-drawer a{display:flex;align-items:center;gap:14px;padding:14px 14px;border-radius:14px;text-decoration:none;color:var(--navy);font-size:.92rem;font-weight:600;line-height:1.3;background:#fafbfd;border:1px solid rgba(0,0,0,.04);transition:all .25s var(--ease);min-height:54px}
-.toc-drawer a:hover,.toc-drawer a:focus-visible{background:linear-gradient(135deg,rgba(0,184,148,.1),rgba(0,206,201,.04));border-color:rgba(0,184,148,.22);color:var(--vax-dark);transform:translateX(4px)}
-.toc-drawer a::before{content:counter(tocnum,decimal-leading-zero);font-size:.7rem;font-weight:800;color:var(--vax-dark);background:rgba(0,184,148,.12);width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;letter-spacing:.6px}
-.toc-drawer a i.toc-ic{font-size:1rem;color:var(--vax);margin-left:auto;flex-shrink:0;opacity:.7}
+/* === "QUE ME TOCA A MI" — pivote por edad de la misma tabla resumen === */
+.age-grid{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:820px){.age-grid{grid-template-columns:1fr 1fr;gap:20px}}
+.age-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:20px;overflow:hidden;box-shadow:0 6px 22px rgba(10,22,40,.06);display:flex;flex-direction:column}
+.age-card__band{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;padding:16px 20px;background:linear-gradient(135deg,#0a1628,#0d2a26);color:#fff}
+.age-card__num{font-size:1.75rem;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.age-card__to{font-size:1.1rem;font-weight:600;color:rgba(255,255,255,.88);line-height:1.3}
+.age-card__body{padding:16px 20px 20px;flex:1}
+.age-card__lead{display:flex;align-items:center;gap:9px;font-size:1rem;font-weight:800;color:var(--vax-ink);margin:0 0 10px;line-height:1.35}
+.age-card__lead--risk{color:#9a5000;margin-top:18px}
+.age-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.age-list li{display:flex;align-items:flex-start;gap:11px;font-size:1.0625rem;color:var(--text);line-height:1.5}
+.age-list li i{flex-shrink:0;width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.8rem;margin-top:1px}
+.age-list li strong{color:var(--navy);font-weight:800}
+.age-list--all li i{background:rgba(0,184,148,.16);color:var(--vax-ink)}
+.age-list--risk li i{background:rgba(217,119,6,.16);color:#9a5000}
+.age-note{display:flex;align-items:flex-start;gap:12px;margin-top:18px;padding:15px 18px;background:#f7f9fc;border:1px solid rgba(0,0,0,.07);border-radius:14px;font-size:1.0625rem;color:var(--ink-soft);line-height:1.6}
+.age-note i{color:var(--vax-ink);font-size:1.3rem;flex-shrink:0;margin-top:1px}
+.age-note strong{color:var(--navy)}
 
 /* === STAGGER REVEAL POLISH === */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+/* Desplazamiento corto y rapido: el bloque se asienta antes de que el ojo lo alcance */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
 .reveal.is-in{opacity:1;transform:none}
-.reveal[data-stagger]>*{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.reveal[data-stagger]>*{opacity:0;transform:translateY(10px);transition:opacity .45s var(--ease),transform .45s var(--ease)}
 .reveal.is-in[data-stagger]>*{opacity:1;transform:none}
 .reveal.is-in[data-stagger]>*:nth-child(1){transition-delay:.05s}
 .reveal.is-in[data-stagger]>*:nth-child(2){transition-delay:.15s}
@@ -341,7 +383,7 @@ html{scroll-behavior:smooth;scroll-padding-top:96px}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   html{scroll-behavior:auto}
   .reveal,.reveal[data-stagger]>*{opacity:1!important;transform:none!important}
-  .disease-hero__bg::after,.hero-fx-grid,.hero-fx-spark,.toc-fab__pulse{animation:none!important}
+  .disease-hero__bg::after,.hero-fx-grid,.hero-fx-spark{animation:none!important}
 }
 </style>
 <!-- Google Tag Manager -->
@@ -455,8 +497,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="disease-hero__bg"></div>
 <div class="hero-fx-grid" aria-hidden="true"></div>
 <span class="hero-fx-spark" style="top:18%;left:8%;animation-delay:0s" aria-hidden="true"></span>
-<span class="hero-fx-spark" style="top:60%;left:18%;animation-delay:1.5s;background:#5eead4;box-shadow:0 0 14px 2px rgba(94,234,212,.7)" aria-hidden="true"></span>
-<span class="hero-fx-spark" style="top:32%;right:12%;animation-delay:3s" aria-hidden="true"></span>
 <span class="hero-fx-spark" style="top:75%;right:22%;animation-delay:4.5s;background:#00cec9;box-shadow:0 0 14px 2px rgba(0,206,201,.7)" aria-hidden="true"></span>
 <div class="container position-relative">
 <nav class="disease-hero__breadcrumb" aria-label="Breadcrumb"><a href="/">Inicio</a><span>/</span><span><i class="fas fa-book-medical me-1"></i>Recursos</span><span>/</span><span class="current">Vacunas</span></nav>
@@ -494,6 +534,98 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section-mesh"></div>
 <div class="container">
 
+<!-- ÍNDICE DE LA PÁGINA -->
+<nav class="vax-toc" aria-labelledby="toc-h">
+<p class="vax-toc__h" id="toc-h"><i class="bi bi-list-ul" aria-hidden="true"></i> En esta página</p>
+<ol class="vax-toc__list">
+<li><a href="#que-me-toca"><span class="vax-toc__n">1</span><span class="vax-toc__t">¿Qué vacunas me tocan?</span><i class="bi bi-arrow-down" aria-hidden="true"></i></a></li>
+<li><a href="#por-que"><span class="vax-toc__n">2</span><span class="vax-toc__t">Por qué son importantes</span><i class="bi bi-arrow-down" aria-hidden="true"></i></a></li>
+<li><a href="#tabla"><span class="vax-toc__n">3</span><span class="vax-toc__t">Resumen: qué y cuándo</span><i class="bi bi-arrow-down" aria-hidden="true"></i></a></li>
+<li><a href="#detalle"><span class="vax-toc__n">4</span><span class="vax-toc__t">Detalle de cada vacuna</span><i class="bi bi-arrow-down" aria-hidden="true"></i></a></li>
+<li><a href="#temporada"><span class="vax-toc__n">5</span><span class="vax-toc__t">Dónde vacunarte en México</span><i class="bi bi-arrow-down" aria-hidden="true"></i></a></li>
+<li><a href="#mitos"><span class="vax-toc__n">6</span><span class="vax-toc__t">Mitos y realidades</span><i class="bi bi-arrow-down" aria-hidden="true"></i></a></li>
+</ol>
+</nav>
+
+<!-- QUÉ ME TOCA A MÍ (pivote por edad del mismo resumen) -->
+<div class="vax-section reveal" id="que-me-toca">
+<span class="vax-section__eyebrow"><i class="bi bi-person-check"></i> Empieza por aquí</span>
+<h2 class="vax-section__title">¿Qué vacunas <em>me tocan</em> según mi edad?</h2>
+<p class="vax-section__lead">Busca tu grupo de edad. Es la misma información del resumen, ordenada para que encuentres rápido lo tuyo. El detalle de cada vacuna viene más abajo.</p>
+<div class="age-grid">
+
+<article class="age-card">
+<div class="age-card__band"><span class="age-card__num">19</span><span class="age-card__to">a 49 años</span></div>
+<div class="age-card__body">
+<p class="age-card__lead"><i class="fas fa-check-circle" aria-hidden="true"></i> A esta edad te tocan:</p>
+<ul class="age-list age-list--all">
+<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Influenza</strong> — cada año</span></li>
+<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Tdap</strong> — si no la has recibido después de los 10 años, y luego refuerzo cada 10 años</span></li>
+</ul>
+<p class="age-card__lead age-card__lead--risk"><i class="fas fa-plus-circle" aria-hidden="true"></i> Además, solo si tienes riesgo:</p>
+<ul class="age-list age-list--risk">
+<li><i class="fas fa-plus" aria-hidden="true"></i><span><strong>Neumococo</strong> — con EPOC, asma grave, tabaquismo o inmunocompromiso</span></li>
+<li><i class="fas fa-plus" aria-hidden="true"></i><span><strong>COVID-19</strong> — con factores de riesgo</span></li>
+<li><i class="fas fa-plus" aria-hidden="true"></i><span><strong>Herpes zóster</strong> — con inmunocompromiso</span></li>
+</ul>
+</div>
+</article>
+
+<article class="age-card">
+<div class="age-card__band"><span class="age-card__num">50</span><span class="age-card__to">a 64 años</span></div>
+<div class="age-card__body">
+<p class="age-card__lead"><i class="fas fa-check-circle" aria-hidden="true"></i> A esta edad te tocan:</p>
+<ul class="age-list age-list--all">
+<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Influenza</strong> — cada año</span></li>
+<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Neumococo</strong> — entra a partir de los 50</span></li>
+<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Herpes zóster</strong> — entra a partir de los 50, son 2 dosis</span></li>
+<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Tdap</strong> — refuerzo cada 10 años</span></li>
+</ul>
+<p class="age-card__lead age-card__lead--risk"><i class="fas fa-plus-circle" aria-hidden="true"></i> Además, solo si tienes riesgo:</p>
+<ul class="age-list age-list--risk">
+<li><i class="fas fa-plus" aria-hidden="true"></i><span><strong>VSR</strong> — con EPOC, asma, cardiopatía o inmunocompromiso</span></li>
+<li><i class="fas fa-plus" aria-hidden="true"></i><span><strong>COVID-19</strong> — con factores de riesgo</span></li>
+</ul>
+</div>
+</article>
+
+<article class="age-card">
+<div class="age-card__band"><span class="age-card__num">65</span><span class="age-card__to">a 74 años</span></div>
+<div class="age-card__body">
+<p class="age-card__lead"><i class="fas fa-check-circle" aria-hidden="true"></i> A esta edad te tocan:</p>
+<ul class="age-list age-list--all">
+<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Influenza</strong> — cada año</span></li>
+<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Neumococo</strong></span></li>
+<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Herpes zóster</strong> — 2 dosis</span></li>
+<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>COVID-19</strong> — entra a partir de los 65</span></li>
+<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Tdap</strong> — refuerzo cada 10 años</span></li>
+</ul>
+<p class="age-card__lead age-card__lead--risk"><i class="fas fa-plus-circle" aria-hidden="true"></i> Además, solo si tienes riesgo:</p>
+<ul class="age-list age-list--risk">
+<li><i class="fas fa-plus" aria-hidden="true"></i><span><strong>VSR</strong> — con EPOC, asma, cardiopatía o inmunocompromiso</span></li>
+</ul>
+</div>
+</article>
+
+<article class="age-card">
+<div class="age-card__band"><span class="age-card__num">75</span><span class="age-card__to">años o más</span></div>
+<div class="age-card__body">
+<p class="age-card__lead"><i class="fas fa-check-circle" aria-hidden="true"></i> A esta edad te tocan todas:</p>
+<ul class="age-list age-list--all">
+<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Influenza</strong> — cada año</span></li>
+<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Neumococo</strong></span></li>
+<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Herpes zóster</strong> — 2 dosis</span></li>
+<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>COVID-19</strong></span></li>
+<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>VSR</strong> — entra a partir de los 75</span></li>
+<li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Tdap</strong> — refuerzo cada 10 años</span></li>
+</ul>
+</div>
+</article>
+
+</div>
+<p class="age-note"><i class="fas fa-circle-info" aria-hidden="true"></i> <span>Esto es orientación general. <strong>En consulta podemos revisar tu cartilla</strong> y decirte cuáles te corresponden según tu edad y tu enfermedad pulmonar.</span></p>
+</div>
+
 <!-- POR QUÉ IMPORTAN -->
 <div class="vax-section reveal" id="por-que">
 <span class="vax-section__eyebrow"><i class="bi bi-shield-check"></i> Por qué importan</span>
@@ -529,37 +661,37 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <tr><th>Vacuna</th><th>Para quién</th><th>Frecuencia</th><th>Cuándo</th></tr>
 </thead>
 <tbody>
-<tr>
+<tr class="vaxrow--flu">
 <td data-th="Vacuna"><span class="vp vp--flu">Influenza</span></td>
 <td data-th="Para quién">Toda persona ≥6 meses</td>
 <td data-th="Frecuencia">Anual</td>
 <td data-th="Cuándo">Oct–Nov</td>
 </tr>
-<tr>
+<tr class="vaxrow--pneumo">
 <td data-th="Vacuna"><span class="vp vp--pneumo">Neumococo</span></td>
 <td data-th="Para quién">≥50 años, o ≥19 con riesgo (EPOC, asma grave, fumador, inmunocompromiso)</td>
 <td data-th="Frecuencia">1 dosis (esquema variable)</td>
 <td data-th="Cuándo">Cualquier mes</td>
 </tr>
-<tr>
+<tr class="vaxrow--rsv">
 <td data-th="Vacuna"><span class="vp vp--rsv">VSR</span></td>
 <td data-th="Para quién">≥75 años; 50–74 con riesgo (EPOC, asma, cardiopatía, inmunocompromiso)</td>
 <td data-th="Frecuencia">Dosis única</td>
 <td data-th="Cuándo">Antes de otoño</td>
 </tr>
-<tr>
+<tr class="vaxrow--covid">
 <td data-th="Vacuna"><span class="vp vp--covid">COVID-19</span></td>
 <td data-th="Para quién">≥65 años; 6 meses–64 con factores de riesgo</td>
 <td data-th="Frecuencia">Estacional, formulación actualizada</td>
 <td data-th="Cuándo">Otoño</td>
 </tr>
-<tr>
+<tr class="vaxrow--tdap">
 <td data-th="Vacuna"><span class="vp vp--tdap">Tdap</span></td>
 <td data-th="Para quién">Adultos sin Tdap después de los 10 años; embarazadas (sem 27–36)</td>
 <td data-th="Frecuencia">1 dosis + refuerzo cada 10 años</td>
 <td data-th="Cuándo">Cualquier mes</td>
 </tr>
-<tr>
+<tr class="vaxrow--zoster">
 <td data-th="Vacuna"><span class="vp vp--zoster">Herpes zóster</span></td>
 <td data-th="Para quién">≥50 años; ≥19 con inmunocompromiso (relevante en EPOC y uso crónico de corticoides)</td>
 <td data-th="Frecuencia">2 dosis (RZV)</td>
@@ -582,7 +714,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="vax-section reveal" id="detalle">
 <span class="vax-section__eyebrow"><i class="bi bi-prescription2"></i> Detalle por vacuna</span>
 <h2 class="vax-section__title">Indicaciones, esquemas, efectos y <em>contraindicaciones</em></h2>
-<p class="vax-section__lead">Toca cada tarjeta para abrir el detalle. Información condensada para que la revises rápido,en consulta o antes de ir a vacunarte.</p>
+<p class="vax-section__lead">Toca el botón «Ver detalles» de cada vacuna. Información condensada para que la revises rápido, en consulta o antes de ir a vacunarte.</p>
 
 <div class="vax-acc">
 
@@ -896,7 +1028,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="myth-bento">
 <div class="myth-card">
 <div class="myth-card__myth"><i class="fas fa-xmark"></i> "La vacuna de la influenza me da gripa."</div>
-<div class="myth-card__truth"><i class="fas fa-circle-check"></i><div><strong>Realidad</strong>Las vacunas inactivadas no contienen virus vivos y no producen influenza. Algunas personas tienen febrícula 24–48 h por la respuesta inmune normal,no es la enfermedad.</div></div>
+<div class="myth-card__truth"><i class="fas fa-circle-check"></i><div><strong>Realidad</strong>Las vacunas inactivadas no contienen virus vivos y no producen influenza. Algunas personas tienen febrícula 24–48 h por la respuesta inmune normal, no es la enfermedad.</div></div>
 </div>
 <div class="myth-card">
 <div class="myth-card__myth"><i class="fas fa-xmark"></i> "Si ya me dio neumonía, no necesito la vacuna del neumococo."</div>
