@@ -67,6 +67,26 @@
   color:#0a1628;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:100px;
   padding:9px 14px;line-height:1.25}
 .cpx-chip i{color:#0984e3;font-size:.95rem;flex-shrink:0}
+
+/* Franja de confianza fusionada (sustituye a las secciones C y D) */
+.fuse-trust{display:grid;gap:14px;margin:26px 0 24px}
+@media(min-width:861px){.fuse-trust{grid-template-columns:minmax(240px,5fr) 7fr;gap:24px;align-items:center}}
+.fuse-stat{background:linear-gradient(160deg,#0a2540 0%,#0e3a6b 70%,#0f4a86 100%);color:#fff;border-radius:20px;padding:22px 20px;text-align:center;border:1px solid rgba(127,255,230,.18)}
+.fuse-stat__n{display:block;font-size:clamp(2.6rem,7vw,3.4rem);font-weight:800;color:#7fffe6;line-height:1;letter-spacing:-.03em}
+.fuse-stat__t{display:block;font-size:1rem;color:rgba(232,244,255,.92);line-height:1.45;margin-top:8px}
+.fuse-stat__t b{color:#fff}
+.fuse-points{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.fuse-points li{display:flex;gap:11px;align-items:flex-start;background:#fff;border:1px solid rgba(9,44,84,.08);border-radius:14px;padding:12px 14px;font-size:1.03rem;line-height:1.45;color:var(--muted)}
+.fuse-points li b{color:var(--navy)}
+.fuse-points i{color:var(--electric);font-size:1.15rem;flex-shrink:0;margin-top:2px}
+
+/* Hero movil: la lista de la tarjeta repite los bullets -> fuera; la foto se queda */
+@media(max-width:767px){
+  /* !important: este bloque quedo antes que las reglas base del hero en el orden de la hoja */
+  .hero__card .subt,.hero__card h3,.hero__card-list{display:none!important}
+  .hero__card{padding:10px!important;border-radius:16px!important}
+  .hero__card figure{margin:0!important}
+}
 </style>
     <!-- Fuente en carga normal (no diferida): con media=print la Plus Jakarta Sans llegaba tarde y el repintado del H1 disparaba el LCP (palanca LPE) -->
     <style>@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:200 800;font-display:swap;src:url(https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yygg_vb.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
@@ -1028,6 +1048,9 @@
                     <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="hero-wa-top">
                         <i class="bi bi-whatsapp"></i> Apartar mi estudio, $4,500
                     </a>
+                    <a href="#agendaModal" class="btn-cal" data-cta="hero-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                        <i class="bi bi-calendar-check"></i> Agendar cita
+                    </a>
                 </div>
 
                 <ul class="hero__bullets">
@@ -1036,14 +1059,6 @@
                     <li><i class="bi bi-person-badge-fill"></i> Lectura personal por neumólogo egresado del INER</li>
                     <li><i class="bi bi-stopwatch-fill"></i> Reporte y plan en 48 horas</li>
                 </ul>
-                <div class="hero__cta">
-                    <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="hero-wa">
-                        <i class="bi bi-whatsapp"></i> Agendar cita por WhatsApp
-                    </a>
-                    <a href="#agendaModal" class="btn-cal" data-cta="hero-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
-                        <i class="bi bi-calendar-check"></i> Agendar cita
-                    </a>
-                </div>
                 <div class="hero__creds">
                     <span class="hero__cred"><i class="bi bi-mortarboard-fill"></i> Egresado del INER</span>
                     <span class="hero__cred"><i class="bi bi-patch-check-fill"></i> Neumólogo Certificado</span>
@@ -1397,6 +1412,19 @@
             </article>
         </div>
 
+        <!-- Confianza (fusiona lo esencial de "es de segunda?" y "dos estudios") -->
+        <div class="fuse-trust" role="group" aria-label="Por qué es confiable el estudio en casa">
+            <div class="fuse-stat">
+                <span class="fuse-stat__n">~0.92</span>
+                <span class="fuse-stat__t">de concordancia con el estudio de laboratorio en el <b>índice con el que se diagnostica</b> (1 = coincidencia total)</span>
+            </div>
+            <ul class="fuse-points">
+                <li><i class="bi bi-journal-check" aria-hidden="true"></i><span>Las guías del sueño <b>(AASM)</b> lo respaldan para el caso típico de apnea.</span></li>
+                <li><i class="bi bi-person-badge-fill" aria-hidden="true"></i><span>El resultado lo decide <b>el Dr. Lara revisando el trazo completo</b>, no el número automático del aparato.</span></li>
+                <li><i class="bi bi-shield-fill-check" aria-hidden="true"></i><span>Si sale negativo y tus síntomas siguen, el paso correcto es la <b>polisomnografía</b>: te canalizo, no te dejo a medias.</span></li>
+            </ul>
+        </div>
+
         <div class="orient-close">
             <p class="orient-close__line">Cuéntame tus síntomas por WhatsApp y <b>te digo qué estudio necesitas</b>, sin que gastes de más.</p>
             <div class="orient-actions">
@@ -1412,165 +1440,9 @@
     </div>
 </section>
 
-<style id="rv-styles">
-/* ---- Reaseguramiento visual (rv-*) · mobile-first ---- */
-.rv-section{background:linear-gradient(180deg,#f5fbff 0%,#eaf4ff 100%)}
-.rv-grid{display:grid;gap:20px;align-items:center}
 
-/* Tile oscuro del dato ancla (~0.92) */
-.rv-stat{position:relative;background:linear-gradient(160deg,#0a2540 0%,#0e3a6b 70%,#0f4a86 100%);color:#fff;border-radius:24px;padding:32px 26px;text-align:center;box-shadow:var(--e3);border:1px solid rgba(127,255,230,.18);overflow:hidden}
-.rv-stat::after{content:'';position:absolute;inset:0;background:radial-gradient(420px 240px at 80% 6%,rgba(0,206,201,.22),transparent 62%);pointer-events:none}
-.rv-stat>*{position:relative;z-index:1}
-.rv-stat__eyebrow{font-size:.74rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8ffdec;margin-bottom:10px}
-.rv-stat__num{font-size:clamp(3.2rem,8vw,4.2rem);font-weight:800;color:#7fffe6;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
-.rv-stat__cap{font-size:.92rem;color:rgba(232,244,255,.92);line-height:1.5;margin:12px 0 0;text-wrap:pretty}
-.rv-stat__cap b{color:#fff;font-weight:800}
-.rv-stat__foot{font-size:.74rem;color:rgba(255,255,255,.62);margin:14px 0 0;line-height:1.45}
 
-/* Mini-tarjetas escaneables: icono + palabra clave + 1 linea */
-.rv-cards{display:grid;gap:12px;margin:0;padding:0;list-style:none}
-.rv-card{display:flex;gap:14px;align-items:center;background:#fff;border:1px solid rgba(9,44,84,.08);border-radius:16px;padding:14px 16px;box-shadow:var(--e2),var(--ring-hi)}
-.rv-card__ic{width:46px;height:46px;flex-shrink:0;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;background:linear-gradient(160deg,rgba(9,132,227,.13),rgba(0,206,201,.12));color:var(--electric);border:1px solid rgba(9,132,227,.16)}
-.rv-card__kw{font-size:.98rem;font-weight:800;color:var(--navy);line-height:1.25;margin:0 0 3px;letter-spacing:-.01em;text-wrap:balance}
-.rv-card__line{font-size:.88rem;color:var(--muted);line-height:1.45;margin:0;text-wrap:pretty}
-.rv-card__line b{color:var(--navy);font-weight:700}
 
-/* Pull-quote del posicionamiento (comilla decorativa, sin borde lateral) */
-.rv-quote{position:relative;font-size:1.02rem;font-style:italic;font-weight:600;color:var(--navy);line-height:1.5;padding:6px 0 6px 34px;margin:18px 0 20px;text-wrap:pretty}
-.rv-quote::before{content:'\201C';position:absolute;left:0;top:-6px;font-size:2.6rem;line-height:1;font-style:normal;font-weight:800;color:var(--cyan);opacity:.85}
-
-/* Desktop: tile a la izquierda, tarjetas + quote + CTA a la derecha */
-@media(min-width:861px){
-    .rv-grid{grid-template-columns:5fr 7fr;gap:32px}
-    .rv-stat{padding:36px 30px}
-}
-
-/* Motion fino: aparicion al entrar en viewport, solo si el navegador y el usuario lo permiten */
-@media (prefers-reduced-motion:no-preference){
-    @supports (animation-timeline:view()){
-        .rv-stat,.rv-card{animation:rvRise linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
-        .rv-card:nth-child(2){animation-range:entry 5% entry 60%}
-        .rv-card:nth-child(3){animation-range:entry 10% entry 65%}
-    }
-}
-@keyframes rvRise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-</style>
-
-<!-- ============ C · REASEGURAMIENTO: ¿es un estudio de segunda? ============ -->
-<section class="block rv-section" id="es-de-segunda" aria-label="¿El estudio en casa es de segunda?">
-    <div class="container">
-        <div class="block__head">
-            <span class="block__kicker">Sin quedarte con la duda</span>
-            <h2 class="block__title">¿El estudio en casa es de segunda? <em>No: es el correcto para la mayoría</em></h2>
-        </div>
-
-        <div class="rv-grid">
-            <aside class="rv-stat" role="figure" aria-label="Correlación entre el estudio en casa y el de laboratorio">
-                <div class="rv-stat__eyebrow">Concordancia con el laboratorio</div>
-                <div class="rv-stat__num">~0.92</div>
-                <p class="rv-stat__cap">de correlación entre el <b>índice de eventos por hora</b> del estudio en casa y el de laboratorio, donde <b>1 sería coincidencia total</b>.</p>
-                <p class="rv-stat__foot">Estudios que compararon ambos métodos en adultos con alta probabilidad de apnea moderada a severa.</p>
-            </aside>
-
-            <div class="rv-main">
-                <ul class="rv-cards">
-                    <li class="rv-card">
-                        <span class="rv-card__ic" aria-hidden="true"><i class="bi bi-journal-check"></i></span>
-                        <div>
-                            <p class="rv-card__kw">Respaldado por guías internacionales</p>
-                            <p class="rv-card__line">Las guías del sueño <b>(AASM)</b> lo recomiendan de forma firme para el caso típico de apnea.</p>
-                        </div>
-                    </li>
-                    <li class="rv-card">
-                        <span class="rv-card__ic" aria-hidden="true"><i class="bi bi-bullseye"></i></span>
-                        <div>
-                            <p class="rv-card__kw">Mismo índice clave</p>
-                            <p class="rv-card__line">Concordancia <b>~0.92</b> en el índice de eventos por hora, el dato con el que se diagnostica.</p>
-                        </div>
-                    </li>
-                    <li class="rv-card">
-                        <span class="rv-card__ic" aria-hidden="true"><i class="bi bi-patch-check"></i></span>
-                        <div>
-                            <p class="rv-card__kw">No es la versión barata</p>
-                            <p class="rv-card__line">Es el estudio <b>indicado</b> para la mayoría con sospecha de apnea; el laboratorio queda para casos concretos.</p>
-                        </div>
-                    </li>
-                </ul>
-
-                <p class="rv-quote">Mi trabajo como neumólogo no es venderte el estudio más caro, sino decidir contigo cuál necesitas, y canalizarte al laboratorio cuando de verdad hace falta.</p>
-
-                <a href="https://wa.me/522224926718?text=Hola%2C%20tengo%20una%20duda%3A%20quiero%20saber%20si%20el%20estudio%20en%20casa%20es%20suficiente%20para%20mi%20caso.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500%20%28alveos.mx%29."
-                   target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="reasegura-wa">
-                    <i class="bi bi-whatsapp"></i> Resolver mi duda por WhatsApp
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ============ D · DOS ESTUDIOS DE UN VISTAZO + enlace a la comparativa ============ -->
-<section class="block twostudy-section" id="dos-estudios" aria-label="Los dos estudios de un vistazo">
-    <div class="container">
-        <div class="block__head">
-            <span class="block__kicker">Cada uno tiene su lugar</span>
-            <h2 class="block__title">Dos estudios distintos: <em>el de laboratorio y el de tu casa</em></h2>
-            <p class="block__lead">No son lo mismo, y cada uno tiene su lugar según tu caso.</p>
-        </div>
-
-        <div class="twostudy-grid">
-            <!-- Casa · destacado -->
-            <article class="tstudy tstudy--home">
-                <div class="tstudy__head">
-                    <span class="tstudy__ic" aria-hidden="true"><i class="bi bi-house-heart-fill"></i></span>
-                    <div>
-                        <div class="tstudy__type">Tipo III</div>
-                        <h3 class="tstudy__name">Poligrafía respiratoria</h3>
-                        <div class="tstudy__place">En tu casa</div>
-                    </div>
-                </div>
-                <p class="tstudy__desc">Duermes en tu propia cama, sin un técnico a tu lado. Su resultado nunca se decide con el número automático del aparato: <b>el Dr. Lara revisa el trazo completo</b> para darte un diagnóstico confiable.</p>
-                <ul class="tstudy__meas">
-                    <li><i class="bi bi-wind" aria-hidden="true"></i> Flujo de aire por nariz y boca.</li>
-                    <li><i class="bi bi-lungs-fill" aria-hidden="true"></i> Esfuerzo del pecho al respirar.</li>
-                    <li><i class="bi bi-droplet-half" aria-hidden="true"></i> Oxigenación de la sangre.</li>
-                    <li><i class="bi bi-heart-pulse-fill" aria-hidden="true"></i> Por lo general, la frecuencia cardiaca.</li>
-                </ul>
-                <span class="tstudy__flag"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> Cómodo, válido y empieza el tratamiento más pronto</span>
-            </article>
-
-            <!-- Laboratorio · sobrio -->
-            <article class="tstudy tstudy--lab">
-                <div class="tstudy__head">
-                    <span class="tstudy__ic" aria-hidden="true"><i class="bi bi-hospital"></i></span>
-                    <div>
-                        <div class="tstudy__type">Tipo I</div>
-                        <h3 class="tstudy__name">Polisomnografía</h3>
-                        <div class="tstudy__place">En laboratorio</div>
-                    </div>
-                </div>
-                <p class="tstudy__desc">Pasas la noche en un centro del sueño, con un técnico presente. Es el estudio más completo porque mide todo a la vez, incluidas <b>las ondas del cerebro</b>, así que sabe con exactitud cuánto dormiste.</p>
-                <ul class="tstudy__meas">
-                    <li><i class="bi bi-dot" aria-hidden="true"></i> Todo lo del estudio en casa, más:</li>
-                    <li><i class="bi bi-dot" aria-hidden="true"></i> Ondas del cerebro (EEG) y fases del sueño.</li>
-                    <li><i class="bi bi-dot" aria-hidden="true"></i> Detecta otros trastornos del sueño, no solo apnea.</li>
-                    <li><i class="bi bi-dot" aria-hidden="true"></i> Aquí no lo realizamos: te orientamos y canalizamos.</li>
-                </ul>
-                <span class="tstudy__flag"><i class="bi bi-signpost-2-fill" aria-hidden="true"></i> Para los casos concretos que sí lo necesitan</span>
-            </article>
-        </div>
-
-        <p class="twostudy-honesty">
-            <i class="bi bi-shield-fill-check" aria-hidden="true"></i>
-            <span>El estudio en casa no mide ondas cerebrales, así que en algunos casos se queda corto. Si sale negativo pero tus síntomas siguen, <b>el siguiente paso correcto es la polisomnografía</b>. No es venderte de más: es no dejar tu caso a medias.</span>
-        </p>
-
-        <div class="twostudy-actions">
-            <a href="/poligrafia-vs-polisomnografia/" class="btn-compare" data-cta="comparativa-link">
-                <i class="bi bi-layout-split" aria-hidden="true"></i> Ver los dos estudios comparados punto por punto
-            </a>
-        </div>
-    </div>
-</section>
 
 <!-- ============ BENEFICIOS ============ -->
 <section class="block benefits">
