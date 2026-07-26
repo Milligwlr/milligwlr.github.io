@@ -1268,6 +1268,12 @@
   function vistaResultados(v) {
     v.appendChild(nodo('div', 'grande', 'Resultados'));
     v.appendChild(nodo('div', 'grande-sub', 'Su embudo: conversaciones que se vuelven citas.'));
+
+    // Qué hacer esta semana (25-jul): la capa de decisiones del servidor.
+    // Solo si el backend la manda (retrocompat).
+    if (estado.datos.decisiones && (estado.datos.decisiones.items || []).length) {
+      moduloDecisiones(v, estado.datos.decisiones);
+    }
     var seg = nodo('div', 'segmento');
     [['d7', '7 días'], ['d30', '30 días']].forEach(function (par) {
       var b = nodo('button', estado.ventana === par[0] ? 'activo' : '', par[1]); b.type = 'button';
@@ -1462,6 +1468,33 @@
     notaBajo(v, avisos.join(' '));
   }
 
+  /* ---- Qué hacer esta semana (capa de decisiones, 25-jul) ----
+     El servidor cruza embudo + citas + Google Ads y manda una lista corta de
+     acciones en español llano, cada una con su evidencia. El nivel va como
+     PALABRA además del color (el color nunca es el único portador). */
+  var NIVELES_DEC = {
+    accion: { et: 'HACER', color: 'var(--ambar)' },
+    atencion: { et: 'OJO', color: 'var(--azul)' },
+    bien: { et: 'BIEN', color: 'var(--verde)' }
+  };
+  function moduloDecisiones(v, dec) {
+    var g = seccion(v, 'Qué hacer esta semana');
+    (dec.items || []).forEach(function (it) {
+      var f = nodo('div', 'fila'); var cu = nodo('div', 'cuerpo');
+      var niv = NIVELES_DEC[it.nivel] || NIVELES_DEC.atencion;
+      var t = nodo('div', 't');
+      var chip = nodo('b', '', niv.et + ' · ');
+      chip.style.color = niv.color;
+      t.appendChild(chip);
+      t.appendChild(document.createTextNode(String(it.titulo || '')));
+      cu.appendChild(t);
+      cu.appendChild(nodo('div', 'd', String(it.detalle || '')));
+      f.appendChild(cu); g.appendChild(f);
+    });
+    notaBajo(v, 'Estas recomendaciones se arman solas cruzando sus citas, el embudo del bot y sus números de Google. ' +
+      'Nunca le voy a recomendar bajarle a una campaña: una cita perdida cuesta más que lo que se ahorra.');
+  }
+
   /* ---- Su dinero en Google (Fase 1 del tablero, 15-jul) ----
      Regla: el panel JAMÁS inventa. Si el script no corrió, lo dice; si Google
      no reporta un dato, lo dice; y nunca recomienda BAJAR el presupuesto (la
@@ -1510,6 +1543,14 @@
     var det = 'Gasta $' + c.gasto.toLocaleString('es-MX') + ' en 4 semanas' +
       (c.presupuesto_diario ? ' · tope de $' + c.presupuesto_diario.toLocaleString('es-MX') + ' al día' : '');
     cu.appendChild(nodo('div', 'd', det));
+    // CTR con vara de comparación (25-jul): de cada 100 que VIERON el anuncio,
+    // cuántos lo tocaron. Lo típico en salud anda entre 5 y 6 (auditoría
+    // 18-jul). Solo si el servidor lo mandó (null = pocas impresiones).
+    if (c.ctr !== null && c.ctr !== undefined) {
+      cu.appendChild(nodo('div', 'd', 'De cada 100 personas que vieron su anuncio, ' +
+        String(c.ctr).replace('.', ',') + ' lo tocaron' +
+        (c.ctr >= 5 ? ' — igual o mejor que lo típico en salud (5–6).' : ' — lo típico en salud es 5–6; hay margen en el texto del anuncio.')));
+    }
     if (c.perdido_presupuesto !== null && c.perdido_ranking !== null) {
       cu.appendChild(barraIS(c.perdido_presupuesto, c.perdido_ranking));
     }
