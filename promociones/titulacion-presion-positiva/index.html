@@ -54,39 +54,41 @@
 
     <style>
     /* Banner de promoción destacado */
-    .promo-banner{background:linear-gradient(120deg,#ff7a45 0%,#ff5722 50%,#e64a19 100%);color:#fff;padding:14px 0;text-align:center;font-weight:700;font-size:.95rem;position:relative;overflow:hidden;box-shadow:0 4px 16px rgba(230,74,25,.25)}
+    .promo-banner{background:linear-gradient(120deg,#0984e3 0%,#ff5722 50%,#1e3799 100%);color:#fff;padding:14px 0;text-align:center;font-weight:700;font-size:.95rem;position:relative;overflow:hidden;box-shadow:0 4px 16px rgba(230,74,25,.25)}
     .promo-banner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 18px,rgba(255,255,255,.06) 18px,rgba(255,255,255,.06) 36px);pointer-events:none}
     .promo-banner__inner{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 18px}
     .promo-banner .tag{background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.4);padding:3px 10px;border-radius:999px;font-size:.72rem;letter-spacing:1px;text-transform:uppercase}
     .promo-banner .price-old{text-decoration:line-through;opacity:.7;margin-left:6px;font-weight:600}
     .promo-banner .price-new{font-size:1.15rem;font-weight:800}
-    .promo-banner a{background:#fff;color:#e64a19;padding:6px 16px;border-radius:999px;text-decoration:none;font-weight:800;font-size:.85rem;transition:transform .2s}
-    .promo-banner a:hover{transform:scale(1.05);color:#e64a19}
+    .promo-banner a{background:#fff;color:#047857;padding:6px 16px;border-radius:999px;text-decoration:none;font-weight:800;font-size:.85rem;transition:transform .2s}
+    .promo-banner a:hover{transform:scale(1.05);color:#047857}
     .promo-lang2{display:inline-flex;gap:2px;border:1px solid rgba(255,255,255,.6);border-radius:999px;overflow:hidden;margin-left:10px;font-size:.72rem;font-weight:800;vertical-align:middle}
     .promo-lang2 a{padding:2px 9px;color:#fff;text-decoration:none;line-height:1.7}
+    /* el idioma inactivo heredaba background:#fff de .promo-banner a y quedaba blanco sobre blanco */
+    .promo-lang2 a:not(.active){background:transparent!important;margin-left:0!important}
     .promo-lang2 a:not(.active):hover{background:rgba(255,255,255,.22)}
     .promo-lang2 a.active{background:#fff}
-    .promo-lang2 a.active{color:#e64a19}
+    .promo-lang2 a.active{color:#047857}
 
     /* Card de promoción dentro del hero */
     .promo-card{background:linear-gradient(135deg,#fff7f2 0%,#ffe8db 100%);border:2px dashed #ff5722;border-radius:18px;padding:20px 22px;margin:0 0 22px;display:flex;flex-wrap:wrap;align-items:center;gap:14px}
-    .promo-card__icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#ff7a45,#e64a19);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+    .promo-card__icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#0984e3,#1e3799);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
     .promo-card__body{flex:1;min-width:200px}
     .promo-card__title{font-weight:800;color:#7a2d0a;font-size:1rem;margin-bottom:2px;line-height:1.3}
     .promo-card__copy{font-size:.88rem;color:#5a3a25;line-height:1.45;margin:0}
-    .promo-card__copy strong{color:#e64a19}
+    .promo-card__copy strong{color:#047857}
     .promo-card__copy s{opacity:.65;margin-right:4px}
     </style>
 
     <style id="lp-styles">
     :root{
-        --navy:#0a2540;
+        --navy:#0a1628;
         --electric:#0984e3;
         --cyan:#00cec9;
         --green:#1DA851;
         --green-dark:#128C7E;
-        --bg:#f7fbff;
-        --ink:#1a2238;
+        --bg:#f8faff;
+        --ink:#0f1d30;
         --muted:#5a6b7d;
         --ease:cubic-bezier(.22,.61,.36,1);
     }
@@ -111,34 +113,34 @@
     @media(min-width:600px){.lp-header__phone span{display:inline}}
 
     /* ============ HERO ============ */
-    .hero{position:relative;background:linear-gradient(135deg,#0a2540 0%,#0e3a6b 60%,#0984e3 100%);color:#fff;padding:56px 0 64px;overflow:hidden}
+    .hero{position:relative;background:linear-gradient(135deg,#0a1628 0%,#1e3799 60%,#0984e3 100%);color:#fff;padding:56px 0 64px;overflow:hidden}
     .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(800px 400px at 80% 10%,rgba(0,206,201,.25),transparent 60%);pointer-events:none}
     .hero__content{position:relative;z-index:2}
-    .hero__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,206,201,.18);border:1px solid rgba(0,206,201,.4);color:#7fffe6;padding:7px 16px;border-radius:999px;font-size:.82rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
+    .hero__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,206,201,.18);border:1px solid rgba(0,206,201,.4);color:#00cec9;padding:7px 16px;border-radius:999px;font-size:.82rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
     .hero__badge .dot{width:8px;height:8px;background:#00cec9;border-radius:50%;box-shadow:0 0 12px #00cec9;animation:pulse 2s infinite}
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
     section.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:18px;color:#fff}
-    section.hero h1 em{font-style:normal;background:linear-gradient(120deg,#00cec9,#7fffe6);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+    section.hero h1 em{font-style:normal;background:linear-gradient(120deg,#00cec9,#00cec9);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
     .hero__sub{font-size:1.12rem;color:rgba(255,255,255,.85);margin-bottom:24px;max-width:560px;line-height:1.55}
     .hero__bullets{list-style:none;padding:0;margin:0 0 28px;display:grid;gap:10px}
-    .hero__bullets li{display:flex;align-items:center;gap:10px;font-size:1rem;color:#e8f4ff}
-    .hero__bullets i{color:#7fffe6;font-size:1.15rem;flex-shrink:0}
+    .hero__bullets li{display:flex;align-items:center;gap:10px;font-size:1rem;color:#f0f6ff}
+    .hero__bullets i{color:#00cec9;font-size:1.15rem;flex-shrink:0}
     .hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:22px}
     .btn-wa,.btn-cal{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 26px;border-radius:14px;font-weight:800;font-size:1.05rem;text-decoration:none;transition:all .25s var(--ease);box-shadow:0 10px 30px -8px rgba(0,0,0,.4);min-width:220px}
     .btn-wa{background:var(--green);color:#fff}
     .btn-wa:hover{background:var(--green-dark);color:#fff;transform:translateY(-2px);box-shadow:0 14px 34px -8px rgba(29,168,81,.5)}
     .btn-cal{background:#fff;color:var(--navy)}
-    .btn-cal:hover{background:#e8f4ff;color:var(--navy);transform:translateY(-2px)}
+    .btn-cal:hover{background:#f0f6ff;color:var(--navy);transform:translateY(-2px)}
     .hero__trust{display:flex;flex-wrap:wrap;gap:18px;font-size:.83rem;color:rgba(255,255,255,.7)}
     .hero__trust span{display:inline-flex;align-items:center;gap:6px}
-    .hero__trust i{color:#7fffe6}
+    .hero__trust i{color:#00cec9}
 
     /* Card visual a la derecha */
     .hero__card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:24px;padding:28px;backdrop-filter:blur(12px);position:relative;z-index:2}
     .hero__card h3{color:#fff;font-weight:800;font-size:1.3rem;margin-bottom:6px}
-    .hero__card .subt{color:#7fffe6;font-size:.85rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
+    .hero__card .subt{color:#00cec9;font-size:.85rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
     .hero__card-list{list-style:none;padding:0;margin:0;display:grid;gap:14px}
-    .hero__card-list li{display:flex;gap:12px;align-items:flex-start;color:#e8f4ff;font-size:.95rem}
+    .hero__card-list li{display:flex;gap:12px;align-items:flex-start;color:#f0f6ff;font-size:.95rem}
     .hero__card-list i{color:#00cec9;font-size:1.4rem;flex-shrink:0}
     .hero__card-list strong{color:#fff;display:block;margin-bottom:2px}
 
@@ -166,7 +168,7 @@
     .tl-step__circle{width:84px;height:84px;border-radius:50%;background:#fff;border:3px solid var(--electric);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;position:relative;box-shadow:0 8px 24px -10px rgba(9,132,227,.45);transition:transform .3s var(--ease)}
     .tl-step:hover .tl-step__circle{transform:translateY(-4px) scale(1.05)}
     .tl-step__circle i{font-size:1.9rem;background:linear-gradient(135deg,var(--electric),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
-    .tl-step__num{position:absolute;top:-8px;right:-4px;width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#ff7a45,#e64a19);color:#fff;font-weight:800;font-size:.9rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(230,74,25,.4)}
+    .tl-step__num{position:absolute;top:-8px;right:-4px;width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#0984e3,#1e3799);color:#fff;font-weight:800;font-size:.9rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(230,74,25,.4)}
     .tl-step__title{font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:8px;letter-spacing:-.01em}
     .tl-step__desc{font-size:.9rem;color:var(--muted);line-height:1.55;margin:0 auto;max-width:220px}
     .tl-step__time{display:inline-block;margin-top:10px;font-size:.72rem;color:var(--electric);background:rgba(9,132,227,.08);padding:3px 10px;border-radius:999px;font-weight:700;letter-spacing:.4px;text-transform:uppercase}
@@ -182,7 +184,7 @@
     }
 
     /* ============ CTA INLINE ============ */
-    .cta-inline{background:linear-gradient(135deg,var(--navy) 0%,#0e3a6b 100%);color:#fff;padding:48px 32px;border-radius:24px;text-align:center;position:relative;overflow:hidden}
+    .cta-inline{background:linear-gradient(135deg,var(--navy) 0%,#1e3799 100%);color:#fff;padding:48px 32px;border-radius:24px;text-align:center;position:relative;overflow:hidden}
     .cta-inline::before{content:'';position:absolute;inset:0;background:radial-gradient(500px 200px at 50% 0%,rgba(0,206,201,.25),transparent 60%);pointer-events:none}
     .cta-inline > *{position:relative;z-index:2}
     .cta-inline h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:12px;letter-spacing:-.02em;color:#fff}
@@ -419,7 +421,7 @@
             <span class="block__kicker">Dudas frecuentes</span>
             <h2 class="block__title">Lo que más preguntan <em>antes de agendar</em></h2>
         </div>
-        <details class="faq-item" open><summary>¿Cuánto cuesta la titulación de CPAP?</summary><div class="faq-item__answer">En la mayoría de laboratorios de sueño el precio regular es de aproximadamente <strong>$4,500</strong>. Por internet tenemos promoción a <strong>$3,900</strong>. <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20titulaci%C3%B3n%20de%20presi%C3%B3n%20positiva%20a%20%243%2C900%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" style="color:#e64a19;font-weight:700">Mándame mensaje por WhatsApp</a> mencionando la promoción para apartarla.</div></details>
+        <details class="faq-item" open><summary>¿Cuánto cuesta la titulación de CPAP?</summary><div class="faq-item__answer">En la mayoría de laboratorios de sueño el precio regular es de aproximadamente <strong>$4,500</strong>. Por internet tenemos promoción a <strong>$3,900</strong>. <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20titulaci%C3%B3n%20de%20presi%C3%B3n%20positiva%20a%20%243%2C900%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" style="color:#047857;font-weight:700">Mándame mensaje por WhatsApp</a> mencionando la promoción para apartarla.</div></details>
         <details class="faq-item"><summary>¿Necesito ya tener diagnóstico de apnea?</summary><div class="faq-item__answer">Sí. La titulación es para pacientes que ya tienen diagnóstico confirmado de apnea (por poligrafía o polisomnografía) y necesitan determinar la presión exacta de su CPAP. Si aún no tienes diagnóstico, primero requieres un estudio de sueño.</div></details>
         <details class="faq-item"><summary>¿Qué incluye exactamente?</summary><div class="faq-item__answer">Incluye préstamo de equipo APAP de grado clínico durante 5 noches, mascarilla nueva individual, ajuste de sellado, registro nocturno completo, interpretación por neumólogo y reporte con presión óptima, IAH residual, fugas y mascarilla recomendada. <strong>No incluye consulta médica adicional</strong>: es solo la titulación.</div></details>
         <details class="faq-item"><summary>¿Y si ya tengo CPAP propio?</summary><div class="faq-item__answer">Perfecto. Tras la titulación te entrego el valor de presión exacto que debes programar en tu equipo. Si tu CPAP es muy básico (presión fija) podemos valorar si necesitas actualizarlo.</div></details>

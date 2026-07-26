@@ -46,39 +46,41 @@
 
     <style>
     /* Banner de promoción delgado */
-    .promo-banner{background:#e64a19;color:#fff;padding:5px 0;text-align:center;font-weight:700;font-size:.8rem}
+    .promo-banner{background:#1e3799;color:#fff;padding:5px 0;text-align:center;font-weight:700;font-size:.8rem}
     .promo-banner__inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px}
     .promo-banner .tag{display:none}
     .promo-banner .price-old{text-decoration:line-through;opacity:.7;margin-left:4px;font-weight:600}
     .promo-banner .price-new{font-weight:800}
-    .promo-banner a{background:#fff;color:#e64a19;padding:2px 10px;border-radius:999px;text-decoration:none;font-weight:800;font-size:.76rem;white-space:nowrap;transition:transform .2s;margin-left:6px}
-    .promo-banner a:hover{transform:scale(1.05);color:#e64a19}
+    .promo-banner a{background:#fff;color:#047857;padding:2px 10px;border-radius:999px;text-decoration:none;font-weight:800;font-size:.76rem;white-space:nowrap;transition:transform .2s;margin-left:6px}
+    .promo-banner a:hover{transform:scale(1.05);color:#047857}
     @media(max-width:600px){.promo-banner{font-size:.72rem;padding:4px 0}.promo-banner a{font-size:.7rem;padding:1px 8px}}
     .promo-lang2{display:inline-flex;gap:2px;border:1px solid rgba(255,255,255,.6);border-radius:999px;overflow:hidden;margin-left:10px;font-size:.72rem;font-weight:800;vertical-align:middle}
     .promo-lang2 a{padding:2px 9px;color:#fff;text-decoration:none;line-height:1.7}
+    /* el idioma inactivo heredaba background:#fff de .promo-banner a y quedaba blanco sobre blanco */
+    .promo-lang2 a:not(.active){background:transparent!important;margin-left:0!important}
     .promo-lang2 a:not(.active):hover{background:rgba(255,255,255,.22)}
     .promo-lang2 a.active{background:#fff}
-    .promo-lang2 a.active{color:#e64a19}
+    .promo-lang2 a.active{color:#047857}
 
     /* Card de promoción dentro del hero */
     .promo-card{background:linear-gradient(135deg,#fff7f2 0%,#ffe8db 100%);border:2px dashed #ff5722;border-radius:18px;padding:20px 22px;margin:0 0 22px;display:flex;flex-wrap:wrap;align-items:center;gap:14px}
-    .promo-card__icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#ff7a45,#e64a19);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+    .promo-card__icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#0984e3,#1e3799);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
     .promo-card__body{flex:1;min-width:200px}
     .promo-card__title{font-weight:800;color:#7a2d0a;font-size:1rem;margin-bottom:2px;line-height:1.3}
     .promo-card__copy{font-size:.88rem;color:#5a3a25;line-height:1.45;margin:0}
-    .promo-card__copy strong{color:#e64a19}
+    .promo-card__copy strong{color:#047857}
     .promo-card__copy s{opacity:.65;margin-right:4px}
     </style>
 
     <style id="lp-styles">
     :root{
-        --navy:#0a2540;
+        --navy:#0a1628;
         --electric:#0984e3;
         --cyan:#00cec9;
         --green:#1DA851;
         --green-dark:#128C7E;
-        --bg:#f7fbff;
-        --ink:#1a2238;
+        --bg:#f8faff;
+        --ink:#0f1d30;
         --muted:#5a6b7d;
         --ease:cubic-bezier(.22,.61,.36,1);
     }
@@ -103,34 +105,34 @@
     @media(min-width:600px){.lp-header__phone span{display:inline}}
 
     /* ============ HERO ============ */
-    .hero{position:relative;background:linear-gradient(135deg,#0a2540 0%,#0e3a6b 60%,#0984e3 100%);color:#fff;padding:56px 0 64px;overflow:hidden}
+    .hero{position:relative;background:linear-gradient(135deg,#0a1628 0%,#1e3799 60%,#0984e3 100%);color:#fff;padding:56px 0 64px;overflow:hidden}
     .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(800px 400px at 80% 10%,rgba(0,206,201,.25),transparent 60%);pointer-events:none}
     .hero__content{position:relative;z-index:2}
-    .hero__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,206,201,.18);border:1px solid rgba(0,206,201,.4);color:#7fffe6;padding:7px 16px;border-radius:999px;font-size:.82rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
+    .hero__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,206,201,.18);border:1px solid rgba(0,206,201,.4);color:#00cec9;padding:7px 16px;border-radius:999px;font-size:.82rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
     .hero__badge .dot{width:8px;height:8px;background:#00cec9;border-radius:50%;box-shadow:0 0 12px #00cec9;animation:pulse 2s infinite}
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
     section.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:18px;color:#fff}
-    section.hero h1 em{font-style:normal;background:linear-gradient(120deg,#00cec9,#7fffe6);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+    section.hero h1 em{font-style:normal;background:linear-gradient(120deg,#00cec9,#00cec9);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
     .hero__sub{font-size:1.12rem;color:rgba(255,255,255,.85);margin-bottom:24px;max-width:560px;line-height:1.55}
     .hero__bullets{list-style:none;padding:0;margin:0 0 28px;display:grid;gap:10px}
-    .hero__bullets li{display:flex;align-items:center;gap:10px;font-size:1rem;color:#e8f4ff}
-    .hero__bullets i{color:#7fffe6;font-size:1.15rem;flex-shrink:0}
+    .hero__bullets li{display:flex;align-items:center;gap:10px;font-size:1rem;color:#f0f6ff}
+    .hero__bullets i{color:#00cec9;font-size:1.15rem;flex-shrink:0}
     .hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:22px}
     .btn-wa,.btn-cal{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 26px;border-radius:14px;font-weight:800;font-size:1.05rem;text-decoration:none;transition:all .25s var(--ease);box-shadow:0 10px 30px -8px rgba(0,0,0,.4);min-width:220px}
     .btn-wa{background:var(--green);color:#fff}
     .btn-wa:hover{background:var(--green-dark);color:#fff;transform:translateY(-2px);box-shadow:0 14px 34px -8px rgba(29,168,81,.5)}
     .btn-cal{background:#fff;color:var(--navy)}
-    .btn-cal:hover{background:#e8f4ff;color:var(--navy);transform:translateY(-2px)}
+    .btn-cal:hover{background:#f0f6ff;color:var(--navy);transform:translateY(-2px)}
     .hero__trust{display:flex;flex-wrap:wrap;gap:18px;font-size:.83rem;color:rgba(255,255,255,.7)}
     .hero__trust span{display:inline-flex;align-items:center;gap:6px}
-    .hero__trust i{color:#7fffe6}
+    .hero__trust i{color:#00cec9}
 
     /* Card visual a la derecha */
     .hero__card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:24px;padding:28px;backdrop-filter:blur(12px);position:relative;z-index:2}
     .hero__card h3{color:#fff;font-weight:800;font-size:1.3rem;margin-bottom:6px}
-    .hero__card .subt{color:#7fffe6;font-size:.85rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
+    .hero__card .subt{color:#00cec9;font-size:.85rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
     .hero__card-list{list-style:none;padding:0;margin:0;display:grid;gap:14px}
-    .hero__card-list li{display:flex;gap:12px;align-items:flex-start;color:#e8f4ff;font-size:.95rem}
+    .hero__card-list li{display:flex;gap:12px;align-items:flex-start;color:#f0f6ff;font-size:.95rem}
     .hero__card-list i{color:#00cec9;font-size:1.4rem;flex-shrink:0}
     .hero__card-list strong{color:#fff;display:block;margin-bottom:2px}
 
@@ -158,7 +160,7 @@
     .tl-step__circle{width:84px;height:84px;border-radius:50%;background:#fff;border:3px solid var(--electric);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;position:relative;box-shadow:0 8px 24px -10px rgba(9,132,227,.45);transition:transform .3s var(--ease)}
     .tl-step:hover .tl-step__circle{transform:translateY(-4px) scale(1.05)}
     .tl-step__circle i{font-size:1.9rem;background:linear-gradient(135deg,var(--electric),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
-    .tl-step__num{position:absolute;top:-8px;right:-4px;width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#ff7a45,#e64a19);color:#fff;font-weight:800;font-size:.9rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(230,74,25,.4)}
+    .tl-step__num{position:absolute;top:-8px;right:-4px;width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#0984e3,#1e3799);color:#fff;font-weight:800;font-size:.9rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(230,74,25,.4)}
     .tl-step__title{font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:8px;letter-spacing:-.01em}
     .tl-step__desc{font-size:.9rem;color:var(--muted);line-height:1.55;margin:0 auto;max-width:220px}
     .tl-step__time{display:inline-block;margin-top:10px;font-size:.72rem;color:var(--electric);background:rgba(9,132,227,.08);padding:3px 10px;border-radius:999px;font-weight:700;letter-spacing:.4px;text-transform:uppercase}
@@ -174,7 +176,7 @@
     }
 
     /* ============ CTA INLINE ============ */
-    .cta-inline{background:linear-gradient(135deg,var(--navy) 0%,#0e3a6b 100%);color:#fff;padding:48px 32px;border-radius:24px;text-align:center;position:relative;overflow:hidden}
+    .cta-inline{background:linear-gradient(135deg,var(--navy) 0%,#1e3799 100%);color:#fff;padding:48px 32px;border-radius:24px;text-align:center;position:relative;overflow:hidden}
     .cta-inline::before{content:'';position:absolute;inset:0;background:radial-gradient(500px 200px at 50% 0%,rgba(0,206,201,.25),transparent 60%);pointer-events:none}
     .cta-inline > *{position:relative;z-index:2}
     .cta-inline h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:12px;letter-spacing:-.02em;color:#fff}
@@ -236,7 +238,7 @@
     .prep-list ul{list-style:none;padding:0;margin:0;display:grid;gap:12px}
     .prep-list li{display:flex;gap:12px;align-items:flex-start;font-size:.96rem;color:var(--ink);line-height:1.5}
     .prep-list li .ico{flex-shrink:0;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;margin-top:1px}
-    .prep-list li.no .ico{background:rgba(230,74,25,.12);color:#e64a19}
+    .prep-list li.no .ico{background:rgba(230,74,25,.12);color:#047857}
     .prep-list li.yes .ico{background:rgba(29,168,81,.15);color:var(--green-dark)}
     .prep-list li a{color:var(--electric);text-decoration:underline;font-weight:600}
     .prep-aside{text-align:center}
@@ -275,8 +277,8 @@
 
     /* ===== Mejoras CRO (jun-2026): confianza en hero, resenas reales, micro-interacciones ===== */
     .hero__creds{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}
-    .hero__cred{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#e8f4ff;padding:7px 13px;border-radius:999px;font-size:.82rem;font-weight:700;text-decoration:none}
-    .hero__cred i{color:#7fffe6}
+    .hero__cred{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#f0f6ff;padding:7px 13px;border-radius:999px;font-size:.82rem;font-weight:700;text-decoration:none}
+    .hero__cred i{color:#00cec9}
     .hero__cred .stars{color:#f5b400;letter-spacing:1px;font-size:.95rem}
     a.hero__cred:hover{background:rgba(255,255,255,.2);color:#fff}
     .greviews{max-width:620px;margin:0 auto;background:#fff;border:1px solid rgba(9,132,227,.15);border-radius:22px;padding:30px 28px;text-align:center;box-shadow:0 12px 30px -16px rgba(9,44,84,.15)}
@@ -287,7 +289,7 @@
     .greviews__lead{color:var(--muted);font-size:.98rem;line-height:1.6;margin:14px auto 16px;max-width:480px}
     .greviews__fact{display:inline-flex;align-items:center;gap:8px;background:rgba(9,132,227,.08);color:var(--navy);border-left:3px solid var(--electric);border-radius:10px;padding:10px 14px;font-weight:700;font-size:.9rem;margin-bottom:18px}
     .greviews__btn{display:inline-flex;align-items:center;gap:9px;background:var(--navy);color:#fff;padding:13px 22px;border-radius:12px;font-weight:800;text-decoration:none;transition:transform .2s var(--ease),background .2s}
-    .greviews__btn:hover{background:#0e3a6b;color:#fff;transform:translateY(-2px)}
+    .greviews__btn:hover{background:#1e3799;color:#fff;transform:translateY(-2px)}
     .btn-wa:active,.btn-cal:active,.greviews__btn:active,.sticky-cta a:active{transform:scale(.97)}
     .reveal{opacity:0;transform:translateY(18px)}
     .reveal.in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
@@ -626,9 +628,9 @@
             <span class="block__kicker">Dudas frecuentes</span>
             <h2 class="block__title">Lo que más preguntan <em>antes de agendar</em></h2>
         </div>
-        <details class="faq-item" open><summary>¿Cuánto cuesta la espirometría con broncodilatador?</summary><div class="faq-item__answer">El precio regular es <strong>$1,400</strong>; por internet, promoción a <strong>$1,200</strong> todo incluido (estudio + interpretación + reporte digital), sin costos adicionales. <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20espirometr%C3%ADa%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20espirometr%C3%ADa%20con%20broncodilatador%20a%20%241%2C200%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" style="color:#e64a19;font-weight:700">Escríbeme por WhatsApp</a> para apartarla.</div></details>
+        <details class="faq-item" open><summary>¿Cuánto cuesta la espirometría con broncodilatador?</summary><div class="faq-item__answer">El precio regular es <strong>$1,400</strong>; por internet, promoción a <strong>$1,200</strong> todo incluido (estudio + interpretación + reporte digital), sin costos adicionales. <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20espirometr%C3%ADa%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20espirometr%C3%ADa%20con%20broncodilatador%20a%20%241%2C200%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" style="color:#047857;font-weight:700">Escríbeme por WhatsApp</a> para apartarla.</div></details>
 
-        <details class="faq-item"><summary>¿Qué incluye exactamente?</summary><div class="faq-item__answer">Espirometría basal, salbutamol inhalado, prueba post-broncodilatador, interpretación por neumólogo y reporte digital el mismo día. <strong>No incluye consulta médica</strong>: es solo el estudio. ¿Prefieres consulta + estudio? Mira la <a href="/promociones/consulta-neumologia/" style="color:#e64a19;font-weight:700">promoción de consulta de neumología</a>.</div></details>
+        <details class="faq-item"><summary>¿Qué incluye exactamente?</summary><div class="faq-item__answer">Espirometría basal, salbutamol inhalado, prueba post-broncodilatador, interpretación por neumólogo y reporte digital el mismo día. <strong>No incluye consulta médica</strong>: es solo el estudio. ¿Prefieres consulta + estudio? Mira la <a href="/promociones/consulta-neumologia/" style="color:#047857;font-weight:700">promoción de consulta de neumología</a>.</div></details>
 
         <details class="faq-item"><summary>¿Quién interpreta mi espirometría?</summary><div class="faq-item__answer">El propio Dr. Lara interpreta personalmente cada estudio bajo criterios ATS/ERS 2019, firma el reporte y te lo explica; el precio está publicado desde el inicio.</div></details>
 
@@ -648,7 +650,7 @@
             <li>Los corticoesteroides inhalados y el montelukast <strong>NO se suspenden</strong>; en tratamientos combinados rige el componente de acción más larga.</li>
             <li>No tomar café, té ni refrescos con cafeína ni fumar 4 horas antes; trae tus inhaladores (caja o foto). No requiere ayuno.</li>
         </ul>
-        <p style="margin:12px 0 6px"><a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20la%20promoci%C3%B3n%20de%20espirometr%C3%ADa%20con%20broncodilatador%20a%20$1,200.%20Tomo%20[nombre%20del%20medicamento],%20%C2%BFcu%C3%A1nto%20tiempo%20lo%20suspendo%20antes%20de%20la%20espirometr%C3%ADa%3F"  target="_blank" rel="noopener noreferrer" style="color:#e64a19;font-weight:700"><i class="bi bi-whatsapp"></i> Consultar mi medicamento por WhatsApp</a></p>
+        <p style="margin:12px 0 6px"><a href="https://wa.me/5215591708334?text=Hola%20Dr.%20Lara,%20vengo%20de%20la%20promoci%C3%B3n%20de%20espirometr%C3%ADa%20con%20broncodilatador%20a%20$1,200.%20Tomo%20[nombre%20del%20medicamento],%20%C2%BFcu%C3%A1nto%20tiempo%20lo%20suspendo%20antes%20de%20la%20espirometr%C3%ADa%3F"  target="_blank" rel="noopener noreferrer" style="color:#047857;font-weight:700"><i class="bi bi-whatsapp"></i> Consultar mi medicamento por WhatsApp</a></p>
         <p style="font-size:.8rem;color:var(--muted);margin:0"><em>Tabla basada en ATS/ERS 2019: Standardization of Spirometry 2019 Update (American Thoracic Society / European Respiratory Society).</em></p>
         </div></details>
 
@@ -773,7 +775,7 @@ window.addEventListener('load', function(){
 
 <!-- Sticky CTA (mobile) con cintillo de urgencia -->
 <div class="sticky-cta" style="flex-direction:column;gap:6px;padding-top:6px">
-    <div style="font-size:.72rem;font-weight:700;color:#e64a19;background:rgba(230,74,25,.1);border:1px solid rgba(230,74,25,.3);padding:3px 10px;border-radius:999px;letter-spacing:.2px"><i class="bi bi-clock-history" style="margin-right:4px"></i>Atención previa cita, sujeta a disponibilidad</div>
+    <div style="font-size:.72rem;font-weight:700;color:#047857;background:rgba(230,74,25,.1);border:1px solid rgba(230,74,25,.3);padding:3px 10px;border-radius:999px;letter-spacing:.2px"><i class="bi bi-clock-history" style="margin-right:4px"></i>Atención previa cita, sujeta a disponibilidad</div>
     <div style="display:flex;gap:8px;width:100%">
         <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20espirometr%C3%ADa%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20espirometr%C3%ADa%20con%20broncodilatador%20a%20%241%2C200%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="sc-wa" data-cta="sticky-wa" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 12px;border-radius:12px;font-weight:800;font-size:.95rem;text-decoration:none;background:var(--green);color:#fff"><i class="bi bi-whatsapp"></i> WhatsApp</a>
         <a href="tel:5591708334" class="sc-call" data-cta="sticky-call" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 12px;border-radius:12px;font-weight:800;font-size:.95rem;text-decoration:none;background:var(--electric);color:#fff"><i class="bi bi-telephone-fill"></i> Llamar</a>
