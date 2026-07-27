@@ -475,6 +475,16 @@ a.zhero__cred:hover{background:rgba(255,255,255,.2);color:#fff}
     <link rel="stylesheet" href="/assets/agenda-modal.css">
     <link rel="stylesheet" href="/assets/base.css">
     <script src="/assets/base.js" defer></script>
+
+<style>
+/* Malla interna del clúster de zonas: enlaces reales a zonas vecinas. */
+.zona-mesh{margin-top:26px;padding-top:22px;border-top:1px solid var(--border,rgba(0,0,0,.08))}
+.zona-mesh__lbl{font-size:.95rem;color:var(--text-muted,#64748b);margin:0 0 12px}
+.zona-mesh__list{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin:0;padding:0}
+.zona-mesh__list a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 16px;border-radius:100px;background:var(--cloud,#f0f6ff);border:1px solid rgba(9,132,227,.16);color:var(--navy,#0a2540);font-size:.92rem;font-weight:600;text-decoration:none;transition:background .24s var(--ease,cubic-bezier(.16,1,.3,1)),border-color .24s var(--ease,cubic-bezier(.16,1,.3,1))}
+.zona-mesh__list a:hover,.zona-mesh__list a:focus-visible{background:#fff;border-color:rgba(9,132,227,.4)}
+.zona-mesh__list a .bi{color:var(--electric,#0984e3)}
+</style>
 </head>
 <body>
 <a class="alv-skip" href="#main">Skip to content</a>
@@ -869,12 +879,17 @@ height="0" width="0" style="display:none;visibility:hidden" aria-hidden="true"><
             <p class="block__lead">Si vives cerca de Roma–Condesa pero en una colonia distinta, también te esperamos. Distancia y tiempo son similares.</p>
             </div>
         <div class="ubi-coverage__chips" role="list">
-            <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Hipódromo</span>
-            <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Hipódromo Condesa</span>
-            <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Juárez</span>
-            <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> Cuauhtémoc Centro</span>
-            <span class="ubi-coverage__chip"><i class="bi bi-geo-alt" aria-hidden="true"></i> San Miguel Chapultepec</span>
+            <span class="ubi-coverage__chip" role="listitem"><i class="bi bi-geo-alt" aria-hidden="true"></i> Hipódromo</span>
+            <span class="ubi-coverage__chip" role="listitem"><i class="bi bi-geo-alt" aria-hidden="true"></i> Hipódromo Condesa</span>
+            <span class="ubi-coverage__chip" role="listitem"><i class="bi bi-geo-alt" aria-hidden="true"></i> Juárez</span>
+            <span class="ubi-coverage__chip" role="listitem"><i class="bi bi-geo-alt" aria-hidden="true"></i> Cuauhtémoc Centro</span>
+            <span class="ubi-coverage__chip" role="listitem"><i class="bi bi-geo-alt" aria-hidden="true"></i> San Miguel Chapultepec</span>
         </div>
+        <nav class="zona-mesh" aria-label="Otras zonas de atención">
+            <p class="zona-mesh__lbl">Si te queda más cerca otra zona, también te atiendo ahí:</p>
+            <ul class="zona-mesh__list"><li><a href="/zonas/polanco/"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i> Polanco</a></li><li><a href="/zonas/del-valle/"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i> Del Valle</a></li><li><a href="/zonas/coyoacan/"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i> Coyoacán</a></li><li><a href="/neumologo-a-domicilio-cdmx/"><i class="bi bi-house-heart-fill" aria-hidden="true"></i> Consulta a domicilio</a></li></ul>
+        </nav>
+
     </div>
 </section>
 
