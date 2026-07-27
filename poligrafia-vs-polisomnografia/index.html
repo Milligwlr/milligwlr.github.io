@@ -594,6 +594,161 @@ a.zhero__cred:hover{background:rgba(255,255,255,.2);color:#fff}
 .rev-strip__all{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:4px;font-size:.9rem;font-weight:600;color:var(--electric,#0984e3);text-decoration:none}
 .rev-strip__all:hover,.rev-strip__all:focus-visible{text-decoration:underline}
 @media(prefers-reduced-motion:reduce){.rev-strip__track{scroll-behavior:auto}}
+
+/* ============================================================
+   PVP - Explicador visual poligrafia vs polisomnografia
+   Solo tokens de disease.css. Sin librerias, sin CDN, sin JS.
+   Idea rectora: polisomnografia = poligrafia + el cerebro.
+   ============================================================ */
+.pvp{--pvp-a:#1e3799;--pvp-b:#0a7a6b;--pvp-a-soft:rgba(30,55,153,.10);--pvp-b-soft:rgba(10,122,107,.10)}
+.pvp .block__lead{color:var(--text-muted,#64748b)}
+.pvp--soft{background:var(--cloud-alt,#f8faff);border-top:1px solid var(--border,rgba(0,0,0,.08));border-bottom:1px solid var(--border,rgba(0,0,0,.08))}
+
+/* --- 1. Respuesta corta + foto real --- */
+.pvp-answer{display:grid;gap:20px;align-items:center;max-width:1060px;margin:0 auto}
+@media(min-width:900px){.pvp-answer{grid-template-columns:1.02fr .98fr;gap:34px}}
+.pvp-shot{margin:0;border-radius:22px;overflow:hidden;background:#fff;border:1px solid var(--border,rgba(0,0,0,.08));box-shadow:0 20px 46px -26px rgba(10,22,40,.6)}
+.pvp-shot img{width:100%;height:auto;display:block}
+.pvp-shot figcaption{display:flex;gap:10px;align-items:flex-start;padding:13px 16px;font-size:.87rem;font-weight:600;line-height:1.5;color:var(--text-muted,#64748b)}
+.pvp-shot figcaption i{color:var(--electric,#0984e3);font-size:1rem;flex-shrink:0;margin-top:2px}
+.pvp-verdict{background:linear-gradient(150deg,#fff 0%,var(--cloud,#f0f6ff) 100%);border:1px solid rgba(9,132,227,.18);border-radius:22px;padding:26px 24px;box-shadow:0 16px 40px -26px rgba(10,22,40,.55)}
+.pvp-verdict__k{display:inline-flex;align-items:center;gap:8px;background:rgba(9,132,227,.1);color:var(--royal,#1e3799);padding:6px 14px;border-radius:999px;font-size:.72rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:14px}
+.pvp-verdict h3{font-size:1.2rem;font-weight:800;color:var(--navy,#0a1628);line-height:1.3;margin:0 0 10px;letter-spacing:-.02em}
+.pvp-verdict p{font-size:.98rem;line-height:1.65;color:var(--text-muted,#64748b);margin:0}
+.pvp-verdict p b{color:var(--navy,#0a1628)}
+.pvp-facts{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
+.pvp-facts li{display:flex;gap:12px;align-items:flex-start;font-size:.95rem;line-height:1.5;color:var(--text,#0f1d30)}
+.pvp-facts .sw{width:14px;height:14px;border-radius:50%;flex-shrink:0;margin-top:5px;box-shadow:0 0 0 3px #fff}
+.pvp-facts .sw--a{background:var(--pvp-a)}
+.pvp-facts .sw--b{background:var(--pvp-b)}
+.pvp-facts .sw--n{background:var(--text-muted,#64748b)}
+
+/* --- 2. Mapa de sensores (SVG) --- */
+.pvp-map{display:grid;gap:18px;max-width:1000px;margin:30px auto 0}
+@media(min-width:700px){.pvp-map{grid-template-columns:1fr 1fr;gap:22px;align-items:start}}
+.pvp-fig{background:#fff;border:1px solid var(--border,rgba(0,0,0,.08));border-radius:22px;padding:20px 18px 22px;box-shadow:0 14px 36px -28px rgba(10,22,40,.7)}
+.pvp-fig--a{border-color:rgba(30,55,153,.22)}
+.pvp-fig--b{border-color:rgba(10,122,107,.22);background:linear-gradient(165deg,#fff 0%,#f5fbf9 100%)}
+.pvp-fig__top{display:flex;gap:13px;align-items:center}
+.pvp-fig__ic{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#fff;flex-shrink:0}
+.pvp-fig--a .pvp-fig__ic{background:linear-gradient(135deg,var(--electric,#0984e3),var(--pvp-a))}
+.pvp-fig--b .pvp-fig__ic{background:linear-gradient(135deg,var(--pvp-b),var(--navy,#0a1628))}
+.pvp-fig__rt{font-size:.66rem;font-weight:800;letter-spacing:1.7px;text-transform:uppercase;color:var(--text-muted,#64748b);margin-bottom:2px}
+.pvp-fig h3{font-size:1.05rem;font-weight:800;color:var(--navy,#0a1628);margin:0;line-height:1.25;letter-spacing:-.015em}
+.pvp-fig__count{display:inline-flex;align-items:center;gap:7px;margin:14px 0 0;padding:7px 14px;border-radius:999px;font-size:.78rem;font-weight:800;letter-spacing:.3px}
+.pvp-fig--a .pvp-fig__count{background:var(--pvp-a-soft);color:var(--pvp-a)}
+.pvp-fig--b .pvp-fig__count{background:var(--pvp-b-soft);color:var(--pvp-b)}
+.pvp-svg{display:block;width:100%;max-width:272px;height:auto;margin:8px auto 2px}
+.pvp-svg .s-bed{fill:var(--cloud-alt,#f8faff);stroke:rgba(10,22,40,.10);stroke-width:2}
+.pvp-svg .s-pillow{fill:#fff;stroke:rgba(10,22,40,.10);stroke-width:2}
+.pvp-svg .s-body{fill:#fff;stroke:rgba(10,22,40,.17);stroke-width:2.2}
+.pvp-svg .s-blanket{fill:rgba(9,132,227,.12);stroke:rgba(9,132,227,.22);stroke-width:2}
+.pvp-svg .s-band{fill:var(--pvp-a-soft);stroke:var(--pvp-a);stroke-width:2}
+.pvp-svg .s-dev{fill:#fff;stroke:var(--pvp-a);stroke-width:2}
+.pvp-svg .s-line{fill:none;stroke:var(--pvp-a);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.pvp-svg .s-cable{fill:none;stroke:var(--pvp-b);stroke-width:2.4;stroke-linecap:round;opacity:.6}
+.pvp-svg .s-box{fill:#fff;stroke:var(--pvp-b);stroke-width:2}
+.pvp-svg .s-dot{fill:var(--pvp-b)}
+.pvp-svg .pin circle{stroke:#fff;stroke-width:3}
+.pvp-svg .pin text{font-family:var(--sans,'Plus Jakarta Sans',sans-serif);font-size:15px;font-weight:800;fill:#fff;text-anchor:middle}
+.pvp-svg .pin--a circle{fill:var(--pvp-a)}
+.pvp-svg .pin--b circle{fill:var(--pvp-b)}
+.pvp-fig--b .s-blanket{fill:rgba(10,22,40,.07);stroke:rgba(10,22,40,.13)}
+.pvp-fig--b .s-bed{fill:#f6f8f9}
+.pvp-same{display:flex;gap:10px;align-items:center;margin:14px 0 12px;padding:11px 14px;border-radius:13px;background:var(--pvp-b-soft);border:1px dashed rgba(10,122,107,.4);font-size:.9rem;font-weight:800;color:var(--pvp-b);line-height:1.35}
+.pvp-same i{font-size:1.05rem;flex-shrink:0}
+.pvp-sensors{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}
+.pvp-sensors li{display:flex;gap:12px;align-items:flex-start}
+.pvp-num{width:27px;height:27px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:800;color:#fff;font-variant-numeric:tabular-nums;line-height:1}
+.pvp-num--a{background:var(--pvp-a)}
+.pvp-num--b{background:var(--pvp-b)}
+.pvp-sensors b{display:block;font-size:.96rem;font-weight:800;color:var(--navy,#0a1628);line-height:1.35}
+.pvp-sensors small{display:block;font-size:.87rem;font-weight:500;color:var(--text-muted,#64748b);line-height:1.45;margin-top:2px}
+.pvp-foot{display:flex;gap:9px;align-items:flex-start;margin:14px 0 0;font-size:.86rem;color:var(--text-muted,#64748b);line-height:1.5}
+.pvp-foot i{color:var(--electric,#0984e3);flex-shrink:0;margin-top:3px}
+.pvp-fig--b .pvp-foot i{color:var(--pvp-b)}
+.pvp-key{max-width:880px;margin:28px auto 0;display:flex;gap:15px;align-items:flex-start;background:var(--navy,#0a1628);color:#fff;border-radius:18px;padding:20px 24px;font-size:1.02rem;line-height:1.6}
+.pvp-key i{color:var(--cyan,#00cec9);font-size:1.3rem;flex-shrink:0;margin-top:3px}
+.pvp-key b{color:#fff;font-weight:800}
+
+/* --- 3. Tabla comparativa: grid que NUNCA se rompe en movil --- */
+.pvp-tbl{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:1040px;margin:0 auto;border:0}
+.pvp-tbl thead,.pvp-tbl tbody,.pvp-tbl tr{display:contents}
+.pvp-corner{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+.pvp-th{display:flex;flex-direction:column;gap:7px;padding:15px 16px;border-radius:16px;text-align:left;font-weight:400;position:sticky;top:64px;z-index:3}
+.pvp-th--a{background:linear-gradient(160deg,#eef2ff,#fff);border:2px solid rgba(30,55,153,.3)}
+.pvp-th--b{background:var(--cloud-alt,#f8faff);border:1px solid var(--border,rgba(0,0,0,.08))}
+.pvp-th__badge{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;line-height:1}
+.pvp-th--a .pvp-th__badge{background:var(--pvp-a);color:#fff}
+.pvp-th--b .pvp-th__badge{background:rgba(10,22,40,.07);color:var(--text-muted,#64748b)}
+.pvp-th__name{margin:0;font-size:1rem;font-weight:800;color:var(--navy,#0a1628);letter-spacing:-.015em;line-height:1.2}
+.pvp-crit{display:flex;align-items:center;gap:9px;grid-column:1/-1;margin:16px 0 0;padding:10px 15px;border-radius:999px;text-align:left;background:linear-gradient(90deg,rgba(30,55,153,.11),rgba(30,55,153,.02));font-size:.78rem;font-weight:800;color:var(--navy,#0a1628);text-transform:uppercase;letter-spacing:1.1px;line-height:1.25}
+.pvp-crit i{color:var(--pvp-a);font-size:1rem;flex-shrink:0}
+.pvp-cell{display:flex;flex-direction:column;align-items:flex-start;gap:9px;padding:14px 15px 16px;border-radius:16px;border:1px solid var(--border,rgba(0,0,0,.08));background:#fff;text-align:left;font-weight:400}
+.pvp-cell--a{border-color:rgba(30,55,153,.28);background:linear-gradient(180deg,rgba(30,55,153,.05),#fff 70%);box-shadow:inset 3px 0 0 var(--pvp-a)}
+.pvp-cell--b{background:var(--cloud-alt,#f8faff)}
+.pvp-txt{font-size:1rem;line-height:1.5;color:var(--text,#0f1d30);margin:0}
+.pvp-v{display:inline-flex;align-items:center;gap:6px;min-height:26px;padding:4px 12px;border-radius:999px;font-size:.76rem;font-weight:800;line-height:1.1}
+.pvp-v i{font-size:.9rem;flex-shrink:0}
+.pvp-v--si{background:rgba(10,122,107,.14);color:#0a5f54}
+.pvp-v--no{background:rgba(10,22,40,.07);color:#3d4a5c}
+.pvp-v--mas{background:rgba(30,55,153,.12);color:var(--pvp-a)}
+@media(min-width:820px){
+  .pvp-tbl{grid-template-columns:minmax(160px,.84fr) 1fr 1fr;gap:12px}
+  .pvp-corner{position:static;width:auto;height:auto;margin:0;clip:auto;overflow:visible}
+  .pvp-crit{grid-column:auto;flex-direction:column;align-items:flex-start;justify-content:center;gap:8px;margin:0;padding:18px;border-radius:16px;background:var(--cloud,#f0f6ff);font-size:.98rem;text-transform:none;letter-spacing:-.015em;line-height:1.3}
+  .pvp-crit i{font-size:1.2rem}
+  .pvp-txt{font-size:.95rem}
+  .pvp-cell{padding:18px 20px 20px}
+}
+
+/* --- 4. Malentendidos --- */
+.pvp-myths{display:grid;gap:14px;max-width:1000px;margin:0 auto}
+@media(min-width:900px){.pvp-myths{grid-template-columns:repeat(3,1fr);gap:18px}}
+.pvp-myth{background:#fff;border:1px solid var(--border,rgba(0,0,0,.08));border-radius:18px;padding:22px 20px}
+.pvp-myth--key{border:2px solid rgba(30,55,153,.3);background:linear-gradient(160deg,#fff,#f5f8ff)}
+.pvp-myth__q{display:flex;gap:10px;align-items:flex-start;font-size:.98rem;font-weight:800;color:var(--navy,#0a1628);line-height:1.4;margin:0 0 10px}
+.pvp-myth__q i{color:var(--text-muted,#64748b);font-size:1.1rem;flex-shrink:0;margin-top:1px}
+.pvp-myth--key .pvp-myth__q i{color:var(--pvp-a)}
+.pvp-myth__a{font-size:.93rem;line-height:1.6;color:var(--text-muted,#64748b);margin:0}
+.pvp-myth__a b{color:var(--navy,#0a1628)}
+
+/* --- 5. Decisor + CTA --- */
+.pvp-routes{display:grid;gap:16px;max-width:1000px;margin:0 auto}
+@media(min-width:820px){.pvp-routes{grid-template-columns:1fr 1fr;gap:22px;align-items:start}}
+.pvp-route{border-radius:20px;padding:24px 22px;background:#fff;border:1px solid var(--border,rgba(0,0,0,.08))}
+.pvp-route--a{border:2px solid rgba(30,55,153,.28);background:linear-gradient(150deg,#fff 0%,#f5f8ff 100%)}
+.pvp-route__badge{display:inline-flex;align-items:center;gap:7px;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1.6px;border-radius:999px;padding:6px 14px;margin-bottom:14px}
+.pvp-route--a .pvp-route__badge{background:var(--pvp-a);color:#fff}
+.pvp-route--b .pvp-route__badge{background:var(--pvp-b-soft);color:var(--pvp-b)}
+.pvp-route__head{display:flex;gap:13px;align-items:center;margin-bottom:10px}
+.pvp-route__ic{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;color:#fff}
+.pvp-route--a .pvp-route__ic{background:linear-gradient(135deg,var(--electric,#0984e3),var(--pvp-a))}
+.pvp-route--b .pvp-route__ic{background:linear-gradient(135deg,var(--pvp-b),var(--navy,#0a1628))}
+.pvp-route h3{font-size:1.06rem;font-weight:800;color:var(--navy,#0a1628);margin:0;line-height:1.25;letter-spacing:-.015em}
+.pvp-route__lead{font-size:.93rem;color:var(--text-muted,#64748b);line-height:1.6;margin:0 0 14px}
+.pvp-check{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.pvp-check li{display:flex;gap:11px;align-items:flex-start;font-size:.94rem;color:var(--text,#0f1d30);line-height:1.5}
+.pvp-check i{flex-shrink:0;margin-top:3px;font-size:1rem}
+.pvp-route--a .pvp-check i{color:var(--pvp-a)}
+.pvp-route--b .pvp-check i{color:var(--pvp-b)}
+.pvp-note{display:flex;gap:11px;align-items:flex-start;max-width:1000px;margin:20px auto 0;padding:16px 19px;border-radius:14px;background:rgba(9,132,227,.06);font-size:.94rem;color:var(--text-muted,#64748b);line-height:1.6}
+.pvp-note i{color:var(--electric,#0984e3);font-size:1.1rem;flex-shrink:0;margin-top:2px}
+.pvp-note b{color:var(--navy,#0a1628)}
+.pvp-cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:26px 0 0}
+.pvp-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:15px 28px;border-radius:14px;font-weight:800;font-size:1.02rem;text-decoration:none;transition:transform .25s var(--ease,ease),background .25s}
+.pvp-btn--wa{background:#1DA851;color:#fff!important}
+.pvp-btn--wa:hover{background:#128C7E;color:#fff!important;transform:translateY(-2px)}
+.pvp-btn--cal{background:var(--navy,#0a1628);color:#fff!important}
+.pvp-btn--cal:hover{background:var(--royal,#1e3799);color:#fff!important;transform:translateY(-2px)}
+.pvp-btn:focus-visible{outline:3px solid var(--electric,#0984e3);outline-offset:3px}
+@media(max-width:479px){
+  .pvp-svg{max-width:100%}
+  .pvp-fig,.pvp-route,.pvp-myth{padding:20px 16px}
+  .pvp-key{padding:18px;border-radius:16px}
+}
+@media(prefers-reduced-motion:reduce){.pvp-btn{transition:none}.pvp-btn:hover{transform:none}}
+
 </style>
 </head>
 <body>
@@ -736,20 +891,323 @@ height="0" width="0" style="display:none;visibility:hidden" aria-hidden="true"><
 
 <hr class="section-divider">
 
-<!-- PERFIL: enfermedades top del barrio -->
-<section class="ubi-arrive" aria-labelledby="zona-perfil-h2" style="background:#fff;">
-    <div class="container">
-        <div class="block__head zsec-head">
-            <h2 class="block__title" id="zona-perfil-h2">¿Cuándo se indica cada estudio?</h2>
-            <p class="block__lead">La elección no es de precio ni de preferencia: depende de tu cuadro clínico y se define en la valoración.</p>
-            </div>
-        <ul class="zsym-list">
-            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong><a href="/servicios/poligrafia-respiratoria/">Poligrafía: sospecha típica de apnea</a></strong><br>Ronquido con pausas, somnolencia de día, sin otras enfermedades del sueño.</span></li>
-            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong>Polisomnografía: insomnio grave</strong><br>Cuando el problema principal es no poder dormir, no solo roncar.</span></li>
-            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong>Polisomnografía: sospecha de apnea central</strong><br>O de otros trastornos del sueño (movimientos, parasomnias) que requieren EEG.</span></li>
-            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong><a href="/enfermedades/apnea-del-sueno/">Poligrafía normal + síntomas persistentes</a></strong><br>Ahí el siguiente paso sí puede ser la polisomnografía en laboratorio.</span></li>
-        </ul>
+<!-- ============ 1. LA DIFERENCIA, EN UNA IMAGEN ============ -->
+<section class="block pvp" id="la-diferencia" aria-labelledby="pvp-dif-h2">
+  <div class="container">
+    <div class="block__head zsec-head">
+      <span class="block__kicker">La diferencia, en una imagen</span>
+      <h2 class="block__title" id="pvp-dif-h2">Las dos miden tu respiración. Solo una mide <em>tu cerebro</em></h2>
+      <p class="block__lead">Esa es toda la diferencia de fondo. Aquí la ves sensor por sensor, sin tecnicismos.</p>
     </div>
+
+    <div class="pvp-answer">
+      <figure class="pvp-shot">
+        <img src="/images/poligrafia-cama-640.webp"
+             srcset="/images/poligrafia-cama-420.webp 420w, /images/poligrafia-cama-640.webp 640w, /images/poligrafia-cama-960.webp 960w"
+             sizes="(max-width:899px) 92vw, 46vw"
+             width="640" height="480" loading="lazy" decoding="async"
+             alt="Paciente durmiendo en su propia cama con la cánula nasal, la banda torácica y el oxímetro de dedo de la poligrafía respiratoria">
+        <figcaption><i class="bi bi-camera-fill" aria-hidden="true"></i> <span>Así se ve la poligrafía en casa: tu cama, tu almohada y un equipo de batería que cabe en una bolsa pequeña.</span></figcaption>
+      </figure>
+
+      <div class="pvp-verdict">
+        <span class="pvp-verdict__k"><i class="bi bi-lightning-charge-fill" aria-hidden="true"></i> Respuesta corta</span>
+        <h3>La polisomnografía no mide mejor tu respiración: mide lo mismo y además tu cerebro</h3>
+        <p>Por eso, en la sospecha típica de apnea obstructiva, el estudio en casa alcanza. El de laboratorio se reserva para cuando la duda va <b>más allá</b> de la apnea obstructiva.</p>
+        <ul class="pvp-facts">
+          <li><span class="sw sw--a" aria-hidden="true"></span><span>Las dos miden aire, esfuerzo respiratorio y oxígeno.</span></li>
+          <li><span class="sw sw--b" aria-hidden="true"></span><span>Solo la de laboratorio mide fases del sueño, ojos y músculos.</span></li>
+          <li><span class="sw sw--n" aria-hidden="true"></span><span>Cuál te toca se define en la valoración, no por precio.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pvp-map">
+      <article class="pvp-fig pvp-fig--a">
+        <div class="pvp-fig__top">
+          <span class="pvp-fig__ic" aria-hidden="true"><i class="bi bi-house-heart-fill"></i></span>
+          <div>
+            <div class="pvp-fig__rt">En tu casa</div>
+            <h3>Poligrafía respiratoria</h3>
+          </div>
+        </div>
+        <span class="pvp-fig__count"><i class="bi bi-broadcast-pin" aria-hidden="true"></i> 4 sensores, todos sobre ti</span>
+
+        <svg class="pvp-svg" viewBox="0 0 300 400" role="img" aria-labelledby="pvpA-t pvpA-d" focusable="false">
+          <title id="pvpA-t">Dónde van los sensores de la poligrafía respiratoria</title>
+          <desc id="pvpA-d">Persona dormida boca arriba en su cama, con cuatro sensores numerados: 1 cánula en la nariz, 2 banda en el pecho, 3 banda en el abdomen y 4 oxímetro en un dedo. El equipo, del tamaño de un celular, va sobre el pecho.</desc>
+          <path class="s-bed" d="M44 46a26 26 0 0 1 26-26h160a26 26 0 0 1 26 26v354H44z"/>
+          <rect class="s-pillow" x="86" y="34" width="128" height="52" rx="22"/>
+          <g class="s-body">
+            <circle cx="150" cy="98" r="33"/>
+            <rect x="136" y="124" width="28" height="22" rx="10"/>
+            <rect x="110" y="140" width="80" height="150" rx="30"/>
+            <rect x="86" y="156" width="20" height="118" rx="10"/>
+            <rect x="194" y="156" width="20" height="118" rx="10"/>
+            <circle cx="96" cy="280" r="12"/>
+            <circle cx="204" cy="280" r="12"/>
+            <rect x="118" y="286" width="28" height="114" rx="14"/>
+            <rect x="154" y="286" width="28" height="114" rx="14"/>
+          </g>
+          <path class="s-blanket" d="M44 306a10 10 0 0 1 10-10h192a10 10 0 0 1 10 10v94H44z"/>
+          <path class="s-line" d="M134 110a16 16 0 0 0 32 0"/>
+          <path class="s-line" d="M166 110c16 12 18 46 12 78"/>
+          <path class="s-line" d="M134 110c-16 12-18 46-12 78"/>
+          <rect class="s-band" x="108" y="172" width="84" height="14" rx="7"/>
+          <rect class="s-band" x="108" y="226" width="84" height="14" rx="7"/>
+          <rect class="s-dev" x="156" y="194" width="30" height="26" rx="8"/>
+          <polyline class="s-line" points="161,208 167,208 170,201 174,215 177,208 182,208"/>
+          <g class="pin pin--a">
+            <circle cx="150" cy="105" r="13"/><text x="150" y="105" dy=".35em">1</text>
+            <circle cx="150" cy="179" r="13"/><text x="150" y="179" dy=".35em">2</text>
+            <circle cx="150" cy="233" r="13"/><text x="150" y="233" dy=".35em">3</text>
+            <circle cx="204" cy="280" r="13"/><text x="204" y="280" dy=".35em">4</text>
+          </g>
+        </svg>
+
+        <ul class="pvp-sensors">
+          <li><span class="pvp-num pvp-num--a" aria-hidden="true">1</span><span><b>Aire que entra y sale</b><small>Una cánula suave en la nariz, del grosor de un cable.</small></span></li>
+          <li><span class="pvp-num pvp-num--a" aria-hidden="true">2</span><span><b>Esfuerzo del pecho</b><small>Una banda elástica, por encima de la camiseta.</small></span></li>
+          <li><span class="pvp-num pvp-num--a" aria-hidden="true">3</span><span><b>Esfuerzo del abdomen</b><small>Otra banda, a la altura del ombligo.</small></span></li>
+          <li><span class="pvp-num pvp-num--a" aria-hidden="true">4</span><span><b>Oxígeno en la sangre</b><small>Un dedal en un dedo, como el del consultorio.</small></span></li>
+        </ul>
+        <p class="pvp-foot"><i class="bi bi-info-circle-fill" aria-hidden="true"></i> <span>El mismo equipo registra ronquido, pulso y la posición en la que duermes. Todo va a batería, nada se conecta a la pared.</span></p>
+      </article>
+
+      <article class="pvp-fig pvp-fig--b">
+        <div class="pvp-fig__top">
+          <span class="pvp-fig__ic" aria-hidden="true"><i class="bi bi-hospital-fill"></i></span>
+          <div>
+            <div class="pvp-fig__rt">En un laboratorio de sueño</div>
+            <h3>Polisomnografía</h3>
+          </div>
+        </div>
+        <span class="pvp-fig__count"><i class="bi bi-plus-lg" aria-hidden="true"></i> Los mismos 4, más 4 en cabeza y piernas</span>
+
+        <svg class="pvp-svg" viewBox="0 0 300 400" role="img" aria-labelledby="pvpB-t pvpB-d" focusable="false">
+          <title id="pvpB-t">Dónde van los sensores de la polisomnografía</title>
+          <desc id="pvpB-d">La misma persona dormida, con los cuatro sensores de la poligrafía más cuatro añadidos: 5 electrodos en el cuero cabelludo, 6 electrodos junto a los ojos, 7 electrodo en el mentón y 8 sensores en las piernas, todos conectados por cable a un equipo del laboratorio junto a la cama.</desc>
+          <path class="s-bed" d="M44 46a26 26 0 0 1 26-26h160a26 26 0 0 1 26 26v354H44z"/>
+          <rect class="s-pillow" x="86" y="34" width="128" height="52" rx="22"/>
+          <g class="s-body">
+            <circle cx="150" cy="98" r="33"/>
+            <rect x="136" y="124" width="28" height="22" rx="10"/>
+            <rect x="110" y="140" width="80" height="150" rx="30"/>
+            <rect x="86" y="156" width="20" height="118" rx="10"/>
+            <rect x="194" y="156" width="20" height="118" rx="10"/>
+            <circle cx="96" cy="280" r="12"/>
+            <circle cx="204" cy="280" r="12"/>
+            <rect x="118" y="286" width="28" height="114" rx="14"/>
+            <rect x="154" y="286" width="28" height="114" rx="14"/>
+          </g>
+          <path class="s-blanket" d="M44 306a10 10 0 0 1 10-10h192a10 10 0 0 1 10 10v94H44z"/>
+          <rect class="s-box" x="4" y="40" width="32" height="58" rx="9"/>
+          <path class="s-cable" d="M14 54h12M14 64h8"/>
+          <path class="s-cable" d="M36 60C66 56 100 64 124 78"/>
+          <path class="s-cable" d="M36 78C68 82 96 92 116 100"/>
+          <path class="s-cable" d="M36 96C70 108 104 122 138 140"/>
+          <path class="s-cable" d="M36 112C56 190 76 280 130 328"/>
+          <path class="s-line" d="M134 110a16 16 0 0 0 32 0"/>
+          <path class="s-line" d="M166 110c16 12 18 46 12 78"/>
+          <path class="s-line" d="M134 110c-16 12-18 46-12 78"/>
+          <rect class="s-band" x="108" y="172" width="84" height="14" rx="7"/>
+          <rect class="s-band" x="108" y="226" width="84" height="14" rx="7"/>
+          <rect class="s-dev" x="156" y="194" width="30" height="26" rx="8"/>
+          <polyline class="s-line" points="161,208 167,208 170,201 174,215 177,208 182,208"/>
+          <g class="s-dot">
+            <circle cx="126" cy="80" r="5"/>
+            <circle cx="174" cy="80" r="5"/>
+            <circle cx="120" cy="100" r="5"/>
+            <circle cx="132" cy="330" r="5"/>
+          </g>
+          <g class="pin pin--a">
+            <circle cx="150" cy="105" r="13"/><text x="150" y="105" dy=".35em">1</text>
+            <circle cx="150" cy="179" r="13"/><text x="150" y="179" dy=".35em">2</text>
+            <circle cx="150" cy="233" r="13"/><text x="150" y="233" dy=".35em">3</text>
+            <circle cx="204" cy="280" r="13"/><text x="204" y="280" dy=".35em">4</text>
+          </g>
+          <g class="pin pin--b">
+            <circle cx="150" cy="72" r="13"/><text x="150" y="72" dy=".35em">5</text>
+            <circle cx="180" cy="100" r="13"/><text x="180" y="100" dy=".35em">6</text>
+            <circle cx="150" cy="141" r="13"/><text x="150" y="141" dy=".35em">7</text>
+            <circle cx="168" cy="330" r="13"/><text x="168" y="330" dy=".35em">8</text>
+          </g>
+        </svg>
+
+        <p class="pvp-same"><i class="bi bi-plus-circle-fill" aria-hidden="true"></i> <span>Los mismos 4 sensores de la poligrafía, más estos:</span></p>
+        <ul class="pvp-sensors">
+          <li><span class="pvp-num pvp-num--b" aria-hidden="true">5</span><span><b>Ondas del cerebro</b><small>Electrodos en el cuero cabelludo: dicen en qué fase del sueño estás.</small></span></li>
+          <li><span class="pvp-num pvp-num--b" aria-hidden="true">6</span><span><b>Movimiento de los ojos</b><small>Marca cuándo entras en la fase de los sueños.</small></span></li>
+          <li><span class="pvp-num pvp-num--b" aria-hidden="true">7</span><span><b>Tono del mentón</b><small>Separa el sueño profundo de los ratos en que estás despierto.</small></span></li>
+          <li><span class="pvp-num pvp-num--b" aria-hidden="true">8</span><span><b>Movimiento de las piernas</b><small>Detecta cosas como el síndrome de piernas inquietas.</small></span></li>
+        </ul>
+        <p class="pvp-foot"><i class="bi bi-info-circle-fill" aria-hidden="true"></i> <span>Todo va por cable a un equipo junto a la cama, con un técnico que vigila el registro desde otro cuarto. También se registra el electrocardiograma.</span></p>
+      </article>
+    </div>
+
+    <p class="pvp-key"><i class="bi bi-braces-asterisk" aria-hidden="true"></i> <span>Léelo así: <b>polisomnografía = poligrafía + el cerebro</b>. Si tu duda es "¿tengo apnea y qué tan grave?", los 4 sensores de la izquierda ya la responden. Si la duda es "¿por qué no duermo?", ahí sí hacen falta los otros 4.</span></p>
+  </div>
+</section>
+
+<!-- ============ 2. TABLA PUNTO POR PUNTO ============ -->
+<!-- Contenido clinico verificado 26-jul-2026 contra la guia AASM 2017
+     (Kapur et al., J Clin Sleep Med 13(3):479-504, DOI 10.5664/jcsm.6506).
+     El dato de exactitud 84-91% / 70-78% y el mecanismo de tiempo de registro
+     vs tiempo de sueno salen de esa guia. NO reintroducir el "0.92 de
+     concordancia": era una correlacion de un solo estudio de 64 pacientes
+     (Ito & Ikeda 2018) presentada como desempeno diagnostico, practica que
+     desaconseja Massie et al., JCSM 2022 (DOI 10.5664/jcsm.9744). -->
+<section class="block pvp pvp--soft" id="punto-por-punto" aria-labelledby="pvp-tbl-h2">
+  <div class="container">
+    <div class="block__head zsec-head">
+      <span class="block__kicker">Punto por punto</span>
+      <h2 class="block__title" id="pvp-tbl-h2">Los dos estudios, <em>lado a lado</em></h2>
+      <p class="block__lead">La izquierda es el estudio que se hace aquí. La derecha, el de laboratorio al que te refiero si tu caso lo necesita. Ninguno es "el mejor": responden preguntas distintas.</p>
+    </div>
+
+    <table class="pvp-tbl" role="table" aria-labelledby="pvp-tbl-h2">
+      <thead role="rowgroup">
+        <tr role="row">
+          <th class="pvp-corner" scope="col" role="columnheader">Criterio</th>
+          <th class="pvp-th pvp-th--a" scope="col" role="columnheader">
+            <span class="pvp-th__badge"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> Se hace aquí</span>
+            <p class="pvp-th__name">Poligrafía respiratoria</p>
+          </th>
+          <th class="pvp-th pvp-th--b" scope="col" role="columnheader">
+            <span class="pvp-th__badge"><i class="bi bi-signpost-2-fill" aria-hidden="true"></i> Te refiero</span>
+            <p class="pvp-th__name">Polisomnografía</p>
+          </th>
+        </tr>
+      </thead>
+      <tbody role="rowgroup">
+        <tr role="row">
+          <th class="pvp-crit" scope="row" role="rowheader"><i class="bi bi-moon-stars-fill" aria-hidden="true"></i> ¿Dónde pasas la noche?</th>
+          <td class="pvp-cell pvp-cell--a" role="cell"><span class="pvp-v pvp-v--si"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> En tu cama</span><p class="pvp-txt">Tu colchón, tu almohada y tu horario de siempre.</p></td>
+          <td class="pvp-cell pvp-cell--b" role="cell"><span class="pvp-v pvp-v--no"><i class="bi bi-x-circle-fill" aria-hidden="true"></i> Fuera de casa</span><p class="pvp-txt">Una noche completa en un laboratorio, dentro de un hospital o clínica.</p></td>
+        </tr>
+        <tr role="row">
+          <th class="pvp-crit" scope="row" role="rowheader"><i class="bi bi-broadcast-pin" aria-hidden="true"></i> ¿Qué traes puesto?</th>
+          <td class="pvp-cell pvp-cell--a" role="cell"><span class="pvp-v pvp-v--si"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> 4 sensores</span><p class="pvp-txt">Cánula en la nariz, dos bandas elásticas y un dedal en el dedo. Nada en la cabeza.</p></td>
+          <td class="pvp-cell pvp-cell--b" role="cell"><span class="pvp-v pvp-v--mas"><i class="bi bi-plus-circle-fill" aria-hidden="true"></i> Los mismos, más 4</span><p class="pvp-txt">Agrega electrodos en cuero cabelludo, junto a los ojos, en el mentón y en las piernas. Se pegan con pasta y no lastiman.</p></td>
+        </tr>
+        <tr role="row">
+          <th class="pvp-crit" scope="row" role="rowheader"><i class="bi bi-bar-chart-steps" aria-hidden="true"></i> ¿Mide las fases del sueño?</th>
+          <td class="pvp-cell pvp-cell--a" role="cell"><span class="pvp-v pvp-v--no"><i class="bi bi-x-circle-fill" aria-hidden="true"></i> No</span><p class="pvp-txt">Sin electrodos en la cabeza no sabe en qué momento te dormiste. Cuenta las horas que el equipo estuvo encendido, no las que dormiste.</p></td>
+          <td class="pvp-cell pvp-cell--b" role="cell"><span class="pvp-v pvp-v--si"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> Sí</span><p class="pvp-txt">Distingue sueño ligero, profundo y de los sueños, y sabe con precisión cuánto dormiste.</p></td>
+        </tr>
+        <tr role="row">
+          <th class="pvp-crit" scope="row" role="rowheader"><i class="bi bi-clipboard2-pulse-fill" aria-hidden="true"></i> ¿Qué puede diagnosticar?</th>
+          <td class="pvp-cell pvp-cell--a" role="cell"><span class="pvp-v pvp-v--mas"><i class="bi bi-person-fill-check" aria-hidden="true"></i> La apnea obstructiva</span><p class="pvp-txt">En el adulto sin otras enfermedades importantes. Para ese caso, la guía AASM la respalda con recomendación fuerte.</p></td>
+          <td class="pvp-cell pvp-cell--b" role="cell"><span class="pvp-v pvp-v--mas"><i class="bi bi-diagram-3-fill" aria-hidden="true"></i> Todo lo del sueño</span><p class="pvp-txt">La apnea obstructiva y además apnea central, narcolepsia, sonambulismo, piernas inquietas y otros trastornos.</p></td>
+        </tr>
+        <tr role="row">
+          <th class="pvp-crit" scope="row" role="rowheader"><i class="bi bi-bullseye" aria-hidden="true"></i> ¿Qué tan exacto es?</th>
+          <td class="pvp-cell pvp-cell--a" role="cell"><span class="pvp-v pvp-v--si"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> 84-91%</span><p class="pvp-txt">Cuando ya hay sospecha clara por los síntomas. Si se aplica a quien tiene poca probabilidad, baja a 70-78%: por eso la valoración previa importa.</p></td>
+          <td class="pvp-cell pvp-cell--b" role="cell"><span class="pvp-v pvp-v--mas"><i class="bi bi-award-fill" aria-hidden="true"></i> Es la referencia</span><p class="pvp-txt">Es el estudio contra el que se miden todos los demás.</p></td>
+        </tr>
+        <tr role="row">
+          <th class="pvp-crit" scope="row" role="rowheader"><i class="bi bi-question-circle-fill" aria-hidden="true"></i> ¿Y si sale normal?</th>
+          <td class="pvp-cell pvp-cell--a" role="cell"><span class="pvp-v pvp-v--no"><i class="bi bi-exclamation-circle-fill" aria-hidden="true"></i> No descarta</span><p class="pvp-txt">Un resultado normal no descarta la apnea. Si sale negativo o el equipo falló, el paso correcto es el laboratorio, no repetir el de casa.</p></td>
+          <td class="pvp-cell pvp-cell--b" role="cell"><span class="pvp-v pvp-v--mas"><i class="bi bi-arrow-repeat" aria-hidden="true"></i> Se puede repetir</span><p class="pvp-txt">Si sale negativa y la sospecha sigue firme, se valora repetirla.</p></td>
+        </tr>
+        <tr role="row">
+          <th class="pvp-crit" scope="row" role="rowheader"><i class="bi bi-person-badge-fill" aria-hidden="true"></i> ¿Quién lo interpreta?</th>
+          <td class="pvp-cell pvp-cell--a" role="cell"><span class="pvp-v pvp-v--si"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> Tu neumólogo</span><p class="pvp-txt">El mismo médico que te valoró revisa el trazo completo de la noche, no el número automático del aparato.</p></td>
+          <td class="pvp-cell pvp-cell--b" role="cell"><span class="pvp-v pvp-v--no"><i class="bi bi-dash-circle-fill" aria-hidden="true"></i> Otro equipo</span><p class="pvp-txt">El personal del laboratorio donde se realice, más el técnico que vigiló la noche.</p></td>
+        </tr>
+        <tr role="row">
+          <th class="pvp-crit" scope="row" role="rowheader"><i class="bi bi-cash-coin" aria-hidden="true"></i> ¿Cuánto cuesta?</th>
+          <td class="pvp-cell pvp-cell--a" role="cell"><span class="pvp-v pvp-v--si"><i class="bi bi-tag-fill" aria-hidden="true"></i> Precio cerrado</span><p class="pvp-txt">$4,500 en paquete con consulta, o $5,000 a domicilio, precio con el que llegamos a la mayoría de las zonas de la CDMX. Con factura.</p></td>
+          <td class="pvp-cell pvp-cell--b" role="cell"><span class="pvp-v pvp-v--no"><i class="bi bi-dash-circle-fill" aria-hidden="true"></i> Depende</span><p class="pvp-txt">Varía según el hospital o laboratorio donde se contrate.</p></td>
+        </tr>
+        <tr role="row">
+          <th class="pvp-crit" scope="row" role="rowheader"><i class="bi bi-flag-fill" aria-hidden="true"></i> ¿Se hace en este consultorio?</th>
+          <td class="pvp-cell pvp-cell--a" role="cell"><span class="pvp-v pvp-v--si"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> Sí</span><p class="pvp-txt">Se agenda aquí y el equipo se te entrega en consulta.</p></td>
+          <td class="pvp-cell pvp-cell--b" role="cell"><span class="pvp-v pvp-v--no"><i class="bi bi-x-circle-fill" aria-hidden="true"></i> No</span><p class="pvp-txt">Si tu caso la amerita te lo digo y te refiero con la indicación por escrito.</p></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 3. LO QUE MAS SE MALENTIENDE ============ -->
+<section class="block pvp" id="malentendidos" aria-labelledby="pvp-myth-h2">
+  <div class="container">
+    <div class="block__head zsec-head">
+      <span class="block__kicker">Lo que más se malentiende</span>
+      <h2 class="block__title">Tres ideas que conviene <em>aclarar</em></h2>
+      <p class="block__lead" id="pvp-myth-h2">Son las tres confusiones que más escucho en consulta sobre estos dos estudios.</p>
+    </div>
+    <div class="pvp-myths">
+      <article class="pvp-myth">
+        <p class="pvp-myth__q"><i class="bi bi-chat-quote-fill" aria-hidden="true"></i> <span>"La poligrafía es la versión barata, la de segunda."</span></p>
+        <p class="pvp-myth__a">No es una versión reducida: es el estudio indicado para una pregunta concreta, si tienes apnea obstructiva. Para el adulto sin complicaciones, la guía AASM le da <b>recomendación fuerte</b>, el mismo nivel que a la de laboratorio. Cuesta menos porque no ocupa una cama de hospital ni personal toda la noche, no porque mida peor.</p>
+      </article>
+      <article class="pvp-myth pvp-myth--key">
+        <p class="pvp-myth__q"><i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i> <span>"Salió normal, entonces ya me descarté la apnea."</span></p>
+        <p class="pvp-myth__a">Este es el más importante. Un estudio en casa normal <b>no descarta</b> la apnea: como no mide las fases del sueño, divide los eventos entre las horas que el aparato estuvo encendido y no entre las que realmente dormiste, así que el número tiende a salir más bajo de lo real. Por eso, si sale negativo y los síntomas siguen, el paso correcto es el laboratorio. Visto al revés, esto tranquiliza: <b>como tiende a quedarse corto y no a exagerar, cuando sale positivo es muy confiable</b>.</p>
+      </article>
+      <article class="pvp-myth">
+        <p class="pvp-myth__q"><i class="bi bi-chat-quote-fill" aria-hidden="true"></i> <span>"El de laboratorio mide más, entonces quiero ese."</span></p>
+        <p class="pvp-myth__a">Medir más señales no es mejor para tu pregunta: es mejor cuando tu caso necesita esas señales. Si lo que hay que saber es si dejas de respirar y cuánto te baja el oxígeno, el de casa lo responde y además mide cómo duermes normalmente. Y cuando el laboratorio sí está indicado, ahí no hay sustituto y <b>no tiene caso ahorrarse el paso</b>.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. CUAL TE TOCA ============ -->
+<section class="block pvp pvp--soft" id="cual-me-toca" aria-labelledby="pvp-pick-h2">
+  <div class="container">
+    <div class="block__head zsec-head">
+      <span class="block__kicker">Cuál te toca</span>
+      <h2 class="block__title" id="pvp-pick-h2">Ubícate en <em>30 segundos</em></h2>
+      <p class="block__lead">Marca mentalmente lo que te pasa. Si todo lo tuyo está en la ruta A, el estudio en casa es tu punto de partida.</p>
+    </div>
+
+    <div class="pvp-routes">
+      <article class="pvp-route pvp-route--a">
+        <span class="pvp-route__badge"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> Ruta A, la mayoría</span>
+        <div class="pvp-route__head">
+          <span class="pvp-route__ic" aria-hidden="true"><i class="bi bi-house-heart-fill"></i></span>
+          <h3><a href="/servicios/poligrafia-respiratoria/" style="color:inherit;text-decoration:none">Poligrafía respiratoria en casa</a></h3>
+        </div>
+        <p class="pvp-route__lead">La sospecha clásica de apnea obstructiva, sin otras enfermedades del sueño de por medio.</p>
+        <ul class="pvp-check">
+          <li><i class="bi bi-check-lg" aria-hidden="true"></i><span>Roncas fuerte y te han visto <b>dejar de respirar</b> mientras duermes.</span></li>
+          <li><i class="bi bi-check-lg" aria-hidden="true"></i><span>Amaneces cansado o te gana el sueño de día.</span></li>
+          <li><i class="bi bi-check-lg" aria-hidden="true"></i><span>No tienes otro trastorno del sueño diagnosticado.</span></li>
+          <li><i class="bi bi-check-lg" aria-hidden="true"></i><span>No tienes una enfermedad importante del corazón ni del pulmón.</span></li>
+        </ul>
+      </article>
+
+      <article class="pvp-route pvp-route--b">
+        <span class="pvp-route__badge"><i class="bi bi-signpost-2-fill" aria-hidden="true"></i> Ruta B, casos concretos</span>
+        <div class="pvp-route__head">
+          <span class="pvp-route__ic" aria-hidden="true"><i class="bi bi-hospital-fill"></i></span>
+          <h3>Polisomnografía en laboratorio</h3>
+        </div>
+        <p class="pvp-route__lead">Cuando la pregunta ya no es solo si hay apnea. Lee si alguno es tu caso:</p>
+        <ul class="pvp-check">
+          <li><i class="bi bi-dot" aria-hidden="true"></i><span>Tu problema principal es <b>no poder dormir</b>, no roncar (insomnio grave).</span></li>
+          <li><i class="bi bi-dot" aria-hidden="true"></i><span>Enfermedad importante del corazón o del pulmón, o debilidad de los músculos respiratorios.</span></li>
+          <li><i class="bi bi-dot" aria-hidden="true"></i><span>Sospecha de apnea central, de hipoventilación, o uso crónico de opioides.</span></li>
+          <li><i class="bi bi-dot" aria-hidden="true"></i><span>Antecedente de embolia, o sospecha de narcolepsia, sonambulismo o piernas inquietas.</span></li>
+          <li><i class="bi bi-dot" aria-hidden="true"></i><span>Tu <a href="/enfermedades/apnea-del-sueno/">poligrafía salió normal</a> pero los síntomas siguen.</span></li>
+        </ul>
+      </article>
+    </div>
+
+    <p class="pvp-note"><i class="bi bi-shield-fill-check" aria-hidden="true"></i> <span>Si tu caso es de la ruta B, <b>te lo digo de frente</b> y te refiero con la indicación por escrito. Aquí no se realiza polisomnografía, y no voy a venderte un estudio que no te corresponde.</span></p>
+
+    <div class="pvp-cta">
+      <a class="pvp-btn pvp-btn--wa" href="https://wa.me/522224926718?text=Hola%20Dr.%20Lara%2C%20vengo%20de%20su%20sitio%20web%20alveos.mx.%20Quiero%20orientaci%C3%B3n%20sobre%20el%20estudio%20de%20sue%C3%B1o%20y%20agendar%20una%20valoraci%C3%B3n." target="_blank" rel="noopener noreferrer" data-cta="pvp-decisor-wa">
+        <i class="bi bi-whatsapp" aria-hidden="true"></i> Preguntar cuál me toca
+      </a>
+      <a class="pvp-btn pvp-btn--cal" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal" data-cta="pvp-decisor-cal">
+        <i class="bi bi-calendar-check" aria-hidden="true"></i> Agendar valoración
+      </a>
+    </div>
+  </div>
 </section>
 
 <!-- QUIEN TE ATIENDE (E-E-A-T) -->
@@ -784,56 +1242,7 @@ height="0" width="0" style="display:none;visibility:hidden" aria-hidden="true"><
     </div>
 </section>
 
-<!-- ============ PADECIMIENTOS ============ -->
-<section class="block cond">
-    <div class="container">
-        <div class="block__head">
-            <span class="block__kicker">Áreas de atención</span>
-            <h2 class="block__title">Síntomas y padecimientos que <em>tratamos</em></h2>
-            <p class="block__lead">Atención de adultos. Si tu síntoma no aparece aquí, escríbenos por WhatsApp y te orientamos antes de agendar.</p>
-        </div>
-        <div class="cond-grid" style="max-width:1080px;margin:0 auto">
-            <article class="cond-card">
-                <div class="cond-card__icon"><i class="bi bi-soundwave"></i></div>
-                <h3>Tos crónica</h3>
-                <span class="cond-card__tag">Diagnóstico</span>
-            </article>
-            <article class="cond-card">
-                <div class="cond-card__icon"><i class="bi bi-lungs"></i></div>
-                <h3>Bronquitis</h3>
-                <span class="cond-card__tag">Aguda · Crónica</span>
-            </article>
-            <article class="cond-card">
-                <div class="cond-card__icon"><i class="bi bi-wind"></i></div>
-                <h3>Asma</h3>
-                <span class="cond-card__tag">Guías GINA</span>
-            </article>
-            <article class="cond-card">
-                <div class="cond-card__icon"><i class="bi bi-lungs-fill"></i></div>
-                <h3>EPOC</h3>
-                <span class="cond-card__tag cond-card__tag--featured">Alta Especialidad</span>
-            </article>
-            <article class="cond-card">
-                <div class="cond-card__icon"><i class="bi bi-moon-stars-fill"></i></div>
-                <h3>Apnea del sueño</h3>
-                <span class="cond-card__tag">Sueño · CPAP</span>
-            </article>
-            <article class="cond-card">
-                <div class="cond-card__icon"><i class="bi bi-slash-circle"></i></div>
-                <h3>Tabaquismo</h3>
-                <span class="cond-card__tag">Dejar de fumar</span>
-            </article>
-        </div>
-        <div style="text-align:center;margin-top:36px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:center">
-            <a href="/enfermedades/" class="btn-cal" style="background:var(--navy);color:#fff;min-width:0;padding:14px 28px;font-size:.98rem;box-shadow:0 8px 22px -10px rgba(9,44,84,.35)" data-cta="cond-all">
-                <i class="bi bi-grid-3x3-gap-fill"></i> Ver todas las enfermedades
-            </a>
-            <a href="https://wa.me/522224926718?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx%20y%20tengo%20una%20pregunta%20sobre%20mi%20padecimiento%20respiratorio.%20Me%20gustar%C3%ADa%20saber%20si%20es%20algo%20que%20usted%20atiende."  target="_blank" rel="noopener noreferrer" class="btn-ask-wa" data-cta="cond-ask">
-                <i class="bi bi-whatsapp"></i> Preguntar por otra enfermedad
-            </a>
-        </div>
-    </div>
-</section>
+
 
 <!-- SERVICIOS ESTRELLA -->
 <section class="ubi-arrive" aria-labelledby="zona-serv-h2">
@@ -885,42 +1294,6 @@ height="0" width="0" style="display:none;visibility:hidden" aria-hidden="true"><
     </div>
 </section>
 
-<!-- HOW TO ARRIVE FROM BARRIO -->
-<section class="ubi-arrive" aria-labelledby="zona-arrive-h2">
-    <div class="container">
-        <div class="block__head zsec-head">
-            <h2 class="block__title" id="zona-arrive-h2">Poligrafía vs polisomnografía, punto por punto</h2>
-            <p class="block__lead">Las cuatro diferencias que importan al decidir, sin exagerar ninguna.</p>
-            </div>
-
-        <div class="ubi-arrive__grid">
-            <article class="ubi-arrive__card">
-                <div class="ubi-arrive__icon"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i></div>
-                <h3>Dónde se hace</h3>
-                <p><strong>Poligrafía:</strong> en tu casa, durmiendo en tu propia cama con un equipo portátil.<br><strong>Polisomnografía:</strong> en un laboratorio de sueño, pasando la noche en un hospital o clínica.</p>
-            </article>
-
-            <article class="ubi-arrive__card">
-                <div class="ubi-arrive__icon"><i class="bi bi-activity" aria-hidden="true"></i></div>
-                <h3>Qué mide</h3>
-                <p><strong>Poligrafía:</strong> flujo de aire, esfuerzo respiratorio, oxigenación y ronquido, lo necesario para diagnosticar apnea obstructiva.<br><strong>Polisomnografía:</strong> todo lo anterior más la actividad cerebral (EEG), que permite ver las etapas del sueño y otros trastornos.</p>
-            </article>
-
-            <article class="ubi-arrive__card">
-                <div class="ubi-arrive__icon"><i class="bi bi-house-heart-fill" aria-hidden="true"></i></div>
-                <h3>Comodidad</h3>
-                <p><strong>Poligrafía:</strong> tu almohada, tu horario, tu rutina, el registro refleja tu sueño real.<br><strong>Polisomnografía:</strong> más sensores y una noche fuera de casa; es el precio de medir más señales.</p>
-            </article>
-
-            <article class="ubi-arrive__card">
-                <div class="ubi-arrive__icon"><i class="bi bi-cash-coin" aria-hidden="true"></i></div>
-                <h3>Costo</h3>
-                <p><strong>Poligrafía:</strong> $4,500 MXN en paquete con consulta (equipo entregado en consultorio) o $5,000 a domicilio, con interpretación del neumólogo incluida.<br><strong>Polisomnografía:</strong> varía según el hospital; aquí no se realiza, se refiere cuando está indicada.</p>
-            </article>
-        </div>
-    </div>
-</section>
-
 <!-- FINAL CTA -->
 <section class="hub-cta-band" aria-labelledby="zona-final-h2">
     <div class="cta-band__particles" aria-hidden="true"></div>
@@ -933,61 +1306,7 @@ height="0" width="0" style="display:none;visibility:hidden" aria-hidden="true"><
     </div>
 </section>
 
-<!-- MAP + INFO -->
-<section class="ubi-main section-bg">
-    <div class="section-dots"></div>
-    <div class="section-mesh"></div>
-    <div class="container">
-        <div class="ubi-grid">
-            <div class="ubi-map-card" aria-label="Mapa del consultorio Hospital Santa Coleta">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d34785.66899967985!2d-99.18028396495866!3d19.389341285512508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff707b3c048f%3A0xc5706ab62966c0f5!2sDr.%20William%20C%C3%A9sar%20Lara%20V%C3%A1zquez%2C%20Neum%C3%B3logo!5e0!3m2!1sen!2smx!4v1777753629326!5m2!1sen!2smx"
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    title="Mapa interactivo del consultorio del Dr. William César Lara Vázquez en el Hospital Santa Coleta">
-                </iframe>
-            </div>
 
-            <div class="ubi-info-stack">
-                <article class="ubi-card">
-                    <h2><i class="bi bi-building" aria-hidden="true"></i> Consultorio</h2>
-                    <address itemscope itemtype="https://schema.org/PostalAddress">
-                        <strong>Hospital Santa Coleta · Consultorio 507</strong><br>
-                        <span itemprop="streetAddress">Saturnino Herrán 59</span><br>
-                        <span itemprop="addressLocality">San José Insurgentes, Benito Juárez</span><br>
-                        <span itemprop="postalCode">03900</span> · <span itemprop="addressRegion">Ciudad de México</span>
-                    </address>
-                    <p class="ubi-card__note"><i class="bi bi-stopwatch" aria-hidden="true"></i> El consultorio 507 está en el <strong>piso 5</strong> del hospital; el elevador queda a unos pasos de la recepción.</p>
-                </article>
-
-                <article class="ubi-card">
-                    <h2><i class="bi bi-clock-fill" aria-hidden="true"></i> Horarios</h2>
-                    <ul class="ubi-card__hours" aria-label="Horario de atención">
-                        <li><span>Lunes a Viernes</span><strong>16:00 – 21:00</strong></li>
-                        <li><span>Sábado y Domingo</span><strong>12:00 – 16:00</strong></li>
-                    </ul>
-                    <p class="ubi-card__note"><i class="bi bi-info-circle" aria-hidden="true"></i> Atención únicamente previa cita. Cupo limitado en horarios pico.</p>
-                </article>
-
-                <article class="ubi-card">
-                    <h2><i class="bi bi-calendar-check-fill" aria-hidden="true"></i> Agendar tu consulta</h2>
-                    <p style="color: var(--text-muted); margin: 0 0 12px; font-size: .95rem;">Elige el medio que prefieras. WhatsApp responde en menos de 2 horas en horario hábil.</p>
-                    <div class="ubi-cta-row">
-                        <a class="btn-ubi btn-ubi--wa" href="https://wa.me/522224926718?text=Hola%20Dr.%20Lara%2C%20vengo%20de%20su%20sitio%20web%20alveos.mx.%20Quiero%20orientaci%C3%B3n%20sobre%20el%20estudio%20de%20sue%C3%B1o%20y%20agendar%20una%20valoraci%C3%B3n." target="_blank" rel="noopener noreferrer" data-cta="zona-card-wa">
-                            <i class="bi bi-whatsapp" aria-hidden="true"></i> Agendar por WhatsApp
-                        </a>
-                        <a class="btn-ubi btn-ubi--cal" href="#agendaModal" data-cta="zona-card-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
-                            <i class="bi bi-calendar-check" aria-hidden="true"></i> Agendar en línea
-                        </a>
-                        <a class="btn-ubi btn-ubi--ghost" href="tel:+525591708334" data-cta="zona-card-tel">
-                            <i class="bi bi-telephone-fill" aria-hidden="true"></i> Llamar al 55 9170 8334
-                        </a>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- COBERTURA EXTRA -->
 <section class="ubi-coverage" aria-labelledby="zona-cov-h2">
