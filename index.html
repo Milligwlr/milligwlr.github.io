@@ -3359,13 +3359,19 @@
             .dis2-bub--sm h3{font-size:.72rem}
             /* Los chips ocupaban 5 filas, 256px, la quinta parte de la seccion.
                En una sola fila deslizable ocupan 46px. */
+            /* Sin scroll-snap: devolvia la fila al primer chip y se comia el
+               empujon que ensena que se puede deslizar. */
             .dis2-chips{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;
-                scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
+                -webkit-overflow-scrolling:touch;
                 scrollbar-width:none;padding:2px 4px 6px;margin-bottom:10px;
                 -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 22px),transparent 100%);
                 mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 22px),transparent 100%)}
             .dis2-chips::-webkit-scrollbar{display:none}
-            .dis2-chip{flex:0 0 auto;scroll-snap-align:start}
+            .dis2-chip{flex:0 0 auto}
+            /* Empujon de una pasada: la fila se asoma y regresa sola, que es
+               como se ensena un gesto sin escribir "desliza". */
+            @keyframes dis2ChipsHint{0%,100%{transform:translateX(0)}42%{transform:translateX(-30px)}}
+            .dis2-chips.is-hint{animation:dis2ChipsHint 1.25s cubic-bezier(.4,0,.2,1) 1}
             .dis2-rail{display:block;width:64px;height:3px;margin:0 auto 12px;border-radius:100px;background:rgba(10,22,40,.1);overflow:hidden}
             .dis2-rail span{display:block;height:100%;border-radius:100px;background:linear-gradient(90deg,var(--electric),var(--royal));
                 width:38%;transform:translateX(0);transition:transform .12s linear}
@@ -6337,6 +6343,10 @@
                 pintar();
 
                 if (reduce.matches || !('IntersectionObserver' in window)) return;
+
+                // El empujon es una animacion CSS, no un scroll programatico:
+                // vuelve sola a su sitio, asi que si el navegador la ignora o
+                // la interrumpe la fila no queda corrida a medias.
                 var yaAviso = false;
                 new IntersectionObserver(function(es, obs){
                     if (!es[0].isIntersecting || yaAviso) return;
@@ -6344,11 +6354,11 @@
                     yaAviso = true;
                     obs.disconnect();
                     setTimeout(function(){
-                        chipsWrap.scrollTo({ left: 46, behavior: 'smooth' });
-                        setTimeout(function(){
-                            chipsWrap.scrollTo({ left: 0, behavior: 'smooth' });
-                        }, 620);
-                    }, 420);
+                        chipsWrap.classList.add('is-hint');
+                        var limpiar = function(){ chipsWrap.classList.remove('is-hint'); };
+                        chipsWrap.addEventListener('animationend', limpiar, { once: true });
+                        setTimeout(limpiar, 1800);   // por si la animacion no corre
+                    }, 500);
                 }, { threshold: .6 }).observe(chipsWrap);
             })();
 
