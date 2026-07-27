@@ -178,6 +178,13 @@ summary,
    ------------------------------------------------------------------------- */
 @media (max-width: 991px) {
 
+    /* Al subir la fuente de .78 a .95rem el texto crece pero el recorte a 2
+       lineas no: las 4 tarjetas de servicio perdian dos tercios de su
+       descripcion. Se sube el recorte al alto que el texto necesita. */
+    .svc2-row p {
+        -webkit-line-clamp: 4;
+    }
+
     .svc2-row p,
     .dis2-card p,
     .enf-tile p,
