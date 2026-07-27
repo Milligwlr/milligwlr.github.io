@@ -1362,16 +1362,19 @@
         var meta=0;    // asiento al que va cayendo el resorte
         var raf=null;
 
-        /* geometria responsiva: radios del arco y cuanto se asoma la de atras */
+        /* geometria responsiva: radios del arco, asomo e inclinacion en reposo.
+           La pose de descanso imita al cilindro original: la de atras queda
+           asomada a la derecha, inclinada en rotateY como carta de abanico. */
         var G={};
         function mide(){
             var w=carrusel.clientWidth||stage.clientWidth||320;
             var movil=window.matchMedia('(max-width:767.98px)').matches;
             G={arcoX:Math.min(w*0.46,300),          // recorrido lateral durante el giro
                fondo:movil?150:230,                 // profundidad del punto trasero
-               asomo:movil?Math.min(w*0.09,34):56,  // cuanto se asoma la de atras en reposo
-               escMin:movil?0.86:0.82,              // escala de la tarjeta al fondo
-               opMin:0.42};                         // opacidad al fondo
+               asomo:movil?Math.min(w*0.12,44):110, // cuanto se asoma la de atras en reposo
+               tilt:movil?26:34,                    // inclinacion rotateY de la de atras
+               escMin:movil?0.9:0.88,               // escala de la tarjeta al fondo
+               opMin:0.45};                         // opacidad al fondo
         }
 
         /* Las tarjetas van en absoluto sobre la orbita, asi que el contenedor
@@ -1387,14 +1390,17 @@
         var ta;
         window.addEventListener('resize',function(){ clearTimeout(ta); ta=setTimeout(function(){ mide(); altura(); pinta(); },180); },{passive:true});
 
-        /* proyecta una tarjeta segun su angulo en la orbita (0 = al frente) */
+        /* proyecta una tarjeta segun su angulo en la orbita (0 = al frente):
+           arco lateral + profundidad + escala + opacidad + la inclinacion
+           rotateY que conserva la forma de carta del cilindro original */
         function proyecta(c,th){
             var r=th*Math.PI/180;
             var t=(1-Math.cos(r))/2;                       // 0 al frente, 1 al fondo
             var x=Math.sin(r)*G.arcoX + t*G.asomo;
             var z=-t*G.fondo;
+            var rot=Math.sin(r)*10 - t*G.tilt;             // giro vivo + tilt de reposo
             var esc=1-(1-G.escMin)*t;
-            c.style.transform='translate3d('+x.toFixed(1)+'px,0,'+z.toFixed(1)+'px) scale('+esc.toFixed(3)+')';
+            c.style.transform='translate3d('+x.toFixed(1)+'px,0,'+z.toFixed(1)+'px) rotateY('+rot.toFixed(2)+'deg) scale('+esc.toFixed(3)+')';
             c.style.opacity=(1-(1-G.opMin)*t).toFixed(3);
             c.style.zIndex=String(100-Math.round(t*50));
         }
@@ -1416,7 +1422,8 @@
             raf=null;
             var d=meta-ang;
             if(Math.abs(d)<0.05){ ang=meta; pinta(); return; }
-            ang+=d*0.14;
+            /* 0.075 por cuadro ≈ 1.6 s de viaje: lento y con presencia */
+            ang+=d*0.075;
             pinta();
             raf=requestAnimationFrame(anima);
         }
