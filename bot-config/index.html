@@ -344,8 +344,11 @@
     .tarjeta-mov.arrastrando { transform: none; }
   }
 </style>
+    <link rel="stylesheet" href="/assets/base.css">
+    <script src="/assets/base.js" defer></script>
 </head>
 <body>
+<a class="alv-skip" href="#main">Saltar al contenido</a>
 
 <div id="app" hidden>
   <header id="cabecera">
@@ -354,7 +357,7 @@
     <button type="button" class="btn-nav" id="btnEditar" title="Personalizar" aria-label="Personalizar Inicio" hidden></button>
     <button type="button" class="btn-nav" id="btnRefrescar" title="Actualizar" aria-label="Actualizar"></button>
   </header>
-  <main id="vista"></main>
+  <main id="main" id="vista"></main>
   <nav id="tabbar"></nav>
 </div>
 

@@ -1,0 +1,239 @@
+/* =========================================================================
+   alveos.mx - CAPA COMPARTIDA (base.css)
+   Reglas transversales a las 108 paginas. Cargado al final del <head> para
+   ganar a los bloques <style> inline sin recurrir a !important salvo donde
+   se indica.
+
+   Contrato de identidad D0: solo tokens de marca. Cero hex fuera de paleta.
+   Curva canonica --ease: cubic-bezier(.16,1,.3,1)
+   ========================================================================= */
+
+:root {
+    /* Fallbacks: las paginas que ya declaran estos tokens ganan por cascada
+       (su :root inline viene despues). Aqui solo aseguramos que existan
+       para las paginas que nunca los declararon. */
+    --alv-electric: #0984e3;
+    --alv-navy: #0a2540;
+    --alv-white: #fff;
+    --alv-ease: cubic-bezier(.16, 1, .3, 1);
+}
+
+/* -------------------------------------------------------------------------
+   1. SKIP LINK - WCAG 2.4.1 Bypass Blocks (nivel A)
+   No existia en ninguna de las 108 paginas. Con navbar + breadcrumb un
+   usuario de teclado tabulaba ~15 veces antes de llegar al contenido.
+   ------------------------------------------------------------------------- */
+.alv-skip {
+    position: absolute;
+    left: 8px;
+    top: -100px;
+    z-index: 100000;
+    display: inline-block;
+    padding: 12px 20px;
+    min-height: 44px;
+    background: var(--alv-navy);
+    color: var(--alv-white);
+    font: 600 1rem/1.25 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    text-decoration: none;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 8px 32px rgba(9, 132, 227, .22);
+    transition: top .18s var(--alv-ease);
+}
+
+.alv-skip:focus {
+    top: 0;
+    color: var(--alv-white);
+    outline: 3px solid var(--alv-electric);
+    outline-offset: 2px;
+}
+
+/* El destino del salto no debe quedar bajo un header sticky */
+#main {
+    scroll-margin-top: 80px;
+}
+
+/* -------------------------------------------------------------------------
+   2. FOCO VISIBLE UNIVERSAL - WCAG 2.4.7 (nivel AA)
+   Faltaba por completo en 53 paginas. Se aplica solo a navegacion por
+   teclado (:focus-visible), asi que no ensucia el clic con mouse.
+   ------------------------------------------------------------------------- */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
+    outline: 3px solid var(--alv-electric);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* Sobre fondo navy el azul electrico no contrasta lo suficiente:
+   ahi el foco se dibuja en blanco. */
+.hero:focus-within a:focus-visible,
+[style*="0a2540"] a:focus-visible,
+[style*="0a1628"] a:focus-visible,
+footer a:focus-visible,
+.foot a:focus-visible {
+    outline-color: var(--alv-white);
+}
+
+/* summary nativo: Safari/Chrome no siempre marcan el foco del marcador */
+summary:focus-visible {
+    outline-offset: 2px;
+}
+
+/* -------------------------------------------------------------------------
+   3. PISOS DE ACCESIBILIDAD TACTIL - WCAG 2.5.8 Target Size (AA en 2.2)
+   Minimo 44x44 CSS px. Se corrigen los controles secundarios que estaban
+   entre 24 y 39 px: toggle de idioma, chips del indice, flechas de carrusel.
+   ------------------------------------------------------------------------- */
+.lang-switch a,
+.promo-lang2 a,
+.lang-toggle a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.ubi-quick a {
+    min-height: 48px;
+}
+
+/* Flechas de carrusel: 38px -> 44px */
+.carousel-control-prev-icon,
+.carousel-control-next-icon,
+.testi-nav__btn,
+.rev-nav__btn {
+    min-width: 44px;
+    min-height: 44px;
+}
+
+/* Evita el retardo de 300ms y el doble-tap zoom en controles */
+a,
+button,
+summary,
+[role="button"] {
+    touch-action: manipulation;
+}
+
+/* -------------------------------------------------------------------------
+   4. BOTON FLOTANTE DE WHATSAPP
+   Quedaba a 12px del borde inferior, donde vive la barra de gestos de iOS.
+   ------------------------------------------------------------------------- */
+@supports (padding: max(0px)) {
+    .whatsapp-float {
+        bottom: max(14px, calc(env(safe-area-inset-bottom) + 10px));
+    }
+}
+
+/* -------------------------------------------------------------------------
+   5. MOVIMIENTO REDUCIDO - WCAG 2.3.3
+   35 paginas cargaban ScrollTrigger sin ninguna rama reducida. La regla no
+   apaga el contenido: neutraliza el desplazamiento y deja el estado final
+   visible. base.js complementa matando los ScrollTrigger en JS.
+   ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    /* Red de seguridad: cualquier reveal que dependiera de JS para hacerse
+       visible queda visible de entrada. Sin esto, la pagina se queda en
+       blanco para quien pide movimiento reducido. */
+    .reveal,
+    [class*="reveal"],
+    .fade-up,
+    .fade-in {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* -------------------------------------------------------------------------
+   6. HOVER SOLO EN DISPOSITIVOS CON PUNTERO FINO
+   En tactil, :hover se dispara al tocar y deja el estado pegado.
+   ------------------------------------------------------------------------- */
+@media (hover: none) {
+
+    .whatsapp-float:hover .wa-tooltip,
+    .wa-tooltip {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+/* -------------------------------------------------------------------------
+   7. PISO TIPOGRAFICO LEGIBLE EN MOVIL
+   El body esta en 17px pensando en pacientes mayores, pero descripciones y
+   chips caian a 10.9-13px. Se fija un piso sin tocar la jerarquia.
+   ------------------------------------------------------------------------- */
+@media (max-width: 991px) {
+
+    .svc2-row p,
+    .dis2-card p,
+    .enf-tile p,
+    .hub-card p,
+    .zsvc-row__body p,
+    .cond-card p {
+        font-size: .95rem;
+        line-height: 1.6;
+    }
+
+    .cond-card__tag,
+    .testi-badge,
+    .hub-card__chip,
+    .chip {
+        font-size: .8rem;
+    }
+}
+
+/* -------------------------------------------------------------------------
+   8. FEEDBACK TACTIL EN ELEMENTOS PRESIONABLES
+   scale(0.97) al presionar: confirma que la interfaz escucho. Nunca desde
+   scale(0) - nada en el mundo real aparece de tamano cero.
+   ------------------------------------------------------------------------- */
+@media (hover: hover) and (pointer: fine) {
+
+    .btn:active,
+    .zsvc-row:active,
+    .enf-tile:active,
+    .hub-card:active,
+    .cta-btn:active {
+        transform: scale(.985);
+    }
+}
+
+.btn,
+.zsvc-row,
+.enf-tile,
+.hub-card {
+    transition: transform .16s var(--alv-ease), box-shadow .24s var(--alv-ease);
+}
+
+/* -------------------------------------------------------------------------
+   9. IMAGENES Y MARCOS - defensa contra CLS y desbordes
+   ------------------------------------------------------------------------- */
+img,
+iframe {
+    max-width: 100%;
+}
+
+/* Mapas: aspect-ratio con min-height fijo de 380px empujaba los horarios y
+   los CTAs fuera de pantalla en 360px. */
+@media (max-width: 640px) {
+
+    .ubi-map iframe,
+    .map-frame iframe,
+    .ubi-main iframe {
+        min-height: 260px;
+    }
+}
