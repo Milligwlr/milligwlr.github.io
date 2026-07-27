@@ -104,6 +104,12 @@
 .svc-hero-visual__row{display:flex;align-items:center;gap:12px;padding:8px 0;color:rgba(255,255,255,.85);font-size:.88rem;font-weight:500;position:relative;z-index:1}
 .svc-hero-visual__row i{font-size:1.05rem;width:22px;text-align:center;flex-shrink:0;color:var(--svc-light)}
 
+.svc-hero-note{display:flex;align-items:flex-start;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:14px 16px;margin-bottom:20px;max-width:560px;backdrop-filter:blur(10px)}
+.svc-hero-note>i{color:var(--svc-light);font-size:1.2rem;flex-shrink:0;line-height:1.35}
+.svc-hero-note p{margin:0;font-size:.88rem;line-height:1.55;color:rgba(255,255,255,.78)}
+.svc-hero-note strong{color:#fff;font-weight:700}
+@media(min-width:768px){.svc-hero-note{padding:16px 18px}.svc-hero-note p{font-size:.93rem}}
+
 .benefit-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(min-width:768px){.benefit-grid{grid-template-columns:repeat(4,1fr);gap:16px}}
 .benefit-card{background:#fff;border:1px solid rgba(32,178,170,.14);border-radius:18px;padding:22px 16px;text-align:center;transition:all .3s var(--ease);cursor:default}
@@ -309,9 +315,13 @@
 <span class="svc-hero-tag"><span class="pulse"></span> Procedimiento bajo sedación · Monitorizado</span>
 <h1 class="svc-hero-title">Mira tus pulmones<br>por dentro<em>Broncoscopia flexible</em></h1>
 <p class="svc-hero-sub">Una cámara delgada entra por la nariz para ver tus bronquios en HD. Bajo sedación: <strong style="color:#fff">no recuerdas el procedimiento</strong>.</p>
+<div class="svc-hero-note">
+<i class="bi bi-hospital" aria-hidden="true"></i>
+<p><strong>Es un procedimiento ambulatorio y se hace en el Hospital Santa Coleta</strong>, no en el consultorio 507, porque ahí está el equipo de sedación y monitoreo. No te internas: llegas, se hace el estudio, descansas un rato en recuperación y <strong>te vas a casa el mismo día</strong>.</p>
+</div>
 <div class="svc-hero-cta">
 <a href="https://wa.me/522224926718?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx.%20Quiero%20informaci%C3%B3n%20sobre%20broncoscopia" target="_blank" rel="noopener noreferrer" class="btn-wa-hero"><i class="bi bi-whatsapp"></i> WhatsApp ahora</a>
-<a href="#agendaModal" class="btn-cal-hero" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+<a href="#agendaModal" class="btn-cal-hero" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar valoración previa</a>
 </div>
 <div class="svc-hero-stats">
 <div class="svc-hero-stat"><div class="svc-hero-stat__num">30–45 min</div><div class="svc-hero-stat__lbl">de procedimiento</div></div>
@@ -371,8 +381,8 @@
 <!-- BENEFICIOS -->
 <div class="svc-section reveal">
 <span class="svc-section__eyebrow"><i class="bi bi-gift-fill"></i> Qué te llevas</span>
-<h2 class="svc-section__title">Una consulta. <em>Lo que te llevas.</em></h2>
-<p class="svc-section__lead">Sin tecnicismos. Sin promesas vacías. Esto es lo concreto que sale de la cita.</p>
+<h2 class="svc-section__title">Un procedimiento. <em>Lo que te llevas.</em></h2>
+<p class="svc-section__lead">Sin tecnicismos. Esto es lo concreto que sale del estudio, el mismo día en que se realiza.</p>
 <div class="benefit-grid">
 <div class="benefit-card"><div class="benefit-card__icon"><i class="bi bi-eye-fill"></i></div><h4>Visión directa</h4><p>Tu vía aérea en HD</p></div>
 <div class="benefit-card"><div class="benefit-card__icon"><i class="bi bi-moon-fill"></i></div><h4>Sin recuerdos</h4><p>Bajo sedación</p></div>
@@ -385,7 +395,7 @@
 <div class="svc-section reveal">
 <span class="svc-section__eyebrow"><i class="bi bi-people-fill"></i> ¿Para quién es?</span>
 <h2 class="svc-section__title">Si te <em>identificas</em>, te conviene</h2>
-<p class="svc-section__lead">Cuatro perfiles típicos en consulta. Si te suena alguno, este servicio es el siguiente paso lógico.</p>
+<p class="svc-section__lead">Cuatro situaciones que veo con frecuencia. Si te suena alguna, lo revisamos en la valoración previa y ahí decidimos si la broncoscopia te ayuda.</p>
 <div class="who-grid">
 <div class="who-card"><div class="who-card__icon"><i class="bi bi-droplet-half"></i></div><h4>Tos con sangre</h4><p>Aunque sea poca</p></div>
 <div class="who-card"><div class="who-card__icon"><i class="bi bi-search"></i></div><h4>Nódulo en TAC</h4><p>Que hay que estudiar</p></div>
@@ -398,7 +408,7 @@
 <div class="svc-section reveal">
 <span class="svc-section__eyebrow"><i class="bi bi-lightning-fill"></i> Cómo se siente</span>
 <h2 class="svc-section__title">Despierto y con dolor vs <em>dormido y tranquilo</em></h2>
-<p class="svc-section__lead">Otros centros usan sólo anestesia local. Aquí, sedación con monitoreo. La diferencia es enorme.</p>
+<p class="svc-section__lead">Hay lugares donde la broncoscopia se hace sólo con anestesia local. Aquí se realiza con sedación y monitoreo continuo, en quirófano ambulatorio del Hospital Santa Coleta.</p>
 
 <div class="svc-wow reveal">
 <div class="svc-wow__inner">
@@ -453,20 +463,20 @@
 <span class="svc-cta__eyebrow"><i class="bi bi-camera-video"></i> Procedimiento programado</span>
 <h3 class="svc-cta__title">¿Tos con sangre, nódulo en TAC o tos crónica sin causa?</h3>
 <ul class="svc-cta__list">
-<li><i class="bi bi-check-circle-fill"></i> Consulta de valoración previa</li>
-<li><i class="bi bi-check-circle-fill"></i> Procedimiento bajo sedación con monitoreo</li>
+<li><i class="bi bi-check-circle-fill"></i> Primero, consulta de valoración en el consultorio 507</li>
+<li><i class="bi bi-check-circle-fill"></i> Procedimiento bajo sedación con monitoreo, en el Hospital Santa Coleta</li>
 <li><i class="bi bi-check-circle-fill"></i> Biopsia, lavado o cepillado según indicación</li>
-<li><i class="bi bi-check-circle-fill"></i> Recuperación en sala y alta el mismo día</li>
+<li><i class="bi bi-check-circle-fill"></i> Recuperación en sala y alta a casa el mismo día, sin internamiento</li>
 </ul>
 </div>
 <div>
 <div class="svc-cta__stat">
 <div class="svc-cta__stat-num">1 día</div>
-<div class="svc-cta__stat-lbl">Llegas, te ven los bronquios y te vas a casa</div>
+<div class="svc-cta__stat-lbl">Llegas al hospital, se revisan tus bronquios y te vas a casa</div>
 </div>
 <div class="svc-cta__btns">
 <a href="https://wa.me/522224926718?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx.%20Quiero%20informaci%C3%B3n%20sobre%20broncoscopia" target="_blank" rel="noopener noreferrer" class="svc-cta__btn svc-cta__btn--wa"><i class="bi bi-whatsapp"></i> WhatsApp directo</a>
-<a href="#agendaModal" class="svc-cta__btn svc-cta__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+<a href="#agendaModal" class="svc-cta__btn svc-cta__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar valoración previa</a>
 </div>
 </div>
 </div>
@@ -482,8 +492,8 @@
 <div class="container py-3 cta-band__inner reveal">
 <p style="color:rgba(93,216,208,.7);font-size:.78rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px">Diagnóstico directo · Sin cirugía</p>
 <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.025em;line-height:1.2">A veces hay que<br><em style="font-style:normal;background:linear-gradient(135deg,#5dd8d0,#20b2aa);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">ver para creer.</em></h2>
-<p class="mb-4 mx-auto" style="color:rgba(255,255,255,.55);font-size:.98rem;max-width:500px;line-height:1.6">Cámara HD. Sedación cómoda. Diagnóstico el mismo día.</p>
-<a href="#agendaModal" class="cta-band__btn" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">Agendar mi cita <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i></a>
+<p class="mb-4 mx-auto" style="color:rgba(255,255,255,.55);font-size:.98rem;max-width:500px;line-height:1.6">Cámara HD. Sedación cómoda. Ambulatorio en el Hospital Santa Coleta: te vas a casa el mismo día.</p>
+<a href="#agendaModal" class="cta-band__btn" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">Agendar valoración previa <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i></a>
 </div>
 </section>
 

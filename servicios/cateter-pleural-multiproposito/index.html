@@ -104,6 +104,12 @@
 .svc-hero-visual__row{display:flex;align-items:center;gap:12px;padding:8px 0;color:rgba(255,255,255,.85);font-size:.88rem;font-weight:500;position:relative;z-index:1}
 .svc-hero-visual__row i{font-size:1.05rem;width:22px;text-align:center;flex-shrink:0;color:var(--svc-light)}
 
+.svc-hero-note{display:flex;align-items:flex-start;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:14px 16px;margin-bottom:20px;max-width:560px;backdrop-filter:blur(10px)}
+.svc-hero-note>i{color:var(--svc-light);font-size:1.2rem;flex-shrink:0;line-height:1.35}
+.svc-hero-note p{margin:0;font-size:.88rem;line-height:1.55;color:rgba(255,255,255,.78)}
+.svc-hero-note strong{color:#fff;font-weight:700}
+@media(min-width:768px){.svc-hero-note{padding:16px 18px}.svc-hero-note p{font-size:.93rem}}
+
 .benefit-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(min-width:768px){.benefit-grid{grid-template-columns:repeat(4,1fr);gap:16px}}
 .benefit-card{background:#fff;border:1px solid rgba(44,122,123,.14);border-radius:18px;padding:22px 16px;text-align:center;transition:all .3s var(--ease);cursor:default}
@@ -204,7 +210,7 @@
         </style>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/servicios/cateter-pleural-multiproposito/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Cómo es la colocación?","acceptedAnswer":{"@type":"Answer","text":"Anestesia local, túnel subcutáneo de 5–7 cm para evitar infección, catéter conectado a sistema valvular. 45 minutos. Te vas a casa el mismo día con educación impresa."}},{"@type":"Question","name":"¿Cada cuánto se drena?","acceptedAnswer":{"@type":"Answer","text":"Inicialmente 3 veces por semana o según volumen. Cuando el volumen baja a menos de 50 mL por drenaje en 3 sesiones consecutivas, evaluamos retiro."}},{"@type":"Question","name":"¿Y si se infecta?","acceptedAnswer":{"@type":"Answer","text":"Riesgo bajo (<5%) con técnica estéril. Si hay rojez, dolor o secreción, contactas y valoramos antibiótico o, raramente, retiro. La mayoría se maneja sin perder el catéter."}},{"@type": "Question", "name": "¿Puedo hacer vida normal con un catéter pleural?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, ese es justamente su propósito: controlar el líquido sin hospitalizaciones repetidas. Puedes bañarte (protegiendo el sitio), moverte y hacer tus actividades habituales; el drenaje se realiza en casa, en minutos y con la frecuencia que se indique. En consulta se les enseña la técnica a ti y a un familiar."}},{"@type":"Question","name":"¿Cuánto cuesta en CDMX?","acceptedAnswer":{"@type":"Answer","text":"Para precios actualizados (procedimiento + insumos), escribe por WhatsApp al 55 9170 8334."}}]}
+{"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/servicios/cateter-pleural-multiproposito/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Cómo es la colocación?","acceptedAnswer":{"@type":"Answer","text":"Se realiza de forma ambulatoria en el Hospital Santa Coleta, no en el consultorio. Anestesia local, túnel subcutáneo de 5–7 cm para evitar infección, catéter conectado a sistema valvular. 45 minutos. No te internas: te vas a casa el mismo día con educación impresa."}},{"@type":"Question","name":"¿Cada cuánto se drena?","acceptedAnswer":{"@type":"Answer","text":"Inicialmente 3 veces por semana o según volumen. Cuando el volumen baja a menos de 50 mL por drenaje en 3 sesiones consecutivas, evaluamos retiro."}},{"@type":"Question","name":"¿Y si se infecta?","acceptedAnswer":{"@type":"Answer","text":"Riesgo bajo (<5%) con técnica estéril. Si hay rojez, dolor o secreción, contactas y valoramos antibiótico o, raramente, retiro. La mayoría se maneja sin perder el catéter."}},{"@type": "Question", "name": "¿Puedo hacer vida normal con un catéter pleural?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, ese es justamente su propósito: controlar el líquido sin hospitalizaciones repetidas. Puedes bañarte (protegiendo el sitio), moverte y hacer tus actividades habituales; el drenaje se realiza en casa, en minutos y con la frecuencia que se indique. En consulta se les enseña la técnica a ti y a un familiar."}},{"@type":"Question","name":"¿Cuánto cuesta en CDMX?","acceptedAnswer":{"@type":"Answer","text":"Para precios actualizados (procedimiento + insumos), escribe por WhatsApp al 55 9170 8334."}}]}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"MedicalWebPage","url":"https://alveos.mx/servicios/cateter-pleural-multiproposito/","name":"Catéter Pleural Multipropósito CDMX | Derrame Recurrente","description":"Catéter pleural permanente para drenaje en casa de derrame pleural maligno. CDMX.","inLanguage":"es-MX","datePublished":"2026-04-25","dateModified":"2026-04-25","lastReviewed":"2026-04-25","reviewedBy":{"@id":"https://alveos.mx/#physician"},"author":{"@id":"https://alveos.mx/#physician"},"specialty":"https://schema.org/Pulmonary","audience":{"@type":"MedicalAudience","audienceType":"Patient"}}
@@ -306,12 +312,16 @@
 <nav class="disease-hero__breadcrumb" aria-label="Breadcrumb"><a href="/">Inicio</a><span>/</span><a href="/servicios/"><i class="fas fa-stethoscope me-1"></i>Servicios</a><span>/</span><span class="current">Catéter Pleural Multipropósito</span></nav>
 <div class="row align-items-center g-4 g-lg-5">
 <div class="col-lg-7">
-<span class="svc-hero-tag"><span class="pulse"></span> Procedimiento ambulatorio · Para casa</span>
+<span class="svc-hero-tag"><span class="pulse"></span> Colocación ambulatoria · Drenaje en casa</span>
 <h1 class="svc-hero-title">Drena el líquido<br>desde tu propia casa<em>Catéter pleural multipropósito</em></h1>
 <p class="svc-hero-sub">Para derrames que <strong style="color:#fff">vuelven a llenarse</strong> tras drenar. Un catéter discreto te permite drenar en casa, sin volver al hospital cada semana.</p>
+<div class="svc-hero-note">
+<i class="bi bi-hospital" aria-hidden="true"></i>
+<p><strong>La colocación es ambulatoria y se hace en el Hospital Santa Coleta</strong>, no en el consultorio 507, porque ahí está el área estéril. No te internas: se coloca con anestesia local y <strong>te vas a casa el mismo día</strong>. A partir de ahí, el drenaje sí es en tu casa.</p>
+</div>
 <div class="svc-hero-cta">
 <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20p%C3%A1gina%3A%20Cat%C3%A9ter%20Pleural%20Multiprop%C3%B3sito%20CDMX%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" class="btn-wa-hero"><i class="bi bi-whatsapp"></i> WhatsApp ahora</a>
-<a href="#agendaModal" class="btn-cal-hero" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+<a href="#agendaModal" class="btn-cal-hero" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar valoración previa</a>
 </div>
 <div class="svc-hero-stats">
 <div class="svc-hero-stat"><div class="svc-hero-stat__num">Casa</div><div class="svc-hero-stat__lbl">drenaje en sala</div></div>
@@ -371,8 +381,8 @@
 <!-- BENEFICIOS -->
 <div class="svc-section reveal">
 <span class="svc-section__eyebrow"><i class="bi bi-gift-fill"></i> Qué te llevas</span>
-<h2 class="svc-section__title">Una consulta. <em>Lo que te llevas.</em></h2>
-<p class="svc-section__lead">Sin tecnicismos. Sin promesas vacías. Esto es lo concreto que sale de la cita.</p>
+<h2 class="svc-section__title">Un procedimiento. <em>Lo que te llevas.</em></h2>
+<p class="svc-section__lead">Sin tecnicismos. Esto es lo concreto que sale del día de la colocación.</p>
 <div class="benefit-grid">
 <div class="benefit-card"><div class="benefit-card__icon"><i class="bi bi-house-heart-fill"></i></div><h4>Drenaje en casa</h4><p>Sin urgencias</p></div>
 <div class="benefit-card"><div class="benefit-card__icon"><i class="bi bi-stopwatch"></i></div><h4>45 min colocación</h4><p>Anestesia local</p></div>
@@ -385,7 +395,7 @@
 <div class="svc-section reveal">
 <span class="svc-section__eyebrow"><i class="bi bi-people-fill"></i> ¿Para quién es?</span>
 <h2 class="svc-section__title">Si te <em>identificas</em>, te conviene</h2>
-<p class="svc-section__lead">Cuatro perfiles típicos en consulta. Si te suena alguno, este servicio es el siguiente paso lógico.</p>
+<p class="svc-section__lead">Cuatro situaciones que veo con frecuencia. Si te suena alguna, lo revisamos en la valoración previa y ahí decidimos si el catéter te ayuda.</p>
 <div class="who-grid">
 <div class="who-card"><div class="who-card__icon"><i class="bi bi-clipboard-pulse"></i></div><h4>Derrame que vuelve</h4><p>Cada 2–3 semanas</p></div>
 <div class="who-card"><div class="who-card__icon"><i class="bi bi-lungs"></i></div><h4>Pulmón atrapado</h4><p>No expande tras drenaje</p></div>
@@ -398,12 +408,12 @@
 <div class="svc-section reveal">
 <span class="svc-section__eyebrow"><i class="bi bi-lightning-fill"></i> Tu casa vs el hospital</span>
 <h2 class="svc-section__title">Urgencias cada semana vs <em>tu sala con tu té</em></h2>
-<p class="svc-section__lead">El derrame maligno recurrente roba tiempo. El catéter te lo devuelve.</p>
+<p class="svc-section__lead">El derrame recurrente roba tiempo en idas y venidas. Tras un solo día de colocación en el hospital, los drenajes siguientes son en tu casa.</p>
 
 <div class="svc-wow reveal">
 <div class="svc-wow__inner">
 <div class="svc-wow__badge"><i class="bi bi-bar-chart-fill"></i> Punciones repetidas vs catéter</div>
-<h3 class="svc-wow__title">Recuperar el tiempo: <em>menos hospital, más casa</em></h3>
+<h3 class="svc-wow__title">Recuperar el tiempo: <em>menos idas al hospital, más casa</em></h3>
 <div class="svc-wow__compare">
 <div class="svc-wow__col svc-wow__col--bad">
 <div class="svc-wow__col-lbl">Sin catéter</div>
@@ -453,8 +463,8 @@
 <span class="svc-cta__eyebrow"><i class="bi bi-hospital"></i> Calidad de vida en casa</span>
 <h3 class="svc-cta__title">¿Te están drenando líquido cada pocas semanas?</h3>
 <ul class="svc-cta__list">
-<li><i class="bi bi-check-circle-fill"></i> Valoración con tu oncólogo y estudios</li>
-<li><i class="bi bi-check-circle-fill"></i> Colocación ambulatoria con anestesia local</li>
+<li><i class="bi bi-check-circle-fill"></i> Primero, consulta de valoración en el consultorio 507, con tu oncólogo y tus estudios</li>
+<li><i class="bi bi-check-circle-fill"></i> Colocación ambulatoria con anestesia local, en el Hospital Santa Coleta, y alta a casa el mismo día</li>
 <li><i class="bi bi-check-circle-fill"></i> Educación a ti y tu cuidador para drenaje</li>
 <li><i class="bi bi-check-circle-fill"></i> Seguimiento quincenal con posibilidad de retiro</li>
 </ul>
@@ -466,7 +476,7 @@
 </div>
 <div class="svc-cta__btns">
 <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20p%C3%A1gina%3A%20Cat%C3%A9ter%20Pleural%20Multiprop%C3%B3sito%20CDMX%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" class="svc-cta__btn svc-cta__btn--wa"><i class="bi bi-whatsapp"></i> WhatsApp directo</a>
-<a href="#agendaModal" class="svc-cta__btn svc-cta__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
+<a href="#agendaModal" class="svc-cta__btn svc-cta__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar valoración previa</a>
 </div>
 </div>
 </div>
@@ -480,10 +490,10 @@
 <section class="cta-band text-center py-5">
 <div class="cta-band__particles" id="ctaParticles" aria-hidden="true"></div>
 <div class="container py-3 cta-band__inner reveal">
-<p style="color:rgba(95,168,169,.7);font-size:.78rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px">Más casa, menos hospital</p>
+<p style="color:rgba(95,168,169,.7);font-size:.78rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px">Más casa, menos idas a urgencias</p>
 <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.025em;line-height:1.2">El tiempo que tienes<br><em style="font-style:normal;background:linear-gradient(135deg,#5fa8a9,#2c7a7b);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">no se gasta en urgencias.</em></h2>
-<p class="mb-4 mx-auto" style="color:rgba(255,255,255,.55);font-size:.98rem;max-width:500px;line-height:1.6">Colocación ambulatoria. Drenaje en tu sala. Plan a la medida.</p>
-<a href="#agendaModal" class="cta-band__btn" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">Agendar mi cita <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i></a>
+<p class="mb-4 mx-auto" style="color:rgba(255,255,255,.55);font-size:.98rem;max-width:500px;line-height:1.6">Colocación ambulatoria en el Hospital Santa Coleta, con alta el mismo día. Después, drenaje en tu sala.</p>
+<a href="#agendaModal" class="cta-band__btn" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">Agendar valoración previa <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i></a>
 </div>
 </section>
 
@@ -491,7 +501,7 @@
 <section id="preguntas-frecuentes-cateter-pleural-multiproposito" class="faq-block" aria-labelledby="faq-h-cateter-pleural-multiproposito">
 <h2 id="faq-h-cateter-pleural-multiproposito" class="faq-block__title">Preguntas frecuentes</h2>
 <p class="faq-block__sub">Lo que más me preguntan los pacientes antes de agendar.</p>
-<details class="faq-item"><summary>¿Cómo es la colocación?</summary><div class="faq-item__answer"><p>Anestesia local, túnel subcutáneo de 5–7 cm para evitar infección, catéter conectado a sistema valvular. 45 minutos. Te vas a casa el mismo día con educación impresa.</p></div></details>
+<details class="faq-item"><summary>¿Cómo es la colocación?</summary><div class="faq-item__answer"><p>Se realiza de forma ambulatoria en el Hospital Santa Coleta, no en el consultorio. Anestesia local, túnel subcutáneo de 5–7 cm para evitar infección, catéter conectado a sistema valvular. 45 minutos. No te internas: te vas a casa el mismo día con educación impresa.</p></div></details>
 <details class="faq-item"><summary>¿Cada cuánto se drena?</summary><div class="faq-item__answer"><p>Inicialmente 3 veces por semana o según volumen. Cuando el volumen baja a menos de 50 mL por drenaje en 3 sesiones consecutivas, evaluamos retiro.</p></div></details>
 <details class="faq-item"><summary>¿Y si se infecta?</summary><div class="faq-item__answer"><p>Riesgo bajo (<5%) con técnica estéril. Si hay rojez, dolor o secreción, contactas y valoramos antibiótico o, raramente, retiro. La mayoría se maneja sin perder el catéter.</p></div></details>
 <details class="faq-item">
