@@ -346,7 +346,7 @@
    un laboratorio, y el componente tiene que sentirse tan cuidado como el
    equipo que se lleva el paciente. La sombra va en tres capas (contacto,
    cuerpo, ambiente) porque una sola sombra difusa lee como plantilla. */
-.orient-deck__stage{display:grid;grid-template-columns:1fr;align-items:start;justify-items:center;perspective:1250px;perspective-origin:50% 45%;
+.orient-deck__stage{display:grid;grid-template-columns:1fr;align-items:start;justify-items:center;touch-action:pan-y;perspective:1250px;perspective-origin:50% 45%;
     padding:10px 0 26px;transform-style:preserve-3d}
 .orient-deck__stage > .orient-route{grid-area:1/1;width:100%;max-width:560px;
     transition:transform .78s cubic-bezier(.16,1,.3,1),opacity .5s cubic-bezier(.16,1,.3,1),box-shadow .6s ease;
@@ -377,6 +377,8 @@
     background:color-mix(in srgb,var(--svc) 7%,#fff);border:1px solid color-mix(in srgb,var(--svc) 16%,transparent);
     font-size:.7rem;font-weight:700;color:var(--navy);line-height:1.25}
 .orient-seal i{color:var(--svc);font-size:.85rem}
+.orient-seals--b .orient-seal{background:rgba(10,37,64,.05);border-color:rgba(10,37,64,.14)}
+.orient-seals--b .orient-seal i{color:var(--navy)}
 
 .orient-deck__arrow{width:44px;height:44px;flex:0 0 44px;border-radius:50%;border:1px solid color-mix(in srgb,var(--svc) 18%,transparent);background:#fff;color:var(--svc);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;box-shadow:0 2px 6px rgba(16,24,40,.08);transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s ease}
 .orient-deck__arrow:hover{transform:scale(1.08);box-shadow:0 10px 24px -10px color-mix(in srgb,var(--svc) 50%,transparent)}
@@ -384,7 +386,12 @@
 /* En un telefono no hay ancho para una orbita completa: la de al lado asoma
    por la derecha y se corta en el borde, que es como se lee un carrusel. */
 @media(max-width:767.98px){
-    .orient-deck__stage > .orient-route.is-back{transform:translateX(36%) translateZ(-120px) rotateY(-18deg) scale(.94)}
+    /* Un punto mas chicas: caben mejor y dejan ver mas de la de al lado */
+    .orient-deck__stage > .orient-route{width:93%;justify-self:center}
+    .orient-route{padding:18px 16px}
+    .orient-route__title{font-size:1rem}
+    .orient-check li{font-size:.84rem}
+    .orient-deck__stage > .orient-route.is-back{transform:translateX(38%) translateZ(-120px) rotateY(-18deg) scale(.94)}
     @keyframes orientLevitaLado{
         0%,100%{transform:translateX(36%) translateZ(-120px) translateY(0) rotateY(-18deg) scale(.94)}
         50%{transform:translateX(36%) translateZ(-120px) translateY(-12px) rotateY(-18deg) scale(.94)}}
@@ -411,14 +418,14 @@
 }
 .orient-route{border-radius:20px;padding:20px 18px;position:relative}
 .orient-route--a{background:linear-gradient(150deg,#fff,#f6f5ff);border:2px solid rgba(108,92,231,.28);box-shadow:0 16px 40px -20px rgba(72,52,212,.45)}
-.orient-route--b{background:#fbfbfd;border:1px solid rgba(0,0,0,.09)}
+.orient-route--b{background:linear-gradient(160deg,#fff,#f7f9fd);border:1px solid rgba(10,37,64,.14)}
 .orient-route__badge{display:inline-flex;align-items:center;gap:7px;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1.6px;border-radius:100px;padding:6px 13px;margin-bottom:14px}
 .orient-route--a .orient-route__badge{background:linear-gradient(135deg,var(--svc),var(--svc-dark));color:#fff}
-.orient-route--b .orient-route__badge{background:rgba(0,0,0,.05);color:var(--text-muted)}
+.orient-route--b .orient-route__badge{background:rgba(10,37,64,.07);color:var(--navy);border:1px solid rgba(10,37,64,.12)}
 .orient-route__head{display:flex;gap:11px;align-items:center;margin-bottom:10px}
 .orient-route__ic{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
 .orient-route--a .orient-route__ic{background:linear-gradient(135deg,var(--svc),var(--svc-dark));color:#fff;box-shadow:0 8px 20px rgba(108,92,231,.34)}
-.orient-route--b .orient-route__ic{background:rgba(0,0,0,.05);color:var(--text-muted)}
+.orient-route--b .orient-route__ic{background:linear-gradient(135deg,var(--navy),#1c3d5f);color:#fff;box-shadow:0 6px 18px -8px rgba(10,37,64,.5)}
 .orient-route__rt{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1.8px;color:var(--text-muted);margin-bottom:2px}
 .orient-route__title{font-size:1.08rem;font-weight:800;color:var(--navy);margin:0;letter-spacing:-.015em;line-height:1.25}
 .orient-route__lead{font-size:.88rem;color:var(--text-muted);line-height:1.5;margin:0 0 12px}
@@ -426,7 +433,10 @@
 .orient-check li{display:flex;gap:9px;align-items:flex-start;font-size:.86rem;color:var(--text);line-height:1.45}
 .orient-check i{color:var(--svc);flex-shrink:0;margin-top:3px;font-size:.9rem}
 .orient-check li > span{flex:1;min-width:0}
-.orient-route--b .orient-check i{color:var(--text-muted)}
+.orient-route--b .orient-check li{position:relative;padding-left:20px;gap:0;color:var(--text)}
+.orient-route--b .orient-check li::before{content:'';position:absolute;left:4px;top:.55em;
+    width:6px;height:6px;border-radius:50%;background:var(--navy);opacity:.55}
+.orient-route--b .orient-check i{display:none}
 .orient-route__note{display:flex;gap:10px;align-items:flex-start;margin:16px 0 0;padding:13px 15px;background:rgba(108,92,231,.06);border-radius:12px;font-size:.87rem;color:var(--text-muted);line-height:1.55}
 .orient-route__note i{color:var(--svc);flex-shrink:0;margin-top:2px}
 /* ── Confiabilidad ──
@@ -647,6 +657,9 @@
 <li><i class="bi bi-dot" aria-hidden="true"></i><span>Sospecha de apnea central, piernas inquietas o narcolepsia.</span></li>
 <li><i class="bi bi-dot" aria-hidden="true"></i><span>Poligrafía en casa normal pero con síntomas que siguen.</span></li>
 </ul>
+<div class="orient-seals orient-seals--b">
+<span class="orient-seal"><i class="bi bi-signpost-split-fill" aria-hidden="true"></i> Te digo a dónde ir</span>
+</div>
 </article>
 </div>
 <div class="orient-deck__nav" id="orientNav" role="group" aria-label="Elegir ruta">
@@ -1311,16 +1324,39 @@
             });
         });
 
-        // deslizar con el dedo o el raton
-        var x0=null,y0=null;
-        stage.addEventListener('pointerdown',function(e){ x0=e.clientX; y0=e.clientY; },{passive:true});
-        stage.addEventListener('pointerup',function(e){
-            if(x0===null) return;
+        /* Deslizar con el dedo o el raton.
+           El pointerup no siempre llega al mismo elemento donde empezo el
+           gesto (el dedo termina sobre otra tarjeta, o fuera), asi que se
+           escucha en toda la ventana y se cierra el gesto tambien con
+           pointercancel, que es lo que dispara el navegador cuando decide
+           quedarse el arrastre. */
+        var x0=null,y0=null,activo=false;
+
+        stage.addEventListener('pointerdown',function(e){
+            x0=e.clientX; y0=e.clientY; activo=true;
+        },{passive:true});
+
+        function cerrar(e){
+            if(!activo) return;
+            activo=false;
+            if(x0===null||!e) return;
             var dx=e.clientX-x0, dy=e.clientY-y0;
             x0=null;
-            // horizontal y con recorrido: es un deslizamiento, no un toque ni un scroll
-            if(Math.abs(dx)>42 && Math.abs(dx)>Math.abs(dy)*1.4) alFrente(frente===0?1:0);
-        },{passive:true});
+            /* 36px de recorrido y mas horizontal que vertical: asi no se
+               confunde con un toque ni con el scroll de la pagina */
+            if(Math.abs(dx)>36 && Math.abs(dx)>Math.abs(dy)) alFrente(frente===0?1:0);
+        }
+
+        window.addEventListener('pointerup',cerrar,{passive:true});
+        window.addEventListener('pointercancel',function(){ activo=false; x0=null; },{passive:true});
+
+        /* Teclado: las flechas cambian de ruta cuando el foco esta en la baraja */
+        stage.setAttribute('tabindex','0');
+        stage.setAttribute('role','group');
+        stage.setAttribute('aria-label','Comparar las dos rutas, usa las flechas');
+        stage.addEventListener('keydown',function(e){
+            if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ e.preventDefault(); alFrente(frente===0?1:0); }
+        });
 
         pinta();
     })();
