@@ -348,7 +348,7 @@
     <script src="/assets/base.js" defer></script>
 </head>
 <body>
-<a class="alv-skip" href="#main">Saltar al contenido</a>
+<a class="alv-skip" href="#vista">Saltar al contenido</a>
 
 <div id="app" hidden>
   <header id="cabecera">
@@ -357,7 +357,11 @@
     <button type="button" class="btn-nav" id="btnEditar" title="Personalizar" aria-label="Personalizar Inicio" hidden></button>
     <button type="button" class="btn-nav" id="btnRefrescar" title="Actualizar" aria-label="Actualizar"></button>
   </header>
-  <main id="main" id="vista"></main>
+  <!-- OJO: un solo id. El barrido de accesibilidad (b1d5ab5) dejo
+       id="main" id="vista" DUPLICADOS: el navegador ignora el segundo,
+       getElementById('vista') devolvia null y el panel quedaba NEGRO.
+       El skip link apunta a #vista. -->
+  <main id="vista"></main>
   <nav id="tabbar"></nav>
 </div>
 
