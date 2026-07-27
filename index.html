@@ -4520,7 +4520,7 @@
                         <a class="svc3-cta" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal" data-cta="svc-consulta-feat">
                             Agendar consulta <i class="bi bi-arrow-right" aria-hidden="true"></i>
                         </a>
-                        <details class="svc3-fold">
+                        <details class="svc3-fold" open>
                         <summary><i class="bi bi-geo-alt" aria-hidden="true"></i><span>Dónde te atiendo</span></summary>
                         <div class="svc3-fold__body">
                         <ul class="svc3-modes">
@@ -4537,7 +4537,7 @@
 
                     <!-- Estudios que se hacen ahi mismo -->
                     <article class="svc3-menu">
-                        <details class="svc3-fold">
+                        <details class="svc3-fold" open>
                         <summary><i class="bi bi-lungs" aria-hidden="true"></i><span>Estudios el mismo día</span></summary>
                         <div class="svc3-fold__body">
                         <p class="svc3-menu__sub">No te mando a otro lado, el equipo está aquí.</p>
@@ -4568,7 +4568,7 @@
 
                     <!-- Poligrafia: la unica con dos precios, por eso va aparte -->
                     <article class="svc3-sleep">
-                        <details class="svc3-fold">
+                        <details class="svc3-fold" open>
                         <summary><i class="bi bi-moon-stars" aria-hidden="true"></i><span>Poligrafía respiratoria</span></summary>
                         <div class="svc3-fold__body">
                         <p class="svc3-sleep__text">El estudio que confirma la apnea del sueño. Duermes con el equipo una noche y yo interpreto el trazo.</p>
@@ -4585,7 +4585,7 @@
 
                     <!-- El resto del catalogo, como enlaces: conserva el enlazado interno del home -->
                     <div class="svc3-more">
-                        <details class="svc3-fold">
+                        <details class="svc3-fold" open>
                         <summary><i class="bi bi-plus-circle" aria-hidden="true"></i><span>También realizo</span></summary>
                         <div class="svc3-fold__body">
                         <p>Procedimientos y tratamientos que hago en hospital o en seguimiento.</p>
@@ -4606,6 +4606,21 @@
                 </div>
             </div>
         </section>
+        <script>
+        /* Los <details> de servicios van abiertos en el HTML para que en
+           escritorio (donde el summary se oculta) el contenido siempre pinte:
+           un details cerrado NO renderiza a sus hijos aunque el CSS les ponga
+           display:block. Este script solo los pliega en el telefono. */
+        (function(){
+            var mq=window.matchMedia('(max-width: 991.98px)');
+            var folds=document.querySelectorAll('.svc3-fold');
+            function ajusta(){ folds.forEach(function(d){ d.open=!mq.matches; }); }
+            ajusta();
+            if(mq.addEventListener) mq.addEventListener('change',ajusta); else mq.addListener(ajusta);
+            /* respaldo por si el change del matchMedia no dispara */
+            var t; window.addEventListener('resize',function(){ clearTimeout(t); t=setTimeout(ajusta,180); },{passive:true});
+        })();
+        </script>
         <!-- ===== ENFERMEDADES, Counter-scrolling bands ===== -->
         <hr class="section-divider">
         <section id="enfermedades" class="diseases-section section-bg py-5">

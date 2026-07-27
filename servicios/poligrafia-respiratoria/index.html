@@ -341,32 +341,28 @@
    absolute ni saltos al cambiar. ── */
 .orient-deck{position:relative}
 
-/* ── Carrusel circular ──
-   Las dos tarjetas van montadas en el mismo cilindro, separadas 42 grados
-   sobre un radio de 300px. Lo que gira es el cilindro: la de atras viaja en
-   arco hasta el frente mientras la otra recorre el mismo arco en sentido
-   contrario. Un solo movimiento continuo, no dos tarjetas intercambiandose.
-   La profundidad la da la posicion en Z, que en preserve-3d es la que manda
-   sobre el orden de pintado. */
-.orient-deck__stage{position:relative;perspective:1500px;perspective-origin:50% 45%;
+/* ── Carrusel orbital ──
+   Las dos tarjetas viajan sobre una misma orbita: el JS calcula por cuadro,
+   a partir de un angulo continuo, la posicion de cada una (arco lateral,
+   profundidad, escala y opacidad), asi el dedo las arrastra literalmente por
+   el circulo. Los asientos van a 180 grados: la de atras queda al fondo,
+   asomada a un lado, mas chica y tenue pero visible, como a la distancia.
+   Solo transform y opacity: todo corre en el compositor. */
+.orient-deck__stage{position:relative;perspective:1200px;perspective-origin:50% 42%;
     padding:14px 0 30px;touch-action:pan-y}
-.orient-carousel{position:relative;transform-style:preserve-3d;
-    transform:translateZ(-300px) rotateY(var(--giro,0deg));
-    transition:transform 1.15s cubic-bezier(.55,.06,.22,1)}
-.orient-carousel > .orient-route{position:absolute;top:0;left:0;right:0;
-    transform-style:preserve-3d;backface-visibility:hidden;
-    transition:opacity .75s ease,box-shadow .75s ease}
-/* cada tarjeta ocupa su asiento en el cilindro */
-.orient-carousel > .orient-route:nth-child(1){transform:rotateY(0deg) translateZ(300px)}
-.orient-carousel > .orient-route:nth-child(2){transform:rotateY(42deg) translateZ(300px)}
+.orient-deck__stage.is-live{cursor:grab}
+.orient-deck__stage.is-live.is-drag{cursor:grabbing}
+.orient-deck__stage.is-live.is-drag .orient-route{pointer-events:none}
+.orient-carousel{position:relative}
+.is-live .orient-route{position:absolute;top:0;left:0;right:0;margin:0;
+    transform-origin:50% 58%;will-change:transform,opacity;
+    transition:box-shadow .6s ease}
 /* la que queda al frente manda visualmente */
-.orient-carousel > .orient-route.is-front{opacity:1;
+.is-live .orient-route.is-front{
     box-shadow:0 1px 2px rgba(16,24,40,.06),0 20px 38px -16px rgba(16,24,40,.26),0 50px 90px -46px color-mix(in srgb,var(--svc) 42%,transparent)}
-.orient-carousel > .orient-route.is-back{opacity:.45;cursor:pointer;
+.is-live .orient-route.is-back{cursor:pointer;
     box-shadow:0 14px 32px -18px rgba(16,24,40,.32)}
-.orient-carousel > .orient-route.is-back:hover{opacity:.66}
-/* el hueco que ocupa el carrusel lo marca una copia sin pintar de la tarjeta
-   mas alta: sin esto, al ser absolutas, el contenedor colapsaria a cero */
+/* la altura del hueco la fija el JS midiendo la tarjeta mas alta */
 .orient-deck__ghost{visibility:hidden;pointer-events:none}
 /* sombra proyectada: lo que hace que se lea suspendido y no pegado al fondo */
 .orient-deck__floor{position:absolute;left:14%;right:14%;bottom:6px;height:22px;
@@ -390,19 +386,11 @@
 .orient-deck__arrow:hover{transform:scale(1.08);box-shadow:0 10px 24px -10px color-mix(in srgb,var(--svc) 50%,transparent)}
 .orient-deck__arrow:focus-visible{outline:2px solid var(--svc);outline-offset:3px}
 
-/* En el telefono el radio se acorta o la de al lado se sale de cuadro */
 @media(max-width:767.98px){
-    .orient-carousel{transform:translateZ(-215px) rotateY(var(--giro,0deg))}
-    .orient-carousel > .orient-route:nth-child(1){transform:rotateY(0deg) translateZ(215px)}
-    .orient-carousel > .orient-route:nth-child(2){transform:rotateY(38deg) translateZ(215px)}
     .orient-route{padding:18px 16px}
     .orient-route__title{font-size:1rem}
     .orient-check li{font-size:.84rem}
     .orient-seal{font-size:.68rem;padding:5px 8px}
-}
-@media(prefers-reduced-motion:reduce){
-    .orient-carousel{transition:none}
-    .orient-carousel > .orient-route{transition:opacity .2s}
 }
 .orient-deck__nav{display:flex;gap:8px;justify-content:center;align-items:center;margin-top:20px;flex-wrap:wrap}
 .orient-deck__dot{min-height:44px;padding:9px 18px;border-radius:100px;border:1.5px solid rgba(108,92,231,.22);
@@ -415,8 +403,8 @@
 .orient-aside{display:flex;gap:9px;align-items:flex-start;margin:14px 0 0;padding:12px 14px;border-radius:12px;background:color-mix(in srgb,var(--svc) 6%,#fff);font-size:.84rem;line-height:1.5;color:var(--text-muted)}
 .orient-aside i{color:var(--svc);flex-shrink:0;margin-top:2px}
 @media(hover:hover){.orient-deck__dot:hover{transform:translateY(-2px)}}
-/* Sin JS, o con movimiento reducido, vuelven a ser dos tarjetas apiladas */
-.orient-deck__stage:not(.is-live) > .orient-route{position:static;transform:none;opacity:1;filter:none;animation:none}
+/* Sin JS vuelven a ser dos tarjetas apiladas, una debajo de la otra */
+.orient-deck__stage:not(.is-live) .orient-route{position:static;transform:none;opacity:1;margin-bottom:16px}
 .orient-deck__stage:not(.is-live){display:grid;gap:16px;perspective:none}
 .orient-deck__stage:not(.is-live) > .orient-route{grid-area:auto}
 @media(prefers-reduced-motion:reduce){
@@ -1350,61 +1338,103 @@
         document.getElementById('stop-bang').scrollIntoView({behavior:'smooth',block:'start'});
     };
 
-    /* ── Baraja de rutas ──
-       Dos tarjetas suspendidas, una al frente. Se cambia deslizando, tocando
-       la de atras o con los botones. El JS solo enciende el efecto: sin el, o
-       con movimiento reducido, quedan las dos apiladas como antes. */
+    /* ── Carrusel orbital de rutas ──
+       Un angulo continuo gobierna la orbita: cada tarjeta ocupa un asiento a
+       180 grados de la otra y el JS proyecta por cuadro su arco lateral,
+       profundidad, escala y opacidad. El dedo arrastra el angulo en vivo
+       (scrub) y al soltar la orbita cae al asiento mas cercano con un
+       resorte. Sin JS quedan las dos tarjetas apiladas. */
     (function(){
         var stage=document.getElementById('orientStage');
         var nav=document.getElementById('orientNav');
         if(!stage||!nav) return;
+        var carrusel=document.getElementById('orientCarousel');
         var cartas=Array.prototype.slice.call(stage.querySelectorAll('.orient-route'));
-        if(cartas.length!==2) return;
+        if(!carrusel||cartas.length!==2) return;
         var dots=Array.prototype.slice.call(nav.querySelectorAll('.orient-deck__dot'));
         var hint=document.getElementById('orientHint');
-        var frente=0;
+        var quieto=window.matchMedia('(prefers-reduced-motion:reduce)');
 
         stage.classList.add('is-live');
 
-        var carrusel=document.getElementById('orientCarousel');
-        var PASO=window.matchMedia('(max-width:767.98px)').matches?38:42;
-        var vueltas=0;   // acumulado, para que el giro siga siempre adelante
+        var frente=0;
+        var ang=0;     // angulo actual de la orbita, en grados (crece sin tope)
+        var meta=0;    // asiento al que va cayendo el resorte
+        var raf=null;
 
-        /* Las tarjetas van en absoluto sobre el cilindro, asi que el contenedor
-           no tiene altura propia: se la da la mas alta de las dos. Se remide al
-           cambiar el ancho y cuando la tipografia termina de cargar. */
+        /* geometria responsiva: radios del arco y cuanto se asoma la de atras */
+        var G={};
+        function mide(){
+            var w=carrusel.clientWidth||stage.clientWidth||320;
+            var movil=window.matchMedia('(max-width:767.98px)').matches;
+            G={arcoX:Math.min(w*0.46,300),          // recorrido lateral durante el giro
+               fondo:movil?150:230,                 // profundidad del punto trasero
+               asomo:movil?Math.min(w*0.09,34):56,  // cuanto se asoma la de atras en reposo
+               escMin:movil?0.86:0.82,              // escala de la tarjeta al fondo
+               opMin:0.42};                         // opacidad al fondo
+        }
+
+        /* Las tarjetas van en absoluto sobre la orbita, asi que el contenedor
+           no tiene altura propia: se la da la mas alta de las dos. */
         function altura(){
-            if(!carrusel) return;
             carrusel.style.height='auto';
             var alto=0;
             cartas.forEach(function(c){ alto=Math.max(alto, c.offsetHeight); });
             if(alto) carrusel.style.height=alto+'px';
         }
-        altura();
-        if(document.fonts&&document.fonts.ready) document.fonts.ready.then(altura);
+        mide(); altura();
+        if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){ altura(); pinta(); });
         var ta;
-        window.addEventListener('resize',function(){ clearTimeout(ta); ta=setTimeout(altura,180); },{passive:true});
+        window.addEventListener('resize',function(){ clearTimeout(ta); ta=setTimeout(function(){ mide(); altura(); pinta(); },180); },{passive:true});
+
+        /* proyecta una tarjeta segun su angulo en la orbita (0 = al frente) */
+        function proyecta(c,th){
+            var r=th*Math.PI/180;
+            var t=(1-Math.cos(r))/2;                       // 0 al frente, 1 al fondo
+            var x=Math.sin(r)*G.arcoX + t*G.asomo;
+            var z=-t*G.fondo;
+            var esc=1-(1-G.escMin)*t;
+            c.style.transform='translate3d('+x.toFixed(1)+'px,0,'+z.toFixed(1)+'px) scale('+esc.toFixed(3)+')';
+            c.style.opacity=(1-(1-G.opMin)*t).toFixed(3);
+            c.style.zIndex=String(100-Math.round(t*50));
+        }
+
+        function quienFrente(a){ return ((Math.round(-a/180)%2)+2)%2; }
 
         function pinta(){
+            cartas.forEach(function(c,k){ proyecta(c,ang+k*180); });
+            frente=quienFrente(ang);
             cartas.forEach(function(c,k){
                 c.classList.toggle('is-front',k===frente);
                 c.classList.toggle('is-back',k!==frente);
             });
             dots.forEach(function(d,k){ d.setAttribute('aria-selected',String(k===frente)); });
-            if(carrusel) carrusel.style.setProperty('--giro', (-PASO*vueltas)+'deg');
+        }
+
+        /* resorte: el angulo persigue a la meta cuadro a cuadro */
+        function anima(){
+            raf=null;
+            var d=meta-ang;
+            if(Math.abs(d)<0.05){ ang=meta; pinta(); return; }
+            ang+=d*0.14;
+            pinta();
+            raf=requestAnimationFrame(anima);
+        }
+        function veA(m){
+            meta=m;
+            if(quieto.matches){ ang=meta; pinta(); return; }
+            if(!raf) raf=requestAnimationFrame(anima);
         }
 
         function alFrente(k){
             if(k===frente) return;
-            /* el cilindro no vuelve sobre sus pasos: cada cambio suma un asiento,
-               asi el giro siempre avanza en la misma direccion */
-            vueltas += 1;
-            frente=k; pinta();
-            if(hint) hint.textContent='Ruta '+(frente===0?'A':'B')+' al frente. Desliza para volver a la otra.';
+            /* la orbita siempre avanza en el mismo sentido: cada cambio resta
+               medio giro y la de atras viaja en arco hasta el frente */
+            veA(meta-180);
+            if(hint) hint.textContent='Ruta '+(k===0?'A':'B')+' al frente. Desliza para volver a la otra.';
         }
 
         dots.forEach(function(d,k){ d.addEventListener('click',function(){ alFrente(k); }); });
-
         ['orientPrev','orientNext'].forEach(function(id){
             var b=document.getElementById(id);
             if(b) b.addEventListener('click',function(){ alFrente(frente===0?1:0); });
@@ -1416,31 +1446,53 @@
             });
         });
 
-        /* Deslizar con el dedo o el raton.
-           El pointerup no siempre llega al mismo elemento donde empezo el
-           gesto (el dedo termina sobre otra tarjeta, o fuera), asi que se
-           escucha en toda la ventana y se cierra el gesto tambien con
-           pointercancel, que es lo que dispara el navegador cuando decide
-           quedarse el arrastre. */
-        var x0=null,y0=null,activo=false;
+        /* Arrastre con scrub: el dedo mueve la orbita en vivo y al soltar cae
+           al asiento mas cercano (o al siguiente si el gesto fue franco). El
+           umbral direccional evita pelearse con el scroll de la pagina, y el
+           gesto se cierra en window porque el pointerup no siempre cae sobre
+           el mismo elemento donde empezo. */
+        var x0=null,y0=null,base=0,gesto=0,vx=0,xPrev=0,tPrev=0;
 
         stage.addEventListener('pointerdown',function(e){
-            x0=e.clientX; y0=e.clientY; activo=true;
+            if(e.target.closest('a,button')) return;
+            x0=xPrev=e.clientX; y0=e.clientY; tPrev=e.timeStamp; vx=0; gesto=0; base=ang;
+            if(raf){ cancelAnimationFrame(raf); raf=null; }
         },{passive:true});
 
-        function cerrar(e){
-            if(!activo) return;
-            activo=false;
-            if(x0===null||!e) return;
+        window.addEventListener('pointermove',function(e){
+            if(x0===null) return;
             var dx=e.clientX-x0, dy=e.clientY-y0;
-            x0=null;
-            /* 36px de recorrido y mas horizontal que vertical: asi no se
-               confunde con un toque ni con el scroll de la pagina */
-            if(Math.abs(dx)>36 && Math.abs(dx)>Math.abs(dy)) alFrente(frente===0?1:0);
-        }
+            if(gesto===0){
+                if(Math.abs(dx)>8&&Math.abs(dx)>Math.abs(dy)*1.2) gesto=1;
+                else if(Math.abs(dy)>10) gesto=-1;
+            }
+            if(gesto!==1) return;
+            stage.classList.add('is-drag');
+            var dt=e.timeStamp-tPrev;
+            if(dt>0){ vx=(e.clientX-xPrev)/dt; xPrev=e.clientX; tPrev=e.timeStamp; }
+            if(quieto.matches) return;
+            ang=base+dx/(stage.clientWidth||320)*160;   // el ancho completo ≈ medio giro
+            pinta();
+        },{passive:true});
 
-        window.addEventListener('pointerup',cerrar,{passive:true});
-        window.addEventListener('pointercancel',function(){ activo=false; x0=null; },{passive:true});
+        function suelta(){
+            if(x0===null) return;
+            var fue=gesto===1;
+            x0=null; gesto=0; stage.classList.remove('is-drag');
+            if(!fue){ veA(meta); return; }
+            var cerca=Math.round(ang/180)*180;
+            /* impulso: un gesto franco pasa al siguiente asiento aunque el
+               recorrido haya sido corto */
+            if(cerca===Math.round(base/180)*180){
+                if(vx<-0.35||ang-base<-40) cerca-=180;
+                else if(vx>0.35||ang-base>40) cerca+=180;
+            }
+            veA(cerca);
+            var f=quienFrente(cerca);
+            if(hint&&f!==frente) hint.textContent='Ruta '+(f===0?'A':'B')+' al frente. Desliza para volver a la otra.';
+        }
+        window.addEventListener('pointerup',suelta,{passive:true});
+        window.addEventListener('pointercancel',suelta,{passive:true});
 
         /* Teclado: las flechas cambian de ruta cuando el foco esta en la baraja */
         stage.setAttribute('tabindex','0');
