@@ -1002,14 +1002,40 @@
         }
 
         /* Prueba social bajo el CTA */
+        /* Prueba social del hero: era una fila suelta de estrellas y texto gris,
+           que a la altura del CTA se leia como pie de foto. Ahora es una placa
+           elevada, con la marca de Google en su disco y el 5.0 como dato duro.
+           OJO: la cadena interna de .hero__proof-txt la sincroniza
+           scripts/update-gbp-rating.mjs por regex, no alterar su estructura. */
         .hero__proof {
-            display: flex; align-items: center; gap: 11px;
+            display: inline-flex; align-items: center; gap: 10px;
             margin: 18px 0 24px;
+            padding: 8px 16px 8px 9px;
+            border-radius: 100px;
+            background: linear-gradient(180deg, #fff 0%, var(--cloud-alt, #f8faff) 100%);
+            border: 1px solid rgba(9,132,227,.16);
+            box-shadow:
+                0 1px 2px rgba(10,22,40,.05),
+                0 12px 26px -16px rgba(9,132,227,.55),
+                inset 0 1px 0 #fff;
         }
-        .hero__proof .stars { display: flex; gap: 2px; }
-        .hero__proof .stars i { color: #f59e0b; font-size: .82rem; }
-        .hero__proof-txt { font-size: .84rem; color: var(--text-muted); }
+        .hero__proof-g {
+            width: 30px; height: 30px; flex: 0 0 30px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: #fff;
+            border: 1px solid rgba(10,22,40,.09);
+            box-shadow: 0 2px 6px rgba(10,22,40,.09);
+            font-size: .95rem; color: #4285f4;
+        }
+        .hero__proof .stars { display: flex; gap: 1px; }
+        .hero__proof .stars i { color: #f5a623; font-size: .78rem; }
+        .hero__proof-txt {
+            font-size: .82rem; color: var(--text-muted);
+            line-height: 1.25; white-space: nowrap;
+        }
         .hero__proof-txt b { color: var(--navy); font-weight: 800; }
+        .hero__proof-txt b:first-child { font-size: 1.02rem; letter-spacing: -.02em; }
 
         /* Franja de instituciones */
         .hero__inst { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
@@ -2356,28 +2382,29 @@
             opacity: .28;
             margin-bottom: 10px;
         }
-        .about__commitment__sign {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 18px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(9,132,227,.12);
-            font-size: .78rem;
-            line-height: 1.35;
-            color: var(--text-muted);
+        /* Firma del Dr. Escritura a mano sobria, sin adornos ni subrayado:
+           lo que da elegancia es el trazo continuo y el tamano contenido, no
+           un floreo. La fuente va subsetada a las 10 letras del nombre
+           (5.4 KB, mismo origen, font-display swap). */
+        @font-face {
+            font-family: 'Firma Alveos';
+            font-style: normal;
             font-weight: 600;
+            font-display: swap;
+            src: url(/assets/fonts/firma.woff2) format('woff2');
+            unicode-range: U+20, U+2e, U+44, U+4c, U+57, U+61, U+69, U+6c-6d, U+72;
         }
-        .about__commitment__sign i {
-            color: var(--electric);
-            font-size: .95rem;
-        }
-        .about__commitment__sign b {
+        .about__commitment__sign {
             display: block;
+            width: fit-content;
+            margin: 18px 2px 0 auto;
+            font-family: 'Firma Alveos', 'Segoe Script', 'Bradley Hand', cursive;
+            font-weight: 600;
+            font-size: 1.72rem;
+            line-height: 1.05;
+            letter-spacing: .005em;
             color: var(--navy);
-            font-size: .84rem;
-            font-weight: 800;
-            letter-spacing: -.01em;
+            opacity: .92;
         }
         .about__commitment strong {
             color: var(--electric);
@@ -4047,7 +4074,9 @@
             }
             .hero__conditions::-webkit-scrollbar { display: none; }
             .hero__pill { flex-shrink: 0; scroll-snap-align: center; }
-            .hero__proof { flex-direction: column; gap: 5px; }
+            .hero__proof { gap: 8px; padding: 7px 13px 7px 8px; }
+            .hero__proof-txt { font-size: .76rem; }
+            .hero__proof-g { width: 26px; height: 26px; flex-basis: 26px; font-size: .85rem; }
             .hero__inst { gap: 12px 22px; }
             .hero__inst-lbl { flex-basis: 100%; text-align: center; }
             .hero__logo     { width: 100px; height: 100px; margin-bottom: 10px; }
@@ -4242,6 +4271,7 @@
                         </a>
                     </div>
                     <div class="hero__proof">
+                        <span class="hero__proof-g" aria-hidden="true"><i class="bi bi-google"></i></span>
                         <span class="stars" aria-hidden="true">
                             <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                         </span>
@@ -4348,7 +4378,7 @@
                         <div class="about__commitment reveal">
                             <span class="about__commitment__mark" aria-hidden="true">“</span>
                             Mi compromiso contigo es claro: <strong>escucharte sin prisa</strong>, explicarte sin tecnicismos y construir un plan de tratamiento adaptado a <em>tu vida y tu ritmo</em>. Porque cada respiración cuenta, y cada paciente es único.
-                            <span class="about__commitment__sign"><i class="bi bi-pen-fill" aria-hidden="true"></i> <span><b>Dr. William César Lara Vázquez</b>Neumología, Céd. Esp. 15595809</span></span>
+                            <span class="about__commitment__sign">Dr. William Lara</span>
                         </div>
                         <a href="/sobre-el-doctor/" class="about__cta-btn reveal">Conoce mi trayectoria <i class="bi bi-arrow-right"></i></a>
                     </div>
@@ -5848,10 +5878,20 @@
                usa el agrupado por sintoma y las dos no pueden pelearse. */
             var drift = (function(){
                 var parts = [], raf = 0, W = 0, H = 0, vivo = false, visible = true, prev = 0;
-                var VEL = 24;        // px por SEGUNDO: cruzar el campo toma ~22 s
+                /* El campo del telefono es chico y las burbujas grandes respecto
+                   a el, asi que chocan todo el tiempo: a velocidad alta y con
+                   rebote elastico eso se ve como una descarga electrica. La
+                   deriva va mas lenta ahi, y los encuentros se resuelven
+                   esquivando en vez de rebotando. */
+                var movil = window.matchMedia('(max-width: 640px)');
+                var VEL = movil.matches ? 7 : 14;   // px por SEGUNDO
+                var ELUDE = VEL * 0.5;              // fuerza con la que se esquivan
+                var SUAVE = 0.04;                   // con que lentitud vuelve a su velocidad
                 var SEP = 9;         // aire minimo entre dos burbujas
                 var PAD = 10;        // el rebote ocurre antes del borde: pegadas al
                                      // margen se ven encajonadas, no flotando
+                function recalibra(){ VEL = movil.matches ? 7 : 14; ELUDE = VEL * 0.5; }
+                if (movil.addEventListener) movil.addEventListener('change', recalibra);
 
                 function medir(){
                     W = field.clientWidth; H = field.clientHeight;
@@ -5888,13 +5928,24 @@
                     for (i = 0; i < parts.length; i++) {
                         a = parts[i];
                         a.x += a.vx * dt; a.y += a.vy * dt;
-                        // rebote antes del borde, para que quede aire alrededor
-                        if (a.x - a.r < PAD)      { a.x = a.r + PAD;     a.vx = Math.abs(a.vx); }
-                        if (a.x + a.r > W - PAD)  { a.x = W - PAD - a.r; a.vx = -Math.abs(a.vx); }
-                        if (a.y - a.r < PAD)      { a.y = a.r + PAD;     a.vy = Math.abs(a.vy); }
-                        if (a.y + a.r > H - PAD)  { a.y = H - PAD - a.r; a.vy = -Math.abs(a.vy); }
+                        /* El borde no rebota de golpe: empuja. Cuanto mas se
+                           acerca la burbuja, mas la devuelve, asi el giro se
+                           dibuja en curva en vez de quebrarse en un vertice. */
+                        var margen = a.r + PAD, giro = VEL * 2.4 * dt;
+                        if (a.x < margen)       a.vx += giro * (margen - a.x) / margen;
+                        if (a.x > W - margen)   a.vx -= giro * (a.x - (W - margen)) / margen;
+                        if (a.y < margen)       a.vy += giro * (margen - a.y) / margen;
+                        if (a.y > H - margen)   a.vy -= giro * (a.y - (H - margen)) / margen;
+                        // tope duro por si el campo se encoge de golpe (rotacion)
+                        a.x = Math.min(Math.max(a.x, a.r), Math.max(a.r, W - a.r));
+                        a.y = Math.min(Math.max(a.y, a.r), Math.max(a.r, H - a.r));
                     }
-                    // repulsion: separa el par y refleja la componente normal
+                    /* Los encuentros se resuelven ESQUIVANDO, no rebotando: se
+                       separa el par lo justo para que no se encimen y se le da
+                       un empujoncito a cada uno en sentido contrario. El rebote
+                       elastico invertia la direccion de golpe y en el campo
+                       chico del telefono, donde chocan a cada rato, eso se veia
+                       como una descarga. */
                     for (i = 0; i < parts.length; i++) {
                         for (j = i + 1; j < parts.length; j++) {
                             a = parts[i]; b2 = parts[j];
@@ -5906,16 +5957,19 @@
                             empuje = (min - d) / 2;
                             a.x -= nx * empuje; a.y -= ny * empuje;
                             b2.x += nx * empuje; b2.y += ny * empuje;
-                            var pa = a.vx * nx + a.vy * ny, pb = b2.vx * nx + b2.vy * ny;
-                            a.vx += (pb - pa) * nx; a.vy += (pb - pa) * ny;
-                            b2.vx += (pa - pb) * nx; b2.vy += (pa - pb) * ny;
+                            var f = ELUDE * (min - d) / min * dt * 6;
+                            a.vx -= nx * f; a.vy -= ny * f;
+                            b2.vx += nx * f; b2.vy += ny * f;
                         }
                     }
                     for (i = 0; i < parts.length; i++) {
                         a = parts[i];
-                        // renormaliza: sin esto los choques van frenando el campo
+                        /* La velocidad vuelve a su crucero POCO A POCO. Antes se
+                           forzaba cada cuadro, asi que ninguna burbuja podia
+                           frenar ni dejarse llevar: todas iban siempre a tope. */
                         var v = Math.hypot(a.vx, a.vy) || 0.01;
-                        a.vx = a.vx / v * VEL; a.vy = a.vy / v * VEL;
+                        var k = 1 + (VEL / v - 1) * SUAVE;
+                        a.vx *= k; a.vy *= k;
                         a.el.style.translate = (a.x - a.ax).toFixed(1) + 'px ' + (a.y - a.ay).toFixed(1) + 'px';
                     }
                     raf = requestAnimationFrame(paso);

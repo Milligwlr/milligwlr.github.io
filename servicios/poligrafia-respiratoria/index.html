@@ -339,21 +339,36 @@
 
 .futuro__grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .futuro__card{background:var(--fut-fondo);border:1px solid var(--fut-borde);border-radius:16px;
-    padding:15px 14px;display:flex;flex-direction:column;gap:8px;
-    transition:background .55s ease,border-color .55s ease,box-shadow .55s ease}
-.futuro[data-estado="mejora"] .futuro__card{box-shadow:0 10px 26px -18px rgba(72,52,212,.5)}
+    padding:15px 13px;display:flex;flex-direction:column;gap:7px;
+    transition:background .55s ease,border-color .55s ease,box-shadow .55s ease,transform .55s cubic-bezier(.16,1,.3,1)}
+/* atendida: la tarjeta se ilumina, se eleva y se tine de marca. El cambio de
+   estado se LEE de un vistazo, sin necesidad de leer el texto. */
+.futuro[data-estado="mejora"] .futuro__card{background:linear-gradient(165deg,#fff,#f7f5ff);
+    border-color:rgba(108,92,231,.3);box-shadow:0 14px 30px -20px rgba(72,52,212,.55);transform:translateY(-2px)}
 .futuro__ic{width:34px;height:34px;border-radius:11px;display:flex;align-items:center;
-    justify-content:center;font-size:.95rem;
-    background:rgba(15,23,42,.06);color:#475569;
+    justify-content:center;font-size:.95rem;background:rgba(15,23,42,.06);color:#64748b;
     transition:background .55s ease,color .55s ease}
-.futuro[data-estado="mejora"] .futuro__ic{background:rgba(108,92,231,.12);color:var(--svc)}
-.futuro__card h3{font-size:.9rem;font-weight:800;color:var(--navy);margin:0;letter-spacing:-.01em;line-height:1.25}
+.futuro[data-estado="mejora"] .futuro__ic{background:linear-gradient(135deg,var(--svc),var(--svc-dark));color:#fff;
+    box-shadow:0 7px 16px -7px rgba(108,92,231,.7)}
 /* las dos versiones comparten celda: la altura la manda la mas larga */
 .futuro__body{display:grid}
-.futuro__body > p{grid-area:1/1;margin:0;font-size:.82rem;line-height:1.5;color:var(--text-muted);
+.futuro__body > p{grid-area:1/1;margin:0;display:flex;gap:8px;align-items:flex-start;
+    font-size:.86rem;line-height:1.4;font-weight:700;color:var(--navy);
     transition:opacity .4s ease,transform .5s cubic-bezier(.16,1,.3,1);
-    transition-delay:calc(var(--i,0) * 45ms)}
-.futuro__body > p[data-oculto]{opacity:0;transform:translateY(6px);pointer-events:none}
+    transition-delay:calc(var(--i,0) * 55ms)}
+.futuro__body > p > i{font-size:.95rem;flex-shrink:0;margin-top:1px}
+/* el simbolo es el mensaje: menos en contra, palomita a favor */
+.futuro__riesgo > i{color:#94a3b8}
+.futuro__riesgo > span{color:var(--text-muted);font-weight:600}
+.futuro__mejora > i{color:var(--svc)}
+.futuro__body > p[data-oculto]{opacity:0;transform:translateY(7px);pointer-events:none}
+/* el marcador dice en una linea lo que las seis tarjetas muestran a la vez */
+.futuro__marcador{display:grid;margin:16px 0 0;text-align:center;font-size:.92rem;letter-spacing:-.01em}
+.futuro__marcador b{grid-area:1/1;font-weight:800;transition:opacity .45s ease,transform .5s cubic-bezier(.16,1,.3,1)}
+.futuro__marcador--riesgo{color:#64748b}
+.futuro__marcador--mejora{color:var(--svc)}
+.futuro[data-estado="riesgo"] .futuro__marcador--mejora,
+.futuro[data-estado="mejora"] .futuro__marcador--riesgo{opacity:0;transform:translateY(6px)}
 .futuro__nota{display:flex;gap:9px;align-items:flex-start;margin:16px 0 0;padding:13px 15px;
     border-radius:14px;background:rgba(108,92,231,.06);font-size:.83rem;line-height:1.5;color:var(--text-muted)}
 .futuro__nota i{color:var(--svc);flex-shrink:0;margin-top:2px}
@@ -362,15 +377,15 @@
 .osa-more a{color:var(--svc);font-weight:700}
 @media(min-width:640px){
     .futuro__grid{grid-template-columns:repeat(3,1fr);gap:14px}
-    .futuro__card{padding:18px 17px}
-    .futuro__card h3{font-size:.96rem}
-    .futuro__body > p{font-size:.86rem}
+    .futuro__card{padding:18px 16px;gap:9px}
+    .futuro__body > p{font-size:.87rem}
 }
 /* Sin JS quedan los dos textos visibles, uno bajo el otro, con su etiqueta */
 .futuro:not(.is-live) .futuro__switch{display:none}
 .futuro:not(.is-live) .futuro__body{display:block}
 .futuro:not(.is-live) .futuro__body > p{opacity:1;transform:none;margin-top:6px}
 .futuro:not(.is-live) .futuro__body > p::before{content:attr(data-rotulo) ': ';font-weight:800;color:var(--navy)}
+.futuro:not(.is-live) .futuro__marcador b{opacity:1;transform:none;position:static}
 @media(prefers-reduced-motion:reduce){
     .futuro__thumb,.futuro__body > p{transition-duration:.01ms}
 }
@@ -955,54 +970,49 @@
 <div class="futuro__grid" id="fut-panel" role="tabpanel" aria-labelledby="fut-tab-riesgo">
 <article class="futuro__card" style="--i:0">
 <span class="futuro__ic" aria-hidden="true"><i class="bi bi-activity"></i></span>
-<h3>Presión arterial</h3>
 <div class="futuro__body">
-<p class="futuro__riesgo" data-rotulo="Sin tratar">Alta y rebelde a los medicamentos.</p>
-<p class="futuro__mejora" data-rotulo="Atendida" data-oculto>Cede mejor, sobre todo la resistente.</p>
+<p class="futuro__riesgo" data-rotulo="Sin tratar"><i class="bi bi-dash-circle-fill" aria-hidden="true"></i><span>Presión alta que no cede</span></p>
+<p class="futuro__mejora" data-rotulo="Si la atiendes" data-oculto><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span>Presión arterial más controlada</span></p>
 </div>
 </article>
 <article class="futuro__card" style="--i:1">
 <span class="futuro__ic" aria-hidden="true"><i class="bi bi-heart-pulse-fill"></i></span>
-<h3>Ritmo del corazón</h3>
 <div class="futuro__body">
-<p class="futuro__riesgo" data-rotulo="Sin tratar">Fibrilación auricular.</p>
-<p class="futuro__mejora" data-rotulo="Atendida" data-oculto>Menos arritmias.</p>
+<p class="futuro__riesgo" data-rotulo="Sin tratar"><i class="bi bi-dash-circle-fill" aria-hidden="true"></i><span>Más riesgo de arritmias</span></p>
+<p class="futuro__mejora" data-rotulo="Si la atiendes" data-oculto><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span>Menor riesgo de arritmias</span></p>
 </div>
 </article>
 <article class="futuro__card" style="--i:2">
 <span class="futuro__ic" aria-hidden="true"><i class="bi bi-heartbreak-fill"></i></span>
-<h3>Riesgo cardiovascular</h3>
 <div class="futuro__body">
-<p class="futuro__riesgo" data-rotulo="Sin tratar">Se asocia con infarto y embolia cerebral.</p>
-<p class="futuro__mejora" data-rotulo="Atendida" data-oculto>Tratada, se acerca al de quien no la tiene.</p>
+<p class="futuro__riesgo" data-rotulo="Sin tratar"><i class="bi bi-dash-circle-fill" aria-hidden="true"></i><span>Más riesgo de infarto y embolia</span></p>
+<p class="futuro__mejora" data-rotulo="Si la atiendes" data-oculto><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span>Menor riesgo cardiovascular</span></p>
 </div>
 </article>
 <article class="futuro__card" style="--i:3">
 <span class="futuro__ic" aria-hidden="true"><i class="bi bi-sunrise-fill"></i></span>
-<h3>Tus días</h3>
 <div class="futuro__body">
-<p class="futuro__riesgo" data-rotulo="Sin tratar">Amaneces cansado y te gana el sueño.</p>
-<p class="futuro__mejora" data-rotulo="Atendida" data-oculto>Menos sueño de día, desde las primeras noches.</p>
+<p class="futuro__riesgo" data-rotulo="Sin tratar"><i class="bi bi-dash-circle-fill" aria-hidden="true"></i><span>Despiertas cansado</span></p>
+<p class="futuro__mejora" data-rotulo="Si la atiendes" data-oculto><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span>Despiertas descansado</span></p>
 </div>
 </article>
 <article class="futuro__card" style="--i:4">
 <span class="futuro__ic" aria-hidden="true"><i class="bi bi-car-front-fill"></i></span>
-<h3>Al volante</h3>
 <div class="futuro__body">
-<p class="futuro__riesgo" data-rotulo="Sin tratar">Microsueños de segundos al manejar.</p>
-<p class="futuro__mejora" data-rotulo="Atendida" data-oculto>Los microsueños suelen disminuir.</p>
+<p class="futuro__riesgo" data-rotulo="Sin tratar"><i class="bi bi-dash-circle-fill" aria-hidden="true"></i><span>Sueño al volante</span></p>
+<p class="futuro__mejora" data-rotulo="Si la atiendes" data-oculto><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span>Menos sueño al volante</span></p>
 </div>
 </article>
 <article class="futuro__card" style="--i:5">
-<span class="futuro__ic" aria-hidden="true"><i class="bi bi-droplet-fill"></i></span>
-<h3>Metabolismo</h3>
+<span class="futuro__ic" aria-hidden="true"><i class="bi bi-volume-up-fill"></i></span>
 <div class="futuro__body">
-<p class="futuro__riesgo" data-rotulo="Sin tratar">Se asocia con diabetes tipo 2.</p>
-<p class="futuro__mejora" data-rotulo="Atendida" data-oculto>Aquí no te prometo nada: sigue en estudio.</p>
+<p class="futuro__riesgo" data-rotulo="Sin tratar"><i class="bi bi-dash-circle-fill" aria-hidden="true"></i><span>Ronquido que despierta a tu pareja</span></p>
+<p class="futuro__mejora" data-rotulo="Si la atiendes" data-oculto><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span>Menos ronquido en casa</span></p>
 </div>
 </article>
 </div>
 
+<p class="futuro__marcador" aria-live="polite"><b class="futuro__marcador--riesgo">Seis frentes trabajando en tu contra</b><b class="futuro__marcador--mejora">Los seis mejoran, es lo que se ha estudiado</b></p>
 <p class="futuro__nota"><i class="bi bi-shield-fill-check" aria-hidden="true"></i> <span><b>Con la verdad por delante:</b> atenderla no borra el riesgo ya acumulado, pero todo empieza por saber si la tienes y qué tan grave. Eso responde este estudio.</span></p>
 </div>
 
