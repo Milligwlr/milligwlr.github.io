@@ -151,12 +151,12 @@
 
 <header class="hero">
   <div class="container">
-    <div class="hero__badge">📋 Política editorial y declaraciones</div>
+    <div class="hero__badge"><i class="bi bi-clipboard2-check" aria-hidden="true"></i> Política editorial y declaraciones</div>
     <h1>Información Regulatoria</h1>
     <p>Cómo se produce, revisa y actualiza el contenido médico de alveos.mx, las guías clínicas que seguimos y las credenciales que respaldan cada recomendación.</p>
     <div class="hero__meta">
-      <span>📅 Última revisión: 25 de abril de 2026</span>
-      <span>🩺 Revisado por neumólogo certificado</span>
+      <span><i class="bi bi-calendar3" aria-hidden="true"></i> Última revisión: 25 de abril de 2026</span>
+      <span><i class="bi bi-heart-pulse-fill" aria-hidden="true"></i> Revisado por neumólogo certificado</span>
     </div>
   </div>
 </header>
@@ -165,7 +165,7 @@
   <div class="container">
 
     <nav class="toc" aria-label="Tabla de contenidos">
-      <div class="toc__title">📑 Contenido</div>
+      <div class="toc__title"><i class="bi bi-list-ul" aria-hidden="true"></i> Contenido</div>
       <ol>
         <li><a href="#politica-editorial">Política editorial</a></li>
         <li><a href="#guias-clinicas">Guías clínicas que seguimos</a></li>
@@ -443,7 +443,7 @@
 
     <script src="/assets/agenda-modal.js" defer></script>
 <div class="read-progress" aria-hidden="true"><div class="read-progress__bar"></div></div>
-<style>.read-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:9999;pointer-events:none;background:transparent}.read-progress__bar{height:100%;width:0;background:linear-gradient(90deg,#0984e3,#00cec9,#0984e3);box-shadow:0 0 12px rgba(9,132,227,.5);transition:width .12s linear;border-radius:0 3px 3px 0}</style>
-<script>(function(){var bar=document.querySelector(".read-progress__bar"),doc=document.documentElement,t=false;function s(){if(t)return;t=true;requestAnimationFrame(function(){var m=doc.scrollHeight-doc.clientHeight;bar.style.width=Math.max(0,Math.min(100,m>0?(doc.scrollTop/m)*100:0))+"%";t=false})}window.addEventListener("scroll",s,{passive:true});window.addEventListener("resize",s,{passive:true});s()})();</script>
+<style>.read-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:9999;pointer-events:none;background:transparent}.read-progress__bar{height:100%;width:100%;transform:scaleX(0);transform-origin:left center;will-change:transform;background:linear-gradient(90deg,#0984e3,#00cec9,#0984e3);box-shadow:0 0 12px rgba(9,132,227,.5);transition:transform .12s linear;border-radius:0 3px 3px 0}@media(prefers-reduced-motion:reduce){.read-progress__bar{transition:none}}</style>
+<script>(function(){var bar=document.querySelector(".read-progress__bar"),doc=document.documentElement,t=false;function s(){if(t)return;t=true;requestAnimationFrame(function(){var m=doc.scrollHeight-doc.clientHeight;bar.style.transform="scaleX("+Math.max(0,Math.min(1,m>0?doc.scrollTop/m:0))+")";t=false})}window.addEventListener("scroll",s,{passive:true});window.addEventListener("resize",s,{passive:true});s()})();</script>
 </body>
 </html>

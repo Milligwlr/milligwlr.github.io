@@ -322,7 +322,7 @@
 
 /* === READING PROGRESS BAR === */
 .read-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:9999;pointer-events:none;background:transparent}
-.read-progress__bar{height:100%;width:0;background:linear-gradient(90deg,var(--vax),var(--vax-light),var(--vax-mid));box-shadow:0 0 12px rgba(0,184,148,.55);transition:width .12s linear;border-radius:0 3px 3px 0}
+.read-progress__bar{height:100%;width:100%;transform:scaleX(0);transform-origin:left center;will-change:transform;background:linear-gradient(90deg,var(--vax),var(--vax-light),var(--vax-mid));box-shadow:0 0 12px rgba(0,184,148,.55);transition:transform .12s linear;border-radius:0 3px 3px 0}@media(prefers-reduced-motion:reduce){.read-progress__bar{transition:none}}
 
 /* === INDICE "EN ESTA PAGINA" ===
    Sustituye al rail/FAB/drawer que estaban en el CSS pero nunca existieron en el DOM.
@@ -1241,7 +1241,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     requestAnimationFrame(function(){
       var max = doc.scrollHeight - doc.clientHeight;
       var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
-      if(bar) bar.style.width = Math.max(0, Math.min(100, pct)) + '%';
+      if(bar) bar.style.transform = 'scaleX(' + (Math.max(0, Math.min(100, pct)) / 100) + ')';
       ticking = false;
     });
   }

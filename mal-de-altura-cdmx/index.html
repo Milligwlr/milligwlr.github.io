@@ -187,7 +187,7 @@
 .block__lead{font-size:1.05rem;color:#64748b;line-height:1.65}
 /* READ PROGRESS */
 .read-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:9999;pointer-events:none;background:transparent}
-.read-progress__bar{height:100%;width:0;background:linear-gradient(90deg,#0984e3,#00cec9,#0984e3);box-shadow:0 0 12px rgba(9,132,227,.5);transition:width .12s linear;border-radius:0 3px 3px 0}
+.read-progress__bar{height:100%;width:100%;transform:scaleX(0);transform-origin:left center;will-change:transform;background:linear-gradient(90deg,#0984e3,#00cec9,#0984e3);box-shadow:0 0 12px rgba(9,132,227,.5);transition:transform .12s linear;border-radius:0 3px 3px 0}@media(prefers-reduced-motion:reduce){.read-progress__bar{transition:none}}
 /* WA FLOAT */
 .wa-float-fab{position:fixed;bottom:24px;right:24px;width:60px;height:60px;background:#25D366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(37,211,102,.4),0 0 0 0 rgba(37,211,102,.5);text-decoration:none;z-index:1000;animation:waPulseFab 2.4s ease-in-out infinite;transition:transform .3s ease,box-shadow .3s ease}
 .wa-float-fab:hover{background:#1da851;color:#fff;transform:translateY(-3px) scale(1.06);box-shadow:0 14px 38px rgba(37,211,102,.5)}
@@ -304,7 +304,7 @@
 <span><i class="bi bi-star-fill"></i> 5.0 · 43 reseñas en Google</span>
 <span><i class="bi bi-hospital"></i> Formado en el INER</span>
 <span><i class="bi bi-geo-alt-fill"></i> Benito Juárez, CDMX</span>
-<span><i class="bi bi-calendar2-week"></i> Sábado y domingo 10 a 17 h</span>
+<span><i class="bi bi-calendar2-week"></i> Sábado y domingo 12:00 a 16:00 h</span>
 </div>
 </div>
 </div>
@@ -553,7 +553,7 @@
 </script>
 
 <div class="read-progress" aria-hidden="true"><div class="read-progress__bar"></div></div>
-<script>(function(){var bar=document.querySelector(".read-progress__bar"),doc=document.documentElement,t=false;function s(){if(t)return;t=true;requestAnimationFrame(function(){var m=doc.scrollHeight-doc.clientHeight;bar.style.width=Math.max(0,Math.min(100,m>0?(doc.scrollTop/m)*100:0))+"%";t=false})}window.addEventListener("scroll",s,{passive:true});window.addEventListener("resize",s,{passive:true});s()})();</script>
+<script>(function(){var bar=document.querySelector(".read-progress__bar"),doc=document.documentElement,t=false;function s(){if(t)return;t=true;requestAnimationFrame(function(){var m=doc.scrollHeight-doc.clientHeight;bar.style.transform="scaleX("+Math.max(0,Math.min(1,m>0?doc.scrollTop/m:0))+")";t=false})}window.addEventListener("scroll",s,{passive:true});window.addEventListener("resize",s,{passive:true});s()})();</script>
 
 <div class="lang-suggest" id="langSuggest" role="region" aria-label="Language">
     <span>This page is also available in English.</span>

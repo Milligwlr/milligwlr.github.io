@@ -165,7 +165,7 @@
 .tech__sub{font-size:.78rem;color:var(--text-muted);margin:3px 0 0;line-height:1.4}
 .tech__sub strong{color:var(--navy)}
 .tech__body{padding:20px 24px;display:grid;grid-template-columns:1fr;gap:20px}
-@media(min-width:880px){.tech__body{grid-template-columns:1.3fr .7fr;gap:24px}}
+@media(min-width:880px){.tech__body{grid-template-columns:1fr;gap:24px}}
 .tech__steps{counter-reset:s;list-style:none;padding:0;margin:0}
 .tech__steps li{counter-increment:s;padding:8px 0 8px 36px;position:relative;font-size:.86rem;line-height:1.55;color:var(--text);border-bottom:1px dashed rgba(0,0,0,.06)}
 .tech__steps li:last-child{border-bottom:none}
@@ -175,7 +175,7 @@
 .tech--dpi .tech__steps li::before{background:linear-gradient(135deg,#ede9fe,#ddd6fe);color:#5b21b6}
 .tech--smi .tech__steps li::before{background:linear-gradient(135deg,#ccfbf1,#99f6e4);color:#0f766e}
 .tech--neb .tech__steps li::before{background:linear-gradient(135deg,#fed7aa,#fdba74);color:#9a3412}
-.tech__img{margin:0;padding:30px 18px;border:2px dashed rgba(9,132,227,.18);border-radius:16px;background:linear-gradient(135deg,#fafbff,#f4f7fc);text-align:center;display:flex;flex-direction:column;gap:6px;justify-content:center;color:var(--text-muted);font-size:.78rem;min-height:180px}
+
 .tech__img i{font-size:2rem;color:rgba(9,132,227,.4);margin-bottom:6px}
 .tech__img strong{color:var(--navy);font-size:.9rem}
 .tech__img code{font-size:.7rem;background:rgba(9,132,227,.08);padding:4px 8px;border-radius:6px;color:var(--inh-dark);word-break:break-all}
@@ -208,7 +208,7 @@
 .spacer-list li{padding:6px 0 6px 26px;position:relative;color:var(--text)}
 .spacer-list li::before{content:"\f00c";font-family:"Font Awesome 6 Free";font-weight:900;position:absolute;left:0;top:6px;width:18px;height:18px;border-radius:5px;background:linear-gradient(135deg,#dbeafe,#bfdbfe);color:#0773c5;font-size:.62rem;display:flex;align-items:center;justify-content:center}
 .spacer-list li strong{color:var(--navy)}
-.spacer-img{margin:0;padding:30px 18px;border:2px dashed rgba(9,132,227,.18);border-radius:20px;background:linear-gradient(135deg,#fafbff,#f4f7fc);text-align:center;display:flex;flex-direction:column;gap:8px;justify-content:center;color:var(--text-muted);font-size:.8rem}
+
 .spacer-img i{font-size:2.4rem;color:rgba(9,132,227,.4)}
 .spacer-img strong{color:var(--navy);font-size:.92rem}
 .spacer-img code{font-size:.7rem;background:rgba(9,132,227,.08);padding:4px 8px;border-radius:6px;color:var(--inh-dark);word-break:break-all}
@@ -286,7 +286,7 @@
 
 /* === READING PROGRESS BAR === */
 .read-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:9999;pointer-events:none;background:transparent}
-.read-progress__bar{height:100%;width:0;background:linear-gradient(90deg,var(--inh),var(--inh-light),var(--inh-mid));box-shadow:0 0 12px rgba(9,132,227,.55);transition:width .12s linear;border-radius:0 3px 3px 0}
+.read-progress__bar{height:100%;width:100%;transform:scaleX(0);transform-origin:left center;will-change:transform;background:linear-gradient(90deg,var(--inh),var(--inh-light),var(--inh-mid));box-shadow:0 0 12px rgba(9,132,227,.55);transition:transform .12s linear;border-radius:0 3px 3px 0}@media(prefers-reduced-motion:reduce){.read-progress__bar{transition:none}}
 
 /* === STICKY TOC RAIL (DESKTOP) === */
 .toc-rail{display:none}
@@ -638,12 +638,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li>Espera 30 segundos antes del siguiente disparo.</li>
 <li>Enjuágate la boca con agua si contiene corticoide y escupe.</li>
 </ol>
-<figure class="tech__img">
-<i class="fas fa-image"></i>
-<strong>Imagen pendiente</strong>
-Diagrama de uso de inhalador presurizado paso a paso
-<code>/images/recursos/inhaladores/mdi-tecnica.png · 800×600</code>
-</figure>
 </div>
 <div class="tech__tip"><i class="fas fa-lightbulb"></i><div><strong>Tip clave:</strong> el error más común es disparar y luego inhalar (o al revés). Practica frente a un espejo: la nube debe entrar a la boca, no escaparse por los lados.</div></div>
 </article>
@@ -668,12 +662,6 @@ Diagrama de uso de inhalador presurizado paso a paso
 <li>Cierra el dispositivo según las instrucciones del modelo.</li>
 <li>Enjuágate la boca con agua si contiene corticoide.</li>
 </ol>
-<figure class="tech__img">
-<i class="fas fa-image"></i>
-<strong>Imagen pendiente</strong>
-Diagrama de uso de inhalador de polvo seco
-<code>/images/recursos/inhaladores/dpi-tecnica.png · 800×600</code>
-</figure>
 </div>
 <div class="tech__tip"><i class="fas fa-lightbulb"></i><div><strong>Tip clave:</strong> el DPI necesita un esfuerzo inspiratorio fuerte. Si te falta mucho aire, coméntalo: hay personas que no logran el flujo mínimo y necesitan otro dispositivo.</div></div>
 </article>
@@ -699,12 +687,6 @@ Diagrama de uso de inhalador de polvo seco
 <li>Aguanta el aire 10 segundos.</li>
 <li>Cierra la tapa. Enjuágate la boca si contiene corticoide.</li>
 </ol>
-<figure class="tech__img">
-<i class="fas fa-image"></i>
-<strong>Imagen pendiente</strong>
-Diagrama de uso de inhalador de niebla suave
-<code>/images/recursos/inhaladores/smi-tecnica.png · 800×600</code>
-</figure>
 </div>
 <div class="tech__tip"><i class="fas fa-lightbulb"></i><div><strong>Tip clave:</strong> la nube del SMI dura más tiempo que la de un MDI, así que coordinar es más fácil. Buena opción si te cuesta sincronizar o tu inspiración es débil.</div></div>
 </article>
@@ -730,12 +712,6 @@ Diagrama de uso de inhalador de niebla suave
 <li>Enjuágate la boca al terminar; lávate la cara si usaste mascarilla.</li>
 <li>Lava el vaso y la mascarilla con agua y jabón neutro tras cada uso.</li>
 </ol>
-<figure class="tech__img">
-<i class="fas fa-image"></i>
-<strong>Imagen pendiente</strong>
-Diagrama de uso de nebulizador
-<code>/images/recursos/inhaladores/nebulizador-tecnica.png · 800×600</code>
-</figure>
 </div>
 <div class="tech__tip"><i class="fas fa-lightbulb"></i><div><strong>Tip clave:</strong> el nebulizador no es "más fuerte" que un inhalador bien usado. Su ventaja es no requerir coordinación. En adultos que dominan su MDI con espaciador, el inhalador suele ser igual de efectivo y más práctico.</div></div>
 </article>
@@ -796,12 +772,6 @@ Diagrama de uso de nebulizador
 <li>En niños y adultos mayores casi siempre.</li>
 </ul>
 </div>
-<figure class="spacer-img">
-<i class="fas fa-circle-nodes"></i>
-<strong>Imagen pendiente</strong>
-Foto de cámara espaciadora con válvula conectada a un MDI
-<code>/images/recursos/inhaladores/espaciador.png · 800×800</code>
-</figure>
 </div>
 
 <div class="tech tech--mdi" style="margin-top:6px">
@@ -1028,7 +998,7 @@ Foto de cámara espaciadora con válvula conectada a un MDI
     requestAnimationFrame(function(){
       var max = doc.scrollHeight - doc.clientHeight;
       var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
-      if(bar) bar.style.width = Math.max(0, Math.min(100, pct)) + '%';
+      if(bar) bar.style.transform = 'scaleX(' + (Math.max(0, Math.min(100, pct)) / 100) + ')';
       var passedHero = window.scrollY > 420;
       if(fab) fab.classList.toggle('is-visible', passedHero);
       if(rail) rail.classList.toggle('is-visible', passedHero);
