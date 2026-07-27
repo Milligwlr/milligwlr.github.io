@@ -599,6 +599,19 @@
             .lang-switch a { padding: 5px 10px; }
             .social-icons a { margin-left: 4px; }
         }
+        /* Franja critica (992-1099px): Bootstrap ya despliega el menu completo
+           pero el contenedor sigue en 960px, asi que los enlaces mas el boton
+           sumaban de mas y "Agendar cita" se salia, empujando scroll horizontal.
+           Mismo ajuste que en la hoja compartida de las paginas interiores. */
+        @media (min-width: 992px) and (max-width: 1099.98px) {
+            .navbar .nav-link { margin: 0; font-size: .79rem; padding-left: 4px; padding-right: 4px; }
+            .navbar-brand { font-size: 1.12rem; }
+            .navbar-brand img { max-height: 32px; }
+            .navbar-cta { margin-left: 6px; padding: 8px 11px; font-size: .73rem; }
+            .lang-switch { margin-left: 5px; }
+            .lang-switch a { padding: 4px 8px; }
+            .social-icons a { font-size: 1.25rem; margin-left: 2px; min-width: 38px; }
+        }
         .nav-link::after {
             content: '';
             position: absolute;
@@ -3261,7 +3274,7 @@
         .svc3-cta:focus-visible, .svc3-item:focus-visible, .svc3-tag:focus-visible {
             outline: 3px solid var(--electric); outline-offset: 3px; border-radius: 14px; }
 
-        @media (max-width: 900px) {
+        @media (max-width: 991.98px) {
             .svc3 { grid-template-columns: 1fr; }
             .svc3-main, .svc3-menu, .svc3-sleep, .svc3-more { grid-column: 1; grid-row: auto; }
         }
