@@ -699,7 +699,7 @@
 .rv-section{background:linear-gradient(180deg,#f5fbff 0%,#eaf4ff 100%)}
 .rv-grid{display:grid;gap:20px;align-items:center}
 
-/* Tile oscuro del dato ancla (~0.92) */
+/* Tile oscuro del dato ancla (exactitud AASM 84-91%) */
 .rv-stat{position:relative;background:linear-gradient(160deg,#0a1628 0%,#1e3799 70%,#0f4a86 100%);color:#fff;border-radius:24px;padding:32px 26px;text-align:center;box-shadow:var(--e3);border:1px solid rgba(127,255,230,.18);overflow:hidden}
 .rv-stat::after{content:'';position:absolute;inset:0;background:radial-gradient(420px 240px at 80% 6%,rgba(0,206,201,.22),transparent 62%);pointer-events:none}
 .rv-stat>*{position:relative;z-index:1}
@@ -750,10 +750,10 @@
 
         <div class="rv-grid">
             <aside class="rv-stat" role="figure" aria-label="Correlación entre el estudio en casa y el de laboratorio">
-                <div class="rv-stat__eyebrow">Concordancia con el laboratorio</div>
-                <div class="rv-stat__num">~0.92</div>
-                <p class="rv-stat__cap">de correlación entre el <b>índice de eventos por hora</b> del estudio en casa y el de laboratorio, donde <b>1 sería coincidencia total</b>.</p>
-                <p class="rv-stat__foot">Estudios que compararon ambos métodos en adultos con alta probabilidad de apnea moderada a severa.</p>
+                <div class="rv-stat__eyebrow">Exactitud del estudio en casa</div>
+                <div class="rv-stat__num">84-91%</div>
+                <p class="rv-stat__cap">de exactitud <b>cuando ya hay sospecha clara de apnea</b>, según la revisión de la guía AASM.</p>
+                <p class="rv-stat__foot">En quien tiene baja probabilidad de apnea baja a 70-78%. Por eso la valoración médica previa no es un trámite: es lo que hace confiable al estudio.</p>
             </aside>
 
             <div class="rv-main">
@@ -768,8 +768,8 @@
                     <li class="rv-card">
                         <span class="rv-card__ic" aria-hidden="true"><i class="bi bi-bullseye"></i></span>
                         <div>
-                            <p class="rv-card__kw">Mismo índice clave</p>
-                            <p class="rv-card__line">Concordancia <b>~0.92</b> con el laboratorio en el índice de eventos por hora, el dato con el que se diagnostica.</p>
+                            <p class="rv-card__kw">Cuando sale positivo, es confiable</p>
+                            <p class="rv-card__line">El estudio en casa tiende a <b>quedarse corto, no a exagerar</b>. Por eso un resultado positivo pesa; uno normal con síntomas que siguen manda al laboratorio.</p>
                         </div>
                     </li>
                     <li class="rv-card rv-card--lab">
