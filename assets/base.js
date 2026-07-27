@@ -137,12 +137,42 @@
         }).observe(modal, { attributes: true, attributeFilter: ['class', 'aria-hidden'] });
     }
 
+    /* ---------------------------------------------------------------------
+       6. MARQUEE DE RESENAS
+       El keyframe recorre -50% del contenido, asi que la columna necesita el
+       set duplicado para que el reinicio sea invisible. Duplicarlo en el HTML
+       costaba 30 KB por pagina; aqui se clona una vez y la duracion se calcula
+       sobre la altura real para que las tres columnas vayan a distinta
+       velocidad. Solo actua sobre [data-marquee]: las paginas que ya traen el
+       set duplicado en el HTML quedan intactas.
+       --------------------------------------------------------------------- */
+    function wireReviewMarquee() {
+        if (reduce) return;
+        document.querySelectorAll('[data-marquee] .testimonial-col').forEach(function (col, idx) {
+            if (col.dataset.marqueeInit) return;
+            col.dataset.marqueeInit = '1';
+
+            var cards = Array.prototype.slice.call(col.querySelectorAll('.testi-card'));
+            if (!cards.length) return;
+            cards.forEach(function (c) { col.appendChild(c.cloneNode(true)); });
+
+            var gap = parseFloat(getComputedStyle(col).rowGap) || 16;
+            var setHeight = cards.reduce(function (h, c) { return h + c.offsetHeight + gap; }, 0);
+            var pxPerSec = [16.5, 13.5, 18][idx % 3];
+
+            col.style.setProperty('--t-dur', (setHeight / pxPerSec).toFixed(1) + 's');
+            col.style.setProperty('--tgap', (gap / 2) + 'px');
+            if (idx % 3 === 1) col.classList.add('testimonial-col--down');
+        });
+    }
+
     /* --------------------------------------------------------------------- */
     function init() {
         wireFaqTracking();
         wireNavToggler();
         backfillFrameTitles();
         wireModalInert();
+        wireReviewMarquee();
         tameMotion();
         // GSAP suele registrarse despues del defer: reintenta una vez.
         if (reduce) setTimeout(tameMotion, 600);
