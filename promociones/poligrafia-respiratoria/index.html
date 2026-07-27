@@ -50,13 +50,13 @@
   /* Piso de 16.5px en todo el texto que el paciente tiene que LEER.
      La pagina venia con 40 parrafos a 13.6px y bloques a 14.4-14.9px:
      por debajo de 16px la presbicia obliga a acercar el telefono. */
-  .block__lead,.orient-route__lead,.osa-thesis p,.tstudy__desc,.step3__desc,
-  .twostudy-honesty,.osa-more,.why-feat__txt,.orient-close__line,.rv-card__line,
-  .rv-card__kw,.testi-text,.agenda-choice__desc,.agenda-block__desc,.cta-inline,
+  .block__lead,.orient-route__lead,.osa-thesis p,.orient-aside,.step3__desc,
+  .trust-caveat,.osa-more,.why-feat__txt,.orient-close__line,.trust-list li,
+  .who-card p,.testi-text,.agenda-choice__desc,.agenda-block__desc,.cta-inline,
   .cta-final__ease,.sb-question__text,.sb-result__message,.doc-band__role,
-  .rv-stat__cap,.hero__sub{font-size:1.03rem!important;line-height:1.5!important}
+  .svc-wow__col-desc,.hero__sub{font-size:1.03rem!important;line-height:1.5!important}
   /* Secundarios: piso de 14.5px, no menos */
-  .orient-route__note,.testi-name,.rv-stat__foot,.testi-badge{font-size:.91rem!important}
+  .testi-name,.trust-source,.svc-wow__foot,.testi-badge{font-size:.91rem!important}
   /* Menos aire vertical para compensar la letra mas grande */
   section{padding-top:30px!important;padding-bottom:30px!important}
   .block__title{margin-bottom:10px}
@@ -68,17 +68,6 @@
   padding:9px 14px;line-height:1.25}
 .cpx-chip i{color:#0984e3;font-size:.95rem;flex-shrink:0}
 
-/* Franja de confianza fusionada (sustituye a las secciones C y D) */
-.fuse-trust{display:grid;gap:14px;margin:26px 0 24px}
-@media(min-width:861px){.fuse-trust{grid-template-columns:minmax(240px,5fr) 7fr;gap:24px;align-items:center}}
-.fuse-stat{background:linear-gradient(160deg,#0a1628 0%,#1e3799 70%,#0f4a86 100%);color:#fff;border-radius:20px;padding:22px 20px;text-align:center;border:1px solid rgba(127,255,230,.18)}
-.fuse-stat__n{display:block;font-size:clamp(2.6rem,7vw,3.4rem);font-weight:800;color:#00cec9;line-height:1;letter-spacing:-.03em}
-.fuse-stat__t{display:block;font-size:1rem;color:rgba(232,244,255,.92);line-height:1.45;margin-top:8px}
-.fuse-stat__t b{color:#fff}
-.fuse-points{list-style:none;margin:0;padding:0;display:grid;gap:9px}
-.fuse-points li{display:flex;gap:11px;align-items:flex-start;background:#fff;border:1px solid rgba(9,44,84,.08);border-radius:14px;padding:12px 14px;font-size:1.03rem;line-height:1.45;color:var(--muted)}
-.fuse-points li b{color:var(--navy)}
-.fuse-points i{color:var(--electric);font-size:1.15rem;flex-shrink:0;margin-top:2px}
 
 /* Hero movil: la lista de la tarjeta repite los bullets -> fuera; la foto se queda */
 @media(max-width:767px){
@@ -506,13 +495,14 @@
     .gbp-rating-widget:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);color:var(--text)}
     .gbp-rating-widget__num{font-size:1.5rem;font-weight:800;color:var(--navy);line-height:1}
     .gbp-rating-widget__stars{color:#fbbc04;font-size:1rem;letter-spacing:1px;line-height:1}
-    .gbp-rating-widget__meta{display:flex;flex-direction:column;line-height:1.2}
+    .gbp-rating-widget__meta{display:flex;flex-direction:column;line-height:1.2;text-align:left}
     .gbp-rating-widget__source{font-size:.72rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em}
     .gbp-rating-widget__count{font-size:.82rem;font-weight:600;color:var(--navy)}
     .testimonial-source-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(9,132,227,.07);border:1px solid rgba(9,132,227,.16);border-radius:100px;padding:6px 18px;font-size:.72rem;font-weight:700;color:var(--electric)}
-    .testimonial-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;height:520px;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 8%,black 92%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,black 8%,black 92%,transparent 100%)}
-    .testimonial-col{display:flex;flex-direction:column;gap:16px;will-change:transform;animation:testimonial-scroll-up var(--t-dur,60s) linear infinite;animation-play-state:paused}
-    .testimonial-col.marquee-on{animation-play-state:running}
+    /* text-align:left: el bloque vive dentro de un .text-center y las citas salian centradas */
+    .testimonial-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;height:520px;overflow:hidden;position:relative;text-align:left;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 8%,black 92%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,black 8%,black 92%,transparent 100%)}
+    /* base.js clona el set y calcula la duracion sobre la altura real ([data-marquee]) */
+    .testimonial-col{display:flex;flex-direction:column;gap:16px;will-change:transform;animation:testimonial-scroll-up var(--t-dur,60s) linear infinite}
     .testimonial-col--down{animation-direction:reverse}
     .testimonial-col:hover{animation-play-state:paused}
     @keyframes testimonial-scroll-up{0%{transform:translateY(0)}100%{transform:translateY(calc(-50% - var(--tgap,8px)))}}
@@ -842,10 +832,8 @@
 
 /* ---------- A · ORIENTADOR: ¿es este el estudio que necesitas? ---------- */
 .orient-section{background:linear-gradient(180deg,#ffffff 0,var(--bg) 72px)}
-.orient-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
 .orient-route{position:relative;border-radius:22px;padding:26px 24px;background:#fff;border:1px solid rgba(9,44,84,.08);box-shadow:var(--e2),var(--ring-hi);display:flex;flex-direction:column}
-.orient-route__badge{position:absolute;top:-12px;left:24px;display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:5px 13px;border-radius:999px}
-.orient-route__img{width:100%;height:auto;aspect-ratio:640/480;object-fit:cover;border-radius:14px;margin-bottom:16px;box-shadow:var(--ring-hi)}
+.orient-route__badge{display:inline-flex;align-self:flex-start;align-items:center;gap:6px;font-size:.7rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:5px 13px;border-radius:999px}
 .orient-route__head{display:flex;align-items:center;gap:13px;margin-bottom:2px}
 .orient-route__ic{width:50px;height:50px;flex-shrink:0;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.45rem}
 .orient-route__rt{font-size:.72rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin-bottom:1px}
@@ -862,17 +850,12 @@
 .orient-route--a .orient-route__badge{background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;box-shadow:0 8px 18px -6px rgba(9,132,227,.5)}
 .orient-route--a .orient-route__ic{background:linear-gradient(160deg,rgba(9,132,227,.14),rgba(0,206,201,.12));color:var(--electric);border:1px solid rgba(9,132,227,.16)}
 .orient-route--a .orient-check li i{color:var(--cyan)}
-.orient-route__chip{display:inline-flex;align-items:center;gap:7px;background:rgba(0,206,201,.12);border:1px solid rgba(0,206,201,.32);color:#06807b;border-radius:999px;padding:7px 14px;font-size:.8rem;font-weight:800;line-height:1.35}
-.orient-route__chip i{flex-shrink:0}
 /* Ruta B · sobria (la excepción) */
 .orient-route--b{background:linear-gradient(180deg,#fbfcfe,#f4f7fb);border:1px solid rgba(9,44,84,.1)}
 .orient-route--b .orient-route__badge{background:#e8edf3;color:#5a6b7d;border:1px solid rgba(9,44,84,.1)}
 .orient-route--b .orient-route__ic{background:#eef2f7;color:#5a6b7d;border:1px solid rgba(9,44,84,.08)}
 .orient-route--b .orient-route__title{color:#33445a}
 .orient-route--b .orient-check li i{color:#7a8aa0}
-.orient-route__note{display:flex;gap:9px;align-items:flex-start;font-size:.86rem;color:var(--muted);line-height:1.5;background:rgba(9,44,84,.03);border:1px solid rgba(9,44,84,.07);border-radius:12px;padding:11px 14px}
-.orient-route__note i{color:var(--electric);margin-top:2px;flex-shrink:0}
-.orient-route__note b{color:var(--navy);font-weight:800}
 /* Cierre · CTA WhatsApp + pill comparativa */
 .orient-close{margin-top:24px;display:flex;flex-direction:column;align-items:center;gap:15px;text-align:center}
 .orient-close__line{font-size:.98rem;color:var(--ink);max-width:600px;line-height:1.55;margin:0;text-wrap:pretty}
@@ -881,58 +864,6 @@
 .orient-pill{display:inline-flex;align-items:center;gap:9px;background:#fff;color:var(--navy);border:1.5px solid rgba(9,132,227,.35);padding:13px 22px;border-radius:999px;font-weight:800;font-size:.95rem;text-decoration:none;transition:transform .2s var(--ease),border-color .2s var(--ease),background .2s var(--ease)}
 .orient-pill:hover{border-color:var(--electric);background:rgba(9,132,227,.05);color:var(--navy);transform:translateY(-2px)}
 .orient-pill:focus-visible{outline:3px solid var(--electric);outline-offset:3px}
-@media(max-width:860px){.orient-grid{grid-template-columns:1fr;gap:28px}}
-
-/* ---------- C · REASEGURAMIENTO: ¿es un estudio de segunda? ---------- */
-.reassure-section{background:linear-gradient(180deg,#f5fbff 0%,#eaf4ff 100%)}
-.reassure-grid{display:grid;grid-template-columns:7fr 5fr;gap:32px;align-items:center}
-.reassure-body p{font-size:.98rem;color:var(--ink);line-height:1.65;margin:0 0 16px;text-wrap:pretty}
-.reassure-body p b{color:var(--navy);font-weight:800}
-.reassure-principle{font-size:1.08rem;font-style:italic;font-weight:600;color:var(--navy);line-height:1.5;border-left:3px solid var(--cyan);padding:4px 0 4px 16px;margin:6px 0 20px;text-wrap:pretty}
-.reassure-stat{position:relative;background:linear-gradient(160deg,#0a1628 0%,#1e3799 70%,#0f4a86 100%);color:#fff;border-radius:24px;padding:36px 30px;text-align:center;box-shadow:var(--e3);border:1px solid rgba(127,255,230,.18);overflow:hidden}
-.reassure-stat::after{content:'';position:absolute;inset:0;background:radial-gradient(420px 240px at 80% 6%,rgba(0,206,201,.22),transparent 62%);pointer-events:none}
-.reassure-stat>*{position:relative;z-index:1}
-.reassure-stat__eyebrow{font-size:.74rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8ffdec;margin-bottom:10px}
-.reassure-stat__num{font-size:clamp(3.2rem,8vw,4.2rem);font-weight:800;color:#00cec9;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
-.reassure-stat__cap{font-size:.94rem;color:rgba(232,244,255,.92);line-height:1.5;margin:14px 0 0;text-wrap:pretty}
-.reassure-stat__cap b{color:#fff;font-weight:800}
-.reassure-stat__foot{font-size:.76rem;color:rgba(255,255,255,.62);margin:16px 0 0;line-height:1.45}
-@media(max-width:860px){.reassure-grid{grid-template-columns:1fr;gap:24px}.reassure-stat{order:-1}}
-
-/* ---------- D · DOS ESTUDIOS DE UN VISTAZO ---------- */
-.twostudy-section{background:linear-gradient(180deg,#ffffff 0,var(--bg) 72px)}
-.twostudy-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
-.tstudy{position:relative;border-radius:22px;padding:26px 24px;background:#fff;border:1px solid rgba(9,44,84,.08);box-shadow:var(--e2),var(--ring-hi);display:flex;flex-direction:column}
-.tstudy__head{display:flex;align-items:center;gap:13px;margin-bottom:12px}
-.tstudy__ic{width:50px;height:50px;flex-shrink:0;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.45rem}
-.tstudy__type{font-size:.72rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--muted)}
-.tstudy__name{font-size:1.12rem;font-weight:800;color:var(--navy);letter-spacing:-.01em;line-height:1.2;margin:0;text-wrap:balance}
-.tstudy__place{font-size:.85rem;color:var(--electric);font-weight:700;margin-top:1px}
-.tstudy__desc{font-size:.92rem;color:var(--ink);line-height:1.55;margin:0 0 14px;text-wrap:pretty}
-.tstudy__desc b{color:var(--navy);font-weight:800}
-.tstudy__meas{list-style:none;padding:0;margin:0;display:grid;gap:8px}
-.tstudy__meas li{display:flex;gap:9px;align-items:flex-start;font-size:.86rem;color:var(--ink);line-height:1.4}
-.tstudy__meas li i{flex-shrink:0;margin-top:1px;font-size:.95rem;color:var(--cyan)}
-.tstudy__flag{display:inline-flex;align-self:flex-start;align-items:center;gap:7px;margin-top:16px;border-radius:999px;padding:6px 13px;font-size:.75rem;font-weight:800}
-.tstudy--home{border:1.5px solid rgba(0,206,201,.5);box-shadow:0 16px 44px -20px rgba(0,206,201,.4),var(--ring-hi)}
-.tstudy--home .tstudy__ic{background:linear-gradient(160deg,rgba(9,132,227,.14),rgba(0,206,201,.12));color:var(--electric);border:1px solid rgba(9,132,227,.16)}
-.tstudy--home .tstudy__flag{background:rgba(0,206,201,.12);border:1px solid rgba(0,206,201,.32);color:#06807b}
-.tstudy--lab{background:linear-gradient(180deg,#fbfcfe,#f4f7fb)}
-.tstudy--lab .tstudy__name{color:#33445a}
-.tstudy--lab .tstudy__place{color:#5a6b7d}
-.tstudy--lab .tstudy__ic{background:#eef2f7;color:#5a6b7d;border:1px solid rgba(9,44,84,.08)}
-.tstudy--lab .tstudy__meas li i{color:#7a8aa0}
-.tstudy--lab .tstudy__flag{background:#e8edf3;color:#5a6b7d;border:1px solid rgba(9,44,84,.1)}
-/* Callout honesto (adaptación clara del patrón .honesty-note del hero, sobre fondo blanco) */
-.twostudy-honesty{display:flex;gap:12px;align-items:flex-start;max-width:840px;margin:24px auto 0;background:rgba(0,206,201,.06);border:1px solid rgba(0,206,201,.28);border-radius:16px;padding:16px 20px;font-size:.93rem;color:var(--ink);line-height:1.6;text-wrap:pretty}
-.twostudy-honesty i{color:var(--electric);font-size:1.2rem;flex-shrink:0;margin-top:1px}
-.twostudy-honesty b{color:var(--navy);font-weight:800}
-.twostudy-actions{margin-top:26px;text-align:center}
-.btn-compare{display:inline-flex;align-items:center;gap:9px;background:var(--navy);color:#fff;padding:15px 28px;border-radius:14px;font-weight:800;font-size:.98rem;text-decoration:none;box-shadow:0 10px 26px -12px rgba(9,44,84,.55);transition:transform .2s var(--ease),background .2s var(--ease)}
-.btn-compare:hover{background:#1e3799;color:#fff;transform:translateY(-2px)}
-.btn-compare:active{transform:scale(.98)}
-.btn-compare:focus-visible{outline:3px solid var(--electric);outline-offset:3px}
-@media(max-width:860px){.twostudy-grid{grid-template-columns:1fr;gap:18px}}
 
 /* ---------- B · osa mejorada: enlace de profundidad a la página educativa ---------- */
 .osa-more{margin:26px auto 0;max-width:760px;text-align:center;font-size:.92rem;color:var(--muted);line-height:1.55;text-wrap:pretty}
@@ -942,9 +873,173 @@
 /* ---------- Entradas atadas al scroll (CSS nativo, 0 JS), coherentes con la página ---------- */
 @supports (animation-timeline: view()){
     @media(prefers-reduced-motion:no-preference){
-        .orient-route,.tstudy,.reassure-stat{animation:tileRise linear both;animation-timeline:view();animation-range:entry 0% entry 58%}
+        /* solo en el estado sin JS: con el carrusel vivo el transform lo manda el rAF */
+        .orient-deck__stage:not(.is-live) .orient-route{animation:tileRise linear both;animation-timeline:view();animation-range:entry 0% entry 58%}
     }
 }
+
+/* ============================================================
+   UPGRADE PREMIUM (jul-2026) · portado de /servicios/poligrafia-respiratoria/
+   Carrusel orbital de rutas · trust-card · comparativa · perfiles · eyebrow
+   Los tokens de la pagina organica (--svc, --svc-light, --svc-dark) se mapean
+   a los de esta landing ACOTADOS a cada bloque: :root no se toca, y el
+   subset inline #bs-lite sigue siendo el unico layout (cero Bootstrap CDN).
+   ============================================================ */
+@keyframes pulse-dot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.6}}
+@keyframes wowStripe{to{background-position:-200% 0}}
+
+/* Eyebrow con punto vivo: el patron .svc-section__eyebrow de la organica */
+.block__kicker{display:inline-flex;align-items:center;gap:8px}
+.block__kicker::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0;animation:pulse-dot 2s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.block__kicker::before{animation:none}}
+
+/* ---------- CARRUSEL ORBITAL DE RUTAS (patron canonico d6) ----------
+   Un angulo continuo gobierna la orbita: cada tarjeta ocupa un asiento a
+   360/N grados y el JS proyecta POR CUADRO arco lateral, profundidad,
+   inclinacion, escala y opacidad. Solo transform y opacity (compositor).
+   Sin JS quedan las dos tarjetas apiladas, que es el estado de siempre. */
+.orient-deck{position:relative;--svc:var(--electric);--svc-dark:#1e3799;--text-muted:var(--muted);--text:var(--ink)}
+.orient-deck__stage{position:relative;perspective:1200px;perspective-origin:50% 42%;padding:14px 0 30px;touch-action:pan-y}
+.orient-deck__stage.is-live{cursor:grab}
+.orient-deck__stage.is-live.is-drag{cursor:grabbing}
+.orient-deck__stage.is-live.is-drag .orient-route{pointer-events:none}
+.orient-carousel{position:relative}
+/* la tarjeta conserva su ancho de tarjeta: 560px centrados, 93% en telefono.
+   animation:none apaga el tileRise de arriba, que pisaba el transform inline. */
+.is-live .orient-route{position:absolute;top:0;left:0;right:0;width:min(93%,560px);margin:0 auto;
+    transform-origin:50% 58%;will-change:transform,opacity;transition:box-shadow .6s ease;animation:none!important}
+.is-live .orient-route.is-front{box-shadow:0 1px 2px rgba(16,24,40,.06),0 20px 38px -16px rgba(16,24,40,.26),0 50px 90px -46px color-mix(in srgb,var(--svc) 42%,transparent)}
+.is-live .orient-route.is-back{cursor:pointer;box-shadow:0 14px 32px -18px rgba(16,24,40,.32)}
+/* sombra proyectada: lo que hace que se lea suspendido y no pegado al fondo */
+.orient-deck__floor{position:absolute;left:14%;right:14%;bottom:6px;height:22px;border-radius:50%;pointer-events:none;
+    background:radial-gradient(ellipse at center,color-mix(in srgb,var(--svc) 26%,transparent),transparent 72%);filter:blur(12px)}
+/* dentro de la orbita el distintivo vuelve al flujo: flotando se encimaba */
+.orient-deck .orient-route__badge{position:static;margin-bottom:14px}
+.orient-seals{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0 0;padding-top:10px;
+    border-top:1px solid color-mix(in srgb,var(--svc) 12%,transparent)}
+.orient-seal{display:inline-flex;align-items:center;gap:5px;padding:5px 9px;border-radius:8px;
+    background:color-mix(in srgb,var(--svc) 7%,#fff);border:1px solid color-mix(in srgb,var(--svc) 16%,transparent);
+    font-size:.7rem;font-weight:700;color:var(--navy);line-height:1.25}
+.orient-seal i{color:var(--svc);font-size:.85rem}
+.orient-seals--b .orient-seal{background:rgba(10,37,64,.05);border-color:rgba(10,37,64,.14)}
+.orient-seals--b .orient-seal i{color:var(--navy)}
+.orient-deck__nav{display:flex;gap:8px;justify-content:center;align-items:center;margin-top:20px;flex-wrap:wrap}
+.orient-deck__arrow{width:44px;height:44px;flex:0 0 44px;border-radius:50%;
+    border:1px solid color-mix(in srgb,var(--svc) 18%,transparent);background:#fff;color:var(--svc);
+    cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;
+    box-shadow:0 2px 6px rgba(16,24,40,.08);transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s ease}
+.orient-deck__arrow:hover{transform:scale(1.08);box-shadow:0 10px 24px -10px color-mix(in srgb,var(--svc) 50%,transparent)}
+.orient-deck__arrow:focus-visible{outline:2px solid var(--svc);outline-offset:3px}
+.orient-deck__dot{min-height:44px;padding:9px 18px;border-radius:100px;border:1.5px solid rgba(9,132,227,.22);
+    background:#fff;color:var(--muted);font-family:inherit;font-size:.8rem;font-weight:700;cursor:pointer;
+    display:inline-flex;align-items:center;gap:7px;transition:background .25s,color .25s,border-color .25s,transform .25s}
+.orient-deck__dot[aria-selected="true"]{background:linear-gradient(135deg,var(--svc),var(--svc-dark));color:#fff;border-color:transparent;box-shadow:0 8px 22px rgba(9,132,227,.28)}
+.orient-deck__dot:focus-visible{outline:2px solid var(--svc);outline-offset:3px}
+@media(hover:hover){.orient-deck__dot:hover{transform:translateY(-2px)}}
+.orient-deck__hint{text-align:center;font-size:.82rem;color:var(--muted);margin:10px 0 0}
+.orient-deck__hint a{color:var(--svc);font-weight:700}
+.orient-aside{display:flex;gap:9px;align-items:flex-start;margin:14px auto 0;max-width:640px;padding:12px 14px;border-radius:12px;
+    background:color-mix(in srgb,var(--svc) 6%,#fff);font-size:.88rem;line-height:1.5;color:var(--muted);text-wrap:pretty}
+.orient-aside i{color:var(--svc);flex-shrink:0;margin-top:2px}
+.orient-aside b{color:var(--navy);font-weight:800}
+/* Sin JS: dos tarjetas apiladas, una debajo de la otra */
+.orient-deck__stage:not(.is-live){display:grid;gap:18px;perspective:none}
+.orient-deck__stage:not(.is-live) .orient-route{position:static;transform:none;opacity:1}
+@media(prefers-reduced-motion:reduce){
+    .orient-deck__stage > .orient-route{transition:opacity .2s}
+    .is-live .orient-route.is-back{transform:translate3d(0,20px,-150px) rotateX(7deg) scale(.93)}
+}
+@media(max-width:767.98px){
+    .orient-seal{font-size:.68rem;padding:5px 8px}
+    .orient-deck__hint{font-size:.86rem}
+}
+
+/* ---------- CONFIABILIDAD · trust-card ----------
+   La cifra vive DENTRO de la frase que la matiza y las tres pruebas se
+   apilan como renglones citables, con la fuente al pie. Sustituye al banner
+   de metrica-heroe, que se leia como publicidad donde toca leerse evidencia. */
+.trust-card{--svc:var(--electric);--border:rgba(9,44,84,.10);
+    background:#fff;border:1px solid var(--border);border-radius:20px;padding:22px 20px;margin:26px auto 0;max-width:780px;
+    box-shadow:0 1px 2px rgba(16,24,40,.05),0 14px 34px -20px rgba(16,24,40,.22)}
+.trust-claim{display:flex;align-items:center;gap:14px;margin:0 0 10px;font-size:.98rem;
+    line-height:1.4;color:var(--navy);font-weight:600;letter-spacing:-.01em;text-align:left}
+.trust-claim b{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    min-width:92px;padding:12px 10px;border-radius:16px;
+    background:linear-gradient(155deg,color-mix(in srgb,var(--svc) 12%,#fff),color-mix(in srgb,var(--svc) 5%,#fff));
+    border:1px solid color-mix(in srgb,var(--svc) 22%,transparent);
+    font-size:1.45rem;font-weight:800;color:var(--svc);letter-spacing:-.035em;line-height:1;font-variant-numeric:tabular-nums}
+.trust-claim b small{display:block;margin-top:5px;font-size:.7rem;font-weight:700;
+    letter-spacing:.06em;text-transform:uppercase;color:color-mix(in srgb,var(--svc) 78%,var(--navy))}
+.trust-caveat{margin:0 0 16px;font-size:.9rem;line-height:1.5;color:var(--muted);text-align:left;text-wrap:pretty}
+.trust-list{list-style:none;padding:0;margin:0;display:grid}
+.trust-list li{display:flex;gap:12px;align-items:flex-start;padding:12px 0;text-align:left;
+    border-top:1px solid var(--border);font-size:.94rem;line-height:1.55;color:var(--ink)}
+.trust-list li:first-child{border-top:0;padding-top:0}
+.trust-list li:last-child{padding-bottom:0}
+.trust-list i{color:var(--svc);flex-shrink:0;margin-top:3px;font-size:1rem}
+.trust-list b{color:var(--navy);font-weight:700}
+.trust-source{display:flex;align-items:center;gap:8px;margin:20px 0 0;padding-top:16px;text-align:left;
+    border-top:1px solid var(--border);font-size:.88rem;line-height:1.5;color:var(--muted)}
+.trust-source i{color:var(--svc)}
+@media(max-width:520px){
+    .trust-card{padding:18px 16px}
+    .trust-claim{gap:12px;font-size:.92rem}
+    .trust-claim b{min-width:80px;padding:10px 8px;font-size:1.28rem}
+    .trust-list li{padding:10px 0;font-size:.9rem;line-height:1.5}
+    .trust-caveat{margin-bottom:12px;font-size:.87rem}
+    .trust-source{margin-top:14px;padding-top:12px;font-size:.83rem}
+}
+
+/* ---------- COMPARATIVA "wow": tu cama vs cuarto ajeno ---------- */
+.svc-wow{--svc:var(--electric);--svc-light:var(--cyan);
+    background:linear-gradient(140deg,#0a1628 0%,#12143a 100%);border-radius:24px;padding:32px 24px;color:#fff;
+    position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(9,132,227,.18);border:1px solid rgba(9,132,227,.25)}
+@media(min-width:768px){.svc-wow{padding:44px 40px}}
+.svc-wow::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--svc-light),var(--svc),var(--svc-light));background-size:200% 100%;animation:wowStripe 5s linear infinite}
+.svc-wow::after{content:'';position:absolute;top:-40%;right:-15%;width:55%;padding-bottom:55%;border-radius:50%;
+    background:radial-gradient(circle,rgba(0,206,201,.22),transparent 65%);pointer-events:none}
+.svc-wow__inner{position:relative;z-index:1}
+.svc-wow__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,206,201,.12);border:1px solid rgba(127,255,230,.3);
+    color:var(--svc-light);font-size:.72rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:6px 12px;border-radius:100px;margin-bottom:14px}
+.svc-wow__title{font-size:clamp(1.3rem,4.5vw,1.85rem);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.2;margin-bottom:24px;text-wrap:balance}
+.svc-wow__title em{font-style:normal;color:var(--svc-light)}
+.svc-wow__compare{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:18px}
+@media(min-width:600px){.svc-wow__compare{grid-template-columns:1fr 1fr;gap:18px}}
+.svc-wow__col{border-radius:18px;padding:22px 20px;border:1px solid rgba(255,255,255,.08)}
+.svc-wow__col--bad{background:rgba(230,69,69,.08);border-color:rgba(230,69,69,.22)}
+.svc-wow__col--good{background:rgba(0,206,201,.1);border-color:rgba(127,255,230,.3)}
+.svc-wow__col-lbl{font-size:.68rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:8px}
+.svc-wow__col--bad .svc-wow__col-lbl{color:#e87a7a}
+.svc-wow__col--good .svc-wow__col-lbl{color:var(--svc-light)}
+.svc-wow__col-num{font-size:clamp(1.6rem,6vw,2.3rem);font-weight:800;line-height:1;margin-bottom:6px;letter-spacing:-.03em}
+.svc-wow__col--bad .svc-wow__col-num{color:#fff;opacity:.85}
+.svc-wow__col--good .svc-wow__col-num{color:var(--svc-light)}
+.svc-wow__col-desc{font-size:.9rem;color:rgba(255,255,255,.72);line-height:1.5;text-wrap:pretty}
+.svc-wow__foot{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.55;font-style:italic;
+    border-top:1px solid rgba(255,255,255,.08);padding-top:14px;margin:6px 0 0;text-wrap:pretty}
+
+/* ---------- PERFILES · "si te identificas, te conviene" ---------- */
+.who-grid{--svc:var(--electric);--svc-dark:#1e3799;
+    display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px}
+@media(min-width:768px){.who-grid{grid-template-columns:repeat(4,1fr);gap:16px}}
+.who-card{background:linear-gradient(150deg,#fff,#f4f9ff);border:1px solid rgba(9,44,84,.08);border-radius:18px;padding:20px 18px;
+    box-shadow:var(--e2),var(--ring-hi);text-align:left;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease)}
+@media(hover:hover) and (pointer:fine){.who-card:hover{transform:translateY(-4px);border-color:rgba(9,132,227,.28);box-shadow:var(--e3),var(--ring-hi)}}
+.who-card__icon{width:46px;height:46px;border-radius:14px;background:linear-gradient(160deg,rgba(9,132,227,.12),rgba(0,206,201,.10));
+    color:var(--svc);border:1px solid rgba(9,132,227,.14);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:12px}
+.who-card h3{font-size:1rem;font-weight:800;color:var(--navy);margin:0 0 6px;line-height:1.3;letter-spacing:-.01em}
+.who-card p{font-size:.88rem;color:var(--muted);margin:0;line-height:1.5;text-wrap:pretty}
+
+/* ---------- FAQ: la abierta se eleva (patron .faq-item[open] de la organica) ---------- */
+.faq-item{transition:box-shadow .25s ease,border-color .25s ease}
+.faq-item[open]{border-color:rgba(9,132,227,.3);box-shadow:0 8px 28px -10px rgba(9,44,84,.2)}
+
+/* ---------- Marquee de resenas: pie de bloque ---------- */
+.rev-block__all{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:14px;font-size:.92rem;font-weight:600;
+    color:var(--electric);text-decoration:none;border-bottom:1px solid rgba(9,132,227,.3);padding-bottom:2px}
+.rev-block__all:hover,.rev-block__all:focus-visible{color:var(--navy);border-bottom-color:var(--navy)}
+.rev-block__note{font-size:.85rem;color:var(--muted);margin:10px 0 0}
 </style>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <link rel="stylesheet" href="/assets/agenda-modal.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/agenda-modal.css"></noscript>
@@ -996,8 +1091,7 @@
 
 /* 6) Tarjetas de secciones nuevas: menos acolchado en 360px */
 @media(max-width:560px){
-    .orient-route,.tstudy{padding:22px 18px}
-    .rv-stat{padding:28px 22px}
+    .orient-route{padding:22px 18px}
 }
 </style>
     <link rel="stylesheet" href="/assets/base.css">
@@ -1180,6 +1274,14 @@
             <span class="block__kicker">Cuestionario STOP-BANG</span>
             <h2 class="block__title">¿Tienes riesgo de apnea del sueño? <em>Descúbrelo en 2 min</em></h2>
             <p class="block__lead">El cuestionario STOP-BANG es una herramienta clínica validada mundialmente para estimar el riesgo de apnea obstructiva. Responde 8 preguntas y conoce tu nivel de riesgo.</p>
+        </div>
+
+        <!-- Perfiles tipicos: si te reconoces en uno, el cuestionario de abajo te ubica -->
+        <div class="who-grid" style="margin-bottom:26px">
+            <div class="who-card"><div class="who-card__icon"><i class="bi bi-volume-up-fill"></i></div><h3>Roncas fuerte</h3><p>"Me lo dice mi pareja"</p></div>
+            <div class="who-card"><div class="who-card__icon"><i class="bi bi-pause-circle-fill"></i></div><h3>Vieron pausas</h3><p>Te grabaron sin respirar</p></div>
+            <div class="who-card"><div class="who-card__icon"><i class="bi bi-heart-pulse-fill"></i></div><h3>Presión alta</h3><p>Que no baja con pastillas</p></div>
+            <div class="who-card"><div class="who-card__icon"><i class="bi bi-car-front-fill"></i></div><h3>Sueño al manejar</h3><p>O en juntas, comidas, TV</p></div>
         </div>
 
         <!-- Progreso -->
@@ -1406,69 +1508,82 @@
             <p class="block__lead">Muchos llegan pidiendo polisomnografía cuando les basta el estudio en casa. Ubícate rápido aquí, para no gastar de más.</p>
         </div>
 
-        <div class="orient-grid">
-            <!-- RUTA A · protagonista -->
-            <article class="orient-route orient-route--a">
-                <span class="orient-route__badge"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> La mayoría</span>
-                <img class="orient-route__img"
-                     src="/images/poligrafia-cama-640.webp"
-                     srcset="/images/poligrafia-cama-420.webp 420w, /images/poligrafia-cama-640.webp 640w, /images/poligrafia-cama-960.webp 960w"
-                     sizes="(max-width:860px) 92vw, 40vw"
-                     width="640" height="480" loading="lazy" decoding="async"
-                     alt="Persona durmiendo en su propia cama con la cánula nasal, la banda torácica y el oxímetro de la poligrafía respiratoria; su pareja descansa a un lado">
-                <div class="orient-route__head">
-                    <span class="orient-route__ic" aria-hidden="true"><i class="bi bi-house-heart-fill"></i></span>
-                    <div>
-                        <div class="orient-route__rt">Ruta A</div>
-                        <h3 class="orient-route__title">Poligrafía respiratoria en casa <span style="font-weight:700;color:var(--electric)">(este estudio)</span></h3>
-                    </div>
-                </div>
-                <p class="orient-route__lead">Es tu ruta si eres adulto, con señales claras de apnea y <b>sin</b> enfermedad grave del corazón o el pulmón. Es el perfil <b>más común</b>, y la AASM respalda el estudio en casa para diagnosticarlo.</p>
-                <ul class="orient-check">
-                    <li><i class="bi bi-check-lg" aria-hidden="true"></i> Roncas fuerte.</li>
-                    <li><i class="bi bi-check-lg" aria-hidden="true"></i> Te han visto <b>dejar de respirar</b> mientras duermes.</li>
-                    <li><i class="bi bi-check-lg" aria-hidden="true"></i> Amaneces cansado o te gana el sueño de día.</li>
-                    <li><i class="bi bi-check-lg" aria-hidden="true"></i> No tienes una enfermedad importante del corazón ni del pulmón.</li>
-                </ul>
-                <div class="orient-route__foot">
-                    <span class="orient-route__chip"><i class="bi bi-clipboard2-check-fill" aria-hidden="true"></i> Empiezas desde tu propia cama, una sola noche</span>
-                </div>
-            </article>
+        <!-- Carrusel orbital: las dos rutas viajan sobre una misma orbita y el
+             dedo las arrastra por el circulo. Sin JS quedan apiladas.
+             La foto de la cama salio de la Ruta A a proposito: ya vive en el
+             hero, y el carrusel toma su altura de la tarjeta mas alta. -->
+        <div class="orient-deck" id="orientDeck">
+            <div class="orient-deck__stage" id="orientStage">
+                <div class="orient-carousel" id="orientCarousel">
+                    <!-- RUTA A · protagonista -->
+                    <article class="orient-route orient-route--a" id="orient-a">
+                        <span class="orient-route__badge"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> La mayoría</span>
+                        <div class="orient-route__head">
+                            <span class="orient-route__ic" aria-hidden="true"><i class="bi bi-house-heart-fill"></i></span>
+                            <div>
+                                <div class="orient-route__rt">Ruta A</div>
+                                <h3 class="orient-route__title">Poligrafía respiratoria en casa <span style="font-weight:700;color:var(--electric)">(este estudio)</span></h3>
+                            </div>
+                        </div>
+                        <p class="orient-route__lead">Es tu ruta si eres adulto, con señales claras de apnea y <b>sin</b> enfermedad grave del corazón o el pulmón. Es el perfil <b>más común</b>, y la AASM respalda el estudio en casa para diagnosticarlo.</p>
+                        <ul class="orient-check">
+                            <li><i class="bi bi-check-lg" aria-hidden="true"></i> Roncas fuerte.</li>
+                            <li><i class="bi bi-check-lg" aria-hidden="true"></i> Te han visto <b>dejar de respirar</b> mientras duermes.</li>
+                            <li><i class="bi bi-check-lg" aria-hidden="true"></i> Amaneces cansado o te gana el sueño de día.</li>
+                            <li><i class="bi bi-check-lg" aria-hidden="true"></i> No tienes una enfermedad importante del corazón ni del pulmón.</li>
+                        </ul>
+                        <div class="orient-seals">
+                            <span class="orient-seal"><i class="bi bi-house-door-fill" aria-hidden="true"></i> Duermes en tu cama</span>
+                            <span class="orient-seal"><i class="bi bi-clipboard2-pulse-fill" aria-hidden="true"></i> Lo interpreta el Dr. Lara</span>
+                            <span class="orient-seal"><i class="bi bi-shield-check" aria-hidden="true"></i> Sin agujas</span>
+                        </div>
+                    </article>
 
-            <!-- RUTA B · excepción (sobria) -->
-            <article class="orient-route orient-route--b">
-                <span class="orient-route__badge"><i class="bi bi-signpost-2-fill" aria-hidden="true"></i> Casos concretos</span>
-                <div class="orient-route__head">
-                    <span class="orient-route__ic" aria-hidden="true"><i class="bi bi-hospital"></i></span>
-                    <div>
-                        <div class="orient-route__rt">Ruta B</div>
-                        <h3 class="orient-route__title">Polisomnografía de laboratorio <span style="font-weight:700;color:#5a6b7d">(te oriento a ella)</span></h3>
-                    </div>
+                    <!-- RUTA B · excepción (sobria) -->
+                    <article class="orient-route orient-route--b" id="orient-b">
+                        <span class="orient-route__badge"><i class="bi bi-signpost-2-fill" aria-hidden="true"></i> Casos concretos</span>
+                        <div class="orient-route__head">
+                            <span class="orient-route__ic" aria-hidden="true"><i class="bi bi-hospital"></i></span>
+                            <div>
+                                <div class="orient-route__rt">Ruta B</div>
+                                <h3 class="orient-route__title">Polisomnografía de laboratorio <span style="font-weight:700;color:#5a6b7d">(te oriento a ella)</span></h3>
+                            </div>
+                        </div>
+                        <p class="orient-route__lead">Conviene el laboratorio, con sensores del cerebro, si algo de esto es tu caso:</p>
+                        <ul class="orient-check">
+                            <li><i class="bi bi-dot" aria-hidden="true"></i> Enfermedad grave de corazón, pulmón o neuromuscular.</li>
+                            <li><i class="bi bi-dot" aria-hidden="true"></i> <b>Hipoventilación por obesidad</b>, opioides crónicos, o infarto o embolia previos.</li>
+                            <li><i class="bi bi-dot" aria-hidden="true"></i> Sospecha de apnea central, piernas inquietas, narcolepsia o insomnio grave.</li>
+                            <li><i class="bi bi-dot" aria-hidden="true"></i> Poligrafía en casa normal pero con síntomas que siguen.</li>
+                        </ul>
+                        <div class="orient-seals orient-seals--b">
+                            <span class="orient-seal"><i class="bi bi-signpost-split-fill" aria-hidden="true"></i> Te digo a dónde ir</span>
+                        </div>
+                    </article>
                 </div>
-                <p class="orient-route__lead">Hay casos concretos en los que conviene el estudio de laboratorio, con sensores del cerebro, y no el de casa. Lee si alguno es tu caso:</p>
-                <ul class="orient-check">
-                    <li><i class="bi bi-dot" aria-hidden="true"></i> Enfermedad importante del corazón o del pulmón (insuficiencia cardiaca, EPOC relevante).</li>
-                    <li><i class="bi bi-dot" aria-hidden="true"></i> Problemas para ventilar bien, incluida la hipoventilación asociada a la obesidad.</li>
-                    <li><i class="bi bi-dot" aria-hidden="true"></i> Enfermedad neuromuscular o uso crónico de opioides.</li>
-                    <li><i class="bi bi-dot" aria-hidden="true"></i> Antecedente de infarto o embolia, o insomnio grave.</li>
-                    <li><i class="bi bi-dot" aria-hidden="true"></i> Sospecha de apnea central u otros trastornos del sueño (piernas inquietas, narcolepsia, pesadillas intensas).</li>
-                    <li><i class="bi bi-dot" aria-hidden="true"></i> Poligrafía en casa normal pero con síntomas que siguen apuntando a apnea.</li>
-                </ul>
-                <p class="orient-route__note"><i class="bi bi-info-circle-fill" aria-hidden="true"></i> <span>Si es tu caso, <b>te lo digo de frente</b> y te oriento a dónde realizarla. Aquí no hacemos polisomnografía; lo que sí hago es valorarte y dirigirte al estudio correcto.</span></p>
-            </article>
+                <div class="orient-deck__floor" aria-hidden="true"></div>
+            </div>
+            <div class="orient-deck__nav" id="orientNav" role="group" aria-label="Elegir ruta">
+                <button type="button" class="orient-deck__arrow" id="orientPrev" aria-label="Ver la ruta anterior"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
+                <button type="button" class="orient-deck__dot" data-ruta="a" aria-selected="true" aria-controls="orient-a"><i class="bi bi-house-heart-fill" aria-hidden="true"></i> Ruta A</button>
+                <button type="button" class="orient-deck__dot" data-ruta="b" aria-selected="false" aria-controls="orient-b"><i class="bi bi-hospital-fill" aria-hidden="true"></i> Ruta B</button>
+                <button type="button" class="orient-deck__arrow" id="orientNext" aria-label="Ver la ruta siguiente"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+            </div>
+            <p class="orient-deck__hint" id="orientHint">Desliza para comparar las dos rutas.</p>
+            <p class="orient-aside"><i class="bi bi-info-circle-fill" aria-hidden="true"></i> <span>Si tu caso es el de la Ruta B <b>te lo digo de frente</b>: aquí no hacemos polisomnografía, te valoro y te dirijo al estudio correcto.</span></p>
         </div>
 
-        <!-- Confianza (fusiona lo esencial de "es de segunda?" y "dos estudios") -->
-        <div class="fuse-trust" role="group" aria-label="Por qué es confiable el estudio en casa">
-            <div class="fuse-stat">
-                <span class="fuse-stat__n">84-91%</span>
-                <span class="fuse-stat__t">de exactitud <b>cuando ya hay sospecha clara de apnea</b>, según la revisión de la guía AASM. En quien tiene baja probabilidad baja a 70-78%, y por eso la valoración médica previa es la que hace confiable al estudio</span>
-            </div>
-            <ul class="fuse-points">
+        <!-- Confiabilidad: la cifra dentro de la frase que la matiza, y la
+             fuente al pie. Mismo patron que la pagina de servicio. -->
+        <div class="trust-card">
+            <p class="trust-claim"><b>84-91%<small>de exactitud</small></b> <span>cuando ya hay sospecha clara de apnea.</span></p>
+            <p class="trust-caveat">Si la sospecha es baja cae a 70-78%: por eso la valoración previa es la que hace confiable al estudio.</p>
+            <ul class="trust-list">
                 <li><i class="bi bi-journal-check" aria-hidden="true"></i><span>Las guías del sueño <b>(AASM)</b> lo respaldan para el caso típico de apnea.</span></li>
                 <li><i class="bi bi-person-badge-fill" aria-hidden="true"></i><span>El resultado lo decide <b>el Dr. Lara revisando el trazo completo</b>, no el número automático del aparato.</span></li>
                 <li><i class="bi bi-shield-fill-check" aria-hidden="true"></i><span>Si sale negativo y tus síntomas siguen, el paso correcto es la <b>polisomnografía</b>: te canalizo, no te dejo a medias.</span></li>
             </ul>
+            <p class="trust-source"><i class="bi bi-bookmark-check-fill" aria-hidden="true"></i> <span>Cifras de la guía de la American Academy of Sleep Medicine.</span></p>
         </div>
 
         <div class="orient-close">
@@ -1531,6 +1646,36 @@
                     <h3>No te quedas solo con un PDF</h3>
                     <p>Resuelvo tus dudas por WhatsApp antes y después del estudio, con seguimiento real.</p>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ TU CAMA VS UN CUARTO AJENO ============ -->
+<section class="block">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">Cómo es el estudio</span>
+            <h2 class="block__title">Tu cama vs un <em>cuarto extraño</em></h2>
+            <p class="block__lead">El estudio en casa mide lo que importa para diagnosticar apnea, sin el costo ni la incomodidad de la polisomnografía hospitalaria.</p>
+        </div>
+        <div class="svc-wow">
+            <div class="svc-wow__inner">
+                <div class="svc-wow__badge"><i class="bi bi-bar-chart-fill"></i> Hospital vs domicilio</div>
+                <h3 class="svc-wow__title">Estudio en casa: <em>el mismo diagnóstico</em>, sin la noche en cuarto ajeno</h3>
+                <div class="svc-wow__compare">
+                    <div class="svc-wow__col svc-wow__col--bad">
+                        <div class="svc-wow__col-lbl">En hospital</div>
+                        <div class="svc-wow__col-num">Cuarto ajeno</div>
+                        <div class="svc-wow__col-desc">Cables al techo. Técnico vigilando. Costo alto.</div>
+                    </div>
+                    <div class="svc-wow__col svc-wow__col--good">
+                        <div class="svc-wow__col-lbl">En casa</div>
+                        <div class="svc-wow__col-num">Tu cama</div>
+                        <div class="svc-wow__col-desc">Equipo a batería. Mismo IAH, misma severidad.</div>
+                    </div>
+                </div>
+                <p class="svc-wow__foot">Validado por la AASM como estudio nivel III. La polisomnografía hospitalaria sigue siendo la indicada para insomnio, apnea central, EPOC severo o trastornos del movimiento.</p>
             </div>
         </div>
     </div>
@@ -1632,7 +1777,7 @@
             
 
 <div class="testimonial-source-badge"><i class="bi bi-patch-check-fill"></i> Opiniones de pacientes verificados</div>
-<div class="testimonial-columns">
+<div class="testimonial-columns" data-marquee role="region" aria-label="Reseñas de pacientes en Google">
             <div class="testimonial-col"><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Agradezco la calidez, atención, humanidad, profesionalismo, paciencia y trato del Doctor, da mucha confianza y tiene un conocimiento y manejo total de su especialidad. Recomiendo ampliamente acudir a ser atendidos por tan completos servicios."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Alejandra O.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención, muy profesional"</p><div class="testi-author"><div class="testi-avatar">N</div><div><p class="testi-name">Noemí M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Sin lugar a duda es un excelente Neumólogo, tiene mucha paciencia, explica a detalle, disipa las dudas, ves resultados a la brevedad, da seguridad. Sin lugar a duda lo recomiendo ampliamente. Es un doctor que sabe perfectamente su trabajo, de mucha calidad y excelencia. Estoy más que satisfecha con el tratamiento que le ha prescrito a mi Madre y de estar al pendiente. Me alegro de haber llegado a su consultorio"</p><div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">Jan S.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Chulada de doctor, me siento escuchado, atendido, es profesional y con una preocupación sincera por sus pacientes."</p><div class="testi-author"><div class="testi-avatar">G</div><div><p class="testi-name">Gilberto W.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy profesional el Dr. William. Atento, te explica muy bien sobre tu padecimiento, muy recomendable"</p><div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">José Luis T.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buena atención. Excelente para explicar tu situación médica."</p><div class="testi-author"><div class="testi-avatar">V</div><div><p class="testi-name">Vanessa Z.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Mi esposo tuvo crisis de asma, fue nuestra primera consulta. El doctor explicó a detalle con un lenguaje sencillo, revisó cuidadosamente durante la exploración e hizo pruebas de espirometría durante la consulta, explicó las opciones de tratamiento. Ampliamente recomendable!"</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Aline G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Un médico excelente. Muy bien preparado, extremadamente profesional y muy humano y amable. Lo encontramos en internet. Me trató como si fuéramos familiares. Muy fácil y práctico para agendar. Antes de la cita me solicitó radiografía del pulmón, lo que agilizó el diagnóstico, y pudo dedicar tiempo a revisarme a mí y mis análisis. Muy precavido y sensato en sus recomendaciones. Nos explicó a mí y a mi esposo, que es médico, con gran claridad y detenimiento los resultados de la tomografía. Agradezco su dedicación sincera a mi bienestar."</p><div class="testi-author"><div class="testi-avatar">T</div><div><p class="testi-name">Tere A.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención, fue muy amable y profesional en cuanto a las dudas mías. Definitivamente será mi nuevo neumólogo de confianza, gracias Dr."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Alicia F.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Very kind and generous, he also does check up on you daily until recovery. Great job! I recommend him a lot"</p><div class="testi-author"><div class="testi-avatar">T</div><div><p class="testi-name">Thulie M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buena atención por parte del Dr. Lara, sabe explicar muy bien a sus pacientes. Desde el primer contacto con él y hasta la fecha ha mantenido la comunicación y seguimiento con su paciente. Muy profesional, lo recomiendo 100%."</p><div class="testi-author"><div class="testi-avatar">F</div><div><p class="testi-name">Fabiola G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención, súper personalizada, cuidando cada detalle y siempre al pendiente del paciente"</p><div class="testi-author"><div class="testi-avatar">Y</div><div><p class="testi-name">Yetlanetzy R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El Dr. William, puntual en la cita, nos atendió con mucho esmero, checó con mucho detalle y el diagnóstico muy acertado. Es muy paciente al escuchar, lleva un seguimiento en el proceso de la mejoría de la salud. Un excelente médico, de verdad se recomienda solo."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Adán C.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div></div>
             <div class="testimonial-col"><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Una atención muy profesional, muy empático y con un dominio amplio en su área de especialización, cabe mencionar que tiene el don de comunicar tu situación en términos sencillos y te otorga el tiempo que requieres, en pocas palabras, altamente recomendable."</p><div class="testi-author"><div class="testi-avatar">I</div><div><p class="testi-name">Ignacio H.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Comprometido con su trabajo, profesión y calidad humana. Excelente Dr."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Alicia M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El doctor Lara es una persona muy humana, empática y sobre todo te da una atención personalizada, siempre contesta tus mensajes preocupándose por tu salud y bienestar. Excelente especialista."</p><div class="testi-author"><div class="testi-avatar">V</div><div><p class="testi-name">Verónica G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención!"</p><div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">J. Alberto M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buen trato del Doctor William, me sentí muy a gusto en su consulta, explica todo a detalle, está al pendiente de todo, muy preparado. Me he sentido mucho mejor con el tratamiento que me recetó. Lo recomiendo ampliamente."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Angélica M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El Dr. William es una persona de altos niveles éticos, me pareció excelente su trato con mi paciente, aparte de que tiene mucho dominio sobre las enfermedades a tratar, muy capaz, muy amable, excelente persona y profesional, gracias."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Adriana H.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente especialista, me tuvo suficiente paciencia para realizarme la espirometría, me explicó muy bien y resolvió mis dudas. Lo recomiendo mucho, es una persona muy amable, ética y profesional"</p><div class="testi-author"><div class="testi-avatar">Y</div><div><p class="testi-name">Yoatzin R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Ha sido una experiencia muy impactante y triste ya que el diagnóstico fue cáncer pulmonar. En cuanto al servicio y conocimiento del doctor me parece excelente, nos dio la noticia de manera veraz y diplomática, con la que tuvimos oportunidad de lidiar con los resultados."</p><div class="testi-author"><div class="testi-avatar">M</div><div><p class="testi-name">María Teresa M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El Dr. William Lara es un excelente especialista, me quedé muy sorprendida de la mejoría que tuve al día siguiente de tomar el tratamiento que me recetó. El Dr. Lara todo el tiempo estuvo al pendiente de mí, lo que da mucha tranquilidad al paciente. Estoy muy agradecida con el Dr. y sin duda será mi médico neumólogo por muchos años más."</p><div class="testi-author"><div class="testi-avatar">R</div><div><p class="testi-name">Rocío</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buen médico, muy amable y siempre pendiente de sus pacientes. Lo recomiendo ampliamente."</p><div class="testi-author"><div class="testi-avatar">R</div><div><p class="testi-name">Rossana R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Mi experiencia con el doctor William ha sido y es muy buena, es buen doctor, amable, respetuoso y le explica bien lo que se necesita saber. Él atiende a mi señora madre, que tiene 95 años, quien tuvo neumonía y él la sacó adelante, gracias!"</p><div class="testi-author"><div class="testi-avatar">L</div><div><p class="testi-name">Lourdes A.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Agradezco la atención y seguimiento en cada consulta. Me explicó el diagnóstico con claridad y obtuve mejoría muy pronto. Es un médico muy profesional. Sin duda lo recomiendo ampliamente."</p><div class="testi-author"><div class="testi-avatar">K</div><div><p class="testi-name">Karla G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El doctor William es excelente, muy humano, profesional y dedicado a sus pacientes. Si un día necesitas un Neumólogo, no dudes en llamarlo."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Adri N.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div></div>
             <div class="testimonial-col"><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención, una persona muy capacitada, y con todas las herramientas para un gran diagnóstico y explicación, da un gran seguimiento y sus tratamientos son los mejores."</p><div class="testi-author"><div class="testi-avatar">E</div><div><p class="testi-name">Eduardo H.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Una consulta por demás completa! Revisión minuciosa, explicaciones precisas y un trato muy amable y muy profesional. Quedé muy satisfecha con los resultados y con el programa de tratamiento a seguir."</p><div class="testi-author"><div class="testi-avatar">M</div><div><p class="testi-name">Maggy</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención, recomiendo 100%. El doctor William es un profesional y experto en su área."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Abril S.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buena atención"</p><div class="testi-author"><div class="testi-avatar">M</div><div><p class="testi-name">María Esther G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Recomiendo ampliamente al Dr. William, por su amplia experiencia en salud respiratoria, sobre todo por la explicación detallada que da en sus consultas basado en la experiencia y lo acertado en su diagnóstico, que está totalmente sustentado por los análisis y estudios en los cuales se basa para ello. Pero sobre todo quiero resaltar su calidez y empatía al momento de dar su consulta, contestando a todos los cuestionamientos que surgen ante un posible diagnóstico."</p><div class="testi-author"><div class="testi-avatar">S</div><div><p class="testi-name">Selene R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención!"</p><div class="testi-author"><div class="testi-avatar">K</div><div><p class="testi-name">Karina V.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención el Dr. desde la primera consulta, su explicación muy minuciosa y muy paciente a la explicación para mi papá, quedamos muy satisfechos con su diagnóstico certero."</p><div class="testi-author"><div class="testi-avatar">G</div><div><p class="testi-name">Guadalupe M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente trato, muy profesional, explica de manera que se hace entender. Resuelve todas las dudas, ampliamente recomendable"</p><div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">Jorge S.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El doctor es súper amable, me explicó a detalle todo y el tratamiento fue muy efectivo, rápido vi mejoría, altamente recomendable"</p><div class="testi-author"><div class="testi-avatar">L</div><div><p class="testi-name">Liliana G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Si estás buscando a un neumólogo que combine conocimiento, dedicación y un trato genuinamente humano, lo recomiendo sin ninguna duda. Considero que se preocupa genuinamente por tu estado de salud porque lo analiza en su totalidad y te manda mensajes de seguimiento, eso ayuda a sentir una atención más personalizada"</p><div class="testi-author"><div class="testi-avatar">C</div><div><p class="testi-name">Ces R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente Dr. Empático, humano, y muy comprometido con su labor."</p><div class="testi-author"><div class="testi-avatar">S</div><div><p class="testi-name">Sonia de la F.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El tratamiento neumológico funcionó excelente. Gracias a este pude recuperarme de una tos crónica y realizarme una cirugía de ojos. Gracias Dr. William Lara, excelente profesional y súper amable."</p><div class="testi-author"><div class="testi-avatar">T</div><div><p class="testi-name">Teté P.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div></div>
@@ -1641,9 +1786,10 @@
         </div>
         
         <div class="text-center mt-4">
-            <a href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;color:var(--electric);font-weight:600;font-size:.92rem;text-decoration:none;border-bottom:1px solid rgba(9,132,227,.3);padding-bottom:2px">
+            <a class="rev-block__all" href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer">
                 <i class="bi bi-google" aria-hidden="true"></i> Ver todas las reseñas en Google
             </a>
+            <p class="rev-block__note">Opiniones reales de pacientes en Google, sin editar.</p>
         </div>
     </div>
 </section>
@@ -1763,33 +1909,177 @@ window.addEventListener('load', function(){
   });
 });
 </script>
+<!-- El marquee de reseñas ya no se clona aquí: lo hace base.js sobre
+     [data-marquee] (un solo clon, duración calculada sobre la altura real y
+     re-medida en resize). Dos cloners a la vez duplicaban las tarjetas. -->
+
 <script>
-/* Marquee de reseñas (columnas que se desplazan).
-   Se MIDE después de cargar fuentes/layout: si se mide antes, alguna columna
-   (p. ej. la 3ª) puede salir con altura 0 y desplazarse demasiado rápido. */
+/* ── Carrusel orbital de rutas (patrón canónico d6) ──
+   Un ángulo continuo gobierna la órbita: cada tarjeta ocupa un asiento a
+   360/N grados y el JS proyecta POR CUADRO su arco lateral, profundidad,
+   escala y opacidad. El dedo arrastra el ángulo en vivo (scrub) y al soltar
+   un resorte lo deja caer al asiento más cercano. Solo transform y opacity:
+   todo corre en el compositor. Sin JS quedan las dos tarjetas apiladas. */
 (function(){
-  var done = false;
-  function initMarquee(){
-    if (done) return; done = true;
-    document.querySelectorAll('.testimonial-col').forEach(function(col, idx){
-      var pxPerSec = [15, 13, 14][idx] || 14;
-      var origCards = Array.prototype.slice.call(col.querySelectorAll('.testi-card'));
-      if (!origCards.length) return;
-      origCards.forEach(function(c){ col.appendChild(c.cloneNode(true)); });
-      var gap = parseFloat(getComputedStyle(col).rowGap) || 16;
-      var setHeight = 0;
-      origCards.forEach(function(c){ setHeight += c.offsetHeight + gap; });
-      if (setHeight < 200) setHeight = origCards.length * 360; // respaldo si aún no hay layout
-      col.style.setProperty('--t-dur', (setHeight / pxPerSec).toFixed(1) + 's');
-      col.style.setProperty('--tgap', (gap / 2) + 'px');
-      if (idx === 1) col.classList.add('testimonial-col--down');
-      col.classList.add('marquee-on');
+    var stage=document.getElementById('orientStage');
+    var nav=document.getElementById('orientNav');
+    if(!stage||!nav) return;
+    var carrusel=document.getElementById('orientCarousel');
+    var cartas=Array.prototype.slice.call(stage.querySelectorAll('.orient-route'));
+    if(!carrusel||cartas.length!==2) return;
+    var N=cartas.length, paso=360/N;
+    var dots=Array.prototype.slice.call(nav.querySelectorAll('.orient-deck__dot'));
+    var hint=document.getElementById('orientHint');
+    var quieto=window.matchMedia('(prefers-reduced-motion:reduce)');
+
+    stage.classList.add('is-live');
+
+    var frente=0;
+    var ang=0;     // ángulo actual de la órbita, en grados (crece sin tope)
+    var meta=0;    // asiento al que va cayendo el resorte
+    var raf=null;
+
+    /* geometría responsiva: la de atrás queda asomada a un lado e inclinada
+       como carta de abanico, no escondida en el eje */
+    var G={};
+    function mide(){
+        var w=carrusel.clientWidth||stage.clientWidth||320;
+        var movil=window.matchMedia('(max-width:767.98px)').matches;
+        G={arcoX:Math.min(w*0.46,300),          // recorrido lateral durante el giro
+           fondo:movil?150:230,                 // profundidad del punto trasero
+           asomo:movil?Math.min(w*0.12,44):110, // cuánto se asoma la de atrás en reposo
+           tilt:movil?26:34,                    // inclinación rotateY de la de atrás
+           escMin:movil?0.9:0.88,               // escala de la tarjeta al fondo
+           opMin:0.45};                         // opacidad al fondo
+    }
+
+    /* las tarjetas van en absoluto: la altura del hueco la fija la más alta */
+    function altura(){
+        carrusel.style.height='auto';
+        var alto=0;
+        cartas.forEach(function(c){ alto=Math.max(alto, c.offsetHeight); });
+        if(alto) carrusel.style.height=alto+'px';
+    }
+    mide(); altura();
+    if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){ altura(); pinta(); });
+    var ta;
+    window.addEventListener('resize',function(){ clearTimeout(ta); ta=setTimeout(function(){ mide(); altura(); pinta(); },180); },{passive:true});
+
+    function proyecta(c,th){
+        var r=th*Math.PI/180;
+        var t=(1-Math.cos(r))/2;                       // 0 al frente, 1 al fondo
+        var x=Math.sin(r)*G.arcoX + t*G.asomo;
+        var z=-t*G.fondo;
+        var rot=Math.sin(r)*10 - t*G.tilt;             // giro vivo + tilt de reposo
+        var esc=1-(1-G.escMin)*t;
+        c.style.transform='translate3d('+x.toFixed(1)+'px,0,'+z.toFixed(1)+'px) rotateY('+rot.toFixed(2)+'deg) scale('+esc.toFixed(3)+')';
+        c.style.opacity=(1-(1-G.opMin)*t).toFixed(3);
+        c.style.zIndex=String(100-Math.round(t*50));
+    }
+
+    function quienFrente(a){ return ((Math.round(-a/paso)%N)+N)%N; }
+
+    function pinta(){
+        cartas.forEach(function(c,k){ proyecta(c,ang+k*paso); });
+        frente=quienFrente(ang);
+        cartas.forEach(function(c,k){
+            c.classList.toggle('is-front',k===frente);
+            c.classList.toggle('is-back',k!==frente);
+        });
+        dots.forEach(function(d,k){ d.setAttribute('aria-selected',String(k===frente)); });
+    }
+
+    /* resorte: el ángulo persigue a la meta cuadro a cuadro */
+    function anima(){
+        raf=null;
+        var d=meta-ang;
+        if(Math.abs(d)<0.05){ ang=meta; pinta(); return; }
+        /* 0.075 por cuadro ≈ 1.6 s de viaje: lento y con presencia */
+        ang+=d*0.075;
+        pinta();
+        raf=requestAnimationFrame(anima);
+    }
+    function veA(m){
+        meta=m;
+        if(quieto.matches){ ang=meta; pinta(); return; }
+        if(!raf) raf=requestAnimationFrame(anima);
+    }
+
+    function alFrente(k){
+        if(k===frente) return;
+        /* la órbita siempre avanza en el mismo sentido: nunca regresa en reversa */
+        veA(meta-paso);
+        if(hint) hint.textContent='Ruta '+(k===0?'A':'B')+' al frente. Desliza para volver a la otra.';
+    }
+
+    dots.forEach(function(d,k){ d.addEventListener('click',function(){ alFrente(k); }); });
+    ['orientPrev','orientNext'].forEach(function(id){
+        var b=document.getElementById(id);
+        if(b) b.addEventListener('click',function(){ alFrente(frente===0?1:0); });
     });
-  }
-  function start(){ requestAnimationFrame(function(){ requestAnimationFrame(initMarquee); }); }
-  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(start); }
-  if (document.readyState === 'complete') { start(); }
-  else { window.addEventListener('load', start); }
+    cartas.forEach(function(c,k){
+        c.addEventListener('click',function(e){
+            // la de atrás se trae al frente; en la de enfrente los enlaces siguen vivos
+            if(c.classList.contains('is-back') && !e.target.closest('a,button')){ alFrente(k); }
+        });
+    });
+
+    /* Arrastre con scrub: el dedo mueve la órbita en vivo y al soltar cae al
+       asiento más cercano (o al siguiente si el gesto fue franco). El umbral
+       direccional evita pelearse con el scroll, y el gesto se CIERRA en
+       window porque el pointerup no siempre cae donde empezó. */
+    var x0=null,y0=null,base=0,gesto=0,vx=0,xPrev=0,tPrev=0;
+
+    stage.addEventListener('pointerdown',function(e){
+        if(e.target.closest('a,button')) return;
+        x0=xPrev=e.clientX; y0=e.clientY; tPrev=e.timeStamp; vx=0; gesto=0; base=ang;
+        if(raf){ cancelAnimationFrame(raf); raf=null; }
+    },{passive:true});
+
+    window.addEventListener('pointermove',function(e){
+        if(x0===null) return;
+        var dx=e.clientX-x0, dy=e.clientY-y0;
+        if(gesto===0){
+            if(Math.abs(dx)>8&&Math.abs(dx)>Math.abs(dy)*1.2) gesto=1;
+            else if(Math.abs(dy)>10) gesto=-1;
+        }
+        if(gesto!==1) return;
+        stage.classList.add('is-drag');
+        var dt=e.timeStamp-tPrev;
+        if(dt>0){ vx=(e.clientX-xPrev)/dt; xPrev=e.clientX; tPrev=e.timeStamp; }
+        if(quieto.matches) return;
+        ang=base+dx/(stage.clientWidth||320)*(paso*0.9);
+        pinta();
+    },{passive:true});
+
+    function suelta(){
+        if(x0===null) return;
+        var fue=gesto===1;
+        x0=null; gesto=0; stage.classList.remove('is-drag');
+        if(!fue){ veA(meta); return; }
+        var cerca=Math.round(ang/paso)*paso;
+        /* impulso: un gesto franco pasa al siguiente asiento aunque el
+           recorrido haya sido corto */
+        if(cerca===Math.round(base/paso)*paso){
+            if(vx<-0.35||ang-base<-40) cerca-=paso;
+            else if(vx>0.35||ang-base>40) cerca+=paso;
+        }
+        veA(cerca);
+        var f=quienFrente(cerca);
+        if(hint&&f!==frente) hint.textContent='Ruta '+(f===0?'A':'B')+' al frente. Desliza para volver a la otra.';
+    }
+    window.addEventListener('pointerup',suelta,{passive:true});
+    window.addEventListener('pointercancel',suelta,{passive:true});
+
+    /* Teclado: las flechas cambian de ruta cuando el foco está en la baraja */
+    stage.setAttribute('tabindex','0');
+    stage.setAttribute('role','group');
+    stage.setAttribute('aria-label','Comparar las dos rutas, usa las flechas');
+    stage.addEventListener('keydown',function(e){
+        if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ e.preventDefault(); alFrente(frente===0?1:0); }
+    });
+
+    pinta();
 })();
 </script>
 
