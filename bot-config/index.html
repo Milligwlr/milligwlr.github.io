@@ -1030,6 +1030,14 @@
     var g = nodo('div', 'grupo'); card.appendChild(g);
     var d = estado.datos;
     var citas = (d.agenda && Array.isArray(d.agenda.citas)) ? d.agenda.citas : null;
+    // Fix 26-jul (reporte del Dr.: "dice mañana los pacientes de hoy"): la
+    // foto SWR puede ser de AYER y su etiqueta Hoy/Mañana venía congelada.
+    // Con c.t (servidor nuevo) se FILTRAN las citas ya pasadas (1 h de
+    // gracia) aquí mismo; la etiqueta se recalcula al pintar en filaCita.
+    if (citas && citas.length) {
+      var pisoAg = Date.now() - 3600000;
+      citas = citas.filter(function (c) { return !c.t || c.t >= pisoAg; });
+    }
     if (citas && citas.length) {
       citas.slice(0, 6).forEach(function (c) { g.appendChild(filaCita(c)); });
     } else {
@@ -1047,10 +1055,23 @@
     var abrir = enlaceAccion('Ver todas en el visor de chats', 'visor', 'https://alveos.mx/bot/');
     g.appendChild(abrir);
   }
+  function etiquetaDiaCita(c) {
+    // La etiqueta se calcula AL PINTAR con el reloj del dispositivo (fix
+    // 26-jul). Sin c.t (servidor viejo o foto vieja) cae a la del servidor.
+    if (!c.t) return c.dia || '';
+    var f = new Date(c.t);
+    var hoy = new Date(); hoy.setHours(0, 0, 0, 0);
+    var dif = Math.floor((f.getTime() - hoy.getTime()) / 86400000);
+    if (dif === 0) return 'Hoy';
+    if (dif === 1) return 'Mañana';
+    var dias = ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'];
+    return dias[f.getDay()] + ' ' + f.getDate();
+  }
   function filaCita(c) {
     var f = nodo('div', 'cita');
     var h = nodo('div', 'hora', c.hora || '—');
-    if (c.dia) h.appendChild(nodo('span', 'dia', c.dia));
+    var diaEtq = etiquetaDiaCita(c);
+    if (diaEtq) h.appendChild(nodo('span', 'dia', diaEtq));
     f.appendChild(h);
     var q = nodo('div', 'quien');
     q.appendChild(nodo('div', 'n', c.paciente || 'Paciente'));
