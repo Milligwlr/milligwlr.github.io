@@ -53,7 +53,10 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&display=swap">
     <link rel="preload" as="image" href="favicon.png">
-    <link rel="preload" as="image" href="images/dr-william-lara.webp" fetchpriority="high">
+    <!-- El preload debe declarar el MISMO srcset/sizes que el <img>: si solo
+         apunta al archivo grande, el navegador se baja los 80 KB de 1280px
+         ademas de la variante responsiva que si va a pintar. -->
+    <link rel="preload" as="image" href="images/dr-william-lara-640.webp" imagesrcset="images/dr-william-lara-480.webp 480w, images/dr-william-lara-640.webp 640w, images/dr-william-lara-900.webp 900w, images/dr-william-lara.webp 1280w" imagesizes="(min-width: 992px) 420px, 78vw" fetchpriority="high">
 
     <script type="application/ld+json">
 {
@@ -4230,7 +4233,7 @@
                 <div class="hero__doc">
                     <div class="hero__breath" aria-hidden="true"><i></i><i></i><i></i></div>
                     <div class="hero__doc-frame">
-                        <img src="images/dr-william-lara.webp" alt="Dr. William César Lara Vázquez, neumólogo en CDMX" width="800" height="1000" fetchpriority="high" decoding="async">
+                        <img src="images/dr-william-lara-640.webp" srcset="images/dr-william-lara-480.webp 480w, images/dr-william-lara-640.webp 640w, images/dr-william-lara-900.webp 900w, images/dr-william-lara.webp 1280w" sizes="(min-width: 992px) 420px, 78vw" alt="Dr. William César Lara Vázquez, neumólogo en CDMX" width="800" height="1000" fetchpriority="high" decoding="async">
                         <div class="hero__doc-plate">
                             <div>
                                 <div class="n">Dr. William Lara Vázquez</div>
