@@ -347,19 +347,19 @@
 .orient-deck__stage > .orient-route{grid-area:1/1;width:100%;max-width:560px;
     transition:transform .78s cubic-bezier(.16,1,.3,1),opacity .5s cubic-bezier(.16,1,.3,1),box-shadow .6s ease;
     transform-origin:50% 60%;will-change:transform}
-.orient-deck__stage > .orient-route.is-front{z-index:3;opacity:1;
+.orient-deck__stage > .orient-route.is-front{z-index:2;opacity:1;
     box-shadow:0 1px 2px rgba(16,24,40,.06),0 18px 34px -14px rgba(16,24,40,.24),0 44px 80px -40px color-mix(in srgb,var(--svc) 40%,transparent);
     animation:orientLevita 7.5s cubic-bezier(.45,0,.55,1) infinite}
-.orient-deck__stage > .orient-route.is-back{z-index:2;opacity:.58;cursor:pointer;
-    transform:translateX(38%) rotateY(-22deg) scale(.85);
+.orient-deck__stage > .orient-route.is-back{z-index:1;opacity:.42;cursor:pointer;
+    transform:translateX(34%) translateZ(-130px) rotateY(-20deg) scale(.94);
     box-shadow:0 12px 30px -16px rgba(16,24,40,.3);
     animation:orientLevitaLado 9.5s cubic-bezier(.45,0,.55,1) infinite}
 .orient-deck__stage > .orient-route.is-back:hover,
-.orient-deck__stage > .orient-route.is-back:focus-within{opacity:.8}
+.orient-deck__stage > .orient-route.is-back:focus-within{opacity:.62}
 @keyframes orientLevita{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 @keyframes orientLevitaLado{
-    0%,100%{transform:translateX(38%) translateY(0) rotateY(-22deg) scale(.85)}
-    50%{transform:translateX(38%) translateY(-15px) rotateY(-22deg) scale(.85)}}
+    0%,100%{transform:translateX(34%) translateZ(-130px) translateY(0) rotateY(-20deg) scale(.94)}
+    50%{transform:translateX(34%) translateZ(-130px) translateY(-15px) rotateY(-20deg) scale(.94)}}
 /* la sombra proyectada en el suelo es lo que hace que se lea como suspendida */
 .orient-deck__stage > .orient-route.is-front::after{content:'';position:absolute;left:12%;right:12%;bottom:-30px;
     height:22px;border-radius:50%;pointer-events:none;z-index:-1;
@@ -380,10 +380,10 @@
 /* En un telefono no hay ancho para una orbita completa: la de al lado asoma
    por la derecha y se corta en el borde, que es como se lee un carrusel. */
 @media(max-width:767.98px){
-    .orient-deck__stage > .orient-route.is-back{transform:translateX(40%) rotateY(-20deg) scale(.86)}
+    .orient-deck__stage > .orient-route.is-back{transform:translateX(36%) translateZ(-120px) rotateY(-18deg) scale(.94)}
     @keyframes orientLevitaLado{
-        0%,100%{transform:translateX(40%) translateY(0) rotateY(-20deg) scale(.86)}
-        50%{transform:translateX(40%) translateY(-12px) rotateY(-20deg) scale(.86)}}
+        0%,100%{transform:translateX(36%) translateZ(-120px) translateY(0) rotateY(-18deg) scale(.94)}
+        50%{transform:translateX(36%) translateZ(-120px) translateY(-12px) rotateY(-18deg) scale(.94)}}
     .orient-seal{font-size:.7rem;padding:5px 9px}
 }
 .orient-deck__nav{display:flex;gap:8px;justify-content:center;align-items:center;margin-top:20px;flex-wrap:wrap}
