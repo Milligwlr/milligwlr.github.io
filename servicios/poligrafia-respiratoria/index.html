@@ -354,7 +354,9 @@
 .orient-deck__stage.is-live.is-drag{cursor:grabbing}
 .orient-deck__stage.is-live.is-drag .orient-route{pointer-events:none}
 .orient-carousel{position:relative}
-.is-live .orient-route{position:absolute;top:0;left:0;right:0;margin:0;
+/* la tarjeta conserva su ancho de siempre: 560px centrados, 93% en telefono */
+.is-live .orient-route{position:absolute;top:0;left:0;right:0;
+    width:min(93%,560px);margin:0 auto;
     transform-origin:50% 58%;will-change:transform,opacity;
     transition:box-shadow .6s ease}
 /* la que queda al frente manda visualmente */
@@ -684,11 +686,9 @@
 </div>
 <p class="orient-route__lead">Conviene el laboratorio si algo de esto es tu caso:</p>
 <ul class="orient-check">
-<li><i class="bi bi-dot" aria-hidden="true"></i><span>Enfermedad importante de corazón o pulmón.</span></li>
-<li><i class="bi bi-dot" aria-hidden="true"></i><span>Problemas para ventilar, o hipoventilación por obesidad.</span></li>
-<li><i class="bi bi-dot" aria-hidden="true"></i><span>Enfermedad neuromuscular o uso crónico de opioides.</span></li>
-<li><i class="bi bi-dot" aria-hidden="true"></i><span>Infarto o embolia previos, o insomnio grave.</span></li>
-<li><i class="bi bi-dot" aria-hidden="true"></i><span>Sospecha de apnea central, piernas inquietas o narcolepsia.</span></li>
+<li><i class="bi bi-dot" aria-hidden="true"></i><span>Enfermedad grave de corazón, pulmón o neuromuscular.</span></li>
+<li><i class="bi bi-dot" aria-hidden="true"></i><span><b>Hipoventilación por obesidad</b>, opioides crónicos, o infarto o embolia previos.</span></li>
+<li><i class="bi bi-dot" aria-hidden="true"></i><span>Sospecha de apnea central, piernas inquietas, narcolepsia o insomnio grave.</span></li>
 <li><i class="bi bi-dot" aria-hidden="true"></i><span>Poligrafía en casa normal pero con síntomas que siguen.</span></li>
 </ul>
 <div class="orient-seals orient-seals--b">
