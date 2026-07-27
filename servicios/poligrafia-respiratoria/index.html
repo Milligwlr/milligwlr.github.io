@@ -346,11 +346,11 @@
    un laboratorio, y el componente tiene que sentirse tan cuidado como el
    equipo que se lleva el paciente. La sombra va en tres capas (contacto,
    cuerpo, ambiente) porque una sola sombra difusa lee como plantilla. */
-.orient-deck__stage{display:grid;grid-template-columns:1fr;align-items:start;justify-items:center;touch-action:pan-y;perspective:1250px;perspective-origin:50% 45%;
+.orient-deck__stage{display:grid;grid-template-columns:1fr;align-items:start;justify-items:center;touch-action:pan-y;perspective:1600px;perspective-origin:50% 42%;
     padding:10px 0 26px;transform-style:preserve-3d}
 .orient-deck__stage > .orient-route{grid-area:1/1;width:100%;max-width:560px;
-    transition:transform .78s cubic-bezier(.16,1,.3,1),opacity .5s cubic-bezier(.16,1,.3,1),box-shadow .6s ease;
-    transform-origin:50% 60%;will-change:transform}
+    transition:transform 1.05s cubic-bezier(.62,.02,.24,1),opacity .8s cubic-bezier(.62,.02,.24,1),box-shadow .9s ease;
+    transform-origin:50% 55%;will-change:transform}
 .orient-deck__stage > .orient-route.is-front{z-index:2;opacity:1;
     box-shadow:0 1px 2px rgba(16,24,40,.06),0 18px 34px -14px rgba(16,24,40,.24),0 44px 80px -40px color-mix(in srgb,var(--svc) 40%,transparent);
     animation:orientLevita 7.5s cubic-bezier(.45,0,.55,1) infinite}
@@ -360,7 +360,7 @@
     animation:orientLevitaLado 9.5s cubic-bezier(.45,0,.55,1) infinite}
 .orient-deck__stage > .orient-route.is-back:hover,
 .orient-deck__stage > .orient-route.is-back:focus-within{opacity:.62}
-@keyframes orientLevita{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes orientLevita{0%,100%{transform:translateY(0) rotateY(0)}50%{transform:translateY(-10px) rotateY(-1.2deg)}}
 @keyframes orientLevitaLado{
     0%,100%{transform:translateX(34%) translateZ(-130px) translateY(0) rotateY(-20deg) scale(.94)}
     50%{transform:translateX(34%) translateZ(-130px) translateY(-15px) rotateY(-20deg) scale(.94)}}
@@ -444,14 +444,23 @@
    de metrica-heroe, que se lee como publicidad justo donde hace falta que se
    lea como evidencia. Ahora la cifra vive DENTRO de la frase que la matiza, y
    las tres pruebas se apilan como renglones citables, con la fuente al pie. */
-.trust-card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:26px 24px;margin-top:18px;
+.trust-card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:22px 20px;margin-top:16px;
     box-shadow:0 1px 2px rgba(16,24,40,.05),0 14px 34px -20px rgba(16,24,40,.22)}
-.trust-claim{margin:0 0 4px;font-size:1.06rem;line-height:1.5;color:var(--navy);font-weight:600;letter-spacing:-.01em}
-.trust-claim b{font-size:1.5rem;font-weight:800;color:var(--svc);letter-spacing:-.03em;
+.trust-claim{display:flex;align-items:center;gap:14px;margin:0 0 10px;font-size:.95rem;
+    line-height:1.4;color:var(--navy);font-weight:600;letter-spacing:-.01em}
+/* El dato deja de ser una palabra dentro de la frase y pasa a ser una pieza
+   con su propio peso, con la frase al lado explicando de que es ese numero. */
+.trust-claim b{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    min-width:92px;padding:12px 10px;border-radius:16px;
+    background:linear-gradient(155deg,color-mix(in srgb,var(--svc) 12%,#fff),color-mix(in srgb,var(--svc) 5%,#fff));
+    border:1px solid color-mix(in srgb,var(--svc) 22%,transparent);
+    font-size:1.45rem;font-weight:800;color:var(--svc);letter-spacing:-.035em;line-height:1;
     font-variant-numeric:tabular-nums}
-.trust-caveat{margin:0 0 20px;font-size:.88rem;line-height:1.55;color:var(--text-muted)}
+.trust-claim b small{display:block;margin-top:5px;font-size:.7rem;font-weight:700;
+    letter-spacing:.06em;text-transform:uppercase;color:color-mix(in srgb,var(--svc) 78%,var(--navy))}
+.trust-caveat{margin:0 0 16px;font-size:.87rem;line-height:1.5;color:var(--text-muted)}
 .trust-list{list-style:none;padding:0;margin:0;display:grid}
-.trust-list li{display:flex;gap:13px;align-items:flex-start;padding:14px 0;
+.trust-list li{display:flex;gap:12px;align-items:flex-start;padding:12px 0;
     border-top:1px solid var(--border);font-size:.92rem;line-height:1.55;color:var(--text)}
 .trust-list li:first-child{border-top:0;padding-top:0}
 .trust-list li:last-child{padding-bottom:0}
@@ -460,7 +469,11 @@
 .trust-source{display:flex;align-items:center;gap:8px;margin:20px 0 0;padding-top:16px;
     border-top:1px solid var(--border);font-size:.88rem;line-height:1.5;color:var(--text-muted)}
 .trust-source i{color:var(--svc)}
-@media(max-width:520px){.trust-card{padding:22px 18px}.trust-claim{font-size:1rem}.trust-claim b{font-size:1.35rem}}
+@media(max-width:520px){.trust-card{padding:18px 16px}.trust-claim{gap:12px;font-size:.9rem}
+.trust-claim b{min-width:80px;padding:10px 8px;font-size:1.28rem}
+.trust-list li{padding:10px 0;font-size:.87rem;line-height:1.5}
+.trust-caveat{margin-bottom:12px;font-size:.85rem}
+.trust-source{margin-top:14px;padding-top:12px;font-size:.82rem}}
 </style>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
 <script type="application/ld+json">
@@ -682,21 +695,17 @@
 <h2 class="svc-section__title">¿Un estudio en casa mide <em>igual de bien?</em></h2>
 <p class="svc-section__lead">Es la duda más razonable, y la respuesta corta es que sí, cuando ya hay sospecha clara de apnea. Estos son los números y quién los respalda.</p>
 <div class="trust-card">
-<p class="trust-claim"><b>84 a 91%</b> de exactitud cuando ya hay sospecha clara de apnea.</p>
-<p class="trust-caveat">Si la sospecha es baja cae a 70-78%, y por eso la valoración médica previa es la que hace confiable al estudio. No es un aparato que se manda a domicilio sin más.</p>
+<p class="trust-claim"><b>84-91%<small>de exactitud</small></b> <span>cuando ya hay sospecha clara de apnea.</span></p>
+<p class="trust-caveat">Si la sospecha es baja cae a 70-78%: por eso la valoración previa es la que hace confiable al estudio.</p>
 <ul class="trust-list">
 <li><i class="bi bi-journal-check" aria-hidden="true"></i><span>Las guías del sueño <b>(AASM)</b> lo respaldan para el caso típico de apnea.</span></li>
-<li><i class="bi bi-person-badge-fill" aria-hidden="true"></i><span>El resultado lo decide <b>el neumólogo revisando el trazo completo</b>, no el número automático del aparato.</span></li>
-<li><i class="bi bi-shield-fill-check" aria-hidden="true"></i><span>Si sale negativo y tus síntomas siguen, el paso correcto es la <b>polisomnografía</b>: te canalizo, no te dejo a medias.</span></li>
+<li><i class="bi bi-person-badge-fill" aria-hidden="true"></i><span>Lo interpreto yo <b>revisando el trazo completo</b>, no el número que da el aparato.</span></li>
+<li><i class="bi bi-shield-fill-check" aria-hidden="true"></i><span>Si sale negativo y los síntomas siguen, te canalizo a <b>polisomnografía</b>.</span></li>
 </ul>
-<p class="trust-source"><i class="bi bi-bookmark-check-fill" aria-hidden="true"></i> <span>Cifras de la revisión de la guía de la American Academy of Sleep Medicine.</span></p>
+<p class="trust-source"><i class="bi bi-bookmark-check-fill" aria-hidden="true"></i> <span>Cifras de la guía de la American Academy of Sleep Medicine.</span></p>
 </div>
 </div>
 
-<!-- RESPUESTA DIRECTA (AEO) -->
-<div class="svc-section reveal" style="margin-bottom:40px">
-<p class="svc-section__lead" style="margin:0;padding:18px 22px;background:rgba(108,92,231,.06);border-left:4px solid var(--svc);border-radius:12px;max-width:760px;color:#3a4a5c">La <strong>poligrafía respiratoria</strong> es el <strong>estudio del sueño</strong> que haces en casa una sola noche para detectar <a href="/enfermedades/apnea-del-sueno/" style="color:var(--svc);font-weight:700">apnea del sueño</a>. Mide flujo de aire, esfuerzo, oxígeno (SpO₂) y posición, y calcula tu IAH (índice de apnea-hipopnea) para definir la severidad. Lo realiza e interpreta un neumólogo en la CDMX, en consultorio o a domicilio.</p>
-</div>
 <!-- ¿PARA QUIÉN ES? -->
 <div class="svc-section reveal">
 <span class="svc-section__eyebrow"><i class="bi bi-people-fill"></i> ¿Para quién es?</span>
