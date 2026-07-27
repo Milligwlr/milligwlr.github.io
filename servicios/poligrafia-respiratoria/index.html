@@ -342,24 +342,24 @@
    un laboratorio, y el componente tiene que sentirse tan cuidado como el
    equipo que se lleva el paciente. La sombra va en tres capas (contacto,
    cuerpo, ambiente) porque una sola sombra difusa lee como plantilla. */
-.orient-deck__stage{display:grid;align-items:start;perspective:1250px;perspective-origin:50% 45%;
-    padding:14px 0 34px;transform-style:preserve-3d}
-.orient-deck__stage > .orient-route{grid-area:1/1;
+.orient-deck__stage{display:grid;grid-template-columns:1fr;align-items:start;justify-items:center;perspective:1250px;perspective-origin:50% 45%;
+    padding:10px 0 26px;transform-style:preserve-3d}
+.orient-deck__stage > .orient-route{grid-area:1/1;width:100%;max-width:560px;
     transition:transform .78s cubic-bezier(.16,1,.3,1),opacity .5s cubic-bezier(.16,1,.3,1),box-shadow .6s ease;
     transform-origin:50% 60%;will-change:transform}
 .orient-deck__stage > .orient-route.is-front{z-index:3;opacity:1;
     box-shadow:0 1px 2px rgba(16,24,40,.06),0 18px 34px -14px rgba(16,24,40,.24),0 44px 80px -40px color-mix(in srgb,var(--svc) 40%,transparent);
     animation:orientLevita 7.5s cubic-bezier(.45,0,.55,1) infinite}
 .orient-deck__stage > .orient-route.is-back{z-index:2;opacity:.58;cursor:pointer;
-    transform:translateX(56%) rotateY(-24deg) scale(.85);
+    transform:translateX(38%) rotateY(-22deg) scale(.85);
     box-shadow:0 12px 30px -16px rgba(16,24,40,.3);
     animation:orientLevitaLado 9.5s cubic-bezier(.45,0,.55,1) infinite}
 .orient-deck__stage > .orient-route.is-back:hover,
 .orient-deck__stage > .orient-route.is-back:focus-within{opacity:.8}
 @keyframes orientLevita{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 @keyframes orientLevitaLado{
-    0%,100%{transform:translateX(56%) translateY(0) rotateY(-24deg) scale(.85)}
-    50%{transform:translateX(56%) translateY(-15px) rotateY(-24deg) scale(.85)}}
+    0%,100%{transform:translateX(38%) translateY(0) rotateY(-22deg) scale(.85)}
+    50%{transform:translateX(38%) translateY(-15px) rotateY(-22deg) scale(.85)}}
 /* la sombra proyectada en el suelo es lo que hace que se lea como suspendida */
 .orient-deck__stage > .orient-route.is-front::after{content:'';position:absolute;left:12%;right:12%;bottom:-30px;
     height:22px;border-radius:50%;pointer-events:none;z-index:-1;
@@ -368,20 +368,14 @@
 @keyframes orientSombra{0%,100%{opacity:.85;transform:scaleX(1)}50%{opacity:.55;transform:scaleX(.9)}}
 
 /* sellos de seguridad: el argumento de confianza, dentro de la tarjeta */
-.orient-seals{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px}
-.orient-seal{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:9px;
+.orient-seals{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;padding-top:10px;border-top:1px solid color-mix(in srgb,var(--svc) 12%,transparent)}
+.orient-seal{display:inline-flex;align-items:center;gap:5px;padding:5px 9px;border-radius:8px;
     background:color-mix(in srgb,var(--svc) 7%,#fff);border:1px solid color-mix(in srgb,var(--svc) 16%,transparent);
-    font-size:.73rem;font-weight:700;color:var(--navy);line-height:1.3}
+    font-size:.7rem;font-weight:700;color:var(--navy);line-height:1.25}
 .orient-seal i{color:var(--svc);font-size:.85rem}
 
-.orient-deck__arrow{position:absolute;top:44%;transform:translateY(-50%);z-index:6;
-    width:46px;height:46px;border-radius:50%;border:1px solid color-mix(in srgb,var(--svc) 18%,transparent);
-    background:#fff;color:var(--svc);cursor:pointer;display:flex;align-items:center;justify-content:center;
-    font-size:1.05rem;box-shadow:0 2px 6px rgba(16,24,40,.08),0 12px 26px -12px rgba(16,24,40,.28);
-    transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s ease}
-.orient-deck__arrow--prev{left:-4px}
-.orient-deck__arrow--next{right:-4px}
-.orient-deck__arrow:hover{transform:translateY(-50%) scale(1.08);box-shadow:0 4px 10px rgba(16,24,40,.1),0 16px 32px -12px color-mix(in srgb,var(--svc) 45%,transparent)}
+.orient-deck__arrow{width:44px;height:44px;flex:0 0 44px;border-radius:50%;border:1px solid color-mix(in srgb,var(--svc) 18%,transparent);background:#fff;color:var(--svc);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;box-shadow:0 2px 6px rgba(16,24,40,.08);transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s ease}
+.orient-deck__arrow:hover{transform:scale(1.08);box-shadow:0 10px 24px -10px color-mix(in srgb,var(--svc) 50%,transparent)}
 .orient-deck__arrow:focus-visible{outline:2px solid var(--svc);outline-offset:3px}
 /* En un telefono no hay ancho para una orbita completa: la de al lado asoma
    por la derecha y se corta en el borde, que es como se lee un carrusel. */
@@ -390,17 +384,18 @@
     @keyframes orientLevitaLado{
         0%,100%{transform:translateX(40%) translateY(0) rotateY(-20deg) scale(.86)}
         50%{transform:translateX(40%) translateY(-12px) rotateY(-20deg) scale(.86)}}
-    .orient-deck__arrow--prev{left:-2px}
-    .orient-deck__arrow--next{right:-2px}
     .orient-seal{font-size:.7rem;padding:5px 9px}
 }
-.orient-deck__nav{display:flex;gap:8px;justify-content:center;margin-top:26px}
+.orient-deck__nav{display:flex;gap:8px;justify-content:center;align-items:center;margin-top:20px;flex-wrap:wrap}
 .orient-deck__dot{min-height:44px;padding:9px 18px;border-radius:100px;border:1.5px solid rgba(108,92,231,.22);
     background:#fff;color:var(--text-muted);font-family:inherit;font-size:.8rem;font-weight:700;cursor:pointer;
     display:inline-flex;align-items:center;gap:7px;transition:background .25s,color .25s,border-color .25s,transform .25s}
 .orient-deck__dot[aria-selected="true"]{background:linear-gradient(135deg,var(--svc),var(--svc-dark));color:#fff;border-color:transparent;box-shadow:0 8px 22px rgba(108,92,231,.28)}
 .orient-deck__dot:focus-visible{outline:2px solid var(--svc);outline-offset:3px}
 .orient-deck__hint{text-align:center;font-size:.78rem;color:var(--text-muted);margin:10px 0 0}
+.orient-deck__hint a{color:var(--svc);font-weight:700}
+.orient-aside{display:flex;gap:9px;align-items:flex-start;margin:14px 0 0;padding:12px 14px;border-radius:12px;background:color-mix(in srgb,var(--svc) 6%,#fff);font-size:.84rem;line-height:1.5;color:var(--text-muted)}
+.orient-aside i{color:var(--svc);flex-shrink:0;margin-top:2px}
 @media(hover:hover){.orient-deck__dot:hover{transform:translateY(-2px)}}
 /* Sin JS, o con movimiento reducido, vuelven a ser dos tarjetas apiladas */
 .orient-deck__stage:not(.is-live) > .orient-route{position:static;transform:none;opacity:1;filter:none;animation:none}
@@ -410,22 +405,23 @@
     .orient-deck__stage > .orient-route{animation:none!important;transition:opacity .2s}
     .orient-deck__stage > .orient-route.is-back{transform:translate3d(0,20px,-150px) rotateX(7deg) scale(.93)}
 }
-.orient-route{border-radius:20px;padding:24px 22px;position:relative}
+.orient-route{border-radius:20px;padding:20px 18px;position:relative}
 .orient-route--a{background:linear-gradient(150deg,#fff,#f6f5ff);border:2px solid rgba(108,92,231,.28);box-shadow:0 16px 40px -20px rgba(72,52,212,.45)}
 .orient-route--b{background:#fbfbfd;border:1px solid rgba(0,0,0,.09)}
 .orient-route__badge{display:inline-flex;align-items:center;gap:7px;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1.6px;border-radius:100px;padding:6px 13px;margin-bottom:14px}
 .orient-route--a .orient-route__badge{background:linear-gradient(135deg,var(--svc),var(--svc-dark));color:#fff}
 .orient-route--b .orient-route__badge{background:rgba(0,0,0,.05);color:var(--text-muted)}
-.orient-route__head{display:flex;gap:13px;align-items:center;margin-bottom:12px}
+.orient-route__head{display:flex;gap:11px;align-items:center;margin-bottom:10px}
 .orient-route__ic{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
 .orient-route--a .orient-route__ic{background:linear-gradient(135deg,var(--svc),var(--svc-dark));color:#fff;box-shadow:0 8px 20px rgba(108,92,231,.34)}
 .orient-route--b .orient-route__ic{background:rgba(0,0,0,.05);color:var(--text-muted)}
 .orient-route__rt{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1.8px;color:var(--text-muted);margin-bottom:2px}
 .orient-route__title{font-size:1.08rem;font-weight:800;color:var(--navy);margin:0;letter-spacing:-.015em;line-height:1.25}
-.orient-route__lead{font-size:.93rem;color:var(--text-muted);line-height:1.6;margin:0 0 14px}
-.orient-check{list-style:none;padding:0;margin:0;display:grid;gap:9px}
-.orient-check li{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;color:var(--text);line-height:1.5}
-.orient-check i{color:var(--svc);flex-shrink:0;margin-top:2px}
+.orient-route__lead{font-size:.88rem;color:var(--text-muted);line-height:1.5;margin:0 0 12px}
+.orient-check{list-style:none;padding:0;margin:0;display:grid;gap:7px}
+.orient-check li{display:flex;gap:9px;align-items:flex-start;font-size:.86rem;color:var(--text);line-height:1.45}
+.orient-check i{color:var(--svc);flex-shrink:0;margin-top:3px;font-size:.9rem}
+.orient-check li > span{flex:1;min-width:0}
 .orient-route--b .orient-check i{color:var(--text-muted)}
 .orient-route__note{display:flex;gap:10px;align-items:flex-start;margin:16px 0 0;padding:13px 15px;background:rgba(108,92,231,.06);border-radius:12px;font-size:.87rem;color:var(--text-muted);line-height:1.55}
 .orient-route__note i{color:var(--svc);flex-shrink:0;margin-top:2px}
@@ -437,7 +433,7 @@
 .orient-points li{display:flex;gap:11px;align-items:flex-start;font-size:.9rem;color:rgba(255,255,255,.78);line-height:1.55}
 .orient-points i{color:var(--svc-light);flex-shrink:0;margin-top:3px}
 .orient-points b{color:#fff}
-@media(min-width:900px){.orient-grid{grid-template-columns:1.05fr .95fr;align-items:start}.orient-trust{grid-template-columns:.85fr 1.15fr;align-items:center;gap:26px}}
+@media(min-width:900px){.orient-trust{grid-template-columns:.85fr 1.15fr;align-items:center;gap:26px}}
 </style>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
 <script type="application/ld+json">
@@ -591,77 +587,10 @@
 <div class="section-mesh"></div>
 <div class="container">
 
-<!-- SERVICIOS STRIP -->
-<div class="diseases-strip reveal">
-<div class="diseases-strip__header">
-<span class="diseases-strip__label">Servicios que ofrecemos</span>
-<span class="diseases-strip__scroll-hint d-none d-md-flex"><i class="bi bi-hand-index-thumb" aria-hidden="true"></i> Arrastra para explorar</span>
-</div>
-<div class="diseases-strip__nav-wrap">
-<div class="diseases-strip__track" id="dsTrack" role="list" aria-label="Servicios">
-<a href="/servicios/espirometria/" role="listitem"><div class="ds-icon"><i class="bi bi-wind"></i></div><span>Espirometría</span></a>
-<a href="/servicios/poligrafia-respiratoria/" class="active" role="listitem"><div class="ds-icon"><i class="bi bi-moon-stars-fill"></i></div><span>Poligrafía</span></a>
-<a href="/servicios/titulacion-presion-positiva/" role="listitem"><div class="ds-icon"><i class="bi bi-soundwave"></i></div><span>Titulación CPAP</span></a>
-<a href="/servicios/feno/" role="listitem"><div class="ds-icon"><i class="bi bi-droplet-fill"></i></div><span>FeNO</span></a>
-<a href="/servicios/broncoscopia/" role="listitem"><div class="ds-icon"><i class="bi bi-camera-video"></i></div><span>Broncoscopia</span></a>
-<a href="/servicios/toracocentesis/" role="listitem"><div class="ds-icon"><i class="bi bi-droplet-half"></i></div><span>Toracocentesis</span></a>
-<a href="/servicios/cateter-pleural-multiproposito/" role="listitem"><div class="ds-icon"><i class="bi bi-hospital"></i></div><span>Catéter pleural</span></a>
-<a href="/servicios/seguimiento-enfermedades-cronicas/" role="listitem"><div class="ds-icon"><i class="bi bi-calendar-heart"></i></div><span>Seguimiento crónico</span></a>
-<a href="/servicios/tratamiento-dejar-de-fumar/" role="listitem"><div class="ds-icon"><i class="bi bi-fire"></i></div><span>Dejar de fumar</span></a>
-<a href="/servicios/teleconsulta/" role="listitem"><div class="ds-icon"><i class="bi bi-camera-reels"></i></div><span>Teleconsulta</span></a>
-<a href="/servicios/espirometria/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-wind"></i></div><span>Espirometría</span></a>
-<a href="/servicios/poligrafia-respiratoria/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-moon-stars-fill"></i></div><span>Poligrafía</span></a>
-<a href="/servicios/titulacion-presion-positiva/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-soundwave"></i></div><span>Titulación CPAP</span></a>
-<a href="/servicios/feno/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-droplet-fill"></i></div><span>FeNO</span></a>
-<a href="/servicios/broncoscopia/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-camera-video"></i></div><span>Broncoscopia</span></a>
-</div>
-</div>
-</div>
-
 <!-- RESPUESTA DIRECTA (AEO) -->
 <div class="svc-section reveal" style="margin-bottom:40px">
 <p class="svc-section__lead" style="margin:0;padding:18px 22px;background:rgba(108,92,231,.06);border-left:4px solid var(--svc);border-radius:12px;max-width:760px;color:#3a4a5c">La <strong>poligrafía respiratoria</strong> es el <strong>estudio del sueño</strong> que haces en casa una sola noche para detectar <a href="/enfermedades/apnea-del-sueno/" style="color:var(--svc);font-weight:700">apnea del sueño</a>. Mide flujo de aire, esfuerzo, oxígeno (SpO₂) y posición, y calcula tu IAH (índice de apnea-hipopnea) para definir la severidad. Lo realiza e interpreta un neumólogo en la CDMX, en consultorio o a domicilio.</p>
 </div>
-
-<!-- QUÉ INCLUYE EL ESTUDIO -->
-<div class="svc-section reveal">
-<span class="svc-section__eyebrow"><i class="bi bi-box-seam"></i> En qué consiste</span>
-<h2 class="svc-section__title">Equipo, una noche en casa y <em>lectura médica</em></h2>
-<p class="svc-section__lead">Así se ve y así funciona el estudio, de principio a fin, en cuatro momentos. No hay internamiento, no hay técnico vigilándote y no hay cables conectados a la pared.</p>
-
-<div class="svc-deliver">
-<figure class="svc-deliver__fig">
-<img src="/images/poligrafia-cama-640.webp"
-     srcset="/images/poligrafia-cama-420.webp 420w, /images/poligrafia-cama-640.webp 640w, /images/poligrafia-cama-960.webp 960w"
-     sizes="(max-width:899px) 92vw, 40vw"
-     width="640" height="480" loading="lazy" decoding="async"
-     alt="Paciente durmiendo en su propia cama junto a su pareja, con la cánula nasal, la banda torácica y el oxímetro de dedo de la poligrafía respiratoria">
-<figcaption><i class="bi bi-activity" aria-hidden="true"></i><span><strong>Equipo tipo III a batería.</strong> Registra tu respiración toda la noche, en tu cama.</span></figcaption>
-</figure>
-
-<ol class="svc-deliver__list">
-<li><span class="svc-deliver__ic"><i class="bi bi-mortarboard-fill"></i><span class="svc-step__n" aria-hidden="true">1</span></span><div><span class="svc-step__when">En tu consulta</span><strong>Te enseño a colocártelo</strong><p>Te entrego el equipo y lo practicamos juntos: cánula nasal, banda torácica y oxímetro de dedo. Toma unos 10 minutos y te vas sabiendo colocártelo tú.</p></div></li>
-<li><span class="svc-deliver__ic"><i class="bi bi-moon-stars-fill"></i><span class="svc-step__n" aria-hidden="true">2</span></span><div><span class="svc-step__when">Esa noche, en tu casa</span><strong>Duermes tu noche normal</strong><p>En tu colchón, con tu rutina y con tu pareja al lado si es el caso. Puedes voltearte y levantarte al baño. Al día siguiente devuelves el equipo.</p></div></li>
-<li><span class="svc-deliver__ic"><i class="bi bi-person-badge-fill"></i><span class="svc-step__n" aria-hidden="true">3</span></span><div><span class="svc-step__when">Al día siguiente</span><strong>Lo leo yo, no un software</strong><p>Reviso el trazo completo de la noche: IAH, caídas de oxígeno, ronquido y posición. La severidad la define un neumólogo, no el número automático del aparato.</p></div></li>
-<li><span class="svc-deliver__ic"><i class="bi bi-clipboard2-check-fill"></i><span class="svc-step__n" aria-hidden="true">4</span></span><div><span class="svc-step__when">En tu consulta de resultados</span><strong>Te entrego el reporte y definimos el plan</strong><p>Agendamos una segunda cita, tu consulta de resultados. Ahí te entrego el reporte, te explico qué significa tu IAH y definimos juntos qué sigue, sea medidas posicionales, avance mandibular o CPAP. No te quedas con un PDF que nadie te explica.</p></div></li>
-</ol>
-</div>
-</div>
-
-<!-- BENEFICIOS -->
-<div class="svc-section reveal">
-<span class="svc-section__eyebrow"><i class="bi bi-gift-fill"></i> Qué te llevas</span>
-<h2 class="svc-section__title">Una noche. <em>Cuatro respuestas claras.</em></h2>
-<p class="svc-section__lead">No vas a pasar la noche enchufado a una pared en un cuarto ajeno. Sales con un diagnóstico, una severidad y un plan.</p>
-
-<div class="benefit-grid">
-<div class="benefit-card"><div class="benefit-card__icon"><i class="bi bi-house-heart-fill"></i></div><h4>En tu cama</h4><p>Tu colchón, tu rutina</p></div>
-<div class="benefit-card"><div class="benefit-card__icon"><i class="bi bi-moon-fill"></i></div><h4>Una noche</h4><p>Duermes y devuelves</p></div>
-<div class="benefit-card"><div class="benefit-card__icon"><i class="bi bi-bag-check-fill"></i></div><h4>Equipo portátil</h4><p>Cabe en una bolsa pequeña</p></div>
-<div class="benefit-card"><div class="benefit-card__icon"><i class="bi bi-graph-up-arrow"></i></div><h4>IAH y oxígeno</h4><p>Severidad clara</p></div>
-</div>
-</div>
-
 <!-- ¿PARA QUIÉN ES? -->
 <div class="svc-section reveal">
 <span class="svc-section__eyebrow"><i class="bi bi-people-fill"></i> ¿Para quién es?</span>
@@ -675,7 +604,6 @@
 <div class="who-card"><div class="who-card__icon"><i class="bi bi-car-front-fill"></i></div><h4>Sueño al manejar</h4><p>O en juntas, comidas, TV</p></div>
 </div>
 </div>
-
 <!-- CUESTIONARIO STOP-BANG -->
 <div class="svc-section reveal" id="stop-bang">
 <span class="svc-section__eyebrow"><i class="bi bi-ui-checks"></i> Autoevaluación</span>
@@ -789,7 +717,6 @@
 </div>
 </div>
 </div>
-
 <!-- POR QUÉ CONVIENE SABERLO -->
 <!-- REGLA DE EVIDENCIA (jul-2026; decision clinica del Dr. Lara, neumologo INER = Capa 3 del gate).
      RIESGOS de la apnea NO TRATADA: se NOMBRAN tal cual. Asociacion fuerte y documentada (AHA/Mayo/Cleveland/NHLBI). NO es alarmismo.
@@ -829,7 +756,83 @@
 </div>
 <p class="osa-more"><i class="bi bi-book-half" aria-hidden="true"></i> ¿Quieres entender a fondo por qué conviene atenderla, enfermedad por enfermedad? <a href="/enfermedades/apnea-del-sueno/" data-cta="osa-apnea-link">Léelo en la página de apnea del sueño</a>.</p>
 </div>
+<!-- QUÉ INCLUYE EL ESTUDIO -->
+<div class="svc-section reveal">
+<span class="svc-section__eyebrow"><i class="bi bi-box-seam"></i> En qué consiste</span>
+<h2 class="svc-section__title">Equipo, una noche en casa y <em>lectura médica</em></h2>
+<p class="svc-section__lead">Así se ve y así funciona el estudio, de principio a fin, en cuatro momentos. No hay internamiento, no hay técnico vigilándote y no hay cables conectados a la pared.</p>
 
+<div class="svc-deliver">
+<figure class="svc-deliver__fig">
+<img src="/images/poligrafia-cama-640.webp"
+     srcset="/images/poligrafia-cama-420.webp 420w, /images/poligrafia-cama-640.webp 640w, /images/poligrafia-cama-960.webp 960w"
+     sizes="(max-width:899px) 92vw, 40vw"
+     width="640" height="480" loading="lazy" decoding="async"
+     alt="Paciente durmiendo en su propia cama junto a su pareja, con la cánula nasal, la banda torácica y el oxímetro de dedo de la poligrafía respiratoria">
+<figcaption><i class="bi bi-activity" aria-hidden="true"></i><span><strong>Equipo tipo III a batería.</strong> Registra tu respiración toda la noche, en tu cama.</span></figcaption>
+</figure>
+
+<ol class="svc-deliver__list">
+<li><span class="svc-deliver__ic"><i class="bi bi-mortarboard-fill"></i><span class="svc-step__n" aria-hidden="true">1</span></span><div><span class="svc-step__when">En tu consulta</span><strong>Te enseño a colocártelo</strong><p>Te entrego el equipo y lo practicamos juntos: cánula nasal, banda torácica y oxímetro de dedo. Toma unos 10 minutos y te vas sabiendo colocártelo tú.</p></div></li>
+<li><span class="svc-deliver__ic"><i class="bi bi-moon-stars-fill"></i><span class="svc-step__n" aria-hidden="true">2</span></span><div><span class="svc-step__when">Esa noche, en tu casa</span><strong>Duermes tu noche normal</strong><p>En tu colchón, con tu rutina y con tu pareja al lado si es el caso. Puedes voltearte y levantarte al baño. Al día siguiente devuelves el equipo.</p></div></li>
+<li><span class="svc-deliver__ic"><i class="bi bi-person-badge-fill"></i><span class="svc-step__n" aria-hidden="true">3</span></span><div><span class="svc-step__when">Al día siguiente</span><strong>Lo leo yo, no un software</strong><p>Reviso el trazo completo de la noche: IAH, caídas de oxígeno, ronquido y posición. La severidad la define un neumólogo, no el número automático del aparato.</p></div></li>
+<li><span class="svc-deliver__ic"><i class="bi bi-clipboard2-check-fill"></i><span class="svc-step__n" aria-hidden="true">4</span></span><div><span class="svc-step__when">En tu consulta de resultados</span><strong>Te entrego el reporte y definimos el plan</strong><p>Agendamos una segunda cita, tu consulta de resultados. Ahí te entrego el reporte, te explico qué significa tu IAH y definimos juntos qué sigue, sea medidas posicionales, avance mandibular o CPAP. No te quedas con un PDF que nadie te explica.</p></div></li>
+</ol>
+</div>
+</div>
+<!-- BENEFICIOS -->
+<div class="svc-section reveal">
+<span class="svc-section__eyebrow"><i class="bi bi-gift-fill"></i> Qué te llevas</span>
+<h2 class="svc-section__title">Una noche. <em>Cuatro respuestas claras.</em></h2>
+<p class="svc-section__lead">No vas a pasar la noche enchufado a una pared en un cuarto ajeno. Sales con un diagnóstico, una severidad y un plan.</p>
+
+<div class="benefit-grid">
+<div class="benefit-card"><div class="benefit-card__icon"><i class="bi bi-house-heart-fill"></i></div><h4>En tu cama</h4><p>Tu colchón, tu rutina</p></div>
+<div class="benefit-card"><div class="benefit-card__icon"><i class="bi bi-moon-fill"></i></div><h4>Una noche</h4><p>Duermes y devuelves</p></div>
+<div class="benefit-card"><div class="benefit-card__icon"><i class="bi bi-bag-check-fill"></i></div><h4>Equipo portátil</h4><p>Cabe en una bolsa pequeña</p></div>
+<div class="benefit-card"><div class="benefit-card__icon"><i class="bi bi-graph-up-arrow"></i></div><h4>IAH y oxígeno</h4><p>Severidad clara</p></div>
+</div>
+</div>
+<!-- QUÉ NO ES -->
+<div class="svc-section reveal">
+<span class="svc-section__eyebrow"><i class="bi bi-shield-check"></i> Lo que <em>no</em> es</span>
+<h2 class="svc-section__title">6 miedos comunes <em>desactivados</em></h2>
+<p class="svc-section__lead">Lo que más preocupa a los pacientes antes del estudio, y por qué no es para tanto:</p>
+
+<div class="myth reveal">
+<div class="myth__inner">
+<div class="myth__head">
+<div class="myth__badge"><i class="bi bi-check2-circle"></i></div>
+<h3 class="myth__title">Lo que <em style="font-style:normal;color:var(--svc-light)">no</em> implica este estudio:</h3>
+</div>
+<ul class="myth__list">
+<li><i class="bi bi-x-circle-fill"></i> No te internamos en hospital</li>
+<li><i class="bi bi-x-circle-fill"></i> No hay cables a la pared, equipo a batería</li>
+<li><i class="bi bi-x-circle-fill"></i> No requiere acompañante esa noche</li>
+<li><i class="bi bi-x-circle-fill"></i> No te limita si te volteas o te levantas al baño</li>
+<li><i class="bi bi-x-circle-fill"></i> No interfiere si duermes con pareja</li>
+<li><i class="bi bi-x-circle-fill"></i> No es claustrofóbico: solo cánula y bandas</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- CONFIABILIDAD -->
+<div class="svc-section reveal" id="que-tan-confiable">
+<span class="svc-section__eyebrow"><i class="bi bi-patch-check-fill"></i> Qué tan confiable</span>
+<h2 class="svc-section__title">¿Un estudio en casa mide <em>igual de bien?</em></h2>
+<p class="svc-section__lead">Es la duda más razonable, y la respuesta corta es que sí, cuando ya hay sospecha clara de apnea. Estos son los números y quién los respalda.</p>
+<div class="orient-trust" role="group" aria-label="Por qué es confiable el estudio en casa">
+<div>
+<span class="orient-trust__n">84-91%</span>
+<span class="orient-trust__t">de exactitud <b>cuando ya hay sospecha clara de apnea</b>, según la revisión de la guía AASM. Si la probabilidad es baja cae a 70-78%, y por eso la valoración médica previa es la que hace confiable al estudio</span>
+</div>
+<ul class="orient-points">
+<li><i class="bi bi-journal-check" aria-hidden="true"></i><span>Las guías del sueño <b>(AASM)</b> lo respaldan para el caso típico de apnea.</span></li>
+<li><i class="bi bi-person-badge-fill" aria-hidden="true"></i><span>El resultado lo decide <b>el neumólogo revisando el trazo completo</b>, no el número automático del aparato.</span></li>
+<li><i class="bi bi-shield-fill-check" aria-hidden="true"></i><span>Si sale negativo y tus síntomas siguen, el paso correcto es la <b>polisomnografía</b>: te canalizo, no te dejo a medias.</span></li>
+</ul>
+</div>
+</div>
 <!-- WOW -->
 <div class="svc-section reveal">
 <span class="svc-section__eyebrow"><i class="bi bi-lightning-fill"></i> Cómo es el estudio</span>
@@ -856,34 +859,31 @@
 </div>
 </div>
 </div>
-
 <!-- ORIENTADOR: QUÉ ESTUDIO TE TOCA -->
 <div class="svc-section reveal" id="que-estudio-necesito">
 <span class="svc-section__eyebrow"><i class="bi bi-signpost-split-fill"></i> Cuál te toca</span>
 <h2 class="svc-section__title">¿Poligrafía en casa o <em>polisomnografía?</em></h2>
-<p class="svc-section__lead">Mucha gente llega pidiendo la polisomnografía de laboratorio cuando su caso se resuelve con el estudio en casa. Ubícate aquí en 30 segundos, para no gastar de más ni quedarte corto.</p>
+<p class="svc-section__lead">Mucha gente pide el estudio de laboratorio cuando su caso se resuelve en casa. Ubícate en 30 segundos.</p>
 
 <div class="orient-deck" id="orientDeck">
-<button type="button" class="orient-deck__arrow orient-deck__arrow--prev" id="orientPrev" aria-label="Ver la otra ruta"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
-<button type="button" class="orient-deck__arrow orient-deck__arrow--next" id="orientNext" aria-label="Ver la otra ruta"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
-<div class="orient-grid orient-deck__stage" id="orientStage">
+<div class="orient-deck__stage" id="orientStage">
 <article class="orient-route orient-route--a" id="orient-a">
 <span class="orient-route__badge"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> La mayoría</span>
 <div class="orient-route__head">
 <span class="orient-route__ic" aria-hidden="true"><i class="bi bi-house-heart-fill"></i></span>
 <div><div class="orient-route__rt">Ruta A</div><h3 class="orient-route__title">Poligrafía en casa</h3></div>
 </div>
-<p class="orient-route__lead">Tu ruta si eres adulto, con señales claras de apnea y <b>sin</b> enfermedad grave del corazón o del pulmón. Es el perfil más común.</p>
+<p class="orient-route__lead">Adulto, con señales claras de apnea y <b>sin</b> enfermedad grave del corazón o del pulmón.</p>
 <ul class="orient-check">
-<li><i class="bi bi-check-lg" aria-hidden="true"></i> Roncas fuerte.</li>
-<li><i class="bi bi-check-lg" aria-hidden="true"></i> Te han visto <b>dejar de respirar</b> al dormir.</li>
-<li><i class="bi bi-check-lg" aria-hidden="true"></i> Amaneces cansado o te gana el sueño de día.</li>
-<li><i class="bi bi-check-lg" aria-hidden="true"></i> Sin enfermedad grave de corazón ni pulmón.</li>
+<li><i class="bi bi-check-lg" aria-hidden="true"></i><span>Roncas fuerte.</span></li>
+<li><i class="bi bi-check-lg" aria-hidden="true"></i><span>Te han visto <b>dejar de respirar</b> al dormir.</span></li>
+<li><i class="bi bi-check-lg" aria-hidden="true"></i><span>Amaneces cansado o te gana el sueño de día.</span></li>
+<li><i class="bi bi-check-lg" aria-hidden="true"></i><span>Sin enfermedad grave de corazón ni pulmón.</span></li>
 </ul>
 <div class="orient-seals">
 <span class="orient-seal"><i class="bi bi-house-door-fill" aria-hidden="true"></i> Duermes en tu cama</span>
-<span class="orient-seal"><i class="bi bi-clipboard2-pulse-fill" aria-hidden="true"></i> Lo interpreto yo, no el aparato</span>
-<span class="orient-seal"><i class="bi bi-shield-check" aria-hidden="true"></i> Sin agujas ni sedantes</span>
+<span class="orient-seal"><i class="bi bi-clipboard2-pulse-fill" aria-hidden="true"></i> Lo interpreto yo</span>
+<span class="orient-seal"><i class="bi bi-shield-check" aria-hidden="true"></i> Sin agujas</span>
 </div>
 </article>
 
@@ -893,64 +893,30 @@
 <span class="orient-route__ic" aria-hidden="true"><i class="bi bi-hospital"></i></span>
 <div><div class="orient-route__rt">Ruta B</div><h3 class="orient-route__title">Polisomnografía de laboratorio</h3></div>
 </div>
-<p class="orient-route__lead">Conviene el estudio de laboratorio, con sensores del cerebro, si algo de esto es tu caso:</p>
+<p class="orient-route__lead">Conviene el laboratorio si algo de esto es tu caso:</p>
 <ul class="orient-check">
-<li><i class="bi bi-dot" aria-hidden="true"></i> Enfermedad importante de corazón o pulmón.</li>
-<li><i class="bi bi-dot" aria-hidden="true"></i> Problemas para ventilar, o hipoventilación por obesidad.</li>
-<li><i class="bi bi-dot" aria-hidden="true"></i> Enfermedad neuromuscular o uso crónico de opioides.</li>
-<li><i class="bi bi-dot" aria-hidden="true"></i> Infarto o embolia previos, o insomnio grave.</li>
-<li><i class="bi bi-dot" aria-hidden="true"></i> Sospecha de apnea central, piernas inquietas o narcolepsia.</li>
-<li><i class="bi bi-dot" aria-hidden="true"></i> Poligrafía en casa normal pero con síntomas que siguen.</li>
+<li><i class="bi bi-dot" aria-hidden="true"></i><span>Enfermedad importante de corazón o pulmón.</span></li>
+<li><i class="bi bi-dot" aria-hidden="true"></i><span>Problemas para ventilar, o hipoventilación por obesidad.</span></li>
+<li><i class="bi bi-dot" aria-hidden="true"></i><span>Enfermedad neuromuscular o uso crónico de opioides.</span></li>
+<li><i class="bi bi-dot" aria-hidden="true"></i><span>Infarto o embolia previos, o insomnio grave.</span></li>
+<li><i class="bi bi-dot" aria-hidden="true"></i><span>Sospecha de apnea central, piernas inquietas o narcolepsia.</span></li>
+<li><i class="bi bi-dot" aria-hidden="true"></i><span>Poligrafía en casa normal pero con síntomas que siguen.</span></li>
 </ul>
-<p class="orient-route__note"><i class="bi bi-info-circle-fill" aria-hidden="true"></i> <span>Si es tu caso, <b>te lo digo de frente</b> y te oriento a dónde realizarla. Aquí no hacemos polisomnografía; lo que sí hago es valorarte y dirigirte al estudio correcto.</span></p>
 </article>
 </div>
 <div class="orient-deck__nav" id="orientNav" role="group" aria-label="Elegir ruta">
+<button type="button" class="orient-deck__arrow" id="orientPrev" aria-label="Ver la ruta anterior"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
 <button type="button" class="orient-deck__dot" data-ruta="a" aria-selected="true" aria-controls="orient-a"><i class="bi bi-house-heart-fill" aria-hidden="true"></i> Ruta A</button>
 <button type="button" class="orient-deck__dot" data-ruta="b" aria-selected="false" aria-controls="orient-b"><i class="bi bi-hospital-fill" aria-hidden="true"></i> Ruta B</button>
+<button type="button" class="orient-deck__arrow" id="orientNext" aria-label="Ver la ruta siguiente"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
 </div>
-<p class="orient-deck__hint" id="orientHint">Desliza o toca la tarjeta de atrás para compararlas.</p>
-</div>
-
-<div class="orient-trust" role="group" aria-label="Por qué es confiable el estudio en casa">
-<div>
-<span class="orient-trust__n">84-91%</span>
-<span class="orient-trust__t">de exactitud <b>cuando ya hay sospecha clara de apnea</b>, según la revisión de la guía AASM. Si la probabilidad es baja cae a 70-78%, y por eso la valoración médica previa es la que hace confiable al estudio</span>
-</div>
-<ul class="orient-points">
-<li><i class="bi bi-journal-check" aria-hidden="true"></i><span>Las guías del sueño <b>(AASM)</b> lo respaldan para el caso típico de apnea.</span></li>
-<li><i class="bi bi-person-badge-fill" aria-hidden="true"></i><span>El resultado lo decide <b>el neumólogo revisando el trazo completo</b>, no el número automático del aparato.</span></li>
-<li><i class="bi bi-shield-fill-check" aria-hidden="true"></i><span>Si sale negativo y tus síntomas siguen, el paso correcto es la <b>polisomnografía</b>: te canalizo, no te dejo a medias.</span></li>
-</ul>
+<p class="orient-deck__hint" id="orientHint">Desliza para comparar. <a href="/poligrafia-vs-polisomnografia/" data-cta="osa-comparativa">Verlas punto por punto</a>.</p>
+<p class="orient-aside"><i class="bi bi-info-circle-fill" aria-hidden="true"></i> <span>Si tu caso es el de la Ruta B te lo digo de frente: aquí no hacemos polisomnografía, te valoro y te dirijo al estudio correcto.</span></p>
 </div>
 
-<p class="osa-more"><i class="bi bi-layout-split" aria-hidden="true"></i> <a href="/poligrafia-vs-polisomnografia/" data-cta="orient-comparativa">Ver los dos estudios comparados punto por punto</a>.</p>
-</div>
 
-<!-- QUÉ NO ES -->
-<div class="svc-section reveal">
-<span class="svc-section__eyebrow"><i class="bi bi-shield-check"></i> Lo que <em>no</em> es</span>
-<h2 class="svc-section__title">6 miedos comunes <em>desactivados</em></h2>
-<p class="svc-section__lead">Lo que más preocupa a los pacientes antes del estudio, y por qué no es para tanto:</p>
 
-<div class="myth reveal">
-<div class="myth__inner">
-<div class="myth__head">
-<div class="myth__badge"><i class="bi bi-check2-circle"></i></div>
-<h3 class="myth__title">Lo que <em style="font-style:normal;color:var(--svc-light)">no</em> implica este estudio:</h3>
 </div>
-<ul class="myth__list">
-<li><i class="bi bi-x-circle-fill"></i> No te internamos en hospital</li>
-<li><i class="bi bi-x-circle-fill"></i> No hay cables a la pared, equipo a batería</li>
-<li><i class="bi bi-x-circle-fill"></i> No requiere acompañante esa noche</li>
-<li><i class="bi bi-x-circle-fill"></i> No te limita si te volteas o te levantas al baño</li>
-<li><i class="bi bi-x-circle-fill"></i> No interfiere si duermes con pareja</li>
-<li><i class="bi bi-x-circle-fill"></i> No es claustrofóbico: solo cánula y bandas</li>
-</ul>
-</div>
-</div>
-</div>
-
 <!-- CTA INLINE -->
 <div class="svc-section reveal" style="margin-bottom:24px">
 <div class="svc-cta">
@@ -978,18 +944,33 @@
 </div>
 </div>
 </div>
-
+<!-- SERVICIOS STRIP -->
+<div class="diseases-strip reveal">
+<div class="diseases-strip__header">
+<span class="diseases-strip__label">Servicios que ofrecemos</span>
+<span class="diseases-strip__scroll-hint d-none d-md-flex"><i class="bi bi-hand-index-thumb" aria-hidden="true"></i> Arrastra para explorar</span>
 </div>
-</section>
+<div class="diseases-strip__nav-wrap">
+<div class="diseases-strip__track" id="dsTrack" role="list" aria-label="Servicios">
+<a href="/servicios/espirometria/" role="listitem"><div class="ds-icon"><i class="bi bi-wind"></i></div><span>Espirometría</span></a>
+<a href="/servicios/poligrafia-respiratoria/" class="active" role="listitem"><div class="ds-icon"><i class="bi bi-moon-stars-fill"></i></div><span>Poligrafía</span></a>
+<a href="/servicios/titulacion-presion-positiva/" role="listitem"><div class="ds-icon"><i class="bi bi-soundwave"></i></div><span>Titulación CPAP</span></a>
+<a href="/servicios/feno/" role="listitem"><div class="ds-icon"><i class="bi bi-droplet-fill"></i></div><span>FeNO</span></a>
+<a href="/servicios/broncoscopia/" role="listitem"><div class="ds-icon"><i class="bi bi-camera-video"></i></div><span>Broncoscopia</span></a>
+<a href="/servicios/toracocentesis/" role="listitem"><div class="ds-icon"><i class="bi bi-droplet-half"></i></div><span>Toracocentesis</span></a>
+<a href="/servicios/cateter-pleural-multiproposito/" role="listitem"><div class="ds-icon"><i class="bi bi-hospital"></i></div><span>Catéter pleural</span></a>
+<a href="/servicios/seguimiento-enfermedades-cronicas/" role="listitem"><div class="ds-icon"><i class="bi bi-calendar-heart"></i></div><span>Seguimiento crónico</span></a>
+<a href="/servicios/tratamiento-dejar-de-fumar/" role="listitem"><div class="ds-icon"><i class="bi bi-fire"></i></div><span>Dejar de fumar</span></a>
+<a href="/servicios/teleconsulta/" role="listitem"><div class="ds-icon"><i class="bi bi-camera-reels"></i></div><span>Teleconsulta</span></a>
+<a href="/servicios/espirometria/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-wind"></i></div><span>Espirometría</span></a>
+<a href="/servicios/poligrafia-respiratoria/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-moon-stars-fill"></i></div><span>Poligrafía</span></a>
+<a href="/servicios/titulacion-presion-positiva/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-soundwave"></i></div><span>Titulación CPAP</span></a>
+<a href="/servicios/feno/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-droplet-fill"></i></div><span>FeNO</span></a>
+<a href="/servicios/broncoscopia/" aria-hidden="true" tabindex="-1"><div class="ds-icon"><i class="bi bi-camera-video"></i></div><span>Broncoscopia</span></a>
+</div>
+</div>
+</div>
 
-<!-- CTA BAND -->
-<section class="cta-band text-center py-5">
-<div class="cta-band__particles" id="ctaParticles" aria-hidden="true"></div>
-<div class="container py-3 cta-band__inner reveal">
-<p style="color:rgba(162,155,254,.7);font-size:.78rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px">Sin pasar la noche en hospital</p>
-<h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.025em;line-height:1.2">Dormir bien<br><em style="font-style:normal;background:linear-gradient(135deg,#a29bfe,#6c5ce7);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">empieza por saber cómo duermes.</em></h2>
-<p class="mb-4 mx-auto" style="color:rgba(255,255,255,.55);font-size:.98rem;max-width:500px;line-height:1.6">Una noche en tu cama. Reporte por neumólogo. Plan claro al día siguiente.</p>
-<a href="#agendaModal" class="cta-band__btn" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">Agendar mi cita <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i></a>
 </div>
 </section>
 
@@ -1011,6 +992,17 @@
     <div class="faq-item__answer"><p>Por lo general <strong>una sola noche es suficiente</strong> cuando la sospecha de apnea es moderada o alta, que es justo el escenario donde la poligrafía en casa está indicada. Si el resultado sale normal pero los síntomas persisten, el neumólogo valora repetir el estudio o pasar a una polisomnografía en laboratorio.</p></div>
 </details>
 <details class="faq-item"><summary>¿Cuánto cuesta el estudio en CDMX?</summary><div class="faq-item__answer"><p>El paquete de consulta + poligrafía con equipo entregado <strong>en consultorio</strong> cuesta <strong>$4,500 MXN</strong>; el estudio <strong>a domicilio</strong> cuesta <strong>$5,000</strong> (la consulta se cobra aparte) y con ese mismo precio llegamos a <strong>la mayoría de las zonas de la CDMX</strong>. Pregunta por la promoción cuando escribas. Detalle en la <a href="/servicios/poligrafia-respiratoria/precio/" style="color:var(--svc);font-weight:700">página de precio de la poligrafía</a> o escribe por <a href="https://wa.me/522224926718?text=Hola%20Dr.%20Lara,%20vengo%20de%20su%20sitio%20web%20alveos.mx%20y%20quisiera%20agendar%20una%20cita." target="_blank" rel="noopener noreferrer" style="color:var(--svc);font-weight:700">WhatsApp</a>.</p></div></details>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band text-center py-5">
+<div class="cta-band__particles" id="ctaParticles" aria-hidden="true"></div>
+<div class="container py-3 cta-band__inner reveal">
+<p style="color:rgba(162,155,254,.7);font-size:.78rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px">Sin pasar la noche en hospital</p>
+<h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.025em;line-height:1.2">Dormir bien<br><em style="font-style:normal;background:linear-gradient(135deg,#a29bfe,#6c5ce7);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">empieza por saber cómo duermes.</em></h2>
+<p class="mb-4 mx-auto" style="color:rgba(255,255,255,.55);font-size:.98rem;max-width:500px;line-height:1.6">Una noche en tu cama. Reporte por neumólogo. Plan claro al día siguiente.</p>
+<a href="#agendaModal" class="cta-band__btn" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">Agendar mi cita <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i></a>
+</div>
 </section>
 
 <!-- CONTACTO FINAL -->
