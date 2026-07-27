@@ -124,6 +124,19 @@ a[href*="gob.mx/cofepris"] {
     .lang-switch a { padding: 5px 10px; }
     .social-icons a { margin-left: 4px; }
 }
+/* Franja critica (992-1099px): justo donde Bootstrap ya despliega el menu
+   completo pero el contenedor sigue en 960px. Los siete enlaces mas el boton
+   sumaban 983px y el "Agendar cita" se salia 68px, empujando scroll horizontal
+   en todo el sitio. Aqui se aprieta lo justo para que quepa en una linea. */
+@media (min-width: 992px) and (max-width: 1099.98px) {
+    .navbar .nav-link { margin: 0; font-size: .79rem; padding-left: 4px; padding-right: 4px; }
+    .navbar-brand { font-size: 1.12rem; }
+    .navbar-brand img { max-height: 32px; }
+    .navbar-cta { margin-left: 6px; padding: 8px 11px; font-size: .73rem; }
+    .lang-switch { margin-left: 5px; }
+    .lang-switch a { padding: 4px 8px; }
+    .social-icons a { font-size: 1.25rem; margin-left: 2px; min-width: 38px; }
+}
 .nav-link::after {
     content: '';
     position: absolute;

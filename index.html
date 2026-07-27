@@ -2608,34 +2608,6 @@
            SERVICES, Tabbed Categories
         ============================================= */
         .services { background: var(--cloud); }
-        /* Tab pills */
-        .services-tabs {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 40px;
-        }
-        .services-tab {
-            padding: 11px 26px;
-            border-radius: 100px;
-            border: 1.5px solid rgba(9,132,227,.12);
-            background: var(--white);
-            color: var(--text-muted);
-            font-size: .88rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all .3s var(--ease);
-            white-space: nowrap;
-        }
-        .services-tab:hover {
-            border-color: var(--electric);
-            color: var(--electric);
-            background: rgba(9,132,227,.04);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(9,132,227,.10);
-        }
-        .services-tab:active { transform: scale(.96); transition-duration: .15s; }
         .services-tab.active {
             background: var(--electric);
             color: var(--white);
@@ -2656,216 +2628,28 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* Service "carousel", desktop renders as bento grid (all cards
-           visible, no clicks-to-discover); mobile/tablet use native CSS
-           scroll-snap (free drag with momentum + dots/arrows as
-           progressive enhancement). The JS-driven translateX carousel
-           was replaced because it forced layout/paint on every frame
-           and didn't allow free scrolling. */
-        .svc-carousel { position: relative; }
-        .svc-carousel__viewport { margin: 0 auto; }
-        .svc-carousel__track { display: flex; gap: 24px; }
-        .svc-carousel__track .service-card { min-width: 0; }
-
         /* DESKTOP ≥992px: bento grid, no carousel chrome.
            Default 3 cols (works cleanly for the 6-card Estudios tab).
            Tabs with exactly 4 cards switch to 4 cols so the last row
            isn't a lonely card. :has() is supported in all evergreen
            browsers. */
         @media (min-width: 992px) {
-            .svc-carousel__viewport { overflow: visible; }
-            .svc-carousel__track {
-                display: grid;
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                gap: 24px;
-                transform: none !important;
-            }
-            .svc-carousel__track:has(.service-card:nth-child(4):last-child) {
-                grid-template-columns: repeat(4, minmax(0, 1fr));
-                gap: 20px;
-            }
-            .svc-carousel__track .service-card { width: 100%; flex: none; }
-            .svc-carousel__arrow,
-            .svc-carousel__dots { display: none !important; }
         }
 
         /* TABLET/MOBILE <992px: native scroll-snap, JS no longer drives
            transform, arrows now scroll the viewport. */
         @media (max-width: 991px) {
-            .svc-carousel__viewport {
-                overflow-x: auto;
-                overflow-y: hidden;
-                scroll-snap-type: x mandatory;
-                scroll-behavior: smooth;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none;
-                padding-bottom: 4px;
-            }
-            .svc-carousel__viewport::-webkit-scrollbar { display: none; }
-            .svc-carousel__track {
-                transform: none !important;
-                transition: none;
-            }
-            .svc-carousel__track .service-card {
-                scroll-snap-align: start;
-                scroll-snap-stop: always;
-            }
-        }
-        .svc-carousel__arrow {
-            position: absolute;
-            top: calc(50% - 24px);
-            transform: translateY(-50%);
-            width: 48px; height: 48px;
-            border-radius: 50%;
-            border: 1px solid rgba(0,0,0,.08);
-            background: var(--white);
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer;
-            transition: all .3s var(--ease);
-            color: var(--navy);
-            font-size: 1.1rem;
-            z-index: 2;
-            box-shadow: 0 4px 20px rgba(0,0,0,.06);
-        }
-        .svc-carousel__arrow--prev { left: -24px; }
-        .svc-carousel__arrow--next { right: -24px; }
-        .svc-carousel__arrow:hover {
-            border-color: var(--electric);
-            color: var(--electric);
-            box-shadow: 0 8px 28px rgba(9,132,227,.22);
-            transform: translateY(-50%) scale(1.08);
         }
         .svc-carousel__arrow.hidden { display: none; }
-        .svc-carousel__dots {
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-            margin-top: 28px;
-        }
-        .svc-carousel__dot {
-            width: 8px; height: 8px;
-            border-radius: 50%;
-            background: rgba(0,0,0,.12);
-            border: none;
-            cursor: pointer;
-            transition: all .3s var(--ease);
-            padding: 0;
-        }
         .svc-carousel__dot.active {
             background: var(--electric);
             width: 24px;
             border-radius: 4px;
         }
-
-        .service-card {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 28px 24px 22px;
-            border: 1px solid rgba(0,0,0,.05);
-            box-shadow: 0 2px 12px rgba(0,0,0,.04);
-            transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease);
-            display: flex;
-            flex-direction: column;
-            text-decoration: none;
-            color: inherit;
-        }
-        .service-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 48px rgba(9,132,227,.12);
-            border-color: rgba(9,132,227,.15);
-        }
         /* Spotlight: halo azul sutil que sigue el cursor (solo pointer fino).
            Una variable CSS por mousemove, sin costo en scroll. */
         @media (hover: hover) and (pointer: fine) {
-            .service-card { position: relative; overflow: hidden; }
-            .service-card::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                background: radial-gradient(240px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(9,132,227,.07), transparent 70%);
-                opacity: 0;
-                transition: opacity .3s var(--ease);
-                pointer-events: none;
-            }
-            .service-card:hover::before { opacity: 1; }
         }
-        .service-card__icon {
-            width: 56px; height: 56px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, rgba(9,132,227,.08), rgba(0,206,201,.08));
-            border: 1px solid rgba(9,132,227,.1);
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: 16px;
-            transition: transform .35s var(--ease), box-shadow .35s var(--ease);
-        }
-        .service-card:hover .service-card__icon {
-            box-shadow: 0 6px 20px rgba(9,132,227,.22);
-            transform: scale(1.06);
-        }
-        .service-card__icon i {
-            font-size: 1.5rem;
-            color: var(--electric);
-        }
-        .service-card h3 {
-            font-size: 1.05rem;
-            font-weight: 800;
-            color: var(--navy);
-            margin-bottom: 8px;
-            letter-spacing: -.015em;
-        }
-        .service-card p {
-            font-size: .85rem;
-            line-height: 1.6;
-            color: var(--text-muted);
-            margin: 0;
-            flex: 1;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .service-card__actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: auto;
-            padding-top: 18px;
-            flex-wrap: wrap;
-        }
-        .service-card__cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: .8rem;
-            font-weight: 700;
-            color: var(--electric);
-            transition: all .3s var(--ease);
-            text-decoration: none;
-            cursor: pointer;
-            padding: 7px 16px;
-            border-radius: 100px;
-            border: 1.5px solid rgba(9,132,227,.18);
-            background: rgba(9,132,227,.03);
-        }
-        .service-card__cta:hover { border-color: var(--electric); background: rgba(9,132,227,.08); }
-        .service-card__cta--wa {
-            color: #fff;
-            background: #25d366;
-            border-color: #25d366;
-        }
-        .service-card__cta--wa:hover { background: #1da851; border-color: #1da851; }
-        .service-card__cta--cal {
-            color: #fff;
-            background: var(--electric);
-            border-color: var(--electric);
-        }
-        .service-card__cta--cal:hover { background: #0770c9; border-color: #0770c9; }
-        .service-card__cta--more {
-            color: var(--electric);
-            background: rgba(9,132,227,.06);
-            border-color: rgba(9,132,227,.25);
-        }
-        .service-card__cta--more:hover { background: rgba(9,132,227,.12); border-color: var(--electric); color: var(--electric); }
         .service-card.card-highlight {
             border-color: rgba(9,132,227,.25);
             box-shadow: 0 12px 40px rgba(9,132,227,.12), 0 0 0 2px rgba(9,132,227,.1);
@@ -2911,21 +2695,6 @@
                 padding: 3px 8px;
             }
         }
-
-        /* Category item count badge */
-        .services-tab .tab-count {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 22px; height: 22px;
-            border-radius: 50%;
-            background: rgba(9,132,227,.1);
-            font-size: .72rem;
-            font-weight: 700;
-            color: var(--electric);
-            margin-left: 6px;
-            transition: all .3s var(--ease);
-        }
         .services-tab.active .tab-count {
             background: rgba(255,255,255,.22);
             color: var(--white);
@@ -2951,10 +2720,6 @@
                 animation: none !important;
             }
             .services-panel { animation: none !important; }
-            .service-card,
-            .service-card__icon,
-            .service-card:hover,
-            .service-card:hover .service-card__icon { transition: none !important; transform: none !important; }
         }
 
         /* =============================================
@@ -3114,45 +2879,14 @@
             z-index: 10;
         }
         .disease-band.band-paused { animation: none !important; }
-
-        /* ── SERVICIOS V2: banner destacado + filas compactas + tabs con indicador deslizante ── */
-        .services-tabs { position: relative; }
-        .services-tabs__ind {
-            position: absolute; left: 0; top: 0; width: 100px; height: 40px;
-            border-radius: 100px;
-            background: linear-gradient(135deg, var(--royal), var(--electric));
-            box-shadow: 0 4px 16px rgba(9,132,227,.35);
-            /* width/height se animan a proposito: escalar por transform
-               deformaria el radio de la pildora, y esto solo corre al tocar
-               una pestana, no en cada frame de scroll. */
-            transition: transform .45s var(--ease), width .45s var(--ease), height .45s var(--ease);
-            z-index: 0; opacity: 0;
-        }
         .services-tabs.has-ind .services-tabs__ind { opacity: 1; }
         .services-tabs.has-ind .services-tab { position: relative; z-index: 1; }
         .services-tabs.has-ind .services-tab.active { background: transparent; border-color: transparent; box-shadow: none; }
         .services-panel.active { animation: svc2-panel-in .5s var(--ease); }
         @keyframes svc2-panel-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-        .svc2-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        /* min-width:0 evita que los textos nowrap desborden la celda del grid */
-        .svc2-grid > * { min-width: 0; }
-        /* destacado: MISMO tamaño que las demás tarjetas; se distingue por
-           tinte más marcado, hilo grueso, tile navy y badge */
-        .svc2-row--feat {
-            background: linear-gradient(180deg, color-mix(in srgb, var(--acc, var(--electric)) 10%, #fff) 0%, color-mix(in srgb, var(--acc, var(--electric)) 3%, #fff) 100%);
-            border-color: color-mix(in srgb, var(--acc, var(--electric)) 30%, transparent);
-        }
-        .svc2-row--feat::before { height: 4px; opacity: 1; }
         .svc2-row--feat .svc2-ic {
             background: linear-gradient(135deg, var(--navy), var(--royal));
             box-shadow: 0 6px 16px rgba(10,22,40,.28);
-        }
-        .svc2-badge {
-            background: linear-gradient(135deg, var(--cyan), var(--sky));
-            color: var(--navy); font-size: .58rem; font-weight: 800;
-            letter-spacing: .1em; text-transform: uppercase;
-            padding: 4px 10px; border-radius: 100px;
-            vertical-align: middle; white-space: nowrap;
         }
         /* Acento de color por categoría, mismo lenguaje que las familias
            clínicas de Enfermedades: cada pestaña tiene identidad propia */
@@ -3160,11 +2894,6 @@
         .services-panel[data-panel="estudios"]       { --acc: #00b894; }
         .services-panel[data-panel="procedimientos"] { --acc: #6c5ce7; }
         .services-panel[data-panel="tratamientos"]   { --acc: #e17055; }
-        /* iconos de los tabs en el color de su categoría */
-        .services-tab[data-tab="consulta"] i       { color: #0984e3; }
-        .services-tab[data-tab="estudios"] i       { color: #00b894; }
-        .services-tab[data-tab="procedimientos"] i { color: #6c5ce7; }
-        .services-tab[data-tab="tratamientos"] i   { color: #e17055; }
         .services-tabs .services-tab.active i { color: #fff; }
         /* el indicador deslizante toma el color de la categoría activa */
         .services-tabs.has-ind:has(.services-tab[data-tab="estudios"].active) .services-tabs__ind {
@@ -3176,31 +2905,6 @@
         .services-tabs.has-ind:has(.services-tab[data-tab="tratamientos"].active) .services-tabs__ind {
             background: linear-gradient(135deg, #cf5a40, #e17055); box-shadow: 0 4px 16px rgba(225,112,85,.4);
         }
-        /* tarjeta de servicio, tinte de la categoría, hilo superior e icono
-           blanco sobre tile con gradiente (antes: filas blancas planas) */
-        .svc2-row {
-            position: relative;
-            display: flex; align-items: flex-start; gap: 15px;
-            background: linear-gradient(180deg, color-mix(in srgb, var(--acc, var(--electric)) 4.5%, #fff) 0%, #fff 70%);
-            border: 1px solid color-mix(in srgb, var(--acc, var(--electric)) 14%, transparent);
-            border-radius: 16px;
-            padding: 18px 18px 16px;
-            text-decoration: none; color: inherit;
-            overflow: hidden;
-            transition: border-color .25s, box-shadow .25s, transform .25s var(--ease);
-        }
-        .svc2-row::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-            background: var(--acc, var(--electric)); opacity: .8;
-        }
-        /* fila ancha: cierra los paneles con conteo impar para que el bloque quede simétrico */
-        .svc2-row--wide { grid-column: 1 / -1; }
-        .svc2-row:hover {
-            border-color: color-mix(in srgb, var(--acc, var(--electric)) 38%, transparent);
-            box-shadow: 0 14px 36px color-mix(in srgb, var(--acc, var(--electric)) 16%, transparent);
-            color: inherit; transform: translateY(-3px);
-        }
-        .svc2-row:active { transform: scale(.99); }
         .svc2-ic {
             width: 46px; height: 46px; border-radius: 13px;
             display: grid; place-items: center; flex-shrink: 0;
@@ -3209,7 +2913,6 @@
         }
         .svc2-ic i { font-size: 1.1rem; color: #fff; }
         .svc2-tx { flex: 1; min-width: 0; }
-        .svc2-row h3 { font-size: .95rem; font-weight: 800; color: var(--navy); margin: 0 0 3px; letter-spacing: -.012em; }
         /* 2 líneas máx en vez de nowrap: el truncado a una línea cortaba la
            propuesta de valor a media frase ("...a tu hogar con la mism…") */
         .svc2-row p { font-size: .78rem; line-height: 1.55; color: #56657a; margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
@@ -3225,7 +2928,6 @@
         .svc2-row:hover .svc2-go { background: var(--acc, var(--electric)); border-color: var(--acc, var(--electric)); transform: translateX(3px); }
         .svc2-row:hover .svc2-go i { color: #fff; }
         @media (max-width: 760px) {
-            .svc2-grid { grid-template-columns: 1fr; }
         }
 
         /* ── ENFERMEDADES V3: campo de burbujas dinamicas + agrupacion por sintoma ── */
@@ -3490,11 +3192,7 @@
         .svc3-main__text { margin: 0; max-width: 46ch; font-size: 1rem; line-height: 1.62;
             color: rgba(255,255,255,.8); }
         /* el precio decide, asi que es lo segundo mas grande del bloque */
-        .svc3-price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; margin-top: 24px; }
-        .svc3-price__num { font-size: clamp(1.9rem, 1.4rem + 2.1vw, 2.6rem); font-weight: 800;
-            line-height: 1; letter-spacing: -.035em; color: #fff; font-variant-numeric: tabular-nums; }
-        .svc3-price__unit { font-size: .95rem; color: rgba(255,255,255,.74); }
-        .svc3-price__alt { margin: 9px 0 0; font-size: .9rem; color: rgba(255,255,255,.66); }
+                .svc3-price__alt { margin: 22px 0 0; font-size: .92rem; line-height: 1.55; color: rgba(255,255,255,.72); }
         .svc3-cta { display: inline-flex; align-items: center; justify-content: center; gap: 10px;
             align-self: flex-start; margin-top: 20px; min-height: 52px; padding: 0 26px;
             border-radius: 100px; background: #fff; color: var(--navy);
@@ -3543,8 +3241,8 @@
         .svc3-sleep__opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
         .svc3-opt { padding: 13px 15px; border: 1px solid var(--border); border-radius: 14px; background: var(--cloud-alt); }
         .svc3-opt span { display: block; font-size: .875rem; color: var(--text-muted); }
-        .svc3-opt strong { display: block; margin-top: 3px; font-size: 1.3rem; font-weight: 800;
-            letter-spacing: -.025em; color: var(--navy); font-variant-numeric: tabular-nums; }
+        .svc3-opt strong { display: block; margin-top: 3px; font-size: .98rem; font-weight: 700;
+            letter-spacing: -.01em; line-height: 1.35; color: var(--navy); }
         .svc3-sleep .svc3-cta { margin-top: auto; background: var(--navy); color: #fff; box-shadow: none; }
         .svc3-sleep .svc3-cta:hover { color: #fff; box-shadow: 0 12px 28px -10px rgba(10,22,40,.5); }
 
@@ -4149,13 +3847,6 @@
             .about__hero-inner { flex-direction: column; gap: 40px; }
             .about__portrait   { flex: none; max-width: 360px; margin: 0 auto; order: 2; }
             .about__bio        { padding: 0 24px; max-width: 100%; order: 1; }
-            /* creds now in marquee */
-            .svc-carousel__track .service-card { flex: 0 0 calc(50% - 12px); }
-            .svc-carousel__arrow--prev { left: -16px; }
-            .svc-carousel__arrow--next { right: -16px; }
-            .svc-carousel__arrow { width: 40px; height: 40px; font-size: 1rem; }
-            .services-tabs { gap: 8px; }
-            .services-tab { font-size: .82rem; padding: 9px 18px; }
         }
         @media(max-width:768px) {
             .hero__cta-row  { flex-direction: column; gap: 10px; width: 100%; max-width: 320px; margin: 0 auto; }
@@ -4200,105 +3891,13 @@
                 .dis2-hint { font-size: .72rem; padding: 6px 12px; }
                 .dis2-field.is-collapsed { height: min(232px, 29dvh); }
             }
-            .svc-carousel__track .service-card { flex: 0 0 calc(100% - 2px); }
-            .svc-carousel__track { gap: 12px; }
-            .svc-carousel__arrow--prev { left: -4px; }
-            .svc-carousel__arrow--next { right: -4px; }
-            .service-card { padding: 22px 18px 18px; }
-            .service-card h3 { font-size: .98rem; }
-            .svc-carousel {
-                padding-bottom: 0;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                align-items: center;
-                gap: 0 16px;
-            }
-            .svc-carousel__viewport {
-                flex: 0 0 100%;
-                order: 1;
-            }
-            .svc-carousel__arrow {
-                position: static;
-                transform: none;
-                order: 2;
-                width: 42px; height: 42px; font-size: 1rem;
-                box-shadow: 0 2px 12px rgba(0,0,0,.08);
-                flex-shrink: 0;
-                margin-top: 18px;
-            }
-            .svc-carousel__arrow--next { order: 4; }
-            .svc-carousel__arrow:hover { transform: scale(1.06); }
             .svc-carousel__arrow.hidden { display: none; }
-            .svc-carousel__dots {
-                order: 3;
-                margin-top: 18px;
-                margin-bottom: 0;
-            }
-            .service-card { padding: 28px 24px 26px; }
-            /* Tabs en una sola línea deslizable: en vez de envolver en 2-3
-               filas, los pills se desplazan horizontalmente con snap; el
-               pill cortado en el borde es la pista de que hay más. */
-            .services-tabs {
-                gap: 6px; margin-bottom: 28px;
-                flex-wrap: nowrap;
-                justify-content: flex-start;
-                overflow-x: auto;
-                overscroll-behavior-x: contain;
-                scroll-snap-type: x proximity;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none;
-                padding: 4px 14px 8px;
-                margin-left: -14px; margin-right: -14px;
-            }
-            .services-tabs::-webkit-scrollbar { display: none; }
-            .services-tab { font-size: .78rem; padding: 8px 14px; flex-shrink: 0; scroll-snap-align: center; }
-            .services-tab .tab-count { width: 19px; height: 19px; font-size: .66rem; }
             .testimonial-columns {
                 height: 420px;
             }
             .disease-card { width: 260px; padding: 24px 20px; }
             .disease-card p { font-size: .92rem; line-height: 1.72; }
             .disease-card h3 { font-size: 1.15rem; }
-            .service-card p {
-                font-size: .92rem;
-                line-height: 1.62;
-                /* Mobile-first: show full description. Truncating to 3
-                   lines on desktop saves vertical rhythm, but on phones
-                   (where most of our visitors land) the cut-off looks
-                   broken and hides the value prop. */
-                -webkit-line-clamp: unset;
-                display: block;
-            }
-            .service-card h3 { font-size: 1.08rem; }
-            .service-card { padding: 24px 20px 22px; }
-            .service-card__icon {
-                width: 48px; height: 48px;
-                border-radius: 14px;
-                margin-bottom: 14px;
-            }
-            .service-card__icon i { font-size: 1.3rem; }
-            .service-card__cta {
-                padding: 11px 18px;
-                font-size: .86rem;
-                min-height: 44px; /* WCAG touch target */
-            }
-            .service-card__actions { gap: 8px; padding-top: 16px; }
-            /* Bigger tab pills + arrows so they meet the 44px touch
-               target on phones (the prior 30-34px was below WCAG). */
-            .services-tab {
-                font-size: .82rem;
-                padding: 11px 16px;
-                min-height: 44px;
-            }
-            .services-tab .tab-count { width: 20px; height: 20px; font-size: .68rem; }
-            .svc-carousel__arrow {
-                width: 44px; height: 44px;
-                margin-top: 16px;
-            }
-            .svc-carousel__viewport {
-                padding: 6px 4px 8px; /* hairline gutter so card shadow doesn't clip */
-            }
             .testi-text { font-size: .92rem; }
             /* About responsive */
             .about__hero { padding: 60px 0 40px; }
@@ -4836,7 +4435,7 @@
             <div class="container my-5">
                 <div class="mb-5 text-center">
                     <h2 class="section-title reveal">Qué hago en el consultorio</h2>
-                    <p class="section-sub reveal">La consulta, los estudios de función pulmonar y el estudio de sueño. Con precios a la vista.</p>
+                    <p class="section-sub reveal">La consulta, los estudios de función pulmonar y el estudio de sueño, todo en el mismo lugar.</p>
                 </div>
 
                 <div class="svc3 reveal">
@@ -4846,11 +4445,7 @@
                         <p class="svc3-kicker"><i class="bi bi-star-fill" aria-hidden="true"></i> Lo que más me piden</p>
                         <h3>Consulta de neumología</h3>
                         <p class="svc3-main__text">Reviso tus síntomas, tus antecedentes y los estudios que ya traigas. Sales de la consulta con un diagnóstico y un plan por escrito.</p>
-                        <div class="svc3-price">
-                            <span class="svc3-price__num">$1,800</span>
-                            <span class="svc3-price__unit">primera vez</span>
-                        </div>
-                        <p class="svc3-price__alt">Consulta subsecuente $1,500</p>
+                        <p class="svc3-price__alt">Incluye revisión, diagnóstico y plan por escrito. Si hace falta un estudio, se hace ahí mismo.</p>
                         <a class="svc3-cta" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal" data-cta="svc-consulta-feat">
                             Agendar consulta <i class="bi bi-arrow-right" aria-hidden="true"></i>
                         </a>
@@ -4896,8 +4491,8 @@
                         <h3>Poligrafía respiratoria</h3>
                         <p class="svc3-sleep__text">El estudio que confirma la apnea del sueño. Duermes con el equipo una noche y yo interpreto el trazo.</p>
                         <div class="svc3-sleep__opts">
-                            <div class="svc3-opt"><span>En consultorio</span><strong>$4,500</strong></div>
-                            <div class="svc3-opt"><span>En tu casa</span><strong>$5,000</strong></div>
+                            <div class="svc3-opt"><span>En consultorio</span><strong>Pasas por el equipo</strong></div>
+                            <div class="svc3-opt"><span>A domicilio</span><strong>Te lo llevo</strong></div>
                         </div>
                         <a class="svc3-cta" href="/servicios/poligrafia-respiratoria/" data-cta="svc-poligrafia-feat">
                             Cómo es el estudio <i class="bi bi-arrow-right" aria-hidden="true"></i>
@@ -6040,21 +5635,46 @@
            Antes: 110 nodos (22 tarjetas x5) movidos con style.transform en JS
            cada frame. Ahora: 1 solo clon por columna y animación CSS que corre
            en el compositor; el navegador la pausa solo fuera de viewport. ── */
-        document.querySelectorAll('.testimonial-col').forEach(function(col, idx) {
-            var pxPerSec = [16.5, 13.5, 18][idx] || 16.5; /* mismas velocidades que la versión JS */
+        (function () {
+            var cols = document.querySelectorAll('.testimonial-col');
+            if (!cols.length) return;
 
-            var origCards = Array.from(col.querySelectorAll('.testi-card'));
-            if (!origCards.length) return;
-            origCards.forEach(function(c) { col.appendChild(c.cloneNode(true)); });
+            cols.forEach(function (col) {
+                if (col.dataset.clonado) return;
+                var cards = Array.from(col.querySelectorAll('.testi-card'));
+                if (!cards.length) return;
+                col.dataset.clonado = cards.length;
+                cards.forEach(function (c) { col.appendChild(c.cloneNode(true)); });
+            });
 
-            var gap = parseFloat(getComputedStyle(col).rowGap) || 16;
-            var setHeight = 0;
-            origCards.forEach(function(c) { setHeight += c.offsetHeight + gap; });
+            function medir() {
+                cols.forEach(function (col, idx) {
+                    /* En movil el CSS oculta las columnas 2 y 3, y lo oculto mide
+                       cero: la duracion salia de 9 segundos en vez de 200 y al
+                       girar el telefono quedaba mareante. Se dejan con el valor
+                       del CSS hasta que se vean. */
+                    if (!col.offsetParent) return;
+                    var n = parseInt(col.dataset.clonado, 10);
+                    var cards = Array.from(col.querySelectorAll('.testi-card')).slice(0, n);
+                    var gap = parseFloat(getComputedStyle(col).rowGap) || 16;
+                    var alto = cards.reduce(function (h, c) { return h + c.offsetHeight + gap; }, 0);
+                    if (alto < 200) return;
+                    col.style.setProperty('--t-dur', (alto / [16.5, 13.5, 18][idx % 3]).toFixed(1) + 's');
+                    col.style.setProperty('--tgap', (gap / 2) + 'px');
+                    if (idx % 3 === 1) col.classList.add('testimonial-col--down');
+                });
+            }
 
-            col.style.setProperty('--t-dur', (setHeight / pxPerSec).toFixed(1) + 's');
-            col.style.setProperty('--tgap', (gap / 2) + 'px');
-            if (idx === 1) col.classList.add('testimonial-col--down');
-        });
+            medir();
+            if (document.fonts && document.fonts.ready) document.fonts.ready.then(medir);
+            var t;
+            function remedir() { clearTimeout(t); t = setTimeout(medir, 200); }
+            window.addEventListener('resize', remedir, { passive: true });
+            if ('ResizeObserver' in window) {
+                var ro = new ResizeObserver(remedir);
+                document.querySelectorAll('.testimonial-columns').forEach(function (w) { ro.observe(w); });
+            }
+        })();
 
         /* ── Service cards: dual CTAs + highlight ── */
         var waBase = 'https://wa.me/522224926718?text=';

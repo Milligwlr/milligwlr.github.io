@@ -175,8 +175,12 @@
 .svc-cta__list li{display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:rgba(255,255,255,.85);line-height:1.45}
 .svc-cta__list li i{color:var(--svc-light);font-size:1rem;flex-shrink:0;margin-top:2px}
 .svc-cta__stat{background:linear-gradient(155deg,rgba(108,92,231,.12),rgba(162,155,254,.08));border:1px solid rgba(108,92,231,.3);border-radius:18px;padding:22px;text-align:center;margin-bottom:14px}
-.svc-cta__stat-num{font-size:clamp(2.4rem,9vw,3.2rem);font-weight:800;background:linear-gradient(135deg,var(--svc-light),var(--svc));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;letter-spacing:-.04em;margin-bottom:6px}
+.svc-cta__stat-num{font-size:clamp(2.4rem,9vw,3.2rem);font-weight:800;color:var(--svc-light);line-height:1;letter-spacing:-.04em;margin-bottom:6px}
 .svc-cta__stat-lbl{font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.5}
+.svc-cta__price{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 16px}
+.svc-cta__price > div{padding:12px 14px;border-radius:14px;text-align:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14)}
+.svc-cta__price span{display:block;font-size:.82rem;color:rgba(255,255,255,.66)}
+.svc-cta__price strong{display:block;margin-top:3px;font-size:1.4rem;font-weight:800;letter-spacing:-.03em;color:#fff;font-variant-numeric:tabular-nums}
 .svc-cta__btns{display:flex;flex-direction:column;gap:10px}
 .svc-cta__btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:12px;font-weight:700;font-size:.92rem;text-decoration:none;transition:all .3s var(--ease);min-height:50px;cursor:pointer}
 .svc-cta__btn--wa{background:#25d366;color:#fff!important}
@@ -948,6 +952,10 @@
 <div class="svc-cta__stat-num">1 noche</div>
 <div class="svc-cta__stat-lbl">Es lo único que necesita el estudio para darte el diagnóstico</div>
 </div>
+<div class="svc-cta__price">
+<div><span>En consultorio</span><strong>$4,500</strong></div>
+<div><span>En tu casa</span><strong>$5,000</strong></div>
+</div>
 <div class="svc-cta__btns">
 <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20poligraf%C3%ADa%20respiratoria%20con%20el%20Dr.%20Lara.%20Vengo%20de%20su%20sitio%20web%20alveos.mx." target="_blank" rel="noopener noreferrer" class="svc-cta__btn svc-cta__btn--wa"><i class="bi bi-whatsapp"></i> WhatsApp directo</a>
 <a href="#agendaModal" class="svc-cta__btn svc-cta__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
@@ -1067,12 +1075,6 @@
 </section>
 
 
-<section aria-label="Revisión médica" data-med-review style="background:#f6faff;border-top:1px solid rgba(9,132,227,.12);padding:22px 20px">
-  <div style="max-width:880px;margin:0 auto;display:flex;align-items:center;gap:12px;justify-content:center;flex-wrap:wrap;text-align:center">
-    <i class="bi bi-patch-check-fill" aria-hidden="true" style="color:#0984e3;font-size:1.15rem"></i>
-    <p style="margin:0;font-size:.88rem;color:#41556b;line-height:1.6">Revisado por el <strong style="color:#0a1628">Dr. William César Lara Vázquez</strong>, neumólogo · Céd. Prof. 12588976 · Céd. Esp. 15595809 · Última revisión: <time datetime="2026-04-25">25 de abril de 2026</time></p>
-  </div>
-</section>
 </main>
 
 <footer>
