@@ -3454,6 +3454,136 @@
             .dis2-field.is-grouped .dis2-bub.hit{opacity:1}
         }
 
+
+        /* =========================================================
+           SERVICIOS, jerarquia por demanda real
+           La consulta manda, los estudios son un menu con su dato al
+           margen, y la poligrafia va aparte por tener dos precios.
+           Sin pestanas: escondian 14 de 18 servicios tras un toque.
+           ========================================================= */
+        .svc3 { display: grid; grid-template-columns: 1.12fr 1fr; gap: 14px; }
+        .svc3-main  { grid-column: 1; grid-row: 1 / span 2; }
+        .svc3-menu  { grid-column: 2; grid-row: 1; }
+        .svc3-sleep { grid-column: 2; grid-row: 2; }
+        .svc3-more  { grid-column: 1 / -1; grid-row: 3; }
+
+        /* ── Consulta ── */
+        .svc3-main {
+            position: relative; display: flex; flex-direction: column;
+            padding: 30px 30px 26px; border-radius: 22px; overflow: hidden;
+            background: linear-gradient(155deg, var(--navy) 0%, #0a2540 58%, var(--royal) 100%);
+            color: #fff;
+        }
+        /* halo pintado, no cristal esmerilado: es un radial plano, sin coste en scroll */
+        .svc3-main::after {
+            content: ''; position: absolute; top: -80px; right: -80px;
+            width: 280px; height: 280px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,206,201,.24), transparent 68%);
+            pointer-events: none;
+        }
+        .svc3-main > * { position: relative; z-index: 1; }
+        /* en caja alta y baja: se lee como una frase del doctor, no como una etiqueta de sistema */
+        .svc3-kicker { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 14px;
+            font-size: .9rem; font-weight: 600; color: var(--cyan); }
+        .svc3-main h3 { margin: 0 0 12px; font-size: clamp(1.35rem, 1.05rem + 1.3vw, 1.9rem);
+            font-weight: 800; line-height: 1.15; letter-spacing: -.025em; color: #fff; }
+        .svc3-main__text { margin: 0; max-width: 46ch; font-size: 1rem; line-height: 1.62;
+            color: rgba(255,255,255,.8); }
+        /* el precio decide, asi que es lo segundo mas grande del bloque */
+        .svc3-price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; margin-top: 24px; }
+        .svc3-price__num { font-size: clamp(1.9rem, 1.4rem + 2.1vw, 2.6rem); font-weight: 800;
+            line-height: 1; letter-spacing: -.035em; color: #fff; font-variant-numeric: tabular-nums; }
+        .svc3-price__unit { font-size: .95rem; color: rgba(255,255,255,.74); }
+        .svc3-price__alt { margin: 9px 0 0; font-size: .9rem; color: rgba(255,255,255,.66); }
+        .svc3-cta { display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            align-self: flex-start; margin-top: 20px; min-height: 52px; padding: 0 26px;
+            border-radius: 100px; background: #fff; color: var(--navy);
+            font-family: var(--sans); font-size: 1rem; font-weight: 700; text-decoration: none;
+            box-shadow: 0 8px 24px rgba(0,0,0,.22);
+            transition: transform .25s var(--ease), box-shadow .25s; }
+        .svc3-cta:hover { color: var(--navy); transform: translateY(-2px); box-shadow: 0 14px 32px rgba(0,0,0,.3); }
+        .svc3-cta i { transition: transform .25s var(--ease); }
+        .svc3-cta:hover i { transform: translateX(4px); }
+        /* las 3 modalidades son variantes del MISMO servicio: lista al pie, no tarjetas */
+        .svc3-modes { list-style: none; margin: 26px 0 0; padding: 18px 0 0;
+            border-top: 1px solid rgba(255,255,255,.16); display: grid; gap: 2px; }
+        .svc3-modes li { display: flex; align-items: flex-start; gap: 13px; padding: 8px 0; }
+        .svc3-modes > li > i { flex-shrink: 0; width: 20px; margin-top: 3px; text-align: center;
+            font-size: 1rem; color: var(--cyan); }
+        .svc3-modes b { display: block; font-size: .95rem; font-weight: 700; color: #fff; }
+        .svc3-modes small { display: block; font-size: .875rem; line-height: 1.5; color: rgba(255,255,255,.66); }
+        .svc3-modes small a { color: var(--cyan); font-weight: 600; }
+
+        /* ── Estudios y sueno ── */
+        .svc3-menu, .svc3-sleep, .svc3-more { background: var(--white);
+            border: 1px solid var(--border); border-radius: 22px; }
+        .svc3-menu { padding: 24px 24px 10px; }
+        .svc3-menu h3, .svc3-sleep h3 { margin: 0 0 4px; font-size: 1.08rem; font-weight: 800;
+            letter-spacing: -.02em; color: var(--navy); }
+        .svc3-menu__sub { margin: 0 0 6px; font-size: .9rem; line-height: 1.5; color: var(--text-muted); }
+        /* icono desnudo, sin tile de gradiente; el dato al margen deja comparar de un vistazo */
+        .svc3-item { display: flex; align-items: center; gap: 14px; min-height: 62px; padding: 15px 0;
+            border-top: 1px solid var(--border); color: inherit; text-decoration: none; }
+        .svc3-item:first-of-type { border-top: 0; }
+        .svc3-item__ic { flex-shrink: 0; width: 26px; text-align: center; font-size: 1.15rem; color: var(--electric); }
+        .svc3-item__tx { flex: 1; min-width: 0; }
+        .svc3-item__tx b { display: block; font-size: .98rem; font-weight: 700; color: var(--navy); transition: color .2s; }
+        .svc3-item__tx small { display: block; margin-top: 3px; font-size: .875rem; line-height: 1.5; color: var(--text-muted); }
+        .svc3-item__meta { flex-shrink: 0; font-size: .875rem; font-weight: 700; color: var(--text-muted); white-space: nowrap; }
+        .svc3-item__go { flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; display: grid;
+            place-items: center; border: 1px solid var(--border); color: var(--electric); font-size: .78rem;
+            transition: transform .25s var(--ease), background .2s, border-color .2s, color .2s; }
+        .svc3-item:hover .svc3-item__tx b { color: var(--electric); }
+        .svc3-item:hover .svc3-item__go { transform: translateX(4px); background: var(--electric);
+            border-color: var(--electric); color: #fff; }
+
+        .svc3-sleep { padding: 24px; display: flex; flex-direction: column; }
+        .svc3-sleep__text { margin: 6px 0 16px; font-size: .95rem; line-height: 1.6; color: var(--text-muted); }
+        /* dos sedes, dos precios: mini comparativa, no dos tarjetas */
+        .svc3-sleep__opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+        .svc3-opt { padding: 13px 15px; border: 1px solid var(--border); border-radius: 14px; background: var(--cloud-alt); }
+        .svc3-opt span { display: block; font-size: .875rem; color: var(--text-muted); }
+        .svc3-opt strong { display: block; margin-top: 3px; font-size: 1.3rem; font-weight: 800;
+            letter-spacing: -.025em; color: var(--navy); font-variant-numeric: tabular-nums; }
+        .svc3-sleep .svc3-cta { margin-top: auto; background: var(--navy); color: #fff; box-shadow: none; }
+        .svc3-sleep .svc3-cta:hover { color: #fff; box-shadow: 0 12px 28px -10px rgba(10,22,40,.5); }
+
+        /* ── Lo que se hace en hospital: enlaces, no tarjetas ── */
+        .svc3-more { padding: 22px 24px; }
+        .svc3-more h3 { margin: 0 0 4px; font-size: 1rem; font-weight: 800; color: var(--navy); letter-spacing: -.02em; }
+        .svc3-more p { margin: 0 0 14px; font-size: .9rem; line-height: 1.5; color: var(--text-muted); }
+        .svc3-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+        .svc3-tag { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 10px 16px;
+            border-radius: 100px; border: 1px solid var(--border); background: var(--cloud-alt);
+            font-size: .88rem; font-weight: 600; color: var(--text); text-decoration: none;
+            transition: border-color .22s, color .22s, background .22s; }
+        .svc3-tag i { font-size: .85rem; color: var(--electric); }
+        .svc3-tag:hover { border-color: rgba(9,132,227,.4); background: #fff; color: var(--navy); }
+
+        .svc3-cta:focus-visible, .svc3-item:focus-visible, .svc3-tag:focus-visible {
+            outline: 3px solid var(--electric); outline-offset: 3px; border-radius: 14px; }
+
+        @media (max-width: 900px) {
+            .svc3 { grid-template-columns: 1fr; }
+            .svc3-main, .svc3-menu, .svc3-sleep, .svc3-more { grid-column: 1; grid-row: auto; }
+        }
+        @media (max-width: 520px) {
+            .svc3 { gap: 12px; }
+            .svc3-main { padding: 26px 20px 22px; border-radius: 20px; }
+            .svc3-main__text { max-width: none; font-size: .98rem; }
+            .svc3-cta { width: 100%; }
+            .svc3-menu { padding: 20px 18px 6px; }
+            .svc3-sleep, .svc3-more { padding: 20px 18px; }
+            .svc3-sleep__opts { grid-template-columns: 1fr 1fr; }
+            .svc3-item { gap: 12px; }
+            /* el dato al margen baja bajo el nombre: si no, estrangula el titulo a 3 lineas */
+            .svc3-item__meta { display: none; }
+            .svc3-item__tx small::after { content: ' · ' attr(data-meta); font-weight: 700; color: var(--navy); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .svc3-cta, .svc3-cta i, .svc3-item__go { transition: none !important; transform: none !important; }
+        }
+
         /* =============================================
            TESTIMONIALS
         ============================================= */
@@ -4705,149 +4835,89 @@
             <div class="section-accent-line"></div>
             <div class="container my-5">
                 <div class="mb-5 text-center">
-                    <span class="section-label reveal">Servicios</span>
-                    <h2 class="section-title reveal">Servicios y estudios de Especialidad</h2>
-                    <p class="section-sub reveal">Diagnóstico, tratamiento y seguimiento integral de tu salud respiratoria.</p>
+                    <h2 class="section-title reveal">Qué hago en el consultorio</h2>
+                    <p class="section-sub reveal">La consulta, los estudios de función pulmonar y el estudio de sueño. Con precios a la vista.</p>
                 </div>
 
-                <!-- Tab pills -->
-                <div class="services-tabs reveal" role="tablist">
-                    <span class="services-tabs__ind" aria-hidden="true"></span>
-                    <button class="services-tab active" role="tab" aria-selected="true" data-tab="consulta">
-                        <i class="bi bi-clipboard2-pulse" aria-hidden="true"></i> Consulta y valoración <span class="tab-count">4</span>
-                    </button>
-                    <button class="services-tab" role="tab" aria-selected="false" data-tab="estudios">
-                        <i class="bi bi-lungs" aria-hidden="true"></i> Estudios respiratorios <span class="tab-count">6</span>
-                    </button>
-                    <button class="services-tab" role="tab" aria-selected="false" data-tab="procedimientos">
-                        <i class="bi bi-scissors" aria-hidden="true"></i> Procedimientos <span class="tab-count">4</span>
-                    </button>
-                    <button class="services-tab" role="tab" aria-selected="false" data-tab="tratamientos">
-                        <i class="bi bi-heart-pulse" aria-hidden="true"></i> Tratamientos <span class="tab-count">4</span>
-                    </button>
-                </div>
+                <div class="svc3 reveal">
 
-                <!-- Tab panels -->
-                <div class="services-panels reveal">
-
-                    <!-- ── Consulta y valoración ── -->
-                    <div class="services-panel active" role="tabpanel" data-panel="consulta">
-                        <div class="svc2-grid">
-                            <a class="svc2-row svc2-row--feat" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal" data-cta="svc-consulta-feat">
-                                <span class="svc2-ic"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i></span>
-                                <span class="svc2-tx">
-                                    <h3>Consulta de Neumología <span class="svc2-badge">Más solicitado</span></h3>
-                                    <p>Evaluación completa de tu salud respiratoria con un neumólogo certificado: síntomas, antecedentes e historial para un diagnóstico preciso y un plan claro.</p>
-                                </span>
-                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-                            </a>
-                            <a class="svc2-row" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
-                                <span class="svc2-ic"><i class="bi bi-house-heart" aria-hidden="true"></i></span>
-                                <span class="svc2-tx"><h3>Consulta a domicilio</h3><p>Si tu condición dificulta el traslado, llevo la atención neumológica a tu hogar con la misma calidad de consulta.</p></span>
-                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-                            </a>
-                            <a class="svc2-row" href="/servicios/teleconsulta/">
-                                <span class="svc2-ic"><i class="bi bi-camera-video" aria-hidden="true"></i></span>
-                                <span class="svc2-tx"><h3>Teleconsulta</h3><p>Consulta por videollamada desde cualquier lugar; ideal para seguimientos y segundas opiniones.</p></span>
-                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-                            </a>
-                            <a class="svc2-row" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
-                                <span class="svc2-ic"><i class="bi bi-shield-check" aria-hidden="true"></i></span>
-                                <span class="svc2-tx"><h3>Valoración preoperatoria pulmonar</h3><p>Antes de una cirugía es fundamental saber cómo están tus pulmones: reduce riesgos y llega preparado.</p></span>
-                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-                            </a>
+                    <!-- Consulta: es lo que el paciente viene a buscar -->
+                    <article class="svc3-main">
+                        <p class="svc3-kicker"><i class="bi bi-star-fill" aria-hidden="true"></i> Lo que más me piden</p>
+                        <h3>Consulta de neumología</h3>
+                        <p class="svc3-main__text">Reviso tus síntomas, tus antecedentes y los estudios que ya traigas. Sales de la consulta con un diagnóstico y un plan por escrito.</p>
+                        <div class="svc3-price">
+                            <span class="svc3-price__num">$1,800</span>
+                            <span class="svc3-price__unit">primera vez</span>
                         </div>
-                    </div>
+                        <p class="svc3-price__alt">Consulta subsecuente $1,500</p>
+                        <a class="svc3-cta" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal" data-cta="svc-consulta-feat">
+                            Agendar consulta <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                        </a>
+                        <ul class="svc3-modes">
+                            <li><i class="bi bi-geo-alt" aria-hidden="true"></i>
+                                <span><b>En el consultorio</b><small>Hospital Santa Coleta. Lunes a viernes de 16:00 a 21:00, sábados y domingos de 12:00 a 16:00.</small></span></li>
+                            <li><i class="bi bi-house-heart" aria-hidden="true"></i>
+                                <span><b>A domicilio</b><small>Si el traslado te cuesta trabajo, voy a tu casa dentro de 15 km del consultorio.</small></span></li>
+                            <li><i class="bi bi-camera-video" aria-hidden="true"></i>
+                                <span><b>Teleconsulta</b><small>Por videollamada, para seguimientos y segundas opiniones. <a href="/servicios/teleconsulta/">Cómo funciona</a></small></span></li>
+                        </ul>
+                    </article>
 
-                    <!-- ── Estudios respiratorios ── -->
-                    <div class="services-panel" role="tabpanel" data-panel="estudios">
-                        <div class="svc2-grid">
-                            <a class="svc2-row svc2-row--feat" href="/servicios/espirometria/" data-cta="svc-espiro-feat">
-                                <span class="svc2-ic"><i class="bi bi-activity" aria-hidden="true"></i></span>
-                                <span class="svc2-tx">
-                                    <h3>Espirometría con broncodilatador <span class="svc2-badge">Diagnóstico clave</span></h3>
-                                    <p>El estudio de referencia para distinguir asma de EPOC: medimos tu función pulmonar antes y después del broncodilatador. Resultados el mismo día.</p>
-                                </span>
-                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-                            </a>
-                            <a class="svc2-row" href="/servicios/espirometria/">
-                                <span class="svc2-ic"><i class="bi bi-lungs" aria-hidden="true"></i></span>
-                                <span class="svc2-tx"><h3>Espirometría simple</h3><p>Prueba rápida e indolora que mide tu capacidad pulmonar; el primer paso para detectar asma o EPOC.</p></span>
-                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-                            </a>
-                            <a class="svc2-row" href="/servicios/poligrafia-respiratoria/">
-                                <span class="svc2-ic"><i class="bi bi-moon-stars" aria-hidden="true"></i></span>
-                                <span class="svc2-tx"><h3>Poligrafía respiratoria</h3><p>Estudio nocturno que detecta apnea del sueño desde tu casa, con diagnóstico preciso.</p></span>
-                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-                            </a>
-                            <a class="svc2-row" href="/servicios/titulacion-presion-positiva/">
-                                <span class="svc2-ic"><i class="fa-solid fa-fan" aria-hidden="true"></i></span>
-                                <span class="svc2-tx"><h3>Titulación CPAP automático</h3><p>Ajustamos la presión óptima de tu CPAP para eliminar las pausas respiratorias mientras duermes.</p></span>
-                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-                            </a>
-                            <a class="svc2-row" href="/servicios/feno/">
-                                <span class="svc2-ic"><i class="fa-solid fa-wind" aria-hidden="true"></i></span>
-                                <span class="svc2-tx"><h3>Fracción exhalada de óxido nítrico</h3><p>Prueba de aliento que mide la inflamación de tus vías respiratorias; clave en asma.</p></span>
-                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-                            </a>
-                            <a class="svc2-row" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
-                                <span class="svc2-ic"><i class="bi bi-broadcast" aria-hidden="true"></i></span>
-                                <span class="svc2-tx"><h3>Ultrasonido pulmonar</h3><p>Imagen en tiempo real de tus pulmones, sin radiación: líquido pleural y consolidaciones al momento.</p></span>
-                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-                            </a>
-                        </div>
-                    </div>
+                    <!-- Estudios que se hacen ahi mismo -->
+                    <article class="svc3-menu">
+                        <h3>Estudios el mismo día de tu consulta</h3>
+                        <p class="svc3-menu__sub">No te mando a otro lado, el equipo está aquí.</p>
+                        <a class="svc3-item" href="/servicios/espirometria/" data-cta="svc-espiro-simple">
+                            <i class="bi bi-lungs svc3-item__ic" aria-hidden="true"></i>
+                            <span class="svc3-item__tx"><b>Espirometría simple</b>
+                                <small data-meta="25 min">Mide cuánto aire mueves. Es el primer paso para asma y EPOC.</small></span>
+                            <span class="svc3-item__meta">25 min</span>
+                            <span class="svc3-item__go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                        </a>
+                        <a class="svc3-item" href="/servicios/espirometria/" data-cta="svc-espiro-bd">
+                            <i class="bi bi-activity svc3-item__ic" aria-hidden="true"></i>
+                            <span class="svc3-item__tx"><b>Espirometría con broncodilatador</b>
+                                <small data-meta="45 min">Medimos antes y después del medicamento. Es lo que distingue asma de EPOC.</small></span>
+                            <span class="svc3-item__meta">45 min</span>
+                            <span class="svc3-item__go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                        </a>
+                        <a class="svc3-item" href="/servicios/feno/" data-cta="svc-feno">
+                            <i class="fa-solid fa-wind svc3-item__ic" aria-hidden="true"></i>
+                            <span class="svc3-item__tx"><b>FeNO, óxido nítrico exhalado</b>
+                                <small data-meta="Soplas y listo">Mide la inflamación de tus bronquios. Ayuda a ajustar el tratamiento del asma.</small></span>
+                            <span class="svc3-item__meta">Soplas y listo</span>
+                            <span class="svc3-item__go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                        </a>
+                    </article>
 
-                    <!-- ── Procedimientos ── -->
-                    <div class="services-panel" role="tabpanel" data-panel="procedimientos">
-                        <div class="svc2-grid">
-                            <a class="svc2-row" href="/servicios/toracocentesis/">
-                                <span class="svc2-ic"><i class="bi bi-droplet" aria-hidden="true"></i></span>
-                                <span class="svc2-tx"><h3>Toracocentesis</h3><p>Drenaje del líquido acumulado alrededor de tus pulmones: alivia y permite analizar la causa.</p></span>
-                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-                            </a>
-                            <a class="svc2-row" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
-                                <span class="svc2-ic"><i class="bi bi-bandaid" aria-hidden="true"></i></span>
-                                <span class="svc2-tx"><h3>Colocación de sonda endopleural</h3><p>Drenaje continuo y controlado de derrames importantes para devolver espacio a tus pulmones.</p></span>
-                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-                            </a>
-                            <a class="svc2-row" href="/servicios/cateter-pleural-multiproposito/">
-                                <span class="svc2-ic"><i class="bi bi-moisture" aria-hidden="true"></i></span>
-                                <span class="svc2-tx"><h3>Catéter pleural</h3><p>Para derrames recurrentes: drena desde casa de forma segura y reduce visitas hospitalarias.</p></span>
-                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-                            </a>
-                            <a class="svc2-row" href="/servicios/broncoscopia/">
-                                <span class="svc2-ic"><i class="bi bi-search-heart" aria-hidden="true"></i></span>
-                                <span class="svc2-tx"><h3>Broncoscopía diagnóstica</h3><p>Exploración directa de tus vías respiratorias con cámara flexible: muestras y diagnóstico precisos.</p></span>
-                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-                            </a>
+                    <!-- Poligrafia: la unica con dos precios, por eso va aparte -->
+                    <article class="svc3-sleep">
+                        <h3>Poligrafía respiratoria</h3>
+                        <p class="svc3-sleep__text">El estudio que confirma la apnea del sueño. Duermes con el equipo una noche y yo interpreto el trazo.</p>
+                        <div class="svc3-sleep__opts">
+                            <div class="svc3-opt"><span>En consultorio</span><strong>$4,500</strong></div>
+                            <div class="svc3-opt"><span>En tu casa</span><strong>$5,000</strong></div>
                         </div>
-                    </div>
+                        <a class="svc3-cta" href="/servicios/poligrafia-respiratoria/" data-cta="svc-poligrafia-feat">
+                            Cómo es el estudio <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </article>
 
-                    <!-- ── Tratamientos ── -->
-                    <div class="services-panel" role="tabpanel" data-panel="tratamientos">
-                        <div class="svc2-grid">
-                            <a class="svc2-row" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
-                                <span class="svc2-ic"><i class="bi bi-heart-pulse" aria-hidden="true"></i></span>
-                                <span class="svc2-tx"><h3>Terapia respiratoria</h3><p>Ejercicios y técnicas guiadas para fortalecer tus pulmones y recuperar tu calidad de vida.</p></span>
-                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-                            </a>
-                            <a class="svc2-row" href="/servicios/tratamiento-dejar-de-fumar/">
-                                <span class="svc2-ic"><i class="bi bi-shield-plus" aria-hidden="true"></i></span>
-                                <span class="svc2-tx"><h3>Tratamiento para dejar de fumar</h3><p>Plan médico personalizado con herramientas que funcionan; te acompaño hasta dejarlo de forma definitiva.</p></span>
-                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-                            </a>
-                            <a class="svc2-row" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
-                                <span class="svc2-ic"><i class="fa-solid fa-ribbon" aria-hidden="true"></i></span>
-                                <span class="svc2-tx"><h3>Detección de cáncer pulmonar</h3><p>Si tienes factores de riesgo, el tamizaje temprano y el seguimiento de nódulos pueden salvar tu vida.</p></span>
-                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-                            </a>
-                            <a class="svc2-row" href="/servicios/seguimiento-enfermedades-cronicas/">
-                                <span class="svc2-ic"><i class="bi bi-clipboard-check" aria-hidden="true"></i></span>
-                                <span class="svc2-tx"><h3>Seguimiento de enfermedades crónicas</h3><p>Asma, EPOC, fibrosis: ajustamos tu tratamiento continuamente para menos crisis y más días buenos.</p></span>
-                                <span class="svc2-go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-                            </a>
-                        </div>
+                    <!-- El resto del catalogo, como enlaces: conserva el enlazado interno del home -->
+                    <div class="svc3-more">
+                        <h3>También realizo</h3>
+                        <p>Procedimientos y tratamientos que hago en hospital o en seguimiento.</p>
+                        <ul class="svc3-tags">
+                            <li><a class="svc3-tag" href="/servicios/titulacion-presion-positiva/"><i class="bi bi-sliders" aria-hidden="true"></i> Titulación de CPAP</a></li>
+                            <li><a class="svc3-tag" href="/servicios/broncoscopia/"><i class="bi bi-search" aria-hidden="true"></i> Broncoscopía diagnóstica</a></li>
+                            <li><a class="svc3-tag" href="/servicios/toracocentesis/"><i class="bi bi-droplet-half" aria-hidden="true"></i> Toracocentesis</a></li>
+                            <li><a class="svc3-tag" href="/servicios/cateter-pleural-multiproposito/"><i class="bi bi-hospital" aria-hidden="true"></i> Catéter pleural</a></li>
+                            <li><a class="svc3-tag" href="/servicios/tratamiento-dejar-de-fumar/"><i class="bi bi-ban" aria-hidden="true"></i> Dejar de fumar</a></li>
+                            <li><a class="svc3-tag" href="/servicios/seguimiento-enfermedades-cronicas/"><i class="bi bi-heart-pulse" aria-hidden="true"></i> Seguimiento de enfermedades crónicas</a></li>
+                            <li><a class="svc3-tag" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-shield-check" aria-hidden="true"></i> Valoración preoperatoria</a></li>
+                            <li><a class="svc3-tag" href="/servicios/"><i class="bi bi-list-ul" aria-hidden="true"></i> Ver todos los servicios</a></li>
+                        </ul>
                     </div>
 
                 </div>
