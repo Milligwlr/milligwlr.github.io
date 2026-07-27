@@ -222,18 +222,42 @@
   section{padding-top:32px!important;padding-bottom:32px!important}
 }
 
-/* ============== QUE INCLUYE EL ESTUDIO (imagen + entregables) ============== */
+/* ====== QUE INCLUYE EL ESTUDIO (imagen + secuencia de 4 momentos) ====== */
 .svc-deliver{display:grid;gap:20px}
 .svc-deliver__fig{margin:0;border-radius:20px;overflow:hidden;background:#fff;border:1px solid rgba(108,92,231,.16);box-shadow:0 18px 44px -20px rgba(72,52,212,.45)}
 .svc-deliver__fig img{width:100%;height:auto;display:block}
-.svc-deliver__fig figcaption{font-size:.78rem;color:var(--text-muted);padding:10px 14px;font-weight:600;line-height:1.45}
+.svc-deliver__fig figcaption{display:flex;gap:10px;align-items:flex-start;font-size:.82rem;color:var(--text-muted);padding:12px 16px 14px;font-weight:500;line-height:1.5;border-top:1px solid rgba(108,92,231,.14)}
+.svc-deliver__fig figcaption i{color:var(--svc);font-size:.95rem;flex-shrink:0;margin-top:2px}
+.svc-deliver__fig figcaption strong{color:var(--navy);font-weight:800}
+
 .svc-deliver__list{list-style:none;padding:0;margin:0;display:grid;gap:12px}
-.svc-deliver__list li{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid rgba(108,92,231,.14);border-radius:16px;padding:16px 18px;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease)}
+.svc-deliver__list li{position:relative;display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid rgba(108,92,231,.14);border-radius:16px;padding:16px 18px 17px;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease)}
+/* orden de pintado: el conector del paso N debe quedar por encima del paso N+1 */
+.svc-deliver__list li:nth-child(1){z-index:4}
+.svc-deliver__list li:nth-child(2){z-index:3}
+.svc-deliver__list li:nth-child(3){z-index:2}
+.svc-deliver__list li:nth-child(4){z-index:1}
 .svc-deliver__list li:hover{border-color:rgba(108,92,231,.3);transform:translateY(-2px);box-shadow:0 10px 28px -14px rgba(72,52,212,.4)}
-.svc-deliver__ic{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--svc),var(--svc-dark));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0;box-shadow:0 6px 18px rgba(108,92,231,.32)}
-.svc-deliver__list strong{display:block;color:var(--navy);font-size:.97rem;font-weight:800;margin-bottom:3px;letter-spacing:-.01em}
-.svc-deliver__list p{margin:0;font-size:.9rem;color:var(--text-muted);line-height:1.5}
-@media(min-width:900px){.svc-deliver{grid-template-columns:.92fr 1.08fr;gap:28px;align-items:start}}
+/* conector vertical: los 4 pasos se leen como una linea de tiempo */
+.svc-deliver__list li:not(:last-child)::before{content:'';position:absolute;left:38px;top:62px;bottom:-26px;width:2px;border-radius:2px;background:linear-gradient(180deg,rgba(108,92,231,.42),rgba(108,92,231,.10));pointer-events:none}
+.svc-deliver__ic{position:relative;width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--svc),var(--svc-dark));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0;box-shadow:0 6px 18px rgba(108,92,231,.32)}
+.svc-step__n{position:absolute;top:-7px;left:-7px;width:22px;height:22px;border-radius:50%;background:#fff;border:1.5px solid rgba(108,92,231,.38);color:var(--svc-dark);font-size:.72rem;font-weight:800;line-height:1;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(72,52,212,.2)}
+.svc-step__when{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--svc-dark);margin-bottom:4px;line-height:1.3}
+.svc-step__when::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--svc);flex-shrink:0}
+.svc-deliver__list strong{display:block;color:var(--navy);font-size:1.01rem;font-weight:800;margin-bottom:5px;letter-spacing:-.015em;line-height:1.3}
+.svc-deliver__list p{margin:0;font-size:.92rem;color:var(--text-muted);line-height:1.55}
+@media(max-width:767px){
+  .svc-deliver__list strong{font-size:1.12rem;line-height:1.28}
+  .svc-step__when{font-size:.76rem;line-height:1.3}
+}
+@media(min-width:900px){
+  .svc-deliver{grid-template-columns:.92fr 1.08fr;gap:28px;align-items:start}
+  .svc-deliver__list{gap:14px}
+  .svc-deliver__list li{padding:18px 20px 19px}
+  .svc-deliver__list li:not(:last-child)::before{left:40px;top:64px;bottom:-28px}
+  .svc-deliver__list strong{font-size:1.06rem}
+  .svc-deliver__list p{font-size:.94rem}
+}
 
 /* ============== CUESTIONARIO STOP-BANG ============== */
 .sb-wrap{max-width:760px}
@@ -512,7 +536,7 @@
 <div class="svc-section reveal">
 <span class="svc-section__eyebrow"><i class="bi bi-box-seam"></i> En qué consiste</span>
 <h2 class="svc-section__title">Equipo, una noche en casa y <em>lectura médica</em></h2>
-<p class="svc-section__lead">Así se ve y así funciona el estudio, de principio a fin. No hay internamiento, no hay técnico vigilándote y no hay cables conectados a la pared.</p>
+<p class="svc-section__lead">Así se ve y así funciona el estudio, de principio a fin, en cuatro momentos. No hay internamiento, no hay técnico vigilándote y no hay cables conectados a la pared.</p>
 
 <div class="svc-deliver">
 <figure class="svc-deliver__fig">
@@ -521,15 +545,15 @@
      sizes="(max-width:899px) 92vw, 40vw"
      width="640" height="480" loading="lazy" decoding="async"
      alt="Paciente durmiendo en su propia cama junto a su pareja, con la cánula nasal, la banda torácica y el oxímetro de dedo de la poligrafía respiratoria">
-<figcaption>Equipo tipo III a batería: registra tu respiración toda la noche, en tu cama.</figcaption>
+<figcaption><i class="bi bi-activity" aria-hidden="true"></i><span><strong>Equipo tipo III a batería.</strong> Registra tu respiración toda la noche, en tu cama.</span></figcaption>
 </figure>
 
-<ul class="svc-deliver__list">
-<li><span class="svc-deliver__ic"><i class="bi bi-mortarboard-fill"></i></span><div><strong>Te enseño a colocártelo</strong><p>En la consulta te entrego el equipo y practicamos juntos: cánula nasal, banda y oxímetro. Toma unos 10 minutos y te vas sabiendo hacerlo.</p></div></li>
-<li><span class="svc-deliver__ic"><i class="bi bi-moon-stars-fill"></i></span><div><strong>Duermes tu noche normal</strong><p>En tu colchón, con tu rutina y con tu pareja al lado si es el caso. Puedes voltearte y levantarte al baño. Al día siguiente devuelves el equipo.</p></div></li>
-<li><span class="svc-deliver__ic"><i class="bi bi-person-badge-fill"></i></span><div><strong>Lo leo yo, no un software</strong><p>Reviso el trazo completo de la noche: IAH, caídas de oxígeno, ronquido y posición. La severidad la define un neumólogo, no el número automático del aparato.</p></div></li>
-<li><span class="svc-deliver__ic"><i class="bi bi-clipboard2-check-fill"></i></span><div><strong>Sales con un plan, no con un PDF</strong><p>Te explico qué significa tu resultado y qué sigue, sea medidas posicionales, avance mandibular o CPAP, en lenguaje que se entiende.</p></div></li>
-</ul>
+<ol class="svc-deliver__list">
+<li><span class="svc-deliver__ic"><i class="bi bi-mortarboard-fill"></i><span class="svc-step__n" aria-hidden="true">1</span></span><div><span class="svc-step__when">En tu consulta</span><strong>Te enseño a colocártelo</strong><p>Te entrego el equipo y lo practicamos juntos: cánula nasal, banda torácica y oxímetro de dedo. Toma unos 10 minutos y te vas sabiendo colocártelo tú.</p></div></li>
+<li><span class="svc-deliver__ic"><i class="bi bi-moon-stars-fill"></i><span class="svc-step__n" aria-hidden="true">2</span></span><div><span class="svc-step__when">Esa noche, en tu casa</span><strong>Duermes tu noche normal</strong><p>En tu colchón, con tu rutina y con tu pareja al lado si es el caso. Puedes voltearte y levantarte al baño. Al día siguiente devuelves el equipo.</p></div></li>
+<li><span class="svc-deliver__ic"><i class="bi bi-person-badge-fill"></i><span class="svc-step__n" aria-hidden="true">3</span></span><div><span class="svc-step__when">Al día siguiente</span><strong>Lo leo yo, no un software</strong><p>Reviso el trazo completo de la noche: IAH, caídas de oxígeno, ronquido y posición. La severidad la define un neumólogo, no el número automático del aparato.</p></div></li>
+<li><span class="svc-deliver__ic"><i class="bi bi-clipboard2-check-fill"></i><span class="svc-step__n" aria-hidden="true">4</span></span><div><span class="svc-step__when">En tu consulta de resultados</span><strong>Te entrego el reporte y definimos el plan</strong><p>Agendamos una segunda cita, tu consulta de resultados. Ahí te entrego el reporte, te explico qué significa tu IAH y definimos juntos qué sigue, sea medidas posicionales, avance mandibular o CPAP. No te quedas con un PDF que nadie te explica.</p></div></li>
+</ol>
 </div>
 </div>
 
@@ -780,8 +804,8 @@
 
 <div class="orient-trust" role="group" aria-label="Por qué es confiable el estudio en casa">
 <div>
-<span class="orient-trust__n">~0.92</span>
-<span class="orient-trust__t">de concordancia con el estudio de laboratorio en el <b>índice con el que se diagnostica</b> (1 = coincidencia total)</span>
+<span class="orient-trust__n">84-91%</span>
+<span class="orient-trust__t">de exactitud <b>cuando ya hay sospecha clara de apnea</b>, según la revisión de la guía AASM. Si la probabilidad es baja cae a 70-78%, y por eso la valoración médica previa es la que hace confiable al estudio</span>
 </div>
 <ul class="orient-points">
 <li><i class="bi bi-journal-check" aria-hidden="true"></i><span>Las guías del sueño <b>(AASM)</b> lo respaldan para el caso típico de apnea.</span></li>
