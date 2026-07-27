@@ -78,7 +78,7 @@
         --border:rgba(9,44,84,.10);
         --shadow-sm:0 2px 14px rgba(10,22,40,.07);
         --shadow-md:0 6px 32px rgba(10,22,40,.09);
-        --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+        --sans:'Plus Jakarta Sans',system-ui, sans-serif;
         --ease:cubic-bezier(0.23,1,0.32,1);
         --e1:0 1px 2px rgba(9,44,84,.05),0 2px 8px -2px rgba(9,44,84,.08);
         --e2:0 2px 4px rgba(9,44,84,.05),0 10px 24px -8px rgba(9,44,84,.13);
@@ -1045,7 +1045,7 @@
 
     function sbShowResult(){
         var score=Object.values(answers).reduce(function(a,b){return a+b;},0);
-        var level,iconHTML,message,waMsg,ctaHTML,showRouteB;
+        var level, iconHTML,message, waMsg, ctaHTML,showRouteB;
         if(score<=2){
             level='Riesgo bajo';
             iconHTML='<i class="bi bi-check-circle-fill"></i>';
@@ -1127,7 +1127,7 @@
             }
             btn.classList.add(val===1?'active-si':'active-no');
             btn.setAttribute('aria-pressed','true');
-            sbSetAnswer(qid,val);
+            sbSetAnswer(qid, val);
         });
     }
 })();

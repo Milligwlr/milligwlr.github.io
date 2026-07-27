@@ -42,7 +42,7 @@
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
+    })(window, document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <!-- End Google Tag Manager -->
 
     <link rel="icon" href="/favicon.png" type="image/png">
@@ -2921,7 +2921,7 @@
         /* burbujas móviles */
         .dis2-bubbles{display:none;position:relative;margin-top:6px}
         .dis2-bub{--sz:78px;position:absolute;width:var(--sz);height:var(--sz);margin:calc(var(--sz)/-2) 0 0 calc(var(--sz)/-2);border-radius:50%;
-            background:linear-gradient(165deg,rgba(255,255,255,.97),rgba(244,249,255,.88));
+            background:linear-gradient(165deg, rgba(255,255,255,.97),rgba(244,249,255,.88));
             border:1px solid rgba(255,255,255,.95);
             box-shadow:0 2px 4px rgba(10,22,40,.04),0 12px 28px -6px rgba(10,22,40,.12),inset 0 1px 0 #fff;
             display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;padding:0;
@@ -2941,8 +2941,8 @@
         .dis2-bub:active{transform:scale(.95)}
         .dis2-bubbles.filtering .dis2-bub{opacity:.12;box-shadow:0 6px 16px rgba(10,22,40,.05)}
         .dis2-bubbles.filtering .dis2-bub.hit{opacity:1;z-index:3;
-            border-color:color-mix(in srgb,var(--acc) 45%,#fff);
-            box-shadow:0 2px 4px rgba(10,22,40,.04),0 18px 44px -8px color-mix(in srgb,var(--acc) 38%,transparent),0 0 0 6px color-mix(in srgb,var(--acc) 7%,transparent),inset 0 1px 0 #fff}
+            border-color:color-mix(in srgb, var(--acc) 45%,#fff);
+            box-shadow:0 2px 4px rgba(10,22,40,.04),0 18px 44px -8px color-mix(in srgb, var(--acc) 38%,transparent),0 0 0 6px color-mix(in srgb, var(--acc) 7%,transparent),inset 0 1px 0 #fff}
         .dis2-bubbles.filtering .dis2-bub.hit .bic{transform:scale(1.08)}
         /* bottom sheet móvil */
         .dis2-sheetbg{position:fixed;inset:0;background:rgba(10,22,40,.45);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:1090}
@@ -4558,7 +4558,7 @@
         .cont-section::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,0,0,.4),transparent);pointer-events:none;z-index:3}
         /* horizon haze band, sunset through smog */
         .cont-horizon{position:absolute;left:0;right:0;bottom:0;height:55%;pointer-events:none;z-index:0;
-          background:linear-gradient(180deg,transparent 0%,rgba(234,88,12,.10) 45%,rgba(180,60,40,.18) 80%,rgba(120,40,30,.28) 100%);
+          background:linear-gradient(180deg, transparent 0%,rgba(234,88,12,.10) 45%,rgba(180,60,40,.18) 80%,rgba(120,40,30,.28) 100%);
           mix-blend-mode:soft-light}
         /* smog particle canvas, multiply blend so it darkens like real haze */
         .cont-particles{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:.92;mix-blend-mode:multiply}
@@ -4708,7 +4708,7 @@
           if(!canvas || !section) return;
           var ctx = canvas.getContext('2d');
           var dpr = Math.min(window.devicePixelRatio||1, 2);
-          var w=0,h=0,particles=[],raf=null,running=false;
+          var w=0,h=0,particles=[],raf=null, running=false;
           // smog state, color is for the *haze*, not bright glow
           var state = {value:60, smoke:'#3a2a22', tint:'#a86a3a', speed:.18};
 
@@ -4771,7 +4771,7 @@
             };
           }
           function step(){
-            ctx.clearRect(0,0,w,h);
+            ctx.clearRect(0,0,w, h);
             // multiply blend → particles darken/tint background like real haze (no glow)
             ctx.globalCompositeOperation = 'multiply';
             for(var i=0;i<particles.length;i++){
@@ -4786,7 +4786,7 @@
               var spr = p.warm ? sprites.tint : sprites.smoke;
               // irregular blob via slight scale + rotation
               ctx.save();
-              ctx.translate(p.x,p.y);
+              ctx.translate(p.x, p.y);
               ctx.rotate(p.rot);
               ctx.scale(1.15, 0.78);
               ctx.globalAlpha = alpha;
@@ -5812,7 +5812,7 @@
                         var t = tg[k++], grow = 96/b.offsetWidth;
                         b.style.transform = 'translate(' + (t[0]-rx).toFixed(1) + 'px,' + (t[1]-ry).toFixed(1) + 'px) scale(' + grow.toFixed(3) + ')';
                     } else {
-                        var dx=rx-W/2, dy=ry-H/2, m=Math.max(1, Math.hypot(dx,dy));
+                        var dx=rx-W/2, dy=ry-H/2, m=Math.max(1, Math.hypot(dx, dy));
                         b.style.transform = 'translate(' + (dx/m*30).toFixed(1) + 'px,' + (dy/m*30).toFixed(1) + 'px) scale(.78)';
                     }
                 });

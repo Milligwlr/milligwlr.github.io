@@ -536,7 +536,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 text-center d-none d-lg-block">
-                    <div style="background:linear-gradient(135deg,rgba(0,206,201,.1),rgba(9,132,227,.08));border-radius:20px;padding:28px 20px">
+                    <div style="background:linear-gradient(135deg, rgba(0,206,201,.1),rgba(9,132,227,.08));border-radius:20px;padding:28px 20px">
                         <i class="bi bi-moon-stars" style="font-size:3rem;color:var(--electric);display:block;margin-bottom:12px"></i>
                         <p style="font-size:.93rem;color:var(--navy);font-weight:600;margin-bottom:4px">Non-invasive study</p>
                         <p style="font-size:.85rem;color:var(--muted);margin-bottom:18px">Just sensors at home, one night</p>
@@ -994,7 +994,7 @@ document.addEventListener('click',function(e){
 
     function sbShowResult(){
         var score=Object.values(answers).reduce(function(a,b){return a+b;},0);
-        var level,icon,message,waMsg;
+        var level, icon, message, waMsg;
         if(score<=2){
             level='Low risk';
             icon='&#128994;';/* verde */
@@ -1073,7 +1073,7 @@ document.addEventListener('click',function(e){
             }
             btn.classList.add(val===1?'active-si':'active-no');
             btn.setAttribute('aria-pressed','true');
-            sbSetAnswer(qid,val,btn);
+            sbSetAnswer(qid, val, btn);
         });
     }
 })();

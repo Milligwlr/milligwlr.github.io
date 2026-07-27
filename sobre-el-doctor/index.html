@@ -473,18 +473,18 @@
       animation:tw-border 6s linear infinite;pointer-events:none}
     @keyframes tw-border{0%{background-position:0% 0}100%{background-position:200% 0}}
     .trust-wall::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
-      background:linear-gradient(90deg,transparent,rgba(9,132,227,.18),transparent);pointer-events:none}
+      background:linear-gradient(90deg, transparent, rgba(9,132,227,.18),transparent);pointer-events:none}
     /* subtle dot grid */
     .trust-wall__bg{position:absolute;inset:0;pointer-events:none;
-      background-image:radial-gradient(circle,rgba(9,132,227,.065) 1px,transparent 1px);
+      background-image:radial-gradient(circle, rgba(9,132,227,.065) 1px, transparent 1px);
       background-size:32px 32px;
       mask-image:radial-gradient(ellipse 80% 90% at 50% 50%,#000 10%,transparent 80%);
       -webkit-mask-image:radial-gradient(ellipse 80% 90% at 50% 50%,#000 10%,transparent 80%)}
     /* soft color wash blobs */
     .trust-wall__orb-l{position:absolute;top:-15%;left:-10%;width:50vw;height:50vw;border-radius:50%;
-      background:radial-gradient(circle,rgba(9,132,227,.07) 0%,transparent 65%);filter:blur(60px);pointer-events:none}
+      background:radial-gradient(circle, rgba(9,132,227,.07) 0%,transparent 65%);filter:blur(60px);pointer-events:none}
     .trust-wall__orb-r{position:absolute;bottom:-20%;right:-8%;width:44vw;height:44vw;border-radius:50%;
-      background:radial-gradient(circle,rgba(0,206,201,.06) 0%,transparent 65%);filter:blur(50px);pointer-events:none}
+      background:radial-gradient(circle, rgba(0,206,201,.06) 0%,transparent 65%);filter:blur(50px);pointer-events:none}
 
     /* head */
     .trust-wall__head{text-align:center;max-width:680px;margin:0 auto 60px;position:relative;z-index:1}
@@ -517,20 +517,20 @@
 
     /* subtle dot grid on header */
     .trust-card__header::before{content:'';position:absolute;inset:0;
-      background-image:radial-gradient(circle,rgba(255,255,255,.07) 1px,transparent 1px);
+      background-image:radial-gradient(circle, rgba(255,255,255,.07) 1px, transparent 1px);
       background-size:20px 20px;pointer-events:none}
     /* glow orb top-right */
     .trust-card--buap .trust-card__header::after{content:'';position:absolute;top:-30%;right:-20%;
       width:140px;height:140px;border-radius:50%;
-      background:radial-gradient(circle,rgba(9,132,227,.55) 0%,transparent 65%);
+      background:radial-gradient(circle, rgba(9,132,227,.55) 0%,transparent 65%);
       filter:blur(24px);pointer-events:none}
     .trust-card--unam .trust-card__header::after{content:'';position:absolute;top:-30%;right:-20%;
       width:140px;height:140px;border-radius:50%;
-      background:radial-gradient(circle,rgba(0,206,201,.5) 0%,transparent 65%);
+      background:radial-gradient(circle, rgba(0,206,201,.5) 0%,transparent 65%);
       filter:blur(24px);pointer-events:none}
     .trust-card--cnn  .trust-card__header::after{content:'';position:absolute;top:-30%;right:-20%;
       width:140px;height:140px;border-radius:50%;
-      background:radial-gradient(circle,rgba(217,119,6,.6) 0%,transparent 65%);
+      background:radial-gradient(circle, rgba(217,119,6,.6) 0%,transparent 65%);
       filter:blur(24px);pointer-events:none}
 
     /* header layout: logo left, number+verified right */
@@ -673,8 +673,8 @@
     @media (prefers-reduced-motion: no-preference){
       .timeline-stage{min-height:100vh;box-sizing:border-box;padding-top:72px;display:flex;flex-direction:column;justify-content:center;gap:20px}
       .timeline-viewport{position:relative;width:100%;max-height:66vh;overflow:hidden;
-        -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 91%,transparent 100%);
-        mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 91%,transparent 100%)}
+        -webkit-mask-image:linear-gradient(180deg, transparent 0,#000 9%,#000 91%,transparent 100%);
+        mask-image:linear-gradient(180deg, transparent 0,#000 9%,#000 91%,transparent 100%)}
       .timeline-viewport .timeline-flow{margin:0 auto;will-change:transform}
     }
     /* móvil: cabecera más compacta y marco más bajo para que quepa en 100vh */
@@ -854,7 +854,7 @@
     .editorial__label::before,
     .trust-wall__label::before{
       content:'';display:inline-block;width:18px;height:1px;
-      background:linear-gradient(90deg,transparent,currentColor);
+      background:linear-gradient(90deg, transparent, currentColor);
       opacity:.6;margin-right:2px;vertical-align:middle;
     }
 
@@ -948,7 +948,7 @@
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
+    })(window, document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <link rel="stylesheet" href="/assets/agenda-modal.css">
     <link rel="stylesheet" href="/assets/base.css">
     <script src="/assets/base.js" defer></script>
@@ -1824,7 +1824,7 @@
             });
         }
         function draw(){
-            ctx.clearRect(0,0,canvas.width,canvas.height);
+            ctx.clearRect(0,0,canvas.width, canvas.height);
             for (var j=0;j<particles.length;j++){
                 var p = particles[j];
                 p.x += p.speedX; p.y += p.speedY;

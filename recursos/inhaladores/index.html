@@ -67,7 +67,7 @@
 <link rel="stylesheet" href="/enfermedades/_shared/disease.css">
 <style>
 :root{--inh:#0984e3;--inh-light:#74b9ff;--inh-mid:#1e3799;--inh-dark:#0773c5;
-  --mdi:#0984e3;--dpi:#7c3aed;--smi:#0d9488;--neb:#ea580c}
+  --mdi:#0984e3;--dpi:#1e3799;--smi:#00cec9;--neb:#00b894}
 
 .disease-content{padding:48px 0 24px}
 @media(min-width:768px){.disease-content{padding:64px 0 32px}}
@@ -116,12 +116,42 @@
 .inh-hero-visual__row i{font-size:1rem;width:22px;text-align:center;color:var(--inh-light);flex-shrink:0}
 
 /* STATS STRIP COMPACT */
+/* === Pictograma 9 de cada 10 ===========================================
+   Tres tarjetas de cifra ocupaban tres pantallas de movil para decir tres
+   numeros. El dato principal se lee ahora de un vistazo: diez siluetas,
+   nueve marcadas. El resto pasa a dos micro-hechos y las fuentes se pliegan.
+   ====================================================================== */
+.tenfig{margin:0 0 18px;padding:22px 20px;background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:20px;box-shadow:0 4px 14px rgba(10,22,40,.04)}
+.tenfig__svg{display:block;width:100%;height:auto;max-width:340px;margin:0 auto 14px}
+.tenfig__row use{fill:var(--inh-light);opacity:.28}
+.tenfig__row use.is-err{fill:var(--inh);opacity:1}
+.tenfig__cap{font-size:1rem;line-height:1.55;color:var(--text);text-align:center;max-width:34ch;margin:0 auto}
+.tenfig__cap strong{color:var(--inh);font-weight:800;font-size:1.12em}
+
+.minifacts{list-style:none;margin:0 0 16px;padding:0;display:grid;gap:12px}
+.minifacts__item{display:flex;align-items:flex-start;gap:14px;background:var(--cloud-alt,#f8faff);border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:16px 18px}
+.minifacts__num{flex:0 0 auto;min-width:84px;font-size:1.35rem;font-weight:800;color:var(--inh);line-height:1.15;letter-spacing:-.02em}
+.minifacts__pct{font-size:.72em;font-weight:700}
+.minifacts__txt{font-size:.95rem;line-height:1.55;color:var(--text)}
+.minifacts__txt strong{color:var(--text);font-weight:700}
+
+.srcbox{font-size:.85rem;color:var(--text-muted)}
+.srcbox>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;gap:8px;font-weight:600;color:var(--text-muted)}
+.srcbox>summary::marker{color:var(--inh)}
+.srcbox ul{margin:4px 0 0;padding-left:20px;line-height:1.7}
+.srcbox em{font-style:italic}
+
+@media(min-width:760px){
+    .minifacts{grid-template-columns:1fr 1fr}
+    .tenfig{padding:28px 26px}
+}
+
 .stats-bento{display:grid;grid-template-columns:1fr;gap:14px}
 @media(min-width:768px){.stats-bento{grid-template-columns:repeat(3,1fr);gap:18px}}
 .stats-bento__card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:20px;padding:24px 22px;box-shadow:0 4px 14px rgba(10,22,40,.04);position:relative;overflow:hidden;transition:all .35s var(--ease)}
 .stats-bento__card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(9,132,227,.12);border-color:rgba(9,132,227,.25)}
 .stats-bento__card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--inh),var(--inh-light))}
-.stats-bento__num{font-size:clamp(2rem,6vw,2.6rem);font-weight:800;background:linear-gradient(135deg,var(--inh),var(--inh-mid));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;letter-spacing:-.03em;margin-bottom:10px}
+.stats-bento__num{font-size:clamp(2rem,6vw,2.6rem);font-weight:800;color:var(--inh);line-height:1;letter-spacing:-.03em;margin-bottom:10px}
 .stats-bento__lbl{font-size:.88rem;color:var(--text);line-height:1.5;margin-bottom:8px}
 .stats-bento__lbl em{font-style:italic;color:var(--inh)}
 .stats-bento__src{font-size:.7rem;color:var(--text-muted);font-weight:600;letter-spacing:.5px}
@@ -134,14 +164,14 @@
 .device::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--c)}
 .device:hover{transform:translateY(-5px);box-shadow:0 18px 42px rgba(10,22,40,.12)}
 .device--mdi{--c:linear-gradient(90deg,var(--mdi),#74b9ff)}
-.device--dpi{--c:linear-gradient(90deg,var(--dpi),#a78bfa)}
-.device--smi{--c:linear-gradient(90deg,var(--smi),#5eead4)}
-.device--neb{--c:linear-gradient(90deg,var(--neb),#fdba74)}
+.device--dpi{--c:linear-gradient(90deg,var(--dpi),#0984e3)}
+.device--smi{--c:linear-gradient(90deg,var(--smi),#74b9ff)}
+.device--neb{--c:linear-gradient(90deg,var(--neb),#00cec9)}
 .device__icon{width:54px;height:54px;border-radius:15px;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:12px;box-shadow:0 8px 20px rgba(0,0,0,.12)}
 .device--mdi .device__icon{background:linear-gradient(135deg,var(--mdi),#0773c5)}
-.device--dpi .device__icon{background:linear-gradient(135deg,var(--dpi),#5b21b6)}
-.device--smi .device__icon{background:linear-gradient(135deg,var(--smi),#0f766e)}
-.device--neb .device__icon{background:linear-gradient(135deg,var(--neb),#9a3412)}
+.device--dpi .device__icon{background:linear-gradient(135deg,var(--dpi),#0a2540)}
+.device--smi .device__icon{background:linear-gradient(135deg,var(--smi),#0984e3)}
+.device--neb .device__icon{background:linear-gradient(135deg,var(--neb),#1e3799)}
 .device__abbr{display:inline-block;font-size:.66rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px}
 .device h3{font-size:1rem;color:var(--navy);margin:0 0 6px;line-height:1.25;font-weight:800}
 .device__sub{font-size:.8rem;color:var(--text-muted);line-height:1.5;margin:0 0 12px}
@@ -151,10 +181,10 @@
 
 /* TECHNIQUE BLOCKS */
 .tech{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:22px;overflow:hidden;box-shadow:0 6px 20px rgba(10,22,40,.06);margin-bottom:18px}
-.tech--mdi{border-left:5px solid var(--mdi)}
-.tech--dpi{border-left:5px solid var(--dpi)}
-.tech--smi{border-left:5px solid var(--smi)}
-.tech--neb{border-left:5px solid var(--neb)}
+.tech--mdi{border:1px solid rgba(0,0,0,.08)}
+.tech--dpi{border:1px solid rgba(0,0,0,.08)}
+.tech--smi{border:1px solid rgba(0,0,0,.08)}
+.tech--neb{border:1px solid rgba(0,0,0,.08)}
 .tech__head{padding:20px 24px;display:flex;gap:14px;align-items:center;border-bottom:1px solid rgba(0,0,0,.05);background:linear-gradient(135deg,#fafbff,#f4f7fc)}
 .tech__icon{width:50px;height:50px;border-radius:14px;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;box-shadow:0 8px 20px rgba(0,0,0,.1)}
 .tech--mdi .tech__icon{background:linear-gradient(135deg,var(--mdi),#0773c5)}
@@ -344,7 +374,7 @@ html{scroll-behavior:smooth;scroll-padding-top:96px}
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
+})(window, document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <link rel="stylesheet" href="/assets/agenda-modal.css">
     <link rel="stylesheet" href="/assets/base.css">
     <script src="/assets/base.js" defer></script>
@@ -501,7 +531,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="col-lg-7">
 <span class="inh-hero-tag"><span class="pulse"></span> Guía clínica · GINA 2025 · GOLD 2026</span>
 <h1 class="inh-hero-title">Tu inhalador sólo sirve si llega al pulmón<em>Tipos · técnica · errores · espaciador</em></h1>
-<p class="inh-hero-sub">Una buena técnica vale tanto como la dosis del medicamento. Aquí está todo lo que necesitas saber, sin rodeos,para asma, EPOC y manejo de crisis.</p>
+<p class="inh-hero-sub">Una buena técnica vale tanto como la dosis del medicamento. Aquí está todo lo que necesitas saber, sin rodeos, para asma, EPOC y manejo de crisis.</p>
 <div class="inh-hero-meta">
 <span><i class="fas fa-shield-heart"></i> GINA · GOLD · CRITIKAL</span>
 <span><i class="fas fa-user-md"></i> Dr. William Lara</span>
@@ -537,24 +567,50 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="inh-section reveal" id="por-que">
 <span class="inh-section__eyebrow"><i class="bi bi-bullseye"></i> Por qué importa la técnica</span>
 <h2 class="inh-section__title">El medicamento sólo sirve si <em>llega al pulmón</em></h2>
-<p class="inh-section__lead">La mayoría de pacientes,incluidos quienes llevan años con inhalador, cometen errores que reducen la cantidad de fármaco que llega a la vía aérea.</p>
-<div class="stats-bento">
-<div class="stats-bento__card">
-<div class="stats-bento__num">~87%</div>
-<div class="stats-bento__lbl">de pacientes con asma o EPOC cometen <em>al menos un error</em> al usar su inhalador.</div>
-<div class="stats-bento__src">Sanchis et al. CHEST 2016</div>
-</div>
-<div class="stats-bento__card">
-<div class="stats-bento__num">14–92%</div>
-<div class="stats-bento__lbl">presentan <em>errores críticos</em> que comprometen la dosis recibida, según el dispositivo.</div>
-<div class="stats-bento__src">Usmani et al. Resp Res 2018</div>
-</div>
-<div class="stats-bento__card">
-<div class="stats-bento__num">+ riesgo</div>
-<div class="stats-bento__lbl">de exacerbaciones, urgencias y peor control si la <em>técnica es deficiente</em>.</div>
-<div class="stats-bento__src">Price et al. JACI Pract 2017</div>
-</div>
-</div>
+<p class="inh-section__lead">La mayoría de pacientes, incluidos quienes llevan años con inhalador, cometen errores que reducen la cantidad de fármaco que llega a la vía aérea.</p>
+<figure class="tenfig">
+    <svg class="tenfig__svg" viewBox="0 0 340 78" role="img"
+         aria-label="Nueve de cada diez personas que usan inhalador cometen al menos un error de técnica">
+        <defs>
+            <path id="tenfig-p" d="M11 4a4.6 4.6 0 1 1 0 9.2 4.6 4.6 0 0 1 0-9.2Zm0 11.4c5.6 0 9.6 3 9.6 7.2v9.6a2 2 0 0 1-2 2H3.4a2 2 0 0 1-2-2v-9.6c0-4.2 4-7.2 9.6-7.2Z"/>
+        </defs>
+        <g class="tenfig__row">
+            <use href="#tenfig-p" x="0"   y="0" class="is-err"/>
+            <use href="#tenfig-p" x="34"  y="0" class="is-err"/>
+            <use href="#tenfig-p" x="68"  y="0" class="is-err"/>
+            <use href="#tenfig-p" x="102" y="0" class="is-err"/>
+            <use href="#tenfig-p" x="136" y="0" class="is-err"/>
+            <use href="#tenfig-p" x="170" y="0" class="is-err"/>
+            <use href="#tenfig-p" x="204" y="0" class="is-err"/>
+            <use href="#tenfig-p" x="238" y="0" class="is-err"/>
+            <use href="#tenfig-p" x="272" y="0" class="is-err"/>
+            <use href="#tenfig-p" x="306" y="0" class="is-ok"/>
+        </g>
+    </svg>
+    <figcaption class="tenfig__cap">
+        <strong>9 de cada 10</strong> personas con asma o EPOC cometen al menos un error al usar su inhalador.
+    </figcaption>
+</figure>
+
+<ul class="minifacts">
+    <li class="minifacts__item">
+        <span class="minifacts__num">14&ndash;92<span class="minifacts__pct">%</span></span>
+        <span class="minifacts__txt">comete un error <strong>crítico</strong>, el que sí cambia la dosis que recibes. Depende del dispositivo.</span>
+    </li>
+    <li class="minifacts__item">
+        <span class="minifacts__num"><i class="bi bi-graph-up-arrow" aria-hidden="true"></i></span>
+        <span class="minifacts__txt">Con técnica deficiente suben las <strong>crisis y las urgencias</strong>, y empeora el control.</span>
+    </li>
+</ul>
+
+<details class="srcbox">
+    <summary>Fuentes de estas cifras</summary>
+    <ul>
+        <li>Sanchis J, et al. <em>CHEST</em> 2016.</li>
+        <li>Usmani OS, et al. <em>Respiratory Research</em> 2018.</li>
+        <li>Price D, et al. <em>J Allergy Clin Immunol Pract</em> 2017.</li>
+    </ul>
+</details>
 </div>
 
 <!-- TIPOS -->

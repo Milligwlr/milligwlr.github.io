@@ -57,7 +57,7 @@
   --navy:#0a1628;--navy-mid:#122040;--royal:#1e3799;--electric:#0984e3;
   --sky:#74b9ff;--cloud:#f0f6ff;--cloud-alt:#f8faff;--white:#fff;
   --text:#0f1d30;--text-muted:#64748b;--border:rgba(0,0,0,.08);
-  --sans:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  --sans:'Plus Jakarta Sans',-apple-system, BlinkMacSystemFont, sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
   --shadow-md:0 6px 32px rgba(10,22,40,.09);
   --shadow-lg:0 16px 60px rgba(10,22,40,.12);
@@ -451,7 +451,7 @@ footer.site-footer p{margin:4px 0}
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
+    })(window, document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <!-- End Google Tag Manager -->
     <link rel="stylesheet" href="/assets/agenda-modal.css">
     <link rel="stylesheet" href="/assets/base.css">
@@ -684,7 +684,7 @@ footer.site-footer p{margin:4px 0}
       .then(function(d){
         if(d&&d.status==='ok'&&d.data&&typeof d.data.aqi==='number'){
           var link=(d.data.city&&d.data.city.url)?d.data.city.url:'https://aqicn.org/city/mexico/';
-          render(d.data.aqi,link);
+          render(d.data.aqi, link);
         } else { return Promise.reject(); }
       })
       .catch(fromOM);
