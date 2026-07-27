@@ -65,7 +65,7 @@
       : 'Hola Dr. Lara, vengo de su sitio web alveos.mx y me interesa agendar una consulta a domicilio. ¿Podría darme más información sobre la disponibilidad y coordinación?';
   }
 
-  var waBase = 'https://wa.me/5215591708334?text=';
+  var waBase = 'https://wa.me/522224926718?text=';
   var waHref = waBase + encodeURIComponent(waMessage);
   var waHomeHref = waBase + encodeURIComponent(waHomeMessage);
 
