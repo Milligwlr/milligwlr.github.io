@@ -61,6 +61,7 @@
 .svc-section__eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--svc);animation:pulse-dot 2s ease-in-out infinite}
 .svc-section__title{font-size:clamp(1.5rem,5.5vw,2.2rem);font-weight:800;color:var(--navy);letter-spacing:-.025em;line-height:1.15;margin-bottom:14px}
 .svc-section__title em{font-style:normal;background:linear-gradient(135deg,var(--svc),var(--svc-light));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.svc-section__lead b{color:var(--svc);font-weight:800}
 .svc-section__lead{font-size:1rem;color:var(--text-muted);line-height:1.6;max-width:640px;margin:0 0 24px}
 @media(min-width:768px){.svc-section__lead{font-size:1.05rem;line-height:1.7;margin-bottom:32px}}
 
@@ -340,39 +341,41 @@
    absolute ni saltos al cambiar. ── */
 .orient-deck{position:relative}
 
-/* ── Orbita ──
-   Dos tarjetas suspendidas: la que se lee al centro, la otra girada a un lado.
-   La profundidad es el argumento: el estudio se hace en casa, no encerrado en
-   un laboratorio, y el componente tiene que sentirse tan cuidado como el
-   equipo que se lleva el paciente. La sombra va en tres capas (contacto,
-   cuerpo, ambiente) porque una sola sombra difusa lee como plantilla. */
-.orient-deck__stage{display:grid;grid-template-columns:1fr;align-items:start;justify-items:center;touch-action:pan-y;perspective:1600px;perspective-origin:50% 42%;
-    padding:10px 0 26px;transform-style:preserve-3d}
-.orient-deck__stage > .orient-route{grid-area:1/1;width:100%;max-width:560px;
-    transition:transform 1.05s cubic-bezier(.62,.02,.24,1),opacity .8s cubic-bezier(.62,.02,.24,1),box-shadow .9s ease;
-    transform-origin:50% 55%;will-change:transform}
-.orient-deck__stage > .orient-route.is-front{z-index:2;opacity:1;
-    box-shadow:0 1px 2px rgba(16,24,40,.06),0 18px 34px -14px rgba(16,24,40,.24),0 44px 80px -40px color-mix(in srgb,var(--svc) 40%,transparent);
-    animation:orientLevita 7.5s cubic-bezier(.45,0,.55,1) infinite}
-.orient-deck__stage > .orient-route.is-back{z-index:1;opacity:.42;cursor:pointer;
-    transform:translateX(34%) translateZ(-130px) rotateY(-20deg) scale(.94);
-    box-shadow:0 12px 30px -16px rgba(16,24,40,.3);
-    animation:orientLevitaLado 9.5s cubic-bezier(.45,0,.55,1) infinite}
-.orient-deck__stage > .orient-route.is-back:hover,
-.orient-deck__stage > .orient-route.is-back:focus-within{opacity:.62}
-@keyframes orientLevita{0%,100%{transform:translateY(0) rotateY(0)}50%{transform:translateY(-10px) rotateY(-1.2deg)}}
-@keyframes orientLevitaLado{
-    0%,100%{transform:translateX(34%) translateZ(-130px) translateY(0) rotateY(-20deg) scale(.94)}
-    50%{transform:translateX(34%) translateZ(-130px) translateY(-15px) rotateY(-20deg) scale(.94)}}
-/* la sombra proyectada en el suelo es lo que hace que se lea como suspendida */
-.orient-deck__stage > .orient-route.is-front::after{content:'';position:absolute;left:12%;right:12%;bottom:-30px;
-    height:22px;border-radius:50%;pointer-events:none;z-index:-1;
-    background:radial-gradient(ellipse at center,color-mix(in srgb,var(--svc) 30%,transparent),transparent 72%);
-    filter:blur(11px);animation:orientSombra 7.5s cubic-bezier(.45,0,.55,1) infinite}
-@keyframes orientSombra{0%,100%{opacity:.85;transform:scaleX(1)}50%{opacity:.55;transform:scaleX(.9)}}
+/* ── Carrusel circular ──
+   Las dos tarjetas van montadas en el mismo cilindro, separadas 42 grados
+   sobre un radio de 300px. Lo que gira es el cilindro: la de atras viaja en
+   arco hasta el frente mientras la otra recorre el mismo arco en sentido
+   contrario. Un solo movimiento continuo, no dos tarjetas intercambiandose.
+   La profundidad la da la posicion en Z, que en preserve-3d es la que manda
+   sobre el orden de pintado. */
+.orient-deck__stage{position:relative;perspective:1500px;perspective-origin:50% 45%;
+    padding:14px 0 30px;touch-action:pan-y}
+.orient-carousel{position:relative;transform-style:preserve-3d;
+    transform:translateZ(-300px) rotateY(var(--giro,0deg));
+    transition:transform 1.15s cubic-bezier(.55,.06,.22,1)}
+.orient-carousel > .orient-route{position:absolute;top:0;left:0;right:0;
+    transform-style:preserve-3d;backface-visibility:hidden;
+    transition:opacity .75s ease,box-shadow .75s ease}
+/* cada tarjeta ocupa su asiento en el cilindro */
+.orient-carousel > .orient-route:nth-child(1){transform:rotateY(0deg) translateZ(300px)}
+.orient-carousel > .orient-route:nth-child(2){transform:rotateY(42deg) translateZ(300px)}
+/* la que queda al frente manda visualmente */
+.orient-carousel > .orient-route.is-front{opacity:1;
+    box-shadow:0 1px 2px rgba(16,24,40,.06),0 20px 38px -16px rgba(16,24,40,.26),0 50px 90px -46px color-mix(in srgb,var(--svc) 42%,transparent)}
+.orient-carousel > .orient-route.is-back{opacity:.45;cursor:pointer;
+    box-shadow:0 14px 32px -18px rgba(16,24,40,.32)}
+.orient-carousel > .orient-route.is-back:hover{opacity:.66}
+/* el hueco que ocupa el carrusel lo marca una copia sin pintar de la tarjeta
+   mas alta: sin esto, al ser absolutas, el contenedor colapsaria a cero */
+.orient-deck__ghost{visibility:hidden;pointer-events:none}
+/* sombra proyectada: lo que hace que se lea suspendido y no pegado al fondo */
+.orient-deck__floor{position:absolute;left:14%;right:14%;bottom:6px;height:22px;
+    border-radius:50%;pointer-events:none;
+    background:radial-gradient(ellipse at center,color-mix(in srgb,var(--svc) 26%,transparent),transparent 72%);
+    filter:blur(12px)}
 
-/* sellos de seguridad: el argumento de confianza, dentro de la tarjeta */
-.orient-seals{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;padding-top:10px;border-top:1px solid color-mix(in srgb,var(--svc) 12%,transparent)}
+.orient-seals{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;padding-top:10px;
+    border-top:1px solid color-mix(in srgb,var(--svc) 12%,transparent)}
 .orient-seal{display:inline-flex;align-items:center;gap:5px;padding:5px 9px;border-radius:8px;
     background:color-mix(in srgb,var(--svc) 7%,#fff);border:1px solid color-mix(in srgb,var(--svc) 16%,transparent);
     font-size:.7rem;font-weight:700;color:var(--navy);line-height:1.25}
@@ -380,22 +383,26 @@
 .orient-seals--b .orient-seal{background:rgba(10,37,64,.05);border-color:rgba(10,37,64,.14)}
 .orient-seals--b .orient-seal i{color:var(--navy)}
 
-.orient-deck__arrow{width:44px;height:44px;flex:0 0 44px;border-radius:50%;border:1px solid color-mix(in srgb,var(--svc) 18%,transparent);background:#fff;color:var(--svc);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;box-shadow:0 2px 6px rgba(16,24,40,.08);transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s ease}
+.orient-deck__arrow{width:44px;height:44px;flex:0 0 44px;border-radius:50%;
+    border:1px solid color-mix(in srgb,var(--svc) 18%,transparent);background:#fff;color:var(--svc);
+    cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;
+    box-shadow:0 2px 6px rgba(16,24,40,.08);transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s ease}
 .orient-deck__arrow:hover{transform:scale(1.08);box-shadow:0 10px 24px -10px color-mix(in srgb,var(--svc) 50%,transparent)}
 .orient-deck__arrow:focus-visible{outline:2px solid var(--svc);outline-offset:3px}
-/* En un telefono no hay ancho para una orbita completa: la de al lado asoma
-   por la derecha y se corta en el borde, que es como se lee un carrusel. */
+
+/* En el telefono el radio se acorta o la de al lado se sale de cuadro */
 @media(max-width:767.98px){
-    /* Un punto mas chicas: caben mejor y dejan ver mas de la de al lado */
-    .orient-deck__stage > .orient-route{width:93%;justify-self:center}
+    .orient-carousel{transform:translateZ(-215px) rotateY(var(--giro,0deg))}
+    .orient-carousel > .orient-route:nth-child(1){transform:rotateY(0deg) translateZ(215px)}
+    .orient-carousel > .orient-route:nth-child(2){transform:rotateY(38deg) translateZ(215px)}
     .orient-route{padding:18px 16px}
     .orient-route__title{font-size:1rem}
     .orient-check li{font-size:.84rem}
-    .orient-deck__stage > .orient-route.is-back{transform:translateX(38%) translateZ(-120px) rotateY(-18deg) scale(.94)}
-    @keyframes orientLevitaLado{
-        0%,100%{transform:translateX(36%) translateZ(-120px) translateY(0) rotateY(-18deg) scale(.94)}
-        50%{transform:translateX(36%) translateZ(-120px) translateY(-12px) rotateY(-18deg) scale(.94)}}
-    .orient-seal{font-size:.7rem;padding:5px 9px}
+    .orient-seal{font-size:.68rem;padding:5px 8px}
+}
+@media(prefers-reduced-motion:reduce){
+    .orient-carousel{transition:none}
+    .orient-carousel > .orient-route{transition:opacity .2s}
 }
 .orient-deck__nav{display:flex;gap:8px;justify-content:center;align-items:center;margin-top:20px;flex-wrap:wrap}
 .orient-deck__dot{min-height:44px;padding:9px 18px;border-radius:100px;border:1.5px solid rgba(108,92,231,.22);
@@ -656,10 +663,11 @@
 <div class="svc-section reveal" id="que-estudio-necesito">
 <span class="svc-section__eyebrow"><i class="bi bi-signpost-split-fill"></i> Cuál te toca</span>
 <h2 class="svc-section__title">¿Poligrafía en casa o <em>polisomnografía?</em></h2>
-<p class="svc-section__lead">Mucha gente pide el estudio de laboratorio cuando su caso se resuelve en casa. Ubícate en 30 segundos.</p>
+<p class="svc-section__lead">Mucha gente pide el estudio de laboratorio cuando su caso <b>se resuelve en casa</b>.</p>
 
 <div class="orient-deck" id="orientDeck">
 <div class="orient-deck__stage" id="orientStage">
+<div class="orient-carousel" id="orientCarousel">
 <article class="orient-route orient-route--a" id="orient-a">
 <span class="orient-route__badge"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> La mayoría</span>
 <div class="orient-route__head">
@@ -699,6 +707,8 @@
 <span class="orient-seal"><i class="bi bi-signpost-split-fill" aria-hidden="true"></i> Te digo a dónde ir</span>
 </div>
 </article>
+</div>
+<div class="orient-deck__floor" aria-hidden="true"></div>
 </div>
 <div class="orient-deck__nav" id="orientNav" role="group" aria-label="Elegir ruta">
 <button type="button" class="orient-deck__arrow" id="orientPrev" aria-label="Ver la ruta anterior"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
@@ -1356,16 +1366,39 @@
 
         stage.classList.add('is-live');
 
+        var carrusel=document.getElementById('orientCarousel');
+        var PASO=window.matchMedia('(max-width:767.98px)').matches?38:42;
+        var vueltas=0;   // acumulado, para que el giro siga siempre adelante
+
+        /* Las tarjetas van en absoluto sobre el cilindro, asi que el contenedor
+           no tiene altura propia: se la da la mas alta de las dos. Se remide al
+           cambiar el ancho y cuando la tipografia termina de cargar. */
+        function altura(){
+            if(!carrusel) return;
+            carrusel.style.height='auto';
+            var alto=0;
+            cartas.forEach(function(c){ alto=Math.max(alto, c.offsetHeight); });
+            if(alto) carrusel.style.height=alto+'px';
+        }
+        altura();
+        if(document.fonts&&document.fonts.ready) document.fonts.ready.then(altura);
+        var ta;
+        window.addEventListener('resize',function(){ clearTimeout(ta); ta=setTimeout(altura,180); },{passive:true});
+
         function pinta(){
             cartas.forEach(function(c,k){
                 c.classList.toggle('is-front',k===frente);
                 c.classList.toggle('is-back',k!==frente);
             });
             dots.forEach(function(d,k){ d.setAttribute('aria-selected',String(k===frente)); });
+            if(carrusel) carrusel.style.setProperty('--giro', (-PASO*vueltas)+'deg');
         }
 
         function alFrente(k){
             if(k===frente) return;
+            /* el cilindro no vuelve sobre sus pasos: cada cambio suma un asiento,
+               asi el giro siempre avanza en la misma direccion */
+            vueltas += 1;
             frente=k; pinta();
             if(hint) hint.textContent='Ruta '+(frente===0?'A':'B')+' al frente. Desliza para volver a la otra.';
         }

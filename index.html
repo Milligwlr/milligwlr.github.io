@@ -3271,6 +3271,11 @@
         .svc3-tag i { font-size: .85rem; color: var(--electric); }
         .svc3-tag:hover { border-color: rgba(9,132,227,.4); background: #fff; color: var(--navy); }
 
+        /* En escritorio no hay acordeon: el detalle va siempre desplegado */
+        @media (min-width: 992px) {
+            .svc3-fold > summary { display: none; }
+            .svc3-fold__body { display: block !important; }
+        }
         .svc3-cta:focus-visible, .svc3-item:focus-visible, .svc3-tag:focus-visible {
             outline: 3px solid var(--electric); outline-offset: 3px; border-radius: 14px; }
 
@@ -3293,6 +3298,59 @@
         }
         @media (prefers-reduced-motion: reduce) {
             .svc3-cta, .svc3-cta i, .svc3-item__go { transition: none !important; transform: none !important; }
+        }
+
+
+        /* ── Acordeon de servicios en el telefono ──────────────────
+           Todos los nombres visibles, el detalle a un toque. El
+           <details> nativo hace el plegado sin una linea de JS, y sin
+           JS el contenido queda accesible igual. */
+        @media (max-width: 991.98px) {
+            .svc3-fold { border-top: 1px solid var(--border); }
+            .svc3-menu .svc3-fold:first-of-type { border-top: 0; }
+            .svc3-fold > summary {
+                display: flex; align-items: center; gap: 13px;
+                min-height: 60px; padding: 14px 0;
+                list-style: none; cursor: pointer;
+                font-size: 1rem; font-weight: 700; color: var(--navy);
+            }
+            .svc3-fold > summary::-webkit-details-marker { display: none; }
+            .svc3-fold > summary > i:first-child { flex: 0 0 26px; text-align: center; font-size: 1.15rem; color: var(--electric); }
+            .svc3-fold > summary > span { flex: 1; min-width: 0; }
+            /* el chevron es la unica señal de que hay algo debajo */
+            .svc3-fold > summary::after {
+                content: '\F282'; font-family: 'bootstrap-icons'; flex: 0 0 auto;
+                font-size: .85rem; color: var(--text-muted);
+                transition: transform .22s var(--ease);
+            }
+            .svc3-fold[open] > summary::after { transform: rotate(180deg); }
+            .svc3-fold[open] > summary { color: var(--electric); }
+            .svc3-fold > summary:focus-visible { outline: 3px solid var(--electric); outline-offset: 2px; border-radius: 10px; }
+            .svc3-fold__body { padding: 0 0 16px; }
+
+            /* La consulta pliega solo el detalle de sus modalidades: el
+               titulo, la promesa y el boton se quedan siempre a la vista
+               porque son la accion principal de la seccion. */
+            .svc3-main .svc3-fold > summary { color: #fff; }
+            .svc3-main .svc3-fold { border-top-color: rgba(255,255,255,.16); }
+            .svc3-main .svc3-fold > summary > i:first-child { color: var(--cyan); }
+            .svc3-main .svc3-fold > summary::after { color: rgba(255,255,255,.6); }
+            .svc3-main .svc3-fold[open] > summary { color: var(--cyan); }
+            .svc3-main .svc3-modes { margin-top: 0; padding-top: 0; border-top: 0; }
+
+            .svc3-menu, .svc3-sleep, .svc3-more { padding: 4px 18px; }
+            /* los ultimos pixeles salen del aire, no del contenido */
+            .services.py-5 { padding-top: 22px !important; padding-bottom: 22px !important; }
+            .services .container.my-5 { margin-top: 6px !important; margin-bottom: 10px !important; }
+            .services .mb-5 { margin-bottom: .75rem !important; }
+            .svc3-main { padding: 22px 18px 18px; }
+            .svc3-main__text { font-size: .95rem; line-height: 1.55; }
+            .svc3-price__alt { margin-top: 14px; font-size: .88rem; }
+            .svc3-sleep__text, .svc3-more p { margin-top: 0; }
+            .svc3-sleep .svc3-cta { margin-top: 4px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .svc3-fold > summary::after { transition: none; }
         }
 
         /* =============================================
@@ -4462,6 +4520,9 @@
                         <a class="svc3-cta" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal" data-cta="svc-consulta-feat">
                             Agendar consulta <i class="bi bi-arrow-right" aria-hidden="true"></i>
                         </a>
+                        <details class="svc3-fold">
+                        <summary><i class="bi bi-geo-alt" aria-hidden="true"></i><span>Dónde te atiendo</span></summary>
+                        <div class="svc3-fold__body">
                         <ul class="svc3-modes">
                             <li><i class="bi bi-geo-alt" aria-hidden="true"></i>
                                 <span><b>En el consultorio</b><small>Hospital Santa Coleta. Lunes a viernes de 16:00 a 21:00, sábados y domingos de 12:00 a 16:00.</small></span></li>
@@ -4470,11 +4531,15 @@
                             <li><i class="bi bi-camera-video" aria-hidden="true"></i>
                                 <span><b>Teleconsulta</b><small>Por videollamada, para seguimientos y segundas opiniones. <a href="/servicios/teleconsulta/">Cómo funciona</a></small></span></li>
                         </ul>
+                        </div>
+                        </details>
                     </article>
 
                     <!-- Estudios que se hacen ahi mismo -->
                     <article class="svc3-menu">
-                        <h3>Estudios el mismo día de tu consulta</h3>
+                        <details class="svc3-fold">
+                        <summary><i class="bi bi-lungs" aria-hidden="true"></i><span>Estudios el mismo día</span></summary>
+                        <div class="svc3-fold__body">
                         <p class="svc3-menu__sub">No te mando a otro lado, el equipo está aquí.</p>
                         <a class="svc3-item" href="/servicios/espirometria/" data-cta="svc-espiro-simple">
                             <i class="bi bi-lungs svc3-item__ic" aria-hidden="true"></i>
@@ -4497,11 +4562,15 @@
                             <span class="svc3-item__meta">Soplas y listo</span>
                             <span class="svc3-item__go"><i class="bi bi-arrow-right" aria-hidden="true"></i></span>
                         </a>
+                        </div>
+                        </details>
                     </article>
 
                     <!-- Poligrafia: la unica con dos precios, por eso va aparte -->
                     <article class="svc3-sleep">
-                        <h3>Poligrafía respiratoria</h3>
+                        <details class="svc3-fold">
+                        <summary><i class="bi bi-moon-stars" aria-hidden="true"></i><span>Poligrafía respiratoria</span></summary>
+                        <div class="svc3-fold__body">
                         <p class="svc3-sleep__text">El estudio que confirma la apnea del sueño. Duermes con el equipo una noche y yo interpreto el trazo.</p>
                         <div class="svc3-sleep__opts">
                             <div class="svc3-opt"><span>En consultorio</span><strong>Pasas por el equipo</strong></div>
@@ -4510,11 +4579,15 @@
                         <a class="svc3-cta" href="/servicios/poligrafia-respiratoria/" data-cta="svc-poligrafia-feat">
                             Cómo es el estudio <i class="bi bi-arrow-right" aria-hidden="true"></i>
                         </a>
+                        </div>
+                        </details>
                     </article>
 
                     <!-- El resto del catalogo, como enlaces: conserva el enlazado interno del home -->
                     <div class="svc3-more">
-                        <h3>También realizo</h3>
+                        <details class="svc3-fold">
+                        <summary><i class="bi bi-plus-circle" aria-hidden="true"></i><span>También realizo</span></summary>
+                        <div class="svc3-fold__body">
                         <p>Procedimientos y tratamientos que hago en hospital o en seguimiento.</p>
                         <ul class="svc3-tags">
                             <li><a class="svc3-tag" href="/servicios/titulacion-presion-positiva/"><i class="bi bi-sliders" aria-hidden="true"></i> Titulación de CPAP</a></li>
@@ -4526,6 +4599,8 @@
                             <li><a class="svc3-tag" href="#agendaModal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-shield-check" aria-hidden="true"></i> Valoración preoperatoria</a></li>
                             <li><a class="svc3-tag" href="/servicios/"><i class="bi bi-list-ul" aria-hidden="true"></i> Ver todos los servicios</a></li>
                         </ul>
+                        </div>
+                        </details>
                     </div>
 
                 </div>
