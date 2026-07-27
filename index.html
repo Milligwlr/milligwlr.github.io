@@ -3235,7 +3235,7 @@
         /* campo organico: posiciones absolutas, todo el contenido vive en el HTML.
            El alto sale de restarle a la pantalla el encabezado, los chips, la
            pista y el CTA: la seccion entera tiene que caber sin scroll. */
-        .dis2-field{position:relative;--base:clamp(104px,9.8vw,132px);height:clamp(360px,38.5vw,520px);max-width:1180px;margin:0 auto}
+        .dis2-field{position:relative;--base:clamp(100px,9.2vw,126px);height:clamp(360px,38.5vw,520px);max-width:1180px;margin:0 auto}
         /* El alto se ata a la pantalla real, no solo al ancho: en un portatil de
            900px la seccion entera tiene que caber bajo la barra, y en un monitor
            alto el campo no debe estirarse mas de lo que necesita. */
@@ -3260,8 +3260,13 @@
         .dis2-bub::after{content:'';position:absolute;left:16%;top:9%;width:34%;height:22%;border-radius:50%;
             background:linear-gradient(160deg,rgba(255,255,255,.95),rgba(255,255,255,0));
             filter:blur(3px);pointer-events:none}
-        .dis2-bub--lg{--sz:calc(var(--base)*1.16)}
-        .dis2-bub--sm{--sz:calc(var(--base)*.86)}
+        /* Tres filas tienen que caber en un campo de ~414px. Con la variante
+           grande a 1.16 el diametro llegaba a 146px y las filas se encimaban
+           13px cuando el motor esta apagado, que es justo lo que ve quien pide
+           movimiento reducido. El contraste entre tamanos se conserva, mas
+           discreto. */
+        .dis2-bub--lg{--sz:calc(var(--base)*1.06)}
+        .dis2-bub--sm{--sz:calc(var(--base)*.92)}
         .dis2-bub:focus-visible{outline:2px solid var(--electric);outline-offset:4px;z-index:4}
         /* La etiqueta de familia caia en 8.6px, ilegible, y le robaba altura al
            icono. El color del acento ya comunica la familia; en el estado
@@ -3385,7 +3390,32 @@
             .dis2-field.is-grouped .dis2-bub.hit p{display:none}
             .dis2-chip{padding:9px 14px;font-size:.74rem;gap:6px}
             .dis2-soon-tag{font-size:.5rem}
+
+            /* Con las 15 burbujas legibles en 3 columnas la seccion pide 5
+               filas y no hay aritmetica que la meta en una pantalla. Arranca
+               con 9 en 3 filas, que si cabe, y las 6 restantes se despliegan a
+               peticion. Las 9 usan --cy, su fila dentro del campo corto. */
+            .dis2-field.is-collapsed{height:350px}
+            .dis2-field.is-collapsed .dis2-bub{top:var(--cy,var(--my))}
+            .dis2-field.is-collapsed .dis2-bub--extra{display:none}
+            .dis2-hint{padding:7px 16px;font-size:.76rem;margin-bottom:8px}
+            .dis2-more{display:flex;justify-content:center;margin-top:12px}
+            .dis2-more__btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;
+                padding:11px 22px;border-radius:100px;font-family:var(--sans);font-size:.8rem;
+                font-weight:700;color:var(--navy);background:#fff;cursor:pointer;
+                border:1.5px solid rgba(10,22,40,.12);box-shadow:0 2px 10px rgba(10,22,40,.05);
+                transition:border-color .25s,box-shadow .25s}
+            .dis2-more__btn:hover,.dis2-more__btn:focus-visible{border-color:rgba(9,132,227,.4)}
+            .dis2-more__btn i{transition:transform .3s var(--ease)}
+            .dis2-more__btn[aria-expanded="true"] i{transform:rotate(180deg)}
+            /* Al filtrar por sintoma se muestran todas: esconder coincidencias
+               detras de un boton seria contestar a medias. */
+            .dis2-field.is-grouped .dis2-bub--extra{display:flex}
+            .dis2-field.is-grouped.is-collapsed{height:min(150vw,580px)}
+            .dis2-field.is-grouped.is-collapsed .dis2-bub{top:var(--my)}
         }
+        /* En escritorio caben las 15 de una vez: el boton no aparece */
+        @media(min-width:768px){ .dis2-more{display:none} }
         @media(prefers-reduced-motion:reduce){
             .dis2-field .dis2-bub{animation:none!important;transition:none!important;transform:none!important}
             .dis2-field.is-grouped .dis2-bub{opacity:.5}
@@ -3989,6 +4019,25 @@
             .services.py-5, .diseases-section.py-5, .testimonials-section.py-5 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
             .services .container.my-5, .diseases-section .container.my-5, .testimonials-section .container.my-5 { margin-top: 1rem !important; margin-bottom: 1rem !important; }
             .services .mb-5, .diseases-section .mb-5, .testimonials-section .mb-5 { margin-bottom: 1.5rem !important; }
+            /* Enfermedades aprieta mas que sus hermanas: es la unica seccion
+               que tiene que caber entera, y los ultimos 40px salen del aire
+               del encabezado, no de las burbujas ni del tamano del texto.
+               Va aqui, despues de la regla compartida de arriba, porque con
+               !important en ambas gana la ultima. */
+            .diseases-section.py-5 { padding-top: 20px !important; padding-bottom: 20px !important; }
+            .diseases-section .container.my-5 { margin-top: 6px !important; margin-bottom: 8px !important; }
+            .diseases-section .mb-5 { margin-bottom: .5rem !important; }
+            .diseases-section .section-sub { margin-top: 2px; }
+            /* En los Android de 360px sobraban 50px. Salen de bajar un punto
+               el encabezado, que a ese ancho parte en tres lineas, y de atar
+               el campo colapsado a la altura de pantalla. Las burbujas y su
+               texto no se tocan: la holgura dentro del circulo ya es minima. */
+            @media (max-width: 380px) {
+                .diseases-section .section-title { font-size: 1.5rem; }
+                .diseases-section .section-sub { font-size: .82rem; line-height: 1.45; }
+                .dis2-hint { font-size: .72rem; padding: 6px 12px; }
+                .dis2-field.is-collapsed { height: min(340px, 42dvh); }
+            }
             .svc-carousel__track .service-card { flex: 0 0 calc(100% - 2px); }
             .svc-carousel__track { gap: 12px; }
             .svc-carousel__arrow--prev { left: -4px; }
@@ -4255,6 +4304,7 @@
                             <li><a class="dropdown-item" href="/enfermedades/epoc/">EPOC</a></li>
                             <li><a class="dropdown-item" href="/enfermedades/asma/">Asma</a></li>
                             <li><a class="dropdown-item" href="/enfermedades/apnea-del-sueno/">Apnea del sueño</a></li>
+                        <li><a class="dropdown-item" href="/enfermedades/hipoventilacion-obesidad/">Hipoventilación por obesidad</a></li>
                             <li><a class="dropdown-item" href="/enfermedades/neumonia/">Neumonía</a></li>
                             <li><a class="dropdown-item" href="/enfermedades/fibrosis-pulmonar/">Fibrosis pulmonar</a></li>
                             <li><a class="dropdown-item" href="/enfermedades/cancer-de-pulmon/">Cáncer de pulmón</a></li>
@@ -4804,97 +4854,98 @@
                 </div>
                 <p class="dis2-hint" id="disHint" role="status" aria-live="polite">Elige un síntoma y las condiciones relacionadas se agrupan al centro.</p>
                 <div class="dis2-field" id="disField">
-                    <a class="dis2-bub dis2-bub--lg f-obs" href="/enfermedades/asma/" data-s="tos aire silbido" style="--x:12%;--y:16.5%;--mx:17%;--my:10.0%">
+                    <a class="dis2-bub dis2-bub--lg f-obs" href="/enfermedades/asma/" data-s="tos aire silbido" style="--x:12%;--y:15%;--mx:17%;--my:10.0%;--cy:16.0%">
                         <span class="dis2-fam">Vía aérea</span>
                         <span class="dis2-ic"><i class="fa-solid fa-lungs" aria-hidden="true"></i></span>
                         <h3>Asma</h3>
                         <p>Silbidos al respirar, falta de aire o tos que no se quita. Con el tratamiento correcto puedes vivir sin que el asma te detenga.</p>
                     </a>
-                    <a class="dis2-bub dis2-bub--lg f-obs" href="/enfermedades/epoc/" data-s="tos aire fumo silbido" style="--x:31.5%;--y:14.5%;--mx:50%;--my:11.0%">
+                    <a class="dis2-bub dis2-bub--lg f-obs" href="/enfermedades/epoc/" data-s="tos aire fumo silbido" style="--x:32.3%;--y:15%;--mx:50%;--my:11.0%;--cy:17.0%">
                         <span class="dis2-fam">Vía aérea</span>
                         <span class="dis2-ic"><i class="fa-solid fa-wind" aria-hidden="true"></i></span>
                         <h3>EPOC</h3>
                         <p>¿Te cansas al caminar o subir escaleras? La EPOC avanza en silencio, pero con el manejo adecuado se puede frenar.</p>
                     </a>
-                    <a class="dis2-bub dis2-bub--lg f-inf" href="/enfermedades/neumonia/" data-s="tos fiebre pecho" style="--x:50.5%;--y:16.5%;--mx:83%;--my:10.0%">
+                    <a class="dis2-bub dis2-bub--lg f-inf" href="/enfermedades/neumonia/" data-s="tos fiebre pecho" style="--x:49.9%;--y:15%;--mx:83%;--my:10.0%;--cy:16.0%">
                         <span class="dis2-fam">Infecciosa</span>
                         <span class="dis2-ic"><i class="fa-solid fa-bacterium" aria-hidden="true"></i></span>
                         <h3>Neumonía</h3>
                         <p>Fiebre alta, tos con flema y dolor al respirar son señales de alarma que requieren atención rápida.</p>
                     </a>
-                    <a class="dis2-bub dis2-bub--lg f-sue" href="/enfermedades/apnea-del-sueno/" data-s="ronquido cansancio" style="--x:69%;--y:14%;--mx:17%;--my:29.75%">
+                    <a class="dis2-bub dis2-bub--lg f-sue" href="/enfermedades/apnea-del-sueno/" data-s="ronquido cansancio" style="--x:69.6%;--y:15%;--mx:17%;--my:29.75%;--cy:49.5%">
                         <span class="dis2-fam">Sueño</span>
                         <span class="dis2-ic"><i class="bi bi-moon-stars" aria-hidden="true"></i></span>
                         <h3>Apnea del Sueño</h3>
                         <p>¿Roncas fuerte y te despiertas cansado? Podrías dejar de respirar mientras duermes sin saberlo.</p>
                     </a>
-                    <a class="dis2-bub dis2-bub--long f-cro" href="/enfermedades/fibrosis-pulmonar/" data-s="aire tos cansancio" style="--x:88%;--y:16%;--mx:50%;--my:30.75%">
+                    <a class="dis2-bub dis2-bub--long f-cro" href="/enfermedades/fibrosis-pulmonar/" data-s="aire tos cansancio" style="--x:87.2%;--y:15%;--mx:50%;--my:30.75%;--cy:50.5%">
                         <span class="dis2-fam">Crónica</span>
                         <span class="dis2-ic"><i class="fa-solid fa-lungs-virus" aria-hidden="true"></i></span>
                         <h3>Fibrosis Pulmonar</h3>
                         <p>Cicatrización progresiva del tejido pulmonar que dificulta la respiración. Un diagnóstico temprano es clave.</p>
                     </a>
-                    <a class="dis2-bub dis2-bub--lg dis2-bub--long f-onc" href="/enfermedades/cancer-de-pulmon/" data-s="tos fumo" style="--x:12.5%;--y:48.5%;--mx:83%;--my:29.75%">
+                    <a class="dis2-bub dis2-bub--lg dis2-bub--long f-onc" href="/enfermedades/cancer-de-pulmon/" data-s="tos fumo" style="--x:12.8%;--y:50%;--mx:83%;--my:29.75%;--cy:49.5%">
                         <span class="dis2-fam">Oncología</span>
                         <span class="dis2-ic"><i class="fa-solid fa-ribbon" aria-hidden="true"></i></span>
                         <h3>Cáncer de Pulmón</h3>
                         <p>La detección oportuna puede salvar vidas. Si tienes factores de riesgo, una evaluación puede marcar la diferencia.</p>
                     </a>
-                    <a class="dis2-bub dis2-bub--sm f-inf" href="/enfermedades/influenza/" data-s="fiebre tos" style="--x:32.0%;--y:50.5%;--mx:17%;--my:49.5%">
+                    <a class="dis2-bub dis2-bub--sm f-inf" href="/enfermedades/influenza/" data-s="fiebre tos" style="--x:30.9%;--y:50%;--mx:17%;--my:49.5%;--cy:83.0%">
                         <span class="dis2-fam">Infecciosa</span>
                         <span class="dis2-ic"><i class="fa-solid fa-virus" aria-hidden="true"></i></span>
                         <h3>Influenza</h3>
                         <p>Más que una gripe: puede complicarse gravemente. Prevención y tratamiento oportuno son fundamentales.</p>
                     </a>
-                    <a class="dis2-bub dis2-bub--long f-urg" href="/enfermedades/derrames-pleurales/" data-s="pecho aire" style="--x:51.0%;--y:48.5%;--mx:50%;--my:50.5%">
+                    <a class="dis2-bub dis2-bub--long f-urg" href="/enfermedades/derrames-pleurales/" data-s="pecho aire" style="--x:51.1%;--y:50%;--mx:50%;--my:50.5%;--cy:84.0%">
                         <span class="dis2-fam">Pleura</span>
                         <span class="dis2-ic"><i class="bi bi-moisture" aria-hidden="true"></i></span>
                         <h3>Derrames Pleurales</h3>
                         <p>¿Sientes dolor en el pecho o falta de aire repentina? La acumulación de líquido necesita diagnóstico especializado.</p>
                     </a>
-                    <a class="dis2-bub dis2-bub--sm f-cro" href="/enfermedades/tabaquismo/" data-s="fumo tos" style="--x:69.5%;--y:51%;--mx:83%;--my:49.5%">
+                    <a class="dis2-bub dis2-bub--sm f-cro" href="/enfermedades/tabaquismo/" data-s="fumo tos" style="--x:68.2%;--y:50%;--mx:83%;--my:49.5%;--cy:83.0%">
                         <span class="dis2-fam">Prevención</span>
                         <span class="dis2-ic"><i class="fa-solid fa-ban-smoking" aria-hidden="true"></i></span>
                         <h3>Tabaquismo</h3>
                         <p>Un plan médico real, con herramientas probadas, para que dejes de fumar de forma definitiva.</p>
                     </a>
-                    <a class="dis2-bub dis2-bub--long f-obs" href="/enfermedades/bronquiectasias/" data-s="tos fiebre" style="--x:88.5%;--y:49%;--mx:17%;--my:69.25%">
+                    <a class="dis2-bub dis2-bub--extra dis2-bub--long f-obs" href="/enfermedades/bronquiectasias/" data-s="tos fiebre" style="--x:88%;--y:50%;--mx:17%;--my:69.25%">
                         <span class="dis2-fam">Vía aérea</span>
                         <span class="dis2-ic"><i class="fa-solid fa-lungs" aria-hidden="true"></i></span>
                         <h3>Bronquiectasias</h3>
                         <p>Daño permanente en los bronquios que causa infecciones recurrentes. El manejo adecuado mejora tu calidad de vida.</p>
                     </a>
-                    <a class="dis2-bub dis2-bub--long f-cro" href="/enfermedades/hipertension-pulmonar/" data-s="aire cansancio" style="--x:12%;--y:86.5%;--mx:50%;--my:70.25%">
+                    <a class="dis2-bub dis2-bub--extra dis2-bub--long f-cro" href="/enfermedades/hipertension-pulmonar/" data-s="aire cansancio" style="--x:11.4%;--y:85%;--mx:50%;--my:70.25%">
                         <span class="dis2-fam">Crónica</span>
                         <span class="dis2-ic"><i class="bi bi-heart-pulse" aria-hidden="true"></i></span>
                         <h3>Hipertensión Pulmonar</h3>
                         <p>Presión alta en las arterias del pulmón que afecta el corazón. Un diagnóstico preciso cambia el pronóstico.</p>
                     </a>
-                    <a class="dis2-bub dis2-bub--long f-urg" href="/enfermedades/embolia-pulmonar/" data-s="pecho aire" style="--x:31.5%;--y:84.5%;--mx:83%;--my:69.25%">
+                    <a class="dis2-bub dis2-bub--extra dis2-bub--long f-urg" href="/enfermedades/embolia-pulmonar/" data-s="pecho aire" style="--x:32.1%;--y:85%;--mx:83%;--my:69.25%">
                         <span class="dis2-fam">Urgencia</span>
                         <span class="dis2-ic"><i class="fa-solid fa-shield-virus" aria-hidden="true"></i></span>
                         <h3>Embolia Pulmonar</h3>
                         <p>Un coágulo que bloquea las arterias del pulmón. Es una emergencia médica que requiere atención inmediata.</p>
                     </a>
-                    <a class="dis2-bub dis2-bub--sm f-urg" href="/enfermedades/neumotorax/" data-s="pecho aire" style="--x:50.5%;--y:86.5%;--mx:17%;--my:89.0%">
+                    <a class="dis2-bub dis2-bub--extra dis2-bub--sm f-urg" href="/enfermedades/neumotorax/" data-s="pecho aire" style="--x:49.7%;--y:85%;--mx:17%;--my:89.0%">
                         <span class="dis2-fam">Urgencia</span>
                         <span class="dis2-ic"><i class="fa-solid fa-explosion" aria-hidden="true"></i></span>
                         <h3>Neumotórax</h3>
                         <p>Pulmón colapsado por aire en la pleura: dolor súbito y falta de aire. Drenaje y seguimiento para evitar recurrencias.</p>
                     </a>
-                    <a class="dis2-bub f-cro" href="/enfermedades/secuelas-covid/" data-s="tos aire cansancio" style="--x:69%;--y:84%;--mx:50%;--my:90.0%">
+                    <a class="dis2-bub dis2-bub--extra f-cro" href="/enfermedades/secuelas-covid/" data-s="tos aire cansancio" style="--x:69%;--y:85%;--mx:50%;--my:90.0%">
                         <span class="dis2-fam">Crónica</span>
                         <span class="dis2-ic"><i class="fa-solid fa-virus-covid" aria-hidden="true"></i></span>
                         <h3>Secuelas COVID</h3>
                         <p>¿Sigues con tos o falta de aire después del COVID? Evaluamos y tratamos las secuelas respiratorias post-infección.</p>
                     </a>
-                    <a class="dis2-bub dis2-bub--long f-sue" href="/enfermedades/hipoventilacion-obesidad/" data-s="ronquido aire cansancio" style="--x:88%;--y:86%;--mx:83%;--my:89.0%">
+                    <a class="dis2-bub dis2-bub--extra dis2-bub--long f-sue" href="/enfermedades/hipoventilacion-obesidad/" data-s="ronquido aire cansancio" style="--x:88.8%;--y:85%;--mx:83%;--my:89.0%">
                         <span class="dis2-fam">Sueño</span>
                         <span class="dis2-ic"><i class="fa-solid fa-weight-scale" aria-hidden="true"></i></span>
                         <h3>Hipoventilación por obesidad</h3>
                         <p>El exceso de peso impide respirar bien, sobre todo al dormir: somnolencia de día, dolor de cabeza matutino y fatiga constante.</p>
                     </a>
                 </div>
+                <div class="dis2-more"><button type="button" class="dis2-more__btn" id="disMore" aria-expanded="false" aria-controls="disField">Ver las 6 restantes <i class="bi bi-chevron-down" aria-hidden="true"></i></button></div>
                 <div class="dis2-wa"><a id="disWa" href="https://wa.me/522224926718" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp" aria-hidden="true"></i>¿No sabes cuál es? Cuéntame por WhatsApp</a></div>
             </div>
         </section>
@@ -6155,10 +6206,18 @@
 
                 function medir(){
                     W = field.clientWidth; H = field.clientHeight;
-                    parts = bubs.map(function(b, i){
+                    var previas = {};
+                    parts.forEach(function(p){ previas[p.el.dataset.s + p.el.offsetTop] = p; });
+                    // En movil el campo arranca colapsado y seis burbujas van
+                    // ocultas: una burbuja oculta mide cero y su particula
+                    // acabaria en el origen empujando a las demas desde la
+                    // esquina. Solo entran al motor las que se ven.
+                    parts = bubs.filter(function(b){
+                        return b.offsetParent !== null && b.offsetWidth > 0;
+                    }).map(function(b){
                         var r = b.offsetWidth / 2;
-                        var p = parts[i];
                         var ax = b.offsetLeft + r, ay = b.offsetTop + r;
+                        var p = previas[b.dataset.s + b.offsetTop];
                         var ang = Math.random() * Math.PI * 2;
                         return {
                             el: b, r: r, ax: ax, ay: ay,
@@ -6359,6 +6418,38 @@
                         setTimeout(limpiar, 1800);   // por si la animacion no corre
                     }, 500);
                 }, { threshold: .6 }).observe(chipsWrap);
+            })();
+
+            /* ── Movil: 9 burbujas y las 6 restantes a peticion ──
+               Con 15 legibles en 3 columnas la seccion pide 5 filas y se sale
+               de la pantalla. Colapsado cabe; el boton no oculta contenido al
+               buscador porque las 6 siguen en el HTML, solo sin pintar. */
+            (function(){
+                var btn = document.getElementById('disMore');
+                if (!btn) return;
+                var chico = window.matchMedia('(max-width: 767.98px)');
+                var extras = field.querySelectorAll('.dis2-bub--extra').length;
+                var abierto = false;
+
+                function pintar(){
+                    var colapsa = chico.matches && !abierto;
+                    field.classList.toggle('is-collapsed', colapsa);
+                    btn.setAttribute('aria-expanded', String(abierto));
+                    btn.innerHTML = abierto
+                        ? 'Ver menos <i class="bi bi-chevron-down" aria-hidden="true"></i>'
+                        : 'Ver las ' + extras + ' restantes <i class="bi bi-chevron-down" aria-hidden="true"></i>';
+                    drift.remedir();
+                }
+
+                btn.addEventListener('click', function(){
+                    abierto = !abierto;
+                    pintar();
+                    if (active) group(active.dataset.k);
+                });
+
+                // Al pasar a escritorio se ven las 15 sin pedirlo
+                if (chico.addEventListener) chico.addEventListener('change', pintar);
+                pintar();
             })();
 
             var rt;
