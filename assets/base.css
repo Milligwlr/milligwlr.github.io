@@ -220,7 +220,56 @@ summary,
 }
 
 /* -------------------------------------------------------------------------
-   9. IMAGENES Y MARCOS - defensa contra CLS y desbordes
+   9. RESENAS - alineacion del autor
+   La tarjeta centra el texto de la cita, pero .testi-author es una fila
+   flex alineada a la izquierda cuyo contenido interior heredaba
+   text-align:center. Resultado: el nombre quedaba centrado dentro de su
+   propia caja mientras el grupo entero colgaba a la izquierda. Se centra el
+   GRUPO (avatar + nombre) y se alinea su texto a la izquierda, que es como
+   se lee un autor.
+   ------------------------------------------------------------------------- */
+.testi-author {
+    justify-content: center;
+    text-align: left;
+}
+
+.testi-name,
+.testi-badge {
+    text-align: left;
+}
+
+/* En movil el marquee caia a dos columnas de ~170px y partia las palabras.
+   Una sola columna deja la cita legible. */
+@media (max-width: 640px) {
+    .testimonial-columns {
+        grid-template-columns: 1fr !important;
+        height: 420px;
+    }
+
+    .testimonial-col:nth-child(n+2) {
+        display: none;
+    }
+
+    .testi-card {
+        padding: 18px 20px;
+    }
+
+    .testi-text {
+        font-size: .92rem;
+        line-height: 1.65;
+    }
+
+    .testi-name {
+        font-size: .88rem;
+    }
+
+    .testi-badge {
+        font-size: .74rem;
+    }
+}
+
+/* -------------------------------------------------------------------------
+   10. IMAGENES Y MARCOS - defensa contra CLS y desbordes
    ------------------------------------------------------------------------- */
 img,
 iframe {

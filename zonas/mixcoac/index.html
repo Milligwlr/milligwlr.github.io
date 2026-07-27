@@ -463,7 +463,7 @@ a.zhero__cred:hover{background:rgba(255,255,255,.2);color:#fff}
 .zsym-item span{color:var(--text-muted);font-size:.95rem;line-height:1.55}
 .zfaq-more{max-width:820px;margin:26px auto 0;text-align:center;padding:18px 22px;background:#fff;border:1px dashed rgba(9,132,227,.35);border-radius:14px;color:var(--text-muted);font-size:.96rem}
 .zfaq-more a{color:var(--electric);font-weight:700}
-@media (prefers-reduced-motion: reduce){.zsvc-row,.zsvc-row__go,.zsym-item{transition:none}}
+@media (prefers-reduced-motion: reduce){.zsvc-row,.zsvc-row__go,}
 
 .nav-link--recursos.active{color:#1e3799!important;font-weight:700!important}
 .nav-link--recursos.active::after{background:#1e3799!important}
@@ -503,6 +503,7 @@ a.zhero__cred:hover{background:rgba(255,255,255,.2);color:#fff}
 .rev-strip__all:hover,.rev-strip__all:focus-visible{text-decoration:underline}
 @media(prefers-reduced-motion:reduce){.rev-strip__track{scroll-behavior:auto}}
 </style>
+    <link rel="stylesheet" href="/assets/zonas.css">
 </head>
 <body>
 <a class="alv-skip" href="#main">Skip to content</a>
@@ -750,10 +751,10 @@ height="0" width="0" style="display:none;visibility:hidden" aria-hidden="true"><
             <p class="block__lead">Los motivos de consulta más frecuentes en pacientes desde Mixcoac este año.</p>
             </div>
         <ul class="zsym-list">
-            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong><a href="/enfermedades/asma/">Asma del adulto</a></strong><br>Silbido de pecho, tos nocturna, alergias.</span></li>
-            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong><a href="/servicios/espirometria/">Tos crónica</a></strong><br>Estudio funcional para encontrar la causa.</span></li>
-            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong><a href="/enfermedades/epoc/">EPOC</a></strong><br>Diagnóstico temprano con espirometría.</span></li>
-            <li class="zsym-item"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span><strong><a href="/enfermedades/influenza/">Influenza y prevención</a></strong><br>Vacunación y cuadros que bajan al pecho.</span></li>
+            <li class="zsym-item"><a class="zsym-item__link" href="/enfermedades/asma/"><span class="zsym-item__ico"><i class="bi bi-wind" aria-hidden="true"></i></span><span class="zsym-item__body"><strong>Asma del adulto</strong><span>Silbido de pecho, tos nocturna, alergias.</span></span><i class="bi bi-arrow-right zsym-item__go" aria-hidden="true"></i></a></li>
+            <li class="zsym-item"><a class="zsym-item__link" href="/servicios/espirometria/"><span class="zsym-item__ico"><i class="bi bi-activity" aria-hidden="true"></i></span><span class="zsym-item__body"><strong>Tos crónica</strong><span>Estudio funcional para encontrar la causa.</span></span><i class="bi bi-arrow-right zsym-item__go" aria-hidden="true"></i></a></li>
+            <li class="zsym-item"><a class="zsym-item__link" href="/enfermedades/epoc/"><span class="zsym-item__ico"><i class="bi bi-lungs-fill" aria-hidden="true"></i></span><span class="zsym-item__body"><strong>EPOC</strong><span>Diagnóstico temprano con espirometría.</span></span><i class="bi bi-arrow-right zsym-item__go" aria-hidden="true"></i></a></li>
+            <li class="zsym-item"><a class="zsym-item__link" href="/enfermedades/influenza/"><span class="zsym-item__ico"><i class="bi bi-thermometer-sun" aria-hidden="true"></i></span><span class="zsym-item__body"><strong>Influenza y prevención</strong><span>Vacunación y cuadros que bajan al pecho.</span></span><i class="bi bi-arrow-right zsym-item__go" aria-hidden="true"></i></a></li>
         </ul>
     </div>
 </section>
