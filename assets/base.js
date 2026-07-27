@@ -148,22 +148,53 @@
        --------------------------------------------------------------------- */
     function wireReviewMarquee() {
         if (reduce) return;
-        document.querySelectorAll('[data-marquee] .testimonial-col').forEach(function (col, idx) {
-            if (col.dataset.marqueeInit) return;
-            col.dataset.marqueeInit = '1';
+        var cols = document.querySelectorAll('[data-marquee] .testimonial-col');
+        if (!cols.length) return;
 
+        cols.forEach(function (col) {
+            if (col.dataset.marqueeCloned) return;
             var cards = Array.prototype.slice.call(col.querySelectorAll('.testi-card'));
             if (!cards.length) return;
+            col.dataset.marqueeCloned = cards.length;
             cards.forEach(function (c) { col.appendChild(c.cloneNode(true)); });
-
-            var gap = parseFloat(getComputedStyle(col).rowGap) || 16;
-            var setHeight = cards.reduce(function (h, c) { return h + c.offsetHeight + gap; }, 0);
-            var pxPerSec = [16.5, 13.5, 18][idx % 3];
-
-            col.style.setProperty('--t-dur', (setHeight / pxPerSec).toFixed(1) + 's');
-            col.style.setProperty('--tgap', (gap / 2) + 'px');
-            if (idx % 3 === 1) col.classList.add('testimonial-col--down');
         });
+
+        function medir() {
+            cols.forEach(function (col, idx) {
+                // En movil el CSS oculta las columnas 2 y 3, y lo oculto mide 0:
+                // la duracion saldria de 7 segundos y quedaria mareante al rotar
+                // el telefono. Se deja el fallback del CSS y se remide despues.
+                if (!col.offsetParent) return;
+
+                var n = parseInt(col.dataset.marqueeCloned, 10);
+                var cards = Array.prototype.slice.call(col.querySelectorAll('.testi-card')).slice(0, n);
+                var gap = parseFloat(getComputedStyle(col).rowGap) || 16;
+                var alto = cards.reduce(function (h, c) { return h + c.offsetHeight + gap; }, 0);
+                if (alto < 200) return;
+
+                col.style.setProperty('--t-dur', (alto / [16.5, 13.5, 18][idx % 3]).toFixed(1) + 's');
+                col.style.setProperty('--tgap', (gap / 2) + 'px');
+                if (idx % 3 === 1) col.classList.add('testimonial-col--down');
+            });
+        }
+
+        medir();
+        // La tipografia propia cambia la altura de las citas al cargar.
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(medir);
+
+        var t;
+        function remedir() {
+            clearTimeout(t);
+            t = setTimeout(medir, 200);
+        }
+        window.addEventListener('resize', remedir, { passive: true });
+
+        // El resize de ventana no cubre los cambios de ancho que vienen del
+        // layout (barra lateral, zoom, rotacion en algunos navegadores).
+        if ('ResizeObserver' in window) {
+            var ro = new ResizeObserver(remedir);
+            document.querySelectorAll('[data-marquee]').forEach(function (w) { ro.observe(w); });
+        }
     }
 
     /* --------------------------------------------------------------------- */
