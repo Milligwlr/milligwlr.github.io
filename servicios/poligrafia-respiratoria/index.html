@@ -221,13 +221,116 @@
   .footer-meta{font-size:.91rem!important}
   section{padding-top:32px!important;padding-bottom:32px!important}
 }
+
+/* ============== QUE INCLUYE EL ESTUDIO (imagen + entregables) ============== */
+.svc-deliver{display:grid;gap:20px}
+.svc-deliver__fig{margin:0;border-radius:20px;overflow:hidden;background:#fff;border:1px solid rgba(108,92,231,.16);box-shadow:0 18px 44px -20px rgba(72,52,212,.45)}
+.svc-deliver__fig img{width:100%;height:auto;display:block}
+.svc-deliver__fig figcaption{font-size:.78rem;color:var(--text-muted);padding:10px 14px;font-weight:600;line-height:1.45}
+.svc-deliver__list{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.svc-deliver__list li{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid rgba(108,92,231,.14);border-radius:16px;padding:16px 18px;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease)}
+.svc-deliver__list li:hover{border-color:rgba(108,92,231,.3);transform:translateY(-2px);box-shadow:0 10px 28px -14px rgba(72,52,212,.4)}
+.svc-deliver__ic{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--svc),var(--svc-dark));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0;box-shadow:0 6px 18px rgba(108,92,231,.32)}
+.svc-deliver__list strong{display:block;color:var(--navy);font-size:.97rem;font-weight:800;margin-bottom:3px;letter-spacing:-.01em}
+.svc-deliver__list p{margin:0;font-size:.9rem;color:var(--text-muted);line-height:1.5}
+@media(min-width:900px){.svc-deliver{grid-template-columns:.92fr 1.08fr;gap:28px;align-items:start}}
+
+/* ============== CUESTIONARIO STOP-BANG ============== */
+.sb-wrap{max-width:760px}
+.sb-progress__label{font-size:.8rem;color:var(--text-muted);margin-bottom:6px;font-weight:600}
+.sb-progress{height:6px;background:rgba(108,92,231,.14);border-radius:999px;margin-bottom:18px;overflow:hidden}
+.sb-progress__bar{height:100%;background:linear-gradient(90deg,var(--svc),var(--svc-light));border-radius:999px;transition:width .4s var(--ease);width:0}
+.sb-quiz{display:grid;gap:10px}
+.sb-question{background:#fff;border:2px solid rgba(108,92,231,.12);border-radius:14px;padding:16px 18px;transition:border-color .25s var(--ease)}
+.sb-question.answered{border-color:rgba(108,92,231,.34)}
+.sb-question__top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.sb-letter{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--svc),var(--svc-light));color:#fff;font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sb-category{font-weight:700;color:var(--navy);font-size:.88rem}
+.sb-question__text{color:var(--text);font-size:.95rem;margin:0 0 12px;line-height:1.5}
+.sb-btns{display:flex;gap:8px}
+.sb-btn{flex:1;padding:9px 0;border-radius:10px;border:2px solid rgba(108,92,231,.2);background:#fff;font-weight:700;font-size:.9rem;cursor:pointer;transition:background .2s var(--ease),border-color .2s var(--ease),color .2s var(--ease);color:var(--navy);font-family:inherit}
+.sb-btn:hover{border-color:var(--svc);background:rgba(108,92,231,.05)}
+.sb-btn:focus-visible{outline:2px solid var(--svc);outline-offset:2px}
+.sb-btn.active-si{background:var(--svc);color:#fff;border-color:var(--svc)}
+.sb-btn.active-no{background:var(--navy);color:#fff;border-color:var(--navy)}
+.sb-bmi-toggle{background:none;border:none;color:var(--svc);font-size:.82rem;font-weight:700;cursor:pointer;padding:0;margin-bottom:8px;display:inline-flex;align-items:center;gap:5px;text-decoration:underline;text-underline-offset:2px;font-family:inherit}
+.sb-bmi-panel{display:none;background:rgba(108,92,231,.06);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+.sb-bmi-panel.open{display:block}
+.sb-bmi-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.sb-bmi-row input{width:104px;padding:7px 10px;border:1.5px solid rgba(108,92,231,.22);border-radius:8px;font-size:.88rem;font-family:inherit;color:var(--text)}
+.sb-bmi-row input:focus{outline:none;border-color:var(--svc)}
+.sb-bmi-calc-btn{padding:7px 14px;background:var(--svc);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:.85rem;cursor:pointer;font-family:inherit}
+.sb-bmi-result{font-size:.85rem;font-weight:700;color:var(--navy)}
+.sb-result{display:none;border-radius:18px;padding:26px 22px;margin-top:18px;text-align:center}
+.sb-result--low{background:linear-gradient(135deg,#f0fff8,#e0f9f0);border:2px solid #00b894}
+.sb-result--mid{background:linear-gradient(135deg,#fffbf0,#fef3cd);border:2px solid #fdcb6e}
+.sb-result--high{background:linear-gradient(135deg,#fff5f0,#ffe0d5);border:2px solid #e17055}
+.sb-result__icon{font-size:2rem;margin-bottom:8px}
+.sb-result__level{font-size:1.45rem;font-weight:800;margin-bottom:2px;color:var(--navy)}
+.sb-result__score{font-size:.88rem;font-weight:600;color:var(--text-muted);margin-bottom:12px}
+.sb-result__message{font-size:.97rem;line-height:1.6;margin-bottom:14px;color:var(--text);max-width:500px;margin-left:auto;margin-right:auto}
+.sb-result__disclaimer{font-size:.8rem;color:var(--text-muted);font-style:italic;margin-bottom:18px;padding:10px 14px;background:rgba(0,0,0,.04);border-radius:8px;line-height:1.5}
+.sb-result__cta{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:14px;font-weight:800;font-size:1rem;text-decoration:none;background:#25d366;color:#fff!important;transition:background .25s var(--ease),transform .25s var(--ease);box-shadow:0 8px 24px rgba(29,168,81,.3)}
+.sb-result__cta:hover{background:#1da851;transform:translateY(-2px)}
+.sb-reset-btn{display:block;background:none;border:none;color:var(--text-muted);font-size:.83rem;cursor:pointer;margin:12px auto 0;text-decoration:underline;text-underline-offset:2px;font-family:inherit}
+@media(min-width:768px){.sb-quiz{grid-template-columns:1fr 1fr}.sb-question#sbq-b{grid-column:1/-1}}
+
+/* ============== LO QUE ESTA EN JUEGO (apnea sin tratar vs tratada) ============== */
+.osa-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.osa-chip{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid rgba(108,92,231,.18);border-radius:100px;padding:8px 15px;font-size:.86rem;font-weight:700;color:var(--navy);line-height:1.3}
+.osa-chip i{color:var(--svc);font-size:.9rem}
+.osa-grid{display:grid;gap:18px}
+.osa-thesis{background:linear-gradient(150deg,#fff,#f8f7ff);border:1px solid rgba(108,92,231,.16);border-radius:20px;padding:24px 22px;box-shadow:0 12px 32px -18px rgba(72,52,212,.4)}
+.osa-thesis__ic{width:52px;height:52px;border-radius:15px;background:linear-gradient(135deg,var(--svc),var(--svc-dark));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:14px;box-shadow:0 8px 22px rgba(108,92,231,.35)}
+.osa-thesis h3{font-size:1.12rem;font-weight:800;color:var(--navy);letter-spacing:-.015em;line-height:1.3;margin:0 0 10px}
+.osa-thesis p{font-size:.94rem;color:var(--text-muted);line-height:1.6;margin:0 0 16px}
+.osa-thesis strong{color:var(--navy)}
+.osa-list{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.osa-item{display:flex;gap:13px;align-items:flex-start;background:#fff;border:1px solid rgba(108,92,231,.12);border-radius:14px;padding:15px 17px}
+.osa-item__ic{width:36px;height:36px;border-radius:11px;background:rgba(108,92,231,.1);color:var(--svc);display:flex;align-items:center;justify-content:center;font-size:.98rem;flex-shrink:0}
+.osa-item h4{font-size:.95rem;font-weight:800;color:var(--navy);margin:0 0 3px;letter-spacing:-.01em}
+.osa-item p{font-size:.88rem;color:var(--text-muted);margin:0;line-height:1.5}
+.osa-more{margin:18px 0 0;font-size:.9rem;color:var(--text-muted);line-height:1.55}
+.osa-more a{color:var(--svc);font-weight:700}
+@media(min-width:900px){.osa-grid{grid-template-columns:1fr 1.15fr;gap:24px;align-items:start}}
+
+/* ============== ORIENTADOR: que estudio te toca ============== */
+.orient-grid{display:grid;gap:16px}
+.orient-route{border-radius:20px;padding:24px 22px;position:relative}
+.orient-route--a{background:linear-gradient(150deg,#fff,#f6f5ff);border:2px solid rgba(108,92,231,.28);box-shadow:0 16px 40px -20px rgba(72,52,212,.45)}
+.orient-route--b{background:#fbfbfd;border:1px solid rgba(0,0,0,.09)}
+.orient-route__badge{display:inline-flex;align-items:center;gap:7px;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1.6px;border-radius:100px;padding:6px 13px;margin-bottom:14px}
+.orient-route--a .orient-route__badge{background:linear-gradient(135deg,var(--svc),var(--svc-dark));color:#fff}
+.orient-route--b .orient-route__badge{background:rgba(0,0,0,.05);color:var(--text-muted)}
+.orient-route__head{display:flex;gap:13px;align-items:center;margin-bottom:12px}
+.orient-route__ic{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.orient-route--a .orient-route__ic{background:linear-gradient(135deg,var(--svc),var(--svc-dark));color:#fff;box-shadow:0 8px 20px rgba(108,92,231,.34)}
+.orient-route--b .orient-route__ic{background:rgba(0,0,0,.05);color:var(--text-muted)}
+.orient-route__rt{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1.8px;color:var(--text-muted);margin-bottom:2px}
+.orient-route__title{font-size:1.08rem;font-weight:800;color:var(--navy);margin:0;letter-spacing:-.015em;line-height:1.25}
+.orient-route__lead{font-size:.93rem;color:var(--text-muted);line-height:1.6;margin:0 0 14px}
+.orient-check{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+.orient-check li{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;color:var(--text);line-height:1.5}
+.orient-check i{color:var(--svc);flex-shrink:0;margin-top:2px}
+.orient-route--b .orient-check i{color:var(--text-muted)}
+.orient-route__note{display:flex;gap:10px;align-items:flex-start;margin:16px 0 0;padding:13px 15px;background:rgba(108,92,231,.06);border-radius:12px;font-size:.87rem;color:var(--text-muted);line-height:1.55}
+.orient-route__note i{color:var(--svc);flex-shrink:0;margin-top:2px}
+.orient-trust{margin-top:18px;background:linear-gradient(140deg,#0d0824,#1a0a3e);border:1px solid rgba(108,92,231,.4);border-radius:20px;padding:24px 22px;color:#fff;display:grid;gap:18px}
+.orient-trust__n{font-size:2.1rem;font-weight:800;color:var(--svc-light);line-height:1;display:block;margin-bottom:6px}
+.orient-trust__t{font-size:.88rem;color:rgba(255,255,255,.72);line-height:1.5}
+.orient-trust__t b{color:#fff}
+.orient-points{list-style:none;padding:0;margin:0;display:grid;gap:11px}
+.orient-points li{display:flex;gap:11px;align-items:flex-start;font-size:.9rem;color:rgba(255,255,255,.78);line-height:1.55}
+.orient-points i{color:var(--svc-light);flex-shrink:0;margin-top:3px}
+.orient-points b{color:#fff}
+@media(min-width:900px){.orient-grid{grid-template-columns:1.05fr .95fr;align-items:start}.orient-trust{grid-template-columns:.85fr 1.15fr;align-items:center;gap:26px}}
 </style>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/servicios/poligrafia-respiratoria/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Qué es la poligrafía respiratoria?","acceptedAnswer":{"@type":"Answer","text":"Es un estudio de sueño tipo III, validado por la AASM, que registra tu respiración mientras duermes. Sirve para detectar y medir la apnea del sueño sin internarte en un hospital."}},{"@type":"Question","name":"¿Qué mide exactamente el estudio?","acceptedAnswer":{"@type":"Answer","text":"Flujo de aire nasal, esfuerzo respiratorio (bandas en pecho y abdomen), saturación de oxígeno (SpO2), frecuencia cardiaca, ronquido y posición corporal. Con esos datos se calcula tu IAH (índice de apnea-hipopnea) por hora."}},{"@type":"Question","name":"¿Cómo se hace en casa el estudio de apnea?","acceptedAnswer":{"@type":"Answer","text":"Te llevas un equipo a batería, te enseño a colocar la cánula y las bandas en unos 10 minutos, duermes una noche normal en tu cama y al día siguiente lo regresas. No necesitas acompañante ni técnico vigilando. El estudio también está disponible a domicilio en San José Insurgentes, Mixcoac, Del Valle, Nápoles y Guadalupe Inn."}},{"@type":"Question","name":"¿Cómo se interpreta el resultado (IAH)?","acceptedAnswer":{"@type":"Answer","text":"El IAH cuenta pausas respiratorias por hora: 5-15 leve, 15-30 moderada y más de 30 severa. Lo leo yo como neumólogo, no un software, y definimos el plan: medidas posicionales, avance mandibular o titulación CPAP."}},{"@type":"Question","name":"¿Quién necesita una poligrafía respiratoria?","acceptedAnswer":{"@type":"Answer","text":"Personas que roncan fuerte, a quienes les vieron pausas al respirar, despiertan cansadas, tienen sueño diurno o presión alta difícil de controlar. Es el primer paso para confirmar o descartar apnea del sueño."}},{"@type":"Question","name":"¿Dónde me hago un estudio del sueño en la CDMX?","acceptedAnswer":{"@type":"Answer","text":"El estudio del sueño para descartar apnea que realizo es la poligrafía respiratoria. La hago e interpreto yo, como neumólogo, en el sur de la Ciudad de México (Hospital Santa Coleta, San José Insurgentes) y a domicilio en Mixcoac, Del Valle, Nápoles y Guadalupe Inn. Si buscas una clínica del sueño para insomnio o sospecha de apnea central, se deriva a una polisomnografía en laboratorio."}},{"@type":"Question","name":"¿Es lo mismo que una polisomnografía?","acceptedAnswer":{"@type":"Answer","text":"No. La poligrafía mide flujo, esfuerzo, oxígeno y posición: suficiente para confirmar apnea obstructiva en casos típicos. La polisomnografía agrega electrodos cerebrales y musculares, necesarios cuando hay insomnio, sospecha de apnea central u otro trastorno del sueño. Te explico las diferencias, cuál necesitas y los costos en la página de poligrafía vs polisomnografía."}},{"@type":"Question","name":"¿Qué incluye el resultado?","acceptedAnswer":{"@type":"Answer","text":"Reporte con índice de apnea-hipopnea (IAH), severidad, tiempo con SpO2 menor a 90%, ronquidos por hora y posición predominante. Te lo explico en consulta y definimos plan: dispositivos posicionales, mandibular o CPAP/BiPAP."}},{"@type":"Question","name":"¿Y si no logro dormir con el equipo?","acceptedAnswer":{"@type":"Answer","text":"Es normal sentir el equipo al inicio. La cánula nasal y bandas son ligeras y la mayoría se acostumbra en 30 minutos. Si la noche resulta insuficiente, se repite sin costo adicional."}},{"@type": "Question", "name": "¿Cuántas noches se necesita para diagnosticar apnea?", "acceptedAnswer": {"@type": "Answer", "text": "Por lo general una sola noche es suficiente cuando la sospecha de apnea es moderada o alta, que es el escenario donde la poligrafía en casa está indicada. Si el resultado sale normal pero los síntomas persisten, el neumólogo valora repetir el estudio o pasar a una polisomnografía en laboratorio."}},{"@type":"Question","name":"¿Cuánto cuesta el estudio en CDMX?","acceptedAnswer":{"@type":"Answer","text":"El paquete de consulta + poligrafía con equipo entregado en consultorio cuesta $4,500 MXN; el estudio a domicilio cuesta $5,000 (la consulta se cobra aparte). Detalle en la <a href=\"/servicios/poligrafia-respiratoria/precio/\">página de precio de la poligrafía</a> o escribe por WhatsApp al 55 9170 8334."}}]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"MedicalWebPage","url":"https://alveos.mx/servicios/poligrafia-respiratoria/","name":"Poligrafía Respiratoria en Casa | Apnea del Sueño CDMX","description":"Estudio de sueño en casa con poligrafía. Diagnóstico de apnea sin pasar la noche en hospital. CDMX.","inLanguage":"es-MX","datePublished":"2026-04-25","dateModified":"2026-04-25","lastReviewed":"2026-04-25","reviewedBy":{"@id":"https://alveos.mx/#physician"},"author":{"@id":"https://alveos.mx/#physician"},"specialty":"https://schema.org/Pulmonary","audience":{"@type":"MedicalAudience","audienceType":"Patient"}}
+{"@context":"https://schema.org","@type":"MedicalWebPage","url":"https://alveos.mx/servicios/poligrafia-respiratoria/","name":"Poligrafía Respiratoria en Casa | Apnea del Sueño CDMX","description":"Estudio de sueño en casa con poligrafía. Diagnóstico de apnea sin pasar la noche en hospital. CDMX.","inLanguage":"es-MX","datePublished":"2026-04-25","dateModified":"2026-07-26","lastReviewed":"2026-04-25","reviewedBy":{"@id":"https://alveos.mx/#physician"},"author":{"@id":"https://alveos.mx/#physician"},"specialty":"https://schema.org/Pulmonary","audience":{"@type":"MedicalAudience","audienceType":"Patient"}}
 </script>
     <link rel="stylesheet" href="/assets/agenda-modal.css">
     <link rel="stylesheet" href="/assets/base.css">
@@ -405,6 +508,31 @@
 <p class="svc-section__lead" style="margin:0;padding:18px 22px;background:rgba(108,92,231,.06);border-left:4px solid var(--svc);border-radius:12px;max-width:760px;color:#3a4a5c">La <strong>poligrafía respiratoria</strong> es el <strong>estudio del sueño</strong> que haces en casa una sola noche para detectar <a href="/enfermedades/apnea-del-sueno/" style="color:var(--svc);font-weight:700">apnea del sueño</a>. Mide flujo de aire, esfuerzo, oxígeno (SpO₂) y posición, y calcula tu IAH (índice de apnea-hipopnea) para definir la severidad. Lo realiza e interpreta un neumólogo en la CDMX, en consultorio o a domicilio.</p>
 </div>
 
+<!-- QUÉ INCLUYE EL ESTUDIO -->
+<div class="svc-section reveal">
+<span class="svc-section__eyebrow"><i class="bi bi-box-seam"></i> En qué consiste</span>
+<h2 class="svc-section__title">Equipo, una noche en casa y <em>lectura médica</em></h2>
+<p class="svc-section__lead">Así se ve y así funciona el estudio, de principio a fin. No hay internamiento, no hay técnico vigilándote y no hay cables conectados a la pared.</p>
+
+<div class="svc-deliver">
+<figure class="svc-deliver__fig">
+<img src="/images/poligrafia-cama-640.webp"
+     srcset="/images/poligrafia-cama-420.webp 420w, /images/poligrafia-cama-640.webp 640w, /images/poligrafia-cama-960.webp 960w"
+     sizes="(max-width:899px) 92vw, 40vw"
+     width="640" height="480" loading="lazy" decoding="async"
+     alt="Paciente durmiendo en su propia cama junto a su pareja, con la cánula nasal, la banda torácica y el oxímetro de dedo de la poligrafía respiratoria">
+<figcaption>Equipo tipo III a batería: registra tu respiración toda la noche, en tu cama.</figcaption>
+</figure>
+
+<ul class="svc-deliver__list">
+<li><span class="svc-deliver__ic"><i class="bi bi-mortarboard-fill"></i></span><div><strong>Te enseño a colocártelo</strong><p>En la consulta te entrego el equipo y practicamos juntos: cánula nasal, banda y oxímetro. Toma unos 10 minutos y te vas sabiendo hacerlo.</p></div></li>
+<li><span class="svc-deliver__ic"><i class="bi bi-moon-stars-fill"></i></span><div><strong>Duermes tu noche normal</strong><p>En tu colchón, con tu rutina y con tu pareja al lado si es el caso. Puedes voltearte y levantarte al baño. Al día siguiente devuelves el equipo.</p></div></li>
+<li><span class="svc-deliver__ic"><i class="bi bi-person-badge-fill"></i></span><div><strong>Lo leo yo, no un software</strong><p>Reviso el trazo completo de la noche: IAH, caídas de oxígeno, ronquido y posición. La severidad la define un neumólogo, no el número automático del aparato.</p></div></li>
+<li><span class="svc-deliver__ic"><i class="bi bi-clipboard2-check-fill"></i></span><div><strong>Sales con un plan, no con un PDF</strong><p>Te explico qué significa tu resultado y qué sigue, sea medidas posicionales, avance mandibular o CPAP, en lenguaje que se entiende.</p></div></li>
+</ul>
+</div>
+</div>
+
 <!-- BENEFICIOS -->
 <div class="svc-section reveal">
 <span class="svc-section__eyebrow"><i class="bi bi-gift-fill"></i> Qué te llevas</span>
@@ -433,6 +561,155 @@
 </div>
 </div>
 
+<!-- CUESTIONARIO STOP-BANG -->
+<div class="svc-section reveal" id="stop-bang">
+<span class="svc-section__eyebrow"><i class="bi bi-ui-checks"></i> Autoevaluación</span>
+<h2 class="svc-section__title">¿Cuánto riesgo de apnea <em>tienes tú?</em></h2>
+<p class="svc-section__lead">STOP-BANG es el cuestionario que usamos en consulta para estimar el riesgo de apnea obstructiva. Son 8 preguntas y tarda 2 minutos. Nadie ve tus respuestas: el cálculo ocurre en tu propio teléfono.</p>
+
+<div class="sb-wrap">
+<div class="sb-progress__label" id="sb-progress-label" aria-live="polite">0 de 8 preguntas respondidas</div>
+<div class="sb-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="8" aria-label="Progreso del cuestionario">
+<div class="sb-progress__bar" id="sb-progress-bar"></div>
+</div>
+
+<div class="sb-quiz" id="sb-quiz" role="group" aria-label="Preguntas del cuestionario STOP-BANG">
+
+<div class="sb-question" id="sbq-s" data-qid="s">
+<div class="sb-question__top"><div class="sb-letter" aria-hidden="true">S</div><span class="sb-category">Ronquido</span></div>
+<p class="sb-question__text" id="sbq-s-label">¿Roncas fuerte, más fuerte que al hablar, o lo suficiente para escucharse a través de una puerta cerrada?</p>
+<div class="sb-btns" role="group" aria-labelledby="sbq-s-label">
+<button class="sb-btn" type="button" data-q="s" data-v="1" aria-pressed="false">Sí</button>
+<button class="sb-btn" type="button" data-q="s" data-v="0" aria-pressed="false">No</button>
+</div>
+</div>
+
+<div class="sb-question" id="sbq-t" data-qid="t">
+<div class="sb-question__top"><div class="sb-letter" aria-hidden="true">T</div><span class="sb-category">Cansancio</span></div>
+<p class="sb-question__text" id="sbq-t-label">¿Te sientes cansado, fatigado o con sueño durante el día con frecuencia, incluso habiendo dormido?</p>
+<div class="sb-btns" role="group" aria-labelledby="sbq-t-label">
+<button class="sb-btn" type="button" data-q="t" data-v="1" aria-pressed="false">Sí</button>
+<button class="sb-btn" type="button" data-q="t" data-v="0" aria-pressed="false">No</button>
+</div>
+</div>
+
+<div class="sb-question" id="sbq-o" data-qid="o">
+<div class="sb-question__top"><div class="sb-letter" aria-hidden="true">O</div><span class="sb-category">Observado</span></div>
+<p class="sb-question__text" id="sbq-o-label">¿Alguien ha notado que dejas de respirar, o que te atragantas, mientras duermes?</p>
+<div class="sb-btns" role="group" aria-labelledby="sbq-o-label">
+<button class="sb-btn" type="button" data-q="o" data-v="1" aria-pressed="false">Sí</button>
+<button class="sb-btn" type="button" data-q="o" data-v="0" aria-pressed="false">No</button>
+</div>
+</div>
+
+<div class="sb-question" id="sbq-p" data-qid="p">
+<div class="sb-question__top"><div class="sb-letter" aria-hidden="true">P</div><span class="sb-category">Presión arterial</span></div>
+<p class="sb-question__text" id="sbq-p-label">¿Tienes presión arterial alta o estás siendo tratado con medicamentos para controlarla?</p>
+<div class="sb-btns" role="group" aria-labelledby="sbq-p-label">
+<button class="sb-btn" type="button" data-q="p" data-v="1" aria-pressed="false">Sí</button>
+<button class="sb-btn" type="button" data-q="p" data-v="0" aria-pressed="false">No</button>
+</div>
+</div>
+
+<div class="sb-question" id="sbq-b" data-qid="b">
+<div class="sb-question__top"><div class="sb-letter" aria-hidden="true">B</div><span class="sb-category">Índice de masa corporal</span></div>
+<p class="sb-question__text" id="sbq-b-label">¿Tu índice de masa corporal (IMC) es mayor a 35?</p>
+<button type="button" class="sb-bmi-toggle" onclick="sbToggleBmi()" aria-expanded="false" aria-controls="sb-bmi-panel"><i class="bi bi-calculator"></i> Calcular mi IMC (opcional)</button>
+<div class="sb-bmi-panel" id="sb-bmi-panel" role="region" aria-label="Calculadora de IMC">
+<div class="sb-bmi-row">
+<input type="number" id="sb-peso" placeholder="Peso (kg)" min="30" max="300" aria-label="Peso en kilogramos">
+<input type="number" id="sb-talla" placeholder="Estatura (m)" min="1.0" max="2.5" step="0.01" aria-label="Estatura en metros">
+<button type="button" class="sb-bmi-calc-btn" onclick="sbCalcBMI()">Calcular</button>
+<span class="sb-bmi-result" id="sb-bmi-result" aria-live="polite"></span>
+</div>
+</div>
+<div class="sb-btns" role="group" aria-labelledby="sbq-b-label">
+<button class="sb-btn" type="button" data-q="b" data-v="1" id="sb-btn-si-b" aria-pressed="false">Sí (IMC &gt; 35)</button>
+<button class="sb-btn" type="button" data-q="b" data-v="0" id="sb-btn-no-b" aria-pressed="false">No</button>
+</div>
+</div>
+
+<div class="sb-question" id="sbq-a" data-qid="a">
+<div class="sb-question__top"><div class="sb-letter" aria-hidden="true">A</div><span class="sb-category">Edad</span></div>
+<p class="sb-question__text" id="sbq-a-label">¿Tienes más de 50 años?</p>
+<div class="sb-btns" role="group" aria-labelledby="sbq-a-label">
+<button class="sb-btn" type="button" data-q="a" data-v="1" aria-pressed="false">Sí</button>
+<button class="sb-btn" type="button" data-q="a" data-v="0" aria-pressed="false">No</button>
+</div>
+</div>
+
+<div class="sb-question" id="sbq-n" data-qid="n">
+<div class="sb-question__top"><div class="sb-letter" aria-hidden="true">N</div><span class="sb-category">Circunferencia de cuello</span></div>
+<p class="sb-question__text" id="sbq-n-label">¿La circunferencia de tu cuello es mayor a 40 cm? (Aproximadamente, si usas cuello de camisa 16 o mayor)</p>
+<div class="sb-btns" role="group" aria-labelledby="sbq-n-label">
+<button class="sb-btn" type="button" data-q="n" data-v="1" aria-pressed="false">Sí</button>
+<button class="sb-btn" type="button" data-q="n" data-v="0" aria-pressed="false">No</button>
+</div>
+</div>
+
+<div class="sb-question" id="sbq-g" data-qid="g">
+<div class="sb-question__top"><div class="sb-letter" aria-hidden="true">G</div><span class="sb-category">Sexo biológico</span></div>
+<p class="sb-question__text" id="sbq-g-label">¿Eres hombre (sexo masculino al nacer)?</p>
+<div class="sb-btns" role="group" aria-labelledby="sbq-g-label">
+<button class="sb-btn" type="button" data-q="g" data-v="1" aria-pressed="false">Sí</button>
+<button class="sb-btn" type="button" data-q="g" data-v="0" aria-pressed="false">No</button>
+</div>
+</div>
+
+</div><!-- /.sb-quiz -->
+
+<div class="sb-result" id="sb-result" aria-live="assertive" role="region" aria-label="Resultado del cuestionario">
+<div class="sb-result__icon" id="sb-result-icon">&#128277;</div>
+<div class="sb-result__level" id="sb-result-level">Riesgo intermedio</div>
+<div class="sb-result__score" id="sb-result-score">4 de 8 factores presentes</div>
+<p class="sb-result__message" id="sb-result-message"></p>
+<div class="sb-result__disclaimer">Este cuestionario es orientativo y no reemplaza la evaluación médica. Solo un neumólogo puede establecer un diagnóstico de apnea del sueño.</div>
+<a href="#" class="sb-result__cta" id="sb-result-cta" target="_blank" rel="noopener noreferrer" data-cta="stopbang-wa"><i class="bi bi-whatsapp"></i> Hablar con el Dr. Lara</a>
+<button type="button" class="sb-reset-btn" onclick="sbReset()">Reiniciar cuestionario</button>
+</div>
+</div>
+</div>
+
+<!-- POR QUÉ CONVIENE SABERLO -->
+<!-- REGLA DE EVIDENCIA (jul-2026; decision clinica del Dr. Lara, neumologo INER = Capa 3 del gate).
+     RIESGOS de la apnea NO TRATADA: se NOMBRAN tal cual. Asociacion fuerte y documentada (AHA/Mayo/Cleveland/NHLBI). NO es alarmismo.
+     DESENLACES de la apnea TRATADA: encuadrados como "lo que se ha estudiado", nunca como promesa individual.
+     LINEA QUE NO SE CRUZA: sin verbo causal de garantia (previene/elimina/cura); se dice explicitamente que el tratamiento no borra todo el riesgo
+     (los ensayos CPAP de prevencion CV secundaria SAVE/RICCADSA/ISAACC fueron neutrales). La profundidad vive en /enfermedades/apnea-del-sueno/. -->
+<div class="svc-section reveal" id="por-que-saberlo">
+<span class="svc-section__eyebrow"><i class="bi bi-heart-pulse-fill"></i> Por qué conviene saberlo</span>
+<h2 class="svc-section__title">Lo que la apnea hace <em>mientras duermes</em></h2>
+<p class="svc-section__lead">Cada pausa respiratoria baja tu oxígeno y despierta a tu cuerpo sin que te enteres. Repetido cientos de veces por noche, durante años, se asocia con:</p>
+
+<div class="osa-chips">
+<span class="osa-chip"><i class="bi bi-activity"></i> Presión alta difícil de controlar</span>
+<span class="osa-chip"><i class="bi bi-droplet-fill"></i> Diabetes tipo 2</span>
+<span class="osa-chip"><i class="bi bi-heart-pulse-fill"></i> Fibrilación auricular</span>
+<span class="osa-chip"><i class="bi bi-heartbreak-fill"></i> Infarto</span>
+<span class="osa-chip"><i class="bi bi-lightbulb-fill"></i> Evento vascular cerebral</span>
+<span class="osa-chip"><i class="bi bi-car-front-fill"></i> Accidentes por sueño al volante</span>
+</div>
+
+<p class="svc-section__lead" style="margin-bottom:20px">Cuando se confirma y se atiende, esto es lo que se ha estudiado:</p>
+
+<div class="osa-grid">
+<aside class="osa-thesis">
+<div class="osa-thesis__ic"><i class="bi bi-clipboard2-pulse-fill"></i></div>
+<h3>Todo empieza por un dato: si la tienes y qué tan grave</h3>
+<p>Eso es exactamente lo que responde este estudio, y con ese dato se arma el tratamiento. <strong>Con la verdad por delante:</strong> tratarla no borra todo el riesgo acumulado, pero atenderla a tiempo sí está en tus manos.</p>
+<p style="margin:0;font-size:.88rem"><i class="bi bi-shield-fill-check" aria-hidden="true" style="color:var(--svc)"></i> Es un paso sencillo y no invasivo. La valoración es en consulta con tu neumólogo.</p>
+</aside>
+<ul class="osa-list">
+<li class="osa-item"><span class="osa-item__ic" aria-hidden="true"><i class="bi bi-activity"></i></span><div><h4>Presión arterial más controlada</h4><p>Sobre todo la que no cede con varios medicamentos.</p></div></li>
+<li class="osa-item"><span class="osa-item__ic" aria-hidden="true"><i class="bi bi-lightning-charge-fill"></i></span><div><h4>Menos somnolencia, desde las primeras noches</h4><p>Volver a despertar con la cabeza despejada.</p></div></li>
+<li class="osa-item"><span class="osa-item__ic" aria-hidden="true"><i class="bi bi-heart-pulse-fill"></i></span><div><h4>Menor riesgo cardiovascular estudiado</h4><p>En apnea severa tratada, el riesgo se acerca al de quien no la tiene.</p></div></li>
+<li class="osa-item"><span class="osa-item__ic" aria-hidden="true"><i class="bi bi-heart-fill"></i></span><div><h4>Menos arritmias</h4><p>Menos fibrilación auricular.</p></div></li>
+<li class="osa-item"><span class="osa-item__ic" aria-hidden="true"><i class="bi bi-car-front-fill"></i></span><div><h4>Menos accidentes al volante</h4><p>La somnolencia y los microsueños suelen disminuir.</p></div></li>
+</ul>
+</div>
+<p class="osa-more"><i class="bi bi-book-half" aria-hidden="true"></i> ¿Quieres entender a fondo por qué conviene atenderla, enfermedad por enfermedad? <a href="/enfermedades/apnea-del-sueno/" data-cta="osa-apnea-link">Léelo en la página de apnea del sueño</a>.</p>
+</div>
+
 <!-- WOW -->
 <div class="svc-section reveal">
 <span class="svc-section__eyebrow"><i class="bi bi-lightning-fill"></i> Cómo es el estudio</span>
@@ -458,6 +735,62 @@
 <p class="svc-wow__foot">* Validado por la AASM como estudio nivel III. La polisomnografía hospitalaria sigue siendo la indicada para insomnio, apnea central, EPOC severo o trastornos del movimiento.</p>
 </div>
 </div>
+</div>
+
+<!-- ORIENTADOR: QUÉ ESTUDIO TE TOCA -->
+<div class="svc-section reveal" id="que-estudio-necesito">
+<span class="svc-section__eyebrow"><i class="bi bi-signpost-split-fill"></i> Cuál te toca</span>
+<h2 class="svc-section__title">¿Poligrafía en casa o <em>polisomnografía?</em></h2>
+<p class="svc-section__lead">Mucha gente llega pidiendo la polisomnografía de laboratorio cuando su caso se resuelve con el estudio en casa. Ubícate aquí en 30 segundos, para no gastar de más ni quedarte corto.</p>
+
+<div class="orient-grid">
+<article class="orient-route orient-route--a">
+<span class="orient-route__badge"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> La mayoría</span>
+<div class="orient-route__head">
+<span class="orient-route__ic" aria-hidden="true"><i class="bi bi-house-heart-fill"></i></span>
+<div><div class="orient-route__rt">Ruta A</div><h3 class="orient-route__title">Poligrafía respiratoria en casa (este estudio)</h3></div>
+</div>
+<p class="orient-route__lead">Es tu ruta si eres adulto, con señales claras de apnea y <b>sin</b> enfermedad grave del corazón o del pulmón. Es el perfil más común, y la AASM respalda el estudio en casa para diagnosticarlo.</p>
+<ul class="orient-check">
+<li><i class="bi bi-check-lg" aria-hidden="true"></i> Roncas fuerte.</li>
+<li><i class="bi bi-check-lg" aria-hidden="true"></i> Te han visto <b>dejar de respirar</b> mientras duermes.</li>
+<li><i class="bi bi-check-lg" aria-hidden="true"></i> Amaneces cansado o te gana el sueño de día.</li>
+<li><i class="bi bi-check-lg" aria-hidden="true"></i> No tienes una enfermedad importante del corazón ni del pulmón.</li>
+</ul>
+</article>
+
+<article class="orient-route orient-route--b">
+<span class="orient-route__badge"><i class="bi bi-signpost-2-fill" aria-hidden="true"></i> Casos concretos</span>
+<div class="orient-route__head">
+<span class="orient-route__ic" aria-hidden="true"><i class="bi bi-hospital"></i></span>
+<div><div class="orient-route__rt">Ruta B</div><h3 class="orient-route__title">Polisomnografía de laboratorio (te oriento a ella)</h3></div>
+</div>
+<p class="orient-route__lead">Hay casos concretos en los que conviene el estudio de laboratorio, con sensores del cerebro, y no el de casa. Lee si alguno es el tuyo:</p>
+<ul class="orient-check">
+<li><i class="bi bi-dot" aria-hidden="true"></i> Enfermedad importante del corazón o del pulmón (insuficiencia cardiaca, EPOC relevante).</li>
+<li><i class="bi bi-dot" aria-hidden="true"></i> Problemas para ventilar bien, incluida la hipoventilación asociada a la obesidad.</li>
+<li><i class="bi bi-dot" aria-hidden="true"></i> Enfermedad neuromuscular o uso crónico de opioides.</li>
+<li><i class="bi bi-dot" aria-hidden="true"></i> Antecedente de infarto o embolia, o insomnio grave.</li>
+<li><i class="bi bi-dot" aria-hidden="true"></i> Sospecha de apnea central u otros trastornos del sueño (piernas inquietas, narcolepsia).</li>
+<li><i class="bi bi-dot" aria-hidden="true"></i> Poligrafía en casa normal pero con síntomas que siguen apuntando a apnea.</li>
+</ul>
+<p class="orient-route__note"><i class="bi bi-info-circle-fill" aria-hidden="true"></i> <span>Si es tu caso, <b>te lo digo de frente</b> y te oriento a dónde realizarla. Aquí no hacemos polisomnografía; lo que sí hago es valorarte y dirigirte al estudio correcto.</span></p>
+</article>
+</div>
+
+<div class="orient-trust" role="group" aria-label="Por qué es confiable el estudio en casa">
+<div>
+<span class="orient-trust__n">~0.92</span>
+<span class="orient-trust__t">de concordancia con el estudio de laboratorio en el <b>índice con el que se diagnostica</b> (1 = coincidencia total)</span>
+</div>
+<ul class="orient-points">
+<li><i class="bi bi-journal-check" aria-hidden="true"></i><span>Las guías del sueño <b>(AASM)</b> lo respaldan para el caso típico de apnea.</span></li>
+<li><i class="bi bi-person-badge-fill" aria-hidden="true"></i><span>El resultado lo decide <b>el neumólogo revisando el trazo completo</b>, no el número automático del aparato.</span></li>
+<li><i class="bi bi-shield-fill-check" aria-hidden="true"></i><span>Si sale negativo y tus síntomas siguen, el paso correcto es la <b>polisomnografía</b>: te canalizo, no te dejo a medias.</span></li>
+</ul>
+</div>
+
+<p class="osa-more"><i class="bi bi-layout-split" aria-hidden="true"></i> <a href="/poligrafia-vs-polisomnografia/" data-cta="orient-comparativa">Ver los dos estudios comparados punto por punto</a>.</p>
 </div>
 
 <!-- QUÉ NO ES -->
@@ -703,6 +1036,114 @@
 </div>
 <script>
 (function(){try{var KEY='alveos_lang_pref';if(localStorage.getItem(KEY))return;var lang=(navigator.language||navigator.userLanguage||'').toLowerCase();if(lang.indexOf('es')===0)return;var el=document.getElementById('langSuggest');if(!el)return;el.classList.add('show');el.querySelector('[data-lang-target]').addEventListener('click',function(){localStorage.setItem(KEY,'en');});el.querySelector('[data-lang-dismiss]').addEventListener('click',function(){localStorage.setItem(KEY,'es');el.classList.remove('show');});}catch(e){}})();
+</script>
+
+<!-- STOP-BANG: puntaje local, nada se envia a ningun servidor -->
+<script>
+(function(){
+    var answers={}, TOTAL=8;
+    var WA='https://wa.me/522224926718?text=';
+    var PREFIJO='Hola Dr. Lara, vengo de su sitio web alveos.mx. ';
+
+    window.sbToggleBmi=function(){
+        var panel=document.getElementById('sb-bmi-panel');
+        var btn=document.querySelector('.sb-bmi-toggle');
+        if(!panel||!btn) return;
+        btn.setAttribute('aria-expanded',String(panel.classList.toggle('open')));
+    };
+
+    window.sbCalcBMI=function(){
+        var w=parseFloat(document.getElementById('sb-peso').value);
+        var h=parseFloat(document.getElementById('sb-talla').value);
+        var out=document.getElementById('sb-bmi-result');
+        if(!w||!h||h<1||h>2.5){out.textContent='Revisa los valores ingresados.';return;}
+        var bmi=w/(h*h), alto=bmi>35;
+        out.textContent='Tu IMC: '+bmi.toFixed(1)+' '+(alto?'(mayor a 35)':'(menor o igual a 35)');
+        var si=document.getElementById('sb-btn-si-b'), no=document.getElementById('sb-btn-no-b');
+        si.classList.toggle('active-si',alto); si.setAttribute('aria-pressed',String(alto));
+        no.classList.toggle('active-no',!alto); no.setAttribute('aria-pressed',String(!alto));
+        sbSetAnswer('b',alto?1:0);
+    };
+
+    function sbSetAnswer(qid,val){
+        answers[qid]=val;
+        var qEl=document.getElementById('sbq-'+qid);
+        if(qEl) qEl.classList.add('answered');
+        var count=Object.keys(answers).length;
+        var bar=document.getElementById('sb-progress-bar');
+        var label=document.getElementById('sb-progress-label');
+        if(bar) bar.style.width=Math.round(count/TOTAL*100)+'%';
+        if(label) label.textContent=count+' de '+TOTAL+' preguntas respondidas';
+        var prog=document.querySelector('.sb-progress');
+        if(prog) prog.setAttribute('aria-valuenow',count);
+        if(count===TOTAL) sbShowResult();
+    }
+
+    function sbShowResult(){
+        var score=0;
+        for(var k in answers){ if(Object.prototype.hasOwnProperty.call(answers,k)) score+=answers[k]; }
+        var level, icon, message, msg;
+        if(score<=2){
+            level='Riesgo bajo'; icon='&#128994;';
+            message='Tu puntaje sugiere bajo riesgo de apnea obstructiva del sueño. Si aun así tienes síntomas que te preocupan, una valoración puede darte tranquilidad.';
+            msg=PREFIJO+'Hice el cuestionario STOP-BANG y mi resultado fue riesgo bajo ('+score+'/8). Quiero saber si de todas formas me conviene el estudio.';
+        } else if(score<=4){
+            level='Riesgo intermedio'; icon='&#128993;';
+            message='Tu puntaje indica riesgo intermedio de apnea del sueño. Una poligrafía respiratoria puede confirmar o descartar el diagnóstico con precisión.';
+            msg=PREFIJO+'Hice el cuestionario STOP-BANG y mi resultado fue riesgo intermedio ('+score+'/8). Quiero información sobre la poligrafía respiratoria.';
+        } else {
+            level='Riesgo alto'; icon='&#128308;';
+            message='Tu puntaje indica alto riesgo de apnea obstructiva del sueño. El siguiente paso es un estudio diagnóstico: la poligrafía respiratoria en casa es la vía más accesible para confirmarlo.';
+            msg=PREFIJO+'Hice el cuestionario STOP-BANG y mi resultado fue riesgo alto ('+score+'/8). Quiero agendar una poligrafía respiratoria.';
+        }
+        var box=document.getElementById('sb-result');
+        document.getElementById('sb-result-icon').innerHTML=icon;
+        document.getElementById('sb-result-level').textContent=level;
+        document.getElementById('sb-result-score').textContent=score+' de 8 factores de riesgo presentes';
+        document.getElementById('sb-result-message').textContent=message;
+        document.getElementById('sb-result-cta').href=WA+encodeURIComponent(msg);
+        box.className='sb-result '+(score<=2?'sb-result--low':score<=4?'sb-result--mid':'sb-result--high');
+        box.style.display='block';
+        setTimeout(function(){box.scrollIntoView({behavior:'smooth',block:'nearest'});},120);
+    }
+
+    window.sbReset=function(){
+        answers={};
+        document.querySelectorAll('.sb-btn').forEach(function(b){
+            b.classList.remove('active-si','active-no'); b.setAttribute('aria-pressed','false');
+        });
+        document.querySelectorAll('.sb-question').forEach(function(q){q.classList.remove('answered');});
+        var bar=document.getElementById('sb-progress-bar');
+        var label=document.getElementById('sb-progress-label');
+        if(bar) bar.style.width='0%';
+        if(label) label.textContent='0 de 8 preguntas respondidas';
+        var prog=document.querySelector('.sb-progress');
+        if(prog) prog.setAttribute('aria-valuenow',0);
+        var res=document.getElementById('sb-result');
+        if(res) res.style.display='none';
+        var bmi=document.getElementById('sb-bmi-result');
+        if(bmi) bmi.textContent='';
+        document.getElementById('stop-bang').scrollIntoView({behavior:'smooth',block:'start'});
+    };
+
+    var quiz=document.getElementById('sb-quiz');
+    if(quiz){
+        quiz.addEventListener('click',function(e){
+            var btn=e.target.closest('.sb-btn[data-q]');
+            if(!btn) return;
+            var val=parseInt(btn.getAttribute('data-v'),10);
+            var group=btn.closest('.sb-btns');
+            if(group){
+                group.querySelectorAll('.sb-btn').forEach(function(b){
+                    b.classList.remove('active-si','active-no'); b.setAttribute('aria-pressed','false');
+                });
+            }
+            btn.classList.add(val===1?'active-si':'active-no');
+            btn.setAttribute('aria-pressed','true');
+            sbSetAnswer(btn.getAttribute('data-q'), val);
+        });
+    }
+})();
 </script>
 </body>
 </html>
