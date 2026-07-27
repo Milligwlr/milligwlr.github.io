@@ -297,7 +297,16 @@
 .sb-result__cta{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:14px;font-weight:800;font-size:1rem;text-decoration:none;background:#25d366;color:#fff!important;transition:background .25s var(--ease),transform .25s var(--ease);box-shadow:0 8px 24px rgba(29,168,81,.3)}
 .sb-result__cta:hover{background:#1da851;transform:translateY(-2px)}
 .sb-reset-btn{display:block;background:none;border:none;color:var(--text-muted);font-size:.83rem;cursor:pointer;margin:12px auto 0;text-decoration:underline;text-underline-offset:2px;font-family:inherit}
-@media(min-width:768px){.sb-quiz{grid-template-columns:1fr 1fr}.sb-question#sbq-b{grid-column:1/-1}}
+/* Una pregunta a la vez: las 8 apiladas pedian 1552px, mas de dos pantallas
+   de telefono, y el paciente abandonaba a medio cuestionario. */
+.sb-question[hidden]{display:none}
+.sb-nav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px}
+.sb-back{background:none;border:none;color:var(--text-muted);font-size:.85rem;font-weight:600;
+    cursor:pointer;min-height:44px;display:inline-flex;align-items:center;gap:6px;
+    padding:0 4px;font-family:inherit}
+.sb-back:hover:not([disabled]),.sb-back:focus-visible:not([disabled]){color:var(--svc)}
+.sb-back[disabled]{opacity:.3;cursor:default}
+.sb-step{font-size:.82rem;font-weight:700;color:var(--svc)}
 
 /* ============== LO QUE ESTA EN JUEGO (apnea sin tratar vs tratada) ============== */
 .osa-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
@@ -682,6 +691,11 @@
 </div>
 
 </div><!-- /.sb-quiz -->
+
+<div class="sb-nav" id="sb-nav">
+<button type="button" class="sb-back" id="sb-back" disabled><i class="bi bi-arrow-left" aria-hidden="true"></i> Anterior</button>
+<span class="sb-step" id="sb-step">Pregunta 1 de 8</span>
+</div>
 
 <div class="sb-result" id="sb-result" aria-live="assertive" role="region" aria-label="Resultado del cuestionario">
 <div class="sb-result__icon" id="sb-result-icon">&#128277;</div>
@@ -1168,6 +1182,77 @@
             sbSetAnswer(btn.getAttribute('data-q'), val);
         });
     }
+
+    /* ── Una pregunta a la vez ──
+       Las 8 apiladas median 1552px: dos pantallas y media de telefono, y el
+       cuestionario se abandonaba a la mitad. De una en una cabe entero y el
+       paciente ve cuanto le falta. La respuesta avanza sola; "Anterior" deja
+       corregir. Sin JS las 8 quedan visibles, que es el comportamiento viejo. */
+    (function(){
+        var pasos=Array.prototype.slice.call(quiz ? quiz.querySelectorAll('.sb-question') : []);
+        if(pasos.length<2) return;
+        var back=document.getElementById('sb-back');
+        var step=document.getElementById('sb-step');
+        var i=0;
+
+        function pinta(nuevo,mueveFoco){
+            i=Math.max(0,Math.min(pasos.length-1,nuevo));
+            pasos.forEach(function(p,k){
+                if(k===i) p.removeAttribute('hidden'); else p.setAttribute('hidden','');
+            });
+            back.disabled=(i===0);
+            step.textContent='Pregunta '+(i+1)+' de '+pasos.length;
+            if(mueveFoco){
+                var t=pasos[i].querySelector('.sb-question__text');
+                if(t){ t.setAttribute('tabindex','-1'); t.focus({preventScroll:true}); }
+            }
+        }
+
+        var nav=document.getElementById('sb-nav');
+
+        function pendientes(){
+            return pasos.map(function(p,k){return k;}).filter(function(k){
+                return !pasos[k].classList.contains('answered');
+            });
+        }
+
+        function avanza(){
+            var quedan=pendientes();
+            if(!quedan.length){
+                // Completo: el resultado se queda solo, sin la ultima pregunta detras
+                quiz.setAttribute('hidden','');
+                nav.setAttribute('hidden','');
+                return;
+            }
+            var sig=quedan.filter(function(k){return k>i;})[0];
+            pinta(sig===undefined?quedan[0]:sig,true);
+        }
+
+        back.addEventListener('click',function(){ pinta(i-1,true); });
+
+        quiz.addEventListener('click',function(e){
+            if(!e.target.closest('.sb-btn[data-q]')) return;
+            // el avance espera a que se vea el boton marcado
+            setTimeout(avanza,260);
+        });
+
+        // La calculadora de IMC responde la pregunta B desde su propio panel
+        var calcOriginal=window.sbCalcBMI;
+        window.sbCalcBMI=function(){
+            calcOriginal.apply(this,arguments);
+            setTimeout(avanza,300);
+        };
+
+        var resetOriginal=window.sbReset;
+        window.sbReset=function(){
+            resetOriginal.apply(this,arguments);
+            quiz.removeAttribute('hidden');
+            nav.removeAttribute('hidden');
+            pinta(0,false);
+        };
+
+        pinta(0,false);
+    })();
 })();
 </script>
 </body>
