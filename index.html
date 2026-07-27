@@ -2321,40 +2321,63 @@
         }
         .about__paragraph strong { color: var(--text); font-weight: 700; }
         /* Commitment block, styled quote */
+        /* La promesa del Dr. se lee como algo FIRMADO, no como un aviso.
+           Antes: caja con dos comillas gigantes flotando en las esquinas y el
+           texto centrado, que es justo lo que cuesta leer en varias lineas.
+           Ahora: una sola comilla integrada al inicio, texto alineado a la
+           izquierda y una firma al pie que le pone cara y cedula a la promesa. */
         .about__commitment {
             position: relative;
-            background: linear-gradient(135deg, rgba(9,132,227,.04) 0%, rgba(0,206,201,.03) 100%);
-            border: 1px solid rgba(9,132,227,.12);
-            border-radius: 20px;
-            padding: 40px 30px 34px;
-            margin-top: 8px;
+            overflow: hidden;
+            background:
+                radial-gradient(120% 90% at 0% 0%, rgba(9,132,227,.07), transparent 58%),
+                linear-gradient(180deg, #fff 0%, var(--cloud-alt, #f8faff) 100%);
+            border: 1px solid rgba(9,132,227,.14);
+            border-radius: 22px;
+            padding: 26px 26px 22px;
+            margin-top: 18px;
             margin-bottom: 0;
             font-size: 1.02rem;
-            line-height: 1.75;
+            line-height: 1.72;
             color: var(--text);
             font-weight: 500;
-            /* Cita centrada, con el padding simetrico para que el centro optico
-               coincida con el geometrico ahora que las comillas no empujan. */
-            text-align: center;
-            text-wrap: balance;
+            text-align: left;
+            text-wrap: pretty;
+            box-shadow: 0 1px 2px rgba(10,22,40,.04), 0 18px 40px -30px rgba(9,132,227,.5);
         }
-        .about__commitment::before,
-        .about__commitment::after {
-            position: absolute;
-            font-size: 3.2rem;
-            line-height: 1;
+        /* la comilla vive en el flujo del texto, no flotando en una esquina */
+        .about__commitment__mark {
+            display: block;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 2.6rem;
+            line-height: .6;
+            height: .5em;
             color: var(--electric);
-            opacity: .18;
-            pointer-events: none;
+            opacity: .28;
+            margin-bottom: 10px;
         }
-        .about__commitment::before {
-            content: "“";
-            left: 16px; top: 6px;
+        .about__commitment__sign {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 18px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(9,132,227,.12);
+            font-size: .78rem;
+            line-height: 1.35;
+            color: var(--text-muted);
+            font-weight: 600;
         }
-        /* La cita abria comillas y no las cerraba. */
-        .about__commitment::after {
-            content: "”";
-            right: 16px; bottom: -12px;
+        .about__commitment__sign i {
+            color: var(--electric);
+            font-size: .95rem;
+        }
+        .about__commitment__sign b {
+            display: block;
+            color: var(--navy);
+            font-size: .84rem;
+            font-weight: 800;
+            letter-spacing: -.01em;
         }
         .about__commitment strong {
             color: var(--electric);
@@ -2379,15 +2402,14 @@
                 margin-bottom: 18px;
             }
             .about__commitment {
-                padding: 20px 20px 20px 22px;
+                padding: 20px 20px 18px;
                 margin-top: 22px;
                 font-size: .97rem;
                 line-height: 1.65;
             }
-            .about__commitment::before {
-                font-size: 2.4rem;
-                left: 10px;
-                top: 2px;
+            .about__commitment__mark {
+                font-size: 2.2rem;
+                margin-bottom: 8px;
             }
             .about__highlight {
                 padding: 1px 6px;
@@ -4324,7 +4346,9 @@
                         <p class="about__subtitle reveal">Neumólogo de Alta Especialidad</p>
                         <p class="about__paragraph reveal">Mi formación en el <strong>Instituto Nacional de Enfermedades Respiratorias (INER)</strong> y la <span class="about__highlight">Alta Especialidad en EPOC</span> me permiten ofrecerte un diagnóstico riguroso y actualizado, en un consultorio donde cada paciente recibe el tiempo y la atención que necesita.</p>
                         <div class="about__commitment reveal">
+                            <span class="about__commitment__mark" aria-hidden="true">“</span>
                             Mi compromiso contigo es claro: <strong>escucharte sin prisa</strong>, explicarte sin tecnicismos y construir un plan de tratamiento adaptado a <em>tu vida y tu ritmo</em>. Porque cada respiración cuenta, y cada paciente es único.
+                            <span class="about__commitment__sign"><i class="bi bi-pen-fill" aria-hidden="true"></i> <span><b>Dr. William César Lara Vázquez</b>Neumología, Céd. Esp. 15595809</span></span>
                         </div>
                         <a href="/sobre-el-doctor/" class="about__cta-btn reveal">Conoce mi trayectoria <i class="bi bi-arrow-right"></i></a>
                     </div>
