@@ -983,11 +983,15 @@
         /* Franja de instituciones */
         .hero__inst { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
         .hero__inst-lbl {
-            font-size: .62rem; font-weight: 800; letter-spacing: .14em;
-            text-transform: uppercase; color: var(--text-muted);
+            font-size: .78rem; font-weight: 800; letter-spacing: .1em;
+            text-transform: uppercase; color: var(--text);
         }
-        .hero__inst img { height: 30px; width: auto; filter: grayscale(1) opacity(.55); transition: filter .25s; }
-        .hero__inst img:hover { filter: grayscale(0) opacity(1); }
+        /* INER, UNAM, CNN y SMNyCT son la credencial mas fuerte del hero.
+           Estaban a 30px con 55% de opacidad: se leian como nota al pie. */
+        .hero__inst img { height: 46px; width: auto; filter: grayscale(1) opacity(.78); transition: filter .25s var(--ease); }
+        @media (hover: hover) and (pointer: fine) {
+            .hero__inst img:hover { filter: grayscale(0) opacity(1); }
+        }
 
         /* Columna del doctor */
         .hero__doc { position: relative; justify-self: center; width: min(420px, 100%); }
@@ -1098,8 +1102,8 @@
             .hero__float--rating { display: none; }
         }
         @media (max-width: 480px) {
-            .hero__inst { gap: 16px; }
-            .hero__inst img { height: 24px; }
+            .hero__inst { gap: 14px 20px; }
+            .hero__inst img { height: 36px; }
         }
 
         /* Condition pills */
@@ -3998,7 +4002,7 @@
             .hero__conditions::-webkit-scrollbar { display: none; }
             .hero__pill { flex-shrink: 0; scroll-snap-align: center; }
             .hero__proof { flex-direction: column; gap: 5px; }
-            .hero__inst { gap: 10px 20px; }
+            .hero__inst { gap: 12px 22px; }
             .hero__inst-lbl { flex-basis: 100%; text-align: center; }
             .hero__logo     { width: 100px; height: 100px; margin-bottom: 10px; }
             .cred-card__inner { padding: 16px 14px 14px; gap: 12px; }
@@ -4198,10 +4202,10 @@
                     </div>
                     <div class="hero__inst">
                         <span class="hero__inst-lbl">Formación y certificaciones</span>
-                        <img src="images/iner.png" alt="Instituto Nacional de Enfermedades Respiratorias (INER)" height="30" loading="lazy" decoding="async">
-                        <img src="images/UNAM.webp" alt="Universidad Nacional Autónoma de México (UNAM)" height="30" loading="lazy" decoding="async">
-                        <img src="images/CNN.png" alt="Consejo Nacional de Neumología" height="30" loading="lazy" decoding="async">
-                        <img src="images/Logo-SMNyCT.webp" alt="Sociedad Mexicana de Neumología y Cirugía de Tórax" height="30" loading="lazy" decoding="async">
+                        <img src="images/iner.png" alt="Instituto Nacional de Enfermedades Respiratorias (INER)" height="46" loading="lazy" decoding="async">
+                        <img src="images/UNAM.webp" alt="Universidad Nacional Autónoma de México (UNAM)" height="46" loading="lazy" decoding="async">
+                        <img src="images/CNN.png" alt="Consejo Nacional de Neumología" height="46" loading="lazy" decoding="async">
+                        <img src="images/Logo-SMNyCT.webp" alt="Sociedad Mexicana de Neumología y Cirugía de Tórax" height="46" loading="lazy" decoding="async">
                     </div>
                 </div>
                 <div class="hero__doc">
