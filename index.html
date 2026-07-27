@@ -1975,7 +1975,10 @@
         ============================================= */
         .section-label {
             font-size: .72rem; font-weight: 700;
-            color: var(--electric);
+            /* El electric de marca da 3.87:1 sobre blanco y a 10.4px hace falta
+               4.5:1. Un tono apenas mas oscuro sube a 4.57:1 sin salirse de la
+               identidad ni notarse a simple vista. */
+            color: #0d78ce;
             text-transform: uppercase;
             letter-spacing: 3.5px;
             margin-bottom: 12px;
@@ -3322,8 +3325,8 @@
         .dis2-field.is-grouped.is-tight .dis2-bub.hit p{display:none}
         .dis2-field.is-grouped.is-tight .dis2-bub.hit h3{font-size:.8rem;-webkit-line-clamp:4}
         .dis2-wa{display:flex;justify-content:center;margin-top:14px}
-        .dis2-wa a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:11px 22px;border-radius:100px;font-size:.8rem;font-weight:700;text-decoration:none;color:#1da851;background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.32);transition:background .25s,border-color .25s,transform .2s var(--ease)}
-        .dis2-wa a:hover{background:rgba(37,211,102,.14);border-color:#25d366;color:#1da851;transform:translateY(-2px)}
+        .dis2-wa a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:11px 22px;border-radius:100px;font-size:.8rem;font-weight:700;text-decoration:none;color:#16843f;background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.32);transition:background .25s,border-color .25s,transform .2s var(--ease)}
+        .dis2-wa a:hover{background:rgba(37,211,102,.14);border-color:#25d366;color:#16843f;transform:translateY(-2px)}
         @media(min-width:992px){
             /* El encabezado se aprieta para que la seccion entera quepa en una
                pantalla: el campo de burbujas es lo que hay que ver, no el aire
