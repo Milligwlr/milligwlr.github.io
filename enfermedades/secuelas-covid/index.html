@@ -249,6 +249,19 @@
     <link rel="stylesheet" href="/assets/agenda-modal.css">
     <link rel="stylesheet" href="/assets/base.css">
     <script src="/assets/base.js" defer></script>
+
+<style>
+/* Prueba social en paginas de enfermedad: mismo marcado que el auto-sync de GBP. */
+.enf-trust{margin:0 auto 26px;max-width:560px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.gbp-rating-widget{display:inline-flex;align-items:center;gap:14px;padding:12px 22px;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:100px;box-shadow:0 2px 14px rgba(10,22,40,.07);text-decoration:none;min-height:44px;transition:box-shadow .24s var(--ease,cubic-bezier(.16,1,.3,1))}
+.gbp-rating-widget:hover,.gbp-rating-widget:focus-visible{box-shadow:0 6px 32px rgba(10,22,40,.09)}
+.gbp-rating-widget__num{font-size:1.5rem;font-weight:800;color:var(--navy,#0a2540);line-height:1}
+.gbp-rating-widget__meta{display:flex;flex-direction:column;line-height:1.2;text-align:left}
+.gbp-rating-widget__stars{color:#fbbc04;font-size:1rem;letter-spacing:1px;line-height:1}
+.gbp-rating-widget__count{font-size:.82rem;font-weight:600;color:var(--navy,#0a2540)}
+.gbp-rating-widget__source{font-size:.72rem;font-weight:600;color:var(--text-muted,#64748b);text-transform:uppercase;letter-spacing:.06em}
+.enf-trust__note{font-size:.85rem;color:var(--text-muted,#64748b);margin:0}
+</style>
 </head>
 <body>
 <a class="alv-skip" href="#main">Skip to content</a>
@@ -585,6 +598,18 @@
 ============================================= -->
 <section id="contacto-final" class="contact-section pt-3 pb-5">
     <div class="container" style="padding-bottom:48px;position:relative;z-index:1">
+<div class="enf-trust">
+    <a href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer" class="gbp-rating-widget" aria-label="Calificación de 5.0 estrellas con 43 reseñas verificadas en Google. Ver reseñas">
+        <span class="gbp-rating-widget__num">5.0</span>
+        <div class="gbp-rating-widget__meta">
+            <span class="gbp-rating-widget__stars" aria-hidden="true">★★★★★</span>
+            <span class="gbp-rating-widget__count">43 reseñas verificadas</span>
+        </div>
+        <span class="gbp-rating-widget__source"><i class="bi bi-google" aria-hidden="true"></i> Google</span>
+    </a>
+    <p class="enf-trust__note">Opiniones reales de pacientes en Google, sin editar.</p>
+</div>
+
         <div class="text-center mb-5">
             <span class="section-label reveal">Contacto</span>
             <h2 class="section-title reveal" style="font-size:clamp(1.7rem,4vw,2.4rem);font-weight:800;letter-spacing:-.025em;color:#fff;margin-top:14px">Encuéntrame aquí</h2>
