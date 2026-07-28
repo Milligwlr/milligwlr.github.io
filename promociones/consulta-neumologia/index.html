@@ -135,26 +135,7 @@
     .pricing__note{text-align:center;font-size:.85rem;color:var(--muted);margin:22px auto 0;max-width:620px}
 
     /* Pricing hero, una sola card grande, foco total en la promo */
-    .pricing-hero{max-width:760px;margin:0 auto}
-    .pricing-hero__card{position:relative;background:linear-gradient(160deg,#0a1628 0%,#1e3799 60%,#0984e3 130%);color:#fff;border-radius:24px;padding:36px 32px 30px;box-shadow:0 24px 60px -24px rgba(9,44,84,.5);display:flex;flex-direction:column;align-items:center;gap:18px;overflow:hidden}
-    .pricing-hero__card::before{content:'';position:absolute;inset:0;background:radial-gradient(500px 200px at 50% 0%,rgba(0,206,201,.25),transparent 60%);pointer-events:none}
-    .pricing-hero__card > *{position:relative;z-index:1}
-    .pricing-hero__tag{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#00cec9,#0984e3);color:#fff;font-size:.78rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:7px 16px;border-radius:999px;box-shadow:0 6px 18px -4px rgba(0,206,201,.5)}
-    .pricing-hero__row{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;width:100%}
-    .pricing-hero__old,.pricing-hero__new{display:flex;flex-direction:column;align-items:center;gap:4px}
-    .pricing-hero__old-label,.pricing-hero__new-label{font-size:.72rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:rgba(255,255,255,.55)}
-    .pricing-hero__new-label{color:#00cec9}
-    .pricing-hero__old-amount{font-size:1.6rem;font-weight:700;color:rgba(255,255,255,.55);text-decoration:line-through;text-decoration-color:rgba(255,107,107,.85);text-decoration-thickness:3px;letter-spacing:-.01em}
-    .pricing-hero__arrow{font-size:1.6rem;color:#00cec9;opacity:.7}
-    .pricing-hero__new-amount{font-size:3.2rem;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1;text-shadow:0 4px 20px rgba(0,206,201,.4)}
-    .pricing-hero__new-amount .cur{font-size:1.4rem;font-weight:700;vertical-align:top;margin-right:2px;opacity:.8}
-    .pricing-hero__desc{text-align:center;color:rgba(255,255,255,.78);font-size:.95rem;line-height:1.55;max-width:520px;margin:0}
-    .pricing-hero__desc--cta{font-size:1.05rem;font-weight:700;color:#00cec9;background:rgba(0,206,201,.12);border:1px solid rgba(0,206,201,.25);border-radius:12px;padding:12px 20px;display:inline-flex;align-items:center;gap:8px}
-    .pricing-hero__desc--cta::before{content:'\F287';font-family:'bootstrap-icons';font-size:1.1rem;color:#00cec9}
     @media(max-width:520px){
-        .pricing-hero__row{gap:14px}
-        .pricing-hero__arrow{transform:rotate(90deg);font-size:1.2rem}
-        .pricing-hero__new-amount{font-size:2.6rem}
     }
 
     /* ============ SECCIÓN GENÉRICA ============ */
@@ -282,7 +263,107 @@
     .testi-badge{font-size:.68rem;color:var(--text-muted);margin:1px 0 0}
     @media(max-width:992px){.testimonial-columns{height:440px}}
     @media(max-width:640px){.testimonial-columns{grid-template-columns:1fr 1fr;gap:10px;height:380px}.testimonial-columns > :nth-child(3){display:none}.testimonial-col{gap:10px}.testi-card{padding:14px;border-radius:14px}.testi-text{font-size:.8rem;line-height:1.6}.testi-name{font-size:.75rem}.testi-badge{font-size:.62rem}.testi-avatar{width:32px;height:32px;font-size:.8rem}}
-    </style>
+    
+/* ============ PASE CLINICO (tarjeta de promocion) ============
+   Sintesis de dos propuestas. La idea rectora: la promocion no es un precio
+   rebajado, es un DOCUMENTO que el paciente ya tiene. Y como la promo del Dr.
+   es perpetua, el campo donde un cupon pondria "vence el..." aqui dice la
+   verdad -sin fecha de vencimiento- y se vuelve la señal premium. Cero
+   urgencia falsa, que ademas esta prohibida.
+   El troquelado es un hueco REAL en el alfa (mask-composite), no un circulo
+   del color del fondo: funciona sobre el grano y sobre cualquier fondo. */
+.pase-zona{max-width:600px;margin:0 auto}
+.pase{--r:12px;position:relative;display:flex;flex-direction:column;
+    filter:drop-shadow(0 1px 1px rgba(10,37,64,.10)) drop-shadow(0 16px 26px rgba(10,37,64,.16))}
+.pase__cuerpo,.pase__talon{position:relative;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+    -webkit-mask-size:100% 100%;mask-size:100% 100%}
+.pase__cuerpo{background:#fff;border-radius:18px 18px 0 0;overflow:hidden;
+    -webkit-mask-image:radial-gradient(circle var(--r) at 0 100%,transparent calc(var(--r) - .5px),#000 var(--r)),radial-gradient(circle var(--r) at 100% 100%,transparent calc(var(--r) - .5px),#000 var(--r));
+    mask-image:radial-gradient(circle var(--r) at 0 100%,transparent calc(var(--r) - .5px),#000 var(--r)),radial-gradient(circle var(--r) at 100% 100%,transparent calc(var(--r) - .5px),#000 var(--r));
+    -webkit-mask-composite:source-in;mask-composite:intersect}
+.pase__talon{background:#eef4fe;border-radius:0 0 18px 18px;
+    -webkit-mask-image:radial-gradient(circle var(--r) at 0 0,transparent calc(var(--r) - .5px),#000 var(--r)),radial-gradient(circle var(--r) at 100% 0,transparent calc(var(--r) - .5px),#000 var(--r));
+    mask-image:radial-gradient(circle var(--r) at 0 0,transparent calc(var(--r) - .5px),#000 var(--r)),radial-gradient(circle var(--r) at 100% 0,transparent calc(var(--r) - .5px),#000 var(--r));
+    -webkit-mask-composite:source-in;mask-composite:intersect;
+    display:flex;flex-direction:column;align-items:center;gap:11px;padding:22px 20px 20px;text-align:center}
+/* perforacion: puntos, no un dashed del navegador */
+.pase__talon::before{content:'';position:absolute;top:0;left:calc(var(--r) + 8px);right:calc(var(--r) + 8px);height:2px;
+    background:repeating-linear-gradient(to right,rgba(10,37,64,.30) 0 5px,transparent 5px 11px)}
+/* luz anclada FUERA del borde: se lee como fuente fisica, no mancha centrada */
+.pase__luz{position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(120% 80% at 50% -12%,rgba(9,132,227,.10),transparent 62%),radial-gradient(90% 60% at 100% 105%,rgba(0,206,201,.09),transparent 60%)}
+.pase__grano{position:absolute;inset:0;pointer-events:none;opacity:.07;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* marco impreso de 1px, sin animacion: es tinta, no destello */
+.pase__marco{position:absolute;inset:14px;border-radius:10px;padding:1px;pointer-events:none;
+    background:linear-gradient(150deg,rgba(30,55,153,.42),rgba(0,206,201,.5) 38%,rgba(30,55,153,.30) 62%,rgba(9,132,227,.42));
+    -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude}
+.pase__cab{position:relative;z-index:2;background:linear-gradient(105deg,#0a1628,#0a2540 58%,#12305c);color:#fff;
+    padding:13px 20px;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:3px 14px}
+.pase__emisor{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+.pase__tipo{font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#00cec9}
+.pase__in{position:relative;z-index:2;padding:20px 22px 22px}
+.pase__concepto{font-size:1rem;font-weight:700;color:#0f1d30;margin:0 0 16px;line-height:1.45;max-width:34ch}
+/* la resta se hace DELANTE del paciente, como en una cuenta */
+.pase__ledger{margin:0;padding:0 0 12px;border-bottom:1px solid rgba(10,37,64,.12);font-variant-numeric:tabular-nums}
+.pase__fila{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:4px 0}
+.pase__fila dt{margin:0;font-size:.95rem;font-weight:600;color:#4a5b6e}
+.pase__fila dd{margin:0;font-size:1.15rem;font-weight:700;color:#5a6b7d}
+.pase__fila s{text-decoration-thickness:2px;text-decoration-color:rgba(90,107,125,.75)}
+.pase__menos{color:#1e3799!important}
+.pase__total{display:flex;flex-direction:column;gap:1px;padding:14px 0 0}
+.pase__total-lab{font-size:.78rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#4a5b6e}
+.pase__total-num{margin:0;font-size:clamp(3rem,13.5vw,4.2rem);font-weight:800;color:#0a2540;line-height:.94;
+    letter-spacing:-.035em;font-variant-numeric:tabular-nums;display:flex;align-items:flex-start;gap:2px}
+.pase__total-num .cur{font-size:.36em;font-weight:700;margin-top:.2em;color:#1e3799}
+.pase__total-num .mxn{font-size:.19em;font-weight:800;letter-spacing:1.2px;color:#4a5b6e;margin:.5em 0 0 .5em}
+/* el campo donde un cupon pondria la fecha de caducidad */
+.pase__vig{display:flex;align-items:flex-start;gap:10px;margin-top:16px;padding:11px 14px;border-radius:11px;
+    background:rgba(30,55,153,.055);border:1px solid rgba(30,55,153,.16);font-size:.92rem;line-height:1.45;color:#33465c}
+.pase__vig i{font-size:1.35rem;line-height:1;color:#1e3799;flex:0 0 auto}
+.pase__vig b{color:#1e3799}
+.pase__sello{width:88px;height:88px;flex:0 0 auto;transform:rotate(-8deg)}
+.pase__sello .arco,.pase__sello .ctr{font-family:'Plus Jakarta Sans',system-ui,sans-serif;fill:#1e3799;font-weight:700}
+.pase__sello .arco{font-size:7.6px;letter-spacing:.6px}
+.pase__sello .ctr{font-size:7.4px;letter-spacing:.4px}
+.pase__sello .ctr.num{font-size:11.5px;font-weight:800}
+.pase__sello .ctr.sm{font-size:6.9px}
+.pase__cta{display:inline-flex;align-items:center;justify-content:center;gap:9px;white-space:nowrap;width:100%;max-width:320px;
+    min-height:52px;padding:13px 16px;border-radius:13px;color:#fff;text-decoration:none;font-size:1.15rem;font-weight:800;
+    background:linear-gradient(180deg,#189045,#15803d);
+    box-shadow:0 1px 0 rgba(255,255,255,.28) inset,0 6px 14px -6px rgba(21,128,61,.75);
+    transition:transform .18s var(--ease),box-shadow .18s var(--ease)}
+.pase__cta:hover{color:#fff;transform:translateY(-1px)}
+.pase__cta:focus-visible{outline:3px solid #0a2540;outline-offset:3px}
+.pase__canje{margin:0;font-size:.88rem;line-height:1.45;color:#46586c}
+.pase__gproof{display:inline-flex;align-items:center;gap:7px;min-height:44px;font-size:.9rem;font-weight:600;color:#405264;text-decoration:none}
+.pase__gproof .bi-star-fill{color:#a06a00}
+.pase__gproof:hover{color:#1e3799}
+.pase__pie{margin:14px auto 0;max-width:600px;font-size:.85rem;line-height:1.55;color:#46586c;text-align:center}
+/* escritorio: el pase gira a boarding pass */
+@media(min-width:992px){
+    .pase-zona{max-width:780px}
+    .pase{flex-direction:row;align-items:stretch}
+    .pase__cuerpo{flex:1 1 auto;min-width:0;border-radius:18px 0 0 18px;
+        -webkit-mask-image:radial-gradient(circle var(--r) at 100% 0,transparent calc(var(--r) - .5px),#000 var(--r)),radial-gradient(circle var(--r) at 100% 100%,transparent calc(var(--r) - .5px),#000 var(--r));
+        mask-image:radial-gradient(circle var(--r) at 100% 0,transparent calc(var(--r) - .5px),#000 var(--r)),radial-gradient(circle var(--r) at 100% 100%,transparent calc(var(--r) - .5px),#000 var(--r))}
+    .pase__talon{flex:0 0 270px;border-radius:0 18px 18px 0;justify-content:center;padding:28px 22px;
+        -webkit-mask-image:radial-gradient(circle var(--r) at 0 0,transparent calc(var(--r) - .5px),#000 var(--r)),radial-gradient(circle var(--r) at 0 100%,transparent calc(var(--r) - .5px),#000 var(--r));
+        mask-image:radial-gradient(circle var(--r) at 0 0,transparent calc(var(--r) - .5px),#000 var(--r)),radial-gradient(circle var(--r) at 0 100%,transparent calc(var(--r) - .5px),#000 var(--r))}
+    .pase__talon::before{top:calc(var(--r) + 8px);bottom:calc(var(--r) + 8px);left:0;right:auto;height:auto;width:2px;
+        background:repeating-linear-gradient(to bottom,rgba(10,37,64,.30) 0 5px,transparent 5px 11px)}
+    .pase__cab{border-radius:18px 0 0 0}
+    .pase__in{padding:24px 28px 26px}
+}
+/* un solo momento de movimiento: el sello se estampa al entrar. Sin bucles. */
+.pase.js-pase .pase__sello{transition:transform .5s var(--ease),opacity .5s var(--ease);transform:rotate(-19deg) scale(.86);opacity:0}
+.pase.js-pase.is-in .pase__sello{transform:rotate(-8deg) scale(1);opacity:1}
+@media(prefers-reduced-motion:reduce){
+    .pase.js-pase .pase__sello,.pase.js-pase.is-in .pase__sello{transition:none;transform:rotate(-8deg) scale(1);opacity:1}
+    .pase__cta{transition:none}
+}
+</style>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <link rel="stylesheet" href="/assets/agenda-modal.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/agenda-modal.css"></noscript>
 <script type="application/ld+json" data-promo-schema>
@@ -665,23 +746,63 @@
             <span class="block__kicker">Costo de la consulta</span>
             <h2 class="block__title" id="precios-title">Tarifas <em>claras</em>, sin sorpresas</h2>
         </div>
-        <div class="pricing-hero">
-            <div class="pricing-hero__card">
-                <span class="pricing-hero__tag"><i class="bi bi-stars"></i> Promoción de internet</span>
-                <div class="pricing-hero__row">
-                    <div class="pricing-hero__old">
-                        <span class="pricing-hero__old-label">Precio normal</span>
-                        <span class="pricing-hero__old-amount">$1,800</span>
+        <div class="pase-zona">
+            <div class="pase" data-pase>
+
+                <div class="pase__cuerpo">
+                    <span class="pase__luz" aria-hidden="true"></span>
+                    <span class="pase__grano" aria-hidden="true"></span>
+                    <span class="pase__marco" aria-hidden="true"></span>
+
+                    <div class="pase__cab">
+                        <span class="pase__emisor">Consultorio Dr. William Lara</span>
+                        <span class="pase__tipo">Pase de primera consulta</span>
                     </div>
-                    <div class="pricing-hero__arrow"><i class="bi bi-arrow-right"></i></div>
-                    <div class="pricing-hero__new">
-                        <span class="pricing-hero__new-label">Pagas hoy</span>
-                        <span class="pricing-hero__new-amount"><span class="cur">$</span>1,300</span>
+
+                    <div class="pase__in">
+                        <p class="pase__concepto">Consulta de neumolog&iacute;a de primera vez con el Dr. William Lara, egresado del INER.</p>
+
+                        <dl class="pase__ledger">
+                            <div class="pase__fila">
+                                <dt>Tarifa de lista</dt>
+                                <dd><s>$1,800</s></dd>
+                            </div>
+                            <div class="pase__fila pase__fila--desc">
+                                <dt>Descuento por internet</dt>
+                                <dd class="pase__menos">&minus;$500</dd>
+                            </div>
+                        </dl>
+
+                        <div class="pase__total">
+                            <span class="pase__total-lab">Tarifa de este pase</span>
+                            <p class="pase__total-num"><span class="cur">$</span>1,300<span class="mxn">MXN</span></p>
+                        </div>
+
+                        <div class="pase__vig">
+                            <i class="bi bi-infinity" aria-hidden="true"></i>
+                            <span><b>Sin fecha de vencimiento.</b> No corre reloj: el pase vale el d&iacute;a que decidas usarlo.</span>
+                        </div>
                     </div>
                 </div>
-                <p class="pricing-hero__desc pricing-hero__desc--cta">Solo menciona que llegaste por internet al escribirnos. Promoción válida al agendar por esta página, sujeta a disponibilidad de agenda.</p>
-                <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20consulta%20de%20neumolog%C3%ADa%20a%20%241%2C300%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="price-card__cta" data-cta="price-wa" style="align-self:center;padding:14px 28px;font-size:1rem;margin-top:6px"><i class="bi bi-whatsapp"></i> Asegurar mi cita a $1,300</a>
+
+                <div class="pase__talon">
+                    <svg class="pase__sello" viewBox="0 0 120 120" role="img" aria-label="Sello del consultorio, c&eacute;dula de especialidad 15595809">
+                        <defs><path id="paseArco" d="M14,60 a46,46 0 0,1 92,0"/></defs>
+                        <circle cx="60" cy="60" r="55" fill="none" stroke="rgba(30,55,153,.45)" stroke-width="1.6"/>
+                        <circle cx="60" cy="60" r="37" fill="none" stroke="rgba(30,55,153,.35)" stroke-width="1" stroke-dasharray="2 3.4"/>
+                        <text class="arco" text-anchor="middle"><textPath href="#paseArco" startOffset="50%">CONSULTORIO ALVEOS &middot; CDMX</textPath></text>
+                        <text class="ctr" x="60" y="53" text-anchor="middle">C&Eacute;D. ESP.</text>
+                        <text class="ctr num" x="60" y="68" text-anchor="middle">15595809</text>
+                        <text class="ctr sm" x="60" y="79.5" text-anchor="middle">NEUMOLOG&Iacute;A</text>
+                    </svg>
+
+                    <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20consulta%20de%20neumolog%C3%ADa%20a%20%241%2C300%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" class="pase__cta" data-cta="price-wa"><i class="bi bi-whatsapp" aria-hidden="true"></i> Presentar mi pase</a>
+                    <p class="pase__canje">Menciona que llegaste por internet al escribirnos.</p>
+                    <a href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer" class="pase__gproof" data-cta="pase-google-rating"><i class="bi bi-star-fill"></i> 5.0 · 43 reseñas en Google</a>
+                </div>
+
             </div>
+            <p class="pase__pie">Tarifa de primera consulta al agendar por esta p&aacute;gina, sujeta a disponibilidad de agenda. La consulta subsecuente es de $1,500.</p>
         </div>
         <div class="pay-row" aria-label="Métodos de pago aceptados">
             <span class="pay-row__item"><i class="bi bi-cash-stack"></i>Efectivo</span>
@@ -1611,5 +1732,13 @@ document.addEventListener('click',function(e){
 })();
 </script>
     <script src="/assets/agenda-modal.js" defer></script>
+<script>
+/* El sello se estampa una vez al entrar en pantalla. Sin JS el pase ya se ve
+   completo: la clase js-pase solo la pone este script. */
+(function(){var p=document.querySelector('[data-pase]');if(!p)return;p.classList.add('js-pase');
+if(!('IntersectionObserver' in window)){p.classList.add('is-in');return;}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}});},{threshold:.35});
+io.observe(p);})();
+</script>
 </body>
 </html>
