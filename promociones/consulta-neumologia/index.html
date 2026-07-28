@@ -54,11 +54,12 @@
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    /* overflow-x hidden: el carrusel orbital proyecta tarjetas fuera del viewport
-       (translate3d lateral); igual que en /servicios/poligrafia-respiratoria/, el
-       recorte va en body (html queda visible, asi se propaga al viewport y el
-       navbar sticky no se rompe). */
-    body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);background:#fff;margin:0;line-height:1.6;padding-bottom:72px;overflow-x:hidden}
+    /* Sin overflow-x:hidden en body: ese hack propagaba el recorte al viewport
+       pero NO evitaba que el documento se ensanchara (scrollWidth 507 vs 375 en
+       movil), asi que el telefono seguia encogiendo la pagina y dejando franja
+       blanca. El recorte ahora vive en el contenedor del carrusel (.mod-stage),
+       que es quien realmente proyecta tarjetas fuera del viewport. */
+    body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);background:#fff;margin:0;line-height:1.6;padding-bottom:72px}
     @media(min-width:992px){body{padding-bottom:0}}
 
     /* ============ HERO ============ */
@@ -110,27 +111,6 @@
     .pay-row__item{display:inline-flex;flex-direction:column;align-items:center;gap:6px;color:var(--muted);font-size:.72rem;font-weight:700;letter-spacing:.3px;text-transform:uppercase}
     .pay-row__item i{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,rgba(9,132,227,.08),rgba(0,206,201,.08));border:1px solid rgba(9,132,227,.18);display:flex;align-items:center;justify-content:center;font-size:1.35rem;color:var(--electric);transition:all .25s var(--ease)}
     .pay-row__item:hover i{transform:translateY(-2px);border-color:var(--electric);background:rgba(9,132,227,.12)}
-
-    /* CTA final con lucecitas premium (orbs + dot pattern) */
-    .cta-inline--lights{position:relative;overflow:hidden;background:linear-gradient(135deg,#0a1628 0%,#0a1628 35%,#1e3799 70%,#0984e3 100%)}
-    .cta-inline--lights::before{content:'';position:absolute;inset:-20%;background:
-        radial-gradient(600px 300px at 15% 20%,rgba(0,206,201,.30),transparent 60%),
-        radial-gradient(500px 280px at 85% 80%,rgba(9,132,227,.40),transparent 55%),
-        radial-gradient(400px 240px at 70% 15%,rgba(127,255,230,.20),transparent 60%);
-        animation:ctaOrbs 18s ease-in-out infinite;pointer-events:none;z-index:1}
-    .cta-inline--lights::after{content:'';position:absolute;inset:0;background-image:
-        radial-gradient(circle at 20% 35%,rgba(255,255,255,.06) 0,transparent 1.5px),
-        radial-gradient(circle at 70% 65%,rgba(255,255,255,.05) 0,transparent 1.5px),
-        radial-gradient(circle at 45% 85%,rgba(255,255,255,.06) 0,transparent 1.5px);
-        background-size:40px 40px,60px 60px,80px 80px;
-        opacity:.6;pointer-events:none;z-index:1;
-        mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.4) 100%)}
-    .cta-inline--lights > *{position:relative;z-index:2}
-    @keyframes ctaOrbs{
-        0%,100%{transform:translate(0,0) scale(1)}
-        33%{transform:translate(2%,-1%) scale(1.04)}
-        66%{transform:translate(-2%,1%) scale(.98)}
-    }
 
     /* ============ PRECIOS ============ */
     .pricing{background:#fff;padding:48px 0 24px}
@@ -189,32 +169,12 @@
     .cond{background:linear-gradient(180deg,#fff 0%,#f0f7ff 100%);position:relative;overflow:hidden}
     .cond::before{content:'';position:absolute;inset:0;background:radial-gradient(700px 360px at 50% -10%,rgba(0,206,201,.08),transparent 60%);pointer-events:none}
     .cond .container{position:relative;z-index:1}
-    .cond-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    @media(max-width:680px){.cond-grid{grid-template-columns:repeat(2,1fr);gap:12px}}
-    .cond-card{position:relative;background:linear-gradient(180deg,#fff 0%,#fafdff 100%);border:1px solid rgba(9,132,227,.12);border-radius:20px;padding:26px 18px 22px;text-align:center;transition:all .35s var(--ease);overflow:hidden;cursor:default;display:flex;flex-direction:column;align-items:center;gap:10px}
-    .cond-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--electric),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
-    .cond-card::after{content:'';position:absolute;inset:-1px;border-radius:20px;background:linear-gradient(135deg,rgba(0,206,201,.18),rgba(9,132,227,.18));opacity:0;transition:opacity .35s var(--ease);z-index:-1;filter:blur(14px)}
-    .cond-card:hover{transform:translateY(-6px);border-color:rgba(0,206,201,.4);box-shadow:0 22px 44px -18px rgba(9,44,84,.22)}
-    .cond-card:hover::before{transform:scaleX(1)}
-    .cond-card:hover::after{opacity:1}
-    .cond-card__icon{width:62px;height:62px;border-radius:18px;background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.7rem;margin-bottom:4px;box-shadow:0 10px 24px -10px rgba(9,132,227,.55);transition:transform .35s var(--ease)}
-    .cond-card:hover .cond-card__icon{transform:scale(1.08) rotate(-4deg)}
-    .cond-card h3{font-size:1.05rem;font-weight:800;color:var(--navy);margin:0;letter-spacing:-.01em}
-    .cond-card__tag{display:inline-block;font-size:.68rem;font-weight:800;padding:4px 10px;border-radius:999px;background:rgba(9,132,227,.1);color:var(--electric);letter-spacing:.4px;text-transform:uppercase}
-    .cond-card__tag--featured{background:linear-gradient(135deg,#0984e3,#1e3799);color:#fff;box-shadow:0 6px 14px -4px rgba(230,74,25,.5)}
+    .cond .block__head{margin-bottom:18px}
 
     /* Botón secundario elegante "Preguntar por otra enfermedad" */
     .btn-ask-wa{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:14px;font-weight:700;font-size:.97rem;text-decoration:none;color:var(--green-dark);background:rgba(29,168,81,.07);border:1.5px solid rgba(29,168,81,.4);transition:all .25s var(--ease);backdrop-filter:blur(4px)}
     .btn-ask-wa i{font-size:1.15rem;color:var(--green)}
     .btn-ask-wa:hover{background:rgba(29,168,81,.14);border-color:var(--green);color:var(--green-dark);transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(29,168,81,.25)}
-
-    /* ============ CTA INLINE ============ */
-    .cta-inline{background:linear-gradient(135deg,var(--navy) 0%,#1e3799 100%);color:#fff;padding:48px 32px;border-radius:24px;text-align:center;position:relative;overflow:hidden}
-    .cta-inline::before{content:'';position:absolute;inset:0;background:radial-gradient(500px 200px at 50% 0%,rgba(0,206,201,.25),transparent 60%);pointer-events:none}
-    .cta-inline > *{position:relative;z-index:2}
-    .cta-inline h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:12px;letter-spacing:-.02em;color:#fff}
-    .cta-inline p{color:rgba(255,255,255,.8);max-width:540px;margin:0 auto 26px;font-size:1.02rem}
-    .cta-inline__btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
 
     /* ============ DOCTOR / E-E-A-T ============ */
     .doc-card{background:#fff;border:1px solid rgba(9,132,227,.15);border-radius:22px;padding:32px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;box-shadow:0 12px 30px -16px rgba(9,44,84,.15)}
@@ -287,21 +247,13 @@
     .reveal.in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
     @media(prefers-reduced-motion:reduce){.reveal,.reveal.in{opacity:1!important;transform:none!important;transition:none!important}}
 
-    /* CTA: lucecitas (sparkle-field, igual que el home) + linea luminosa.
-       Las reglas ::before/::after solo aplican al CTA base (no al --lights, que ya trae su propio efecto de orbs premium). */
-    .cta-inline:not(.cta-inline--lights)::before{background:radial-gradient(600px 240px at 50% 0%,rgba(0,206,201,.28),transparent 60%);animation:none}
-    .cta-inline:not(.cta-inline--lights)::after{content:'';position:absolute;top:0;left:12%;right:12%;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 16px rgba(0,206,201,.75);z-index:3}
-    .cta-inline .sparkle-field{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;border-radius:24px}
-    .cta-inline .sparkle-field span{position:absolute;border-radius:50%;background:rgba(190,225,255,.95);opacity:0;animation:cta-twinkle var(--sd,3s) ease-in-out var(--sl,0s) infinite}
-    .cta-inline .sparkle-field span.glow{box-shadow:0 0 9px 3px rgba(116,185,255,.4)}
+    /* Lucecitas (sparkle-field): el keyframe lo comparte la banda final del CTA. */
     @keyframes cta-twinkle{0%,100%{opacity:0}50%{opacity:.95}}
-    @media(prefers-reduced-motion:reduce){.cta-inline .sparkle-field span{animation:none;opacity:.45}}
 
     /* Pagina mas compacta (menos scroll) */
     section.block{padding:46px 0}
     .hero{padding:40px 0 46px}
     .block__head{margin-bottom:28px}
-    .cta-inline{padding:40px 28px}
 
     /* ===== Sección de reseñas reales de Google (copiada del home) ===== */
     :root{ --cloud:#f0f6ff; --cloud-alt:#f8faff; --white:#ffffff; --text:#0f1d30; --text-muted:#64748b; --royal:#1e3799; --shadow-sm:0 2px 14px rgba(10,22,40,.07); --shadow-md:0 6px 32px rgba(10,22,40,.09); --sans:'Plus Jakarta Sans',system-ui,sans-serif; }
@@ -356,25 +308,28 @@
 .rev-strip__all:hover,.rev-strip__all:focus-visible{text-decoration:underline}
 @media(prefers-reduced-motion:reduce){.rev-strip__track{scroll-behavior:auto}}
 
-/* ── Como es tu primera consulta: 4 pasos en rejilla, numerados.
-   Contenido de profundidad para la experiencia de pagina (el anuncio promete
-   "diagnostico claro y plan en una sola consulta"; aqui se muestra COMO). ── */
-.paso-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1080px;margin:0 auto}
-@media(max-width:900px){.paso-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:520px){.paso-grid{grid-template-columns:1fr}}
-.paso{position:relative;background:#fff;border:1px solid rgba(9,132,227,.13);border-radius:18px;padding:24px 20px 20px;display:flex;flex-direction:column;gap:8px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
-.paso:hover{transform:translateY(-4px);box-shadow:0 16px 36px -18px rgba(9,44,84,.22)}
-.paso__num{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;font-weight:800;font-size:1.05rem;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px -8px rgba(9,132,227,.5)}
-.paso h3{font-size:1rem;font-weight:800;color:var(--navy);margin:6px 0 0;letter-spacing:-.01em}
-.paso p{font-size:.88rem;color:var(--muted);line-height:1.55;margin:0}
-.paso__dur{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;color:var(--electric);background:rgba(9,132,227,.08);border-radius:999px;padding:3px 10px;margin-top:auto;align-self:flex-start}
 
 /* ── Carrusel orbital de modalidades (patron d6, N=3) ──
    Consultorio / a domicilio / teleconsulta viajan sobre una misma orbita:
    un angulo continuo gobierna todo y el JS proyecta por cuadro el arco
    lateral, la profundidad, la inclinacion, la escala y la opacidad de cada
    tarjeta. Solo transform y opacity (compositor). Sin JS quedan apiladas. */
-.mod-stage{position:relative;perspective:1200px;perspective-origin:50% 42%;padding:14px 0 26px;touch-action:pan-y}
+/* El recorte del carrusel vive AQUI, no en body. overflow-x:clip es la unica
+   combinacion que recorta en horizontal dejando overflow-y visible, asi las
+   sombras verticales de la tarjeta del frente no se cortan.
+   Fallback para navegadores sin `clip`: caja inflada con padding + margen
+   negativo y overflow:hidden, que recorta igual sin comerse la sombra. */
+.mod-stage{position:relative;perspective:1200px;perspective-origin:50% 42%;padding:14px 0 26px;touch-action:pan-y;overflow-x:clip;overflow-y:visible}
+@supports not (overflow-x: clip){
+    .mod-stage{overflow:hidden;padding-top:74px;padding-bottom:86px;margin-top:-60px;margin-bottom:-60px}
+}
+/* En movil el stage sangra hasta el borde del viewport: el recorte cae en el
+   borde de la pantalla y la tarjeta de atras asoma mas, en vez de cortarse
+   contra el padding del contenedor. */
+@media(max-width:767.98px){
+    .mod-stage{margin-left:calc(var(--bs-gutter-x,1.5rem) * -.5);margin-right:calc(var(--bs-gutter-x,1.5rem) * -.5);padding-left:calc(var(--bs-gutter-x,1.5rem) * .5);padding-right:calc(var(--bs-gutter-x,1.5rem) * .5)}
+    .is-live .mod-card{width:min(88%,560px)}
+}
 .mod-stage.is-live{cursor:grab}
 .mod-stage.is-live.is-drag{cursor:grabbing}
 .mod-stage.is-live.is-drag .mod-card{pointer-events:none}
@@ -401,6 +356,218 @@
 .mod-dot:focus-visible{outline:2px solid var(--electric);outline-offset:3px}
 .mod-hint{text-align:center;font-size:.78rem;color:var(--muted);margin:10px 0 0}
 @media(prefers-reduced-motion:reduce){.mod-card{transition:none}}
+
+/* ══════════════════════════════════════════════════════════════════════
+   NAVBAR ANGOSTO. A 375px la barra pedia 436px (marca 137 + CTA 183 +
+   ES|EN 68 + gaps) y el selector de idioma se salia 8px del viewport.
+   En pantalla angosta el CTA suelta la cola "consulta" y el gap aprieta.
+   ══════════════════════════════════════════════════════════════════════ */
+@media(max-width:575.98px){
+    #mainNav .container{gap:8px!important}
+    #mainNav .navbar-brand{margin-right:0!important}
+    #mainNav .brand-name{font-size:1.15rem}
+    .nav-cta-tail{display:none}
+    .promo-lang2{flex-shrink:0;margin-left:0}
+    .promo-lang2 a{padding:2px 7px}
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   RESENAS: cascada de DOS columnas en movil (peticion del Dr.; con tres
+   no se alcanzaba a leer). assets/base.css deja UNA columna por debajo de
+   640px con !important; aqui se sobrescribe solo para esta pagina
+   (base.css la comparten 108 paginas y no se toca). La columna 3 se
+   oculta: quedan dos carriles corriendo en sentidos opuestos y el texto
+   sube a 15px, que es lo que hacia falta para leerlo.
+   ══════════════════════════════════════════════════════════════════════ */
+@media(max-width:640px){
+    .block .testimonial-columns{grid-template-columns:repeat(2,1fr)!important;gap:10px!important;height:420px!important}
+    .block .testimonial-col{display:flex!important;gap:10px!important}
+    .block .testimonial-col:nth-child(3),
+    .block .testimonial-columns > :nth-child(3){display:none!important}
+    .block .testi-card{padding:14px 13px!important;border-radius:14px!important}
+    .block .testi-stars{margin-bottom:8px!important;gap:2px!important}
+    .block .testi-stars i{font-size:.7rem!important}
+    .block .testi-text{font-size:.94rem!important;line-height:1.55!important;margin:0 0 12px!important;overflow-wrap:anywhere;-webkit-hyphens:auto;hyphens:auto}
+    .block .testi-author{gap:8px!important}
+    .block .testi-avatar{width:28px!important;height:28px!important;font-size:.78rem!important}
+    .block .testi-name{font-size:.83rem!important;line-height:1.3!important;overflow-wrap:anywhere}
+    .block .testi-badge{font-size:.72rem!important;line-height:1.35!important;overflow-wrap:anywhere}
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   RESPALDO. Portado de index.html (.about__credentials-section): tarjetas
+   de cedula/consejo + marquee de instituciones. El home mueve el marquee
+   con rAF; aqui va en animacion CSS pura (3 sets identicos, asi que
+   -33.3333% es exactamente un set) para no meter JS extra en la landing.
+   ══════════════════════════════════════════════════════════════════════ */
+.respaldo{background:var(--cloud);padding:36px 0 30px;position:relative;overflow:hidden}
+.respaldo::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(9,132,227,.12),rgba(0,206,201,.1),transparent)}
+.respaldo__head{text-align:center;margin-bottom:18px;position:relative;z-index:1}
+.respaldo__title{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:800;letter-spacing:-.02em;color:var(--navy);margin:10px 0 0;line-height:1.25}
+.cred-cards-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:960px;margin:0 auto 24px;position:relative;z-index:1}
+.cred-card{flex:1 1 250px;max-width:310px;background:linear-gradient(135deg,#0a1628 0%,#1a2d4a 40%,#0d2137 100%);border-radius:18px;display:flex;position:relative;overflow:hidden;border:1px solid rgba(116,185,255,.15);transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s var(--ease)}
+.cred-card::before{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 20%,rgba(116,185,255,.07) 35%,rgba(0,206,201,.06) 45%,transparent 60%);background-size:200% 100%;animation:cedula-shimmer 4s ease-in-out infinite;pointer-events:none}
+@keyframes cedula-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.cred-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--electric),var(--cyan),#6c5ce7,var(--electric));background-size:300% 100%;animation:cedula-accent-flow 3s linear infinite}
+@keyframes cedula-accent-flow{0%{background-position:0% 50%}100%{background-position:300% 50%}}
+.cred-card:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 20px 60px rgba(9,132,227,.25),0 0 30px rgba(9,132,227,.1);border-color:rgba(116,185,255,.3)}
+.cred-card__inner{position:relative;z-index:2;padding:18px 18px 17px;display:flex;align-items:center;gap:13px;flex:1;min-width:0}
+.cred-card__logo-wrap{width:50px;height:50px;border-radius:14px;background:#fff;box-shadow:0 0 16px rgba(255,255,255,.6),0 0 32px rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cred-card__logo{width:34px;height:34px;object-fit:contain}
+.cred-card__info{flex:1;min-width:0}
+.cred-card__type{font-size:.57rem;font-weight:700;text-transform:uppercase;letter-spacing:1.4px;color:rgba(116,185,255,.75);margin-bottom:3px}
+.cred-card__number{font-size:1rem;font-weight:800;color:#fff;letter-spacing:1.4px;line-height:1.3;font-family:'SF Mono','Fira Code',Consolas,monospace}
+.cred-card__number a{color:inherit;text-decoration:none}
+.cred-card__number a:hover{color:var(--cyan)}
+.cred-card__source{font-size:.62rem;color:rgba(255,255,255,.45);font-weight:500;margin-top:2px;line-height:1.35;overflow-wrap:anywhere}
+.creds-marquee-wrapper{position:relative;width:100%;padding:2px 0;overflow:hidden}
+.creds-marquee-wrapper::before,.creds-marquee-wrapper::after{content:'';position:absolute;top:0;bottom:0;width:70px;z-index:3;pointer-events:none}
+.creds-marquee-wrapper::before{left:0;background:linear-gradient(to right,#f0f6ff 0%,#f0f6ff 22%,rgba(240,246,255,0) 100%)}
+.creds-marquee-wrapper::after{right:0;background:linear-gradient(to left,#f0f6ff 0%,#f0f6ff 22%,rgba(240,246,255,0) 100%)}
+.creds-marquee-track{display:flex;align-items:stretch;width:max-content;animation:creds-marquee 40s linear infinite;will-change:transform;backface-visibility:hidden}
+@keyframes creds-marquee{from{transform:translate3d(0,0,0)}to{transform:translate3d(-33.3333%,0,0)}}
+.creds-marquee-item{flex-shrink:0;width:148px;min-height:146px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:14px 12px;margin:0 6px;background:rgba(255,255,255,.92);border:1px solid rgba(9,132,227,.06);border-radius:18px}
+.creds-marquee-item__logo{width:58px;height:58px;object-fit:contain}
+.creds-marquee-item__name{font-size:.63rem;font-weight:600;color:var(--text-muted);text-align:center;line-height:1.3}
+.creds-marquee-item__tag{font-size:.54rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--electric);background:rgba(9,132,227,.06);padding:3px 10px;border-radius:100px}
+@media(prefers-reduced-motion:reduce){.creds-marquee-track,.cred-card::before,.cred-card::after{animation:none}}
+
+/* ══════════════════════════════════════════════════════════════════════
+   ENFERMEDADES POR GRUPO: tabs con paneles (patron Slide/Badge Tabs de
+   21st.dev). Reemplaza el muro de 15 chips que el Dr. rechazo por
+   saturado e ilegible: la densidad se gana con INTERACCION, no
+   apretando tipografia (doctrina d8). Los 3 paneles viven en el DOM y
+   solo se ocultan por CSS, asi los 15 enlaces internos siguen ahi.
+   Piso tipografico 15px y area tactil >=44px.
+   ══════════════════════════════════════════════════════════════════════ */
+.enf{max-width:860px;margin:6px auto 0}
+.enf__tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 14px;padding:0;list-style:none}
+.enf__tab{min-height:44px;padding:10px 17px;border-radius:100px;border:1.5px solid rgba(9,132,227,.22);background:#fff;color:var(--muted);font-family:inherit;font-size:.94rem;font-weight:700;line-height:1.2;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease)}
+.enf__tab .n{display:inline-flex;align-items:center;justify-content:center;min-width:21px;height:21px;padding:0 5px;border-radius:100px;background:rgba(9,132,227,.1);color:var(--electric);font-size:.74rem;font-weight:800}
+.enf__tab[aria-selected="true"]{background:linear-gradient(135deg,var(--electric),#1e3799);color:#fff;border-color:transparent;box-shadow:0 8px 20px -10px rgba(9,132,227,.65)}
+.enf__tab[aria-selected="true"] .n{background:rgba(255,255,255,.22);color:#fff}
+.enf__tab:focus-visible{outline:2px solid var(--electric);outline-offset:3px}
+.enf__panel{display:none;grid-template-columns:repeat(2,1fr);gap:8px;margin:0;padding:0;list-style:none}
+.enf__panel.is-open{display:grid;animation:enf-in .35s var(--ease)}
+@keyframes enf-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.enf__panel > li{display:flex}
+.enf-link{flex:1;min-height:52px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 13px;background:#fff;border:1px solid rgba(9,132,227,.14);border-radius:14px;font-size:.95rem;font-weight:700;line-height:1.25;color:var(--navy);text-decoration:none;overflow-wrap:anywhere;transition:border-color .25s var(--ease),box-shadow .25s var(--ease),transform .25s var(--ease)}
+.enf-link:hover,.enf-link:focus-visible{border-color:rgba(9,132,227,.45);box-shadow:0 10px 24px -14px rgba(9,44,84,.4);transform:translateY(-2px);color:var(--navy)}
+.enf-link i{color:var(--electric);font-size:.9rem;flex-shrink:0;transition:transform .25s var(--ease)}
+.enf-link:hover i{transform:translateX(3px)}
+.enf-link:focus-visible{outline:2px solid var(--electric);outline-offset:2px}
+.enf-link--hub{background:var(--navy);color:#fff;border-color:transparent;justify-content:center}
+.enf-link--hub i{color:var(--cyan)}
+.enf-link--hub:hover,.enf-link--hub:focus-visible{background:#1e3799;color:#fff;border-color:transparent}
+/* Los tabs caben en UNA fila deslizable en movil (patron Slide Tabs): dos
+   filas de pildoras costaban 52px de puro cromo. */
+@media(max-width:767.98px){
+    .enf__tabs{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scrollbar-width:none;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+    .enf__tabs::-webkit-scrollbar{display:none}
+    .enf__tab{flex:0 0 auto;scroll-snap-align:start}
+}
+/* Dots del carrusel de estudios: circulares, solo icono, una sola fila. */
+.mod-nav--ico .mod-dot{width:52px;height:52px;min-height:52px;padding:0;border-radius:50%;justify-content:center;font-size:1.2rem}
+@media(max-width:339px){.enf__panel.is-open{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.enf__panel.is-open{animation:none}}
+
+/* ══════════════════════════════════════════════════════════════════════
+   STEPPER ORBITAL de la primera consulta (motor d6, N=4). Sustituye la
+   reja vertical de 4 pasos: los cuatro caben en la huella de uno.
+   Prefijo propio para no chocar con el carrusel de modalidades.
+   ══════════════════════════════════════════════════════════════════════ */
+.pdeck-stage{position:relative;perspective:1200px;perspective-origin:50% 42%;padding:10px 0 22px;touch-action:pan-y;overflow-x:clip;overflow-y:visible}
+@supports not (overflow-x: clip){.pdeck-stage{overflow:hidden;padding-top:70px;padding-bottom:82px;margin-top:-60px;margin-bottom:-60px}}
+@media(max-width:767.98px){.pdeck-stage{margin-left:calc(var(--bs-gutter-x,1.5rem) * -.5);margin-right:calc(var(--bs-gutter-x,1.5rem) * -.5);padding-left:calc(var(--bs-gutter-x,1.5rem) * .5);padding-right:calc(var(--bs-gutter-x,1.5rem) * .5)}}
+.pdeck-stage.is-live{cursor:grab}
+.pdeck-stage.is-live.is-drag{cursor:grabbing}
+.pdeck-stage.is-live.is-drag .pdeck-card{pointer-events:none}
+.pdeck-carousel{position:relative}
+.pdeck-card{position:relative;background:#fff;border:1px solid rgba(9,132,227,.14);border-radius:18px;padding:22px 20px}
+.pdeck-stage.is-live .pdeck-card{position:absolute;top:0;left:0;right:0;width:min(88%,520px);margin:0 auto;transform-origin:50% 58%;will-change:transform,opacity;transition:box-shadow .6s ease}
+.pdeck-stage.is-live .pdeck-card.is-front{box-shadow:0 1px 2px rgba(16,24,40,.06),0 18px 34px -16px rgba(16,24,40,.24),0 44px 76px -44px rgba(9,132,227,.42)}
+.pdeck-stage.is-live .pdeck-card.is-back{cursor:pointer;box-shadow:0 12px 26px -18px rgba(16,24,40,.3)}
+.pdeck-stage:not(.is-live) .pdeck-card{margin-bottom:12px}
+.pdeck-card__n{position:absolute;top:14px;right:18px;font-size:2rem;font-weight:800;color:rgba(9,132,227,.16);line-height:1}
+.pdeck-card__ic{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.15rem;margin-bottom:12px;box-shadow:0 8px 18px -8px rgba(9,132,227,.6)}
+.pdeck-card__when{display:block;font-size:.72rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--electric);margin-bottom:5px}
+.pdeck-card h3{font-size:1.08rem;font-weight:800;color:var(--navy);margin:0 0 8px;letter-spacing:-.015em;line-height:1.25}
+.pdeck-card p{font-size:.95rem;line-height:1.55;color:var(--muted);margin:0}
+.pdeck-nav{display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:14px}
+.pdeck-dot{width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(9,132,227,.25);background:#fff;font-family:inherit;font-size:.95rem;font-weight:800;color:var(--muted);cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.pdeck-dot[aria-selected="true"]{background:linear-gradient(135deg,var(--electric),#1e3799);color:#fff;border-color:transparent;box-shadow:0 8px 18px -6px rgba(9,132,227,.55)}
+.pdeck-dot:focus-visible{outline:2px solid var(--electric);outline-offset:3px}
+.pdeck-hint{text-align:center;font-size:.8rem;color:var(--muted);margin:9px 0 0}
+.pdeck-stage:not(.is-live) ~ .pdeck-nav,.pdeck-stage:not(.is-live) ~ .pdeck-hint{display:none}
+@media(prefers-reduced-motion:reduce){.pdeck-stage.is-live .pdeck-card{transition:none}}
+/* Ajuste fino de la seccion catalogo (estudios + enfermedades) para que la
+   suma quede dentro de la meta d8 de 1.2 pantallas en 375px. */
+#estStage{padding-top:6px;padding-bottom:16px}
+/* Vinetas del carrusel de estudios a 15px (piso de legibilidad del Dr.) y en
+   un solo renglon: mas grandes que antes y con la tarjeta mas baja. */
+#estCarousel .mod-card__list{gap:6px;margin-bottom:12px}
+#estCarousel .mod-card__list li{font-size:.95rem;line-height:1.45}
+#estCarousel .mod-card__cta{padding:10px 16px;min-height:44px;font-size:.92rem}
+.enf__foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin-top:12px}
+.btn-ask-wa--sm{padding:10px 16px;font-size:.9rem;border-radius:12px;min-height:44px}
+#estNav{margin-top:10px}
+#estHint{margin-top:7px}
+.enf{margin-top:22px}
+.enf__panel{gap:7px}
+.enf-link{min-height:48px;padding:10px 12px}
+
+/* ══════════════════════════════════════════════════════════════════════
+   CTA FINAL portado del home (.cta-band): aura que respira, anillos
+   concentricos, chispas, linea de brillo animada y spotlight que sigue
+   al cursor. Todo CSS + el generador de chispas que ya existia. Cero
+   GSAP, cero libreria nueva. disease.css ya trae un .cta-band basico:
+   su ::before estatico se anula para dejar la linea animada del home.
+   ══════════════════════════════════════════════════════════════════════ */
+.cta-band{background:var(--navy);position:relative;overflow:hidden;padding:80px 0;text-align:center}
+.cta-band::before{content:none}
+.cta-band__glow-line{position:absolute;top:50%;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(9,132,227,.5) 20%,rgba(116,185,255,.6) 50%,rgba(9,132,227,.5) 80%,transparent 100%);filter:blur(1px);z-index:0;opacity:.6;animation:glow-pulse 4s ease-in-out infinite}
+@keyframes glow-pulse{0%,100%{opacity:.4;filter:blur(1px)}50%{opacity:.8;filter:blur(2px)}}
+.cta-band__canvas{position:absolute;inset:0;z-index:0;pointer-events:none}
+.cta-band .sparkle-field span{position:absolute;border-radius:50%;background:rgba(190,225,255,.95);opacity:0;transform:scale(1.7);animation:cta-twinkle var(--sd,3s) ease-in-out var(--sl,0s) infinite}
+.cta-band .sparkle-field span.glow{box-shadow:0 0 9px 3px rgba(116,185,255,.4)}
+.cta-band__aura{position:absolute;top:50%;left:50%;width:min(760px,90vw);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(9,132,227,.16) 0%,rgba(0,206,201,.08) 38%,transparent 68%);filter:blur(30px);animation:cta-breathe 7s ease-in-out infinite;z-index:0;pointer-events:none}
+@keyframes cta-breathe{0%,100%{transform:translate(-50%,-50%) scale(.92);opacity:.55}50%{transform:translate(-50%,-50%) scale(1.08);opacity:1}}
+.cta-band__rings{position:absolute;top:50%;left:50%;width:0;height:0;z-index:0;pointer-events:none}
+.cta-band__rings span{position:absolute;top:0;left:0;width:220px;height:220px;transform:translate(-50%,-50%) scale(.4);border-radius:50%;border:1px solid rgba(116,185,255,.35);opacity:0;animation:cta-ring 6s cubic-bezier(.16,1,.3,1) infinite}
+.cta-band__rings span:nth-child(2){animation-delay:2s}
+.cta-band__rings span:nth-child(3){animation-delay:4s}
+@keyframes cta-ring{0%{transform:translate(-50%,-50%) scale(.4);opacity:0}12%{opacity:.55}100%{transform:translate(-50%,-50%) scale(3.4);opacity:0}}
+.cta-band__spot{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle 340px at var(--cta-mx,50%) var(--cta-my,45%),rgba(9,132,227,.14),transparent 70%);opacity:0;transition:opacity .5s var(--ease)}
+@media (hover:hover) and (pointer:fine){.cta-band:hover .cta-band__spot{opacity:1}}
+.cta-band-content{position:relative;z-index:1}
+.cta-band__kicker{color:rgba(116,185,255,.72);font-size:.78rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin:0 0 14px}
+.cta-band__title{font-size:clamp(1.7rem,4.2vw,2.8rem);font-weight:800;letter-spacing:-.03em;line-height:1.14;color:#fff;margin:0 0 16px}
+.cta-band__title em{font-style:normal;background:linear-gradient(135deg,var(--cyan) 0%,#74b9ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.cta-band__lead{color:rgba(255,255,255,.62);font-size:1rem;max-width:520px;line-height:1.7;margin:0 auto 32px}
+.cta-band__actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:center}
+.cta-band__btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:var(--navy)!important;text-decoration:none;padding:17px 34px;border-radius:100px;font-weight:800;font-size:1rem;letter-spacing:-.01em;transition:transform .35s var(--ease),box-shadow .35s var(--ease),color .35s var(--ease);box-shadow:0 4px 24px rgba(255,255,255,.15),0 0 60px rgba(9,132,227,.12)}
+.cta-band__btn::before{content:'';position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(105deg,transparent,rgba(9,132,227,.12),transparent);transform:skewX(-18deg)}
+.cta-band__btn:hover::before{animation:cta-sheen .9s var(--ease)}
+@keyframes cta-sheen{to{left:160%}}
+.cta-band__btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 10px 40px rgba(255,255,255,.22),0 0 80px rgba(9,132,227,.2);color:var(--royal)!important}
+.cta-band__btn i{transition:transform .3s var(--ease)}
+.cta-band__btn:hover i{transform:translateX(4px)}
+/* En la landing el CTA que convierte es WhatsApp, asi que se queda con el
+   boton blanco (primario) y el icono verde; el modal de agenda toma el
+   contorno que en el home lleva WhatsApp. */
+.cta-band__btn--wa i{color:#25D366;font-size:1.12rem}
+.cta-band__btn--wa:hover i{transform:scale(1.12) translateX(0)}
+.cta-band__btn--ghost{background:transparent;color:#fff!important;border:1px solid rgba(255,255,255,.28);box-shadow:none;font-weight:700}
+.cta-band__btn--ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(116,185,255,.6);color:#fff!important;box-shadow:0 10px 32px -8px rgba(9,132,227,.4)}
+.cta-band__btn--ghost i{color:var(--cyan)}
+.cta-band__btn:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+@media(max-width:575.98px){.cta-band{padding:58px 0}.cta-band__btn{padding:15px 22px;font-size:.94rem;width:100%}}
+@media(prefers-reduced-motion:reduce){
+    .cta-band__aura,.cta-band__glow-line{animation:none}
+    .cta-band__rings{display:none}
+    .cta-band__aura{opacity:.7}
+    .cta-band .sparkle-field span{animation:none;opacity:.45}
+}
 </style>
 </head>
 <body>
@@ -435,7 +602,7 @@
             <span class="brand-name">ALVEOS</span>
         </a>
         <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20consulta%20de%20neumolog%C3%ADa%20a%20%241%2C300%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="navbar-cta d-inline-flex" data-cta="navbar-wa" style="flex-shrink:0;margin-left:auto">
-            <i class="bi bi-whatsapp me-2"></i> Agendar consulta
+            <i class="bi bi-whatsapp me-2"></i> Agendar<span class="nav-cta-tail"> consulta</span>
         </a>
         <span class="promo-lang2" role="navigation" aria-label="Language"><a class="active" href="#" aria-current="true">ES</a><a href="/en/promociones/consulta-neumologia/" hreflang="en">EN</a></span>
     </div>
@@ -533,32 +700,47 @@
             <h2 class="block__title" id="pasos-title">Así es tu <em>primera consulta</em></h2>
             <p class="block__lead">Sabemos que llegar con un especialista nuevo da nervios. Esto es exactamente lo que va a pasar en tu cita, de principio a fin.</p>
         </div>
-        <div class="paso-grid">
-            <article class="paso">
-                <span class="paso__num">1</span>
-                <h3>Te escuchamos sin prisas</h3>
-                <p>El Dr. Lara toma tu historia clínica completa: tus síntomas, desde cuándo, qué has probado y qué estudios traes.</p>
-                <span class="paso__dur"><i class="bi bi-clock"></i> 40 a 60 min en total</span>
-            </article>
-            <article class="paso">
-                <span class="paso__num">2</span>
-                <h3>Exploración y mediciones</h3>
-                <p>Exploración respiratoria y oximetría en el consultorio. Si es relevante para tu caso, espirometría simple en la misma cita.</p>
-                <span class="paso__dur"><i class="bi bi-lungs"></i> En el mismo consultorio</span>
-            </article>
-            <article class="paso">
-                <span class="paso__num">3</span>
-                <h3>Diagnóstico que entiendes</h3>
-                <p>Te explica qué tienes y por qué, revisando contigo tus estudios, en lenguaje claro y respondiendo todas tus dudas.</p>
-                <span class="paso__dur"><i class="bi bi-chat-square-text"></i> Sin tecnicismos</span>
-            </article>
-            <article class="paso">
-                <span class="paso__num">4</span>
-                <h3>Plan por escrito</h3>
-                <p>Sales con tu plan de tratamiento por escrito, indicaciones de cada medicamento y los siguientes pasos si hace falta algún estudio.</p>
-                <span class="paso__dur"><i class="bi bi-file-earmark-text"></i> Te lo llevas contigo</span>
-            </article>
+        <!-- Stepper orbital (motor d6, N=4): los cuatro momentos en la huella
+             de uno. Sin JS quedan apilados y legibles (fallback is-live). -->
+        <div class="pdeck-stage" id="pasoStage">
+            <div class="pdeck-carousel" id="pasoCarousel" data-orb-track>
+                <article class="pdeck-card">
+                    <span class="pdeck-card__n" aria-hidden="true">1</span>
+                    <span class="pdeck-card__ic" aria-hidden="true"><i class="bi bi-chat-heart-fill"></i></span>
+                    <span class="pdeck-card__when">Al entrar</span>
+                    <h3>Te escuchamos sin prisas</h3>
+                    <p>El Dr. Lara toma tu historia cl&iacute;nica completa: tus s&iacute;ntomas, desde cu&aacute;ndo, qu&eacute; has probado y qu&eacute; estudios traes. La primera consulta dura de 40 a 60 minutos.</p>
+                </article>
+                <article class="pdeck-card">
+                    <span class="pdeck-card__n" aria-hidden="true">2</span>
+                    <span class="pdeck-card__ic" aria-hidden="true"><i class="bi bi-lungs-fill"></i></span>
+                    <span class="pdeck-card__when">En el consultorio</span>
+                    <h3>Exploraci&oacute;n y mediciones</h3>
+                    <p>Exploraci&oacute;n respiratoria y oximetr&iacute;a en el momento. Si es relevante para tu caso, se hace la espirometr&iacute;a simple en la misma cita, sin mandarte a otro lado.</p>
+                </article>
+                <article class="pdeck-card">
+                    <span class="pdeck-card__n" aria-hidden="true">3</span>
+                    <span class="pdeck-card__ic" aria-hidden="true"><i class="bi bi-chat-square-text-fill"></i></span>
+                    <span class="pdeck-card__when">Antes de salir</span>
+                    <h3>Diagn&oacute;stico que entiendes</h3>
+                    <p>Te explica qu&eacute; tienes y por qu&eacute;, revisando contigo tus estudios en lenguaje claro y respondiendo todas tus dudas. Sin tecnicismos y sin prisa.</p>
+                </article>
+                <article class="pdeck-card">
+                    <span class="pdeck-card__n" aria-hidden="true">4</span>
+                    <span class="pdeck-card__ic" aria-hidden="true"><i class="bi bi-file-earmark-text-fill"></i></span>
+                    <span class="pdeck-card__when">Te lo llevas contigo</span>
+                    <h3>Plan por escrito</h3>
+                    <p>Sales con tu plan de tratamiento por escrito, las indicaciones de cada medicamento y los siguientes pasos si hace falta alg&uacute;n estudio.</p>
+                </article>
+            </div>
         </div>
+        <div class="pdeck-nav" id="pasoNav" role="tablist" aria-label="Momentos de tu primera consulta">
+            <button type="button" class="pdeck-dot" data-orb-dot aria-selected="true" aria-label="Momento 1: te escuchamos sin prisas">1</button>
+            <button type="button" class="pdeck-dot" data-orb-dot aria-selected="false" aria-label="Momento 2: exploraci&oacute;n y mediciones">2</button>
+            <button type="button" class="pdeck-dot" data-orb-dot aria-selected="false" aria-label="Momento 3: diagn&oacute;stico que entiendes">3</button>
+            <button type="button" class="pdeck-dot" data-orb-dot aria-selected="false" aria-label="Momento 4: plan por escrito">4</button>
+        </div>
+        <p class="pdeck-hint" id="pasoHint" aria-live="polite">Desliza las tarjetas o usa los n&uacute;meros.</p>
     </div>
 </section>
 
@@ -592,6 +774,126 @@
     </div>
 </section>
 
+<!-- ============ RESPALDO (portado de index.html: about__credentials-section) ============ -->
+<section class="respaldo" aria-labelledby="respaldo-title">
+    <div class="container">
+        <div class="respaldo__head">
+            <span class="section-label">Respaldo</span>
+            <h2 class="respaldo__title" id="respaldo-title">Quién avala lo que ves en esta página</h2>
+        </div>
+
+        <!-- Cédulas + certificación del consejo -->
+        <div class="cred-cards-row">
+            <div class="cred-card">
+                <div class="cred-card__inner">
+                    <div class="cred-card__logo-wrap">
+                        <img src="/images/buap.png" alt="Logo de la Benemérita Universidad Autónoma de Puebla" class="cred-card__logo" width="640" height="640" loading="lazy" decoding="async">
+                    </div>
+                    <div class="cred-card__info">
+                        <div class="cred-card__type">Céd. Profesional</div>
+                        <div class="cred-card__number">12588976</div>
+                        <div class="cred-card__source">Benemérita Universidad Autónoma de Puebla</div>
+                    </div>
+                </div>
+            </div>
+            <div class="cred-card">
+                <div class="cred-card__inner">
+                    <div class="cred-card__logo-wrap">
+                        <img src="/images/UNAM.webp" alt="Logo de la Universidad Nacional Autónoma de México" class="cred-card__logo" width="196" height="200" loading="lazy" decoding="async">
+                    </div>
+                    <div class="cred-card__info">
+                        <div class="cred-card__type">Céd. Especialidad</div>
+                        <div class="cred-card__number">15595809</div>
+                        <div class="cred-card__source">Universidad Nacional Autónoma de México</div>
+                    </div>
+                </div>
+            </div>
+            <div class="cred-card">
+                <div class="cred-card__inner">
+                    <div class="cred-card__logo-wrap">
+                        <img src="/images/CNN.png" alt="Logo del Consejo Nacional de Neumología" class="cred-card__logo" width="551" height="382" loading="lazy" decoding="async">
+                    </div>
+                    <div class="cred-card__info">
+                        <div class="cred-card__type">Certificación</div>
+                        <div class="cred-card__number"><a href="https://conacem.org.mx/buscador" target="_blank" rel="noopener noreferrer">CNN-2102</a></div>
+                        <div class="cred-card__source">Consejo Nacional de Neumología</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /container -->
+
+    <!-- Marquee: formación y sociedades. 3 sets idénticos: la animación CSS
+         desplaza exactamente -33.3333% (un set) y reinicia sin salto. -->
+    <div class="creds-marquee-wrapper" aria-label="Formación y sociedades médicas del Dr. Lara">
+        <div class="creds-marquee-track">
+            <!-- Set 1 -->
+            <div class="creds-marquee-item">
+                <img src="/images/iner.png" alt="Logo del Instituto Nacional de Enfermedades Respiratorias" class="creds-marquee-item__logo" width="165" height="195" loading="lazy" decoding="async">
+                <span class="creds-marquee-item__name">Instituto Nacional de Enfermedades Respiratorias</span>
+                <span class="creds-marquee-item__tag">Formación</span>
+            </div>
+            <div class="creds-marquee-item">
+                <img src="/images/Logo-SMNyCT.webp" alt="Logo de la Sociedad Mexicana de Neumología y Cirugía de Tórax" class="creds-marquee-item__logo" width="200" height="200" loading="lazy" decoding="async">
+                <span class="creds-marquee-item__name">Soc. Mexicana de Neumología y Cirugía de Tórax</span>
+                <span class="creds-marquee-item__tag">Miembro</span>
+            </div>
+            <div class="creds-marquee-item">
+                <img src="/images/alat.png" alt="Logo de la Asociación Latinoamericana de Tórax" class="creds-marquee-item__logo" width="294" height="171" loading="lazy" decoding="async">
+                <span class="creds-marquee-item__name">Asoc. Latinoamericana de Tórax</span>
+                <span class="creds-marquee-item__tag">Miembro</span>
+            </div>
+            <div class="creds-marquee-item">
+                <img src="/images/ats.png" alt="Logo de la American Thoracic Society" class="creds-marquee-item__logo" width="1150" height="638" loading="lazy" decoding="async">
+                <span class="creds-marquee-item__name">American Thoracic Society</span>
+                <span class="creds-marquee-item__tag">Miembro</span>
+            </div>
+            <!-- Set 2 -->
+            <div class="creds-marquee-item" aria-hidden="true">
+                <img src="/images/iner.png" alt="" class="creds-marquee-item__logo" width="165" height="195" loading="lazy" decoding="async">
+                <span class="creds-marquee-item__name">Instituto Nacional de Enfermedades Respiratorias</span>
+                <span class="creds-marquee-item__tag">Formación</span>
+            </div>
+            <div class="creds-marquee-item" aria-hidden="true">
+                <img src="/images/Logo-SMNyCT.webp" alt="" class="creds-marquee-item__logo" width="200" height="200" loading="lazy" decoding="async">
+                <span class="creds-marquee-item__name">Soc. Mexicana de Neumología y Cirugía de Tórax</span>
+                <span class="creds-marquee-item__tag">Miembro</span>
+            </div>
+            <div class="creds-marquee-item" aria-hidden="true">
+                <img src="/images/alat.png" alt="" class="creds-marquee-item__logo" width="294" height="171" loading="lazy" decoding="async">
+                <span class="creds-marquee-item__name">Asoc. Latinoamericana de Tórax</span>
+                <span class="creds-marquee-item__tag">Miembro</span>
+            </div>
+            <div class="creds-marquee-item" aria-hidden="true">
+                <img src="/images/ats.png" alt="" class="creds-marquee-item__logo" width="1150" height="638" loading="lazy" decoding="async">
+                <span class="creds-marquee-item__name">American Thoracic Society</span>
+                <span class="creds-marquee-item__tag">Miembro</span>
+            </div>
+            <!-- Set 3 -->
+            <div class="creds-marquee-item" aria-hidden="true">
+                <img src="/images/iner.png" alt="" class="creds-marquee-item__logo" width="165" height="195" loading="lazy" decoding="async">
+                <span class="creds-marquee-item__name">Instituto Nacional de Enfermedades Respiratorias</span>
+                <span class="creds-marquee-item__tag">Formación</span>
+            </div>
+            <div class="creds-marquee-item" aria-hidden="true">
+                <img src="/images/Logo-SMNyCT.webp" alt="" class="creds-marquee-item__logo" width="200" height="200" loading="lazy" decoding="async">
+                <span class="creds-marquee-item__name">Soc. Mexicana de Neumología y Cirugía de Tórax</span>
+                <span class="creds-marquee-item__tag">Miembro</span>
+            </div>
+            <div class="creds-marquee-item" aria-hidden="true">
+                <img src="/images/alat.png" alt="" class="creds-marquee-item__logo" width="294" height="171" loading="lazy" decoding="async">
+                <span class="creds-marquee-item__name">Asoc. Latinoamericana de Tórax</span>
+                <span class="creds-marquee-item__tag">Miembro</span>
+            </div>
+            <div class="creds-marquee-item" aria-hidden="true">
+                <img src="/images/ats.png" alt="" class="creds-marquee-item__logo" width="1150" height="638" loading="lazy" decoding="async">
+                <span class="creds-marquee-item__name">American Thoracic Society</span>
+                <span class="creds-marquee-item__tag">Miembro</span>
+            </div>
+        </div>
+    </div><!-- /creds-marquee-wrapper -->
+</section>
+
 <!-- ============ MODALIDADES (carrusel orbital d6, N=3, contenido propio) ============ -->
 <section class="block" aria-labelledby="mod-title" style="background:linear-gradient(180deg,#fff 0%,#f0f7ff 100%)">
     <div class="container" style="max-width:820px">
@@ -601,7 +903,7 @@
             <p class="block__lead">Desliza las tarjetas o toca una modalidad. La misma atención del Dr. Lara, en el formato que te acomode.</p>
         </div>
         <div class="mod-stage" id="modStage">
-            <div class="mod-carousel" id="modCarousel">
+            <div class="mod-carousel" id="modCarousel" data-orb-track>
                 <article class="mod-card mod-card--promo">
                     <div class="mod-card__head">
                         <span class="mod-card__ic"><i class="bi bi-hospital"></i></span>
@@ -650,9 +952,9 @@
             </div>
         </div>
         <div class="mod-nav" id="modNav" role="tablist" aria-label="Modalidad de consulta">
-            <button type="button" class="mod-dot" aria-selected="true"><i class="bi bi-hospital"></i> Consultorio</button>
-            <button type="button" class="mod-dot" aria-selected="false"><i class="bi bi-house-heart"></i> A domicilio</button>
-            <button type="button" class="mod-dot" aria-selected="false"><i class="bi bi-camera-video"></i> Teleconsulta</button>
+            <button type="button" class="mod-dot" data-orb-dot aria-selected="true"><i class="bi bi-hospital"></i> Consultorio</button>
+            <button type="button" class="mod-dot" data-orb-dot aria-selected="false"><i class="bi bi-house-heart"></i> A domicilio</button>
+            <button type="button" class="mod-dot" data-orb-dot aria-selected="false"><i class="bi bi-camera-video"></i> Teleconsulta</button>
         </div>
         <p class="mod-hint" id="modHint" aria-live="polite">Desliza las tarjetas o usa los botones.</p>
     </div>
@@ -663,48 +965,122 @@
     <div class="container">
         <div class="block__head">
             <span class="block__kicker">Áreas de atención</span>
-            <h2 class="block__title">Síntomas y padecimientos que <em>tratamos</em></h2>
-            <p class="block__lead">Atención de adultos por un especialista en pulmones, bronquios y vías respiratorias. Si tu síntoma no aparece aquí, escríbenos por WhatsApp y te orientamos antes de agendar.</p>
+            <h2 class="block__title">Lo que se hace aquí y lo que se <em>atiende</em></h2>
+            <p class="block__lead">Desliza los estudios y toca un grupo de enfermedades. Solo adultos.</p>
         </div>
-        <div class="cond-grid" style="max-width:1080px;margin:0 auto">
-            <article class="cond-card">
-                <div class="cond-card__icon"><i class="bi bi-soundwave"></i></div>
-                <h3>Tos crónica</h3>
-                <span class="cond-card__tag">Diagnóstico</span>
-            </article>
-            <article class="cond-card">
-                <div class="cond-card__icon"><i class="bi bi-lungs"></i></div>
-                <h3>Bronquitis</h3>
-                <span class="cond-card__tag">Aguda · Crónica</span>
-            </article>
-            <article class="cond-card">
-                <div class="cond-card__icon"><i class="bi bi-wind"></i></div>
-                <h3>Asma</h3>
-                <span class="cond-card__tag">Guías GINA</span>
-            </article>
-            <article class="cond-card">
-                <div class="cond-card__icon"><i class="bi bi-lungs-fill"></i></div>
-                <h3>EPOC</h3>
-                <span class="cond-card__tag cond-card__tag--featured">Alta Especialidad</span>
-            </article>
-            <article class="cond-card">
-                <div class="cond-card__icon"><i class="bi bi-moon-stars-fill"></i></div>
-                <h3>Apnea del sueño</h3>
-                <span class="cond-card__tag">Sueño · CPAP</span>
-            </article>
-            <article class="cond-card">
-                <div class="cond-card__icon"><i class="bi bi-slash-circle"></i></div>
-                <h3>Tabaquismo</h3>
-                <span class="cond-card__tag">Dejar de fumar</span>
-            </article>
+
+        <!-- Estudios: carrusel orbital (motor d6, N=4). Tarjetas grandes y
+             legibles, una al frente y las demas asomadas; sustituye la reja
+             2x2 de texto diminuto que el Dr. rechazo. -->
+        <div class="mod-stage" id="estStage">
+            <div class="mod-carousel" id="estCarousel" data-orb-track>
+                <article class="mod-card mod-card--promo">
+                    <div class="mod-card__head">
+                        <span class="mod-card__ic"><i class="bi bi-wind"></i></span>
+                        <div>
+                            <div class="mod-card__kicker">Estudio 1 &middot; 25 minutos</div>
+                            <h3 class="mod-card__title">Espirometr&iacute;a simple</h3>
+                        </div>
+                    </div>
+                    <ul class="mod-card__list">
+                        <li><i class="bi bi-check-circle-fill"></i><span>Mide cu&aacute;nto aire mueves.</span></li>
+                        <li><i class="bi bi-check-circle-fill"></i><span>Confirma <strong>asma y EPOC</strong>.</span></li>
+                        <li><i class="bi bi-check-circle-fill"></i><span><strong>Incluida</strong> si aplica a tu caso.</span></li>
+                    </ul>
+                    <a href="/servicios/espirometria/" class="mod-card__cta" style="background:var(--navy)" data-cta="est-espirometria"><i class="bi bi-arrow-right"></i> C&oacute;mo se hace</a>
+                </article>
+                <article class="mod-card">
+                    <div class="mod-card__head">
+                        <span class="mod-card__ic"><i class="bi bi-lungs"></i></span>
+                        <div>
+                            <div class="mod-card__kicker">Estudio 2 &middot; 45 minutos</div>
+                            <h3 class="mod-card__title">Espirometr&iacute;a con broncodilatador</h3>
+                        </div>
+                    </div>
+                    <ul class="mod-card__list">
+                        <li><i class="bi bi-check-circle-fill"></i><span>Se repite con broncodilatador.</span></li>
+                        <li><i class="bi bi-check-circle-fill"></i><span>Dice si tu obstrucci&oacute;n <strong>cede</strong>.</span></li>
+                        <li><i class="bi bi-check-circle-fill"></i><span>Tiene <strong>costo adicional</strong>.</span></li>
+                    </ul>
+                    <a href="/servicios/espirometria/" class="mod-card__cta" style="background:var(--navy)" data-cta="est-broncodilatador"><i class="bi bi-arrow-right"></i> C&oacute;mo se hace</a>
+                </article>
+                <article class="mod-card">
+                    <div class="mod-card__head">
+                        <span class="mod-card__ic"><i class="bi bi-activity"></i></span>
+                        <div>
+                            <div class="mod-card__kicker">Estudio 3 &middot; En la misma cita</div>
+                            <h3 class="mod-card__title">FeNO, &oacute;xido n&iacute;trico exhalado</h3>
+                        </div>
+                    </div>
+                    <ul class="mod-card__list">
+                        <li><i class="bi bi-check-circle-fill"></i><span>Soplas unos segundos, no duele.</span></li>
+                        <li><i class="bi bi-check-circle-fill"></i><span>Mide la <strong>inflamaci&oacute;n</strong> bronquial.</span></li>
+                        <li><i class="bi bi-check-circle-fill"></i><span>Afina el inhalador en asma.</span></li>
+                    </ul>
+                    <a href="/servicios/feno/" class="mod-card__cta" style="background:var(--navy)" data-cta="est-feno"><i class="bi bi-arrow-right"></i> C&oacute;mo se hace</a>
+                </article>
+                <article class="mod-card">
+                    <div class="mod-card__head">
+                        <span class="mod-card__ic"><i class="bi bi-moon-stars"></i></span>
+                        <div>
+                            <div class="mod-card__kicker">Estudio 4 &middot; Una noche en tu casa</div>
+                            <h3 class="mod-card__title">Poligraf&iacute;a respiratoria</h3>
+                        </div>
+                    </div>
+                    <ul class="mod-card__list">
+                        <li><i class="bi bi-check-circle-fill"></i><span>Mide tu respiraci&oacute;n al dormir.</span></li>
+                        <li><i class="bi bi-check-circle-fill"></i><span><strong>Duermes en tu propia cama.</strong></span></li>
+                        <li><i class="bi bi-check-circle-fill"></i><span>El Dr. Lara lee el trazo.</span></li>
+                    </ul>
+                    <a href="/servicios/poligrafia-respiratoria/" class="mod-card__cta" style="background:var(--navy)" data-cta="est-poligrafia"><i class="bi bi-arrow-right"></i> C&oacute;mo se hace</a>
+                </article>
+            </div>
         </div>
-        <div style="text-align:center;margin-top:36px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:center">
-            <a href="/enfermedades/" class="btn-cal" style="background:var(--navy);color:#fff;min-width:0;padding:14px 28px;font-size:.98rem;box-shadow:0 8px 22px -10px rgba(9,44,84,.35)" data-cta="cond-all">
-                <i class="bi bi-grid-3x3-gap-fill"></i> Ver todas las enfermedades
-            </a>
-            <a href="https://wa.me/522224926718?text=Hola%20Dr.%20Lara,%20vengo%20de%20la%20promoci%C3%B3n%20de%20consulta%20de%20neumolog%C3%ADa%20a%20$1,300%20y%20tengo%20una%20pregunta%20sobre%20mi%20padecimiento%20respiratorio.%20Me%20gustar%C3%ADa%20saber%20si%20es%20algo%20que%20usted%20atiende%20y%20si%20conviene%20agendar%20una%20consulta."  target="_blank" rel="noopener noreferrer" class="btn-ask-wa" data-cta="cond-ask">
-                <i class="bi bi-whatsapp"></i> Preguntar por otra enfermedad
-            </a>
+        <div class="mod-nav mod-nav--ico" id="estNav" role="tablist" aria-label="Estudio">
+            <button type="button" class="mod-dot" data-orb-dot aria-selected="true" aria-label="Espirometr&iacute;a simple"><i class="bi bi-wind" aria-hidden="true"></i></button>
+            <button type="button" class="mod-dot" data-orb-dot aria-selected="false" aria-label="Espirometr&iacute;a con broncodilatador"><i class="bi bi-lungs" aria-hidden="true"></i></button>
+            <button type="button" class="mod-dot" data-orb-dot aria-selected="false" aria-label="FeNO, &oacute;xido n&iacute;trico exhalado"><i class="bi bi-activity" aria-hidden="true"></i></button>
+            <button type="button" class="mod-dot" data-orb-dot aria-selected="false" aria-label="Poligraf&iacute;a respiratoria"><i class="bi bi-moon-stars" aria-hidden="true"></i></button>
+        </div>
+        <p class="mod-hint" id="estHint" aria-live="polite">Desliza las tarjetas o usa los botones.</p>
+
+        <!-- Enfermedades agrupadas en 3 paneles: se escanean por categoria y
+             los 15 enlaces siguen en el DOM (los paneles se ocultan por CSS). -->
+        <div class="enf">
+            <div class="enf__tabs" role="tablist" aria-label="Grupos de enfermedades">
+                <button type="button" class="enf__tab" role="tab" id="enf-t1" aria-controls="enf-p1" aria-selected="true">V&iacute;as a&eacute;reas <span class="n">5</span></button>
+                <button type="button" class="enf__tab" role="tab" id="enf-t2" aria-controls="enf-p2" aria-selected="false" tabindex="-1">Sue&ntilde;o y ox&iacute;geno <span class="n">5</span></button>
+                <button type="button" class="enf__tab" role="tab" id="enf-t3" aria-controls="enf-p3" aria-selected="false" tabindex="-1">Infecci&oacute;n y pleura <span class="n">5</span></button>
+            </div>
+            <ul class="enf__panel is-open" id="enf-p1" role="tabpanel" aria-labelledby="enf-t1">
+                <li><a class="enf-link" href="/enfermedades/asma/">Asma <i class="bi bi-arrow-right" aria-hidden="true"></i></a></li>
+                <li><a class="enf-link" href="/enfermedades/epoc/">EPOC <i class="bi bi-arrow-right" aria-hidden="true"></i></a></li>
+                <li><a class="enf-link" href="/enfermedades/bronquiectasias/">Bronquiectasias <i class="bi bi-arrow-right" aria-hidden="true"></i></a></li>
+                <li><a class="enf-link" href="/enfermedades/tabaquismo/">Tabaquismo <i class="bi bi-arrow-right" aria-hidden="true"></i></a></li>
+                <li><a class="enf-link" href="/enfermedades/secuelas-covid/">Secuelas de COVID <i class="bi bi-arrow-right" aria-hidden="true"></i></a></li>
+                <li><a class="enf-link enf-link--hub" href="/enfermedades/" data-cta="cond-all">Ver las 15 <i class="bi bi-arrow-right" aria-hidden="true"></i></a></li>
+            </ul>
+            <ul class="enf__panel" id="enf-p2" role="tabpanel" aria-labelledby="enf-t2">
+                <li><a class="enf-link" href="/enfermedades/apnea-del-sueno/">Apnea del sue&ntilde;o <i class="bi bi-arrow-right" aria-hidden="true"></i></a></li>
+                <li><a class="enf-link" href="/enfermedades/hipoventilacion-obesidad/">Hipoventilaci&oacute;n por obesidad <i class="bi bi-arrow-right" aria-hidden="true"></i></a></li>
+                <li><a class="enf-link" href="/enfermedades/fibrosis-pulmonar/">Fibrosis pulmonar <i class="bi bi-arrow-right" aria-hidden="true"></i></a></li>
+                <li><a class="enf-link" href="/enfermedades/hipertension-pulmonar/">Hipertensi&oacute;n pulmonar <i class="bi bi-arrow-right" aria-hidden="true"></i></a></li>
+                <li><a class="enf-link" href="/enfermedades/embolia-pulmonar/">Embolia pulmonar <i class="bi bi-arrow-right" aria-hidden="true"></i></a></li>
+                <li><a class="enf-link enf-link--hub" href="/enfermedades/" data-cta="cond-all">Ver las 15 <i class="bi bi-arrow-right" aria-hidden="true"></i></a></li>
+            </ul>
+            <ul class="enf__panel" id="enf-p3" role="tabpanel" aria-labelledby="enf-t3">
+                <li><a class="enf-link" href="/enfermedades/neumonia/">Neumon&iacute;a <i class="bi bi-arrow-right" aria-hidden="true"></i></a></li>
+                <li><a class="enf-link" href="/enfermedades/influenza/">Influenza <i class="bi bi-arrow-right" aria-hidden="true"></i></a></li>
+                <li><a class="enf-link" href="/enfermedades/derrames-pleurales/">Derrame pleural <i class="bi bi-arrow-right" aria-hidden="true"></i></a></li>
+                <li><a class="enf-link" href="/enfermedades/neumotorax/">Neumot&oacute;rax <i class="bi bi-arrow-right" aria-hidden="true"></i></a></li>
+                <li><a class="enf-link" href="/enfermedades/cancer-de-pulmon/">C&aacute;ncer de pulm&oacute;n <i class="bi bi-arrow-right" aria-hidden="true"></i></a></li>
+                <li><a class="enf-link enf-link--hub" href="/enfermedades/" data-cta="cond-all">Ver las 15 <i class="bi bi-arrow-right" aria-hidden="true"></i></a></li>
+            </ul>
+            <div class="enf__foot">
+                <a href="https://wa.me/522224926718?text=Hola%20Dr.%20Lara,%20vengo%20de%20la%20promoci%C3%B3n%20de%20consulta%20de%20neumolog%C3%ADa%20a%20$1,300%20y%20tengo%20una%20pregunta%20sobre%20mi%20padecimiento%20respiratorio.%20Me%20gustar%C3%ADa%20saber%20si%20es%20algo%20que%20usted%20atiende%20y%20si%20conviene%20agendar%20una%20consulta." target="_blank" rel="noopener noreferrer" class="btn-ask-wa btn-ask-wa--sm" data-cta="cond-ask">
+                    <i class="bi bi-whatsapp"></i> Preguntar por la m&iacute;a
+                </a>
+            </div>
         </div>
     </div>
 </section>
@@ -839,17 +1215,24 @@
     </div>
 </section>
 
-<!-- ============ CTA FINAL CON LUCECITAS ============ -->
-<section class="block" style="padding-bottom:60px">
-    <div class="container">
-        <div class="cta-inline cta-inline--lights">
-            <div class="sparkle-field" aria-hidden="true"></div>
-            <h2>Agenda tu consulta de neumología hoy</h2>
-            <p>Atención por WhatsApp en horario hábil. Te confirmamos disponibilidad y resolvemos cualquier duda antes de tu cita.</p>
-            <div class="cta-inline__btns">
-                <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20consulta%20de%20neumolog%C3%ADa%20a%20%241%2C300%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="final-wa"><i class="bi bi-whatsapp"></i> Asegurar mi cita a $1,300</a>
-                <a href="#agendaModal" class="btn-cal" data-cta="final-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar en línea</a>
-            </div>
+<!-- ============ CTA FINAL (banda portada del home: aura, anillos, chispas y línea de brillo) ============ -->
+<section class="cta-band" id="ctaFinal" aria-labelledby="cta-final-title">
+    <div class="cta-band__aura" aria-hidden="true"></div>
+    <div class="cta-band__rings" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="cta-band__spot" aria-hidden="true"></div>
+    <div class="cta-band__glow-line" aria-hidden="true"></div>
+    <div class="cta-band__canvas sparkle-field" id="ctaSparkles" aria-hidden="true"></div>
+    <div class="container cta-band-content">
+        <p class="cta-band__kicker">No esperes a que empeore</p>
+        <h2 class="cta-band__title" id="cta-final-title">Tu <em>respiración</em> no debería<br>ser una limitación</h2>
+        <p class="cta-band__lead">Agenda hoy y apartas la consulta de primera vez a $1,300 en vez de $1,800. Te confirmamos disponibilidad por WhatsApp y resolvemos tus dudas antes de la cita.</p>
+        <div class="cta-band__actions">
+            <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20consulta%20de%20neumolog%C3%ADa%20a%20%241%2C300%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" class="cta-band__btn cta-band__btn--wa" data-cta="final-wa">
+                <i class="bi bi-whatsapp" aria-hidden="true"></i> Asegurar mi cita a $1,300
+            </a>
+            <a href="#agendaModal" class="cta-band__btn cta-band__btn--ghost" data-cta="final-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                <i class="bi bi-calendar-check" aria-hidden="true"></i> Agendar en línea
+            </a>
         </div>
     </div>
 </section>
@@ -897,7 +1280,7 @@
 <script>
 /* Lucecitas (sparkle-field) en los CTA, mismo efecto y codigo que el home; tras load para no pagar su DOM antes del primer paint */
 window.addEventListener('load', function(){
-  var fields = document.querySelectorAll('.cta-inline .sparkle-field');
+  var fields = document.querySelectorAll('.sparkle-field');
   fields.forEach(function(field){
     var n = window.innerWidth <= 768 ? 22 : 44;
     var frag = document.createDocumentFragment();
@@ -911,6 +1294,18 @@ window.addEventListener('load', function(){
     field.appendChild(frag);
   });
 });
+/* CTA final: spotlight que sigue el cursor dentro de la banda (portado del
+   home). Solo en dispositivos con puntero fino; escribe dos variables CSS,
+   sin rAF ni layout. */
+(function(){
+  var band = document.getElementById('ctaFinal');
+  if (!band || !window.matchMedia || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  band.addEventListener('pointermove', function(e){
+    var r = band.getBoundingClientRect();
+    band.style.setProperty('--cta-mx', (e.clientX - r.left) + 'px');
+    band.style.setProperty('--cta-my', (e.clientY - r.top) + 'px');
+  }, { passive: true });
+})();
 </script>
 <script>
 /* Marquee de reseñas (columnas que se desplazan), mismo código que el home.
@@ -1014,141 +1409,205 @@ document.addEventListener('click',function(e){
 </script>
 
 <script>
-/* Carrusel orbital de modalidades (patron d6, N=3). Un angulo continuo
-   gobierna la orbita; los asientos van a 120 grados. Scrub con el dedo,
-   resorte al soltar, avance siempre en el mismo sentido. Sin JS: apiladas. */
+/* ══════════════════════════════════════════════════════════════════════════
+   MOTOR ORBITAL (patron d6), un solo IIFE para los tres carruseles de la
+   pagina: modalidades (N=3), estudios (N=4) y momentos de la consulta (N=4).
+   Un angulo continuo gobierna la orbita y los asientos van a 360/N grados.
+   Scrub con el dedo, resorte al soltar, avance siempre en el mismo sentido.
+   Solo transform y opacity. Sin JS las tarjetas quedan apiladas y legibles.
+   Va AL FINAL del body a proposito: arriba correria antes de que exista el
+   DOM del carrusel y moriria en silencio (gotcha documentado en d6).
+   ══════════════════════════════════════════════════════════════════════════ */
 (function(){
-    var stage=document.getElementById('modStage');
-    var nav=document.getElementById('modNav');
-    if(!stage||!nav) return;
-    var carrusel=document.getElementById('modCarousel');
-    var cartas=Array.prototype.slice.call(stage.querySelectorAll('.mod-card'));
-    var N=cartas.length, PASO=360/N;
-    if(!carrusel||N<2) return;
-    var dots=Array.prototype.slice.call(nav.querySelectorAll('.mod-dot'));
-    var hint=document.getElementById('modHint');
-    var nombres=['Consultorio','A domicilio','Teleconsulta'];
-    var quieto=window.matchMedia('(prefers-reduced-motion:reduce)');
+    /* Perfiles de geometria calibrados por N (movil / escritorio) */
+    var GEOS = {
+        n3: function(w, movil){ return {
+            arcoX: movil ? Math.min(w*0.34,190) : Math.min(w*0.46,300),
+            fondo: movil ? 150 : 230,
+            asomo: movil ? Math.min(w*0.07,26) : 110,
+            tilt:  movil ? 26 : 34,
+            escMin: movil ? 0.90 : 0.88,
+            opMin: 0.45 }; },
+        n4: function(w, movil){ return {
+            arcoX: Math.min(w*0.42,280),
+            fondo: movil ? 140 : 205,
+            asomo: movil ? Math.min(w*0.06,22) : 40,
+            tilt:  movil ? 20 : 28,
+            escMin: movil ? 0.87 : 0.85,
+            opMin: 0.24 }; }
+    };
 
-    stage.classList.add('is-live');
+    function orbital(cfg){
+        var stage = document.getElementById(cfg.stage);
+        var nav   = document.getElementById(cfg.nav);
+        if(!stage || !nav) return;
+        var carrusel = stage.querySelector('[data-orb-track]');
+        if(!carrusel) return;
+        var cartas = Array.prototype.slice.call(carrusel.children);
+        var N = cartas.length, PASO = 360/N;
+        if(N < 2) return;
+        var dots = Array.prototype.slice.call(nav.querySelectorAll('[data-orb-dot]'));
+        var hint = cfg.hint ? document.getElementById(cfg.hint) : null;
+        var geo  = GEOS[cfg.geo];
+        var quieto = window.matchMedia('(prefers-reduced-motion:reduce)');
 
-    var frente=0, ang=0, meta=0, raf=null, G={};
+        stage.classList.add('is-live');
 
-    function mide(){
-        var w=carrusel.clientWidth||stage.clientWidth||320;
-        var movil=window.matchMedia('(max-width:767.98px)').matches;
-        G={arcoX:Math.min(w*0.46,300),
-           fondo:movil?150:230,
-           asomo:movil?Math.min(w*0.12,44):110,
-           tilt:movil?26:34,
-           escMin:movil?0.9:0.88,
-           opMin:0.45};
-    }
-    function altura(){
-        carrusel.style.height='auto';
-        var alto=0;
-        cartas.forEach(function(c){ alto=Math.max(alto,c.offsetHeight); });
-        if(alto) carrusel.style.height=alto+'px';
-    }
-    mide(); altura();
-    if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){ altura(); pinta(); });
-    var ta;
-    window.addEventListener('resize',function(){ clearTimeout(ta); ta=setTimeout(function(){ mide(); altura(); pinta(); },180); },{passive:true});
+        var frente = 0, ang = 0, meta = 0, raf = null, G = {};
 
-    function proyecta(c,th){
-        var r=th*Math.PI/180;
-        var t=(1-Math.cos(r))/2;
-        var x=Math.sin(r)*G.arcoX + t*G.asomo;
-        var z=-t*G.fondo;
-        var rot=Math.sin(r)*10 - t*G.tilt;
-        var esc=1-(1-G.escMin)*t;
-        c.style.transform='translate3d('+x.toFixed(1)+'px,0,'+z.toFixed(1)+'px) rotateY('+rot.toFixed(2)+'deg) scale('+esc.toFixed(3)+')';
-        c.style.opacity=(1-(1-G.opMin)*t).toFixed(3);
-        c.style.zIndex=String(100-Math.round(t*50));
-    }
-    function quienFrente(a){ return ((Math.round(-a/PASO)%N)+N)%N; }
-    function pinta(){
-        cartas.forEach(function(c,k){ proyecta(c,ang+k*PASO); });
-        frente=quienFrente(ang);
+        function mide(){
+            var w = carrusel.clientWidth || stage.clientWidth || 320;
+            G = geo(w, window.matchMedia('(max-width:767.98px)').matches);
+        }
+        function altura(){
+            carrusel.style.height = 'auto';
+            var alto = 0;
+            cartas.forEach(function(c){ alto = Math.max(alto, c.offsetHeight); });
+            if(alto) carrusel.style.height = alto + 'px';
+        }
+        mide(); altura();
+        if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ altura(); pinta(); });
+        var ta;
+        window.addEventListener('resize', function(){ clearTimeout(ta); ta = setTimeout(function(){ mide(); altura(); pinta(); }, 180); }, {passive:true});
+
+        function proyecta(c, th){
+            var r = th*Math.PI/180;
+            var t = (1-Math.cos(r))/2;
+            var x = Math.sin(r)*G.arcoX + t*G.asomo;
+            var z = -t*G.fondo;
+            var rot = Math.sin(r)*10 - t*G.tilt;
+            var esc = 1-(1-G.escMin)*t;
+            c.style.transform = 'translate3d('+x.toFixed(1)+'px,0,'+z.toFixed(1)+'px) rotateY('+rot.toFixed(2)+'deg) scale('+esc.toFixed(3)+')';
+            c.style.opacity = (1-(1-G.opMin)*t).toFixed(3);
+            c.style.zIndex = String(100-Math.round(t*50));
+        }
+        function quienFrente(a){ return ((Math.round(-a/PASO)%N)+N)%N; }
+        function pinta(){
+            cartas.forEach(function(c,k){ proyecta(c, ang + k*PASO); });
+            frente = quienFrente(ang);
+            cartas.forEach(function(c,k){
+                c.classList.toggle('is-front', k===frente);
+                c.classList.toggle('is-back',  k!==frente);
+            });
+            dots.forEach(function(d,k){ d.setAttribute('aria-selected', String(k===frente)); });
+        }
+        function anima(){
+            raf = null;
+            var d = meta - ang;
+            if(Math.abs(d) < 0.05){ ang = meta; pinta(); return; }
+            ang += d*0.075;
+            pinta();
+            raf = requestAnimationFrame(anima);
+        }
+        function veA(m){
+            meta = m;
+            if(quieto.matches){ ang = meta; pinta(); return; }
+            if(!raf) raf = requestAnimationFrame(anima);
+        }
+        function avisa(k){
+            if(!hint) return;
+            hint.textContent = cfg.nombres
+                ? cfg.nombres[k] + ' al frente. Desliza para ver las otras.'
+                : 'Momento ' + (k+1) + ' de ' + N + '. Desliza para seguir.';
+        }
+        function alFrente(k){
+            if(k === frente) return;
+            var delta = ((k-frente)%N+N)%N;   /* siempre avanza en el mismo sentido */
+            veA(meta - PASO*delta);
+            avisa(k);
+        }
+        dots.forEach(function(d,k){ d.addEventListener('click', function(){ alFrente(k); }); });
         cartas.forEach(function(c,k){
-            c.classList.toggle('is-front',k===frente);
-            c.classList.toggle('is-back',k!==frente);
+            c.addEventListener('click', function(e){
+                if(c.classList.contains('is-back') && !e.target.closest('a,button')) alFrente(k);
+            });
         });
-        dots.forEach(function(d,k){ d.setAttribute('aria-selected',String(k===frente)); });
-    }
-    function anima(){
-        raf=null;
-        var d=meta-ang;
-        if(Math.abs(d)<0.05){ ang=meta; pinta(); return; }
-        ang+=d*0.075;
+
+        var x0=null, y0=null, base=0, gesto=0, vx=0, xPrev=0, tPrev=0;
+        stage.addEventListener('pointerdown', function(e){
+            if(e.target.closest('a,button')) return;
+            x0 = xPrev = e.clientX; y0 = e.clientY; tPrev = e.timeStamp; vx = 0; gesto = 0; base = ang;
+            if(raf){ cancelAnimationFrame(raf); raf = null; }
+        }, {passive:true});
+        window.addEventListener('pointermove', function(e){
+            if(x0 === null) return;
+            var dx = e.clientX-x0, dy = e.clientY-y0;
+            if(gesto === 0){
+                if(Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy)*1.2) gesto = 1;
+                else if(Math.abs(dy) > 10) gesto = -1;
+            }
+            if(gesto !== 1) return;
+            stage.classList.add('is-drag');
+            var dt = e.timeStamp - tPrev;
+            if(dt > 0){ vx = (e.clientX-xPrev)/dt; xPrev = e.clientX; tPrev = e.timeStamp; }
+            if(quieto.matches) return;
+            ang = base + dx/(stage.clientWidth||320)*(PASO*0.9);
+            pinta();
+        }, {passive:true});
+        function suelta(){
+            if(x0 === null) return;
+            var fue = gesto === 1;
+            x0 = null; gesto = 0; stage.classList.remove('is-drag');
+            if(!fue){ veA(meta); return; }
+            var cerca = Math.round(ang/PASO)*PASO;
+            if(cerca === Math.round(base/PASO)*PASO){
+                if(vx < -0.35 || ang-base < -PASO*0.22) cerca -= PASO;
+                else if(vx > 0.35 || ang-base > PASO*0.22) cerca += PASO;
+            }
+            veA(cerca);
+            var f = quienFrente(cerca);
+            if(f !== frente) avisa(f);
+        }
+        window.addEventListener('pointerup', suelta, {passive:true});
+        window.addEventListener('pointercancel', suelta, {passive:true});
+
+        stage.setAttribute('tabindex','0');
+        stage.setAttribute('role','group');
+        stage.setAttribute('aria-label', cfg.aria || 'Carrusel de tarjetas, usa las flechas');
+        stage.addEventListener('keydown', function(e){
+            if(e.key === 'ArrowRight'){ e.preventDefault(); alFrente((frente+1)%N); }
+            if(e.key === 'ArrowLeft'){  e.preventDefault(); alFrente((frente+N-1)%N); }
+        });
+
         pinta();
-        raf=requestAnimationFrame(anima);
     }
-    function veA(m){
-        meta=m;
-        if(quieto.matches){ ang=meta; pinta(); return; }
-        if(!raf) raf=requestAnimationFrame(anima);
+
+    orbital({ stage:'modStage', nav:'modNav', hint:'modHint', geo:'n3',
+              aria:'Modalidades de consulta, usa las flechas',
+              nombres:['Consultorio','A domicilio','Teleconsulta'] });
+    orbital({ stage:'estStage', nav:'estNav', hint:'estHint', geo:'n4',
+              aria:'Estudios que se realizan en el consultorio, usa las flechas',
+              nombres:['Espirometr\u00eda simple','Espirometr\u00eda con broncodilatador','FeNO','Poligraf\u00eda respiratoria'] });
+    orbital({ stage:'pasoStage', nav:'pasoNav', hint:'pasoHint', geo:'n4',
+              aria:'Momentos de tu primera consulta, usa las flechas',
+              nombres:null });
+})();
+
+/* ── Enfermedades por grupo: tabs con paneles. Los tres paneles viven en el
+      DOM y solo se alternan por clase, asi los 15 enlaces internos siguen
+      siendo rastreables. Teclado con flechas segun el patron WAI-ARIA. ── */
+(function(){
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.enf__tab'));
+    if(!tabs.length) return;
+    function muestra(i){
+        tabs.forEach(function(t,k){
+            var sel = k === i;
+            t.setAttribute('aria-selected', String(sel));
+            t.tabIndex = sel ? 0 : -1;
+            var panel = document.getElementById(t.getAttribute('aria-controls'));
+            if(panel) panel.classList.toggle('is-open', sel);
+        });
     }
-    function alFrente(k){
-        if(k===frente) return;
-        var pasos=((k-frente)%N+N)%N;   // siempre avanza en el mismo sentido
-        veA(meta-PASO*pasos);
-        if(hint) hint.textContent=nombres[k]+' al frente. Desliza para ver las otras.';
-    }
-    dots.forEach(function(d,k){ d.addEventListener('click',function(){ alFrente(k); }); });
-    cartas.forEach(function(c,k){
-        c.addEventListener('click',function(e){
-            if(c.classList.contains('is-back') && !e.target.closest('a,button')){ alFrente(k); }
+    tabs.forEach(function(t,i){
+        t.addEventListener('click', function(){ muestra(i); });
+        t.addEventListener('keydown', function(e){
+            var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+            if(!d) return;
+            e.preventDefault();
+            var n = (i+d+tabs.length)%tabs.length;
+            muestra(n); tabs[n].focus();
         });
     });
-
-    var x0=null,y0=null,base=0,gesto=0,vx=0,xPrev=0,tPrev=0;
-    stage.addEventListener('pointerdown',function(e){
-        if(e.target.closest('a,button')) return;
-        x0=xPrev=e.clientX; y0=e.clientY; tPrev=e.timeStamp; vx=0; gesto=0; base=ang;
-        if(raf){ cancelAnimationFrame(raf); raf=null; }
-    },{passive:true});
-    window.addEventListener('pointermove',function(e){
-        if(x0===null) return;
-        var dx=e.clientX-x0, dy=e.clientY-y0;
-        if(gesto===0){
-            if(Math.abs(dx)>8&&Math.abs(dx)>Math.abs(dy)*1.2) gesto=1;
-            else if(Math.abs(dy)>10) gesto=-1;
-        }
-        if(gesto!==1) return;
-        stage.classList.add('is-drag');
-        var dt=e.timeStamp-tPrev;
-        if(dt>0){ vx=(e.clientX-xPrev)/dt; xPrev=e.clientX; tPrev=e.timeStamp; }
-        if(quieto.matches) return;
-        ang=base+dx/(stage.clientWidth||320)*(PASO*0.9);
-        pinta();
-    },{passive:true});
-    function suelta(){
-        if(x0===null) return;
-        var fue=gesto===1;
-        x0=null; gesto=0; stage.classList.remove('is-drag');
-        if(!fue){ veA(meta); return; }
-        var cerca=Math.round(ang/PASO)*PASO;
-        if(cerca===Math.round(base/PASO)*PASO){
-            if(vx<-0.35||ang-base<-40) cerca-=PASO;
-            else if(vx>0.35||ang-base>40) cerca+=PASO;
-        }
-        veA(cerca);
-        var f=quienFrente(cerca);
-        if(hint&&f!==frente) hint.textContent=nombres[f]+' al frente. Desliza para ver las otras.';
-    }
-    window.addEventListener('pointerup',suelta,{passive:true});
-    window.addEventListener('pointercancel',suelta,{passive:true});
-
-    stage.setAttribute('tabindex','0');
-    stage.setAttribute('role','group');
-    stage.setAttribute('aria-label','Modalidades de consulta, usa las flechas');
-    stage.addEventListener('keydown',function(e){
-        if(e.key==='ArrowRight'){ e.preventDefault(); alFrente((frente+1)%N); }
-        if(e.key==='ArrowLeft'){ e.preventDefault(); alFrente((frente+N-1)%N); }
-    });
-
-    pinta();
 })();
 </script>
     <script src="/assets/agenda-modal.js" defer></script>
