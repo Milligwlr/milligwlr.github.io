@@ -840,6 +840,8 @@
             z-index: 1;
         }
 
+
+
         /* Content, split: copy izquierda, doctor derecha */
         .hero__content {
             position: relative; z-index: 2;
@@ -4120,7 +4122,96 @@
                 scroll-behavior: auto !important;
             }
         }
-    </style>
+    
+        /* ============================================================
+           HERO · CAPA PREMIUM
+           La idea: el hero de un neumologo debe RESPIRAR, y no de forma
+           decorativa. Toda la luz ambiente late a 12 respiraciones por
+           minuto (5 s por ciclo) con relacion inspiracion:espiracion de
+           1:2, que es la cadencia de un adulto en reposo. Nadie lo
+           adivina, todos lo sienten.
+           Solo transform, opacity y filter: cero reflow.
+           ============================================================ */
+        .hero {
+            --breath: 5s;              /* 12 rpm en reposo */
+            --mx: 50%;                 /* posicion suavizada del puntero */
+            --my: 40%;
+        }
+
+        /* 1. Aliento de la luz ambiente. El pico al 33% del ciclo deja la
+              inspiracion corta y la espiracion larga, como la de verdad. */
+        @keyframes hero-breath {
+            0%   { transform: translate(-50%, -50%) scale(1);     opacity: .82; }
+            33%  { transform: translate(-50%, -50%) scale(1.045); opacity: 1;   }
+            100% { transform: translate(-50%, -50%) scale(1);     opacity: .82; }
+        }
+        @keyframes hero-breath-orb {
+            0%   { transform: scale(1)     translateY(0);      opacity: .75; }
+            33%  { transform: scale(1.075) translateY(-1.2%);  opacity: 1;   }
+            100% { transform: scale(1)     translateY(0);      opacity: .75; }
+        }
+        .hero__aurora {
+            animation: hero-breath var(--breath) cubic-bezier(.37,0,.16,1) infinite,
+                       aurora-spin 46s linear infinite;
+        }
+        .hero__orb3 {
+            animation: hero-breath-orb var(--breath) cubic-bezier(.37,0,.16,1) infinite;
+        }
+
+        /* 2. Luz especular que sigue al puntero. Da volumen a lo que antes
+              era un degradado plano. Solo escritorio con raton fino. */
+        .hero__spec {
+            position: absolute; inset: 0; z-index: 2;
+            pointer-events: none;
+            opacity: 0;
+            background: radial-gradient(560px 420px at var(--mx) var(--my),
+                        rgba(116,185,255,.30), rgba(0,206,201,.10) 42%, transparent 68%);
+            transition: opacity .8s var(--ease, cubic-bezier(.16,1,.3,1));
+        }
+        @media (hover: hover) and (pointer: fine) {
+            .hero:hover .hero__spec, .hero__spec.is-awake { opacity: 1; }
+        }
+
+        /* 3. Grano fino. Rompe el plastico del degradado puro y da textura
+              de impresion. Estatico, una sola data URI, coste cero. */
+        .hero__grain {
+            position: absolute; inset: 0; z-index: 2;
+            pointer-events: none;
+            opacity: .038;
+            mix-blend-mode: multiply;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* 4. Profundidad al salir: las capas se despiden a distinta
+              velocidad, asi el hero se lee como atmosfera y no como lamina. */
+        .hero__bg    { will-change: transform; transform: translate3d(0, var(--pz1, 0px), 0); }
+        .hero__grid  { will-change: transform; transform: translate3d(0, var(--pz2, 0px), 0); }
+        .hero__sparkle-canvas { transform: translate3d(0, var(--pz3, 0px), 0); }
+
+        /* 5. Chispas con profundidad real: tres planos con tamano, brillo y
+              desenfoque propios. Antes eran 40 puntos identicos sobre vidrio. */
+        .hero .sparkle-field span { filter: blur(.2px); }
+        .hero .sparkle-field span.s-far {
+            filter: blur(1.4px); background: rgba(116,185,255,.5);
+        }
+        .hero .sparkle-field span.s-near {
+            background: rgba(255,255,255,.95);
+            box-shadow: 0 0 8px rgba(116,185,255,.9), 0 0 18px rgba(9,132,227,.45);
+        }
+
+        /* 6. Contraste: el subtitulo y las pildoras vivian en 4.56:1 sobre un
+              casi-blanco tenido, y el eyebrow en 3.71:1, que NO pasa AA para
+              texto de 11.5 px. Se bajan al extremo tinta de la rampa. */
+        .hero__sub { color: #475569; }
+        .hero__pill { color: #334155; }
+        .hero__eyebrow { color: #0b6fc0; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero__aurora, .hero__orb3 { animation: none; }
+            .hero__spec { display: none; }
+            .hero__bg, .hero__grid, .hero__sparkle-canvas { transform: none; }
+        }
+        </style>
     <link rel="stylesheet" href="/assets/base.css">
     <script src="/assets/base.js" defer></script>
 
@@ -4243,7 +4334,9 @@
             <div class="hero__bg"></div>
             <div class="hero__aurora"></div>
             <div class="hero__orb3"></div>
+            <div class="hero__spec" id="heroSpec" aria-hidden="true"></div>
             <div class="hero__sparkle-canvas sparkle-field" id="heroSparkles" aria-hidden="true"></div>
+            <div class="hero__grain" aria-hidden="true"></div>
             <div class="hero__grid"></div>
             <div class="hero__content">
                 <div class="hero__copy">
@@ -6469,5 +6562,74 @@
 })();
 </script>
 
+<script>
+/* ── Hero premium: luz que sigue al puntero, parallax de salida y
+      profundidad en las chispas. Todo transform/opacity, un solo rAF
+      compartido y apagado completo con reduced-motion. ── */
+(function(){
+    var hero=document.getElementById('hero');
+    if(!hero) return;
+    var quieto=window.matchMedia('(prefers-reduced-motion:reduce)');
+    if(quieto.matches) return;
+
+    /* 1. Chispas en tres planos: las lejanas mas chicas y difusas, las
+          cercanas con brillo propio. Antes eran 40 puntos identicos. */
+    var chispas=hero.querySelectorAll('.sparkle-field span');
+    chispas.forEach(function(sp,i){
+        var plano=i%3;
+        if(plano===0) sp.classList.add('s-far');
+        else if(plano===2) sp.classList.add('s-near');
+    });
+
+    /* 2. Luz especular con retardo. El puntero da un objetivo y la luz lo
+          persigue con inercia: sin lerp se siente pegada al cursor y barata. */
+    var spec=document.getElementById('heroSpec');
+    var fino=window.matchMedia('(hover:hover) and (pointer:fine)');
+    var mx=50, my=40, tx=50, ty=40, vivo=false, raf=null;
+
+    function cuadro(){
+        raf=null;
+        var dx=tx-mx, dy=ty-my;
+        var scroll=Math.min(window.scrollY, hero.offsetHeight);
+        /* parallax de salida: cada capa se despide a su ritmo */
+        hero.style.setProperty('--pz1', (scroll*0.16).toFixed(1)+'px');
+        hero.style.setProperty('--pz2', (scroll*0.30).toFixed(1)+'px');
+        hero.style.setProperty('--pz3', (scroll*0.44).toFixed(1)+'px');
+        if(Math.abs(dx)>0.05||Math.abs(dy)>0.05){
+            mx+=dx*0.07; my+=dy*0.07;
+            if(spec){
+                hero.style.setProperty('--mx', mx.toFixed(2)+'%');
+                hero.style.setProperty('--my', my.toFixed(2)+'%');
+            }
+            pide();
+        } else { vivo=false; }
+    }
+    function pide(){ if(!raf){ raf=requestAnimationFrame(cuadro); } vivo=true; }
+
+    if(fino.matches && spec){
+        hero.addEventListener('pointermove',function(e){
+            var r=hero.getBoundingClientRect();
+            tx=((e.clientX-r.left)/r.width)*100;
+            ty=((e.clientY-r.top)/r.height)*100;
+            spec.classList.add('is-awake');
+            pide();
+        },{passive:true});
+        hero.addEventListener('pointerleave',function(){
+            tx=50; ty=40; spec.classList.remove('is-awake'); pide();
+        },{passive:true});
+    }
+
+    /* 3. El parallax solo trabaja mientras el hero se ve */
+    var enPantalla=true;
+    if('IntersectionObserver' in window){
+        new IntersectionObserver(function(en){
+            enPantalla=en[0].isIntersecting;
+            if(enPantalla) pide();
+        },{threshold:0}).observe(hero);
+    }
+    window.addEventListener('scroll',function(){ if(enPantalla) pide(); },{passive:true});
+    pide();
+})();
+</script>
 </body>
 </html>

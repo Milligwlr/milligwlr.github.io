@@ -308,6 +308,31 @@
 .sb-back[disabled]{opacity:.3;cursor:default}
 .sb-step{font-size:.82rem;font-weight:700;color:var(--svc)}
 
+
+/* ============== STEPPER DE MOMENTOS (d6 con N=4, doctrina d8) ============== */
+.dpaso-deck__stage{position:relative;perspective:1200px;perspective-origin:50% 42%;padding:10px 0 22px;touch-action:pan-y}
+.dpaso-deck.is-live .dpaso-deck__stage{cursor:grab}
+.dpaso-deck.is-live.is-drag .dpaso-deck__stage{cursor:grabbing}
+.dpaso-deck.is-live.is-drag .dpaso-card{pointer-events:none}
+.dpaso-carousel{position:relative}
+.dpaso-card{position:relative;background:#fff;border:1px solid rgba(108,92,231,.14);border-radius:16px;padding:20px 18px}
+.dpaso-deck.is-live .dpaso-card{position:absolute;top:0;left:0;right:0;width:min(90%,520px);margin:0 auto;transform-origin:50% 58%;will-change:transform,opacity;transition:box-shadow .6s ease}
+.dpaso-deck.is-live .dpaso-card.is-front{box-shadow:0 1px 2px rgba(16,24,40,.06),0 18px 34px -16px rgba(16,24,40,.24),0 44px 76px -44px color-mix(in srgb,var(--svc) 45%,transparent)}
+.dpaso-deck.is-live .dpaso-card.is-back{cursor:pointer;box-shadow:0 12px 26px -18px rgba(16,24,40,.3)}
+.dpaso-deck:not(.is-live) .dpaso-card{margin-bottom:12px}
+.dpaso-card__n{position:absolute;top:14px;right:16px;font-size:1.9rem;font-weight:800;color:color-mix(in srgb,var(--svc) 16%,transparent);line-height:1}
+.dpaso-card__ic{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,var(--svc),var(--svc-dark));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:11px;box-shadow:0 8px 18px -8px color-mix(in srgb,var(--svc) 70%,transparent)}
+.dpaso-card__when{display:block;font-size:.72rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--svc);margin-bottom:4px}
+.dpaso-card h3{font-size:1.02rem;font-weight:800;color:var(--navy);margin:0 0 7px;letter-spacing:-.015em;line-height:1.25}
+.dpaso-card p{font-size:.88rem;line-height:1.55;color:var(--text-muted);margin:0}
+.dpaso-deck__nav{display:flex;gap:7px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:14px}
+.dpaso-dot{width:44px;height:44px;border-radius:50%;border:1.5px solid color-mix(in srgb,var(--svc) 25%,transparent);background:#fff;font-family:inherit;font-size:.9rem;font-weight:800;color:var(--text-muted);cursor:pointer;transition:background .25s,color .25s}
+.dpaso-dot[aria-selected="true"]{background:linear-gradient(135deg,var(--svc),var(--svc-dark));color:#fff;border-color:transparent;box-shadow:0 8px 18px -6px color-mix(in srgb,var(--svc) 55%,transparent)}
+.dpaso-dot:focus-visible,.dpaso-arrow:focus-visible{outline:2px solid var(--svc);outline-offset:3px}
+.dpaso-arrow{width:44px;height:44px;flex:0 0 44px;border-radius:50%;border:1px solid color-mix(in srgb,var(--svc) 20%,transparent);background:#fff;color:var(--svc);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(16,24,40,.08)}
+.dpaso-hint{text-align:center;font-size:.78rem;color:var(--text-muted);margin:9px 0 0}
+.dpaso-deck:not(.is-live) .dpaso-deck__nav,.dpaso-deck:not(.is-live) .dpaso-hint{display:none}
+@media(prefers-reduced-motion:reduce){.dpaso-deck.is-live .dpaso-card{transition:none}}
 /* ============== LOS DOS FUTUROS (apnea sin tratar vs atendida) ==============
    Antes eran dos bloques apilados: 6 chips de riesgo y luego 5 items de mejora,
    casi dos pantallas de scroll en el telefono. Ahora es UN set de tarjetas que
@@ -801,12 +826,52 @@
 <figcaption><i class="bi bi-activity" aria-hidden="true"></i><span><strong>Equipo tipo III a batería.</strong> Registra tu respiración toda la noche, en tu cama.</span></figcaption>
 </figure>
 
-<ol class="svc-deliver__list">
-<li><span class="svc-deliver__ic"><i class="bi bi-mortarboard-fill"></i><span class="svc-step__n" aria-hidden="true">1</span></span><div><span class="svc-step__when">En tu consulta</span><strong>Te enseño a colocártelo</strong><p>Te entrego el equipo y lo practicamos juntos: cánula nasal, banda torácica y oxímetro de dedo. Toma unos 10 minutos y te vas sabiendo colocártelo tú.</p></div></li>
-<li><span class="svc-deliver__ic"><i class="bi bi-moon-stars-fill"></i><span class="svc-step__n" aria-hidden="true">2</span></span><div><span class="svc-step__when">Esa noche, en tu casa</span><strong>Duermes tu noche normal</strong><p>En tu colchón, con tu rutina y con tu pareja al lado si es el caso. Puedes voltearte y levantarte al baño. Al día siguiente devuelves el equipo.</p></div></li>
-<li><span class="svc-deliver__ic"><i class="bi bi-person-badge-fill"></i><span class="svc-step__n" aria-hidden="true">3</span></span><div><span class="svc-step__when">Al día siguiente</span><strong>Lo leo yo, no un software</strong><p>Reviso el trazo completo de la noche: IAH, caídas de oxígeno, ronquido y posición. La severidad la define un neumólogo, no el número automático del aparato.</p></div></li>
-<li><span class="svc-deliver__ic"><i class="bi bi-clipboard2-check-fill"></i><span class="svc-step__n" aria-hidden="true">4</span></span><div><span class="svc-step__when">En tu consulta de resultados</span><strong>Te entrego el reporte y definimos el plan</strong><p>Agendamos una segunda cita, tu consulta de resultados. Ahí te entrego el reporte, te explico qué significa tu IAH y definimos juntos qué sigue, sea medidas posicionales, avance mandibular o CPAP. No te quedas con un PDF que nadie te explica.</p></div></li>
-</ol>
+<!-- Stepper orbital N=4 (patron d6 + doctrina d8): los cuatro momentos
+     en la huella de uno. Antes eran 1603 px, casi dos pantallas de
+     scroll en el telefono. Sin JS quedan apilados y legibles. -->
+<div class="dpaso-deck" id="dpasoDeck">
+<div class="dpaso-deck__stage" id="dpasoStage">
+<div class="dpaso-carousel" id="dpasoCarousel">
+<article class="dpaso-card">
+<span class="dpaso-card__n" aria-hidden="true">1</span>
+<span class="dpaso-card__ic" aria-hidden="true"><i class="bi bi-mortarboard-fill"></i></span>
+<span class="dpaso-card__when">En tu consulta</span>
+<h3>Te enseño a colocártelo</h3>
+<p>Te entrego el equipo y lo practicamos juntos: cánula nasal, banda torácica y oxímetro de dedo. Toma unos 10 minutos y te vas sabiendo colocártelo tú.</p>
+</article>
+<article class="dpaso-card">
+<span class="dpaso-card__n" aria-hidden="true">2</span>
+<span class="dpaso-card__ic" aria-hidden="true"><i class="bi bi-moon-stars-fill"></i></span>
+<span class="dpaso-card__when">Esa noche, en tu casa</span>
+<h3>Duermes tu noche normal</h3>
+<p>En tu colchón, con tu rutina y con tu pareja al lado si es el caso. Puedes voltearte y levantarte al baño. Al día siguiente devuelves el equipo.</p>
+</article>
+<article class="dpaso-card">
+<span class="dpaso-card__n" aria-hidden="true">3</span>
+<span class="dpaso-card__ic" aria-hidden="true"><i class="bi bi-person-badge-fill"></i></span>
+<span class="dpaso-card__when">Al día siguiente</span>
+<h3>Lo leo yo, no un software</h3>
+<p>Reviso el trazo completo de la noche: IAH, caídas de oxígeno, ronquido y posición. La severidad la define un neumólogo, no el número automático del aparato.</p>
+</article>
+<article class="dpaso-card">
+<span class="dpaso-card__n" aria-hidden="true">4</span>
+<span class="dpaso-card__ic" aria-hidden="true"><i class="bi bi-clipboard2-check-fill"></i></span>
+<span class="dpaso-card__when">En tu consulta de resultados</span>
+<h3>Te entrego el reporte y el plan</h3>
+<p>Ahí te explico qué significa tu IAH y definimos juntos qué sigue, sea medidas posicionales, avance mandibular o CPAP. No te quedas con un PDF que nadie te explica.</p>
+</article>
+</div>
+</div>
+<div class="dpaso-deck__nav" role="group" aria-label="Recorrer los cuatro momentos">
+<button type="button" class="dpaso-arrow" id="dpasoPrev" aria-label="Momento anterior"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
+<button type="button" class="dpaso-dot" aria-selected="true">1</button>
+<button type="button" class="dpaso-dot" aria-selected="false">2</button>
+<button type="button" class="dpaso-dot" aria-selected="false">3</button>
+<button type="button" class="dpaso-dot" aria-selected="false">4</button>
+<button type="button" class="dpaso-arrow" id="dpasoNext" aria-label="Momento siguiente"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+</div>
+<p class="dpaso-hint" id="dpasoHint">Desliza para ver los 4 momentos.</p>
+</div>
 </div>
 </div>
 
@@ -1428,6 +1493,106 @@
         if(bmi) bmi.textContent='';
         document.getElementById('stop-bang').scrollIntoView({behavior:'smooth',block:'start'});
     };
+
+    /* ── Stepper de momentos (motor d6, N=4) ── */
+    (function(){
+        var deck=document.getElementById('dpasoDeck');
+        if(!deck) return;
+        var stage=document.getElementById('dpasoStage');
+        var carrusel=document.getElementById('dpasoCarousel');
+        var cartas=Array.prototype.slice.call(carrusel.querySelectorAll('.dpaso-card'));
+        var N=cartas.length; if(N<2) return;
+        var PASO=360/N;
+        var dots=Array.prototype.slice.call(deck.querySelectorAll('.dpaso-dot'));
+        var hint=document.getElementById('dpasoHint');
+        var quieto=window.matchMedia('(prefers-reduced-motion:reduce)');
+        deck.classList.add('is-live');
+        var frente=0, ang=0, meta=0, raf=null, G={};
+        function mide(){
+            var w=carrusel.clientWidth||stage.clientWidth||320;
+            var movil=window.matchMedia('(max-width:767.98px)').matches;
+            G={arcoX:Math.min(w*0.42,280),fondo:movil?140:205,
+               asomo:movil?Math.min(w*0.06,22):40,tilt:movil?20:28,
+               escMin:movil?0.87:0.85,opMin:0.24};
+        }
+        function altura(){
+            carrusel.style.height='auto';
+            var alto=0; cartas.forEach(function(c){alto=Math.max(alto,c.offsetHeight);});
+            if(alto) carrusel.style.height=alto+'px';
+        }
+        mide(); altura();
+        if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){altura();pinta();});
+        var ta; window.addEventListener('resize',function(){clearTimeout(ta);ta=setTimeout(function(){mide();altura();pinta();},180);},{passive:true});
+        function proyecta(c,th){
+            var r=th*Math.PI/180, t=(1-Math.cos(r))/2;
+            var x=Math.sin(r)*G.arcoX+t*G.asomo, z=-t*G.fondo;
+            var rot=Math.sin(r)*10-t*G.tilt, esc=1-(1-G.escMin)*t;
+            c.style.transform='translate3d('+x.toFixed(1)+'px,0,'+z.toFixed(1)+'px) rotateY('+rot.toFixed(2)+'deg) scale('+esc.toFixed(3)+')';
+            c.style.opacity=(1-(1-G.opMin)*t).toFixed(3);
+            c.style.zIndex=String(100-Math.round(t*50));
+        }
+        function quienFrente(a){ return ((Math.round(-a/PASO)%N)+N)%N; }
+        function pinta(){
+            cartas.forEach(function(c,k){ proyecta(c,ang+k*PASO); });
+            frente=quienFrente(ang);
+            cartas.forEach(function(c,k){ c.classList.toggle('is-front',k===frente); c.classList.toggle('is-back',k!==frente); });
+            dots.forEach(function(d,k){ d.setAttribute('aria-selected',String(k===frente)); });
+        }
+        function anima(){
+            raf=null; var d=meta-ang;
+            if(Math.abs(d)<0.05){ ang=meta; pinta(); return; }
+            ang+=d*0.075; pinta(); raf=requestAnimationFrame(anima);
+        }
+        function veA(m){ meta=m; if(quieto.matches){ang=meta;pinta();return;} if(!raf) raf=requestAnimationFrame(anima); }
+        function alFrente(k){
+            if(k===frente) return;
+            var delta=((k-frente)%N+N)%N;
+            veA(meta-delta*PASO);
+            if(hint) hint.textContent='Momento '+(k+1)+' de '+N+'. Desliza para seguir.';
+        }
+        dots.forEach(function(d,k){ d.addEventListener('click',function(){ alFrente(k); }); });
+        var bn=document.getElementById('dpasoNext'), bp=document.getElementById('dpasoPrev');
+        if(bn) bn.addEventListener('click',function(){ alFrente((frente+1)%N); });
+        if(bp) bp.addEventListener('click',function(){ veA(meta+PASO); });
+        cartas.forEach(function(c,k){ c.addEventListener('click',function(e){
+            if(c.classList.contains('is-back')&&!e.target.closest('a,button')) alFrente(k); }); });
+        var x0=null,y0=null,base=0,gesto=0,vx=0,xPrev=0,tPrev=0;
+        stage.addEventListener('pointerdown',function(e){
+            if(e.target.closest('a,button')) return;
+            x0=xPrev=e.clientX; y0=e.clientY; tPrev=e.timeStamp; vx=0; gesto=0; base=ang;
+            if(raf){cancelAnimationFrame(raf);raf=null;}
+        },{passive:true});
+        window.addEventListener('pointermove',function(e){
+            if(x0===null) return;
+            var dx=e.clientX-x0, dy=e.clientY-y0;
+            if(gesto===0){ if(Math.abs(dx)>8&&Math.abs(dx)>Math.abs(dy)*1.2) gesto=1; else if(Math.abs(dy)>10) gesto=-1; }
+            if(gesto!==1) return;
+            deck.classList.add('is-drag');
+            var dt=e.timeStamp-tPrev; if(dt>0){ vx=(e.clientX-xPrev)/dt; xPrev=e.clientX; tPrev=e.timeStamp; }
+            if(quieto.matches) return;
+            ang=base+dx/(stage.clientWidth||320)*(PASO*0.9); pinta();
+        },{passive:true});
+        function suelta(){
+            if(x0===null) return;
+            var fue=gesto===1; x0=null; gesto=0; deck.classList.remove('is-drag');
+            if(!fue){ veA(meta); return; }
+            var cerca=Math.round(ang/PASO)*PASO;
+            if(cerca===Math.round(base/PASO)*PASO){
+                if(vx<-0.35||ang-base<-PASO*0.22) cerca-=PASO;
+                else if(vx>0.35||ang-base>PASO*0.22) cerca+=PASO;
+            }
+            veA(cerca);
+        }
+        window.addEventListener('pointerup',suelta,{passive:true});
+        window.addEventListener('pointercancel',suelta,{passive:true});
+        stage.setAttribute('tabindex','0'); stage.setAttribute('role','group');
+        stage.setAttribute('aria-label','Recorrer los cuatro momentos del estudio, usa las flechas');
+        stage.addEventListener('keydown',function(e){
+            if(e.key==='ArrowRight'){e.preventDefault();alFrente((frente+1)%N);}
+            if(e.key==='ArrowLeft'){e.preventDefault();veA(meta+PASO);}
+        });
+        pinta();
+    })();
 
     /* ── Los dos futuros ──
        Un interruptor cambia el estado de TODAS las tarjetas a la vez. Los dos

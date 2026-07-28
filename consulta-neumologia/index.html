@@ -186,6 +186,50 @@ body,.cn-page{font-family:'Plus Jakarta Sans',system-ui,sans-serif}
 /* CÓMO LLEGAR */
 .cn-howto{display:grid;grid-template-columns:1fr;gap:12px;margin-top:20px}
 @media(min-width:768px){.cn-howto{grid-template-columns:repeat(3,1fr);gap:16px}}
+
+/* ============================================================
+   HERO · CAPA PREMIUM (misma doctrina que el home)
+   El hero de un neumologo RESPIRA: toda la luz late a 12
+   respiraciones por minuto (5 s por ciclo) con relacion
+   inspiracion:espiracion de 1:2, la cadencia de un adulto en
+   reposo. Aqui el fondo es navy, asi que la luz se suma en vez
+   de restar. Solo transform y opacity.
+   ============================================================ */
+.disease-hero{--breath:5s;--mx:50%;--my:38%}
+@keyframes cn-breath{
+    0%{transform:translate(-50%,-50%) scale(1);opacity:.7}
+    33%{transform:translate(-50%,-50%) scale(1.06);opacity:1}
+    100%{transform:translate(-50%,-50%) scale(1);opacity:.7}
+}
+/* halo que respira detras del titulo */
+.cn-hero-halo{position:absolute;top:34%;left:38%;width:78vmax;height:78vmax;
+    transform:translate(-50%,-50%);pointer-events:none;z-index:0;
+    background:radial-gradient(circle,rgba(9,132,227,.28) 0%,rgba(0,206,201,.10) 38%,transparent 66%);
+    animation:cn-breath var(--breath) cubic-bezier(.37,0,.16,1) infinite}
+/* luz especular que sigue al puntero: da volumen al navy plano */
+.cn-hero-spec{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;
+    background:radial-gradient(520px 400px at var(--mx) var(--my),rgba(116,185,255,.22),rgba(0,206,201,.07) 44%,transparent 68%);
+    transition:opacity .8s cubic-bezier(.16,1,.3,1)}
+@media(hover:hover) and (pointer:fine){.cn-hero-spec.is-awake{opacity:1}}
+/* grano: rompe el plastico del degradado, textura de impresion */
+.cn-hero-grain{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* particulas suspendidas, tres planos de profundidad */
+.cn-hero-dust{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.cn-hero-dust i{position:absolute;border-radius:50%;background:rgba(116,185,255,.7);
+    animation:cn-float var(--d,22s) ease-in-out var(--dl,0s) infinite}
+.cn-hero-dust i.far{background:rgba(116,185,255,.35);filter:blur(1.5px)}
+.cn-hero-dust i.near{background:rgba(255,255,255,.9);box-shadow:0 0 8px rgba(116,185,255,.9)}
+@keyframes cn-float{
+    0%,100%{transform:translate3d(0,0,0);opacity:.25}
+    50%{transform:translate3d(var(--dx,10px),var(--dy,-16px),0);opacity:.9}
+}
+/* el contenido va por encima de todas las capas de luz */
+.disease-hero .container{position:relative;z-index:2}
+@media(prefers-reduced-motion:reduce){
+    .cn-hero-halo,.cn-hero-dust i{animation:none}
+    .cn-hero-spec{display:none}
+}
 </style>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
 <script type="application/ld+json">
@@ -355,7 +399,11 @@ body,.cn-page{font-family:'Plus Jakarta Sans',system-ui,sans-serif}
 <!-- HERO -->
 <section class="disease-hero">
 <div class="disease-hero__bg"></div>
+<div class="cn-hero-halo" aria-hidden="true"></div>
 <div class="cn-hero-grid" aria-hidden="true"></div>
+<div class="cn-hero-spec" id="cnHeroSpec" aria-hidden="true"></div>
+<div class="cn-hero-dust" id="cnHeroDust" aria-hidden="true"></div>
+<div class="cn-hero-grain" aria-hidden="true"></div>
 <div class="container position-relative">
 <nav class="disease-hero__breadcrumb" aria-label="Breadcrumb"><a href="/">Inicio</a><span>/</span><span class="current">Consulta de neumología</span></nav>
 <div class="row align-items-center g-4 g-lg-5">
@@ -572,22 +620,6 @@ body,.cn-page{font-family:'Plus Jakarta Sans',system-ui,sans-serif}
 </div>
 </section>
 
-<!-- FAQ -->
-<section id="preguntas-frecuentes" class="faq-block" aria-labelledby="faq-h-consulta">
-<h2 id="faq-h-consulta" class="faq-block__title">Preguntas frecuentes</h2>
-<p class="faq-block__sub">Lo que más me preguntan antes de agendar.</p>
-<details class="faq-item"><summary>¿Cuánto cuesta la consulta de neumología?</summary><div class="faq-item__answer"><p>La consulta de primera vez tiene un precio de $1,800. Si llegas por internet, aplica la promoción de $1,300. La consulta subsecuente cuesta $1,500 y la primera vez sin promoción también queda en $1,500. Te confirmo el precio que te corresponde por WhatsApp antes de agendar, sin sorpresas.</p></div></details>
-<details class="faq-item"><summary>¿Cuánto dura la consulta?</summary><div class="faq-item__answer"><p>La consulta de primera vez dura alrededor de 40 minutos. Si además se realiza espirometría, considera 25 minutos adicionales para la simple y 45 minutos para la que lleva broncodilatador. La consulta subsecuente es más breve, cerca de 20 a 30 minutos.</p></div></details>
-<details class="faq-item"><summary>¿Necesito cita previa?</summary><div class="faq-item__answer"><p>Sí, la atención es siempre con cita previa. Así reservo el tiempo completo para tu valoración y, si hace falta, dejo el equipo de espirometría listo para el mismo día. Puedes agendar por WhatsApp al 55 9170 8334.</p></div></details>
-<details class="faq-item"><summary>¿Qué debo llevar a mi primera consulta?</summary><div class="faq-item__answer"><p>Identificación oficial, los estudios previos que tengas (radiografías, tomografías, espirometrías, análisis de laboratorio), la lista de todos los medicamentos que tomas con su dosis, y tus datos de facturación si necesitas factura. Si usas inhaladores, tráelos contigo.</p></div></details>
-<details class="faq-item"><summary>¿Puedo hacerme la espirometría el mismo día de la consulta?</summary><div class="faq-item__answer"><p>Sí, en la mayoría de los casos. Si al valorarte considero que necesitas espirometría, se realiza en el mismo consultorio y comentamos el resultado en esa misma visita. Añade $600 al costo de tu consulta.</p></div></details>
-<details class="faq-item"><summary>¿Qué estudios se realizan en el consultorio?</summary><div class="faq-item__answer"><p>En el consultorio se realiza espirometría simple, espirometría con broncodilatador con reporte digital, FeNO para valorar inflamación de la vía aérea y poligrafía respiratoria para estudiar el sueño en casa. Si necesitas un estudio de imagen o un procedimiento hospitalario, te oriento sobre dónde realizarlo.</p></div></details>
-<details class="faq-item"><summary>¿Cuál es el horario y dónde está el consultorio?</summary><div class="faq-item__answer"><p>Atiendo de lunes a viernes de 16:00 a 21:00 y sábado y domingo de 12:00 a 16:00, siempre con cita previa. El consultorio 507 está en el Hospital Santa Coleta, Saturnino Herrán 59, San José Insurgentes, Benito Juárez, 03900 CDMX.</p></div></details>
-<details class="faq-item"><summary>¿Atiende consultas a domicilio?</summary><div class="faq-item__answer"><p>Sí, dentro de un radio de 15 kilómetros desde el Hospital Santa Coleta. La consulta a domicilio se agenda por WhatsApp y se confirma antes según la zona y el horario disponible.</p></div></details>
-<details class="faq-item"><summary>¿Cuándo conviene ver a un neumólogo?</summary><div class="faq-item__answer"><p>Cuando la tos lleva más de tres semanas, cuando te falta el aire con esfuerzos que antes hacías sin problema, si tienes silbidos al respirar, ronquido con pausas al dormir, flemas con sangre, dolor en el pecho al respirar, o si fumas o fumaste y quieres saber cómo están tus pulmones.</p></div></details>
-<details class="faq-item"><summary>¿Salgo de la consulta con un tratamiento por escrito?</summary><div class="faq-item__answer"><p>Sí. Sales con una receta y un plan escrito: qué medicamento tomar, a qué dosis, por cuánto tiempo, qué estudios faltan y en cuánto tiempo nos volvemos a ver. Si usas inhalador, te enseño la técnica antes de que salgas del consultorio.</p></div></details>
-</section>
-
 <!-- CONTACTO, MAPA Y CÓMO LLEGAR -->
 <section id="contacto-final" class="contact-section pt-3 pb-5">
 <div class="container" style="padding-bottom:48px;position:relative;z-index:1">
@@ -631,6 +663,24 @@ body,.cn-page{font-family:'Plus Jakarta Sans',system-ui,sans-serif}
 <p class="cn-price-note">Vengo de zonas cercanas como <a class="cn-link" href="/zonas/san-jose-insurgentes/">San José Insurgentes</a>, <a class="cn-link" href="/zonas/del-valle/">Del Valle</a> y <a class="cn-link" href="/zonas/roma-condesa/">Roma y Condesa</a>. Consulta la <a class="cn-link" href="/ubicacion/">página de ubicación</a> para el mapa completo.</p>
 </div>
 </section>
+
+<!-- FAQ -->
+<section id="preguntas-frecuentes" class="faq-block" aria-labelledby="faq-h-consulta">
+<h2 id="faq-h-consulta" class="faq-block__title">Preguntas frecuentes</h2>
+<p class="faq-block__sub">Lo que más me preguntan antes de agendar.</p>
+<details class="faq-item"><summary>¿Cuánto cuesta la consulta de neumología?</summary><div class="faq-item__answer"><p>La consulta de primera vez tiene un precio de $1,800. Si llegas por internet, aplica la promoción de $1,300. La consulta subsecuente cuesta $1,500 y la primera vez sin promoción también queda en $1,500. Te confirmo el precio que te corresponde por WhatsApp antes de agendar, sin sorpresas.</p></div></details>
+<details class="faq-item"><summary>¿Cuánto dura la consulta?</summary><div class="faq-item__answer"><p>La consulta de primera vez dura alrededor de 40 minutos. Si además se realiza espirometría, considera 25 minutos adicionales para la simple y 45 minutos para la que lleva broncodilatador. La consulta subsecuente es más breve, cerca de 20 a 30 minutos.</p></div></details>
+<details class="faq-item"><summary>¿Necesito cita previa?</summary><div class="faq-item__answer"><p>Sí, la atención es siempre con cita previa. Así reservo el tiempo completo para tu valoración y, si hace falta, dejo el equipo de espirometría listo para el mismo día. Puedes agendar por WhatsApp al 55 9170 8334.</p></div></details>
+<details class="faq-item"><summary>¿Qué debo llevar a mi primera consulta?</summary><div class="faq-item__answer"><p>Identificación oficial, los estudios previos que tengas (radiografías, tomografías, espirometrías, análisis de laboratorio), la lista de todos los medicamentos que tomas con su dosis, y tus datos de facturación si necesitas factura. Si usas inhaladores, tráelos contigo.</p></div></details>
+<details class="faq-item"><summary>¿Puedo hacerme la espirometría el mismo día de la consulta?</summary><div class="faq-item__answer"><p>Sí, en la mayoría de los casos. Si al valorarte considero que necesitas espirometría, se realiza en el mismo consultorio y comentamos el resultado en esa misma visita. Añade $600 al costo de tu consulta.</p></div></details>
+<details class="faq-item"><summary>¿Qué estudios se realizan en el consultorio?</summary><div class="faq-item__answer"><p>En el consultorio se realiza espirometría simple, espirometría con broncodilatador con reporte digital, FeNO para valorar inflamación de la vía aérea y poligrafía respiratoria para estudiar el sueño en casa. Si necesitas un estudio de imagen o un procedimiento hospitalario, te oriento sobre dónde realizarlo.</p></div></details>
+<details class="faq-item"><summary>¿Cuál es el horario y dónde está el consultorio?</summary><div class="faq-item__answer"><p>Atiendo de lunes a viernes de 16:00 a 21:00 y sábado y domingo de 12:00 a 16:00, siempre con cita previa. El consultorio 507 está en el Hospital Santa Coleta, Saturnino Herrán 59, San José Insurgentes, Benito Juárez, 03900 CDMX.</p></div></details>
+<details class="faq-item"><summary>¿Atiende consultas a domicilio?</summary><div class="faq-item__answer"><p>Sí, dentro de un radio de 15 kilómetros desde el Hospital Santa Coleta. La consulta a domicilio se agenda por WhatsApp y se confirma antes según la zona y el horario disponible.</p></div></details>
+<details class="faq-item"><summary>¿Cuándo conviene ver a un neumólogo?</summary><div class="faq-item__answer"><p>Cuando la tos lleva más de tres semanas, cuando te falta el aire con esfuerzos que antes hacías sin problema, si tienes silbidos al respirar, ronquido con pausas al dormir, flemas con sangre, dolor en el pecho al respirar, o si fumas o fumaste y quieres saber cómo están tus pulmones.</p></div></details>
+<details class="faq-item"><summary>¿Salgo de la consulta con un tratamiento por escrito?</summary><div class="faq-item__answer"><p>Sí. Sales con una receta y un plan escrito: qué medicamento tomar, a qué dosis, por cuánto tiempo, qué estudios faltan y en cuánto tiempo nos volvemos a ver. Si usas inhalador, te enseño la técnica antes de que salgas del consultorio.</p></div></details>
+</section>
+
+
 
 <!-- E-E-A-T -->
 <section aria-label="Información médica" style="background:#f8f9fb;border-top:1px solid rgba(0,0,0,.06);padding:40px 0;">
@@ -865,6 +915,59 @@ body,.cn-page{font-family:'Plus Jakarta Sans',system-ui,sans-serif}
     });
 
     pinta();
+})();
+</script>
+<script>
+/* ── Hero de consulta: polvo suspendido, luz que sigue al puntero ── */
+(function(){
+    var hero=document.querySelector('.disease-hero');
+    if(!hero) return;
+    if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+
+    /* polvo en tres planos: lejano difuso, medio, cercano con brillo */
+    var dust=document.getElementById('cnHeroDust');
+    if(dust){
+        var frag=document.createDocumentFragment();
+        for(var i=0;i<22;i++){
+            var b=document.createElement('i');
+            var plano=i%3;
+            if(plano===0) b.className='far';
+            else if(plano===2) b.className='near';
+            var sz=plano===0?4:(plano===2?2.5:3);
+            b.style.cssText='left:'+(Math.random()*100).toFixed(1)+'%;top:'+(Math.random()*100).toFixed(1)+'%;'+
+                'width:'+sz+'px;height:'+sz+'px;'+
+                '--d:'+(16+Math.random()*16).toFixed(1)+'s;--dl:'+(-Math.random()*16).toFixed(1)+'s;'+
+                '--dx:'+((Math.random()*44)-22).toFixed(0)+'px;--dy:'+(-10-Math.random()*30).toFixed(0)+'px';
+            frag.appendChild(b);
+        }
+        dust.appendChild(frag);
+    }
+
+    /* luz especular con inercia: sin lerp se siente pegada al cursor */
+    var spec=document.getElementById('cnHeroSpec');
+    if(!spec||!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+    var mx=50,my=38,tx=50,ty=38,raf=null;
+    function cuadro(){
+        raf=null;
+        var dx=tx-mx, dy=ty-my;
+        if(Math.abs(dx)>0.05||Math.abs(dy)>0.05){
+            mx+=dx*0.07; my+=dy*0.07;
+            hero.style.setProperty('--mx',mx.toFixed(2)+'%');
+            hero.style.setProperty('--my',my.toFixed(2)+'%');
+            raf=requestAnimationFrame(cuadro);
+        }
+    }
+    hero.addEventListener('pointermove',function(e){
+        var r=hero.getBoundingClientRect();
+        tx=((e.clientX-r.left)/r.width)*100;
+        ty=((e.clientY-r.top)/r.height)*100;
+        spec.classList.add('is-awake');
+        if(!raf) raf=requestAnimationFrame(cuadro);
+    },{passive:true});
+    hero.addEventListener('pointerleave',function(){
+        tx=50; ty=38; spec.classList.remove('is-awake');
+        if(!raf) raf=requestAnimationFrame(cuadro);
+    },{passive:true});
 })();
 </script>
 </body>
