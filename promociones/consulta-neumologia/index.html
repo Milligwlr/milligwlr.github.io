@@ -267,9 +267,8 @@
 /* ============ PASE CLINICO (tarjeta de promocion) ============
    Sintesis de dos propuestas. La idea rectora: la promocion no es un precio
    rebajado, es un DOCUMENTO que el paciente ya tiene. Y como la promo del Dr.
-   es perpetua, el campo donde un cupon pondria "vence el..." aqui dice la
-   verdad -sin fecha de vencimiento- y se vuelve la señal premium. Cero
-   urgencia falsa, que ademas esta prohibida.
+   es perpetua, la tarjeta no menciona plazos de ninguna clase: ni fechas,
+   ni cupos, ni relojes. El valor lo carga el documento, no la prisa.
    El troquelado es un hueco REAL en el alfa (mask-composite), no un circulo
    del color del fondo: funciona sobre el grano y sobre cualquier fondo. */
 .pase-zona{max-width:600px;margin:0 auto}
@@ -319,10 +318,6 @@
 .pase__total-num .cur{font-size:.36em;font-weight:700;margin-top:.2em;color:#1e3799}
 .pase__total-num .mxn{font-size:.19em;font-weight:800;letter-spacing:1.2px;color:#4a5b6e;margin:.5em 0 0 .5em}
 /* el campo donde un cupon pondria la fecha de caducidad */
-.pase__vig{display:flex;align-items:flex-start;gap:10px;margin-top:16px;padding:11px 14px;border-radius:11px;
-    background:rgba(30,55,153,.055);border:1px solid rgba(30,55,153,.16);font-size:.92rem;line-height:1.45;color:#33465c}
-.pase__vig i{font-size:1.35rem;line-height:1;color:#1e3799;flex:0 0 auto}
-.pase__vig b{color:#1e3799}
 .pase__sello{width:88px;height:88px;flex:0 0 auto;transform:rotate(-8deg)}
 .pase__sello .arco,.pase__sello .ctr{font-family:'Plus Jakarta Sans',system-ui,sans-serif;fill:#1e3799;font-weight:700}
 .pase__sello .arco{font-size:7.6px;letter-spacing:.6px}
@@ -776,11 +771,6 @@
                         <div class="pase__total">
                             <span class="pase__total-lab">Tarifa de este pase</span>
                             <p class="pase__total-num"><span class="cur">$</span>1,300<span class="mxn">MXN</span></p>
-                        </div>
-
-                        <div class="pase__vig">
-                            <i class="bi bi-infinity" aria-hidden="true"></i>
-                            <span><b>Sin fecha de vencimiento.</b> No corre reloj: el pase vale el d&iacute;a que decidas usarlo.</span>
                         </div>
                     </div>
                 </div>
