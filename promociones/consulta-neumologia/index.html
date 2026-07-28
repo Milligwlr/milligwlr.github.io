@@ -107,8 +107,15 @@
     .hero__price-new{font-size:2.4rem;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1;text-shadow:0 2px 12px rgba(0,206,201,.35)}
 
     /* Iconos de métodos de pago */
-    .pay-row{display:flex;justify-content:center;align-items:center;gap:18px;margin:22px auto 0;flex-wrap:wrap}
-    .pay-row__item{display:inline-flex;flex-direction:column;align-items:center;gap:6px;color:var(--muted);font-size:.72rem;font-weight:700;letter-spacing:.3px;text-transform:uppercase}
+    /* Reja de 4 columnas iguales en vez de flex: con flex cada caja media segun
+   el largo de su etiqueta ("TRANSFERENCIA" mide el doble que "DEBITO") y los
+   iconos quedaban a 97/94/67 px de distancia entre centros. Con columnas
+   iguales los centros caen a intervalos identicos. */
+.pay-row{display:grid;grid-template-columns:repeat(4,1fr);justify-items:center;align-items:start;
+    gap:10px;margin:22px auto 0;max-width:420px}
+    .pay-row__item{display:flex;flex-direction:column;align-items:center;gap:6px;width:100%;text-align:center;
+    color:var(--muted);font-size:.68rem;font-weight:700;letter-spacing:.2px;text-transform:uppercase;
+    line-height:1.25;overflow-wrap:anywhere;hyphens:auto}
     .pay-row__item i{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,rgba(9,132,227,.08),rgba(0,206,201,.08));border:1px solid rgba(9,132,227,.18);display:flex;align-items:center;justify-content:center;font-size:1.35rem;color:var(--electric);transition:all .25s var(--ease)}
     .pay-row__item:hover i{transform:translateY(-2px);border-color:var(--electric);background:rgba(9,132,227,.12)}
 
@@ -358,6 +365,14 @@
     .pase.js-pase .pase__sello,.pase.js-pase.is-in .pase__sello{transition:none;transform:rotate(-8deg) scale(1);opacity:1}
     .pase__cta{transition:none}
 }
+
+/* Corte entre los estudios y las enfermedades: sin el, el carrusel de
+   estudios desembocaba directo en las pestanas y se leian como una sola
+   lista. El titulo nombra el bloque y las lineas dan el respiro. */
+.sep-enf{display:flex;align-items:center;gap:14px;margin:34px 0 18px}
+.sep-enf__linea{flex:1 1 auto;height:1px;background:linear-gradient(90deg,transparent,rgba(9,132,227,.28),transparent)}
+.sep-enf__tit{flex:0 0 auto;margin:0;font-size:.95rem;font-weight:800;letter-spacing:-.01em;color:var(--ink);text-align:center}
+@media(min-width:576px){.sep-enf{margin:40px 0 22px}.sep-enf__tit{font-size:1.05rem}}
 </style>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <link rel="stylesheet" href="/assets/agenda-modal.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/agenda-modal.css"></noscript>
@@ -1157,6 +1172,11 @@
 
         <!-- Enfermedades agrupadas en 3 paneles: se escanean por categoria y
              los 15 enlaces siguen en el DOM (los paneles se ocultan por CSS). -->
+        <div class="sep-enf">
+            <span class="sep-enf__linea" aria-hidden="true"></span>
+            <h3 class="sep-enf__tit">Enfermedades que atiendo</h3>
+            <span class="sep-enf__linea" aria-hidden="true"></span>
+        </div>
         <div class="enf">
             <div class="enf__tabs" role="tablist" aria-label="Grupos de enfermedades">
                 <button type="button" class="enf__tab" role="tab" id="enf-t1" aria-controls="enf-p1" aria-selected="true">V&iacute;as a&eacute;reas <span class="n">5</span></button>
