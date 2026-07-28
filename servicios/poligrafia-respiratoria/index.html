@@ -109,14 +109,6 @@
 .svc-hero-visual__row i{font-size:1.05rem;width:22px;text-align:center;flex-shrink:0;color:var(--svc-light)}
 
 /* BENEFITS, "Qué te llevas" */
-.benefit-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(min-width:768px){.benefit-grid{grid-template-columns:repeat(4,1fr);gap:16px}}
-.benefit-card{background:#fff;border:1px solid rgba(108,92,231,.14);border-radius:18px;padding:22px 16px;text-align:center;transition:all .3s var(--ease);cursor:default}
-.benefit-card:hover{transform:translateY(-4px);border-color:rgba(108,92,231,.32);box-shadow:0 14px 32px rgba(108,92,231,.12)}
-.benefit-card__icon{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--svc),var(--svc-dark));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.55rem;margin:0 auto 14px;box-shadow:0 8px 22px rgba(108,92,231,.3)}
-.benefit-card h4{font-size:.98rem;font-weight:800;color:var(--navy);margin:0 0 4px;line-height:1.25;letter-spacing:-.01em}
-.benefit-card p{font-size:.8rem;color:var(--text-muted);margin:0;line-height:1.4}
-@media(min-width:768px){.benefit-card{padding:28px 20px}.benefit-card h4{font-size:1.05rem}.benefit-card p{font-size:.85rem}}
 
 /* FOR WHOM */
 .who-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -322,15 +314,20 @@
    se transforma con un interruptor: mismo cuerpo, dos caminos. Los dos textos
    viven en el DOM (indexables) apilados en la misma celda de grid, asi la
    tarjeta mide siempre lo del estado mas largo y no salta al cambiar. */
-.futuro{--fut-borde:rgba(108,92,231,.16);--fut-fondo:#fff;margin:0 0 18px}
+.futuro{--fut-borde:rgba(108,92,231,.16);--fut-fondo:#fff;
+    --alerta:#c2372c;            /* rojo clinico de senal, no de panico */
+    --alerta-suave:#fdf3f2;
+    margin:0 0 18px}
 .futuro__switch{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:0;
     background:#f1f0f8;border:1px solid rgba(108,92,231,.14);border-radius:100px;
     padding:4px;margin:0 auto 20px;max-width:340px}
 .futuro__thumb{position:absolute;top:4px;left:4px;bottom:4px;width:calc(50% - 4px);
-    border-radius:100px;background:linear-gradient(135deg,var(--svc),var(--svc-dark));
-    box-shadow:0 8px 20px -8px rgba(72,52,212,.55);
-    transition:transform .5s cubic-bezier(.16,1,.3,1);pointer-events:none}
-.futuro[data-estado="mejora"] .futuro__thumb{transform:translateX(100%)}
+    border-radius:100px;background:linear-gradient(135deg,var(--alerta),#8f2019);
+    box-shadow:0 8px 20px -8px color-mix(in srgb,var(--alerta) 72%,transparent);
+    transition:transform .5s cubic-bezier(.16,1,.3,1),background .5s ease,box-shadow .5s ease;pointer-events:none}
+.futuro[data-estado="mejora"] .futuro__thumb{transform:translateX(100%);
+    background:linear-gradient(135deg,var(--svc),var(--svc-dark));
+    box-shadow:0 8px 20px -8px rgba(72,52,212,.55)}
 .futuro__switch button{position:relative;z-index:1;min-height:44px;border:0;background:none;
     font-family:inherit;font-size:.86rem;font-weight:800;color:var(--text-muted);
     cursor:pointer;border-radius:100px;transition:color .35s;letter-spacing:-.01em}
@@ -343,11 +340,18 @@
     transition:background .55s ease,border-color .55s ease,box-shadow .55s ease,transform .55s cubic-bezier(.16,1,.3,1)}
 /* atendida: la tarjeta se ilumina, se eleva y se tine de marca. El cambio de
    estado se LEE de un vistazo, sin necesidad de leer el texto. */
+/* sin tratar: la tarjeta se pone en alerta. Los riesgos nombrados son los
+   documentados (AHA, NHLBI); el rojo es senal clinica y el texto no exagera. */
+.futuro[data-estado="riesgo"] .futuro__card{background:linear-gradient(168deg,#fff,var(--alerta-suave));
+    border-color:color-mix(in srgb,var(--alerta) 30%,transparent);
+    box-shadow:0 10px 26px -20px color-mix(in srgb,var(--alerta) 65%,transparent)}
 .futuro[data-estado="mejora"] .futuro__card{background:linear-gradient(165deg,#fff,#f7f5ff);
     border-color:rgba(108,92,231,.3);box-shadow:0 14px 30px -20px rgba(72,52,212,.55);transform:translateY(-2px)}
 .futuro__ic{width:34px;height:34px;border-radius:11px;display:flex;align-items:center;
-    justify-content:center;font-size:.95rem;background:rgba(15,23,42,.06);color:#64748b;
-    transition:background .55s ease,color .55s ease}
+    justify-content:center;font-size:.95rem;
+    background:color-mix(in srgb,var(--alerta) 13%,#fff);color:var(--alerta);
+    transition:background .55s ease,color .55s ease,box-shadow .55s ease}
+.futuro[data-estado="riesgo"] .futuro__ic{box-shadow:0 6px 14px -8px color-mix(in srgb,var(--alerta) 70%,transparent)}
 .futuro[data-estado="mejora"] .futuro__ic{background:linear-gradient(135deg,var(--svc),var(--svc-dark));color:#fff;
     box-shadow:0 7px 16px -7px rgba(108,92,231,.7)}
 /* las dos versiones comparten celda: la altura la manda la mas larga */
@@ -358,14 +362,14 @@
     transition-delay:calc(var(--i,0) * 55ms)}
 .futuro__body > p > i{font-size:.95rem;flex-shrink:0;margin-top:1px}
 /* el simbolo es el mensaje: menos en contra, palomita a favor */
-.futuro__riesgo > i{color:#94a3b8}
-.futuro__riesgo > span{color:var(--text-muted);font-weight:600}
+.futuro__riesgo > i{color:var(--alerta)}
+.futuro__riesgo > span{color:#7f2119;font-weight:700}
 .futuro__mejora > i{color:var(--svc)}
 .futuro__body > p[data-oculto]{opacity:0;transform:translateY(7px);pointer-events:none}
 /* el marcador dice en una linea lo que las seis tarjetas muestran a la vez */
 .futuro__marcador{display:grid;margin:16px 0 0;text-align:center;font-size:.92rem;letter-spacing:-.01em}
 .futuro__marcador b{grid-area:1/1;font-weight:800;transition:opacity .45s ease,transform .5s cubic-bezier(.16,1,.3,1)}
-.futuro__marcador--riesgo{color:#64748b}
+.futuro__marcador--riesgo{color:var(--alerta)}
 .futuro__marcador--mejora{color:var(--svc)}
 .futuro[data-estado="riesgo"] .futuro__marcador--mejora,
 .futuro[data-estado="mejora"] .futuro__marcador--riesgo{opacity:0;transform:translateY(6px)}
@@ -971,42 +975,42 @@
 <article class="futuro__card" style="--i:0">
 <span class="futuro__ic" aria-hidden="true"><i class="bi bi-activity"></i></span>
 <div class="futuro__body">
-<p class="futuro__riesgo" data-rotulo="Sin tratar"><i class="bi bi-dash-circle-fill" aria-hidden="true"></i><span>Presión alta que no cede</span></p>
+<p class="futuro__riesgo" data-rotulo="Sin tratar"><i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i><span>Presión alta que no cede</span></p>
 <p class="futuro__mejora" data-rotulo="Si la atiendes" data-oculto><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span>Presión arterial más controlada</span></p>
 </div>
 </article>
 <article class="futuro__card" style="--i:1">
 <span class="futuro__ic" aria-hidden="true"><i class="bi bi-heart-pulse-fill"></i></span>
 <div class="futuro__body">
-<p class="futuro__riesgo" data-rotulo="Sin tratar"><i class="bi bi-dash-circle-fill" aria-hidden="true"></i><span>Más riesgo de arritmias</span></p>
+<p class="futuro__riesgo" data-rotulo="Sin tratar"><i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i><span>Más riesgo de arritmias</span></p>
 <p class="futuro__mejora" data-rotulo="Si la atiendes" data-oculto><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span>Menor riesgo de arritmias</span></p>
 </div>
 </article>
 <article class="futuro__card" style="--i:2">
 <span class="futuro__ic" aria-hidden="true"><i class="bi bi-heartbreak-fill"></i></span>
 <div class="futuro__body">
-<p class="futuro__riesgo" data-rotulo="Sin tratar"><i class="bi bi-dash-circle-fill" aria-hidden="true"></i><span>Más riesgo de infarto y embolia</span></p>
+<p class="futuro__riesgo" data-rotulo="Sin tratar"><i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i><span>Más riesgo de infarto y embolia</span></p>
 <p class="futuro__mejora" data-rotulo="Si la atiendes" data-oculto><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span>Menor riesgo cardiovascular</span></p>
 </div>
 </article>
 <article class="futuro__card" style="--i:3">
 <span class="futuro__ic" aria-hidden="true"><i class="bi bi-sunrise-fill"></i></span>
 <div class="futuro__body">
-<p class="futuro__riesgo" data-rotulo="Sin tratar"><i class="bi bi-dash-circle-fill" aria-hidden="true"></i><span>Despiertas cansado</span></p>
+<p class="futuro__riesgo" data-rotulo="Sin tratar"><i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i><span>Despiertas cansado</span></p>
 <p class="futuro__mejora" data-rotulo="Si la atiendes" data-oculto><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span>Despiertas descansado</span></p>
 </div>
 </article>
 <article class="futuro__card" style="--i:4">
 <span class="futuro__ic" aria-hidden="true"><i class="bi bi-car-front-fill"></i></span>
 <div class="futuro__body">
-<p class="futuro__riesgo" data-rotulo="Sin tratar"><i class="bi bi-dash-circle-fill" aria-hidden="true"></i><span>Sueño al volante</span></p>
+<p class="futuro__riesgo" data-rotulo="Sin tratar"><i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i><span>Sueño al volante</span></p>
 <p class="futuro__mejora" data-rotulo="Si la atiendes" data-oculto><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span>Menos sueño al volante</span></p>
 </div>
 </article>
 <article class="futuro__card" style="--i:5">
 <span class="futuro__ic" aria-hidden="true"><i class="bi bi-volume-up-fill"></i></span>
 <div class="futuro__body">
-<p class="futuro__riesgo" data-rotulo="Sin tratar"><i class="bi bi-dash-circle-fill" aria-hidden="true"></i><span>Ronquido que despierta a tu pareja</span></p>
+<p class="futuro__riesgo" data-rotulo="Sin tratar"><i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i><span>Ronquido que despierta a tu pareja</span></p>
 <p class="futuro__mejora" data-rotulo="Si la atiendes" data-oculto><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span>Menos ronquido en casa</span></p>
 </div>
 </article>
@@ -1019,19 +1023,6 @@
 <p class="osa-more"><i class="bi bi-book-half" aria-hidden="true"></i> Enfermedad por enfermedad, a fondo, en la <a href="/enfermedades/apnea-del-sueno/" data-cta="osa-apnea-link">página de apnea del sueño</a>.</p>
 </div>
 
-<!-- BENEFICIOS -->
-<div class="svc-section reveal">
-<span class="svc-section__eyebrow"><i class="bi bi-gift-fill"></i> Qué te llevas</span>
-<h2 class="svc-section__title">Una noche. <em>Cuatro respuestas claras.</em></h2>
-<p class="svc-section__lead">No vas a pasar la noche enchufado a una pared en un cuarto ajeno. Sales con un diagnóstico, una severidad y un plan.</p>
-
-<div class="benefit-grid">
-<div class="benefit-card"><div class="benefit-card__icon"><i class="bi bi-house-heart-fill"></i></div><h4>En tu cama</h4><p>Tu colchón, tu rutina</p></div>
-<div class="benefit-card"><div class="benefit-card__icon"><i class="bi bi-moon-fill"></i></div><h4>Una noche</h4><p>Duermes y devuelves</p></div>
-<div class="benefit-card"><div class="benefit-card__icon"><i class="bi bi-bag-check-fill"></i></div><h4>Equipo portátil</h4><p>Cabe en una bolsa pequeña</p></div>
-<div class="benefit-card"><div class="benefit-card__icon"><i class="bi bi-graph-up-arrow"></i></div><h4>IAH y oxígeno</h4><p>Severidad clara</p></div>
-</div>
-</div>
 <!-- QUÉ NO ES -->
 <div class="svc-section reveal">
 <span class="svc-section__eyebrow"><i class="bi bi-shield-check"></i> Lo que <em>no</em> es</span>
