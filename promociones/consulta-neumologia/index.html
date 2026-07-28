@@ -25,14 +25,17 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://alveos.mx/promociones/consulta-neumologia/">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <!-- Preload del subset latin (variable, todos los pesos): el H1 pinta en fuente final desde el primer paint y el swap deja de empujar el LCP -->
-    <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yygg_vb.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yw.woff2" crossorigin>
+    <!-- @font-face inline (antes: hoja de fonts.googleapis.com render-blocking cross-origin).
+         La fuente es variable: un solo archivo cubre los pesos 400-800 por subset. -->
+    <style id="pjs-font">
+    @font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:400 800;font-display:swap;src:url(https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko40yyygA.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+    @font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:400 800;font-display:swap;src:url(https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yw.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+    </style>
     <style id="bs-lite">/* Bootstrap 5.3.0: subset purgado a las clases usadas en las landings de Ads (quita el CSS render-blocking cross-origin; palanca LPE/CWV). Regenerar con _internal/scripts/purge-bootstrap.py */:root,[data-bs-theme=light]{--bs-blue:#0d6efd;--bs-indigo:#6610f2;--bs-purple:#6f42c1;--bs-pink:#d63384;--bs-red:#dc3545;--bs-orange:#fd7e14;--bs-yellow:#ffc107;--bs-green:#198754;--bs-teal:#20c997;--bs-cyan:#0dcaf0;--bs-black:#000;--bs-white:#fff;--bs-gray:#6c757d;--bs-gray-dark:#343a40;--bs-gray-100:#f8f9fa;--bs-gray-200:#e9ecef;--bs-gray-300:#dee2e6;--bs-gray-400:#ced4da;--bs-gray-500:#adb5bd;--bs-gray-600:#6c757d;--bs-gray-700:#495057;--bs-gray-800:#343a40;--bs-gray-900:#212529;--bs-primary:#0d6efd;--bs-secondary:#6c757d;--bs-success:#198754;--bs-info:#0dcaf0;--bs-warning:#ffc107;--bs-danger:#dc3545;--bs-light:#f8f9fa;--bs-dark:#212529;--bs-primary-rgb:13,110,253;--bs-secondary-rgb:108,117,125;--bs-success-rgb:25,135,84;--bs-info-rgb:13,202,240;--bs-warning-rgb:255,193,7;--bs-danger-rgb:220,53,69;--bs-light-rgb:248,249,250;--bs-dark-rgb:33,37,41;--bs-primary-text-emphasis:#052c65;--bs-secondary-text-emphasis:#2b2f32;--bs-success-text-emphasis:#0a3622;--bs-info-text-emphasis:#055160;--bs-warning-text-emphasis:#664d03;--bs-danger-text-emphasis:#58151c;--bs-light-text-emphasis:#495057;--bs-dark-text-emphasis:#495057;--bs-primary-bg-subtle:#cfe2ff;--bs-secondary-bg-subtle:#e2e3e5;--bs-success-bg-subtle:#d1e7dd;--bs-info-bg-subtle:#cff4fc;--bs-warning-bg-subtle:#fff3cd;--bs-danger-bg-subtle:#f8d7da;--bs-light-bg-subtle:#fcfcfd;--bs-dark-bg-subtle:#ced4da;--bs-primary-border-subtle:#9ec5fe;--bs-secondary-border-subtle:#c4c8cb;--bs-success-border-subtle:#a3cfbb;--bs-info-border-subtle:#9eeaf9;--bs-warning-border-subtle:#ffe69c;--bs-danger-border-subtle:#f1aeb5;--bs-light-border-subtle:#e9ecef;--bs-dark-border-subtle:#adb5bd;--bs-white-rgb:255,255,255;--bs-black-rgb:0,0,0;--bs-font-sans-serif:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--bs-font-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--bs-gradient:linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));--bs-body-font-family:var(--bs-font-sans-serif);--bs-body-font-size:1rem;--bs-body-font-weight:400;--bs-body-line-height:1.5;--bs-body-color:#212529;--bs-body-color-rgb:33,37,41;--bs-body-bg:#fff;--bs-body-bg-rgb:255,255,255;--bs-emphasis-color:#000;--bs-emphasis-color-rgb:0,0,0;--bs-secondary-color:rgba(33, 37, 41, 0.75);--bs-secondary-color-rgb:33,37,41;--bs-secondary-bg:#e9ecef;--bs-secondary-bg-rgb:233,236,239;--bs-tertiary-color:rgba(33, 37, 41, 0.5);--bs-tertiary-color-rgb:33,37,41;--bs-tertiary-bg:#f8f9fa;--bs-tertiary-bg-rgb:248,249,250;--bs-heading-color:inherit;--bs-link-color:#0d6efd;--bs-link-color-rgb:13,110,253;--bs-link-decoration:underline;--bs-link-hover-color:#0a58ca;--bs-link-hover-color-rgb:10,88,202;--bs-code-color:#d63384;--bs-highlight-bg:#fff3cd;--bs-border-width:1px;--bs-border-style:solid;--bs-border-color:#dee2e6;--bs-border-color-translucent:rgba(0, 0, 0, 0.175);--bs-border-radius:0.375rem;--bs-border-radius-sm:0.25rem;--bs-border-radius-lg:0.5rem;--bs-border-radius-xl:1rem;--bs-border-radius-xxl:2rem;--bs-border-radius-2xl:var(--bs-border-radius-xxl);--bs-border-radius-pill:50rem;--bs-box-shadow:0 0.5rem 1rem rgba(0, 0, 0, 0.15);--bs-box-shadow-sm:0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);--bs-box-shadow-lg:0 1rem 3rem rgba(0, 0, 0, 0.175);--bs-box-shadow-inset:inset 0 1px 2px rgba(0, 0, 0, 0.075);--bs-focus-ring-width:0.25rem;--bs-focus-ring-opacity:0.25;--bs-focus-ring-color:rgba(13, 110, 253, 0.25);--bs-form-valid-color:#198754;--bs-form-valid-border-color:#198754;--bs-form-invalid-color:#dc3545;--bs-form-invalid-border-color:#dc3545}*,::after,::before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:var(--bs-body-font-family);font-size:var(--bs-body-font-size);font-weight:var(--bs-body-font-weight);line-height:var(--bs-body-line-height);color:var(--bs-body-color);text-align:var(--bs-body-text-align);background-color:var(--bs-body-bg);-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}hr{margin:1rem 0;color:inherit;border:0;border-top:var(--bs-border-width) solid;opacity:.25}h1,h2,h3{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2;color:var(--bs-heading-color)}h1{font-size:calc(1.375rem + 1.5vw)}@media (min-width:1200px){h1{font-size:2.5rem}}h2{font-size:calc(1.325rem + .9vw)}@media (min-width:1200px){h2{font-size:2rem}}h3{font-size:calc(1.3rem + .6vw)}@media (min-width:1200px){h3{font-size:1.75rem}}p{margin-top:0;margin-bottom:1rem}address{margin-bottom:1rem;font-style:normal;line-height:inherit}ul{padding-left:2rem}ul{margin-top:0;margin-bottom:1rem}ul ul{margin-bottom:0}strong{font-weight:bolder}small{font-size:.875em}sup{position:relative;font-size:.75em;line-height:0;vertical-align:baseline}sup{top:-.5em}a{color:rgba(var(--bs-link-color-rgb),var(--bs-link-opacity,1));text-decoration:underline}a:hover{--bs-link-color-rgb:var(--bs-link-hover-color-rgb)}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}img{vertical-align:middle}table{caption-side:bottom;border-collapse:collapse}th{text-align:inherit;text-align:-webkit-match-parent}tbody,td,th,thead,tr{border-color:inherit;border-style:solid;border-width:0}button{border-radius:0}button:focus:not(:focus-visible){outline:0}button,input{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button{text-transform:none}[role=button]{cursor:pointer}[list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator{display:none!important}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){cursor:pointer}::-moz-focus-inner{padding:0;border-style:none}::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-fields-wrapper,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-text,::-webkit-datetime-edit-year-field{padding:0}::-webkit-inner-spin-button{height:auto}[type=search]{outline-offset:-2px;-webkit-appearance:textfield}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-color-swatch-wrapper{padding:0}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}::file-selector-button{font:inherit;-webkit-appearance:button}iframe{border:0}summary{display:list-item;cursor:pointer}[hidden]{display:none!important}.container{--bs-gutter-x:1.5rem;--bs-gutter-y:0;width:100%;padding-right:calc(var(--bs-gutter-x) * .5);padding-left:calc(var(--bs-gutter-x) * .5);margin-right:auto;margin-left:auto}@media (min-width:576px){.container{max-width:540px}}@media (min-width:768px){.container{max-width:720px}}@media (min-width:992px){.container{max-width:960px}}@media (min-width:1200px){.container{max-width:1140px}}@media (min-width:1400px){.container{max-width:1320px}}:root{--bs-breakpoint-xs:0;--bs-breakpoint-sm:576px;--bs-breakpoint-md:768px;--bs-breakpoint-lg:992px;--bs-breakpoint-xl:1200px;--bs-breakpoint-xxl:1400px}.row{--bs-gutter-x:1.5rem;--bs-gutter-y:0;display:flex;flex-wrap:wrap;margin-top:calc(-1 * var(--bs-gutter-y));margin-right:calc(-.5 * var(--bs-gutter-x));margin-left:calc(-.5 * var(--bs-gutter-x))}.row>*{flex-shrink:0;width:100%;max-width:100%;padding-right:calc(var(--bs-gutter-x) * .5);padding-left:calc(var(--bs-gutter-x) * .5);margin-top:var(--bs-gutter-y)}.g-4{--bs-gutter-x:1.5rem}.g-4{--bs-gutter-y:1.5rem}.g-5{--bs-gutter-x:3rem}.g-5{--bs-gutter-y:3rem}@media (min-width:992px){.col-lg-4{flex:0 0 auto;width:33.33333333%}.col-lg-5{flex:0 0 auto;width:41.66666667%}.col-lg-7{flex:0 0 auto;width:58.33333333%}.col-lg-8{flex:0 0 auto;width:66.66666667%}}.collapse:not(.show){display:none}.collapsing{height:0;overflow:hidden;transition:height .35s ease}@media (prefers-reduced-motion:reduce){.collapsing{transition:none}}.dropdown{position:relative}.dropdown-toggle{white-space:nowrap}.dropdown-toggle::after{display:inline-block;margin-left:.255em;vertical-align:.255em;content:"";border-top:.3em solid;border-right:.3em solid transparent;border-bottom:0;border-left:.3em solid transparent}.dropdown-toggle:empty::after{margin-left:0}.dropdown-menu{--bs-dropdown-zindex:1000;--bs-dropdown-min-width:10rem;--bs-dropdown-padding-x:0;--bs-dropdown-padding-y:0.5rem;--bs-dropdown-spacer:0.125rem;--bs-dropdown-font-size:1rem;--bs-dropdown-color:var(--bs-body-color);--bs-dropdown-bg:var(--bs-body-bg);--bs-dropdown-border-color:var(--bs-border-color-translucent);--bs-dropdown-border-radius:var(--bs-border-radius);--bs-dropdown-border-width:var(--bs-border-width);--bs-dropdown-inner-border-radius:calc(var(--bs-border-radius) - var(--bs-border-width));--bs-dropdown-divider-bg:var(--bs-border-color-translucent);--bs-dropdown-divider-margin-y:0.5rem;--bs-dropdown-box-shadow:0 0.5rem 1rem rgba(0, 0, 0, 0.15);--bs-dropdown-link-color:var(--bs-body-color);--bs-dropdown-link-hover-color:var(--bs-body-color);--bs-dropdown-link-hover-bg:var(--bs-tertiary-bg);--bs-dropdown-link-active-color:#fff;--bs-dropdown-link-active-bg:#0d6efd;--bs-dropdown-link-disabled-color:var(--bs-tertiary-color);--bs-dropdown-item-padding-x:1rem;--bs-dropdown-item-padding-y:0.25rem;--bs-dropdown-header-color:#6c757d;--bs-dropdown-header-padding-x:1rem;--bs-dropdown-header-padding-y:0.5rem;position:absolute;z-index:var(--bs-dropdown-zindex);display:none;min-width:var(--bs-dropdown-min-width);padding:var(--bs-dropdown-padding-y) var(--bs-dropdown-padding-x);margin:0;font-size:var(--bs-dropdown-font-size);color:var(--bs-dropdown-color);text-align:left;list-style:none;background-color:var(--bs-dropdown-bg);background-clip:padding-box;border:var(--bs-dropdown-border-width) solid var(--bs-dropdown-border-color);border-radius:var(--bs-dropdown-border-radius)}.dropdown-menu[data-bs-popper]{top:100%;left:0;margin-top:var(--bs-dropdown-spacer)}.dropdown-divider{height:0;margin:var(--bs-dropdown-divider-margin-y) 0;overflow:hidden;border-top:1px solid var(--bs-dropdown-divider-bg);opacity:1}.dropdown-item{display:block;width:100%;padding:var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);clear:both;font-weight:400;color:var(--bs-dropdown-link-color);text-align:inherit;text-decoration:none;white-space:nowrap;background-color:transparent;border:0;border-radius:var(--bs-dropdown-item-border-radius,0)}.dropdown-item:focus,.dropdown-item:hover{color:var(--bs-dropdown-link-hover-color);background-color:var(--bs-dropdown-link-hover-bg)}.dropdown-item.active,.dropdown-item:active{color:var(--bs-dropdown-link-active-color);text-decoration:none;background-color:var(--bs-dropdown-link-active-bg)}.dropdown-item:disabled{color:var(--bs-dropdown-link-disabled-color);pointer-events:none;background-color:transparent}.dropdown-menu.show{display:block}.nav-link{display:block;padding:var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);font-size:var(--bs-nav-link-font-size);font-weight:var(--bs-nav-link-font-weight);color:var(--bs-nav-link-color);text-decoration:none;background:0 0;border:0;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out}@media (prefers-reduced-motion:reduce){.nav-link{transition:none}}.nav-link:focus,.nav-link:hover{color:var(--bs-nav-link-hover-color)}.nav-link:focus-visible{outline:0;box-shadow:0 0 0 .25rem rgba(13,110,253,.25)}.navbar{--bs-navbar-padding-x:0;--bs-navbar-padding-y:0.5rem;--bs-navbar-color:rgba(var(--bs-emphasis-color-rgb), 0.65);--bs-navbar-hover-color:rgba(var(--bs-emphasis-color-rgb), 0.8);--bs-navbar-disabled-color:rgba(var(--bs-emphasis-color-rgb), 0.3);--bs-navbar-active-color:rgba(var(--bs-emphasis-color-rgb), 1);--bs-navbar-brand-padding-y:0.3125rem;--bs-navbar-brand-margin-end:1rem;--bs-navbar-brand-font-size:1.25rem;--bs-navbar-brand-color:rgba(var(--bs-emphasis-color-rgb), 1);--bs-navbar-brand-hover-color:rgba(var(--bs-emphasis-color-rgb), 1);--bs-navbar-nav-link-padding-x:0.5rem;--bs-navbar-toggler-padding-y:0.25rem;--bs-navbar-toggler-padding-x:0.75rem;--bs-navbar-toggler-font-size:1.25rem;--bs-navbar-toggler-icon-bg:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");--bs-navbar-toggler-border-color:rgba(var(--bs-emphasis-color-rgb), 0.15);--bs-navbar-toggler-border-radius:var(--bs-border-radius);--bs-navbar-toggler-focus-width:0.25rem;--bs-navbar-toggler-transition:box-shadow 0.15s ease-in-out;position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:var(--bs-navbar-padding-y) var(--bs-navbar-padding-x)}.navbar>.container{display:flex;flex-wrap:inherit;align-items:center;justify-content:space-between}.navbar-brand{padding-top:var(--bs-navbar-brand-padding-y);padding-bottom:var(--bs-navbar-brand-padding-y);margin-right:var(--bs-navbar-brand-margin-end);font-size:var(--bs-navbar-brand-font-size);color:var(--bs-navbar-brand-color);text-decoration:none;white-space:nowrap}.navbar-brand:focus,.navbar-brand:hover{color:var(--bs-navbar-brand-hover-color)}.navbar-nav{--bs-nav-link-padding-x:0;--bs-nav-link-padding-y:0.5rem;--bs-nav-link-font-weight: ;--bs-nav-link-color:var(--bs-navbar-color);--bs-nav-link-hover-color:var(--bs-navbar-hover-color);--bs-nav-link-disabled-color:var(--bs-navbar-disabled-color);display:flex;flex-direction:column;padding-left:0;margin-bottom:0;list-style:none}.navbar-nav .nav-link.active,.navbar-nav .nav-link.show{color:var(--bs-navbar-active-color)}.navbar-nav .dropdown-menu{position:static}.navbar-collapse{flex-basis:100%;flex-grow:1;align-items:center}.navbar-toggler{padding:var(--bs-navbar-toggler-padding-y) var(--bs-navbar-toggler-padding-x);font-size:var(--bs-navbar-toggler-font-size);line-height:1;color:var(--bs-navbar-color);background-color:transparent;border:var(--bs-border-width) solid var(--bs-navbar-toggler-border-color);border-radius:var(--bs-navbar-toggler-border-radius);transition:var(--bs-navbar-toggler-transition)}@media (prefers-reduced-motion:reduce){.navbar-toggler{transition:none}}.navbar-toggler:hover{text-decoration:none}.navbar-toggler:focus{text-decoration:none;outline:0;box-shadow:0 0 0 var(--bs-navbar-toggler-focus-width)}.navbar-toggler-icon{display:inline-block;width:1.5em;height:1.5em;vertical-align:middle;background-image:var(--bs-navbar-toggler-icon-bg);background-repeat:no-repeat;background-position:center;background-size:100%}@media (min-width:992px){.navbar-expand-lg{flex-wrap:nowrap;justify-content:flex-start}.navbar-expand-lg .navbar-nav{flex-direction:row}.navbar-expand-lg .navbar-nav .dropdown-menu{position:absolute}.navbar-expand-lg .navbar-nav .nav-link{padding-right:var(--bs-navbar-nav-link-padding-x);padding-left:var(--bs-navbar-nav-link-padding-x)}.navbar-expand-lg .navbar-collapse{display:flex!important;flex-basis:auto}.navbar-expand-lg .navbar-toggler{display:none}}.navbar.sticky-top{position:-webkit-sticky;position:sticky;top:0;z-index:1020}.d-flex{display:flex!important}.d-inline-flex{display:inline-flex!important}.d-none{display:none!important}.justify-content-center{justify-content:center!important}.align-items-center{align-items:center!important}.mt-4{margin-top:1.5rem!important}.me-1{margin-right:.25rem!important}.me-2{margin-right:.5rem!important}.mb-0{margin-bottom:0!important}.mb-1{margin-bottom:.25rem!important}.mb-2{margin-bottom:.5rem!important}.mb-4{margin-bottom:1.5rem!important}.gap-2{gap:.5rem!important}.fw-semibold{font-weight:600!important}.fw-bold{font-weight:700!important}.text-center{text-align:center!important}.text-primary{--bs-text-opacity:1;color:rgba(var(--bs-primary-rgb),var(--bs-text-opacity))!important}@media (min-width:992px){.d-lg-block{display:block!important}.d-lg-inline-flex{display:inline-flex!important}}</style>
-    <!-- Fuente en carga normal (no diferida): con media=print la Plus Jakarta Sans llegaba tarde y el repintado del H1 disparaba el LCP (palanca LPE) -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"></noscript>
     <link rel="icon" href="/favicon.png" type="image/png">
     <link rel="stylesheet" href="/enfermedades/_shared/disease.css">
@@ -51,7 +54,11 @@
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);background:#fff;margin:0;line-height:1.6;padding-bottom:72px}
+    /* overflow-x hidden: el carrusel orbital proyecta tarjetas fuera del viewport
+       (translate3d lateral); igual que en /servicios/poligrafia-respiratoria/, el
+       recorte va en body (html queda visible, asi se propaga al viewport y el
+       navbar sticky no se rompe). */
+    body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);background:#fff;margin:0;line-height:1.6;padding-bottom:72px;overflow-x:hidden}
     @media(min-width:992px){body{padding-bottom:0}}
 
     /* ============ HERO ============ */
@@ -348,6 +355,52 @@
 .rev-strip__all{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:4px;font-size:.9rem;font-weight:600;color:var(--electric,#0984e3);text-decoration:none}
 .rev-strip__all:hover,.rev-strip__all:focus-visible{text-decoration:underline}
 @media(prefers-reduced-motion:reduce){.rev-strip__track{scroll-behavior:auto}}
+
+/* ── Como es tu primera consulta: 4 pasos en rejilla, numerados.
+   Contenido de profundidad para la experiencia de pagina (el anuncio promete
+   "diagnostico claro y plan en una sola consulta"; aqui se muestra COMO). ── */
+.paso-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1080px;margin:0 auto}
+@media(max-width:900px){.paso-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.paso-grid{grid-template-columns:1fr}}
+.paso{position:relative;background:#fff;border:1px solid rgba(9,132,227,.13);border-radius:18px;padding:24px 20px 20px;display:flex;flex-direction:column;gap:8px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.paso:hover{transform:translateY(-4px);box-shadow:0 16px 36px -18px rgba(9,44,84,.22)}
+.paso__num{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;font-weight:800;font-size:1.05rem;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px -8px rgba(9,132,227,.5)}
+.paso h3{font-size:1rem;font-weight:800;color:var(--navy);margin:6px 0 0;letter-spacing:-.01em}
+.paso p{font-size:.88rem;color:var(--muted);line-height:1.55;margin:0}
+.paso__dur{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;color:var(--electric);background:rgba(9,132,227,.08);border-radius:999px;padding:3px 10px;margin-top:auto;align-self:flex-start}
+
+/* ── Carrusel orbital de modalidades (patron d6, N=3) ──
+   Consultorio / a domicilio / teleconsulta viajan sobre una misma orbita:
+   un angulo continuo gobierna todo y el JS proyecta por cuadro el arco
+   lateral, la profundidad, la inclinacion, la escala y la opacidad de cada
+   tarjeta. Solo transform y opacity (compositor). Sin JS quedan apiladas. */
+.mod-stage{position:relative;perspective:1200px;perspective-origin:50% 42%;padding:14px 0 26px;touch-action:pan-y}
+.mod-stage.is-live{cursor:grab}
+.mod-stage.is-live.is-drag{cursor:grabbing}
+.mod-stage.is-live.is-drag .mod-card{pointer-events:none}
+.mod-carousel{position:relative}
+.is-live .mod-card{position:absolute;top:0;left:0;right:0;width:min(93%,560px);margin:0 auto;transform-origin:50% 58%;will-change:transform,opacity;transition:box-shadow .6s ease}
+.is-live .mod-card.is-front{box-shadow:0 1px 2px rgba(16,24,40,.06),0 20px 38px -16px rgba(16,24,40,.24),0 50px 90px -46px rgba(9,132,227,.4)}
+.is-live .mod-card.is-back{cursor:pointer;box-shadow:0 14px 32px -18px rgba(16,24,40,.3)}
+.mod-stage:not(.is-live){display:grid;gap:16px;perspective:none}
+.mod-stage:not(.is-live) .mod-card{position:static;transform:none;opacity:1}
+.mod-card{background:linear-gradient(160deg,#fff,#f7faff);border:1px solid rgba(9,132,227,.16);border-radius:20px;padding:22px 20px}
+.mod-card--promo{border:2px solid rgba(9,132,227,.3)}
+.mod-card__head{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.mod-card__ic{width:46px;height:46px;border-radius:13px;background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.mod-card__kicker{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:1.6px;color:var(--muted);margin-bottom:2px}
+.mod-card__title{font-size:1.08rem;font-weight:800;color:var(--navy);margin:0;letter-spacing:-.015em;line-height:1.25}
+.mod-card__list{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:7px}
+.mod-card__list li{display:flex;gap:9px;align-items:flex-start;font-size:.87rem;color:var(--ink);line-height:1.5}
+.mod-card__list i{color:var(--electric);flex-shrink:0;margin-top:3px;font-size:.9rem}
+.mod-card__cta{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:10px;font-weight:800;font-size:.9rem;text-decoration:none;background:var(--green);color:#fff;transition:background .2s var(--ease)}
+.mod-card__cta:hover{background:var(--green-dark);color:#fff}
+.mod-nav{display:flex;gap:8px;justify-content:center;align-items:center;margin-top:18px;flex-wrap:wrap}
+.mod-dot{min-height:44px;padding:9px 16px;border-radius:100px;border:1.5px solid rgba(9,132,227,.22);background:#fff;color:var(--muted);font-family:inherit;font-size:.8rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:background .25s,color .25s,border-color .25s}
+.mod-dot[aria-selected="true"]{background:linear-gradient(135deg,var(--electric),#1e3799);color:#fff;border-color:transparent}
+.mod-dot:focus-visible{outline:2px solid var(--electric);outline-offset:3px}
+.mod-hint{text-align:center;font-size:.78rem;color:var(--muted);margin:10px 0 0}
+@media(prefers-reduced-motion:reduce){.mod-card{transition:none}}
 </style>
 </head>
 <body>
@@ -472,6 +525,43 @@
     </div>
 </section>
 
+<!-- ============ CÓMO ES TU PRIMERA CONSULTA (profundidad LPE: el anuncio promete diagnóstico claro y plan en una sola consulta; aquí se muestra cómo) ============ -->
+<section class="block" aria-labelledby="pasos-title">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">Paso a paso</span>
+            <h2 class="block__title" id="pasos-title">Así es tu <em>primera consulta</em></h2>
+            <p class="block__lead">Sabemos que llegar con un especialista nuevo da nervios. Esto es exactamente lo que va a pasar en tu cita, de principio a fin.</p>
+        </div>
+        <div class="paso-grid">
+            <article class="paso">
+                <span class="paso__num">1</span>
+                <h3>Te escuchamos sin prisas</h3>
+                <p>El Dr. Lara toma tu historia clínica completa: tus síntomas, desde cuándo, qué has probado y qué estudios traes.</p>
+                <span class="paso__dur"><i class="bi bi-clock"></i> 40 a 60 min en total</span>
+            </article>
+            <article class="paso">
+                <span class="paso__num">2</span>
+                <h3>Exploración y mediciones</h3>
+                <p>Exploración respiratoria y oximetría en el consultorio. Si es relevante para tu caso, espirometría simple en la misma cita.</p>
+                <span class="paso__dur"><i class="bi bi-lungs"></i> En el mismo consultorio</span>
+            </article>
+            <article class="paso">
+                <span class="paso__num">3</span>
+                <h3>Diagnóstico que entiendes</h3>
+                <p>Te explica qué tienes y por qué, revisando contigo tus estudios, en lenguaje claro y respondiendo todas tus dudas.</p>
+                <span class="paso__dur"><i class="bi bi-chat-square-text"></i> Sin tecnicismos</span>
+            </article>
+            <article class="paso">
+                <span class="paso__num">4</span>
+                <h3>Plan por escrito</h3>
+                <p>Sales con tu plan de tratamiento por escrito, indicaciones de cada medicamento y los siguientes pasos si hace falta algún estudio.</p>
+                <span class="paso__dur"><i class="bi bi-file-earmark-text"></i> Te lo llevas contigo</span>
+            </article>
+        </div>
+    </div>
+</section>
+
 <!-- ============ DOCTOR / E-E-A-T (subido para construir autoridad temprano) ============ -->
 <section class="block">
     <div class="container">
@@ -499,6 +589,72 @@
                 </div>
             </div>
         </article>
+    </div>
+</section>
+
+<!-- ============ MODALIDADES (carrusel orbital d6, N=3, contenido propio) ============ -->
+<section class="block" aria-labelledby="mod-title" style="background:linear-gradient(180deg,#fff 0%,#f0f7ff 100%)">
+    <div class="container" style="max-width:820px">
+        <div class="block__head">
+            <span class="block__kicker">Tres formas de tomar tu consulta</span>
+            <h2 class="block__title" id="mod-title">Elige <em>dónde</em> te atendemos</h2>
+            <p class="block__lead">Desliza las tarjetas o toca una modalidad. La misma atención del Dr. Lara, en el formato que te acomode.</p>
+        </div>
+        <div class="mod-stage" id="modStage">
+            <div class="mod-carousel" id="modCarousel">
+                <article class="mod-card mod-card--promo">
+                    <div class="mod-card__head">
+                        <span class="mod-card__ic"><i class="bi bi-hospital"></i></span>
+                        <div>
+                            <div class="mod-card__kicker">Modalidad 1 · La de la promoción</div>
+                            <h3 class="mod-card__title">En consultorio, Hospital Santa Coleta</h3>
+                        </div>
+                    </div>
+                    <ul class="mod-card__list">
+                        <li><i class="bi bi-tag-fill"></i><span>Primera vez con <strong>promoción de internet: $1,300</strong> (precio normal $1,800).</span></li>
+                        <li><i class="bi bi-wind"></i><span>Exploración, oximetría y espirometría simple en la misma cita, si es relevante para tu caso.</span></li>
+                        <li><i class="bi bi-p-circle"></i><span>Estacionamiento del hospital. L a V 16:00 a 21:00, sábado y domingo 12:00 a 16:00.</span></li>
+                    </ul>
+                    <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20consulta%20de%20neumolog%C3%ADa%20a%20%241%2C300%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" class="mod-card__cta" data-cta="mod-consultorio"><i class="bi bi-whatsapp"></i> Agendar en consultorio</a>
+                </article>
+                <article class="mod-card">
+                    <div class="mod-card__head">
+                        <span class="mod-card__ic"><i class="bi bi-house-heart"></i></span>
+                        <div>
+                            <div class="mod-card__kicker">Modalidad 2 · El Dr. va a ti</div>
+                            <h3 class="mod-card__title">Consulta a domicilio</h3>
+                        </div>
+                    </div>
+                    <ul class="mod-card__list">
+                        <li><i class="bi bi-geo-alt"></i><span>Hasta <strong>15 km</strong> alrededor del Hospital Santa Coleta, con equipo de exploración.</span></li>
+                        <li><i class="bi bi-person-wheelchair"></i><span>Pensada para adultos mayores o pacientes con movilidad reducida.</span></li>
+                        <li><i class="bi bi-chat-dots"></i><span>El costo depende de la zona: te lo confirmamos por WhatsApp antes de agendar.</span></li>
+                    </ul>
+                    <a href="https://wa.me/522224926718?text=Hola%2C%20vengo%20de%20la%20promoci%C3%B3n%20de%20consulta%20de%20neumolog%C3%ADa%20a%20%241%2C300%20%28alveos.mx%29%20y%20quiero%20informes%20de%20la%20consulta%20a%20domicilio." target="_blank" rel="noopener noreferrer" class="mod-card__cta" data-cta="mod-domicilio"><i class="bi bi-whatsapp"></i> Pedir informes a domicilio</a>
+                </article>
+                <article class="mod-card">
+                    <div class="mod-card__head">
+                        <span class="mod-card__ic"><i class="bi bi-camera-video"></i></span>
+                        <div>
+                            <div class="mod-card__kicker">Modalidad 3 · Desde donde estés</div>
+                            <h3 class="mod-card__title">Teleconsulta por videollamada</h3>
+                        </div>
+                    </div>
+                    <ul class="mod-card__list">
+                        <li><i class="bi bi-laptop"></i><span>Revisión de estudios, ajuste de tratamiento y resolución de dudas a distancia.</span></li>
+                        <li><i class="bi bi-arrow-repeat"></i><span>Útil para seguimiento o segunda opinión si vives fuera de CDMX.</span></li>
+                        <li><i class="bi bi-clipboard-check"></i><span>Si tu caso requiere exploración presencial, el Dr. te lo dice con honestidad.</span></li>
+                    </ul>
+                    <a href="https://wa.me/522224926718?text=Hola%2C%20vengo%20de%20la%20promoci%C3%B3n%20de%20consulta%20de%20neumolog%C3%ADa%20a%20%241%2C300%20%28alveos.mx%29%20y%20quiero%20informes%20de%20la%20teleconsulta." target="_blank" rel="noopener noreferrer" class="mod-card__cta" data-cta="mod-tele"><i class="bi bi-whatsapp"></i> Pedir informes de teleconsulta</a>
+                </article>
+            </div>
+        </div>
+        <div class="mod-nav" id="modNav" role="tablist" aria-label="Modalidad de consulta">
+            <button type="button" class="mod-dot" aria-selected="true"><i class="bi bi-hospital"></i> Consultorio</button>
+            <button type="button" class="mod-dot" aria-selected="false"><i class="bi bi-house-heart"></i> A domicilio</button>
+            <button type="button" class="mod-dot" aria-selected="false"><i class="bi bi-camera-video"></i> Teleconsulta</button>
+        </div>
+        <p class="mod-hint" id="modHint" aria-live="polite">Desliza las tarjetas o usa los botones.</p>
     </div>
 </section>
 
@@ -857,6 +1013,144 @@ document.addEventListener('click',function(e){
 })();
 </script>
 
+<script>
+/* Carrusel orbital de modalidades (patron d6, N=3). Un angulo continuo
+   gobierna la orbita; los asientos van a 120 grados. Scrub con el dedo,
+   resorte al soltar, avance siempre en el mismo sentido. Sin JS: apiladas. */
+(function(){
+    var stage=document.getElementById('modStage');
+    var nav=document.getElementById('modNav');
+    if(!stage||!nav) return;
+    var carrusel=document.getElementById('modCarousel');
+    var cartas=Array.prototype.slice.call(stage.querySelectorAll('.mod-card'));
+    var N=cartas.length, PASO=360/N;
+    if(!carrusel||N<2) return;
+    var dots=Array.prototype.slice.call(nav.querySelectorAll('.mod-dot'));
+    var hint=document.getElementById('modHint');
+    var nombres=['Consultorio','A domicilio','Teleconsulta'];
+    var quieto=window.matchMedia('(prefers-reduced-motion:reduce)');
+
+    stage.classList.add('is-live');
+
+    var frente=0, ang=0, meta=0, raf=null, G={};
+
+    function mide(){
+        var w=carrusel.clientWidth||stage.clientWidth||320;
+        var movil=window.matchMedia('(max-width:767.98px)').matches;
+        G={arcoX:Math.min(w*0.46,300),
+           fondo:movil?150:230,
+           asomo:movil?Math.min(w*0.12,44):110,
+           tilt:movil?26:34,
+           escMin:movil?0.9:0.88,
+           opMin:0.45};
+    }
+    function altura(){
+        carrusel.style.height='auto';
+        var alto=0;
+        cartas.forEach(function(c){ alto=Math.max(alto,c.offsetHeight); });
+        if(alto) carrusel.style.height=alto+'px';
+    }
+    mide(); altura();
+    if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){ altura(); pinta(); });
+    var ta;
+    window.addEventListener('resize',function(){ clearTimeout(ta); ta=setTimeout(function(){ mide(); altura(); pinta(); },180); },{passive:true});
+
+    function proyecta(c,th){
+        var r=th*Math.PI/180;
+        var t=(1-Math.cos(r))/2;
+        var x=Math.sin(r)*G.arcoX + t*G.asomo;
+        var z=-t*G.fondo;
+        var rot=Math.sin(r)*10 - t*G.tilt;
+        var esc=1-(1-G.escMin)*t;
+        c.style.transform='translate3d('+x.toFixed(1)+'px,0,'+z.toFixed(1)+'px) rotateY('+rot.toFixed(2)+'deg) scale('+esc.toFixed(3)+')';
+        c.style.opacity=(1-(1-G.opMin)*t).toFixed(3);
+        c.style.zIndex=String(100-Math.round(t*50));
+    }
+    function quienFrente(a){ return ((Math.round(-a/PASO)%N)+N)%N; }
+    function pinta(){
+        cartas.forEach(function(c,k){ proyecta(c,ang+k*PASO); });
+        frente=quienFrente(ang);
+        cartas.forEach(function(c,k){
+            c.classList.toggle('is-front',k===frente);
+            c.classList.toggle('is-back',k!==frente);
+        });
+        dots.forEach(function(d,k){ d.setAttribute('aria-selected',String(k===frente)); });
+    }
+    function anima(){
+        raf=null;
+        var d=meta-ang;
+        if(Math.abs(d)<0.05){ ang=meta; pinta(); return; }
+        ang+=d*0.075;
+        pinta();
+        raf=requestAnimationFrame(anima);
+    }
+    function veA(m){
+        meta=m;
+        if(quieto.matches){ ang=meta; pinta(); return; }
+        if(!raf) raf=requestAnimationFrame(anima);
+    }
+    function alFrente(k){
+        if(k===frente) return;
+        var pasos=((k-frente)%N+N)%N;   // siempre avanza en el mismo sentido
+        veA(meta-PASO*pasos);
+        if(hint) hint.textContent=nombres[k]+' al frente. Desliza para ver las otras.';
+    }
+    dots.forEach(function(d,k){ d.addEventListener('click',function(){ alFrente(k); }); });
+    cartas.forEach(function(c,k){
+        c.addEventListener('click',function(e){
+            if(c.classList.contains('is-back') && !e.target.closest('a,button')){ alFrente(k); }
+        });
+    });
+
+    var x0=null,y0=null,base=0,gesto=0,vx=0,xPrev=0,tPrev=0;
+    stage.addEventListener('pointerdown',function(e){
+        if(e.target.closest('a,button')) return;
+        x0=xPrev=e.clientX; y0=e.clientY; tPrev=e.timeStamp; vx=0; gesto=0; base=ang;
+        if(raf){ cancelAnimationFrame(raf); raf=null; }
+    },{passive:true});
+    window.addEventListener('pointermove',function(e){
+        if(x0===null) return;
+        var dx=e.clientX-x0, dy=e.clientY-y0;
+        if(gesto===0){
+            if(Math.abs(dx)>8&&Math.abs(dx)>Math.abs(dy)*1.2) gesto=1;
+            else if(Math.abs(dy)>10) gesto=-1;
+        }
+        if(gesto!==1) return;
+        stage.classList.add('is-drag');
+        var dt=e.timeStamp-tPrev;
+        if(dt>0){ vx=(e.clientX-xPrev)/dt; xPrev=e.clientX; tPrev=e.timeStamp; }
+        if(quieto.matches) return;
+        ang=base+dx/(stage.clientWidth||320)*(PASO*0.9);
+        pinta();
+    },{passive:true});
+    function suelta(){
+        if(x0===null) return;
+        var fue=gesto===1;
+        x0=null; gesto=0; stage.classList.remove('is-drag');
+        if(!fue){ veA(meta); return; }
+        var cerca=Math.round(ang/PASO)*PASO;
+        if(cerca===Math.round(base/PASO)*PASO){
+            if(vx<-0.35||ang-base<-40) cerca-=PASO;
+            else if(vx>0.35||ang-base>40) cerca+=PASO;
+        }
+        veA(cerca);
+        var f=quienFrente(cerca);
+        if(hint&&f!==frente) hint.textContent=nombres[f]+' al frente. Desliza para ver las otras.';
+    }
+    window.addEventListener('pointerup',suelta,{passive:true});
+    window.addEventListener('pointercancel',suelta,{passive:true});
+
+    stage.setAttribute('tabindex','0');
+    stage.setAttribute('role','group');
+    stage.setAttribute('aria-label','Modalidades de consulta, usa las flechas');
+    stage.addEventListener('keydown',function(e){
+        if(e.key==='ArrowRight'){ e.preventDefault(); alFrente((frente+1)%N); }
+        if(e.key==='ArrowLeft'){ e.preventDefault(); alFrente((frente+N-1)%N); }
+    });
+
+    pinta();
+})();
+</script>
     <script src="/assets/agenda-modal.js" defer></script>
 </body>
 </html>
