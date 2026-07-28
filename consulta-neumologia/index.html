@@ -33,7 +33,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap purgado (19 KB inline vs 227 KB render-blocking de CDN).
+     Regenerar con _internal/scripts/purge-bootstrap.py. NO reintroducir el CDN. -->
+<style id="bs-lite">:root,[data-bs-theme=light]{--bs-blue:#0d6efd;--bs-indigo:#6610f2;--bs-purple:#6f42c1;--bs-pink:#d63384;--bs-red:#dc3545;--bs-orange:#fd7e14;--bs-yellow:#ffc107;--bs-green:#198754;--bs-teal:#20c997;--bs-cyan:#0dcaf0;--bs-black:#000;--bs-white:#fff;--bs-gray:#6c757d;--bs-gray-dark:#343a40;--bs-gray-100:#f8f9fa;--bs-gray-200:#e9ecef;--bs-gray-300:#dee2e6;--bs-gray-400:#ced4da;--bs-gray-500:#adb5bd;--bs-gray-600:#6c757d;--bs-gray-700:#495057;--bs-gray-800:#343a40;--bs-gray-900:#212529;--bs-primary:#0d6efd;--bs-secondary:#6c757d;--bs-success:#198754;--bs-info:#0dcaf0;--bs-warning:#ffc107;--bs-danger:#dc3545;--bs-light:#f8f9fa;--bs-dark:#212529;--bs-primary-rgb:13,110,253;--bs-secondary-rgb:108,117,125;--bs-success-rgb:25,135,84;--bs-info-rgb:13,202,240;--bs-warning-rgb:255,193,7;--bs-danger-rgb:220,53,69;--bs-light-rgb:248,249,250;--bs-dark-rgb:33,37,41;--bs-primary-text-emphasis:#052c65;--bs-secondary-text-emphasis:#2b2f32;--bs-success-text-emphasis:#0a3622;--bs-info-text-emphasis:#055160;--bs-warning-text-emphasis:#664d03;--bs-danger-text-emphasis:#58151c;--bs-light-text-emphasis:#495057;--bs-dark-text-emphasis:#495057;--bs-primary-bg-subtle:#cfe2ff;--bs-secondary-bg-subtle:#e2e3e5;--bs-success-bg-subtle:#d1e7dd;--bs-info-bg-subtle:#cff4fc;--bs-warning-bg-subtle:#fff3cd;--bs-danger-bg-subtle:#f8d7da;--bs-light-bg-subtle:#fcfcfd;--bs-dark-bg-subtle:#ced4da;--bs-primary-border-subtle:#9ec5fe;--bs-secondary-border-subtle:#c4c8cb;--bs-success-border-subtle:#a3cfbb;--bs-info-border-subtle:#9eeaf9;--bs-warning-border-subtle:#ffe69c;--bs-danger-border-subtle:#f1aeb5;--bs-light-border-subtle:#e9ecef;--bs-dark-border-subtle:#adb5bd;--bs-white-rgb:255,255,255;--bs-black-rgb:0,0,0;--bs-font-sans-serif:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--bs-font-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--bs-gradient:linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));--bs-body-font-family:var(--bs-font-sans-serif);--bs-body-font-size:1rem;--bs-body-font-weight:400;--bs-body-line-height:1.5;--bs-body-color:#212529;--bs-body-color-rgb:33,37,41;--bs-body-bg:#fff;--bs-body-bg-rgb:255,255,255;--bs-emphasis-color:#000;--bs-emphasis-color-rgb:0,0,0;--bs-secondary-color:rgba(33, 37, 41, 0.75);--bs-secondary-color-rgb:33,37,41;--bs-secondary-bg:#e9ecef;--bs-secondary-bg-rgb:233,236,239;--bs-tertiary-color:rgba(33, 37, 41, 0.5);--bs-tertiary-color-rgb:33,37,41;--bs-tertiary-bg:#f8f9fa;--bs-tertiary-bg-rgb:248,249,250;--bs-heading-color:inherit;--bs-link-color:#0d6efd;--bs-link-color-rgb:13,110,253;--bs-link-decoration:underline;--bs-link-hover-color:#0a58ca;--bs-link-hover-color-rgb:10,88,202;--bs-code-color:#d63384;--bs-highlight-bg:#fff3cd;--bs-border-width:1px;--bs-border-style:solid;--bs-border-color:#dee2e6;--bs-border-color-translucent:rgba(0, 0, 0, 0.175);--bs-border-radius:0.375rem;--bs-border-radius-sm:0.25rem;--bs-border-radius-lg:0.5rem;--bs-border-radius-xl:1rem;--bs-border-radius-xxl:2rem;--bs-border-radius-2xl:var(--bs-border-radius-xxl);--bs-border-radius-pill:50rem;--bs-box-shadow:0 0.5rem 1rem rgba(0, 0, 0, 0.15);--bs-box-shadow-sm:0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);--bs-box-shadow-lg:0 1rem 3rem rgba(0, 0, 0, 0.175);--bs-box-shadow-inset:inset 0 1px 2px rgba(0, 0, 0, 0.075);--bs-focus-ring-width:0.25rem;--bs-focus-ring-opacity:0.25;--bs-focus-ring-color:rgba(13, 110, 253, 0.25);--bs-form-valid-color:#198754;--bs-form-valid-border-color:#198754;--bs-form-invalid-color:#dc3545;--bs-form-invalid-border-color:#dc3545}[data-bs-theme=dark]{color-scheme:dark;--bs-body-color:#adb5bd;--bs-body-color-rgb:173,181,189;--bs-body-bg:#212529;--bs-body-bg-rgb:33,37,41;--bs-emphasis-color:#fff;--bs-emphasis-color-rgb:255,255,255;--bs-secondary-color:rgba(173, 181, 189, 0.75);--bs-secondary-color-rgb:173,181,189;--bs-secondary-bg:#343a40;--bs-secondary-bg-rgb:52,58,64;--bs-tertiary-color:rgba(173, 181, 189, 0.5);--bs-tertiary-color-rgb:173,181,189;--bs-tertiary-bg:#2b3035;--bs-tertiary-bg-rgb:43,48,53;--bs-primary-text-emphasis:#6ea8fe;--bs-secondary-text-emphasis:#a7acb1;--bs-success-text-emphasis:#75b798;--bs-info-text-emphasis:#6edff6;--bs-warning-text-emphasis:#ffda6a;--bs-danger-text-emphasis:#ea868f;--bs-light-text-emphasis:#f8f9fa;--bs-dark-text-emphasis:#dee2e6;--bs-primary-bg-subtle:#031633;--bs-secondary-bg-subtle:#161719;--bs-success-bg-subtle:#051b11;--bs-info-bg-subtle:#032830;--bs-warning-bg-subtle:#332701;--bs-danger-bg-subtle:#2c0b0e;--bs-light-bg-subtle:#343a40;--bs-dark-bg-subtle:#1a1d20;--bs-primary-border-subtle:#084298;--bs-secondary-border-subtle:#41464b;--bs-success-border-subtle:#0f5132;--bs-info-border-subtle:#087990;--bs-warning-border-subtle:#997404;--bs-danger-border-subtle:#842029;--bs-light-border-subtle:#495057;--bs-dark-border-subtle:#343a40;--bs-heading-color:inherit;--bs-link-color:#6ea8fe;--bs-link-hover-color:#8bb9fe;--bs-link-color-rgb:110,168,254;--bs-link-hover-color-rgb:139,185,254;--bs-code-color:#e685b5;--bs-border-color:#495057;--bs-border-color-translucent:rgba(255, 255, 255, 0.15);--bs-form-valid-color:#75b798;--bs-form-valid-border-color:#75b798;--bs-form-invalid-color:#ea868f;--bs-form-invalid-border-color:#ea868f}*,::after,::before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:var(--bs-body-font-family);font-size:var(--bs-body-font-size);font-weight:var(--bs-body-font-weight);line-height:var(--bs-body-line-height);color:var(--bs-body-color);text-align:var(--bs-body-text-align);background-color:var(--bs-body-bg);-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}hr{margin:1rem 0;color:inherit;border:0;border-top:var(--bs-border-width) solid;opacity:.25}h1,h2,h3,h4{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2;color:var(--bs-heading-color)}h1{font-size:calc(1.375rem + 1.5vw)}@media (min-width:1200px){h1{font-size:2.5rem}}h2{font-size:calc(1.325rem + .9vw)}@media (min-width:1200px){h2{font-size:2rem}}h3{font-size:calc(1.3rem + .6vw)}@media (min-width:1200px){h3{font-size:1.75rem}}h4{font-size:calc(1.275rem + .3vw)}@media (min-width:1200px){h4{font-size:1.5rem}}p{margin-top:0;margin-bottom:1rem}address{margin-bottom:1rem;font-style:normal;line-height:inherit}ol,ul{padding-left:2rem}ol,ul{margin-top:0;margin-bottom:1rem}ol ol,ol ul,ul ol,ul ul{margin-bottom:0}b,strong{font-weight:bolder}small{font-size:.875em}sup{position:relative;font-size:.75em;line-height:0;vertical-align:baseline}sup{top:-.5em}a{color:rgba(var(--bs-link-color-rgb),var(--bs-link-opacity,1));text-decoration:underline}a:hover{--bs-link-color-rgb:var(--bs-link-hover-color-rgb)}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}figure{margin:0 0 1rem}img,svg{vertical-align:middle}table{caption-side:bottom;border-collapse:collapse}th{text-align:inherit;text-align:-webkit-match-parent}tbody,td,th,thead,tr{border-color:inherit;border-style:solid;border-width:0}button{border-radius:0}button:focus:not(:focus-visible){outline:0}button,input{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button{text-transform:none}[role=button]{cursor:pointer}[list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator{display:none!important}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){cursor:pointer}::-moz-focus-inner{padding:0;border-style:none}::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-fields-wrapper,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-text,::-webkit-datetime-edit-year-field{padding:0}::-webkit-inner-spin-button{height:auto}[type=search]{outline-offset:-2px;-webkit-appearance:textfield}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-color-swatch-wrapper{padding:0}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}::file-selector-button{font:inherit;-webkit-appearance:button}iframe{border:0}summary{display:list-item;cursor:pointer}[hidden]{display:none!important}.container{--bs-gutter-x:1.5rem;--bs-gutter-y:0;width:100%;padding-right:calc(var(--bs-gutter-x) * .5);padding-left:calc(var(--bs-gutter-x) * .5);margin-right:auto;margin-left:auto}@media (min-width:576px){.container{max-width:540px}}@media (min-width:768px){.container{max-width:720px}}@media (min-width:992px){.container{max-width:960px}}@media (min-width:1200px){.container{max-width:1140px}}@media (min-width:1400px){.container{max-width:1320px}}:root{--bs-breakpoint-xs:0;--bs-breakpoint-sm:576px;--bs-breakpoint-md:768px;--bs-breakpoint-lg:992px;--bs-breakpoint-xl:1200px;--bs-breakpoint-xxl:1400px}.row{--bs-gutter-x:1.5rem;--bs-gutter-y:0;display:flex;flex-wrap:wrap;margin-top:calc(-1 * var(--bs-gutter-y));margin-right:calc(-.5 * var(--bs-gutter-x));margin-left:calc(-.5 * var(--bs-gutter-x))}.row>*{flex-shrink:0;width:100%;max-width:100%;padding-right:calc(var(--bs-gutter-x) * .5);padding-left:calc(var(--bs-gutter-x) * .5);margin-top:var(--bs-gutter-y)}.g-4{--bs-gutter-x:1.5rem}.g-4{--bs-gutter-y:1.5rem}.g-5{--bs-gutter-x:3rem}.g-5{--bs-gutter-y:3rem}@media (min-width:992px){.col-lg-4{flex:0 0 auto;width:33.33333333%}.col-lg-5{flex:0 0 auto;width:41.66666667%}.col-lg-7{flex:0 0 auto;width:58.33333333%}.col-lg-8{flex:0 0 auto;width:66.66666667%}.g-lg-5{--bs-gutter-x:3rem}.g-lg-5{--bs-gutter-y:3rem}}.collapse:not(.show){display:none}.collapsing{height:0;overflow:hidden;transition:height .35s ease}@media (prefers-reduced-motion:reduce){.collapsing{transition:none}}.dropdown{position:relative}.dropdown-toggle{white-space:nowrap}.dropdown-toggle::after{display:inline-block;margin-left:.255em;vertical-align:.255em;content:"";border-top:.3em solid;border-right:.3em solid transparent;border-bottom:0;border-left:.3em solid transparent}.dropdown-toggle:empty::after{margin-left:0}.dropdown-menu{--bs-dropdown-zindex:1000;--bs-dropdown-min-width:10rem;--bs-dropdown-padding-x:0;--bs-dropdown-padding-y:0.5rem;--bs-dropdown-spacer:0.125rem;--bs-dropdown-font-size:1rem;--bs-dropdown-color:var(--bs-body-color);--bs-dropdown-bg:var(--bs-body-bg);--bs-dropdown-border-color:var(--bs-border-color-translucent);--bs-dropdown-border-radius:var(--bs-border-radius);--bs-dropdown-border-width:var(--bs-border-width);--bs-dropdown-inner-border-radius:calc(var(--bs-border-radius) - var(--bs-border-width));--bs-dropdown-divider-bg:var(--bs-border-color-translucent);--bs-dropdown-divider-margin-y:0.5rem;--bs-dropdown-box-shadow:0 0.5rem 1rem rgba(0, 0, 0, 0.15);--bs-dropdown-link-color:var(--bs-body-color);--bs-dropdown-link-hover-color:var(--bs-body-color);--bs-dropdown-link-hover-bg:var(--bs-tertiary-bg);--bs-dropdown-link-active-color:#fff;--bs-dropdown-link-active-bg:#0d6efd;--bs-dropdown-link-disabled-color:var(--bs-tertiary-color);--bs-dropdown-item-padding-x:1rem;--bs-dropdown-item-padding-y:0.25rem;--bs-dropdown-header-color:#6c757d;--bs-dropdown-header-padding-x:1rem;--bs-dropdown-header-padding-y:0.5rem;position:absolute;z-index:var(--bs-dropdown-zindex);display:none;min-width:var(--bs-dropdown-min-width);padding:var(--bs-dropdown-padding-y) var(--bs-dropdown-padding-x);margin:0;font-size:var(--bs-dropdown-font-size);color:var(--bs-dropdown-color);text-align:left;list-style:none;background-color:var(--bs-dropdown-bg);background-clip:padding-box;border:var(--bs-dropdown-border-width) solid var(--bs-dropdown-border-color);border-radius:var(--bs-dropdown-border-radius)}.dropdown-menu[data-bs-popper]{top:100%;left:0;margin-top:var(--bs-dropdown-spacer)}.dropdown-divider{height:0;margin:var(--bs-dropdown-divider-margin-y) 0;overflow:hidden;border-top:1px solid var(--bs-dropdown-divider-bg);opacity:1}.dropdown-item{display:block;width:100%;padding:var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);clear:both;font-weight:400;color:var(--bs-dropdown-link-color);text-align:inherit;text-decoration:none;white-space:nowrap;background-color:transparent;border:0;border-radius:var(--bs-dropdown-item-border-radius,0)}.dropdown-item:focus,.dropdown-item:hover{color:var(--bs-dropdown-link-hover-color);background-color:var(--bs-dropdown-link-hover-bg)}.dropdown-item.active,.dropdown-item:active{color:var(--bs-dropdown-link-active-color);text-decoration:none;background-color:var(--bs-dropdown-link-active-bg)}.dropdown-item:disabled{color:var(--bs-dropdown-link-disabled-color);pointer-events:none;background-color:transparent}.dropdown-menu.show{display:block}.nav-link{display:block;padding:var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);font-size:var(--bs-nav-link-font-size);font-weight:var(--bs-nav-link-font-weight);color:var(--bs-nav-link-color);text-decoration:none;background:0 0;border:0;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out}@media (prefers-reduced-motion:reduce){.nav-link{transition:none}}.nav-link:focus,.nav-link:hover{color:var(--bs-nav-link-hover-color)}.nav-link:focus-visible{outline:0;box-shadow:0 0 0 .25rem rgba(13,110,253,.25)}.navbar{--bs-navbar-padding-x:0;--bs-navbar-padding-y:0.5rem;--bs-navbar-color:rgba(var(--bs-emphasis-color-rgb), 0.65);--bs-navbar-hover-color:rgba(var(--bs-emphasis-color-rgb), 0.8);--bs-navbar-disabled-color:rgba(var(--bs-emphasis-color-rgb), 0.3);--bs-navbar-active-color:rgba(var(--bs-emphasis-color-rgb), 1);--bs-navbar-brand-padding-y:0.3125rem;--bs-navbar-brand-margin-end:1rem;--bs-navbar-brand-font-size:1.25rem;--bs-navbar-brand-color:rgba(var(--bs-emphasis-color-rgb), 1);--bs-navbar-brand-hover-color:rgba(var(--bs-emphasis-color-rgb), 1);--bs-navbar-nav-link-padding-x:0.5rem;--bs-navbar-toggler-padding-y:0.25rem;--bs-navbar-toggler-padding-x:0.75rem;--bs-navbar-toggler-font-size:1.25rem;--bs-navbar-toggler-icon-bg:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");--bs-navbar-toggler-border-color:rgba(var(--bs-emphasis-color-rgb), 0.15);--bs-navbar-toggler-border-radius:var(--bs-border-radius);--bs-navbar-toggler-focus-width:0.25rem;--bs-navbar-toggler-transition:box-shadow 0.15s ease-in-out;position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:var(--bs-navbar-padding-y) var(--bs-navbar-padding-x)}.navbar>.container{display:flex;flex-wrap:inherit;align-items:center;justify-content:space-between}.navbar-brand{padding-top:var(--bs-navbar-brand-padding-y);padding-bottom:var(--bs-navbar-brand-padding-y);margin-right:var(--bs-navbar-brand-margin-end);font-size:var(--bs-navbar-brand-font-size);color:var(--bs-navbar-brand-color);text-decoration:none;white-space:nowrap}.navbar-brand:focus,.navbar-brand:hover{color:var(--bs-navbar-brand-hover-color)}.navbar-nav{--bs-nav-link-padding-x:0;--bs-nav-link-padding-y:0.5rem;--bs-nav-link-font-weight: ;--bs-nav-link-color:var(--bs-navbar-color);--bs-nav-link-hover-color:var(--bs-navbar-hover-color);--bs-nav-link-disabled-color:var(--bs-navbar-disabled-color);display:flex;flex-direction:column;padding-left:0;margin-bottom:0;list-style:none}.navbar-nav .nav-link.active,.navbar-nav .nav-link.show{color:var(--bs-navbar-active-color)}.navbar-nav .dropdown-menu{position:static}.navbar-collapse{flex-basis:100%;flex-grow:1;align-items:center}.navbar-toggler{padding:var(--bs-navbar-toggler-padding-y) var(--bs-navbar-toggler-padding-x);font-size:var(--bs-navbar-toggler-font-size);line-height:1;color:var(--bs-navbar-color);background-color:transparent;border:var(--bs-border-width) solid var(--bs-navbar-toggler-border-color);border-radius:var(--bs-navbar-toggler-border-radius);transition:var(--bs-navbar-toggler-transition)}@media (prefers-reduced-motion:reduce){.navbar-toggler{transition:none}}.navbar-toggler:hover{text-decoration:none}.navbar-toggler:focus{text-decoration:none;outline:0;box-shadow:0 0 0 var(--bs-navbar-toggler-focus-width)}.navbar-toggler-icon{display:inline-block;width:1.5em;height:1.5em;vertical-align:middle;background-image:var(--bs-navbar-toggler-icon-bg);background-repeat:no-repeat;background-position:center;background-size:100%}@media (min-width:992px){.navbar-expand-lg{flex-wrap:nowrap;justify-content:flex-start}.navbar-expand-lg .navbar-nav{flex-direction:row}.navbar-expand-lg .navbar-nav .dropdown-menu{position:absolute}.navbar-expand-lg .navbar-nav .nav-link{padding-right:var(--bs-navbar-nav-link-padding-x);padding-left:var(--bs-navbar-nav-link-padding-x)}.navbar-expand-lg .navbar-collapse{display:flex!important;flex-basis:auto}.navbar-expand-lg .navbar-toggler{display:none}}.navbar[data-bs-theme=dark]{--bs-navbar-color:rgba(255, 255, 255, 0.55);--bs-navbar-hover-color:rgba(255, 255, 255, 0.75);--bs-navbar-disabled-color:rgba(255, 255, 255, 0.25);--bs-navbar-active-color:#fff;--bs-navbar-brand-color:#fff;--bs-navbar-brand-hover-color:#fff;--bs-navbar-toggler-border-color:rgba(255, 255, 255, 0.1);--bs-navbar-toggler-icon-bg:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")}[data-bs-theme=dark] .navbar-toggler-icon{--bs-navbar-toggler-icon-bg:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")}.sticky-top{position:-webkit-sticky;position:sticky;top:0;z-index:1020}.d-flex{display:flex!important}.d-inline-flex{display:inline-flex!important}.d-none{display:none!important}.position-relative{position:relative!important}.justify-content-center{justify-content:center!important}.align-items-center{align-items:center!important}.mx-auto{margin-right:auto!important;margin-left:auto!important}.my-5{margin-top:3rem!important;margin-bottom:3rem!important}.mt-4{margin-top:1.5rem!important}.me-1{margin-right:.25rem!important}.me-2{margin-right:.5rem!important}.mb-0{margin-bottom:0!important}.mb-1{margin-bottom:.25rem!important}.mb-2{margin-bottom:.5rem!important}.mb-3{margin-bottom:1rem!important}.mb-4{margin-bottom:1.5rem!important}.mb-5{margin-bottom:3rem!important}.ms-2{margin-left:.5rem!important}.py-3{padding-top:1rem!important;padding-bottom:1rem!important}.py-4{padding-top:1.5rem!important;padding-bottom:1.5rem!important}.py-5{padding-top:3rem!important;padding-bottom:3rem!important}.pt-3{padding-top:1rem!important}.pb-5{padding-bottom:3rem!important}.gap-2{gap:.5rem!important}.fw-semibold{font-weight:600!important}.fw-bold{font-weight:700!important}.text-center{text-align:center!important}.text-primary{--bs-text-opacity:1;color:rgba(var(--bs-primary-rgb),var(--bs-text-opacity))!important}.text-white{--bs-text-opacity:1;color:rgba(var(--bs-white-rgb),var(--bs-text-opacity))!important}@media (min-width:768px){.d-md-flex{display:flex!important}}@media (min-width:992px){.d-lg-block{display:block!important}.d-lg-inline-flex{display:inline-flex!important}}</style>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"></noscript>
 <link rel="stylesheet" href="/enfermedades/_shared/disease.css">
@@ -201,11 +203,83 @@ body,.cn-page{font-family:'Plus Jakarta Sans',system-ui,sans-serif}
 <link rel="stylesheet" href="/assets/agenda-modal.css">
 <link rel="stylesheet" href="/assets/base.css">
 <script src="/assets/base.js" defer></script>
+<style>
+/* ===== Upgrade insignia (28-jul-2026): stepper orbital, precios y marquee ===== */
+.testimonial-source-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(9,132,227,.07);border:1px solid rgba(9,132,227,.16);border-radius:100px;padding:6px 18px;font-size:.72rem;font-weight:700;color:var(--electric,#0984e3);margin-bottom:18px}
+.testimonial-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;height:520px;overflow:hidden;position:relative;text-align:left;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 8%,black 92%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,black 8%,black 92%,transparent 100%)}
+.testimonial-col{display:flex;flex-direction:column;gap:16px;will-change:transform;animation:testimonial-scroll-up var(--t-dur,60s) linear infinite}
+.testimonial-col--down{animation-direction:reverse}
+.testimonial-col:hover{animation-play-state:paused}
+@keyframes testimonial-scroll-up{0%{transform:translateY(0)}100%{transform:translateY(calc(-50% - var(--tgap,8px)))}}
+.testi-card{background:var(--white,#fff);border:1px solid rgba(0,0,0,.06);border-radius:18px;padding:24px;box-shadow:0 2px 12px rgba(10,22,40,.04);transition:box-shadow .4s var(--ease,cubic-bezier(.16,1,.3,1)),border-color .4s var(--ease,cubic-bezier(.16,1,.3,1));flex-shrink:0}
+.testi-card:hover{box-shadow:0 12px 40px rgba(10,22,40,.09);border-color:rgba(9,132,227,.15)}
+.testi-stars{display:flex;gap:2px;margin-bottom:12px}
+.testi-stars i{color:#f59e0b;font-size:.82rem}
+.testi-text{font-size:.88rem;line-height:1.7;color:var(--text,#0f1d30);font-style:italic;margin:0 0 16px}
+.testi-author{display:flex;align-items:center;gap:10px}
+.testi-avatar{width:38px;height:38px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--electric,#0984e3),var(--royal,#1e3799));color:#fff;font-weight:700;font-size:.95rem;display:flex;align-items:center;justify-content:center}
+.testi-name{font-weight:700;font-size:.82rem;color:var(--navy,#0a2540);margin:0}
+.testi-badge{font-size:.68rem;color:var(--text-muted,#64748b);margin:1px 0 0}
+.rev-block__all{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:18px;font-size:.92rem;font-weight:600;color:var(--electric,#0984e3);text-decoration:none;border-bottom:1px solid rgba(9,132,227,.3);padding-bottom:2px}
+.rev-block__all:hover,.rev-block__all:focus-visible{color:var(--navy,#0a2540);border-bottom-color:var(--navy,#0a2540)}
+.rev-block__note{font-size:.85rem;color:var(--text-muted,#64748b);margin:10px 0 0}
+@media(max-width:992px){.testimonial-columns{height:440px}}
+@media(max-width:640px){.testimonial-columns{grid-template-columns:1fr;height:420px}.testimonial-col:nth-child(n+2){display:none}.testi-card{padding:18px 20px}}
+
+/* Stepper orbital de pasos (motor d6, N=5) */
+.paso-deck__stage{position:relative;perspective:1200px;perspective-origin:50% 42%;padding:12px 0 26px;touch-action:pan-y}
+.paso-deck.is-live .paso-deck__stage{cursor:grab}
+.paso-deck.is-live.is-drag .paso-deck__stage{cursor:grabbing}
+.paso-deck.is-live.is-drag .paso-card{pointer-events:none}
+.paso-carousel{position:relative}
+.paso-card{background:#fff;border:1px solid rgba(9,132,227,.14);border-radius:18px;padding:22px 20px 20px;position:relative}
+.paso-deck.is-live .paso-card{position:absolute;top:0;left:0;right:0;width:min(88%,520px);margin:0 auto;transform-origin:50% 58%;will-change:transform,opacity;transition:box-shadow .6s ease}
+.paso-deck.is-live .paso-card.is-front{box-shadow:0 1px 2px rgba(10,22,40,.06),0 20px 38px -16px rgba(10,22,40,.24),0 46px 80px -44px rgba(9,132,227,.5)}
+.paso-deck.is-live .paso-card.is-back{cursor:pointer;box-shadow:0 12px 28px -18px rgba(10,22,40,.3)}
+.paso-deck:not(.is-live) .paso-card{margin-bottom:12px}
+.paso-card__n{position:absolute;top:16px;right:18px;font-size:2rem;font-weight:800;color:rgba(9,132,227,.16);line-height:1}
+.paso-card__ic{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,var(--electric,#0984e3),var(--royal,#0a58ca));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.15rem;margin-bottom:12px;box-shadow:0 8px 20px -8px rgba(9,132,227,.55)}
+.paso-card h3{font-size:1.05rem;font-weight:800;color:var(--navy,#0a1628);margin:0 0 8px;letter-spacing:-.015em}
+.paso-card p{font-size:.92rem;line-height:1.6;color:var(--text-muted,#64748b);margin:0}
+.paso-card p a{color:var(--electric,#0984e3);font-weight:700}
+.paso-deck__nav{display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:16px}
+.paso-dot{width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(9,132,227,.25);background:#fff;font-family:inherit;font-size:.92rem;font-weight:800;color:var(--text-muted,#64748b);cursor:pointer;transition:background .25s,color .25s,transform .25s}
+.paso-dot[aria-selected="true"]{background:linear-gradient(135deg,var(--electric,#0984e3),var(--royal,#0a58ca));color:#fff;border-color:transparent;box-shadow:0 8px 20px rgba(9,132,227,.3)}
+.paso-dot:focus-visible,.paso-arrow:focus-visible{outline:2px solid var(--electric,#0984e3);outline-offset:3px}
+.paso-arrow{width:44px;height:44px;flex:0 0 44px;border-radius:50%;border:1px solid rgba(9,132,227,.2);background:#fff;color:var(--electric,#0984e3);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(10,22,40,.08)}
+.paso-hint{text-align:center;font-size:.78rem;color:var(--text-muted,#64748b);margin:10px 0 0}
+.paso-deck:not(.is-live) .paso-deck__nav,.paso-deck:not(.is-live) .paso-hint{display:none}
+/* Precios: la promo manda, el resto en filas compactas */
+.prc-hero{display:grid;gap:14px;margin:0 0 14px}
+@media(min-width:820px){.prc-hero{grid-template-columns:1.05fr 1fr;align-items:stretch}}
+.prc-hero__main{position:relative;background:linear-gradient(150deg,var(--navy,#0a1628),#123055 62%,#0b3f74);border-radius:20px;padding:26px 24px;color:#fff;overflow:hidden}
+.prc-hero__badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);border-radius:100px;padding:6px 14px;font-size:.74rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.prc-hero__num{font-size:clamp(2.6rem,9vw,3.4rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin:10px 0 6px}
+.prc-hero__desc{font-size:.95rem;line-height:1.55;color:rgba(255,255,255,.85);margin:0 0 12px}
+.prc-hero__vs{font-size:.85rem;color:rgba(255,255,255,.7)}
+.prc-hero__vs s{color:#fff;font-weight:700}
+.prc-rows{list-style:none;margin:0;padding:0;display:grid;gap:10px;align-content:center}
+.prc-rows li{display:grid;grid-template-columns:1fr auto;gap:2px 12px;background:#fff;border:1px solid rgba(9,132,227,.13);border-radius:14px;padding:13px 16px}
+.prc-rows span{font-size:.92rem;font-weight:800;color:var(--navy,#0a1628)}
+.prc-rows strong{font-size:1.05rem;font-weight:800;color:var(--electric,#0984e3);text-align:right}
+.prc-rows small{grid-column:1/-1;font-size:.8rem;color:var(--text-muted,#64748b);line-height:1.45}
+/* Movil compacto: las rejas de tarjetas a 2 columnas */
+@media(max-width:599px){
+  .cn-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .cn-card{padding:14px 12px}
+  .cn-card h3{font-size:.9rem}
+  .cn-card p{font-size:.8rem;line-height:1.45}
+}
+@media(prefers-reduced-motion:reduce){.paso-deck.is-live .paso-card{transition:none}}
+</style>
+
 </head>
 <body>
 <a class="alv-skip" href="#main">Saltar al contenido</a>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG8Z6FKF" height="0" width="0" style="display:none;visibility:hidden" aria-hidden="true"></iframe></noscript>
 <script>document.body.classList.add('js-enabled');</script>
+
+
 <div class="top-bar-legal text-center fw-semibold"><div class="container">Aviso Cofepris: <a href="https://www.gob.mx/cofepris" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">2609142002A00265</a> &nbsp;|&nbsp; Céd. Prof: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">12588976</a> &nbsp;|&nbsp; Céd. Esp: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">15595809</a> &nbsp;|&nbsp; <a href="https://conacem.org.mx/buscador" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">CNN-2102</a></div></div>
 
 <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
@@ -325,7 +399,7 @@ body,.cn-page{font-family:'Plus Jakarta Sans',system-ui,sans-serif}
 </div>
 
 <!-- QUÉ INCLUYE -->
-<div class="cn-section">
+<div class="cn-section reveal">
 <span class="cn-eyebrow"><i class="bi bi-clipboard2-pulse"></i> Qué incluye</span>
 <h2 class="cn-title">Qué incluye tu consulta y cuánto dura</h2>
 <p class="cn-lead">Cuarenta minutos en primera vez, de veinte a treinta en seguimiento. Ese tiempo alcanza para revisar tu historia completa, no solo el síntoma de hoy.</p>
@@ -338,21 +412,62 @@ body,.cn-page{font-family:'Plus Jakarta Sans',system-ui,sans-serif}
 </div>
 
 <!-- PASO A PASO -->
-<div class="cn-section">
+<div class="cn-section reveal">
 <span class="cn-eyebrow"><i class="bi bi-signpost-2"></i> Paso a paso</span>
 <h2 class="cn-title">Cómo es tu primera consulta, paso a paso</h2>
 <p class="cn-lead">Para que llegues sabiendo qué va a pasar.</p>
-<ol class="cn-steps">
-<li><h3>Llegas al consultorio 507</h3><p>En el Hospital Santa Coleta, Saturnino Herrán 59. Te recibo a la hora de tu cita, sin salas de espera largas porque la agenda está reservada para ti.</p></li>
-<li><h3>Platicamos y te exploro</h3><p>Me cuentas tu historia con calma. Reviso tus estudios previos y te ausculto. Aquí es donde se define casi todo el diagnóstico.</p></li>
-<li><h3>Estudio el mismo día, si aplica</h3><p>Si necesitas <a href="/servicios/espirometria/">espirometría</a>, <a href="/servicios/feno/">FeNO</a> o <a href="/servicios/poligrafia-respiratoria/">poligrafía respiratoria</a>, lo resolvemos en la misma visita o te entrego el equipo del estudio de sueño para tu casa.</p></li>
-<li><h3>Sales con un plan escrito</h3><p>Te explico el diagnóstico en palabras claras y te entrego receta y plan: qué tomar, cómo, por cuánto tiempo y qué esperar. Si usas inhalador, practicamos la técnica ahí mismo.</p></li>
-<li><h3>Seguimiento</h3><p>Acordamos cuándo nos volvemos a ver. Entre consultas puedes escribirme por WhatsApp para dudas puntuales de tu tratamiento.</p></li>
-</ol>
+<!-- Stepper orbital (patron d6, N=5): los cinco pasos en la huella de uno.
+     Desliza o toca el numero; sin JS quedan apilados. -->
+<div class="paso-deck" id="pasoDeck">
+<div class="paso-deck__stage" id="pasoStage">
+<div class="paso-carousel" id="pasoCarousel">
+<article class="paso-card">
+<span class="paso-card__n" aria-hidden="true">1</span>
+<span class="paso-card__ic" aria-hidden="true"><i class="bi bi-door-open-fill"></i></span>
+<h3>Llegas al consultorio 507</h3>
+<p>En el Hospital Santa Coleta, Saturnino Herrán 59. Te recibo a la hora de tu cita: la agenda está reservada para ti, sin salas de espera largas.</p>
+</article>
+<article class="paso-card">
+<span class="paso-card__n" aria-hidden="true">2</span>
+<span class="paso-card__ic" aria-hidden="true"><i class="bi bi-chat-heart-fill"></i></span>
+<h3>Platicamos y te exploro</h3>
+<p>Me cuentas tu historia con calma. Reviso tus estudios previos y te ausculto. Aquí se define casi todo el diagnóstico.</p>
+</article>
+<article class="paso-card">
+<span class="paso-card__n" aria-hidden="true">3</span>
+<span class="paso-card__ic" aria-hidden="true"><i class="bi bi-lungs-fill"></i></span>
+<h3>Estudio el mismo día, si aplica</h3>
+<p>Si necesitas <a href="/servicios/espirometria/">espirometría</a>, <a href="/servicios/feno/">FeNO</a> o <a href="/servicios/poligrafia-respiratoria/">poligrafía</a>, lo resolvemos en la misma visita o te llevas el equipo del estudio de sueño a casa.</p>
+</article>
+<article class="paso-card">
+<span class="paso-card__n" aria-hidden="true">4</span>
+<span class="paso-card__ic" aria-hidden="true"><i class="bi bi-clipboard-check-fill"></i></span>
+<h3>Sales con un plan escrito</h3>
+<p>Te explico el diagnóstico en palabras claras: receta, dosis, duración y qué esperar. Si usas inhalador, practicamos la técnica ahí mismo.</p>
+</article>
+<article class="paso-card">
+<span class="paso-card__n" aria-hidden="true">5</span>
+<span class="paso-card__ic" aria-hidden="true"><i class="bi bi-arrow-repeat"></i></span>
+<h3>Seguimiento</h3>
+<p>Acordamos cuándo nos volvemos a ver. Entre consultas puedes escribirme por WhatsApp para dudas puntuales de tu tratamiento.</p>
+</article>
+</div>
+</div>
+<div class="paso-deck__nav" id="pasoNav" role="group" aria-label="Recorrer los pasos">
+<button type="button" class="paso-arrow" id="pasoPrev" aria-label="Paso anterior"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
+<button type="button" class="paso-dot" aria-selected="true">1</button>
+<button type="button" class="paso-dot" aria-selected="false">2</button>
+<button type="button" class="paso-dot" aria-selected="false">3</button>
+<button type="button" class="paso-dot" aria-selected="false">4</button>
+<button type="button" class="paso-dot" aria-selected="false">5</button>
+<button type="button" class="paso-arrow" id="pasoNext" aria-label="Paso siguiente"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+</div>
+<p class="paso-hint" id="pasoHint">Desliza para recorrer los 5 pasos.</p>
+</div>
 </div>
 
 <!-- QUÉ LLEVAR -->
-<div class="cn-section">
+<div class="cn-section reveal">
 <span class="cn-eyebrow"><i class="bi bi-bag-check"></i> Prepárate</span>
 <h2 class="cn-title">Qué llevar a tu cita</h2>
 <p class="cn-lead">Con esto la consulta rinde el doble. Si te falta algo, no la canceles, venimos y lo resolvemos.</p>
@@ -365,7 +480,7 @@ body,.cn-page{font-family:'Plus Jakarta Sans',system-ui,sans-serif}
 </div>
 
 <!-- MOTIVOS -->
-<div class="cn-section">
+<div class="cn-section reveal">
 <span class="cn-eyebrow"><i class="bi bi-lungs-fill"></i> Motivos de consulta</span>
 <h2 class="cn-title">Por qué llegan mis pacientes</h2>
 <p class="cn-lead">Si te identificas con alguno, una valoración con neumólogo es el siguiente paso razonable.</p>
@@ -380,37 +495,28 @@ body,.cn-page{font-family:'Plus Jakarta Sans',system-ui,sans-serif}
 </div>
 
 <!-- PRECIOS -->
-<div class="cn-section" id="precios">
+<div class="cn-section reveal" id="precios">
 <span class="cn-eyebrow"><i class="bi bi-tag"></i> Precios</span>
 <h2 class="cn-title">Cuánto cuesta la consulta</h2>
 <p class="cn-lead">Cuatro precios que conviven según cómo llegues y si es tu primera visita. Te confirmo el tuyo por WhatsApp antes de agendar.</p>
-<div class="cn-price-grid">
-<div class="cn-price cn-price--hl">
-<div class="cn-price__lbl">Promoción por internet</div>
-<div class="cn-price__num">$1,300</div>
-<p class="cn-price__desc">Primera vez, para quien llega desde este sitio o desde un anuncio. Mencióna la promoción al escribirme.</p>
+<div class="prc-hero">
+<div class="prc-hero__main">
+<span class="prc-hero__badge"><i class="bi bi-stars" aria-hidden="true"></i> Promoción por internet</span>
+<div class="prc-hero__num">$1,300</div>
+<p class="prc-hero__desc">Primera vez, para quien llega desde este sitio o desde un anuncio. Menciona la promoción al escribirme.</p>
+<span class="prc-hero__vs">Precio de lista de primera vez: <s>$1,800</s></span>
 </div>
-<div class="cn-price">
-<div class="cn-price__lbl">Primera vez</div>
-<div class="cn-price__num">$1,800</div>
-<p class="cn-price__desc">Precio de lista de la consulta de primera vez, con la valoración completa de 40 minutos.</p>
-</div>
-<div class="cn-price">
-<div class="cn-price__lbl">Primera vez sin promoción</div>
-<div class="cn-price__num">$1,500</div>
-<p class="cn-price__desc">Para quien llega por recomendación o referido y no aplica la promoción por internet.</p>
-</div>
-<div class="cn-price">
-<div class="cn-price__lbl">Subsecuente</div>
-<div class="cn-price__num">$1,500</div>
-<p class="cn-price__desc">Consulta de seguimiento, con revisión de tu respuesta al tratamiento y ajuste del plan.</p>
-</div>
+<ul class="prc-rows">
+<li><span>Primera vez</span><strong>$1,800</strong><small>Precio de lista, valoración completa de 40 minutos</small></li>
+<li><span>Primera vez sin promoción</span><strong>$1,500</strong><small>Por recomendación o referido, sin promoción de internet</small></li>
+<li><span>Subsecuente</span><strong>$1,500</strong><small>Seguimiento: revisión de tu respuesta y ajuste del plan</small></li>
+</ul>
 </div>
 <p class="cn-price-note">Los estudios se cobran aparte. La <a class="cn-link" href="/servicios/espirometria/">espirometría</a> cuesta $1,200 en promoción, precio regular $1,400, o se agrega por $600 si la haces junto con tu consulta. La <a class="cn-link" href="/servicios/poligrafia-respiratoria/">poligrafía respiratoria</a> cuesta $4,000 en el consultorio y $5,000 a domicilio. También hay <strong>consulta a domicilio</strong> dentro de un radio de 15 km desde el Hospital Santa Coleta. Puedes ver el desglose completo en <a class="cn-link" href="/cuanto-cuesta-consulta-neumologo-cdmx/">cuánto cuesta un neumólogo en CDMX</a>.</p>
 </div>
 
 <!-- QUIÉN TE ATIENDE -->
-<div class="cn-section">
+<div class="cn-section reveal">
 <div class="cn-doc">
 <span class="cn-eyebrow" style="color:var(--sky);background:rgba(116,185,255,.12);border-color:rgba(116,185,255,.3)"><i class="bi bi-person-badge"></i> Quién te atiende</span>
 <h2>Dr. William César Lara Vázquez, neumólogo</h2>
@@ -425,8 +531,12 @@ body,.cn-page{font-family:'Plus Jakarta Sans',system-ui,sans-serif}
 </div>
 </div>
 
-<!-- RATING -->
-<div class="cn-section text-center">
+<!-- RESENAS REALES (Google), mismo marquee de 3 columnas del resto del sitio.
+     base.js clona el set para el loop infinito ([data-marquee]). Conteos NO se editan a mano. -->
+<div class="cn-section reveal" id="resenas">
+<span class="cn-eyebrow"><i class="bi bi-star-fill"></i> Pacientes</span>
+<h2 class="cn-title">Lo que dicen quienes ya vinieron a consulta</h2>
+<div class="text-center" style="display:flex;flex-direction:column;gap:14px;align-items:center;">
 <a href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer" class="gbp-rating-widget" aria-label="Calificación de 5.0 estrellas con 43 reseñas verificadas en Google. Ver reseñas">
     <span class="gbp-rating-widget__num">5.0</span>
     <div class="gbp-rating-widget__meta">
@@ -435,10 +545,19 @@ body,.cn-page{font-family:'Plus Jakarta Sans',system-ui,sans-serif}
     </div>
     <span class="gbp-rating-widget__source"><i class="bi bi-google" aria-hidden="true"></i> Google</span>
 </a>
+<div class="testimonial-source-badge"><i class="bi bi-patch-check-fill" aria-hidden="true"></i> Opiniones de pacientes verificados</div>
+<div class="testimonial-columns" data-marquee role="region" aria-label="Reseñas de pacientes en Google">
+    <div class="testimonial-col"><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención, muy profesional"</p><div class="testi-author"><div class="testi-avatar">N</div><div><p class="testi-name">Noemí M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buena atención. Excelente para explicar tu situación médica."</p><div class="testi-author"><div class="testi-avatar">V</div><div><p class="testi-name">Vanessa Z.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención, súper personalizada, cuidando cada detalle y siempre al pendiente del paciente"</p><div class="testi-author"><div class="testi-avatar">Y</div><div><p class="testi-name">Yetlanetzy R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Chulada de doctor, me siento escuchado, atendido, es profesional y con una preocupación sincera por sus pacientes."</p><div class="testi-author"><div class="testi-avatar">G</div><div><p class="testi-name">Gilberto W.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención, fue muy amable y profesional en cuanto a las dudas mías. Definitivamente será mi nuevo neumólogo de confianza, gracias Dr."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Alicia F.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buena atención por parte del Dr. Lara, sabe explicar muy bien a sus pacientes. Desde el primer contacto con él y hasta la fecha ha mantenido la comunicación y seguimiento con su paciente. Muy profesional, lo recomiendo 100%."</p><div class="testi-author"><div class="testi-avatar">F</div><div><p class="testi-name">Fabiola G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El Dr. William, puntual en la cita, nos atendió con mucho esmero, checó con mucho detalle y el diagnóstico muy acertado. Es muy paciente al escuchar, lleva un seguimiento en el proceso de la mejoría de la salud. Un excelente médico, de verdad se recomienda solo."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Adán C.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div></div>
+    <div class="testimonial-col"><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención!"</p><div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">J. Alberto M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Comprometido con su trabajo, profesión y calidad humana. Excelente Dr."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Alicia M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buen médico, muy amable y siempre pendiente de sus pacientes. Lo recomiendo ampliamente."</p><div class="testi-author"><div class="testi-avatar">R</div><div><p class="testi-name">Rossana R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El doctor William es excelente, muy humano, profesional y dedicado a sus pacientes. Si un día necesitas un Neumólogo, no dudes en llamarlo."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Adri N.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Agradezco la atención y seguimiento en cada consulta. Me explicó el diagnóstico con claridad y obtuve mejoría muy pronto. Es un médico muy profesional. Sin duda lo recomiendo ampliamente."</p><div class="testi-author"><div class="testi-avatar">K</div><div><p class="testi-name">Karla G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Mi experiencia con el doctor William ha sido y es muy buena, es buen doctor, amable, respetuoso y le explica bien lo que se necesita saber. Él atiende a mi señora madre, que tiene 95 años, quien tuvo neumonía y él la sacó adelante, gracias!"</p><div class="testi-author"><div class="testi-avatar">L</div><div><p class="testi-name">Lourdes A.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Una atención muy profesional, muy empático y con un dominio amplio en su área de especialización, cabe mencionar que tiene el don de comunicar tu situación en términos sencillos y te otorga el tiempo que requieres, en pocas palabras, altamente recomendable."</p><div class="testi-author"><div class="testi-avatar">I</div><div><p class="testi-name">Ignacio H.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div></div>
+    <div class="testimonial-col"><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buena atención"</p><div class="testi-author"><div class="testi-avatar">M</div><div><p class="testi-name">María Esther G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención!"</p><div class="testi-author"><div class="testi-avatar">K</div><div><p class="testi-name">Karina V.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente Dr. Empático, humano, y muy comprometido con su labor."</p><div class="testi-author"><div class="testi-avatar">S</div><div><p class="testi-name">Sonia de la F.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención, recomiendo 100%. El doctor William es un profesional y experto en su área."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Abril S.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente trato, muy profesional, explica de manera que se hace entender. Resuelve todas las dudas, ampliamente recomendable"</p><div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">Jorge S.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El doctor es súper amable, me explicó a detalle todo y el tratamiento fue muy efectivo, rápido vi mejoría, altamente recomendable"</p><div class="testi-author"><div class="testi-avatar">L</div><div><p class="testi-name">Liliana G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención, una persona muy capacitada, y con todas las herramientas para un gran diagnóstico y explicación, da un gran seguimiento y sus tratamientos son los mejores."</p><div class="testi-author"><div class="testi-avatar">E</div><div><p class="testi-name">Eduardo H.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Una consulta por demás completa! Revisión minuciosa, explicaciones precisas y un trato muy amable y muy profesional. Quedé muy satisfecha con los resultados y con el programa de tratamiento a seguir."</p><div class="testi-author"><div class="testi-avatar">M</div><div><p class="testi-name">Maggy</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div></div>
+</div>
+<a class="rev-block__all" href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer"><i class="bi bi-google" aria-hidden="true"></i> Ver todas las reseñas en Google</a>
+<p class="rev-block__note">Opiniones reales de pacientes en Google, sin editar.</p>
+</div>
 </div>
 
 <!-- CTA FINAL -->
-<div class="cn-section" style="margin-bottom:24px">
+<div class="cn-section reveal" style="margin-bottom:24px">
 <div class="cn-cta">
 <h2>¿Agendamos tu consulta?</h2>
 <p>Escríbeme por WhatsApp y te confirmo el horario disponible más cercano, el precio que te corresponde y qué llevar. Atiendo de lunes a viernes de 16:00 a 21:00 y sábado y domingo de 12:00 a 16:00, siempre con cita previa.</p>
@@ -599,5 +718,154 @@ body,.cn-page{font-family:'Plus Jakarta Sans',system-ui,sans-serif}
 </script>
 
 <script src="/assets/agenda-modal.js" defer></script>
+<script>
+/* ── Reveals: el mismo patron IO de disease.js, sin cargar GSAP ── */
+(function(){
+    if(!('IntersectionObserver' in window)){
+        document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('visible'); });
+        return;
+    }
+    var obs=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+})();
+
+/* ── Stepper orbital de pasos (motor d6 generalizado a N asientos) ──
+   Un angulo continuo gobierna la orbita: cada paso ocupa un asiento a
+   360/N grados, el dedo arrastra el angulo en vivo y al soltar cae al
+   asiento mas cercano con resorte. Sin JS los pasos quedan apilados. */
+(function(){
+    var deck=document.getElementById('pasoDeck');
+    if(!deck) return;
+    var stage=document.getElementById('pasoStage');
+    var carrusel=document.getElementById('pasoCarousel');
+    var cartas=Array.prototype.slice.call(carrusel.querySelectorAll('.paso-card'));
+    var N=cartas.length;
+    if(N<2) return;
+    var PASO=360/N;
+    var dots=Array.prototype.slice.call(deck.querySelectorAll('.paso-dot'));
+    var hint=document.getElementById('pasoHint');
+    var quieto=window.matchMedia('(prefers-reduced-motion:reduce)');
+
+    deck.classList.add('is-live');
+
+    var frente=0, ang=0, meta=0, raf=null;
+    var G={};
+    function mide(){
+        var w=carrusel.clientWidth||stage.clientWidth||320;
+        var movil=window.matchMedia('(max-width:767.98px)').matches;
+        G={arcoX:Math.min(w*0.44,290), fondo:movil?140:210,
+           asomo:movil?Math.min(w*0.07,26):44, tilt:movil?22:30,
+           escMin:movil?0.86:0.84, opMin:0.22};
+    }
+    function altura(){
+        carrusel.style.height='auto';
+        var alto=0;
+        cartas.forEach(function(c){ alto=Math.max(alto,c.offsetHeight); });
+        if(alto) carrusel.style.height=alto+'px';
+    }
+    mide(); altura();
+    if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){ altura(); pinta(); });
+    var ta;
+    window.addEventListener('resize',function(){ clearTimeout(ta); ta=setTimeout(function(){ mide(); altura(); pinta(); },180); },{passive:true});
+
+    function proyecta(c,th){
+        var r=th*Math.PI/180;
+        var t=(1-Math.cos(r))/2;
+        var x=Math.sin(r)*G.arcoX + t*G.asomo;
+        var z=-t*G.fondo;
+        var rot=Math.sin(r)*10 - t*G.tilt;
+        var esc=1-(1-G.escMin)*t;
+        c.style.transform='translate3d('+x.toFixed(1)+'px,0,'+z.toFixed(1)+'px) rotateY('+rot.toFixed(2)+'deg) scale('+esc.toFixed(3)+')';
+        c.style.opacity=(1-(1-G.opMin)*t).toFixed(3);
+        c.style.zIndex=String(100-Math.round(t*50));
+    }
+    function quienFrente(a){ return ((Math.round(-a/PASO)%N)+N)%N; }
+    function pinta(){
+        cartas.forEach(function(c,k){ proyecta(c,ang+k*PASO); });
+        frente=quienFrente(ang);
+        cartas.forEach(function(c,k){
+            c.classList.toggle('is-front',k===frente);
+            c.classList.toggle('is-back',k!==frente);
+        });
+        dots.forEach(function(d,k){ d.setAttribute('aria-selected',String(k===frente)); });
+    }
+    function anima(){
+        raf=null;
+        var d=meta-ang;
+        if(Math.abs(d)<0.05){ ang=meta; pinta(); return; }
+        ang+=d*0.075;
+        pinta();
+        raf=requestAnimationFrame(anima);
+    }
+    function veA(m){
+        meta=m;
+        if(quieto.matches){ ang=meta; pinta(); return; }
+        if(!raf) raf=requestAnimationFrame(anima);
+    }
+    function alFrente(k){
+        if(k===frente) return;
+        var delta=((k-frente)%N+N)%N;      /* siempre hacia adelante */
+        veA(meta-delta*PASO);
+        if(hint) hint.textContent='Paso '+(k+1)+' de '+N+'. Desliza para seguir.';
+    }
+    dots.forEach(function(d,k){ d.addEventListener('click',function(){ alFrente(k); }); });
+    var bp=document.getElementById('pasoPrev'), bn=document.getElementById('pasoNext');
+    if(bn) bn.addEventListener('click',function(){ alFrente((frente+1)%N); });
+    if(bp) bp.addEventListener('click',function(){ veA(meta+PASO); if(hint) hint.textContent='Paso '+(((quienFrente(meta+PASO))+1))+' de '+N+'.'; });
+    cartas.forEach(function(c,k){
+        c.addEventListener('click',function(e){
+            if(c.classList.contains('is-back') && !e.target.closest('a,button')) alFrente(k);
+        });
+    });
+
+    var x0=null,y0=null,base=0,gesto=0,vx=0,xPrev=0,tPrev=0;
+    stage.addEventListener('pointerdown',function(e){
+        if(e.target.closest('a,button')) return;
+        x0=xPrev=e.clientX; y0=e.clientY; tPrev=e.timeStamp; vx=0; gesto=0; base=ang;
+        if(raf){ cancelAnimationFrame(raf); raf=null; }
+    },{passive:true});
+    window.addEventListener('pointermove',function(e){
+        if(x0===null) return;
+        var dx=e.clientX-x0, dy=e.clientY-y0;
+        if(gesto===0){
+            if(Math.abs(dx)>8&&Math.abs(dx)>Math.abs(dy)*1.2) gesto=1;
+            else if(Math.abs(dy)>10) gesto=-1;
+        }
+        if(gesto!==1) return;
+        deck.classList.add('is-drag');
+        var dt=e.timeStamp-tPrev;
+        if(dt>0){ vx=(e.clientX-xPrev)/dt; xPrev=e.clientX; tPrev=e.timeStamp; }
+        if(quieto.matches) return;
+        ang=base+dx/(stage.clientWidth||320)*(PASO*0.9);
+        pinta();
+    },{passive:true});
+    function suelta(){
+        if(x0===null) return;
+        var fue=gesto===1;
+        x0=null; gesto=0; deck.classList.remove('is-drag');
+        if(!fue){ veA(meta); return; }
+        var cerca=Math.round(ang/PASO)*PASO;
+        if(cerca===Math.round(base/PASO)*PASO){
+            if(vx<-0.35||ang-base<-PASO*0.22) cerca-=PASO;
+            else if(vx>0.35||ang-base>PASO*0.22) cerca+=PASO;
+        }
+        veA(cerca);
+    }
+    window.addEventListener('pointerup',suelta,{passive:true});
+    window.addEventListener('pointercancel',suelta,{passive:true});
+
+    stage.setAttribute('tabindex','0');
+    stage.setAttribute('role','group');
+    stage.setAttribute('aria-label','Recorrer los cinco pasos de la consulta, usa las flechas');
+    stage.addEventListener('keydown',function(e){
+        if(e.key==='ArrowRight'){ e.preventDefault(); alFrente((frente+1)%N); }
+        if(e.key==='ArrowLeft'){ e.preventDefault(); veA(meta+PASO); }
+    });
+
+    pinta();
+})();
+</script>
 </body>
 </html>
