@@ -281,6 +281,29 @@
 .promo-lang2 a:not(.active):hover{background:rgba(9,37,64,.08)}
 .promo-lang2 a.active{background:var(--navy)}
 .promo-lang2 a.active{color:#fff}
+
+/* Barra superior en telefonos angostos: sin esto el selector ES|EN se sale
+   del viewport y ensancha el documento (se ve la pagina encogida al hacer
+   zoom-out). Verificado a 360 y 375 px. */
+@media(max-width:575.98px){
+    #mainNav .container{gap:8px!important}
+    #mainNav .navbar-brand{margin-right:0!important}
+    #mainNav .brand-name{font-size:1.15rem}
+    .nav-cta-tail{display:none}
+    .promo-lang2{flex-shrink:0;margin-left:0}
+    .promo-lang2 a{padding:2px 7px}
+}
+
+/* Desborde horizontal en telefonos angostos (medido a 375 y 360 px):
+   .g-5 deja la fila con -24px de margen contra 12px de padding del contenedor,
+   y la barra superior con nowrap no deja bajar el selector de idioma. */
+@media(max-width:575.98px){
+    .row.g-5,.row.g-4{--bs-gutter-x:1.5rem}
+    /* la barra trae flex-wrap:nowrap en atributo style: solo !important gana */
+    #mainNav>.container{flex-wrap:wrap!important;row-gap:6px}
+    #mainNav .navbar-cta{margin-left:auto;min-width:0}
+    .promo-lang2{flex-shrink:0}
+}
 </style>
 <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
     <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:12px">
