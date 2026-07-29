@@ -562,6 +562,16 @@
 .trust-list li{padding:10px 0;font-size:.87rem;line-height:1.5}
 .trust-caveat{margin-bottom:12px;font-size:.85rem}
 .trust-source{margin-top:14px;padding-top:12px;font-size:.82rem}}
+
+/* La autoevaluacion es un modulo autocontenido: se centra en su seccion.
+   El cuestionario (760 px) y el lead (640) iban con margen 0 dentro de una
+   seccion de 1116, asi que colgaban a la izquierda con 280-400 px de vacio
+   a la derecha. El texto DE LAS PREGUNTAS se queda alineado a la izquierda,
+   que es como se lee un cuestionario. */
+#stop-bang{text-align:center}
+#stop-bang .svc-section__eyebrow{margin-left:auto;margin-right:auto}
+#stop-bang .svc-section__lead{margin-left:auto;margin-right:auto}
+#stop-bang .sb-wrap{margin-left:auto;margin-right:auto;text-align:left}
 </style>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
 <script type="application/ld+json">
