@@ -310,7 +310,9 @@
 
 
 /* ============== STEPPER DE MOMENTOS (d6 con N=4, doctrina d8) ============== */
-.dpaso-deck__stage{position:relative;perspective:1200px;perspective-origin:50% 42%;padding:10px 0 22px;touch-action:pan-y}
+.dpaso-deck__stage{position:relative;perspective:1200px;perspective-origin:50% 42%;padding:10px 0 22px;touch-action:pan-y;
+    overflow-x:clip;overflow-y:visible}
+@supports not (overflow-x: clip){.dpaso-deck__stage{overflow:hidden;padding-bottom:34px}}
 .dpaso-deck.is-live .dpaso-deck__stage{cursor:grab}
 .dpaso-deck.is-live.is-drag .dpaso-deck__stage{cursor:grabbing}
 .dpaso-deck.is-live.is-drag .dpaso-card{pointer-events:none}
@@ -1511,8 +1513,9 @@
         function mide(){
             var w=carrusel.clientWidth||stage.clientWidth||320;
             var movil=window.matchMedia('(max-width:767.98px)').matches;
-            G={arcoX:Math.min(w*0.42,280),fondo:movil?140:205,
-               asomo:movil?Math.min(w*0.06,22):40,tilt:movil?20:28,
+            G={arcoX:movil?Math.min(w*0.42,280):Math.min(w*0.24,150),
+               fondo:movil?140:205,
+               asomo:movil?Math.min(w*0.06,22):26,tilt:movil?20:28,
                escMin:movil?0.87:0.85,opMin:0.24};
         }
         function altura(){
