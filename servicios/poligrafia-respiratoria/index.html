@@ -572,6 +572,15 @@
 #stop-bang .svc-section__eyebrow{margin-left:auto;margin-right:auto}
 #stop-bang .svc-section__lead{margin-left:auto;margin-right:auto}
 #stop-bang .sb-wrap{margin-left:auto;margin-right:auto;text-align:left}
+
+/* Confiabilidad centrada, igual que la autoevaluacion: la tarjeta y el lead
+   iban con margen 0 dentro de la seccion y colgaban a la izquierda. El
+   contenido DE LA TARJETA se queda alineado a la izquierda, que es como se
+   leen los datos y la lista de respaldo. */
+#que-tan-confiable{text-align:center}
+#que-tan-confiable .svc-section__eyebrow{margin-left:auto;margin-right:auto}
+#que-tan-confiable .svc-section__lead{margin-left:auto;margin-right:auto}
+#que-tan-confiable .trust-card{margin-left:auto;margin-right:auto;text-align:left;max-width:760px}
 </style>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
 <script type="application/ld+json">
@@ -764,7 +773,7 @@
 <!-- ORIENTADOR: QUÉ ESTUDIO TE TOCA -->
 <div class="svc-section reveal" id="que-estudio-necesito">
 <span class="svc-section__eyebrow"><i class="bi bi-signpost-split-fill"></i> Cuál te toca</span>
-<h2 class="svc-section__title">¿Poligrafía en casa o <em>polisomnografía?</em></h2>
+<h2 class="svc-section__title">¿Polisomnografía o <em>poligrafía en casa?</em></h2>
 <p class="svc-section__lead">Mucha gente pide el estudio de laboratorio cuando su caso <b>se resuelve en casa</b>.</p>
 
 <div class="orient-deck" id="orientDeck">
