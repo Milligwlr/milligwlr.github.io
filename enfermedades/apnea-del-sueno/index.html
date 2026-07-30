@@ -624,6 +624,13 @@
     .ciclo__area{animation:none;opacity:1}
     .ciclo__punto,.ciclo__paso,.pq-panel,.pq-chip{transition:none}
 }
+
+/* puente a la comparativa dedicada (antes eran 496 palabras duplicadas) */
+.apn-puente{margin:14px 0 0}
+.apn-puente a{display:inline-flex;align-items:center;gap:9px;min-height:44px;font-size:.95rem;
+    font-weight:700;color:#4834d4;text-decoration:none;border-bottom:1px solid rgba(72,52,212,.28);padding-bottom:2px}
+.apn-puente a i{font-size:1.05rem}
+.apn-puente a:hover{color:#6c5ce7}
 </style>
         <div class="lang-switch" role="navigation" aria-label="Idioma">
             <a class="active" href="#" aria-current="true">ES</a><a href="/en/sleep-apnea-test/" hreflang="en">EN</a>
@@ -769,7 +776,56 @@
 </div>
 </div>
 
-<!-- STOP-BANG CALCULATOR -->
+<div class="apn-section reveal" id="que-pasa">
+<span class="apn-section__eyebrow"><i class="bi bi-arrow-repeat"></i> Qué pasa mientras duermes</span>
+<h2 class="apn-section__title">El ciclo que se repite <em>toda la noche</em></h2>
+<p class="apn-section__lead">Cuatro pasos, cientos de veces. Tócalos.</p>
+
+<div class="ciclo" id="ciclo">
+  <div class="ciclo__viz">
+    <svg viewBox="0 0 320 150" class="ciclo__svg" role="img" aria-label="Trazo del oxígeno durante una pausa respiratoria">
+      <defs>
+        <linearGradient id="cicloFill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#6c5ce7" stop-opacity=".22"/>
+          <stop offset="100%" stop-color="#6c5ce7" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <line x1="0" y1="38" x2="320" y2="38" class="ciclo__base"/>
+      <text x="4" y="30" class="ciclo__ejelbl">oxígeno normal</text>
+      <path class="ciclo__area" d="M0,38 L60,38 C90,38 96,104 130,104 C164,104 170,38 200,38 L260,38 C290,38 296,104 320,104 L320,150 L0,150 Z" fill="url(#cicloFill)"/>
+      <path class="ciclo__linea" d="M0,38 L60,38 C90,38 96,104 130,104 C164,104 170,38 200,38 L260,38 C290,38 296,104 320,104"/>
+      <circle class="ciclo__punto" cx="60" cy="38" r="5"/>
+    </svg>
+    <p class="ciclo__caida"><b>Cada bajada</b> es una pausa. <span>Así se ve tu noche en el estudio.</span></p>
+  </div>
+
+  <ol class="ciclo__pasos" id="cicloPasos">
+    <li><button type="button" class="ciclo__paso" aria-selected="true" data-x="60">
+      <span class="ciclo__n">1</span>
+      <span class="ciclo__ic"><i class="bi bi-moon-stars-fill" aria-hidden="true"></i></span>
+      <span class="ciclo__tx"><b>Te duermes</b>Los músculos de la garganta se relajan.</span>
+    </button></li>
+    <li><button type="button" class="ciclo__paso" aria-selected="false" data-x="112">
+      <span class="ciclo__n">2</span>
+      <span class="ciclo__ic"><i class="bi bi-slash-circle-fill" aria-hidden="true"></i></span>
+      <span class="ciclo__tx"><b>La vía se cierra</b>El aire deja de pasar. Sigues intentando respirar.</span>
+    </button></li>
+    <li><button type="button" class="ciclo__paso" aria-selected="false" data-x="130">
+      <span class="ciclo__n">3</span>
+      <span class="ciclo__ic"><i class="bi bi-droplet-half" aria-hidden="true"></i></span>
+      <span class="ciclo__tx"><b>Tu oxígeno cae</b>Y el corazón se acelera para compensar.</span>
+    </button></li>
+    <li><button type="button" class="ciclo__paso" aria-selected="false" data-x="196">
+      <span class="ciclo__n">4</span>
+      <span class="ciclo__ic"><i class="bi bi-lightning-charge-fill" aria-hidden="true"></i></span>
+      <span class="ciclo__tx"><b>Tu cerebro te despierta</b>Un instante, roncas fuerte, y vuelve a empezar.</span>
+    </button></li>
+  </ol>
+</div>
+
+<p class="ciclo__cierre"><i class="bi bi-info-circle-fill" aria-hidden="true"></i> <span>Casi nunca lo recuerdas. Por eso duermes ocho horas y amaneces cansado.</span></p>
+</div>
+
 <div class="apn-section reveal">
 <span class="apn-section__eyebrow"><i class="bi bi-clipboard2-pulse-fill"></i> Cuestionario STOP-BANG</span>
 <h2 class="apn-section__title">Calcula tu riesgo <em>en 30 segundos</em></h2>
@@ -861,170 +917,6 @@
 </div>
 </div>
 
-<script>
-(function(){
-  var msgs=[
-    {cls:'low',label:'Riesgo bajo',title:'Bajo riesgo de apnea',msg:'Tu puntuación sugiere bajo riesgo. Si de todas formas roncas o te sientes cansado, una consulta puede darte tranquilidad.',ctaCls:'neutral',ctaTxt:'Consultar al doctor'},
-    {cls:'mid',label:'Riesgo intermedio',title:'Posible apnea del sueño',msg:'Tu puntuación indica riesgo intermedio. Se recomienda una evaluación médica para descartar o confirmar la apnea.',ctaCls:'',ctaTxt:'Agendar valoración'},
-    {cls:'high',label:'Riesgo alto',title:'Alto riesgo de apnea',msg:'Tu puntuación es alta. Existe probabilidad elevada de apnea. Busca atención pronto para proteger tu corazón y calidad de vida.',ctaCls:'',ctaTxt:'Hablar con el doctor ahora'}
-  ];
-  window.sbToggleB=function(el){el.classList.toggle('active');};
-  window.sbCalcBmi=function(){
-    var kg=parseFloat(document.getElementById('sbKg').value);
-    var cm=parseFloat(document.getElementById('sbCm').value);
-    var res=document.getElementById('sbBmiResult');
-    var itemB=document.getElementById('sbItemB');
-    if(!kg||!cm||kg<30||cm<100){res.textContent='Ingresa valores válidos.';return;}
-    var imc=kg/((cm/100)*(cm/100));
-    var over35=imc>35;
-    res.textContent='Tu IMC: '+imc.toFixed(1)+(over35?': mayor de 35 ✓':': menor de 35');
-    over35?itemB.classList.add('active'):itemB.classList.remove('active');
-  };
-  window.sbCalcular=function(){
-    var score=document.querySelectorAll('#sbList .sb-item.active').length;
-    var r=msgs[score>=5?2:score>=3?1:0];
-    document.getElementById('sbScore').textContent=score+'/8';
-    document.getElementById('sbLabel').textContent=r.label;
-    document.getElementById('sbTitle').textContent=r.title;
-    document.getElementById('sbMsg').textContent=r.msg;
-    document.getElementById('sbCtaTxt').textContent=r.ctaTxt;
-    var res=document.getElementById('sbResult');
-    res.className='stopbang__result stopbang__result--'+r.cls+' visible';
-    var cta=document.getElementById('sbCta');
-    cta.className='stopbang__result__cta'+(r.ctaCls?' stopbang__result__cta--'+r.ctaCls:'');
-    setTimeout(function(){res.scrollIntoView({behavior:'smooth',block:'nearest'});},150);
-  };
-})();
-</script>
-
-<!-- ESCALA IAH -->
-<div class="apn-section reveal">
-<span class="apn-section__eyebrow"><i class="bi bi-bar-chart-fill"></i> ¿Qué tan grave es?</span>
-<h2 class="apn-section__title">El IAH: el número que <em>lo define todo</em></h2>
-<p class="apn-section__lead">El Índice Apnea-Hipopnea mide cuántas veces deja de pasar aire por tu garganta en una hora; la <a href="/servicios/poligrafia-respiratoria/" style="color:#6c5ce7;font-weight:700">poligrafía respiratoria</a> lo calcula. Ese número determina el tratamiento.</p>
-
-<div class="iah-scale reveal">
-<div class="iah-scale__inner">
-<div class="iah-scale__badge"><i class="bi bi-bar-chart-fill"></i> Clasificación según la AASM</div>
-<h3 class="iah-scale__title">¿Cuántas pausas respiratorias por hora tienes?</h3>
-<div class="iah-levels">
-<div class="iah-level iah-level--mild">
-<div class="iah-level__icon"><i class="bi bi-check-circle-fill"></i></div>
-<div class="iah-level__label">Leve</div>
-<div class="iah-level__num">5–15</div>
-<div class="iah-level__desc">pausas/hora. Se controla con cambios de postura, peso y a veces un dispositivo mandibular</div>
-</div>
-<div class="iah-level iah-level--mod">
-<div class="iah-level__icon"><i class="bi bi-exclamation-circle-fill"></i></div>
-<div class="iah-level__label">Moderada</div>
-<div class="iah-level__num">15–30</div>
-<div class="iah-level__desc">pausas/hora. El corazón ya lo resiente. CPAP es la primera línea de tratamiento</div>
-</div>
-<div class="iah-level iah-level--sev">
-<div class="iah-level__icon"><i class="bi bi-exclamation-triangle-fill"></i></div>
-<div class="iah-level__label">Severa</div>
-<div class="iah-level__num">&gt;30</div>
-<div class="iah-level__desc">pausas/hora. Tu cuerpo se desoxigena decenas de veces por noche. Tratamiento urgente</div>
-</div>
-</div>
-<div class="iah-bar-wrap">
-<div class="iah-bar-label">Escala de severidad</div>
-<div class="iah-bar-track"><div class="iah-bar-fill"></div></div>
-<div class="iah-bar-markers"><span>Normal &lt;5</span><span>Leve</span><span>Moderada</span><span>Severa</span></div>
-</div>
-</div>
-</div>
-</div>
-
-<!-- POR QUÉ TRATARLA / QUÉ LE QUITAS DE ENCIMA -->
-<!-- QUE PASA EN TU GARGANTA (fisiopatologia visual) -->
-<div class="apn-section reveal" id="que-pasa">
-<span class="apn-section__eyebrow"><i class="bi bi-arrow-repeat"></i> Qué pasa mientras duermes</span>
-<h2 class="apn-section__title">El ciclo que se repite <em>toda la noche</em></h2>
-<p class="apn-section__lead">Cuatro pasos, cientos de veces. Tócalos.</p>
-
-<div class="ciclo" id="ciclo">
-  <div class="ciclo__viz">
-    <svg viewBox="0 0 320 150" class="ciclo__svg" role="img" aria-label="Trazo del oxígeno durante una pausa respiratoria">
-      <defs>
-        <linearGradient id="cicloFill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#6c5ce7" stop-opacity=".22"/>
-          <stop offset="100%" stop-color="#6c5ce7" stop-opacity="0"/>
-        </linearGradient>
-      </defs>
-      <line x1="0" y1="38" x2="320" y2="38" class="ciclo__base"/>
-      <text x="4" y="30" class="ciclo__ejelbl">oxígeno normal</text>
-      <path class="ciclo__area" d="M0,38 L60,38 C90,38 96,104 130,104 C164,104 170,38 200,38 L260,38 C290,38 296,104 320,104 L320,150 L0,150 Z" fill="url(#cicloFill)"/>
-      <path class="ciclo__linea" d="M0,38 L60,38 C90,38 96,104 130,104 C164,104 170,38 200,38 L260,38 C290,38 296,104 320,104"/>
-      <circle class="ciclo__punto" cx="60" cy="38" r="5"/>
-    </svg>
-    <p class="ciclo__caida"><b>Cada bajada</b> es una pausa. <span>Así se ve tu noche en el estudio.</span></p>
-  </div>
-
-  <ol class="ciclo__pasos" id="cicloPasos">
-    <li><button type="button" class="ciclo__paso" aria-selected="true" data-x="60">
-      <span class="ciclo__n">1</span>
-      <span class="ciclo__ic"><i class="bi bi-moon-stars-fill" aria-hidden="true"></i></span>
-      <span class="ciclo__tx"><b>Te duermes</b>Los músculos de la garganta se relajan.</span>
-    </button></li>
-    <li><button type="button" class="ciclo__paso" aria-selected="false" data-x="112">
-      <span class="ciclo__n">2</span>
-      <span class="ciclo__ic"><i class="bi bi-slash-circle-fill" aria-hidden="true"></i></span>
-      <span class="ciclo__tx"><b>La vía se cierra</b>El aire deja de pasar. Sigues intentando respirar.</span>
-    </button></li>
-    <li><button type="button" class="ciclo__paso" aria-selected="false" data-x="130">
-      <span class="ciclo__n">3</span>
-      <span class="ciclo__ic"><i class="bi bi-droplet-half" aria-hidden="true"></i></span>
-      <span class="ciclo__tx"><b>Tu oxígeno cae</b>Y el corazón se acelera para compensar.</span>
-    </button></li>
-    <li><button type="button" class="ciclo__paso" aria-selected="false" data-x="196">
-      <span class="ciclo__n">4</span>
-      <span class="ciclo__ic"><i class="bi bi-lightning-charge-fill" aria-hidden="true"></i></span>
-      <span class="ciclo__tx"><b>Tu cerebro te despierta</b>Un instante, roncas fuerte, y vuelve a empezar.</span>
-    </button></li>
-  </ol>
-</div>
-
-<p class="ciclo__cierre"><i class="bi bi-info-circle-fill" aria-hidden="true"></i> <span>Casi nunca lo recuerdas. Por eso duermes ocho horas y amaneces cansado.</span></p>
-</div>
-
-<div class="apn-section reveal">
-<span class="apn-section__eyebrow"><i class="bi bi-heart-pulse"></i> Por qué vale la pena tratarla</span>
-<h2 class="apn-section__title">Tratarla sí cambia cosas. <em>Te digo cuáles, y cuáles no.</em></h2>
-
-<p class="why-lead">Cada noche tu garganta se cierra decenas de veces y tu oxígeno baja. Elige lo que te preocupa.</p>
-
-<div class="pq" id="pq">
-  <div class="pq-chips" role="tablist" aria-label="Qué te preocupa">
-<button type="button" class="pq-chip" aria-selected="true" data-pq="cansado"><i class="bi bi-sunrise-fill" aria-hidden="true"></i>Vivo cansado</button>
-<button type="button" class="pq-chip" aria-selected="false" data-pq="volante"><i class="bi bi-car-front-fill" aria-hidden="true"></i>Manejo con sueño</button>
-<button type="button" class="pq-chip" aria-selected="false" data-pq="presion"><i class="bi bi-activity" aria-hidden="true"></i>Mi presión no baja</button>
-<button type="button" class="pq-chip" aria-selected="false" data-pq="corazon"><i class="bi bi-heart-pulse-fill" aria-hidden="true"></i>Me preocupa mi corazón</button>
-<button type="button" class="pq-chip" aria-selected="false" data-pq="ronquido"><i class="bi bi-volume-up-fill" aria-hidden="true"></i>Ronco fuerte</button>
-  </div>
-  <div class="pq-panes" id="pqPanes">
-<div class="pq-panel is-on" data-pq="cansado"><p class="pq-num">Desde la<br>primera noche</p><p class="pq-txt">Es el beneficio mejor demostrado y el que más rápido se siente.</p><p class="pq-pie"><i class="bi bi-dot" aria-hidden="true"></i>Crece con las horas de uso.</p></div>
-<div class="pq-panel" data-pq="volante"><p class="pq-num">2.45<span class="u">veces</span></p><p class="pq-txt">Más riesgo de chocar sin tratar. Lo que predice ese riesgo no es qué tan alto salga tu estudio: es el sueño que traes de día.</p><p class="pq-pie"><i class="bi bi-dot" aria-hidden="true"></i>Con el equipo bien usado, baja a menos de la mitad.</p></div>
-<div class="pq-panel" data-pq="presion"><p class="pq-num">8<span class="u">de cada 10</span></p><p class="pq-txt">De quienes no controlan su presión con tres medicamentos, 8 de cada 10 tienen apnea sin diagnosticar.</p><p class="pq-pie"><i class="bi bi-dot" aria-hidden="true"></i>Se suma a tus medicamentos, no los sustituye.</p></div>
-<div class="pq-panel" data-pq="corazon"><p class="pq-num">La verdad<br>completa</p><p class="pq-txt">La apnea moderada o grave casi triplica el riesgo de desarrollar presión alta. Pero el CPAP <b>no es garantía</b> de que nunca tendrás un infarto, y quien te lo prometa te está vendiendo algo. Entre quienes lo usan 4 horas o más se observaron cerca de <b>30% menos eventos</b>.</p><p class="pq-pie"><i class="bi bi-dot" aria-hidden="true"></i>Mi trabajo es medir tu oxígeno y lograr que lo uses. No prometerte un resultado.</p></div>
-<div class="pq-panel" data-pq="ronquido"><p class="pq-num">8<span class="u">de cada 10</span></p><p class="pq-txt">Adultos con apnea moderada o grave que <b>nunca fueron diagnosticados</b>. El ronquido se oye; la apnea solo se ve midiéndola.</p><p class="pq-pie"><i class="bi bi-dot" aria-hidden="true"></i>En CDMX tu oxígeno ya parte de más abajo: 2,240 m.</p></div>
-  </div>
-  <p class="pq-nota"><i class="bi bi-clock-history" aria-hidden="true"></i> <span>Todo lo de arriba depende de una cosa: <b>que lo uses</b>. Cuatro horas por noche es donde empieza el beneficio, y cada hora extra suma.</span></p>
-</div>
-
-<!-- CTA -->
-<div class="why-cta">
-  <p class="why-cta__txt">Empieza por saber qué tan grave es, con un estudio del sueño en tu propia casa.</p>
-  <div class="why-cta__btns">
-    <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20p%C3%A1gina%3A%20Apnea%20del%20Sue%C3%B1o%20en%20CDMX%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" class="why-cta__btn why-cta__btn--wa"><i class="bi bi-whatsapp"></i> Agenda tu estudio del sueño en casa</a>
-    <a href="#agendaModal" class="why-cta__btn why-cta__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar consulta</a>
-  </div>
-</div>
-
-</div>
-<!-- /POR QUÉ TRATARLA -->
-
-<!-- FACTORES DE RIESGO -->
 <div class="apn-section reveal">
 <span class="apn-section__eyebrow"><i class="bi bi-shield-exclamation"></i> ¿Quién tiene más riesgo?</span>
 <h2 class="apn-section__title">Más común de lo que crees<em>, y muy tratable</em></h2>
@@ -1064,7 +956,86 @@
 </div>
 </div>
 
-<!-- PROCESO 4 PASOS -->
+<div class="apn-section reveal">
+<span class="apn-section__eyebrow"><i class="bi bi-heart-pulse"></i> Por qué vale la pena tratarla</span>
+<h2 class="apn-section__title">Tratarla sí cambia cosas. <em>Te digo cuáles, y cuáles no.</em></h2>
+
+<p class="why-lead">Cada noche tu garganta se cierra decenas de veces y tu oxígeno baja. Elige lo que te preocupa.</p>
+
+<div class="pq" id="pq">
+  <div class="pq-chips" role="tablist" aria-label="Qué te preocupa">
+<button type="button" class="pq-chip" aria-selected="true" data-pq="cansado"><i class="bi bi-sunrise-fill" aria-hidden="true"></i>Vivo cansado</button>
+<button type="button" class="pq-chip" aria-selected="false" data-pq="volante"><i class="bi bi-car-front-fill" aria-hidden="true"></i>Manejo con sueño</button>
+<button type="button" class="pq-chip" aria-selected="false" data-pq="presion"><i class="bi bi-activity" aria-hidden="true"></i>Mi presión no baja</button>
+<button type="button" class="pq-chip" aria-selected="false" data-pq="corazon"><i class="bi bi-heart-pulse-fill" aria-hidden="true"></i>Me preocupa mi corazón</button>
+<button type="button" class="pq-chip" aria-selected="false" data-pq="ronquido"><i class="bi bi-volume-up-fill" aria-hidden="true"></i>Ronco fuerte</button>
+  </div>
+  <div class="pq-panes" id="pqPanes">
+<div class="pq-panel is-on" data-pq="cansado"><p class="pq-num">Desde la<br>primera noche</p><p class="pq-txt">Es el beneficio mejor demostrado y el que más rápido se siente.</p><p class="pq-pie"><i class="bi bi-dot" aria-hidden="true"></i>Crece con las horas de uso.</p></div>
+<div class="pq-panel" data-pq="volante"><p class="pq-num">2.45<span class="u">veces</span></p><p class="pq-txt">Más riesgo de chocar sin tratar. Lo que predice ese riesgo no es qué tan alto salga tu estudio: es el sueño que traes de día.</p><p class="pq-pie"><i class="bi bi-dot" aria-hidden="true"></i>Con el equipo bien usado, baja a menos de la mitad.</p></div>
+<div class="pq-panel" data-pq="presion"><p class="pq-num">8<span class="u">de cada 10</span></p><p class="pq-txt">De quienes no controlan su presión con tres medicamentos, 8 de cada 10 tienen apnea sin diagnosticar.</p><p class="pq-pie"><i class="bi bi-dot" aria-hidden="true"></i>Se suma a tus medicamentos, no los sustituye.</p></div>
+<div class="pq-panel" data-pq="corazon"><p class="pq-num">La verdad<br>completa</p><p class="pq-txt">La apnea moderada o grave casi triplica el riesgo de desarrollar presión alta. Pero el CPAP <b>no es garantía</b> de que nunca tendrás un infarto, y quien te lo prometa te está vendiendo algo. Entre quienes lo usan 4 horas o más se observaron cerca de <b>30% menos eventos</b>.</p><p class="pq-pie"><i class="bi bi-dot" aria-hidden="true"></i>Mi trabajo es medir tu oxígeno y lograr que lo uses. No prometerte un resultado.</p></div>
+<div class="pq-panel" data-pq="ronquido"><p class="pq-num">8<span class="u">de cada 10</span></p><p class="pq-txt">Adultos con apnea moderada o grave que <b>nunca fueron diagnosticados</b>. El ronquido se oye; la apnea solo se ve midiéndola.</p><p class="pq-pie"><i class="bi bi-dot" aria-hidden="true"></i>En CDMX tu oxígeno ya parte de más abajo: 2,240 m.</p></div>
+  </div>
+  <p class="pq-nota"><i class="bi bi-clock-history" aria-hidden="true"></i> <span>Todo lo de arriba depende de una cosa: <b>que lo uses</b>. Cuatro horas por noche es donde empieza el beneficio, y cada hora extra suma.</span></p>
+</div>
+
+<!-- CTA -->
+<div class="why-cta">
+  <p class="why-cta__txt">Empieza por saber qué tan grave es, con un estudio del sueño en tu propia casa.</p>
+  <div class="why-cta__btns">
+    <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20p%C3%A1gina%3A%20Apnea%20del%20Sue%C3%B1o%20en%20CDMX%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" class="why-cta__btn why-cta__btn--wa"><i class="bi bi-whatsapp"></i> Agenda tu estudio del sueño en casa</a>
+    <a href="#agendaModal" class="why-cta__btn why-cta__btn--cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar consulta</a>
+  </div>
+</div>
+
+</div>
+
+<div class="apn-section reveal">
+<span class="apn-section__eyebrow"><i class="bi bi-bar-chart-fill"></i> ¿Qué tan grave es?</span>
+<h2 class="apn-section__title">El IAH: el número que <em>lo define todo</em></h2>
+<p class="apn-section__lead">El Índice Apnea-Hipopnea mide cuántas veces deja de pasar aire por tu garganta en una hora; la <a href="/servicios/poligrafia-respiratoria/" style="color:#6c5ce7;font-weight:700">poligrafía respiratoria</a> lo calcula. Ese número determina el tratamiento.</p>
+
+<div class="iah-scale reveal">
+<div class="iah-scale__inner">
+<div class="iah-scale__badge"><i class="bi bi-bar-chart-fill"></i> Clasificación según la AASM</div>
+<h3 class="iah-scale__title">¿Cuántas pausas respiratorias por hora tienes?</h3>
+<div class="iah-levels">
+<div class="iah-level iah-level--mild">
+<div class="iah-level__icon"><i class="bi bi-check-circle-fill"></i></div>
+<div class="iah-level__label">Leve</div>
+<div class="iah-level__num">5–15</div>
+<div class="iah-level__desc">pausas/hora. Se controla con cambios de postura, peso y a veces un dispositivo mandibular</div>
+</div>
+<div class="iah-level iah-level--mod">
+<div class="iah-level__icon"><i class="bi bi-exclamation-circle-fill"></i></div>
+<div class="iah-level__label">Moderada</div>
+<div class="iah-level__num">15–30</div>
+<div class="iah-level__desc">pausas/hora. El corazón ya lo resiente. CPAP es la primera línea de tratamiento</div>
+</div>
+<div class="iah-level iah-level--sev">
+<div class="iah-level__icon"><i class="bi bi-exclamation-triangle-fill"></i></div>
+<div class="iah-level__label">Severa</div>
+<div class="iah-level__num">&gt;30</div>
+<div class="iah-level__desc">pausas/hora. Tu cuerpo se desoxigena decenas de veces por noche. Tratamiento urgente</div>
+</div>
+</div>
+<div class="iah-bar-wrap">
+<div class="iah-bar-label">Escala de severidad</div>
+<div class="iah-bar-track"><div class="iah-bar-fill"></div></div>
+<div class="iah-bar-markers"><span>Normal &lt;5</span><span>Leve</span><span>Moderada</span><span>Severa</span></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="apn-section reveal">
+<span class="apn-section__eyebrow"><i class="bi bi-signpost-split-fill"></i> ¿Cuál te toca?</span>
+<h2 class="apn-section__title">La mayoría se resuelve <em>en casa</em></h2>
+<p class="apn-section__lead">El caso típico de apnea no necesita laboratorio: se confirma durmiendo en tu propia cama. Y si el tuyo sí es de laboratorio, te lo digo de frente y te canalizo.</p>
+<p class="apn-puente"><a href="/poligrafia-vs-polisomnografia/" data-cta="apn-comparativa"><i class="bi bi-arrow-right-circle-fill" aria-hidden="true"></i> Ver las diferencias punto por punto</a></p>
+</div>
+
 <div class="apn-section reveal">
 <span class="apn-section__eyebrow"><i class="bi bi-check2-all"></i> El camino al descanso</span>
 <h2 class="apn-section__title">4 pasos para <em>recuperar tu sueño</em></h2>
@@ -1104,85 +1075,6 @@
 </div>
 </div>
 
-<!-- POLIGRAFÍA VS POLISOMNOGRAFÍA: CUÁL NECESITAS -->
-<div class="apn-section reveal">
-<span class="apn-section__eyebrow"><i class="bi bi-signpost-split"></i> Qué estudio necesitas</span>
-<h2 class="apn-section__title">Poligrafía o polisomnografía: <em>cuál necesitas de verdad</em></h2>
-<p class="apn-section__lead">Aquí está la duda que trae a muchos pacientes. Son dos estudios distintos, y cada uno tiene su lugar según tu caso. La buena noticia: para la apnea típica, el estudio en casa suele bastar, y así lo respaldan las guías internacionales del sueño. Mi trabajo no es venderte el estudio más caro, sino decidir contigo cuál necesitas.</p>
-
-<!-- Comparativa a dos columnas -->
-<div class="compare-grid">
-
-  <div class="compare-card compare-card--primary">
-    <span class="compare-card__badge"><i class="bi bi-star-fill"></i> La más común</span>
-    <div class="compare-card__head">
-      <div class="compare-card__icon"><i class="bi bi-house-heart-fill"></i></div>
-      <div>
-        <p class="compare-card__name">Poligrafía respiratoria</p>
-        <p class="compare-card__type">El estudio en tu casa (tipo III)</p>
-      </div>
-    </div>
-    <p class="compare-card__body">Duermes en tu propia cama, sin un técnico a tu lado. Mide sobre todo tu respiración, el esfuerzo del pecho y tu oxígeno, que es justo lo que hace falta para identificar la apnea. <strong>Es cómoda y muchas veces empieza el tratamiento más pronto.</strong> Su resultado nunca se decide con el número automático del aparato: yo reviso el trazo completo.</p>
-  </div>
-
-  <div class="compare-card compare-card--neutral">
-    <span class="compare-card__badge"><i class="bi bi-hospital"></i> En laboratorio</span>
-    <div class="compare-card__head">
-      <div class="compare-card__icon"><i class="bi bi-clipboard2-pulse"></i></div>
-      <div>
-        <p class="compare-card__name">Polisomnografía</p>
-        <p class="compare-card__type">El estudio de laboratorio (tipo I)</p>
-      </div>
-    </div>
-    <p class="compare-card__body">Pasas la noche en una clínica con un técnico y sensores en la cabeza que miden las ondas del cerebro (EEG), además de la respiración y el oxígeno. <strong>Es el más completo:</strong> sabe exactamente cuánto dormiste y detecta otros trastornos del sueño, no solo la apnea. En el consultorio no lo realizamos; cuando de verdad se necesita, te orientamos y te canalizamos con la unidad del sueño que corresponde.</p>
-  </div>
-
-</div>
-
-<!-- Banda de reaseguramiento con dato-ancla de exactitud AASM (84-91%). El 0.92 previo era una CORRELACION de un solo estudio de 64 pacientes presentada como concordancia: retirado el 26-jul-2026. -->
-<div class="compare-reassure">
-  <div class="compare-reassure__stat">
-    <div class="compare-reassure__num">84-91%</div>
-    <div class="compare-reassure__num-lbl">de exactitud para detectar apnea cuando la sospecha clínica ya es clara (revisión de la guía AASM). En quien tiene baja probabilidad baja a 70-78%, y por eso la valoración médica previa es la que lo hace confiable</div>
-  </div>
-  <div class="compare-reassure__body">
-    <h3>El estudio en casa no es "de segunda": para la mayoría es el correcto</h3>
-    <p>Para un adulto con síntomas que hacen muy probable una apnea moderada a severa y sin otras enfermedades importantes del corazón o el pulmón, las guías del sueño (AASM) dicen con claridad, como <strong>recomendación fuerte</strong>, que se diagnostica igual de bien en casa que en laboratorio. Así no gastas de más en un estudio más complejo cuando solo quieres abordar tu apnea.</p>
-  </div>
-</div>
-
-<!-- Cuándo SÍ conviene el laboratorio -->
-<div class="compare-when">
-  <div class="compare-when__head">
-    <span class="compare-when__head-icon"><i class="bi bi-clipboard2-check"></i></span>
-    <h3>En estos casos sí te oriento al laboratorio</h3>
-  </div>
-  <ul class="compare-when__list">
-    <li><i class="bi bi-check-circle-fill"></i> Enfermedad importante del corazón o del pulmón (insuficiencia cardiaca, EPOC relevante)</li>
-    <li><i class="bi bi-check-circle-fill"></i> Enfermedad neuromuscular</li>
-    <li><i class="bi bi-check-circle-fill"></i> Problemas para ventilar bien, incluida la hipoventilación asociada a la obesidad</li>
-    <li><i class="bi bi-check-circle-fill"></i> Uso crónico de opioides</li>
-    <li><i class="bi bi-check-circle-fill"></i> Antecedente de infarto o embolia</li>
-    <li><i class="bi bi-check-circle-fill"></i> Insomnio grave</li>
-    <li><i class="bi bi-check-circle-fill"></i> Sospecha de apnea central u otros trastornos del sueño (movimientos de piernas, narcolepsia, pesadillas intensas)</li>
-    <li><i class="bi bi-check-circle-fill"></i> Estudio en casa negativo, dudoso o de mala calidad técnica cuando tus síntomas siguen apuntando a apnea</li>
-  </ul>
-  <p class="compare-when__note">Lee si alguno es tu caso; si lo es, <strong>te lo digo de frente y te canalizo</strong> con la unidad del sueño que corresponde. En ese escenario, el siguiente paso correcto es la polisomnografía.</p>
-</div>
-
-<!-- Cierre de posicionamiento -->
-<p class="compare-close">Como neumólogo te valoro y decidimos juntos el estudio correcto, ni más ni menos. Aquí te ofrezco la consulta, la <a href="/servicios/poligrafia-respiratoria/" style="color:#6c5ce7;font-weight:700">poligrafía respiratoria en casa</a> y, si sales con apnea, la <a href="/servicios/titulacion-presion-positiva/" style="color:#6c5ce7;font-weight:700">titulación de tu CPAP</a>. Si tu caso necesita polisomnografía de laboratorio, te oriento a dónde hacerla.</p>
-
-<!-- Doble CTA -->
-<div class="compare-cta">
-  <a href="/poligrafia-vs-polisomnografia/" class="compare-cta__btn compare-cta__btn--primary"><i class="bi bi-list-check"></i> Ver la comparación completa, punto por punto</a>
-  <a href="/promociones/poligrafia-respiratoria/" class="compare-cta__btn compare-cta__btn--ghost"><i class="bi bi-moon-stars"></i> Conoce el estudio del sueño en casa</a>
-</div>
-
-</div>
-<!-- /POLIGRAFÍA VS POLISOMNOGRAFÍA -->
-
-<!-- SEÑALES DE ALARMA -->
 <div class="apn-section reveal">
 <span class="apn-section__eyebrow" style="color:#e64545;background:rgba(230,69,69,.08);border-color:rgba(230,69,69,.2)"><i class="bi bi-exclamation-triangle-fill"></i> Señales urgentes</span>
 <h2 class="apn-section__title">Esto no puede esperar <em>una semana más</em></h2>
@@ -1205,6 +1097,70 @@
 </div>
 </div>
 </div>
+
+
+
+<!-- STOP-BANG CALCULATOR -->
+
+
+<script>
+(function(){
+  var msgs=[
+    {cls:'low',label:'Riesgo bajo',title:'Bajo riesgo de apnea',msg:'Tu puntuación sugiere bajo riesgo. Si de todas formas roncas o te sientes cansado, una consulta puede darte tranquilidad.',ctaCls:'neutral',ctaTxt:'Consultar al doctor'},
+    {cls:'mid',label:'Riesgo intermedio',title:'Posible apnea del sueño',msg:'Tu puntuación indica riesgo intermedio. Se recomienda una evaluación médica para descartar o confirmar la apnea.',ctaCls:'',ctaTxt:'Agendar valoración'},
+    {cls:'high',label:'Riesgo alto',title:'Alto riesgo de apnea',msg:'Tu puntuación es alta. Existe probabilidad elevada de apnea. Busca atención pronto para proteger tu corazón y calidad de vida.',ctaCls:'',ctaTxt:'Hablar con el doctor ahora'}
+  ];
+  window.sbToggleB=function(el){el.classList.toggle('active');};
+  window.sbCalcBmi=function(){
+    var kg=parseFloat(document.getElementById('sbKg').value);
+    var cm=parseFloat(document.getElementById('sbCm').value);
+    var res=document.getElementById('sbBmiResult');
+    var itemB=document.getElementById('sbItemB');
+    if(!kg||!cm||kg<30||cm<100){res.textContent='Ingresa valores válidos.';return;}
+    var imc=kg/((cm/100)*(cm/100));
+    var over35=imc>35;
+    res.textContent='Tu IMC: '+imc.toFixed(1)+(over35?': mayor de 35 ✓':': menor de 35');
+    over35?itemB.classList.add('active'):itemB.classList.remove('active');
+  };
+  window.sbCalcular=function(){
+    var score=document.querySelectorAll('#sbList .sb-item.active').length;
+    var r=msgs[score>=5?2:score>=3?1:0];
+    document.getElementById('sbScore').textContent=score+'/8';
+    document.getElementById('sbLabel').textContent=r.label;
+    document.getElementById('sbTitle').textContent=r.title;
+    document.getElementById('sbMsg').textContent=r.msg;
+    document.getElementById('sbCtaTxt').textContent=r.ctaTxt;
+    var res=document.getElementById('sbResult');
+    res.className='stopbang__result stopbang__result--'+r.cls+' visible';
+    var cta=document.getElementById('sbCta');
+    cta.className='stopbang__result__cta'+(r.ctaCls?' stopbang__result__cta--'+r.ctaCls:'');
+    setTimeout(function(){res.scrollIntoView({behavior:'smooth',block:'nearest'});},150);
+  };
+})();
+</script>
+
+<!-- ESCALA IAH -->
+
+
+<!-- POR QUÉ TRATARLA / QUÉ LE QUITAS DE ENCIMA -->
+<!-- QUE PASA EN TU GARGANTA (fisiopatologia visual) -->
+
+
+
+<!-- /POR QUÉ TRATARLA -->
+
+<!-- FACTORES DE RIESGO -->
+
+
+<!-- PROCESO 4 PASOS -->
+
+
+<!-- POLIGRAFÍA VS POLISOMNOGRAFÍA: CUÁL NECESITAS -->
+
+<!-- /POLIGRAFÍA VS POLISOMNOGRAFÍA -->
+
+<!-- SEÑALES DE ALARMA -->
+
 
 <!-- CTA FINAL -->
 <div class="apn-section reveal" style="margin-bottom:24px">
@@ -1238,17 +1194,7 @@
 </section>
 
 <!-- CTA BAND -->
-<section class="cta-band text-center py-5">
-    <div class="cta-band__particles" id="ctaParticles" aria-hidden="true"></div>
-    <div class="container py-3 cta-band__inner reveal">
-        <p style="color:rgba(162,155,254,.7);font-size:.78rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px">Diagnóstico sencillo · Resultado que cambia tu vida</p>
-        <h2 class="fw-bold mb-3 text-white" style="font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.025em;line-height:1.2">Dormir bien no es un lujo.<br><em style="font-style:normal;background:linear-gradient(135deg,#a29bfe,#6c5ce7);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Es una necesidad médica.</em></h2>
-        <p class="mb-4 mx-auto" style="color:rgba(255,255,255,.55);font-size:.98rem;max-width:500px;line-height:1.6">Diagnóstico, CPAP y seguimiento para que dejes de despertar cansado.</p>
-        <a href="#agendaModal" class="cta-band__btn" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
-            Agendar mi cita <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
-        </a>
-    </div>
-</section>
+
 
 <!-- FAQ -->
 <section id="preguntas-frecuentes-apnea-del-sueno" class="faq-block" aria-labelledby="faq-h-apnea-del-sueno">
