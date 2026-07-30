@@ -128,36 +128,6 @@
 .symp-card p{font-size:.78rem;color:var(--text-muted);margin:0;line-height:1.4}
 @media(min-width:768px){.symp-card{padding:24px 18px}.symp-card h4{font-size:1rem}.symp-card p{font-size:.82rem}}
 
-/* IAH SCALE */
-.iah-scale{background:linear-gradient(140deg,#0a1628 0%,#12143a 100%);border-radius:24px;padding:32px 24px;color:#fff;position:relative;overflow:hidden;box-shadow:0 16px 48px rgba(108,92,231,.2)}
-@media(min-width:768px){.iah-scale{padding:48px 40px}}
-.iah-scale::before{content:'';position:absolute;inset:-40%;background:radial-gradient(circle at 25% 50%,rgba(108,92,231,.18),transparent 50%),radial-gradient(circle at 80% 50%,rgba(162,155,254,.12),transparent 50%);pointer-events:none}
-.iah-scale__inner{position:relative;z-index:1}
-.iah-scale__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(162,155,254,.12);border:1px solid rgba(162,155,254,.25);color:#a29bfe;font-size:.7rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:6px 12px;border-radius:100px;margin-bottom:14px}
-.iah-scale__title{font-size:clamp(1.2rem,4vw,1.65rem);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.25;margin-bottom:24px}
-.iah-levels{display:grid;grid-template-columns:1fr;gap:12px}
-@media(min-width:600px){.iah-levels{grid-template-columns:repeat(3,1fr)}}
-.iah-level{border-radius:16px;padding:20px 18px;text-align:center;border:1px solid rgba(255,255,255,.08)}
-.iah-level--mild{background:rgba(46,204,113,.1);border-color:rgba(46,204,113,.25)}
-.iah-level--mod{background:rgba(240,168,48,.1);border-color:rgba(240,168,48,.25)}
-.iah-level--sev{background:rgba(230,69,69,.12);border-color:rgba(230,69,69,.25)}
-.iah-level__icon{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin:0 auto 12px}
-.iah-level--mild .iah-level__icon{background:rgba(46,204,113,.2);color:#2ecc71}
-.iah-level--mod .iah-level__icon{background:rgba(240,168,48,.2);color:#f0a830}
-.iah-level--sev .iah-level__icon{background:rgba(230,69,69,.2);color:#e64545}
-.iah-level__label{font-size:.65rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
-.iah-level--mild .iah-level__label{color:#2ecc71}
-.iah-level--mod .iah-level__label{color:#f0a830}
-.iah-level--sev .iah-level__label{color:#e64545}
-.iah-level__num{font-size:2rem;font-weight:800;color:#fff;line-height:1;margin-bottom:4px;letter-spacing:-.03em}
-.iah-level__desc{font-size:.8rem;color:rgba(255,255,255,.65);line-height:1.4}
-.iah-bar-wrap{margin-top:24px}
-.iah-bar-label{font-size:.75rem;font-weight:700;color:rgba(255,255,255,.65);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
-.iah-bar-track{height:12px;background:rgba(255,255,255,.07);border-radius:100px;overflow:hidden}
-.iah-bar-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,#2ecc71 0%,#f0a830 45%,#e64545 100%);animation:apnBarGrow 1.6s var(--ease) forwards;transform-origin:left}
-@keyframes apnBarGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-.iah-bar-markers{display:flex;justify-content:space-between;margin-top:6px;font-size:.65rem;color:rgba(255,255,255,.45);font-weight:600}
-
 /* RIESGO */
 .risk-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(min-width:768px){.risk-grid{grid-template-columns:repeat(3,1fr);gap:16px}}
@@ -181,22 +151,7 @@
 .apn-step__title{font-size:.95rem;font-weight:800;color:var(--navy);margin-bottom:4px}
 .apn-step__desc{font-size:.78rem;color:var(--text-muted);line-height:1.45;margin:0}
 
-/* ALARMA */
-.alarm{background:linear-gradient(135deg,#0d0824 0%,#1a0a3e 100%);border:1px solid rgba(108,92,231,.4);border-radius:22px;padding:28px 22px;color:#fff;box-shadow:0 16px 48px rgba(108,92,231,.2);position:relative;overflow:hidden}
-@media(min-width:768px){.alarm{padding:40px 36px}}
-.alarm::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#a29bfe,#6c5ce7,#e64545,#6c5ce7,#a29bfe);animation:alarmStripe 4s linear infinite;background-size:200% 100%}
 @keyframes alarmStripe{to{background-position:-200% 0}}
-.alarm::after{content:'';position:absolute;top:-40%;right:-20%;width:60%;padding-bottom:60%;border-radius:50%;background:radial-gradient(circle,rgba(108,92,231,.25),transparent 60%);pointer-events:none}
-.alarm__inner{position:relative;z-index:1}
-.alarm__head{display:flex;align-items:center;gap:14px;margin-bottom:20px}
-.alarm__badge{width:54px;height:54px;border-radius:15px;background:linear-gradient(135deg,#e64545,#c0392b);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#fff;box-shadow:0 8px 22px rgba(230,69,69,.45);animation:pulseAlarm 2s ease-in-out infinite;flex-shrink:0}
-@keyframes pulseAlarm{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-.alarm__title{font-size:1.15rem;font-weight:800;color:#fff;letter-spacing:-.01em;line-height:1.25;margin:0}
-@media(min-width:768px){.alarm__title{font-size:1.4rem}}
-.alarm__list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr;gap:10px}
-@media(min-width:600px){.alarm__list{grid-template-columns:1fr 1fr;gap:10px 24px}}
-.alarm__list li{display:flex;align-items:flex-start;gap:12px;font-size:.9rem;line-height:1.4;color:rgba(255,255,255,.92)}
-.alarm__list li i{color:#a29bfe;font-size:1.1rem;flex-shrink:0;margin-top:2px;width:20px;text-align:center}
 
 /* CTA INLINE */
 .apn-cta{background:linear-gradient(140deg,#0d0d22 0%,#0a1628 100%);border-radius:24px;padding:32px 24px;color:#fff;position:relative;overflow:hidden;border:1px solid rgba(108,92,231,.25);box-shadow:0 20px 50px rgba(108,92,231,.18)}
@@ -547,21 +502,6 @@
    dibujo hablan de lo mismo. Solo transform/opacity + stroke-dashoffset. */
 .ciclo{display:grid;gap:16px;margin-top:6px}
 @media(min-width:820px){.ciclo{grid-template-columns:1.05fr 1fr;gap:26px;align-items:center}}
-.ciclo__viz{background:linear-gradient(165deg,#fff,#f6f5ff);border:1px solid rgba(108,92,231,.16);
-    border-radius:18px;padding:16px 14px 12px}
-.ciclo__svg{width:100%;height:auto;display:block;overflow:visible}
-.ciclo__base{stroke:rgba(108,92,231,.28);stroke-width:1;stroke-dasharray:3 4}
-.ciclo__ejelbl{font-size:8px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;fill:#8b86b8}
-.ciclo__linea{fill:none;stroke:#6c5ce7;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;
-    stroke-dasharray:760;stroke-dashoffset:760;animation:ciclo-traza 2.6s cubic-bezier(.16,1,.3,1) forwards}
-@keyframes ciclo-traza{to{stroke-dashoffset:0}}
-.ciclo__area{opacity:0;animation:ciclo-rellena .9s ease 1.5s forwards}
-@keyframes ciclo-rellena{to{opacity:1}}
-.ciclo__punto{fill:#fff;stroke:#6c5ce7;stroke-width:3;
-    transition:transform .55s cubic-bezier(.16,1,.3,1);transform-box:fill-box;transform-origin:center}
-.ciclo__caida{margin:8px 0 0;font-size:.8rem;line-height:1.4;color:#5b5580;text-align:center}
-.ciclo__caida b{color:#4834d4}
-.ciclo__caida span{color:#8b86b8}
 .ciclo__pasos{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 .ciclo__paso{display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:11px;width:100%;
     min-height:56px;padding:11px 13px;border-radius:14px;background:#fff;
@@ -584,45 +524,11 @@
    Sustituye 24 tarjetas apiladas (4.7 pantallas) por 5 respuestas de las que
    solo se ve una. Manda la cifra; el texto remata. Los 5 paneles viven en el
    DOM (indexables), se ocultan por CSS. */
-.pq{margin-top:4px}
-.pq-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:14px}
-.pq-chip{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:10px 16px;border-radius:100px;
-    background:#fff;border:1.5px solid rgba(108,92,231,.2);font-family:inherit;font-size:.86rem;font-weight:700;
-    color:#5b5580;cursor:pointer;transition:background .28s,color .28s,border-color .28s,transform .28s}
-.pq-chip i{font-size:.95rem;color:#6c5ce7;transition:color .28s}
-.pq-chip[aria-selected="true"]{background:linear-gradient(135deg,#6c5ce7,#4834d4);color:#fff;border-color:transparent;
-    box-shadow:0 10px 24px -10px rgba(72,52,212,.6)}
-.pq-chip[aria-selected="true"] i{color:#fff}
-.pq-chip:focus-visible{outline:2px solid #6c5ce7;outline-offset:3px}
-.pq-panes{display:grid}
-.pq-panel{grid-area:1/1;background:linear-gradient(165deg,#fff,#f7f6ff);border:1px solid rgba(108,92,231,.18);
-    border-radius:20px;padding:24px 20px 20px;
-    box-shadow:0 1px 2px rgba(16,24,40,.05),0 18px 40px -24px rgba(72,52,212,.45);
-    opacity:0;transform:translateY(8px);pointer-events:none;
-    transition:opacity .38s ease,transform .5s cubic-bezier(.16,1,.3,1)}
-.pq-panel.is-on{opacity:1;transform:none;pointer-events:auto}
-.pq-num{margin:0 0 10px;font-size:clamp(2.4rem,10vw,3.4rem);font-weight:800;line-height:.95;
-    letter-spacing:-.04em;color:#4834d4;font-variant-numeric:tabular-nums}
-.pq-num .u{display:block;font-size:.26em;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
-    color:#8b86b8;margin-top:6px}
-.pq-txt{margin:0 0 14px;font-size:.96rem;line-height:1.55;color:#4a4470}
-.pq-txt b{color:var(--navy,#0a1628);font-weight:800}
-.pq-pie{display:flex;gap:6px;align-items:flex-start;margin:0;padding-top:12px;
-    border-top:1px solid rgba(108,92,231,.14);font-size:.84rem;line-height:1.45;color:#8b86b8}
-.pq-pie i{color:#6c5ce7;flex-shrink:0}
-.pq-nota{display:flex;gap:10px;align-items:flex-start;margin:14px 0 0;padding:13px 15px;border-radius:14px;
-    background:rgba(108,92,231,.07);border:1px solid rgba(108,92,231,.16);
-    font-size:.88rem;line-height:1.5;color:#5b5580}
-.pq-nota i{color:#6c5ce7;font-size:1.05rem;flex-shrink:0;margin-top:1px}
-.pq-nota b{color:var(--navy,#0a1628)}
 @media(min-width:620px){
-    .pq-panel{padding:28px 26px 22px}
-    .pq-txt{font-size:1.02rem}
 }
 @media(prefers-reduced-motion:reduce){
     .ciclo__linea{animation:none;stroke-dashoffset:0}
     .ciclo__area{animation:none;opacity:1}
-    .ciclo__punto,.ciclo__paso,.pq-panel,.pq-chip{transition:none}
 }
 
 /* puente a la comparativa dedicada (antes eran 496 palabras duplicadas) */
@@ -631,6 +537,122 @@
     font-weight:700;color:#4834d4;text-decoration:none;border-bottom:1px solid rgba(72,52,212,.28);padding-bottom:2px}
 .apn-puente a i{font-size:1.05rem}
 .apn-puente a:hover{color:#6c5ce7}
+
+/* ===== DEFINICION: el parrafo sigue en el DOM (lo indexa Google) pero se
+   apoya en tres piezas visuales. Fuera el borde lateral de color, que era
+   un adorno y ademas el tell mas reconocible de plantilla. ===== */
+.def{margin:0 0 34px}
+.def__frase{margin:0 0 14px;font-size:1rem;line-height:1.6;color:#3a4a5c;max-width:66ch}
+.def__frase b{color:var(--navy,#0a1628);font-weight:800}
+.def__tres{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+@media(min-width:700px){.def__tres{grid-template-columns:repeat(3,1fr)}}
+.def__tres li{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;gap:2px 12px;
+    align-items:center;background:#fff;border:1px solid rgba(108,92,231,.16);border-radius:14px;padding:14px 15px;
+    font-size:.86rem;line-height:1.4;color:#5b5580}
+.def__tres b{grid-column:2;font-size:.78rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#4834d4}
+.def__tres li>:last-child{grid-column:2}
+.def__ic{grid-row:1/3;width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,rgba(108,92,231,.14),rgba(72,52,212,.08));color:#6c5ce7;font-size:1.05rem}
+
+/* ===== BENTO de razones. Todas las cifras se ven de entrada (la seccion se
+   lee sin tocar nada) y al tocar una se abre su detalle debajo. ===== */
+.bn{margin-top:4px}
+.bn-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:760px){.bn-grid{grid-template-columns:repeat(3,1fr)}
+  .bn-tile--wide{grid-column:span 1}}
+.bn-tile{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:2px;
+    min-height:132px;padding:15px 14px 14px;border-radius:18px;text-align:left;cursor:pointer;
+    background:linear-gradient(165deg,#fff,#f8f7ff);border:1px solid rgba(108,92,231,.16);font-family:inherit;
+    transition:border-color .3s,box-shadow .3s,transform .35s cubic-bezier(.16,1,.3,1)}
+.bn-tile[aria-expanded="true"]{border-color:rgba(108,92,231,.5);transform:translateY(-2px);
+    box-shadow:0 14px 32px -18px rgba(72,52,212,.62)}
+.bn-tile:focus-visible{outline:2px solid #6c5ce7;outline-offset:3px}
+.bn-ic{width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;
+    background:rgba(108,92,231,.11);color:#6c5ce7;font-size:.98rem;margin-bottom:6px;transition:background .3s,color .3s}
+.bn-tile[aria-expanded="true"] .bn-ic{background:linear-gradient(135deg,#6c5ce7,#4834d4);color:#fff}
+.bn-lbl{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8b86b8}
+.bn-num{font-size:clamp(1.5rem,6vw,1.95rem);font-weight:800;letter-spacing:-.035em;line-height:1.05;
+    color:#4834d4;font-variant-numeric:tabular-nums}
+.bn-sub{font-size:.76rem;line-height:1.3;color:#5b5580}
+.bn-mas{position:absolute;top:13px;right:13px;width:22px;height:22px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:.7rem;
+    background:rgba(108,92,231,.1);color:#6c5ce7;transition:transform .35s cubic-bezier(.16,1,.3,1),background .3s}
+.bn-tile[aria-expanded="true"] .bn-mas{transform:rotate(45deg);background:rgba(108,92,231,.22)}
+.bn-dets{display:grid;margin-top:12px}
+.bn-det{grid-area:1/1;margin:0;padding:18px 18px;border-radius:16px;
+    background:linear-gradient(165deg,#fff,#f7f6ff);border:1px solid rgba(108,92,231,.18);
+    box-shadow:0 14px 34px -24px rgba(72,52,212,.45);
+    font-size:.94rem;line-height:1.6;color:#4a4470;
+    opacity:0;transform:translateY(6px);pointer-events:none;
+    transition:opacity .34s ease,transform .45s cubic-bezier(.16,1,.3,1)}
+.bn-det.is-on{opacity:1;transform:none;pointer-events:auto}
+.bn-det b{color:var(--navy,#0a1628);font-weight:800}
+.bn-nota{display:flex;gap:10px;align-items:flex-start;margin:12px 0 0;padding:13px 15px;border-radius:14px;
+    background:rgba(108,92,231,.07);border:1px solid rgba(108,92,231,.16);font-size:.87rem;line-height:1.5;color:#5b5580}
+.bn-nota i{color:#6c5ce7;flex-shrink:0;margin-top:2px}
+.bn-nota b{color:var(--navy,#0a1628)}
+
+/* ===== IAH: una barra de tres tramos, no tres tarjetas apiladas ===== */
+.iah{margin-top:6px}
+.iah-eje{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 8px;
+    font-size:.74rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8b86b8}
+.iah-eje small{font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:none;color:#a8a3c4}
+.iah-barra{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.iah-seg{display:flex;flex-direction:column;align-items:center;gap:2px;min-height:66px;padding:11px 8px;
+    border-radius:14px;cursor:pointer;font-family:inherit;border:1.5px solid transparent;
+    transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s,filter .3s}
+.iah-seg b{font-size:.86rem;font-weight:800;letter-spacing:-.01em}
+.iah-seg span{font-size:.74rem;font-weight:700;opacity:.85}
+.iah-seg--leve{background:linear-gradient(135deg,#d6f5e6,#b8ecd6);color:#10603f}
+.iah-seg--mod{background:linear-gradient(135deg,#ffe9c9,#ffd79f);color:#7a4a06}
+.iah-seg--sev{background:linear-gradient(135deg,#ffd7d7,#ffbdbd);color:#8a1f1f}
+.iah-seg[aria-selected="false"]{filter:saturate(.5) opacity(.62)}
+.iah-seg[aria-selected="true"]{transform:translateY(-3px);box-shadow:0 12px 26px -14px rgba(16,24,40,.45)}
+.iah-seg:focus-visible{outline:2px solid #6c5ce7;outline-offset:3px}
+.iah-dets{display:grid;margin-top:10px}
+.iah-det{grid-area:1/1;margin:0;padding:15px 16px;border-radius:14px;background:#fff;
+    border:1px solid rgba(108,92,231,.16);font-size:.92rem;line-height:1.55;color:#4a4470;
+    opacity:0;transform:translateY(5px);pointer-events:none;
+    transition:opacity .3s ease,transform .4s cubic-bezier(.16,1,.3,1)}
+.iah-det.is-on{opacity:1;transform:none;pointer-events:auto}
+@media(prefers-reduced-motion:reduce){
+    .bn-tile,.bn-det,.bn-mas,.iah-seg,.iah-det{transition:none}
+}
+
+/* ===== esquema del ciclo, v3 =====
+   Una sola pausa a lo ancho: cada paso de la lista tiene su punto sobre la
+   curva y una guia vertical que lo aterriza. La noche entera queda en la
+   cinta de abajo. Solo opacity/transform/stroke-dashoffset. */
+.ciclo__viz{background:linear-gradient(170deg,#fff,#f6f5ff);
+    border:1px solid rgba(108,92,231,.16);border-radius:18px;padding:15px 14px 11px}
+.ciclo__svg{width:100%;height:auto;display:block;overflow:visible}
+.ciclo__base{stroke:rgba(108,92,231,.24);stroke-width:1;stroke-dasharray:3 5}
+.ciclo__base--baja{stroke:rgba(194,55,44,.3)}
+.ciclo__lbl{fill:#a8a3c4;font-size:9.5px;font-weight:800;letter-spacing:.02em}
+.ciclo__lbl--baja{fill:#c2372c;opacity:.72}
+.ciclo__linea{fill:none;stroke:#6c5ce7;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:520;stroke-dashoffset:520;animation:ciclo-traza 2.2s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes ciclo-traza{to{stroke-dashoffset:0}}
+.ciclo__area{opacity:0;animation:ciclo-rellena .9s ease 1.3s forwards}
+@keyframes ciclo-rellena{to{opacity:1}}
+.ciclo__guia{stroke:#6c5ce7;stroke-width:1;stroke-dasharray:2 3;opacity:0;
+    transition:opacity .35s ease,x1 .5s cubic-bezier(.16,1,.3,1),x2 .5s cubic-bezier(.16,1,.3,1),y1 .5s cubic-bezier(.16,1,.3,1)}
+.ciclo__guia.is-on{opacity:.5}
+.ciclo__brk path{fill:none;stroke:rgba(108,92,231,.4);stroke-width:1.2}
+.ciclo__brkTxt{fill:#6c5ce7;font-size:10px;font-weight:800;text-anchor:middle}
+.ciclo__marca{fill:#fff;stroke:#6c5ce7;stroke-width:2.4;opacity:.3;
+    transition:opacity .4s ease,r .45s cubic-bezier(.16,1,.3,1),stroke-width .4s}
+.ciclo__marca.is-on{opacity:1;r:7;stroke-width:3.4}
+.ciclo__noche{display:flex;align-items:center;gap:10px;margin-top:9px;padding-top:9px;
+    border-top:1px dashed rgba(108,92,231,.18)}
+.ciclo__nocheSvg{flex:0 0 96px;width:96px;height:17px;fill:none;stroke-width:2.4;
+    stroke-linecap:round;stroke-linejoin:round}
+.ciclo__caida{margin:0;font-size:.76rem;line-height:1.3}
+.ciclo__caida b{color:#4834d4;font-weight:800}
+@media(prefers-reduced-motion:reduce){
+    .ciclo__linea,.ciclo__area{animation:none;stroke-dashoffset:0;opacity:1}
+    .ciclo__marca,.ciclo__guia{transition:none}
+}
 </style>
         <div class="lang-switch" role="navigation" aria-label="Idioma">
             <a class="active" href="#" aria-current="true">ES</a><a href="/en/sleep-apnea-test/" hreflang="en">EN</a>
@@ -730,7 +752,14 @@
         </div>
 
 <!-- RESPUESTA DIRECTA -->
-<p class="apn-section__lead reveal" style="max-width:760px;padding:16px 20px;background:rgba(108,92,231,.06);border-left:4px solid #6c5ce7;border-radius:10px;margin-bottom:36px;color:#3a4a5c">La <strong>apnea obstructiva del sueño</strong> es el cierre repetido de la vía aérea al dormir: causa ronquido, pausas respiratorias y somnolencia diurna. Se diagnostica con un estudio del sueño que mide el IAH y se trata, según la severidad, con CPAP.</p>
+<div class="def reveal">
+  <p class="def__frase">La <b>apnea obstructiva del sueño</b> es el cierre repetido de la vía aérea al dormir: causa ronquido, pausas respiratorias y somnolencia diurna. Se diagnostica con un estudio del sueño que mide el IAH y se trata, según la severidad, con CPAP.</p>
+  <ul class="def__tres">
+    <li><span class="def__ic"><i class="bi bi-slash-circle-fill" aria-hidden="true"></i></span><b>Qué es</b><span>La vía aérea se cierra una y otra vez mientras duermes.</span></li>
+    <li><span class="def__ic"><i class="bi bi-soundwave" aria-hidden="true"></i></span><b>Qué provoca</b><span>Ronquido, pausas al respirar y sueño de día.</span></li>
+    <li><span class="def__ic"><i class="bi bi-clipboard2-pulse-fill" aria-hidden="true"></i></span><b>Cómo se mide</b><span>Un estudio en casa cuenta las pausas por hora.</span></li>
+  </ul>
+</div>
 
 <!-- ALERTA RÁPIDA -->
 <div class="apn-quick reveal">
@@ -747,34 +776,7 @@
 </div>
 
 <!-- SÍNTOMAS -->
-<div class="apn-section reveal">
-<span class="apn-section__eyebrow"><i class="bi bi-clipboard-pulse"></i> Señales de alerta</span>
-<h2 class="apn-section__title">¿Te suena <em>familiar</em> alguno?</h2>
-<p class="apn-section__lead">El ronquido fuerte, las pausas respiratorias y la somnolencia diurna son los síntomas de apnea del sueño más frecuentes. Si reconoces dos o más, conviene hacer un estudio del sueño.</p>
 
-<div class="symp-grid">
-<div class="symp-card">
-<div class="symp-card__icon" style="background:linear-gradient(135deg,#6c5ce7,#4834d4);box-shadow:0 8px 20px rgba(108,92,231,.3)"><i class="bi bi-volume-up-fill"></i></div>
-<h4>Roncas fuerte</h4>
-<p>"Me lo dice mi pareja"</p>
-</div>
-<div class="symp-card">
-<div class="symp-card__icon" style="background:linear-gradient(135deg,#e64545,#c0392b);box-shadow:0 8px 20px rgba(230,69,69,.3)"><i class="bi bi-battery-half"></i></div>
-<h4>Cansancio de día</h4>
-<p>Aunque dormiste toda la noche</p>
-</div>
-<div class="symp-card">
-<div class="symp-card__icon" style="background:linear-gradient(135deg,#f0a830,#e67e22);box-shadow:0 8px 20px rgba(240,168,48,.3)"><i class="bi bi-eye-slash-fill"></i></div>
-<h4>Sueño al manejar</h4>
-<p>O en reuniones, comidas, TV</p>
-</div>
-<div class="symp-card">
-<div class="symp-card__icon" style="background:linear-gradient(135deg,#00b894,#009678);box-shadow:0 8px 20px rgba(0,184,148,.3)"><i class="bi bi-arrow-repeat"></i></div>
-<h4>Despiertas seguido</h4>
-<p>O te levantas a orinar de noche</p>
-</div>
-</div>
-</div>
 
 <div class="apn-section reveal" id="que-pasa">
 <span class="apn-section__eyebrow"><i class="bi bi-arrow-repeat"></i> Qué pasa mientras duermes</span>
@@ -783,39 +785,63 @@
 
 <div class="ciclo" id="ciclo">
   <div class="ciclo__viz">
-    <svg viewBox="0 0 320 150" class="ciclo__svg" role="img" aria-label="Trazo del oxígeno durante una pausa respiratoria">
+    <svg viewBox="0 0 340 134" class="ciclo__svg" role="img" aria-label="Una pausa respiratoria: la vía aérea se cierra, el oxígeno en la sangre baja de 95% a 82% y solo se recupera cuando el cerebro te despierta">
       <defs>
         <linearGradient id="cicloFill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#6c5ce7" stop-opacity=".22"/>
+          <stop offset="0%" stop-color="#6c5ce7" stop-opacity=".2"/>
           <stop offset="100%" stop-color="#6c5ce7" stop-opacity="0"/>
         </linearGradient>
       </defs>
-      <line x1="0" y1="38" x2="320" y2="38" class="ciclo__base"/>
-      <text x="4" y="30" class="ciclo__ejelbl">oxígeno normal</text>
-      <path class="ciclo__area" d="M0,38 L60,38 C90,38 96,104 130,104 C164,104 170,38 200,38 L260,38 C290,38 296,104 320,104 L320,150 L0,150 Z" fill="url(#cicloFill)"/>
-      <path class="ciclo__linea" d="M0,38 L60,38 C90,38 96,104 130,104 C164,104 170,38 200,38 L260,38 C290,38 296,104 320,104"/>
-      <circle class="ciclo__punto" cx="60" cy="38" r="5"/>
+      <line x1="32" y1="26" x2="340" y2="26" class="ciclo__base"/>
+      <line x1="32" y1="96" x2="340" y2="96" class="ciclo__base ciclo__base--baja"/>
+      <text x="0" y="29" class="ciclo__lbl">95%</text>
+      <text x="0" y="99" class="ciclo__lbl ciclo__lbl--baja">82%</text>
+      <path class="ciclo__area" fill="url(#cicloFill)" d="M32,26 L86,26 C124,26 162,96 200,96 L226,96 C238,96 242,30 256,26 L340,26 L340,104 L32,104 Z"/>
+      <path class="ciclo__linea" d="M32,26 L86,26 C124,26 162,96 200,96 L226,96 C238,96 242,30 256,26 L340,26"/>
+      <line class="ciclo__guia is-on" x1="44" y1="26" x2="44" y2="106"/>
+      <g class="ciclo__brk" aria-hidden="true">
+        <path d="M86,112 v5 H226 v-5"/>
+        <text x="156" y="130" class="ciclo__brkTxt">10 s o más sin aire</text>
+      </g>
+      <g class="ciclo__marcas">
+        <circle class="ciclo__marca" data-m="0" cx="44"  cy="26" r="4.5"/>
+        <circle class="ciclo__marca" data-m="1" cx="86"  cy="26" r="4.5"/>
+        <circle class="ciclo__marca" data-m="2" cx="171" cy="85" r="4.5"/>
+        <circle class="ciclo__marca" data-m="3" cx="226" cy="96" r="4.5"/>
+      </g>
     </svg>
-    <p class="ciclo__caida"><b>Cada bajada</b> es una pausa. <span>Así se ve tu noche en el estudio.</span></p>
+    <div class="ciclo__noche">
+      <svg viewBox="0 0 300 20" class="ciclo__nocheSvg" aria-hidden="true" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="cicloFade" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#6c5ce7" stop-opacity=".8"/>
+            <stop offset="62%" stop-color="#6c5ce7" stop-opacity=".8"/>
+            <stop offset="100%" stop-color="#6c5ce7" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path d="M0,3 C5,3 8,17 15,17 C22,17 25,3 30,3 C35,3 38,17 45,17 C52,17 55,3 60,3 C65,3 68,17 75,17 C82,17 85,3 90,3 C95,3 98,17 105,17 C112,17 115,3 120,3 C125,3 128,17 135,17 C142,17 145,3 150,3 C155,3 158,17 165,17 C172,17 175,3 180,3 C185,3 188,17 195,17 C202,17 205,3 210,3 C215,3 218,17 225,17 C232,17 235,3 240,3 C245,3 248,17 255,17 C262,17 265,3 270,3 C275,3 278,17 285,17 C292,17 295,3 300,3" stroke="url(#cicloFade)"/>
+      </svg>
+      <p class="ciclo__caida"><b>Y así, cientos de veces cada noche.</b></p>
+    </div>
   </div>
 
   <ol class="ciclo__pasos" id="cicloPasos">
-    <li><button type="button" class="ciclo__paso" aria-selected="true" data-x="60">
+    <li><button type="button" class="ciclo__paso" aria-selected="true" data-m="0">
       <span class="ciclo__n">1</span>
       <span class="ciclo__ic"><i class="bi bi-moon-stars-fill" aria-hidden="true"></i></span>
       <span class="ciclo__tx"><b>Te duermes</b>Los músculos de la garganta se relajan.</span>
     </button></li>
-    <li><button type="button" class="ciclo__paso" aria-selected="false" data-x="112">
+    <li><button type="button" class="ciclo__paso" aria-selected="false" data-m="1">
       <span class="ciclo__n">2</span>
       <span class="ciclo__ic"><i class="bi bi-slash-circle-fill" aria-hidden="true"></i></span>
       <span class="ciclo__tx"><b>La vía se cierra</b>El aire deja de pasar. Sigues intentando respirar.</span>
     </button></li>
-    <li><button type="button" class="ciclo__paso" aria-selected="false" data-x="130">
+    <li><button type="button" class="ciclo__paso" aria-selected="false" data-m="2">
       <span class="ciclo__n">3</span>
       <span class="ciclo__ic"><i class="bi bi-droplet-half" aria-hidden="true"></i></span>
       <span class="ciclo__tx"><b>Tu oxígeno cae</b>Y el corazón se acelera para compensar.</span>
     </button></li>
-    <li><button type="button" class="ciclo__paso" aria-selected="false" data-x="196">
+    <li><button type="button" class="ciclo__paso" aria-selected="false" data-m="3">
       <span class="ciclo__n">4</span>
       <span class="ciclo__ic"><i class="bi bi-lightning-charge-fill" aria-hidden="true"></i></span>
       <span class="ciclo__tx"><b>Tu cerebro te despierta</b>Un instante, roncas fuerte, y vuelve a empezar.</span>
@@ -918,6 +944,35 @@
 </div>
 
 <div class="apn-section reveal">
+<span class="apn-section__eyebrow"><i class="bi bi-clipboard-pulse"></i> Señales de alerta</span>
+<h2 class="apn-section__title">Señales de alerta: <em>¿te suena alguna?</em></h2>
+<p class="apn-section__lead">El ronquido fuerte, las pausas respiratorias y la somnolencia diurna son los síntomas de apnea del sueño más frecuentes. Si reconoces dos o más, conviene hacer un estudio del sueño.</p>
+
+<div class="symp-grid">
+<div class="symp-card">
+<div class="symp-card__icon" style="background:linear-gradient(135deg,#6c5ce7,#4834d4);box-shadow:0 8px 20px rgba(108,92,231,.3)"><i class="bi bi-volume-up-fill"></i></div>
+<h4>Roncas fuerte</h4>
+<p>"Me lo dice mi pareja"</p>
+</div>
+<div class="symp-card">
+<div class="symp-card__icon" style="background:linear-gradient(135deg,#e64545,#c0392b);box-shadow:0 8px 20px rgba(230,69,69,.3)"><i class="bi bi-battery-half"></i></div>
+<h4>Cansancio de día</h4>
+<p>Aunque dormiste toda la noche</p>
+</div>
+<div class="symp-card">
+<div class="symp-card__icon" style="background:linear-gradient(135deg,#f0a830,#e67e22);box-shadow:0 8px 20px rgba(240,168,48,.3)"><i class="bi bi-eye-slash-fill"></i></div>
+<h4>Sueño al manejar</h4>
+<p>O en reuniones, comidas, TV</p>
+</div>
+<div class="symp-card">
+<div class="symp-card__icon" style="background:linear-gradient(135deg,#00b894,#009678);box-shadow:0 8px 20px rgba(0,184,148,.3)"><i class="bi bi-arrow-repeat"></i></div>
+<h4>Despiertas seguido</h4>
+<p>O te levantas a orinar de noche</p>
+</div>
+</div>
+</div>
+
+<div class="apn-section reveal">
 <span class="apn-section__eyebrow"><i class="bi bi-shield-exclamation"></i> ¿Quién tiene más riesgo?</span>
 <h2 class="apn-section__title">Más común de lo que crees<em>, y muy tratable</em></h2>
 <p class="apn-section__lead">Algunos factores hacen que la vía aérea se cierre más fácilmente durante el sueño. Tener varios multiplica el riesgo.</p>
@@ -962,22 +1017,52 @@
 
 <p class="why-lead">Cada noche tu garganta se cierra decenas de veces y tu oxígeno baja. Elige lo que te preocupa.</p>
 
-<div class="pq" id="pq">
-  <div class="pq-chips" role="tablist" aria-label="Qué te preocupa">
-<button type="button" class="pq-chip" aria-selected="true" data-pq="cansado"><i class="bi bi-sunrise-fill" aria-hidden="true"></i>Vivo cansado</button>
-<button type="button" class="pq-chip" aria-selected="false" data-pq="volante"><i class="bi bi-car-front-fill" aria-hidden="true"></i>Manejo con sueño</button>
-<button type="button" class="pq-chip" aria-selected="false" data-pq="presion"><i class="bi bi-activity" aria-hidden="true"></i>Mi presión no baja</button>
-<button type="button" class="pq-chip" aria-selected="false" data-pq="corazon"><i class="bi bi-heart-pulse-fill" aria-hidden="true"></i>Me preocupa mi corazón</button>
-<button type="button" class="pq-chip" aria-selected="false" data-pq="ronquido"><i class="bi bi-volume-up-fill" aria-hidden="true"></i>Ronco fuerte</button>
+<div class="bn" id="bn">
+  <div class="bn-grid">
+  <button type="button" class="bn-tile" data-bn="0" aria-expanded="true">
+    <span class="bn-ic"><i class="bi bi-sunrise-fill" aria-hidden="true"></i></span>
+    <span class="bn-lbl">Tu energía</span>
+    <span class="bn-num">Desde la 1.ª noche</span>
+    <span class="bn-sub"></span>
+    <span class="bn-mas" aria-hidden="true"><i class="bi bi-plus-lg"></i></span>
+  </button>
+  <button type="button" class="bn-tile" data-bn="1" aria-expanded="false">
+    <span class="bn-ic"><i class="bi bi-car-front-fill" aria-hidden="true"></i></span>
+    <span class="bn-lbl">Al volante</span>
+    <span class="bn-num">2.45</span>
+    <span class="bn-sub">veces más riesgo de chocar</span>
+    <span class="bn-mas" aria-hidden="true"><i class="bi bi-plus-lg"></i></span>
+  </button>
+  <button type="button" class="bn-tile" data-bn="2" aria-expanded="false">
+    <span class="bn-ic"><i class="bi bi-activity" aria-hidden="true"></i></span>
+    <span class="bn-lbl">Tu presión</span>
+    <span class="bn-num">8/10</span>
+    <span class="bn-sub">con presión rebelde tienen apnea</span>
+    <span class="bn-mas" aria-hidden="true"><i class="bi bi-plus-lg"></i></span>
+  </button>
+  <button type="button" class="bn-tile" data-bn="3" aria-expanded="false">
+    <span class="bn-ic"><i class="bi bi-heart-pulse-fill" aria-hidden="true"></i></span>
+    <span class="bn-lbl">Tu corazón</span>
+    <span class="bn-num">30%</span>
+    <span class="bn-sub">menos eventos si lo usas bien</span>
+    <span class="bn-mas" aria-hidden="true"><i class="bi bi-plus-lg"></i></span>
+  </button>
+  <button type="button" class="bn-tile" data-bn="4" aria-expanded="false">
+    <span class="bn-ic"><i class="bi bi-volume-up-fill" aria-hidden="true"></i></span>
+    <span class="bn-lbl">Lo más común</span>
+    <span class="bn-num">8/10</span>
+    <span class="bn-sub">nunca fueron diagnosticados</span>
+    <span class="bn-mas" aria-hidden="true"><i class="bi bi-plus-lg"></i></span>
+  </button>
   </div>
-  <div class="pq-panes" id="pqPanes">
-<div class="pq-panel is-on" data-pq="cansado"><p class="pq-num">Desde la<br>primera noche</p><p class="pq-txt">Es el beneficio mejor demostrado y el que más rápido se siente.</p><p class="pq-pie"><i class="bi bi-dot" aria-hidden="true"></i>Crece con las horas de uso.</p></div>
-<div class="pq-panel" data-pq="volante"><p class="pq-num">2.45<span class="u">veces</span></p><p class="pq-txt">Más riesgo de chocar sin tratar. Lo que predice ese riesgo no es qué tan alto salga tu estudio: es el sueño que traes de día.</p><p class="pq-pie"><i class="bi bi-dot" aria-hidden="true"></i>Con el equipo bien usado, baja a menos de la mitad.</p></div>
-<div class="pq-panel" data-pq="presion"><p class="pq-num">8<span class="u">de cada 10</span></p><p class="pq-txt">De quienes no controlan su presión con tres medicamentos, 8 de cada 10 tienen apnea sin diagnosticar.</p><p class="pq-pie"><i class="bi bi-dot" aria-hidden="true"></i>Se suma a tus medicamentos, no los sustituye.</p></div>
-<div class="pq-panel" data-pq="corazon"><p class="pq-num">La verdad<br>completa</p><p class="pq-txt">La apnea moderada o grave casi triplica el riesgo de desarrollar presión alta. Pero el CPAP <b>no es garantía</b> de que nunca tendrás un infarto, y quien te lo prometa te está vendiendo algo. Entre quienes lo usan 4 horas o más se observaron cerca de <b>30% menos eventos</b>.</p><p class="pq-pie"><i class="bi bi-dot" aria-hidden="true"></i>Mi trabajo es medir tu oxígeno y lograr que lo uses. No prometerte un resultado.</p></div>
-<div class="pq-panel" data-pq="ronquido"><p class="pq-num">8<span class="u">de cada 10</span></p><p class="pq-txt">Adultos con apnea moderada o grave que <b>nunca fueron diagnosticados</b>. El ronquido se oye; la apnea solo se ve midiéndola.</p><p class="pq-pie"><i class="bi bi-dot" aria-hidden="true"></i>En CDMX tu oxígeno ya parte de más abajo: 2,240 m.</p></div>
+  <div class="bn-dets">
+  <p class="bn-det is-on" data-bn="0">Es el beneficio mejor demostrado del tratamiento y el que más rápido se siente.</p>
+  <p class="bn-det" data-bn="1">Y lo que predice ese riesgo no es qué tan alto salga tu estudio: es el sueño que traes de día.</p>
+  <p class="bn-det" data-bn="2">De quienes no logran controlarla ni con tres medicamentos. Tratar la apnea se suma a tus medicamentos, no los sustituye.</p>
+  <p class="bn-det" data-bn="3">La apnea casi triplica el riesgo de desarrollar presión alta. Pero te lo digo de frente: el CPAP <b>no es garantía</b> contra el infarto. En los estudios grandes, hechos en personas que ya habían tenido un evento y que usaban el equipo menos de tres horas y media por noche, no bajó los infartos. Entre quienes sí lo usaban cuatro horas o más se observaron cerca de 30% menos eventos.</p>
+  <p class="bn-det" data-bn="4">Adultos con apnea moderada o grave que nunca recibieron diagnóstico. El ronquido se oye; la apnea solo se ve midiéndola.</p>
   </div>
-  <p class="pq-nota"><i class="bi bi-clock-history" aria-hidden="true"></i> <span>Todo lo de arriba depende de una cosa: <b>que lo uses</b>. Cuatro horas por noche es donde empieza el beneficio, y cada hora extra suma.</span></p>
+  <p class="bn-nota"><i class="bi bi-clock-history" aria-hidden="true"></i> <span>Todo esto depende de una cosa: <b>que lo uses</b>. Cuatro horas por noche es donde empieza el beneficio.</span></p>
 </div>
 
 <!-- CTA -->
@@ -996,36 +1081,18 @@
 <h2 class="apn-section__title">El IAH: el número que <em>lo define todo</em></h2>
 <p class="apn-section__lead">El Índice Apnea-Hipopnea mide cuántas veces deja de pasar aire por tu garganta en una hora; la <a href="/servicios/poligrafia-respiratoria/" style="color:#6c5ce7;font-weight:700">poligrafía respiratoria</a> lo calcula. Ese número determina el tratamiento.</p>
 
-<div class="iah-scale reveal">
-<div class="iah-scale__inner">
-<div class="iah-scale__badge"><i class="bi bi-bar-chart-fill"></i> Clasificación según la AASM</div>
-<h3 class="iah-scale__title">¿Cuántas pausas respiratorias por hora tienes?</h3>
-<div class="iah-levels">
-<div class="iah-level iah-level--mild">
-<div class="iah-level__icon"><i class="bi bi-check-circle-fill"></i></div>
-<div class="iah-level__label">Leve</div>
-<div class="iah-level__num">5–15</div>
-<div class="iah-level__desc">pausas/hora. Se controla con cambios de postura, peso y a veces un dispositivo mandibular</div>
-</div>
-<div class="iah-level iah-level--mod">
-<div class="iah-level__icon"><i class="bi bi-exclamation-circle-fill"></i></div>
-<div class="iah-level__label">Moderada</div>
-<div class="iah-level__num">15–30</div>
-<div class="iah-level__desc">pausas/hora. El corazón ya lo resiente. CPAP es la primera línea de tratamiento</div>
-</div>
-<div class="iah-level iah-level--sev">
-<div class="iah-level__icon"><i class="bi bi-exclamation-triangle-fill"></i></div>
-<div class="iah-level__label">Severa</div>
-<div class="iah-level__num">&gt;30</div>
-<div class="iah-level__desc">pausas/hora. Tu cuerpo se desoxigena decenas de veces por noche. Tratamiento urgente</div>
-</div>
-</div>
-<div class="iah-bar-wrap">
-<div class="iah-bar-label">Escala de severidad</div>
-<div class="iah-bar-track"><div class="iah-bar-fill"></div></div>
-<div class="iah-bar-markers"><span>Normal &lt;5</span><span>Leve</span><span>Moderada</span><span>Severa</span></div>
-</div>
-</div>
+<div class="iah" id="iah">
+  <p class="iah-eje"><span>pausas por hora</span><small>Clasificación de la AASM</small></p>
+  <div class="iah-barra" role="tablist" aria-label="Severidad según el IAH">
+<button type="button" class="iah-seg iah-seg--leve" data-iah="0" aria-selected="false"><b>Leve</b><span>5 a 15</span></button>
+<button type="button" class="iah-seg iah-seg--mod" data-iah="1" aria-selected="true"><b>Moderada</b><span>15 a 30</span></button>
+<button type="button" class="iah-seg iah-seg--sev" data-iah="2" aria-selected="false"><b>Severa</b><span>más de 30</span></button>
+  </div>
+  <div class="iah-dets">
+<p class="iah-det" data-iah="0">Cambios de postura, control de peso y a veces un dispositivo mandibular.</p>
+<p class="iah-det is-on" data-iah="1">El corazón ya lo resiente. El CPAP es la primera opción.</p>
+<p class="iah-det" data-iah="2">Tratamiento sin demora: es donde más beneficio se ha demostrado.</p>
+  </div>
 </div>
 </div>
 
@@ -1075,28 +1142,7 @@
 </div>
 </div>
 
-<div class="apn-section reveal">
-<span class="apn-section__eyebrow" style="color:#e64545;background:rgba(230,69,69,.08);border-color:rgba(230,69,69,.2)"><i class="bi bi-exclamation-triangle-fill"></i> Señales urgentes</span>
-<h2 class="apn-section__title">Esto no puede esperar <em>una semana más</em></h2>
-<p class="apn-section__lead">La apnea severa no tratada puede derivar en emergencias cardíacas. Si presentas alguna de estas señales, busca atención pronto:</p>
 
-<div class="alarm reveal">
-<div class="alarm__inner">
-<div class="alarm__head">
-<div class="alarm__badge"><i class="fa-solid fa-triangle-exclamation"></i></div>
-<h3 class="alarm__title">Busca atención si presentas:</h3>
-</div>
-<ul class="alarm__list">
-<li><i class="bi bi-pause-circle-fill"></i> Tu pareja observa que dejas de respirar por segundos</li>
-<li><i class="bi bi-car-front-fill"></i> Te quedas dormido manejando o en situaciones de riesgo</li>
-<li><i class="bi bi-heart-pulse-fill"></i> Palpitaciones fuertes o irregulares de noche</li>
-<li><i class="bi bi-thermometer-low"></i> Dolor de cabeza intenso cada mañana al levantarte</li>
-<li><i class="bi bi-droplet-half"></i> Sudores nocturnos sin fiebre con ronquidos fuertes</li>
-<li><i class="bi bi-graph-down-arrow"></i> Te han dicho que tu oxígeno cae durante la noche</li>
-</ul>
-</div>
-</div>
-</div>
 
 
 
@@ -1446,23 +1492,22 @@
 (function(){
     var caja=document.getElementById('ciclo'); if(!caja) return;
     var pasos=Array.prototype.slice.call(caja.querySelectorAll('.ciclo__paso'));
-    var punto=caja.querySelector('.ciclo__punto');
-    var curva=caja.querySelector('.ciclo__linea');
-    if(!pasos.length||!punto||!curva) return;
-    var largo=curva.getTotalLength();
+    var marcas=Array.prototype.slice.call(caja.querySelectorAll('.ciclo__marca'));
+    var guia=caja.querySelector('.ciclo__guia');
+    if(!pasos.length||!marcas.length) return;
     function pon(k){
         pasos.forEach(function(b,i){ b.setAttribute('aria-selected',String(i===k)); });
-        var x=parseFloat(pasos[k].getAttribute('data-x'));
-        /* se busca sobre la curva el punto cuya X coincide, asi el marcador
-           sigue el trazo real y no una posicion inventada */
-        var lo=0, hi=largo, pt;
-        for(var i=0;i<18;i++){
-            var mid=(lo+hi)/2; pt=curva.getPointAtLength(mid);
-            if(pt.x<x) lo=mid; else hi=mid;
+        /* la marca del paso activo crece; las demas quedan tenues, asi se ve
+           donde ocurre cada momento sobre el trazo real de la noche */
+        /* la marca del paso activo crece y una guia vertical la aterriza
+           sobre el eje, para que se vea EN QUE momento de la pausa ocurre */
+        marcas.forEach(function(m,i){ m.classList.toggle('is-on',i===k); });
+        if(guia){
+            var x=marcas[k].getAttribute('cx');
+            guia.setAttribute('x1',x); guia.setAttribute('x2',x);
+            guia.setAttribute('y1',marcas[k].getAttribute('cy'));
+            guia.classList.add('is-on');
         }
-        pt=curva.getPointAtLength((lo+hi)/2);
-        punto.setAttribute('cx',pt.x.toFixed(1));
-        punto.setAttribute('cy',pt.y.toFixed(1));
     }
     pasos.forEach(function(b,i){ b.addEventListener('click',function(){ pon(i); }); });
     caja.addEventListener('keydown',function(e){
@@ -1474,22 +1519,28 @@
     pon(0);
 })();
 
-/* Que te preocupa: 5 respuestas, se ve una. */
+</script>
+<script>
+/* Bento de razones y barra del IAH: mismo patron, se ve una explicacion. */
 (function(){
-    var caja=document.getElementById('pq'); if(!caja) return;
-    var chips=Array.prototype.slice.call(caja.querySelectorAll('.pq-chip'));
-    var panes=Array.prototype.slice.call(caja.querySelectorAll('.pq-panel'));
-    if(!chips.length) return;
-    function pon(k){
-        chips.forEach(function(c,i){ c.setAttribute('aria-selected',String(i===k)); });
-        panes.forEach(function(p,i){ p.classList.toggle('is-on',i===k); });
+    function liga(cajaId, selBtn, selDet, attr){
+        var caja=document.getElementById(cajaId); if(!caja) return;
+        var btns=Array.prototype.slice.call(caja.querySelectorAll(selBtn));
+        var dets=Array.prototype.slice.call(caja.querySelectorAll(selDet));
+        if(!btns.length) return;
+        function pon(k){
+            btns.forEach(function(b,i){ b.setAttribute(attr,String(i===k)); });
+            dets.forEach(function(d,i){ d.classList.toggle('is-on',i===k); });
+        }
+        btns.forEach(function(b,i){ b.addEventListener('click',function(){ pon(i); }); });
+        caja.addEventListener('keydown',function(e){
+            var i=btns.indexOf(document.activeElement); if(i<0) return;
+            if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();var n=(i+1)%btns.length;btns[n].focus();pon(n);}
+            if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();var q=(i-1+btns.length)%btns.length;btns[q].focus();pon(q);}
+        });
     }
-    chips.forEach(function(c,i){ c.addEventListener('click',function(){ pon(i); }); });
-    caja.querySelector('.pq-chips').addEventListener('keydown',function(e){
-        var i=chips.indexOf(document.activeElement); if(i<0) return;
-        if(e.key==='ArrowRight'){e.preventDefault();var n=(i+1)%chips.length;chips[n].focus();pon(n);}
-        if(e.key==='ArrowLeft'){e.preventDefault();var q=(i-1+chips.length)%chips.length;chips[q].focus();pon(q);}
-    });
+    liga('bn','.bn-tile','.bn-det','aria-expanded');
+    liga('iah','.iah-seg','.iah-det','aria-selected');
 })();
 </script>
 </body>
