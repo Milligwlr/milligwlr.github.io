@@ -581,6 +581,29 @@
 #que-tan-confiable .svc-section__eyebrow{margin-left:auto;margin-right:auto}
 #que-tan-confiable .svc-section__lead{margin-left:auto;margin-right:auto}
 #que-tan-confiable .trust-card{margin-left:auto;margin-right:auto;text-align:left;max-width:760px}
+
+/* La cifra era un chip lateral del mismo peso visual que la frase de al lado.
+   Ahora es el titular del bloque: numero grande con tabular-nums, su unidad
+   en pequeño y, colgando de el, la condicion y el matiz. El matiz NO se
+   esconde: es lo que hace honesta la cifra. */
+.trust-head{display:grid;gap:14px;padding:0 0 18px;margin:0 0 4px;
+    border-bottom:1px solid var(--border)}
+.trust-figure{display:flex;flex-direction:column;align-items:flex-start;gap:2px;margin:0;line-height:1}
+.trust-figure__num{display:flex;align-items:flex-start;font-size:clamp(2.9rem,11vw,4rem);font-weight:800;
+    letter-spacing:-.045em;line-height:.9;color:var(--svc);font-variant-numeric:tabular-nums}
+.trust-figure__num .pct{font-size:.44em;font-weight:800;margin:.16em 0 0 .06em;letter-spacing:0;
+    color:color-mix(in srgb,var(--svc) 72%,var(--navy))}
+.trust-figure__lbl{font-size:.74rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase;
+    color:color-mix(in srgb,var(--svc) 68%,var(--navy))}
+.trust-when{margin:0 0 6px;font-size:1.02rem;line-height:1.4;font-weight:600;color:var(--navy);letter-spacing:-.01em}
+.trust-when b{font-weight:800}
+.trust-caveat{margin:0;font-size:.87rem;line-height:1.5;color:var(--text-muted)}
+.trust-caveat b{color:var(--navy);font-weight:700}
+@media(min-width:620px){
+    /* en pantalla ancha la cifra manda desde su propia columna */
+    .trust-head{grid-template-columns:auto 1fr;gap:22px;align-items:center}
+    .trust-figure{padding-right:22px;border-right:1px solid var(--border)}
+}
 </style>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
 <script type="application/ld+json">
@@ -904,8 +927,13 @@
 <h2 class="svc-section__title">¿Un estudio en casa mide <em>igual de bien?</em></h2>
 <p class="svc-section__lead">Es la duda más razonable, y la respuesta corta es que sí, cuando ya hay sospecha clara de apnea. Estos son los números y quién los respalda.</p>
 <div class="trust-card">
-<p class="trust-claim"><b>84-91%<small>de exactitud</small></b> <span>cuando ya hay sospecha clara de apnea.</span></p>
-<p class="trust-caveat">Si la sospecha es baja cae a 70-78%: por eso la valoración previa es la que hace confiable al estudio.</p>
+<div class="trust-head">
+<p class="trust-figure"><span class="trust-figure__num">84&ndash;91<span class="pct">%</span></span><span class="trust-figure__lbl">de exactitud</span></p>
+<div class="trust-head__txt">
+<p class="trust-when">cuando ya hay <b>sospecha clara de apnea</b>.</p>
+<p class="trust-caveat">Si la sospecha es baja cae a <b>70&ndash;78%</b>: por eso la valoración previa es la que hace confiable al estudio.</p>
+</div>
+</div>
 <ul class="trust-list">
 <li><i class="bi bi-journal-check" aria-hidden="true"></i><span>Las guías del sueño <b>(AASM)</b> lo respaldan para el caso típico de apnea.</span></li>
 <li><i class="bi bi-person-badge-fill" aria-hidden="true"></i><span>Lo interpreto yo <b>revisando el trazo completo</b>, no el número que da el aparato.</span></li>
@@ -1137,7 +1165,7 @@
 <!-- WOW -->
 <div class="svc-section reveal">
 <span class="svc-section__eyebrow"><i class="bi bi-lightning-fill"></i> Cómo es el estudio</span>
-<h2 class="svc-section__title">Tu cama vs un <em>cuarto extraño</em></h2>
+<h2 class="svc-section__title"><em>Tu cama</em> vs un cuarto extraño</h2>
 <p class="svc-section__lead">El estudio de apnea del sueño en casa mide lo mismo que importa para diagnosticar apnea, sin el costo y la incomodidad de la polisomnografía hospitalaria.</p>
 
 <div class="svc-wow reveal">
