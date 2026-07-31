@@ -104,24 +104,8 @@
 /* QUICK */
 
 /* SÍNTOMAS */
-.symp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media(min-width:768px){.symp-grid{grid-template-columns:repeat(4,1fr);gap:14px}}
-.symp-card{background:#fff;border:1px solid rgba(108,92,231,.12);border-radius:18px;padding:18px 14px;text-align:center;transition:all .3s var(--ease);cursor:pointer}
-.symp-card:hover{transform:translateY(-4px);border-color:rgba(108,92,231,.3);box-shadow:0 14px 32px rgba(108,92,231,.12)}
-.symp-card__icon{width:54px;height:54px;border-radius:16px;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 12px}
-.symp-card h4{font-size:.92rem;font-weight:800;color:var(--navy);margin:0 0 4px;line-height:1.25}
-.symp-card p{font-size:.78rem;color:var(--text-muted);margin:0;line-height:1.4}
-@media(min-width:768px){.symp-card{padding:24px 18px}.symp-card h4{font-size:1rem}.symp-card p{font-size:.82rem}}
 
 /* RIESGO */
-.risk-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(min-width:768px){.risk-grid{grid-template-columns:repeat(3,1fr);gap:16px}}
-.risk-card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:18px;padding:20px 16px;transition:all .35s var(--ease);box-shadow:0 4px 14px rgba(10,22,40,.04);cursor:pointer}
-.risk-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(108,92,231,.12)}
-.risk-card__icon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;margin-bottom:12px}
-.risk-card h3{font-size:.95rem;font-weight:800;color:var(--navy);margin:0 0 6px;line-height:1.25}
-.risk-card p{font-size:.8rem;color:var(--text-muted);line-height:1.5;margin:0}
-@media(min-width:768px){.risk-card{padding:24px 20px}.risk-card__icon{width:52px;height:52px;font-size:1.25rem}.risk-card h3{font-size:1.02rem;margin-bottom:8px}.risk-card p{font-size:.85rem}}
 
 /* PROCESO */
 .apn-process{background:linear-gradient(135deg,#f8f9fb,#eef2f7);border-radius:22px;padding:24px 18px;border:1px solid rgba(0,0,0,.05)}
@@ -526,8 +510,6 @@
    apoya en tres piezas visuales. Fuera el borde lateral de color, que era
    un adorno y ademas el tell mas reconocible de plantilla. ===== */
 .def{margin:0 0 34px}
-.def__frase{margin:0 0 14px;font-size:1rem;line-height:1.6;color:#3a4a5c;max-width:66ch}
-.def__frase b{color:var(--navy,#0a1628);font-weight:800}
 .def__tres{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 @media(min-width:700px){.def__tres{grid-template-columns:repeat(3,1fr)}}
 .def__tres li{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;gap:2px 12px;
@@ -592,6 +574,60 @@
     .bn-tile,.iah-seg,.iah-det{transition:none}
 }
 
+/* ===== PERFIL: senales + factores en un solo bloque de dos caras =====
+   Diez tarjetas apiladas eran ~1,800 px. Aqui son dos caras de fichas que se
+   abren en su sitio: nada se pierde y la seccion cabe en una pantalla. */
+.perfil{margin-top:4px}
+.perfil__sw{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:0;padding:4px;
+    border-radius:100px;background:rgba(108,92,231,.09);border:1px solid rgba(108,92,231,.14)}
+.perfil__pastilla{position:absolute;top:4px;left:4px;width:calc(50% - 4px);height:calc(100% - 8px);
+    border-radius:100px;background:linear-gradient(135deg,#6c5ce7,#4834d4);
+    box-shadow:0 8px 20px -10px rgba(72,52,212,.75);
+    transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.perfil.is-b .perfil__pastilla{transform:translateX(100%)}
+.perfil__tab{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:6px;
+    min-height:40px;padding:0 8px;border:0;background:transparent;cursor:pointer;font-family:inherit;
+    font-size:.8rem;font-weight:800;letter-spacing:-.01em;color:#6b6790;transition:color .35s ease}
+.perfil__tab[aria-selected="true"]{color:#fff}
+.perfil__tab b{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;
+    border-radius:100px;background:rgba(108,92,231,.16);font-size:.66rem;transition:background .35s}
+.perfil__tab[aria-selected="true"] b{background:rgba(255,255,255,.22)}
+.perfil__tab:focus-visible{outline:2px solid #6c5ce7;outline-offset:3px;border-radius:100px}
+
+.perfil__cara{display:none;gap:8px;margin-top:12px}
+.perfil__cara.is-on{display:grid}
+@media(min-width:720px){.perfil__cara.is-on{grid-template-columns:1fr 1fr}}
+.perfil__cara.is-on .pf-chip{animation:pf-entra .55s cubic-bezier(.16,1,.3,1) backwards;
+    animation-delay:calc(var(--i) * 55ms)}
+@keyframes pf-entra{from{opacity:0;transform:translateY(12px) scale(.97)}}
+
+.pf-chip{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:4px 12px;
+    width:100%;padding:11px 13px;border-radius:15px;text-align:left;cursor:pointer;font-family:inherit;
+    background:linear-gradient(165deg,#fff,#f8f7ff);border:1px solid rgba(108,92,231,.15);
+    transition:border-color .35s,box-shadow .35s,transform .4s cubic-bezier(.16,1,.3,1)}
+.pf-chip:focus-visible{outline:2px solid #6c5ce7;outline-offset:3px}
+.pf-chip[aria-expanded="true"]{border-color:rgba(108,92,231,.42);transform:translateY(-2px);
+    box-shadow:0 16px 34px -20px rgba(72,52,212,.6)}
+.pf-chip__ic{width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:1rem;background:var(--g);
+    box-shadow:0 8px 18px -9px rgba(16,24,40,.5);transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.pf-chip[aria-expanded="true"] .pf-chip__ic{transform:scale(1.08) rotate(-4deg)}
+.pf-chip__tx{display:flex;flex-direction:column;gap:1px;min-width:0}
+.pf-chip__tx b{font-size:.92rem;font-weight:800;letter-spacing:-.015em;color:var(--navy,#0a1628);line-height:1.25}
+.pf-chip__tx small{font-size:.74rem;color:#8b86b8;line-height:1.25}
+.pf-chip__mas{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:.68rem;background:rgba(108,92,231,.1);color:#6c5ce7;
+    transition:transform .45s cubic-bezier(.16,1,.3,1),background .35s}
+.pf-chip[aria-expanded="true"] .pf-chip__mas{transform:rotate(180deg);background:rgba(108,92,231,.22)}
+.pf-chip__det{grid-column:2/-1;display:grid;grid-template-rows:0fr;
+    transition:grid-template-rows .5s cubic-bezier(.16,1,.3,1)}
+.pf-chip[aria-expanded="true"] .pf-chip__det{grid-template-rows:1fr}
+.pf-chip__det>span{overflow:hidden;font-size:.86rem;line-height:1.5;color:#5b5580}
+.pf-chip[aria-expanded="true"] .pf-chip__det>span{padding-top:9px}
+@media(prefers-reduced-motion:reduce){
+    .perfil__pastilla,.pf-chip,.pf-chip__ic,.pf-chip__mas,.pf-chip__det{transition:none}
+    .perfil__cara.is-on .pf-chip{animation:none}
+}
 /* ===== termometro del IAH =====
    El gradiente verde->rojo y el nivel del mercurio dicen, sin una palabra, que
    mas pausas por hora es peor. El nivel lo fija el tramo seleccionado. */
@@ -622,10 +658,16 @@
     border:1px solid rgba(108,92,231,.16);border-radius:18px;padding:15px 14px 11px}
 .ciclo__svg{width:100%;height:auto;display:block;overflow:visible}
 .ciclo__base{stroke:rgba(108,92,231,.24);stroke-width:1;stroke-dasharray:3 5}
-.ciclo__base--baja{stroke:rgba(194,55,44,.3)}
+.ciclo__base--media{stroke:rgba(108,92,231,.15)}
+.ciclo__base--baja{stroke:rgba(194,55,44,.45)}
 .ciclo__lbl{fill:#a8a3c4;font-size:9.5px;font-weight:800;letter-spacing:.02em}
-.ciclo__lbl--baja{fill:#c2372c;opacity:.72}
-.ciclo__linea{fill:none;stroke:#6c5ce7;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;
+.ciclo__lbl--media{fill:#bcb7d6;font-size:8.5px}
+.ciclo__lbl--baja{fill:#c2372c;font-size:11.5px;opacity:1}
+.ciclo__zona{opacity:0;animation:ciclo-rellena .9s ease 1.5s forwards}
+/* las marcas del fondo heredan el rojo de la zona critica */
+.ciclo__marca[data-m="2"]{stroke:#a04a48}
+.ciclo__marca[data-m="3"]{stroke:#c2372c}
+.ciclo__linea{fill:none;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round;
     stroke-dasharray:520;stroke-dashoffset:520;animation:ciclo-traza 2.2s cubic-bezier(.16,1,.3,1) forwards}
 @keyframes ciclo-traza{to{stroke-dashoffset:0}}
 .ciclo__area{opacity:0;animation:ciclo-rellena .9s ease 1.3s forwards}
@@ -748,8 +790,7 @@
 
 <!-- RESPUESTA DIRECTA -->
 <div class="def reveal">
-  <p class="def__frase">La <b>apnea obstructiva del sueño</b> es el cierre repetido de la vía aérea al dormir: causa ronquido, pausas respiratorias y somnolencia diurna. Se diagnostica con un estudio del sueño que mide el IAH y se trata, según la severidad, con CPAP.</p>
-  <ul class="def__tres">
+    <ul class="def__tres">
     <li><span class="def__ic"><i class="bi bi-slash-circle-fill" aria-hidden="true"></i></span><b>Qué es</b><span>La vía aérea se cierra una y otra vez mientras duermes.</span></li>
     <li><span class="def__ic"><i class="bi bi-soundwave" aria-hidden="true"></i></span><b>Qué provoca</b><span>Ronquido, pausas al respirar y sueño de día.</span></li>
     <li><span class="def__ic"><i class="bi bi-clipboard2-pulse-fill" aria-hidden="true"></i></span><b>Cómo se mide</b><span>Un estudio en casa cuenta las pausas por hora.</span></li>
@@ -768,19 +809,33 @@
 
 <div class="ciclo" id="ciclo">
   <div class="ciclo__viz">
-    <svg viewBox="0 0 340 134" class="ciclo__svg" role="img" aria-label="Una pausa respiratoria: la vía aérea se cierra, el oxígeno en la sangre baja de 95% a 82% y solo se recupera cuando el cerebro te despierta">
+    <svg viewBox="0 0 340 134" class="ciclo__svg" role="img" aria-label="Una pausa respiratoria: la vía aérea se cierra, el oxígeno en la sangre cae de 95% a 50% y solo se recupera cuando el cerebro te despierta">
       <defs>
         <linearGradient id="cicloFill" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stop-color="#6c5ce7" stop-opacity=".2"/>
-          <stop offset="100%" stop-color="#6c5ce7" stop-opacity="0"/>
+          <stop offset="55%" stop-color="#c2372c" stop-opacity=".13"/>
+          <stop offset="100%" stop-color="#c2372c" stop-opacity="0"/>
+        </linearGradient>
+        <!-- el trazo se tine conforme cae: la profundidad es el mensaje -->
+        <linearGradient id="cicloProf" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#6c5ce7"/>
+          <stop offset="50%" stop-color="#8e5bd0"/>
+          <stop offset="100%" stop-color="#c2372c"/>
+        </linearGradient>
+        <linearGradient id="cicloZona" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#c2372c" stop-opacity="0"/>
+          <stop offset="100%" stop-color="#c2372c" stop-opacity=".14"/>
         </linearGradient>
       </defs>
+      <rect class="ciclo__zona" x="32" y="66" width="308" height="38" fill="url(#cicloZona)"/>
       <line x1="32" y1="26" x2="340" y2="26" class="ciclo__base"/>
+      <line x1="32" y1="61" x2="340" y2="61" class="ciclo__base ciclo__base--media"/>
       <line x1="32" y1="96" x2="340" y2="96" class="ciclo__base ciclo__base--baja"/>
       <text x="0" y="29" class="ciclo__lbl">95%</text>
-      <text x="0" y="99" class="ciclo__lbl ciclo__lbl--baja">82%</text>
+      <text x="0" y="64" class="ciclo__lbl ciclo__lbl--media">75%</text>
+      <text x="0" y="100" class="ciclo__lbl ciclo__lbl--baja">50%</text>
       <path class="ciclo__area" fill="url(#cicloFill)" d="M32,26 L86,26 C124,26 162,96 200,96 L226,96 C238,96 242,30 256,26 L340,26 L340,104 L32,104 Z"/>
-      <path class="ciclo__linea" d="M32,26 L86,26 C124,26 162,96 200,96 L226,96 C238,96 242,30 256,26 L340,26"/>
+      <path class="ciclo__linea" stroke="url(#cicloProf)" d="M32,26 L86,26 C124,26 162,96 200,96 L226,96 C238,96 242,30 256,26 L340,26"/>
       <line class="ciclo__guia is-on" x1="44" y1="26" x2="44" y2="106"/>
       <g class="ciclo__brk" aria-hidden="true">
         <path d="M86,112 v5 H226 v-5"/>
@@ -926,73 +981,86 @@
 </div>
 </div>
 
-<div class="apn-section reveal">
-<span class="apn-section__eyebrow"><i class="bi bi-clipboard-pulse"></i> Señales de alerta</span>
-<h2 class="apn-section__title">Señales de alerta: <em>¿te suena alguna?</em></h2>
+<div class="apn-section reveal" id="perfil">
+<span class="apn-section__eyebrow"><i class="bi bi-person-vcard"></i> Señales y factores de riesgo</span>
+<h2 class="apn-section__title">¿Te suena alguna, <em>o traes alguno?</em></h2>
 <p class="apn-section__lead">El ronquido fuerte, las pausas respiratorias y la somnolencia diurna son los síntomas de apnea del sueño más frecuentes. Si reconoces dos o más, conviene hacer un estudio del sueño.</p>
 
-<div class="symp-grid">
-<div class="symp-card">
-<div class="symp-card__icon" style="background:linear-gradient(135deg,#6c5ce7,#4834d4);box-shadow:0 8px 20px rgba(108,92,231,.3)"><i class="bi bi-volume-up-fill"></i></div>
-<h4>Roncas fuerte</h4>
-<p>"Me lo dice mi pareja"</p>
-</div>
-<div class="symp-card">
-<div class="symp-card__icon" style="background:linear-gradient(135deg,#e64545,#c0392b);box-shadow:0 8px 20px rgba(230,69,69,.3)"><i class="bi bi-battery-half"></i></div>
-<h4>Cansancio de día</h4>
-<p>Aunque dormiste toda la noche</p>
-</div>
-<div class="symp-card">
-<div class="symp-card__icon" style="background:linear-gradient(135deg,#f0a830,#e67e22);box-shadow:0 8px 20px rgba(240,168,48,.3)"><i class="bi bi-eye-slash-fill"></i></div>
-<h4>Sueño al manejar</h4>
-<p>O en reuniones, comidas, TV</p>
-</div>
-<div class="symp-card">
-<div class="symp-card__icon" style="background:linear-gradient(135deg,#00b894,#009678);box-shadow:0 8px 20px rgba(0,184,148,.3)"><i class="bi bi-arrow-repeat"></i></div>
-<h4>Despiertas seguido</h4>
-<p>O te levantas a orinar de noche</p>
-</div>
+<div class="perfil" id="perfilW">
+  <div class="perfil__sw" role="tablist" aria-label="Señales y factores">
+    <span class="perfil__pastilla" aria-hidden="true"></span>
+    <button type="button" class="perfil__tab" data-cara="0" role="tab" aria-selected="true"><i class="bi bi-clipboard-pulse" aria-hidden="true"></i> Lo que sientes <b>4</b></button>
+    <button type="button" class="perfil__tab" data-cara="1" role="tab" aria-selected="false"><i class="bi bi-shield-exclamation" aria-hidden="true"></i> Lo que traes <b>6</b></button>
+  </div>
+
+  <div class="perfil__cara is-on" data-cara="0">
+    <button type="button" class="pf-chip" data-pf="0-0" aria-expanded="false" style="--i:0">
+      <span class="pf-chip__ic" style="--g:linear-gradient(135deg,#6c5ce7,#4834d4)"><i class="bi bi-volume-up-fill" aria-hidden="true"></i></span>
+      <span class="pf-chip__tx"><b>Roncas fuerte</b><small>Te lo dice tu pareja</small></span>
+      <span class="pf-chip__mas" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+      <span class="pf-chip__det"><span>El ronquido que se oye desde el otro cuarto es el que importa.</span></span>
+    </button>
+    <button type="button" class="pf-chip" data-pf="0-1" aria-expanded="false" style="--i:1">
+      <span class="pf-chip__ic" style="--g:linear-gradient(135deg,#e64545,#c0392b)"><i class="bi bi-battery-half" aria-hidden="true"></i></span>
+      <span class="pf-chip__tx"><b>Amaneces cansado</b><small>Aunque dormiste toda la noche</small></span>
+      <span class="pf-chip__mas" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+      <span class="pf-chip__det"><span>Ocho horas en la cama y te levantas como si no hubieras dormido.</span></span>
+    </button>
+    <button type="button" class="pf-chip" data-pf="0-2" aria-expanded="false" style="--i:2">
+      <span class="pf-chip__ic" style="--g:linear-gradient(135deg,#f0a830,#e67e22)"><i class="bi bi-eye-slash-fill" aria-hidden="true"></i></span>
+      <span class="pf-chip__tx"><b>Te gana el sueño de día</b><small>Manejando, en juntas, viendo la tele</small></span>
+      <span class="pf-chip__mas" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+      <span class="pf-chip__det"><span>Es la señal que más se relaciona con chocar al volante.</span></span>
+    </button>
+    <button type="button" class="pf-chip" data-pf="0-3" aria-expanded="false" style="--i:3">
+      <span class="pf-chip__ic" style="--g:linear-gradient(135deg,#00b894,#009678)"><i class="bi bi-arrow-repeat" aria-hidden="true"></i></span>
+      <span class="pf-chip__tx"><b>Despiertas a cada rato</b><small>O te levantas a orinar de noche</small></span>
+      <span class="pf-chip__mas" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+      <span class="pf-chip__det"><span>Levantarte dos o más veces a orinar también cuenta.</span></span>
+    </button>
+  </div>
+  <div class="perfil__cara" data-cara="1">
+    <button type="button" class="pf-chip" data-pf="1-0" aria-expanded="false" style="--i:0">
+      <span class="pf-chip__ic" style="--g:linear-gradient(135deg,#6c5ce7,#4834d4)"><i class="bi bi-person-fill" aria-hidden="true"></i></span>
+      <span class="pf-chip__tx"><b>Sobrepeso u obesidad</b><small>El factor que más pesa</small></span>
+      <span class="pf-chip__mas" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+      <span class="pf-chip__det"><span>El tejido graso del cuello comprime la vía aérea al dormir.</span></span>
+    </button>
+    <button type="button" class="pf-chip" data-pf="1-1" aria-expanded="false" style="--i:1">
+      <span class="pf-chip__ic" style="--g:linear-gradient(135deg,#0984e3,#1e3799)"><i class="bi bi-rulers" aria-hidden="true"></i></span>
+      <span class="pf-chip__tx"><b>Cuello ancho</b><small>Más de 43 cm en hombres</small></span>
+      <span class="pf-chip__mas" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+      <span class="pf-chip__det"><span>Más de 43 cm en hombres o de 38 cm en mujeres: es predisposición anatómica.</span></span>
+    </button>
+    <button type="button" class="pf-chip" data-pf="1-2" aria-expanded="false" style="--i:2">
+      <span class="pf-chip__ic" style="--g:linear-gradient(135deg,#e67e22,#d35400)"><i class="bi bi-gender-male" aria-hidden="true"></i></span>
+      <span class="pf-chip__tx"><b>Ser hombre</b><small>Antes de la menopausia</small></span>
+      <span class="pf-chip__mas" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+      <span class="pf-chip__det"><span>Los hombres tienen el doble de riesgo que las mujeres antes de la menopausia.</span></span>
+    </button>
+    <button type="button" class="pf-chip" data-pf="1-3" aria-expanded="false" style="--i:3">
+      <span class="pf-chip__ic" style="--g:linear-gradient(135deg,#00b894,#009678)"><i class="bi bi-calendar-range" aria-hidden="true"></i></span>
+      <span class="pf-chip__tx"><b>Más de 50 años</b><small>El tono muscular baja</small></span>
+      <span class="pf-chip__mas" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+      <span class="pf-chip__det"><span>Los músculos de la garganta pierden tono con la edad y ceden más fácil.</span></span>
+    </button>
+    <button type="button" class="pf-chip" data-pf="1-4" aria-expanded="false" style="--i:4">
+      <span class="pf-chip__ic" style="--g:linear-gradient(135deg,#e64545,#c0392b)"><i class="bi bi-cup-straw" aria-hidden="true"></i></span>
+      <span class="pf-chip__tx"><b>Alcohol o pastillas para dormir</b><small>Sobre todo en la noche</small></span>
+      <span class="pf-chip__mas" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+      <span class="pf-chip__det"><span>Relajan la garganta justo cuando más falta hace que aguante abierta.</span></span>
+    </button>
+    <button type="button" class="pf-chip" data-pf="1-5" aria-expanded="false" style="--i:5">
+      <span class="pf-chip__ic" style="--g:linear-gradient(135deg,#bd56e6,#7b2cbf)"><i class="bi bi-person-heart" aria-hidden="true"></i></span>
+      <span class="pf-chip__tx"><b>Apnea en la familia</b><small>Papá, mamá o hermanos</small></span>
+      <span class="pf-chip__mas" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+      <span class="pf-chip__det"><span>Si tu papá o tu hermano la tienen, tu riesgo sube de forma importante.</span></span>
+    </button>
+  </div>
 </div>
 </div>
 
-<div class="apn-section reveal">
-<span class="apn-section__eyebrow"><i class="bi bi-shield-exclamation"></i> ¿Quién tiene más riesgo?</span>
-<h2 class="apn-section__title">Más común de lo que crees<em>, y muy tratable</em></h2>
-<p class="apn-section__lead">Algunos factores hacen que la vía aérea se cierre más fácilmente durante el sueño. Tener varios multiplica el riesgo.</p>
 
-<div class="risk-grid">
-<div class="risk-card">
-<div class="risk-card__icon" style="background:linear-gradient(135deg,#6c5ce7,#4834d4)"><i class="bi bi-person-fill"></i></div>
-<h3>Sobrepeso u obesidad</h3>
-<p>El tejido graso en el cuello comprime la vía aérea durante el sueño.</p>
-</div>
-<div class="risk-card">
-<div class="risk-card__icon" style="background:linear-gradient(135deg,#0984e3,#1e3799)"><i class="bi bi-rulers"></i></div>
-<h3>Cuello ancho</h3>
-<p>Hombres &gt;43 cm o mujeres &gt;38 cm tienen mayor predisposición anatómica.</p>
-</div>
-<div class="risk-card">
-<div class="risk-card__icon" style="background:linear-gradient(135deg,#e67e22,#d35400)"><i class="bi bi-gender-male"></i></div>
-<h3>Sexo masculino</h3>
-<p>Los hombres tienen el doble de riesgo que las mujeres antes de la menopausia.</p>
-</div>
-<div class="risk-card">
-<div class="risk-card__icon" style="background:linear-gradient(135deg,#00b894,#009678)"><i class="bi bi-calendar-range"></i></div>
-<h3>Más de 50 años</h3>
-<p>El tono muscular de la garganta disminuye con la edad.</p>
-</div>
-<div class="risk-card">
-<div class="risk-card__icon" style="background:linear-gradient(135deg,#e64545,#c0392b)"><i class="bi bi-cup-straw"></i></div>
-<h3>Alcohol o sedantes</h3>
-<p>Relajan los músculos de la garganta y facilitan el cierre nocturno.</p>
-</div>
-<div class="risk-card">
-<div class="risk-card__icon" style="background:linear-gradient(135deg,#bd56e6,#7b2cbf)"><i class="bi bi-person-heart"></i></div>
-<h3>Antecedentes familiares</h3>
-<p>Si tu padre o hermano tiene apnea, tu riesgo sube significativamente.</p>
-</div>
-</div>
-</div>
 
 <div class="apn-section reveal">
 <span class="apn-section__eyebrow"><i class="bi bi-heart-pulse"></i> Por qué vale la pena tratarla</span>
@@ -1529,6 +1597,36 @@
         var nivel=['22%','50%','88%'], color=['#2fbf71','#f0a500','#c2372c'];
         caja.style.setProperty('--iah-nivel',nivel[k]);
         caja.style.setProperty('--iah-color',color[k]);
+    });
+})();
+</script>
+<script>
+/* Perfil: dos caras y fichas que se abren de una en una. Sin JS quedan las
+   diez fichas visibles con su texto, que es lo que lee el buscador. */
+(function(){
+    var caja=document.getElementById('perfilW'); if(!caja) return;
+    var tabs=Array.prototype.slice.call(caja.querySelectorAll('.perfil__tab'));
+    var caras=Array.prototype.slice.call(caja.querySelectorAll('.perfil__cara'));
+    var chips=Array.prototype.slice.call(caja.querySelectorAll('.pf-chip'));
+    if(!tabs.length||!caras.length) return;
+    function cara(k){
+        tabs.forEach(function(t,i){ t.setAttribute('aria-selected',String(i===k)); });
+        caras.forEach(function(c,i){ c.classList.toggle('is-on',i===k); });
+        caja.classList.toggle('is-b',k===1);
+        chips.forEach(function(c){ c.setAttribute('aria-expanded','false'); });
+    }
+    tabs.forEach(function(t,i){ t.addEventListener('click',function(){ cara(i); }); });
+    caja.addEventListener('keydown',function(e){
+        var i=tabs.indexOf(document.activeElement); if(i<0) return;
+        if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();var n=(i+1)%tabs.length;tabs[n].focus();cara(n);}
+        if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();var q=(i-1+tabs.length)%tabs.length;tabs[q].focus();cara(q);}
+    });
+    chips.forEach(function(c){
+        c.addEventListener('click',function(){
+            var abierta=c.getAttribute('aria-expanded')==='true';
+            chips.forEach(function(o){ o.setAttribute('aria-expanded','false'); });
+            c.setAttribute('aria-expanded', abierta?'false':'true');
+        });
     });
 })();
 </script>
