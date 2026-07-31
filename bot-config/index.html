@@ -1862,6 +1862,33 @@
     var cw = nodo('div', 'cuerpo'); cw.appendChild(nodo('div', 't', 'Recepción de mensajes')); fw.appendChild(cw);
     fw.appendChild(nodo('div', 'valor-der', s.worker_ok ? 'operando' : 'revisar'));
     g.appendChild(fw);
+    // Cuota de procesos automáticos de Google (Paso 0, 31-jul): el bot se mide
+    // solo; "ayer" es el día completo. Verde <70%, punto rojo desde 70%.
+    var cq = s.cuota_triggers;
+    if (cq && (cq.ayer_min > 0 || cq.hoy_min > 0)) {
+      var fq = nodo('div', 'fila');
+      var pctQ = Math.round((cq.ayer_min || 0) / (cq.limite_min || 90) * 100);
+      fq.appendChild(nodo('span', 'punto ' + (pctQ >= 70 ? 'mal' : 'ok')));
+      var cqc = nodo('div', 'cuerpo');
+      cqc.appendChild(nodo('div', 't', 'Capacidad diaria de Google'));
+      cqc.appendChild(nodo('div', 'd', 'ayer usó ' + (cq.ayer_min || 0) + ' de ' + (cq.limite_min || 90) + ' minutos'));
+      fq.appendChild(cqc);
+      fq.appendChild(nodo('div', 'valor-der', pctQ + '%'));
+      g.appendChild(fq);
+    }
+    // Calidad del número en WhatsApp (31-jul): la califica Meta a diario.
+    var qr = s.quality_rating;
+    if (qr && qr.valor) {
+      var fr = nodo('div', 'fila');
+      var okQR = qr.valor === 'GREEN';
+      fr.appendChild(nodo('span', 'punto ' + (okQR ? 'ok' : 'mal')));
+      var crc = nodo('div', 'cuerpo');
+      crc.appendChild(nodo('div', 't', 'Calidad del número (Meta)'));
+      fr.appendChild(crc);
+      fr.appendChild(nodo('div', 'valor-der', okQR ? 'verde' :
+        (qr.valor === 'YELLOW' ? 'amarilla — revisar' : (qr.valor === 'RED' ? 'ROJA — atención' : qr.valor.toLowerCase()))));
+      g.appendChild(fr);
+    }
 
     // Plantillas
     var p = estado.datos.plantillas || { items: [], estado: 'error' };
