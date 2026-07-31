@@ -124,7 +124,7 @@
     .hero__card-list strong{color:#fff;display:block;margin-bottom:2px}
     .hero__card-foot{margin:14px 0 0;font-size:.72rem;color:rgba(255,255,255,.55);text-align:center;letter-spacing:.3px}
 
-    /* Escalera de precio (una sola verdad: ancla $6,500 y "Ahorras $2,000") */
+    /* Escalera de precio (una sola verdad: ancla $6,800 y "Ahorras $2,300") */
     .price-ladder{display:grid;gap:10px;margin:4px 0 14px;max-width:520px}
     .price-tier{position:relative;border-radius:16px;padding:14px 16px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05)}
     .price-tier__label{font-size:.72rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:rgba(255,255,255,.74);margin-bottom:4px}
@@ -138,6 +138,10 @@
     .price-tier__math{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;font-size:.9rem;color:#f0f6ff}
     .price-tier__math b{color:#fff;font-weight:800}
     .price-tier__eq{color:rgba(255,255,255,.5);font-weight:700}
+    .price-tier__desc b{color:#fff;font-weight:800}
+    .price-tier--next{background:rgba(9,132,227,.10);border:1px solid rgba(116,185,255,.34)}
+    .price-tier--next .price-tier__label{color:#74b9ff}
+    .price-tier--next .price-tier__desc a{color:#74b9ff;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(116,185,255,.45)}
     .price-tier--home{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.035);border-style:dashed}
     .price-tier--home i{font-size:1.3rem;color:#00cec9;flex-shrink:0}
     .price-tier--home .price-tier__amount{font-weight:800;color:#fff}
@@ -512,7 +516,7 @@
 <div class="promo-banner">
     <div class="container promo-banner__inner">
         <span class="tag"><i class="bi bi-stars"></i> Promoción</span>
-        <span>Promoción: si tu caso es el de casa, valoración y estudio juntos <span class="price-old">$6,500 por separado</span> <span class="price-new">$4,500</span></span>
+        <span>Promoción: si tu caso es el de casa, valoración y estudio juntos <span class="price-old">$6,800 por separado</span> <span class="price-new">$4,500</span></span>
         <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" data-cta="promo-banner"><i class="bi bi-whatsapp"></i> Apartar</a>
     </div>
 </div>
@@ -542,20 +546,25 @@
                 <p class="hero__sub">No elijas por precio ni por lo que leíste anoche. Mira las cinco diferencias que de verdad deciden, ubica tu caso en tres preguntas y quédate con una sola respuesta.</p>
                 <div class="price-ladder" role="region" aria-label="Opciones y precios">
                     <div class="price-tier price-tier--promo">
-                        <span class="price-tier__ribbon">Ahorras $2,000</span>
+                        <span class="price-tier__ribbon">Ahorras $2,300</span>
                         <div class="price-tier__label"><i class="bi bi-hospital"></i> Paquete en consultorio · esta promo</div>
-                        <div class="price-tier__desc" style="margin-bottom:6px">La valoración que decide, más el estudio en casa. Un solo pago.</div>
-                        <div class="price-tier__row"><span class="price-tier__big">$4,500</span><span class="price-tier__was">$6,500 por separado</span></div>
+                        <div class="price-tier__desc" style="margin-bottom:6px">Pagas <b>menos que el estudio solo</b>: tu consulta de primera vez va incluida sin costo.</div>
+                        <div class="price-tier__row"><span class="price-tier__big">$4,500</span><span class="price-tier__was">$6,800 por separado</span></div>
                     </div>
                     <div class="price-tier price-tier--alacarte">
                         <div class="price-tier__label">Si lo tomas por separado</div>
-                        <div class="price-tier__math"><span>Estudio <b>$5,000</b></span><span class="price-tier__eq">+</span><span>consulta <b>$1,500</b></span><span class="price-tier__eq">=</span><b>$6,500</b></div>
+                        <div class="price-tier__math"><span>Consulta de 1.ª vez <b>$1,800</b></span><span class="price-tier__eq">+</span><span>estudio <b>$5,000</b></span><span class="price-tier__eq">=</span><b>$6,800</b></div>
                     </div>
                     <div class="price-tier price-tier--home">
                         <i class="bi bi-house-heart-fill" aria-hidden="true"></i>
-                        <div><div class="price-tier__label" style="margin-bottom:2px">¿Y si no quieres venir por el equipo?</div><div class="price-tier__desc">Te lo llevamos: <span class="price-tier__amount">a domicilio $5,000</span> · consulta aparte.</div></div>
+                        <div><div class="price-tier__label" style="margin-bottom:2px">¿Y si no quieres venir por el equipo?</div><div class="price-tier__desc">Te lo llevamos: <span class="price-tier__amount">a domicilio $6,000</span> · consulta aparte.</div></div>
                     </div>
-                </div>
+                
+                        <div class="price-tier price-tier--next">
+                            <div class="price-tier__label"><i class="bi bi-clipboard2-check-fill"></i> Después: consulta de resultados · $1,500</div>
+                            <div class="price-tier__desc">Es la consulta donde el estudio se convierte en tratamiento: te explico tu IAH y tu severidad, y sales con un plan por escrito. Presencial o por <a href="/servicios/teleconsulta/">teleconsulta</a>, como te acomode.</div>
+                        </div>
+                    </div>
 
                 <div class="hero__cta">
                     <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="hero-wa-ask">
@@ -701,14 +710,14 @@
                         <div class="cmp-lanes">
                             <div class="cmp-lane cmp-lane--home">
                                 <div class="cmp-lane__tag"><i class="bi bi-tag-fill" aria-hidden="true"></i> Poligrafía · esta promoción</div>
-                                <p class="cmp-lane__txt"><b>$4,500</b> el paquete de consulta y estudio, con el equipo entregado en consultorio. A domicilio <b>$5,000</b>, consulta aparte.</p>
+                                <p class="cmp-lane__txt"><b>$4,500</b> el paquete de consulta y estudio, con el equipo entregado en consultorio. A domicilio <b>$6,000</b>, consulta aparte.</p>
                             </div>
                             <div class="cmp-lane cmp-lane--lab">
                                 <div class="cmp-lane__tag"><i class="bi bi-building" aria-hidden="true"></i> Polisomnografía · fuera de aquí</div>
                                 <p class="cmp-lane__txt">La cotiza el hospital o el laboratorio del sueño donde se realice. Aquí no se hace.</p>
                             </div>
                         </div>
-                        <p class="cmp-card__verdict"><i class="bi bi-arrow-return-right" aria-hidden="true"></i> <span>Por separado serían <b>$6,500</b>: estudio $5,000 más consulta $1,500.</span></p>
+                        <p class="cmp-card__verdict"><i class="bi bi-arrow-return-right" aria-hidden="true"></i> <span>Por separado serían <b>$6,800</b>: estudio $5,000 más consulta de primera vez $1,800.</span></p>
                     </article>
 
                 </div>
@@ -944,7 +953,7 @@
             <div class="sparkle-field" aria-hidden="true"></div>
             <h2>Deja de comparar y quédate con una respuesta</h2>
             <p>Mándame tus síntomas por WhatsApp. Te digo por cuál de los dos empieza tu caso antes de que pagues nada, y si el tuyo es de laboratorio también te lo digo.</p>
-            <div class="cta-final__price"><i class="bi bi-tag-fill" aria-hidden="true"></i> Paquete consulta + estudio <b>$4,500</b> · ahorras $2,000</div>
+            <div class="cta-final__price"><i class="bi bi-tag-fill" aria-hidden="true"></i> Paquete consulta + estudio <b>$4,500</b> · ahorras $2,300</div>
             <div class="cta-inline__btns">
                 <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="final-wa"><i class="bi bi-whatsapp"></i> Apartar mi estudio, $4,500</a>
                 <a href="#agendaModal" class="btn-cal" data-cta="final-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Prefiero agendar en línea</a>
@@ -1235,7 +1244,7 @@ window.addEventListener('load', function(){
             ic:'<i class="bi bi-signpost-2-fill"></i>',
             tit:'Tu caso hay que revisarlo antes de pedir el de casa',
             msg:'Marcaste al menos una de las condiciones por las que las guías del sueño prefieren el <b>estudio de laboratorio</b>. Aquí no se realiza polisomnografía: lo correcto es valorarte, definir el estudio que te toca y darte la indicación por escrito para hacerlo donde corresponde.',
-            cta:'Empezar por la consulta de valoración · $1,500',
+            cta:'Empezar por la consulta de valoración · $1,800',
             wa:'Hola%20Dr.%20Lara%2C%20us%C3%A9%20el%20decisor%20de%20la%20comparativa%20y%20me%20salieron%20se%C3%B1ales%20que%20podr%C3%ADan%20pedir%20polisomnograf%C3%ADa.%20Quisiera%20una%20consulta%20de%20valoraci%C3%B3n%20de%20%241%2C500%20para%20definir%20mi%20estudio%20(alveos.mx).'
         },
         duda:{
@@ -1243,7 +1252,7 @@ window.addEventListener('load', function(){
             ic:'<i class="bi bi-question-circle-fill"></i>',
             tit:'Con esto no hay señales claras de apnea',
             msg:'No marcaste el cuadro típico ni las condiciones de laboratorio, así que <b>ningún estudio del sueño se justifica todavía</b>. Si duermes mal o te levantas cansado, lo que corresponde es una consulta que ordene el problema antes de pedir aparatos.',
-            cta:'Revisar mi caso en consulta · $1,500',
+            cta:'Revisar mi caso en consulta · $1,800',
             wa:'Hola%20Dr.%20Lara%2C%20us%C3%A9%20el%20decisor%20de%20la%20comparativa%20y%20no%20me%20salieron%20se%C3%B1ales%20claras%2C%20pero%20duermo%20mal.%20Quisiera%20una%20consulta%20de%20valoraci%C3%B3n%20de%20%241%2C500%20(alveos.mx).'
         }
     };
