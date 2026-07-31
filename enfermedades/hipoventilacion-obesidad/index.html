@@ -183,8 +183,6 @@
 .sho-res__msg{font-size:.94rem;color:rgba(255,255,255,.82);line-height:1.62;margin:0 0 10px}
 .sho-res__msg:last-child{margin-bottom:0}
 .sho-res__extra{font-size:.94rem;color:#fff;line-height:1.6;background:rgba(45,212,191,.12);border:1px solid rgba(45,212,191,.28);border-radius:10px;padding:12px 14px;margin:0 0 12px}
-.sho-res__wa{display:inline-flex;align-items:center;gap:9px;background:#25d366;color:#fff!important;font-weight:700;font-size:.94rem;padding:12px 20px;border-radius:100px;text-decoration:none;transition:all .22s ease;min-height:48px;box-shadow:0 6px 16px rgba(37,211,102,.3)}
-.sho-res__wa:hover{background:#1da851;transform:translateY(-2px)}
 .sho-copy-msg{font-size:.9rem;color:#2dd4bf;font-weight:700;margin:10px 0 0;line-height:1.5}
 .sho-copy-msg[hidden]{display:none}
 
@@ -530,6 +528,41 @@
   .sho-opt__text{font-size:.92rem}
 }
 
+/* --- la grafica dice QUE mide, sin que haya que deducirlo --- */
+.ciclo__eje{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:0 0 10px;
+    padding-bottom:8px;border-bottom:1px dashed rgba(15,118,110,.18);
+    font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#0f766e}
+.ciclo__eje i{margin-right:5px}
+.ciclo__eje small{flex:0 0 auto;font-size:.66rem;font-weight:700;letter-spacing:.04em;text-transform:none;color:#9aa7b2}
+
+/* --- la caja de aviso tambien vive sobre fondo claro --- */
+.sho-warn--claro{background:rgba(234,179,8,.09);border-color:rgba(180,120,10,.3);color:#3a4a5c}
+.sho-warn--claro i{color:#b45309}
+.sho-warn--claro strong{color:#92400e}
+
+/* --- para que te sirve: el remate util de la seccion de altitud --- */
+.alt__paraque{margin-top:12px;padding:15px 16px;border-radius:16px;
+    background:linear-gradient(165deg,rgba(15,118,110,.09),rgba(15,118,110,.04));
+    border:1px solid rgba(15,118,110,.22)}
+.alt__paraque>b{display:flex;align-items:center;gap:8px;margin-bottom:10px;
+    font-size:.8rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#0f766e}
+.alt__paraque ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.alt__paraque li{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;
+    font-size:.87rem;line-height:1.5;color:#3a4a5c}
+.alt__paraque li>span{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;font-size:.7rem;font-weight:800;color:#fff;
+    background:linear-gradient(135deg,#0f766e,#115e59)}
+.alt__paraque em{font-style:italic;color:#56646f}
+@media(min-width:760px){.alt__paraque ul{grid-template-columns:1fr 1fr;gap:14px}}
+
+/* --- STOP-BANG a dos columnas: ocho preguntas cortas no necesitan ocho renglones --- */
+@media(min-width:400px){
+  .sho-opts--2col{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+  .sho-opts--2col .sho-opt{align-items:flex-start}
+  .sho-opts--2col .sho-opt__text{font-size:.79rem;line-height:1.28}
+  .sho-opts--2col .sho-opt__auto{font-size:.66rem}
+}
+
 /* --- resumen compacto del IMC dentro del autoevaluador --- */
 .sho-mini{display:none;align-items:center;gap:12px;margin-top:12px;padding:12px 14px;border-radius:14px;background:rgba(15,118,110,.07);border:1px solid rgba(15,118,110,.2)}
 .sho-mini:not([hidden]){display:flex}
@@ -710,10 +743,11 @@
 <div class="sho-section reveal" id="que-pasa">
 <span class="sho-section__eyebrow"><i class="bi bi-arrow-repeat"></i> Qué te pasa mientras duermes</span>
 <h2 class="sho-section__title">La noche en que el aire <em>se queda corto</em></h2>
-<p class="sho-section__lead">Cuatro momentos, cada noche. Tócalos.</p>
+<p class="sho-section__lead">Esta es la gráfica de tu <strong>bióxido de carbono</strong> durante una noche. Cuatro momentos. Tócalos.</p>
 
 <div class="ciclo" id="ciclo">
   <div class="ciclo__viz">
+    <p class="ciclo__eje"><span><i class="bi bi-graph-up" aria-hidden="true"></i> Bióxido de carbono en tu sangre</span><small>una noche · mmHg</small></p>
     <svg viewBox="0 0 340 134" class="ciclo__svg" role="img" aria-label="Una noche completa: el bióxido de carbono en la sangre empieza en 40, sube mientras duermes hasta pasar de 50 y por la mañana baja, pero ya no regresa al punto donde empezó">
       <defs>
         <linearGradient id="cicloFillSho" x1="0" y1="0" x2="0" y2="1">
@@ -795,138 +829,53 @@
 <p class="ciclo__cierre"><i class="bi bi-info-circle-fill" aria-hidden="true"></i> <span>Por eso el dolor de cabeza es al despertar y cede en la primera o segunda hora: es el bióxido de carbono que se acumuló de noche.</span></p>
 </div>
 
-<!-- 2. ALTITUD: EL ANGULO PROPIO -->
-<div class="sho-section reveal" id="altitud">
-<span class="sho-section__eyebrow"><i class="bi bi-geo-alt-fill"></i> Lo que casi nadie te explica</span>
-<h2 class="sho-section__title">La regla se escribió al nivel del mar. <em>Tú vives a 2,240 metros.</em></h2>
-<p class="sho-section__lead">Mueve el interruptor y mira dónde queda tu respiración normal frente al umbral de 45.</p>
+<!-- 2. POR QUE VALE LA PENA ATENDERLO -->
+<div class="sho-section reveal" id="por-que">
+<span class="sho-section__eyebrow"><i class="bi bi-heart-pulse"></i> Por qué vale la pena atenderlo</span>
+<h2 class="sho-section__title">Lo que está en juego, <em>en números simples</em></h2>
+<p class="sho-section__lead">Esa noche, repetida durante años, es la que acaba cobrando la cuenta. Esto es lo que se ha medido.</p>
 
-<div class="alt" id="alt">
-  <div class="perfil__sw" role="tablist" aria-label="Nivel del mar o Ciudad de México">
-    <span class="perfil__pastilla" aria-hidden="true"></span>
-    <button type="button" class="perfil__tab" data-alt="0" role="tab" aria-selected="true"><i class="bi bi-water" aria-hidden="true"></i> Al nivel del mar</button>
-    <button type="button" class="perfil__tab" data-alt="1" role="tab" aria-selected="false"><i class="bi bi-buildings-fill" aria-hidden="true"></i> En la CDMX</button>
+<div class="bn" id="bn">
+  <div class="bn-grid">
+  <div class="bn-tile">
+    <span class="bn-ic"><i class="bi bi-moon-stars-fill" aria-hidden="true"></i></span>
+    <span class="bn-lbl">Casi siempre juntos</span>
+    <span class="bn-num">9 <small>de cada</small> 10</span>
+    <span class="bn-sub">tienen además apnea del sueño</span>
   </div>
-
-  <div class="alt__viz">
-    <p class="alt__eje"><span>bióxido de carbono en sangre</span><small>mmHg</small></p>
-    <div class="alt__esc">
-      <span class="alt__pista"></span>
-      <span class="alt__banda"><b>lo normal aquí</b></span>
-      <span class="alt__gap" aria-hidden="true"></span>
-      <span class="alt__umbral"><b>45</b></span>
-    </div>
-    <div class="alt__ticks" aria-hidden="true"><i>30</i><i>35</i><i>40</i><i>45</i><i>50</i></div>
+  <div class="bn-tile">
+    <span class="bn-ic"><i class="bi bi-heart-pulse-fill" aria-hidden="true"></i></span>
+    <span class="bn-lbl">Tu corazón</span>
+    <span class="bn-num">1 <small>de cada</small> 2</span>
+    <span class="bn-sub">ya tenía repercusión en el corazón cuando se hizo el diagnóstico</span>
   </div>
-
-  <div class="alt__dets">
-    <p class="alt__det is-on" data-alt="0">Allá una persona sana anda cerca de <strong>40</strong>. Del 40 al 45 hay poco trecho, y por eso el umbral se puso ahí.</p>
-    <p class="alt__det" data-alt="1">Aquí respiras un poco más profundo para compensar el aire menos denso, así que lo normal queda <strong>más abajo</strong> y el trecho hasta 45 se alarga. Traducido: un 45 <strong>medido aquí</strong> pesa más que un 45 medido en Veracruz.</p>
+  <div class="bn-tile">
+    <span class="bn-ic"><i class="bi bi-hourglass-split" aria-hidden="true"></i></span>
+    <span class="bn-lbl">Dejarlo pasar</span>
+    <span class="bn-num bn-num--frase">Más del doble</span>
+    <span class="bn-sub">de mortalidad tras una hospitalización, comparado con quienes no hipoventilan</span>
   </div>
-
-  <div class="alt__bn">
-    <div class="alt__cell"><b>92 a 95%</b><span>es la saturación que se ve como habitual en personas sanas en la ciudad, más baja que en la costa</span></div>
-    <div class="alt__cell"><b>Nunca</b><span>el oxímetro ve el bióxido de carbono; un número bonito en la pantalla no descarta nada</span></div>
+  <div class="bn-tile">
+    <span class="bn-ic"><i class="bi bi-alarm-fill" aria-hidden="true"></i></span>
+    <span class="bn-lbl">El equipo, de noche</span>
+    <span class="bn-num">4 <small>horas</small></span>
+    <span class="bn-sub">por noche es el uso que en los estudios se asocia con mejor evolución</span>
   </div>
-
-  <div class="sho-warn" style="margin-top:14px;margin-bottom:0"><i class="bi bi-info-circle-fill"></i><span>Esto es <strong>razonamiento fisiológico</strong>, no un umbral validado: no existe un punto de corte oficial para la Ciudad de México. Se interpreta caso por caso.</span></div>
-</div>
-</div>
-
-<!-- 3. CALCULA TU RIESGO -->
-<div class="sho-section reveal" id="calcula">
-<span class="sho-section__eyebrow"><i class="bi bi-clipboard2-check-fill"></i> Tu resumen para la consulta</span>
-<h2 class="sho-section__title">Calcula tu riesgo <em>en dos minutos</em></h2>
-<p class="sho-section__lead">No diagnostica: ningún cuestionario puede, porque el diagnóstico depende de medir el bióxido de carbono en sangre. Sirve para llegar a la consulta con todo ordenado.</p>
-
-<div class="sho-tool">
-<div class="sho-tool__inner">
-
-<fieldset class="sho-fieldset">
-<legend class="sho-legend">Tus medidas<span>El cuello es opcional. Con esto se marcan solas dos preguntas de abajo.</span></legend>
-<div class="sho-fields">
-  <div class="sho-field">
-    <label for="shoKg">Peso en kilogramos</label>
-    <input id="shoKg" type="number" inputmode="decimal" min="30" max="350" step="0.1" placeholder="Por ejemplo 96">
+  <div class="bn-tile">
+    <span class="bn-ic"><i class="bi bi-graph-down-arrow" aria-hidden="true"></i></span>
+    <span class="bn-lbl">El peso, con franqueza</span>
+    <span class="bn-num bn-num--frase">Una cuarta parte</span>
+    <span class="bn-sub">del peso es la meta de las guías. Los programas de dieta y ejercicio llegaron a la cuarta parte de esa meta</span>
   </div>
-  <div class="sho-field">
-    <label for="shoCm">Estatura en centímetros</label>
-    <input id="shoCm" type="number" inputmode="decimal" min="120" max="230" step="1" placeholder="Por ejemplo 168">
-  </div>
-  <div class="sho-field">
-    <label for="shoCuello">Cuello en centímetros</label>
-    <input id="shoCuello" type="number" inputmode="decimal" min="25" max="70" step="0.5" placeholder="Opcional">
   </div>
 </div>
-<button type="button" class="sho-btn sho-btn--ghost" id="shoImcBtn"><i class="bi bi-calculator"></i> Calcular</button>
-<div class="sho-mini" id="shoImcRes" hidden role="status" aria-live="polite">
-  <span class="sho-mini__num" id="shoImcNum">0</span>
-  <span class="sho-mini__tx"><b id="shoImcCat">Categoría</b><small id="shoImcMsg"></small></span>
-</div>
-<div class="sho-res__extra" id="shoImcFreq" hidden></div>
-</fieldset>
 
-<fieldset class="sho-fieldset">
-<legend class="sho-legend">Bloque A: STOP-BANG<span>Ocho preguntas de sí o no. Marca solo las que apliquen.</span></legend>
-<div class="sho-opts">
-  <label class="sho-opt"><input type="checkbox" data-block="a" data-key="ronquido"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Roncas fuerte, tanto que se escucha con la puerta cerrada?</span></label>
-  <label class="sho-opt"><input type="checkbox" data-block="a" data-key="cansancio"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Te sientes cansado o con sueño de día casi todos los días?</span></label>
-  <label class="sho-opt"><input type="checkbox" data-block="a" data-key="pausas"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Alguien ha notado que dejas de respirar mientras duermes?</span></label>
-  <label class="sho-opt"><input type="checkbox" data-block="a" data-key="presion"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Tienes la presión alta o tomas medicamento para la presión?</span></label>
-  <label class="sho-opt" id="shoOptImc"><input type="checkbox" data-block="a" data-key="imc"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Tu índice de masa corporal es mayor de 35?</span><span class="sho-opt__auto" id="shoImcAuto" hidden></span></label>
-  <label class="sho-opt"><input type="checkbox" data-block="a" data-key="edad"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Tienes más de 50 años?</span></label>
-  <label class="sho-opt" id="shoOptCuello"><input type="checkbox" data-block="a" data-key="cuello"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Tu cuello mide más de 40 cm?</span><span class="sho-opt__auto" id="shoCuelloAuto" hidden></span></label>
-  <label class="sho-opt"><input type="checkbox" data-block="a" data-key="sexo"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Eres hombre?</span></label>
-</div>
-</fieldset>
-
-<fieldset class="sho-fieldset">
-<legend class="sho-legend">Bloque B: señales de hipoventilación<span>No suman al bloque A. Se reportan aparte porque apuntan al bióxido de carbono.</span></legend>
-<div class="sho-opts">
-  <label class="sho-opt"><input type="checkbox" data-block="b" data-key="cefalea"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Despiertas con dolor de cabeza que cede en una o dos horas?</span></label>
-  <label class="sho-opt"><input type="checkbox" data-block="b" data-key="ortopnea"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Te falta el aire al acostarte plano, o necesitas varias almohadas?</span></label>
-  <label class="sho-opt"><input type="checkbox" data-block="b" data-key="edema"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Se te hinchan los tobillos?</span></label>
-  <label class="sho-opt"><input type="checkbox" data-block="b" data-key="nodescanso"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Duermes siete horas o más y aun así no descansas?</span></label>
-  <label class="sho-opt"><input type="checkbox" data-block="b" data-key="nicturia"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Te levantas más de dos veces en la noche a orinar?</span></label>
-  <label class="sho-opt"><input type="checkbox" data-block="b" data-key="cianosis"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Te han dicho que tienes los labios o las uñas de color morado?</span></label>
-</div>
-</fieldset>
-
-<div class="sho-res" id="shoCianosisAviso" hidden role="alert" style="border-color:rgba(230,69,69,.5);background:rgba(230,69,69,.14)">
-  <div class="sho-res__row" style="margin-bottom:8px">
-    <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#e64545,#c0392b);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0"><i class="bi bi-exclamation-triangle-fill"></i></div>
-    <div><div class="sho-res__label" style="color:#ff8a5b">Señal de alarma</div><div class="sho-res__title">Los labios o las uñas moradas se valoran hoy</div></div>
-  </div>
-  <p class="sho-res__msg">Ese color puede significar que el oxígeno está bajo en este momento. No lo dejes para una cita: acude a un servicio de urgencias.</p>
-  <a href="tel:911" class="sho-res__wa" style="background:#e64545;box-shadow:0 6px 16px rgba(230,69,69,.35)"><i class="bi bi-telephone-fill"></i> Llamar al 911</a>
+<p class="sho-prog__note" style="margin-top:14px"><strong>Cómo se leen.</strong> Son promedios de grupos en estudios publicados, no tu pronóstico. Bajar de peso ayuda, pero la noche necesita atención propia mientras tanto: los dos caminos van juntos.</p>
 </div>
 
-<button type="button" class="sho-btn" id="shoAeBtn" style="margin-top:14px"><i class="bi bi-clipboard2-pulse-fill"></i> Ver mi resumen</button>
-
-<div class="sho-res" id="shoAeRes" hidden role="status" aria-live="polite">
-  <div class="sho-res__row">
-    <div class="sho-res__score" id="shoAeScore">0/8</div>
-    <div>
-      <div class="sho-res__label">Bloque A, STOP-BANG</div>
-      <div class="sho-res__title" id="shoAeTitle"></div>
-    </div>
-  </div>
-  <p class="sho-res__msg" id="shoAeMsg"></p>
-  <div class="sho-res__extra" id="shoAeB" hidden></div>
-  <div class="sho-btn-row">
-    <button type="button" class="sho-btn sho-btn--ghost" id="shoCopyBtn"><i class="bi bi-clipboard-check"></i> Copiar mis respuestas</button>
-    <a href="https://wa.me/522224926718?text=Hola%20Dr.%2C%20vengo%20de%20su%20sitio%20web%20alveos.mx" target="_blank" rel="noopener noreferrer" class="sho-btn" id="shoWaBtn" style="text-decoration:none"><i class="bi bi-whatsapp"></i> Enviarlo por WhatsApp</a>
-  </div>
-  <p class="sho-copy-msg" id="shoCopyMsg" hidden role="status" aria-live="polite"></p>
-</div>
-
-</div>
-</div>
-</div>
-
-<!-- 4. SEÑALES -->
+<!-- 3. TE ESTA PASANDO A TI -->
 <div class="sho-section reveal" id="senales">
-<span class="sho-section__eyebrow"><i class="bi bi-clipboard-pulse"></i> Cómo se siente</span>
+<span class="sho-section__eyebrow"><i class="bi bi-clipboard-pulse"></i> ¿Te está pasando a ti?</span>
 <h2 class="sho-section__title">De noche se parece a la apnea. <em>De día, a cualquier cosa.</em></h2>
 <p class="sho-section__lead">Toca la que te suene. De noche se confunde con la <a href="/enfermedades/apnea-del-sueno/">apnea obstructiva del sueño</a>; de día, con estrés, con anemia o con falta de condición.</p>
 
@@ -1004,10 +953,81 @@
 </div>
 </div>
 
-<!-- 5. SEÑALES DE ALARMA -->
+<!-- 4. CALCULA TU RIESGO -->
+<div class="sho-section reveal" id="calcula">
+<span class="sho-section__eyebrow"><i class="bi bi-clipboard2-check-fill"></i> Tu resumen para la consulta</span>
+<h2 class="sho-section__title">Calcula tu riesgo <em>en dos minutos</em></h2>
+<p class="sho-section__lead">Si te reconociste arriba, ponle número. No diagnostica (ningún cuestionario puede), pero es exactamente lo que necesito ver en tu primera consulta.</p>
+
+<div class="sho-tool">
+<div class="sho-tool__inner">
+
+<fieldset class="sho-fieldset">
+<legend class="sho-legend">Tus medidas<span>El cuello es opcional. Con esto se marcan solas dos preguntas de abajo.</span></legend>
+<div class="sho-fields">
+  <div class="sho-field">
+    <label for="shoKg">Peso en kilogramos</label>
+    <input id="shoKg" type="number" inputmode="decimal" min="30" max="350" step="0.1" placeholder="Por ejemplo 96">
+  </div>
+  <div class="sho-field">
+    <label for="shoCm">Estatura en centímetros</label>
+    <input id="shoCm" type="number" inputmode="decimal" min="120" max="230" step="1" placeholder="Por ejemplo 168">
+  </div>
+  <div class="sho-field">
+    <label for="shoCuello">Cuello en centímetros</label>
+    <input id="shoCuello" type="number" inputmode="decimal" min="25" max="70" step="0.5" placeholder="Opcional">
+  </div>
+</div>
+<button type="button" class="sho-btn sho-btn--ghost" id="shoImcBtn"><i class="bi bi-calculator"></i> Calcular</button>
+<div class="sho-mini" id="shoImcRes" hidden role="status" aria-live="polite">
+  <span class="sho-mini__num" id="shoImcNum">0</span>
+  <span class="sho-mini__tx"><b id="shoImcCat">Categoría</b><small id="shoImcMsg"></small></span>
+</div>
+<div class="sho-res__extra" id="shoImcFreq" hidden></div>
+</fieldset>
+
+<fieldset class="sho-fieldset">
+<legend class="sho-legend">STOP-BANG<span>Ocho preguntas de sí o no. Marca las que apliquen.</span></legend>
+<div class="sho-opts sho-opts--2col">
+  <label class="sho-opt"><input type="checkbox" data-block="a" data-key="ronquido"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Roncas fuerte, tanto que se escucha con la puerta cerrada?</span></label>
+  <label class="sho-opt"><input type="checkbox" data-block="a" data-key="cansancio"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Te sientes cansado o con sueño de día casi todos los días?</span></label>
+  <label class="sho-opt"><input type="checkbox" data-block="a" data-key="pausas"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Alguien ha notado que dejas de respirar mientras duermes?</span></label>
+  <label class="sho-opt"><input type="checkbox" data-block="a" data-key="presion"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Tienes la presión alta o tomas medicamento para la presión?</span></label>
+  <label class="sho-opt" id="shoOptImc"><input type="checkbox" data-block="a" data-key="imc"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Tu índice de masa corporal es mayor de 35?</span><span class="sho-opt__auto" id="shoImcAuto" hidden></span></label>
+  <label class="sho-opt"><input type="checkbox" data-block="a" data-key="edad"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Tienes más de 50 años?</span></label>
+  <label class="sho-opt" id="shoOptCuello"><input type="checkbox" data-block="a" data-key="cuello"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Tu cuello mide más de 40 cm?</span><span class="sho-opt__auto" id="shoCuelloAuto" hidden></span></label>
+  <label class="sho-opt"><input type="checkbox" data-block="a" data-key="sexo"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Eres hombre?</span></label>
+</div>
+</fieldset>
+
+
+<button type="button" class="sho-btn" id="shoAeBtn" style="margin-top:14px"><i class="bi bi-clipboard2-pulse-fill"></i> Ver mi resumen</button>
+
+<div class="sho-res" id="shoAeRes" hidden role="status" aria-live="polite">
+  <div class="sho-res__row">
+    <div class="sho-res__score" id="shoAeScore">0/8</div>
+    <div>
+      <div class="sho-res__label">Tu STOP-BANG</div>
+      <div class="sho-res__title" id="shoAeTitle"></div>
+    </div>
+  </div>
+  <p class="sho-res__msg" id="shoAeMsg"></p>
+  <div class="sho-btn-row">
+    <button type="button" class="sho-btn sho-btn--ghost" id="shoCopyBtn"><i class="bi bi-clipboard-check"></i> Copiar mis respuestas</button>
+    <a href="https://wa.me/522224926718?text=Hola%20Dr.%2C%20vengo%20de%20su%20sitio%20web%20alveos.mx" target="_blank" rel="noopener noreferrer" class="sho-btn" id="shoWaBtn" style="text-decoration:none"><i class="bi bi-whatsapp"></i> Enviarlo por WhatsApp</a>
+  </div>
+  <p class="sho-copy-msg" id="shoCopyMsg" hidden role="status" aria-live="polite"></p>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- 5. SENALES DE ALARMA -->
 <div class="sho-section reveal">
 <span class="sho-section__eyebrow" style="color:#b91c1c;background:rgba(185,28,28,.08);border-color:rgba(185,28,28,.2)"><i class="bi bi-exclamation-triangle-fill"></i> Señales de alarma</span>
 <h2 class="sho-section__title">Esto no se agenda: <em>se atiende hoy</em></h2>
+<p class="sho-section__lead">Antes de seguir: hay cosas que no esperan a una cita.</p>
 
 <div class="sho-alarm" id="shoAlarma">
 <div class="sho-alarm__inner">
@@ -1034,54 +1054,11 @@
 </div>
 </div>
 
-<!-- 6. POR QUE IMPORTA -->
-<div class="sho-section reveal" id="por-que">
-<span class="sho-section__eyebrow"><i class="bi bi-heart-pulse"></i> Por qué vale la pena atenderlo</span>
-<h2 class="sho-section__title">Lo que está en juego, <em>en números simples</em></h2>
-
-<div class="bn" id="bn">
-  <div class="bn-grid">
-  <div class="bn-tile">
-    <span class="bn-ic"><i class="bi bi-moon-stars-fill" aria-hidden="true"></i></span>
-    <span class="bn-lbl">Casi siempre juntos</span>
-    <span class="bn-num">9 <small>de cada</small> 10</span>
-    <span class="bn-sub">tienen además apnea del sueño</span>
-  </div>
-  <div class="bn-tile">
-    <span class="bn-ic"><i class="bi bi-heart-pulse-fill" aria-hidden="true"></i></span>
-    <span class="bn-lbl">Tu corazón</span>
-    <span class="bn-num">1 <small>de cada</small> 2</span>
-    <span class="bn-sub">ya tenía repercusión en el corazón cuando se hizo el diagnóstico</span>
-  </div>
-  <div class="bn-tile">
-    <span class="bn-ic"><i class="bi bi-hourglass-split" aria-hidden="true"></i></span>
-    <span class="bn-lbl">Dejarlo pasar</span>
-    <span class="bn-num bn-num--frase">Más del doble</span>
-    <span class="bn-sub">de mortalidad tras una hospitalización, comparado con quienes no hipoventilan</span>
-  </div>
-  <div class="bn-tile">
-    <span class="bn-ic"><i class="bi bi-alarm-fill" aria-hidden="true"></i></span>
-    <span class="bn-lbl">El equipo, de noche</span>
-    <span class="bn-num">4 <small>horas</small></span>
-    <span class="bn-sub">por noche es el uso que en los estudios se asocia con mejor evolución</span>
-  </div>
-  <div class="bn-tile">
-    <span class="bn-ic"><i class="bi bi-graph-down-arrow" aria-hidden="true"></i></span>
-    <span class="bn-lbl">El peso, con franqueza</span>
-    <span class="bn-num bn-num--frase">Una cuarta parte</span>
-    <span class="bn-sub">del peso es la meta de las guías. Los programas de dieta y ejercicio llegaron a la cuarta parte de esa meta</span>
-  </div>
-  </div>
-</div>
-
-<p class="sho-prog__note" style="margin-top:14px"><strong>Cómo se leen.</strong> Son promedios de grupos en estudios publicados, no tu pronóstico. Bajar de peso ayuda, pero la noche necesita atención propia mientras tanto: los dos caminos van juntos.</p>
-</div>
-
-<!-- 7. COMO SE MIDE -->
+<!-- 6. COMO SE MIDE -->
 <div class="sho-section reveal" id="como-se-mide">
 <span class="sho-section__eyebrow"><i class="bi bi-clipboard2-data-fill"></i> Cómo se mide</span>
 <h2 class="sho-section__title">El camino completo, <em>y dónde ocurre cada paso</em></h2>
-<p class="sho-section__lead">Lo que más confunde es que se mezclan los estudios que orientan con el que confirma. Aquí está la ruta, con la parte que casi nadie te dice: cuál se hace aquí mismo y cuál se solicita.</p>
+<p class="sho-section__lead">Si nada de lo anterior es urgente, este es el camino. Lo que más confunde es que se mezclan los estudios que orientan con el que confirma; aquí está cuál es cuál, y cuál se hace aquí mismo.</p>
 
 <div class="cam" id="cam">
   <ol class="cam__lista">
@@ -1129,11 +1106,52 @@
 </div>
 </div>
 
+<!-- 7. COMO SE LEE TU NUMERO AQUI -->
+<div class="sho-section reveal" id="altitud">
+<span class="sho-section__eyebrow"><i class="bi bi-geo-alt-fill"></i> Cuando tengas tu resultado</span>
+<h2 class="sho-section__title">Cómo se lee tu número <em>viviendo a 2,240 metros</em></h2>
+<p class="sho-section__lead">El 45 de la definición se escribió pensando en pacientes de la costa. Mueve el interruptor y mira qué tan lejos queda de lo normal en cada lugar.</p>
+
+<div class="alt" id="alt">
+  <div class="perfil__sw" role="tablist" aria-label="Nivel del mar o Ciudad de México">
+    <span class="perfil__pastilla" aria-hidden="true"></span>
+    <button type="button" class="perfil__tab" data-alt="0" role="tab" aria-selected="true"><i class="bi bi-water" aria-hidden="true"></i> Al nivel del mar</button>
+    <button type="button" class="perfil__tab" data-alt="1" role="tab" aria-selected="false"><i class="bi bi-buildings-fill" aria-hidden="true"></i> En la CDMX</button>
+  </div>
+
+  <div class="alt__viz">
+    <p class="alt__eje"><span>bióxido de carbono en sangre</span><small>mmHg</small></p>
+    <div class="alt__esc">
+      <span class="alt__pista"></span>
+      <span class="alt__banda"><b>lo normal aquí</b></span>
+      <span class="alt__gap" aria-hidden="true"></span>
+      <span class="alt__umbral"><b>45</b></span>
+    </div>
+    <div class="alt__ticks" aria-hidden="true"><i>30</i><i>35</i><i>40</i><i>45</i><i>50</i></div>
+  </div>
+
+  <div class="alt__dets">
+    <p class="alt__det is-on" data-alt="0">En la costa una persona sana anda cerca de <strong>40</strong>. Del 40 al 45 hay poco trecho, y por eso el umbral se puso ahí.</p>
+    <p class="alt__det" data-alt="1">Aquí respiras un poco más profundo para compensar el aire menos denso, así que lo normal queda <strong>más abajo</strong> y el trecho hasta 45 se hace mucho más largo.</p>
+  </div>
+
+  <div class="alt__paraque">
+    <b><i class="bi bi-check-circle-fill" aria-hidden="true"></i> Para qué te sirve saber esto</b>
+    <ul>
+      <li><span>1</span>Si tu gasometría sale cerca de 45 y alguien te dice <em>"está en el límite, no pasa nada"</em>, ese límite es de la costa. Aquí ese número ya te alejó bastante más de lo tuyo. Pídeme que lo revisemos.</li>
+      <li><span>2</span>No te guíes por el oxímetro de dedo. Aquí lo habitual en personas sanas es <strong>92 a 95%</strong>, más bajo que en la costa, así que los umbrales copiados de páginas extranjeras asustan de más. Y el oxímetro <strong>nunca</strong> ve el bióxido de carbono: un número bonito en la pantalla no descarta nada.</li>
+    </ul>
+  </div>
+
+  <div class="sho-warn sho-warn--claro" style="margin-top:14px;margin-bottom:0"><i class="bi bi-info-circle-fill"></i><span>Esto es <strong>razonamiento fisiológico</strong>, no un umbral validado: no existe un punto de corte oficial para la Ciudad de México. Por eso se interpreta caso por caso, contigo enfrente.</span></div>
+</div>
+</div>
+
 <!-- 8. QUE SIGUE: TRATAMIENTO -->
 <div class="sho-section reveal" id="tratamiento">
 <span class="sho-section__eyebrow"><i class="bi bi-sliders"></i> Qué sigue</span>
 <h2 class="sho-section__title">CPAP o BiPAP: <em>qué diferencia hay</em></h2>
-<p class="sho-section__lead">El pilar del tratamiento es la presión positiva de noche. Por fuera se parecen; por dentro hacen cosas distintas. Elige lo que mostró tu estudio y se marca la que sugieren las guías.</p>
+<p class="sho-section__lead">Con tu número en la mano, esto es lo que se hace: devolverle aire a la noche. Las dos máquinas se parecen por fuera y hacen cosas distintas. Elige lo que mostró tu estudio.</p>
 
 <fieldset class="sho-picker">
 <legend>¿Qué mostró mi estudio del sueño?</legend>
@@ -1184,7 +1202,7 @@
 
 </div>
 
-<!-- 8b. EL OXIGENO SOLO -->
+<!-- 9. EL OXIGENO SOLO -->
 <div class="sho-section reveal" id="oxigeno">
 <span class="sho-section__eyebrow" style="color:#c2410c;background:rgba(234,88,12,.08);border-color:rgba(234,88,12,.22)"><i class="bi bi-exclamation-octagon-fill"></i> Advertencia importante</span>
 <h2 class="sho-section__title">El oxígeno solo <em>puede ser peligroso</em></h2>
@@ -1199,7 +1217,7 @@
 </div>
 </div>
 
-<!-- 9. MITOS -->
+<!-- 10. MITOS -->
 <div class="sho-section reveal" id="mitos">
 <span class="sho-section__eyebrow"><i class="bi bi-chat-quote-fill"></i> Lo que escucho en consulta</span>
 <h2 class="sho-section__title">Ocho ideas que <em>conviene corregir</em></h2>
@@ -1410,21 +1428,7 @@
   if (imcBtn) imcBtn.addEventListener('click', calcularImc);
 
   var casillas = Array.prototype.slice.call(d.querySelectorAll('.sho-opt input[type="checkbox"]'));
-  casillas.forEach(function(c){
-    c.addEventListener('change', function(){
-      sincroniza(c);
-      if (c.getAttribute('data-key') === 'cianosis'){
-        var aviso = el('shoCianosisAviso');
-        if (!aviso) return;
-        if (c.checked){
-          aviso.hidden = false;
-          try { aviso.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch(e){}
-        } else {
-          aviso.hidden = true;
-        }
-      }
-    });
-  });
+  casillas.forEach(function(c){ c.addEventListener('change', function(){ sincroniza(c); }); });
 
   var TEXTOS_A = [
     { min: 0, titulo: 'Señalaste pocos de los datos', msg: 'Eso no descarta nada por sí solo, sobre todo si tienes síntomas que te preocupan.' },
@@ -1446,18 +1450,11 @@
   }
 
   function verResumen(){
-    var a = marcadas('a'), b = marcadas('b');
+    var a = marcadas('a');
     var t = tramoA(a);
     el('shoAeScore').textContent = a + '/8';
     el('shoAeTitle').textContent = t.titulo;
     el('shoAeMsg').textContent = t.msg + ' Lo que sigue no lo decide este resumen: lo decide una valoración y, si está indicada, la medición del bióxido de carbono en sangre.';
-    var extra = el('shoAeB');
-    if (b >= 2){
-      extra.hidden = false;
-      extra.textContent = 'Además señalaste ' + b + ' de 6 señales de hipoventilación. Ese bloque va aparte porque apunta al bióxido de carbono, y es justo lo útil de llevar a la consulta.';
-    } else {
-      extra.hidden = true;
-    }
     var res = el('shoAeRes');
     res.hidden = false;
     el('shoCopyMsg').hidden = true;
@@ -1468,16 +1465,14 @@
   if (aeBtn) aeBtn.addEventListener('click', verResumen);
 
   function construyeResumen(){
-    var a = marcadas('a'), b = marcadas('b');
+    var a = marcadas('a');
     var lineas = [];
     lineas.push('Hola Dr., vengo de su sitio web alveos.mx. Preparé mis respuestas de la página de hipoventilación por obesidad.');
     lineas.push('');
     if (estado.imc) lineas.push('Índice de masa corporal: ' + estado.imc.toFixed(1) + ' (' + categoria(estado.imc) + ').');
     if (estado.cuello) lineas.push('Cuello: ' + estado.cuello + ' cm.');
-    lineas.push('Bloque A (STOP-BANG): ' + a + ' de 8.');
+    lineas.push('STOP-BANG: ' + a + ' de 8.');
     listaMarcadas('a').forEach(function(x){ lineas.push('  - ' + x); });
-    lineas.push('Bloque B (señales de hipoventilación): ' + b + ' de 6.');
-    listaMarcadas('b').forEach(function(x){ lineas.push('  - ' + x); });
     lineas.push('');
     lineas.push('Sé que esto no es un diagnóstico. Me gustaría una valoración.');
     return lineas.join('\n');
