@@ -109,54 +109,7 @@
 .sho-answer{max-width:780px;padding:18px 22px;background:rgba(15,118,110,.06);border-left:4px solid #0f766e;border-radius:10px;margin:0 0 36px;color:#3a4a5c;font-size:1rem;line-height:1.7}
 @media(min-width:768px){.sho-answer{font-size:1.05rem}}
 .sho-answer strong{color:var(--navy);font-weight:700}
-
-/* CAJA CDMX (diferenciador) */
-.sho-altitud{background:linear-gradient(140deg,#062f2b 0%,#0a1628 100%);border:1px solid rgba(45,212,191,.35);border-radius:22px;padding:26px 22px;color:#fff;position:relative;overflow:hidden;box-shadow:0 18px 48px rgba(15,118,110,.22)}
-@media(min-width:768px){.sho-altitud{padding:40px 38px}}
-.sho-altitud::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#2dd4bf,#0f766e,#2dd4bf);background-size:200% 100%;animation:shoStripe 5s linear infinite}
 @keyframes shoStripe{to{background-position:-200% 0}}
-.sho-altitud::after{content:'';position:absolute;top:-45%;right:-18%;width:60%;padding-bottom:60%;border-radius:50%;background:radial-gradient(circle,rgba(15,118,110,.3),transparent 62%);pointer-events:none}
-.sho-altitud__inner{position:relative;z-index:1}
-.sho-altitud__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(45,212,191,.14);border:1px solid rgba(45,212,191,.3);color:#2dd4bf;font-size:.88rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:7px 14px;border-radius:100px;margin-bottom:16px;line-height:1.3}
-.sho-altitud__title{font-size:clamp(1.3rem,4.5vw,1.8rem);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.25;margin-bottom:16px}
-.sho-altitud__p{font-size:.98rem;color:rgba(255,255,255,.82);line-height:1.7;margin:0 0 14px}
-.sho-altitud__p strong{color:#2dd4bf;font-weight:700}
-.sho-altitud__grid{display:grid;grid-template-columns:1fr;gap:12px;margin:20px 0 16px}
-@media(min-width:640px){.sho-altitud__grid{grid-template-columns:1fr 1fr}}
-.sho-altitud__cell{background:rgba(255,255,255,.05);border:1px solid rgba(45,212,191,.2);border-radius:14px;padding:18px 16px}
-.sho-altitud__cell-num{font-size:1.7rem;font-weight:800;color:#2dd4bf;line-height:1.1;letter-spacing:-.02em;margin-bottom:6px}
-.sho-altitud__cell-lbl{font-size:.9rem;color:rgba(255,255,255,.7);line-height:1.45}
-.sho-altitud__note{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.05);border:1px dashed rgba(45,212,191,.35);border-radius:12px;padding:15px 16px;font-size:.9rem;color:rgba(255,255,255,.78);line-height:1.6;margin-top:6px}
-.sho-altitud__note i{color:#2dd4bf;font-size:1.05rem;flex-shrink:0;margin-top:2px}
-
-/* TARJETAS GENERICAS */
-.sho-grid-2{display:grid;grid-template-columns:1fr;gap:14px}
-@media(min-width:768px){.sho-grid-2{grid-template-columns:1fr 1fr;gap:18px}}
-.sho-grid-3{display:grid;grid-template-columns:1fr;gap:14px}
-@media(min-width:600px){.sho-grid-3{grid-template-columns:1fr 1fr}}
-@media(min-width:992px){.sho-grid-3{grid-template-columns:repeat(3,1fr);gap:16px}}
-.sho-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:18px;padding:22px 20px;box-shadow:0 4px 14px rgba(10,22,40,.04);transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease)}
-.sho-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(15,118,110,.12);border-color:rgba(15,118,110,.25)}
-.sho-card__icon{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#0f766e,#115e59);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:14px;box-shadow:0 8px 20px rgba(15,118,110,.28);flex-shrink:0}
-.sho-card h3{font-size:1.02rem;font-weight:800;color:var(--navy);margin:0 0 8px;line-height:1.3}
-.sho-card p{font-size:.92rem;color:#3a4a5c;line-height:1.6;margin:0 0 12px}
-.sho-card p:last-child{margin-bottom:0}
-.sho-card__pill{display:flex;align-items:flex-start;gap:9px;font-size:.9rem;line-height:1.5;font-weight:600;color:#134e4a;background:rgba(15,118,110,.08);border:1px solid rgba(15,118,110,.18);border-radius:10px;padding:10px 12px;margin-top:auto}
-.sho-card__pill i{color:#0f766e;font-size:.95rem;margin-top:3px;flex-shrink:0}
-.sho-card__pill strong{font-weight:800;color:inherit}
-
-/* SINTOMAS */
-.sho-symp{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media(min-width:768px){.sho-symp{grid-template-columns:repeat(4,1fr);gap:14px}}
-.sho-symp__card{background:#fff;border:1px solid rgba(15,118,110,.14);border-radius:18px;padding:18px 14px;text-align:center;transition:all .3s var(--ease)}
-.sho-symp__card:hover{transform:translateY(-4px);border-color:rgba(15,118,110,.32);box-shadow:0 14px 32px rgba(15,118,110,.12)}
-.sho-symp__icon{width:52px;height:52px;border-radius:15px;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto 12px}
-.sho-symp__card h3{font-size:.98rem;font-weight:800;color:var(--navy);margin:0 0 5px;line-height:1.28}
-.sho-symp__card p{font-size:.88rem;color:var(--text-muted);margin:0;line-height:1.45}
-.sho-more{list-style:none;padding:0;margin:18px 0 0;display:grid;grid-template-columns:1fr;gap:10px}
-@media(min-width:640px){.sho-more{grid-template-columns:1fr 1fr;gap:10px 26px}}
-.sho-more li{display:flex;align-items:flex-start;gap:10px;font-size:.94rem;color:#3a4a5c;line-height:1.55}
-.sho-more li i{color:#0f766e;font-size:1rem;flex-shrink:0;margin-top:3px}
 
 /* ALARMA */
 .sho-alarm{background:linear-gradient(135deg,#2a0a0a 0%,#1a0a1e 100%);border:1px solid rgba(230,69,69,.45);border-radius:22px;padding:26px 22px;color:#fff;box-shadow:0 16px 48px rgba(230,69,69,.18);position:relative;overflow:hidden}
@@ -184,37 +137,12 @@
 .sho-alarm__btn--urg:hover{background:rgba(255,255,255,.18);transform:translateY(-2px)}
 </style>
 <style>
-/* TABLA DE DIAGNOSTICO */
-.sho-table-wrap{background:#fff;border:1px solid rgba(15,118,110,.16);border-radius:20px;overflow:hidden;box-shadow:0 8px 28px rgba(10,22,40,.06)}
-.sho-table{width:100%;border-collapse:collapse;margin:0}
-.sho-table caption{caption-side:top;text-align:left;padding:18px 20px 0;font-size:.92rem;color:var(--text-muted);line-height:1.55}
-.sho-table thead th{background:linear-gradient(135deg,#0f766e,#115e59);color:#fff;font-size:.9rem;font-weight:800;text-align:left;padding:14px 16px;letter-spacing:.02em}
-.sho-table tbody td{padding:14px 16px;font-size:.94rem;color:#3a4a5c;line-height:1.55;border-bottom:1px solid rgba(10,22,40,.07);vertical-align:top}
-.sho-table tbody tr:last-child td{border-bottom:none}
-.sho-table tbody tr:nth-child(odd){background:rgba(15,118,110,.03)}
-.sho-table .sho-td-name{font-weight:800;color:var(--navy)}
-.sho-table .sho-here{display:inline-flex;align-items:center;gap:6px;background:rgba(15,118,110,.1);border:1px solid rgba(15,118,110,.25);color:#0f766e;font-size:.88rem;font-weight:800;padding:4px 10px;border-radius:100px;margin-top:6px;line-height:1.35}
-.sho-table .sho-out{display:inline-flex;align-items:center;gap:6px;background:rgba(10,22,40,.05);border:1px solid rgba(10,22,40,.12);color:#546076;font-size:.88rem;font-weight:700;padding:4px 10px;border-radius:100px;margin-top:6px;line-height:1.35}
-@media(max-width:767px){
-  .sho-table,.sho-table tbody,.sho-table tr,.sho-table td{display:block;width:100%}
-  .sho-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-  .sho-table tbody tr{border-bottom:1px solid rgba(10,22,40,.1);padding:6px 0}
-  .sho-table tbody tr:last-child{border-bottom:none}
-  .sho-table tbody td{border-bottom:none;padding:8px 16px}
-  .sho-table tbody td::before{content:attr(data-label);display:block;font-size:.88rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#0f766e;margin-bottom:3px}
-  .sho-table tbody td.sho-td-name::before{display:none}
-  .sho-table tbody td.sho-td-name{font-size:1.05rem;padding-top:14px}
-}
-.sho-table-note{font-size:.92rem;color:#3a4a5c;line-height:1.65;margin:18px 0 0;padding:15px 18px;background:rgba(15,118,110,.06);border-radius:12px}
-.sho-table-note strong{color:var(--navy);font-weight:700}
 
 /* PIEZAS INTERACTIVAS, marco comun */
 .sho-tool{background:linear-gradient(140deg,#062f2b 0%,#0a1628 100%);border-radius:22px;padding:22px 18px;color:#fff;border:1px solid rgba(45,212,191,.32);box-shadow:0 20px 60px rgba(15,118,110,.2);position:relative;overflow:hidden}
 @media(min-width:600px){.sho-tool{padding:32px 30px}}
 .sho-tool::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#0f766e,#2dd4bf,#0f766e);background-size:200% 100%;animation:shoStripe 5s linear infinite}
 .sho-tool__inner{position:relative;z-index:1}
-.sho-tool__title{font-size:1.15rem;font-weight:800;color:#fff;margin:0 0 6px;line-height:1.3}
-.sho-tool__sub{font-size:.94rem;color:rgba(255,255,255,.7);line-height:1.6;margin:0 0 18px}
 .sho-warn{display:flex;gap:11px;align-items:flex-start;background:rgba(253,203,110,.1);border:1px solid rgba(253,203,110,.32);border-radius:12px;padding:13px 15px;font-size:.9rem;color:rgba(255,255,255,.85);line-height:1.6;margin-bottom:16px}
 .sho-warn i{color:#fdcb6e;font-size:1.05rem;flex-shrink:0;margin-top:2px}
 .sho-warn strong{color:#fdcb6e;font-weight:800}
@@ -255,11 +183,6 @@
 .sho-res__msg{font-size:.94rem;color:rgba(255,255,255,.82);line-height:1.62;margin:0 0 10px}
 .sho-res__msg:last-child{margin-bottom:0}
 .sho-res__extra{font-size:.94rem;color:#fff;line-height:1.6;background:rgba(45,212,191,.12);border:1px solid rgba(45,212,191,.28);border-radius:10px;padding:12px 14px;margin:0 0 12px}
-.sho-res--imc{border-color:rgba(45,212,191,.3)}
-.sho-res__imc-num{font-size:2.6rem;font-weight:800;color:#2dd4bf;line-height:1}
-.sho-res__list{list-style:none;padding:0;margin:12px 0 0;display:flex;flex-direction:column;gap:8px}
-.sho-res__list li{display:flex;gap:10px;align-items:flex-start;font-size:.92rem;color:rgba(255,255,255,.82);line-height:1.55}
-.sho-res__list li i{color:#2dd4bf;margin-top:3px;flex-shrink:0}
 .sho-res__wa{display:inline-flex;align-items:center;gap:9px;background:#25d366;color:#fff!important;font-weight:700;font-size:.94rem;padding:12px 20px;border-radius:100px;text-decoration:none;transition:all .22s ease;min-height:48px;box-shadow:0 6px 16px rgba(37,211,102,.3)}
 .sho-res__wa:hover{background:#1da851;transform:translateY(-2px)}
 .sho-copy-msg{font-size:.9rem;color:#2dd4bf;font-weight:700;margin:10px 0 0;line-height:1.5}
@@ -318,28 +241,6 @@
 .sho-danger strong{color:#7c2d12;font-weight:800}
 .sho-danger__box{background:rgba(234,88,12,.1);border:1px dashed rgba(234,88,12,.4);border-radius:12px;padding:15px 17px;font-size:.95rem;color:#7c2d12;font-weight:700;line-height:1.6;margin:16px 0 0;display:flex;gap:11px;align-items:flex-start}
 .sho-danger__box i{font-size:1.1rem;flex-shrink:0;margin-top:2px}
-
-/* MITOS */
-.sho-myths{display:grid;grid-template-columns:1fr;gap:12px}
-@media(min-width:768px){.sho-myths{grid-template-columns:1fr 1fr;gap:16px}}
-.sho-myth{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:18px;padding:20px 20px;box-shadow:0 4px 14px rgba(10,22,40,.04);transition:all .3s var(--ease)}
-.sho-myth:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(15,118,110,.12)}
-.sho-myth__false{display:inline-flex;align-items:center;gap:7px;font-size:.88rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#b91c1c;background:rgba(185,28,28,.08);border:1px solid rgba(185,28,28,.2);padding:5px 11px;border-radius:100px;margin-bottom:10px;line-height:1.35}
-.sho-myth h3{font-size:1rem;font-weight:800;color:var(--navy);margin:0 0 10px;line-height:1.4}
-.sho-myth p{font-size:.93rem;color:#3a4a5c;line-height:1.65;margin:0}
-.sho-myth p strong{color:#0f766e;font-weight:800}
-
-/* PRONOSTICO */
-.sho-prog{background:linear-gradient(140deg,#0a1628 0%,#062f2b 100%);border-radius:22px;padding:26px 22px;color:#fff;position:relative;overflow:hidden;box-shadow:0 16px 48px rgba(15,118,110,.2)}
-@media(min-width:768px){.sho-prog{padding:38px 36px}}
-.sho-prog::after{content:'';position:absolute;inset:-40%;background:radial-gradient(circle at 20% 45%,rgba(15,118,110,.24),transparent 55%),radial-gradient(circle at 85% 60%,rgba(45,212,191,.12),transparent 55%);pointer-events:none}
-.sho-prog__inner{position:relative;z-index:1}
-.sho-prog__grid{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:18px}
-@media(min-width:640px){.sho-prog__grid{grid-template-columns:1fr 1fr}}
-@media(min-width:992px){.sho-prog__grid{grid-template-columns:repeat(3,1fr);gap:16px}}
-.sho-prog__cell{background:rgba(255,255,255,.05);border:1px solid rgba(45,212,191,.2);border-radius:16px;padding:20px 18px}
-.sho-prog__num{font-size:2rem;font-weight:800;color:#2dd4bf;line-height:1.1;letter-spacing:-.03em;margin-bottom:8px}
-.sho-prog__lbl{font-size:.92rem;color:rgba(255,255,255,.75);line-height:1.55}
 .sho-prog__note{font-size:.94rem;color:rgba(255,255,255,.72);line-height:1.7;margin:0;padding-top:16px;border-top:1px solid rgba(255,255,255,.12)}
 .sho-prog__note strong{color:#2dd4bf;font-weight:700}
 
@@ -399,7 +300,7 @@
     })(window, document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <!-- End Google Tag Manager -->
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/enfermedades/hipoventilacion-obesidad/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Qué es el síndrome de hipoventilación por obesidad?","acceptedAnswer":{"@type":"Answer","text":"Es una condición en la que el cuerpo no elimina bien el bióxido de carbono en una persona que vive con obesidad. Para considerarlo se necesitan tres cosas juntas: un índice de masa corporal de 30 o más, bióxido de carbono elevado en la sangre estando despierto y un trastorno respiratorio durante el sueño. Antes de nombrarlo hay que descartar otras causas de hipoventilación."}},{"@type":"Question","name":"¿Por qué también se le llama síndrome de Pickwick?","acceptedAnswer":{"@type":"Answer","text":"Es un nombre antiguo, tomado de un personaje de la literatura del siglo XIX descrito como corpulento y siempre somnoliento. Hoy se prefiere el nombre síndrome de hipoventilación por obesidad, porque describe el mecanismo y no la apariencia de la persona."}},{"@type":"Question","name":"¿Cuál es la diferencia entre la apnea del sueño y este síndrome?","acceptedAnswer":{"@type":"Answer","text":"En la apnea obstructiva la garganta se cierra y se vuelve a abrir muchas veces durante la noche. En la hipoventilación el problema es que la respiración es insuficiente para eliminar el bióxido de carbono, y eso persiste incluso estando despierto. Cerca de 9 de cada 10 personas con hipoventilación tienen además apnea, así que suelen ir juntas, pero no son lo mismo."}},{"@type":"Question","name":"¿Vivir en la Ciudad de México cambia los números?","acceptedAnswer":{"@type":"Answer","text":"Sí, y conviene saberlo. La definición internacional se escribió para el nivel del mar, y la Ciudad de México está a unos 2,240 metros de altitud. Aquí la respiración normal mantiene el bióxido de carbono más bajo, así que un valor de 45 mmHg medido en la ciudad refuerza la sospecha en lugar de debilitarla. Es un razonamiento fisiológico, no un punto de corte validado para la ciudad."}},{"@type":"Question","name":"¿El oxímetro de dedo sirve para descartarlo?","acceptedAnswer":{"@type":"Answer","text":"No. El oxímetro mide el oxígeno, y este síndrome se define por el bióxido de carbono, que el oxímetro no puede ver. Además, en la Ciudad de México la saturación normal es más baja que a nivel del mar, en un rango típico de 92 a 95%, así que los umbrales copiados de sitios extranjeros generan alarmas falsas."}},{"@type":"Question","name":"¿Qué estudio confirma el diagnóstico?","acceptedAnswer":{"@type":"Answer","text":"La gasometría arterial es la que confirma, porque mide el bióxido de carbono directamente en la sangre. Se toma con una punción arterial, casi siempre en la muñeca, en un laboratorio u hospital que tenga gasómetro. El bicarbonato en sangre sirve como tamizaje previo: si sale normal, el diagnóstico es poco probable."}},{"@type":"Question","name":"¿Qué estudios se hacen en el consultorio?","acceptedAnswer":{"@type":"Answer","text":"En el consultorio se realizan la consulta, la espirometría simple o con broncodilatador, el FeNO y la poligrafía respiratoria. La poligrafía también puede hacerse a domicilio, durmiendo en tu propia cama. La gasometría arterial y la polisomnografía completa no se realizan aquí: se solicitan y se orienta a dónde hacerlas."}},{"@type":"Question","name":"¿Es lo mismo un CPAP que un BiPAP?","acceptedAnswer":{"@type":"Answer","text":"No. El CPAP entrega una sola presión constante, que funciona como una férula de aire para mantener abierta la vía respiratoria. El BiPAP entrega dos presiones, una al inhalar y otra al exhalar, y esa diferencia sí ayuda a mover aire hacia adentro y hacia afuera. Cuál conviene depende de lo que muestre el estudio del sueño."}},{"@type":"Question","name":"¿Puedo comprar oxígeno y usarlo en casa si me falta el aire?","acceptedAnswer":{"@type":"Answer","text":"No por cuenta propia. En este síndrome el problema no es solo que falte oxígeno, sino que sobra bióxido de carbono. Dar oxígeno sin soporte de presión reduce el estímulo para respirar y el bióxido de carbono puede subir todavía más. El oxígeno se indica con criterio médico, con vigilancia y casi siempre acompañando al equipo de presión."}},{"@type":"Question","name":"¿Bajar de peso resuelve el problema?","acceptedAnswer":{"@type":"Answer","text":"El peso importa mucho, pero las cifras conviene decirlas completas: las guías sugieren una pérdida sostenida de 25 a 30% del peso corporal, y los programas de dieta y ejercicio de los estudios lograron alrededor de 6 a 7%, sin un efecto claro sobre el síndrome. La cirugía bariátrica sí ha mostrado resolución en cerca de 7 de cada 10 personas al año. Los resultados varían de persona a persona."}},{"@type":"Question","name":"¿Qué pasa si no se trata?","acceptedAnswer":{"@type":"Answer","text":"Los estudios muestran que sin tratamiento la evolución es peor: la mortalidad después de una hospitalización fue de 23% a 18 meses, frente a 9% en personas con obesidad severa sin hipoventilación. También es frecuente que al momento del diagnóstico ya exista repercusión en el corazón. Son promedios de grupos, no un pronóstico individual."}},{"@type":"Question","name":"¿Cuántas horas hay que usar el equipo cada noche?","acceptedAnswer":{"@type":"Answer","text":"Los estudios asocian una mejor evolución con al menos 4 horas por noche, y en general mientras más parejo sea el uso, mejor. Las primeras semanas suelen ser las más difíciles por la mascarilla y por la presión, y ahí es donde ayuda el ajuste en consulta. La constancia pesa más que la perfección."}},{"@type":"Question","name":"Ya uso CPAP por apnea del sueño, ¿entonces ya está resuelto?","acceptedAnswer":{"@type":"Answer","text":"No necesariamente. Entre 10 y 20% de las personas con apnea obstructiva tienen además hipoventilación, y el equipo se indicó por la apnea, no por el bióxido de carbono. Si sigues amaneciendo con dolor de cabeza, con hinchazón de piernas o muy cansado a pesar de usarlo, vale la pena revisar el bióxido de carbono."}},{"@type":"Question","name":"¿Qué tan firme es la evidencia sobre el tratamiento?","acceptedAnswer":{"@type":"Answer","text":"Conviene decirlo con claridad: las cinco recomendaciones principales de las guías internacionales son condicionales y con certeza de evidencia muy baja. Eso no quiere decir que no sirvan, quiere decir que hay margen para decidir contigo según tu caso en lugar de aplicar una receta única para todos."}},{"@type":"Question","name":"¿Cuánto cuesta la poligrafía respiratoria y la consulta?","acceptedAnswer":{"@type":"Answer","text":"La poligrafía respiratoria cuesta $4,000 pesos en el consultorio y $5,000 a domicilio, durmiendo en tu casa. La primera consulta cuesta $1,800 pesos. Los estudios que se hacen fuera, como la gasometría arterial, se cobran aparte en el sitio donde se realicen."}},{"@type":"Question","name":"¿Cómo es la primera consulta?","acceptedAnswer":{"@type":"Answer","text":"Se revisa la historia con detalle, incluyendo cómo duermes, si necesitas almohadas para respirar y qué medicamentos tomas. Si hace falta, se hace espirometría el mismo día para descartar otras causas y se programa la poligrafía respiratoria. Con esos datos se decide si conviene solicitar bicarbonato y gasometría arterial."}}]}
+    {"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/enfermedades/hipoventilacion-obesidad/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Qué es el síndrome de hipoventilación por obesidad?","acceptedAnswer":{"@type":"Answer","text":"Es una condición en la que el cuerpo no elimina bien el bióxido de carbono en una persona que vive con obesidad. Para considerarlo se necesitan tres cosas juntas: un índice de masa corporal de 30 o más, bióxido de carbono elevado en la sangre estando despierto y un trastorno respiratorio durante el sueño. Antes de nombrarlo hay que descartar otras causas de hipoventilación."}},{"@type":"Question","name":"¿Por qué también se le llama síndrome de Pickwick?","acceptedAnswer":{"@type":"Answer","text":"Es un nombre antiguo, tomado de un personaje de la literatura del siglo XIX descrito como corpulento y siempre somnoliento. Hoy se prefiere el nombre síndrome de hipoventilación por obesidad, porque describe el mecanismo y no la apariencia de la persona."}},{"@type":"Question","name":"¿Cuál es la diferencia entre la apnea del sueño y este síndrome?","acceptedAnswer":{"@type":"Answer","text":"En la apnea obstructiva la garganta se cierra y se vuelve a abrir muchas veces durante la noche. En la hipoventilación el problema es que la respiración es insuficiente para eliminar el bióxido de carbono, y eso persiste incluso estando despierto. Cerca de 9 de cada 10 personas con hipoventilación tienen además apnea, así que suelen ir juntas, pero no son lo mismo."}},{"@type":"Question","name":"¿Vivir en la Ciudad de México cambia los números?","acceptedAnswer":{"@type":"Answer","text":"Sí, y conviene saberlo. La definición internacional se escribió para el nivel del mar, y la Ciudad de México está a unos 2,240 metros de altitud. Aquí la respiración normal mantiene el bióxido de carbono más bajo, así que un valor de 45 mmHg medido en la ciudad refuerza la sospecha en lugar de debilitarla. Es un razonamiento fisiológico, no un punto de corte validado para la ciudad."}},{"@type":"Question","name":"¿El oxímetro de dedo sirve para descartarlo?","acceptedAnswer":{"@type":"Answer","text":"No. El oxímetro mide el oxígeno, y este síndrome se define por el bióxido de carbono, que el oxímetro no puede ver. Además, en la Ciudad de México la saturación normal es más baja que a nivel del mar, en un rango típico de 92 a 95%, así que los umbrales copiados de sitios extranjeros generan alarmas falsas."}},{"@type":"Question","name":"¿Qué estudio confirma el diagnóstico?","acceptedAnswer":{"@type":"Answer","text":"La gasometría arterial es la que confirma, porque mide el bióxido de carbono directamente en la sangre. Se toma con una punción arterial, casi siempre en la muñeca, en un laboratorio u hospital que tenga gasómetro. El bicarbonato en sangre sirve como tamizaje previo: si sale normal, el diagnóstico es poco probable."}},{"@type":"Question","name":"¿Qué estudios se hacen en el consultorio?","acceptedAnswer":{"@type":"Answer","text":"En el consultorio se realizan la consulta, la espirometría simple o con broncodilatador, el FeNO y la poligrafía respiratoria. La poligrafía también puede hacerse a domicilio, durmiendo en tu propia cama. La gasometría arterial y la polisomnografía completa no se realizan aquí: se solicitan y se orienta a dónde hacerlas."}},{"@type":"Question","name":"¿Es lo mismo un CPAP que un BiPAP?","acceptedAnswer":{"@type":"Answer","text":"No. El CPAP entrega una sola presión constante, que funciona como una férula de aire para mantener abierta la vía respiratoria. El BiPAP entrega dos presiones, una al inhalar y otra al exhalar, y esa diferencia sí ayuda a mover aire hacia adentro y hacia afuera. Cuál conviene depende de lo que muestre el estudio del sueño."}},{"@type":"Question","name":"¿Puedo comprar oxígeno y usarlo en casa si me falta el aire?","acceptedAnswer":{"@type":"Answer","text":"No por cuenta propia. En este síndrome el problema no es solo que falte oxígeno, sino que sobra bióxido de carbono. Dar oxígeno sin soporte de presión reduce el estímulo para respirar y el bióxido de carbono puede subir todavía más. El oxígeno se indica con criterio médico, con vigilancia y casi siempre acompañando al equipo de presión."}},{"@type":"Question","name":"¿Bajar de peso resuelve el problema?","acceptedAnswer":{"@type":"Answer","text":"El peso importa mucho, pero las cifras conviene decirlas completas: las guías sugieren una pérdida sostenida de 25 a 30% del peso corporal, y los programas de dieta y ejercicio de los estudios lograron alrededor de 6 a 7%, sin un efecto claro sobre el síndrome. La cirugía bariátrica sí ha mostrado resolución en cerca de 7 de cada 10 personas al año. Los resultados varían de persona a persona."}},{"@type":"Question","name":"¿Qué pasa si no se trata?","acceptedAnswer":{"@type":"Answer","text":"Los estudios muestran que sin tratamiento la evolución es peor: la mortalidad después de una hospitalización fue de 23% a 18 meses, frente a 9% en personas con obesidad severa sin hipoventilación. También es frecuente que al momento del diagnóstico ya exista repercusión en el corazón. Son promedios de grupos, no un pronóstico individual."}},{"@type":"Question","name":"¿Cuántas horas hay que usar el equipo cada noche?","acceptedAnswer":{"@type":"Answer","text":"Los estudios asocian una mejor evolución con al menos 4 horas por noche, y en general mientras más parejo sea el uso, mejor. Las primeras semanas suelen ser las más difíciles por la mascarilla y por la presión, y ahí es donde ayuda el ajuste en consulta. La constancia pesa más que la perfección."}},{"@type":"Question","name":"Ya uso CPAP por apnea del sueño, ¿entonces ya está resuelto?","acceptedAnswer":{"@type":"Answer","text":"No necesariamente. Entre 10 y 20% de las personas con apnea obstructiva tienen además hipoventilación, y el equipo se indicó por la apnea, no por el bióxido de carbono. Si sigues amaneciendo con dolor de cabeza, con hinchazón de piernas o muy cansado a pesar de usarlo, vale la pena revisar el bióxido de carbono."}},{"@type":"Question","name":"¿Qué tan firme es la evidencia sobre el tratamiento?","acceptedAnswer":{"@type":"Answer","text":"Conviene decirlo con claridad: las cinco recomendaciones principales de las guías internacionales son condicionales y con certeza de evidencia muy baja. Eso no quiere decir que no sirvan, quiere decir que hay margen para decidir contigo según tu caso en lugar de aplicar una receta única para todos."}},{"@type":"Question","name":"¿Cuánto cuesta la poligrafía respiratoria y la consulta?","acceptedAnswer":{"@type":"Answer","text":"La poligrafía respiratoria cuesta $4,000 pesos en el consultorio y $6,000 a domicilio, durmiendo en tu casa. La primera consulta cuesta $1,800 pesos. Los estudios que se hacen fuera, como la gasometría arterial, se cobran aparte en el sitio donde se realicen."}},{"@type":"Question","name":"¿Cómo es la primera consulta?","acceptedAnswer":{"@type":"Answer","text":"Se revisa la historia con detalle, incluyendo cómo duermes, si necesitas almohadas para respirar y qué medicamentos tomas. Si hace falta, se hace espirometría el mismo día para descartar otras causas y se programa la poligrafía respiratoria. Con esos datos se decide si conviene solicitar bicarbonato y gasometría arterial."}}]}
     </script>
     <link rel="stylesheet" href="/assets/agenda-modal.css">
     <link rel="stylesheet" href="/assets/base.css">
@@ -448,6 +349,194 @@
 @media(max-width:992px){.rev-block{padding:44px 0}.testimonial-columns{height:440px}}
 @media(max-width:640px){.testimonial-columns{grid-template-columns:1fr;height:420px}.testimonial-col:nth-child(n+2){display:none}.testi-card{padding:18px 20px}}
 @media(prefers-reduced-motion:reduce){.testimonial-col{animation:none}.testimonial-columns{height:auto;-webkit-mask-image:none;mask-image:none;grid-template-columns:1fr}.testimonial-col:nth-child(n+2){display:none}.testimonial-col>.testi-card:nth-child(n+4){display:none}}
+</style>
+<style>
+/* ===== PATRONES DEL SISTEMA DE APNEA, adaptados a la paleta teal =====
+   ciclo (esquema clinico) / alt (altitud) / perfil+pf-chip / bn / cam / mit.
+   Solo transform, opacity y stroke-dashoffset. */
+
+/* --- CICLO: el trazo del CO2 ES el dibujo --- */
+.ciclo{display:grid;gap:16px;margin-top:6px}
+.ciclo__viz{background:linear-gradient(170deg,#fff,#f3faf9);border:1px solid rgba(15,118,110,.16);border-radius:18px;padding:15px 14px 11px}
+.ciclo__svg{width:100%;height:auto;display:block}
+.ciclo__base{stroke:rgba(15,118,110,.24);stroke-width:1;stroke-dasharray:3 5}
+.ciclo__base--media{stroke:rgba(15,118,110,.15)}
+.ciclo__base--peligro{stroke:rgba(194,55,44,.45)}
+.ciclo__lbl{fill:#9aa7b2;font-size:9.5px;font-weight:800;letter-spacing:.02em}
+.ciclo__lbl--media{fill:#b6c2cb;font-size:8.5px}
+.ciclo__lbl--peligro{fill:#c2372c;font-size:11.5px}
+.ciclo__lbl--unidad{fill:#b6c2cb;font-size:7.5px;letter-spacing:.06em}
+.ciclo__zona{opacity:0;animation:ciclo-rellena .9s ease 1.5s forwards}
+.ciclo__marca[data-m="1"]{stroke:#b3703a}
+.ciclo__marca[data-m="2"]{stroke:#c2372c}
+.ciclo__linea{fill:none;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:560;stroke-dashoffset:560;animation:ciclo-traza 2.2s cubic-bezier(.16,1,.3,1) forwards}
+.ciclo__area{opacity:0;animation:ciclo-rellena .9s ease 1.3s forwards}
+.ciclo__guia{stroke:#0f766e;stroke-width:1;stroke-dasharray:2 3;opacity:0;transition:opacity .35s ease,x1 .5s cubic-bezier(.16,1,.3,1),x2 .5s cubic-bezier(.16,1,.3,1),y1 .5s cubic-bezier(.16,1,.3,1)}
+.ciclo__guia.is-on{opacity:.5}
+.ciclo__brk path{fill:none;stroke:rgba(15,118,110,.4);stroke-width:1.2}
+.ciclo__brkTxt{fill:#0f766e;font-size:9.5px;font-weight:800;text-anchor:middle}
+.ciclo__marca{fill:#fff;stroke:#0f766e;stroke-width:2.4;opacity:.3;transition:opacity .4s ease,r .45s cubic-bezier(.16,1,.3,1),stroke-width .4s}
+.ciclo__marca.is-on{opacity:1;r:7;stroke-width:3.4}
+.ciclo__noche{display:flex;align-items:center;gap:10px;margin-top:9px;padding-top:9px;border-top:1px dashed rgba(15,118,110,.18)}
+.ciclo__nocheSvg{flex:0 0 96px;width:96px;height:17px;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.ciclo__caida{margin:0;font-size:.76rem;line-height:1.3}
+.ciclo__caida b{color:#0f766e;font-weight:800}
+.ciclo__pasos{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.ciclo__paso{display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:11px;width:100%;min-height:56px;padding:11px 13px;border-radius:14px;background:#fff;border:1px solid rgba(15,118,110,.14);font-family:inherit;text-align:left;cursor:pointer;transition:border-color .3s,box-shadow .3s,transform .3s cubic-bezier(.16,1,.3,1)}
+.ciclo__paso[aria-selected="true"]{border-color:rgba(15,118,110,.42);transform:translateX(3px);box-shadow:0 10px 24px -14px rgba(15,118,110,.7)}
+.ciclo__paso:focus-visible{outline:2px solid #0f766e;outline-offset:3px}
+.ciclo__n{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;background:rgba(15,118,110,.1);color:#115e59}
+.ciclo__paso[aria-selected="true"] .ciclo__n{background:linear-gradient(135deg,#0f766e,#115e59);color:#fff}
+.ciclo__ic{font-size:1.1rem;color:#0f766e;display:flex}
+.ciclo__tx{font-size:.82rem;line-height:1.35;color:#56646f;min-width:0}
+.ciclo__tx b{display:block;font-size:.92rem;font-weight:800;color:var(--navy,#0a1628);margin-bottom:1px;letter-spacing:-.01em}
+.ciclo__cierre{display:flex;gap:9px;align-items:flex-start;margin:16px 0 0;padding:12px 14px;border-radius:13px;background:rgba(15,118,110,.06);font-size:.86rem;line-height:1.5;color:#56646f}
+.ciclo__cierre i{color:#0f766e;flex-shrink:0;margin-top:2px}
+@media(min-width:820px){.ciclo{grid-template-columns:1.05fr 1fr;gap:26px;align-items:center}}
+@keyframes ciclo-traza{to{stroke-dashoffset:0}}
+@keyframes ciclo-rellena{to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.ciclo__linea,.ciclo__area,.ciclo__zona{animation:none;stroke-dashoffset:0;opacity:1}.ciclo__marca,.ciclo__guia{transition:none}}
+
+/* --- ALTITUD: la banda de lo normal se mueve, el umbral 45 no --- */
+.alt{--b1:40%;--b2:60%;margin-top:4px}
+.alt.is-cdmx{--b1:15%;--b2:40%}
+.alt__viz{margin-top:20px;background:linear-gradient(170deg,#fff,#f3faf9);border:1px solid rgba(15,118,110,.16);border-radius:18px;padding:16px 18px 12px}
+.alt__eje{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 16px;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#7c8a97}
+.alt__eje small{font-size:.66rem;letter-spacing:.04em;text-transform:none;color:#9aa7b2}
+.alt__esc{position:relative;height:34px}
+.alt__pista{position:absolute;left:0;right:0;top:11px;height:12px;border-radius:100px;background:rgba(15,118,110,.09);box-shadow:inset 0 1px 3px rgba(16,24,40,.08)}
+/* banda y hueco se mueven por clip-path (compositable), nunca por left/right */
+.alt__banda{position:absolute;left:0;right:0;top:6px;height:22px;border-radius:100px;background:linear-gradient(135deg,#2fbf71,#0f766e);box-shadow:0 6px 16px -8px rgba(15,118,110,.9);clip-path:inset(0 calc(100% - var(--b2)) 0 var(--b1) round 100px);transition:clip-path .65s cubic-bezier(.16,1,.3,1)}
+.alt__gap{position:absolute;left:0;right:0;top:16px;height:2px;background:repeating-linear-gradient(90deg,rgba(194,55,44,.55) 0 4px,transparent 4px 8px);clip-path:inset(0 25% 0 var(--b2));transition:clip-path .65s cubic-bezier(.16,1,.3,1)}
+.alt__umbral{position:absolute;left:75%;top:0;width:3px;height:34px;border-radius:3px;background:#c2372c}
+.alt__umbral b{position:absolute;left:50%;top:-19px;transform:translateX(-50%);font-size:.72rem;font-weight:800;color:#c2372c}
+.alt__ticks{display:flex;justify-content:space-between;margin-top:5px}
+.alt__ticks i{font-style:normal;font-size:.66rem;font-weight:800;color:#9aa7b2;font-variant-numeric:tabular-nums}
+.alt__dets{display:grid;margin-top:12px}
+.alt__det{grid-area:1/1;margin:0;padding:14px 16px;border-radius:14px;background:#fff;border:1px solid rgba(15,118,110,.16);font-size:.9rem;line-height:1.55;color:#3a4a5c;opacity:0;transform:translateY(5px);pointer-events:none;transition:opacity .3s ease,transform .4s cubic-bezier(.16,1,.3,1)}
+.alt__det.is-on{opacity:1;transform:none;pointer-events:auto}
+.alt__bn{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.alt__cell{background:linear-gradient(165deg,#fff,#f3faf9);border:1px solid rgba(15,118,110,.16);border-radius:16px;padding:13px 14px}
+.alt__cell b{display:block;font-size:clamp(1.05rem,4.6vw,1.3rem);font-weight:800;letter-spacing:-.03em;color:#115e59;margin-bottom:3px}
+.alt__cell span{font-size:.75rem;line-height:1.35;color:#56646f}
+@media(prefers-reduced-motion:reduce){.alt__banda,.alt__gap,.alt__det{transition:none}}
+
+/* --- PERFIL: dos caras, fichas que se abren en su sitio --- */
+.perfil{margin-top:4px}
+.perfil__sw{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:0;padding:4px;border-radius:100px;background:rgba(15,118,110,.09);border:1px solid rgba(15,118,110,.14)}
+.perfil__pastilla{position:absolute;top:4px;left:4px;width:calc(50% - 4px);height:calc(100% - 8px);border-radius:100px;background:linear-gradient(135deg,#0f766e,#115e59);box-shadow:0 8px 20px -10px rgba(15,118,110,.85);transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.perfil.is-b .perfil__pastilla,.alt.is-cdmx .perfil__pastilla{transform:translateX(100%)}
+.perfil__tab{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:0 8px;border:0;background:transparent;cursor:pointer;font-family:inherit;font-size:.8rem;font-weight:800;letter-spacing:-.01em;color:#647380;transition:color .35s ease}
+.perfil__tab[aria-selected="true"]{color:#fff}
+.perfil__tab b{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;border-radius:100px;background:rgba(15,118,110,.16);font-size:.66rem;transition:background .35s}
+.perfil__tab[aria-selected="true"] b{background:rgba(255,255,255,.22)}
+.perfil__tab:focus-visible{outline:2px solid #0f766e;outline-offset:3px;border-radius:100px}
+.perfil__cara{display:none;gap:8px;margin-top:12px}
+.perfil__cara.is-on{display:grid}
+.perfil__cara.is-on .pf-chip{animation:pf-entra .55s cubic-bezier(.16,1,.3,1) backwards;animation-delay:calc(var(--i) * 55ms)}
+.pf-chip{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:4px 12px;width:100%;padding:11px 13px;border-radius:15px;text-align:left;cursor:pointer;font-family:inherit;background:linear-gradient(165deg,#fff,#f3faf9);border:1px solid rgba(15,118,110,.15);transition:border-color .35s,box-shadow .35s,transform .4s cubic-bezier(.16,1,.3,1)}
+.pf-chip:focus-visible{outline:2px solid #0f766e;outline-offset:3px}
+.pf-chip[aria-expanded="true"]{border-color:rgba(15,118,110,.42);transform:translateY(-2px);box-shadow:0 16px 34px -20px rgba(15,118,110,.7)}
+.pf-chip__ic{width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;background:var(--g);box-shadow:0 8px 18px -9px rgba(16,24,40,.5);transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.pf-chip[aria-expanded="true"] .pf-chip__ic{transform:scale(1.08) rotate(-4deg)}
+.pf-chip__tx{display:flex;flex-direction:column;gap:1px;min-width:0}
+.pf-chip__tx b{font-size:.92rem;font-weight:800;letter-spacing:-.015em;color:var(--navy,#0a1628);line-height:1.25}
+.pf-chip__tx small{font-size:.74rem;color:#7c8a97;line-height:1.25}
+.pf-chip__mas{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.68rem;background:rgba(15,118,110,.1);color:#0f766e;transition:transform .45s cubic-bezier(.16,1,.3,1),background .35s}
+.pf-chip[aria-expanded="true"] .pf-chip__mas{transform:rotate(180deg);background:rgba(15,118,110,.22)}
+.pf-chip__det{grid-column:2/-1;display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.16,1,.3,1)}
+.pf-chip[aria-expanded="true"] .pf-chip__det{grid-template-rows:1fr}
+.pf-chip__det>span{overflow:hidden;font-size:.86rem;line-height:1.5;color:#56646f}
+.pf-chip[aria-expanded="true"] .pf-chip__det>span{padding-top:9px}
+.pf-chip__det a{color:#115e59;font-weight:700}
+@media(min-width:720px){.perfil__cara.is-on{grid-template-columns:1fr 1fr}}
+@keyframes pf-entra{from{opacity:0;transform:translateY(12px) scale(.97)}}
+@media(prefers-reduced-motion:reduce){.perfil__pastilla,.pf-chip,.pf-chip__ic,.pf-chip__mas,.pf-chip__det{transition:none}.perfil__cara.is-on .pf-chip{animation:none}}
+
+/* --- BENTO de cifras: se lee sin tocar nada --- */
+.bn{margin-top:4px}
+.bn-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.bn-tile{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-height:138px;padding:15px 14px 14px;border-radius:18px;text-align:left;background:linear-gradient(165deg,#fff,#f3faf9);border:1px solid rgba(15,118,110,.16)}
+.bn-tile:last-child{grid-column:1/-1;min-height:0}
+.bn-ic{width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:rgba(15,118,110,.11);color:#0f766e;font-size:.98rem;margin-bottom:6px}
+.bn-lbl{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#7c8a97}
+.bn-num{font-size:clamp(1.5rem,6vw,1.95rem);font-weight:800;letter-spacing:-.035em;line-height:1.05;color:#115e59;font-variant-numeric:tabular-nums}
+.bn-num small{font-size:.46em;font-weight:800;letter-spacing:.005em;opacity:.66}
+.bn-num--frase{font-size:clamp(1.12rem,4.6vw,1.32rem);line-height:1.2;letter-spacing:-.015em}
+.bn-sub{font-size:.76rem;line-height:1.3;color:#56646f}
+@media(min-width:760px){.bn-grid{grid-template-columns:repeat(6,1fr)}.bn-tile{grid-column:span 2}.bn-tile:nth-child(4),.bn-tile:last-child{grid-column:span 3}}
+
+/* --- CAMINO: riel que se dibuja solo y DONDE ocurre cada paso --- */
+.cam{margin-top:6px}
+.cam__lista{list-style:none;margin:0;padding:0;display:grid;gap:15px}
+.cam__paso{position:relative;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+.cam__paso::after{content:'';position:absolute;left:21px;top:50px;bottom:-15px;width:2px;border-radius:2px;background:linear-gradient(180deg,#0f766e,rgba(15,118,110,.18));transform:scaleY(0);transform-origin:top;animation:cam-riel .6s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(var(--i)*.16s + .3s)}
+.cam__paso:last-child::after{display:none}
+.cam__nodo{position:relative;flex:0 0 44px;width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.12rem;color:#fff;background:linear-gradient(140deg,#0f766e,#115e59);box-shadow:0 12px 26px -13px rgba(15,118,110,.95);opacity:0;transform:scale(.55);animation:cam-nodo .55s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(var(--i)*.16s)}
+.cam__nodo b{position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:#fff;color:#115e59;font-size:.66rem;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 7px rgba(16,24,40,.22)}
+.cam__paso--casa .cam__nodo{background:linear-gradient(140deg,#22c55e,#15924a);box-shadow:0 12px 26px -13px rgba(21,146,74,.85)}
+.cam__paso--casa .cam__nodo b{color:#15803d}
+.cam__paso--fuera .cam__nodo{background:linear-gradient(140deg,#64748b,#334155);box-shadow:0 12px 26px -13px rgba(51,65,85,.8)}
+.cam__paso--fuera .cam__nodo b{color:#334155}
+.cam__donde{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:100px;font-size:.65rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:rgba(15,118,110,.11);color:#115e59}
+.cam__paso--casa .cam__donde{background:rgba(34,197,94,.15);color:#15803d}
+.cam__paso--fuera .cam__donde{background:rgba(100,116,139,.15);color:#334155}
+.cam__tit{display:block;margin:6px 0 3px;font-size:1rem;font-weight:800;letter-spacing:-.02em;color:var(--navy,#0a1628);line-height:1.25}
+.cam__desc{margin:0;font-size:.87rem;line-height:1.5;color:#56646f}
+.cam__desc a{color:#115e59;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(17,94,89,.32)}
+@media(min-width:760px){.cam__lista{grid-template-columns:repeat(5,1fr);gap:18px}.cam__paso{grid-template-columns:1fr;gap:11px}.cam__paso::after{left:56px;right:-18px;top:21px;bottom:auto;width:auto;height:2px;background:linear-gradient(90deg,#0f766e,rgba(15,118,110,.18));transform:scaleX(0);transform-origin:left;animation-name:cam-riel-h}}
+@keyframes cam-riel{to{transform:scaleY(1)}}
+@keyframes cam-riel-h{to{transform:scaleX(1)}}
+@keyframes cam-nodo{to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.cam__nodo{opacity:1;transform:none;animation:none}.cam__paso::after{transform:none;animation:none}}
+
+/* --- MITOS: acordeon nativo, indexable y sin JS --- */
+.mit{display:grid;gap:8px;margin-top:6px}
+.mit__x{background:linear-gradient(165deg,#fff,#f3faf9);border:1px solid rgba(15,118,110,.15);border-radius:15px;overflow:hidden}
+.mit__x summary{display:flex;align-items:center;gap:11px;padding:13px 14px;cursor:pointer;list-style:none;font-size:.9rem;font-weight:700;line-height:1.35;color:var(--navy,#0a1628)}
+.mit__x summary::-webkit-details-marker{display:none}
+.mit__x summary:focus-visible{outline:2px solid #0f766e;outline-offset:-2px}
+.mit__no{flex:0 0 26px;width:26px;height:26px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#fff;background:linear-gradient(135deg,#e64545,#c0392b)}
+.mit__x p{margin:0;padding:0 14px 14px 51px;font-size:.86rem;line-height:1.55;color:#56646f}
+.mit__x p a{color:#115e59;font-weight:700}
+.mit__x[open]{border-color:rgba(15,118,110,.4)}
+@media(min-width:760px){.mit{grid-template-columns:1fr 1fr}}
+
+/* --- densidad movil: lo que en 375px seguia apilandose en una columna --- */
+.sho-fields{grid-template-columns:repeat(3,1fr);gap:8px}
+.sho-field label{font-size:.7rem;line-height:1.2}
+.sho-field input{padding:9px 10px}
+.sho-picker__opts{grid-template-columns:repeat(3,1fr);gap:7px}
+.sho-radio{flex-direction:column;align-items:flex-start;gap:5px;padding:10px 11px;min-height:0}
+.sho-radio__text{font-size:.78rem;line-height:1.25}
+.sho-opt{padding:9px 12px;min-height:44px;gap:10px}
+.sho-opt__text{font-size:.83rem;line-height:1.3}
+.sho-devices{grid-template-columns:1fr 1fr;gap:9px}
+.sho-dev{padding:15px 13px;border-radius:16px}
+.sho-dev__head{gap:9px}
+.sho-dev__name{font-size:1.05rem}
+.sho-dev__type{font-size:.72rem;line-height:1.25}
+.sho-dev__body{font-size:.82rem;line-height:1.45}
+.sho-dev__list li{font-size:.78rem;line-height:1.35}
+.sho-dev__flag{font-size:.6rem}
+@media(min-width:768px){
+  .sho-devices{gap:18px}
+  .sho-dev{padding:24px 22px;border-radius:20px}
+  .sho-dev__body{font-size:.92rem;line-height:1.6}
+  .sho-dev__list li{font-size:.88rem;line-height:1.5}
+  .sho-radio{flex-direction:row;align-items:center;gap:11px;padding:13px 14px;min-height:52px}
+  .sho-radio__text{font-size:.92rem}
+  .sho-opt{padding:11px 13px;min-height:48px}
+  .sho-opt__text{font-size:.92rem}
+}
+
+/* --- resumen compacto del IMC dentro del autoevaluador --- */
+.sho-mini{display:none;align-items:center;gap:12px;margin-top:12px;padding:12px 14px;border-radius:14px;background:rgba(15,118,110,.07);border:1px solid rgba(15,118,110,.2)}
+.sho-mini:not([hidden]){display:flex}
+.sho-mini__num{font-size:1.6rem;font-weight:800;letter-spacing:-.03em;color:#115e59;font-variant-numeric:tabular-nums;line-height:1}
+.sho-mini__tx{display:flex;flex-direction:column;gap:1px;min-width:0}
+.sho-mini__tx b{font-size:.9rem;font-weight:800;color:var(--navy,#0a1628);line-height:1.2}
+.sho-mini__tx small{font-size:.76rem;line-height:1.35;color:#56646f}
 </style>
 </head>
 <body>
@@ -617,123 +706,144 @@
 <!-- RESPUESTA DIRECTA -->
 <p class="sho-answer reveal">El <strong>síndrome de hipoventilación por obesidad</strong>, antes llamado síndrome de Pickwick, se define por tres cosas juntas: índice de masa corporal de 30 o más, bióxido de carbono elevado en la sangre estando despierto (45 mmHg o más medido a nivel del mar) y un trastorno respiratorio durante el sueño, después de descartar otras causas. Se sospecha en consulta, se orienta con <a href="/servicios/poligrafia-respiratoria/">poligrafía respiratoria</a> y bicarbonato en sangre, y se confirma con una gasometría arterial.</p>
 
-<!-- CDMX / ALTITUD -->
-<div class="sho-section reveal">
+<!-- 1. QUE TE PASA MIENTRAS DUERMES -->
+<div class="sho-section reveal" id="que-pasa">
+<span class="sho-section__eyebrow"><i class="bi bi-arrow-repeat"></i> Qué te pasa mientras duermes</span>
+<h2 class="sho-section__title">La noche en que el aire <em>se queda corto</em></h2>
+<p class="sho-section__lead">Cuatro momentos, cada noche. Tócalos.</p>
+
+<div class="ciclo" id="ciclo">
+  <div class="ciclo__viz">
+    <svg viewBox="0 0 340 134" class="ciclo__svg" role="img" aria-label="Una noche completa: el bióxido de carbono en la sangre empieza en 40, sube mientras duermes hasta pasar de 50 y por la mañana baja, pero ya no regresa al punto donde empezó">
+      <defs>
+        <linearGradient id="cicloFillSho" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#c2372c" stop-opacity=".16"/>
+          <stop offset="55%" stop-color="#0f766e" stop-opacity=".1"/>
+          <stop offset="100%" stop-color="#0f766e" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="cicloProfSho" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#c2372c"/>
+          <stop offset="52%" stop-color="#d97706"/>
+          <stop offset="100%" stop-color="#0f766e"/>
+        </linearGradient>
+        <linearGradient id="cicloZonaSho" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#c2372c" stop-opacity=".15"/>
+          <stop offset="100%" stop-color="#c2372c" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <rect class="ciclo__zona" x="32" y="14" width="308" height="26" fill="url(#cicloZonaSho)"/>
+      <line x1="32" y1="26" x2="340" y2="26" class="ciclo__base ciclo__base--peligro"/>
+      <line x1="32" y1="61" x2="340" y2="61" class="ciclo__base ciclo__base--media"/>
+      <line x1="32" y1="96" x2="340" y2="96" class="ciclo__base"/>
+      <text x="0" y="29" class="ciclo__lbl ciclo__lbl--peligro">55</text>
+      <text x="0" y="64" class="ciclo__lbl ciclo__lbl--media">47</text>
+      <text x="0" y="100" class="ciclo__lbl">40</text>
+      <text x="0" y="112" class="ciclo__lbl ciclo__lbl--unidad">mmHg</text>
+      <path class="ciclo__area" fill="url(#cicloFillSho)" d="M32,96 L86,96 C130,96 170,38 214,38 L240,38 C258,38 262,78 276,82 L340,82 L340,104 L32,104 Z"/>
+      <path class="ciclo__linea" stroke="url(#cicloProfSho)" d="M32,96 L86,96 C130,96 170,38 214,38 L240,38 C258,38 262,78 276,82 L340,82"/>
+      <line class="ciclo__guia is-on" x1="44" y1="96" x2="44" y2="106"/>
+      <g class="ciclo__brk" aria-hidden="true">
+        <path d="M86,112 v5 H276 v-5"/>
+        <text x="181" y="130" class="ciclo__brkTxt">toda la noche sin acabar de sacarlo</text>
+      </g>
+      <g class="ciclo__marcas">
+        <circle class="ciclo__marca" data-m="0" cx="44"  cy="96" r="4.5"/>
+        <circle class="ciclo__marca" data-m="1" cx="150" cy="67" r="4.5"/>
+        <circle class="ciclo__marca" data-m="2" cx="227" cy="38" r="4.5"/>
+        <circle class="ciclo__marca" data-m="3" cx="300" cy="82" r="4.5"/>
+      </g>
+    </svg>
+    <div class="ciclo__noche">
+      <svg viewBox="0 0 300 20" class="ciclo__nocheSvg" aria-hidden="true" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="cicloFadeSho" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#0f766e" stop-opacity=".75"/>
+            <stop offset="58%" stop-color="#d97706" stop-opacity=".85"/>
+            <stop offset="100%" stop-color="#c2372c" stop-opacity=".9"/>
+          </linearGradient>
+        </defs>
+        <path d="M0,18 C12,18 18,12 30,12 C42,12 48,17 60,17 C72,17 78,10 90,10 C102,10 108,15 120,15 C132,15 138,8 150,8 C162,8 168,13 180,13 C192,13 198,6 210,6 C222,6 228,11 240,11 C252,11 258,4 270,4 C282,4 288,8 300,8" stroke="url(#cicloFadeSho)"/>
+      </svg>
+      <p class="ciclo__caida"><b>Noche tras noche, el punto de partida sube un poco más.</b></p>
+    </div>
+  </div>
+
+  <ol class="ciclo__pasos" id="cicloPasos">
+    <li><button type="button" class="ciclo__paso" aria-selected="true" data-m="0">
+      <span class="ciclo__n">1</span>
+      <span class="ciclo__ic"><i class="bi bi-arrows-collapse" aria-hidden="true"></i></span>
+      <span class="ciclo__tx"><b>Te acuestas</b>El peso del abdomen empuja el diafragma. Es respirar con un chaleco apretado.</span>
+    </button></li>
+    <li><button type="button" class="ciclo__paso" aria-selected="false" data-m="1">
+      <span class="ciclo__n">2</span>
+      <span class="ciclo__ic"><i class="bi bi-speedometer" aria-hidden="true"></i></span>
+      <span class="ciclo__tx"><b>Respiras corto</b>El acelerador de la respiración se pisa, pero el motor responde poco. El bióxido de carbono sube.</span>
+    </button></li>
+    <li><button type="button" class="ciclo__paso" aria-selected="false" data-m="2">
+      <span class="ciclo__n">3</span>
+      <span class="ciclo__ic"><i class="bi bi-shield-fill-check" aria-hidden="true"></i></span>
+      <span class="ciclo__tx"><b>El riñón te protege</b>Retiene bicarbonato para que la sangre no se acidifique. Es correcto, y tiene un costo.</span>
+    </button></li>
+    <li><button type="button" class="ciclo__paso" aria-selected="false" data-m="3">
+      <span class="ciclo__n">4</span>
+      <span class="ciclo__ic"><i class="bi bi-sunrise-fill" aria-hidden="true"></i></span>
+      <span class="ciclo__tx"><b>Amaneces</b>Ese bicarbonato apaga la señal de "respira más". El bióxido de carbono ya no vuelve a donde empezó.</span>
+    </button></li>
+  </ol>
+</div>
+
+<p class="ciclo__cierre"><i class="bi bi-info-circle-fill" aria-hidden="true"></i> <span>Por eso el dolor de cabeza es al despertar y cede en la primera o segunda hora: es el bióxido de carbono que se acumuló de noche.</span></p>
+</div>
+
+<!-- 2. ALTITUD: EL ANGULO PROPIO -->
+<div class="sho-section reveal" id="altitud">
 <span class="sho-section__eyebrow"><i class="bi bi-geo-alt-fill"></i> Lo que casi nadie te explica</span>
-<h2 class="sho-section__title">¿Vivo en la CDMX, <em>cambia algo?</em></h2>
+<h2 class="sho-section__title">La regla se escribió al nivel del mar. <em>Tú vives a 2,240 metros.</em></h2>
+<p class="sho-section__lead">Mueve el interruptor y mira dónde queda tu respiración normal frente al umbral de 45.</p>
 
-<div class="sho-altitud">
-<div class="sho-altitud__inner">
-<div class="sho-altitud__badge"><i class="bi bi-triangle-fill"></i> 2,240 metros sobre el nivel del mar</div>
-<h3 class="sho-altitud__title">Sí cambia, y juega a favor de la sospecha</h3>
-<p class="sho-altitud__p">La definición internacional de este síndrome se escribió pensando en pacientes <strong>a nivel del mar</strong>. La Ciudad de México está a unos 2,240 metros de altitud, y aquí la respiración normal de una persona sana mantiene el bióxido de carbono <strong>más bajo</strong> que en la costa, porque se respira un poco más profundo para compensar el aire menos denso.</p>
-<p class="sho-altitud__p">La consecuencia práctica es directa: si tu bióxido de carbono sale en 45 mmHg medido aquí, ese número representa <strong>más hipoventilación</strong> que ese mismo 45 medido en Veracruz o en Acapulco. En la Ciudad de México ese resultado refuerza la sospecha, no la debilita.</p>
-
-<div class="sho-altitud__grid">
-  <div class="sho-altitud__cell">
-    <div class="sho-altitud__cell-num">92 a 95%</div>
-    <div class="sho-altitud__cell-lbl">es el rango de saturación de oxígeno que se ve como habitual en personas sanas en la Ciudad de México, más bajo que a nivel del mar</div>
+<div class="alt" id="alt">
+  <div class="perfil__sw" role="tablist" aria-label="Nivel del mar o Ciudad de México">
+    <span class="perfil__pastilla" aria-hidden="true"></span>
+    <button type="button" class="perfil__tab" data-alt="0" role="tab" aria-selected="true"><i class="bi bi-water" aria-hidden="true"></i> Al nivel del mar</button>
+    <button type="button" class="perfil__tab" data-alt="1" role="tab" aria-selected="false"><i class="bi bi-buildings-fill" aria-hidden="true"></i> En la CDMX</button>
   </div>
-  <div class="sho-altitud__cell">
-    <div class="sho-altitud__cell-num">45 mmHg</div>
-    <div class="sho-altitud__cell-lbl">es el umbral internacional de bióxido de carbono, escrito para nivel del mar; aquí ese mismo valor pesa más</div>
+
+  <div class="alt__viz">
+    <p class="alt__eje"><span>bióxido de carbono en sangre</span><small>mmHg</small></p>
+    <div class="alt__esc">
+      <span class="alt__pista"></span>
+      <span class="alt__banda"><b>lo normal aquí</b></span>
+      <span class="alt__gap" aria-hidden="true"></span>
+      <span class="alt__umbral"><b>45</b></span>
+    </div>
+    <div class="alt__ticks" aria-hidden="true"><i>30</i><i>35</i><i>40</i><i>45</i><i>50</i></div>
   </div>
-</div>
 
-<p class="sho-altitud__p">Por eso los umbrales de oxímetro copiados de páginas extranjeras generan falsas alarmas en la ciudad: un 93% que allá encendería focos rojos, aquí puede ser el número normal de una persona sana. Y al revés: el oxímetro nunca ve el bióxido de carbono, así que un número bonito en la pantalla no descarta nada.</p>
+  <div class="alt__dets">
+    <p class="alt__det is-on" data-alt="0">Allá una persona sana anda cerca de <strong>40</strong>. Del 40 al 45 hay poco trecho, y por eso el umbral se puso ahí.</p>
+    <p class="alt__det" data-alt="1">Aquí respiras un poco más profundo para compensar el aire menos denso, así que lo normal queda <strong>más abajo</strong> y el trecho hasta 45 se alarga. Traducido: un 45 <strong>medido aquí</strong> pesa más que un 45 medido en Veracruz.</p>
+  </div>
 
-<div class="sho-altitud__note"><i class="bi bi-info-circle-fill"></i><span>Esto es <strong>razonamiento fisiológico</strong>, no un umbral validado. No existe un punto de corte de bióxido de carbono validado específicamente para la Ciudad de México, así que la interpretación se hace caso por caso y junto con el resto de tus estudios.</span></div>
-</div>
-</div>
-</div>
+  <div class="alt__bn">
+    <div class="alt__cell"><b>92 a 95%</b><span>es la saturación que se ve como habitual en personas sanas en la ciudad, más baja que en la costa</span></div>
+    <div class="alt__cell"><b>Nunca</b><span>el oxímetro ve el bióxido de carbono; un número bonito en la pantalla no descarta nada</span></div>
+  </div>
 
-<!-- SINTOMAS -->
-<div class="sho-section reveal">
-<span class="sho-section__eyebrow"><i class="bi bi-clipboard-pulse"></i> Cómo se siente</span>
-<h2 class="sho-section__title">¿Te suena <em>familiar</em> alguno?</h2>
-<p class="sho-section__lead">Los síntomas del síndrome de hipoventilación por obesidad se reparten entre la noche y el día. De noche se parecen mucho a los de la <a href="/enfermedades/apnea-del-sueno/">apnea obstructiva del sueño</a>; de día se confunden con estrés, con anemia o con falta de condición.</p>
-
-<div class="sho-symp">
-<div class="sho-symp__card">
-<div class="sho-symp__icon" style="background:linear-gradient(135deg,#0f766e,#115e59);box-shadow:0 8px 20px rgba(15,118,110,.3)"><i class="bi bi-volume-up-fill"></i></div>
-<h3>Roncas fuerte</h3>
-<p>Y alguien nota que dejas de respirar</p>
-</div>
-<div class="sho-symp__card">
-<div class="sho-symp__icon" style="background:linear-gradient(135deg,#7c3aed,#5b21b6);box-shadow:0 8px 20px rgba(124,58,237,.3)"><i class="bi bi-emoji-dizzy"></i></div>
-<h3>Dolor de cabeza al despertar</h3>
-<p>Que cede en la primera o segunda hora</p>
-</div>
-<div class="sho-symp__card">
-<div class="sho-symp__icon" style="background:linear-gradient(135deg,#0891b2,#0e7490);box-shadow:0 8px 20px rgba(8,145,178,.3)"><i class="bi bi-arrow-up-square-fill"></i></div>
-<h3>No puedes acostarte plano</h3>
-<p>Necesitas varias almohadas o dormir sentado</p>
-</div>
-<div class="sho-symp__card">
-<div class="sho-symp__icon" style="background:linear-gradient(135deg,#e64545,#c0392b);box-shadow:0 8px 20px rgba(230,69,69,.3)"><i class="bi bi-battery-half"></i></div>
-<h3>No descansas</h3>
-<p>Aunque duermas siete horas o más</p>
+  <div class="sho-warn" style="margin-top:14px;margin-bottom:0"><i class="bi bi-info-circle-fill"></i><span>Esto es <strong>razonamiento fisiológico</strong>, no un umbral validado: no existe un punto de corte oficial para la Ciudad de México. Se interpreta caso por caso.</span></div>
 </div>
 </div>
 
-<ul class="sho-more">
-<li><i class="bi bi-check-circle-fill"></i> Despertares con sensación de ahogo</li>
-<li><i class="bi bi-check-circle-fill"></i> Levantarte varias veces en la noche a orinar</li>
-<li><i class="bi bi-check-circle-fill"></i> Boca seca al amanecer</li>
-<li><i class="bi bi-check-circle-fill"></i> Somnolencia y fatiga durante el día</li>
-<li><i class="bi bi-check-circle-fill"></i> Problemas de concentración y de memoria, que en los estudios se han medido de forma objetiva</li>
-<li><i class="bi bi-check-circle-fill"></i> Falta de aire al caminar, al subir escaleras o al cargar cosas</li>
-<li><i class="bi bi-check-circle-fill"></i> Hinchazón de piernas y tobillos</li>
-<li><i class="bi bi-check-circle-fill"></i> Labios o uñas de color morado</li>
-<li><i class="bi bi-check-circle-fill"></i> Cuello ancho</li>
-</ul>
-
-<p class="sho-section__lead" style="margin-top:22px">De todos ellos, la falta de aire al acostarse plano merece atención aparte: en los estudios fue un dato que se asoció de forma independiente con este síndrome, con una probabilidad cerca de cinco veces mayor. Si duermes semisentado desde hace meses y ya lo diste por normal, vale la pena revisarlo.</p>
-</div>
-
-<!-- SENALES DE ALARMA -->
-<div class="sho-section reveal">
-<span class="sho-section__eyebrow" style="color:#b91c1c;background:rgba(185,28,28,.08);border-color:rgba(185,28,28,.2)"><i class="bi bi-exclamation-triangle-fill"></i> Señales de alarma</span>
-<h2 class="sho-section__title">Esto no se agenda: <em>se atiende hoy</em></h2>
-<p class="sho-section__lead">Si tú o alguien de tu familia presenta cualquiera de estas señales, no esperes a una cita. Acude a un servicio de urgencias.</p>
-
-<div class="sho-alarm" id="shoAlarma">
-<div class="sho-alarm__inner">
-<div class="sho-alarm__head">
-<div class="sho-alarm__badge"><i class="fa-solid fa-triangle-exclamation"></i></div>
-<h3 class="sho-alarm__title">Ve a urgencias si aparece:</h3>
-</div>
-<ul class="sho-alarm__list">
-<li><i class="bi bi-person-exclamation"></i> Somnolencia que impide mantenerse despierto en una conversación</li>
-<li><i class="bi bi-question-diamond-fill"></i> Confusión, o dificultad para despertar a la persona</li>
-<li><i class="bi bi-droplet-fill"></i> Labios o uñas morados que no mejoran</li>
-<li><i class="bi bi-wind"></i> Falta de aire en reposo, o que impide hablar en oraciones completas</li>
-<li><i class="bi bi-heart-pulse-fill"></i> Hinchazón de piernas que aumenta rápido, o con dolor de pecho o palpitaciones</li>
-<li><i class="bi bi-car-front-fill"></i> Quedarse dormido al volante</li>
-<li><i class="bi bi-thermometer-high"></i> Empeoramiento súbito del cansancio con dolor de cabeza intenso</li>
-</ul>
-<div class="sho-alarm__out">
-<p><strong>No uses esta página para decidir si esperas.</strong> Estas señales pueden significar que el bióxido de carbono subió lo suficiente para afectar el estado de alerta, y eso se valora en un servicio de urgencias con gasometría en el momento.</p>
-<div class="sho-alarm__btns">
-<a href="tel:911" class="sho-alarm__btn sho-alarm__btn--911"><i class="bi bi-telephone-fill"></i> Llamar al 911</a>
-<a href="/ubicacion/" class="sho-alarm__btn sho-alarm__btn--urg"><i class="bi bi-hospital"></i> Ver urgencias más cercanas</a>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<!-- CALCULADORA DE IMC -->
-<div class="sho-section reveal">
-<span class="sho-section__eyebrow"><i class="bi bi-calculator-fill"></i> Herramienta 1</span>
-<h2 class="sho-section__title">Calcula tu <em>índice de masa corporal</em></h2>
-<p class="sho-section__lead">El índice de masa corporal es el primero de los tres criterios y sirve para ubicar el contexto, nada más. Aquí lo enfocamos en una sola cosa: cómo está trabajando tu respiración. No mide tu valor ni tu apariencia.</p>
+<!-- 3. CALCULA TU RIESGO -->
+<div class="sho-section reveal" id="calcula">
+<span class="sho-section__eyebrow"><i class="bi bi-clipboard2-check-fill"></i> Tu resumen para la consulta</span>
+<h2 class="sho-section__title">Calcula tu riesgo <em>en dos minutos</em></h2>
+<p class="sho-section__lead">No diagnostica: ningún cuestionario puede, porque el diagnóstico depende de medir el bióxido de carbono en sangre. Sirve para llegar a la consulta con todo ordenado.</p>
 
 <div class="sho-tool">
 <div class="sho-tool__inner">
-<h3 class="sho-tool__title">Índice de masa corporal y perímetro de cuello</h3>
-<p class="sho-tool__sub">Escribe tu peso y tu estatura. El cuello es opcional, y si lo pones se usa también en la autoevaluación de abajo.</p>
 
+<fieldset class="sho-fieldset">
+<legend class="sho-legend">Tus medidas<span>El cuello es opcional. Con esto se marcan solas dos preguntas de abajo.</span></legend>
 <div class="sho-fields">
   <div class="sho-field">
     <label for="shoKg">Peso en kilogramos</label>
@@ -746,40 +856,15 @@
   <div class="sho-field">
     <label for="shoCuello">Cuello en centímetros</label>
     <input id="shoCuello" type="number" inputmode="decimal" min="25" max="70" step="0.5" placeholder="Opcional">
-    <small>Se mide a la altura de la nuez, con la cinta horizontal.</small>
   </div>
 </div>
-
-<button type="button" class="sho-btn" id="shoImcBtn"><i class="bi bi-calculator"></i> Calcular mi índice de masa corporal</button>
-
-<div class="sho-res sho-res--imc" id="shoImcRes" hidden role="status" aria-live="polite">
-  <div class="sho-res__row">
-    <div class="sho-res__imc-num" id="shoImcNum">0</div>
-    <div>
-      <div class="sho-res__label">Índice de masa corporal</div>
-      <div class="sho-res__title" id="shoImcCat">Categoría</div>
-    </div>
-  </div>
-  <p class="sho-res__msg" id="shoImcMsg"></p>
-  <div class="sho-res__extra" id="shoImcFreq" hidden></div>
-  <ul class="sho-res__list" id="shoImcExtras"></ul>
+<button type="button" class="sho-btn sho-btn--ghost" id="shoImcBtn"><i class="bi bi-calculator"></i> Calcular</button>
+<div class="sho-mini" id="shoImcRes" hidden role="status" aria-live="polite">
+  <span class="sho-mini__num" id="shoImcNum">0</span>
+  <span class="sho-mini__tx"><b id="shoImcCat">Categoría</b><small id="shoImcMsg"></small></span>
 </div>
-
-<div class="sho-warn" style="margin-top:16px;margin-bottom:0"><i class="bi bi-info-circle-fill"></i><span>El índice de masa corporal <strong>no distingue músculo de grasa</strong> ni dice dónde está distribuida. Es un punto de partida, no un diagnóstico, y por sí solo no confirma ni descarta nada.</span></div>
-</div>
-</div>
-</div>
-
-<!-- AUTOEVALUADOR -->
-<div class="sho-section reveal">
-<span class="sho-section__eyebrow"><i class="bi bi-clipboard2-check-fill"></i> Herramienta 2</span>
-<h2 class="sho-section__title">Autoevaluador para <em>llevar a la consulta</em></h2>
-<p class="sho-section__lead">Son dos bloques. El primero es el cuestionario STOP-BANG, que se usa en todo el mundo para decidir a quién conviene estudiarle el sueño. El segundo reúne señales que apuntan específicamente a hipoventilación y se reporta aparte, sin sumarse al primero.</p>
-
-<div class="sho-tool">
-<div class="sho-tool__inner">
-
-<div class="sho-warn"><i class="bi bi-exclamation-triangle-fill"></i><span><strong>Antes de empezar:</strong> esto no diagnostica. Ningún cuestionario en línea puede confirmar ni descartar el síndrome de hipoventilación por obesidad, porque el diagnóstico depende de una medición de bióxido de carbono en la sangre. Sirve para ordenar lo que traes y para que la consulta rinda más.</span></div>
+<div class="sho-res__extra" id="shoImcFreq" hidden></div>
+</fieldset>
 
 <fieldset class="sho-fieldset">
 <legend class="sho-legend">Bloque A: STOP-BANG<span>Ocho preguntas de sí o no. Marca solo las que apliquen.</span></legend>
@@ -796,7 +881,7 @@
 </fieldset>
 
 <fieldset class="sho-fieldset">
-<legend class="sho-legend">Bloque B: señales de hipoventilación<span>Estas no suman al bloque A. Se reportan por separado porque apuntan al bióxido de carbono.</span></legend>
+<legend class="sho-legend">Bloque B: señales de hipoventilación<span>No suman al bloque A. Se reportan aparte porque apuntan al bióxido de carbono.</span></legend>
 <div class="sho-opts">
   <label class="sho-opt"><input type="checkbox" data-block="b" data-key="cefalea"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Despiertas con dolor de cabeza que cede en una o dos horas?</span></label>
   <label class="sho-opt"><input type="checkbox" data-block="b" data-key="ortopnea"><span class="sho-opt__box"><i class="bi bi-check-lg"></i></span><span class="sho-opt__text">¿Te falta el aire al acostarte plano, o necesitas varias almohadas?</span></label>
@@ -812,7 +897,7 @@
     <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#e64545,#c0392b);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0"><i class="bi bi-exclamation-triangle-fill"></i></div>
     <div><div class="sho-res__label" style="color:#ff8a5b">Señal de alarma</div><div class="sho-res__title">Los labios o las uñas moradas se valoran hoy</div></div>
   </div>
-  <p class="sho-res__msg">Ese color puede significar que el oxígeno está bajo en este momento. No lo dejes para una cita: acude a un servicio de urgencias para que te valoren y, si hace falta, te tomen una gasometría en el momento.</p>
+  <p class="sho-res__msg">Ese color puede significar que el oxígeno está bajo en este momento. No lo dejes para una cita: acude a un servicio de urgencias.</p>
   <a href="tel:911" class="sho-res__wa" style="background:#e64545;box-shadow:0 6px 16px rgba(230,69,69,.35)"><i class="bi bi-telephone-fill"></i> Llamar al 911</a>
 </div>
 
@@ -828,10 +913,8 @@
   </div>
   <p class="sho-res__msg" id="shoAeMsg"></p>
   <div class="sho-res__extra" id="shoAeB" hidden></div>
-  <p class="sho-res__msg" id="shoAeCierre"></p>
-  <div class="sho-warn" style="margin:14px 0 0"><i class="bi bi-exclamation-triangle-fill"></i><span><strong>Recuerda:</strong> este resumen no es un diagnóstico ni una probabilidad de tenerlo. Ningún cuestionario en línea puede confirmar ni descartar el síndrome de hipoventilación por obesidad. Lo que sigue es una valoración médica, y en su caso los estudios.</span></div>
   <div class="sho-btn-row">
-    <button type="button" class="sho-btn sho-btn--ghost" id="shoCopyBtn"><i class="bi bi-clipboard-check"></i> Preparar mis respuestas para la consulta</button>
+    <button type="button" class="sho-btn sho-btn--ghost" id="shoCopyBtn"><i class="bi bi-clipboard-check"></i> Copiar mis respuestas</button>
     <a href="https://wa.me/522224926718?text=Hola%20Dr.%2C%20vengo%20de%20su%20sitio%20web%20alveos.mx" target="_blank" rel="noopener noreferrer" class="sho-btn" id="shoWaBtn" style="text-decoration:none"><i class="bi bi-whatsapp"></i> Enviarlo por WhatsApp</a>
   </div>
   <p class="sho-copy-msg" id="shoCopyMsg" hidden role="status" aria-live="polite"></p>
@@ -841,135 +924,216 @@
 </div>
 </div>
 
-<!-- FISIOPATOLOGIA -->
-<div class="sho-section reveal">
-<span class="sho-section__eyebrow"><i class="bi bi-diagram-3-fill"></i> Por qué pasa</span>
-<h2 class="sho-section__title">Cuatro piezas que <em>se refuerzan entre sí</em></h2>
-<p class="sho-section__lead">No es una sola falla, son cuatro cosas que se empujan unas a otras. Entenderlas ayuda a ver por qué el tratamiento se enfoca en la noche aunque el problema se sienta de día.</p>
+<!-- 4. SEÑALES -->
+<div class="sho-section reveal" id="senales">
+<span class="sho-section__eyebrow"><i class="bi bi-clipboard-pulse"></i> Cómo se siente</span>
+<h2 class="sho-section__title">De noche se parece a la apnea. <em>De día, a cualquier cosa.</em></h2>
+<p class="sho-section__lead">Toca la que te suene. De noche se confunde con la <a href="/enfermedades/apnea-del-sueno/">apnea obstructiva del sueño</a>; de día, con estrés, con anemia o con falta de condición.</p>
 
-<div class="sho-grid-2">
-  <div class="sho-card" style="display:flex;flex-direction:column">
-    <div class="sho-card__icon"><i class="bi bi-arrows-collapse"></i></div>
-    <h3>1. La mecánica: respirar con un chaleco apretado</h3>
-    <p>El peso del abdomen y del tórax empuja el diafragma hacia arriba. Los pulmones se quedan con menos aire de reserva al final de cada respiración, y las vías aéreas pequeñas de las bases se cierran.</p>
-    <p>La analogía que uso en consulta es esa: respirar con un chaleco apretado. Y el chaleco aprieta más al acostarse, porque entonces el peso cae directo sobre el diafragma.</p>
-    <div class="sho-card__pill"><i class="bi bi-lightbulb-fill"></i><span>Por eso muchas personas terminan durmiendo sentadas o con <strong>tres o cuatro almohadas</strong>, sin saber que eso ya es un dato clínico.</span></div>
+<div class="perfil" id="perfilW">
+  <div class="perfil__sw" role="tablist" aria-label="Señales de noche y de día">
+    <span class="perfil__pastilla" aria-hidden="true"></span>
+    <button type="button" class="perfil__tab" data-cara="0" role="tab" aria-selected="true"><i class="bi bi-moon-stars-fill" aria-hidden="true"></i> De noche <b>5</b></button>
+    <button type="button" class="perfil__tab" data-cara="1" role="tab" aria-selected="false"><i class="bi bi-sun-fill" aria-hidden="true"></i> De día <b>5</b></button>
   </div>
 
-  <div class="sho-card" style="display:flex;flex-direction:column">
-    <div class="sho-card__icon"><i class="bi bi-speedometer"></i></div>
-    <h3>2. La leptina: el acelerador que responde poco</h3>
-    <p>La leptina es una hormona que produce la grasa. Además de participar en el apetito, estimula la respiración. En la obesidad hay mucha leptina, pero el cerebro responde poco a ella, algo que se llama resistencia a la leptina.</p>
-    <p>Dicho fácil: el acelerador de la respiración está ahí, se pisa, pero el motor responde poco.</p>
-    <div class="sho-card__pill"><i class="bi bi-question-circle-fill"></i><span>Este mecanismo <strong>todavía no está cerrado</strong> en la investigación. Es la explicación más aceptada, no un hecho terminado.</span></div>
+  <div class="perfil__cara is-on" data-cara="0">
+    <button type="button" class="pf-chip" data-pf="0-0" aria-expanded="false" style="--i:0">
+      <span class="pf-chip__ic" style="--g:linear-gradient(135deg,#0f766e,#115e59)"><i class="bi bi-volume-up-fill" aria-hidden="true"></i></span>
+      <span class="pf-chip__tx"><b>Roncas fuerte</b><small>Y alguien nota que dejas de respirar</small></span>
+      <span class="pf-chip__mas" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+      <span class="pf-chip__det"><span>El ronquido con pausas presenciadas es de los motivos más claros para estudiar el sueño.</span></span>
+    </button>
+    <button type="button" class="pf-chip" data-pf="0-1" aria-expanded="false" style="--i:1">
+      <span class="pf-chip__ic" style="--g:linear-gradient(135deg,#0891b2,#0e7490)"><i class="bi bi-arrow-up-square-fill" aria-hidden="true"></i></span>
+      <span class="pf-chip__tx"><b>No puedes acostarte plano</b><small>Necesitas varias almohadas o dormir sentado</small></span>
+      <span class="pf-chip__mas" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+      <span class="pf-chip__det"><span>Es la señal que más apunta a este síndrome en particular. Si duermes semisentado desde hace meses y ya lo diste por normal, vale la pena revisarlo.</span></span>
+    </button>
+    <button type="button" class="pf-chip" data-pf="0-2" aria-expanded="false" style="--i:2">
+      <span class="pf-chip__ic" style="--g:linear-gradient(135deg,#7c3aed,#5b21b6)"><i class="bi bi-arrow-repeat" aria-hidden="true"></i></span>
+      <span class="pf-chip__tx"><b>Te levantas a orinar</b><small>Dos veces o más cada noche</small></span>
+      <span class="pf-chip__mas" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+      <span class="pf-chip__det"><span>Levantarse varias veces también cuenta como dato del sueño, aunque casi nadie lo cuenta en consulta.</span></span>
+    </button>
+    <button type="button" class="pf-chip" data-pf="0-3" aria-expanded="false" style="--i:3">
+      <span class="pf-chip__ic" style="--g:linear-gradient(135deg,#e64545,#c0392b)"><i class="bi bi-wind" aria-hidden="true"></i></span>
+      <span class="pf-chip__tx"><b>Despiertas ahogado</b><small>Con sensación de que te falta el aire</small></span>
+      <span class="pf-chip__mas" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+      <span class="pf-chip__det"><span>Ese despertar brusco es la manera en que el cuerpo corrige una respiración que se quedó corta.</span></span>
+    </button>
+    <button type="button" class="pf-chip" data-pf="0-4" aria-expanded="false" style="--i:4">
+      <span class="pf-chip__ic" style="--g:linear-gradient(135deg,#0284c7,#075985)"><i class="bi bi-droplet-half" aria-hidden="true"></i></span>
+      <span class="pf-chip__tx"><b>Boca seca al amanecer</b><small>Y ronquido de toda la noche</small></span>
+      <span class="pf-chip__mas" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+      <span class="pf-chip__det"><span>Es la huella de haber respirado por la boca durante horas.</span></span>
+    </button>
   </div>
-
-  <div class="sho-card" style="display:flex;flex-direction:column">
-    <div class="sho-card__icon"><i class="bi bi-moon-stars-fill"></i></div>
-    <h3>3. El sueño: casi siempre viene acompañado</h3>
-    <p>Cerca del 90% de las personas con este síndrome también tienen <a href="/enfermedades/apnea-del-sueno/">apnea obstructiva del sueño</a>, y alrededor del 70% la tienen en grado grave. Son dos problemas distintos que conviven.</p>
-    <p>El 10% restante hipoventila sin que la garganta se cierre: respiran poco y superficial toda la noche, sin pausas evidentes.</p>
-    <div class="sho-card__pill"><i class="bi bi-info-circle-fill"></i><span>Ese 10% es justo el grupo que se pasa por alto cuando <strong>solo se busca apnea</strong> y nadie mide el bióxido de carbono.</span></div>
+  <div class="perfil__cara" data-cara="1">
+    <button type="button" class="pf-chip" data-pf="1-0" aria-expanded="false" style="--i:0">
+      <span class="pf-chip__ic" style="--g:linear-gradient(135deg,#7c3aed,#5b21b6)"><i class="bi bi-emoji-dizzy" aria-hidden="true"></i></span>
+      <span class="pf-chip__tx"><b>Dolor de cabeza al despertar</b><small>Que cede en la primera o segunda hora</small></span>
+      <span class="pf-chip__mas" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+      <span class="pf-chip__det"><span>Ese patrón, aparecer al despertar y ceder solo, es muy sugerente de bióxido de carbono acumulado de noche. Cambiar de almohada no lo quita.</span></span>
+    </button>
+    <button type="button" class="pf-chip" data-pf="1-1" aria-expanded="false" style="--i:1">
+      <span class="pf-chip__ic" style="--g:linear-gradient(135deg,#e64545,#c0392b)"><i class="bi bi-battery-half" aria-hidden="true"></i></span>
+      <span class="pf-chip__tx"><b>No descansas</b><small>Aunque duermas siete horas o más</small></span>
+      <span class="pf-chip__mas" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+      <span class="pf-chip__det"><span>Dormir muchas horas y levantarse sin batería es lo que más se confunde con estrés o con falta de condición.</span></span>
+    </button>
+    <button type="button" class="pf-chip" data-pf="1-2" aria-expanded="false" style="--i:2">
+      <span class="pf-chip__ic" style="--g:linear-gradient(135deg,#0f766e,#115e59)"><i class="bi bi-lungs-fill" aria-hidden="true"></i></span>
+      <span class="pf-chip__tx"><b>Te falta el aire al caminar</b><small>Al subir escaleras o al cargar cosas</small></span>
+      <span class="pf-chip__mas" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+      <span class="pf-chip__det"><span>Es el motivo por el que muchas veces se trata como asma sin serlo. Por eso se hace <a href="/servicios/espirometria/">espirometría</a>.</span></span>
+    </button>
+    <button type="button" class="pf-chip" data-pf="1-3" aria-expanded="false" style="--i:3">
+      <span class="pf-chip__ic" style="--g:linear-gradient(135deg,#0891b2,#0e7490)"><i class="bi bi-water" aria-hidden="true"></i></span>
+      <span class="pf-chip__tx"><b>Se te hinchan las piernas</b><small>Tobillos que dejan marca del calcetín</small></span>
+      <span class="pf-chip__mas" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+      <span class="pf-chip__det"><span>Puede ser la señal de que el corazón derecho ya está resintiendo las noches. Eso se valora, no se espera.</span></span>
+    </button>
+    <button type="button" class="pf-chip" data-pf="1-4" aria-expanded="false" style="--i:4">
+      <span class="pf-chip__ic" style="--g:linear-gradient(135deg,#475569,#1e293b)"><i class="bi bi-eye-slash-fill" aria-hidden="true"></i></span>
+      <span class="pf-chip__tx"><b>Te cuesta concentrarte</b><small>Y se te olvidan las cosas</small></span>
+      <span class="pf-chip__mas" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+      <span class="pf-chip__det"><span>La somnolencia de día y los fallos de memoria se han medido de forma objetiva en los estudios, no son una impresión.</span></span>
+    </button>
   </div>
+</div>
+</div>
 
-  <div class="sho-card" style="display:flex;flex-direction:column">
-    <div class="sho-card__icon"><i class="bi bi-arrow-repeat"></i></div>
-    <h3>4. El círculo vicioso del bicarbonato</h3>
-    <p>Cuando el bióxido de carbono sube por las noches, el riñón compensa reteniendo bicarbonato para que la sangre no se acidifique. Es una respuesta correcta y protectora.</p>
-    <p>El problema es que ese bicarbonato alto amortigua la señal de "respira más" que normalmente dispara el bióxido de carbono. Así, la hipoventilación deja de corregirse sola y se extiende del sueño a la vigilia.</p>
-    <div class="sho-card__pill"><i class="bi bi-arrow-repeat"></i><span>Ese círculo es la razón por la que el problema <strong>se autoperpetúa</strong> hasta volverse un dato de todo el día.</span></div>
+<!-- 5. SEÑALES DE ALARMA -->
+<div class="sho-section reveal">
+<span class="sho-section__eyebrow" style="color:#b91c1c;background:rgba(185,28,28,.08);border-color:rgba(185,28,28,.2)"><i class="bi bi-exclamation-triangle-fill"></i> Señales de alarma</span>
+<h2 class="sho-section__title">Esto no se agenda: <em>se atiende hoy</em></h2>
+
+<div class="sho-alarm" id="shoAlarma">
+<div class="sho-alarm__inner">
+<div class="sho-alarm__head">
+<div class="sho-alarm__badge"><i class="fa-solid fa-triangle-exclamation"></i></div>
+<h3 class="sho-alarm__title">Ve a urgencias si aparece:</h3>
+</div>
+<ul class="sho-alarm__list">
+<li><i class="bi bi-person-exclamation"></i> Somnolencia que impide mantenerse despierto en una conversación</li>
+<li><i class="bi bi-question-diamond-fill"></i> Confusión, o dificultad para despertar a la persona</li>
+<li><i class="bi bi-droplet-fill"></i> Labios o uñas morados que no mejoran</li>
+<li><i class="bi bi-wind"></i> Falta de aire en reposo, o que impide hablar de corrido</li>
+<li><i class="bi bi-heart-pulse-fill"></i> Piernas que se hinchan rápido, con dolor de pecho o palpitaciones</li>
+<li><i class="bi bi-car-front-fill"></i> Quedarse dormido al volante</li>
+</ul>
+<div class="sho-alarm__out">
+<p><strong>No uses esta página para decidir si esperas.</strong> Eso se valora en urgencias, con una gasometría en el momento.</p>
+<div class="sho-alarm__btns">
+<a href="tel:911" class="sho-alarm__btn sho-alarm__btn--911"><i class="bi bi-telephone-fill"></i> Llamar al 911</a>
+<a href="/ubicacion/" class="sho-alarm__btn sho-alarm__btn--urg"><i class="bi bi-hospital"></i> Ver urgencias más cercanas</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 6. POR QUE IMPORTA -->
+<div class="sho-section reveal" id="por-que">
+<span class="sho-section__eyebrow"><i class="bi bi-heart-pulse"></i> Por qué vale la pena atenderlo</span>
+<h2 class="sho-section__title">Lo que está en juego, <em>en números simples</em></h2>
+
+<div class="bn" id="bn">
+  <div class="bn-grid">
+  <div class="bn-tile">
+    <span class="bn-ic"><i class="bi bi-moon-stars-fill" aria-hidden="true"></i></span>
+    <span class="bn-lbl">Casi siempre juntos</span>
+    <span class="bn-num">9 <small>de cada</small> 10</span>
+    <span class="bn-sub">tienen además apnea del sueño</span>
+  </div>
+  <div class="bn-tile">
+    <span class="bn-ic"><i class="bi bi-heart-pulse-fill" aria-hidden="true"></i></span>
+    <span class="bn-lbl">Tu corazón</span>
+    <span class="bn-num">1 <small>de cada</small> 2</span>
+    <span class="bn-sub">ya tenía repercusión en el corazón cuando se hizo el diagnóstico</span>
+  </div>
+  <div class="bn-tile">
+    <span class="bn-ic"><i class="bi bi-hourglass-split" aria-hidden="true"></i></span>
+    <span class="bn-lbl">Dejarlo pasar</span>
+    <span class="bn-num bn-num--frase">Más del doble</span>
+    <span class="bn-sub">de mortalidad tras una hospitalización, comparado con quienes no hipoventilan</span>
+  </div>
+  <div class="bn-tile">
+    <span class="bn-ic"><i class="bi bi-alarm-fill" aria-hidden="true"></i></span>
+    <span class="bn-lbl">El equipo, de noche</span>
+    <span class="bn-num">4 <small>horas</small></span>
+    <span class="bn-sub">por noche es el uso que en los estudios se asocia con mejor evolución</span>
+  </div>
+  <div class="bn-tile">
+    <span class="bn-ic"><i class="bi bi-graph-down-arrow" aria-hidden="true"></i></span>
+    <span class="bn-lbl">El peso, con franqueza</span>
+    <span class="bn-num bn-num--frase">Una cuarta parte</span>
+    <span class="bn-sub">del peso es la meta de las guías. Los programas de dieta y ejercicio llegaron a la cuarta parte de esa meta</span>
+  </div>
   </div>
 </div>
+
+<p class="sho-prog__note" style="margin-top:14px"><strong>Cómo se leen.</strong> Son promedios de grupos en estudios publicados, no tu pronóstico. Bajar de peso ayuda, pero la noche necesita atención propia mientras tanto: los dos caminos van juntos.</p>
 </div>
 
-<!-- EPIDEMIOLOGIA -->
-<div class="sho-section reveal">
-<span class="sho-section__eyebrow"><i class="bi bi-people-fill"></i> Qué tan frecuente es</span>
-<h2 class="sho-section__title">Menos raro de lo que <em>parece en el consultorio</em></h2>
-<p class="sho-section__lead">En la población adulta general es poco frecuente. Lo que cambia el panorama es el contexto: entre quienes viven con obesidad y llegan a estudiarse el sueño, la frecuencia sube mucho, y sube más conforme sube el índice de masa corporal.</p>
+<!-- 7. COMO SE MIDE -->
+<div class="sho-section reveal" id="como-se-mide">
+<span class="sho-section__eyebrow"><i class="bi bi-clipboard2-data-fill"></i> Cómo se mide</span>
+<h2 class="sho-section__title">El camino completo, <em>y dónde ocurre cada paso</em></h2>
+<p class="sho-section__lead">Lo que más confunde es que se mezclan los estudios que orientan con el que confirma. Aquí está la ruta, con la parte que casi nadie te dice: cuál se hace aquí mismo y cuál se solicita.</p>
 
-<div class="sho-prog">
-<div class="sho-prog__inner">
-<div class="sho-prog__grid">
-  <div class="sho-prog__cell"><div class="sho-prog__num">0.4%</div><div class="sho-prog__lbl">de la población adulta general</div></div>
-  <div class="sho-prog__cell"><div class="sho-prog__num">8 a 20%</div><div class="sho-prog__lbl">entre personas con obesidad referidas a un estudio de sueño</div></div>
-  <div class="sho-prog__cell"><div class="sho-prog__num">38.9%</div><div class="sho-prog__lbl">de los adultos mexicanos viven con obesidad, según la ENSANUT 2023</div></div>
+<div class="cam" id="cam">
+  <ol class="cam__lista">
+    <li class="cam__paso" style="--i:0">
+      <span class="cam__nodo"><i class="bi bi-clipboard2-pulse-fill" aria-hidden="true"></i><b>1</b></span>
+      <div class="cam__cuerpo">
+        <span class="cam__donde"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i> En el consultorio</span>
+        <b class="cam__tit">Consulta con un neumólogo</b>
+        <p class="cam__desc">Historia detallada del sueño y de la respiración, con un neumólogo egresado del INER. Aquí se decide qué estudio hace falta: ninguno se pide de rutina.</p>
+      </div>
+    </li>
+    <li class="cam__paso" style="--i:1">
+      <span class="cam__nodo"><i class="bi bi-lungs-fill" aria-hidden="true"></i><b>2</b></span>
+      <div class="cam__cuerpo">
+        <span class="cam__donde"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i> El mismo día, aquí</span>
+        <b class="cam__tit">Espirometría y FeNO</b>
+        <p class="cam__desc"><a href="/servicios/espirometria/">Espirometría</a> para descartar <a href="/enfermedades/epoc/">EPOC</a> y otras causas, y <a href="/servicios/feno/">FeNO</a> para separarlo del asma, que es con lo que más se confunde.</p>
+      </div>
+    </li>
+    <li class="cam__paso cam__paso--casa" style="--i:2">
+      <span class="cam__nodo"><i class="bi bi-house-heart-fill" aria-hidden="true"></i><b>3</b></span>
+      <div class="cam__cuerpo">
+        <span class="cam__donde"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i> En tu casa, una noche</span>
+        <b class="cam__tit">Poligrafía respiratoria</b>
+        <p class="cam__desc"><a href="/servicios/poligrafia-respiratoria/">El estudio del sueño</a> en tu propia cama, o en el consultorio si lo prefieres. Documenta la apnea, que acompaña a casi todos los casos.</p>
+      </div>
+    </li>
+    <li class="cam__paso cam__paso--fuera" style="--i:3">
+      <span class="cam__nodo"><i class="bi bi-droplet-fill" aria-hidden="true"></i><b>4</b></span>
+      <div class="cam__cuerpo">
+        <span class="cam__donde"><i class="bi bi-arrow-up-right" aria-hidden="true"></i> En laboratorio, se solicita</span>
+        <b class="cam__tit">Bicarbonato y gasometría</b>
+        <p class="cam__desc">El bicarbonato tamiza. La gasometría arterial es <strong>la que confirma</strong>, con una punción en la muñeca. Aquí no se hacen: se piden y te digo dónde.</p>
+      </div>
+    </li>
+    <li class="cam__paso" style="--i:4">
+      <span class="cam__nodo"><i class="bi bi-file-earmark-medical-fill" aria-hidden="true"></i><b>5</b></span>
+      <div class="cam__cuerpo">
+        <span class="cam__donde"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i> Consultorio o teleconsulta</span>
+        <b class="cam__tit">Tu resultado, explicado</b>
+        <p class="cam__desc">Una segunda consulta aparte, en persona o por <a href="/servicios/teleconsulta/">teleconsulta</a> ($1,500): sales sabiendo tu número, qué significa y cuál es tu plan.</p>
+      </div>
+    </li>
+  </ol>
 </div>
-<div class="sho-prog__grid">
-  <div class="sho-prog__cell"><div class="sho-prog__num">cerca de 9%</div><div class="sho-prog__lbl">con índice de masa corporal de 30 a 40</div></div>
-  <div class="sho-prog__cell"><div class="sho-prog__num">cerca de 13%</div><div class="sho-prog__lbl">con índice de masa corporal de 40 a 50</div></div>
-  <div class="sho-prog__cell"><div class="sho-prog__num">cerca de 20%</div><div class="sho-prog__lbl">con índice de masa corporal por arriba de 50</div></div>
-</div>
-<p class="sho-prog__note"><strong>Un apunte honesto sobre México:</strong> no hay un estudio de prevalencia publicado de este síndrome en población mexicana. Las cifras de arriba vienen de series internacionales, y las de porcentaje por índice de masa corporal corresponden a <strong>personas ya referidas por sospecha de un problema del sueño</strong>, no a la población general. Cruzarlas con el dato de obesidad de la ENSANUT sugiere que aquí no debería ser una rareza, pero eso es una inferencia razonable, no un dato medido en el país.</p>
-</div>
-</div>
-</div>
-
-<!-- TABLA DE DIAGNOSTICO -->
-<div class="sho-section reveal">
-<span class="sho-section__eyebrow"><i class="bi bi-clipboard2-data-fill"></i> Cómo se estudia</span>
-<h2 class="sho-section__title">Qué estudio sirve para qué, <em>y dónde se hace</em></h2>
-<p class="sho-section__lead">Esta es la parte que más confunde, porque se mezclan estudios que orientan con el que confirma. Aquí está la ruta completa, con la aclaración de cuáles se hacen en el consultorio y cuáles se solicitan para hacerse en otro sitio.</p>
-
-<div class="sho-table-wrap">
-<table class="sho-table">
-<caption>Ruta de estudio del síndrome de hipoventilación por obesidad. Ningún estudio se pide de rutina: se elige según lo que muestre la consulta.</caption>
-<thead>
-<tr><th scope="col">Estudio</th><th scope="col">Dónde se hace</th><th scope="col">Para qué sirve</th></tr>
-</thead>
-<tbody>
-<tr>
-  <td class="sho-td-name" data-label="Estudio"><a href="/servicios/espirometria/">Espirometría</a>, con o sin broncodilatador</td>
-  <td data-label="Dónde se hace">En el consultorio<br><span class="sho-here"><i class="bi bi-check-circle-fill"></i> Aquí mismo</span></td>
-  <td data-label="Para qué sirve">Descarta <a href="/enfermedades/epoc/">EPOC</a> y otras causas de hipoventilación, que hay que excluir antes de nombrar este síndrome.</td>
-</tr>
-<tr>
-  <td class="sho-td-name" data-label="Estudio"><a href="/servicios/feno/">FeNO</a>, óxido nítrico exhalado</td>
-  <td data-label="Dónde se hace">En el consultorio<br><span class="sho-here"><i class="bi bi-check-circle-fill"></i> Aquí mismo</span></td>
-  <td data-label="Para qué sirve">Ayuda a diferenciarlo del asma, que es uno de los diagnósticos con los que más se confunde.</td>
-</tr>
-<tr>
-  <td class="sho-td-name" data-label="Estudio"><a href="/servicios/poligrafia-respiratoria/">Poligrafía respiratoria</a></td>
-  <td data-label="Dónde se hace">En el consultorio o a domicilio, durmiendo en tu casa<br><span class="sho-here"><i class="bi bi-check-circle-fill"></i> Aquí mismo</span></td>
-  <td data-label="Para qué sirve">Documenta y cuantifica la apnea del sueño, que acompaña a la gran mayoría de los casos.</td>
-</tr>
-<tr>
-  <td class="sho-td-name" data-label="Estudio">Oximetría nocturna</td>
-  <td data-label="Dónde se hace">En casa</td>
-  <td data-label="Para qué sirve">Orientadora. Muestra cómo se comporta el oxígeno por la noche, pero no confirma el diagnóstico.</td>
-</tr>
-<tr>
-  <td class="sho-td-name" data-label="Estudio">Bicarbonato sérico</td>
-  <td data-label="Dónde se hace">Laboratorio, con orden desde el consultorio<br><span class="sho-out"><i class="bi bi-arrow-up-right"></i> Se solicita</span></td>
-  <td data-label="Para qué sirve">Tamizaje. Con un umbral de 27 mEq/L tiene sensibilidad de 86% y especificidad de 77%. Un valor normal hace poco probable el diagnóstico; uno alto obliga a pasar a la gasometría.</td>
-</tr>
-<tr>
-  <td class="sho-td-name" data-label="Estudio">Gasometría arterial</td>
-  <td data-label="Dónde se hace">Laboratorio u hospital con gasómetro<br><span class="sho-out"><i class="bi bi-arrow-up-right"></i> Se solicita</span></td>
-  <td data-label="Para qué sirve">Es la que confirma. Mide el bióxido de carbono directamente en la sangre arterial. Se toma con una punción arterial, casi siempre en la muñeca.</td>
-</tr>
-<tr>
-  <td class="sho-td-name" data-label="Estudio">Polisomnografía completa</td>
-  <td data-label="Dónde se hace">Laboratorio de sueño<br><span class="sho-out"><i class="bi bi-arrow-up-right"></i> Se canaliza</span></td>
-  <td data-label="Para qué sirve">Casos complejos y titulación de las presiones del equipo. No se realiza en el consultorio.</td>
-</tr>
-<tr>
-  <td class="sho-td-name" data-label="Estudio">Ecocardiograma</td>
-  <td data-label="Dónde se hace">Gabinete de cardiología<br><span class="sho-out"><i class="bi bi-arrow-up-right"></i> Se solicita</span></td>
-  <td data-label="Para qué sirve">Cuando se sospecha repercusión en el corazón, por ejemplo <a href="/enfermedades/hipertension-pulmonar/">hipertensión pulmonar</a>.</td>
-</tr>
-</tbody>
-</table>
 </div>
 
-<p class="sho-table-note"><strong>Lo que sí y lo que no se hace aquí.</strong> En el consultorio se realizan la consulta, la espirometría simple y con broncodilatador, el FeNO y la poligrafía respiratoria, que también puede hacerse a domicilio. La gasometría arterial, la polisomnografía completa y el ecocardiograma no se realizan aquí: se solicitan con indicación clara y se orienta a dónde hacerlos. Prefiero decirlo directo antes de que agendes.</p>
-</div>
-
-<!-- COMPARADOR CPAP / BIPAP -->
-<div class="sho-section reveal">
-<span class="sho-section__eyebrow"><i class="bi bi-sliders"></i> Herramienta 3</span>
+<!-- 8. QUE SIGUE: TRATAMIENTO -->
+<div class="sho-section reveal" id="tratamiento">
+<span class="sho-section__eyebrow"><i class="bi bi-sliders"></i> Qué sigue</span>
 <h2 class="sho-section__title">CPAP o BiPAP: <em>qué diferencia hay</em></h2>
-<p class="sho-section__lead">El pilar del tratamiento es la presión positiva durante el sueño. Las dos opciones se parecen por fuera, pero hacen cosas distintas. Elige abajo lo que mostró tu estudio del sueño y se resalta la que sugieren las guías para ese escenario.</p>
+<p class="sho-section__lead">El pilar del tratamiento es la presión positiva de noche. Por fuera se parecen; por dentro hacen cosas distintas. Elige lo que mostró tu estudio y se marca la que sugieren las guías.</p>
 
 <fieldset class="sho-picker">
 <legend>¿Qué mostró mi estudio del sueño?</legend>
@@ -990,11 +1154,10 @@
         <p class="sho-dev__type">Una sola presión, constante</p>
       </div>
     </div>
-    <p class="sho-dev__body">Entrega aire a una presión fija durante toda la noche. Funciona como una <strong>férula de aire</strong>: mantiene abierta la vía respiratoria para que no se cierre.</p>
+    <p class="sho-dev__body">Funciona como una <strong>férula de aire</strong>: mantiene abierta la vía respiratoria para que no se cierre.</p>
     <ul class="sho-dev__list">
-      <li><i class="bi bi-check-circle-fill"></i> Las guías lo sugieren como primera línea cuando hay apnea obstructiva grave al mismo tiempo, que es la situación de la mayoría</li>
+      <li><i class="bi bi-check-circle-fill"></i> Primera línea cuando hay apnea obstructiva grave al mismo tiempo, que es lo más común</li>
       <li><i class="bi bi-check-circle-fill"></i> Equipo más sencillo y en general más accesible</li>
-      <li><i class="bi bi-check-circle-fill"></i> Al abrir la vía aérea, también mejora la ventilación en muchos casos</li>
     </ul>
   </div>
 
@@ -1004,29 +1167,25 @@
       <div class="sho-dev__icon"><i class="bi bi-arrow-left-right"></i></div>
       <div>
         <p class="sho-dev__name">BiPAP</p>
-        <p class="sho-dev__type">Dos presiones, una al inhalar y otra al exhalar</p>
+        <p class="sho-dev__type">Dos presiones, al inhalar y al exhalar</p>
       </div>
     </div>
-    <p class="sho-dev__body">La diferencia entre las dos presiones <strong>sí ayuda a mover aire</strong> hacia adentro y hacia afuera, no solo a mantener el tubo abierto.</p>
+    <p class="sho-dev__body">La diferencia entre las dos presiones <strong>sí ayuda a mover aire</strong>, no solo a mantener el tubo abierto.</p>
     <ul class="sho-dev__list">
-      <li><i class="bi bi-check-circle-fill"></i> Se prefiere cuando hay poca o ninguna apnea obstructiva pero sí hipoventilación durante el sueño</li>
-      <li><i class="bi bi-check-circle-fill"></i> También cuando el bióxido de carbono no baja lo esperado con CPAP</li>
-      <li><i class="bi bi-check-circle-fill"></i> Suele tolerarse mejor cuando la presión necesaria es alta</li>
+      <li><i class="bi bi-check-circle-fill"></i> Cuando hay poca o ninguna apnea obstructiva pero sí hipoventilación</li>
+      <li><i class="bi bi-check-circle-fill"></i> O cuando el bióxido de carbono no baja lo esperado con CPAP</li>
     </ul>
   </div>
 </div>
 
 <div class="sho-verdict" id="shoVerdict">Elige arriba qué mostró tu estudio del sueño y aquí aparece qué sugieren las guías para ese escenario.</div>
 
-<div class="sho-warn" style="background:rgba(15,118,110,.07);border-color:rgba(15,118,110,.25);color:#3a4a5c;margin-top:16px"><i class="bi bi-shield-fill-check" style="color:#0f766e"></i><span><strong style="color:#0f766e">La elección del equipo y de las presiones la hace el médico</strong>, con tu estudio en la mano y viendo cómo respondes. Esta herramienta explica la lógica, no sustituye esa decisión ni sirve para comprar un equipo por tu cuenta.</span></div>
+<div class="sho-warn" style="background:rgba(15,118,110,.07);border-color:rgba(15,118,110,.25);color:#3a4a5c;margin-top:16px"><i class="bi bi-shield-fill-check" style="color:#0f766e"></i><span><strong style="color:#0f766e">El equipo y las presiones los elige el médico</strong>, con tu estudio en la mano. Esto explica la lógica; no sirve para comprar un equipo por tu cuenta.</span></div>
 
-<p class="sho-section__lead" style="margin-top:26px">Sobre cuál funciona mejor a largo plazo, el dato más sólido viene del ensayo Pickwick: 215 pacientes seguidos una mediana de 5.44 años, comparando CPAP contra ventilación no invasiva. Los días de hospitalización resultaron equivalentes, 1.63 contra 1.44 por paciente al año, sin diferencia estadísticamente significativa. Dicho de otro modo: en el largo plazo las dos rutas se sostuvieron parecido, y por eso la decisión se toma según tu estudio y tu tolerancia, no según cuál equipo suene más avanzado.</p>
-
-<div class="sho-verdict" style="margin-top:6px"><strong>Franqueza sobre la evidencia:</strong> las cinco recomendaciones principales de la guía de la American Thoracic Society de 2019 son <strong>condicionales y con certeza de evidencia muy baja</strong>. Lo digo aquí a propósito. No significa que no sirvan, significa que hay margen para decidir contigo según tu caso en lugar de aplicar una receta única, y que quien te prometa certezas absolutas sobre este tema va más allá de lo que dicen los datos.</div>
 </div>
 
-<!-- OXIGENO -->
-<div class="sho-section reveal">
+<!-- 8b. EL OXIGENO SOLO -->
+<div class="sho-section reveal" id="oxigeno">
 <span class="sho-section__eyebrow" style="color:#c2410c;background:rgba(234,88,12,.08);border-color:rgba(234,88,12,.22)"><i class="bi bi-exclamation-octagon-fill"></i> Advertencia importante</span>
 <h2 class="sho-section__title">El oxígeno solo <em>puede ser peligroso</em></h2>
 
@@ -1035,105 +1194,25 @@
 <div class="sho-danger__icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
 <h3>Nunca inicies ni subas el oxígeno por tu cuenta</h3>
 </div>
-<p>Es de las cosas que más me urge dejar claras en esta página. En el síndrome de hipoventilación por obesidad el problema no es solo que falte oxígeno: es que <strong>no se elimina bien el bióxido de carbono</strong>. Son dos gases distintos y se comportan distinto.</p>
-<p>Cuando se da oxígeno sin soporte de presión, parte del estímulo que mantiene la respiración se reduce y el bióxido de carbono puede subir todavía más. En un ensayo cruzado que midió justo esto, el bióxido de carbono subió en promedio 5 mmHg, y el estudio tuvo que detenerse en tres sujetos porque en ellos subió 10 mmHg o más. Con concentraciones de uso clínico habitual, alrededor de una fracción inspirada de oxígeno de 0.50, el bióxido de carbono subió y apareció acidemia.</p>
-<p>Esto no quiere decir que el oxígeno esté prohibido. Quiere decir que se indica <strong>como complemento</strong> del soporte de presión, con criterio médico y con vigilancia, no como remedio para la falta de aire.</p>
-<div class="sho-danger__box"><i class="bi bi-hand-index-thumb-fill"></i><span>Si en casa hay un tanque o un concentrador de oxígeno, no cambies el flujo ni lo inicies por tu cuenta aunque sientas que te falta el aire. Consulta primero. Y si la falta de aire es intensa o en reposo, eso se atiende en urgencias, no ajustando la perilla.</span></div>
+<p>Aquí no solo falta oxígeno: <strong>sobra bióxido de carbono</strong>. El oxígeno sin soporte de presión apaga parte del estímulo para respirar, y el bióxido de carbono sube todavía más.</p>
+<div class="sho-danger__box"><i class="bi bi-hand-index-thumb-fill"></i><span>Si en casa hay un tanque o un concentrador, no le muevas al flujo aunque sientas que te falta el aire. El oxígeno va <strong>como complemento</strong> del equipo de presión, con vigilancia. Falta de aire intensa o en reposo: urgencias, no la perilla.</span></div>
 </div>
 </div>
 
-<!-- PESO -->
-<div class="sho-section reveal">
-<span class="sho-section__eyebrow"><i class="bi bi-graph-down-arrow"></i> El peso, con números reales</span>
-<h2 class="sho-section__title">Qué tanto peso hace falta <em>para mover la aguja</em></h2>
-<p class="sho-section__lead">El peso importa, y mucho. Pero conviene decir las cifras completas en lugar de repetir que "bajando unos kilos se arregla", porque eso genera frustración cuando no ocurre.</p>
-
-<div class="sho-grid-3">
-  <div class="sho-card" style="display:flex;flex-direction:column">
-    <div class="sho-card__icon"><i class="bi bi-bullseye"></i></div>
-    <h3>La meta que sugieren las guías</h3>
-    <p>Una pérdida sostenida de <strong>25 a 30% del peso corporal</strong>. No es una meta pequeña, y por eso rara vez se alcanza solo con recomendaciones generales.</p>
-  </div>
-  <div class="sho-card" style="display:flex;flex-direction:column">
-    <div class="sho-card__icon"><i class="bi bi-clipboard2-x"></i></div>
-    <h3>Lo que lograron los programas de estilo de vida</h3>
-    <p>En los estudios, los programas de dieta y ejercicio consiguieron una pérdida de <strong>6 a 7%</strong>, sin un efecto clínicamente significativo sobre el síndrome. El esfuerzo fue real, el resultado sobre el bióxido de carbono no.</p>
-  </div>
-  <div class="sho-card" style="display:flex;flex-direction:column">
-    <div class="sho-card__icon"><i class="bi bi-activity"></i></div>
-    <h3>Cirugía bariátrica</h3>
-    <p>Se reportó resolución en <strong>69.5%</strong> de los casos al año, 105 de 151 personas. Un detalle relevante: el bióxido de carbono no bajó de forma significativa hasta superar cerca de <strong>20% de pérdida de peso total</strong>.</p>
-  </div>
-</div>
-
-<div class="sho-verdict" style="margin-top:18px"><strong>Cómo lo leo en consulta:</strong> bajar de peso vale la pena por muchas razones, pero mientras eso ocurre la respiración de la noche necesita atención propia. Por eso el equipo de presión no se pospone "a ver si bajo primero". Los dos caminos van juntos, y los resultados varían de persona a persona.</div>
-</div>
-
-<!-- PRONOSTICO -->
-<div class="sho-section reveal">
-<span class="sho-section__eyebrow"><i class="bi bi-graph-up"></i> Qué dicen los estudios</span>
-<h2 class="sho-section__title">Por qué conviene <em>no dejarlo pasar</em></h2>
-<p class="sho-section__lead">Estos son promedios de grupos de pacientes en estudios publicados, no un pronóstico individual. Los pongo porque me parece más respetuoso enseñarlos que hablar en abstracto.</p>
-
-<div class="sho-prog">
-<div class="sho-prog__inner">
-<div class="sho-prog__grid">
-  <div class="sho-prog__cell"><div class="sho-prog__num">23% vs 9%</div><div class="sho-prog__lbl">mortalidad a 18 meses tras egresar del hospital, sin tratamiento, comparado con personas con obesidad severa sin hipoventilación</div></div>
-  <div class="sho-prog__cell"><div class="sho-prog__num">2.3% vs 16.8%</div><div class="sho-prog__lbl">mortalidad a 3 meses según se egresara del hospital con terapia de presión o sin ella</div></div>
-  <div class="sho-prog__cell"><div class="sho-prog__num">55%</div><div class="sho-prog__lbl">ya tenían hipertensión pulmonar al momento del diagnóstico</div></div>
-</div>
-<p class="sho-prog__note">En los estudios, usar el equipo <strong>al menos 4 horas por noche</strong> se asocia con mejor evolución, y en general mientras más parejo es el uso, mejor tiende a ser el resultado. Nada de esto garantiza un resultado individual: son promedios, los resultados varían de persona a persona y dependen de muchos factores además del equipo. Si al momento del diagnóstico ya hay repercusión en el corazón, el seguimiento se coordina también desde ese lado, y te explico qué es la <a href="/enfermedades/hipertension-pulmonar/" style="color:#2dd4bf;font-weight:700">hipertensión pulmonar</a> con calma.</p>
-</div>
-</div>
-</div>
-
-<!-- MITOS -->
-<div class="sho-section reveal">
+<!-- 9. MITOS -->
+<div class="sho-section reveal" id="mitos">
 <span class="sho-section__eyebrow"><i class="bi bi-chat-quote-fill"></i> Lo que escucho en consulta</span>
 <h2 class="sho-section__title">Ocho ideas que <em>conviene corregir</em></h2>
-<p class="sho-section__lead">Ninguna de estas frases se dice de mala fe. Son cosas que se repiten mucho y que retrasan el diagnóstico.</p>
 
-<div class="sho-myths">
-  <div class="sho-myth">
-    <span class="sho-myth__false"><i class="bi bi-x-circle-fill"></i> Mito</span>
-    <h3>"Roncar es normal, todos los hombres de mi familia roncan."</h3>
-    <p>Es <strong>frecuente</strong>, que no es lo mismo que normal. El ronquido fuerte con pausas presenciadas es uno de los motivos más claros para estudiar el sueño.</p>
-  </div>
-  <div class="sho-myth">
-    <span class="sho-myth__false"><i class="bi bi-x-circle-fill"></i> Mito</span>
-    <h3>"Amanezco cansado por el estrés y por el tráfico."</h3>
-    <p>Puede ser. Pero si duermes siete horas o más y <strong>aun así no descansas</strong>, y encima roncas y amaneces con dolor de cabeza, ese conjunto ya no se explica por el estrés.</p>
-  </div>
-  <div class="sho-myth">
-    <span class="sho-myth__false"><i class="bi bi-x-circle-fill"></i> Mito</span>
-    <h3>"El dolor de cabeza matutino es por la almohada."</h3>
-    <p>El dolor de cabeza que aparece al despertar y <strong>cede en la primera o segunda hora</strong> tiene un patrón muy sugerente de bióxido de carbono acumulado durante la noche. Cambiar de almohada no lo quita.</p>
-  </div>
-  <div class="sho-myth">
-    <span class="sho-myth__false"><i class="bi bi-x-circle-fill"></i> Mito</span>
-    <h3>"Ya uso CPAP por apnea, entonces esto ya está resuelto."</h3>
-    <p>No necesariamente. Entre <strong>10 y 20%</strong> de quienes tienen apnea obstructiva tienen además hipoventilación, y el equipo se indicó por la apnea, no por el bióxido de carbono.</p>
-  </div>
-  <div class="sho-myth">
-    <span class="sho-myth__false"><i class="bi bi-x-circle-fill"></i> Mito</span>
-    <h3>"Mi oxímetro me da bien, entonces respiro bien."</h3>
-    <p>El oxímetro mide oxígeno. Este síndrome se define por el <strong>bióxido de carbono</strong>, que el oxímetro no puede ver. Se puede hipoventilar con una saturación aceptable en la pantalla.</p>
-  </div>
-  <div class="sho-myth">
-    <span class="sho-myth__false"><i class="bi bi-x-circle-fill"></i> Mito</span>
-    <h3>"Si me falta el aire, lo que necesito es oxígeno."</h3>
-    <p>Aquí es al revés de lo que parece. El oxígeno solo, sin soporte de presión, puede <strong>hacer subir el bióxido de carbono</strong>. Se indica con criterio médico y con vigilancia.</p>
-  </div>
-  <div class="sho-myth">
-    <span class="sho-myth__false"><i class="bi bi-x-circle-fill"></i> Mito</span>
-    <h3>"Con bajar unos kilos se arregla."</h3>
-    <p>Las guías sugieren una pérdida sostenida de <strong>25 a 30%</strong> del peso. Los programas de estilo de vida de los estudios llegaron a 6 o 7%, sin efecto claro sobre el síndrome. Bajar de peso ayuda, pero la noche necesita atención propia mientras tanto.</p>
-  </div>
-  <div class="sho-myth">
-    <span class="sho-myth__false"><i class="bi bi-x-circle-fill"></i> Mito</span>
-    <h3>"Es puro asma o bronquitis, con el inhalador se me pasa."</h3>
-    <p>Es un error de manejo documentado, y por eso se hace <a href="/servicios/espirometria/">espirometría</a>. Tratar como asma lo que es hipoventilación deja el problema de fondo sin atender durante meses o años.</p>
-  </div>
+<div class="mit">
+  <details class="mit__x"><summary><span class="mit__no"><i class="bi bi-x-lg"></i></span><span>"Roncar es normal, todos en mi familia roncan."</span></summary><p>Es <strong>frecuente</strong>, que no es lo mismo que normal. El ronquido fuerte con pausas presenciadas es de los motivos más claros para estudiar el sueño.</p></details>
+  <details class="mit__x"><summary><span class="mit__no"><i class="bi bi-x-lg"></i></span><span>"Amanezco cansado por el estrés y el tráfico."</span></summary><p>Puede ser. Pero si duermes siete horas o más y <strong>aun así no descansas</strong>, y encima roncas y amaneces con dolor de cabeza, ese conjunto ya no se explica por el estrés.</p></details>
+  <details class="mit__x"><summary><span class="mit__no"><i class="bi bi-x-lg"></i></span><span>"El dolor de cabeza matutino es por la almohada."</span></summary><p>El que aparece al despertar y <strong>cede en la primera o segunda hora</strong> tiene un patrón muy sugerente de bióxido de carbono acumulado de noche. Cambiar de almohada no lo quita.</p></details>
+  <details class="mit__x"><summary><span class="mit__no"><i class="bi bi-x-lg"></i></span><span>"Ya uso CPAP por apnea, entonces esto ya está resuelto."</span></summary><p>No necesariamente. Entre <strong>10 y 20%</strong> de quienes tienen apnea obstructiva hipoventilan además, y el equipo se indicó por la apnea, no por el bióxido de carbono.</p></details>
+  <details class="mit__x"><summary><span class="mit__no"><i class="bi bi-x-lg"></i></span><span>"Mi oxímetro me da bien, entonces respiro bien."</span></summary><p>El oxímetro mide oxígeno. Este síndrome se define por el <strong>bióxido de carbono</strong>, que el oxímetro no puede ver. Se puede hipoventilar con una saturación aceptable en la pantalla.</p></details>
+  <details class="mit__x"><summary><span class="mit__no"><i class="bi bi-x-lg"></i></span><span>"Si me falta el aire, lo que necesito es oxígeno."</span></summary><p>Aquí es al revés de lo que parece. El oxígeno solo, sin soporte de presión, puede <strong>hacer subir el bióxido de carbono</strong>. Se indica con criterio médico y con vigilancia.</p></details>
+  <details class="mit__x"><summary><span class="mit__no"><i class="bi bi-x-lg"></i></span><span>"Con bajar unos kilos se arregla."</span></summary><p>Las guías sugieren perder cerca de <strong>una cuarta parte</strong> del peso, sostenida. Los programas de dieta y ejercicio de los estudios llegaron a la cuarta parte de esa meta, sin efecto claro sobre el síndrome. Ayuda, pero la noche necesita atención propia mientras tanto.</p></details>
+  <details class="mit__x"><summary><span class="mit__no"><i class="bi bi-x-lg"></i></span><span>"Es puro asma o bronquitis, con el inhalador se me pasa."</span></summary><p>Es un error de manejo documentado, y por eso se hace <a href="/servicios/espirometria/">espirometría</a>. Tratar como asma lo que es hipoventilación deja el fondo sin atender durante meses o años.</p></details>
 </div>
 </div>
 
@@ -1170,16 +1249,92 @@
 
 <script>
 /* ===== Piezas interactivas de la pagina (vanilla, sin dependencias) ===== */
+
+/* 1. Ciclo del CO2: tocar un paso mueve el punto sobre el trazo de la noche.
+      Sin JS quedan los 4 pasos legibles y la curva dibujada. */
+(function(){
+    var caja=document.getElementById('ciclo'); if(!caja) return;
+    var pasos=Array.prototype.slice.call(caja.querySelectorAll('.ciclo__paso'));
+    var marcas=Array.prototype.slice.call(caja.querySelectorAll('.ciclo__marca'));
+    var guia=caja.querySelector('.ciclo__guia');
+    if(!pasos.length||!marcas.length) return;
+    function pon(k){
+        pasos.forEach(function(b,i){ b.setAttribute('aria-selected',String(i===k)); });
+        marcas.forEach(function(m,i){ m.classList.toggle('is-on',i===k); });
+        if(guia){
+            var x=marcas[k].getAttribute('cx');
+            guia.setAttribute('x1',x); guia.setAttribute('x2',x);
+            guia.setAttribute('y1',marcas[k].getAttribute('cy'));
+            guia.classList.add('is-on');
+        }
+    }
+    pasos.forEach(function(b,i){ b.addEventListener('click',function(){ pon(i); }); });
+    caja.addEventListener('keydown',function(e){
+        var i=pasos.indexOf(document.activeElement); if(i<0) return;
+        if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();var n=(i+1)%pasos.length;pasos[n].focus();pon(n);}
+        if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();var q=(i-1+pasos.length)%pasos.length;pasos[q].focus();pon(q);}
+    });
+    pon(0);
+})();
+
+/* 2. Altitud: el interruptor mueve la banda de lo normal. El umbral 45 no se
+      mueve nunca, y ese contraste ES el mensaje de la seccion. */
+(function(){
+    var caja=document.getElementById('alt'); if(!caja) return;
+    var tabs=Array.prototype.slice.call(caja.querySelectorAll('.perfil__tab'));
+    var dets=Array.prototype.slice.call(caja.querySelectorAll('.alt__det'));
+    if(!tabs.length) return;
+    function pon(k){
+        tabs.forEach(function(t,i){ t.setAttribute('aria-selected',String(i===k)); });
+        dets.forEach(function(d,i){ d.classList.toggle('is-on',i===k); });
+        caja.classList.toggle('is-cdmx',k===1);
+    }
+    tabs.forEach(function(t,i){ t.addEventListener('click',function(){ pon(i); }); });
+    caja.addEventListener('keydown',function(e){
+        var i=tabs.indexOf(document.activeElement); if(i<0) return;
+        if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();var n=(i+1)%tabs.length;tabs[n].focus();pon(n);}
+        if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();var q=(i-1+tabs.length)%tabs.length;tabs[q].focus();pon(q);}
+    });
+})();
+
+/* 3. Perfil: dos caras y fichas que se abren de una en una. Sin JS quedan las
+      diez fichas visibles con su texto, que es lo que lee el buscador. */
+(function(){
+    var caja=document.getElementById('perfilW'); if(!caja) return;
+    var tabs=Array.prototype.slice.call(caja.querySelectorAll('.perfil__tab'));
+    var caras=Array.prototype.slice.call(caja.querySelectorAll('.perfil__cara'));
+    var chips=Array.prototype.slice.call(caja.querySelectorAll('.pf-chip'));
+    if(!tabs.length||!caras.length) return;
+    function cara(k){
+        tabs.forEach(function(t,i){ t.setAttribute('aria-selected',String(i===k)); });
+        caras.forEach(function(c,i){ c.classList.toggle('is-on',i===k); });
+        caja.classList.toggle('is-b',k===1);
+        chips.forEach(function(c){ c.setAttribute('aria-expanded','false'); });
+    }
+    tabs.forEach(function(t,i){ t.addEventListener('click',function(){ cara(i); }); });
+    caja.addEventListener('keydown',function(e){
+        var i=tabs.indexOf(document.activeElement); if(i<0) return;
+        if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();var n=(i+1)%tabs.length;tabs[n].focus();cara(n);}
+        if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();var q=(i-1+tabs.length)%tabs.length;tabs[q].focus();cara(q);}
+    });
+    chips.forEach(function(c){
+        c.addEventListener('click',function(){
+            var abierta=c.getAttribute('aria-expanded')==='true';
+            chips.forEach(function(o){ o.setAttribute('aria-expanded','false'); });
+            c.setAttribute('aria-expanded', abierta?'false':'true');
+        });
+    });
+})();
+
+/* 4. Autoevaluador: medidas + STOP-BANG + senales de hipoventilacion. */
 (function(){
   'use strict';
   var d = document;
   function el(id){ return d.getElementById(id); }
   function num(v){ var n = parseFloat(v); return isFinite(n) ? n : NaN; }
 
-  /* ---------- Estado compartido ---------- */
   var estado = { imc: null, cuello: null };
 
-  /* ---------- 1. Calculadora de indice de masa corporal ---------- */
   var CATS = [
     { max: 18.5, nombre: 'Bajo peso' },
     { max: 25,   nombre: 'Peso normal' },
@@ -1193,21 +1348,26 @@
     return CATS[CATS.length - 1].nombre;
   }
   function frecuencia(imc){
-    if (imc >= 30 && imc < 40) return 'cerca de 9%';
-    if (imc >= 40 && imc < 50) return 'cerca de 13%';
-    if (imc >= 50) return 'cerca de 20%';
+    if (imc >= 30 && imc < 40) return 'cerca de 1 de cada 10';
+    if (imc >= 40 && imc < 50) return 'algo más de 1 de cada 10';
+    if (imc >= 50) return 'cerca de 2 de cada 10';
     return null;
   }
 
+  function sincroniza(input){
+    var label = input.closest('.sho-opt');
+    if (label) label.classList.toggle('is-on', input.checked);
+  }
+
   function calcularImc(){
+    if (!el('shoKg')) return;
     var kg = num(el('shoKg').value), cm = num(el('shoCm').value), cuello = num(el('shoCuello').value);
-    var res = el('shoImcRes'), msg = el('shoImcMsg'), freq = el('shoImcFreq'), extras = el('shoImcExtras');
-    extras.innerHTML = '';
+    var res = el('shoImcRes'), msg = el('shoImcMsg'), freq = el('shoImcFreq');
     if (isNaN(kg) || isNaN(cm) || kg < 30 || cm < 120){
       res.hidden = false;
       el('shoImcNum').textContent = '?';
       el('shoImcCat').textContent = 'Faltan datos';
-      msg.textContent = 'Escribe un peso en kilogramos y una estatura en centimetros para poder calcularlo.';
+      msg.textContent = 'Escribe tu peso en kilogramos y tu estatura en centímetros.';
       freq.hidden = true;
       return;
     }
@@ -1216,17 +1376,15 @@
     estado.imc = imc;
     el('shoImcNum').textContent = imc.toFixed(1);
     el('shoImcCat').textContent = categoria(imc);
-    msg.textContent = 'Tu índice de masa corporal es de ' + imc.toFixed(1) + ' kg/m2, que corresponde a la categoría de la Organización Mundial de la Salud señalada arriba.';
+    msg.textContent = 'Índice de masa corporal, según la clasificación de la Organización Mundial de la Salud.';
     var f = frecuencia(imc);
+    freq.hidden = false;
     if (f){
-      freq.hidden = false;
-      freq.innerHTML = 'En series publicadas, <strong>' + f + '</strong> de las personas con un índice de masa corporal en tu rango que fueron referidas a un estudio de sueño resultaron tener este síndrome. Ojo con cómo se lee ese número: viene de personas <strong>ya referidas por sospecha de un problema del sueño</strong>, no de la población general, así que no es tu probabilidad personal.';
+      freq.innerHTML = 'En series publicadas, <strong>' + f + '</strong> de las personas con un índice de masa corporal como el tuyo que fueron enviadas a un estudio de sueño resultaron tener este síndrome. Ojo: son personas <strong>ya referidas por sospecha</strong>, no la población general. No es tu probabilidad personal.';
     } else {
-      freq.hidden = false;
-      freq.innerHTML = 'Este síndrome requiere un índice de masa corporal de 30 o más como uno de sus tres criterios. Con tu resultado, ese criterio no se cumple, y eso hace muy poco probable este diagnóstico en particular. Si tienes síntomas de sueño, siguen valiendo la pena de estudiar por otras causas.';
+      freq.innerHTML = 'Este síndrome necesita un índice de masa corporal de 30 o más como uno de sus tres criterios. Con tu resultado ese criterio no se cumple, y eso lo hace muy poco probable. Si tienes síntomas de sueño, siguen valiendo la pena de estudiar por otras causas.';
     }
 
-    /* Alimenta la pregunta 5 del autoevaluador */
     var chkImc = d.querySelector('input[data-key="imc"]');
     var avisoImc = el('shoImcAuto');
     if (chkImc){
@@ -1235,10 +1393,6 @@
       avisoImc.hidden = false;
       avisoImc.textContent = imc > 35 ? 'Marcada automáticamente' : 'No aplica según tu cálculo';
     }
-    var li1 = d.createElement('li');
-    li1.innerHTML = '<i class="bi bi-arrow-down-circle-fill"></i><span>' + (imc > 35 ? 'La pregunta del índice de masa corporal quedó marcada automáticamente en el autoevaluador de arriba.' : 'La pregunta del índice de masa corporal quedó sin marcar en el autoevaluador de arriba, porque tu resultado no pasa de 35.') + '</span>';
-    extras.appendChild(li1);
-
     if (!isNaN(cuello) && cuello >= 25){
       estado.cuello = cuello;
       var chkC = d.querySelector('input[data-key="cuello"]');
@@ -1249,29 +1403,19 @@
         avisoC.hidden = false;
         avisoC.textContent = cuello > 40 ? 'Marcada automáticamente' : 'No aplica según tu medida';
       }
-      var li2 = d.createElement('li');
-      li2.innerHTML = '<i class="bi bi-rulers"></i><span>Cuello de ' + cuello + ' cm. ' + (cuello > 40 ? 'Por arriba de 40 cm, que es uno de los datos del cuestionario de abajo.' : 'Por debajo de 40 cm, así que ese dato del cuestionario no aplica.') + '</span>';
-      extras.appendChild(li2);
     }
-    var li3 = d.createElement('li');
-    li3.innerHTML = '<i class="bi bi-lungs-fill"></i><span>Lo que interesa aquí es cómo trabaja tu respiración, no la apariencia. El número por sí solo no confirma ni descarta nada.</span>';
-    extras.appendChild(li3);
     res.hidden = false;
   }
   var imcBtn = el('shoImcBtn');
   if (imcBtn) imcBtn.addEventListener('click', calcularImc);
 
-  /* ---------- 2. Autoevaluador ---------- */
-  function sincroniza(input){
-    var label = input.closest('.sho-opt');
-    if (label) label.classList.toggle('is-on', input.checked);
-  }
   var casillas = Array.prototype.slice.call(d.querySelectorAll('.sho-opt input[type="checkbox"]'));
   casillas.forEach(function(c){
     c.addEventListener('change', function(){
       sincroniza(c);
       if (c.getAttribute('data-key') === 'cianosis'){
         var aviso = el('shoCianosisAviso');
+        if (!aviso) return;
         if (c.checked){
           aviso.hidden = false;
           try { aviso.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch(e){}
@@ -1283,9 +1427,9 @@
   });
 
   var TEXTOS_A = [
-    { min: 0, titulo: 'Señalaste pocos de los datos', msg: 'Señalaste pocos de los datos asociados con los trastornos respiratorios del dormir. Eso no descarta nada por sí solo, sobre todo si tienes síntomas que te preocupan.' },
-    { min: 3, titulo: 'Señalaste varios de los datos', msg: 'Señalaste varios datos por los que suele recomendarse una valoración médica del sueño.' },
-    { min: 5, titulo: 'Señalaste la mayoría de los datos', msg: 'Señalaste la mayoría de los datos por los que se recomienda una valoración con estudio del sueño.' }
+    { min: 0, titulo: 'Señalaste pocos de los datos', msg: 'Eso no descarta nada por sí solo, sobre todo si tienes síntomas que te preocupan.' },
+    { min: 3, titulo: 'Señalaste varios de los datos', msg: 'Son datos por los que suele recomendarse una valoración médica del sueño.' },
+    { min: 5, titulo: 'Señalaste la mayoría de los datos', msg: 'Son datos por los que se recomienda una valoración con estudio del sueño.' }
   ];
   function tramoA(n){ return n >= 5 ? TEXTOS_A[2] : (n >= 3 ? TEXTOS_A[1] : TEXTOS_A[0]); }
 
@@ -1306,15 +1450,14 @@
     var t = tramoA(a);
     el('shoAeScore').textContent = a + '/8';
     el('shoAeTitle').textContent = t.titulo;
-    el('shoAeMsg').textContent = t.msg;
+    el('shoAeMsg').textContent = t.msg + ' Lo que sigue no lo decide este resumen: lo decide una valoración y, si está indicada, la medición del bióxido de carbono en sangre.';
     var extra = el('shoAeB');
     if (b >= 2){
       extra.hidden = false;
-      extra.textContent = 'Además señalaste ' + b + ' de 6 síntomas asociados con hipoventilación durante el sueño. Ese bloque se reporta por separado porque apunta al bióxido de carbono, y es información útil de llevar a la consulta.';
+      extra.textContent = 'Además señalaste ' + b + ' de 6 señales de hipoventilación. Ese bloque va aparte porque apunta al bióxido de carbono, y es justo lo útil de llevar a la consulta.';
     } else {
       extra.hidden = true;
     }
-    el('shoAeCierre').textContent = 'Lo que sigue no lo decide este resumen: lo decide una valoración médica y, si está indicada, la medición del bióxido de carbono en sangre.';
     var res = el('shoAeRes');
     res.hidden = false;
     el('shoCopyMsg').hidden = true;
@@ -1351,9 +1494,6 @@
       actualizaWa();
       function ok(){ aviso.hidden = false; aviso.textContent = 'Listo, tu resumen se copió. Ya puedes pegarlo donde quieras o mandarlo por WhatsApp.'; }
       function falla(){ aviso.hidden = false; aviso.textContent = 'No se pudo copiar en este navegador. Usa el botón de WhatsApp, que ya lleva el resumen dentro.'; }
-      if (navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(texto).then(ok).catch(function(){ fallback(); });
-      } else { fallback(); }
       function fallback(){
         try {
           var ta = d.createElement('textarea');
@@ -1365,14 +1505,17 @@
           hecho ? ok() : falla();
         } catch(e){ falla(); }
       }
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(texto).then(ok).catch(fallback);
+      } else { fallback(); }
     });
   }
 
-  /* ---------- 3. Comparador CPAP contra BiPAP ---------- */
+  /* 5. Comparador CPAP contra BiPAP */
   var VERDICTOS = {
-    grave: { destaca: 'cpap', html: '<strong>Con apnea obstructiva grave al mismo tiempo, las guías sugieren empezar con CPAP.</strong> Es el escenario más común en este síndrome, y al abrir la vía aérea suele mejorar también la ventilación. Si con el CPAP el bióxido de carbono no baja como se espera, entonces se replantea el equipo.' },
-    leve:  { destaca: 'bipap', html: '<strong>Con apnea leve o moderada, o sin apnea significativa, se prefiere el BiPAP.</strong> En ese escenario el problema principal no es que la garganta se cierre, sino que la respiración se queda corta, y ahí ayuda la diferencia entre las dos presiones porque sí mueve aire.' },
-    ninguno: { destaca: null, html: '<strong>Sin un estudio del sueño no es posible orientar la elección.</strong> No es una evasiva: ese estudio es justamente lo que define el tratamiento, porque lo que separa al CPAP del BiPAP es cuánta apnea obstructiva hay. Antes de elegir equipo, toca hacer la <a href="/servicios/poligrafia-respiratoria/">poligrafía respiratoria</a> y medir el bióxido de carbono.' }
+    grave: { destaca: 'cpap', html: '<strong>Con apnea obstructiva grave al mismo tiempo, las guías sugieren empezar con CPAP.</strong> Es el escenario más común, y al abrir la vía aérea suele mejorar también la ventilación. Si el bióxido de carbono no baja como se espera, se replantea el equipo.' },
+    leve:  { destaca: 'bipap', html: '<strong>Con apnea leve o moderada, o sin apnea significativa, se prefiere el BiPAP.</strong> Ahí el problema no es que la garganta se cierre, sino que la respiración se queda corta, y la diferencia entre las dos presiones sí mueve aire.' },
+    ninguno: { destaca: null, html: '<strong>Sin un estudio del sueño no se puede orientar la elección.</strong> Ese estudio es justo lo que define el tratamiento. El paso siguiente es la <a href="/servicios/poligrafia-respiratoria/">poligrafía respiratoria</a> y medir el bióxido de carbono.' }
   };
   var radios = Array.prototype.slice.call(d.querySelectorAll('input[name="shoEstudio"]'));
   radios.forEach(function(r){
@@ -1478,7 +1621,7 @@
 
   <details class="faq-item">
     <summary>¿Cuánto cuesta la poligrafía respiratoria y la consulta?</summary>
-    <div class="faq-item__answer"><p>La poligrafía respiratoria cuesta $4,000 pesos en el consultorio y $5,000 a domicilio, durmiendo en tu casa. La primera consulta cuesta $1,800 pesos. Los estudios que se hacen fuera, como la gasometría arterial, se cobran aparte en el sitio donde se realicen.</p></div>
+    <div class="faq-item__answer"><p>La poligrafía respiratoria cuesta $4,000 pesos en el consultorio y $6,000 a domicilio, durmiendo en tu casa. La primera consulta cuesta $1,800 pesos. Los estudios que se hacen fuera, como la gasometría arterial, se cobran aparte en el sitio donde se realicen.</p></div>
   </details>
 
   <details class="faq-item">
