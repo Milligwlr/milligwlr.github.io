@@ -461,7 +461,12 @@
 <script>
 (function () {
   'use strict';
-  var API = 'https://script.google.com/macros/s/AKfycbwXhrEW73jRoPajdNnATA6q7Rrnc18n0yzMG07J5QaJvqKDhuHkDQEpm8qumH08UCFeEA/exec';
+  // PASARELA PROPIA (2-ago-2026): el visor pega primero al Worker de
+  // Cloudflare (/gas), que reenvia al /exec vigente — si el /exec cambia
+  // algun dia, solo se actualiza la variable del Worker, no esta pagina.
+  // Respaldo: si la pasarela falla, se reintenta UNA vez directo al /exec.
+  var API = 'https://wa-webhook-alveos.alveos-neumo.workers.dev/gas';
+  var API_RESPALDO = 'https://script.google.com/macros/s/AKfycbwXhrEW73jRoPajdNnATA6q7Rrnc18n0yzMG07J5QaJvqKDhuHkDQEpm8qumH08UCFeEA/exec';
   var LS = 'visor_bot_key';
   var INTERVALO_MS = 30000;
   var COLORES = ['#00a884', '#53bdeb', '#e542a3', '#91ab01', '#fe7c7f', '#ba68c8', '#ffa726', '#7986cb'];
@@ -493,12 +498,15 @@
         rej(new Error('tardo demasiado'));
       }, 25000);
     });
-    var f = fetch(API + '?visor=1', {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify(params),
-      signal: ctrl ? ctrl.signal : undefined
-    }).then(function (r) { return r.json(); });
+    function pide(base) {
+      return fetch(base + '?visor=1', {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(params),
+        signal: ctrl ? ctrl.signal : undefined
+      }).then(function (r) { return r.json(); });
+    }
+    var f = pide(API).catch(function () { return pide(API_RESPALDO); });
     return Promise.race([f, carrera]).then(
       function (j) { clearTimeout(t); return j; },
       function (err) { clearTimeout(t); throw err; });

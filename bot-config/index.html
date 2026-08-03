@@ -391,7 +391,10 @@
   'use strict';
 
   /* ================== Config y estado ================== */
-  var API = 'https://script.google.com/macros/s/AKfycbwXhrEW73jRoPajdNnATA6q7Rrnc18n0yzMG07J5QaJvqKDhuHkDQEpm8qumH08UCFeEA/exec';
+  // PASARELA PROPIA (2-ago-2026): igual que el visor — Worker /gas primero,
+  // /exec directo como respaldo si la pasarela falla.
+  var API = 'https://wa-webhook-alveos.alveos-neumo.workers.dev/gas';
+  var API_RESPALDO = 'https://script.google.com/macros/s/AKfycbwXhrEW73jRoPajdNnATA6q7Rrnc18n0yzMG07J5QaJvqKDhuHkDQEpm8qumH08UCFeEA/exec';
   var LS_CLAVE = 'panel_bot_key';
   var LS_LAYOUT = 'panel_bot_layout';
   var $ = function (id) { return document.getElementById(id); };
@@ -582,14 +585,19 @@
     // Semilla de prueba: en producción window.__panelMock es undefined -> fetch real.
     // El executor de Promise convierte un throw síncrono en rechazo (lo maneja .catch).
     if (window.__panelMock) { return new Promise(function (res) { res(window.__panelMock(params || {})); }); }
-    var url = API + '?panel=1&key=' + encodeURIComponent(claveGuardada());
-    Object.keys(params || {}).forEach(function (k) { url += '&' + k + '=' + encodeURIComponent(params[k]); });
+    var ruta = '?panel=1&key=' + encodeURIComponent(claveGuardada());
+    Object.keys(params || {}).forEach(function (k) { ruta += '&' + k + '=' + encodeURIComponent(params[k]); });
     var ctrl = null, t = null;
     var carrera = new Promise(function (_res, rej) {
       t = setTimeout(function () { if (ctrl) { try { ctrl.abort(); } catch (e) {} } rej(new Error('tardo')); }, 15000);
     });
     try { ctrl = new AbortController(); } catch (e) { ctrl = null; }
-    var f = fetch(url, ctrl ? { signal: ctrl.signal } : {}).then(function (r) { return r.json(); });
+    var f = fetch(API + ruta, ctrl ? { signal: ctrl.signal } : {})
+      .then(function (r) { return r.json(); })
+      .catch(function () {
+        return fetch(API_RESPALDO + ruta, ctrl ? { signal: ctrl.signal } : {})
+          .then(function (r) { return r.json(); });
+      });
     return Promise.race([f, carrera]).then(function (j) { clearTimeout(t); return j; },
       function (err) { clearTimeout(t); throw err; });
   }
