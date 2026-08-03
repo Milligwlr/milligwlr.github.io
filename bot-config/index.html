@@ -585,6 +585,13 @@
     // Semilla de prueba: en producción window.__panelMock es undefined -> fetch real.
     // El executor de Promise convierte un throw síncrono en rechazo (lo maneja .catch).
     if (window.__panelMock) { return new Promise(function (res) { res(window.__panelMock(params || {})); }); }
+    // POST PRIMERO (3-ago-2026, cierre del diferido de la auditoría): la clave
+    // y los valores viajan en el CUERPO — un GET los dejaba en historiales y
+    // en los registros de la pasarela. text/plain a propósito: evita el
+    // preflight OPTIONS que Apps Script no contesta (mismo patrón del visor).
+    // Respaldo en cadena: POST pasarela → POST /exec → GET /exec (legado).
+    var cuerpo = { key: claveGuardada() };
+    Object.keys(params || {}).forEach(function (k) { cuerpo[k] = String(params[k]); });
     var ruta = '?panel=1&key=' + encodeURIComponent(claveGuardada());
     Object.keys(params || {}).forEach(function (k) { ruta += '&' + k + '=' + encodeURIComponent(params[k]); });
     var ctrl = null, t = null;
@@ -592,8 +599,16 @@
       t = setTimeout(function () { if (ctrl) { try { ctrl.abort(); } catch (e) {} } rej(new Error('tardo')); }, 15000);
     });
     try { ctrl = new AbortController(); } catch (e) { ctrl = null; }
-    var f = fetch(API + ruta, ctrl ? { signal: ctrl.signal } : {})
-      .then(function (r) { return r.json(); })
+    function pidePost(base) {
+      return fetch(base + '?panel=1', {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(cuerpo),
+        signal: ctrl ? ctrl.signal : undefined
+      }).then(function (r) { return r.json(); });
+    }
+    var f = pidePost(API)
+      .catch(function () { return pidePost(API_RESPALDO); })
       .catch(function () {
         return fetch(API_RESPALDO + ruta, ctrl ? { signal: ctrl.signal } : {})
           .then(function (r) { return r.json(); });
