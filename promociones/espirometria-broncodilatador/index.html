@@ -316,54 +316,60 @@ section.block#que-mide .block__kicker,section.block#preparacion .block__kicker{m
    con UN solo texto visible: cuatro tarjetas apiladas costaban 310px de scroll,
    esto cuesta 90 y deja crecer la grafica. */
 .curva{max-width:720px;margin:0 auto}
-.cv__viz{position:relative;background:linear-gradient(170deg,#fff,#eef6ff);
-    border:1px solid rgba(9,132,227,.16);border-radius:18px;padding:12px 12px 8px;
+.cv__viz{position:relative;background:#fff;
+    border:1px solid rgba(9,132,227,.18);border-radius:18px;padding:12px 12px 8px;
     box-shadow:0 18px 40px -30px rgba(9,44,84,.6)}
 .cv__svg{width:100%;height:auto;display:block;overflow:visible}
-.cv__eje{stroke:rgba(9,132,227,.3);stroke-width:1}
-.cv__eje--y{stroke-dasharray:2 4}
-.cv__ejeTx{fill:#64748b;font-size:8.5px;font-weight:800;letter-spacing:.06em}
-.cv__insTx{fill:#8a97a8;font-size:8px;font-weight:700}
+.cv__grid line{stroke:#0a1628;stroke-width:.7;stroke-dasharray:1 4;opacity:.2}
+.cv__eje{stroke:#0a1628;stroke-width:1.1;opacity:.45}
 /* anotacion: codo + etiqueta, al estilo de las annotations de visx. Se redibuja
    en cada paso; el estado base es VISIBLE y la animacion solo la trae desde
    fuera, para que nunca dependa de que una transicion llegue a correr. */
 .cv__anot{animation:anot-in .34s cubic-bezier(.16,1,.3,1)}
 @keyframes anot-in{from{opacity:0;transform:translateY(5px)}}
-.cv__codo{fill:none;stroke:#0a58a8;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;opacity:.65}
-.cv__anotTx{fill:#0a58a8;font-size:9px;font-weight:800;letter-spacing:.01em}
-.curva.is-hueco .cv__codo{stroke:#a8431f}
+.cv__codo{fill:none;stroke:#1e3799;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;opacity:.7}
+.cv__anotTx{fill:#1e3799;font-size:11.5px;font-weight:800;letter-spacing:.01em}
+.curva.is-hueco .cv__codo{stroke:#b8471f}
 .curva.is-hueco .cv__anotTx{fill:#a8431f}
-.curva.is-post .cv__codo{stroke:#0984e3}
-.curva.is-post .cv__anotTx{fill:#0a58a8}
+.curva.is-post .cv__codo{stroke:#0e9f6e}
+.curva.is-post .cv__anotTx{fill:#0a7d55}
 /* la referencia contra la que se compara todo */
-.cv__pred{stroke:#9aa8bb;stroke-width:1.4;stroke-dasharray:6 5;opacity:.75}
-.cv__predTx{fill:#7c8ba0;font-size:8.5px;font-weight:800}
+/* #94a3b8 daba 2.56:1 contra el blanco y WCAG pide 3:1 para un trazo que
+   lleva informacion; #7d8ea3 da 3.35:1 sin dejar de ser el gris de fondo */
+.cv__pred{stroke:#7d8ea3;stroke-width:1.5;stroke-dasharray:7 5}
 /* el hueco: aparece solo cuando el paso habla de el */
 .cv__hueco{fill:#e0662b;opacity:0;transition:opacity .45s ease}
-.curva.is-hueco .cv__hueco{opacity:.16}
-.cv__basal{fill:none;stroke:var(--basal);stroke-width:2.7;stroke-linecap:round;stroke-linejoin:round;
-    stroke-dasharray:460;stroke-dashoffset:0;animation:cv-traza 1.6s cubic-bezier(.16,1,.3,1)}
-.cv__basalIns{fill:none;stroke:var(--basal);stroke-width:1.7;stroke-linecap:round;opacity:.42}
-@keyframes cv-traza{from{stroke-dashoffset:460}}
-.cv__post,.cv__postIns{fill:none;stroke:var(--post);stroke-linecap:round;stroke-linejoin:round;
-    stroke-dasharray:460;stroke-dashoffset:460;opacity:0;
-    transition:stroke-dashoffset .9s cubic-bezier(.16,1,.3,1),opacity .25s ease}
-.cv__post{stroke-width:2.9}
-.cv__postIns{stroke-width:1.7}
-.curva.is-post .cv__post{stroke-dashoffset:0;opacity:1}
-.curva.is-post .cv__postIns{stroke-dashoffset:0;opacity:.42}
-.cv__pt{fill:#fff;stroke:var(--basal);stroke-width:2.4;opacity:.3;
-    transition:opacity .35s ease,r .45s cubic-bezier(.16,1,.3,1),stroke-width .35s ease}
-.cv__pt.is-on{opacity:1;r:7;stroke-width:3.4}
-.cv__pt[data-m="2"]{stroke:#c2542c}
-.cv__pt[data-m="3"]{stroke:var(--post)}
-.cv__leg{display:flex;flex-wrap:wrap;gap:4px 15px;margin-top:8px;padding-top:8px;border-top:1px dashed rgba(9,132,227,.18)}
+.curva.is-hueco .cv__hueco{opacity:.15}
+/* previo en azul y post en verde, como los imprime el equipo del consultorio.
+   El post vive de fondo desde el principio (el dibujo nunca se ve a medias) y
+   toma el mando en su paso, mientras el previo cede. */
+.cv__basal,.cv__basalIns{stroke:#1e3799;transition:opacity .4s ease}
+.cv__post,.cv__postIns{stroke:#0e9f6e;transition:opacity .4s ease}
+.cv__basal,.cv__post{fill:none;stroke-width:2.9;stroke-linecap:round;stroke-linejoin:round}
+.cv__basalIns,.cv__postIns{fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.cv__basal{stroke-dasharray:520;stroke-dashoffset:0;animation:cv-traza 1.6s cubic-bezier(.16,1,.3,1)}
+@keyframes cv-traza{from{stroke-dashoffset:520}}
+.cv__basalIns{opacity:.4}
+.cv__post{opacity:.26}
+.cv__postIns{opacity:.14}
+.curva.is-post .cv__post{opacity:1}
+.curva.is-post .cv__postIns{opacity:.4}
+.curva.is-post .cv__basal{opacity:.3}
+.curva.is-post .cv__basalIns{opacity:.14}
+/* el punto activo: solo se ve el que toca, y toma el color de lo que señala */
+.cv__pt{fill:#fff;stroke:#1e3799;stroke-width:2.6;opacity:0;
+    transition:opacity .3s ease,r .45s cubic-bezier(.16,1,.3,1)}
+.cv__pt.is-on{opacity:1;r:6.5}
+.cv__pt[data-m="2"]{stroke:#b8471f}
+.cv__pt[data-m="3"]{stroke:#0e9f6e}
+.cv__leg{display:flex;flex-wrap:wrap;align-items:center;gap:5px 14px;margin-top:9px;padding-top:9px;
+    border-top:1px dashed rgba(9,132,227,.18)}
 .cv__leg span{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;color:#5a6b7d}
-.cv__leg i{width:16px;height:3px;border-radius:2px;background:var(--basal);flex-shrink:0}
-.cv__leg span+span i{background:var(--post);opacity:.3;transition:opacity .35s ease}
-.curva.is-post .cv__leg span+span i{opacity:1}
-.cv__ejes{color:#64748b;font-size:.7rem!important;margin-left:auto}
-@media(max-width:520px){.cv__ejes{margin-left:0;flex-basis:100%}}
+.cv__leg i{width:17px;height:3px;border-radius:2px;flex-shrink:0}
+.cv__lPre i{background:#1e3799}
+.cv__lPost i{background:#0e9f6e}
+.cv__lPred i{height:0;border-top:2px dashed #7d8ea3;border-radius:0}
+.cv__ejes{color:#64748b;font-size:.68rem!important;font-weight:600!important;flex-basis:100%}
 
 /* selector: 4 pastillas, una sola linea de texto viva */
 .cv__pills{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:12px}
@@ -633,45 +639,53 @@ section.block#que-mide .block__kicker,section.block#preparacion .block__kicker{m
 
         <div class="curva" id="curva">
             <div class="cv__viz">
-                <svg viewBox="0 0 340 178" class="cv__svg" role="img" aria-label="Asa de flujo contra volumen de una espirometría: el flujo sube de golpe hasta el pico, baja hundiéndose hacia adentro cuando las vías están estrechas, toca el cero al vaciarse los pulmones y tras el broncodilatador el trazo se levanta hacia la línea de lo esperado">
-                    <!-- eje de volumen (horizontal, flujo = 0) y eje de flujo -->
-                    <line x1="40" y1="100" x2="330" y2="100" class="cv__eje"/>
-                    <line x1="44" y1="14" x2="44" y2="164" class="cv__eje cv__eje--y"/>
+                <svg viewBox="0 0 360 186" class="cv__svg" role="img" aria-label="Asa de flujo contra volumen de una espirometría, como la que imprime el equipo: el flujo sube de golpe hasta el pico, baja hundiéndose hacia adentro cuando las vías están estrechas, toca el cero al vaciarse los pulmones, y la curva de después del broncodilatador se levanta hacia la recta de lo esperado. Debajo del cero queda el aire que se vuelve a inhalar">
+                    <!-- rejilla punteada: es lo que hace que se reconozca como la hoja del equipo -->
+                    <g class="cv__grid" aria-hidden="true">
+                        <line x1="52" y1="34" x2="336" y2="34"/>
+                        <line x1="52" y1="62" x2="336" y2="62"/>
+                        <line x1="52" y1="90" x2="336" y2="90"/>
+                        <line x1="52" y1="146" x2="336" y2="146"/>
+                        <line x1="133" y1="20" x2="133" y2="176"/>
+                        <line x1="214" y1="20" x2="214" y2="176"/>
+                        <line x1="295" y1="20" x2="295" y2="176"/>
+                    </g>
+                    <!-- eje de volumen (flujo = 0) y eje de flujo -->
+                    <line x1="52" y1="118" x2="340" y2="118" class="cv__eje"/>
+                    <line x1="52" y1="20" x2="52" y2="176" class="cv__eje"/>
 
-                    <!-- lo esperado para tu edad, sexo y talla: la referencia contra la que se compara -->
-                    <line class="cv__pred" x1="70" y1="16" x2="306" y2="100"/>
-                    <text x="112" y="27" class="cv__predTx">lo esperado</text>
+                    <!-- lo esperado para tu edad, sexo y talla: la referencia -->
+                    <line class="cv__pred" x1="80" y1="13" x2="336" y2="118"/>
 
                     <!-- el hueco entre lo esperado y tu curva: eso ES la obstruccion -->
-                    <path class="cv__hueco" d="M70,16 L306,100 L282,100 C180,92 120,72 73,33 Z"/>
+                    <path class="cv__hueco" d="M80,13 L336,118 L291,118 C150,88 104,58 80,34 Z"/>
+
+                    <!-- despues del broncodilatador (queda de fondo hasta su paso) -->
+                    <path class="cv__post" d="M53,118 C61,88 73,44 84,30 C112,50 165,84 299,118"/>
+                    <path class="cv__postIns" d="M299,118 C266,166 118,172 53,118"/>
 
                     <!-- tu soplido de entrada: sube al pico y baja hundiendose -->
-                    <path class="cv__basal" d="M44,100 C52,68 62,36 73,33 C120,72 180,92 282,100"/>
-                    <path class="cv__basalIns" d="M282,100 C250,145 110,150 44,100"/>
+                    <path class="cv__basal" d="M52,118 C60,92 70,50 80,34 C104,58 150,88 291,118"/>
+                    <path class="cv__basalIns" d="M291,118 C260,158 120,164 52,118"/>
 
-                    <!-- tras el broncodilatador: el trazo se levanta y el hueco se cierra -->
-                    <path class="cv__post" d="M45,100 C54,58 64,26 74,23 C115,50 175,72 296,100"/>
-                    <path class="cv__postIns" d="M296,100 C262,152 108,158 45,100"/>
-
-                    <text x="150" y="172" class="cv__insTx" text-anchor="middle">lo que vuelves a inhalar</text>
-
-                    <!-- anotacion viva: un codo desde el punto activo hasta su etiqueta.
-                         Sustituye a las etiquetas fijas: solo se lee la que toca. -->
+                    <!-- anotacion viva: codo desde el punto activo hasta una etiqueta corta.
+                         La frase completa vive en el texto de abajo, no sobre el dibujo. -->
                     <g class="cv__anot" aria-hidden="true">
-                        <path class="cv__codo" d="M73,33 L73,20 L96,20"/>
-                        <text class="cv__anotTx" x="100" y="23">el pico: tu PEF</text>
+                        <path class="cv__codo" d="M80,34 L80,26 L70,26"/>
+                        <text class="cv__anotTx" x="68" y="29" text-anchor="end">PEF</text>
                     </g>
                     <g>
-                        <circle class="cv__pt" data-m="0" cx="73"  cy="33"  r="4.5"/>
-                        <circle class="cv__pt" data-m="1" cx="282" cy="100" r="4.5"/>
-                        <circle class="cv__pt" data-m="2" cx="178" cy="84"  r="4.5"/>
-                        <circle class="cv__pt" data-m="3" cx="155" cy="61"  r="4.5"/>
+                        <circle class="cv__pt" data-m="0" cx="80"  cy="34"  r="4.5"/>
+                        <circle class="cv__pt" data-m="1" cx="291" cy="118" r="4.5"/>
+                        <circle class="cv__pt" data-m="2" cx="170" cy="80"  r="4.5"/>
+                        <circle class="cv__pt" data-m="3" cx="150" cy="68"  r="4.5"/>
                     </g>
                 </svg>
                 <div class="cv__leg">
-                    <span><i aria-hidden="true"></i> Tu primer soplido</span>
-                    <span><i aria-hidden="true"></i> Con broncodilatador</span>
-                    <span class="cv__ejes">Flujo (L/s) frente a volumen (litros)</span>
+                    <span class="cv__lPre"><i aria-hidden="true"></i> Tu soplido</span>
+                    <span class="cv__lPost"><i aria-hidden="true"></i> Con broncodilatador</span>
+                    <span class="cv__lPred"><i aria-hidden="true"></i> Lo esperado</span>
+                    <span class="cv__ejes">Flujo (L/s) frente a volumen (L). Bajo el cero, el aire que vuelves a tomar.</span>
                 </div>
             </div>
 
@@ -1003,12 +1017,14 @@ window.addEventListener('load', function(){
   var codo=caja.querySelector('.cv__codo');
   var anotTx=caja.querySelector('.cv__anotTx');
   if(!pills.length||!pts.length) return;
-  /* codo + etiqueta por paso, en coordenadas del viewBox (340x178) */
+  /* codo + etiqueta corta por paso, en coordenadas del viewBox (360x186).
+     Cortas a proposito: la frase entera va en el texto de abajo, no encima
+     del dibujo (fue lo que encimo "el pico: tu PEF" con "lo esperado"). */
   var ANOT=[
-    {d:'M73,33 L73,20 L96,20',   x:100, y:23, an:'start', tx:'el pico: tu PEF'},
-    {d:'M282,100 L282,113 L300,113', x:304, y:116, an:'start', tx:'tu FVC'},
-    {d:'M178,84 L214,66 L240,66',  x:244, y:69, an:'start', tx:'esto es la obstrucción'},
-    {d:'M155,61 L155,44 L180,44',  x:184, y:47, an:'start', tx:'responde al broncodilatador'}
+    {d:'M80,34 L80,26 L70,26',      x:68,  y:29,  an:'end',   tx:'PEF'},
+    {d:'M291,118 L291,130 L300,130', x:303, y:133, an:'start', tx:'FVC'},
+    {d:'M170,80 L188,50 L194,50',   x:197, y:53,  an:'start', tx:'la obstrucción'},
+    {d:'M150,68 L168,43 L174,43',   x:177, y:46,  an:'start', tx:'responde'}
   ];
   function pon(k){
     pills.forEach(function(b,i){ b.setAttribute('aria-selected',String(i===k)); });
