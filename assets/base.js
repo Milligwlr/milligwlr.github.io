@@ -215,3 +215,107 @@
         init();
     }
 })();
+
+/* =========================================================================
+   ORIGEN DEL CLIC DE ADS (gclid) -> mensaje de WhatsApp
+   -------------------------------------------------------------------------
+   El problema: el paciente hace clic en un anuncio, salta a WhatsApp y ahi se
+   corta el rastro. Google nunca sabe que ESA campana trajo ESA cita, asi que
+   el costo por cita por campana no es "dificil": es indefinible.
+
+   Lo que hace esto: guarda el identificador del clic de Ads (gclid, o gbraid /
+   wbraid en iOS) y lo agrega como una linea "Ref:" al final del mensaje
+   prellenado de WhatsApp. El bot lo lee del primer mensaje y lo guarda contra
+   la conversacion; al confirmar la cita se sube la conversion a Ads.
+
+   Solo viaja el identificador del CLIC. Ningun dato del paciente sale de aqui,
+   que es justo lo que hace esta ruta mas limpia que Enhanced Conversions for
+   Leads (que sube una senal derivada de la condicion medica y sigue parqueado).
+
+   Si el paciente borra la linea antes de enviar, se pierde esa atribucion y ya:
+   el mensaje sigue siendo valido y la cita se agenda igual.
+   ========================================================================= */
+(function () {
+    'use strict';
+
+    var LLAVE = 'alveos_click';
+    var VENTANA_DIAS = 90;            // ventana de importacion offline de Google Ads
+    var TIPOS = { gclid: 'g', gbraid: 'b', wbraid: 'w' };
+
+    /* el identificador llega en la URL del anuncio; sobrevive a que el paciente
+       navegue por el sitio antes de decidirse */
+    function guardar() {
+        try {
+            var q = window.location.search;
+            for (var k in TIPOS) {
+                if (!Object.prototype.hasOwnProperty.call(TIPOS, k)) continue;
+                var m = q.match(new RegExp('[?&]' + k + '=([^&#]+)'));
+                if (m && m[1]) {
+                    localStorage.setItem(LLAVE, JSON.stringify({
+                        t: TIPOS[k], v: decodeURIComponent(m[1]), ts: Date.now()
+                    }));
+                    return;
+                }
+            }
+        } catch (e) { /* sin localStorage (modo privado): se sigue sin marcar */ }
+    }
+
+    function leer() {
+        try {
+            var crudo = localStorage.getItem(LLAVE);
+            if (!crudo) return null;
+            var o = JSON.parse(crudo);
+            if (!o || !o.v || !o.ts) return null;
+            if (Date.now() - o.ts > VENTANA_DIAS * 864e5) {
+                localStorage.removeItem(LLAVE);   // fuera de ventana: Ads ya no lo aceptaria
+                return null;
+            }
+            return o.t + '.' + o.v;
+        } catch (e) { return null; }
+    }
+
+    /* Se parsea el enlace en vez de concatenar al final: el passthrough de Ads
+       le cuelga sus propios parametros (&gclid, &utm_*) despues del text, asi
+       que suponer que text es el ultimo fallaba justo en las visitas de anuncio,
+       que son las unicas que importan aqui.
+       El toString() de URL escribe los espacios como "+"; se vuelven a %20 para
+       no cambiar la codificacion que ya traian los ~392 enlaces del sitio. */
+    function marcar(a, ref) {
+        var h = a.getAttribute('href') || '';
+        if (h.indexOf('wa.me/') < 0) return;
+        try {
+            var u = new URL(h, window.location.href);
+            var t = u.searchParams.get('text');
+            if (t === null || t.indexOf('\nRef: ') >= 0) return;   // sin mensaje, o ya marcado
+            u.searchParams.set('text', t + '\n\nRef: ' + ref);
+            a.setAttribute('href', u.toString().replace(/\+/g, '%20'));
+        } catch (e) { /* href raro: mejor dejarlo intacto que romperlo */ }
+    }
+
+    function pasada() {
+        var ref = leer();
+        if (!ref) return;
+        var enlaces = document.querySelectorAll('a[href*="wa.me/"]');
+        for (var i = 0; i < enlaces.length; i++) marcar(enlaces[i], ref);
+    }
+
+    guardar();
+
+    /* red de seguridad para los enlaces que nacen despues: el modal de agenda
+       inyecta los suyos al abrirse. Se marcan al abrir el modal y, pase lo que
+       pase, en el clic mismo (fase de captura: antes de que navegue). */
+    document.addEventListener('click', function (e) {
+        if (!e.target || !e.target.closest) return;
+        if (e.target.closest('[data-open-agenda]')) { setTimeout(pasada, 60); return; }
+        var a = e.target.closest('a[href*="wa.me/"]');
+        if (!a) return;
+        var ref = leer();
+        if (ref) marcar(a, ref);
+    }, true);
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', pasada);
+    } else {
+        pasada();
+    }
+})();
