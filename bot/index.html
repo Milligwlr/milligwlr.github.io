@@ -486,30 +486,61 @@
   // re-exponía el token/nota en la URL en silencio. Un cuerpo no-JSON
   // rechaza y el llamador pinta su estado de error de siempre.
   function apiVisor(params) {
-    // TIMEOUT de 25 s (25-jul (6), reporte del Dr.: en datos móviles el visor
-    // "no abre" — era un fetch SIN tope que se quedaba colgado para siempre en
-    // una red lenta). Al vencer se aborta y el catch existente avisa; el poll
-    // de 30 s reintenta solo.
-    var ctrl = null, t = null;
-    try { ctrl = new AbortController(); } catch (e) { ctrl = null; }
-    var carrera = new Promise(function (_res, rej) {
-      t = setTimeout(function () {
-        if (ctrl) { try { ctrl.abort(); } catch (e) {} }
-        rej(new Error('tardo demasiado'));
-      }, 25000);
-    });
-    function pide(base) {
-      return fetch(base + '?visor=1', {
+    // TIMEOUT (25-jul (6) + 6-ago, reporte del Dr.: en el Poco "a veces no
+    // abre"). El presupuesto es POR INTENTO, no compartido: con los 25 s
+    // COMPARTIDOS de antes, un /exec frío detrás de la pasarela se comía el
+    // presupuesto entero y el respaldo directo arrancaba ya muerto — el visor
+    // decía "sin conexión" hasta el siguiente poll de 30 s. Ahora la pasarela
+    // tiene 10 s y el respaldo directo 20 s PROPIOS (y el /exec ya viene tibio
+    // por el primer intento). SOLO para LECTURAS: una ESCRITURA (mensaje al
+    // paciente, nota, renombrar) conserva el presupuesto único conservador —
+    // abortarla y reintentarla podría DUPLICAR un mensaje clínico si el primer
+    // POST sí aterrizó lento.
+    function pide(base, ms) {
+      var ctrl = null, t = null;
+      try { ctrl = new AbortController(); } catch (e) { ctrl = null; }
+      var tope = new Promise(function (_res, rej) {
+        t = setTimeout(function () {
+          if (ctrl) { try { ctrl.abort(); } catch (e) {} }
+          rej(new Error('tardo demasiado'));
+        }, ms);
+      });
+      var f = fetch(base + '?visor=1', {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(params),
         signal: ctrl ? ctrl.signal : undefined
       }).then(function (r) { return r.json(); });
+      return Promise.race([f, tope]).then(
+        function (j) { clearTimeout(t); return j; },
+        function (err) { clearTimeout(t); throw err; });
     }
-    var f = pide(API).catch(function () { return pide(API_RESPALDO); });
-    return Promise.race([f, carrera]).then(
-      function (j) { clearTimeout(t); return j; },
-      function (err) { clearTimeout(t); throw err; });
+    var esEscritura = !!(params && (params.msg || params.seg || params.ren));
+    if (esEscritura) {
+      // Camino de siempre: 25 s compartidos; el respaldo solo entra si la
+      // pasarela FALLÓ rápido (nunca tras un timeout, para no re-enviar).
+      var ctrlE = null, tE = null;
+      try { ctrlE = new AbortController(); } catch (e) { ctrlE = null; }
+      var carrera = new Promise(function (_res, rej) {
+        tE = setTimeout(function () {
+          if (ctrlE) { try { ctrlE.abort(); } catch (e) {} }
+          rej(new Error('tardo demasiado'));
+        }, 25000);
+      });
+      function pideE(base) {
+        return fetch(base + '?visor=1', {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(params),
+          signal: ctrlE ? ctrlE.signal : undefined
+        }).then(function (r) { return r.json(); });
+      }
+      var fE = pideE(API).catch(function () { return pideE(API_RESPALDO); });
+      return Promise.race([fE, carrera]).then(
+        function (j) { clearTimeout(tE); return j; },
+        function (err) { clearTimeout(tE); throw err; });
+    }
+    return pide(API, 10000).catch(function () { return pide(API_RESPALDO, 20000); });
   }
   // Foto local del visor (25-jul (6)): lo último recibido se guarda en el
   // dispositivo y se pinta AL INSTANTE al abrir (clave para datos móviles
