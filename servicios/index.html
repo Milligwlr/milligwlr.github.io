@@ -288,6 +288,62 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   box-shadow:inset 0 0 0 .5px rgba(255,255,255,.14);
   -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); }
 
+/* ─────────────── Keynote de Espirometría (pin + scrub atado al scroll) ───────────────
+   Regla anti-LCP del proyecto: el contenido NACE VISIBLE. La clase .is-live la pone el JS
+   solo cuando GSAP existe y no hay reduced-motion; sin ella esto es una lista legible. */
+.espiro-stage{ margin-bottom:18px; }
+.espiro-panel{ position:relative; overflow:hidden; border-radius:var(--r-lg,22px); color:#fff;
+  padding:28px 22px 24px; background:linear-gradient(135deg,#06222e 0%,#0a3a4a 55%,#0891b2 130%); }
+.espiro-panel::after{ content:''; position:absolute; inset:0; pointer-events:none; opacity:.85;
+  background:radial-gradient(ellipse 60% 70% at 85% 8%, rgba(0,206,201,.42), transparent 60%); }
+.espiro-panel > *{ position:relative; z-index:1; }
+.espiro-head .hub-card__icon{ background:rgba(255,255,255,.12); color:#fff; border-color:rgba(255,255,255,.22);
+  width:56px; height:56px; font-size:1.5rem; }
+.espiro-head h3{ color:#fff; font-size:1.5rem; letter-spacing:-.02em; margin:14px 0 6px; }
+.espiro-lead{ color:rgba(255,255,255,.8); margin:0 0 18px; }
+.espiro-flow{ display:grid; grid-template-columns:3px 1fr; gap:16px; align-items:stretch; }
+.espiro-beam{ position:relative; border-radius:100px; background:rgba(255,255,255,.14); }
+.espiro-beam__fill{ position:absolute; inset:0 0 auto 0; height:0%; border-radius:100px;
+  background:linear-gradient(180deg,#7ee8e2,#0891b2); }
+.espiro-vport{ position:relative; }
+.espiro-track{ list-style:none; margin:0; padding:0; }
+.espiro-step{ padding:2px 0 22px; }
+.espiro-step:last-child{ padding-bottom:0; }
+.espiro-step__n{ display:block; font-size:.68rem; font-weight:800; letter-spacing:.16em;
+  color:#7ee8e2; margin-bottom:4px; }
+.espiro-step h4{ color:#fff; font-size:1.06rem; font-weight:700; margin:0 0 4px; letter-spacing:-.01em; }
+.espiro-step p{ color:rgba(255,255,255,.78); font-size:.95rem; line-height:1.6; margin:0; }
+.espiro-meta{ margin-top:20px; }
+.espiro-panel .hub-card__chip{ background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.18); color:rgba(255,255,255,.88); }
+.espiro-panel .hub-card__chip i{ color:#7ee8e2; }
+.espiro-cta{ display:inline-flex; align-items:center; gap:8px; margin-top:18px; min-height:44px;
+  color:#7ee8e2; font-weight:700; text-decoration:none;
+  transition:transform .16s cubic-bezier(.23,1,.32,1), gap .16s cubic-bezier(.23,1,.32,1); }
+.espiro-cta:hover{ color:#a8f3ee; gap:12px; }
+.espiro-cta:active{ transform:scale(.97); }
+.espiro-cta:focus-visible{ outline:2px solid #7ee8e2; outline-offset:4px; border-radius:6px; }
+/* MODO VIVO: solo con JS+GSAP. El marco enmascara y los pasos viajan por dentro. */
+/* Con pin, el stage DEBE llenar la pantalla: GSAP reserva el espacio del recorrido en un
+   pin-spacer, y si el panel es más bajo que ese espacio se ve una franja en blanco debajo
+   (medido: 277px de hueco). Llenando la pantalla, el panel cubre y además es lo que hace
+   que se sienta keynote de verdad. */
+.espiro-stage.is-live{ min-height:100svh; display:flex; align-items:center; }
+.espiro-stage.is-live .espiro-panel{ width:100%; }
+/* marco alto = menos recorrido = menos scroll gastado por el pin */
+.espiro-stage.is-live .espiro-vport{ height:246px; overflow:hidden; }
+.espiro-stage.is-live .espiro-step{ opacity:.32; transform:translateY(2px);
+  transition:opacity .45s cubic-bezier(.23,1,.32,1), transform .45s cubic-bezier(.23,1,.32,1); }
+.espiro-stage.is-live .espiro-step.is-lit{ opacity:1; transform:none; }
+@media(min-width:992px){
+  .espiro-panel{ padding:44px 46px 40px; }
+  .espiro-stage.is-live .espiro-vport{ height:250px; }
+  .espiro-head h3{ font-size:1.75rem; }
+}
+@media(prefers-reduced-motion:reduce){
+  .espiro-stage.is-live .espiro-vport{ height:auto; overflow:visible; }
+  .espiro-stage.is-live .espiro-step{ opacity:1; transform:none; transition:none; }
+}
+
 /* reveals suaves (base del sistema) */
 .hub-reveal{ opacity:0; transform:translateY(24px); transition:opacity .65s var(--ease), transform .65s var(--ease); }
 .hub-reveal.visible{ opacity:1; transform:none; }
@@ -509,21 +565,53 @@ height="0" width="0" style="display:none;visibility:hidden" aria-hidden="true"><
                 </div>
                 <div class="hub-cat__rule" aria-hidden="true"></div>
             </div>
-            <div class="hub-grid hub-grid--stack">
-                <a class="hub-card hub-card--feature hub-reveal" style="--cat:var(--cat-funcion)" href="/servicios/espirometria/" data-cta="hub-card-espirometria">
+            <!-- Keynote de Espirometría: el panel se ANCLA (pin) y los 4 momentos del estudio
+                 avanzan atados al scroll. Los pasos son el contenido real de /servicios/espirometria/.
+                 Sin GSAP o con reduced-motion queda como lista visible y legible. -->
+            <section class="espiro-stage hub-reveal" style="--cat:var(--cat-funcion)" aria-labelledby="espiroTitle">
+                <div class="espiro-panel">
                     <span class="hub-card__tag">El más solicitado</span>
-                    <div class="hub-feature-inner">
-                        <div class="hub-card__top"><div class="hub-card__icon"><i class="bi bi-wind" aria-hidden="true"></i></div></div>
-                        <h3>Espirometría</h3>
-                        <p>La prueba de oro de la función pulmonar, con broncodilatador incluido. Diagnostica asma y EPOC, y mide qué tan reversible es la obstrucción.</p>
-                        <div class="hub-card__meta">
-                            <span class="hub-card__chip"><i class="bi bi-clock" aria-hidden="true"></i> 10 minutos</span>
-                            <span class="hub-card__chip"><i class="bi bi-emoji-smile" aria-hidden="true"></i> Sin dolor</span>
-                            <span class="hub-card__chip"><i class="bi bi-hospital" aria-hidden="true"></i> Hospital Santa Coleta</span>
-                        </div>
-                        <span class="hub-card__more">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                    <div class="espiro-head">
+                        <div class="hub-card__icon"><i class="bi bi-wind" aria-hidden="true"></i></div>
+                        <h3 id="espiroTitle">Espirometría</h3>
+                        <p class="espiro-lead">La prueba de oro de la función pulmonar, con broncodilatador incluido.</p>
                     </div>
-                </a>
+                    <div class="espiro-flow">
+                        <div class="espiro-beam" aria-hidden="true"><span class="espiro-beam__fill"></span></div>
+                        <div class="espiro-vport">
+                            <ol class="espiro-track">
+                                <li class="espiro-step">
+                                    <span class="espiro-step__n" aria-hidden="true">01</span>
+                                    <h4>Soplas</h4>
+                                    <p>Respiras profundo y soplas con tu máximo esfuerzo por una boquilla, con un clip suave en la nariz.</p>
+                                </li>
+                                <li class="espiro-step">
+                                    <span class="espiro-step__n" aria-hidden="true">02</span>
+                                    <h4>El equipo mide</h4>
+                                    <p>Registra cuánto aire exhalas y a qué velocidad. De ahí sale la curva que verás en tu reporte.</p>
+                                </li>
+                                <li class="espiro-step">
+                                    <span class="espiro-step__n" aria-hidden="true">03</span>
+                                    <h4>Broncodilatador</h4>
+                                    <p>Se aplica el medicamento inhalado y, a los minutos, repites la maniobra para comparar.</p>
+                                </li>
+                                <li class="espiro-step">
+                                    <span class="espiro-step__n" aria-hidden="true">04</span>
+                                    <h4>Tu resultado</h4>
+                                    <p>Qué tan reversible es la obstrucción es lo que orienta el diagnóstico de asma o EPOC.</p>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="hub-card__meta espiro-meta">
+                        <span class="hub-card__chip"><i class="bi bi-clock" aria-hidden="true"></i> 10 minutos</span>
+                        <span class="hub-card__chip"><i class="bi bi-emoji-smile" aria-hidden="true"></i> Sin dolor</span>
+                        <span class="hub-card__chip"><i class="bi bi-hospital" aria-hidden="true"></i> Hospital Santa Coleta</span>
+                    </div>
+                    <a class="espiro-cta" href="/servicios/espirometria/" data-cta="hub-card-espirometria">Ver detalles <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                </div>
+            </section>
+            <div class="hub-grid hub-grid--stack">
                 <a class="hub-card hub-card--wide hub-reveal" style="--cat:var(--cat-funcion)" href="/servicios/feno/" data-cta="hub-card-feno">
                     <div class="hub-card__top"><div class="hub-card__icon"><i class="bi bi-graph-up" aria-hidden="true"></i></div></div>
                     <div class="hub-card__body">
@@ -779,26 +867,77 @@ height="0" width="0" style="display:none;visibility:hidden" aria-hidden="true"><
         });
     }
 
-    /* 5 · Keynote scrub-parallax del panel Espirometría (atado al scroll, sin pin/hijack) */
-    if (!reduce && window.gsap && window.ScrollTrigger) {
+    /* 5 · Keynote de Espirometría: el panel se ANCLA (pin) y los 4 momentos del estudio
+       avanzan atados al scroll. Patrón canónico del sitio (mismo motor que sobre-el-doctor):
+       pin TAMBIÉN en móvil, que es donde vive el 80% del tráfico. */
+    espiroKeynote();
+  }
+
+  function espiroKeynote() {
+    if (!espiroKeynote._done && window.gsap && window.ScrollTrigger) {
+        espiroKeynote._done = true;                       // se intenta 2 veces (DOMContentLoaded + load)
         window.gsap.registerPlugin(window.ScrollTrigger);
-        var mm = window.gsap.matchMedia();
-        mm.add('(prefers-reduced-motion: no-preference)', function(){
-            var inner = document.querySelector('.hub-card--feature .hub-feature-inner');
-            var tag = document.querySelector('.hub-card--feature .hub-card__tag');
-            var panel = document.querySelector('.hub-card--feature');
-            if (inner && panel) {
-                window.gsap.to(inner, { yPercent: -4, ease: 'none',
-                    scrollTrigger: { trigger: panel, start: 'top 88%', end: 'bottom 28%', scrub: .6 } });
-            }
-            if (tag && panel) {
-                window.gsap.to(tag, { yPercent: 18, ease: 'none',
-                    scrollTrigger: { trigger: panel, start: 'top 92%', end: 'bottom 20%', scrub: .8 } });
-            }
+        // Sin esto, la barra de URL de iOS reajusta el viewport y el pin da un salto
+        window.ScrollTrigger.config({ ignoreMobileResize: true });
+        var mmE = window.gsap.matchMedia();
+        mmE.add('(prefers-reduced-motion: no-preference)', function(){
+            var stage = document.querySelector('.espiro-stage');
+            var track = document.querySelector('.espiro-track');
+            var vport = document.querySelector('.espiro-vport');
+            var fill  = document.querySelector('.espiro-beam__fill');
+            var steps = window.gsap.utils.toArray('.espiro-step');
+            if (!stage || !track || !vport || !steps.length) return;
+            stage.classList.add('is-live');               // hasta aquí el marco no enmascaraba nada
+            steps[0].classList.add('is-lit');
+            // se recalcula en cada refresh: la altura del track cambia con el ancho
+            var distance = function(){ return Math.max(1, track.scrollHeight - vport.clientHeight); };
+            var tl = window.gsap.timeline({
+                defaults: { ease: 'none' },               // con scrub la curva la pone el scroll
+                scrollTrigger: {
+                    trigger: stage, start: 'top top',
+                    // colchón corto a propósito: el pin CONSUME scroll y el 80% del tráfico
+                    // es móvil, donde el scroll largo es el enemigo (regla d8 del Dr.)
+                    end: function(){ return '+=' + Math.round(distance() * 1.02 + 70); },
+                    pin: true, scrub: .6, anticipatePin: 1, invalidateOnRefresh: true
+                }
+            });
+            tl.to(track, { y: function(){ return -distance(); }, duration: 1 }, 0);
+            if (fill) tl.fromTo(fill, { height: '0%' }, { height: '100%', duration: 1 }, 0);
+            // cada paso se enciende al cruzar el centro del marco (posición -> momento del timeline)
+            var centers = steps.map(function(n){ return n.offsetTop + n.offsetHeight / 2; });
+            var base = centers[0] || 0;
+            var span = (centers[centers.length - 1] - base) || 1;
+            steps.forEach(function(n, i){
+                // Ventana 2%..80% (no 4%..94%): medido que con 94% el ÚLTIMO paso se encendía
+                // justo cuando el pin ya soltaba y no se alcanzaba a leer. Ahora sobra recorrido
+                // para apreciarlo antes de que la sección se libere.
+                var at = 0.02 + ((centers[i] - base) / span) * 0.78;
+                tl.to(n, { duration: .001,
+                    onStart: function(){ n.classList.add('is-lit'); },
+                    onReverseComplete: function(){ if (i) n.classList.remove('is-lit'); }
+                }, at);
+            });
+            return function(){                            // sin cleanup quedan transforms residuales
+                window.gsap.set(track, { clearProps: 'transform' });
+                if (fill) window.gsap.set(fill, { clearProps: 'height' });
+                steps.forEach(function(n){ n.classList.remove('is-lit'); });
+                stage.classList.remove('is-live');
+            };
+        });
+        // Reduced-motion: sin 'is-live' la lista ya sale completa; solo faltaba que la barra
+        // de progreso no se quedara vacía (reduced != roto).
+        mmE.add('(prefers-reduced-motion: reduce)', function(){
+            var fillR = document.querySelector('.espiro-beam__fill');
+            if (fillR) fillR.style.height = '100%';
+            return function(){ if (fillR) fillR.style.height = ''; };
         });
     }
   }
   if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); } else { init(); }
+  // GSAP se carga DESPUÉS de este bloque. Si en el primer init aún no existía, el keynote no
+  // se habría armado: se reintenta en 'load'. Se reintenta SOLO el keynote (no init entero,
+  // que volvería a colgar listeners de los chips y observers duplicados).
+  window.addEventListener('load', espiroKeynote);
 })();
 </script>
 
