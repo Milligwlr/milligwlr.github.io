@@ -2278,18 +2278,6 @@ document.addEventListener('click',function(e){
         .block__head .block__title,.block__head h2{font-size:1.5rem;line-height:1.22;margin-bottom:8px}
         .block__head .block__lead,.block__head p{font-size:.95rem;line-height:1.5;margin-bottom:0}
 
-        /* -- QUIZ: 8 preguntas apiladas gastaban 1,489px. La pregunta y su Si/No
-              comparten renglon; el chip de letra encoge. Nada se oculta. -- */
-        .sb-quiz{gap:8px}
-        .sb-question{padding:10px 12px;display:grid;grid-template-columns:1fr auto;
-            grid-template-areas:"top top" "txt btns";column-gap:10px;align-items:center}
-        .sb-question__top{grid-area:top;margin-bottom:4px}
-        .sb-question__text{grid-area:txt;font-size:.9rem;line-height:1.35;margin:0}
-        .sb-question .sb-btns{grid-area:btns;display:flex;gap:6px;margin:0}
-        .sb-question .sb-btn{padding:7px 14px;font-size:.85rem;min-width:52px}
-        .sb-letter{width:22px;height:22px;font-size:.7rem;border-radius:6px}
-        .sb-category{font-size:.72rem}
-
         /* -- POR QUE AQUI: seis mosaicos en columna gastaban 1,165px. Carrusel con
               scroll-snap: se ven todos, se recorren con el dedo. -- */
         .why-bento{display:flex;grid-template-columns:none;grid-template-areas:none;
@@ -2314,12 +2302,6 @@ document.addEventListener('click',function(e){
         /* -- PASE 2. Lo de arriba dejo 4 secciones sobre el limite; el peso
               restante era texto estrujado en columnas estrechas (mas estrecho =
               mas alto) y rejillas cortas apiladas. -- */
-        /* Quiz: el texto compartia renglon con los botones, se partia en 5-6
-           lineas y la pregunta subia a 174px. Texto a ancho completo, botones en
-           su propio renglon compacto. */
-        .sb-question__text{font-size:.86rem;line-height:1.3}
-        .sb-question .sb-btn{padding:6px 14px}
-
         /* Cabecera de la seccion OSA: 445px solo de presentacion. */
         .cpx-chips{gap:6px;margin-top:10px}
         .cpx-chips>*{font-size:.78rem;padding:5px 10px}
