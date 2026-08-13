@@ -1403,6 +1403,9 @@
       moduloOrigenes(v, estado.datos.origenes);
     }
 
+    // Del anuncio a la cita (13-ago): la única cifra que mide PACIENTES.
+    if (estado.datos.clics) moduloClics(v, estado.datos.clics);
+
     // Agenda completa
     var d = estado.datos;
     var citas = (d.agenda && Array.isArray(d.agenda.citas)) ? d.agenda.citas : null;
@@ -1628,6 +1631,33 @@
     });
     cu.appendChild(svg);
     f.appendChild(cu); g.appendChild(f);
+  }
+
+  /* ---- Del anuncio a la cita (13-ago) ----
+     La ÚNICA cifra de toda la cuenta que mide pacientes y no clics. Desde el
+     3-ago el sitio le pone una marca invisible al mensaje de WhatsApp de quien
+     llega por un anuncio; esto cuenta cuántos de ellos terminaron con cita en
+     el calendario. Se dice el número crudo (3 de 18) además del porcentaje:
+     con muestras chicas el porcentaje solo engaña. */
+  function moduloClics(v, c) {
+    if (!c || c.error) return;
+    var g = seccion(v, 'Del anuncio a la cita');
+    var f = nodo('div', 'fila'); var cu = nodo('div', 'cuerpo');
+    if (!c.identificados) {
+      cu.appendChild(nodo('div', 't', 'Aún no hay clics de anuncio identificados'));
+      cu.appendChild(nodo('div', 'd', 'Aparecerán aquí cuando alguien llegue por un anuncio de Google y le escriba por WhatsApp.'));
+      f.appendChild(cu); g.appendChild(f); return;
+    }
+    cu.appendChild(nodo('div', 't', c.con_cita + ' de ' + c.identificados +
+      ' personas que llegaron por un anuncio terminaron con cita'));
+    cu.appendChild(nodo('div', 'd', 'Últimos ' + c.ventana_dias + ' días' +
+      (c.desde ? ' (desde el ' + c.desde + ')' : '') + '. Es ' + (c.tasa === null ? '—' : c.tasa + '%') +
+      ' de los que abren el chat desde un anuncio.'));
+    f.appendChild(cu); g.appendChild(f);
+    var f2 = nodo('div', 'fila'); var cu2 = nodo('div', 'cuerpo');
+    cu2.appendChild(nodo('div', 'd', 'Google le cobra por el clic; esto cuenta al paciente. ' +
+      'Con pocos casos el porcentaje se mueve mucho: mírelo como tendencia, no como cifra exacta.'));
+    f2.appendChild(cu2); g.appendChild(f2);
   }
 
   /* ---- Su clientela (25-jul (6)) ----
