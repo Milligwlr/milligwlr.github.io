@@ -1284,9 +1284,14 @@
             <span class="block__kicker">Cuestionario STOP-BANG</span>
             <h2 class="block__title">¿Tienes riesgo de apnea del sueño? <em>Descúbrelo en 2 min</em></h2>
             <p class="block__lead">El cuestionario STOP-BANG es una herramienta clínica validada mundialmente para estimar el riesgo de apnea obstructiva. Responde 8 preguntas y conoce tu nivel de riesgo.</p>
+            <!-- Version corta: solo movil, donde el lead largo se oculta. Dice lo mismo
+                 en una linea en vez de en cuatro renglones. -->
+            <p class="sb-lead-movil">Herramienta clínica validada. 8 preguntas de sí o no.</p>
         </div>
 
-        <!-- Perfiles tipicos: si te reconoces en uno, el cuestionario de abajo te ubica -->
+        <!-- Perfiles tipicos. SOLO ESCRITORIO (los oculta el bloque lp-stopbang-tablero
+             en movil): sus cuatro mensajes son ya los renglones S, T, O y P del tablero
+             de abajo, donde ademas se pueden contestar. -->
         <div class="who-grid" style="margin-bottom:26px">
             <div class="who-card"><div class="who-card__icon"><i class="bi bi-volume-up-fill"></i></div><h3>Roncas fuerte</h3><p>"Me lo dice mi pareja"</p></div>
             <div class="who-card"><div class="who-card__icon"><i class="bi bi-pause-circle-fill"></i></div><h3>Vieron pausas</h3><p>Te grabaron sin respirar</p></div>
@@ -1294,128 +1299,179 @@
             <div class="who-card"><div class="who-card__icon"><i class="bi bi-car-front-fill"></i></div><h3>Sueño al manejar</h3><p>O en juntas, comidas, TV</p></div>
         </div>
 
-        <!-- Progreso -->
-        <div class="sb-progress__label" id="sb-progress-label" aria-live="polite">0 de 8 preguntas respondidas</div>
-        <div class="sb-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="8" aria-label="Progreso del cuestionario">
-            <div class="sb-progress__bar" id="sb-progress-bar"></div>
-        </div>
+        <!-- ===================== TABLERO STOP-BANG =====================
+             CONTRATO CON EL SCRIPT DE PUNTUACION (nada de esto se toca):
+               - la delegacion de clicks vive en #sb-quiz, asi que los 16 .sb-btn
+                 siguen DENTRO de #sb-quiz;
+               - data-q, data-v y aria-pressed en cada boton;
+               - los id sbq-s .. sbq-g y sbq-*-label, sb-btn-si-b, sb-btn-no-b,
+                 sb-progress-bar, sb-progress-label, sb-bmi-panel, sb-peso, sb-talla,
+                 sb-bmi-result;
+               - las clases .sb-question, .sb-btns, .sb-btn, .sb-letter, .sb-category,
+                 .sb-question__text, .sb-progress, .sb-bmi-toggle, .sb-bmi-panel,
+                 .sb-bmi-calc-btn, .sb-bmi-result.
+             LO QUE SE VE EN CADA RENGLON es una proposicion contestable con Si/No y con
+             su umbral ("Cuello 40 cm o más"), no una categoria suelta ("Circunferencia
+             de cuello") que nadie puede contestar. La pregunta clinica INTEGRA esta en
+             el mismo renglon, colapsada, y se abre con un toque a tamano de lectura.
+             ============================================================ -->
+        <!-- Sin JavaScript el acordeon no puede abrirse: entonces las 8 preguntas
+             clinicas se muestran completas de salida. La seccion queda alta, pero
+             NUNCA queda texto clinico inalcanzable. -->
+        <noscript><style>.sb-board .sb-row__more{height:auto!important}.sb-row__chev{display:none}</style></noscript>
 
-        <div class="sb-quiz" id="sb-quiz" role="group" aria-label="Preguntas del cuestionario STOP-BANG">
+        <div class="sb-quiz sb-board" id="sb-quiz" role="group" aria-label="Preguntas del cuestionario STOP-BANG">
+
+            <div class="sb-board__head">
+                <span class="sb-board__hint"><i class="bi bi-hand-index-thumb" aria-hidden="true"></i>Toca cada pregunta para leerla completa</span>
+                <span class="sb-board__count" aria-hidden="true"><b id="sb-count">0</b> / 8</span>
+                <!-- El conteo narrado sigue vivo para lector de pantalla; el contador de
+                     al lado ya lo dice con los ojos, por eso deja de gastar un renglon. -->
+                <div class="sb-progress__label sb-sr" id="sb-progress-label" aria-live="polite">0 de 8 preguntas respondidas</div>
+                <div class="sb-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="8" aria-label="Progreso del cuestionario">
+                    <div class="sb-progress__bar" id="sb-progress-bar"></div>
+                </div>
+            </div>
 
             <!-- S, Snoring / Ronquido -->
             <div class="sb-question" id="sbq-s" data-qid="s">
-                <div class="sb-question__top">
-                    <div class="sb-letter" aria-hidden="true">S</div>
-                    <span class="sb-category">Ronquido</span>
-                </div>
-                <p class="sb-question__text" id="sbq-s-label">¿Roncas fuerte, más fuerte que al hablar, o lo suficiente para escucharse a través de una puerta cerrada?</p>
+                <button type="button" class="sb-row__ask" aria-expanded="false" aria-controls="sbq-s-more">
+                    <span class="sb-letter" aria-hidden="true">S</span>
+                    <span class="sb-category">Roncas fuerte</span>
+                    <i class="bi bi-chevron-down sb-row__chev" aria-hidden="true"></i>
+                </button>
                 <div class="sb-btns" role="group" aria-labelledby="sbq-s-label">
-                    <button class="sb-btn" type="button" data-q="s" data-v="1" aria-pressed="false">Sí</button>
-                    <button class="sb-btn" type="button" data-q="s" data-v="0" aria-pressed="false">No</button>
+                    <button class="sb-btn" type="button" data-q="s" data-v="1" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>Sí</span></button>
+                    <button class="sb-btn" type="button" data-q="s" data-v="0" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>No</span></button>
                 </div>
+                <div class="sb-row__more" id="sbq-s-more"><div>
+                    <p class="sb-question__text" id="sbq-s-label">¿Roncas fuerte, más fuerte que al hablar, o lo suficiente para escucharse a través de una puerta cerrada?</p>
+                </div></div>
             </div>
 
             <!-- T, Tired / Cansancio -->
             <div class="sb-question" id="sbq-t" data-qid="t">
-                <div class="sb-question__top">
-                    <div class="sb-letter" aria-hidden="true">T</div>
-                    <span class="sb-category">Cansancio</span>
-                </div>
-                <p class="sb-question__text" id="sbq-t-label">¿Te sientes cansado, fatigado o con sueño durante el día con frecuencia, incluso habiendo dormido?</p>
-                <div class="sb-btns" role="group" aria-labelledby="sbq-t-label">
-                    <button class="sb-btn" type="button" data-q="t" data-v="1" aria-pressed="false">Sí</button>
-                    <button class="sb-btn" type="button" data-q="t" data-v="0" aria-pressed="false">No</button>
-                </div>
-            </div>
-
-            <!-- O, Observed / Observado -->
-            <div class="sb-question" id="sbq-o" data-qid="o">
-                <div class="sb-question__top">
-                    <div class="sb-letter" aria-hidden="true">O</div>
-                    <span class="sb-category">Observado</span>
-                </div>
-                <p class="sb-question__text" id="sbq-o-label">¿Alguien ha notado que dejas de respirar, o que te atragantas, mientras duermes?</p>
-                <div class="sb-btns" role="group" aria-labelledby="sbq-o-label">
-                    <button class="sb-btn" type="button" data-q="o" data-v="1" aria-pressed="false">Sí</button>
-                    <button class="sb-btn" type="button" data-q="o" data-v="0" aria-pressed="false">No</button>
-                </div>
-            </div>
-
-            <!-- P, Pressure / Presión arterial -->
-            <div class="sb-question" id="sbq-p" data-qid="p">
-                <div class="sb-question__top">
-                    <div class="sb-letter" aria-hidden="true">P</div>
-                    <span class="sb-category">Presión arterial</span>
-                </div>
-                <p class="sb-question__text" id="sbq-p-label">¿Tienes presión arterial alta o estás siendo tratado con medicamentos para controlarla?</p>
-                <div class="sb-btns" role="group" aria-labelledby="sbq-p-label">
-                    <button class="sb-btn" type="button" data-q="p" data-v="1" aria-pressed="false">Sí</button>
-                    <button class="sb-btn" type="button" data-q="p" data-v="0" aria-pressed="false">No</button>
-                </div>
-            </div>
-
-            <!-- B, BMI / Índice de masa corporal -->
-            <div class="sb-question" id="sbq-b" data-qid="b">
-                <div class="sb-question__top">
-                    <div class="sb-letter" aria-hidden="true">B</div>
-                    <span class="sb-category">Índice de masa corporal</span>
-                </div>
-                <p class="sb-question__text" id="sbq-b-label">¿Tu índice de masa corporal (IMC) es mayor a 35?</p>
-                <!-- Mini calculadora de IMC opcional -->
-                <button type="button" class="sb-bmi-toggle" onclick="sbToggleBmi()" aria-expanded="false" aria-controls="sb-bmi-panel">
-                    <i class="bi bi-calculator"></i> Calcular mi IMC (opcional)
+                <button type="button" class="sb-row__ask" aria-expanded="false" aria-controls="sbq-t-more">
+                    <span class="sb-letter" aria-hidden="true">T</span>
+                    <span class="sb-category">Cansancio de día</span>
+                    <i class="bi bi-chevron-down sb-row__chev" aria-hidden="true"></i>
                 </button>
-                <div class="sb-bmi-panel" id="sb-bmi-panel" role="region" aria-label="Calculadora de IMC">
-                    <div class="sb-bmi-row">
-                        <input type="number" id="sb-peso" placeholder="Peso (kg)" min="30" max="300" aria-label="Peso en kilogramos">
-                        <input type="number" id="sb-talla" placeholder="Estatura (m, ej: 1.70)" min="1.0" max="2.5" step="0.01" aria-label="Estatura en metros">
-                        <button type="button" class="sb-bmi-calc-btn" onclick="sbCalcBMI()">Calcular</button>
-                        <span class="sb-bmi-result" id="sb-bmi-result" aria-live="polite"></span>
-                    </div>
+                <div class="sb-btns" role="group" aria-labelledby="sbq-t-label">
+                    <button class="sb-btn" type="button" data-q="t" data-v="1" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>Sí</span></button>
+                    <button class="sb-btn" type="button" data-q="t" data-v="0" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>No</span></button>
                 </div>
+                <div class="sb-row__more" id="sbq-t-more"><div>
+                    <p class="sb-question__text" id="sbq-t-label">¿Te sientes cansado, fatigado o con sueño durante el día con frecuencia, incluso habiendo dormido?</p>
+                </div></div>
+            </div>
+
+            <!-- O, Observed / Pausas observadas -->
+            <div class="sb-question" id="sbq-o" data-qid="o">
+                <button type="button" class="sb-row__ask" aria-expanded="false" aria-controls="sbq-o-more">
+                    <span class="sb-letter" aria-hidden="true">O</span>
+                    <span class="sb-category">Pausas al dormir</span>
+                    <i class="bi bi-chevron-down sb-row__chev" aria-hidden="true"></i>
+                </button>
+                <div class="sb-btns" role="group" aria-labelledby="sbq-o-label">
+                    <button class="sb-btn" type="button" data-q="o" data-v="1" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>Sí</span></button>
+                    <button class="sb-btn" type="button" data-q="o" data-v="0" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>No</span></button>
+                </div>
+                <div class="sb-row__more" id="sbq-o-more"><div>
+                    <p class="sb-question__text" id="sbq-o-label">¿Alguien ha notado que dejas de respirar, o que te atragantas, mientras duermes?</p>
+                </div></div>
+            </div>
+
+            <!-- P, Pressure / Presion arterial -->
+            <div class="sb-question" id="sbq-p" data-qid="p">
+                <button type="button" class="sb-row__ask" aria-expanded="false" aria-controls="sbq-p-more">
+                    <span class="sb-letter" aria-hidden="true">P</span>
+                    <span class="sb-category">Presión alta</span>
+                    <i class="bi bi-chevron-down sb-row__chev" aria-hidden="true"></i>
+                </button>
+                <div class="sb-btns" role="group" aria-labelledby="sbq-p-label">
+                    <button class="sb-btn" type="button" data-q="p" data-v="1" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>Sí</span></button>
+                    <button class="sb-btn" type="button" data-q="p" data-v="0" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>No</span></button>
+                </div>
+                <div class="sb-row__more" id="sbq-p-more"><div>
+                    <p class="sb-question__text" id="sbq-p-label">¿Tienes presión arterial alta o estás siendo tratado con medicamentos para controlarla?</p>
+                </div></div>
+            </div>
+
+            <!-- B, BMI / Indice de masa corporal. Unico renglon con una tercera pieza:
+                 la calculadora, que se despliega con el mismo toque del renglon y
+                 conserva intactas las funciones sbToggleBmi() y sbCalcBMI(). -->
+            <div class="sb-question" id="sbq-b" data-qid="b">
+                <button type="button" class="sb-row__ask" aria-expanded="false" aria-controls="sbq-b-more">
+                    <span class="sb-letter" aria-hidden="true">B</span>
+                    <span class="sb-category">IMC mayor a 35</span>
+                    <i class="bi bi-chevron-down sb-row__chev" aria-hidden="true"></i>
+                </button>
                 <div class="sb-btns" role="group" aria-labelledby="sbq-b-label">
-                    <button class="sb-btn" type="button" data-q="b" data-v="1" id="sb-btn-si-b" aria-pressed="false">Sí (IMC &gt; 35)</button>
-                    <button class="sb-btn" type="button" data-q="b" data-v="0" id="sb-btn-no-b" aria-pressed="false">No</button>
+                    <button class="sb-btn" type="button" data-q="b" data-v="1" id="sb-btn-si-b" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>Sí</span></button>
+                    <button class="sb-btn" type="button" data-q="b" data-v="0" id="sb-btn-no-b" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>No</span></button>
                 </div>
+                <div class="sb-row__more" id="sbq-b-more"><div>
+                    <p class="sb-question__text" id="sbq-b-label">¿Tu índice de masa corporal (IMC) es mayor a 35?</p>
+                    <button type="button" class="sb-bmi-toggle" onclick="sbToggleBmi()" aria-expanded="false" aria-controls="sb-bmi-panel">
+                        <i class="bi bi-calculator" aria-hidden="true"></i> Calcular mi IMC (opcional)
+                    </button>
+                    <div class="sb-bmi-panel" id="sb-bmi-panel" role="region" aria-label="Calculadora de IMC">
+                        <div class="sb-bmi-row">
+                            <input type="number" id="sb-peso" placeholder="Peso (kg)" min="30" max="300" inputmode="decimal" aria-label="Peso en kilogramos">
+                            <input type="number" id="sb-talla" placeholder="Estatura (m)" min="1.0" max="2.5" step="0.01" inputmode="decimal" aria-label="Estatura en metros, por ejemplo 1.70">
+                            <button type="button" class="sb-bmi-calc-btn" onclick="sbCalcBMI()">Calcular mi IMC</button>
+                            <span class="sb-bmi-result" id="sb-bmi-result" aria-live="polite"></span>
+                        </div>
+                    </div>
+                </div></div>
             </div>
 
             <!-- A, Age / Edad -->
             <div class="sb-question" id="sbq-a" data-qid="a">
-                <div class="sb-question__top">
-                    <div class="sb-letter" aria-hidden="true">A</div>
-                    <span class="sb-category">Edad</span>
-                </div>
-                <p class="sb-question__text" id="sbq-a-label">¿Tienes más de 50 años?</p>
+                <button type="button" class="sb-row__ask" aria-expanded="false" aria-controls="sbq-a-more">
+                    <span class="sb-letter" aria-hidden="true">A</span>
+                    <span class="sb-category">Más de 50 años</span>
+                    <i class="bi bi-chevron-down sb-row__chev" aria-hidden="true"></i>
+                </button>
                 <div class="sb-btns" role="group" aria-labelledby="sbq-a-label">
-                    <button class="sb-btn" type="button" data-q="a" data-v="1" aria-pressed="false">Sí</button>
-                    <button class="sb-btn" type="button" data-q="a" data-v="0" aria-pressed="false">No</button>
+                    <button class="sb-btn" type="button" data-q="a" data-v="1" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>Sí</span></button>
+                    <button class="sb-btn" type="button" data-q="a" data-v="0" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>No</span></button>
                 </div>
+                <div class="sb-row__more" id="sbq-a-more"><div>
+                    <p class="sb-question__text" id="sbq-a-label">¿Tienes más de 50 años?</p>
+                </div></div>
             </div>
 
             <!-- N, Neck / Circunferencia de cuello -->
             <div class="sb-question" id="sbq-n" data-qid="n">
-                <div class="sb-question__top">
-                    <div class="sb-letter" aria-hidden="true">N</div>
-                    <span class="sb-category">Circunferencia de cuello</span>
-                </div>
-                <p class="sb-question__text" id="sbq-n-label">¿La circunferencia de tu cuello es mayor a 40 cm? (Aproximadamente si usas cuello de camisa 16" o mayor)</p>
+                <button type="button" class="sb-row__ask" aria-expanded="false" aria-controls="sbq-n-more">
+                    <span class="sb-letter" aria-hidden="true">N</span>
+                    <span class="sb-category">Cuello 40 cm o más</span>
+                    <i class="bi bi-chevron-down sb-row__chev" aria-hidden="true"></i>
+                </button>
                 <div class="sb-btns" role="group" aria-labelledby="sbq-n-label">
-                    <button class="sb-btn" type="button" data-q="n" data-v="1" aria-pressed="false">Sí</button>
-                    <button class="sb-btn" type="button" data-q="n" data-v="0" aria-pressed="false">No</button>
+                    <button class="sb-btn" type="button" data-q="n" data-v="1" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>Sí</span></button>
+                    <button class="sb-btn" type="button" data-q="n" data-v="0" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>No</span></button>
                 </div>
+                <div class="sb-row__more" id="sbq-n-more"><div>
+                    <p class="sb-question__text" id="sbq-n-label">¿La circunferencia de tu cuello es mayor a 40 cm? (Aproximadamente si usas cuello de camisa 16 pulgadas o mayor)</p>
+                </div></div>
             </div>
 
-            <!-- G, Gender / Género -->
+            <!-- G, Gender / Sexo biologico -->
             <div class="sb-question" id="sbq-g" data-qid="g">
-                <div class="sb-question__top">
-                    <div class="sb-letter" aria-hidden="true">G</div>
-                    <span class="sb-category">Sexo biológico</span>
-                </div>
-                <p class="sb-question__text" id="sbq-g-label">¿Eres hombre (sexo masculino al nacer)?</p>
+                <button type="button" class="sb-row__ask" aria-expanded="false" aria-controls="sbq-g-more">
+                    <span class="sb-letter" aria-hidden="true">G</span>
+                    <span class="sb-category">Soy hombre</span>
+                    <i class="bi bi-chevron-down sb-row__chev" aria-hidden="true"></i>
+                </button>
                 <div class="sb-btns" role="group" aria-labelledby="sbq-g-label">
-                    <button class="sb-btn" type="button" data-q="g" data-v="1" aria-pressed="false">Sí</button>
-                    <button class="sb-btn" type="button" data-q="g" data-v="0" aria-pressed="false">No</button>
+                    <button class="sb-btn" type="button" data-q="g" data-v="1" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>Sí</span></button>
+                    <button class="sb-btn" type="button" data-q="g" data-v="0" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>No</span></button>
                 </div>
+                <div class="sb-row__more" id="sbq-g-more"><div>
+                    <p class="sb-question__text" id="sbq-g-label">¿Eres hombre (sexo masculino al nacer)?</p>
+                </div></div>
             </div>
         </div><!-- /.sb-quiz -->
 
@@ -2317,6 +2373,362 @@ document.addEventListener('click',function(e){
         .faq-item__answer{font-size:.94rem;line-height:1.5}
     }
 </style>
+<style id="sb-tablero-20260813">
+
+/* ===================== TABLERO STOP-BANG (ago-2026, regla d8) =====================
+   POR QUE EXISTE: las 8 preguntas median 1,538px (2.57 pantallas medidas en 375x812)
+   y el intento anterior las comprimio con CSS mecanico, dejando el texto estrujado
+   al lado de los botones. Eso se revirtio con razon.
+   QUE CAMBIA AHORA: no se aprieta el contenido, se cambia la ARQUITECTURA. Las 8
+   tarjetas flotantes se vuelven 8 RENGLONES de UNA sola tarjeta con cabecera navy,
+   como la lista de ajustes de un equipo. Lo que se ve en cada renglon ya es una
+   proposicion contestable con Si/No; la pregunta clinica integra vive en el mismo
+   renglon, colapsada, y se abre con un toque a su tamano de lectura (16.48px).
+   MEDIDO despues: seccion 604.2px contra 635.1px de hueco util. Filas de 56.7px con
+   un rango de 0.7px (antes: rango de 76px).
+   ADITIVO: va como ULTIMO bloque de la cascada, despues de lp-compacta-movil.
+   PALETA: solo --navy --electric --cyan --ink --muted --e2 --ring-hi --ease.
+   Los rgba() son esos mismos colores con alfa, igual que el resto del archivo:
+   rgba(9,132,227,a)=--electric   rgba(9,44,84,a)=el navy de sombra de --e1/--e2/--e3
+   #0a5fb0 y #092c54 YA viven en la pagina (.why-data__num small, .step3__time, --e2). */
+
+#stop-bang{
+    --sb-ctrl:92px;          /* ancho del control segmentado */
+    --sb-track:46px;         /* alto del carril: 1px de aire x2 + 44px de boton */
+    --sb-chip:26px;
+    /* --sb-on: el azul de accion. --electric puro con texto blanco da 3.87:1 y
+       REPRUEBA AA (ese fallo ya venia vivo en .sb-btn.active-si). #0a5fb0 es el
+       azul oscuro que la pagina ya usa y da 6.41:1 sin salirse del sistema. */
+    --sb-on:#0a5fb0;
+    --sb-hair:rgba(9,44,84,.09);
+    --sb-edge:rgba(9,44,84,.12);
+    --sb-tray:rgba(9,132,227,.07);
+    /* sbReset() hace scrollIntoView({block:'start'}) y la cabecera sticky tapaba
+       el titulo. Con esto el reinicio deja la seccion completa a la vista. */
+    scroll-margin-top:84px;
+}
+
+/* ---------- LA TARJETA: una sola pieza, no ocho ----------
+   Ocho cajas con borde de 2px y sombra propia es lo que se leia barato.
+   Una sombra (--e2 + --ring-hi, la misma de .benefit y .tl-step) y hairlines dentro. */
+.sb-quiz.sb-board{
+    display:block;gap:0;margin:0;
+    background:#fff;border:1px solid var(--sb-edge);border-radius:18px;
+    box-shadow:var(--e2),var(--ring-hi);overflow:hidden;
+    -webkit-tap-highlight-color:transparent;
+    transition:box-shadow .5s var(--ease),border-color .5s var(--ease);
+}
+.sb-quiz.sb-board.is-complete{
+    border-color:rgba(9,132,227,.42);
+    box-shadow:var(--e2),var(--ring-hi),0 0 0 3px rgba(9,132,227,.12);
+}
+/* la hoja vieja estiraba la celda B a todo el ancho de una rejilla de 2 columnas;
+   aqui ya no hay rejilla */
+.sb-board #sbq-b{grid-column:auto}
+
+/* ---------- CABECERA NAVY: la pantalla del instrumento ----------
+   Lleva la instruccion permanente, el contador y, en su canto inferior, la barra
+   de progreso. La barra va absoluta: no cuesta un solo pixel de flujo. */
+.sb-board__head{
+    position:relative;display:flex;align-items:center;gap:10px;
+    padding:8px 13px 10px;
+    background:
+        radial-gradient(120% 160% at 100% 0%,rgba(0,206,201,.20),transparent 62%),
+        linear-gradient(150deg,rgba(9,132,227,.30),rgba(9,132,227,0) 60%),
+        var(--navy);
+}
+.sb-board__hint{
+    flex:1 1 auto;min-width:0;display:inline-flex;align-items:center;gap:6px;
+    font-size:.74rem;font-weight:600;line-height:1.25;color:rgba(255,255,255,.88);
+}
+.sb-board__hint i{font-size:.85rem;color:var(--cyan);flex:0 0 auto}
+.sb-board__count{
+    flex:0 0 auto;font-size:.74rem;font-weight:700;line-height:1;
+    color:rgba(255,255,255,.62);font-variant-numeric:tabular-nums;letter-spacing:.02em;
+}
+.sb-board__count b{font-size:.95rem;font-weight:800;color:#fff}
+#stop-bang .sb-board .sb-progress{
+    position:absolute;left:0;right:0;bottom:0;height:3px;margin:0;
+    border-radius:0;background:rgba(255,255,255,.18);
+}
+#stop-bang .sb-board .sb-progress__bar{border-radius:0}
+/* La etiqueta narrada sigue viva para lector de pantalla (aria-live). Se oculta con
+   clip, NUNCA con display:none: el contador visible ya dice lo mismo con los ojos. */
+.sb-sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* ---------- EL RENGLON ----------
+   Alto MEDIDO 56.7px, IGUAL en los 8 (rango 0.7px): 10px de padding + 46px de
+   carril + 1px de hairline. Lo impone el CONTROL, no el texto, y por eso el ritmo
+   no se rompe aunque la frase ocupe 1 o 2 lineas. Antes: 8 hermanas con 6 alturas
+   distintas, de 142 a 218px, un rango de 76px. Ese era el ritmo roto que se sentia
+   antes de poder nombrarlo. */
+.sb-board .sb-question{
+    position:relative;display:grid;
+    grid-template-columns:minmax(0,1fr) var(--sb-ctrl);
+    column-gap:10px;align-items:center;
+    margin:0;padding:5px 8px 5px 12px;
+    background:#fff;border:0;border-bottom:1px solid var(--sb-hair);border-radius:0;
+    transition:background .34s var(--ease);
+}
+.sb-board .sb-question:last-child{border-bottom:0}
+.sb-board .sb-question.answered{background:rgba(9,132,227,.045)}
+/* Riel de estado: no es un borde que se enciende, es una linea que se traza de
+   arriba hacia abajo. El tablero se va llenando delante del paciente. */
+.sb-board .sb-question::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:var(--sb-on);transform:scaleY(0);transform-origin:50% 0;
+    transition:transform .38s var(--ease);
+}
+.sb-board .sb-question.answered::before{transform:scaleY(1)}
+
+/* ---------- ZONA TACTIL IZQUIERDA: abre la pregunta completa ---------- */
+.sb-row__ask{
+    grid-column:1;display:flex;align-items:center;gap:9px;
+    min-width:0;min-height:44px;margin:0;padding:0;
+    border:0;background:none;color:inherit;font-family:inherit;text-align:left;
+    cursor:pointer;-webkit-appearance:none;appearance:none;
+    -webkit-tap-highlight-color:transparent;border-radius:10px;
+}
+.sb-row__ask:focus-visible{outline:3px solid var(--cyan);outline-offset:2px}
+
+/* Chip de letra: apagado mientras no hay respuesta, encendido al contestar.
+   El acronimo STOP-BANG se completa a la vista, que es el indicador de avance
+   mas honesto que hay porque vive EN el tablero. */
+.sb-board .sb-letter{
+    width:var(--sb-chip);height:var(--sb-chip);flex:0 0 var(--sb-chip);
+    border-radius:8px;display:flex;align-items:center;justify-content:center;
+    font-size:.78rem;font-weight:800;line-height:1;letter-spacing:.02em;
+    background:rgba(9,132,227,.09);color:var(--navy);
+    border:1px solid rgba(9,132,227,.2);box-shadow:none;
+    transition:background .3s var(--ease),color .3s var(--ease),
+               border-color .3s var(--ease),box-shadow .3s var(--ease);
+}
+/* encendido: blanco sobre el degradado electric-cyan daria 3.87:1 y reprobaria AA,
+   asi que el degradado va del azul de accion al navy de sombra (minimo 6.41:1) */
+.sb-board .sb-question.answered .sb-letter{
+    background:linear-gradient(140deg,var(--sb-on),#092c54);
+    color:#fff;border-color:transparent;
+    box-shadow:0 5px 13px -6px rgba(9,44,84,.75);
+}
+
+/* La linea visible ES una proposicion contestable con Si/No, no una categoria
+   suelta: "Ronquido" no se puede contestar, "Roncas fuerte" si. Caja de 2 lineas
+   como maximo, que cabe de sobra en los 46px que impone el control: por eso el
+   renglon nunca cambia de alto aunque el texto ocupe 1 o 2 lineas. */
+.sb-board .sb-category{
+    flex:1 1 auto;min-width:0;
+    display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;
+    font-size:clamp(.92rem,4.2vw,1.04rem);font-weight:700;line-height:1.2;
+    color:var(--navy);letter-spacing:-.005em;overflow-wrap:anywhere;
+}
+.sb-row__chev{
+    flex:0 0 auto;font-size:.7rem;color:rgba(9,44,84,.45);
+    transition:transform .32s var(--ease),color .24s var(--ease);
+}
+.sb-board .sb-question.is-open .sb-row__chev{transform:rotate(180deg);color:var(--sb-on)}
+
+/* ---------- PREGUNTA CLINICA INTEGRA ----------
+   Colapsada, pero NUNCA con display:none: asi el aria-labelledby de los botones
+   sigue calculando el nombre completo del grupo aunque el renglon este cerrado,
+   y el lector de pantalla anuncia la pregunta integra antes de leer Si y No.
+   El texto conserva su tamano de lectura (el piso de 16.5px que el bloque de 60+
+   le impuso a .sb-question__text NO se pisa con !important) y ocupa el ancho
+   COMPLETO del renglon, no la columna estrecha.
+
+   POR QUE height EN PIXELES Y NO EL TRUCO grid-template-rows 0fr->1fr:
+   medido en vivo, con `transition:grid-template-rows` Chrome deja el track
+   clavado en 0px para siempre en un contenedor de alto automatico. El panel
+   quedaba PERMANENTEMENTE cerrado y sin ningun error en consola. La altura la
+   mide el JS con scrollHeight y despues la suelta a auto, para que abrir la
+   calculadora de IMC dentro del renglon B no recorte nada. */
+.sb-board .sb-row__more{
+    grid-column:1/-1;height:0;overflow:hidden;
+    transition:height .32s var(--ease);
+}
+.sb-board .sb-row__more>div{min-height:0}
+.sb-board .sb-question__text{margin:0;padding:8px 4px 4px 0;color:var(--ink)}
+
+/* ---------- CONTROL SEGMENTADO Si / No ----------
+   Sin responder NO hay pastilla: el carril esta vacio. En un tamizaje "sin
+   contestar" es un TERCER estado y jamas puede confundirse con un "No".
+   El aspecto se cuelga de [aria-pressed], el MISMO atributo que lee el script de
+   puntuacion: lo que ve el paciente y lo que se califica no pueden divergir. */
+.sb-board .sb-btns{
+    grid-column:2;position:relative;isolation:isolate;
+    display:grid;grid-template-columns:1fr 1fr;gap:0;
+    width:var(--sb-ctrl);height:var(--sb-track);padding:1px;margin:0;
+    border-radius:12px;background:var(--sb-tray);border:0;
+    box-shadow:inset 0 0 0 1px rgba(9,44,84,.13),inset 0 1px 2px rgba(9,44,84,.06);
+}
+.sb-board .sb-btns::after{
+    content:"";position:absolute;z-index:0;top:1px;left:1px;bottom:1px;
+    width:calc((100% - 2px)/2);border-radius:11px;
+    background:var(--sb-thumb,transparent);
+    box-shadow:var(--ring-hi),0 4px 10px -5px rgba(9,44,84,.6);
+    opacity:0;transform:translateX(50%) scale(.8);pointer-events:none;
+    transition:transform .4s var(--ease),opacity .22s var(--ease),
+               background-color .3s var(--ease);
+}
+.sb-board .sb-btns:has(.sb-btn[data-v="1"][aria-pressed="true"]){--sb-thumb:var(--sb-on)}
+.sb-board .sb-btns:has(.sb-btn[data-v="0"][aria-pressed="true"]){--sb-thumb:var(--navy)}
+.sb-board .sb-btns:has(.sb-btn[aria-pressed="true"])::after{opacity:1;transform:none}
+.sb-board .sb-btns:has(.sb-btn[data-v="0"][aria-pressed="true"])::after{transform:translateX(100%)}
+
+/* height:100% + min-height:0 anulan el min-height:46px de la hoja movil, que
+   desbordaba el carril. El piso tactil (44px) lo garantiza el carril, no el boton. */
+.sb-board .sb-btn{
+    position:relative;z-index:1;min-width:0;height:100%;min-height:0;
+    padding:0;margin:0;border:0;border-radius:11px;background:none;
+    display:inline-flex;align-items:center;justify-content:center;gap:0;
+    font-family:inherit;font-size:.86rem;font-weight:800;letter-spacing:.01em;
+    color:var(--navy);cursor:pointer;-webkit-tap-highlight-color:transparent;
+    transition:color .22s var(--ease),transform .12s var(--ease);
+}
+/* Respuesta inmediata al dedo: los 16 botones mas tocados de la seccion no tenian
+   ninguna regla :active, solo :hover, que en tactil no dispara nunca. */
+.sb-board .sb-btn:active{transform:scale(.94)}
+.sb-board .sb-btn[aria-pressed="true"]{color:#fff}
+.sb-board .sb-btn:focus-visible{outline:3px solid var(--cyan);outline-offset:2px;z-index:3}
+/* el pulgar pinta el fondo: se anulan los rellenos solidos de la hoja vieja */
+.sb-board .sb-btn.active-si,.sb-board .sb-btn.active-no{background:none;border-color:transparent}
+@media(hover:hover){.sb-board .sb-btn:hover{background:none;border-color:transparent;color:var(--sb-on)}}
+/* Palomita: entra SOLO en la opcion elegida. Cuarta senal redundante (posicion +
+   relleno + palabra + icono) para que la respuesta nunca dependa del color. */
+.sb-board .sb-btn>.bi{
+    display:inline-block;overflow:hidden;max-width:0;margin-right:0;opacity:0;
+    font-size:.8rem;line-height:1;transform:translateX(-4px);
+    transition:max-width .3s var(--ease),margin-right .3s var(--ease),
+               opacity .2s var(--ease),transform .3s var(--ease);
+}
+.sb-board .sb-btn[aria-pressed="true"]>.bi{max-width:1.2em;margin-right:4px;opacity:1;transform:none}
+/* Sin :has() no hay pulgar deslizante, pero el relleno solido sigue marcando la
+   respuesta con el mismo color y el mismo contraste. */
+@supports not (selector(:has(*))){
+    .sb-board .sb-btn.active-si{background:var(--sb-on)}
+    .sb-board .sb-btn.active-no{background:var(--navy)}
+}
+
+/* ---------- CALCULADORA DE IMC: vive dentro del renglon B ----------
+   Se conserva TAL CUAL el contrato del script: el boton .sb-bmi-toggle sigue
+   existiendo y visible, sigue llamando a sbToggleBmi(), y el panel sigue
+   abriendose con la clase .open. Aqui solo se reordena y se corrige el contraste. */
+#stop-bang .sb-bmi-toggle{
+    /* medido: era --electric a 13.1px sobre blanco = 3.87:1, reprueba AA */
+    color:var(--sb-on);font-size:.86rem;margin:6px 0 0;
+}
+#stop-bang .sb-bmi-panel{margin:8px 0 4px;padding:12px;border-radius:12px}
+#stop-bang .sb-bmi-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:center}
+#stop-bang .sb-bmi-row input{width:100%;flex:none;min-height:44px;font-size:16px;
+    padding:10px 12px;border:1px solid var(--sb-edge);border-radius:10px;background:#fff}
+#stop-bang .sb-bmi-row input:focus-visible{outline:3px solid var(--cyan);outline-offset:1px}
+#stop-bang .sb-bmi-calc-btn{grid-column:1/-1;width:100%;min-height:44px;
+    background:var(--sb-on);border-radius:10px;font-size:.88rem}
+#stop-bang .sb-bmi-calc-btn:focus-visible{outline:3px solid var(--cyan);outline-offset:2px}
+#stop-bang .sb-bmi-result{grid-column:1/-1;font-size:.88rem;line-height:1.35}
+
+/* ---------- MOVIMIENTO: breve y con proposito ---------- */
+.sb-board.sb-enter .sb-question{opacity:0;transform:translateY(10px);
+    transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.sb-board.sb-enter .sb-question.is-in{opacity:1;transform:none}
+@keyframes sbPulse{0%{transform:scale(1)}38%{transform:scale(1.16)}100%{transform:scale(1)}}
+.sb-board .sb-question.sb-pulse .sb-letter{animation:sbPulse .42s var(--ease)}
+
+@media(prefers-reduced-motion:reduce){
+    #stop-bang *,#stop-bang *::before,#stop-bang *::after{
+        transition-duration:.001ms!important;animation-duration:.001ms!important}
+    .sb-board.sb-enter .sb-question{opacity:1;transform:none}
+    .sb-board .sb-btns::after{transform:none}
+    .sb-board .sb-btns:has(.sb-btn[data-v="0"][aria-pressed="true"])::after{transform:translateX(100%)}
+}
+
+/* ---------- EL COSTO DE LA PANTALLA UNICA (solo movil) ---------- */
+@media(max-width:767px){
+    /* !important porque el bloque de compactacion 60+ fija section{padding:30px!important} */
+    #stop-bang{padding-top:14px!important;padding-bottom:16px!important}
+    #stop-bang .block__head{margin-bottom:10px}
+    /* el eyebrow repite lo que ya dicen el <h2> y el aria-label de la seccion */
+    #stop-bang .block__kicker{display:none}
+    #stop-bang .block__title{font-size:1.3rem;line-height:1.2;margin-bottom:6px}
+    /* el lead largo cuesta 4 renglones; se sustituye por una linea que dice lo
+       mismo. Sin line-clamp: cortar a media frase con puntos suspensivos parece
+       un error de la pagina, no una decision de diseno. */
+    #stop-bang .block__lead{display:none}
+    #stop-bang .sb-lead-movil{display:block;font-size:.86rem;line-height:1.4;
+        color:var(--muted);margin:0}
+    /* Las 4 tarjetas de perfil ("Roncas fuerte", "Vieron pausas", "Presion alta",
+       "Sueno al manejar") son EXACTAMENTE los renglones S, O, P y T que estan 30px
+       mas abajo, y ahi ademas se pueden contestar. En movil no se repiten: eso
+       devuelve 190px al cuestionario. En escritorio siguen ahi. */
+    #stop-bang .who-grid{display:none}
+    /* el resultado tambien cabe en una pantalla */
+    #stop-bang .sb-result{padding:18px 16px;border-radius:16px;margin-top:14px}
+    #stop-bang .sb-result__icon{font-size:1.7rem;margin-bottom:6px}
+    #stop-bang .sb-result__level{font-size:1.25rem}
+    #stop-bang .sb-result__disclaimer{font-size:.8rem;margin-bottom:14px;padding:9px 12px}
+}
+.sb-lead-movil{display:none}
+
+@media(max-width:359px){
+    #stop-bang{--sb-ctrl:84px;--sb-chip:23px}
+    .sb-board .sb-question{padding:5px 6px 5px 10px}
+    .sb-row__chev{display:none}
+}
+
+/* ---------- Escritorio: la misma tarjeta, con mas aire ---------- */
+@media(min-width:768px){
+    #stop-bang{--sb-ctrl:118px;--sb-track:48px;--sb-chip:28px}
+    .sb-board .sb-question{padding:8px 16px 8px 19px;column-gap:16px}
+    .sb-board .sb-category{font-size:1.02rem}
+    .sb-board__head{padding:11px 18px 13px}
+    .sb-board__hint{font-size:.8rem}
+    .sb-board .sb-btn{font-size:.92rem}
+    .sb-board .sb-letter{font-size:.84rem;border-radius:9px}
+    #stop-bang .sb-bmi-row{grid-template-columns:1fr 1fr auto}
+    #stop-bang .sb-bmi-calc-btn{grid-column:auto;width:auto;padding:0 18px}
+}
+
+
+@media(max-width:600px){
+    /* ARREGLOS DEL INSPECTOR VISUAL (13-ago). Reparan el dano de mi primera
+       compactacion, que volvio carruseles tres rejillas cambiando SOLO el
+       contenedor y dejando el interior de las tarjetas intacto. */
+
+    /* Las reglas de .who-card que tenia aqui se RETIRARON: el tablero nuevo
+       oculta esa rejilla en movil porque duplicaba las filas S, O, P y T, que
+       ademas se pueden contestar. Dejarlas seria codigo muerto. */
+
+    /* 3. Un solo riel vertical: con snap center las tarjetas caian en 12/47/83px
+          y el borde del contenido brincaba dos veces al deslizar. */
+    .why-bento>.why-tile,.osa-list>*{scroll-snap-align:start}
+    .why-bento,.osa-list{scroll-padding-inline-start:12px}
+
+    /* 4. El separador de la lista vertical sobrevivio en horizontal: rayita
+          fantasma sobre 4 de 5 tarjetas y ninguna en la primera. Y .osa-item no
+          tenia chrome de tarjeta mientras sus vecinas si. */
+    .osa-item{background:#fff;border:1px solid rgba(9,44,84,.08);border-radius:18px;
+        padding:16px 18px;box-shadow:var(--e2),var(--ring-hi)}
+}
+
+/* 5. overflow-x:auto obliga a overflow-y a computar auto, asi que el carrusel se
+      vuelve contenedor de scroll tambien en el eje bloque y animation-timeline:
+      view() de sus hijos apunta a una linea de tiempo degenerada
+      (scrollHeight === clientHeight): las animaciones de entrada MURIERON en
+      silencio y las tarjetas quedaban planas. La entrada pasa al CONTENEDOR, que
+      si vive en el scroll de la pagina. */
+@media(prefers-reduced-motion:no-preference){
+    @supports(animation-timeline:view()){
+        .why-bento,.osa-list{
+            animation:sbFadeUp .6s var(--ease) both;
+            animation-timeline:view();
+            animation-range:entry 0% entry 55%;
+        }
+        .why-bento>.why-tile,.osa-list>*{animation:none!important;opacity:1;transform:none}
+    }
+}
+@keyframes sbFadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+</style>
 <!-- sp-popup (prueba social ficticia con nombres inventados) ELIMINADO por compliance:
      solo se usa la calificación 5.0 real de Google, nunca testimonios inventados. -->
 
@@ -2374,5 +2786,150 @@ document.addEventListener('click',function(e){
 </script>
 
     <script src="/assets/agenda-modal.js" defer></script>
+<script id="sb-tablero-20260813-js">
+
+/* ===== TABLERO STOP-BANG: capa de comportamiento ADITIVA (ago-2026) ==============
+   NO toca la puntuacion: el script viejo sigue leyendo data-q/data-v y escribiendo
+   aria-pressed y .answered. Esta capa solo agrega el acordeon del texto integro, el
+   contador visible y el movimiento. Si este script no corre, el cuestionario sigue
+   puntuando igual; solo se queda quieto el acordeon (y el <noscript> del HTML deja
+   las 8 preguntas clinicas abiertas). */
+(function(){
+    var quiz=document.getElementById('sb-quiz');
+    if(!quiz||!quiz.classList.contains('sb-board'))return;
+    var countEl=document.getElementById('sb-count');
+    var filas=[].slice.call(quiz.querySelectorAll('.sb-question'));
+    var mq=window.matchMedia('(prefers-reduced-motion: reduce)');
+    /* se consulta en cada uso, no una sola vez al arrancar: el usuario puede
+       cambiar el ajuste del sistema con la pagina abierta */
+    function reduce(){return mq.matches;}
+
+    /* --- Acordeon por altura MEDIDA -------------------------------------------
+       El truco de moda (grid-template-rows 0fr -> 1fr con transition) se probo y
+       en Chrome deja el panel clavado en 0px para siempre dentro de un contenedor
+       de alto automatico: se abre "bien" pero no se ve nada, y sin error en
+       consola. Aqui la altura se mide con scrollHeight, se anima en pixeles y al
+       terminar se suelta a auto, para que la calculadora de IMC pueda crecer
+       dentro del renglon B sin quedar recortada. */
+    function panel(fila){return fila.querySelector('.sb-row__more');}
+
+    function cerrar(fila){
+        var p=panel(fila),t=fila.querySelector('.sb-row__ask');
+        if(t)t.setAttribute('aria-expanded','false');
+        if(p){
+            p.style.height=p.scrollHeight+'px';   /* de auto a px, para poder animar */
+            void p.offsetHeight;                  /* fuerza reflow */
+            p.style.height='0px';
+        }
+        fila.classList.remove('is-open');
+    }
+
+    function abrir(fila){
+        var p=panel(fila),t=fila.querySelector('.sb-row__ask');
+        fila.classList.add('is-open');
+        if(t)t.setAttribute('aria-expanded','true');
+        if(!p)return;
+        if(reduce()){p.style.height='auto';return;}
+        p.style.height=p.scrollHeight+'px';
+        /* al terminar se suelta a auto; el temporizador es el respaldo por si el
+           transitionend no llega (pestana en segundo plano, por ejemplo) */
+        var listo=function(){
+            if(fila.classList.contains('is-open'))p.style.height='auto';
+            p.removeEventListener('transitionend',alTerminar);
+        };
+        var alTerminar=function(ev){if(ev.propertyName==='height')listo();};
+        p.addEventListener('transitionend',alTerminar);
+        setTimeout(listo,420);
+    }
+
+    /* 1. Acordeon: un renglon abierto a la vez, para que la tarjeta no crezca por
+          dos lados y la pantalla unica se conserve. */
+    quiz.addEventListener('click',function(e){
+        var t=e.target.closest('.sb-row__ask');
+        if(!t||!quiz.contains(t))return;
+        var fila=t.closest('.sb-question');
+        var estaAbierta=fila.classList.contains('is-open');
+        quiz.querySelectorAll('.sb-question.is-open').forEach(cerrar);
+        if(!estaAbierta)abrir(fila);
+    });
+
+    /* 2. Al responder: el texto ya cumplio, se cierra y devuelve la altura; pulso en
+          el chip de la letra. NUNCA hace scroll: el tablero entero cabe en pantalla
+          y moverlo bajo el dedo desorienta. */
+    quiz.addEventListener('click',function(e){
+        var b=e.target.closest('.sb-btn[data-q]');
+        if(!b)return;
+        var fila=b.closest('.sb-question');
+        if(!fila)return;
+        if(fila.classList.contains('is-open'))cerrar(fila);
+        if(!reduce()){
+            fila.classList.remove('sb-pulse');
+            void fila.offsetWidth;              /* fuerza reflow: reinicia la animacion */
+            fila.classList.add('sb-pulse');
+        }
+        if(navigator.vibrate){try{navigator.vibrate(8);}catch(err){}}
+    });
+
+    /* 3. Contador visible y remate. Se cuelga de un MutationObserver sobre la clase
+          .answered en vez de del click, porque la pregunta B tambien se contesta
+          desde sbCalcBMI(), que no pasa por ningun boton. El guardia por conteo
+          evita reentrar cuando la clase que cambia es .is-open o .sb-pulse. */
+    var ultimo=-1;
+    function sincronizar(){
+        var hechas=quiz.querySelectorAll('.sb-question.answered').length;
+        if(hechas===ultimo)return;
+        ultimo=hechas;
+        if(countEl)countEl.textContent=String(hechas);
+        quiz.classList.toggle('is-complete',hechas===filas.length);
+    }
+    if('MutationObserver' in window){
+        var obs=new MutationObserver(sincronizar);
+        filas.forEach(function(f){obs.observe(f,{attributes:true,attributeFilter:['class']});});
+    }
+    sincronizar();
+
+    /* 4. sbReset vive en el script viejo y no conoce estas clases: se envuelve. */
+    var resetPrevio=window.sbReset;
+    window.sbReset=function(){
+        if(typeof resetPrevio==='function')resetPrevio();
+        filas.forEach(function(f){
+            f.classList.remove('is-open','sb-pulse');
+            var t=f.querySelector('.sb-row__ask'),p=panel(f);
+            if(t)t.setAttribute('aria-expanded','false');
+            if(p)p.style.height='0px';
+        });
+        /* OJO con el nombre: una variable llamada `panel` aqui dentro se iza y
+           tapa a la funcion panel() de arriba, y el reinicio revienta. */
+        var panelImc=document.getElementById('sb-bmi-panel');
+        var toggleImc=document.querySelector('.sb-bmi-toggle');
+        if(panelImc){panelImc.classList.remove('open');}
+        if(toggleImc){toggleImc.setAttribute('aria-expanded','false');}
+        var res=document.getElementById('sb-bmi-result');
+        if(res)res.textContent='';
+        ultimo=-1;
+        sincronizar();
+    };
+
+    /* 5. Entrada escalonada de los 8 renglones, una sola vez, y despues se limpia
+          para no dejar transition-delay pegado en el DOM. */
+    if(!reduce()&&'IntersectionObserver' in window){
+        quiz.classList.add('sb-enter');
+        var io=new IntersectionObserver(function(ent){
+            if(!ent[0].isIntersecting)return;
+            io.disconnect();
+            filas.forEach(function(f,i){
+                f.style.transitionDelay=(i*42)+'ms';
+                f.classList.add('is-in');
+            });
+            setTimeout(function(){
+                filas.forEach(function(f){f.style.transitionDelay='';f.classList.remove('is-in');});
+                quiz.classList.remove('sb-enter');
+            },42*filas.length+620);
+        },{threshold:.12});
+        io.observe(quiz);
+    }
+})();
+
+</script>
 </body>
 </html>
