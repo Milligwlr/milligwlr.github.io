@@ -631,6 +631,7 @@
     .partner-fact__ic{width:48px;height:48px;flex-shrink:0;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#fff;background:linear-gradient(135deg,var(--electric),var(--cyan));box-shadow:0 8px 18px -8px rgba(9,132,227,.55)}
     .partner-fact strong{display:block;font-size:.98rem;color:var(--navy);font-weight:800;margin-bottom:2px}
     .partner-fact small{font-size:.83rem;color:var(--muted);line-height:1.4}
+
     </style>
 
     <style id="lp-redesign">
@@ -1828,7 +1829,7 @@
             <span class="block__kicker">Dudas frecuentes</span>
             <h2 class="block__title">Lo que más preguntan <em>antes de agendar</em></h2>
         </div>
-        <details class="faq-item" open><summary>¿Cuánto cuesta y qué incluye?</summary><div class="faq-item__answer"><strong>$4,500</strong> e incluye todo junto: consulta de neumología, equipo, poligrafía e interpretación por neumólogo egresado del INER. Por separado, a la carta, sumaría alrededor de $6,800 (estudio $5,000 + consulta de primera vez $1,800). ¿Prefieres el estudio a domicilio? Tiene un costo de $5,000, con la consulta agendada aparte, y con ese mismo precio llegamos a la mayoría de las zonas de la CDMX. Pregunta por la promoción cuando escribas. <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" style="color:#047857;font-weight:700" data-cta="faq-wa">Apartar por WhatsApp</a>.</div></details>
+        <details class="faq-item"><summary>¿Cuánto cuesta y qué incluye?</summary><div class="faq-item__answer"><strong>$4,500</strong> e incluye todo junto: consulta de neumología, equipo, poligrafía e interpretación por neumólogo egresado del INER. Por separado, a la carta, sumaría alrededor de $6,800 (estudio $5,000 + consulta de primera vez $1,800). ¿Prefieres el estudio a domicilio? Tiene un costo de $5,000, con la consulta agendada aparte, y con ese mismo precio llegamos a la mayoría de las zonas de la CDMX. Pregunta por la promoción cuando escribas. <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%244%2C500%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" style="color:#047857;font-weight:700" data-cta="faq-wa">Apartar por WhatsApp</a>.</div></details>
         <details class="faq-item"><summary>¿La poligrafía es lo mismo que un estudio del sueño?</summary><div class="faq-item__answer">Sí. La poligrafía respiratoria es un estudio del sueño que se realiza en tu casa (tipo III): registra respiración, oxigenación, ronquido y esfuerzo respiratorio mientras duermes, y es el estudio indicado para diagnosticar apnea obstructiva del sueño. La diferencia con la polisomnografía es que no necesitas dormir en un laboratorio.</div></details>
         <details class="faq-item"><summary>Busco una clínica del sueño en CDMX, ¿esto me sirve?</summary><div class="faq-item__answer">Si tu tema es el ronquido o la apnea del sueño, sí: aquí encuentras lo que pedirías en una clínica del sueño para ese problema: valoración por neumólogo, estudio del sueño en casa, interpretación y plan de tratamiento con el mismo especialista, en Benito Juárez, CDMX.</div></details>
         <details class="faq-item"><summary>¿Quién trata la apnea del sueño?</summary><div class="faq-item__answer">El neumólogo. Si el estudio confirma apnea, el propio Dr. Lara te indica el tratamiento (CPAP o cambios de hábitos, según tu caso) y lleva el seguimiento, sin referirte a otro médico.</div></details>
@@ -2265,6 +2266,74 @@ document.addEventListener('click',function(e){
 .sp-popup__text strong{display:block;color:#0a1628;font-size:.82rem}
 .sp-popup__time{font-size:.7rem;color:#5a6b7d;margin-top:2px}
 @media(min-width:992px){.sp-popup{bottom:100px;left:24px;max-width:300px}}
+</style>
+<style id="lp-compacta-movil">
+    /* ================= COMPACTACION MOVIL (13-ago-2026, regla d8) =================
+       Seis secciones pasaban de 1.2 pantallas en 375px. Todo lo de aqui es MOVIL y
+       ADITIVO: el escritorio no cambia y quitar este bloque revierte la pagina.
+       Medicion antes: 22.1 pantallas de alto total. ============================== */
+    @media(max-width:600px){
+        /* -- Cabeceras de seccion: eran 213-395px cada una, solo para presentar. -- */
+        .block__head{margin-bottom:16px}
+        .block__head .block__title,.block__head h2{font-size:1.5rem;line-height:1.22;margin-bottom:8px}
+        .block__head .block__lead,.block__head p{font-size:.95rem;line-height:1.5;margin-bottom:0}
+
+        /* -- QUIZ: 8 preguntas apiladas gastaban 1,489px. La pregunta y su Si/No
+              comparten renglon; el chip de letra encoge. Nada se oculta. -- */
+        .sb-quiz{gap:8px}
+        .sb-question{padding:10px 12px;display:grid;grid-template-columns:1fr auto;
+            grid-template-areas:"top top" "txt btns";column-gap:10px;align-items:center}
+        .sb-question__top{grid-area:top;margin-bottom:4px}
+        .sb-question__text{grid-area:txt;font-size:.9rem;line-height:1.35;margin:0}
+        .sb-question .sb-btns{grid-area:btns;display:flex;gap:6px;margin:0}
+        .sb-question .sb-btn{padding:7px 14px;font-size:.85rem;min-width:52px}
+        .sb-letter{width:22px;height:22px;font-size:.7rem;border-radius:6px}
+        .sb-category{font-size:.72rem}
+
+        /* -- POR QUE AQUI: seis mosaicos en columna gastaban 1,165px. Carrusel con
+              scroll-snap: se ven todos, se recorren con el dedo. -- */
+        .why-bento{display:flex;grid-template-columns:none;grid-template-areas:none;
+            overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;
+            padding-bottom:10px;max-width:100%;
+            -webkit-overflow-scrolling:touch;scrollbar-width:none}
+        .why-bento::-webkit-scrollbar{display:none}
+        .why-bento>.why-tile{flex:0 0 82%;scroll-snap-align:center;padding:18px;
+            grid-area:auto!important}
+        .why-data__num{font-size:2.1rem}
+
+        /* -- OSA: la tesis y la lista apiladas daban 1,112px. -- */
+        .osa-grid{gap:14px}
+        .osa-thesis{padding:18px 16px}
+        .osa-item{gap:11px;padding:12px 2px}
+        .osa-list{gap:2px}
+
+        /* -- HERO: la columna de texto medía 1,208px. -- */
+        .hero__content{padding-block:6px}
+        .hero__content>*+*{margin-top:10px}
+
+        /* -- PASE 2. Lo de arriba dejo 4 secciones sobre el limite; el peso
+              restante era texto estrujado en columnas estrechas (mas estrecho =
+              mas alto) y rejillas cortas apiladas. -- */
+        /* Quiz: el texto compartia renglon con los botones, se partia en 5-6
+           lineas y la pregunta subia a 174px. Texto a ancho completo, botones en
+           su propio renglon compacto. */
+        .sb-question__text{font-size:.86rem;line-height:1.3}
+        .sb-question .sb-btn{padding:6px 14px}
+
+        /* Cabecera de la seccion OSA: 445px solo de presentacion. */
+        .cpx-chips{gap:6px;margin-top:10px}
+        .cpx-chips>*{font-size:.78rem;padding:5px 10px}
+
+        /* Rejillas cortas que se apilaban: mismo carrusel del bento. */
+        .who-grid,.osa-list{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+            gap:10px;padding-bottom:8px;max-width:100%;
+            -webkit-overflow-scrolling:touch;scrollbar-width:none}
+        .who-grid::-webkit-scrollbar,.osa-list::-webkit-scrollbar{display:none}
+        .who-grid>*,.osa-list>*{flex:0 0 80%;scroll-snap-align:center}
+
+        /* -- FAQ: el <details> abierto de salida regalaba ~280px. -- */
+        .faq-item__answer{font-size:.94rem;line-height:1.5}
+    }
 </style>
 <!-- sp-popup (prueba social ficticia con nombres inventados) ELIMINADO por compliance:
      solo se usa la calificación 5.0 real de Google, nunca testimonios inventados. -->
