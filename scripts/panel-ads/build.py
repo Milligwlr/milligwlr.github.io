@@ -305,6 +305,16 @@ def consultas_ads(f):
         "recomendaciones": """
   SELECT recommendation.type, recommendation.campaign, recommendation.dismissed, recommendation.resource_name
   FROM recommendation WHERE recommendation.dismissed = FALSE""",
+        # Curva presupuesto->resultados que calcula Google (equivalente de Performance Planner, que no tiene API).
+        # Puntos de 7 dias por campana: presupuesto diario simulado -> clics, costo, impresiones, conversiones.
+        "simulaciones": """
+  SELECT campaign_simulation.campaign_id, campaign_simulation.type, campaign_simulation.modification_method,
+         campaign_simulation.start_date, campaign_simulation.end_date, campaign_simulation.budget_point_list.points
+  FROM campaign_simulation WHERE campaign_simulation.type = 'BUDGET'""",
+        # Opciones de presupuesto con impacto estimado (promedio semanal de 90 d) que Google propone por campana.
+        "opciones_presupuesto": """
+  SELECT recommendation.campaign, recommendation.marginal_roi_campaign_budget_recommendation
+  FROM recommendation WHERE recommendation.type = 'MARGINAL_ROI_CAMPAIGN_BUDGET' AND recommendation.dismissed = FALSE""",
         "horario_anuncios": """
   SELECT campaign.id, campaign_criterion.ad_schedule.day_of_week, campaign_criterion.ad_schedule.start_hour,
          campaign_criterion.ad_schedule.end_hour, campaign_criterion.bid_modifier
@@ -625,6 +635,39 @@ def normaliza_ads(raw):
             u["resumen"] = f"{u['n']} cambios: " + u["detalles"][0] + ("..." if u["n"] > 1 else "")
     out["cambios_28d"] = colapsados
     out["cambios_28d_total"] = len(cambios)
+
+    # simulador de presupuesto (puntos de 7 dias); se guarda por etiqueta de campana
+    out["simulaciones"] = {}
+    for r in raw.get("simulaciones") or []:
+        sim = r["campaignSimulation"]
+        et = por_id.get(str(sim.get("campaignId")))
+        if not et:
+            continue
+        pts = []
+        for pt in (sim.get("budgetPointList") or {}).get("points") or []:
+            pts.append({"presupuesto_dia": mxn(pt.get("budgetAmountMicros")), "clk": num(pt.get("clicks")),
+                        "imp": num(pt.get("impressions")), "gasto": mxn(pt.get("costMicros")),
+                        "conv": num(pt.get("biddableConversions")), "valor": mxn(pt.get("biddableConversionsValue"))})
+        pts.sort(key=lambda x: x["presupuesto_dia"] or 0)
+        out["simulaciones"][et] = {"metodo": sim.get("modificationMethod"), "inicio": sim.get("startDate"),
+                                   "fin": sim.get("endDate"), "puntos": pts}
+    out["opciones_presupuesto"] = {}
+    for r in raw.get("opciones_presupuesto") or []:
+        rec = r["recommendation"]
+        et = por_id.get(id_de_recurso(rec.get("campaign")))
+        m = rec.get("marginalRoiCampaignBudgetRecommendation") or {}
+        if not et or not m:
+            continue
+        ops = []
+        for o in m.get("budgetOptions") or []:
+            base = (o.get("impact") or {}).get("baseMetrics") or {}
+            pot = (o.get("impact") or {}).get("potentialMetrics") or {}
+            ops.append({"presupuesto_dia": mxn(o.get("budgetAmountMicros")),
+                        "conv_sem": num(pot.get("conversions")), "gasto_sem": mxn(pot.get("costMicros")),
+                        "clk_sem": num(pot.get("clicks")), "conv_sem_base": num(base.get("conversions")),
+                        "gasto_sem_base": mxn(base.get("costMicros"))})
+        out["opciones_presupuesto"][et] = {"actual": mxn(m.get("currentBudgetAmountMicros")),
+                                           "recomendado": mxn(m.get("recommendedBudgetAmountMicros")), "opciones": ops}
 
     out["recomendaciones"] = [{
         "tipo": r["recommendation"].get("type"),
@@ -1106,7 +1149,44 @@ def deriva(ads, f):
         #     presupuesto, cuando el simulador mide que el contacto marginal cuesta 1.5 a 2x el promedio.
         #     Techo por presupuesto: el gasto no pasa de lo que recuperaria la parte perdida por presupuesto (IS+LB).
         curva = None
-        if u30["gasto"] > 0 and u30.get("is") and B0 > 0:
+        sim = (ads.get("simulaciones") or {}).get(c)
+        if sim and len([p for p in sim["puntos"] if p["presupuesto_dia"]]) >= 3 and B0 > 0:
+            # Fuente primaria: los puntos del simulador de Google (7 dias) escalados a 30 dias.
+            # Se interpola entre puntos, nunca se extrapola fuera del rango; elasticidad por ajuste log-log.
+            pts_sim = [p for p in sim["puntos"] if p["presupuesto_dia"]]
+            puntos = []
+            for p in pts_sim:
+                g30, c30 = p["gasto"] * 30 / 7, p["conv"] * 30 / 7
+                puntos.append({"x": round(p["presupuesto_dia"] / B0, 3), "presupuesto_dia": round(p["presupuesto_dia"], 0),
+                               "gasto_30d": round(g30, 0), "contactos_30d": round(c30, 1), "costo_contacto": div(g30, c30),
+                               "clics_30d": round(p["clk"] * 30 / 7, 0)})
+            for p0, p1 in zip(puntos, puntos[1:]):
+                dc = p1["contactos_30d"] - p0["contactos_30d"]
+                p1["costo_marginal"] = round((p1["gasto_30d"] - p0["gasto_30d"]) / dc, 0) if dc > 0.05 else None
+            xs = [math.log(p["presupuesto_dia"]) for p in puntos if p["contactos_30d"] > 0]
+            ys = [math.log(p["contactos_30d"]) for p in puntos if p["contactos_30d"] > 0]
+            elast = None
+            if len(xs) >= 3:
+                mx, my = sum(xs) / len(xs), sum(ys) / len(ys)
+                den = sum((a - mx) ** 2 for a in xs)
+                elast = round(sum((a - mx) * (b - my) for a, b in zip(xs, ys)) / den, 2) if den else None
+            dias_sim = (fin - fecha(sim["fin"])).days if sim.get("fin") else None
+            curva = {"puntos": puntos, "fuente": "simulador de Google (campaign_simulation, presupuesto uniforme)",
+                     "ventana": f"{sim.get('inicio')}..{sim.get('fin')}", "dias_desde_ventana": dias_sim,
+                     "desactualizada": bool(dias_sim is not None and dias_sim > 14),
+                     "presupuesto_en_simulacion": bool(any(abs(p["presupuesto_dia"] - B0) < 1 for p in puntos)),
+                     "elasticidad": elast,
+                     "contactos_recuperables_por_presupuesto": (round(max(p["contactos_30d"] for p in puntos) - u30["conv"], 1)
+                                                              if u30.get("conv") is not None else None),
+                     "perdida_dominante": "presupuesto" if (u30.get("lb") or 0) > (u30.get("lr") or 0) else "ranking",
+                     "marca": "[Heuristica: estimacion de Google, no promesa]"}
+            ops = (ads.get("opciones_presupuesto") or {}).get(c)
+            if ops:
+                curva["opciones_google"] = ops
+            if c == "C3":
+                curva["techo_fisico"] = {"estudios_max_semana": ESTUDIOS_POLI_MAX_SEMANA, "equipos": 2,
+                                         "marca": "[Documentado: consultorio]"}
+        elif u30["gasto"] > 0 and u30.get("is") and B0 > 0:
             IS, LB = u30["is"], u30.get("lb") or 0
             dias = u30["dias"] or 30
             gasto_tope = u30["gasto"] * min(1.0, IS + LB) / IS  # lo que se gastaria si el presupuesto no cortara
@@ -1124,7 +1204,7 @@ def deriva(ads, f):
             for p0, p1 in zip(puntos, puntos[1:]):
                 dc = p1["contactos_30d"] - p0["contactos_30d"]
                 p1["costo_marginal"] = round((p1["gasto_30d"] - p0["gasto_30d"]) / dc, 0) if dc > 0.05 else None
-            curva = {"puntos": puntos, "contactos_max_teorico": round(cont_max, 1),
+            curva = {"puntos": puntos, "fuente": "heuristica propia (impression share)", "contactos_max_teorico": round(cont_max, 1),
                      "contactos_recuperables_por_presupuesto": round(contactos_con(gasto_tope) - u30["conv"], 1),
                      "perdida_dominante": "presupuesto" if LB > (u30.get("lr") or 0) else "ranking",
                      "elasticidad": ELASTICIDAD_CONV, "marca": "[Heuristica]"}
@@ -1195,7 +1275,7 @@ def deriva(ads, f):
         "banda_contactos": f"intervalo exacto de Poisson (Garwood) al 90% para la tasa dado el conteo observado, ensanchado por la sobredispersion medida (phi = varianza/media semanal, acotada a [{PHI_MIN}, {PHI_MAX}]); costo por contacto = gasto / banda invertida",
         "comparacion_30d": f"30 d contra los 30 previos; se publica solo si el periodo previo tiene al menos {P30_MIN_DIAS} dias (una campana nueva no se compara contra 9 dias)",
         "pronostico": f"nivel = suavizado exponencial simple (alpha={EWMA_ALPHA}, elegido por backtest del 22-ago) de las ultimas {SEMANAS_BASE} semanas completas (minimo {SEMANAS_MIN_PRONOSTICO}), proyectado PLANO {SEMANAS_PRONOSTICO} semanas: no se extrapola tendencia ni estacionalidad. Gasto = presupuesto vigente x 7 x factor de consumo medido tras el ultimo cambio de presupuesto ({DIAS_MIN_CONSUMO} a {DIAS_MAX_CONSUMO} dias; {F_CONSUMO_DEFECTO} si no hay dias suficientes). Contactos = nivel x (gasto pronosticado / gasto historico)^{ELASTICIDAD_CONV} (elasticidad medida en campaign_simulation, ratio acotado a [{RATIO_PPTO_MIN}, {RATIO_PPTO_MAX}]). Banda 90% = Gamma-Poisson: incertidumbre de la media (n_eff = 1/alpha semanas) + azar semanal + sobredispersion phi; el total de 4 semanas NO multiplica la media por 4 como si el error se cancelara. Cualquier cambio de presupuesto, puja, anuncios o landing invalida el pronostico. [Heuristica]",
-        "curva_presupuesto": f"contactos = contactos_30d x (gasto / gasto_30d)^{ELASTICIDAD_CONV} (rendimientos decrecientes: el contacto marginal cuesta mas que el promedio; costo_marginal entre puntos), con tope de gasto en lo que recuperaria la parte perdida por presupuesto (IS+LB) y cota absoluta contactos/IS; la parte perdida por ranking no se compra con presupuesto. Poligrafia ademas tiene techo fisico de {ESTUDIOS_POLI_MAX_SEMANA} estudios/semana (2 equipos). [Heuristica]",
+        "curva_presupuesto": f"fuente primaria: puntos del simulador de presupuesto de Google (campaign_simulation BUDGET, ventana de 7 dias escalada a 30; interpolacion entre puntos, sin extrapolar; elasticidad por ajuste log-log; costo marginal entre puntos). Respaldo si no hay simulador: contactos = contactos_30d x (gasto / gasto_30d)^{ELASTICIDAD_CONV} (rendimientos decrecientes: el contacto marginal cuesta mas que el promedio; costo_marginal entre puntos), con tope de gasto en lo que recuperaria la parte perdida por presupuesto (IS+LB) y cota absoluta contactos/IS; la parte perdida por ranking no se compra con presupuesto. Poligrafia ademas tiene techo fisico de {ESTUDIOS_POLI_MAX_SEMANA} estudios/semana (2 equipos). [Heuristica]",
         "valor_asignado": "conversions_value es el valor fijo que GTM asigna por pagina para la puja 'maximizar valor'; no es ingreso, no se suma y no se calcula ROAS. all_conversions no se consulta.",
         "alertas": {"gasto_diario": f">{ALERTA_GASTO_X_PRESUPUESTO}x presupuesto en los ultimos 7 dias",
                     "lost_budget": f"cuota perdida por presupuesto >{int(ALERTA_LOST_BUDGET * 100)}% {ALERTA_LOST_BUDGET_DIAS} dias seguidos (ventana 14 d); es una cuota de busquedas elegibles, no un numero de impresiones",
