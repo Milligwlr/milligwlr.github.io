@@ -105,8 +105,9 @@ details[open] summary::after{content:"-"}
 code{font-family:"IBM Plex Mono",monospace;font-size:12px;background:var(--surface-2);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
 footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-3)}
 footer p{max-width:none}
-.campana{border-left:4px solid var(--line-2)}
-.campana.C1{border-left-color:var(--c1)} .campana.C2{border-left-color:var(--c2)} .campana.C3{border-left-color:var(--c3)}
+/* La identidad de campana va en una muestra de color junto al titulo (la misma de las leyendas de las graficas): el color sigue a la entidad, sin franjas laterales. */
+.campana .cab h3::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:8px;vertical-align:-1px;background:var(--line-2)}
+.campana.C1 .cab h3::before{background:var(--c1)} .campana.C2 .cab h3::before{background:var(--c2)} .campana.C3 .cab h3::before{background:var(--c3)}
 .campana .cab{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
 .campana .cab h3{margin:0;font-size:17px}
 .sub-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:10px 0}
