@@ -92,8 +92,13 @@ def main():
 
     u30 = d["derivado"]["cuenta"]["u30"]
     print(f"OK datos.enc {RUTA_ENC.stat().st_size:,} B -> JSON {len(texto.encode('utf-8')):,} B, generado {d['generado']}, ventana {d['ventana']['inicio']}..{d['ventana']['fin']}")
-    print(f"   campanas: {', '.join(f'{c} {v['estado']} ${v['presupuesto_dia']:.0f}/dia' for c, v in d['ads']['campanas'].items())}")
-    print(f"   30d cuenta: gasto ${u30['gasto']:,.0f}, contactos {u30['conv']}, costo por contacto ${u30['costo_contacto']}")
+    # El repo es publico y el log de Actions tambien: en CI no se imprime ninguna cifra de dinero
+    # ni de contactos (seria publicar en claro lo que datos.enc protege). En local si, para control.
+    if os.environ.get("GITHUB_ACTIONS", "").lower() == "true":
+        print(f"   campanas: {', '.join(f'{c} {v['estado']}' for c, v in d['ads']['campanas'].items())}")
+    else:
+        print(f"   campanas: {', '.join(f'{c} {v['estado']} ${v['presupuesto_dia']:.0f}/dia' for c, v in d['ads']['campanas'].items())}")
+        print(f"   30d cuenta: gasto ${u30['gasto']:,.0f}, contactos {u30['conv']}, costo por contacto ${u30['costo_contacto']}")
     print(f"   ga4: {'ok' if d['ga4'] else 'null'} | alertas: {len(d['derivado']['alertas'])} | errores Ads: {len(d['ads'].get('errores', []))}")
 
 

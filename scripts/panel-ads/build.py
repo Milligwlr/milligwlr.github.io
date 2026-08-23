@@ -6,7 +6,11 @@ Que hace
   2. Lee GA4 (propiedad 527758587) por REST v1beta runReport con un JWT RS256 firmado
      con la cuenta de servicio (sin google-auth: solo stdlib + cryptography).
   3. Calcula el bloque "derivado" en Python puro (sin numpy): semanal, 30d vs 30d previos,
-     bandas Poisson, pronostico, curva presupuesto->contactos y alertas.
+     bandas Gamma-Poisson con sobredispersion, pronostico anclado al presupuesto vigente,
+     curva presupuesto->contactos con rendimientos decrecientes y alertas.
+  Honestidad estadistica (revision R3, 22-ago): no se consulta all_conversions, no se
+  calcula ROAS ni se suma conversions_value, 7 dias de contactos no son evidencia, una
+  campana con periodo previo incompleto no se compara, y ningun pronostico extrapola tendencia.
   4. Escribe datos.json FUERA del repo (tmp), lo cifra a campana-ads/datos.enc
      (PBKDF2-SHA256 200000 it + AES-256-GCM, formato WebCrypto) y escribe
      campana-ads/meta.json sin cifras ni secretos.
@@ -678,6 +682,40 @@ def filtro_pagado():
     return {"filter": {"fieldName": "sessionSourceMedium", "stringFilter": {"matchType": "EXACT", "value": "google / cpc"}}}
 
 
+# Metricas aditivas (se suman al fusionar) y tasas (media ponderada por sesiones).
+GA4_SUMA = ("sessions", "keyEvents", "eventCount", "totalUsers")
+GA4_TASA = ("engagementRate", "averageSessionDuration", "bounceRate")
+
+
+def sin_query(filas):
+    """Recorta la query string y el fragmento de landingPagePlusQueryString y fusiona las filas que
+    quedan con la misma ruta (y el mismo eventName, si viene).
+    Razon (regla dura: ni un dato de paciente en Actions ni en el repo): GA4 guarda la URL tal cual
+    llego. Un formulario del sitio enviado sin JavaScript (facturacion lleva name=nombre, name=rfc)
+    o un enlace con ?tel= dejaria datos personales en esa dimension, y este script corre en GitHub
+    Actions y escribe al repo. Al panel le basta la ruta; gclid y utm no se usan en la pagina."""
+    grupos, orden = {}, []
+    for r in filas or []:
+        r = dict(r)
+        p = str(r.get("landingPagePlusQueryString") or "")
+        p = p.split("?", 1)[0].split("#", 1)[0] or "(not set)"
+        r["landingPagePlusQueryString"] = p
+        llave = (p, r.get("eventName"))
+        if llave not in grupos:
+            grupos[llave] = r
+            orden.append(llave)
+            continue
+        g = grupos[llave]
+        s_g, s_r = float(g.get("sessions") or 0), float(r.get("sessions") or 0)
+        for k in GA4_TASA:
+            if k in g or k in r:
+                g[k] = num(((float(g.get(k) or 0) * s_g) + (float(r.get(k) or 0) * s_r)) / (s_g + s_r), 4) if (s_g + s_r) else 0
+        for k in GA4_SUMA:
+            if k in g or k in r:
+                g[k] = num(float(g.get(k) or 0) + float(r.get(k) or 0), 4)
+    return [grupos[k] for k in orden]
+
+
 def extrae_ga4(sa, f):
     tok = token_ga4(sa)
 
@@ -699,14 +737,15 @@ def extrae_ga4(sa, f):
     g["diario_canal"] = ga4_run(tok, {
         "dateRanges": rango(f["ini120"], f["fin"]), "dimensions": dim("date", "sessionDefaultChannelGroup"),
         "metrics": met("sessions", "keyEvents", "totalUsers"), "orderBys": [{"dimension": {"dimensionName": "date"}}]})
-    g["landings_pagadas_30d"] = ga4_run(tok, landing_body(f["ini30"], f["fin"]))
-    g["landings_pagadas_30d_prev"] = ga4_run(tok, landing_body(f["ini30prev"], f["fin30prev"]))
-    g["eventos_landing_pagado_30d"] = ga4_run(tok, {
+    # sin_query(): solo la ruta; la query string de GA4 podria traer datos personales (ver docstring).
+    g["landings_pagadas_30d"] = sin_query(ga4_run(tok, landing_body(f["ini30"], f["fin"])))
+    g["landings_pagadas_30d_prev"] = sin_query(ga4_run(tok, landing_body(f["ini30prev"], f["fin30prev"])))
+    g["eventos_landing_pagado_30d"] = sin_query(ga4_run(tok, {
         "dateRanges": rango(f["ini30"], f["fin"]), "dimensions": dim("landingPagePlusQueryString", "eventName"),
         "metrics": met("eventCount", "sessions"),
         "dimensionFilter": {"andGroup": {"expressions": [filtro_pagado(), {"filter": {
             "fieldName": "eventName",
-            "inListFilter": {"values": ["clic_whatsapp", "agendar_cita", "llamada", "agenda_modal_open"]}}}]}}})
+            "inListFilter": {"values": ["clic_whatsapp", "agendar_cita", "llamada", "agenda_modal_open"]}}}]}}}))
     g["dispositivo_30d"] = ga4_run(tok, {
         "dateRanges": rango(f["ini30"], f["fin"]), "dimensions": dim("deviceCategory", "sessionDefaultChannelGroup"),
         "metrics": met("sessions", "keyEvents")})
@@ -744,22 +783,108 @@ def _biseccion_decreciente(fn, lo, hi, objetivo, it=60):
     return (lo + hi) / 2
 
 
-def banda_poisson_tasa(n, nivel=0.90):
+def banda_poisson_tasa(n, nivel=0.90, phi=1.0):
     """Intervalo exacto (Garwood) al 90% para la tasa lambda dado un conteo observado n: colas de 5% cada una.
     lo: P(X >= n | lo) = 5%   (1 - cdf(n-1, L) crece con L, asi que se bisecciona su negativo)
-    hi: P(X <= n | hi) = 5%   (cdf(n, L) decrece con L)"""
+    hi: P(X <= n | hi) = 5%   (cdf(n, L) decrece con L)
+    phi > 1 = quasi-Poisson (Var = phi * media): se trabaja con n/phi como conteo y se reescala por phi.
+    Motivo: las conversiones semanales de esta cuenta tienen varianza/media de 1.5 a 2.2 (22-ago); con phi = 1 la
+    banda salia mas angosta que lo que de verdad oscila la cuenta y el Dr. leeria "senal" donde hay ruido."""
     a = (1 - nivel) / 2
-    n = max(0, int(round(n)))
+    phi = max(1.0, float(phi or 1.0))
+    n = max(0, int(round(n / phi)))
     if n == 0:
         lo = 0.0
     else:
         lo = _biseccion_decreciente(lambda L: -(1 - poisson_cdf(n - 1, L)), 0.0, float(n), -a)
     hi = _biseccion_decreciente(lambda L: poisson_cdf(n, L), float(n), float(n) + 10 * math.sqrt(n + 1) + 20, a)
-    return [round(lo, 2), round(hi, 2)]
+    return [round(lo * phi, 2), round(hi * phi, 2)]
+
+
+def phi_de(conteos):
+    """Indice de dispersion varianza/media (quasi-Poisson) sobre conteos semanales; acotado a [PHI_MIN, PHI_MAX].
+    Con menos de 6 semanas la estimacion es inservible y se usa PHI_DEFECTO (1.5, el centro de lo medido)."""
+    xs = [float(x) for x in conteos if x is not None]
+    n = len(xs)
+    if n < 6:
+        return PHI_DEFECTO
+    m = sum(xs) / n
+    if m <= 0:
+        return PHI_DEFECTO
+    var = sum((x - m) ** 2 for x in xs) / (n - 1)
+    return round(min(PHI_MAX, max(PHI_MIN, var / m)), 2)
+
+
+def _nb_logpmf(k, a, mu):
+    """log P(Y = k) para Y ~ BinomialNegativa(forma a, media mu) = mezcla Gamma-Poisson."""
+    p = a / (a + mu)
+    return math.lgamma(k + a) - math.lgamma(a) - math.lgamma(k + 1) + a * math.log(p) + k * math.log(1 - p)
+
+
+def cuantiles_nb(a, mu, nivel=0.90):
+    """Cuantiles (1-nivel)/2 y 1-(1-nivel)/2 de Y ~ BinomialNegativa(forma a, media mu)."""
+    alfa = (1 - nivel) / 2
+    if mu <= 0:
+        return [0, 0]
+    sd = math.sqrt(mu + mu * mu / a)
+    tope = int(mu + 10 * sd + 20)
+    acum, k_lo, k_hi = 0.0, None, None
+    for k in range(tope + 1):
+        acum += math.exp(_nb_logpmf(k, a, mu))
+        if k_lo is None and acum >= alfa:
+            k_lo = k
+        if acum >= 1 - alfa:
+            k_hi = k
+            break
+    return [k_lo or 0, k_hi if k_hi is not None else tope]
+
+
+def cuantiles_gamma_poisson(media, n_eff, phi=1.0, horizonte=1, nivel=0.90):
+    """Banda predictiva de un conteo futuro en 'horizonte' semanas cuando la tasa semanal NO se conoce exacta:
+    tasa ~ Gamma(forma = media*n_eff/phi + 0.5, tasa = n_eff/phi)  (prior de Jeffreys; n_eff = semanas efectivas
+    que respaldan la media, 1/alpha en un suavizado exponencial) y conteo | tasa ~ quasi-Poisson(phi).
+    Cerrada: Y = X/phi ~ BinomialNegativa(forma a, media horizonte*a/n_eff); X = phi*Y.
+    Motivo: cuantiles_poisson(media) trataba la media pronosticada como verdad exacta y, para 4 semanas, multiplicaba
+    la media por 4 como si el error del promedio se cancelara; el error del promedio NO se cancela al sumar semanas."""
+    if media <= 0:
+        return [0, 0]
+    phi = max(1.0, float(phi or 1.0))
+    n_eff = max(0.5, float(n_eff))
+    a = media * n_eff / phi + 0.5
+    mu_y = horizonte * a / n_eff
+    q = cuantiles_nb(a, mu_y, nivel)
+    return [int(round(q[0] * phi)), int(round(q[1] * phi))]
+
+
+def varianza_gamma_poisson(media, n_eff, phi=1.0, horizonte=1):
+    """Varianza de la predictiva de cuantiles_gamma_poisson (para sumar campanas por momentos)."""
+    phi = max(1.0, float(phi or 1.0))
+    n_eff = max(0.5, float(n_eff))
+    a = media * n_eff / phi + 0.5
+    mu_y = horizonte * a / n_eff
+    return phi * phi * (mu_y + mu_y * mu_y / a), phi * mu_y
+
+
+def cuantiles_suma_campanas(pares, nivel=0.90):
+    """Banda de la suma de conteos de varias campanas: se igualan media y varianza a una BinomialNegativa
+    (no hay forma cerrada para la suma de binomiales negativas con formas distintas). [Heuristica]
+    pares = [(media, n_eff, phi, horizonte), ...]"""
+    M = V = 0.0
+    for media, n_eff, phi, h in pares:
+        v, m = varianza_gamma_poisson(media, n_eff, phi, h)
+        M += m
+        V += v
+    if M <= 0:
+        return [0, 0]
+    if V <= M * 1.0001:
+        return cuantiles_nb(1e9, M, nivel)  # practicamente Poisson
+    a_eff = M * M / (V - M)
+    return cuantiles_nb(a_eff, M, nivel)
 
 
 def cuantiles_poisson(lam, nivel=0.90):
-    """Cuantiles 5% y 95% de un conteo futuro X ~ Poisson(lam)."""
+    """Cuantiles 5% y 95% de un conteo futuro X ~ Poisson(lam) con lam conocida. Solo para pruebas de alerta
+    (conv/clic esperadas en una semana); para pronosticos usar cuantiles_gamma_poisson."""
     a = (1 - nivel) / 2
     if lam <= 0:
         return [0, 0]
@@ -799,17 +924,17 @@ def div(a, b, nd=2):
 # ----------------------------------------------------------------------------------
 # Bloque derivado
 # ----------------------------------------------------------------------------------
-def agrega(filas):
+def agrega(filas, phi=1.0):
     """Suma metricas y agrega IS/LB/LR por impresiones elegibles (imp/IS), no por promedio simple.
-    Razon: el promedio simple de IS diario da el mismo peso a un dia de 10 impresiones que a uno de 400."""
-    t = {"gasto": 0.0, "imp": 0, "clk": 0, "conv": 0.0, "valor": 0.0, "dias": 0}
+    Razon: el promedio simple de IS diario da el mismo peso a un dia de 10 impresiones que a uno de 400.
+    No suma conversions_value: el valor asignado en GTM no es ingreso y no se publica ni como total ni como ROAS."""
+    t = {"gasto": 0.0, "imp": 0, "clk": 0, "conv": 0.0, "dias": 0}
     eleg = lb = lr = top = 0.0
     for f in filas:
         t["gasto"] += f["gasto"]
         t["imp"] += f["imp"]
         t["clk"] += f["clk"]
         t["conv"] += f["conv"]
-        t["valor"] += f.get("valor", 0) or 0
         t["dias"] += 1
         if f.get("is") and f["imp"]:
             e = f["imp"] / f["is"]
@@ -819,7 +944,6 @@ def agrega(filas):
             top += (f.get("top") or 0) * e
     t["gasto"] = round(t["gasto"], 2)
     t["conv"] = round(t["conv"], 2)
-    t["valor"] = round(t["valor"], 2)
     t["cpc"] = div(t["gasto"], t["clk"])
     t["ctr"] = div(t["clk"], t["imp"], 4)
     t["conv_clic"] = div(t["conv"], t["clk"], 4)
@@ -829,8 +953,9 @@ def agrega(filas):
     t["lr"] = div(lr, eleg, 4) if eleg else None
     t["top"] = div(top, eleg, 4) if eleg else None
     if t["gasto"] > 0:
-        b = banda_poisson_tasa(t["conv"])
+        b = banda_poisson_tasa(t["conv"], phi=phi)
         t["banda_contactos"] = b
+        t["phi"] = phi
         t["banda_costo_contacto"] = [div(t["gasto"], b[1]), div(t["gasto"], b[0]) if b[0] > 0 else None]
     return t
 
@@ -870,9 +995,17 @@ def deriva(ads, f):
         return [x for x in filas if a <= fecha(x["fecha"]) <= b]
 
     D["cuenta"]["semanal"] = semanal(ads["cuenta_diario"])
-    D["cuenta"]["u30"] = agrega(en(ads["cuenta_diario"], ini30, fin))
-    D["cuenta"]["p30"] = agrega(en(ads["cuenta_diario"], ini30p, fin30p))
-    D["cuenta"]["u7"] = agrega(en(ads["cuenta_diario"], fin - timedelta(days=6), fin))
+    phi_cuenta = phi_de([s["conv"] for s in D["cuenta"]["semanal"][-SEMANAS_BASE - 5:]])
+    for s in D["cuenta"]["semanal"]:
+        if s["gasto"] > 0:
+            b = banda_poisson_tasa(s["conv"], phi=phi_cuenta)
+            s["banda_contactos"], s["phi"] = b, phi_cuenta
+            s["banda_costo_contacto"] = [div(s["gasto"], b[1]), div(s["gasto"], b[0]) if b[0] > 0 else None]
+    D["cuenta"]["phi"] = phi_cuenta
+    D["cuenta"]["u30"] = agrega(en(ads["cuenta_diario"], ini30, fin), phi_cuenta)
+    D["cuenta"]["p30"] = agrega(en(ads["cuenta_diario"], ini30p, fin30p), phi_cuenta)
+    # u7 se conserva solo para el ritmo de gasto contra el tope diario; 7 dias de contactos no son evidencia
+    D["cuenta"]["u7"] = agrega(en(ads["cuenta_diario"], fin - timedelta(days=6), fin), phi_cuenta)
     D["cuenta"]["presupuesto_dia_total"] = round(sum(c["presupuesto_dia"] for c in ads["campanas"].values()
                                                      if c["estado"] == "ENABLED"), 2)
 
@@ -880,23 +1013,60 @@ def deriva(ads, f):
         filas = por_camp[c]
         cfg = ads["campanas"][c]
         sem = semanal(filas)
-        u30 = agrega(en(filas, ini30, fin))
-        p30 = agrega(en(filas, ini30p, fin30p))
-        u7 = agrega(en(filas, fin - timedelta(days=6), fin))
+        # sobredispersion por campana (varianza/media de conversiones semanales de la base)
+        phi = phi_de([s["conv"] for s in sem[-SEMANAS_BASE - 5:]])
+        for s in sem:
+            if s["gasto"] > 0:
+                b = banda_poisson_tasa(s["conv"], phi=phi)
+                s["banda_contactos"], s["phi"] = b, phi
+                s["banda_costo_contacto"] = [div(s["gasto"], b[1]), div(s["gasto"], b[0]) if b[0] > 0 else None]
+        u30 = agrega(en(filas, ini30, fin), phi)
+        p30 = agrega(en(filas, ini30p, fin30p), phi)
+        u7 = agrega(en(filas, fin - timedelta(days=6), fin), phi)
 
+        # 30 d vs 30 d previos SOLO si el periodo previo esta casi completo: C3 arranco el 14-jul y su "previo"
+        # tenia 9 dias, con lo que el panel pintaba "+525% de contactos" comparando 9 dias contra 30.
         def delta(k):
             a, b = u30.get(k), p30.get(k)
             return round((a - b) / b, 3) if (a is not None and b) else None
-        comparacion = {k: delta(k) for k in ("gasto", "clk", "conv", "cpc", "conv_clic", "costo_contacto", "is")}
+        p30_ok = p30["dias"] >= P30_MIN_DIAS
+        comparacion = {k: (delta(k) if p30_ok else None) for k in ("gasto", "clk", "conv", "cpc", "conv_clic", "costo_contacto", "is")}
+        comparacion["valida"] = p30_ok
+        comparacion["p30_dias"] = p30["dias"]
 
-        # pronostico: EWMA de las ultimas 8 semanas completas, 4 semanas planas, banda Poisson sobre la media
+        # --- factor de consumo del presupuesto vigente: gasto real / presupuesto en los dias POSTERIORES al ultimo
+        #     cambio de presupuesto (3 a 14 dias). Si el cambio es de hace menos de 3 dias, 0.95 fijo.
+        cambios_ppto = sorted(ch["fecha"][:10] for ch in ads["cambios_28d"]
+                              if ch["camp"] == c and ch["tipo"] == "CAMPAIGN_BUDGET" and ch["a"] is not None)
+        ultimo_cambio = fecha(cambios_ppto[-1]) if cambios_ppto else None
+        B0 = cfg["presupuesto_dia"] or 0
+        desde = max(fin - timedelta(days=DIAS_MAX_CONSUMO - 1), (ultimo_cambio + timedelta(days=1)) if ultimo_cambio else fin - timedelta(days=DIAS_MAX_CONSUMO - 1))
+        post = en(filas, desde, fin)
+        f_consumo, f_consumo_dias = F_CONSUMO_DEFECTO, 0
+        if B0 > 0 and len(post) >= DIAS_MIN_CONSUMO:
+            f_consumo = round(min(1.3, max(0.3, sum(x["gasto"] for x in post) / (B0 * len(post)))), 3)
+            f_consumo_dias = len(post)
+
+        # --- pronostico a 4 semanas [Heuristica]
+        #     nivel = suavizado exponencial (alpha 0.5) de las ultimas 8 semanas completas, proyectado PLANO
+        #     (Holt/tendencia dio peor backtest; con n < 8 extrapolar tendencia es inventar).
+        #     gasto = presupuesto vigente x 7 x factor de consumo (anclado a la politica, no a la historia: antes el
+        #     pronostico decia $2,320/semana para C1 con un tope de $1,400/semana tras el recorte del 17-ago).
+        #     contactos = nivel x (gasto_pronosticado / gasto_historico)^0.6: elasticidad medida en el simulador.
+        #     banda = Gamma-Poisson (incertidumbre de la media, n_eff = 1/alpha semanas) con sobredispersion phi.
         base = sem[-SEMANAS_BASE:]
         pron = None
-        if len(base) >= 3:
-            conv_fc = ewma([s["conv"] for s in base])
-            gasto_fc = ewma([s["gasto"] for s in base])
-            clk_fc = ewma([s["clk"] for s in base])
-            q = cuantiles_poisson(conv_fc)
+        if len(base) >= SEMANAS_MIN_PRONOSTICO and B0 > 0:
+            conv_nivel = ewma([s["conv"] for s in base])
+            gasto_nivel = ewma([s["gasto"] for s in base])
+            clk_nivel = ewma([s["clk"] for s in base])
+            gasto_fc = B0 * 7 * f_consumo
+            ratio = gasto_fc / gasto_nivel if gasto_nivel > 0 else 1.0
+            ratio_acotado = min(RATIO_PPTO_MAX, max(RATIO_PPTO_MIN, ratio))
+            conv_fc = conv_nivel * ratio_acotado ** ELASTICIDAD_CONV
+            clk_fc = clk_nivel * ratio_acotado ** ELASTICIDAD_CLICS
+            n_eff = min(1.0 / EWMA_ALPHA, float(len(base)))
+            q = cuantiles_gamma_poisson(conv_fc, n_eff, phi, 1)
             semanas = []
             for i in range(1, SEMANAS_PRONOSTICO + 1):
                 semanas.append({"semana": (ult_lunes_completo + timedelta(days=7 * i)).isoformat(),
@@ -908,34 +1078,60 @@ def deriva(ads, f):
             en_curso = en(filas, ult_lunes_completo + timedelta(days=7), fin)
             curso = None
             if en_curso:
-                ag = agrega(en_curso)
+                ag = agrega(en_curso, phi)
                 curso = {"semana": (ult_lunes_completo + timedelta(days=7)).isoformat(), "dias": ag["dias"],
                          "contactos": ag["conv"], "gasto": ag["gasto"], "clk": ag["clk"],
-                         "contactos_esperados_a_la_fecha": round(conv_fc * ag["dias"] / 7, 1)}
+                         "contactos_esperados_a_la_fecha": round(conv_fc * ag["dias"] / 7, 1),
+                         "banda_esperada_a_la_fecha": cuantiles_gamma_poisson(conv_fc * ag["dias"] / 7, n_eff, phi, 1)}
+            q4 = cuantiles_gamma_poisson(conv_fc, n_eff, phi, SEMANAS_PRONOSTICO)
             pron = {"semanas": semanas, "semana_en_curso": curso, "semanas_base": len(base), "alpha": EWMA_ALPHA,
+                    "base_corta": len(base) < SEMANAS_BASE, "phi": phi, "n_eff": n_eff,
+                    "ajuste_presupuesto": {"gasto_nivel_semana": round(gasto_nivel, 0), "presupuesto_dia": B0,
+                                           "f_consumo": f_consumo, "f_consumo_dias": f_consumo_dias,
+                                           "ultimo_cambio": ultimo_cambio.isoformat() if ultimo_cambio else None,
+                                           "ratio": round(ratio, 3), "ratio_aplicado": round(ratio_acotado, 3),
+                                           "elasticidad_contactos": ELASTICIDAD_CONV,
+                                           "contactos_sin_ajuste": round(conv_nivel, 1)},
                     "contactos_4sem": round(conv_fc * SEMANAS_PRONOSTICO, 0),
-                    "banda_contactos_4sem": cuantiles_poisson(conv_fc * SEMANAS_PRONOSTICO),
-                    "gasto_4sem": round(gasto_fc * SEMANAS_PRONOSTICO, 0), "marca": "[Heuristica]"}
+                    "banda_contactos_4sem": q4,
+                    "gasto_4sem": round(gasto_fc * SEMANAS_PRONOSTICO, 0),
+                    "costo_contacto_4sem": div(gasto_fc * SEMANAS_PRONOSTICO, conv_fc * SEMANAS_PRONOSTICO),
+                    "banda_costo_contacto_4sem": [div(gasto_fc * SEMANAS_PRONOSTICO, q4[1]),
+                                                  div(gasto_fc * SEMANAS_PRONOSTICO, q4[0]) if q4[0] else None],
+                    "marca": "[Heuristica]"}
 
-        # curva presupuesto -> contactos [Heuristica]
+        # --- curva presupuesto -> contactos [Heuristica]
+        #     Rendimientos decrecientes: contactos = conv30 x (gasto/gasto30)^0.6 (elasticidad del simulador de
+        #     Google para esta cuenta). Antes era proporcional: prometia el mismo costo por contacto al doble de
+        #     presupuesto, cuando el simulador mide que el contacto marginal cuesta 1.5 a 2x el promedio.
+        #     Techo por presupuesto: el gasto no pasa de lo que recuperaria la parte perdida por presupuesto (IS+LB).
         curva = None
-        if u30["gasto"] > 0 and u30.get("is") and cfg["presupuesto_dia"] > 0:
+        if u30["gasto"] > 0 and u30.get("is") and B0 > 0:
             IS, LB = u30["is"], u30.get("lb") or 0
-            B0 = cfg["presupuesto_dia"]
             dias = u30["dias"] or 30
             gasto_tope = u30["gasto"] * min(1.0, IS + LB) / IS  # lo que se gastaria si el presupuesto no cortara
             cont_max = u30["conv"] / IS                         # cota absoluta: 100% de impresiones
+
+            def contactos_con(gasto_m):
+                return min(u30["conv"] * (gasto_m / u30["gasto"]) ** ELASTICIDAD_CONV, cont_max)
             puntos = []
             for m in (0.5, 0.75, 1.0, 1.25, 1.5, 2.0):
                 tope_m = m * B0 * dias
                 gasto_m = min(tope_m, gasto_tope) if m >= 1 else min(tope_m, u30["gasto"])
-                cont_m = min(u30["conv"] * gasto_m / u30["gasto"], cont_max)
+                cont_m = contactos_con(gasto_m)
                 puntos.append({"x": m, "presupuesto_dia": round(m * B0, 0), "gasto_30d": round(gasto_m, 0),
                                "contactos_30d": round(cont_m, 1), "costo_contacto": div(gasto_m, cont_m)})
+            for p0, p1 in zip(puntos, puntos[1:]):
+                dc = p1["contactos_30d"] - p0["contactos_30d"]
+                p1["costo_marginal"] = round((p1["gasto_30d"] - p0["gasto_30d"]) / dc, 0) if dc > 0.05 else None
             curva = {"puntos": puntos, "contactos_max_teorico": round(cont_max, 1),
-                     "contactos_recuperables_por_presupuesto": round(u30["conv"] * min(1.0, IS + LB) / IS - u30["conv"], 1),
+                     "contactos_recuperables_por_presupuesto": round(contactos_con(gasto_tope) - u30["conv"], 1),
                      "perdida_dominante": "presupuesto" if LB > (u30.get("lr") or 0) else "ranking",
-                     "marca": "[Heuristica]"}
+                     "elasticidad": ELASTICIDAD_CONV, "marca": "[Heuristica]"}
+            if c == "C3":
+                # los contactos de poligrafia se convierten en estudios solo hasta el techo fisico del consultorio
+                curva["techo_fisico"] = {"estudios_max_semana": ESTUDIOS_POLI_MAX_SEMANA, "equipos": 2,
+                                         "marca": "[Documentado: consultorio]"}
 
         # --- alertas por campana
         alertas = []
@@ -948,15 +1144,21 @@ def deriva(ads, f):
             for x in sorted(en(filas, fin - timedelta(days=13), fin), key=lambda r: r["fecha"]):
                 racha = racha + 1 if (x.get("lb") or 0) > ALERTA_LOST_BUDGET else 0
                 if racha == ALERTA_LOST_BUDGET_DIAS:
+                    # "de las veces que pudo salir": es una cuota (impression share), no un numero de impresiones
                     alertas.append({"nivel": "media", "regla": "lost_budget", "camp": c,
-                                    "texto": f"{c}: {ALERTA_LOST_BUDGET_DIAS} dias seguidos perdiendo mas del {int(ALERTA_LOST_BUDGET * 100)}% de impresiones por presupuesto (hasta el {x['fecha']}). El tope diario esta cortando demanda."})
+                                    "texto": f"{c}: {ALERTA_LOST_BUDGET_DIAS} dias seguidos sin salir en mas del {int(ALERTA_LOST_BUDGET * 100)}% de las busquedas en que pudo salir, por falta de presupuesto (hasta el {x['fecha']}). El tope diario esta cortando demanda."})
                     break
             if len(sem) >= 4:
                 ult, prev = sem[-1], sem[-SEMANAS_BASE - 1:-1]
                 med_cc = mediana([s["conv_clic"] for s in prev if s["clk"] >= ALERTA_MIN_CLICS_SEMANA])
-                if ult["clk"] >= ALERTA_MIN_CLICS_SEMANA and med_cc and ult["conv_clic"] is not None and ult["conv_clic"] < 0.5 * med_cc:
-                    alertas.append({"nivel": "alta", "regla": "conv_clic", "camp": c,
-                                    "texto": f"{c}: la semana del {ult['semana']} convirtio {ult['conv_clic'] * 100:.1f}% de los clics, menos de la mitad de lo normal ({med_cc * 100:.1f}%). Revisar landing, medicion (GTM) y terminos de busqueda."})
+                # Prueba de Poisson: con la tasa normal y los clics de la semana se esperaban E contactos; se alerta
+                # solo si E >= 5 y lo observado cae bajo el 5% de Poisson(E). El criterio viejo (< 50% de la mediana
+                # con 10 clics) disparaba "alta" por azar 1 de cada 3 semanas en campanas chicas.
+                if med_cc and ult["conv_clic"] is not None:
+                    esperadas = med_cc * ult["clk"]
+                    if esperadas >= ALERTA_CONV_ESPERADAS_MIN and poisson_cdf(ult["conv"], esperadas) < 0.05:
+                        alertas.append({"nivel": "alta", "regla": "conv_clic", "camp": c,
+                                        "texto": f"{c}: la semana del {ult['semana']} tuvo {ult['conv']:.0f} contactos de {ult['clk']} clics; con su ritmo normal ({med_cc * 100:.1f}% de los clics) se esperaban unos {esperadas:.0f}. Una semana asi por puro azar pasa menos de 1 de cada 20 veces. Revisar landing, medicion (GTM) y terminos de busqueda."})
                 med_cpc = mediana([s["cpc"] for s in prev if s["clk"] >= ALERTA_MIN_CLICS_SEMANA])
                 if ult["clk"] >= ALERTA_MIN_CLICS_SEMANA and med_cpc and ult["cpc"] and ult["cpc"] > (1 + ALERTA_CPC_SUBIDA) * med_cpc:
                     alertas.append({"nivel": "media", "regla": "cpc", "camp": c,
@@ -978,19 +1180,29 @@ def deriva(ads, f):
            if D["campanas"][c]["pronostico"] and ads["campanas"][c]["estado"] == "ENABLED"]
     if act:
         conv4 = sum(p["contactos_4sem"] for p in act)
-        D["cuenta"]["pronostico_4sem"] = {"contactos": conv4, "banda_contactos": cuantiles_poisson(conv4),
-                                          "gasto": sum(p["gasto_4sem"] for p in act), "marca": "[Heuristica]"}
+        gasto4 = sum(p["gasto_4sem"] for p in act)
+        # la banda de la suma se arma por momentos (media y varianza de cada campana), no con Poisson(conv4):
+        # Poisson(124) daba [106, 143] y escondia que la media de cada campana es incierta
+        b4 = cuantiles_suma_campanas([(p["contactos_4sem"] / SEMANAS_PRONOSTICO, p["n_eff"], p["phi"], SEMANAS_PRONOSTICO)
+                                      for p in act])
+        D["cuenta"]["pronostico_4sem"] = {"contactos": conv4, "banda_contactos": b4, "gasto": gasto4,
+                                          "costo_contacto": div(gasto4, conv4),
+                                          "banda_costo_contacto": [div(gasto4, b4[1]), div(gasto4, b4[0]) if b4[0] else None],
+                                          "presupuesto_dia_total": D["cuenta"]["presupuesto_dia_total"],
+                                          "base_corta": any(p["base_corta"] for p in act), "marca": "[Heuristica]"}
     D["metodo"] = {
         "semanas": "semanas de lunes a domingo; solo semanas completas hasta la fecha fin; IS/LB/LR agregados por impresiones elegibles (imp/IS), no por promedio simple",
-        "banda_contactos": "intervalo exacto de Poisson (Garwood) al 90% para la tasa dado el conteo observado; costo por contacto = gasto / banda invertida",
-        "pronostico": f"media ponderada exponencial (alpha={EWMA_ALPHA}) de las ultimas {SEMANAS_BASE} semanas completas, proyectada plana {SEMANAS_PRONOSTICO} semanas; banda = cuantiles 5%-95% de Poisson sobre la media pronosticada. No modela estacionalidad ni cambios de presupuesto. [Heuristica]",
-        "curva_presupuesto": "contactos proporcionales al gasto hasta recuperar la parte perdida por presupuesto (IS+LB); cota absoluta contactos/IS; la parte perdida por ranking no se compra con presupuesto. [Heuristica]",
+        "banda_contactos": f"intervalo exacto de Poisson (Garwood) al 90% para la tasa dado el conteo observado, ensanchado por la sobredispersion medida (phi = varianza/media semanal, acotada a [{PHI_MIN}, {PHI_MAX}]); costo por contacto = gasto / banda invertida",
+        "comparacion_30d": f"30 d contra los 30 previos; se publica solo si el periodo previo tiene al menos {P30_MIN_DIAS} dias (una campana nueva no se compara contra 9 dias)",
+        "pronostico": f"nivel = suavizado exponencial simple (alpha={EWMA_ALPHA}, elegido por backtest del 22-ago) de las ultimas {SEMANAS_BASE} semanas completas (minimo {SEMANAS_MIN_PRONOSTICO}), proyectado PLANO {SEMANAS_PRONOSTICO} semanas: no se extrapola tendencia ni estacionalidad. Gasto = presupuesto vigente x 7 x factor de consumo medido tras el ultimo cambio de presupuesto ({DIAS_MIN_CONSUMO} a {DIAS_MAX_CONSUMO} dias; {F_CONSUMO_DEFECTO} si no hay dias suficientes). Contactos = nivel x (gasto pronosticado / gasto historico)^{ELASTICIDAD_CONV} (elasticidad medida en campaign_simulation, ratio acotado a [{RATIO_PPTO_MIN}, {RATIO_PPTO_MAX}]). Banda 90% = Gamma-Poisson: incertidumbre de la media (n_eff = 1/alpha semanas) + azar semanal + sobredispersion phi; el total de 4 semanas NO multiplica la media por 4 como si el error se cancelara. Cualquier cambio de presupuesto, puja, anuncios o landing invalida el pronostico. [Heuristica]",
+        "curva_presupuesto": f"contactos = contactos_30d x (gasto / gasto_30d)^{ELASTICIDAD_CONV} (rendimientos decrecientes: el contacto marginal cuesta mas que el promedio; costo_marginal entre puntos), con tope de gasto en lo que recuperaria la parte perdida por presupuesto (IS+LB) y cota absoluta contactos/IS; la parte perdida por ranking no se compra con presupuesto. Poligrafia ademas tiene techo fisico de {ESTUDIOS_POLI_MAX_SEMANA} estudios/semana (2 equipos). [Heuristica]",
+        "valor_asignado": "conversions_value es el valor fijo que GTM asigna por pagina para la puja 'maximizar valor'; no es ingreso, no se suma y no se calcula ROAS. all_conversions no se consulta.",
         "alertas": {"gasto_diario": f">{ALERTA_GASTO_X_PRESUPUESTO}x presupuesto en los ultimos 7 dias",
-                    "lost_budget": f">{int(ALERTA_LOST_BUDGET * 100)}% perdido por presupuesto {ALERTA_LOST_BUDGET_DIAS} dias seguidos (ventana 14 d)",
-                    "conv_clic": f"semana completa mas reciente < 50% de la mediana de las {SEMANAS_BASE} previas (min {ALERTA_MIN_CLICS_SEMANA} clics)",
-                    "cpc": f"CPC semanal > +{int(ALERTA_CPC_SUBIDA * 100)}% sobre la mediana de las {SEMANAS_BASE} semanas previas",
+                    "lost_budget": f"cuota perdida por presupuesto >{int(ALERTA_LOST_BUDGET * 100)}% {ALERTA_LOST_BUDGET_DIAS} dias seguidos (ventana 14 d); es una cuota de busquedas elegibles, no un numero de impresiones",
+                    "conv_clic": f"contactos de la semana completa mas reciente por debajo del 5% de Poisson(esperados), con esperados = mediana conv/clic de las {SEMANAS_BASE} previas x clics de la semana, y esperados >= {ALERTA_CONV_ESPERADAS_MIN}",
+                    "cpc": f"CPC semanal > +{int(ALERTA_CPC_SUBIDA * 100)}% sobre la mediana de las {SEMANAS_BASE} semanas previas (min {ALERTA_MIN_CLICS_SEMANA} clics)",
                     "cambio_presupuesto": f"cualquier cambio de presupuesto en change_event ({DIAS_CHANGE} d)"},
-        "marcas": "las cifras de Ads y GA4 son [Documentado] (API); pronostico y curva son [Heuristica]",
+        "marcas": "las cifras de Ads y GA4 son [Documentado] (API); pronostico y curva son [Heuristica]; 7 dias de contactos nunca se presentan como evidencia, solo el ritmo de gasto contra el tope",
     }
     return D
 

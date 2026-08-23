@@ -29,6 +29,14 @@ desktop.ini
 __pycache__/
 *.pyc
 
+# Panel de Ads (campana-ads/): al repo solo van datos.enc (cifrado) y meta.json.
+# El JSON en claro y cualquier clave/credencial jamas se commitean, ni por un `git add` descuidado.
+campana-ads/datos.json
+campana-ads/*.key
+scripts/panel-ads/*.key
+scripts/panel-ads/google-ads.yaml
+scripts/panel-ads/ga4-*.json
+
 # Artefactos de Playwright MCP (debug local)
 .playwright-mcp/
 images/IMG_20260611_130138.png
