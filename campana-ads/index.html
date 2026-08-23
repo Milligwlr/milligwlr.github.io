@@ -808,7 +808,9 @@ function initVivo(){
   var go = function(clave, silencioso){ est.textContent = 'Conectando con el consultorio...'; cargarVivo({url:VIVO.url, accion:VIVO.accion, clave:clave}).then(function(v){ if (v) lsSet(LS_BOT, clave); est.textContent = v ? 'Conectado.' : ''; pintaVivo(v); }).catch(function(e){ if (e.message === 'no autorizado'){ lsDel(LS_BOT); est.textContent = 'Clave del bot incorrecta.'; } else est.textContent = silencioso ? '' : 'No hubo respuesta del consultorio; intente de nuevo.'; pintaVivo(null); }); };
   form.addEventListener('submit', function(ev){ ev.preventDefault(); if (inp.value) go(inp.value, false); });
   document.getElementById('vivo-olvidar').addEventListener('click', function(){ lsDel(LS_BOT); inp.value = ''; est.textContent = 'Clave del bot olvidada.'; pintaVivo(null); });
-  var k = lsGet(LS_BOT); if (k) go(k, true); else pintaVivo(null);
+  // La clave del bot ya vive en este mismo origen si el Dr. uso /bot-config (panel_bot_key) o /bot (visor_bot_key):
+  // se reutiliza en ese orden para no pedirla dos veces. Solo se lee; no se copia a otra clave.
+  var k = lsGet(LS_BOT) || lsGet('visor_bot_key'); if (k) go(k, true); else pintaVivo(null);
 }
 
 /* ============================================================
