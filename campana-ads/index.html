@@ -771,14 +771,15 @@ function secPie(){
    ============================================================ */
 function pedirVivo(base, clave){
   var ctrl = ('AbortController' in window) ? new AbortController() : null, t = setTimeout(function(){ if (ctrl) ctrl.abort(); }, 15000);
-  return fetch(base + '?' + VIVO.accion + '=1', {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify({key:clave}), signal:ctrl ? ctrl.signal : undefined}).then(function(r){ return r.json(); }).then(function(j){ clearTimeout(t); return j; }, function(e){ clearTimeout(t); throw e; });
+  return fetch(base + '?' + VIVO.accion + '=1', {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify({key:clave, solo:'agregados'}), signal:ctrl ? ctrl.signal : undefined}).then(function(r){ return r.json(); }).then(function(j){ clearTimeout(t); return j; }, function(e){ clearTimeout(t); throw e; });
 }
 function cargarVivo(cfg){
   // cfg = {url, accion, clave}; respuesta del motor -> se tiran campos con PII antes de usar nada.
   if (!cfg.clave) return Promise.resolve(null);
   return pedirVivo(cfg.url, cfg.clave).catch(function(){ return pedirVivo(VIVO.respaldo, cfg.clave); }).then(function(j){
     if (!j || !j.ok) throw new Error(j && j.error === 'no autorizado' ? 'no autorizado' : 'respuesta invalida');
-    // SOLO agregados. 'agenda' trae nombres de pacientes: se descarta aqui mismo y no se guarda.
+    // Desde v2026-08-23-3 el motor recorta en origen (solo=agregados): no viaja ningun nombre. Si un
+    // motor viejo respondiera completo, 'agenda' se descarta aqui mismo y no se guarda.
     return {tendencia:j.tendencia || null, clics:j.clics || null, ads:j.ads || null, metricas:sanitizaMetricas(j.metricas), poligrafias:j.poligrafias || null};
   });
 }
@@ -791,13 +792,14 @@ function pintaVivo(v){
   if (t && !t.error){ var ult = (t.semanas || []).slice(-1)[0]; html += tile('', 'Citas esta semana', isNum(t.semana_en_curso) ? fmt(t.semana_en_curso) : 'n/d', 'en curso · ultima completa: ' + (ult ? fmt(ult.citas) : 'n/d') + (t.suficiente ? ' · normal ' + t.banda_baja + ' a ' + t.banda_alta + '/sem' : '')); }
   if (isNum(m.citas_hoy) || isNum(m.proximas)) html += tile('', 'Agenda', fmt(m.citas_hoy), 'citas hoy · ' + fmt(m.proximas) + ' proximas');
   if (c && !c.error){ html += tile(c.con_cita > 0 ? 'good' : 'warn', 'Del anuncio a la cita', c.identificados ? fmt(c.con_cita) + ' de ' + fmt(c.identificados) : '0', c.identificados ? (c.tasa == null ? '' : c.tasa + '% · ') + 'ultimos ' + c.ventana_dias + ' d' : 'sin clics identificados aun'); var ec = document.getElementById('embudo-cita'); if (ec){ ec.textContent = c.identificados ? fmt(c.con_cita) + ' de ' + fmt(c.identificados) : '0'; document.getElementById('embudo-cita-s').textContent = 'con clic de anuncio identificado, ' + c.ventana_dias + ' d (todas las campanas)'; } }
-  if (v.poligrafias && !v.poligrafias.error) html += tile('', 'Poligrafias', fmt(v.poligrafias.semana || v.poligrafias.total), 'segun el motor');
+  if (t && !t.error && isNum(t.poligrafias_28d)){ var ultP = (t.semanas || []).slice(-1)[0]; html += tile(t.poligrafias_28d > 0 ? '' : 'warn', 'Poligrafias', fmt(t.poligrafias_28d), 'ultimos 28 d en el calendario · esta semana ' + (isNum(t.poligrafias_semana_en_curso) ? fmt(t.poligrafias_semana_en_curso) : 'n/d') + (ultP && isNum(ultP.poligrafias) ? ' · ultima completa ' + fmt(ultP.poligrafias) : '')); }
+  else if (v.poligrafias && !v.poligrafias.error) html += tile('', 'Poligrafias', fmt(v.poligrafias.semana || v.poligrafias.total), 'segun el motor');
   if (a && a.estado !== 'sin_configurar' && a.estado !== 'rancio') html += tile('', 'Tablero nocturno', money(a.gasto_28d), 'gasto 28 d segun el bot · al ' + esc(a.ultima_actualizacion || 'n/d'));
   html += '</div>';
-  if (t && Array.isArray(t.semanas) && t.semanas.length){ CHARTS = CHARTS.filter(function(x){ return x.id !== 'ch-vivo'; }); html += chart('ch-vivo', function(h){ var labs = t.semanas.map(function(s){ return s.etiqueta || s.semana || ''; }); return lineChart({labels:labs, series:[{name:'Citas por semana', short:'citas', color:'var(--c1)', values:t.semanas.map(function(s){ return {y:s.citas}; })}], bands:t.suficiente ? [{color:'var(--c1)', values:t.semanas.map(function(){ return {lo:t.banda_baja, hi:t.banda_alta}; })}] : [], height:180, aria:'Citas por semana con banda de normalidad'}, h); }); }
-  if (!v.poligrafias) html += '<p class="cap">Poligrafias por semana: el motor aun no expone ese conteo <span class="ep">[Requiere verificar]</span>; se lee en el calendario local.</p>';
+  if (t && Array.isArray(t.semanas) && t.semanas.length){ CHARTS = CHARTS.filter(function(x){ return x.id !== 'ch-vivo'; }); html += chart('ch-vivo', function(h){ var labs = t.semanas.map(function(s){ return s.etiqueta || s.semana || ''; }); var hayPoli = t.semanas.some(function(s){ return isNum(s.poligrafias); }); var series = [{name:'Citas por semana', short:'citas', color:'var(--c1)', values:t.semanas.map(function(s){ return {y:s.citas}; })}]; if (hayPoli) series.push({name:'Poligrafias por semana', short:'poli', color:'var(--c3)', values:t.semanas.map(function(s){ return {y:s.poligrafias || 0}; })}); return lineChart({labels:labs, series:series, bands:t.suficiente ? [{color:'var(--c1)', values:t.semanas.map(function(){ return {lo:t.banda_baja, hi:t.banda_alta}; })}] : [], height:180, aria:'Citas por semana con banda de normalidad'}, h); }); }
+  if (!(t && t.semanas && t.semanas.some(function(s){ return isNum(s.poligrafias); }))) html += '<p class="cap">Poligrafias por semana: este motor aun no expone ese conteo (requiere v2026-08-23-3 o posterior).</p>';
   if (t && t.excluidas_mauricio) html += '<p class="cap">Citas del Dr. Castaneda excluidas: ' + fmt(t.excluidas_mauricio) + '.</p>';
-  html += '<p class="cap">Solo conteos: la respuesta del motor trae la agenda con nombres y esta pagina la descarta antes de pintar; no se guarda nada en el telefono.</p>';
+  html += '<p class="cap">Solo conteos: esta pagina pide al consultorio la version sin nombres (solo=agregados) y no guarda nada en el telefono salvo su clave.</p>';
   el.innerHTML = html; paintCharts();
 }
 function initVivo(){
