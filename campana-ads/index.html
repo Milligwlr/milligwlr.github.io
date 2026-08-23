@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Panel de campana | alveos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Panel interno de Google Ads del Dr. William Lara. Sin GTM, sin analytics, sin CDN.
+   Tokens calcados del informe "Pulso de Ads" para que el Dr. reconozca el mismo lenguaje visual. */
+:root{
+  --bg:#f7f8fb; --surface:#ffffff; --surface-2:#eef1f7; --line:#dde3ee; --line-2:#c9d2e3;
+  --ink:#0f1b33; --ink-2:#44506b; --ink-3:#5f6b85;
+  --navy:#0f2a5c; --electric:#1f6fe0; --electric-soft:#dbe8fb;
+  --c1:#2a78d6; --c2:#1baf7a; --c3:#eb6834; --c3-soft:#fde3d8;
+  --good:#177a41; --warn:#8a5410; --crit:#b42a21; --good-bg:#e4f4ea; --warn-bg:#fbf0d9; --crit-bg:#fbe3e0;
+  --electric-t:#175bbd; --c1-t:#1f64b8; --c2-t:#0f7550; --c3-t:#c24b1a; --btn-ink:#ffffff;
+  --grid:#e6eaf2; --radius:12px; --focus:#1f6fe0;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0d1220; --surface:#151c2e; --surface-2:#1c2540; --line:#2a3552; --line-2:#3a4766;
+  --ink:#eef2fa; --ink-2:#b8c2d9; --ink-3:#95a1bd;
+  --navy:#dbe8fb; --electric:#6aa6f5; --electric-soft:#1b2d52;
+  --c1:#4a92ea; --c2:#2bb684; --c3:#f0825a; --c3-soft:#3a251c;
+  --good:#4cc77f; --warn:#e5ac4a; --crit:#f07a70; --good-bg:#16301f; --warn-bg:#33270f; --crit-bg:#3a1a17;
+  --electric-t:#6aa6f5; --c1-t:#4a92ea; --c2-t:#2bb684; --c3-t:#f0825a; --btn-ink:#0d1220;
+  --grid:#222c45; --focus:#8dbcf7;
+}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+a{color:var(--electric)}
+button,input,select{font:inherit;color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:16px 14px 72px}
+@media (min-width:720px){.wrap{padding:28px 24px 90px}}
+/* --- cabecera --- */
+header.top{display:grid;gap:8px;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+h1{font-size:clamp(24px,5vw,36px);line-height:1.08;margin:2px 0 4px;font-weight:800;letter-spacing:-.02em;color:var(--navy);text-wrap:balance}
+.meta{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;color:var(--ink-3);line-height:1.6}
+.acciones{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{background:var(--electric);color:var(--btn-ink);border:0;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer;min-height:44px}
+.btn.sec{background:var(--surface-2);color:var(--ink)}
+.btn.sm{padding:7px 12px;min-height:36px;font-size:13px}
+.btn:disabled{opacity:.55;cursor:default}
+/* --- secciones --- */
+h2{font-size:20px;margin:34px 0 6px;letter-spacing:-.01em;font-weight:800;color:var(--navy);scroll-margin-top:16px}
+h2 .n{display:inline-block;min-width:26px;color:var(--ink-3);font-weight:600;font-family:"IBM Plex Mono",monospace;font-size:12px;vertical-align:middle;margin-right:4px}
+h3{font-size:15.5px;margin:16px 0 8px;font-weight:700}
+p{max-width:72ch;margin:6px 0}
+.lead{font-size:15.5px;color:var(--ink-2);margin:0 0 12px}
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}
+@media (min-width:720px){.tiles{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px 12px 12px 16px;position:relative;overflow:hidden;min-width:0}
+.tile .k{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.07em;font-weight:700}
+.tile .v{font-size:clamp(22px,6vw,30px);font-weight:800;letter-spacing:-.02em;margin:2px 0;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.tile .d{font-size:12px;color:var(--ink-2);overflow-wrap:anywhere}
+.tile .stripe{position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--electric)}
+.tile.good .stripe{background:var(--good)} .tile.warn .stripe{background:var(--warn)} .tile.crit .stripe{background:var(--crit)}
+.tile.wide{grid-column:1/-1}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;vertical-align:middle;white-space:nowrap}
+.pill svg{width:13px;height:13px;flex:none}
+.pill.good{background:var(--good-bg);color:var(--good)} .pill.warn{background:var(--warn-bg);color:var(--warn)} .pill.crit{background:var(--crit-bg);color:var(--crit)} .pill.info{background:var(--electric-soft);color:var(--electric-t)} .pill.mute{background:var(--surface-2);color:var(--ink-2)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin:12px 0;min-width:0}
+.card.c3{background:linear-gradient(150deg,var(--c3-soft),var(--surface) 55%)}
+.grid2{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width:820px){.grid2{grid-template-columns:1fr 1fr}}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums;min-width:520px}
+table.narrow{min-width:0}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);text-align:left;padding:7px 8px;border-bottom:1px solid var(--line-2);font-weight:700;white-space:nowrap}
+td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+td.num,th.num{text-align:right;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+.chart{width:100%;height:auto;display:block}
+.chart text{font-family:"Plus Jakarta Sans",system-ui,sans-serif;fill:var(--ink-2);font-size:11px}
+.chart .grid line{stroke:var(--grid);stroke-width:1}
+.chart .lbl{fill:var(--ink);font-weight:700;font-size:11.5px}
+.chart .muted{fill:var(--ink-3)}
+.legend{display:flex;gap:10px 14px;flex-wrap:wrap;font-size:12px;color:var(--ink-2);margin:6px 0 0}
+.legend span i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);padding:6px 9px;border-radius:6px;font-size:12px;z-index:9;opacity:0;transition:opacity .08s;white-space:nowrap;font-variant-numeric:tabular-nums;max-width:90vw}
+.cap{font-size:12px;color:var(--ink-3);margin:6px 0 0;max-width:none}
+.ep{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-3);background:var(--surface-2);padding:1px 6px;border-radius:4px;white-space:nowrap}
+.sem{display:grid;gap:8px}
+.sem .row{display:grid;grid-template-columns:1fr;gap:6px;padding:10px 0;border-bottom:1px solid var(--line);align-items:start}
+.sem .row:last-child{border-bottom:0}
+@media (min-width:600px){.sem .row{grid-template-columns:130px 1fr}}
+ul.tight{margin:6px 0;padding-left:20px} ul.tight li{margin:4px 0;overflow-wrap:anywhere}
+.kvs{display:grid;grid-template-columns:1fr;gap:8px 16px;font-size:13.5px}
+@media (min-width:600px){.kvs{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}}
+.kvs div b{display:block;font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em}
+details{margin:8px 0;border:1px solid var(--line);border-radius:10px;padding:0 12px;background:var(--surface)}
+details[open]{padding-bottom:10px}
+summary{cursor:pointer;font-weight:700;color:var(--electric);padding:11px 0;list-style:none;display:flex;justify-content:space-between;align-items:center;min-height:44px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:"IBM Plex Mono",monospace;color:var(--ink-3)}
+details[open] summary::after{content:"-"}
+code{font-family:"IBM Plex Mono",monospace;font-size:12px;background:var(--surface-2);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-3)}
+footer p{max-width:none}
+.campana{border-left:4px solid var(--line-2)}
+.campana.C1{border-left-color:var(--c1)} .campana.C2{border-left-color:var(--c2)} .campana.C3{border-left-color:var(--c3)}
+.campana .cab{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.campana .cab h3{margin:0;font-size:17px}
+.sub-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:10px 0}
+.sub-tiles div{background:var(--surface-2);border-radius:8px;padding:8px 10px;min-width:0}
+.sub-tiles b{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3)}
+.sub-tiles span{font-size:16px;font-weight:800;font-variant-numeric:tabular-nums;overflow-wrap:anywhere;hyphens:auto}
+.sub-tiles small{display:block;font-size:11px;color:var(--ink-2)}
+.delta{font-size:11.5px;font-weight:700;margin-left:4px}
+.delta.up{color:var(--good)} .delta.down{color:var(--crit)}
+/* --- gate --- */
+#gate{max-width:440px;margin:8vh auto 0;padding:0 4px}
+#gate .card{padding:20px}
+#gate label{display:block;font-weight:700;font-size:13px;margin:10px 0 6px}
+#gate input[type=password],#gate input[type=text],#vivo-form input{width:100%;padding:12px 14px;border:1px solid var(--line-2);border-radius:10px;background:var(--surface);min-height:44px}
+#gate .err{color:var(--crit);font-weight:700;margin:8px 0 0;min-height:1.2em}
+#gate .meta{margin-top:10px}
+.ico{width:20px;height:20px;vertical-align:-4px}
+/* --- simulador --- */
+.sim{display:grid;gap:12px}
+.sim .fila{background:var(--surface-2);border-radius:10px;padding:12px}
+.sim .fila h4{margin:0 0 4px;font-size:14px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.sim input[type=range]{width:100%;accent-color:var(--electric);height:28px}
+.sim .out{font-size:13.5px;margin:6px 0 0;max-width:none}
+.sim .out b{font-variant-numeric:tabular-nums}
+.band{font-size:12px;color:var(--ink-3)}
+.toc{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0}
+.toc a{font-size:12px;text-decoration:none;background:var(--surface-2);color:var(--ink-2);padding:5px 10px;border-radius:999px;font-weight:600}
+.estado{font-size:12.5px;color:var(--ink-2);margin:4px 0}
+.hide{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@media print{.acciones,.toc,.tip{display:none} .card{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <div class="eyebrow">alveos.mx · Google Ads 6354525352 · uso interno</div>
+    <h1>Panel de campana</h1>
+    <div class="meta" id="meta-linea">Cargando la fecha de los datos...</div>
+  </div>
+  <div class="acciones hide" id="acciones">
+    <button type="button" class="btn sec sm" id="btn-recargar">Recargar datos</button>
+    <button type="button" class="btn sec sm" id="btn-olvidar">Olvidar clave</button>
+  </div>
+  <nav class="toc hide" id="toc" aria-label="Secciones"></nav>
+</header>
+
+<section id="gate" aria-labelledby="gate-t">
+  <div class="card">
+    <h2 id="gate-t" style="margin:0 0 6px;font-size:19px">Acceso del Dr. William Lara</h2>
+    <p class="lead" style="font-size:14px">Los datos de este panel viajan cifrados. La clave nunca sale de su telefono: con ella el navegador descifra el archivo aqui mismo.</p>
+    <form id="gate-form" autocomplete="off">
+      <label for="clave">Clave del panel</label>
+      <input type="password" id="clave" autocomplete="current-password" inputmode="text" required>
+      <div class="err" id="gate-err" role="alert" aria-live="polite"></div>
+      <div class="acciones" style="margin-top:12px">
+        <button type="submit" class="btn" id="btn-entrar">Entrar</button>
+        <button type="button" class="btn sec hide" id="btn-olvidar-gate">Olvidar clave guardada</button>
+      </div>
+    </form>
+    <div id="demo" class="hide" style="margin-top:14px;border-top:1px dashed var(--line-2);padding-top:12px">
+      <label for="demo-file">Modo de prueba: cargar un datos.json sin cifrar</label>
+      <input type="file" id="demo-file" accept="application/json,.json">
+    </div>
+    <div class="meta" id="gate-meta"></div>
+  </div>
+</section>
+
+<main id="app" class="hide"></main>
+<footer id="foot" class="hide"></footer>
+</div>
+<div class="tip" id="tip" aria-hidden="true"></div>
+
+<script>
+(function(){
+'use strict';
+/* ============================================================
+   CONSTANTES Y UTILERIAS
+   ============================================================ */
+var LS_KEY = 'panel_ads_key';      // clave del panel (descifra datos.enc)
+var LS_BOT = 'panel_bot_key';      // misma clave que /bot-config (capa viva)
+// Capa VIVA: el MISMO motor (Apps Script) que consume /bot-config. Un motor, dos puertas.
+// Contrato: POST text/plain a url + '?panel=1' con cuerpo JSON {key}. Respaldo: /exec directo.
+var VIVO = {
+  url: 'https://wa-webhook-alveos.alveos-neumo.workers.dev/gas',
+  respaldo: 'https://script.google.com/macros/s/AKfycbwXhrEW73jRoPajdNnATA6q7Rrnc18n0yzMG07J5QaJvqKDhuHkDQEpm8qumH08UCFeEA/exec',
+  accion: 'panel'
+};
+var COL = {C1:'var(--c1)', C2:'var(--c2)', C3:'var(--c3)'};           // barras y lineas
+var COLT = {C1:'var(--c1-t)', C2:'var(--c2-t)', C3:'var(--c3-t)'};   // texto (contraste AA)
+var NAME = {C1:'C1 Consulta', C2:'C2 Espirometria / Fumar', C3:'C3 Poligrafia'};
+var CAMPS = ['C1','C2','C3'];
+var MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+var $ = function(s){ return document.querySelector(s); };
+var isNum = function(n){ return typeof n === 'number' && isFinite(n); };
+var fmt = function(n, d){ return isNum(n) ? n.toLocaleString('es-MX', {maximumFractionDigits: d||0, minimumFractionDigits: d||0}) : 'n/d'; };
+var money = function(n){ return isNum(n) ? '$' + fmt(n) : 'n/d'; };
+var pct = function(n, d){ return isNum(n) ? (n*100).toFixed(d||0) + '%' : 'n/d'; };
+var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+var sum = function(arr, k){ return (arr||[]).reduce(function(a, x){ return a + (isNum(x[k]) ? x[k] : 0); }, 0); };
+var div = function(a, b){ return (isNum(a) && isNum(b) && b > 0) ? a/b : null; };
+var plural = function(n, s, p){ return n === 1 ? s : p; };
+function fecha(iso){ if(!iso) return 'n/d'; var m = String(iso).match(/(\d{4})-(\d{2})-(\d{2})/); if(!m) return esc(iso); return (+m[3]) + '-' + MESES[+m[2]-1]; }
+function fechaLarga(iso){ if(!iso) return 'n/d';
+  if (/T\d{2}:\d{2}/.test(String(iso))){ try { var d = new Date(iso); if (!isNaN(d)) return d.toLocaleString('es-MX', {timeZone:'America/Mexico_City', day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit'}) + ' CDMX'; } catch (e) {} }
+  var m = String(iso).match(/(\d{4})-(\d{2})-(\d{2})(?:[T ](\d{2}):(\d{2}))?/); if(!m) return esc(iso); return (+m[3]) + ' de ' + ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'][+m[2]-1] + ' de ' + m[1] + (m[4] ? ' ' + m[4] + ':' + m[5] : ''); }
+function addDias(iso, n){ var d = new Date(iso + 'T12:00:00'); d.setDate(d.getDate() + n); return d.toISOString().slice(0,10); }
+// Normaliza "camp": acepta C1/C2/C3 o el nombre de la campana (la API lo trunca).
+function campCode(x){ var s = String(x||''); if(/^C[123]$/.test(s)) return s; if(/consulta/i.test(s)) return 'C1'; if(/espirom|fumar/i.test(s)) return 'C2'; if(/poligraf|sue/i.test(s)) return 'C3'; return null; }
+function marca(m){ return m ? ' <span class="ep">' + esc(m) + '</span>' : ''; }
+var ICONS = {
+  good: '<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 10.5l2.5 2.5L14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  warn: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3l8 14H2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 8v4M10 14.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+  crit: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 2h6l5 5v6l-5 5H7l-5-5V7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M7.5 7.5l5 5M12.5 7.5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+  info: '<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 9v5M10 6v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+  mute: '<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 10h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
+};
+var ETQ = {good:'sano', warn:'atencion', crit:'critico', info:'nota', mute:'sin dato'};
+function pill(nivel, texto){ nivel = ICONS[nivel] ? nivel : 'mute'; return '<span class="pill ' + nivel + '">' + ICONS[nivel] + esc(texto || ETQ[nivel]) + '</span>'; }
+var tip = $('#tip');
+function showTip(e, html){ tip.innerHTML = html; tip.style.opacity = 1; var x = Math.min(e.clientX + 12, window.innerWidth - tip.offsetWidth - 8); tip.style.left = Math.max(4, x) + 'px'; tip.style.top = (e.clientY - 36) + 'px'; }
+function hideTip(){ tip.style.opacity = 0; }
+function bindTip(el, html){ el.addEventListener('pointermove', function(e){ showTip(e, html); }); el.addEventListener('pointerleave', hideTip); el.addEventListener('pointerdown', function(e){ showTip(e, html); }); }
+
+/* ============================================================
+   GRAFICAS SVG (helpers del informe "Pulso de Ads", adaptados a ancho fluido)
+   El ancho W viene del contenedor real: en 375 px el texto sigue legible.
+   ============================================================ */
+function svgEl(tag, attrs, parent){ var e = document.createElementNS('http://www.w3.org/2000/svg', tag); for (var k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+function anchoDe(host){ return Math.max(300, Math.min(900, host.clientWidth || 360)); }
+function lineChart(opts, host){
+  var W = anchoDe(host), Hh = opts.height || (W < 480 ? 200 : 240), m = {l:44, r:34, t:12, b:26};
+  var svg = svgEl('svg', {viewBox:'0 0 ' + W + ' ' + Hh, 'class':'chart', role:'img', 'aria-label':opts.aria||''});
+  var n = opts.labels.length, ys = [];
+  opts.series.forEach(function(s){ s.values.forEach(function(v){ if (v && isNum(v.y)) ys.push(v.y); }); });
+  (opts.bands||[]).forEach(function(b){ b.values.forEach(function(v){ if (v && isNum(v.hi)) ys.push(v.hi); }); });
+  var ymax = Math.max(1, Math.max.apply(null, ys.length ? ys : [1])) * 1.12;
+  var x = function(i){ return m.l + (n <= 1 ? 0 : i * (W - m.l - m.r) / (n - 1)); };
+  var y = function(v){ return Hh - m.b - (v / ymax) * (Hh - m.t - m.b); };
+  var g = svgEl('g', {'class':'grid'}, svg), ticks = 4, t, v, tx;
+  for (t = 0; t <= ticks; t++){ v = ymax * t / ticks; svgEl('line', {x1:m.l, x2:W-m.r, y1:y(v), y2:y(v)}, g); tx = svgEl('text', {x:m.l-6, y:y(v)+4, 'text-anchor':'end', 'class':'muted'}, svg); tx.textContent = (opts.yfmt||fmt)(v); }
+  var paso = Math.max(1, Math.ceil(n / (W < 480 ? 5 : 9)));
+  opts.labels.forEach(function(l, i){ if ((n-1-i) % paso) return; var tt = svgEl('text', {x:x(i), y:Hh-8, 'text-anchor':'middle', 'class':'muted'}, svg); tt.textContent = l; });
+  (opts.bands||[]).forEach(function(b){
+    var d = '';
+    b.values.forEach(function(p, i){ if (p && isNum(p.hi)) d += (d ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(p.hi).toFixed(1) + ' '; });
+    for (var i = b.values.length - 1; i >= 0; i--){ var p = b.values[i]; if (p && isNum(p.lo)) d += 'L' + x(i).toFixed(1) + ' ' + y(Math.max(0, p.lo)).toFixed(1) + ' '; }
+    if (d) svgEl('path', {d: d + 'Z', fill: b.color, opacity: .16}, svg);
+  });
+  if (opts.marks) opts.marks.forEach(function(mk){ var i = opts.labels.indexOf(mk.at); if (i < 0) return; svgEl('line', {x1:x(i), x2:x(i), y1:m.t, y2:Hh-m.b, stroke:'var(--ink-3)', 'stroke-width':1, 'stroke-dasharray':'3 3'}, svg); var der = x(i) > W*0.6; var tt = svgEl('text', {x:der ? x(i)-4 : x(i)+4, y:m.t+10, 'class':'muted', 'text-anchor':der ? 'end' : 'start'}, svg); tt.textContent = mk.label; });
+  var finales = [];
+  opts.series.forEach(function(s){
+    var d = '', pen = false, last = null, lastI = -1;
+    s.values.forEach(function(p, i){ if (!p || !isNum(p.y)){ pen = false; return; } d += (pen ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(p.y).toFixed(1) + ' '; pen = true; last = p; lastI = i; });
+    svgEl('path', {d:d, fill:'none', stroke:s.color, 'stroke-width':2, 'stroke-linejoin':'round', 'stroke-dasharray': s.dash ? '5 4' : 'none'}, svg);
+    s.values.forEach(function(p, i){ if (!p || !isNum(p.y)) return; var c = svgEl('circle', {cx:x(i), cy:y(p.y), r:(i === lastI ? 4 : 3), fill:s.color, stroke:'var(--surface)', 'stroke-width':2}, svg); bindTip(c, '<b>' + esc(s.name) + '</b> · ' + esc(opts.labels[i]) + '<br>' + (opts.yfmt||fmt)(p.y) + (p.extra ? '<br>' + p.extra : '')); });
+    if (last && s.short) finales.push({x:x(lastI)+6, y:y(last.y)+4, t:s.short});
+  });
+  // Etiquetas finales separadas al menos 12 px para que C2 y C3 no se pisen.
+  finales.sort(function(a, b){ return a.y - b.y; });
+  for (var k = 1; k < finales.length; k++) if (finales[k].y - finales[k-1].y < 12) finales[k].y = finales[k-1].y + 12;
+  finales.forEach(function(f){ var tt = svgEl('text', {x:f.x, y:f.y, 'class':'lbl'}, svg); tt.textContent = f.t; });
+  return svg;
+}
+function barChart(opts, host){
+  var items = opts.items, W = anchoDe(host), Hh = opts.height || 200, i, it;
+  if (opts.horizontal){
+    var rowH = 26, m = {l:Math.min(W * 0.42, opts.labelW || 160), r:56, t:6, b:6}, H2 = m.t + m.b + items.length * rowH;
+    var svg = svgEl('svg', {viewBox:'0 0 ' + W + ' ' + H2, 'class':'chart', role:'img', 'aria-label':opts.aria||''});
+    var vmax = Math.max(1, Math.max.apply(null, items.map(function(q){ return q.value; }))), x = function(v){ return m.l + (v / vmax) * (W - m.l - m.r); };
+    for (i = 0; i < items.length; i++){ it = items[i]; var yy = m.t + i * rowH; var t = svgEl('text', {x:m.l-8, y:yy+17, 'text-anchor':'end'}, svg); t.textContent = String(it.label).length > 22 && W < 480 ? String(it.label).slice(0, 20) + '..' : it.label; var r = svgEl('rect', {x:m.l, y:yy+5, width:Math.max(2, x(it.value)-m.l), height:rowH-10, rx:3, fill:it.color||'var(--c1)'}, svg); bindTip(r, '<b>' + esc(it.label) + '</b><br>' + (opts.yfmt||fmt)(it.value) + (it.extra ? '<br>' + it.extra : '')); var vt = svgEl('text', {x:x(it.value)+6, y:yy+17, 'class':'lbl'}, svg); vt.textContent = (opts.yfmt||fmt)(it.value); }
+    return svg;
+  }
+  var m2 = {l:44, r:10, t:14, b:28}, svg2 = svgEl('svg', {viewBox:'0 0 ' + W + ' ' + Hh, 'class':'chart', role:'img', 'aria-label':opts.aria||''});
+  var vmax2 = Math.max(1, Math.max.apply(null, items.map(function(q){ return q.value; }))) * 1.15, n = items.length, bw = (W - m2.l - m2.r) / n, y = function(v){ return Hh - m2.b - (v / vmax2) * (Hh - m2.t - m2.b); };
+  var g = svgEl('g', {'class':'grid'}, svg2);
+  for (i = 0; i <= 4; i++){ var v = vmax2 * i / 4; svgEl('line', {x1:m2.l, x2:W-m2.r, y1:y(v), y2:y(v)}, g); var tx = svgEl('text', {x:m2.l-6, y:y(v)+4, 'text-anchor':'end', 'class':'muted'}, svg2); tx.textContent = (opts.yfmt||fmt)(v); }
+  for (i = 0; i < n; i++){ it = items[i]; var x0 = m2.l + i * bw + bw * 0.2; var r2 = svgEl('rect', {x:x0, y:y(it.value), width:bw*0.6, height:Math.max(0, Hh-m2.b-y(it.value)), rx:3, fill:it.color||'var(--c1)'}, svg2); bindTip(r2, '<b>' + esc(it.label) + '</b><br>' + (opts.yfmt||fmt)(it.value) + (it.extra ? '<br>' + it.extra : '')); var tl = svgEl('text', {x:x0+bw*0.3, y:Hh-9, 'text-anchor':'middle', 'class':'muted'}, svg2); tl.textContent = it.label; if (opts.valueLabels){ var vl = svgEl('text', {x:x0+bw*0.3, y:y(it.value)-5, 'text-anchor':'middle', 'class':'lbl'}, svg2); vl.textContent = (opts.yfmt||fmt)(it.value); } }
+  return svg2;
+}
+function stackedBars(opts, host){
+  var W = anchoDe(host), Hh = opts.height || (W < 480 ? 200 : 230), m = {l:46, r:10, t:12, b:28}, n = opts.labels.length;
+  var svg = svgEl('svg', {viewBox:'0 0 ' + W + ' ' + Hh, 'class':'chart', role:'img', 'aria-label':opts.aria||''});
+  var totals = opts.labels.map(function(_, i){ return opts.series.reduce(function(a, s){ return a + (s.values[i] || 0); }, 0); });
+  var vmax = opts.vmax || Math.max(1, Math.max.apply(null, totals)) * 1.12, bw = (W - m.l - m.r) / n, y = function(v){ return Hh - m.b - (v / vmax) * (Hh - m.t - m.b); };
+  var g = svgEl('g', {'class':'grid'}, svg), t;
+  for (t = 0; t <= 4; t++){ var v = vmax * t / 4; svgEl('line', {x1:m.l, x2:W-m.r, y1:y(v), y2:y(v)}, g); var tx = svgEl('text', {x:m.l-6, y:y(v)+4, 'text-anchor':'end', 'class':'muted'}, svg); tx.textContent = (opts.yfmt||fmt)(v); }
+  var paso = Math.max(1, Math.ceil(n / (W < 480 ? 5 : 10)));
+  opts.labels.forEach(function(l, i){ var acc = 0; opts.series.forEach(function(s){ var v = s.values[i] || 0; if (!v) return; var r = svgEl('rect', {x:m.l+i*bw+bw*0.18, y:y(acc+v)+1, width:bw*0.64, height:Math.max(0, y(acc)-y(acc+v)-2), rx:2, fill:s.color}, svg); bindTip(r, '<b>' + esc(s.name) + '</b> · ' + esc(l) + '<br>' + (opts.yfmt||fmt)(v) + ' de ' + (opts.yfmt||fmt)(totals[i])); acc += v; }); if ((n-1-i) % paso === 0){ var tt = svgEl('text', {x:m.l+i*bw+bw/2, y:Hh-9, 'text-anchor':'middle', 'class':'muted'}, svg); tt.textContent = l; } });
+  if (opts.marks) opts.marks.forEach(function(mk){ var i = opts.labels.indexOf(mk.at); if (i < 0) return; var xx = m.l + i*bw + bw*0.18 - 2; svgEl('line', {x1:xx, x2:xx, y1:m.t, y2:Hh-m.b, stroke:'var(--ink-3)', 'stroke-width':1, 'stroke-dasharray':'3 3'}, svg); var der = xx > W*0.6; var tt = svgEl('text', {x:der ? xx-4 : xx+4, y:m.t+10, 'class':'muted', 'text-anchor':der ? 'end' : 'start'}, svg); tt.textContent = mk.label; });
+  return svg;
+}
+function legend(series){ return '<div class="legend">' + series.map(function(s){ return '<span><i style="background:' + s.color + '"></i>' + esc(s.name) + '</span>'; }).join('') + '</div>'; }
+// Registro de graficas: se repintan al cambiar el ancho (girar el telefono).
+var CHARTS = [];
+function chart(id, build){ CHARTS.push({id:id, build:build}); return '<div id="' + id + '" class="chart-host"></div>'; }
+function paintCharts(){
+  CHARTS.forEach(function(c){ var host = document.getElementById(c.id); if (!host) return; var w = anchoDe(host); if (host.dataset.w === String(w)) return; host.dataset.w = w; host.innerHTML = ''; try { var node = c.build(host); if (node) host.appendChild(node); } catch (e) { host.innerHTML = '<p class="cap">Grafica no disponible: ' + esc(e.message) + '</p>'; } });
+}
+var rsz = null; window.addEventListener('resize', function(){ clearTimeout(rsz); rsz = setTimeout(paintCharts, 160); });
+
+/* ============================================================
+   CIFRADO: PBKDF2-SHA256 (200000) -> AES-256-GCM, todo en WebCrypto
+   ============================================================ */
+function b64(s){ var bin = atob(String(s).replace(/-/g, '+').replace(/_/g, '/')); var u = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return u; }
+function descifrar(obj, clave){
+  if (!window.crypto || !crypto.subtle) return Promise.reject(new Error('Este navegador no puede descifrar (requiere https).'));
+  var enc = new TextEncoder();
+  return crypto.subtle.importKey('raw', enc.encode(clave), 'PBKDF2', false, ['deriveKey']).then(function(base){
+    return crypto.subtle.deriveKey({name:'PBKDF2', salt:b64(obj.salt), iterations:obj.iter || 200000, hash:'SHA-256'}, base, {name:'AES-GCM', length:256}, false, ['decrypt']);
+  }).then(function(key){
+    return crypto.subtle.decrypt({name:'AES-GCM', iv:b64(obj.iv)}, key, b64(obj.ct));
+  }).then(function(pt){
+    // v2: el JSON viene comprimido (deflate con cabecera zlib) antes del cifrado.
+    if (obj.comp === 'deflate') {
+      if (typeof DecompressionStream === 'undefined') throw new Error('Este navegador no puede descomprimir los datos (actualizalo).');
+      var ds = new DecompressionStream('deflate');
+      var w = ds.writable.getWriter(); w.write(new Uint8Array(pt)); w.close();
+      return new Response(ds.readable).text().then(function(t){ return JSON.parse(t); });
+    }
+    return JSON.parse(new TextDecoder().decode(pt));
+  });
+}
+
+/* ============================================================
+   GATE
+   ============================================================ */
+var encPromise = null, META = null, DATOS = null;
+function lsGet(k){ try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } }
+function lsSet(k, v){ try { localStorage.setItem(k, v); } catch (e) {} }
+function lsDel(k){ try { localStorage.removeItem(k); } catch (e) {} }
+function corteDeMeta(m){ if (!m) return ''; if (m.corte) return m.corte; var v = String(m.ventana || ''); var mm = v.match(/\.\.(\d{4}-\d{2}-\d{2})/); return mm ? mm[1] : ''; }
+function pintaMeta(m){
+  var corte = corteDeMeta(m);
+  var t = m && (m.generado || corte) ? 'Datos generados el ' + fechaLarga(m.generado || corte) + (corte ? ' · corte de Ads: ' + fechaLarga(corte) : '') + (m.ga4 === false ? ' · GA4 sin datos' : '') + (m.consultas_con_error ? ' · ' + m.consultas_con_error + ' consultas con error' : '') : 'Sin meta.json: todavia no corre el generador nocturno.';
+  $('#gate-meta').textContent = t; $('#meta-linea').textContent = t;
+}
+function cargaEnc(){
+  encPromise = fetch('datos.enc', {cache:'no-store'}).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; });
+  return encPromise;
+}
+function intentar(clave, silencioso){
+  var err = $('#gate-err'), btn = $('#btn-entrar');
+  err.textContent = ''; btn.disabled = true; btn.textContent = 'Descifrando...';
+  return (encPromise || cargaEnc()).then(function(enc){
+    if (!enc || !enc.ct) throw new Error('sin-archivo');
+    return descifrar(enc, clave);
+  }).then(function(d){
+    lsSet(LS_KEY, clave);
+    arrancar(d);
+  }).catch(function(e){
+    if (e && e.message === 'sin-archivo') err.textContent = 'Todavia no existe datos.enc: el generador nocturno no ha corrido.';
+    else if (e && /https/.test(e.message)) err.textContent = e.message;
+    else if (!silencioso) err.textContent = 'Clave incorrecta.';
+    $('#btn-olvidar-gate').classList.toggle('hide', !lsGet(LS_KEY));
+  }).then(function(){ btn.disabled = false; btn.textContent = 'Entrar'; });
+}
+function olvidar(){ lsDel(LS_KEY); DATOS = null; $('#app').classList.add('hide'); $('#foot').classList.add('hide'); $('#acciones').classList.add('hide'); $('#toc').classList.add('hide'); $('#gate').classList.remove('hide'); $('#btn-olvidar-gate').classList.add('hide'); $('#clave').value = ''; $('#clave').focus(); }
+function init(){
+  fetch('meta.json', {cache:'no-store'}).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }).then(function(m){ META = m; pintaMeta(m); });
+  if (location.hash === '#demo'){
+    $('#demo').classList.remove('hide');
+    $('#demo-file').addEventListener('change', function(ev){ var f = ev.target.files && ev.target.files[0]; if (!f) return; var fr = new FileReader(); fr.onload = function(){ try { arrancar(JSON.parse(fr.result)); } catch (e) { $('#gate-err').textContent = 'El archivo no es un JSON valido.'; } }; fr.readAsText(f); });
+  } else { cargaEnc(); }
+  $('#gate-form').addEventListener('submit', function(ev){ ev.preventDefault(); var v = $('#clave').value; if (v) intentar(v, false); });
+  $('#btn-olvidar-gate').addEventListener('click', olvidar);
+  $('#btn-olvidar').addEventListener('click', olvidar);
+  $('#btn-recargar').addEventListener('click', function(){ var k = lsGet(LS_KEY); if (!k) return olvidar(); cargaEnc(); intentar(k, false); });
+  var guardada = lsGet(LS_KEY);
+  if (guardada && location.hash !== '#demo'){ $('#btn-olvidar-gate').classList.remove('hide'); intentar(guardada, true); }
+}
+
+/* ============================================================
+   NORMALIZACION DEL CONTRATO (tolerante a campos faltantes)
+   Acepta dos formas: la de scripts/panel-ads/build.py (ads / ga4 / derivado,
+   campos en espanol: fecha, gasto, "is" en fraccion) y la del resumen de agentes
+   (semanal / diario / c30 en ingles, modo demo). Todo se lleva a un mismo modelo N.
+   ============================================================ */
+var N = {};
+function pick(o){ for (var i = 1; i < arguments.length; i++){ var k = arguments[i]; if (o && o[k] != null) return o[k]; } return null; }
+function aPct(v){ return isNum(v) ? (v <= 1 ? Math.round(v * 1000) / 10 : v) : null; }   // fraccion -> %
+function lunesDe(iso){ var d = new Date(iso + 'T12:00:00'); var wd = (d.getDay() + 6) % 7; d.setDate(d.getDate() - wd); return d.toISOString().slice(0, 10); }
+// El change_event trae el correo de quien toco la cuenta: aqui se muestra el canal, no el correo.
+function actor(ch){ var cl = String(ch.cliente || ''); if (/WEB_CLIENT/.test(cl)) return 'interfaz web'; if (/API/.test(cl)) return 'API'; if (/MOBILE/.test(cl)) return 'app movil'; return ch.quien && !/@/.test(ch.quien) ? ch.quien : (cl || 'n/d'); }
+function sinCorreo(t){ return String(t || '').replace(/\(([^()]*@[^()]*),\s*GOOGLE_ADS_WEB_CLIENT\)/g, '(desde la interfaz web)').replace(/\(([^()]*@[^()]*),\s*GOOGLE_ADS_API\)/g, '(por API)').replace(/[\w.+-]+@[\w-]+\.[\w.-]+/g, 'la cuenta'); }
+function normaliza(D){
+  N = {D:D};
+  var ADS = D.ads || {}, DER = D.derivado || {}, DC = DER.campanas || {}, GA = D.ga4 || {};
+  N.corte = D.corte || (D.ventana && (D.ventana.fin || D.ventana.hasta)) || corteDeMeta(META) || '';
+  N.generado = D.generado || (META && META.generado) || '';
+  N.estrategia = D.estrategia || null;
+  var EST = (N.estrategia && N.estrategia.campanas) || {};
+  // --- campanas (config viva)
+  N.camp = {};
+  CAMPS.forEach(function(c){
+    var a = (ADS.campanas || D.campanas || {})[c] || {}, b = (D.config || {})[c] || {}, e = EST[c] || {};
+    var pres = pick(a, 'presupuesto_dia', 'presupuesto');
+    N.camp[c] = { id:a.id || '', nombre:a.nombre || b.name || NAME[c], puja:a.puja || b.bid || '', presupuesto:isNum(pres) ? pres : (isNum(b.budget) ? b.budget : null), geo:a.geo_tipo || a.geo || b.geo || '', estado:a.estado || '', congelada_hasta:a.congelada_hasta || e.congelada_hasta || null, nota:a.nota || e.nota || '', troas:a.troas, tcpa:a.tcpa, negativos:(a.negativos || []).length, sitelinks:(a.sitelinks || []).length };
+  });
+  N.tope = isNum((DER.cuenta || {}).presupuesto_dia_total) ? DER.cuenta.presupuesto_dia_total : CAMPS.reduce(function(a, c){ return a + (isNum(N.camp[c].presupuesto) ? N.camp[c].presupuesto : 0); }, 0);
+  // --- diario normalizado: {date, camp, cost, clk, conv, imp, is_, lb, lr} con IS en %
+  var crudo = Array.isArray(ADS.diario) ? ADS.diario : (Array.isArray(D.diario) ? D.diario : []);
+  N.diario = crudo.map(function(r){ return {date:r.fecha || r.date, camp:campCode(r.camp), cost:pick(r, 'gasto', 'cost') || 0, clk:r.clk || 0, conv:r.conv || 0, imp:r.imp || 0, is_:aPct(pick(r, 'is', 'is_')), lb:aPct(r.lb), lr:aPct(r.lr)}; }).filter(function(r){ return r.date && r.camp; }).sort(function(a, b){ return a.date < b.date ? -1 : 1; });
+  N.dias = []; N.diario.forEach(function(d){ if (N.dias.indexOf(d.date) < 0) N.dias.push(d.date); }); N.dias = N.dias.slice(-30);
+  N.byDay = function(c, k){ return N.dias.map(function(dd){ var r = N.diario.filter(function(x){ return x.date === dd && x.camp === c; })[0]; return r && isNum(r[k]) ? r[k] : null; }); };
+  // --- semanal: agregado del diario por lunes (incluye la semana en curso, marcada parcial); respaldo: D.semanal
+  var semMap = {};
+  if (N.diario.length){ N.diario.forEach(function(r){ var w = lunesDe(r.date), k = w + '|' + r.camp; var o = semMap[k] || (semMap[k] = {semana:w, camp:r.camp, cost:0, clk:0, conv:0, imp:0}); o.cost += r.cost; o.clk += r.clk; o.conv += r.conv; o.imp += r.imp; }); }
+  else (Array.isArray(D.semanal) ? D.semanal : []).forEach(function(r){ var c = campCode(r.camp); if (!c || !r.semana) return; semMap[r.semana + '|' + c] = {semana:r.semana, camp:c, cost:r.cost || 0, clk:r.clk || 0, conv:r.conv || 0, imp:r.imp || 0}; });
+  var sem = Object.keys(semMap).map(function(k){ return semMap[k]; });
+  N.weeks = []; sem.forEach(function(r){ if (N.weeks.indexOf(r.semana) < 0) N.weeks.push(r.semana); }); N.weeks.sort(); N.weeks = N.weeks.slice(-13);
+  N.byWeek = function(c, k){ return N.weeks.map(function(w){ var r = semMap[w + '|' + c]; return r && isNum(r[k]) ? r[k] : 0; }); };
+  N.wkParcial = function(w){ return N.corte ? addDias(w, 6) > N.corte : false; };
+  N.wkLabel = function(w){ return fecha(w) + (N.wkParcial(w) ? '*' : ''); };
+  N.weeksCompletas = N.weeks.filter(function(w){ return !N.wkParcial(w); });
+  // --- 30 d actuales y previos por campana, en el modelo {cost,imp,clk,conv,cpc,ctr,is_,lb,lr} (% enteros)
+  function agg30(u){ if (!u) return null; return {cost:pick(u, 'gasto', 'cost') || 0, imp:u.imp || 0, clk:u.clk || 0, conv:u.conv || 0, cpc:isNum(u.cpc) ? u.cpc : div(pick(u, 'gasto', 'cost'), u.clk), ctr:aPct(u.ctr), is_:aPct(pick(u, 'is', 'is_')), lb:aPct(u.lb), lr:aPct(u.lr)}; }
+  function aggDias(c, desde, hasta){ var rows = N.diario.filter(function(r){ return r.camp === c && r.date >= desde && r.date <= hasta; }); if (!rows.length) return null; var o = {cost:0, imp:0, clk:0, conv:0}, eleg = 0, lb = 0, lr = 0; rows.forEach(function(r){ o.cost += r.cost; o.imp += r.imp; o.clk += r.clk; o.conv += r.conv; if (r.is_ && r.imp){ var e = r.imp / (r.is_ / 100); eleg += e; lb += (r.lb || 0) / 100 * e; lr += (r.lr || 0) / 100 * e; } }); o.cpc = div(o.cost, o.clk); o.ctr = aPct(div(o.clk, o.imp)); o.is_ = eleg ? Math.round(o.imp / eleg * 100) : null; o.lb = eleg ? Math.round(lb / eleg * 100) : null; o.lr = eleg ? Math.round(lr / eleg * 100) : null; return o; }
+  N.c30 = {}; N.c30p = {};
+  CAMPS.forEach(function(c){
+    var dc = DC[c] || {};
+    N.c30[c] = agg30(dc.u30) || ((D.c30 || {})[c] ? agg30(D.c30[c]) : null) || (N.corte ? aggDias(c, addDias(N.corte, -29), N.corte) : null);
+    N.c30p[c] = agg30(dc.p30) || ((D.c30prev || {})[c] ? agg30(D.c30prev[c]) : null) || (N.corte ? aggDias(c, addDias(N.corte, -59), addDias(N.corte, -30)) : null);
+    ['is_', 'lb', 'lr'].forEach(function(k){ [N.c30[c], N.c30p[c]].forEach(function(o){ if (o && isNum(o[k])) o[k] = Math.round(o[k]); }); });
+  });
+  N.tot = function(k, prev){ var src = prev ? N.c30p : N.c30; return CAMPS.reduce(function(a, c){ return a + ((src[c] && isNum(src[c][k])) ? src[c][k] : 0); }, 0); };
+  N.gasto30 = N.tot('cost'); N.conv30 = N.tot('conv'); N.clk30 = N.tot('clk'); N.gasto30p = N.tot('cost', true); N.conv30p = N.tot('conv', true);
+  N.cpa = div(N.gasto30, N.conv30); N.cpaP = div(N.gasto30p, N.conv30p);
+  // --- cambios de presupuesto (change_event) y otros cambios
+  N.budgetChanges = Array.isArray(ADS.cambios_28d) ? ADS.cambios_28d.filter(function(ch){ return ch.tipo === 'CAMPAIGN_BUDGET' && (isNum(ch.de) || isNum(ch.a)); }).map(function(ch){ return {fecha:String(ch.fecha || '').replace('T', ' ').slice(0, 16), quien:actor(ch), camp:ch.camp, de:ch.de, a:ch.a}; }) : (Array.isArray(D.budget_changes) ? D.budget_changes : []);
+  N.otrosCambios = Array.isArray(ADS.cambios_28d) ? ADS.cambios_28d.filter(function(ch){ return ch.tipo !== 'CAMPAIGN_BUDGET'; }) : [];
+  // --- listas (ad groups, keywords, terminos, anuncios)
+  N.adgroups = (ADS.ad_groups_30d || D.adgroups || []).map(function(g){ return {camp:campCode(g.camp), name:g.nombre || g.name, status:g.estado || g.status, cost:pick(g, 'gasto', 'cost') || 0, imp:g.imp, clk:g.clk, conv:g.conv, ctr:aPct(g.ctr), congelado:g.congelado}; });
+  N.topKw = (ADS.keywords_30d || D.top_kw || []).map(function(k){ return {camp:campCode(k.camp), group:k.grupo || k.group, kw:k.kw, match:k.tipo || k.match, qs:k.qs, lpe:k.lpe, ectr:k.ectr, cost:pick(k, 'gasto', 'cost') || 0, clk:k.clk, conv:k.conv}; }).sort(function(a, b){ return b.cost - a.cost; });
+  var T = ADS.terminos_30d || {};
+  N.stCero = (T.top_cero_conv || D.st_cero_top || []).map(function(t){ return {camp:campCode(t.camp), term:t.termino || t.term, cost:pick(t, 'gasto', 'cost') || 0, clk:t.clk, status:t.estado || t.status}; });
+  N.stTop = (T.top_gasto || []).map(function(t){ return {camp:campCode(t.camp), term:t.termino || t.term, cost:pick(t, 'gasto', 'cost') || 0, clk:t.clk || 0, conv:t.conv || 0}; });
+  N.stResumen = T.total_terminos != null ? {n:T.total_terminos, gasto:T.gasto_total, cero_conv_gasto:T.gasto_cero_conv} : (D.st_resumen || null);
+  N.anuncios = (ADS.anuncios_30d || D.ads || []).map(function(a){ return {camp:campCode(a.camp), group:a.grupo || a.group, id:a.id, status:a.estado || a.status, strength:a.fuerza || a.strength, url:a.url, imp:a.imp, ctr:aPct(a.ctr), conv:a.conv}; });
+  // --- alertas del generador (alta/media/info) o del contrato simple (crit/warn/info)
+  var NIV = {alta:'crit', media:'warn', info:'info', crit:'crit', warn:'warn'};
+  N.alertas = (DER.alertas || D.alertas || []).map(function(a){ return {camp:a.camp || 'cuenta', nivel:NIV[a.nivel] || 'info', texto:sinCorreo(a.texto), marca:a.marca || (a.regla ? '[Documentado]' : ''), regla:a.regla}; });
+  N.semaforoBuild = {}; CAMPS.forEach(function(c){ var x = (DC[c] || {}).semaforo; N.semaforoBuild[c] = {verde:'good', amarillo:'warn', rojo:'crit', gris:'mute'}[x] || null; });
+  // --- pronostico y curva del generador (si vienen)
+  N.pron = {}; N.curva = {}; CAMPS.forEach(function(c){ N.pron[c] = (DC[c] || {}).pronostico || null; N.curva[c] = (DC[c] || {}).curva_presupuesto || null; });
+  N.pronCuenta = (DER.cuenta || {}).pronostico_4sem || null;
+  N.metodo = DER.metodo || null;
+  // --- poligrafia: familias de terminos (misma lista de claves que el resumen) y periodos
+  if (D.c3_familias) N.c3Familias = D.c3_familias;
+  else if (N.stTop.length){ var KEYS = ['clinica', 'especialista', 'poligraf', 'polisomno', 'apnea', 'examen', 'estudio', 'ronq', 'precio', 'costo', 'cpap', 'casa', 'domicilio', 'sue'], fam = {}; N.stTop.filter(function(t){ return t.camp === 'C3'; }).forEach(function(t){ var tx = String(t.term).toLowerCase(), f = 'otro'; for (var i = 0; i < KEYS.length; i++) if (tx.indexOf(KEYS[i]) >= 0){ f = KEYS[i]; break; } var o = fam[f] || (fam[f] = {cost:0, clk:0, conv:0, n:0}); o.cost += t.cost; o.clk += t.clk; o.conv += t.conv; o.n += 1; }); N.c3Familias = fam; N.c3FamiliasParcial = true; }
+  else N.c3Familias = null;
+  if (D.c3_periodos) N.c3Periodos = D.c3_periodos;
+  else if (N.corte && N.diario.length){ var a1 = addDias(N.corte, -29), a2 = addDias(N.corte, -15), b1 = addDias(N.corte, -14); var pA = aggDias('C3', a1, a2), pB = aggDias('C3', b1, N.corte); N.c3Periodos = {}; if (pA) N.c3Periodos[fecha(a1) + ' a ' + fecha(a2)] = pA; if (pB) N.c3Periodos[fecha(b1) + ' a ' + fecha(N.corte)] = pB; }
+  // --- GA4: landings de pago (sesiones, contactos = clic_whatsapp + agendar_cita + llamada)
+  function landings(lista, eventos){ var ev = {}; (eventos || []).forEach(function(e){ var pth = e.landingPagePlusQueryString; if (['clic_whatsapp', 'agendar_cita', 'llamada'].indexOf(e.eventName) >= 0) ev[pth] = (ev[pth] || 0) + (e.eventCount || 0); }); return (lista || []).map(function(r){ var pth = r.landingPagePlusQueryString || r.path; return {path:pth, sesiones:r.sessions != null ? r.sessions : r.sesiones, contactos:ev[pth] != null ? ev[pth] : (r.contactos != null ? r.contactos : r.keyEvents)}; }).filter(function(r){ return r.path && !/not set/.test(r.path); }); }
+  N.landing30 = landings(GA.landings_pagadas_30d || GA.landing_30 || null, GA.eventos_landing_pagado_30d);
+  N.landingPrev = landings(GA.landings_pagadas_30d_prev || GA.landing_prev || null, null);
+  N.ga4Ok = !!(D.ga4 && Object.keys(D.ga4).length);
+}
+function alertasDe(c){ return N.alertas.filter(function(a){ return a.camp === c || (c === 'cuenta' && (!a.camp || a.camp === 'cuenta')); }); }
+
+/* ============================================================
+   SEMAFORO [Heuristica]: reglas fijas, explicadas en el glosario
+   ============================================================ */
+var PESO = {good:0, info:0, mute:0, warn:1, crit:2};
+function semaforoCamp(c){
+  var x = N.c30[c], y = N.c30p[c], cfg = N.camp[c], motivos = [], nivel = 'good';
+  var sube = function(n){ if (PESO[n] > PESO[nivel]) nivel = n; };
+  if (!x) return {nivel:'mute', motivos:['sin datos de 30 dias'], cpa:null};
+  var cpa = div(x.cost, x.conv), cpaP = y ? div(y.cost, y.conv) : null, tasa = div(x.conv, x.clk);
+  if (isNum(x.cost) && x.cost > 500 && !(x.conv > 0)){ sube('crit'); motivos.push('gasto ' + money(x.cost) + ' en 30 dias sin un solo contacto'); }
+  else if (isNum(x.cost) && x.cost > 0 && !(x.conv > 0)){ sube('warn'); motivos.push('gasto ' + money(x.cost) + ' sin contactos; poco gasto, sin lectura aun'); }
+  if (cpa && cpaP){ var r = cpa / cpaP; if (r > 2){ sube('crit'); motivos.push('el costo por contacto se duplico: ' + money(cpa) + ' contra ' + money(cpaP) + ' antes'); } else if (r > 1.4){ sube('warn'); motivos.push('el costo por contacto subio ' + pct(r-1) + ': ' + money(cpa) + ' contra ' + money(cpaP)); } else if (r < 0.8){ motivos.push('el costo por contacto bajo ' + pct(1-r) + ': ' + money(cpa) + ' contra ' + money(cpaP)); } else { motivos.push('costo por contacto estable en ' + money(cpa)); } }
+  else if (cpa) motivos.push('costo por contacto ' + money(cpa));
+  if (tasa !== null && tasa < 0.02 && x.clk > 50){ sube('warn'); motivos.push('solo ' + pct(tasa, 1) + ' de los clics se vuelven contacto'); }
+  if (isNum(x.lb) && x.lb >= 35){ sube('warn'); motivos.push(x.lb + '% de las busquedas se pierden por falta de presupuesto'); }
+  if (isNum(x.lr) && x.lr >= 50){ sube('warn'); motivos.push(x.lr + '% se pierden por calidad o puja (rank): mas dinero no lo arregla'); }
+  var wk = N.weeksCompletas.slice(-5); if (wk.length >= 4){ var conv = wk.map(function(w){ return N.byWeek(c, 'conv')[N.weeks.indexOf(w)]; }); var ult = conv[conv.length-1], base = conv.slice(0, -1).reduce(function(a, b){ return a + b; }, 0) / (conv.length - 1); if (base >= 3 && ult === 0){ sube('warn'); motivos.push('la ultima semana completa cerro en 0 contactos (promedio previo ' + fmt(base, 1) + ')'); } }
+  if (cfg.congelada_hasta && N.corte && cfg.congelada_hasta >= N.corte) motivos.push('congelada hasta el ' + fecha(cfg.congelada_hasta) + ': no se toca');
+  var sb = N.semaforoBuild[c]; if (sb && PESO[sb] > PESO[nivel]) nivel = sb;
+  if (!motivos.length) motivos.push('sin senales de alarma en 30 dias');
+  return {nivel:nivel, motivos:motivos, cpa:cpa, cpaP:cpaP, tasa:tasa};
+}
+
+/* ============================================================
+   SECCIONES
+   ============================================================ */
+function seguro(nombre, fn){ try { return fn() || ''; } catch (e) { return '<div class="card"><p class="cap">Modulo "' + esc(nombre) + '" no disponible con los datos actuales (' + esc(e.message) + ').</p></div>'; } }
+function h2(n, t, id){ return '<h2 id="' + id + '"><span class="n">' + n + '</span>' + esc(t) + '</h2>'; }
+function delta(a, b, inv){ if (!isNum(a) || !isNum(b) || b === 0) return ''; var s = (a - b) / Math.abs(b); var bueno = inv ? s < 0 : s > 0; if (Math.abs(s) < 0.02) return '<span class="delta">=</span>'; return '<span class="delta ' + (bueno ? 'up' : 'down') + '">' + (s > 0 ? '+' : '') + pct(s) + '</span>'; }
+function tile(nivel, k, v, d){ return '<div class="tile ' + (nivel||'') + '"><div class="stripe"></div><div class="k">' + k + '</div><div class="v">' + v + '</div><div class="d">' + (d||'') + '</div></div>'; }
+
+function secAhora(){
+  // Uso del tope con los ULTIMOS 7 dias (el promedio de 30 d mezcla presupuestos ya cambiados).
+  var d7 = N.dias.slice(-7), g7 = d7.length ? CAMPS.reduce(function(a, c){ return a + N.byDay(c, 'cost').slice(-7).reduce(function(x, y){ return x + (isNum(y) ? y : 0); }, 0); }, 0) / d7.length : null;
+  var usoTope = N.tope && isNum(g7) ? div(g7, N.tope) : null;
+  var c3 = N.c30.C3 || {}, c3p = N.c30p.C3 || {};
+  var tasa3 = div(c3.conv, c3.clk), tasa3p = div(c3p.conv, c3p.clk);
+  var html = h2('01', 'Ahora mismo', 's-ahora') + '<p class="lead">Treinta dias contra los treinta anteriores. Un "contacto" es un clic a WhatsApp, al agendador o a llamar que Google alcanza a contar; no es una cita.</p><div class="tiles">';
+  html += tile('', 'Gasto 30 d', money(N.gasto30), money(N.gasto30/30) + '/dia ' + delta(N.gasto30, N.gasto30p, true) + ' vs previos');
+  html += tile(N.conv30 >= N.conv30p ? 'good' : 'warn', 'Contactos', fmt(N.conv30), delta(N.conv30, N.conv30p) + ' vs ' + fmt(N.conv30p) + ' previos');
+  html += tile(N.cpa && N.cpaP && N.cpa <= N.cpaP ? 'good' : 'warn', 'Costo por contacto', money(N.cpa), 'antes ' + money(N.cpaP) + ' · no es costo por paciente');
+  html += tile(tasa3 !== null && tasa3 >= 0.04 ? 'good' : 'warn', 'C3 conv/clic', pct(tasa3, 1), 'poligrafia · antes ' + pct(tasa3p, 1) + ' · ' + money(div(c3.cost, c3.conv)) + ' por contacto');
+  html += tile(usoTope !== null && usoTope < 0.6 ? 'warn' : '', 'Tope diario vivo', money(N.tope), CAMPS.map(function(c){ return c + ' ' + money(N.camp[c].presupuesto); }).join(' · ') + (usoTope !== null ? ' · ultimos 7 d: ' + money(g7) + '/dia, ' + pct(usoTope) + ' del tope' : ''));
+  html += '</div>';
+  var al = alertasDe('cuenta'); if (al.length) html += '<div class="card"><h3 style="margin-top:0">Alertas de cuenta</h3><ul class="tight">' + al.map(function(a){ return '<li>' + pill(a.nivel) + ' ' + esc(a.texto) + marca(a.marca) + '</li>'; }).join('') + '</ul></div>';
+  html += '<div class="card" id="vivo"><h3 style="margin-top:0">Capa viva: lo que el consultorio registra hoy</h3><div id="vivo-cuerpo"><p class="cap">Conecta con el mismo motor que usa /bot-config (citas de la semana, cruce clic a cita, tablero nocturno de Ads). Solo agregados: ningun nombre de paciente se pinta ni se guarda.</p></div>' +
+    '<form id="vivo-form" class="acciones" style="margin-top:10px" autocomplete="off"><input type="password" id="vivo-clave" placeholder="Clave del bot (opcional)" aria-label="Clave del bot" autocomplete="off" style="flex:1 1 180px"><button type="submit" class="btn sm">Conectar</button><button type="button" class="btn sec sm" id="vivo-olvidar">Olvidar</button></form><div class="estado" id="vivo-estado"></div></div>';
+  return html;
+}
+
+function secSemaforo(){
+  var html = h2('02', 'Semaforo por campana', 's-semaforo') + '<div class="card"><div class="sem">';
+  CAMPS.forEach(function(c){
+    var s = semaforoCamp(c), al = alertasDe(c);
+    html += '<div class="row"><div>' + pill(s.nivel) + '</div><div><b style="color:' + COLT[c] + '">' + esc(NAME[c]) + '</b> <span class="cap" style="display:inline">' + esc(N.camp[c].nombre) + '</span><ul class="tight">' + s.motivos.map(function(m){ return '<li>' + esc(m) + '</li>'; }).join('') + al.map(function(a){ return '<li>' + pill(a.nivel) + ' ' + esc(a.texto) + marca(a.marca) + '</li>'; }).join('') + '</ul></div></div>';
+  });
+  html += '</div><p class="cap">Reglas fijas <span class="ep">[Heuristica]</span> (la alerta del generador, si la hay, manda): critico si gasta mas de $500 sin contactos o el costo por contacto se duplica; atencion si sube mas de 40%, si menos del 2% de los clics contacta, si se pierde 35% o mas por presupuesto o 50% o mas por rank, o si la ultima semana completa cerro en cero. Las cifras son de la API <span class="ep">[Documentado]</span>.</p></div>';
+  return html;
+}
+
+function secHistorico(){
+  if (!N.weeks.length && !N.dias.length) return h2('03', 'Historico', 's-historico') + '<div class="card"><p class="cap">Sin series semanales ni diarias en los datos.</p></div>';
+  var wl = N.weeks.map(N.wkLabel), html = h2('03', 'Historico', 's-historico') + '<p class="lead">Semana por semana (lunes a domingo). El asterisco marca una semana aun incompleta al corte.</p>';
+  var marcasSem = N.budgetChanges.map(function(b){ var d = String(b.fecha||'').slice(0,10); var w = N.weeks.filter(function(x){ return x <= d; }).pop(); return w ? {at:N.wkLabel(w), label:fecha(d) + ' ' + b.camp + ' ' + money(b.de) + ' a ' + money(b.a)} : null; }).filter(Boolean);
+  var marcasUnicas = {}; marcasSem = marcasSem.filter(function(m){ if (marcasUnicas[m.at]) return false; marcasUnicas[m.at] = 1; return true; }); marcasSem.forEach(function(m, i){ m.label = i ? '' : 'cambio de presupuesto'; });
+  if (N.weeks.length){
+    html += '<div class="grid2"><div class="card"><h3 style="margin-top:0">Gasto semanal por campana</h3>' + chart('ch-gasto', function(h){ return stackedBars({labels:wl, series:CAMPS.map(function(c){ return {name:NAME[c], color:COL[c], values:N.byWeek(c, 'cost')}; }), yfmt:money, marks:marcasSem, aria:'Gasto semanal apilado por campana'}, h); }) + legend(CAMPS.map(function(c){ return {name:NAME[c], color:COL[c]}; })) + (marcasSem.length ? '<p class="cap">Linea punteada = semana con cambio de presupuesto (detalle abajo).</p>' : '') + '</div>';
+    html += '<div class="card"><h3 style="margin-top:0">Contactos semanales por campana</h3>' + chart('ch-conv', function(h){ return lineChart({labels:wl, series:CAMPS.map(function(c){ var cost = N.byWeek(c, 'cost'); return {name:NAME[c], short:c, color:COL[c], values:N.byWeek(c, 'conv').map(function(v, i){ return {y:v, extra:'gasto ' + money(cost[i])}; })}; }), aria:'Contactos semanales por campana'}, h); }) + '<p class="cap">La importacion de GA4 a Ads tarda 24 a 48 h: la semana mas reciente siempre se ve baja.</p></div></div>';
+    html += '<div class="grid2"><div class="card"><h3 style="margin-top:0">Costo por contacto semanal</h3>' + chart('ch-cpa', function(h){ return lineChart({labels:wl, series:CAMPS.map(function(c){ var cost = N.byWeek(c, 'cost'), conv = N.byWeek(c, 'conv'); return {name:NAME[c], short:c, color:COL[c], values:cost.map(function(v, i){ return {y:div(v, conv[i]), extra:fmt(conv[i]) + ' contactos'}; })}; }), yfmt:money, aria:'Costo por contacto semanal'}, h); }) + '<p class="cap">Sin punto = semana sin contactos (no se dibuja un costo infinito).</p></div>';
+    html += '<div class="card"><h3 style="margin-top:0">Cuota de impresiones (30 d)</h3>' + chart('ch-is', function(h){ var labs = [], is = [], lb = [], lr = []; CAMPS.forEach(function(c){ [['ahora', N.c30[c]], ['antes', N.c30p[c]]].forEach(function(p){ if (!p[1]) return; labs.push(c + ' ' + p[0]); is.push(p[1].is_||0); lb.push(p[1].lb||0); lr.push(p[1].lr||0); }); }); return stackedBars({labels:labs, series:[{name:'ganada', color:'var(--electric)', values:is}, {name:'perdida por presupuesto', color:'var(--warn)', values:lb}, {name:'perdida por rank', color:'var(--ink-3)', values:lr}], yfmt:function(v){ return v.toFixed(0) + '%'; }, vmax:100, height:210, aria:'Impression share por campana, ahora y antes'}, h); }) + legend([{name:'ganada', color:'var(--electric)'}, {name:'perdida por presupuesto', color:'var(--warn)'}, {name:'perdida por rank', color:'var(--ink-3)'}]) + '<p class="cap">Perdida por presupuesto se arregla con dinero; perdida por rank, con calidad o puja.</p></div></div>';
+  }
+  if (N.dias.length){
+    var dl = N.dias.map(fecha);
+    var marcasDia = N.budgetChanges.map(function(b){ var d = String(b.fecha||'').slice(0,10); return N.dias.indexOf(d) >= 0 ? {at:fecha(d), label:b.camp + ' ' + money(b.de) + ' a ' + money(b.a)} : null; }).filter(Boolean);
+    html += '<div class="card"><h3 style="margin-top:0">Gasto diario, ultimos 30 dias, con los cambios de presupuesto</h3>' + chart('ch-dia', function(h){ return lineChart({labels:dl, series:CAMPS.map(function(c){ var conv = N.byDay(c, 'conv'); return {name:NAME[c], short:c, color:COL[c], values:N.byDay(c, 'cost').map(function(v, i){ return {y:v, extra:fmt(conv[i]) + ' contactos'}; })}; }), yfmt:money, marks:marcasDia, aria:'Gasto diario por campana con marcas de cambios de presupuesto'}, h); });
+    html += '<h3>Cuota de impresiones diaria perdida por presupuesto</h3>' + chart('ch-lb', function(h){ return lineChart({labels:dl, series:CAMPS.map(function(c){ return {name:NAME[c], short:c, color:COL[c], values:N.byDay(c, 'lb').map(function(v){ return {y:isNum(v) ? v * N.isFactor : null}; })}; }), yfmt:function(v){ return v.toFixed(0) + '%'; }, height:180, aria:'IS perdido por presupuesto, diario'}, h); });
+    if (N.budgetChanges.length) html += '<div class="scroll" style="margin-top:10px"><table class="narrow"><thead><tr><th>Cuando</th><th>Quien</th><th>Camp.</th><th class="num">De</th><th class="num">A</th></tr></thead><tbody>' + N.budgetChanges.slice().reverse().map(function(b){ return '<tr><td>' + esc(b.fecha) + '</td><td>' + esc(b.quien) + '</td><td>' + esc(b.camp) + '</td><td class="num">' + money(b.de) + '</td><td class="num">' + money(b.a) + '</td></tr>'; }).join('') + '</tbody></table></div>';
+    if (N.otrosCambios.length) html += '<details><summary>Otros cambios en la cuenta (' + N.otrosCambios.length + ')</summary><ul class="tight">' + N.otrosCambios.slice(0, 30).map(function(ch){ return '<li><span class="cap" style="display:inline">' + esc(String(ch.fecha || '').replace('T', ' ').slice(0, 16)) + ' · ' + esc(ch.camp || 'cuenta') + ' · ' + esc(actor(ch)) + '</span><br>' + esc(sinCorreo(ch.resumen || ch.tipo)) + '</li>'; }).join('') + '</ul></details>';
+    html += '<p class="cap">Fuente: change_event de la API <span class="ep">[Documentado]</span>.</p></div>';
+  }
+  return html;
+}
+
+function secCampanas(){
+  var html = h2('04', 'Campana por campana', 's-campanas');
+  CAMPS.forEach(function(c){
+    var x = N.c30[c] || {}, y = N.c30p[c] || {}, cfg = N.camp[c], s = semaforoCamp(c);
+    var puja = String(cfg.puja||'n/d').replace('MAXIMIZE_CONVERSION_VALUE', 'Max. valor de conv.').replace('MAXIMIZE_CONVERSIONS', 'Max. conversiones').replace('TARGET_SPEND', 'Max. clics').replace('TARGET_CPA', 'CPA objetivo').replace('TARGET_ROAS', 'ROAS objetivo').replace(/_/g, ' ');
+    html += '<div class="card campana ' + c + '"><div class="cab"><h3>' + esc(NAME[c]) + '</h3>' + pill(s.nivel) + '</div><p class="cap">' + esc(cfg.nombre) + (cfg.id ? ' · ' + esc(cfg.id) : '') + '</p>';
+    html += '<div class="sub-tiles"><div><b>Puja</b><span style="font-size:13px">' + esc(puja) + '</span>' + (isNum(cfg.troas) ? '<small>tROAS ' + cfg.troas + '</small>' : '') + (isNum(cfg.tcpa) ? '<small>tCPA ' + money(cfg.tcpa) + '</small>' : '') + '</div><div><b>Presupuesto</b><span>' + money(cfg.presupuesto) + '</span><small>por dia</small></div><div><b>Estado</b><span style="font-size:13px">' + esc(cfg.congelada_hasta && N.corte && cfg.congelada_hasta >= N.corte ? 'Congelada hasta ' + fecha(cfg.congelada_hasta) : (cfg.estado || 'activa')) + '</span>' + (cfg.geo ? '<small>' + esc(cfg.geo === 'PRESENCE' ? 'solo presencia' : 'presencia o interes') + '</small>' : '') + '</div></div>';
+    if (cfg.nota) html += '<p class="cap">' + esc(cfg.nota) + '</p>';
+    if (cfg.negativos || cfg.sitelinks) html += '<p class="cap">' + fmt(cfg.negativos) + ' negativos de campana · ' + fmt(cfg.sitelinks) + ' sitelinks</p>';
+    var rows = [['Gasto', money(x.cost), money(y.cost), delta(x.cost, y.cost, true)], ['Clics', fmt(x.clk), fmt(y.clk), delta(x.clk, y.clk)], ['CPC', money(x.cpc), money(y.cpc), delta(x.cpc, y.cpc, true)], ['Contactos', fmt(x.conv), fmt(y.conv), delta(x.conv, y.conv)], ['Conv/clic', pct(div(x.conv, x.clk), 1), pct(div(y.conv, y.clk), 1), delta(div(x.conv, x.clk), div(y.conv, y.clk))], ['Costo por contacto', money(s.cpa), money(s.cpaP), delta(s.cpa, s.cpaP, true)], ['Cuota de impresiones', isNum(x.is_) ? x.is_ + '%' : 'n/d', isNum(y.is_) ? y.is_ + '%' : 'n/d', delta(x.is_, y.is_)], ['Perdida por presupuesto', isNum(x.lb) ? x.lb + '%' : 'n/d', isNum(y.lb) ? y.lb + '%' : 'n/d', delta(x.lb, y.lb, true)], ['Perdida por rank', isNum(x.lr) ? x.lr + '%' : 'n/d', isNum(y.lr) ? y.lr + '%' : 'n/d', delta(x.lr, y.lr, true)]];
+    html += '<div class="scroll"><table class="narrow"><thead><tr><th>30 dias</th><th class="num">Ahora</th><th class="num">Previos</th><th class="num">Cambio</th></tr></thead><tbody>' + rows.map(function(r){ return '<tr><td>' + r[0] + '</td><td class="num"><b>' + r[1] + '</b></td><td class="num">' + r[2] + '</td><td class="num">' + r[3] + '</td></tr>'; }).join('') + '</tbody></table></div>';
+    var ag = N.adgroups.filter(function(g){ return g.camp === c; }).sort(function(a, b){ return (b.cost||0) - (a.cost||0); });
+    if (ag.length) html += '<details><summary>Grupos de anuncios (' + ag.length + ')</summary><div class="scroll"><table><thead><tr><th>Grupo</th><th class="num">Gasto</th><th class="num">Clics</th><th class="num">CTR</th><th class="num">Contactos</th><th class="num">$/contacto</th></tr></thead><tbody>' + ag.map(function(g){ return '<tr><td>' + esc(g.name) + (g.status && g.status !== 'ENABLED' ? ' ' + pill('mute', String(g.status).toLowerCase()) : '') + (g.congelado ? ' ' + pill('info', 'congelado') : '') + '</td><td class="num">' + money(g.cost) + '</td><td class="num">' + fmt(g.clk) + '</td><td class="num">' + (isNum(g.ctr) ? g.ctr + '%' : 'n/d') + '</td><td class="num">' + fmt(g.conv) + '</td><td class="num">' + money(div(g.cost, g.conv)) + '</td></tr>'; }).join('') + '</tbody></table></div></details>';
+    var kw = N.topKw.filter(function(k){ return k.camp === c; }).slice(0, 8);
+    if (kw.length) html += '<details><summary>Palabras clave que mas gastan (' + kw.length + ')</summary><div class="scroll"><table><thead><tr><th>Palabra</th><th>Conc.</th><th class="num">QS</th><th class="num">Gasto</th><th class="num">Contactos</th><th class="num">$/contacto</th></tr></thead><tbody>' + kw.map(function(k){ return '<tr><td>' + esc(k.kw) + '<div class="cap">' + esc(k.group||'') + '</div></td><td>' + esc(String(k.match||'').toLowerCase()) + '</td><td class="num">' + (isNum(k.qs) ? (k.qs <= 4 ? pill('warn', String(k.qs)) : k.qs) : 'n/d') + '</td><td class="num">' + money(k.cost) + '</td><td class="num">' + fmt(k.conv) + '</td><td class="num">' + money(div(k.cost, k.conv)) + '</td></tr>'; }).join('') + '</tbody></table></div><p class="cap">QS = nivel de calidad 1 a 10; 4 o menos se marca.</p></details>';
+    var st = N.stCero.filter(function(t){ return t.camp === c; }).sort(function(a, b){ return b.cost - a.cost; }).slice(0, 8);
+    if (st.length) html += '<details><summary>Busquedas con gasto y cero contactos (' + st.length + ')</summary><div class="scroll"><table class="narrow"><thead><tr><th>Termino</th><th class="num">Gasto</th><th class="num">Clics</th><th>Estado</th></tr></thead><tbody>' + st.map(function(t){ return '<tr><td>' + esc(t.term) + '</td><td class="num">' + money(t.cost) + '</td><td class="num">' + fmt(t.clk) + '</td><td>' + esc(t.status === 'ADDED' ? 'ya es keyword' : (t.status === 'EXCLUDED' ? 'ya negativo' : 'sin accion')) + '</td></tr>'; }).join('') + '</tbody></table></div><p class="cap">Un negativo se valida en keyword_view antes de aplicarse, nunca solo por esta fila. Que alguien busque precio no es motivo para bloquear.</p></details>';
+    var an = N.anuncios.filter(function(a){ return a.camp === c; });
+    if (an.length){ var cnt = {}; an.forEach(function(a){ var k = a.strength || 'n/d'; cnt[k] = (cnt[k]||0) + 1; }); html += '<p class="cap">Anuncios: ' + an.length + ' (' + Object.keys(cnt).map(function(k){ return cnt[k] + ' ' + k.toLowerCase(); }).join(', ') + ')' + (an.some(function(a){ return a.strength === 'POOR'; }) ? ' ' + pill('warn', 'hay anuncios POOR') : '') + '</p>'; }
+    html += '</div>';
+  });
+  return html;
+}
+
+function secPoligrafia(){
+  var x = N.c30.C3 || {}, html = h2('05', 'Poligrafia: del clic al estudio', 's-poligrafia');
+  html += '<div class="card c3">';
+  var per = N.c3Periodos && Object.keys(N.c3Periodos).length ? N.c3Periodos : null;
+  if (per){ html += '<div class="tiles" style="margin-top:0">' + Object.keys(per).map(function(k){ var p = per[k], t = div(p.conv, p.clk); return tile('', esc(k), pct(t, 1), fmt(p.conv) + ' contactos / ' + fmt(p.clk) + ' clics · ' + money(div(p.cost, p.conv)) + ' por contacto'); }).join('') + '</div><p class="cap">' + (N.D.c3_periodos ? 'Periodos definidos por los cambios de puja y landing de C3.' : 'Primera y segunda quincena de la ventana de 30 dias.') + ' Con pocos contactos la banda es ancha: se lee como tendencia.</p>'; }
+  // Embudo: clics -> contactos (Ads) -> identificados -> con cita (vivo)
+  html += '<h3>Embudo de poligrafia</h3><div class="sub-tiles" id="embudo-c3"><div><b>Clics 30 d</b><span>' + fmt(x.clk) + '</span><small>Ads</small></div><div><b>Contactos 30 d</b><span>' + fmt(x.conv) + '</span><small>' + pct(div(x.conv, x.clk), 1) + ' de los clics</small></div><div><b>Con cita</b><span id="embudo-cita">n/d</span><small id="embudo-cita-s">capa viva</small></div></div>';
+  html += '<p class="cap" id="embudo-nota">El ultimo tramo (contacto a estudio agendado) solo lo conoce el consultorio: se llena al conectar la capa viva.</p>';
+  var fam = N.c3Familias ? Object.keys(N.c3Familias).map(function(k){ return {k:k, v:N.c3Familias[k]}; }).filter(function(f){ return f.v && f.v.cost > 30; }).sort(function(a, b){ return b.v.cost - a.v.cost; }) : [];
+  var NOM = {clinica:'clinica del sueno', polisomno:'polisomnografia', apnea:'apnea', poligraf:'poligrafia', especialista:'especialista del sueno', estudio:'estudio del sueno', sue:'sueno (otros)', otro:'otros', precio:'precio', ronq:'ronquido', cpap:'CPAP', examen:'examen del sueno', casa:'en casa'};
+  if (fam.length) html += '<h3>Que busca la gente que llega a C3</h3>' + chart('ch-fam', function(h){ return barChart({horizontal:true, labelW:150, items:fam.map(function(f){ return {label:NOM[f.k]||f.k, value:f.v.cost, color:f.v.conv ? 'var(--c3)' : 'var(--ink-3)', extra:fmt(f.v.conv) + ' contactos · ' + fmt(f.v.clk) + ' clics · ' + fmt(f.v.n) + ' variantes'}; }), yfmt:money, aria:'Gasto por familia de terminos de C3'}, h); }) + '<p class="cap">Gris = familia sin contactos en 30 dias.' + (N.c3FamiliasParcial ? ' Clasificacion sobre los 60 terminos con mas gasto [Heuristica].' : '') + '</p>';
+  var ag = N.adgroups.filter(function(g){ return g.camp === 'C3' && g.cost > 30; }).sort(function(a, b){ return b.cost - a.cost; });
+  if (ag.length) html += '<h3>Grupos de anuncios de C3</h3>' + chart('ch-c3g', function(h){ return barChart({horizontal:true, labelW:190, items:ag.map(function(g){ return {label:String(g.name).replace(/^Poligraf[ií]a \| /, '').replace(/^Apnea \| /, ''), value:g.conv ? g.cost / g.conv : g.cost, color:g.conv ? 'var(--c3)' : 'var(--ink-3)', extra:fmt(g.conv) + ' contactos · ' + money(g.cost) + ' · ' + fmt(g.clk) + ' clics' + (g.conv ? '' : ' · sin contactos: la barra es el gasto')}; }), yfmt:money, aria:'Costo por contacto por grupo de C3'}, h); }) + '<p class="cap">Barra = costo por contacto; en gris, grupos sin contactos (barra = gasto).</p>';
+  var L = N.landing30 || [], Lp = N.landingPrev || [];
+  if (L.length){ var lp = L.filter(function(r){ return r.sesiones >= 20; }).sort(function(a, b){ return b.sesiones - a.sesiones; }).slice(0, 6); html += '<h3>Tasa de contacto por landing de pago (GA4)</h3>' + chart('ch-landing', function(h){ return barChart({horizontal:true, labelW:170, items:lp.map(function(r){ var p = Lp.filter(function(q){ return q.path === r.path; })[0]; return {label:String(r.path).replace('/promociones/', '').replace(/\/$/, ''), value:div(r.contactos, r.sesiones) || 0, color:/poligraf/.test(r.path) ? 'var(--c3)' : 'var(--c1)', extra:fmt(r.contactos) + ' contactos / ' + fmt(r.sesiones) + ' sesiones' + (p ? ' · previos ' + pct(div(p.contactos, p.sesiones), 1) : '')}; }), yfmt:function(v){ return pct(v, 1); }, aria:'Tasa de contacto por landing'}, h); }) + '<p class="cap">Sesiones de google/cpc, 30 dias. Solo landings con 20 sesiones o mas. Contacto = clic_whatsapp, agendar_cita o llamada.</p>'; }
+  else if (!N.ga4Ok) html += '<p class="cap">GA4 no vino en esta corrida: sin tasa por landing <span class="ep">[Requiere verificar]</span>.</p>';
+  html += '</div>';
+  return html;
+}
+
+/* ============================================================
+   PREDICCIONES [Heuristica]
+   Si el generador trae pronostico (EWMA 8 semanas, banda Poisson 5-95%) y
+   curva presupuesto->contactos, se usan tal cual (un motor). Si no, la pagina
+   calcula su propio modelo: promedio de 4 semanas completas, banda Poisson,
+   rendimientos decrecientes y techo por cuota de impresiones.
+   ============================================================ */
+function modelo(c){
+  var wk = N.weeksCompletas.slice(-4); if (wk.length < 2) return null;
+  var idx = wk.map(function(w){ return N.weeks.indexOf(w); });
+  var conv = idx.map(function(i){ return N.byWeek(c, 'conv')[i]; }), cost = idx.map(function(i){ return N.byWeek(c, 'cost')[i]; });
+  var conv4 = conv.reduce(function(a, b){ return a + b; }, 0), cost4 = cost.reduce(function(a, b){ return a + b; }, 0);
+  var cpa = div(cost4, conv4), x = N.c30[c] || {}, cfg = N.camp[c];
+  var d7 = N.byDay(c, 'cost').slice(-7).filter(isNum), s0 = d7.length ? d7.reduce(function(a, b){ return a + b; }, 0) / d7.length : cost[cost.length-1] / 7;
+  var budget = isNum(cfg.presupuesto) ? cfg.presupuesto : s0;
+  var uso = budget > 0 ? Math.min(1, s0 / budget) : 1; if (!isNum(uso) || uso < 0.3) uso = 0.85;
+  var is = isNum(x.is_) ? x.is_ : 40, lb = isNum(x.lb) ? x.lb : 20;
+  var techo = s0 > 0 ? s0 * (is + lb) / Math.max(is, 1) : budget;
+  return {cpa:cpa, s0:s0, budget:budget, uso:uso, techo:Math.max(techo, s0), conv4:conv4, cost4:cost4, semanas:wk.length};
+}
+function banda(lam){ return {lo:Math.max(0, lam - 1.96 * Math.sqrt(lam)), hi:lam + 1.96 * Math.sqrt(lam)}; }
+// Contactos/semana esperados con presupuesto diario b. Curva del generador si existe; si no, modelo propio.
+function esperado(c, b){
+  var cu = N.curva[c], B0 = N.camp[c].presupuesto;
+  if (cu && Array.isArray(cu.puntos) && cu.puntos.length >= 2 && isNum(B0) && B0 > 0){
+    var pts = cu.puntos.slice().sort(function(p, q){ return p.x - q.x; }), m = Math.max(pts[0].x, Math.min(pts[pts.length-1].x, b / B0)), i = 0;
+    while (i < pts.length - 2 && pts[i+1].x < m) i++;
+    var p0 = pts[i], p1 = pts[i+1], t = (m - p0.x) / (p1.x - p0.x || 1);
+    var c30 = p0.contactos_30d + t * (p1.contactos_30d - p0.contactos_30d), g30 = p0.gasto_30d + t * (p1.gasto_30d - p0.gasto_30d);
+    var lam = c30 / 30 * 7, bd = banda(lam), ult = pts[pts.length-1];
+    return {gastoSem:g30 / 30 * 7, cpa:div(g30, c30), lam:lam, lo:bd.lo, hi:bd.hi, tope:(b / B0) >= 1 && c30 >= ult.contactos_30d * 0.99, techoDia:null, fuente:'curva'};
+  }
+  var mo = N.mods && N.mods[c]; if (!mo || !mo.cpa) return null;
+  var gasto = Math.min(b * mo.uso, mo.techo), cpa = gasto > mo.s0 && mo.s0 > 0 ? mo.cpa * Math.pow(gasto / mo.s0, 0.35) : mo.cpa, lam2 = gasto * 7 / cpa, bd2 = banda(lam2);
+  return {gastoSem:gasto * 7, cpa:cpa, lam:lam2, lo:bd2.lo, hi:bd2.hi, tope:gasto >= mo.techo - 0.5, techoDia:mo.techo, fuente:'modelo'};
+}
+function secPredicciones(){
+  var html = h2('06', 'Predicciones en lenguaje llano', 's-predicciones');
+  N.mods = {}; var hayPron = false, hayMod = false;
+  CAMPS.forEach(function(c){ N.mods[c] = modelo(c); if (N.mods[c]) hayMod = true; if (N.pron[c] && (N.pron[c].semanas || []).length) hayPron = true; });
+  html += '<p class="lead">Todo lo de esta seccion es estimacion <span class="ep">[Heuristica]</span>: ' + (hayPron ? 'media ponderada de las ultimas 8 semanas completas (el generador), proyectada plana 4 semanas, con banda de azar de Poisson (5% a 95%).' : 'promedio de las ultimas 4 semanas completas con banda de azar (Poisson 95%), escalado al presupuesto vigente y con techo por cuota de impresiones.') + ' No modela estacionalidad. Sirve para decidir, no para prometer.</p>';
+  if (!hayPron && !hayMod) return html + '<div class="card"><p class="cap">Hacen falta al menos 2 semanas completas por campana.</p></div>';
+  var histW = N.weeksCompletas.slice(-6), ultimo = histW[histW.length-1] || N.corte, fut = [], i;
+  for (i = 1; i <= 4; i++) fut.push(addDias(ultimo, 7*i));
+  var labels = histW.map(N.wkLabel).concat(fut.map(fecha)), series = [], bands = [], frases = [], tot = {lam:0, lo:0, hi:0, gasto:0};
+  CAMPS.forEach(function(c){
+    var P = N.pron[c], e = null, hist = histW.map(function(w){ return {y:N.byWeek(c, 'conv')[N.weeks.indexOf(w)]}; });
+    if (P && (P.semanas || []).length){ var s0 = P.semanas[0]; e = {lam:s0.contactos, lo:(s0.banda_contactos || [])[0], hi:(s0.banda_contactos || [])[1], gastoSem:s0.gasto, cpa:s0.costo_contacto}; }
+    else { var x = esperado(c, N.camp[c].presupuesto); if (x) e = x; }
+    if (!e) return;
+    series.push({name:NAME[c], short:c, color:COL[c], values:hist.concat(fut.map(function(){ return {y:Math.round(e.lam*10)/10, extra:'entre ' + fmt(e.lo) + ' y ' + fmt(e.hi)}; }))});
+    bands.push({color:COL[c], values:hist.map(function(){ return null; }).concat(fut.map(function(){ return {lo:e.lo, hi:e.hi}; }))});
+    tot.lam += e.lam; tot.lo += e.lo || 0; tot.hi += e.hi || 0; tot.gasto += e.gastoSem || 0;
+    var curso = P && P.semana_en_curso;
+    frases.push('<li><b style="color:' + COLT[c] + '">' + esc(NAME[c]) + '</b>: con ' + money(N.camp[c].presupuesto) + ' al dia esperaria <b>' + fmt(e.lam) + ' ' + plural(Math.round(e.lam), 'contacto', 'contactos') + ' por semana</b>, entre ' + fmt(e.lo) + ' y ' + fmt(e.hi) + ' por puro azar, gastando ' + money(e.gastoSem) + '/semana (' + money(e.cpa) + ' por contacto).' + (curso ? ' La semana en curso lleva ' + fmt(curso.contactos) + ' en ' + curso.dias + ' ' + plural(curso.dias, 'dia', 'dias') + ' (se esperaban ' + fmt(curso.contactos_esperados_a_la_fecha, 1) + ').' : '') + '</li>');
+  });
+  if (!series.length) return html + '<div class="card"><p class="cap">Sin base suficiente para pronosticar.</p></div>';
+  html += '<div class="card"><h3 style="margin-top:0">Proximas 4 semanas si nada cambia</h3>' + chart('ch-pron', function(h){ return lineChart({labels:labels, series:series, bands:bands, marks:[{at:fecha(fut[0]), label:'pronostico desde aqui'}], aria:'Pronostico de contactos por semana con banda'}, h); }) + legend(series.map(function(x){ return {name:x.name, color:x.color}; })) + '<ul class="tight">' + frases.join('') + '</ul>';
+  var PC = N.pronCuenta;
+  html += '<p><b>Cuenta completa:</b> ' + (PC ? fmt(PC.contactos) + ' contactos en 4 semanas (' + fmt((PC.banda_contactos || [])[0]) + ' a ' + fmt((PC.banda_contactos || [])[1]) + ') por ' + money(PC.gasto) + ', es decir ' + money(div(PC.gasto, PC.contactos)) + ' por contacto proyectado.' : 'unos ' + fmt(tot.lam) + ' contactos por semana (' + fmt(tot.lo) + ' a ' + fmt(tot.hi) + ') por ' + money(tot.gasto) + ', es decir ' + money(div(tot.gasto, tot.lam)) + ' por contacto proyectado.') + ' <span class="ep">[Heuristica]</span></p></div>';
+  // Simulador
+  var hayCurva = CAMPS.some(function(c){ return N.curva[c] && (N.curva[c].puntos || []).length; });
+  html += '<div class="card"><h3 style="margin-top:0">Que pasaria si muevo el presupuesto</h3><p class="cap">Mueva la barra. ' + (hayCurva ? 'Curva del generador: los contactos crecen con el gasto solo hasta recuperar lo que hoy se pierde por presupuesto; lo perdido por ranking no se compra con dinero. Supone que el presupuesto se gasta completo (por eso puede diferir del pronostico, que sigue el ritmo reciente). Entre 50% y 200% del presupuesto actual.' : 'Por encima del presupuesto actual el costo por contacto sube (rendimientos decrecientes) y el techo es la cuota de impresiones que hoy se pierde por presupuesto.') + ' Nada de esto toca la cuenta.</p><div class="sim">';
+  CAMPS.forEach(function(c){ var B0 = N.camp[c].presupuesto; if (!isNum(B0) || !esperado(c, B0)) return; var max = Math.max(100, Math.ceil(B0 * 2 / 50) * 50); html += '<div class="fila"><h4><span style="color:' + COLT[c] + '">' + esc(NAME[c]) + '</span><span>actual ' + money(B0) + '/dia</span></h4><label for="sim-' + c + '" class="cap">Presupuesto diario: <b id="sim-' + c + '-v">' + money(B0) + '</b></label><input type="range" id="sim-' + c + '" min="' + Math.max(10, Math.floor(B0 / 2 / 10) * 10) + '" max="' + max + '" step="10" value="' + Math.round(B0) + '" data-camp="' + c + '"><p class="out" id="sim-' + c + '-out"></p>' + (N.curva[c] && N.curva[c].perdida_dominante ? '<p class="band">Hoy pierde mas por ' + esc(N.curva[c].perdida_dominante) + (isNum(N.curva[c].contactos_recuperables_por_presupuesto) ? '; con presupuesto ilimitado recuperaria unos ' + fmt(N.curva[c].contactos_recuperables_por_presupuesto) + ' contactos mas en 30 dias' : '') + '.</p>' : '') + '</div>'; });
+  html += '</div><p class="out" id="sim-total" style="margin-top:10px;font-weight:700"></p></div>';
+  return html;
+}
+function simula(){
+  var tot = 0, gasto = 0, lo = 0, hi = 0;
+  CAMPS.forEach(function(c){ var inp = document.getElementById('sim-' + c); if (!inp) return; var b = +inp.value, B0 = N.camp[c].presupuesto, e = esperado(c, b), base = esperado(c, B0); document.getElementById('sim-' + c + '-v').textContent = money(b); var out = document.getElementById('sim-' + c + '-out'); if (!e || !base){ out.textContent = 'Sin datos suficientes.'; return; } var dif = e.lam - base.lam; out.innerHTML = 'Con <b>' + money(b) + '</b> al dia: unos <b>' + fmt(e.lam) + ' contactos/semana</b> <span class="band">(' + fmt(e.lo) + ' a ' + fmt(e.hi) + ')</span> por ' + money(e.gastoSem) + ', a <b>' + money(e.cpa) + '</b> por contacto. ' + (Math.abs(dif) < 0.5 ? 'Practicamente lo mismo que hoy.' : (dif > 0 ? 'Son ' + fmt(dif, 1) + ' contactos mas que hoy.' : 'Son ' + fmt(-dif, 1) + ' contactos menos que hoy.')) + (e.tope ? ' <b>Llego al techo:</b> ' + (e.techoDia ? 'por arriba de ' + money(e.techoDia) + '/dia ' : '') + 'ya no hay mas busquedas que comprar sin mejorar el rank.' : ''); tot += e.lam; gasto += e.gastoSem; lo += e.lo; hi += e.hi; });
+  var t = document.getElementById('sim-total'); if (t) t.textContent = 'Cuenta: ' + fmt(tot) + ' contactos/semana (' + fmt(lo) + ' a ' + fmt(hi) + ') por ' + money(gasto) + ' = ' + money(div(gasto, tot)) + ' por contacto. [Heuristica]';
+}
+
+/* ============================================================
+   ESTRATEGIA (objeto de A7) renderizado de forma generica
+   ============================================================ */
+var TIT = {resumen_ejecutivo:'Resumen ejecutivo', semaforo:'Semaforo del estratega', campanas:'Lectura por campana', poligrafia:'Poligrafia', decisiones:'Decisiones', calendario_lecturas:'Calendario de lecturas', doctrina:'Doctrina de la casa', novedades_2026:'Novedades 2026 de Google Ads', glosario:'Glosario del estratega', deuda:'Deuda y pendientes'};
+var ORDEN = ['resumen_ejecutivo', 'semaforo', 'campanas', 'poligrafia', 'decisiones', 'calendario_lecturas', 'doctrina', 'novedades_2026', 'deuda'];
+function renderValor(v, prof){
+  prof = prof || 0;
+  if (v == null) return '';
+  if (typeof v === 'string' || typeof v === 'number') return '<p>' + esc(v) + '</p>';
+  if (Array.isArray(v)){
+    if (!v.length) return '<p class="cap">(vacio)</p>';
+    return '<ul class="tight">' + v.map(function(it){ return '<li>' + (typeof it === 'object' && it ? renderObjItem(it) : esc(it)) + '</li>'; }).join('') + '</ul>';
+  }
+  if (typeof v === 'object'){
+    return '<div class="kvs">' + Object.keys(v).map(function(k){ var x = v[k]; return '<div><b>' + esc(k.replace(/_/g, ' ')) + '</b>' + (typeof x === 'object' && x ? renderValor(x, prof+1) : esc(x)) + '</div>'; }).join('') + '</div>';
+  }
+  return esc(String(v));
+}
+function renderObjItem(it){
+  var nivel = String(it.estado || it.nivel || '').toLowerCase(), p = '';
+  if (/crit/.test(nivel)) p = pill('crit'); else if (/aten|warn/.test(nivel)) p = pill('warn'); else if (/sano|ok|hecho|good/.test(nivel)) p = pill('good', nivel); else if (nivel) p = pill('info', nivel);
+  var t = it.titulo || it.campana || it.termino || it.que || it.fecha || '';
+  var cuerpo = it.texto || it.por_que || it.definicion || it.lectura || it.detalle || '';
+  var extra = [];
+  if (it.fecha && t !== it.fecha) extra.push(fecha(it.fecha)); if (it.campana && t !== it.campana) extra.push(it.campana); if (it.quien) extra.push('decide: ' + it.quien); if (it.siguiente_paso) extra.push('siguiente: ' + it.siguiente_paso);
+  var resto = Object.keys(it).filter(function(k){ return ['titulo','campana','termino','que','fecha','texto','por_que','definicion','lectura','detalle','quien','siguiente_paso','estado','nivel','marca'].indexOf(k) < 0; });
+  return (p ? p + ' ' : '') + (t ? '<b>' + esc(t) + '.</b> ' : '') + esc(cuerpo) + (extra.length ? ' <span class="cap" style="display:inline">' + esc(extra.join(' · ')) + '</span>' : '') + marca(it.marca) + (resto.length ? '<div class="cap">' + resto.map(function(k){ return esc(k) + ': ' + esc(typeof it[k] === 'object' ? JSON.stringify(it[k]) : it[k]); }).join(' · ') + '</div>' : '');
+}
+function secEstrategia(){
+  var E = N.estrategia, html = h2('07', 'Estrategia y decisiones', 's-estrategia');
+  if (!E || typeof E !== 'object' || !Object.keys(E).length) return html + '<div class="card"><p class="cap">Sin estrategia cargada. Cuando el agente estratega escriba el objeto "estrategia" en datos.json, aparece aqui sin tocar la pagina.</p></div>';
+  var claves = ORDEN.filter(function(k){ return E[k] != null; }).concat(Object.keys(E).filter(function(k){ return ORDEN.indexOf(k) < 0 && ['glosario','_doc','generado','fecha','v'].indexOf(k) < 0; }));
+  if (E.generado || E.fecha) html += '<p class="cap">Escrita el ' + fechaLarga(E.generado || E.fecha) + '.</p>';
+  claves.forEach(function(k, i){ var abierto = i < 2 ? ' open' : ''; html += '<details' + abierto + '><summary>' + esc(TIT[k] || k.replace(/_/g, ' ')) + '</summary>' + renderValor(E[k]) + '</details>'; });
+  return html;
+}
+var GLOSARIO = [
+  ['Contacto (conversion)', 'Clic a WhatsApp, al agendador o a llamar que Google importa desde GA4. No es una cita ni un paciente.'],
+  ['Costo por contacto', 'Gasto dividido entre contactos. El costo por paciente real es mayor: no todo contacto agenda.'],
+  ['Cuota de impresiones (IS)', 'De todas las veces que su anuncio pudo salir, cuantas salio. Lo perdido por presupuesto se compra con dinero; lo perdido por rank, con calidad de anuncio o puja.'],
+  ['Rank', 'Posicion en la subasta: puja por nivel de calidad. Subir presupuesto a una campana que pierde por rank no la muestra mas.'],
+  ['QS (nivel de calidad)', 'Del 1 al 10 por palabra clave: CTR esperado, relevancia del anuncio y experiencia en la pagina.'],
+  ['Puja', 'Como Google decide cuanto pagar por clic: maximizar conversiones, maximizar valor, maximizar clics. Cada cambio abre un periodo de aprendizaje de 1 a 2 semanas en el que no se lee nada.'],
+  ['Congelada', 'Campana en aprendizaje: no se tocan keywords, negativos, anuncios ni presupuesto hasta la fecha marcada.'],
+  ['Banda de azar (Poisson)', 'Con pocos contactos, una semana buena o mala suele ser suerte. La banda dice que rango es normal; solo fuera de ella, varias semanas seguidas, hay senal.'],
+  ['[Documentado] / [Heuristica] / [Requiere verificar]', 'Documentado = viene de la API o de una fuente oficial. Heuristica = estimacion con supuesto declarado. Requiere verificar = no se pudo cerrar.']
+];
+function secGlosario(){
+  var E = N.estrategia || {}, extra = Array.isArray(E.glosario) ? E.glosario : [];
+  return h2('08', 'Glosario', 's-glosario') + '<details><summary>Que significa cada termino</summary><dl>' + GLOSARIO.map(function(g){ return '<dt style="font-weight:700;margin-top:8px">' + esc(g[0]) + '</dt><dd style="margin:2px 0 0;color:var(--ink-2)">' + esc(g[1]) + '</dd>'; }).join('') + extra.map(function(g){ return '<dt style="font-weight:700;margin-top:8px">' + esc(g.termino || g.titulo || '') + '</dt><dd style="margin:2px 0 0;color:var(--ink-2)">' + esc(g.definicion || g.texto || '') + '</dd>'; }).join('') + '</dl></details>';
+}
+function secPie(){
+  var D = N.D, f = Array.isArray(D.fuentes) ? D.fuentes : ['Google Ads API (solo lectura)' + (D.cuenta ? ', cuenta ' + D.cuenta : ''), 'GA4 Data API' + (N.ga4Ok ? '' : ' (sin datos en esta corrida)')];
+  return '<p><b>Metodo.</b> Cada madrugada (05:00 CDMX) un script lee la cuenta de Google Ads y GA4 por API en modo solo lectura, resume 90 dias en agregados y cifra el resultado (PBKDF2-SHA256 200,000 iteraciones + AES-256-GCM). Su navegador lo descifra con la clave; la clave no viaja a ningun servidor.</p>' +
+    '<p><b>Fuentes.</b> ' + esc(f.join(' · ')) + '. Capa viva: el mismo Apps Script del bot de citas, solo agregados.</p>' +
+    '<p><b>Frescura.</b> Datos generados el ' + fechaLarga(N.generado) + '; corte de Ads ' + fechaLarga(N.corte) + (D.ventana && (D.ventana.inicio || D.ventana.desde) ? '; serie desde el ' + fecha(D.ventana.inicio || D.ventana.desde) : '') + '. Las conversiones de los ultimos 2 dias siguen entrando.</p>' +
+    (N.metodo ? '<details><summary>Metodo del generador</summary>' + renderValor(N.metodo) + '</details>' : '') +
+    '<p><b>Ninguna cifra de pacientes viaja por esta pagina.</b> Ni nombres, ni telefonos, ni motivos: solo conteos. Marcas: <span class="ep">[Documentado]</span> API u oficial · <span class="ep">[Heuristica]</span> estimacion con supuesto · <span class="ep">[Requiere verificar]</span> sin cerrar.</p>';
+}
+
+/* ============================================================
+   CAPA VIVA: contrato {url, accion, clave}. Consume SOLO agregados.
+   ============================================================ */
+function pedirVivo(base, clave){
+  var ctrl = ('AbortController' in window) ? new AbortController() : null, t = setTimeout(function(){ if (ctrl) ctrl.abort(); }, 15000);
+  return fetch(base + '?' + VIVO.accion + '=1', {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify({key:clave}), signal:ctrl ? ctrl.signal : undefined}).then(function(r){ return r.json(); }).then(function(j){ clearTimeout(t); return j; }, function(e){ clearTimeout(t); throw e; });
+}
+function cargarVivo(cfg){
+  // cfg = {url, accion, clave}; respuesta del motor -> se tiran campos con PII antes de usar nada.
+  if (!cfg.clave) return Promise.resolve(null);
+  return pedirVivo(cfg.url, cfg.clave).catch(function(){ return pedirVivo(VIVO.respaldo, cfg.clave); }).then(function(j){
+    if (!j || !j.ok) throw new Error(j && j.error === 'no autorizado' ? 'no autorizado' : 'respuesta invalida');
+    // SOLO agregados. 'agenda' trae nombres de pacientes: se descarta aqui mismo y no se guarda.
+    return {tendencia:j.tendencia || null, clics:j.clics || null, ads:j.ads || null, metricas:sanitizaMetricas(j.metricas), poligrafias:j.poligrafias || null};
+  });
+}
+function sanitizaMetricas(m){ if (!m || typeof m !== 'object') return null; var out = {}; ['d7','d30'].forEach(function(k){ if (m[k]) out[k] = {reservas:m[k].reservas, flujos:m[k].flujos, confirmadas:m[k].confirmadas, conversaciones:m[k].conversaciones}; }); if (isNum(m.citas_hoy)) out.citas_hoy = m.citas_hoy; if (isNum(m.proximas)) out.proximas = m.proximas; return out; }
+function pintaVivo(v){
+  var el = document.getElementById('vivo-cuerpo'), html = '';
+  if (!v){ el.innerHTML = '<p class="cap">Capa viva pendiente de conectar. Escriba la clave del bot (la misma de /bot-config).</p>'; return; }
+  var t = v.tendencia, c = v.clics, a = v.ads, m = v.metricas || {};
+  html += '<div class="tiles" style="margin-top:4px">';
+  if (t && !t.error){ var ult = (t.semanas || []).slice(-1)[0]; html += tile('', 'Citas esta semana', isNum(t.semana_en_curso) ? fmt(t.semana_en_curso) : 'n/d', 'en curso · ultima completa: ' + (ult ? fmt(ult.citas) : 'n/d') + (t.suficiente ? ' · normal ' + t.banda_baja + ' a ' + t.banda_alta + '/sem' : '')); }
+  if (isNum(m.citas_hoy) || isNum(m.proximas)) html += tile('', 'Agenda', fmt(m.citas_hoy), 'citas hoy · ' + fmt(m.proximas) + ' proximas');
+  if (c && !c.error){ html += tile(c.con_cita > 0 ? 'good' : 'warn', 'Del anuncio a la cita', c.identificados ? fmt(c.con_cita) + ' de ' + fmt(c.identificados) : '0', c.identificados ? (c.tasa == null ? '' : c.tasa + '% · ') + 'ultimos ' + c.ventana_dias + ' d' : 'sin clics identificados aun'); var ec = document.getElementById('embudo-cita'); if (ec){ ec.textContent = c.identificados ? fmt(c.con_cita) + ' de ' + fmt(c.identificados) : '0'; document.getElementById('embudo-cita-s').textContent = 'con clic de anuncio identificado, ' + c.ventana_dias + ' d (todas las campanas)'; } }
+  if (v.poligrafias && !v.poligrafias.error) html += tile('', 'Poligrafias', fmt(v.poligrafias.semana || v.poligrafias.total), 'segun el motor');
+  if (a && a.estado !== 'sin_configurar' && a.estado !== 'rancio') html += tile('', 'Tablero nocturno', money(a.gasto_28d), 'gasto 28 d segun el bot · al ' + esc(a.ultima_actualizacion || 'n/d'));
+  html += '</div>';
+  if (t && Array.isArray(t.semanas) && t.semanas.length){ CHARTS = CHARTS.filter(function(x){ return x.id !== 'ch-vivo'; }); html += chart('ch-vivo', function(h){ var labs = t.semanas.map(function(s){ return s.etiqueta || s.semana || ''; }); return lineChart({labels:labs, series:[{name:'Citas por semana', short:'citas', color:'var(--c1)', values:t.semanas.map(function(s){ return {y:s.citas}; })}], bands:t.suficiente ? [{color:'var(--c1)', values:t.semanas.map(function(){ return {lo:t.banda_baja, hi:t.banda_alta}; })}] : [], height:180, aria:'Citas por semana con banda de normalidad'}, h); }); }
+  if (!v.poligrafias) html += '<p class="cap">Poligrafias por semana: el motor aun no expone ese conteo <span class="ep">[Requiere verificar]</span>; se lee en el calendario local.</p>';
+  if (t && t.excluidas_mauricio) html += '<p class="cap">Citas del Dr. Castaneda excluidas: ' + fmt(t.excluidas_mauricio) + '.</p>';
+  html += '<p class="cap">Solo conteos: la respuesta del motor trae la agenda con nombres y esta pagina la descarta antes de pintar; no se guarda nada en el telefono.</p>';
+  el.innerHTML = html; paintCharts();
+}
+function initVivo(){
+  var form = document.getElementById('vivo-form'), inp = document.getElementById('vivo-clave'), est = document.getElementById('vivo-estado');
+  if (!form) return;
+  var go = function(clave, silencioso){ est.textContent = 'Conectando con el consultorio...'; cargarVivo({url:VIVO.url, accion:VIVO.accion, clave:clave}).then(function(v){ if (v) lsSet(LS_BOT, clave); est.textContent = v ? 'Conectado.' : ''; pintaVivo(v); }).catch(function(e){ if (e.message === 'no autorizado'){ lsDel(LS_BOT); est.textContent = 'Clave del bot incorrecta.'; } else est.textContent = silencioso ? '' : 'No hubo respuesta del consultorio; intente de nuevo.'; pintaVivo(null); }); };
+  form.addEventListener('submit', function(ev){ ev.preventDefault(); if (inp.value) go(inp.value, false); });
+  document.getElementById('vivo-olvidar').addEventListener('click', function(){ lsDel(LS_BOT); inp.value = ''; est.textContent = 'Clave del bot olvidada.'; pintaVivo(null); });
+  var k = lsGet(LS_BOT); if (k) go(k, true); else pintaVivo(null);
+}
+
+/* ============================================================
+   ARRANQUE
+   ============================================================ */
+function arrancar(D){
+  DATOS = D; CHARTS = []; normaliza(D);
+  var partes = [seguro('ahora', secAhora), seguro('semaforo', secSemaforo), seguro('historico', secHistorico), seguro('campanas', secCampanas), seguro('poligrafia', secPoligrafia), seguro('predicciones', secPredicciones), seguro('estrategia', secEstrategia), seguro('glosario', secGlosario)];
+  $('#app').innerHTML = partes.join('\n');
+  $('#foot').innerHTML = seguro('pie', secPie);
+  $('#gate').classList.add('hide'); $('#app').classList.remove('hide'); $('#foot').classList.remove('hide'); $('#acciones').classList.remove('hide');
+  var toc = $('#toc'); toc.innerHTML = [['s-ahora','Ahora'],['s-semaforo','Semaforo'],['s-historico','Historico'],['s-campanas','Campanas'],['s-poligrafia','Poligrafia'],['s-predicciones','Predicciones'],['s-estrategia','Estrategia'],['s-glosario','Glosario']].map(function(x){ return '<a href="#' + x[0] + '">' + x[1] + '</a>'; }).join(''); toc.classList.remove('hide');
+  if (N.generado || N.corte) $('#meta-linea').textContent = 'Datos generados el ' + fechaLarga(N.generado || N.corte) + (N.corte ? ' · corte de Ads: ' + fechaLarga(N.corte) : '');
+  paintCharts();
+  try { Array.prototype.forEach.call(document.querySelectorAll('input[type=range][data-camp]'), function(r){ r.addEventListener('input', simula); }); simula(); } catch (e) {}
+  try { initVivo(); } catch (e) {}
+}
+init();
+})();
+</script>
+</body>
+</html>

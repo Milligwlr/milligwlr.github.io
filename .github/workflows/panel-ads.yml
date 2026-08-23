@@ -1,0 +1,60 @@
+name: Panel de campana (datos cifrados)
+
+# Regenera campana-ads/datos.enc (Ads + GA4, cifrado con la clave del panel) y meta.json.
+# Nunca toca el calendario ni datos de pacientes: eso vive en el Apps Script del bot
+# y la pagina lo consulta en vivo desde el navegador del Dr.
+
+on:
+  schedule:
+    # 11:00 UTC = 05:00 CDMX, despues de que Google cierre el dia anterior
+    - cron: "0 11 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: panel-ads
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: AP-Claude
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r scripts/panel-ads/requirements.txt
+
+      - name: Generar datos.enc
+        env:
+          ADS_DEVELOPER_TOKEN: ${{ secrets.ADS_DEVELOPER_TOKEN }}
+          ADS_CLIENT_ID: ${{ secrets.ADS_CLIENT_ID }}
+          ADS_CLIENT_SECRET: ${{ secrets.ADS_CLIENT_SECRET }}
+          ADS_REFRESH_TOKEN: ${{ secrets.ADS_REFRESH_TOKEN }}
+          ADS_LOGIN_CUSTOMER_ID: ${{ secrets.ADS_LOGIN_CUSTOMER_ID }}
+          GA4_SA_KEY_JSON: ${{ secrets.GA4_SA_KEY_JSON }}
+          PANEL_ADS_KEY: ${{ secrets.PANEL_ADS_KEY }}
+        run: python scripts/panel-ads/build.py
+
+      - name: Verificar que descifra
+        env:
+          PANEL_ADS_KEY: ${{ secrets.PANEL_ADS_KEY }}
+        run: python scripts/panel-ads/verify.py
+
+      - name: Commit si hubo cambios
+        run: |
+          git add -- campana-ads/datos.enc campana-ads/meta.json
+          if git diff --cached --quiet; then
+            echo "Sin cambios"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(panel-ads): datos cifrados del dia"
+          git push origin HEAD:AP-Claude
