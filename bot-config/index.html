@@ -596,7 +596,10 @@
     Object.keys(params || {}).forEach(function (k) { ruta += '&' + k + '=' + encodeURIComponent(params[k]); });
     var ctrl = null, t = null;
     var carrera = new Promise(function (_res, rej) {
-      t = setTimeout(function () { if (ctrl) { try { ctrl.abort(); } catch (e) {} } rej(new Error('tardo')); }, 15000);
+      // 25 s (23-ago): construir el panel puede pasar de 15 s y el abort dejaba
+      // al Dr. viendo la FOTO LOCAL vieja (sin los campos nuevos) con un toast
+      // fugaz. 25 s es el tope de la pasarela /gas.
+      t = setTimeout(function () { if (ctrl) { try { ctrl.abort(); } catch (e) {} } rej(new Error('tardo')); }, 25000);
     });
     try { ctrl = new AbortController(); } catch (e) { ctrl = null; }
     function pidePost(base) {
@@ -639,7 +642,8 @@
     } else { b.hidden = true; b.onclick = null; }
     a.classList.add('visible');
     clearTimeout(avisoTimer);
-    avisoTimer = setTimeout(ocultaAviso, accion ? 5200 : 2600);
+    // (23-ago) un aviso 'persistente' (datos viejos) se queda hasta que el Dr. actue.
+    if (accion && accion.persistente) { avisoTimer = null; } else { avisoTimer = setTimeout(ocultaAviso, accion ? 5200 : 2600); }
   }
   function ocultaAviso() {
     var a = $('aviso');
@@ -744,7 +748,15 @@
         $('fallo').style.display = 'block';
         puertaCargando(false);
       } else {
-        avisa('No hay conexión. Toque actualizar para reintentar.');
+        // (23-ago) Si lo que se ve es la FOTO LOCAL, decirlo con su edad y
+        // dejar el toast con boton de reintento — antes el aviso se iba solo
+        // y el Dr. creia que veia datos frescos.
+        var cacheViejo = leeCachePanel();
+        var minViejo = cacheViejo ? Math.round((Date.now() - cacheViejo.ts) / 60000) : 0;
+        avisa(cacheViejo
+          ? 'No pude actualizar: está viendo datos guardados de hace ' + minViejo + ' min.'
+          : 'No hay conexión. Toque actualizar para reintentar.',
+          { etiqueta: 'Reintentar', persistente: true, fn: function () { carga(); } });
         if (!estado.datos) { pinta(); }
       }
     }).then(function () {
