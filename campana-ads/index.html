@@ -6,241 +6,360 @@
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="referrer" content="no-referrer">
 <meta name="color-scheme" content="light dark">
-<title>Panel de campana | alveos</title>
+<title>Sus anuncios de Google | alveos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
 <style>
-/* Panel interno de Google Ads del Dr. William Lara. Sin GTM, sin analytics, sin CDN.
-   Tokens calcados del informe "Pulso de Ads" para que el Dr. reconozca el mismo lenguaje visual. */
+/* Panel de Google Ads del Dr. William Lara. Autocontenido: sin GTM, sin analytics, sin CDN.
+   Una sola familia (Plus Jakarta Sans), escala 1.2 en rem, numeros con tabular-nums.
+   El azul (electric) es SOLO para acciones y seleccion; los estados usan verde/ambar/rojo
+   siempre con icono SVG + palabra; las campanas tienen su propio color (C3 naranja = protagonista).
+
+   Contraste WCAG calculado (texto sobre --surface blanco / --bg):
+     ink #0f1b33 17.1 | ink-2 #3f4c68 8.6 | ink-3 #5b6883 5.6 | navy #0f2a5c 13.9
+     electric-ink #175bbd 6.4 (texto) ; electric #1f6fe0 4.8 (boton: blanco sobre electric 4.8)
+     good-ink #186e3c 6.3 | warn-ink #7a5212 6.9 | crit-ink #b3291f 6.5   (texto de estado, AA >= 4.5)
+     good #1f8a4c 4.4 | warn #b7791f 3.6 | crit #c9342b 5.2                 (iconos y rellenos, >= 3:1)
+     c1-ink #1d5fae 6.4 | c2-ink #0e7a52 5.4 | c3-ink #b8431a 5.5          (texto de campana)
+     c1 #2a78d6 4.1 | c2 #159c6c 3.3 (ajustado de #1baf7a, que daba 2.8) | c3 #e65c25 3.3 (graficos; #eb6834 daba 2.98 sobre --bg)
+     field #7f8ca6 3.2 sobre --bg / 3.4 sobre blanco (borde de inputs; --line-2 daba 1.7, invisible para baja vision)
+     texto de estado sobre su fondo: good 5.5, warn 6.1, crit 5.3
+   Oscuro (sobre --surface #141c2f): ink 15.1 | ink-2 10.2 | ink-3 6.7 | electric-ink 8.7 | good-ink 9.5
+     warn-ink 10.1 | crit-ink 8.4 | c1 6.0 | c2 7.3 | c3 7.0 | field 4.0 ; boton: ink oscuro sobre electric 7.6 */
 :root{
-  --bg:#f7f8fb; --surface:#ffffff; --surface-2:#eef1f7; --line:#dde3ee; --line-2:#c9d2e3;
-  --ink:#0f1b33; --ink-2:#44506b; --ink-3:#5f6b85;
-  --navy:#0f2a5c; --electric:#1f6fe0; --electric-soft:#dbe8fb;
-  --c1:#2a78d6; --c2:#1baf7a; --c3:#eb6834; --c3-soft:#fde3d8;
-  --good:#177a41; --warn:#8a5410; --crit:#b42a21; --good-bg:#e4f4ea; --warn-bg:#fbf0d9; --crit-bg:#fbe3e0;
-  --electric-t:#175bbd; --c1-t:#1f64b8; --c2-t:#0f7550; --c3-t:#c24b1a; --btn-ink:#ffffff;
-  --grid:#e6eaf2; --radius:12px; --focus:#1f6fe0;
+  --bg:#f5f7fb; --surface:#ffffff; --surface-2:#eaeff7; --line:#d7dfec; --line-2:#b9c6dc;
+  --ink:#0f1b33; --ink-2:#3f4c68; --ink-3:#5b6883;
+  --navy:#0f2a5c; --electric:#1f6fe0; --electric-ink:#175bbd; --electric-soft:#dbe8fb; --btn-ink:#ffffff;
+  --good:#1f8a4c; --warn:#b7791f; --crit:#c9342b;
+  --good-ink:#186e3c; --warn-ink:#7a5212; --crit-ink:#b3291f;
+  --good-bg:#e3f3e9; --warn-bg:#fbf0d9; --crit-bg:#fbe4e1;
+  --c1:#2a78d6; --c2:#159c6c; --c3:#e65c25; --c1-ink:#1d5fae; --c2-ink:#0e7a52; --c3-ink:#b8431a; --c3-soft:#fde3d8;
+  --grid:#e6eaf2; --focus:#1f6fe0; --field:#7f8ca6;
+  --t-2:.694rem; --t-1:.833rem; --t0:1rem; --t1:1.2rem; --t2:1.44rem; --t3:1.728rem; --t4:2.074rem; --t5:2.488rem;
+  --z-base:0; --z-sticky:10; --z-tip:20; --z-gate:30;
+  --r:14px;
 }
 @media (prefers-color-scheme:dark){:root{
-  --bg:#0d1220; --surface:#151c2e; --surface-2:#1c2540; --line:#2a3552; --line-2:#3a4766;
-  --ink:#eef2fa; --ink-2:#b8c2d9; --ink-3:#95a1bd;
-  --navy:#dbe8fb; --electric:#6aa6f5; --electric-soft:#1b2d52;
-  --c1:#4a92ea; --c2:#2bb684; --c3:#f0825a; --c3-soft:#3a251c;
-  --good:#4cc77f; --warn:#e5ac4a; --crit:#f07a70; --good-bg:#16301f; --warn-bg:#33270f; --crit-bg:#3a1a17;
-  --electric-t:#6aa6f5; --c1-t:#4a92ea; --c2-t:#2bb684; --c3-t:#f0825a; --btn-ink:#0d1220;
-  --grid:#222c45; --focus:#8dbcf7;
+  --bg:#0c1322; --surface:#141c2f; --surface-2:#1c2640; --line:#2a3652; --line-2:#3b4a6b;
+  --ink:#eef2fa; --ink-2:#c0c9dc; --ink-3:#97a3bd;
+  --navy:#dbe6fa; --electric:#6ea8f7; --electric-ink:#8fbcff; --electric-soft:#1b2d52; --btn-ink:#0c1322;
+  --good:#4cc77f; --warn:#e5ac4a; --crit:#f07a70;
+  --good-ink:#6fd69a; --warn-ink:#f0c06a; --crit-ink:#ff9c94;
+  --good-bg:#16301f; --warn-bg:#33270f; --crit-bg:#3a1a17;
+  --c1:#5a9cee; --c2:#35c08e; --c3:#f28a64; --c1-ink:#8ab8f5; --c2-ink:#5fd3a8; --c3-ink:#f7a083; --c3-soft:#3a251c;
+  --grid:#222c45; --focus:#8dbcf7; --field:#6b7b9c;
 }}
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:var(--t0);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
-a{color:var(--electric)}
-button,input,select{font:inherit;color:inherit}
-.wrap{max-width:1080px;margin:0 auto;padding:16px 14px 72px}
-@media (min-width:720px){.wrap{padding:28px 24px 90px}}
+a{color:var(--electric-ink)}
+button,input{font:inherit;color:inherit}
+b,strong{font-weight:700}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 16px 80px}
+@media (min-width:760px){.wrap{padding:32px 28px 96px}}
+.hide{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
 /* --- cabecera --- */
-header.top{display:grid;gap:8px;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:18px}
-.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
-h1{font-size:clamp(24px,5vw,36px);line-height:1.08;margin:2px 0 4px;font-weight:800;letter-spacing:-.02em;color:var(--navy);text-wrap:balance}
-.meta{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;color:var(--ink-3);line-height:1.6}
+header.top{display:grid;gap:10px;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:10px}
+.marca{font-weight:800;color:var(--navy);letter-spacing:-.01em;font-size:var(--t0)}
+.marca span{color:var(--ink-3);font-weight:600;margin-left:8px}
+h1{font-size:clamp(1.6rem,6vw,var(--t4));line-height:1.08;margin:0;font-weight:800;letter-spacing:-.025em;color:var(--navy);text-wrap:balance}
+.sub{margin:0;color:var(--ink-2);font-size:var(--t-1)}
 .acciones{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.btn{background:var(--electric);color:var(--btn-ink);border:0;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer;min-height:44px}
+.btn{background:var(--electric);color:var(--btn-ink);border:0;border-radius:10px;padding:10px 16px;font-weight:700;cursor:pointer;min-height:44px;min-width:44px}
 .btn.sec{background:var(--surface-2);color:var(--ink)}
-.btn.sm{padding:7px 12px;min-height:36px;font-size:13px}
 .btn:disabled{opacity:.55;cursor:default}
-/* --- secciones --- */
-h2{font-size:20px;margin:34px 0 6px;letter-spacing:-.01em;font-weight:800;color:var(--navy);scroll-margin-top:16px}
-h2 .n{display:inline-block;min-width:26px;color:var(--ink-3);font-weight:600;font-family:"IBM Plex Mono",monospace;font-size:12px;vertical-align:middle;margin-right:4px}
-h3{font-size:15.5px;margin:16px 0 8px;font-weight:700}
-p{max-width:72ch;margin:6px 0}
-.lead{font-size:15.5px;color:var(--ink-2);margin:0 0 12px}
-.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}
-@media (min-width:720px){.tiles{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}}
-.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px 12px 12px 16px;position:relative;overflow:hidden;min-width:0}
-.tile .k{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.07em;font-weight:700}
-.tile .v{font-size:clamp(22px,6vw,30px);font-weight:800;letter-spacing:-.02em;margin:2px 0;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
-.tile .d{font-size:12px;color:var(--ink-2);overflow-wrap:anywhere}
-.tile .stripe{position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--electric)}
-.tile.good .stripe{background:var(--good)} .tile.warn .stripe{background:var(--warn)} .tile.crit .stripe{background:var(--crit)}
-.tile.wide{grid-column:1/-1}
-.pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;vertical-align:middle;white-space:nowrap}
-.pill svg{width:13px;height:13px;flex:none}
-.pill.good{background:var(--good-bg);color:var(--good)} .pill.warn{background:var(--warn-bg);color:var(--warn)} .pill.crit{background:var(--crit-bg);color:var(--crit)} .pill.info{background:var(--electric-soft);color:var(--electric-t)} .pill.mute{background:var(--surface-2);color:var(--ink-2)}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin:12px 0;min-width:0}
-.card.c3{background:linear-gradient(150deg,var(--c3-soft),var(--surface) 55%)}
-.grid2{display:grid;grid-template-columns:1fr;gap:12px}
-@media (min-width:820px){.grid2{grid-template-columns:1fr 1fr}}
-.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px}
-table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums;min-width:520px}
-table.narrow{min-width:0}
-th{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);text-align:left;padding:7px 8px;border-bottom:1px solid var(--line-2);font-weight:700;white-space:nowrap}
-td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
-td.num,th.num{text-align:right;white-space:nowrap}
-tr:last-child td{border-bottom:none}
+.btn-link{background:none;border:0;padding:10px 0;color:var(--electric-ink);font-weight:700;cursor:pointer;min-height:44px;text-decoration:underline;text-underline-offset:3px}
+
+/* --- secciones: separadas por espacio y titulos en frase, no por cajas --- */
+.sec{margin:52px 0 0}
+.sec:first-child{margin-top:28px}
+.sec h2{font-size:clamp(1.35rem,4.5vw,var(--t3));margin:0 0 6px;letter-spacing:-.02em;font-weight:800;color:var(--navy);line-height:1.15;text-wrap:balance;scroll-margin-top:16px}
+.sec .intro{margin:0 0 18px;color:var(--ink-2);max-width:62ch}
+h3{font-size:var(--t1);margin:18px 0 6px;font-weight:700;line-height:1.25}
+p{margin:6px 0;max-width:70ch}
+.nota{font-size:var(--t-1);color:var(--ink-3);margin:8px 0 0;max-width:none}
+.aviso{font-size:var(--t-1);color:var(--warn-ink);margin:8px 0 0}
+
+/* --- estados: icono + palabra, nunca solo color --- */
+.est{display:inline-flex;align-items:center;gap:5px;font-size:var(--t-1);font-weight:700;padding:3px 10px;border-radius:999px;white-space:nowrap;vertical-align:middle}
+.est svg{width:14px;height:14px;flex:none}
+.est-good{background:var(--good-bg);color:var(--good-ink)} .est-good svg{color:var(--good)}
+.est-warn{background:var(--warn-bg);color:var(--warn-ink)} .est-warn svg{color:var(--warn)}
+.est-crit{background:var(--crit-bg);color:var(--crit-ink)} .est-crit svg{color:var(--crit)}
+.est-info{background:var(--electric-soft);color:var(--electric-ink)}
+.est-mute{background:var(--surface-2);color:var(--ink-2)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:var(--surface-2);font-size:var(--t-2);font-weight:600;color:var(--ink-2);min-height:28px;max-width:100%;line-height:1.3}
+.chip svg{width:12px;height:12px;flex:none;color:var(--ink-3)}
+.chip.ok svg{color:var(--good)} .chip.mal svg{color:var(--warn)}
+.tag{display:inline-block;font-size:var(--t-2);font-weight:700;padding:2px 8px;border-radius:6px;background:var(--surface-2);color:var(--ink-2);white-space:nowrap}
+.tag.dr{background:var(--electric-soft);color:var(--electric-ink)}
+.sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:8px;vertical-align:-1px;background:var(--line-2)}
+.sw.C1{background:var(--c1)} .sw.C2{background:var(--c2)} .sw.C3{background:var(--c3)}
+.cC1{color:var(--c1-ink)} .cC2{color:var(--c2-ink)} .cC3{color:var(--c3-ink)}
+
+/* --- esqueletos mientras carga la capa viva (sin spinners) --- */
+.sk{display:inline-block;background:var(--surface-2);border-radius:6px;min-width:3.5em;height:1em;vertical-align:middle;animation:sk 1.3s ease-in-out infinite}
+.sk.ancho{min-width:8em}
+@keyframes sk{0%,100%{opacity:.55}50%{opacity:1}}
+.sk-svg{animation:sk 1.3s ease-in-out infinite}
+
+/* --- 1. Como va hoy --- */
+.veredicto{font-size:clamp(1.2rem,4.2vw,var(--t2));font-weight:700;line-height:1.3;margin:0;max-width:34ch;text-wrap:balance}
+.cifras{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 18px;margin:24px 0 14px}
+.cifra .n{font-size:clamp(1.45rem,6.4vw,var(--t5));font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1;overflow-wrap:anywhere}
+.cifra .l{font-size:var(--t-1);color:var(--ink-2);margin-top:6px;line-height:1.3}
+.cifra .d{font-size:var(--t-2);color:var(--ink-3);margin-top:4px}
+.vivo{display:grid;gap:8px;margin-top:8px;padding-top:12px;border-top:1px solid var(--line)}
+.vivo .fila{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:var(--t-1);color:var(--ink-2)}
+.vivo .fila b{color:var(--ink);font-variant-numeric:tabular-nums}
+.vivo form{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.vivo input[type=password]{flex:1 1 160px;padding:10px 12px;border:1px solid var(--field);border-radius:10px;background:var(--surface);min-height:44px}
+
+/* --- 2. Lo que importa esta semana: una grande y dos chicas, no tres iguales --- */
+.mensajes{display:grid;gap:14px;grid-template-columns:1fr}
+@media (min-width:760px){.mensajes{grid-template-columns:1.55fr 1fr}.mensajes .msg.grande{grid-row:span 2}}
+.msg{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;min-width:0}
+.msg.grande{padding:22px 24px}
+.msg .cab{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.msg h3{margin:10px 0 6px;font-size:var(--t1);line-height:1.3}
+.msg.grande h3{font-size:clamp(1.2rem,4vw,var(--t2))}
+.msg p{margin:6px 0 0;color:var(--ink-2);font-size:var(--t-1);max-width:none}
+.msg p.hacer{color:var(--ink);font-weight:600;margin-top:10px}
+.msg.grande p{font-size:var(--t0)}
+
+/* --- 3. embudo --- */
+.embudo-host{margin:8px 0 0}
 .chart{width:100%;height:auto;display:block}
 .chart text{font-family:"Plus Jakarta Sans",system-ui,sans-serif;fill:var(--ink-2);font-size:11px}
 .chart .grid line{stroke:var(--grid);stroke-width:1}
 .chart .lbl{fill:var(--ink);font-weight:700;font-size:11.5px}
 .chart .muted{fill:var(--ink-3)}
-.legend{display:flex;gap:10px 14px;flex-wrap:wrap;font-size:12px;color:var(--ink-2);margin:6px 0 0}
+.chart .big{fill:var(--ink);font-weight:800;font-size:22px;letter-spacing:-.02em}
+.chart .pasos{fill:var(--ink-2);font-size:11.5px;font-weight:600}
+.chart .pct{fill:var(--ink);font-weight:700;font-size:12px}
+.chart .banda{fill:var(--electric-soft)} .chart .banda.c3{fill:var(--c3-soft)}
+.legend{display:flex;gap:10px 14px;flex-wrap:wrap;font-size:var(--t-1);color:var(--ink-2);margin:8px 0 0}
 .legend span i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
-.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);padding:6px 9px;border-radius:6px;font-size:12px;z-index:9;opacity:0;transition:opacity .08s;white-space:nowrap;font-variant-numeric:tabular-nums;max-width:90vw}
-.cap{font-size:12px;color:var(--ink-3);margin:6px 0 0;max-width:none}
-.ep{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-3);background:var(--surface-2);padding:1px 6px;border-radius:4px;white-space:nowrap}
-.sem{display:grid;gap:8px}
-.sem .row{display:grid;grid-template-columns:1fr;gap:6px;padding:10px 0;border-bottom:1px solid var(--line);align-items:start}
-.sem .row:last-child{border-bottom:0}
-@media (min-width:600px){.sem .row{grid-template-columns:130px 1fr}}
-ul.tight{margin:6px 0;padding-left:20px} ul.tight li{margin:4px 0;overflow-wrap:anywhere}
-.kvs{display:grid;grid-template-columns:1fr;gap:8px 16px;font-size:13.5px}
-@media (min-width:600px){.kvs{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}}
-.kvs div b{display:block;font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em}
-details{margin:8px 0;border:1px solid var(--line);border-radius:10px;padding:0 12px;background:var(--surface)}
-details[open]{padding-bottom:10px}
-summary{cursor:pointer;font-weight:700;color:var(--electric);padding:11px 0;list-style:none;display:flex;justify-content:space-between;align-items:center;min-height:44px}
-summary::-webkit-details-marker{display:none}
-summary::after{content:"+";font-family:"IBM Plex Mono",monospace;color:var(--ink-3)}
-details[open] summary::after{content:"-"}
-code{font-family:"IBM Plex Mono",monospace;font-size:12px;background:var(--surface-2);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
-footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-3)}
-footer p{max-width:none}
-/* La identidad de campana va en una muestra de color junto al titulo (la misma de las leyendas de las graficas): el color sigue a la entidad, sin franjas laterales. */
-.campana .cab h3::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:8px;vertical-align:-1px;background:var(--line-2)}
-.campana.C1 .cab h3::before{background:var(--c1)} .campana.C2 .cab h3::before{background:var(--c2)} .campana.C3 .cab h3::before{background:var(--c3)}
-.campana .cab{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
-.campana .cab h3{margin:0;font-size:17px}
-.sub-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:10px 0}
-.sub-tiles div{background:var(--surface-2);border-radius:8px;padding:8px 10px;min-width:0}
-.sub-tiles b{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3)}
-.sub-tiles span{font-size:16px;font-weight:800;font-variant-numeric:tabular-nums;overflow-wrap:anywhere;hyphens:auto}
-.sub-tiles small{display:block;font-size:11px;color:var(--ink-2)}
-.delta{font-size:11.5px;font-weight:700;margin-left:4px}
-.delta.up{color:var(--good)} .delta.down{color:var(--crit)}
-/* --- gate --- */
-#gate{max-width:440px;margin:8vh auto 0;padding:0 4px}
-#gate .card{padding:20px}
-#gate label{display:block;font-weight:700;font-size:13px;margin:10px 0 6px}
-#gate input[type=password],#gate input[type=text],#vivo-form input{width:100%;padding:12px 14px;border:1px solid var(--line-2);border-radius:10px;background:var(--surface);min-height:44px}
-#gate .err{color:var(--crit);font-weight:700;margin:8px 0 0;min-height:1.2em}
-#gate .meta{margin-top:10px}
-.ico{width:20px;height:20px;vertical-align:-4px}
-/* --- simulador --- */
-.sim{display:grid;gap:12px}
-.sim .fila{background:var(--surface-2);border-radius:10px;padding:12px}
-.sim .fila h4{margin:0 0 4px;font-size:14px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
-.sim input[type=range]{width:100%;accent-color:var(--electric);height:28px}
-.sim .out{font-size:13.5px;margin:6px 0 0;max-width:none}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);padding:6px 9px;border-radius:6px;font-size:var(--t-1);z-index:var(--z-tip);opacity:0;transition:opacity .08s;white-space:normal;font-variant-numeric:tabular-nums;max-width:min(90vw,320px)}
+
+/* --- 4. campanas: lista editorial, una fila por campana --- */
+.camp{display:grid;gap:8px 20px;grid-template-columns:1fr;padding:18px 0;border-top:1px solid var(--line)}
+.camp:last-of-type{border-bottom:1px solid var(--line)}
+@media (min-width:760px){.camp{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 160px;align-items:center}}
+.camp .cab{display:flex;gap:8px 12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.camp .nom{font-size:var(--t1);font-weight:700;margin:0;line-height:1.25}
+.camp .vende{color:var(--ink-3);font-size:var(--t-1);margin:2px 0 0}
+.camp .porque{font-size:var(--t-1);color:var(--ink-2);margin:6px 0 0}
+.camp .datos{font-size:var(--t-1);color:var(--ink-2);display:grid;gap:4px}
+.camp .datos b{color:var(--ink);font-variant-numeric:tabular-nums}
+.camp .spark{display:grid;gap:2px;font-size:var(--t-2);color:var(--ink-3)}
+.spark svg{width:100%;max-width:200px;height:40px;display:block}
+
+/* --- 5. poligrafia: tres hechos sin tarjetas --- */
+.hechos{display:grid;gap:22px;margin-top:6px}
+@media (min-width:760px){.hechos{grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}}
+.hecho h3{margin:0 0 6px}
+.hecho .n{font-size:var(--t3);font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.05}
+.hecho p{font-size:var(--t-1);color:var(--ink-2);margin:6px 0 0;max-width:none}
+.accion{margin-top:22px;padding:16px 18px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line)}
+.accion p{margin:4px 0 0}
+
+/* --- 6. simulador --- */
+.sim .fila{padding:16px 0;border-top:1px solid var(--line)}
+.sim .fila:last-child{border-bottom:1px solid var(--line)}
+.sim h3{margin:0 0 4px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.sim label{display:block;font-size:var(--t-1);color:var(--ink-2)}
+.sim input[type=range]{width:100%;accent-color:var(--electric);height:44px;margin:0;cursor:pointer}
+.sim .out{margin:4px 0 0;max-width:none}
 .sim .out b{font-variant-numeric:tabular-nums}
-.band{font-size:12px;color:var(--ink-3)}
-.toc{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0}
-.toc a{font-size:12px;text-decoration:none;background:var(--surface-2);color:var(--ink-2);padding:5px 10px;border-radius:999px;font-weight:600}
-.estado{font-size:12.5px;color:var(--ink-2);margin:4px 0}
-.hide{display:none!important}
+.sim .band{font-size:var(--t-1);color:var(--ink-3);margin:4px 0 0;max-width:none}
+
+/* --- 7. decidir --- */
+.listas{display:grid;gap:24px}
+@media (min-width:760px){.listas{grid-template-columns:1fr 1fr;gap:36px}}
+.dec{padding:12px 0;border-top:1px solid var(--line)}
+.dec h4{margin:0;font-size:var(--t0);line-height:1.3}
+.dec p{margin:4px 0 0;font-size:var(--t-1);color:var(--ink-2);max-width:none}
+.dec details{margin-top:2px}
+.dec summary{cursor:pointer;list-style:none;color:var(--electric-ink);font-weight:700;font-size:var(--t-1);min-height:44px;display:inline-flex;align-items:center;padding-right:8px}
+.dec summary::-webkit-details-marker{display:none}
+.dec details[open] summary{color:var(--ink-3)}
+.dec .cuerpo{font-size:var(--t-1);color:var(--ink-2);display:grid;gap:6px;padding:0 0 8px}
+.dec .cuerpo b{color:var(--ink)}
+
+/* --- 8. apendice --- */
+details.ap{border-top:1px solid var(--line);padding:0}
+details.ap:last-of-type{border-bottom:1px solid var(--line)}
+details.ap summary{cursor:pointer;font-weight:700;padding:14px 0;list-style:none;display:flex;justify-content:space-between;align-items:center;min-height:48px;gap:12px}
+details.ap summary::-webkit-details-marker{display:none}
+details.ap summary::after{content:"+";color:var(--ink-3);font-weight:600;font-size:var(--t1);flex:none}
+details.ap[open] summary::after{content:"\2212"}
+details.ap .cuerpo{padding:0 0 18px}
+.grid2{display:grid;grid-template-columns:1fr;gap:18px}
+@media (min-width:820px){.grid2{grid-template-columns:1fr 1fr}}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:var(--t-1);font-variant-numeric:tabular-nums;min-width:520px}
+table.narrow{min-width:0}
+th{font-size:var(--t-2);color:var(--ink-3);text-align:left;padding:7px 8px;border-bottom:1px solid var(--line-2);font-weight:700;white-space:nowrap}
+td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+td.r,th.r{text-align:right;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+.kvs{display:grid;grid-template-columns:1fr;gap:10px 16px;font-size:var(--t-1)}
+@media (min-width:600px){.kvs{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}}
+.kvs div b{display:block;font-size:var(--t-2);color:var(--ink-3)}
+ul.tight{margin:6px 0;padding-left:20px} ul.tight li{margin:4px 0;overflow-wrap:anywhere}
+.ep{font-size:var(--t-2);color:var(--ink-3);background:var(--surface-2);padding:1px 6px;border-radius:4px;white-space:nowrap;font-weight:600}
+dl{margin:0} dt{font-weight:700;margin-top:10px} dd{margin:2px 0 0;color:var(--ink-2);font-size:var(--t-1)}
+
+/* --- pie --- */
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:var(--t-1);color:var(--ink-3)}
+footer p{max-width:none}
+footer .capas{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+
+/* --- gate --- */
+#gate{max-width:460px;margin:6vh auto 0;position:relative;z-index:var(--z-gate)}
+#gate .caja{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+#gate label{display:block;font-weight:700;font-size:var(--t-1);margin:12px 0 6px}
+#gate input[type=password]{width:100%;padding:12px 14px;border:1px solid var(--field);border-radius:10px;background:var(--surface);min-height:44px}
+#demo input[type=file]{display:block;width:100%;min-height:44px;padding:10px 0}
+#gate .err{color:var(--crit-ink);font-weight:700;margin:8px 0 0;min-height:1.2em}
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
-@media print{.acciones,.toc,.tip{display:none} .card{break-inside:avoid}}
+@media print{.acciones,.tip{display:none}}
 </style>
 </head>
 <body>
 <div class="wrap">
 <header class="top">
   <div>
-    <div class="eyebrow">alveos.mx · Google Ads 6354525352 · uso interno</div>
-    <h1>Panel de campana</h1>
-    <div class="meta" id="meta-linea">Cargando la fecha de los datos...</div>
+    <div class="marca">alveos<span>uso interno del Dr. William Lara</span></div>
+    <h1>Sus anuncios de Google</h1>
+    <p class="sub" id="meta-linea">Cargando la fecha de los datos...</p>
   </div>
   <div class="acciones hide" id="acciones">
-    <button type="button" class="btn sec sm" id="btn-recargar">Recargar datos</button>
-    <button type="button" class="btn sec sm" id="btn-olvidar">Olvidar clave</button>
+    <button type="button" class="btn sec" id="btn-actualizar">Actualizar</button>
+    <button type="button" class="btn-link" id="btn-olvidar">Salir y olvidar la clave</button>
   </div>
-  <nav class="toc hide" id="toc" aria-label="Secciones"></nav>
 </header>
 
 <section id="gate" aria-labelledby="gate-t">
-  <div class="card">
-    <h2 id="gate-t" style="margin:0 0 6px;font-size:19px">Acceso del Dr. William Lara</h2>
-    <p class="lead" style="font-size:14px">Los datos de este panel viajan cifrados. La clave nunca sale de su telefono: con ella el navegador descifra el archivo aqui mismo.</p>
+  <div class="caja">
+    <h2 id="gate-t" style="margin:0 0 6px;font-size:var(--t1)">Entrar al panel</h2>
+    <p class="sub">Los datos viajan cifrados. Con su clave, su telefono o computadora los descifra aqui mismo; la clave solo se manda, cifrada en transito, a su propio servidor para traer lo de hoy. Nunca a Google ni a terceros.</p>
     <form id="gate-form" autocomplete="off">
       <label for="clave">Clave del panel</label>
       <input type="password" id="clave" autocomplete="current-password" inputmode="text" required>
-      <div class="err" id="gate-err" role="alert" aria-live="polite"></div>
+      <div class="err" id="gate-err" role="alert"></div>
       <div class="acciones" style="margin-top:12px">
         <button type="submit" class="btn" id="btn-entrar">Entrar</button>
-        <button type="button" class="btn sec hide" id="btn-olvidar-gate">Olvidar clave guardada</button>
+        <button type="button" class="btn-link hide" id="btn-olvidar-gate">Olvidar la clave guardada</button>
       </div>
     </form>
     <div id="demo" class="hide" style="margin-top:14px;border-top:1px dashed var(--line-2);padding-top:12px">
       <label for="demo-file">Modo de prueba: cargar un datos.json sin cifrar</label>
       <input type="file" id="demo-file" accept="application/json,.json">
     </div>
-    <div class="meta" id="gate-meta"></div>
+    <p class="nota" id="gate-meta"></p>
   </div>
 </section>
 
-<main id="app" class="hide"></main>
+<main id="app" class="hide">
+  <section class="sec" id="s-hoy" aria-label="Como va hoy"></section>
+  <section class="sec" id="s-semana" aria-label="Lo que importa esta semana"></section>
+  <section class="sec" id="s-embudo" aria-label="Del anuncio al paciente"></section>
+  <section class="sec" id="s-campanas" aria-label="Sus tres campanas"></section>
+  <section class="sec" id="s-poli" aria-label="Poligrafia, del clic al estudio"></section>
+  <section class="sec" id="s-sim" aria-label="Si cambiara el presupuesto"></section>
+  <section class="sec" id="s-decidir" aria-label="Que decidir y que hago yo"></section>
+  <section class="sec" id="s-detalles" aria-label="Detalles para curiosos"></section>
+</main>
 <footer id="foot" class="hide"></footer>
 </div>
 <div class="tip" id="tip" aria-hidden="true"></div>
-
 <script>
 (function(){
 'use strict';
 /* ============================================================
    CONSTANTES Y UTILERIAS
    ============================================================ */
-var LS_KEY = 'panel_ads_key';      // clave del panel (descifra datos.enc)
-var LS_BOT = 'panel_bot_key';      // misma clave que /bot-config (capa viva)
-// Capa VIVA: el MISMO motor (Apps Script) que consume /bot-config. Un motor, dos puertas.
-// Contrato: POST text/plain a url + '?panel=1' con cuerpo JSON {key}. Respaldo: /exec directo.
-var VIVO = {
+var LS_KEY = 'panel_ads_key';      // clave del panel: descifra datos.enc Y autoriza al Worker vivo (misma clave)
+var LS_BOT = 'panel_bot_key';      // clave del bot (la deja /bot-config en este mismo origen); respaldo: visor_bot_key
+// Capa VIVA de Ads: Worker propio, separado del webhook del bot. POST JSON {key}. Se manda como text/plain
+// a proposito: evita el preflight OPTIONS y el Worker parsea el cuerpo igual (request.json()).
+var VIVO_ADS = {url:'https://alveos-ads-vivo.alveos-neumo.workers.dev/ads', ms:20000};
+// Capa VIVA del consultorio: el MISMO motor (Apps Script) que consume /bot-config. Un motor, dos puertas.
+// Contrato: POST text/plain a url + '?panel=1' con cuerpo JSON {key, solo:'agregados'}. Respaldo: /exec directo.
+var VIVO_BOT = {
   url: 'https://wa-webhook-alveos.alveos-neumo.workers.dev/gas',
   respaldo: 'https://script.google.com/macros/s/AKfycbwXhrEW73jRoPajdNnATA6q7Rrnc18n0yzMG07J5QaJvqKDhuHkDQEpm8qumH08UCFeEA/exec',
-  accion: 'panel'
+  accion: 'panel', ms: 15000, msRespaldo: 20000
 };
-var COL = {C1:'var(--c1)', C2:'var(--c2)', C3:'var(--c3)'};           // barras y lineas
-var COLT = {C1:'var(--c1-t)', C2:'var(--c2-t)', C3:'var(--c3-t)'};   // texto (contraste AA)
-var NAME = {C1:'C1 Consulta', C2:'C2 Espirometria / Fumar', C3:'C3 Poligrafia'};
-var CAMPS = ['C1','C2','C3'];
+var FRENO_MS = 60000;              // el boton Actualizar no repite antes de 60 s (cuota de Apps Script y del Worker)
+var COL = {C1:'var(--c1)', C2:'var(--c2)', C3:'var(--c3)'};
+var NOMBRE = {C1:'Consulta', C2:'Espirometria y dejar de fumar', C3:'Poligrafia (estudio del sueno en casa)'};
+var CORTO = {C1:'Consulta', C2:'Espirometria', C3:'Poligrafia'};
+var VENDE = {C1:'Consulta de neumologia en el consultorio', C2:'Prueba de pulmon y programa para dejar de fumar', C3:'Estudio del sueno que el paciente se hace en su casa'};
+var CAMPS = ['C1', 'C2', 'C3'];
 var MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+var MESES_L = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 var $ = function(s){ return document.querySelector(s); };
 var isNum = function(n){ return typeof n === 'number' && isFinite(n); };
-var fmt = function(n, d){ return isNum(n) ? n.toLocaleString('es-MX', {maximumFractionDigits: d||0, minimumFractionDigits: d||0}) : 'n/d'; };
-var money = function(n){ return isNum(n) ? '$' + fmt(n) : 'n/d'; };
-var pct = function(n, d){ return isNum(n) ? (n*100).toFixed(d||0) + '%' : 'n/d'; };
+var fmt = function(n, d){ return isNum(n) ? n.toLocaleString('es-MX', {maximumFractionDigits: d||0, minimumFractionDigits: d||0}) : 'sin dato'; };
+var money = function(n){ return isNum(n) ? '$' + fmt(n) : 'sin dato'; };
+var pct = function(n, d){ return isNum(n) ? (n*100).toFixed(d||0) + '%' : 'sin dato'; };
 var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
-var sum = function(arr, k){ return (arr||[]).reduce(function(a, x){ return a + (isNum(x[k]) ? x[k] : 0); }, 0); };
 var div = function(a, b){ return (isNum(a) && isNum(b) && b > 0) ? a/b : null; };
 var plural = function(n, s, p){ return n === 1 ? s : p; };
-function fecha(iso){ if(!iso) return 'n/d'; var m = String(iso).match(/(\d{4})-(\d{2})-(\d{2})/); if(!m) return esc(iso); return (+m[3]) + '-' + MESES[+m[2]-1]; }
-function fechaLarga(iso){ if(!iso) return 'n/d';
-  if (/T\d{2}:\d{2}/.test(String(iso))){ try { var d = new Date(iso); if (!isNaN(d)) return d.toLocaleString('es-MX', {timeZone:'America/Mexico_City', day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit'}) + ' CDMX'; } catch (e) {} }
-  var m = String(iso).match(/(\d{4})-(\d{2})-(\d{2})(?:[T ](\d{2}):(\d{2}))?/); if(!m) return esc(iso); return (+m[3]) + ' de ' + ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'][+m[2]-1] + ' de ' + m[1] + (m[4] ? ' ' + m[4] + ':' + m[5] : ''); }
+var nombreDe = function(c){ return NOMBRE[c] || ((N.camp && N.camp[c] && N.camp[c].nombre) || c); };
+var cortoDe = function(c){ return CORTO[c] || c; };
+var colDe = function(c){ return COL[c] || 'var(--ink-3)'; };
+function fecha(iso){ if(!iso) return 'sin fecha'; var m = String(iso).match(/(\d{4})-(\d{2})-(\d{2})/); if(!m) return esc(iso); return (+m[3]) + '-' + MESES[+m[2]-1]; }
+function fechaLarga(iso){ if(!iso) return 'sin fecha';
+  if (/T\d{2}:\d{2}/.test(String(iso))){ try { var d = new Date(iso); if (!isNaN(d)) return d.toLocaleString('es-MX', {timeZone:'America/Mexico_City', day:'numeric', month:'long', hour:'2-digit', minute:'2-digit'}); } catch (e) {} }
+  var m = String(iso).match(/(\d{4})-(\d{2})-(\d{2})(?:[T ](\d{2}):(\d{2}))?/); if(!m) return esc(iso); return (+m[3]) + ' de ' + MESES_L[+m[2]-1] + (m[4] ? ' ' + m[4] + ':' + m[5] : ''); }
 function addDias(iso, n){ var d = new Date(iso + 'T12:00:00'); d.setDate(d.getDate() + n); return d.toISOString().slice(0,10); }
+function lunesDe(iso){ var d = new Date(iso + 'T12:00:00'); var wd = (d.getDay() + 6) % 7; d.setDate(d.getDate() - wd); return d.toISOString().slice(0, 10); }
+function hoyCdmx(){ try { return new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'}); } catch (e) { return new Date().toISOString().slice(0, 10); } }
+function haceMin(iso){ if (!iso) return null; var t = new Date(iso).getTime(); if (isNaN(t)) return null; return Math.max(0, Math.round((Date.now() - t) / 60000)); }
+function hace(iso){ var m = haceMin(iso); if (m === null) return ''; if (m < 1) return 'ahora mismo'; if (m < 60) return 'hace ' + m + ' min'; var h = Math.round(m / 60); return 'hace ' + h + ' ' + plural(h, 'hora', 'horas'); }
 // Normaliza "camp": acepta C1/C2/C3 o el nombre de la campana (la API lo trunca).
-function campCode(x){ var s = String(x||''); if(/^C[123]$/.test(s)) return s; if(/consulta/i.test(s)) return 'C1'; if(/espirom|fumar/i.test(s)) return 'C2'; if(/poligraf|sue/i.test(s)) return 'C3'; return null; }
+function campCode(x){ var s = String(x||''); if(/^[CX]\w+$/.test(s) && (N.camp ? N.camp[s] : true)) return s; if(/^C[123]$/.test(s)) return s; if(/consulta/i.test(s)) return 'C1'; if(/espirom|fumar/i.test(s)) return 'C2'; if(/poligraf|sue/i.test(s)) return 'C3'; return null; }
+function sinMarca(t){ return String(t == null ? '' : t).replace(/\s*\[[^\]]*\]/g, '').replace(/\s+/g, ' ').trim(); }
+function primera(t){ var s = sinMarca(t); var m = s.match(/^(.*?[.!?])(\s|$)/); return m ? m[1] : s; }
 function marca(m){ return m ? ' <span class="ep">' + esc(m) + '</span>' : ''; }
 var ICONS = {
   good: '<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 10.5l2.5 2.5L14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   warn: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3l8 14H2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 8v4M10 14.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
   crit: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 2h6l5 5v6l-5 5H7l-5-5V7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M7.5 7.5l5 5M12.5 7.5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
   info: '<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 9v5M10 6v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
-  mute: '<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 10h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
+  mute: '<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 10h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+  reloj: '<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 6v4l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+  cal: '<svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="4" width="14" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 8h14M7 2v4M13 2v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+  punto: '<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="5" fill="currentColor"/></svg>'
 };
-var ETQ = {good:'sano', warn:'atencion', crit:'critico', info:'nota', mute:'sin dato'};
-function pill(nivel, texto){ nivel = ICONS[nivel] ? nivel : 'mute'; return '<span class="pill ' + nivel + '">' + ICONS[nivel] + esc(texto || ETQ[nivel]) + '</span>'; }
+var PALABRA = {good:'Sana', warn:'Atencion', crit:'Urgente', info:'Nota', mute:'Pausada'};
+function estado(nivel, texto){ nivel = ICONS[nivel] ? nivel : 'mute'; return '<span class="est est-' + nivel + '">' + ICONS[nivel] + esc(texto || PALABRA[nivel]) + '</span>'; }
+function chip(nivel, icono, texto){ return '<span class="chip ' + (nivel || '') + '">' + (ICONS[icono] || '') + esc(texto) + '</span>'; }
+function tagQuien(q){ var dr = /dr|usted|doctor/i.test(String(q||'')); return '<span class="tag' + (dr ? ' dr' : '') + '">' + (dr ? 'Decide usted' : 'Lo hago yo') + '</span>'; }
 var tip = $('#tip');
 function showTip(e, html){ tip.innerHTML = html; tip.style.opacity = 1; var x = Math.min(e.clientX + 12, window.innerWidth - tip.offsetWidth - 8); tip.style.left = Math.max(4, x) + 'px'; tip.style.top = (e.clientY - 36) + 'px'; }
 function hideTip(){ tip.style.opacity = 0; }
 function bindTip(el, html){ el.addEventListener('pointermove', function(e){ showTip(e, html); }); el.addEventListener('pointerleave', hideTip); el.addEventListener('pointerdown', function(e){ showTip(e, html); }); }
 
 /* ============================================================
-   GRAFICAS SVG (helpers del informe "Pulso de Ads", adaptados a ancho fluido)
-   El ancho W viene del contenedor real: en 375 px el texto sigue legible.
+   GRAFICAS SVG (ancho fluido: W viene del contenedor real)
    ============================================================ */
 function svgEl(tag, attrs, parent){ var e = document.createElementNS('http://www.w3.org/2000/svg', tag); for (var k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
 function anchoDe(host){ return Math.max(300, Math.min(900, host.clientWidth || 360)); }
 function lineChart(opts, host){
-  var W = anchoDe(host), Hh = opts.height || (W < 480 ? 200 : 240), m = {l:44, r:34, t:12, b:26};
+  var W = anchoDe(host), Hh = opts.height || (W < 480 ? 200 : 240);
+  // El margen derecho crece con la etiqueta final mas larga ('Espirometria' no cabe en 34 px).
+  var maxLbl = opts.series.reduce(function(a, s){ return Math.max(a, String(s.short || '').length); }, 0), m = {l:44, r:Math.max(34, 10 + Math.round(maxLbl * 6.4)), t:12, b:26};
   var svg = svgEl('svg', {viewBox:'0 0 ' + W + ' ' + Hh, 'class':'chart', role:'img', 'aria-label':opts.aria||''});
   var n = opts.labels.length, ys = [];
   opts.series.forEach(function(s){ s.values.forEach(function(v){ if (v && isNum(v.y)) ys.push(v.y); }); });
@@ -267,7 +386,6 @@ function lineChart(opts, host){
     s.values.forEach(function(p, i){ if (!p || !isNum(p.y)) return; var c = svgEl('circle', {cx:x(i), cy:y(p.y), r:(i === lastI ? 4 : 3), fill:s.color, stroke:'var(--surface)', 'stroke-width':2}, svg); bindTip(c, '<b>' + esc(s.name) + '</b> · ' + esc(opts.labels[i]) + '<br>' + (opts.yfmt||fmt)(p.y) + (p.extra ? '<br>' + p.extra : '')); });
     if (last && s.short) finales.push({x:x(lastI)+6, y:y(last.y)+4, t:s.short});
   });
-  // Etiquetas finales separadas al menos 12 px para que C2 y C3 no se pisen.
   finales.sort(function(a, b){ return a.y - b.y; });
   for (var k = 1; k < finales.length; k++) if (finales[k].y - finales[k-1].y < 12) finales[k].y = finales[k-1].y + 12;
   finales.forEach(function(f){ var tt = svgEl('text', {x:f.x, y:f.y, 'class':'lbl'}, svg); tt.textContent = f.t; });
@@ -301,12 +419,69 @@ function stackedBars(opts, host){
   if (opts.marks) opts.marks.forEach(function(mk){ var i = opts.labels.indexOf(mk.at); if (i < 0) return; var xx = m.l + i*bw + bw*0.18 - 2; svgEl('line', {x1:xx, x2:xx, y1:m.t, y2:Hh-m.b, stroke:'var(--ink-3)', 'stroke-width':1, 'stroke-dasharray':'3 3'}, svg); var der = xx > W*0.6; var tt = svgEl('text', {x:der ? xx-4 : xx+4, y:m.t+10, 'class':'muted', 'text-anchor':der ? 'end' : 'start'}, svg); tt.textContent = mk.label; });
   return svg;
 }
+// Barras en pares (citas vs poligrafias por semana). Los nulos no se dibujan.
+function pairBars(opts, host){
+  var W = anchoDe(host), Hh = opts.height || 200, m = {l:34, r:8, t:16, b:26}, n = opts.labels.length;
+  var svg = svgEl('svg', {viewBox:'0 0 ' + W + ' ' + Hh, 'class':'chart', role:'img', 'aria-label':opts.aria||''});
+  var all = []; opts.series.forEach(function(s){ s.values.forEach(function(v){ if (isNum(v)) all.push(v); }); });
+  var vmax = Math.max(2, Math.max.apply(null, all.length ? all : [1])) * 1.18, gw = (W - m.l - m.r) / Math.max(1, n), k = opts.series.length, bw = gw * 0.7 / k;
+  var y = function(v){ return Hh - m.b - (v / vmax) * (Hh - m.t - m.b); };
+  var g = svgEl('g', {'class':'grid'}, svg), t;
+  for (t = 0; t <= 4; t++){ var v = vmax * t / 4; svgEl('line', {x1:m.l, x2:W-m.r, y1:y(v), y2:y(v)}, g); var tx = svgEl('text', {x:m.l-6, y:y(v)+4, 'text-anchor':'end', 'class':'muted'}, svg); tx.textContent = fmt(v); }
+  if (opts.band && isNum(opts.band.lo) && isNum(opts.band.hi)) svgEl('rect', {x:m.l, y:y(opts.band.hi), width:W-m.l-m.r, height:Math.max(0, y(opts.band.lo)-y(opts.band.hi)), fill:opts.band.color||'var(--c1)', opacity:.12}, svg);
+  var paso = Math.max(1, Math.ceil(n / (W < 480 ? 6 : 10)));
+  opts.labels.forEach(function(l, i){
+    opts.series.forEach(function(s, j){ var v = s.values[i]; if (!isNum(v)) return; var x0 = m.l + i*gw + gw*0.15 + j*bw; var r = svgEl('rect', {x:x0, y:y(v), width:Math.max(2, bw-2), height:Math.max(v > 0 ? 2 : 0, Hh-m.b-y(v)), rx:2, fill:s.color}, svg); bindTip(r, '<b>' + esc(s.name) + '</b> · ' + esc(l) + '<br>' + fmt(v)); if (opts.valueLabels){ var vl = svgEl('text', {x:x0+(bw-2)/2, y:y(v)-4, 'text-anchor':'middle', 'class':'lbl'}, svg); vl.textContent = fmt(v); } });
+    if ((n-1-i) % paso === 0){ var tt = svgEl('text', {x:m.l+i*gw+gw/2, y:Hh-9, 'text-anchor':'middle', 'class':'muted'}, svg); tt.textContent = l; }
+  });
+  return svg;
+}
+// Sparkline de 30 dias (markup, no elemento): 0 = dia sin contactos; null = sin dato (hueco).
+function sparkline(values, color, aria){
+  var w = 200, h = 40, n = values.length; if (!n) return '';
+  var vmax = Math.max(1, Math.max.apply(null, values.filter(isNum))), d = '', pen = false, last = null;
+  values.forEach(function(v, i){ if (!isNum(v)){ pen = false; return; } var x = (n <= 1 ? 0 : i * (w - 8) / (n - 1)) + 4, y = h - 4 - (v / vmax) * (h - 10); d += (pen ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1) + ' '; pen = true; last = [x, y]; });
+  return '<svg viewBox="0 0 ' + w + ' ' + h + '" role="img" aria-label="' + esc(aria || '') + '" preserveAspectRatio="none"><path d="' + d + '" fill="none" stroke="' + color + '" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>' + (last ? '<circle cx="' + last[0].toFixed(1) + '" cy="' + last[1].toFixed(1) + '" r="3" fill="' + color + '"/>' : '') + '</svg>';
+}
+// Embudo ilustrado: horizontal en escritorio, vertical en movil. pasos = [{n, etiqueta, pasa (fraccion al siguiente), estado:'ok'|'sk'|'nd', c3}]
+function funnelSvg(pasos, host){
+  var W = anchoDe(host), vertical = W < 640, k = pasos.length, fr = [1, .8, .62, .46, .32], i;
+  var svg, numero = function(p, x, y, anchor){ if (p.estado === 'sk'){ var r = svgEl('rect', {x:anchor === 'middle' ? x-26 : x, y:y-16, width:52, height:20, rx:5, fill:'var(--line)', 'class':'sk-svg'}, svg); return r; } var t = svgEl('text', {x:x, y:y, 'text-anchor':anchor, 'class':'big'}, svg); t.textContent = p.estado === 'nd' ? 'sin dato' : fmt(p.n); if (p.estado === 'nd') t.setAttribute('class', 'muted'); return t; };
+  var pasa = function(p){ return isNum(p.pasa) ? (p.pasa === 0 ? '0' : p.pasa < 0.01 ? (p.pasa*100).toFixed(1) : p.pasa < 0.1 ? (p.pasa*100).toFixed(1) : Math.round(p.pasa*100)) + '%' : null; };
+  var partir = function(s){ var w = String(s).split(' '); if (w.length < 3 || String(s).length < 16) return [s]; var mid = Math.ceil(w.length / 2); return [w.slice(0, mid).join(' '), w.slice(mid).join(' ')]; };
+  if (!vertical){
+    var H = 236, padX = 6, cw = (W - padX*2) / k, top = 58, bh = 112, cy = top + bh/2;
+    svg = svgEl('svg', {viewBox:'0 0 ' + W + ' ' + H, 'class':'chart', role:'img', 'aria-label':'Embudo del anuncio al paciente'});
+    var cx = function(j){ return padX + cw*j + cw/2; }, half = function(j){ return bh/2 * fr[j]; };
+    svgEl('rect', {x:padX, y:cy-half(0), width:cw/2, height:2*half(0), 'class':'banda'}, svg);
+    for (i = 0; i < k-1; i++) svgEl('polygon', {points:[cx(i), cy-half(i), cx(i+1), cy-half(i+1), cx(i+1), cy+half(i+1), cx(i), cy+half(i)].map(function(v){ return v.toFixed(1); }).join(' '), 'class':'banda' + (pasos[i+1].c3 ? ' c3' : '')}, svg);
+    svgEl('rect', {x:cx(k-1), y:cy-half(k-1), width:cw/2, height:2*half(k-1), 'class':'banda' + (pasos[k-1].c3 ? ' c3' : '')}, svg);
+    for (i = 0; i < k; i++){
+      var p = pasos[i]; numero(p, cx(i), cy + 8, 'middle');
+      partir(p.etiqueta).forEach(function(l, j){ var t = svgEl('text', {x:cx(i), y:top + bh + 20 + j*14, 'text-anchor':'middle', 'class':'pasos'}, svg); t.textContent = l; });
+      var pp = pasa(p); if (i < k-1){ var t2 = svgEl('text', {x:(cx(i)+cx(i+1))/2, y:cy - half(i+1) - 10, 'text-anchor':'middle', 'class': pp ? 'pct' : 'muted'}, svg); t2.textContent = pp ? pp + ' pasa' : (p.estado === 'sk' || pasos[i+1].estado === 'sk' ? '...' : 'sin dato'); }
+    }
+    return svg;
+  }
+  var rh = 74, gap = 30, Hv = k*rh + (k-1)*gap + 8, bx = 8, bwMax = W*0.40, tx0 = W*0.50;
+  svg = svgEl('svg', {viewBox:'0 0 ' + W + ' ' + Hv, 'class':'chart', role:'img', 'aria-label':'Embudo del anuncio al paciente'});
+  var ry = function(j){ return 4 + j*(rh+gap); }, bw = function(j){ return bwMax*fr[j]; }, mx = bx + bwMax/2;
+  for (i = 0; i < k; i++){
+    var q = pasos[i], y0 = ry(i), cls = 'banda' + (q.c3 ? ' c3' : '');
+    svgEl('rect', {x:mx - bw(i)/2, y:y0, width:bw(i), height:rh, rx:6, 'class':cls}, svg);
+    if (i < k-1) svgEl('polygon', {points:[mx-bw(i)/2, y0+rh, mx+bw(i)/2, y0+rh, mx+bw(i+1)/2, y0+rh+gap, mx-bw(i+1)/2, y0+rh+gap].map(function(v){ return v.toFixed(1); }).join(' '), 'class':'banda' + (pasos[i+1].c3 ? ' c3' : ''), opacity:.55}, svg);
+    numero(q, tx0, y0 + 30, 'start');
+    partir(q.etiqueta).forEach(function(l, j){ var t = svgEl('text', {x:tx0, y:y0 + 50 + j*14, 'text-anchor':'start', 'class':'pasos'}, svg); t.textContent = l; });
+    var pv = pasa(q); if (i < k-1){ var t3 = svgEl('text', {x:mx, y:y0 + rh + gap/2 + 4, 'text-anchor':'middle', 'class': pv ? 'pct' : 'muted'}, svg); t3.textContent = pv ? pv + ' pasa' : (q.estado === 'sk' || pasos[i+1].estado === 'sk' ? '...' : 'sin dato'); }
+  }
+  return svg;
+}
 function legend(series){ return '<div class="legend">' + series.map(function(s){ return '<span><i style="background:' + s.color + '"></i>' + esc(s.name) + '</span>'; }).join('') + '</div>'; }
-// Registro de graficas: se repintan al cambiar el ancho (girar el telefono).
+// Registro de graficas: se repintan al cambiar el ancho (girar el telefono) o al re-renderizar una seccion.
 var CHARTS = [];
-function chart(id, build){ CHARTS.push({id:id, build:build}); return '<div id="' + id + '" class="chart-host"></div>'; }
+function chart(id, build){ CHARTS = CHARTS.filter(function(c){ return c.id !== id; }); CHARTS.push({id:id, build:build}); return '<div id="' + id + '" class="chart-host"></div>'; }
 function paintCharts(){
-  CHARTS.forEach(function(c){ var host = document.getElementById(c.id); if (!host) return; var w = anchoDe(host); if (host.dataset.w === String(w)) return; host.dataset.w = w; host.innerHTML = ''; try { var node = c.build(host); if (node) host.appendChild(node); } catch (e) { host.innerHTML = '<p class="cap">Grafica no disponible: ' + esc(e.message) + '</p>'; } });
+  CHARTS.forEach(function(c){ var host = document.getElementById(c.id); if (!host) return; var w = anchoDe(host); if (host.dataset.w === String(w)) return; host.dataset.w = w; host.innerHTML = ''; try { var node = c.build(host); if (node) host.appendChild(node); } catch (e) { host.innerHTML = '<p class="nota">Grafica no disponible: ' + esc(e.message) + '</p>'; } });
 }
 var rsz = null; window.addEventListener('resize', function(){ clearTimeout(rsz); rsz = setTimeout(paintCharts, 160); });
 
@@ -336,14 +511,14 @@ function descifrar(obj, clave){
 /* ============================================================
    GATE
    ============================================================ */
-var encPromise = null, META = null, DATOS = null;
+var encPromise = null, META = null, DATOS = null, CLAVE = '';
 function lsGet(k){ try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } }
 function lsSet(k, v){ try { localStorage.setItem(k, v); } catch (e) {} }
 function lsDel(k){ try { localStorage.removeItem(k); } catch (e) {} }
 function corteDeMeta(m){ if (!m) return ''; if (m.corte) return m.corte; var v = String(m.ventana || ''); var mm = v.match(/\.\.(\d{4}-\d{2}-\d{2})/); return mm ? mm[1] : ''; }
 function pintaMeta(m){
   var corte = corteDeMeta(m);
-  var t = m && (m.generado || corte) ? 'Datos generados el ' + fechaLarga(m.generado || corte) + (corte ? ' · corte de Ads: ' + fechaLarga(corte) : '') + (m.ga4 === false ? ' · GA4 sin datos' : '') + (m.consultas_con_error ? ' · ' + m.consultas_con_error + ' consultas con error' : '') : 'Sin meta.json: todavia no corre el generador nocturno.';
+  var t = m && (m.generado || corte) ? 'Datos de Google Ads hasta el ' + fechaLarga(corte || m.generado) + ' (preparado el ' + fechaLarga(m.generado || corte) + ')' + (m.ga4 === false ? ' · Analytics sin datos' : '') : 'Todavia no existe el archivo de datos: el proceso automatico de cada madrugada no ha corrido.';
   $('#gate-meta').textContent = t; $('#meta-linea').textContent = t;
 }
 function cargaEnc(){
@@ -357,268 +532,399 @@ function intentar(clave, silencioso){
     if (!enc || !enc.ct) throw new Error('sin-archivo');
     return descifrar(enc, clave);
   }).then(function(d){
-    lsSet(LS_KEY, clave);
+    lsSet(LS_KEY, clave); CLAVE = clave;
     arrancar(d);
   }).catch(function(e){
-    if (e && e.message === 'sin-archivo') err.textContent = 'Todavia no existe datos.enc: el generador nocturno no ha corrido.';
-    else if (e && /https/.test(e.message)) err.textContent = e.message;
-    else if (!silencioso) err.textContent = 'Clave incorrecta.';
+    if (e && e.message === 'sin-archivo') err.textContent = 'Todavia no existe el archivo de datos: el proceso automatico de cada madrugada no ha corrido.';
+    else if (e && /https|actualizalo/.test(e.message)) err.textContent = e.message;
+    else if (!silencioso) err.textContent = 'La clave no abre el archivo. Revise mayusculas y espacios.';
     $('#btn-olvidar-gate').classList.toggle('hide', !lsGet(LS_KEY));
   }).then(function(){ btn.disabled = false; btn.textContent = 'Entrar'; });
 }
-function olvidar(){ lsDel(LS_KEY); DATOS = null; $('#app').classList.add('hide'); $('#foot').classList.add('hide'); $('#acciones').classList.add('hide'); $('#toc').classList.add('hide'); $('#gate').classList.remove('hide'); $('#btn-olvidar-gate').classList.add('hide'); $('#clave').value = ''; $('#clave').focus(); }
+function olvidar(){ lsDel(LS_KEY); CLAVE = ''; DATOS = null; LIVE.ads = {estado:'inactivo'}; LIVE.bot = {estado:'inactivo'}; $('#app').classList.add('hide'); $('#foot').classList.add('hide'); $('#acciones').classList.add('hide'); $('#gate').classList.remove('hide'); $('#btn-olvidar-gate').classList.add('hide'); $('#clave').value = ''; $('#clave').focus(); }
 function init(){
   fetch('meta.json', {cache:'no-store'}).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }).then(function(m){ META = m; pintaMeta(m); });
   if (location.hash === '#demo'){
     $('#demo').classList.remove('hide');
+    CLAVE = lsGet(LS_KEY);   // en modo de prueba, la capa viva de Ads usa la clave guardada si la hay
     $('#demo-file').addEventListener('change', function(ev){ var f = ev.target.files && ev.target.files[0]; if (!f) return; var fr = new FileReader(); fr.onload = function(){ try { arrancar(JSON.parse(fr.result)); } catch (e) { $('#gate-err').textContent = 'El archivo no es un JSON valido.'; } }; fr.readAsText(f); });
+    // Prueba local: si junto a la pagina hay un datos.json en claro (NUNCA en el repo; build.py lo impide), arranca con el.
+    fetch('datos.json', {cache:'no-store'}).then(function(r){ return r.ok ? r.json() : null; }).then(function(d){ if (d && d.ads) arrancar(d); }).catch(function(){});
   } else { cargaEnc(); }
   $('#gate-form').addEventListener('submit', function(ev){ ev.preventDefault(); var v = $('#clave').value; if (v) intentar(v, false); });
   $('#btn-olvidar-gate').addEventListener('click', olvidar);
   $('#btn-olvidar').addEventListener('click', olvidar);
-  $('#btn-recargar').addEventListener('click', function(){ var k = lsGet(LS_KEY); if (!k) return olvidar(); cargaEnc(); intentar(k, false); });
+  $('#btn-actualizar').addEventListener('click', function(){ actualizar(false); });
   var guardada = lsGet(LS_KEY);
   if (guardada && location.hash !== '#demo'){ $('#btn-olvidar-gate').classList.remove('hide'); intentar(guardada, true); }
 }
 
 /* ============================================================
-   NORMALIZACION DEL CONTRATO (tolerante a campos faltantes)
-   Acepta dos formas: la de scripts/panel-ads/build.py (ads / ga4 / derivado,
-   campos en espanol: fecha, gasto, "is" en fraccion) y la del resumen de agentes
-   (semanal / diario / c30 en ingles, modo demo). Todo se lleva a un mismo modelo N.
+   NORMALIZACION DEL CONTRATO de scripts/panel-ads/build.py (tolerante a campos faltantes)
    ============================================================ */
 var N = {};
 function pick(o){ for (var i = 1; i < arguments.length; i++){ var k = arguments[i]; if (o && o[k] != null) return o[k]; } return null; }
 function aPct(v){ return isNum(v) ? (v <= 1 ? Math.round(v * 1000) / 10 : v) : null; }   // fraccion -> %
-function lunesDe(iso){ var d = new Date(iso + 'T12:00:00'); var wd = (d.getDay() + 6) % 7; d.setDate(d.getDate() - wd); return d.toISOString().slice(0, 10); }
-// El change_event trae el correo de quien toco la cuenta: aqui se muestra el canal, no el correo.
-function actor(ch){ var cl = String(ch.cliente || ''); if (/WEB_CLIENT/.test(cl)) return 'interfaz web'; if (/API/.test(cl)) return 'API'; if (/MOBILE/.test(cl)) return 'app movil'; return ch.quien && !/@/.test(ch.quien) ? ch.quien : (cl || 'n/d'); }
+function actor(ch){ var cl = String(ch.cliente || ''); if (/WEB_CLIENT/.test(cl)) return 'interfaz web'; if (/API/.test(cl)) return 'API'; if (/MOBILE/.test(cl)) return 'app movil'; return ch.quien && !/@/.test(ch.quien) ? ch.quien : (cl || 'sin dato'); }
 function sinCorreo(t){ return String(t || '').replace(/\(([^()]*@[^()]*),\s*GOOGLE_ADS_WEB_CLIENT\)/g, '(desde la interfaz web)').replace(/\(([^()]*@[^()]*),\s*GOOGLE_ADS_API\)/g, '(por API)').replace(/[\w.+-]+@[\w-]+\.[\w.-]+/g, 'la cuenta'); }
 // Un periodo previo solo se compara si cubre casi los 30 dias: C3 nacio el 14-jul y su 'previo' tenia 9 dias.
 function prevValido(y){ return !!(y && (y.clk || y.cost) && (!isNum(y.dias) || y.dias >= 25)); }
+function agg30(u){ if (!u) return null; return {cost:pick(u, 'gasto', 'cost') || 0, imp:u.imp || 0, clk:u.clk || 0, conv:u.conv || 0, cpc:isNum(u.cpc) ? u.cpc : div(pick(u, 'gasto', 'cost'), u.clk), ctr:aPct(u.ctr), is_:aPct(pick(u, 'is', 'is_')), lb:aPct(u.lb), lr:aPct(u.lr), dias:isNum(u.dias) ? u.dias : null, banda:Array.isArray(u.banda_contactos) ? u.banda_contactos : null, phi:isNum(u.phi) ? u.phi : null}; }
 function normaliza(D){
   N = {D:D};
   var ADS = D.ads || {}, DER = D.derivado || {}, DC = DER.campanas || {}, GA = D.ga4 || {};
   N.corte = D.corte || (D.ventana && (D.ventana.fin || D.ventana.hasta)) || corteDeMeta(META) || '';
   N.generado = D.generado || (META && META.generado) || '';
-  N.estrategia = D.estrategia || null;
+  N.estrategia = D.estrategia && typeof D.estrategia === 'object' ? D.estrategia : null;
   var EST = (N.estrategia && N.estrategia.campanas) || {};
-  // --- campanas (config viva)
+  // Campanas: las tres conocidas mas cualquier etiqueta nueva (X<id>) que traiga el generador.
+  var llaves = Object.keys(ADS.campanas || {}); CAMPS = ['C1', 'C2', 'C3'].concat(llaves.filter(function(k){ return ['C1', 'C2', 'C3'].indexOf(k) < 0; }));
   N.camp = {};
   CAMPS.forEach(function(c){
-    var a = (ADS.campanas || D.campanas || {})[c] || {}, b = (D.config || {})[c] || {}, e = EST[c] || {};
+    var a = (ADS.campanas || {})[c] || {}, e = EST[c] || {};
     var pres = pick(a, 'presupuesto_dia', 'presupuesto');
-    N.camp[c] = { id:a.id || '', nombre:a.nombre || b.name || NAME[c], puja:a.puja || b.bid || '', presupuesto:isNum(pres) ? pres : (isNum(b.budget) ? b.budget : null), geo:a.geo_tipo || a.geo || b.geo || '', estado:a.estado || '', congelada_hasta:a.congelada_hasta || e.congelada_hasta || null, nota:a.nota || e.nota || '', troas:a.troas, tcpa:a.tcpa, negativos:(a.negativos || []).length, sitelinks:(a.sitelinks || []).length };
+    N.camp[c] = {id:a.id || '', nombre:a.nombre || NOMBRE[c] || c, puja:a.puja || '', presupuesto:isNum(pres) ? pres : null, estado:a.estado || '', inicio:a.inicio || '', congelada_hasta:a.congelada_hasta || e.congelada_hasta || null, tcpa:a.tcpa, negativos:(a.negativos || []).length, sitelinks:(a.sitelinks || []).length, lectura:e};
   });
-  N.tope = isNum((DER.cuenta || {}).presupuesto_dia_total) ? DER.cuenta.presupuesto_dia_total : CAMPS.reduce(function(a, c){ return a + (isNum(N.camp[c].presupuesto) ? N.camp[c].presupuesto : 0); }, 0);
-  // --- diario normalizado: {date, camp, cost, clk, conv, imp, is_, lb, lr} con IS en %
-  var crudo = Array.isArray(ADS.diario) ? ADS.diario : (Array.isArray(D.diario) ? D.diario : []);
+  N.activas = CAMPS.filter(function(c){ return !N.camp[c].estado || N.camp[c].estado === 'ENABLED'; });
+  N.tope = isNum((DER.cuenta || {}).presupuesto_dia_total) ? DER.cuenta.presupuesto_dia_total : N.activas.reduce(function(a, c){ return a + (isNum(N.camp[c].presupuesto) ? N.camp[c].presupuesto : 0); }, 0);
+  // Diario normalizado (IS en %)
+  var crudo = Array.isArray(ADS.diario) ? ADS.diario : [];
   N.diario = crudo.map(function(r){ return {date:r.fecha || r.date, camp:campCode(r.camp), cost:pick(r, 'gasto', 'cost') || 0, clk:r.clk || 0, conv:r.conv || 0, imp:r.imp || 0, is_:aPct(pick(r, 'is', 'is_')), lb:aPct(r.lb), lr:aPct(r.lr)}; }).filter(function(r){ return r.date && r.camp; }).sort(function(a, b){ return a.date < b.date ? -1 : 1; });
   N.dias = []; N.diario.forEach(function(d){ if (N.dias.indexOf(d.date) < 0) N.dias.push(d.date); }); N.dias = N.dias.slice(-30);
-  N.byDay = function(c, k){ return N.dias.map(function(dd){ var r = N.diario.filter(function(x){ return x.date === dd && x.camp === c; })[0]; return r && isNum(r[k]) ? r[k] : null; }); };
-  // --- semanal: agregado del diario por lunes (incluye la semana en curso, marcada parcial); respaldo: D.semanal
+  N.byDay = function(c, k){ return N.dias.map(function(dd){ var r = N.diario.filter(function(x){ return x.date === dd && x.camp === c; })[0]; return r && isNum(r[k]) ? r[k] : (k === 'is_' || k === 'lb' || k === 'lr' ? null : 0); }); };
+  // Semanal: agregado del diario por lunes (incluye la semana en curso, marcada parcial)
   var semMap = {};
-  if (N.diario.length){ N.diario.forEach(function(r){ var w = lunesDe(r.date), k = w + '|' + r.camp; var o = semMap[k] || (semMap[k] = {semana:w, camp:r.camp, cost:0, clk:0, conv:0, imp:0}); o.cost += r.cost; o.clk += r.clk; o.conv += r.conv; o.imp += r.imp; }); }
-  else (Array.isArray(D.semanal) ? D.semanal : []).forEach(function(r){ var c = campCode(r.camp); if (!c || !r.semana) return; semMap[r.semana + '|' + c] = {semana:r.semana, camp:c, cost:r.cost || 0, clk:r.clk || 0, conv:r.conv || 0, imp:r.imp || 0}; });
-  var sem = Object.keys(semMap).map(function(k){ return semMap[k]; });
-  N.weeks = []; sem.forEach(function(r){ if (N.weeks.indexOf(r.semana) < 0) N.weeks.push(r.semana); }); N.weeks.sort(); N.weeks = N.weeks.slice(-13);
+  N.diario.forEach(function(r){ var w = lunesDe(r.date), k = w + '|' + r.camp; var o = semMap[k] || (semMap[k] = {semana:w, camp:r.camp, cost:0, clk:0, conv:0, imp:0}); o.cost += r.cost; o.clk += r.clk; o.conv += r.conv; o.imp += r.imp; });
+  N.weeks = []; Object.keys(semMap).forEach(function(k){ var w = semMap[k].semana; if (N.weeks.indexOf(w) < 0) N.weeks.push(w); }); N.weeks.sort(); N.weeks = N.weeks.slice(-13);
   N.byWeek = function(c, k){ return N.weeks.map(function(w){ var r = semMap[w + '|' + c]; return r && isNum(r[k]) ? r[k] : 0; }); };
   N.wkParcial = function(w){ return N.corte ? addDias(w, 6) > N.corte : false; };
   N.wkLabel = function(w){ return fecha(w) + (N.wkParcial(w) ? '*' : ''); };
   N.weeksCompletas = N.weeks.filter(function(w){ return !N.wkParcial(w); });
-  // --- 30 d actuales y previos por campana, en el modelo {cost,imp,clk,conv,cpc,ctr,is_,lb,lr} (% enteros)
-  // 'dias' viaja con el agregado: un periodo previo de 9 dias (campana nueva) no se compara contra 30.
-  function agg30(u){ if (!u) return null; return {cost:pick(u, 'gasto', 'cost') || 0, imp:u.imp || 0, clk:u.clk || 0, conv:u.conv || 0, cpc:isNum(u.cpc) ? u.cpc : div(pick(u, 'gasto', 'cost'), u.clk), ctr:aPct(u.ctr), is_:aPct(pick(u, 'is', 'is_')), lb:aPct(u.lb), lr:aPct(u.lr), dias:isNum(u.dias) ? u.dias : null, banda:Array.isArray(u.banda_contactos) ? u.banda_contactos : null, phi:isNum(u.phi) ? u.phi : null}; }
-  function aggDias(c, desde, hasta){ var rows = N.diario.filter(function(r){ return r.camp === c && r.date >= desde && r.date <= hasta; }); if (!rows.length) return null; var o = {cost:0, imp:0, clk:0, conv:0}, eleg = 0, lb = 0, lr = 0; rows.forEach(function(r){ o.cost += r.cost; o.imp += r.imp; o.clk += r.clk; o.conv += r.conv; if (r.is_ && r.imp){ var e = r.imp / (r.is_ / 100); eleg += e; lb += (r.lb || 0) / 100 * e; lr += (r.lr || 0) / 100 * e; } }); o.dias = rows.length; o.cpc = div(o.cost, o.clk); o.ctr = aPct(div(o.clk, o.imp)); o.is_ = eleg ? Math.round(o.imp / eleg * 100) : null; o.lb = eleg ? Math.round(lb / eleg * 100) : null; o.lr = eleg ? Math.round(lr / eleg * 100) : null; return o; }
-  N.c30 = {}; N.c30p = {};
-  CAMPS.forEach(function(c){
-    var dc = DC[c] || {};
-    N.c30[c] = agg30(dc.u30) || ((D.c30 || {})[c] ? agg30(D.c30[c]) : null) || (N.corte ? aggDias(c, addDias(N.corte, -29), N.corte) : null);
-    N.c30p[c] = agg30(dc.p30) || ((D.c30prev || {})[c] ? agg30(D.c30prev[c]) : null) || (N.corte ? aggDias(c, addDias(N.corte, -59), addDias(N.corte, -30)) : null);
-    ['is_', 'lb', 'lr'].forEach(function(k){ [N.c30[c], N.c30p[c]].forEach(function(o){ if (o && isNum(o[k])) o[k] = Math.round(o[k]); }); });
-  });
+  // 30 d actuales y previos por campana
+  N.c30 = {}; N.c30p = {}; N.c7 = {};
+  CAMPS.forEach(function(c){ var dc = DC[c] || {}; N.c30[c] = agg30(dc.u30); N.c30p[c] = agg30(dc.p30); N.c7[c] = agg30(dc.u7); ['is_', 'lb', 'lr'].forEach(function(k){ [N.c30[c], N.c30p[c], N.c7[c]].forEach(function(o){ if (o && isNum(o[k])) o[k] = Math.round(o[k]); }); }); });
   N.tot = function(k, prev){ var src = prev ? N.c30p : N.c30; return CAMPS.reduce(function(a, c){ return a + ((src[c] && isNum(src[c][k])) ? src[c][k] : 0); }, 0); };
-  N.gasto30 = N.tot('cost'); N.conv30 = N.tot('conv'); N.clk30 = N.tot('clk'); N.gasto30p = N.tot('cost', true); N.conv30p = N.tot('conv', true);
-  N.cpa = div(N.gasto30, N.conv30); N.cpaP = div(N.gasto30p, N.conv30p);
-  N.cuenta30 = agg30((DER.cuenta || {}).u30); N.cuenta30p = agg30((DER.cuenta || {}).p30);
-  // --- cambios de presupuesto (change_event) y otros cambios
-  N.budgetChanges = Array.isArray(ADS.cambios_28d) ? ADS.cambios_28d.filter(function(ch){ return ch.tipo === 'CAMPAIGN_BUDGET' && (isNum(ch.de) || isNum(ch.a)); }).map(function(ch){ return {fecha:String(ch.fecha || '').replace('T', ' ').slice(0, 16), quien:actor(ch), camp:ch.camp, de:ch.de, a:ch.a}; }) : (Array.isArray(D.budget_changes) ? D.budget_changes : []);
+  N.cuenta30 = agg30((DER.cuenta || {}).u30) || {cost:N.tot('cost'), conv:N.tot('conv'), clk:N.tot('clk'), imp:N.tot('imp'), banda:null};
+  N.cuenta30p = agg30((DER.cuenta || {}).p30) || {cost:N.tot('cost', true), conv:N.tot('conv', true), clk:N.tot('clk', true), imp:N.tot('imp', true), banda:null};
+  N.cuenta7 = agg30((DER.cuenta || {}).u7);
+  N.cpa = div(N.cuenta30.cost, N.cuenta30.conv); N.cpaP = div(N.cuenta30p.cost, N.cuenta30p.conv);
+  N.budgetChanges = Array.isArray(ADS.cambios_28d) ? ADS.cambios_28d.filter(function(ch){ return ch.tipo === 'CAMPAIGN_BUDGET' && (isNum(ch.de) || isNum(ch.a)); }).map(function(ch){ return {fecha:String(ch.fecha || '').replace('T', ' ').slice(0, 16), quien:actor(ch), camp:ch.camp, de:ch.de, a:ch.a}; }) : [];
   N.otrosCambios = Array.isArray(ADS.cambios_28d) ? ADS.cambios_28d.filter(function(ch){ return ch.tipo !== 'CAMPAIGN_BUDGET'; }) : [];
-  // --- listas (ad groups, keywords, terminos, anuncios)
-  N.adgroups = (ADS.ad_groups_30d || D.adgroups || []).map(function(g){ return {camp:campCode(g.camp), name:g.nombre || g.name, status:g.estado || g.status, cost:pick(g, 'gasto', 'cost') || 0, imp:g.imp, clk:g.clk, conv:g.conv, ctr:aPct(g.ctr), congelado:g.congelado}; });
-  N.topKw = (ADS.keywords_30d || D.top_kw || []).map(function(k){ return {camp:campCode(k.camp), group:k.grupo || k.group, kw:k.kw, match:k.tipo || k.match, qs:k.qs, lpe:k.lpe, ectr:k.ectr, cost:pick(k, 'gasto', 'cost') || 0, clk:k.clk, conv:k.conv}; }).sort(function(a, b){ return b.cost - a.cost; });
+  N.adgroups = (ADS.ad_groups_30d || []).map(function(g){ return {camp:campCode(g.camp), name:g.nombre, status:g.estado, cost:g.gasto || 0, imp:g.imp, clk:g.clk, conv:g.conv, ctr:aPct(g.ctr)}; });
+  N.topKw = (ADS.keywords_30d || []).map(function(k){ return {camp:campCode(k.camp), group:k.grupo, kw:k.kw, match:k.tipo, qs:k.qs, cost:k.gasto || 0, clk:k.clk, conv:k.conv}; }).sort(function(a, b){ return b.cost - a.cost; });
   var T = ADS.terminos_30d || {};
-  N.stCero = (T.top_cero_conv || D.st_cero_top || []).map(function(t){ return {camp:campCode(t.camp), term:t.termino || t.term, cost:pick(t, 'gasto', 'cost') || 0, clk:t.clk, status:t.estado || t.status}; });
-  N.stTop = (T.top_gasto || []).map(function(t){ return {camp:campCode(t.camp), term:t.termino || t.term, cost:pick(t, 'gasto', 'cost') || 0, clk:t.clk || 0, conv:t.conv || 0}; });
-  N.stResumen = T.total_terminos != null ? {n:T.total_terminos, gasto:T.gasto_total, cero_conv_gasto:T.gasto_cero_conv} : (D.st_resumen || null);
-  N.anuncios = (ADS.anuncios_30d || D.ads || []).map(function(a){ return {camp:campCode(a.camp), group:a.grupo || a.group, id:a.id, status:a.estado || a.status, strength:a.fuerza || a.strength, url:a.url, imp:a.imp, ctr:aPct(a.ctr), conv:a.conv}; });
-  // --- alertas del generador (alta/media/info) o del contrato simple (crit/warn/info)
-  var NIV = {alta:'crit', media:'warn', info:'info', crit:'crit', warn:'warn'};
-  N.alertas = (DER.alertas || D.alertas || []).map(function(a){ return {camp:a.camp || 'cuenta', nivel:NIV[a.nivel] || 'info', texto:sinCorreo(a.texto), marca:a.marca || (a.regla ? '[Documentado]' : ''), regla:a.regla}; });
+  N.stCero = (T.top_cero_conv || []).map(function(t){ return {camp:campCode(t.camp), term:t.termino, cost:t.gasto || 0, clk:t.clk, status:t.estado}; });
+  N.stTop = (T.top_gasto || []).map(function(t){ return {camp:campCode(t.camp), term:t.termino, cost:t.gasto || 0, clk:t.clk || 0, conv:t.conv || 0}; });
+  N.stResumen = T.total_terminos != null ? {n:T.total_terminos, gasto:T.gasto_total, cero_conv_gasto:T.gasto_cero_conv} : null;
+  var NIV = {alta:'crit', media:'warn', info:'info'};
+  N.alertas = (DER.alertas || []).map(function(a){ return {camp:a.camp || 'cuenta', nivel:NIV[a.nivel] || 'info', texto:sinCorreo(a.texto), regla:a.regla}; });
   N.semaforoBuild = {}; CAMPS.forEach(function(c){ var x = (DC[c] || {}).semaforo; N.semaforoBuild[c] = {verde:'good', amarillo:'warn', rojo:'crit', gris:'mute'}[x] || null; });
-  // --- pronostico y curva del generador (si vienen)
-  N.pron = {}; N.curva = {}; CAMPS.forEach(function(c){ N.pron[c] = (DC[c] || {}).pronostico || null; N.curva[c] = (DC[c] || {}).curva_presupuesto || null; });
+  N.pron = {}; N.curva = {}; N.semanalGen = {}; CAMPS.forEach(function(c){ N.pron[c] = (DC[c] || {}).pronostico || null; N.curva[c] = (DC[c] || {}).curva_presupuesto || null; N.semanalGen[c] = (DC[c] || {}).semanal || []; });
   N.pronCuenta = (DER.cuenta || {}).pronostico_4sem || null;
   N.metodo = DER.metodo || null;
-  // --- poligrafia: familias de terminos (misma lista de claves que el resumen) y periodos
-  if (D.c3_familias) N.c3Familias = D.c3_familias;
-  else if (N.stTop.length){ var KEYS = ['clinica', 'especialista', 'poligraf', 'polisomno', 'apnea', 'examen', 'estudio', 'ronq', 'precio', 'costo', 'cpap', 'casa', 'domicilio', 'sue'], fam = {}; N.stTop.filter(function(t){ return t.camp === 'C3'; }).forEach(function(t){ var tx = String(t.term).toLowerCase(), f = 'otro'; for (var i = 0; i < KEYS.length; i++) if (tx.indexOf(KEYS[i]) >= 0){ f = KEYS[i]; break; } var o = fam[f] || (fam[f] = {cost:0, clk:0, conv:0, n:0}); o.cost += t.cost; o.clk += t.clk; o.conv += t.conv; o.n += 1; }); N.c3Familias = fam; N.c3FamiliasParcial = true; }
-  else N.c3Familias = null;
-  if (D.c3_periodos) N.c3Periodos = D.c3_periodos;
-  else if (N.corte && N.diario.length){ var a1 = addDias(N.corte, -29), a2 = addDias(N.corte, -15), b1 = addDias(N.corte, -14); var pA = aggDias('C3', a1, a2), pB = aggDias('C3', b1, N.corte); N.c3Periodos = {}; if (pA) N.c3Periodos[fecha(a1) + ' a ' + fecha(a2)] = pA; if (pB) N.c3Periodos[fecha(b1) + ' a ' + fecha(N.corte)] = pB; }
-  // --- GA4: landings de pago (sesiones, contactos = clic_whatsapp + agendar_cita + llamada)
+  // GA4: landings de pago (sesiones, contactos = clic_whatsapp + agendar_cita + llamada)
   function landings(lista, eventos){ var ev = {}; (eventos || []).forEach(function(e){ var pth = e.landingPagePlusQueryString; if (['clic_whatsapp', 'agendar_cita', 'llamada'].indexOf(e.eventName) >= 0) ev[pth] = (ev[pth] || 0) + (e.eventCount || 0); }); return (lista || []).map(function(r){ var pth = r.landingPagePlusQueryString || r.path; return {path:pth, sesiones:r.sessions != null ? r.sessions : r.sesiones, contactos:ev[pth] != null ? ev[pth] : (r.contactos != null ? r.contactos : r.keyEvents)}; }).filter(function(r){ return r.path && !/not set/.test(r.path); }); }
-  N.landing30 = landings(GA.landings_pagadas_30d || GA.landing_30 || null, GA.eventos_landing_pagado_30d);
-  N.landingPrev = landings(GA.landings_pagadas_30d_prev || GA.landing_prev || null, null);
+  N.landing30 = landings(GA.landings_pagadas_30d || null, GA.eventos_landing_pagado_30d);
+  N.landingPrev = landings(GA.landings_pagadas_30d_prev || null, null);
   N.ga4Ok = !!(D.ga4 && Object.keys(D.ga4).length);
 }
 function alertasDe(c){ return N.alertas.filter(function(a){ return a.camp === c || (c === 'cuenta' && (!a.camp || a.camp === 'cuenta')); }); }
 
 /* ============================================================
-   SEMAFORO [Heuristica]: reglas fijas, explicadas en el glosario
+   SEMAFORO POR CAMPANA [Heuristica]: reglas fijas; la alerta del generador, si la hay, manda
    ============================================================ */
 var PESO = {good:0, info:0, mute:0, warn:1, crit:2};
 function semaforoCamp(c){
   var x = N.c30[c], y = N.c30p[c], cfg = N.camp[c], motivos = [], nivel = 'good';
   var sube = function(n){ if (PESO[n] > PESO[nivel]) nivel = n; };
-  if (!x) return {nivel:'mute', motivos:['sin datos de 30 dias'], cpa:null};
-  // El periodo previo solo cuenta si esta casi completo (C3 arranco el 14-jul: su "previo" tenia 9 dias).
+  if (cfg.estado && cfg.estado !== 'ENABLED') return {nivel:'mute', motivos:['la campana esta pausada: no gasta ni trae contactos'], cpa:null};
+  if (!x) return {nivel:'mute', motivos:['todavia no hay 30 dias de datos'], cpa:null};
   var prevOk = prevValido(y);
   var cpa = div(x.cost, x.conv), cpaP = prevOk ? div(y.cost, y.conv) : null, tasa = div(x.conv, x.clk);
-  if (isNum(x.cost) && x.cost > 500 && !(x.conv > 0)){ sube('crit'); motivos.push('gasto ' + money(x.cost) + ' en 30 dias sin un solo contacto'); }
-  else if (isNum(x.cost) && x.cost > 0 && !(x.conv > 0)){ sube('warn'); motivos.push('gasto ' + money(x.cost) + ' sin contactos; poco gasto, sin lectura aun'); }
-  // Una subida del costo por contacto solo cuenta como senal si las bandas de azar de los dos periodos no se tocan:
-  // con 25 contactos, un +40% cabe dentro del ruido y no merece semaforo.
+  if (isNum(x.cost) && x.cost > 500 && !(x.conv > 0)){ sube('crit'); motivos.push('gasto ' + money(x.cost) + ' en 30 dias sin que nadie escribiera'); }
+  else if (isNum(x.cost) && x.cost > 0 && !(x.conv > 0)){ sube('warn'); motivos.push('gasto ' + money(x.cost) + ' sin contactos; es poco dinero, aun no se puede leer'); }
+  // Una subida del costo por contacto solo cuenta si las bandas de azar de los dos periodos no se tocan.
   var solapan = null;
   if (cpa && cpaP && x.banda && y.banda && x.banda[0] > 0 && y.banda[0] > 0){ var xLo = x.cost / x.banda[1], xHi = x.cost / x.banda[0], yLo = y.cost / y.banda[1], yHi = y.cost / y.banda[0]; solapan = !(xLo > yHi || xHi < yLo); }
-  if (cpa && cpaP){ var r = cpa / cpaP; if (r > 2 && solapan === false){ sube('crit'); motivos.push('el costo por contacto se duplico: ' + money(cpa) + ' contra ' + money(cpaP) + ' antes, y la diferencia no cabe en el azar'); } else if (r > 1.4 && solapan === false){ sube('warn'); motivos.push('el costo por contacto subio ' + pct(r-1) + ': ' + money(cpa) + ' contra ' + money(cpaP) + '; la diferencia no cabe en el azar'); } else if (r > 1.4){ motivos.push('el costo por contacto marca ' + money(cpa) + ' contra ' + money(cpaP) + ' antes, pero con estos conteos la diferencia cabe en el azar: sin semaforo'); } else if (r < 0.8){ motivos.push('el costo por contacto bajo ' + pct(1-r) + ': ' + money(cpa) + ' contra ' + money(cpaP) + (solapan ? ' (la diferencia aun cabe en el azar)' : '')); } else { motivos.push('costo por contacto estable en ' + money(cpa)); } }
-  else if (cpa) motivos.push('costo por contacto ' + money(cpa) + (y && !prevOk ? ' (periodo previo de ' + y.dias + ' dias: no se compara)' : ''));
-  if (tasa !== null && tasa < 0.02 && x.clk > 50){ sube('warn'); motivos.push('solo ' + pct(tasa, 1) + ' de los clics se vuelven contacto'); }
-  if (isNum(x.lb) && x.lb >= 35){ sube('warn'); motivos.push(x.lb + '% de las busquedas se pierden por falta de presupuesto'); }
-  if (isNum(x.lr) && x.lr >= 50){ sube('warn'); motivos.push(x.lr + '% se pierden por calidad o puja (rank): mas dinero no lo arregla'); }
-  var wk = N.weeksCompletas.slice(-5); if (wk.length >= 4){ var conv = wk.map(function(w){ return N.byWeek(c, 'conv')[N.weeks.indexOf(w)]; }); var ult = conv[conv.length-1], base = conv.slice(0, -1).reduce(function(a, b){ return a + b; }, 0) / (conv.length - 1); if (base >= 3 && ult === 0){ sube('warn'); motivos.push('la ultima semana completa cerro en 0 contactos (promedio previo ' + fmt(base, 1) + ')'); } }
-  if (cfg.congelada_hasta && N.corte && cfg.congelada_hasta >= N.corte) motivos.push('congelada hasta el ' + fecha(cfg.congelada_hasta) + ': no se toca');
+  if (cpa && cpaP){ var r = cpa / cpaP; if (r > 2 && solapan === false){ sube('crit'); motivos.push('cada contacto cuesta el doble que el mes pasado (' + money(cpa) + ' contra ' + money(cpaP) + ')'); } else if (r > 1.4 && solapan === false){ sube('warn'); motivos.push('cada contacto cuesta ' + pct(r-1) + ' mas que el mes pasado (' + money(cpa) + ' contra ' + money(cpaP) + ')'); } else if (r < 0.8){ motivos.push('cada contacto cuesta ' + pct(1-r) + ' menos que el mes pasado (' + money(cpa) + ' contra ' + money(cpaP) + ')'); } else { motivos.push('el costo por contacto se mantiene en ' + money(cpa)); } }
+  else if (cpa) motivos.push('cada contacto cuesta ' + money(cpa) + (y && !prevOk ? '; la campana es nueva y aun no se compara con un mes previo' : ''));
+  if (tasa !== null && tasa < 0.02 && x.clk > 50){ sube('warn'); motivos.push('solo ' + pct(tasa, 1) + ' de los que entran a la pagina escriben'); }
+  if (isNum(x.lb) && x.lb >= 35){ sube('warn'); motivos.push('se queda sin presupuesto antes de terminar el dia (' + x.lb + '% de las busquedas se pierden por eso)'); }
+  if (isNum(x.lr) && x.lr >= 50){ sube('warn'); motivos.push('otros anuncios le ganan el lugar en ' + x.lr + '% de las busquedas; mas dinero no lo arregla, calidad si'); }
+  var wk = N.weeksCompletas.slice(-5); if (wk.length >= 4){ var conv = wk.map(function(w){ return N.byWeek(c, 'conv')[N.weeks.indexOf(w)]; }); var ult = conv[conv.length-1], base = conv.slice(0, -1).reduce(function(a, b){ return a + b; }, 0) / (conv.length - 1); if (base >= 3 && ult === 0){ sube('warn'); motivos.push('la ultima semana completa cerro sin contactos (antes traia ' + fmt(base, 1) + ' por semana)'); } }
+  if (cfg.congelada_hasta && N.corte && cfg.congelada_hasta >= N.corte) motivos.push('en aprendizaje hasta el ' + fecha(cfg.congelada_hasta) + ': no se toca');
   var sb = N.semaforoBuild[c]; if (sb && PESO[sb] > PESO[nivel]) nivel = sb;
   if (!motivos.length) motivos.push('sin senales de alarma en 30 dias');
   return {nivel:nivel, motivos:motivos, cpa:cpa, cpaP:cpaP, tasa:tasa};
 }
 
 /* ============================================================
-   SECCIONES
+   CAPA VIVA. LIVE.ads = Worker de Google Ads; LIVE.bot = Apps Script del consultorio (solo agregados).
+   estado: inactivo | cargando | ok | error | sin_clave
    ============================================================ */
-function seguro(nombre, fn){ try { return fn() || ''; } catch (e) { return '<div class="card"><p class="cap">Modulo "' + esc(nombre) + '" no disponible con los datos actuales (' + esc(e.message) + ').</p></div>'; } }
-function h2(n, t, id){ return '<h2 id="' + id + '"><span class="n">' + n + '</span>' + esc(t) + '</h2>'; }
-function delta(a, b, inv){ if (!isNum(a) || !isNum(b) || b === 0) return ''; var s = (a - b) / Math.abs(b); var bueno = inv ? s < 0 : s > 0; if (Math.abs(s) < 0.02) return '<span class="delta">=</span>'; return '<span class="delta ' + (bueno ? 'up' : 'down') + '">' + (s > 0 ? '+' : '') + pct(s) + '</span>'; }
-function tile(nivel, k, v, d){ return '<div class="tile ' + (nivel||'') + '"><div class="stripe"></div><div class="k">' + k + '</div><div class="v">' + v + '</div><div class="d">' + (d||'') + '</div></div>'; }
-
-function secAhora(){
-  // Uso del tope con los ULTIMOS 7 dias (el promedio de 30 d mezcla presupuestos ya cambiados).
-  var d7 = N.dias.slice(-7), g7 = d7.length ? CAMPS.reduce(function(a, c){ return a + N.byDay(c, 'cost').slice(-7).reduce(function(x, y){ return x + (isNum(y) ? y : 0); }, 0); }, 0) / d7.length : null;
-  var usoTope = N.tope && isNum(g7) ? div(g7, N.tope) : null;
-  var c3 = N.c30.C3 || {}, c3p = prevValido(N.c30p.C3) ? N.c30p.C3 : null;
-  var tasa3 = div(c3.conv, c3.clk), tasa3p = c3p ? div(c3p.conv, c3p.clk) : null;
-  // La diferencia 30 d vs previos solo se colorea si el previo cae fuera de la banda de azar de los 30 d actuales.
-  var bandaCta = N.cuenta30 && N.cuenta30.banda, enAzar = bandaCta && isNum(N.conv30p) ? (N.conv30p >= bandaCta[0] && N.conv30p <= bandaCta[1]) : null;
-  var html = h2('01', 'Ahora mismo', 's-ahora') + '<p class="lead">Treinta dias contra los treinta anteriores. Un "contacto" es un clic a WhatsApp, al agendador o a llamar que Google alcanza a contar; no es una cita ni un paciente.</p><div class="tiles">';
-  html += tile('', 'Gasto 30 d', money(N.gasto30), money(N.gasto30/30) + '/dia ' + delta(N.gasto30, N.gasto30p, true) + ' vs previos');
-  html += tile(enAzar ? '' : (N.conv30 >= N.conv30p ? 'good' : 'warn'), 'Contactos', fmt(N.conv30), delta(N.conv30, N.conv30p) + ' vs ' + fmt(N.conv30p) + ' previos' + (bandaCta ? ' · azar: ' + fmt(bandaCta[0]) + ' a ' + fmt(bandaCta[1]) + (enAzar ? ' (la diferencia cabe en el azar)' : '') : ''));
-  html += tile(enAzar ? '' : (N.cpa && N.cpaP && N.cpa <= N.cpaP ? 'good' : 'warn'), 'Costo por contacto', money(N.cpa), 'antes ' + money(N.cpaP) + ' · no es costo por paciente ni por cita');
-  html += tile(tasa3 !== null && tasa3 >= 0.04 ? 'good' : 'warn', 'C3 conv/clic', pct(tasa3, 1), 'poligrafia · ' + (tasa3p !== null ? 'antes ' + pct(tasa3p, 1) : 'sin periodo previo completo') + ' · ' + money(div(c3.cost, c3.conv)) + ' por contacto');
-  html += tile(usoTope !== null && usoTope < 0.6 ? 'warn' : '', 'Tope diario vivo', money(N.tope), CAMPS.map(function(c){ return c + ' ' + money(N.camp[c].presupuesto); }).join(' · ') + (usoTope !== null ? ' · ultimos 7 d: ' + money(g7) + '/dia, ' + pct(usoTope) + ' del tope' : ''));
-  html += '</div>';
-  var al = alertasDe('cuenta'); if (al.length) html += '<div class="card"><h3 style="margin-top:0">Alertas de cuenta</h3><ul class="tight">' + al.map(function(a){ return '<li>' + pill(a.nivel) + ' ' + esc(a.texto) + marca(a.marca) + '</li>'; }).join('') + '</ul></div>';
-  html += '<div class="card" id="vivo"><h3 style="margin-top:0">Capa viva: lo que el consultorio registra hoy</h3><div id="vivo-cuerpo"><p class="cap">Conecta con el mismo motor que usa /bot-config (citas de la semana, cruce clic a cita, tablero nocturno de Ads). Solo agregados: ningun nombre de paciente se pinta ni se guarda.</p></div>' +
-    '<form id="vivo-form" class="acciones" style="margin-top:10px" autocomplete="off"><input type="password" id="vivo-clave" placeholder="Clave del bot (opcional)" aria-label="Clave del bot" autocomplete="off" style="flex:1 1 180px"><button type="submit" class="btn sm">Conectar</button><button type="button" class="btn sec sm" id="vivo-olvidar">Olvidar</button></form><div class="estado" id="vivo-estado"></div></div>';
-  return html;
+var LIVE = {ads:{estado:'inactivo'}, bot:{estado:'inactivo'}};
+var ultimaAct = 0, frenoTimer = null;
+function fetchJson(url, cuerpo, ms){
+  var ctrl = ('AbortController' in window) ? new AbortController() : null, t = null;
+  var tope = new Promise(function(_r, rej){ t = setTimeout(function(){ if (ctrl) { try { ctrl.abort(); } catch (e) {} } rej(new Error('tardo demasiado')); }, ms); });
+  var f = fetch(url, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(cuerpo), cache:'no-store', redirect:'follow', signal:ctrl ? ctrl.signal : undefined}).then(function(r){ return r.json(); });
+  return Promise.race([f, tope]).then(function(j){ clearTimeout(t); return j; }, function(e){ clearTimeout(t); throw e; });
 }
-
-function secSemaforo(){
-  var html = h2('02', 'Semaforo por campana', 's-semaforo') + '<div class="card"><div class="sem">';
-  CAMPS.forEach(function(c){
-    var s = semaforoCamp(c), al = alertasDe(c);
-    html += '<div class="row"><div>' + pill(s.nivel) + '</div><div><b style="color:' + COLT[c] + '">' + esc(NAME[c]) + '</b> <span class="cap" style="display:inline">' + esc(N.camp[c].nombre) + '</span><ul class="tight">' + s.motivos.map(function(m){ return '<li>' + esc(m) + '</li>'; }).join('') + al.map(function(a){ return '<li>' + pill(a.nivel) + ' ' + esc(a.texto) + marca(a.marca) + '</li>'; }).join('') + '</ul></div></div>';
+function cargarAdsVivo(clave){
+  if (!clave) return Promise.reject(new Error('sin clave'));
+  return fetchJson(VIVO_ADS.url, {key:clave}, VIVO_ADS.ms).then(function(j){
+    if (!j || typeof j !== 'object') throw new Error('respuesta invalida');
+    if (!j.ok) throw new Error(j.error === 'no autorizado' ? 'no autorizado' : (j.error === 'cuota' ? 'Google limito las consultas por hoy' : (j.error || 'error del Worker')));
+    return j;
   });
-  html += '</div><p class="cap">Reglas fijas <span class="ep">[Heuristica]</span> (la alerta del generador, si la hay, manda): critico si gasta mas de $500 sin contactos o el costo por contacto se duplica y la diferencia no cabe en las bandas de azar de los dos periodos; atencion si sube mas de 40% fuera del azar,si menos del 2% de los clics contacta, si se pierde 35% o mas por presupuesto o 50% o mas por rank, o si la ultima semana completa cerro en cero. Las cifras son de la API <span class="ep">[Documentado]</span>.</p></div>';
+}
+function cargarBot(clave){
+  // Se tiran en memoria los campos con nombres (agenda, etiquetas, config) aunque un motor viejo los mandara.
+  if (!clave) return Promise.reject(new Error('sin clave'));
+  var cuerpo = {key:clave, solo:'agregados'};
+  return fetchJson(VIVO_BOT.url + '?' + VIVO_BOT.accion + '=1', cuerpo, VIVO_BOT.ms).catch(function(){ return fetchJson(VIVO_BOT.respaldo + '?' + VIVO_BOT.accion + '=1', cuerpo, VIVO_BOT.msRespaldo); }).then(function(j){
+    if (!j || typeof j !== 'object') throw new Error('respuesta invalida');
+    if (!j.ok) throw new Error(String(j.error || '').indexOf('no autorizado') === 0 ? 'no autorizado' : (j.error || 'error'));
+    var m = j.metricas || {};
+    return {generado:j.generado || '', version:j.version_head || '', tendencia:j.tendencia || null, clics:j.clics || null, ads:j.ads || null, poligrafias:j.poligrafias || null,
+            metricas:{citas_hoy:isNum(m.citas_hoy) ? m.citas_hoy : null, proximas:isNum(m.proximas) ? m.proximas : null, d7:m.d7 ? {reservas:m.d7.reservas, conversaciones:m.d7.conversaciones, confirmadas:m.d7.confirmadas} : null}};
+  });
+}
+function claveBot(){ return lsGet(LS_BOT) || lsGet('visor_bot_key'); }
+// Descarga las dos capas en paralelo y repinta lo que llegue. Nunca rompe: cada capa cae a 'error' con su mensaje.
+function actualizar(silencioso){
+  var ahora = Date.now();
+  if (ahora - ultimaAct < FRENO_MS && !silencioso) return;
+  ultimaAct = ahora; pintaFreno();
+  var ka = CLAVE, kb = claveBot();
+  LIVE.ads = ka ? {estado:'cargando', datos:LIVE.ads.datos || null, hora:LIVE.ads.hora || null} : {estado:'sin_clave'};
+  LIVE.bot = kb ? {estado:'cargando', datos:LIVE.bot.datos || null, hora:LIVE.bot.hora || null} : {estado:'sin_clave'};
+  repinta(['hoy', 'embudo', 'campanas', 'poli']);
+  if (ka) cargarAdsVivo(ka).then(function(j){ LIVE.ads = {estado:'ok', datos:j, hora:new Date().toISOString()}; repinta(['hoy', 'embudo', 'campanas', 'detalles']); }, function(e){ LIVE.ads = {estado:'error', error:e.message, datos:LIVE.ads.datos, hora:LIVE.ads.hora}; repinta(['hoy', 'embudo', 'campanas']); });
+  if (kb) cargarBot(kb).then(function(b){ LIVE.bot = {estado:'ok', datos:b, hora:new Date().toISOString()}; repinta(['hoy', 'embudo', 'poli', 'detalles']); }, function(e){ LIVE.bot = {estado:e.message === 'no autorizado' ? 'sin_clave' : 'error', error:e.message, datos:LIVE.bot.datos, hora:LIVE.bot.hora}; repinta(['hoy', 'embudo', 'poli']); });
+}
+function pintaFreno(){
+  var b = $('#btn-actualizar'); if (!b) return; clearInterval(frenoTimer);
+  var tick = function(){ var resta = Math.ceil((FRENO_MS - (Date.now() - ultimaAct)) / 1000); if (resta > 0){ b.disabled = true; b.textContent = 'Actualizado; otra vez en ' + resta + ' s'; } else { b.disabled = false; b.textContent = 'Actualizar'; clearInterval(frenoTimer); } };
+  tick(); frenoTimer = setInterval(tick, 1000);
+}
+function conectarBot(clave){ if (!clave) return; lsSet(LS_BOT, clave); LIVE.bot = {estado:'cargando'}; repinta(['hoy', 'embudo', 'poli']); cargarBot(clave).then(function(b){ LIVE.bot = {estado:'ok', datos:b, hora:new Date().toISOString()}; repinta(['hoy', 'embudo', 'poli', 'detalles']); }, function(e){ if (e.message === 'no autorizado') lsDel(LS_BOT); LIVE.bot = {estado:e.message === 'no autorizado' ? 'sin_clave' : 'error', error:e.message === 'no autorizado' ? 'La clave del bot no es correcta.' : e.message}; repinta(['hoy', 'embudo', 'poli']); }); }
+// Accesos cortos a la capa viva
+function VA(){ return LIVE.ads.estado === 'ok' || (LIVE.ads.datos && LIVE.ads.estado !== 'sin_clave') ? LIVE.ads.datos : null; }
+function VB(){ return LIVE.bot.datos || null; }
+function frescuraAds(){ var v = VA(); if (!v) return ''; var m = haceMin(v.generado) ; return m === null ? 'Datos en vivo' : (m < 1 ? 'Datos de ahora mismo' : 'Datos de hace ' + m + ' min'); }
+function notaCapa(capa, que){
+  var L = LIVE[capa]; if (!L || L.estado === 'ok' || L.estado === 'inactivo') return '';
+  if (L.estado === 'cargando') return '';
+  if (L.estado === 'sin_clave') return capa === 'bot' ? '' : '<p class="aviso">Google Ads en vivo no esta conectado (falta la clave); mostrando lo del ' + fechaLarga(N.corte) + '.</p>';
+  var resto = L.datos && L.hora ? 'mostrando lo de ' + fechaLarga(L.hora) : (capa === 'ads' ? 'mostrando lo del ' + fechaLarga(N.corte) + ' (datos de anoche)' : 'esa parte queda sin dato por ahora');
+  return '<p class="aviso">No pude actualizar ' + esc(que) + ' (' + esc(L.error || 'sin respuesta') + '); ' + resto + '.</p>';
+}
+
+/* ============================================================
+   SECCIONES 1 a 5
+   ============================================================ */
+function seguro(nombre, fn){ try { return fn() || ''; } catch (e) { return '<p class="nota">Esta parte ("' + esc(nombre) + '") no se pudo armar con los datos actuales (' + esc(e.message) + ').</p>'; } }
+function sk(ancho){ return '<span class="sk' + (ancho ? ' ancho' : '') + '" role="img" aria-label="cargando"></span>'; }
+// Cifras de 30 dias: el Worker vivo manda si respondio; si no, el archivo nocturno.
+function cifras30(){
+  var v = VA(), c = v && v.cuenta && v.cuenta.d30;
+  if (c && isNum(c.cost)) return {cost:c.cost, conv:c.conv || 0, clk:c.clk || 0, imp:c.imp || 0, fuente:'vivo'};
+  return {cost:N.cuenta30.cost, conv:N.cuenta30.conv, clk:N.cuenta30.clk, imp:N.cuenta30.imp, fuente:'archivo'};
+}
+function presupuestoHoy(){ var v = VA(); if (v && v.campanas){ var t = 0, hay = false; Object.keys(v.campanas).forEach(function(c){ var x = v.campanas[c]; if (x && (!x.estado || x.estado === 'ENABLED') && isNum(x.presupuesto_dia)){ t += x.presupuesto_dia; hay = true; } }); if (hay) return t; } return N.tope; }
+// UNA frase-veredicto por reglas: primero como van los contactos, luego el problema mas importante.
+function veredicto(){
+  var u = cifras30(), cpa = div(u.cost, u.conv), cpaP = N.cpaP, f1;
+  var bx = N.cuenta30.banda, by = N.cuenta30p.banda, solapan = null;
+  if (cpa && cpaP && bx && by && bx[0] > 0 && by[0] > 0){ var xLo = N.cuenta30.cost / bx[1], xHi = N.cuenta30.cost / bx[0], yLo = N.cuenta30p.cost / by[1], yHi = N.cuenta30p.cost / by[0]; solapan = !(xLo > yHi || xHi < yLo); }
+  if (!(u.conv > 0)) f1 = 'Sus anuncios no han traido contactos en 30 dias';
+  else if (cpa && cpaP && cpa > cpaP * 1.4 && solapan === false) f1 = 'Sus anuncios traen contactos, pero cada uno cuesta mas que el mes pasado';
+  else if (cpa && cpaP && cpa < cpaP * 0.9) f1 = 'Sus anuncios traen contactos y mas baratos que el mes pasado';
+  else f1 = 'Sus anuncios estan trayendo contactos a buen precio';
+  var prob = null, b = VB(), t = b && b.tendencia, poli28 = t && !t.error && isNum(t.poligrafias_28d) ? t.poligrafias_28d : null, c3 = N.c30.C3;
+  var E = N.estrategia || {}, semE = Array.isArray(E.semaforo) ? E.semaforo : [];
+  var critPoli = semE.some(function(s){ return /crit/i.test(String(s.estado || '')) && /poligraf/i.test(String(s.area || '') + ' ' + String(s.texto || '')); });
+  if (poli28 === 0 && c3 && c3.conv >= 5) prob = 'lo que hay que arreglar es que quien escribe por poligrafia no llega a hacerse el estudio';
+  else if (poli28 === null && critPoli) prob = 'lo que hay que arreglar es que quien escribe por poligrafia no llega a hacerse el estudio';
+  if (!prob){ for (var i = 0; i < CAMPS.length; i++){ var s = semaforoCamp(CAMPS[i]); if (s.nivel === 'crit'){ prob = 'hay una alarma en ' + cortoDe(CAMPS[i]) + ': ' + s.motivos[0]; break; } } }
+  if (!prob){ for (var j = 0; j < CAMPS.length; j++){ var x = N.c30[CAMPS[j]]; if (x && isNum(x.lb) && x.lb >= 35){ prob = cortoDe(CAMPS[j]) + ' se queda sin presupuesto antes de terminar el dia'; break; } } }
+  if (!prob) prob = 'no hay nada urgente que mover esta semana';
+  return f1 + '; ' + prob + '.';
+}
+function secHoy(){
+  var u = cifras30(), cpa = div(u.cost, u.conv), v = VA(), b = VB(), La = LIVE.ads, Lb = LIVE.bot;
+  var html = '<h2>Como va hoy</h2><p class="veredicto">' + esc(veredicto()) + '</p>';
+  html += '<div class="cifras">';
+  html += '<div class="cifra"><div class="n num">' + money(u.cost) + '</div><div class="l">Gastado en 30 dias</div><div class="d">' + (N.tope ? 'tope de ' + money(N.tope) + ' al dia' : '') + '</div></div>';
+  html += '<div class="cifra"><div class="n num">' + fmt(u.conv) + '</div><div class="l">Personas que escribieron o llamaron</div><div class="d">' + (N.cuenta30p.conv ? 'el mes anterior ' + fmt(N.cuenta30p.conv) : '') + '</div></div>';
+  html += '<div class="cifra"><div class="n num">' + money(cpa) + '</div><div class="l">Lo que cuesta cada contacto</div><div class="d">' + (N.cpaP ? 'el mes anterior ' + money(N.cpaP) : '') + '</div></div>';
+  html += '</div><div class="vivo">';
+  // Hoy y ayer, de la capa viva de Ads
+  var fila = '<div class="fila">';
+  if (La.estado === 'cargando' && !v) fila += '<span>Hoy: ' + sk(true) + '</span><span>Ayer: ' + sk() + '</span>' + chip('', 'reloj', 'Consultando a Google...');
+  else if (v && v.cuenta){ var h = v.cuenta.hoy || {}, a = v.cuenta.ayer || {}, pres = presupuestoHoy(); fila += '<span>Hoy: <b>' + money(h.cost) + '</b>' + (pres ? ' de ' + money(pres) + ' del dia' : '') + ' · <b>' + fmt(h.conv) + '</b> ' + plural(Math.round(h.conv || 0), 'contacto', 'contactos') + '</span><span>Ayer: <b>' + money(a.cost) + '</b> · <b>' + fmt(a.conv) + '</b> ' + plural(Math.round(a.conv || 0), 'contacto', 'contactos') + '</span>' + chip(La.estado === 'ok' ? 'ok' : 'mal', 'reloj', frescuraAds()); }
+  else if (La.estado === 'sin_clave') fila += chip('mal', 'reloj', 'Google en vivo sin conectar: datos del ' + fecha(N.corte));
+  else fila += chip('mal', 'reloj', 'Google Ads al ' + fecha(N.corte) + ' (datos de anoche)');
+  fila += '</div>';
+  html += fila + notaCapa('ads', 'los datos en vivo de Google Ads');
+  // Calendario en vivo, del bot
+  var filaB = '<div class="fila">';
+  if (Lb.estado === 'cargando' && !b) filaB += '<span>Calendario: ' + sk(true) + '</span>' + chip('', 'cal', 'Consultando al consultorio...');
+  else if (b){ var m = b.metricas || {}, t = b.tendencia; filaB += '<span>Citas hoy: <b>' + fmt(m.citas_hoy) + '</b></span><span>Citas por venir: <b>' + fmt(m.proximas) + '</b></span>' + (t && !t.error && isNum(t.poligrafias_semana_en_curso) ? '<span>Poligrafias esta semana: <b>' + fmt(t.poligrafias_semana_en_curso) + '</b></span>' : '') + chip(Lb.estado === 'ok' ? 'ok' : 'mal', 'cal', 'Calendario en vivo' + (b.generado ? ', ' + esc(String(b.generado).slice(11, 16)) : '')); }
+  else if (Lb.estado === 'sin_clave') filaB += chip('mal', 'cal', 'Calendario sin conectar') + '<form id="bot-form" autocomplete="off"><label class="sr" for="bot-clave">Clave del bot</label><input type="password" id="bot-clave" placeholder="Clave del bot de WhatsApp (la misma de /bot-config)" autocomplete="off"><button type="submit" class="btn sec">Conectar</button>' + (Lb.error ? '<span class="aviso" style="margin:0">' + esc(Lb.error) + '</span>' : '') + '</form>';
+  else filaB += chip('mal', 'cal', 'Calendario sin conexion');
+  filaB += '</div>';
+  html += filaB + notaCapa('bot', 'el calendario del consultorio');
+  html += '</div>';
   return html;
 }
 
-function secHistorico(){
-  if (!N.weeks.length && !N.dias.length) return h2('03', 'Historico', 's-historico') + '<div class="card"><p class="cap">Sin series semanales ni diarias en los datos.</p></div>';
-  var wl = N.weeks.map(N.wkLabel), html = h2('03', 'Historico', 's-historico') + '<p class="lead">Semana por semana (lunes a domingo). El asterisco marca una semana aun incompleta al corte.</p>';
-  var marcasSem = N.budgetChanges.map(function(b){ var d = String(b.fecha||'').slice(0,10); var w = N.weeks.filter(function(x){ return x <= d; }).pop(); return w ? {at:N.wkLabel(w), label:fecha(d) + ' ' + b.camp + ' ' + money(b.de) + ' a ' + money(b.a)} : null; }).filter(Boolean);
-  var marcasUnicas = {}; marcasSem = marcasSem.filter(function(m){ if (marcasUnicas[m.at]) return false; marcasUnicas[m.at] = 1; return true; }); marcasSem.forEach(function(m, i){ m.label = i ? '' : 'cambio de presupuesto'; });
-  if (N.weeks.length){
-    html += '<div class="grid2"><div class="card"><h3 style="margin-top:0">Gasto semanal por campana</h3>' + chart('ch-gasto', function(h){ return stackedBars({labels:wl, series:CAMPS.map(function(c){ return {name:NAME[c], color:COL[c], values:N.byWeek(c, 'cost')}; }), yfmt:money, marks:marcasSem, aria:'Gasto semanal apilado por campana'}, h); }) + legend(CAMPS.map(function(c){ return {name:NAME[c], color:COL[c]}; })) + (marcasSem.length ? '<p class="cap">Linea punteada = semana con cambio de presupuesto (detalle abajo).</p>' : '') + '</div>';
-    html += '<div class="card"><h3 style="margin-top:0">Contactos semanales por campana</h3>' + chart('ch-conv', function(h){ return lineChart({labels:wl, series:CAMPS.map(function(c){ var cost = N.byWeek(c, 'cost'); return {name:NAME[c], short:c, color:COL[c], values:N.byWeek(c, 'conv').map(function(v, i){ return {y:v, extra:'gasto ' + money(cost[i])}; })}; }), aria:'Contactos semanales por campana'}, h); }) + '<p class="cap">La importacion de GA4 a Ads tarda 24 a 48 h: la semana mas reciente siempre se ve baja.</p></div></div>';
-    html += '<div class="grid2"><div class="card"><h3 style="margin-top:0">Costo por contacto semanal</h3>' + chart('ch-cpa', function(h){ return lineChart({labels:wl, series:CAMPS.map(function(c){ var cost = N.byWeek(c, 'cost'), conv = N.byWeek(c, 'conv'); return {name:NAME[c], short:c, color:COL[c], values:cost.map(function(v, i){ return {y:div(v, conv[i]), extra:fmt(conv[i]) + ' contactos'}; })}; }), yfmt:money, aria:'Costo por contacto semanal'}, h); }) + '<p class="cap">Sin punto = semana sin contactos (no se dibuja un costo infinito). Con menos de 10 contactos por semana la linea brinca por puro azar: leer la tendencia de varias semanas, nunca un punto.</p></div>';
-    html += '<div class="card"><h3 style="margin-top:0">Cuota de impresiones (30 d)</h3>' + chart('ch-is', function(h){ var labs = [], is = [], lb = [], lr = []; CAMPS.forEach(function(c){ [['ahora', N.c30[c]], ['antes', N.c30p[c]]].forEach(function(p){ if (!p[1]) return; labs.push(c + ' ' + p[0]); is.push(p[1].is_||0); lb.push(p[1].lb||0); lr.push(p[1].lr||0); }); }); return stackedBars({labels:labs, series:[{name:'ganada', color:'var(--electric)', values:is}, {name:'perdida por presupuesto', color:'var(--warn)', values:lb}, {name:'perdida por rank', color:'var(--ink-3)', values:lr}], yfmt:function(v){ return v.toFixed(0) + '%'; }, vmax:100, height:210, aria:'Impression share por campana, ahora y antes'}, h); }) + legend([{name:'ganada', color:'var(--electric)'}, {name:'perdida por presupuesto', color:'var(--warn)'}, {name:'perdida por rank', color:'var(--ink-3)'}]) + '<p class="cap">Perdida por presupuesto se arregla con dinero; perdida por rank, con calidad o puja.</p></div></div>';
+/* ---------- 2. Lo que importa esta semana ---------- */
+var AREAS = [
+  [/costo por contacto/i, 'Es lo que paga por cada persona que le escribe o llama.', 'Nada que mover; lo vigilo cada semana.', 'auto'],
+  [/poligraf.*calendario|estudios/i, 'La poligrafia es el servicio que mas vale; si el chat no termina en estudio, el anuncio no sirve.', 'Revisar por que los chats de poligrafia no cierran (precio, seguimiento o pagina).', 'dr'],
+  [/presupuesto/i, 'Lo que se gasta cada dia decide cuanta gente ve el anuncio.', 'Fijar el tope diario que quiere sostener.', 'dr'],
+  [/aprendizaje/i, 'Google esta recalibrando cuanto paga por cada clic; cualquier cambio reinicia ese reloj.', 'No tocar la campana hasta la fecha acordada.', 'auto'],
+  [/landing|pagina/i, 'La pagina es donde el clic se convierte en mensaje.', 'Acortar la pagina de poligrafia: una pantalla con precio y boton.', 'dr'],
+  [/medicion/i, 'Si Google mide mal, aprende mal y puja mal.', 'Corregir lo que Google cuenta como contacto y avisarle cual termino en cita.', 'auto']
+];
+function plantillaAlerta(a){
+  var c = a.camp, n = cortoDe(c), x = N.c30[c] || {};
+  switch (a.regla){
+    case 'lost_budget': return {que:n + ' se queda sin presupuesto antes de terminar el dia' + (isNum(x.lb) ? ' (' + x.lb + '% de las busquedas se pierden por eso)' : '') + '.', porque:'Hay gente buscando a esa hora que ya no ve su anuncio.', hacer:'Subir el presupuesto de ' + n + ' o aceptar ese tope.', quien:'dr'};
+    case 'conv_clic': return {que:'La ultima semana completa de ' + n + ' tuvo muchos clics y casi ningun contacto.', porque:'Cuando el clic no termina en mensaje, el dinero se va sin paciente.', hacer:'Reviso la pagina, la medicion y las busquedas que lo disparan.', quien:'auto'};
+    case 'cpc': return {que:'El clic de ' + n + ' se encarecio esta semana.', porque:'Con el mismo dinero entran menos personas a la pagina.', hacer:'Lo vigilo una semana mas; si sigue, ajusto las palabras clave.', quien:'auto'};
+    case 'gasto_diario': return {que:n + ' gasto un dia mas de 1.5 veces su presupuesto.', porque:'Google puede gastar hasta el doble en un dia y lo compensa en el mes; solo importa si se repite.', hacer:'Nada por ahora; lo vigilo.', quien:'auto'};
+    case 'ga4': return {que:'Google Analytics no respondio en la descarga de anoche.', porque:'Sin Analytics no se ve en que pagina escribe mas gente.', hacer:'Reviso los accesos del proceso automatico.', quien:'auto'};
+    default: return null;
   }
-  if (N.dias.length){
-    var dl = N.dias.map(fecha);
-    var marcasDia = N.budgetChanges.map(function(b){ var d = String(b.fecha||'').slice(0,10); return N.dias.indexOf(d) >= 0 ? {at:fecha(d), label:b.camp + ' ' + money(b.de) + ' a ' + money(b.a)} : null; }).filter(Boolean);
-    html += '<div class="card"><h3 style="margin-top:0">Gasto diario, ultimos 30 dias, con los cambios de presupuesto</h3>' + chart('ch-dia', function(h){ return lineChart({labels:dl, series:CAMPS.map(function(c){ var conv = N.byDay(c, 'conv'); return {name:NAME[c], short:c, color:COL[c], values:N.byDay(c, 'cost').map(function(v, i){ return {y:v, extra:fmt(conv[i]) + ' contactos'}; })}; }), yfmt:money, marks:marcasDia, aria:'Gasto diario por campana con marcas de cambios de presupuesto'}, h); });
-    html += '<h3>Cuota de impresiones diaria perdida por presupuesto</h3>' + chart('ch-lb', function(h){ return lineChart({labels:dl, series:CAMPS.map(function(c){ return {name:NAME[c], short:c, color:COL[c], values:N.byDay(c, 'lb').map(function(v){ return {y:isNum(v) ? v : null}; })}; }), yfmt:function(v){ return v.toFixed(0) + '%'; }, height:180, aria:'IS perdido por presupuesto, diario'}, h); }) + '<p class="cap">Es una cuota (porcentaje de las busquedas en que el anuncio pudo salir), no un numero de impresiones; Google la omite por debajo del 10%, asi que un hueco es "menos de 10%", no cero.</p>';
-    if (N.budgetChanges.length) html += '<div class="scroll" style="margin-top:10px"><table class="narrow"><thead><tr><th>Cuando</th><th>Quien</th><th>Camp.</th><th class="num">De</th><th class="num">A</th></tr></thead><tbody>' + N.budgetChanges.slice().reverse().map(function(b){ return '<tr><td>' + esc(b.fecha) + '</td><td>' + esc(b.quien) + '</td><td>' + esc(b.camp) + '</td><td class="num">' + money(b.de) + '</td><td class="num">' + money(b.a) + '</td></tr>'; }).join('') + '</tbody></table></div>';
-    if (N.otrosCambios.length) html += '<details><summary>Otros cambios en la cuenta (' + N.otrosCambios.length + ')</summary><ul class="tight">' + N.otrosCambios.slice(0, 30).map(function(ch){ return '<li><span class="cap" style="display:inline">' + esc(String(ch.fecha || '').replace('T', ' ').slice(0, 16)) + ' · ' + esc(ch.camp || 'cuenta') + ' · ' + esc(actor(ch)) + '</span><br>' + esc(sinCorreo(ch.resumen || ch.tipo)) + '</li>'; }).join('') + '</ul></details>';
-    html += '<p class="cap">Fuente: change_event de la API <span class="ep">[Documentado]</span>.</p></div>';
-  }
+}
+function mensajesSemana(){
+  var out = [], usadas = {}, E = N.estrategia || {}, decs = Array.isArray(E.decisiones) ? E.decisiones : [];
+  function decisionPara(claves){ for (var i = 0; i < decs.length; i++){ var d = decs[i]; if (usadas['d' + i]) continue; var tx = String(d.titulo || '').toLowerCase(); if (claves.some(function(k){ return tx.indexOf(k) >= 0; })){ usadas['d' + i] = 1; return d; } } return null; }
+  (Array.isArray(E.semaforo) ? E.semaforo : []).forEach(function(s){
+    var est = String(s.estado || '').toLowerCase(); if (!/crit|aten/.test(est)) return;
+    var area = String(s.area || ''), fila = null; for (var i = 0; i < AREAS.length; i++) if (AREAS[i][0].test(area)){ fila = AREAS[i]; break; }
+    var claves = /poligraf|sueno/i.test(area) ? ['poligraf', 'sueno'] : /landing|pagina/i.test(area) ? ['landing', 'pagina'] : /presupuesto/i.test(area) ? ['presupuesto', 'tope', 'reparto'] : /medicion/i.test(area) ? ['medicion', 'conversion', 'lazo'] : [area.toLowerCase().split(' ')[0]];
+    var d = decisionPara(claves);
+    out.push({prio:/crit/.test(est) ? 0 : 3, nivel:/crit/.test(est) ? 'crit' : 'warn', que:sinMarca(s.texto) || area, porque:fila ? fila[1] : 'Afecta cuantos pacientes llegan por el mismo dinero.', hacer:d ? d.titulo : (fila ? fila[2] : 'Lo reviso en la siguiente lectura.'), quien:d ? d.quien : (fila ? fila[3] : 'auto')});
+  });
+  N.alertas.forEach(function(a){ if (a.nivel === 'info') return; var k = a.regla + '|' + a.camp; if (usadas[k]) return; usadas[k] = 1; var t = plantillaAlerta(a); if (t) out.push({prio:a.nivel === 'crit' ? 1 : 4, nivel:a.nivel, que:t.que, porque:t.porque, hacer:t.hacer, quien:t.quien}); });
+  decs.forEach(function(d, i){ if (usadas['d' + i] || String(d.impacto || '').toLowerCase() !== 'alto') return; usadas['d' + i] = 1; out.push({prio:2, nivel:'info', que:d.titulo, porque:primera(d.cuerpo), hacer:d.dato_que_resuelve ? 'Se decide con: ' + primera(d.dato_que_resuelve) : (/dr/i.test(String(d.quien || '')) ? 'Espera su OK.' : 'Lo hago y le reporto.'), quien:d.quien}); });
+  out.sort(function(a, b){ return a.prio - b.prio; });
+  return out.slice(0, 3);
+}
+function secSemana(){
+  var ms = mensajesSemana(), html = '<h2>Lo que importa esta semana</h2>';
+  if (!ms.length) return html + '<p class="intro">Nada urgente: los anuncios corren dentro de lo normal.</p>';
+  html += '<div class="mensajes">' + ms.map(function(m, i){ return '<article class="msg' + (i === 0 ? ' grande' : '') + '"><div class="cab">' + estado(m.nivel, m.nivel === 'crit' ? 'Urgente' : m.nivel === 'warn' ? 'Atencion' : 'Para decidir') + tagQuien(m.quien) + '</div><h3>' + esc(m.que) + '</h3>' + (m.porque ? '<p>' + esc(m.porque) + '</p>' : '') + '<p class="hacer">' + esc(m.hacer) + '</p></article>'; }).join('') + '</div>';
   return html;
 }
 
+/* ---------- 3. Del anuncio al paciente ---------- */
+function pasosEmbudo(){
+  var u = cifras30(), b = VB(), Lb = LIVE.bot, t = b && b.tendencia && !b.tendencia.error ? b.tendencia : null, cl = b && b.clics && !b.clics.error ? b.clics : null;
+  var citas = null, poli = null;
+  if (t && Array.isArray(t.semanas) && t.semanas.length){ var ult4 = t.semanas.slice(-4); citas = ult4.reduce(function(a, s){ return a + (isNum(s.citas) ? s.citas : 0); }, 0); }
+  if (t && isNum(t.poligrafias_28d)) poli = t.poligrafias_28d;
+  var estB = function(val){ return b ? (isNum(val) ? 'ok' : 'nd') : (Lb.estado === 'cargando' ? 'sk' : 'nd'); };
+  var tasaCita = cl && isNum(cl.tasa) ? cl.tasa / 100 : null;
+  return [
+    {n:u.imp, etiqueta:'Veces que salio su anuncio', pasa:div(u.clk, u.imp), estado:'ok'},
+    {n:u.clk, etiqueta:'Personas que entraron al sitio', pasa:div(u.conv, u.clk), estado:'ok'},
+    {n:u.conv, etiqueta:'Le escribieron o llamaron', pasa:tasaCita, estado:'ok'},
+    {n:citas, etiqueta:'Citas en el calendario', pasa:isNum(citas) && citas > 0 && isNum(poli) ? poli / citas : null, estado:estB(citas)},
+    {n:poli, etiqueta:'Estudios de sueno agendados', pasa:null, estado:estB(poli), c3:true}
+  ];
+}
+function secEmbudo(){
+  var pasos = pasosEmbudo(), b = VB(), cl = b && b.clics && !b.clics.error ? b.clics : null;
+  var html = '<h2>Del anuncio al paciente</h2><p class="intro">Ultimos 30 dias (citas y estudios: ultimas 4 semanas). Cada paso pierde gente; el porcentaje dice cuantos pasan al siguiente.</p>';
+  html += '<div class="embudo-host">' + chart('ch-embudo', function(h){ return funnelSvg(pasosEmbudo(), h); }) + '</div>';
+  html += '<p class="nota">Las citas y los estudios son los de todo el consultorio (el calendario no distingue de donde vino cada paciente).' + (cl && cl.identificados ? ' De los clics de anuncio que si pudimos seguir, ' + fmt(cl.con_cita) + ' de ' + fmt(cl.identificados) + ' terminaron en cita (' + fmt(cl.tasa) + '%, ultimos ' + fmt(cl.ventana_dias) + ' dias).' : '') + '</p>';
+  html += notaCapa('bot', 'las citas del calendario');
+  return html;
+}
+
+/* ---------- 4. Sus tres campanas ---------- */
+function semanaCurso(c){
+  var P = N.pron[c], cu = P && P.semana_en_curso; if (!cu || !isNum(cu.contactos)) return '';
+  var bc = cu.banda_esperada_a_la_fecha;
+  return 'Esta semana lleva <b>' + fmt(cu.contactos) + '</b> ' + plural(Math.round(cu.contactos), 'contacto', 'contactos') + ' en ' + cu.dias + ' ' + plural(cu.dias, 'dia', 'dias') + (bc && isNum(bc[0]) && isNum(bc[1]) ? '; a estas alturas lo normal es entre <b>' + fmt(bc[0]) + '</b> y <b>' + fmt(bc[1]) + '</b>' : '') + '.';
+}
+function serie30(c){
+  var v = VA(), vc = v && v.campanas && v.campanas[c];
+  if (vc && Array.isArray(vc.diario30) && vc.diario30.length) return vc.diario30.map(function(d){ return isNum(d.conv) ? d.conv : 0; });
+  return N.byDay(c, 'conv');
+}
 function secCampanas(){
-  var html = h2('04', 'Campana por campana', 's-campanas');
+  var v = VA(), html = '<h2>Sus tres campanas</h2><p class="intro">Cada campana vende una cosa distinta y tiene su propio dinero. El estado resume 30 dias.</p>';
   CAMPS.forEach(function(c){
-    var x = N.c30[c] || {}, y = N.c30p[c] || {}, cfg = N.camp[c], s = semaforoCamp(c);
-    var puja = String(cfg.puja||'n/d').replace('MAXIMIZE_CONVERSION_VALUE', 'Max. valor de conv.').replace('MAXIMIZE_CONVERSIONS', 'Max. conversiones').replace('TARGET_SPEND', 'Max. clics').replace('TARGET_CPA', 'CPA objetivo').replace('TARGET_ROAS', 'ROAS objetivo').replace(/_/g, ' ');
-    html += '<div class="card campana ' + c + '"><div class="cab"><h3>' + esc(NAME[c]) + '</h3>' + pill(s.nivel) + '</div><p class="cap">' + esc(cfg.nombre) + (cfg.id ? ' · ' + esc(cfg.id) : '') + '</p>';
-    html += '<div class="sub-tiles"><div><b>Puja</b><span style="font-size:13px">' + esc(puja) + '</span>' + (isNum(cfg.tcpa) ? '<small>tCPA ' + money(cfg.tcpa) + '</small>' : '') + '</div><div><b>Presupuesto</b><span>' + money(cfg.presupuesto) + '</span><small>por dia</small></div><div><b>Estado</b><span style="font-size:13px">' + esc(cfg.congelada_hasta && N.corte && cfg.congelada_hasta >= N.corte ? 'Congelada hasta ' + fecha(cfg.congelada_hasta) : (cfg.estado || 'activa')) + '</span>' + (cfg.geo ? '<small>' + esc(cfg.geo === 'PRESENCE' ? 'solo presencia' : 'presencia o interes') + '</small>' : '') + '</div></div>';
-    if (cfg.nota) html += '<p class="cap">' + esc(cfg.nota) + '</p>';
-    if (cfg.negativos || cfg.sitelinks) html += '<p class="cap">' + fmt(cfg.negativos) + ' negativos de campana · ' + fmt(cfg.sitelinks) + ' sitelinks</p>';
-    // Sin periodo previo casi completo no hay columna "Cambio": 9 dias contra 30 daba "+525% de contactos".
-    var pOk = prevValido(N.c30p[c]), dl = pOk ? delta : function(){ return ''; };
-    var rows = [['Gasto', money(x.cost), money(y.cost), dl(x.cost, y.cost, true)], ['Clics', fmt(x.clk), fmt(y.clk), dl(x.clk, y.clk)], ['CPC', money(x.cpc), money(y.cpc), dl(x.cpc, y.cpc, true)], ['Contactos', fmt(x.conv) + (x.banda ? ' <span class="cap" style="display:inline">(azar ' + fmt(x.banda[0]) + ' a ' + fmt(x.banda[1]) + ')</span>' : ''), fmt(y.conv), dl(x.conv, y.conv)], ['Conv/clic', pct(div(x.conv, x.clk), 1), pct(div(y.conv, y.clk), 1), dl(div(x.conv, x.clk), div(y.conv, y.clk))], ['Costo por contacto', money(s.cpa), money(s.cpaP), dl(s.cpa, s.cpaP, true)], ['Cuota de impresiones', isNum(x.is_) ? x.is_ + '%' : 'n/d', isNum(y.is_) ? y.is_ + '%' : 'n/d', dl(x.is_, y.is_)], ['Perdida por presupuesto', isNum(x.lb) ? x.lb + '%' : 'n/d', isNum(y.lb) ? y.lb + '%' : 'n/d', dl(x.lb, y.lb, true)], ['Perdida por rank', isNum(x.lr) ? x.lr + '%' : 'n/d', isNum(y.lr) ? y.lr + '%' : 'n/d', dl(x.lr, y.lr, true)]];
-    html += '<div class="scroll"><table class="narrow"><thead><tr><th>30 dias</th><th class="num">Ahora</th><th class="num">Previos' + (y && isNum(y.dias) && y.dias < 30 ? ' (' + y.dias + ' d)' : '') + '</th><th class="num">Cambio</th></tr></thead><tbody>' + rows.map(function(r){ return '<tr><td>' + r[0] + '</td><td class="num"><b>' + r[1] + '</b></td><td class="num">' + r[2] + '</td><td class="num">' + r[3] + '</td></tr>'; }).join('') + '</tbody></table></div>' + (pOk ? '' : '<p class="cap">El periodo previo solo tiene ' + (isNum(y.dias) ? y.dias : 'pocos') + ' dias (la campana es nueva): no se calcula el cambio.</p>');
-    var ag = N.adgroups.filter(function(g){ return g.camp === c; }).sort(function(a, b){ return (b.cost||0) - (a.cost||0); });
-    if (ag.length) html += '<details><summary>Grupos de anuncios (' + ag.length + ')</summary><div class="scroll"><table><thead><tr><th>Grupo</th><th class="num">Gasto</th><th class="num">Clics</th><th class="num">CTR</th><th class="num">Contactos</th><th class="num">$/contacto</th></tr></thead><tbody>' + ag.map(function(g){ return '<tr><td>' + esc(g.name) + (g.status && g.status !== 'ENABLED' ? ' ' + pill('mute', String(g.status).toLowerCase()) : '') + (g.congelado ? ' ' + pill('info', 'congelado') : '') + '</td><td class="num">' + money(g.cost) + '</td><td class="num">' + fmt(g.clk) + '</td><td class="num">' + (isNum(g.ctr) ? g.ctr + '%' : 'n/d') + '</td><td class="num">' + fmt(g.conv) + '</td><td class="num">' + money(div(g.cost, g.conv)) + '</td></tr>'; }).join('') + '</tbody></table></div></details>';
-    var kw = N.topKw.filter(function(k){ return k.camp === c; }).slice(0, 8);
-    if (kw.length) html += '<details><summary>Palabras clave que mas gastan (' + kw.length + ')</summary><div class="scroll"><table><thead><tr><th>Palabra</th><th>Conc.</th><th class="num">QS</th><th class="num">Gasto</th><th class="num">Contactos</th><th class="num">$/contacto</th></tr></thead><tbody>' + kw.map(function(k){ return '<tr><td>' + esc(k.kw) + '<div class="cap">' + esc(k.group||'') + '</div></td><td>' + esc(String(k.match||'').toLowerCase()) + '</td><td class="num">' + (isNum(k.qs) ? (k.qs <= 4 ? pill('warn', String(k.qs)) : k.qs) : 'n/d') + '</td><td class="num">' + money(k.cost) + '</td><td class="num">' + fmt(k.conv) + '</td><td class="num">' + money(div(k.cost, k.conv)) + '</td></tr>'; }).join('') + '</tbody></table></div><p class="cap">QS = nivel de calidad 1 a 10; 4 o menos se marca.</p></details>';
-    var st = N.stCero.filter(function(t){ return t.camp === c; }).sort(function(a, b){ return b.cost - a.cost; }).slice(0, 8);
-    if (st.length) html += '<details><summary>Busquedas con gasto y cero contactos (' + st.length + ')</summary><div class="scroll"><table class="narrow"><thead><tr><th>Termino</th><th class="num">Gasto</th><th class="num">Clics</th><th>Estado</th></tr></thead><tbody>' + st.map(function(t){ return '<tr><td>' + esc(t.term) + '</td><td class="num">' + money(t.cost) + '</td><td class="num">' + fmt(t.clk) + '</td><td>' + esc(t.status === 'ADDED' ? 'ya es keyword' : (t.status === 'EXCLUDED' ? 'ya negativo' : 'sin accion')) + '</td></tr>'; }).join('') + '</tbody></table></div><p class="cap">Un negativo se valida en keyword_view antes de aplicarse, nunca solo por esta fila. Que alguien busque precio no es motivo para bloquear.</p></details>';
-    var an = N.anuncios.filter(function(a){ return a.camp === c; });
-    if (an.length){ var cnt = {}; an.forEach(function(a){ var k = a.strength || 'n/d'; cnt[k] = (cnt[k]||0) + 1; }); html += '<p class="cap">Anuncios: ' + an.length + ' (' + Object.keys(cnt).map(function(k){ return cnt[k] + ' ' + k.toLowerCase(); }).join(', ') + ')' + (an.some(function(a){ return a.strength === 'POOR'; }) ? ' ' + pill('warn', 'hay anuncios POOR') : '') + '</p>'; }
+    var cfg = N.camp[c], s = semaforoCamp(c), x = N.c30[c] || {}, vc = v && v.campanas && v.campanas[c];
+    var pres = vc && isNum(vc.presupuesto_dia) ? vc.presupuesto_dia : cfg.presupuesto;
+    var pausada = (vc && vc.estado && vc.estado !== 'ENABLED') || (cfg.estado && cfg.estado !== 'ENABLED');
+    html += '<article class="camp"><div><div class="cab"><h3 class="nom"><span class="sw ' + c + '"></span>' + esc(nombreDe(c)) + '</h3>' + estado(pausada ? 'mute' : s.nivel) + '</div><p class="vende">' + esc(VENDE[c] || cfg.nombre) + '</p><p class="porque">' + esc(s.motivos[0].charAt(0).toUpperCase() + s.motivos[0].slice(1)) + '.</p></div>';
+    html += '<div class="datos"><span>Presupuesto: <b>' + money(pres) + '</b> al dia</span>';
+    html += '<span>Costo por contacto: <b>' + money(s.cpa) + '</b> (30 dias, ' + fmt(x.conv) + ' ' + plural(Math.round(x.conv || 0), 'contacto', 'contactos') + ')</span>';
+    var sc = semanaCurso(c); if (sc) html += '<span>' + sc + '</span>';
+    if (vc && vc.hoy) html += '<span>Hoy: <b>' + money(vc.hoy.cost) + '</b>' + (isNum(pres) ? ' de ' + money(pres) : '') + ' · <b>' + fmt(vc.hoy.conv) + '</b> ' + plural(Math.round(vc.hoy.conv || 0), 'contacto', 'contactos') + (vc.ayer ? ' · ayer ' + money(vc.ayer.cost) + ' y ' + fmt(vc.ayer.conv) + ' ' + plural(Math.round(vc.ayer.conv || 0), 'contacto', 'contactos') : '') + '</span>';
+    else if (LIVE.ads.estado === 'cargando') html += '<span>Hoy: ' + sk(true) + '</span>';
     html += '</div>';
+    html += '<div class="spark">' + sparkline(serie30(c), colDe(c), 'Contactos por dia de ' + nombreDe(c) + ', 30 dias') + '<span>Contactos por dia, 30 dias</span></div></article>';
   });
+  html += notaCapa('ads', 'el presupuesto y el gasto de hoy');
   return html;
 }
 
-function secPoligrafia(){
-  var x = N.c30.C3 || {}, html = h2('05', 'Poligrafia: del clic al estudio', 's-poligrafia');
-  html += '<div class="card c3">';
-  var per = N.c3Periodos && Object.keys(N.c3Periodos).length ? N.c3Periodos : null;
-  if (per){ html += '<div class="tiles" style="margin-top:0">' + Object.keys(per).map(function(k){ var p = per[k], t = div(p.conv, p.clk); return tile('', esc(k), pct(t, 1), fmt(p.conv) + ' contactos / ' + fmt(p.clk) + ' clics · ' + money(div(p.cost, p.conv)) + ' por contacto'); }).join('') + '</div><p class="cap">' + (N.D.c3_periodos ? 'Periodos definidos por los cambios de puja y landing de C3.' : 'Primera y segunda quincena de la ventana de 30 dias.') + ' Con 10 o 15 contactos por quincena la diferencia entre periodos casi siempre cabe en el azar: NO se lee como tendencia; sirve solo para ubicar el antes y el despues de un cambio.</p>'; }
-  // Embudo: clics -> contactos (Ads) -> identificados -> con cita (vivo)
-  html += '<h3>Embudo de poligrafia</h3><div class="sub-tiles" id="embudo-c3"><div><b>Clics 30 d</b><span>' + fmt(x.clk) + '</span><small>Ads</small></div><div><b>Contactos 30 d</b><span>' + fmt(x.conv) + '</span><small>' + pct(div(x.conv, x.clk), 1) + ' de los clics</small></div><div><b>Con cita</b><span id="embudo-cita">n/d</span><small id="embudo-cita-s">capa viva</small></div></div>';
-  html += '<p class="cap" id="embudo-nota">El ultimo tramo (contacto a estudio agendado) solo lo conoce el consultorio: se llena al conectar la capa viva.</p>';
-  var fam = N.c3Familias ? Object.keys(N.c3Familias).map(function(k){ return {k:k, v:N.c3Familias[k]}; }).filter(function(f){ return f.v && f.v.cost > 30; }).sort(function(a, b){ return b.v.cost - a.v.cost; }) : [];
-  var NOM = {clinica:'clinica del sueno', polisomno:'polisomnografia', apnea:'apnea', poligraf:'poligrafia', especialista:'especialista del sueno', estudio:'estudio del sueno', sue:'sueno (otros)', otro:'otros', precio:'precio', ronq:'ronquido', cpap:'CPAP', examen:'examen del sueno', casa:'en casa'};
-  if (fam.length) html += '<h3>Que busca la gente que llega a C3</h3>' + chart('ch-fam', function(h){ return barChart({horizontal:true, labelW:150, items:fam.map(function(f){ return {label:NOM[f.k]||f.k, value:f.v.cost, color:f.v.conv ? 'var(--c3)' : 'var(--ink-3)', extra:fmt(f.v.conv) + ' contactos · ' + fmt(f.v.clk) + ' clics · ' + fmt(f.v.n) + ' variantes'}; }), yfmt:money, aria:'Gasto por familia de terminos de C3'}, h); }) + '<p class="cap">Gris = familia sin contactos en 30 dias.' + (N.c3FamiliasParcial ? ' Clasificacion sobre los 60 terminos con mas gasto [Heuristica].' : '') + '</p>';
-  var ag = N.adgroups.filter(function(g){ return g.camp === 'C3' && g.cost > 30; }).sort(function(a, b){ return b.cost - a.cost; });
-  if (ag.length) html += '<h3>Grupos de anuncios de C3</h3>' + chart('ch-c3g', function(h){ return barChart({horizontal:true, labelW:190, items:ag.map(function(g){ return {label:String(g.name).replace(/^Poligraf[ií]a \| /, '').replace(/^Apnea \| /, ''), value:g.conv ? g.cost / g.conv : g.cost, color:g.conv ? 'var(--c3)' : 'var(--ink-3)', extra:fmt(g.conv) + ' contactos · ' + money(g.cost) + ' · ' + fmt(g.clk) + ' clics' + (g.conv ? '' : ' · sin contactos: la barra es el gasto')}; }), yfmt:money, aria:'Costo por contacto por grupo de C3'}, h); }) + '<p class="cap">Barra = costo por contacto; en gris, grupos sin contactos (barra = gasto).</p>';
-  var L = N.landing30 || [], Lp = N.landingPrev || [];
-  if (L.length){ var lp = L.filter(function(r){ return r.sesiones >= 20; }).sort(function(a, b){ return b.sesiones - a.sesiones; }).slice(0, 6); html += '<h3>Tasa de contacto por landing de pago (GA4)</h3>' + chart('ch-landing', function(h){ return barChart({horizontal:true, labelW:170, items:lp.map(function(r){ var p = Lp.filter(function(q){ return q.path === r.path; })[0]; return {label:String(r.path).replace('/promociones/', '').replace(/\/$/, ''), value:div(r.contactos, r.sesiones) || 0, color:/poligraf/.test(r.path) ? 'var(--c3)' : 'var(--c1)', extra:fmt(r.contactos) + ' contactos / ' + fmt(r.sesiones) + ' sesiones' + (p ? ' · previos ' + pct(div(p.contactos, p.sesiones), 1) : '')}; }), yfmt:function(v){ return pct(v, 1); }, aria:'Tasa de contacto por landing'}, h); }) + '<p class="cap">Sesiones de google/cpc, 30 dias. Solo landings con 20 sesiones o mas. Contacto = clic_whatsapp, agendar_cita o llamada.</p>'; }
-  else if (!N.ga4Ok) html += '<p class="cap">GA4 no vino en esta corrida: sin tasa por landing <span class="ep">[Requiere verificar]</span>.</p>';
-  html += '</div>';
+/* ---------- 5. Poligrafia: del clic al estudio ---------- */
+function quincenas(c){
+  if (!N.corte || !N.diario.length) return null;
+  function agg(a, b){ var rows = N.diario.filter(function(r){ return r.camp === c && r.date >= a && r.date <= b; }); if (!rows.length) return null; var o = {cost:0, clk:0, conv:0}; rows.forEach(function(r){ o.cost += r.cost; o.clk += r.clk; o.conv += r.conv; }); o.tasa = div(o.conv, o.clk); return o; }
+  return {antes:agg(addDias(N.corte, -29), addDias(N.corte, -15)), ahora:agg(addDias(N.corte, -14), N.corte)};
+}
+function secPoli(){
+  var x = N.c30.C3 || {}, b = VB(), Lb = LIVE.bot, t = b && b.tendencia && !b.tendencia.error ? b.tendencia : null, cl = b && b.clics && !b.clics.error ? b.clics : null, q = quincenas('C3');
+  var E = N.estrategia || {}, EP = E.poligrafia || {};
+  var html = '<h2>Poligrafia: del clic al estudio</h2><p class="intro">La poligrafia es el servicio que mas vale, asi que se sigue aparte.</p><div class="hechos">';
+  // Hecho 1: contactos (conv/clic) de la ultima quincena contra la anterior
+  var h1 = '<div class="hecho"><h3>Los contactos suben</h3>';
+  if (q && q.ahora && q.antes && isNum(q.ahora.tasa) && isNum(q.antes.tasa)){ var sube = q.ahora.tasa >= q.antes.tasa; h1 = '<div class="hecho"><h3>' + (sube ? 'Los contactos suben' : 'Los contactos bajan') + '</h3><div class="n cC3">' + pct(q.ahora.tasa, 1) + '</div><p>de los clics terminan en mensaje en la ultima quincena; en la anterior era ' + pct(q.antes.tasa, 1) + ' (' + fmt(q.ahora.conv) + ' contactos ahora, ' + fmt(q.antes.conv) + ' antes).</p>'; }
+  else h1 += '<div class="n cC3">' + fmt(x.conv) + '</div><p>contactos en 30 dias (' + pct(div(x.conv, x.clk), 1) + ' de los clics).</p>';
+  html += h1 + '</div>';
+  // Hecho 2: estudios en el calendario
+  var h2 = '<div class="hecho">';
+  if (t && isNum(t.poligrafias_28d)) h2 += '<h3>' + (t.poligrafias_28d === 0 ? 'Los estudios estan en cero' : 'Estudios agendados') + '</h3><div class="n ' + (t.poligrafias_28d === 0 ? 'cC3' : '') + '">' + fmt(t.poligrafias_28d) + '</div><p>poligrafias en el calendario en 28 dias' + (isNum(t.poligrafias_semana_en_curso) ? '; esta semana ' + fmt(t.poligrafias_semana_en_curso) : '') + '.</p>';
+  else if (Lb.estado === 'cargando') h2 += '<h3>Estudios agendados</h3><div class="n">' + sk() + '</div><p>' + sk(true) + '</p>';
+  else h2 += '<h3>Estudios agendados</h3><div class="n muted">sin dato</div><p>' + (Lb.estado === 'sin_clave' ? 'Conecte el calendario arriba para ver cuantas poligrafias se agendaron.' : 'El calendario no respondio; esta cifra solo la conoce el consultorio.') + '</p>';
+  html += h2 + '</div>';
+  // Hecho 3: donde se rompe
+  var h3 = '<div class="hecho"><h3>Donde se rompe</h3>';
+  var tramos = [{n:'del clic al mensaje', r:div(x.conv, x.clk)}, {n:'del mensaje a la cita', r:cl && isNum(cl.tasa) ? cl.tasa / 100 : null}, {n:'de la cita al estudio', r:(t && isNum(t.poligrafias_28d) && Array.isArray(t.semanas) && t.semanas.length) ? div(t.poligrafias_28d, t.semanas.slice(-4).reduce(function(a, s){ return a + (s.citas || 0); }, 0)) : null}];
+  var peor = null; tramos.forEach(function(tr){ if (!isNum(tr.r)) return; if (!peor || tr.r < peor.r) peor = tr; });
+  var cuello = ''; sinMarca(EP.diagnostico).split(/(?<=[.!?])\s+/).forEach(function(f){ if (!cuello && /cuello|rompe|entre el|tramo|agenda/i.test(f)) cuello = f; });
+  if (peor) h3 += '<div class="n cC3">' + (peor.r === 0 ? '0%' : pct(peor.r, peor.r < 0.1 ? 1 : 0)) + '</div><p>' + (peor.r === 0 ? 'pasan ' : 'pasan: es ') + 'el tramo mas debil, ' + esc(peor.n) + '. ' + esc(cuello) + '</p>';
+  else h3 += '<div class="n muted">sin dato</div><p>Con el calendario conectado se ve en que tramo se pierde la gente.</p>';
+  html += h3 + '</div></div>';
+  // Grafica: citas vs poligrafias por semana (bot)
+  if (t && Array.isArray(t.semanas) && t.semanas.length){
+    html += '<h3 style="margin-top:26px">Citas y poligrafias por semana</h3>' + chart('ch-poli-sem', function(h){ var tt = (VB() || {}).tendencia || {}; var sem = tt.semanas || []; return pairBars({labels:sem.map(function(s){ return s.etiqueta || fecha(s.semana); }), series:[{name:'Citas', color:'var(--c1)', values:sem.map(function(s){ return isNum(s.citas) ? s.citas : null; })}, {name:'Poligrafias', color:'var(--c3)', values:sem.map(function(s){ return isNum(s.poligrafias) ? s.poligrafias : null; })}], band:tt.suficiente ? {lo:tt.banda_baja, hi:tt.banda_alta, color:'var(--c1)'} : null, valueLabels:true, aria:'Citas y poligrafias por semana en el calendario'}, h); }) + legend([{name:'Citas (todo el consultorio)', color:'var(--c1)'}, {name:'Poligrafias', color:'var(--c3)'}]);
+    if (!t.semanas.some(function(s){ return isNum(s.poligrafias); })) html += '<p class="nota">El consultorio aun no manda las poligrafias por semana; solo el total de 28 dias.</p>';
+  }
+  // Una accion
+  var decs = Array.isArray(E.decisiones) ? E.decisiones : [], acc = null;
+  for (var i = 0; i < decs.length; i++){ if (/poligraf|sueno|landing/i.test(String(decs[i].titulo || '')) && String(decs[i].impacto || '').toLowerCase() === 'alto'){ acc = decs[i]; break; } }
+  if (acc) html += '<div class="accion"><div class="cab">' + tagQuien(acc.quien) + '</div><h3 style="margin:8px 0 0">' + esc(acc.titulo) + '</h3><p>' + esc(primera(acc.cuerpo)) + '</p></div>';
+  else if (Array.isArray(EP.acciones) && EP.acciones.length) html += '<div class="accion"><h3 style="margin:0">Siguiente paso</h3><p>' + esc(sinMarca(EP.acciones[0])) + '</p></div>';
+  html += notaCapa('bot', 'las poligrafias del calendario');
   return html;
 }
 
 /* ============================================================
-   PREDICCIONES [Heuristica]
-   Si el generador trae pronostico (suavizado exponencial de 8 semanas, gasto
-   anclado al presupuesto vigente, banda Gamma-Poisson 90% con sobredispersion)
-   y curva presupuesto->contactos (elasticidad 0.6), se usan tal cual (un
-   motor). Si no, la pagina calcula su propio modelo: promedio de 4 semanas
-   completas, banda Poisson exacta, rendimientos decrecientes y techo por
-   cuota de impresiones.
+   6. SIMULADOR DE PRESUPUESTO [Heuristica]
+   Curva del generador (simulador de Google o heuristica por cuota de impresiones) si existe;
+   si no, modelo propio: promedio de 4 semanas completas, banda Poisson exacta, rendimientos
+   decrecientes y techo por cuota de impresiones. El metodo completo vive en el apendice.
    ============================================================ */
 function modelo(c){
   var wk = N.weeksCompletas.slice(-4); if (wk.length < 2) return null;
@@ -633,10 +939,8 @@ function modelo(c){
   var techo = s0 > 0 ? s0 * (is + lb) / Math.max(is, 1) : budget;
   return {cpa:cpa, s0:s0, budget:budget, uso:uso, techo:Math.max(techo, s0), conv4:conv4, cost4:cost4, semanas:wk.length};
 }
-// Banda 90% (cuantiles 5% y 95%) de un conteo semanal con media lam, Poisson EXACTA y ensanchada por la
-// sobredispersion phi (quasi-Poisson: se cuenta en unidades de phi). Antes era lam +- 1.96*sqrt(lam): con 4
-// contactos por semana daba limites negativos y una cobertura que no era la anunciada.
 function poissonCdf(k, lam){ var s = 0, p = Math.exp(-lam), i; for (i = 0; i <= k; i++){ s += p; p *= lam / (i + 1); } return Math.min(1, s); }
+// Banda 90% de un conteo semanal con media lam, Poisson exacta ensanchada por la sobredispersion phi.
 function banda(lam, phi){
   phi = isNum(phi) && phi > 1 ? phi : 1; var mu = lam / phi;
   if (!(mu > 0)) return {lo:0, hi:0};
@@ -645,7 +949,6 @@ function banda(lam, phi){
   return {lo:Math.round((lo || 0) * phi), hi:Math.round((hi === null ? tope : hi) * phi)};
 }
 function phiDe(c){ var P = N.pron[c]; return P && isNum(P.phi) ? P.phi : ((N.c30[c] && isNum(N.c30[c].phi)) ? N.c30[c].phi : 1.5); }
-// Contactos/semana esperados con presupuesto diario b. Curva del generador si existe; si no, modelo propio.
 function esperado(c, b){
   var cu = N.curva[c], B0 = N.camp[c].presupuesto;
   if (cu && Array.isArray(cu.puntos) && cu.puntos.length >= 2 && isNum(B0) && B0 > 0){
@@ -654,179 +957,193 @@ function esperado(c, b){
     var p0 = pts[i], p1 = pts[i+1], t = (m - p0.x) / (p1.x - p0.x || 1);
     var c30 = p0.contactos_30d + t * (p1.contactos_30d - p0.contactos_30d), g30 = p0.gasto_30d + t * (p1.gasto_30d - p0.gasto_30d);
     var lam = c30 / 30 * 7, bd = banda(lam, phiDe(c)), ult = pts[pts.length-1];
-    var marginal = isNum(p1.costo_marginal) ? p1.costo_marginal : null;
-    return {gastoSem:g30 / 30 * 7, cpa:div(g30, c30), lam:lam, lo:bd.lo, hi:bd.hi, marginal:marginal, tope:(b / B0) >= 1 && c30 >= ult.contactos_30d * 0.99, techoDia:null, fuente:'curva'};
+    return {gastoSem:g30 / 30 * 7, cpa:div(g30, c30), lam:lam, lo:bd.lo, hi:bd.hi, tope:(b / B0) >= 1 && c30 >= ult.contactos_30d * 0.99, techoDia:null, fuente:'curva'};
   }
   var mo = N.mods && N.mods[c]; if (!mo || !mo.cpa) return null;
   var gasto = Math.min(b * mo.uso, mo.techo), cpa = gasto > mo.s0 && mo.s0 > 0 ? mo.cpa * Math.pow(gasto / mo.s0, 0.4) : mo.cpa, lam2 = gasto * 7 / cpa, bd2 = banda(lam2, phiDe(c));
-  return {gastoSem:gasto * 7, cpa:cpa, lam:lam2, lo:bd2.lo, hi:bd2.hi, marginal:null, tope:gasto >= mo.techo - 0.5, techoDia:mo.techo, fuente:'modelo'};
+  return {gastoSem:gasto * 7, cpa:cpa, lam:lam2, lo:bd2.lo, hi:bd2.hi, tope:gasto >= mo.techo - 0.5, techoDia:mo.techo, fuente:'modelo'};
 }
-function secPredicciones(){
-  var html = h2('06', 'Predicciones en lenguaje llano', 's-predicciones');
-  N.mods = {}; var hayPron = false, hayMod = false;
-  CAMPS.forEach(function(c){ N.mods[c] = modelo(c); if (N.mods[c]) hayMod = true; if (N.pron[c] && (N.pron[c].semanas || []).length) hayPron = true; });
-  html += '<p class="lead">Todo lo de esta seccion es estimacion <span class="ep">[Heuristica]</span>: ' + (hayPron ? 'ritmo reciente de contactos (cada semana pesa la mitad que la siguiente, hasta 8 semanas completas), proyectado plano 4 semanas: no se extrapola ninguna tendencia. El gasto se ancla al presupuesto vigente y los contactos se ajustan a ese gasto con rendimientos decrecientes. La banda (90%) junta tres cosas: el azar de cada semana, que la cuenta oscila mas que un dado (sobredispersion medida) y que el promedio mismo es incierto.' : 'promedio de las ultimas 4 semanas completas con banda de azar (Poisson exacta, 90%), escalado al presupuesto vigente y con techo por cuota de impresiones.') + ' No modela estacionalidad. Cualquier cambio de presupuesto, puja, anuncios o pagina invalida el pronostico. Sirve para decidir, no para prometer.</p>';
-  if (!hayPron && !hayMod) return html + '<div class="card"><p class="cap">Hacen falta al menos 2 semanas completas por campana.</p></div>';
+function secSim(){
+  N.mods = {}; CAMPS.forEach(function(c){ N.mods[c] = modelo(c); });
+  var html = '<h2>Si cambiara el presupuesto</h2><p class="intro">Mueva la barra y lea la frase. Es una estimacion con rendimientos decrecientes: cada peso extra compra un poco menos que el anterior. Mover la barra no cambia nada en Google: es solo un calculo.</p><div class="sim">';
+  var hay = false;
+  CAMPS.forEach(function(c){
+    var B0 = N.camp[c].presupuesto; if (!isNum(B0) || B0 <= 0 || !esperado(c, B0)) return; hay = true;
+    var max = Math.max(100, Math.ceil(B0 * 2 / 50) * 50), cu = N.curva[c] || {}, tf = cu.techo_fisico, og = cu.opciones_google;
+    html += '<div class="fila"><h3><span><span class="sw ' + c + '"></span>' + esc(nombreDe(c)) + '</span><span class="num" style="color:var(--ink-3);font-weight:600">hoy ' + money(B0) + ' al dia</span></h3>';
+    html += '<label for="sim-' + c + '">Presupuesto diario: <b class="num" id="sim-' + c + '-v">' + money(B0) + '</b></label><input type="range" id="sim-' + c + '" min="' + Math.max(10, Math.floor(B0 / 2 / 10) * 10) + '" max="' + max + '" step="10" value="' + Math.round(B0) + '" data-camp="' + c + '" aria-describedby="sim-' + c + '-out"><p class="out" id="sim-' + c + '-out" aria-live="polite"></p>';
+    if (og && isNum(og.recomendado)){ var act = (og.opciones || []).filter(function(o){ return isNum(o.presupuesto_dia) && Math.abs(o.presupuesto_dia - og.actual) < 1; })[0], rec = (og.opciones || []).filter(function(o){ return isNum(o.presupuesto_dia) && Math.abs(o.presupuesto_dia - og.recomendado) < 1; })[0]; html += '<p class="band">Google propone ' + money(og.recomendado) + ' al dia' + (rec && act && isNum(rec.conv_sem) && isNum(act.conv_sem) ? ': pasaria de unos ' + fmt(act.conv_sem) + ' a unos ' + fmt(rec.conv_sem) + ' contactos por semana, gastando ' + money(rec.gasto_sem) + ' en vez de ' + money(act.gasto_sem) : '') + '. Es una estimacion de Google, no una promesa.</p>'; }
+    if (tf && isNum(tf.estudios_max_semana)) html += '<p class="band">Tope fisico: el consultorio hace como maximo ' + fmt(tf.estudios_max_semana) + ' estudios por semana con ' + fmt(tf.equipos) + ' equipos; mas contactos que eso no se vuelven estudios.</p>';
+    html += '</div>';
+  });
+  if (!hay) return html + '<p class="nota">Hacen falta al menos 2 semanas completas por campana para estimar.</p></div>';
+  html += '</div><p class="out" id="sim-total" style="margin-top:12px;font-weight:700" aria-live="polite"></p><p class="nota">Contactos, no citas. El metodo y sus supuestos estan en "Detalles para curiosos".</p>';
+  return html;
+}
+function simula(){
+  var tot = 0, gasto = 0, lo = 0, hi = 0;
+  CAMPS.forEach(function(c){ var inp = document.getElementById('sim-' + c); if (!inp) return; var b = +inp.value, B0 = N.camp[c].presupuesto, e = esperado(c, b), base = esperado(c, B0); document.getElementById('sim-' + c + '-v').textContent = money(b); var out = document.getElementById('sim-' + c + '-out'); if (!e || !base){ out.textContent = 'Sin datos suficientes.'; return; } var dif = e.lam - base.lam, dg = e.gastoSem - base.gastoSem, marg = dif > 0.05 && dg > 0 ? dg / dif : null; out.innerHTML = 'Con <b>' + money(b) + '</b> al dia tendria unos <b>' + fmt(e.lam) + ' contactos por semana</b> (entre ' + fmt(e.lo) + ' y ' + fmt(e.hi) + '), gastando ' + money(e.gastoSem) + ' a la semana, a <b>' + money(e.cpa) + '</b> cada uno. ' + (Math.abs(dif) < 0.5 ? 'Practicamente lo mismo que hoy.' : (dif > 0 ? 'Son ' + fmt(dif, 1) + ' mas que hoy' + (marg ? '; cada uno de esos extra costaria unos <b>' + money(marg) + '</b>' : '') + '.' : 'Son ' + fmt(-dif, 1) + ' menos que hoy.')) + (e.tope ? ' <b>Ya toco el techo:</b> no hay mas busquedas que comprar con dinero.' : ''); tot += e.lam; gasto += e.gastoSem; lo += e.lo; hi += e.hi; });
+  var t = document.getElementById('sim-total'); if (t) t.textContent = 'En total: unos ' + fmt(tot) + ' contactos por semana (entre ' + fmt(lo) + ' y ' + fmt(hi) + ') por ' + money(gasto) + ' a la semana, ' + money(div(gasto, tot)) + ' cada uno.';
+}
+
+/* ---------- 7. Que decidir y que hago yo ---------- */
+function secDecidir(){
+  var E = N.estrategia || {}, decs = Array.isArray(E.decisiones) ? E.decisiones : [];
+  var html = '<h2>Que decidir y que hago yo</h2>';
+  if (!decs.length) return html + '<p class="intro">Sin decisiones pendientes en esta lectura.</p>';
+  var item = function(d, i){ return '<div class="dec"><h4>' + esc(d.titulo) + '</h4><p>' + esc(primera(d.cuerpo)) + '</p><details><summary>Ver por que</summary><div class="cuerpo">' + (d.cuerpo ? '<div>' + esc(sinMarca(d.cuerpo)) + '</div>' : '') + (d.contra ? '<div><b>En contra:</b> ' + esc(sinMarca(d.contra)) + '</div>' : '') + (d.dato_que_resuelve ? '<div><b>Se decide con:</b> ' + esc(sinMarca(d.dato_que_resuelve)) + '</div>' : '') + (d.impacto ? '<div><b>Impacto:</b> ' + esc(d.impacto) + '</div>' : '') + '</div></details></div>'; };
+  var dr = decs.filter(function(d){ return /dr|usted|doctor/i.test(String(d.quien || '')); }), yo = decs.filter(function(d){ return !/dr|usted|doctor/i.test(String(d.quien || '')); });
+  html += '<div class="listas"><div><h3 style="margin-top:0">Decide usted</h3>' + (dr.length ? dr.map(item).join('') : '<p class="nota">Nada pendiente de su parte.</p>') + '</div><div><h3 style="margin-top:0">Lo hago yo</h3>' + (yo.length ? yo.map(item).join('') : '<p class="nota">Nada en mi lista.</p>') + '</div></div>';
+  return html;
+}
+
+/* ---------- 8. Detalles para curiosos ---------- */
+function ap(titulo, cuerpo, abierto){ return '<details class="ap"' + (abierto ? ' open' : '') + '><summary>' + esc(titulo) + '</summary><div class="cuerpo">' + cuerpo + '</div></details>'; }
+function renderValor(v){
+  if (v == null) return '';
+  if (typeof v === 'string' || typeof v === 'number') return '<p>' + esc(v) + '</p>';
+  if (Array.isArray(v)){ if (!v.length) return '<p class="nota">(vacio)</p>'; return '<ul class="tight">' + v.map(function(it){ return '<li>' + (typeof it === 'object' && it ? renderObjItem(it) : esc(it)) + '</li>'; }).join('') + '</ul>'; }
+  if (typeof v === 'object') return '<div class="kvs">' + Object.keys(v).map(function(k){ var x = v[k]; return '<div><b>' + esc(k.replace(/_/g, ' ')) + '</b>' + (typeof x === 'object' && x ? renderValor(x) : esc(x)) + '</div>'; }).join('') + '</div>';
+  return esc(String(v));
+}
+function renderObjItem(it){
+  var nivel = String(it.estado || it.nivel || '').toLowerCase(), p = '';
+  if (/crit/.test(nivel)) p = estado('crit'); else if (/aten|warn/.test(nivel)) p = estado('warn'); else if (/sano|ok|hecho|good/.test(nivel)) p = estado('good', nivel); else if (nivel) p = estado('info', nivel);
+  var t = it.titulo || it.area || it.campana || it.termino || it.tema || it.regla || it.paso || it.que || it.fecha || '';
+  var cuerpo = it.texto || it.explicacion || it.por_que || it.definicion || it.lectura || it.detalle || it.que_cambia || it.dato || (it.que && t !== it.que ? it.que : '') || '';
+  var extra = [];
+  if (it.fecha && t !== it.fecha) extra.push(fecha(it.fecha)); if (it.campana && t !== it.campana) extra.push(it.campana); if (it.quien) extra.push('decide: ' + (/dr/i.test(it.quien) ? 'usted' : 'yo')); if (it.contra_que) extra.push('contra: ' + it.contra_que); if (it.consecuencia) extra.push('consecuencia: ' + it.consecuencia); if (it.que_hacer) extra.push('que hacer: ' + it.que_hacer); if (it.url) extra.push(it.url);
+  return (p ? p + ' ' : '') + (t ? '<b>' + esc(t) + '.</b> ' + (t.indexOf(' ') < 0 && !cuerpo ? '' : '') : '') + esc(cuerpo) + (extra.length ? ' <span class="nota" style="display:inline">' + esc(extra.join(' · ')) + '</span>' : '');
+}
+var GLOSARIO = [
+  ['Contacto (conversion)', 'Clic a WhatsApp, al agendador o a llamar que Google alcanza a contar. No es una cita ni un paciente.'],
+  ['Costo por contacto', 'Gasto dividido entre contactos (Google lo llama CPA). No es costo por cita ni por paciente: el costo real por paciente es mayor porque no todo contacto agenda.'],
+  ['Cuota de impresiones', 'De todas las veces que su anuncio pudo salir, cuantas salio. Lo perdido por presupuesto se compra con dinero; lo perdido por ranking, con calidad de anuncio o puja.'],
+  ['Ranking', 'Lugar en la subasta: puja por nivel de calidad. Subir presupuesto a una campana que pierde por ranking no la muestra mas.'],
+  ['Nivel de calidad (QS)', 'Del 1 al 10 por palabra clave: que tanto hacen clic, que tan relevante es el anuncio y que tan buena es la pagina.'],
+  ['Puja', 'Como Google decide cuanto pagar por clic. Cada cambio abre un periodo de aprendizaje de 2 a 3 semanas en el que no se lee nada.'],
+  ['Banda de azar', 'Con pocos contactos, una semana buena o mala suele ser suerte. La banda (90%) dice que rango es normal; solo fuera de ella, varias semanas seguidas, hay senal.'],
+  ['Rendimientos decrecientes', 'Cada peso extra compra menos contactos que el anterior. Medido en el simulador de Google para esta cuenta: subir 10% el presupuesto trae 5 a 7% mas contactos.'],
+  ['[Documentado] / [Heuristica] / [Requiere verificar]', 'Documentado = viene de la API o de una fuente oficial. Heuristica = estimacion con supuesto declarado. Requiere verificar = no se pudo cerrar.']
+];
+function secDetalles(){
+  var html = '<h2>Detalles para curiosos</h2><p class="intro">Todo lo tecnico vive aqui, cerrado. Marcas: [Documentado] = de la API u oficial; [Heuristica] = estimacion con supuesto.</p>';
+  var wl = N.weeks.map(N.wkLabel), E = N.estrategia || {}, v = VA(), b = VB();
+  // Historico semanal
+  if (N.weeks.length){
+    var marcasSem = N.budgetChanges.map(function(bc){ var d = String(bc.fecha||'').slice(0,10); var w = N.weeks.filter(function(x){ return x <= d; }).pop(); return w ? {at:N.wkLabel(w), label:''} : null; }).filter(Boolean); var u = {}; marcasSem = marcasSem.filter(function(m){ if (u[m.at]) return false; u[m.at] = 1; return true; }); if (marcasSem.length) marcasSem[0].label = 'cambio de presupuesto';
+    var cSer = CAMPS.map(function(c){ return {name:cortoDe(c), color:colDe(c)}; });
+    html += ap('Historico semanal: gasto, contactos y costo por contacto', '<p class="nota">Semanas de lunes a domingo; el asterisco marca la semana incompleta al corte. Google tarda 24 a 48 h en contar los contactos: la semana mas reciente siempre se ve baja. [Documentado]</p><div class="grid2"><div><h3>Gasto por semana</h3>' + chart('ch-gasto', function(h){ return stackedBars({labels:wl, series:CAMPS.map(function(c){ return {name:cortoDe(c), color:colDe(c), values:N.byWeek(c, 'cost')}; }), yfmt:money, marks:marcasSem, aria:'Gasto semanal apilado por campana'}, h); }) + legend(cSer) + '</div><div><h3>Contactos por semana</h3>' + chart('ch-conv', function(h){ return lineChart({labels:wl, series:CAMPS.map(function(c){ var cost = N.byWeek(c, 'cost'); return {name:cortoDe(c), short:cortoDe(c), color:colDe(c), values:N.byWeek(c, 'conv').map(function(vv, i){ return {y:vv, extra:'gasto ' + money(cost[i])}; })}; }), aria:'Contactos semanales por campana'}, h); }) + '</div></div><h3>Costo por contacto por semana</h3>' + chart('ch-cpa', function(h){ return lineChart({labels:wl, series:CAMPS.map(function(c){ var cost = N.byWeek(c, 'cost'), conv = N.byWeek(c, 'conv'); return {name:cortoDe(c), short:cortoDe(c), color:colDe(c), values:cost.map(function(vv, i){ return {y:div(vv, conv[i]), extra:fmt(conv[i]) + ' contactos'}; })}; }), yfmt:money, aria:'Costo por contacto semanal'}, h); }) + '<p class="nota">Sin punto = semana sin contactos. Con menos de 10 contactos por semana la linea brinca por puro azar: leer varias semanas, nunca un punto.</p>');
+  }
+  // Cuota de impresiones
+  html += ap('Cuota de impresiones (que tan seguido aparece su anuncio)', chart('ch-is', function(h){ var labs = [], is = [], lb = [], lr = []; CAMPS.forEach(function(c){ [['ahora', N.c30[c]], ['antes', N.c30p[c]]].forEach(function(p){ if (!p[1] || !isNum(p[1].is_)) return; labs.push(cortoDe(c) + ' ' + p[0]); is.push(p[1].is_||0); lb.push(p[1].lb||0); lr.push(p[1].lr||0); }); }); return stackedBars({labels:labs, series:[{name:'aparecio', color:'var(--electric)', values:is}, {name:'no aparecio por presupuesto', color:'var(--warn)', values:lb}, {name:'no aparecio por calidad o puja (ranking)', color:'var(--ink-3)', values:lr}], yfmt:function(vv){ return vv.toFixed(0) + '%'; }, vmax:100, height:210, aria:'Cuota de impresiones por campana, ahora y antes'}, h); }) + legend([{name:'aparecio', color:'var(--electric)'}, {name:'no aparecio por presupuesto', color:'var(--warn)'}, {name:'no aparecio por calidad o puja (ranking)', color:'var(--ink-3)'}]) + '<p class="nota">Lo perdido por presupuesto se arregla con dinero; lo perdido por ranking, con calidad o puja. 30 dias contra los 30 previos. [Documentado]</p>' + (N.dias.length ? '<h3>Cada dia: busquedas perdidas por presupuesto</h3>' + chart('ch-lb', function(h){ return lineChart({labels:N.dias.map(fecha), series:CAMPS.map(function(c){ return {name:cortoDe(c), short:cortoDe(c), color:colDe(c), values:N.byDay(c, 'lb').map(function(vv){ return {y:isNum(vv) ? vv : null}; })}; }), yfmt:function(vv){ return vv.toFixed(0) + '%'; }, height:180, aria:'Cuota perdida por presupuesto, diaria'}, h); }) + '<p class="nota">Google omite la cuota por debajo del 10%: un hueco significa "menos de 10%", no cero.</p>' : ''));
+  // Gasto diario y cambios de presupuesto
+  if (N.dias.length){
+    var marcasDia = N.budgetChanges.map(function(bc){ var d = String(bc.fecha||'').slice(0,10); return N.dias.indexOf(d) >= 0 ? {at:fecha(d), label:bc.camp + ' ' + money(bc.de) + ' a ' + money(bc.a)} : null; }).filter(Boolean);
+    html += ap('Gasto diario y cambios de presupuesto (30 dias)', chart('ch-dia', function(h){ return lineChart({labels:N.dias.map(fecha), series:CAMPS.map(function(c){ var conv = N.byDay(c, 'conv'); return {name:cortoDe(c), short:cortoDe(c), color:colDe(c), values:N.byDay(c, 'cost').map(function(vv, i){ return {y:vv, extra:fmt(conv[i]) + ' contactos'}; })}; }), yfmt:money, marks:marcasDia, aria:'Gasto diario por campana con marcas de cambios de presupuesto'}, h); }) + (N.budgetChanges.length ? '<div class="scroll" tabindex="0" style="margin-top:10px"><table class="narrow"><thead><tr><th>Cuando</th><th>Quien</th><th>Campana</th><th class="r">De</th><th class="r">A</th></tr></thead><tbody>' + N.budgetChanges.slice().reverse().map(function(bc){ return '<tr><td>' + esc(bc.fecha) + '</td><td>' + esc(bc.quien) + '</td><td>' + esc(cortoDe(bc.camp)) + '</td><td class="r">' + money(bc.de) + '</td><td class="r">' + money(bc.a) + '</td></tr>'; }).join('') + '</tbody></table></div>' : '<p class="nota">Sin cambios de presupuesto en 28 dias.</p>') + (N.otrosCambios.length ? '<h3>Otros cambios en la cuenta (' + N.otrosCambios.length + ')</h3><ul class="tight">' + N.otrosCambios.slice(0, 30).map(function(ch){ return '<li><span class="nota" style="display:inline">' + esc(String(ch.fecha || '').replace('T', ' ').slice(0, 16)) + ' · ' + esc(cortoDe(ch.camp) || 'cuenta') + ' · ' + esc(actor(ch)) + '</span><br>' + esc(sinCorreo(ch.resumen || ch.tipo)) + '</li>'; }).join('') + '</ul>' : '') + '<p class="nota">Fuente: historial de cambios de la API. [Documentado]</p>');
+  }
+  // Palabras clave y busquedas por campana
+  var kwHtml = '';
+  CAMPS.forEach(function(c){
+    var ag = N.adgroups.filter(function(g){ return g.camp === c; }).sort(function(a, bb){ return (bb.cost||0) - (a.cost||0); });
+    var kw = N.topKw.filter(function(k){ return k.camp === c; }).slice(0, 8);
+    var st = N.stCero.filter(function(t){ return t.camp === c; }).sort(function(a, bb){ return bb.cost - a.cost; }).slice(0, 8);
+    if (!ag.length && !kw.length && !st.length) return;
+    kwHtml += '<h3><span class="sw ' + c + '"></span>' + esc(nombreDe(c)) + '</h3>';
+    if (ag.length) kwHtml += '<p class="nota">Grupos de anuncios</p><div class="scroll" tabindex="0"><table><thead><tr><th>Grupo</th><th class="r">Gasto</th><th class="r">Clics</th><th class="r">Contactos</th><th class="r">$ por contacto</th></tr></thead><tbody>' + ag.map(function(g){ return '<tr><td>' + esc(g.name) + (g.status && g.status !== 'ENABLED' ? ' ' + estado('mute', g.status === 'PAUSED' ? 'pausado' : String(g.status).toLowerCase()) : '') + '</td><td class="r">' + money(g.cost) + '</td><td class="r">' + fmt(g.clk) + '</td><td class="r">' + fmt(g.conv) + '</td><td class="r">' + money(div(g.cost, g.conv)) + '</td></tr>'; }).join('') + '</tbody></table></div>';
+    if (kw.length) kwHtml += '<p class="nota">Palabras clave que mas gastan (QS = nivel de calidad 1 a 10; 4 o menos se marca)</p><div class="scroll" tabindex="0"><table><thead><tr><th>Palabra</th><th>Coincidencia</th><th class="r">QS</th><th class="r">Gasto</th><th class="r">Contactos</th><th class="r">$ por contacto</th></tr></thead><tbody>' + kw.map(function(k){ return '<tr><td>' + esc(k.kw) + '<div class="nota" style="margin:0">' + esc(k.group||'') + '</div></td><td>' + esc(({BROAD:'amplia', PHRASE:'frase', EXACT:'exacta'})[String(k.match||'').toUpperCase()] || String(k.match||'').toLowerCase()) + '</td><td class="r">' + (isNum(k.qs) ? (k.qs <= 4 ? estado('warn', String(k.qs)) : k.qs) : 'sin dato') + '</td><td class="r">' + money(k.cost) + '</td><td class="r">' + fmt(k.conv) + '</td><td class="r">' + money(div(k.cost, k.conv)) + '</td></tr>'; }).join('') + '</tbody></table></div>';
+    if (st.length) kwHtml += '<p class="nota">Busquedas con gasto y cero contactos</p><div class="scroll" tabindex="0"><table class="narrow"><thead><tr><th>Busqueda</th><th class="r">Gasto</th><th class="r">Clics</th><th>Estado</th></tr></thead><tbody>' + st.map(function(t){ return '<tr><td>' + esc(t.term) + '</td><td class="r">' + money(t.cost) + '</td><td class="r">' + fmt(t.clk) + '</td><td>' + esc(t.status === 'ADDED' ? 'ya es palabra clave' : (t.status === 'EXCLUDED' ? 'ya bloqueada' : 'sin accion')) + '</td></tr>'; }).join('') + '</tbody></table></div>';
+  });
+  if (kwHtml) html += ap('Palabras clave y busquedas por campana', kwHtml + (N.stResumen ? '<p class="nota">' + fmt(N.stResumen.n) + ' busquedas distintas en 30 dias; ' + money(N.stResumen.cero_conv_gasto) + ' de ' + money(N.stResumen.gasto) + ' se fueron en busquedas sin contacto. Que alguien busque precio no es motivo para bloquear. [Documentado]</p>' : ''));
+  // Pronostico 4 semanas
+  html += ap('Pronostico de 4 semanas con banda de azar', seguro('pronostico', secPronostico));
+  // GA4 landings
+  var L = N.landing30 || [], Lp = N.landingPrev || [];
+  if (L.length){ var lp = L.filter(function(r){ return r.sesiones >= 20; }).sort(function(a, bb){ return bb.sesiones - a.sesiones; }).slice(0, 8); html += ap('Que pagina convierte mejor (Analytics)', chart('ch-landing', function(h){ return barChart({horizontal:true, labelW:170, items:lp.map(function(r){ var p = Lp.filter(function(q){ return q.path === r.path; })[0]; return {label:String(r.path).replace('/promociones/', '').replace(/\/$/, '') || '/', value:div(r.contactos, r.sesiones) || 0, color:/poligraf/.test(r.path) ? 'var(--c3)' : 'var(--c1)', extra:fmt(r.contactos) + ' contactos / ' + fmt(r.sesiones) + ' visitas' + (p ? ' · antes ' + pct(div(p.contactos, p.sesiones), 1) : '')}; }), yfmt:function(vv){ return pct(vv, 1); }, aria:'Tasa de contacto por pagina de llegada'}, h); }) + '<p class="nota">Visitas que llegaron desde un anuncio, 30 dias, solo paginas con 20 visitas o mas. Barra = de cada 100 visitas, cuantas escribieron o llamaron. [Documentado]</p>'); }
+  // Capa viva en detalle
+  var vivoHtml = '';
+  if (v){ vivoHtml += '<p class="nota">Consulta en vivo a Google Ads: ' + esc(frescuraAds()) + (isNum(v.cache_seg) ? ' (la misma respuesta se reutiliza ' + Math.round(v.cache_seg/60) + ' min)' : '') + '.</p>';
+    if (v.cuenta) vivoHtml += '<div class="scroll" tabindex="0"><table class="narrow"><thead><tr><th>Cuenta</th><th class="r">Gasto</th><th class="r">Clics</th><th class="r">Contactos</th><th class="r">Veces que salio</th></tr></thead><tbody>' + ['hoy', 'ayer', 'd7', 'd30'].map(function(k){ var r = v.cuenta[k]; if (!r) return ''; return '<tr><td>' + ({hoy:'Hoy', ayer:'Ayer', d7:'7 dias', d30:'30 dias'})[k] + '</td><td class="r">' + money(r.cost) + '</td><td class="r">' + fmt(r.clk) + '</td><td class="r">' + fmt(r.conv) + '</td><td class="r">' + fmt(r.imp) + '</td></tr>'; }).join('') + '</tbody></table></div>';
+    if (Array.isArray(v.grupos_d7) && v.grupos_d7.length) vivoHtml += '<h3>Grupos de anuncios, 7 dias</h3><div class="scroll" tabindex="0"><table class="narrow"><thead><tr><th>Grupo</th><th>Campana</th><th class="r">Gasto</th><th class="r">Clics</th><th class="r">Contactos</th></tr></thead><tbody>' + v.grupos_d7.slice(0, 12).map(function(g){ return '<tr><td>' + esc(g.nombre) + '</td><td>' + esc(cortoDe(g.camp)) + '</td><td class="r">' + money(g.cost) + '</td><td class="r">' + fmt(g.clk) + '</td><td class="r">' + fmt(g.conv) + '</td></tr>'; }).join('') + '</tbody></table></div>';
+    if (Array.isArray(v.acciones_d7) && v.acciones_d7.length) vivoHtml += '<h3>Que cuenta Google como contacto, 7 dias</h3><ul class="tight">' + v.acciones_d7.map(function(a){ return '<li>' + esc(a.nombre) + ': ' + fmt(a.conv) + '</li>'; }).join('') + '</ul>';
+    if (v.ga4) vivoHtml += '<p class="nota">Analytics en vivo: ' + fmt(v.ga4.activos_ahora) + ' personas en el sitio ahora; hoy ' + fmt((v.ga4.hoy||{}).sesiones_pagadas) + ' visitas desde anuncios y ' + fmt((v.ga4.hoy||{}).contactos) + ' contactos; 7 dias: ' + fmt((v.ga4.d7||{}).sesiones_pagadas) + ' visitas y ' + fmt((v.ga4.d7||{}).contactos) + ' contactos.</p>';
+  }
+  if (b){ var tt = b.tendencia, cc = b.clics, ab = b.ads; vivoHtml += '<h3>Consultorio (solo conteos)</h3>' + (tt && !tt.error ? '<p class="nota">Citas por semana: promedio ' + fmt(tt.promedio, 1) + (tt.suficiente ? ', normal entre ' + fmt(tt.banda_baja) + ' y ' + fmt(tt.banda_alta) : '') + '; esta semana ' + fmt(tt.semana_en_curso) + '; poligrafias 28 d: ' + fmt(tt.poligrafias_28d) + (tt.excluidas_mauricio ? '; citas del Dr. Castaneda excluidas: ' + fmt(tt.excluidas_mauricio) : '') + '.</p>' : '') + (cc && !cc.error ? '<p class="nota">Del anuncio a la cita: ' + fmt(cc.con_cita) + ' de ' + fmt(cc.identificados) + ' clics seguidos terminaron en cita (' + fmt(cc.tasa) + '%, ' + fmt(cc.ventana_dias) + ' dias).</p>' : '') + (ab && ab.estado === 'ok' ? '<p class="nota">Tablero nocturno del bot: ' + money(ab.gasto_28d) + ' en 28 dias, al ' + esc(ab.ultima_actualizacion || '') + '.</p>' : '') + (b.version ? '<p class="nota">Motor del bot ' + esc(b.version) + ', respuesta ' + esc(b.generado) + '.</p>' : ''); }
+  if (vivoHtml) html += ap('Capa viva en detalle', vivoHtml);
+  // Lectura del estratega
+  if (E && Object.keys(E).length){
+    var lect = (E.resumen_ejecutivo ? '<h3>Resumen</h3><p>' + esc(sinMarca(E.resumen_ejecutivo)) + '</p>' : '') + (Array.isArray(E.semaforo) ? '<h3>Semaforo</h3>' + renderValor(E.semaforo) : '') + (E.campanas ? '<h3>Por campana</h3>' + Object.keys(E.campanas).map(function(c){ return '<h4 style="margin:12px 0 4px"><span class="sw ' + c + '"></span>' + esc(nombreDe(c)) + '</h4>' + renderValor(E.campanas[c]); }).join('') : '') + (E.poligrafia ? '<h3>Poligrafia</h3>' + renderValor(E.poligrafia) : '');
+    html += ap('Lectura del estratega' + (E.generado ? ' (' + fechaLarga(E.generado) + ')' : ''), lect);
+    if (E.calendario_lecturas) html += ap('Calendario de lecturas', renderValor(E.calendario_lecturas));
+    if (E.doctrina) html += ap('Doctrina de la casa', renderValor(E.doctrina));
+    if (E.novedades_2026) html += ap('Novedades 2026 de Google Ads', renderValor(E.novedades_2026));
+    if (E.deuda) html += ap('Pendientes tecnicos', renderValor(E.deuda));
+  }
+  // Alertas del generador
+  if (N.alertas.length) html += ap('Alertas automaticas (' + N.alertas.length + ')', '<ul class="tight">' + N.alertas.map(function(a){ return '<li>' + estado(a.nivel, a.nivel === 'crit' ? 'alta' : a.nivel === 'warn' ? 'media' : 'nota') + ' ' + esc(a.texto) + marca('[Documentado]') + '</li>'; }).join('') + '</ul>');
+  // Metodo
+  html += ap('Metodo y marcas', '<p>Cada madrugada (05:00 CDMX) un script lee la cuenta de Google Ads y Analytics por API en modo solo lectura, resume 120 dias en agregados y cifra el resultado (PBKDF2-SHA256 200,000 iteraciones + AES-256-GCM). Su navegador lo descifra con la clave. Al abrir el panel, esa misma clave viaja (solo por HTTPS y en el cuerpo de la peticion, nunca en la direccion) a un Worker propio del consultorio que pregunta a Google Ads en vivo; la clave no se comparte con Google ni con nadie mas, y con la clave del bot se piden al consultorio solo conteos (citas, poligrafias, clic a cita).</p>' + (N.metodo ? renderValor(N.metodo) : '') + '<p class="nota">Semaforo de la pagina [Heuristica]: urgente si gasta mas de $500 sin contactos o el costo por contacto se duplica fuera del azar; atencion si sube mas de 40% fuera del azar, si menos del 2% de los clics contacta, si se pierde 35% o mas por presupuesto o 50% o mas por ranking, o si la ultima semana completa cerro en cero. Simulador sin curva del generador: promedio de 4 semanas completas, banda Poisson exacta 90%, rendimientos decrecientes (exponente 0.4) y techo por cuota de impresiones.</p>');
+  // Glosario
+  var extra = Array.isArray(E.glosario) ? E.glosario : [];
+  html += ap('Glosario', '<dl>' + GLOSARIO.map(function(g){ return '<dt>' + esc(g[0]) + '</dt><dd>' + esc(g[1]) + '</dd>'; }).join('') + extra.map(function(g){ return '<dt>' + esc(g.termino || g.titulo || '') + '</dt><dd>' + esc(sinMarca(g.explicacion || g.definicion || g.texto || '')) + '</dd>'; }).join('') + '</dl>');
+  return html;
+}
+function secPronostico(){
+  var hayPron = CAMPS.some(function(c){ return N.pron[c] && (N.pron[c].semanas || []).length; }), hayMod = CAMPS.some(function(c){ return N.mods && N.mods[c]; });
+  if (!hayPron && !hayMod) return '<p class="nota">Hacen falta al menos 2 semanas completas por campana.</p>';
   var histW = N.weeksCompletas.slice(-6), ultimo = histW[histW.length-1] || N.corte, fut = [], i;
   for (i = 1; i <= 4; i++) fut.push(addDias(ultimo, 7*i));
-  var labels = histW.map(N.wkLabel).concat(fut.map(fecha)), series = [], bands = [], frases = [], tot = {lam:0, lo:0, hi:0, gasto:0};
+  var labels = histW.map(N.wkLabel).concat(fut.map(fecha)), series = [], bands = [], frases = [];
   CAMPS.forEach(function(c){
     var P = N.pron[c], e = null, hist = histW.map(function(w){ return {y:N.byWeek(c, 'conv')[N.weeks.indexOf(w)]}; });
     if (P && (P.semanas || []).length){ var s0 = P.semanas[0]; e = {lam:s0.contactos, lo:(s0.banda_contactos || [])[0], hi:(s0.banda_contactos || [])[1], gastoSem:s0.gasto, cpa:s0.costo_contacto}; }
     else { var x = esperado(c, N.camp[c].presupuesto); if (x) e = x; }
     if (!e) return;
-    series.push({name:NAME[c], short:c, color:COL[c], values:hist.concat(fut.map(function(){ return {y:Math.round(e.lam*10)/10, extra:'entre ' + fmt(e.lo) + ' y ' + fmt(e.hi)}; }))});
-    bands.push({color:COL[c], values:hist.map(function(){ return null; }).concat(fut.map(function(){ return {lo:e.lo, hi:e.hi}; }))});
-    tot.lam += e.lam; tot.lo += e.lo || 0; tot.hi += e.hi || 0; tot.gasto += e.gastoSem || 0;
-    var curso = P && P.semana_en_curso, aj = P && P.ajuste_presupuesto, bc = curso && curso.banda_esperada_a_la_fecha;
-    var notaAjuste = '';
-    if (aj && isNum(aj.ratio_aplicado) && Math.abs(aj.ratio_aplicado - 1) >= 0.15) notaAjuste = ' El presupuesto vigente (' + money(aj.presupuesto_dia) + '/dia' + (aj.ultimo_cambio ? ', cambiado el ' + fecha(aj.ultimo_cambio) : '') + ') ' + (aj.ratio_aplicado < 1 ? 'es menor' : 'es mayor') + ' que el gasto de las semanas base (' + money(aj.gasto_nivel_semana) + '/semana): el ritmo historico era ' + fmt(aj.contactos_sin_ajuste, 1) + ' por semana y se ajusta con rendimientos decrecientes.';
-    var notaCurso = curso ? ' La semana en curso lleva ' + fmt(curso.contactos) + ' en ' + curso.dias + ' ' + plural(curso.dias, 'dia', 'dias') + ' (se esperaban unos ' + fmt(curso.contactos_esperados_a_la_fecha, 1) + (bc ? ', entre ' + fmt(bc[0]) + ' y ' + fmt(bc[1]) : '') + '; los contactos de los ultimos 2 dias todavia entran).' : '';
-    var notaBase = P && P.base_corta ? ' Base corta: solo ' + P.semanas_base + ' semanas completas; tomelo como orientacion gruesa.' : '';
-    frases.push('<li><b style="color:' + COLT[c] + '">' + esc(NAME[c]) + '</b>: con ' + money(N.camp[c].presupuesto) + ' al dia esperaria <b>' + fmt(e.lam) + ' ' + plural(Math.round(e.lam), 'contacto', 'contactos') + ' por semana</b>, entre ' + fmt(e.lo) + ' y ' + fmt(e.hi) + ' contando el azar, gastando ' + money(e.gastoSem) + '/semana (' + money(e.cpa) + ' por contacto).' + notaAjuste + notaCurso + notaBase + '</li>');
+    series.push({name:cortoDe(c), short:cortoDe(c), color:colDe(c), values:hist.concat(fut.map(function(){ return {y:Math.round(e.lam*10)/10, extra:'entre ' + fmt(e.lo) + ' y ' + fmt(e.hi)}; }))});
+    bands.push({color:colDe(c), values:hist.map(function(){ return null; }).concat(fut.map(function(){ return {lo:e.lo, hi:e.hi}; }))});
+    var aj = P && P.ajuste_presupuesto, notaAjuste = '';
+    if (aj && isNum(aj.ratio_aplicado) && Math.abs(aj.ratio_aplicado - 1) >= 0.15) notaAjuste = ' El presupuesto vigente (' + money(aj.presupuesto_dia) + ' al dia' + (aj.ultimo_cambio ? ', cambiado el ' + fecha(aj.ultimo_cambio) : '') + ') ' + (aj.ratio_aplicado < 1 ? 'es menor' : 'es mayor') + ' que el gasto de las semanas base (' + money(aj.gasto_nivel_semana) + ' por semana): el ritmo historico era ' + fmt(aj.contactos_sin_ajuste, 1) + ' por semana y se ajusta con rendimientos decrecientes.';
+    frases.push('<li><b class="c' + c + '">' + esc(nombreDe(c)) + '</b>: con ' + money(N.camp[c].presupuesto) + ' al dia esperaria <b>' + fmt(e.lam) + ' ' + plural(Math.round(e.lam), 'contacto', 'contactos') + ' por semana</b>, entre ' + fmt(e.lo) + ' y ' + fmt(e.hi) + ' contando el azar, gastando ' + money(e.gastoSem) + ' a la semana (' + money(e.cpa) + ' por contacto).' + notaAjuste + (P && P.base_corta ? ' Base corta: solo ' + P.semanas_base + ' semanas completas; tomelo como orientacion gruesa.' : '') + '</li>');
   });
-  if (!series.length) return html + '<div class="card"><p class="cap">Sin base suficiente para pronosticar.</p></div>';
-  html += '<div class="card"><h3 style="margin-top:0">Proximas 4 semanas si nada cambia</h3>' + chart('ch-pron', function(h){ return lineChart({labels:labels, series:series, bands:bands, marks:[{at:fecha(fut[0]), label:'pronostico desde aqui'}], aria:'Pronostico de contactos por semana con banda'}, h); }) + legend(series.map(function(x){ return {name:x.name, color:x.color}; })) + '<ul class="tight">' + frases.join('') + '</ul>';
-  var PC = N.pronCuenta;
-  var bcc = PC && PC.banda_costo_contacto;
-  html += '<p><b>Cuenta completa:</b> ' + (PC ? fmt(PC.contactos) + ' contactos en 4 semanas (entre ' + fmt((PC.banda_contactos || [])[0]) + ' y ' + fmt((PC.banda_contactos || [])[1]) + ') por ' + money(PC.gasto) + (isNum(PC.presupuesto_dia_total) ? ' (tope de ' + money(PC.presupuesto_dia_total) + '/dia)' : '') + ', es decir ' + money(div(PC.gasto, PC.contactos)) + ' por contacto proyectado' + (bcc && isNum(bcc[0]) && isNum(bcc[1]) ? ' (entre ' + money(bcc[0]) + ' y ' + money(bcc[1]) + ')' : '') + '. Contactos, no citas ni pacientes.' : 'unos ' + fmt(tot.lam) + ' contactos por semana (' + fmt(tot.lo) + ' a ' + fmt(tot.hi) + ') por ' + money(tot.gasto) + ', es decir ' + money(div(tot.gasto, tot.lam)) + ' por contacto proyectado.') + ' <span class="ep">[Heuristica]</span></p></div>';
-  // Simulador
-  var hayCurva = CAMPS.some(function(c){ return N.curva[c] && (N.curva[c].puntos || []).length; });
-  html += '<div class="card"><h3 style="margin-top:0">Que pasaria si muevo el presupuesto</h3><p class="cap">Mueva la barra. ' + (hayCurva ? 'Curva del generador con rendimientos decrecientes: cada peso extra compra menos contactos que el anterior (el contacto marginal cuesta mas que el promedio) y los contactos crecen solo hasta recuperar lo que hoy se pierde por presupuesto; lo perdido por ranking no se compra con dinero. Supone que el presupuesto se gasta completo (por eso puede diferir del pronostico, que sigue el ritmo reciente). Entre 50% y 200% del presupuesto actual; fuera de ese rango no hay medicion.' : 'Por encima del presupuesto actual el costo por contacto sube (rendimientos decrecientes) y el techo es la cuota de impresiones que hoy se pierde por presupuesto.') + ' Nada de esto toca la cuenta.</p><div class="sim">';
-  CAMPS.forEach(function(c){ var B0 = N.camp[c].presupuesto; if (!isNum(B0) || !esperado(c, B0)) return; var max = Math.max(100, Math.ceil(B0 * 2 / 50) * 50), cu = N.curva[c] || {}, tf = cu.techo_fisico; html += '<div class="fila"><h4><span style="color:' + COLT[c] + '">' + esc(NAME[c]) + '</span><span>actual ' + money(B0) + '/dia</span></h4><label for="sim-' + c + '" class="cap">Presupuesto diario: <b id="sim-' + c + '-v">' + money(B0) + '</b></label><input type="range" id="sim-' + c + '" min="' + Math.max(10, Math.floor(B0 / 2 / 10) * 10) + '" max="' + max + '" step="10" value="' + Math.round(B0) + '" data-camp="' + c + '"><p class="out" id="sim-' + c + '-out"></p>' + (cu.perdida_dominante ? '<p class="band">Hoy pierde mas por ' + esc(cu.perdida_dominante) + (isNum(cu.contactos_recuperables_por_presupuesto) ? '; si el presupuesto dejara de limitar recuperaria unos ' + fmt(cu.contactos_recuperables_por_presupuesto) + ' contactos mas en 30 dias, cada vez mas caros' : '') + '.</p>' : '') + (cu.fuente ? '<p class="band">Curva: ' + esc(cu.fuente) + (cu.ventana ? ', semana ' + esc(cu.ventana) : '') + (cu.desactualizada ? ' (tiene mas de 14 dias: tomar con reserva)' : '') + (isNum(cu.elasticidad) ? '. Subir el presupuesto 10% trae ~' + Math.round(cu.elasticidad * 10) + '% mas contactos.' : '') + ' <span class="ep">' + esc(cu.marca || '[Heuristica]') + '</span></p>' : '') + (cu.opciones_google && isNum(cu.opciones_google.recomendado) ? (function(og){ var act = (og.opciones || []).filter(function(o){ return isNum(o.presupuesto_dia) && Math.abs(o.presupuesto_dia - og.actual) < 1; })[0], rec = (og.opciones || []).filter(function(o){ return isNum(o.presupuesto_dia) && Math.abs(o.presupuesto_dia - og.recomendado) < 1; })[0]; return '<p class="band">Google propone ' + money(og.recomendado) + '/dia' + (rec && act && isNum(rec.conv_sem) && isNum(act.conv_sem) ? ': pasaria de unos ' + fmt(act.conv_sem) + ' a unos ' + fmt(rec.conv_sem) + ' contactos por semana, gastando ' + money(rec.gasto_sem) + ' en vez de ' + money(act.gasto_sem) + ' (cada contacto extra costaria ~' + money((rec.gasto_sem - act.gasto_sem) / Math.max(rec.conv_sem - act.conv_sem, 0.1)) + ')' : '') + '. Es la estimacion de Google, no una promesa, y sigue siendo decision de dinero del Dr. <span class="ep">[Heuristica]</span></p>'; })(cu.opciones_google) : '') + (tf && isNum(tf.estudios_max_semana) ? '<p class="band">Techo fisico: el consultorio hace como maximo ' + fmt(tf.estudios_max_semana) + ' estudios por semana (' + fmt(tf.equipos) + ' equipos). Los contactos que rebasen ese ritmo no se convierten en estudios por mas presupuesto que se ponga. <span class="ep">' + esc(tf.marca || '[Documentado]') + '</span></p>' : '') + '</div>'; });
-  html += '</div><p class="out" id="sim-total" style="margin-top:10px;font-weight:700"></p></div>';
-  return html;
-}
-function simula(){
-  var tot = 0, gasto = 0, lo = 0, hi = 0;
-  CAMPS.forEach(function(c){ var inp = document.getElementById('sim-' + c); if (!inp) return; var b = +inp.value, B0 = N.camp[c].presupuesto, e = esperado(c, b), base = esperado(c, B0); document.getElementById('sim-' + c + '-v').textContent = money(b); var out = document.getElementById('sim-' + c + '-out'); if (!e || !base){ out.textContent = 'Sin datos suficientes.'; return; } var dif = e.lam - base.lam, dg = e.gastoSem - base.gastoSem, marg = dif > 0.05 && dg > 0 ? dg / dif : null; out.innerHTML = 'Con <b>' + money(b) + '</b> al dia: unos <b>' + fmt(e.lam) + ' contactos/semana</b> <span class="band">(' + fmt(e.lo) + ' a ' + fmt(e.hi) + ')</span> por ' + money(e.gastoSem) + ', a <b>' + money(e.cpa) + '</b> por contacto en promedio. ' + (Math.abs(dif) < 0.5 ? 'Practicamente lo mismo que hoy.' : (dif > 0 ? 'Son ' + fmt(dif, 1) + ' contactos mas que hoy' + (marg ? ', y cada uno de esos contactos extra cuesta unos <b>' + money(marg) + '</b> (mas caro que el promedio: rendimientos decrecientes)' : '') + '.' : 'Son ' + fmt(-dif, 1) + ' contactos menos que hoy.')) + (e.tope ? ' <b>Llego al techo:</b> ' + (e.techoDia ? 'por arriba de ' + money(e.techoDia) + '/dia ' : '') + 'ya no hay mas busquedas que comprar sin mejorar el rank.' : ''); tot += e.lam; gasto += e.gastoSem; lo += e.lo; hi += e.hi; });
-  // La suma de bandas por campana es una cota gruesa (las campanas no se suman como un solo Poisson).
-  var t = document.getElementById('sim-total'); if (t) t.textContent = 'Cuenta: ' + fmt(tot) + ' contactos/semana (' + fmt(lo) + ' a ' + fmt(hi) + ', suma gruesa de bandas) por ' + money(gasto) + ' = ' + money(div(gasto, tot)) + ' por contacto promedio. Contactos, no citas. [Heuristica]';
+  if (!series.length) return '<p class="nota">Sin base suficiente para pronosticar.</p>';
+  var PC = N.pronCuenta, bcc = PC && PC.banda_costo_contacto;
+  return '<p class="nota">' + (hayPron ? 'Ritmo reciente de contactos (cada semana pesa la mitad que la siguiente, hasta 8 semanas completas), proyectado plano 4 semanas: no se extrapola tendencia. El gasto se ancla al presupuesto vigente y los contactos se ajustan con rendimientos decrecientes. Banda 90% Gamma-Poisson con sobredispersion medida.' : 'Promedio de las ultimas 4 semanas completas con banda de azar (Poisson exacta, 90%), escalado al presupuesto vigente.') + ' Cualquier cambio de presupuesto, puja, anuncios o pagina invalida el pronostico. [Heuristica]</p>' + chart('ch-pron', function(h){ return lineChart({labels:labels, series:series, bands:bands, marks:[{at:fecha(fut[0]), label:'pronostico desde aqui'}], aria:'Pronostico de contactos por semana con banda'}, h); }) + legend(series.map(function(x){ return {name:x.name, color:x.color}; })) + '<ul class="tight">' + frases.join('') + '</ul>' + (PC ? '<p><b>Cuenta completa:</b> ' + fmt(PC.contactos) + ' contactos en 4 semanas (entre ' + fmt((PC.banda_contactos || [])[0]) + ' y ' + fmt((PC.banda_contactos || [])[1]) + ') por ' + money(PC.gasto) + (isNum(PC.presupuesto_dia_total) ? ' (tope de ' + money(PC.presupuesto_dia_total) + ' al dia)' : '') + ', es decir ' + money(div(PC.gasto, PC.contactos)) + ' por contacto' + (bcc && isNum(bcc[0]) && isNum(bcc[1]) ? ' (entre ' + money(bcc[0]) + ' y ' + money(bcc[1]) + ')' : '') + '. Contactos, no citas. [Heuristica]</p>' : '');
 }
 
-/* ============================================================
-   ESTRATEGIA (objeto de A7) renderizado de forma generica
-   ============================================================ */
-var TIT = {resumen_ejecutivo:'Resumen ejecutivo', semaforo:'Semaforo del estratega', campanas:'Lectura por campana', poligrafia:'Poligrafia', decisiones:'Decisiones', calendario_lecturas:'Calendario de lecturas', doctrina:'Doctrina de la casa', novedades_2026:'Novedades 2026 de Google Ads', glosario:'Glosario del estratega', deuda:'Deuda y pendientes'};
-var ORDEN = ['resumen_ejecutivo', 'semaforo', 'campanas', 'poligrafia', 'decisiones', 'calendario_lecturas', 'doctrina', 'novedades_2026', 'deuda'];
-function renderValor(v, prof){
-  prof = prof || 0;
-  if (v == null) return '';
-  if (typeof v === 'string' || typeof v === 'number') return '<p>' + esc(v) + '</p>';
-  if (Array.isArray(v)){
-    if (!v.length) return '<p class="cap">(vacio)</p>';
-    return '<ul class="tight">' + v.map(function(it){ return '<li>' + (typeof it === 'object' && it ? renderObjItem(it) : esc(it)) + '</li>'; }).join('') + '</ul>';
-  }
-  if (typeof v === 'object'){
-    return '<div class="kvs">' + Object.keys(v).map(function(k){ var x = v[k]; return '<div><b>' + esc(k.replace(/_/g, ' ')) + '</b>' + (typeof x === 'object' && x ? renderValor(x, prof+1) : esc(x)) + '</div>'; }).join('') + '</div>';
-  }
-  return esc(String(v));
-}
-function renderObjItem(it){
-  var nivel = String(it.estado || it.nivel || '').toLowerCase(), p = '';
-  if (/crit/.test(nivel)) p = pill('crit'); else if (/aten|warn/.test(nivel)) p = pill('warn'); else if (/sano|ok|hecho|good/.test(nivel)) p = pill('good', nivel); else if (nivel) p = pill('info', nivel);
-  var t = it.titulo || it.campana || it.termino || it.que || it.fecha || '';
-  var cuerpo = it.texto || it.por_que || it.definicion || it.lectura || it.detalle || '';
-  var extra = [];
-  if (it.fecha && t !== it.fecha) extra.push(fecha(it.fecha)); if (it.campana && t !== it.campana) extra.push(it.campana); if (it.quien) extra.push('decide: ' + it.quien); if (it.siguiente_paso) extra.push('siguiente: ' + it.siguiente_paso);
-  var resto = Object.keys(it).filter(function(k){ return ['titulo','campana','termino','que','fecha','texto','por_que','definicion','lectura','detalle','quien','siguiente_paso','estado','nivel','marca'].indexOf(k) < 0; });
-  return (p ? p + ' ' : '') + (t ? '<b>' + esc(t) + '.</b> ' : '') + esc(cuerpo) + (extra.length ? ' <span class="cap" style="display:inline">' + esc(extra.join(' · ')) + '</span>' : '') + marca(it.marca) + (resto.length ? '<div class="cap">' + resto.map(function(k){ return esc(k) + ': ' + esc(typeof it[k] === 'object' ? JSON.stringify(it[k]) : it[k]); }).join(' · ') + '</div>' : '');
-}
-function secEstrategia(){
-  var E = N.estrategia, html = h2('07', 'Estrategia y decisiones', 's-estrategia');
-  if (!E || typeof E !== 'object' || !Object.keys(E).length) return html + '<div class="card"><p class="cap">Sin estrategia cargada. Cuando el agente estratega escriba el objeto "estrategia" en datos.json, aparece aqui sin tocar la pagina.</p></div>';
-  var claves = ORDEN.filter(function(k){ return E[k] != null; }).concat(Object.keys(E).filter(function(k){ return ORDEN.indexOf(k) < 0 && ['glosario','_doc','generado','fecha','v'].indexOf(k) < 0; }));
-  if (E.generado || E.fecha) html += '<p class="cap">Escrita el ' + fechaLarga(E.generado || E.fecha) + '.</p>';
-  claves.forEach(function(k, i){ var abierto = i < 2 ? ' open' : ''; html += '<details' + abierto + '><summary>' + esc(TIT[k] || k.replace(/_/g, ' ')) + '</summary>' + renderValor(E[k]) + '</details>'; });
-  return html;
-}
-var GLOSARIO = [
-  ['Contacto (conversion)', 'Clic a WhatsApp, al agendador o a llamar que Google importa desde GA4. No es una cita ni un paciente.'],
-  ['Costo por contacto', 'Gasto dividido entre contactos (Google lo llama CPA). No es costo por cita ni por paciente: el costo real por paciente es mayor porque no todo contacto agenda; la tasa contacto a cita solo la conoce el consultorio (capa viva).'],
-  ['Cuota de impresiones (IS)', 'De todas las veces que su anuncio pudo salir, cuantas salio. Lo perdido por presupuesto se compra con dinero; lo perdido por rank, con calidad de anuncio o puja.'],
-  ['Rank', 'Posicion en la subasta: puja por nivel de calidad. Subir presupuesto a una campana que pierde por rank no la muestra mas.'],
-  ['QS (nivel de calidad)', 'Del 1 al 10 por palabra clave: CTR esperado, relevancia del anuncio y experiencia en la pagina.'],
-  ['Puja', 'Como Google decide cuanto pagar por clic: maximizar conversiones, maximizar valor, maximizar clics. Cada cambio abre un periodo de aprendizaje de 1 a 2 semanas en el que no se lee nada.'],
-  ['Congelada', 'Campana en aprendizaje: no se tocan keywords, negativos, anuncios ni presupuesto hasta la fecha marcada.'],
-  ['Banda de azar', 'Con pocos contactos, una semana buena o mala suele ser suerte. La banda (90%) dice que rango es normal contando el azar de cada semana, que esta cuenta oscila mas que un dado (sobredispersion medida) y que el promedio mismo es incierto; solo fuera de ella, varias semanas seguidas, hay senal. Una banda de 4 semanas no es 4 veces la de una: el error del promedio no se cancela.'],
-  ['Rendimientos decrecientes', 'Cada peso extra compra menos contactos que el anterior: al subir el presupuesto el costo del contacto marginal es mayor que el promedio. Medido en el simulador de Google para esta cuenta: subir 10% el presupuesto trae 5 a 7% mas contactos.'],
-  ['Valor de conversion', 'Numero fijo que GTM asigna a cada pagina para que la puja "maximizar valor" priorice; no es ingreso y por eso este panel no calcula retorno (ROAS).'],
-  ['[Documentado] / [Heuristica] / [Requiere verificar]', 'Documentado = viene de la API o de una fuente oficial. Heuristica = estimacion con supuesto declarado. Requiere verificar = no se pudo cerrar.']
-];
-function secGlosario(){
-  var E = N.estrategia || {}, extra = Array.isArray(E.glosario) ? E.glosario : [];
-  return h2('08', 'Glosario', 's-glosario') + '<details><summary>Que significa cada termino</summary><dl>' + GLOSARIO.map(function(g){ return '<dt style="font-weight:700;margin-top:8px">' + esc(g[0]) + '</dt><dd style="margin:2px 0 0;color:var(--ink-2)">' + esc(g[1]) + '</dd>'; }).join('') + extra.map(function(g){ return '<dt style="font-weight:700;margin-top:8px">' + esc(g.termino || g.titulo || '') + '</dt><dd style="margin:2px 0 0;color:var(--ink-2)">' + esc(g.definicion || g.texto || '') + '</dd>'; }).join('') + '</dl></details>';
-}
+/* ---------- 9. Pie ---------- */
 function secPie(){
-  var D = N.D, f = Array.isArray(D.fuentes) ? D.fuentes : ['Google Ads API (solo lectura)' + (D.cuenta ? ', cuenta ' + D.cuenta : ''), 'GA4 Data API' + (N.ga4Ok ? '' : ' (sin datos en esta corrida)')];
-  return '<p><b>Metodo.</b> Cada madrugada (05:00 CDMX) un script lee la cuenta de Google Ads y GA4 por API en modo solo lectura, resume 90 dias en agregados y cifra el resultado (PBKDF2-SHA256 200,000 iteraciones + AES-256-GCM). Su navegador lo descifra con la clave; la clave no viaja a ningun servidor.</p>' +
-    '<p><b>Fuentes.</b> ' + esc(f.join(' · ')) + '. Capa viva: el mismo Apps Script del bot de citas, solo agregados.</p>' +
-    '<p><b>Frescura.</b> Datos generados el ' + fechaLarga(N.generado) + '; corte de Ads ' + fechaLarga(N.corte) + (D.ventana && (D.ventana.inicio || D.ventana.desde) ? '; serie desde el ' + fecha(D.ventana.inicio || D.ventana.desde) : '') + '. Las conversiones de los ultimos 2 dias siguen entrando.</p>' +
-    (N.metodo ? '<details><summary>Metodo del generador</summary>' + renderValor(N.metodo) + '</details>' : '') +
-    '<p><b>Ninguna cifra de pacientes viaja por esta pagina.</b> Ni nombres, ni telefonos, ni motivos: solo conteos. Marcas: <span class="ep">[Documentado]</span> API u oficial · <span class="ep">[Heuristica]</span> estimacion con supuesto · <span class="ep">[Requiere verificar]</span> sin cerrar.</p>';
+  var D = N.D, v = VA(), b = VB();
+  var capas = chip(N.generado ? 'ok' : '', 'punto', 'Datos de anoche: Google Ads al ' + fecha(N.corte) + ', preparados ' + fechaLarga(N.generado)) + chip(LIVE.ads.estado === 'ok' ? 'ok' : 'mal', 'reloj', 'Google Ads en vivo: ' + (v ? frescuraAds() : (LIVE.ads.estado === 'cargando' ? 'consultando' : LIVE.ads.estado === 'sin_clave' ? 'sin clave' : 'sin respuesta'))) + chip(LIVE.bot.estado === 'ok' ? 'ok' : 'mal', 'cal', 'Consultorio: ' + (b ? 'en vivo, ' + esc(b.generado || '') : (LIVE.bot.estado === 'cargando' ? 'consultando' : LIVE.bot.estado === 'sin_clave' ? 'sin conectar' : 'sin respuesta')));
+  return '<div class="capas">' + capas + '</div><p><b>Ninguna cifra de pacientes viaja por esta pagina.</b> Ni nombres, ni telefonos, ni motivos: solo conteos. Conexion a Google Ads y Analytics en modo solo lectura' + (D.cuenta ? ', cuenta ' + esc(D.cuenta) : '') + '.</p><p>Panel v3 (2026-08-23) · datos v' + esc(D.version || '') + ' · los contactos de los ultimos 2 dias siguen entrando (Google tarda en contarlos).</p>';
 }
 
 /* ============================================================
-   CAPA VIVA: contrato {url, accion, clave}. Consume SOLO agregados.
+   ARRANQUE Y REPINTADO POR SECCION
    ============================================================ */
-function pedirVivo(base, clave){
-  var ctrl = ('AbortController' in window) ? new AbortController() : null, t = setTimeout(function(){ if (ctrl) ctrl.abort(); }, 15000);
-  return fetch(base + '?' + VIVO.accion + '=1', {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify({key:clave, solo:'agregados'}), signal:ctrl ? ctrl.signal : undefined}).then(function(r){ return r.json(); }).then(function(j){ clearTimeout(t); return j; }, function(e){ clearTimeout(t); throw e; });
-}
-function cargarVivo(cfg){
-  // cfg = {url, accion, clave}; respuesta del motor -> se tiran campos con PII antes de usar nada.
-  if (!cfg.clave) return Promise.resolve(null);
-  return pedirVivo(cfg.url, cfg.clave).catch(function(){ return pedirVivo(VIVO.respaldo, cfg.clave); }).then(function(j){
-    if (!j || !j.ok) throw new Error(j && j.error === 'no autorizado' ? 'no autorizado' : 'respuesta invalida');
-    // Desde v2026-08-23-3 el motor recorta en origen (solo=agregados): no viaja ningun nombre. Si un
-    // motor viejo respondiera completo, 'agenda' se descarta aqui mismo y no se guarda.
-    return {tendencia:j.tendencia || null, clics:j.clics || null, ads:j.ads || null, metricas:sanitizaMetricas(j.metricas), poligrafias:j.poligrafias || null};
+var SECS = {hoy:['#s-hoy', secHoy], semana:['#s-semana', secSemana], embudo:['#s-embudo', secEmbudo], campanas:['#s-campanas', secCampanas], poli:['#s-poli', secPoli], sim:['#s-sim', secSim], decidir:['#s-decidir', secDecidir], detalles:['#s-detalles', secDetalles]};
+function repinta(ids){
+  if (!DATOS) return;
+  ids.forEach(function(id){ var s = SECS[id]; if (!s) return; var el = $(s[0]); if (!el) return;
+    // El apendice conserva que bloques estaban abiertos al repintar.
+    var abiertos = id === 'detalles' ? Array.prototype.map.call(el.querySelectorAll('details.ap[open] summary'), function(x){ return x.textContent; }) : null;
+    el.innerHTML = seguro(id, s[1]);
+    if (abiertos) Array.prototype.forEach.call(el.querySelectorAll('details.ap'), function(d){ if (abiertos.indexOf(d.querySelector('summary').textContent) >= 0) d.open = true; });
+    if (id === 'hoy'){ var f = el.querySelector('#bot-form'); if (f) f.addEventListener('submit', function(ev){ ev.preventDefault(); conectarBot(el.querySelector('#bot-clave').value); }); }
   });
+  paintCharts();
+  $('#foot').innerHTML = seguro('pie', secPie);
 }
-function sanitizaMetricas(m){ if (!m || typeof m !== 'object') return null; var out = {}; ['d7','d30'].forEach(function(k){ if (m[k]) out[k] = {reservas:m[k].reservas, flujos:m[k].flujos, confirmadas:m[k].confirmadas, conversaciones:m[k].conversaciones}; }); if (isNum(m.citas_hoy)) out.citas_hoy = m.citas_hoy; if (isNum(m.proximas)) out.proximas = m.proximas; return out; }
-function pintaVivo(v){
-  var el = document.getElementById('vivo-cuerpo'), html = '';
-  if (!v){ el.innerHTML = '<p class="cap">Capa viva pendiente de conectar. Escriba la clave del bot (la misma de /bot-config).</p>'; return; }
-  var t = v.tendencia, c = v.clics, a = v.ads, m = v.metricas || {};
-  html += '<div class="tiles" style="margin-top:4px">';
-  if (t && !t.error){ var ult = (t.semanas || []).slice(-1)[0]; html += tile('', 'Citas esta semana', isNum(t.semana_en_curso) ? fmt(t.semana_en_curso) : 'n/d', 'en curso · ultima completa: ' + (ult ? fmt(ult.citas) : 'n/d') + (t.suficiente ? ' · normal ' + t.banda_baja + ' a ' + t.banda_alta + '/sem' : '')); }
-  if (isNum(m.citas_hoy) || isNum(m.proximas)) html += tile('', 'Agenda', fmt(m.citas_hoy), 'citas hoy · ' + fmt(m.proximas) + ' proximas');
-  if (c && !c.error){ html += tile(c.con_cita > 0 ? 'good' : 'warn', 'Del anuncio a la cita', c.identificados ? fmt(c.con_cita) + ' de ' + fmt(c.identificados) : '0', c.identificados ? (c.tasa == null ? '' : c.tasa + '% · ') + 'ultimos ' + c.ventana_dias + ' d' : 'sin clics identificados aun'); var ec = document.getElementById('embudo-cita'); if (ec){ ec.textContent = c.identificados ? fmt(c.con_cita) + ' de ' + fmt(c.identificados) : '0'; document.getElementById('embudo-cita-s').textContent = 'con clic de anuncio identificado, ' + c.ventana_dias + ' d (todas las campanas)'; } }
-  if (t && !t.error && isNum(t.poligrafias_28d)){ var ultP = (t.semanas || []).slice(-1)[0]; html += tile(t.poligrafias_28d > 0 ? '' : 'warn', 'Poligrafias', fmt(t.poligrafias_28d), 'ultimos 28 d en el calendario · esta semana ' + (isNum(t.poligrafias_semana_en_curso) ? fmt(t.poligrafias_semana_en_curso) : 'n/d') + (ultP && isNum(ultP.poligrafias) ? ' · ultima completa ' + fmt(ultP.poligrafias) : '')); }
-  else if (v.poligrafias && !v.poligrafias.error) html += tile('', 'Poligrafias', fmt(v.poligrafias.semana || v.poligrafias.total), 'segun el motor');
-  if (a && a.estado !== 'sin_configurar' && a.estado !== 'rancio') html += tile('', 'Tablero nocturno', money(a.gasto_28d), 'gasto 28 d segun el bot · al ' + esc(a.ultima_actualizacion || 'n/d'));
-  html += '</div>';
-  if (t && Array.isArray(t.semanas) && t.semanas.length){ CHARTS = CHARTS.filter(function(x){ return x.id !== 'ch-vivo'; }); html += chart('ch-vivo', function(h){ var labs = t.semanas.map(function(s){ return s.etiqueta || s.semana || ''; }); var hayPoli = t.semanas.some(function(s){ return isNum(s.poligrafias); }); var series = [{name:'Citas por semana', short:'citas', color:'var(--c1)', values:t.semanas.map(function(s){ return {y:s.citas}; })}]; if (hayPoli) series.push({name:'Poligrafias por semana', short:'poli', color:'var(--c3)', values:t.semanas.map(function(s){ return {y:s.poligrafias || 0}; })}); return lineChart({labels:labs, series:series, bands:t.suficiente ? [{color:'var(--c1)', values:t.semanas.map(function(){ return {lo:t.banda_baja, hi:t.banda_alta}; })}] : [], height:180, aria:'Citas por semana con banda de normalidad'}, h); }); }
-  if (!(t && t.semanas && t.semanas.some(function(s){ return isNum(s.poligrafias); }))) html += '<p class="cap">Poligrafias por semana: este motor aun no expone ese conteo (requiere v2026-08-23-3 o posterior).</p>';
-  if (t && t.excluidas_mauricio) html += '<p class="cap">Citas del Dr. Castaneda excluidas: ' + fmt(t.excluidas_mauricio) + '.</p>';
-  html += '<p class="cap">Solo conteos: esta pagina pide al consultorio la version sin nombres (solo=agregados) y no guarda nada en el telefono salvo su clave.</p>';
-  el.innerHTML = html; paintCharts();
-}
-function initVivo(){
-  var form = document.getElementById('vivo-form'), inp = document.getElementById('vivo-clave'), est = document.getElementById('vivo-estado');
-  if (!form) return;
-  var go = function(clave, silencioso){ est.textContent = 'Conectando con el consultorio...'; cargarVivo({url:VIVO.url, accion:VIVO.accion, clave:clave}).then(function(v){ if (v) lsSet(LS_BOT, clave); est.textContent = v ? 'Conectado.' : ''; pintaVivo(v); }).catch(function(e){ if (e.message === 'no autorizado'){ lsDel(LS_BOT); est.textContent = 'Clave del bot incorrecta.'; } else est.textContent = silencioso ? '' : 'No hubo respuesta del consultorio; intente de nuevo.'; pintaVivo(null); }); };
-  form.addEventListener('submit', function(ev){ ev.preventDefault(); if (inp.value) go(inp.value, false); });
-  document.getElementById('vivo-olvidar').addEventListener('click', function(){ lsDel(LS_BOT); inp.value = ''; est.textContent = 'Clave del bot olvidada.'; pintaVivo(null); });
-  // La clave del bot ya vive en este mismo origen si el Dr. uso /bot-config (panel_bot_key) o /bot (visor_bot_key):
-  // se reutiliza en ese orden para no pedirla dos veces. Solo se lee; no se copia a otra clave.
-  var k = lsGet(LS_BOT) || lsGet('visor_bot_key'); if (k) go(k, true); else pintaVivo(null);
-}
-
-/* ============================================================
-   ARRANQUE
-   ============================================================ */
 function arrancar(D){
   DATOS = D; CHARTS = []; normaliza(D);
-  var partes = [seguro('ahora', secAhora), seguro('semaforo', secSemaforo), seguro('historico', secHistorico), seguro('campanas', secCampanas), seguro('poligrafia', secPoligrafia), seguro('predicciones', secPredicciones), seguro('estrategia', secEstrategia), seguro('glosario', secGlosario)];
-  $('#app').innerHTML = partes.join('\n');
+  Object.keys(SECS).forEach(function(id){ $(SECS[id][0]).innerHTML = seguro(id, SECS[id][1]); });
   $('#foot').innerHTML = seguro('pie', secPie);
   $('#gate').classList.add('hide'); $('#app').classList.remove('hide'); $('#foot').classList.remove('hide'); $('#acciones').classList.remove('hide');
-  var toc = $('#toc'); toc.innerHTML = [['s-ahora','Ahora'],['s-semaforo','Semaforo'],['s-historico','Historico'],['s-campanas','Campanas'],['s-poligrafia','Poligrafia'],['s-predicciones','Predicciones'],['s-estrategia','Estrategia'],['s-glosario','Glosario']].map(function(x){ return '<a href="#' + x[0] + '">' + x[1] + '</a>'; }).join(''); toc.classList.remove('hide');
-  if (N.generado || N.corte) $('#meta-linea').textContent = 'Datos generados el ' + fechaLarga(N.generado || N.corte) + (N.corte ? ' · corte de Ads: ' + fechaLarga(N.corte) : '');
+  if (N.generado || N.corte) $('#meta-linea').textContent = 'Google Ads hasta el ' + fechaLarga(N.corte) + '; lo de hoy se consulta en vivo al abrir.';
   paintCharts();
+  // 'toggle' no burbujea: se escucha en captura. Un chart dentro de un details cerrado se pinto a 300 px.
+  if (!arrancar.toggleListo){ document.addEventListener('toggle', function(){ setTimeout(paintCharts, 0); }, true); arrancar.toggleListo = true; }
   try { Array.prototype.forEach.call(document.querySelectorAll('input[type=range][data-camp]'), function(r){ r.addEventListener('input', simula); }); simula(); } catch (e) {}
-  try { initVivo(); } catch (e) {}
+  actualizar(true);
 }
 init();
 })();
