@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<!--
+  ============================================================
+  LANDING PAGE TRANSACCIONAL, Google Ads
+  ============================================================
+  OBJETIVO: convertir trafico pagado con intencion "polisomnografia",
+  "estudio del sueno completo", "polisomnografia a domicilio cdmx" en
+  estudio agendado por WhatsApp o Cal.com.
+  PUBLICO: paciente que YA llega con la polisomnografia indicada por otro
+  medico. No se le disuade, se le atiende (orden del Dr., 31-ago-2026).
+  Hereda la arquitectura de /promociones/* (header legal, navbar, hero,
+  sticky CTA movil, WA flotante).
+  COMPLIANCE: noindex; folio COFEPRIS y cedulas visibles; sin cura,
+  garantia, superlativos ni comparativos. Prueba social: solo el 5.0 real.
+  PRECIOS: $12,000 aqui (promocion). El regular $14,000 vive en
+  /servicios/polisomnografia/. La consulta se cobra aparte, $1,500.
+  NO reintroducir Bootstrap por CDN: el subset inline ES el layout.
+  ============================================================
+-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polisomnografía a Domicilio CDMX · $12,000 | Dr. William Lara | INER</title>
+    <meta name="description" content="Polisomnografía completa a domicilio en CDMX: un técnico coloca el estudio con electroencefalograma en tu casa y duermes en tu propia cama. $12,000. Interpretación por neumólogo egresado del INER.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://alveos.mx/promociones/polisomnografia/">
+    <meta name="author" content="Dr. William César Lara Vázquez">
+
+    <meta property="og:title" content="Polisomnografía a Domicilio CDMX · $12,000 | Dr. William Lara">
+    <meta property="og:description" content="El estudio del sueño completo, con electroencefalograma, sin pasar la noche en un laboratorio. Técnico a domicilio e interpretación por neumólogo.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://alveos.mx/promociones/polisomnografia/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yygg_vb.woff2" crossorigin>
+    <style id="bs-lite">/* Bootstrap 5.3.0: subset purgado a las clases que usa ESTA pagina (quita el CSS render-blocking cross-origin; palanca LPE/CWV). Regenerar con _internal/scripts/purge-bootstrap.py --per-page */:root,[data-bs-theme=light]{--bs-blue:#0d6efd;--bs-indigo:#6610f2;--bs-purple:#6f42c1;--bs-pink:#d63384;--bs-red:#dc3545;--bs-orange:#fd7e14;--bs-yellow:#ffc107;--bs-green:#198754;--bs-teal:#20c997;--bs-cyan:#0dcaf0;--bs-black:#000;--bs-white:#fff;--bs-gray:#6c757d;--bs-gray-dark:#343a40;--bs-gray-100:#f8f9fa;--bs-gray-200:#e9ecef;--bs-gray-300:#dee2e6;--bs-gray-400:#ced4da;--bs-gray-500:#adb5bd;--bs-gray-600:#6c757d;--bs-gray-700:#495057;--bs-gray-800:#343a40;--bs-gray-900:#212529;--bs-primary:#0d6efd;--bs-secondary:#6c757d;--bs-success:#198754;--bs-info:#0dcaf0;--bs-warning:#ffc107;--bs-danger:#dc3545;--bs-light:#f8f9fa;--bs-dark:#212529;--bs-primary-rgb:13,110,253;--bs-secondary-rgb:108,117,125;--bs-success-rgb:25,135,84;--bs-info-rgb:13,202,240;--bs-warning-rgb:255,193,7;--bs-danger-rgb:220,53,69;--bs-light-rgb:248,249,250;--bs-dark-rgb:33,37,41;--bs-primary-text-emphasis:#052c65;--bs-secondary-text-emphasis:#2b2f32;--bs-success-text-emphasis:#0a3622;--bs-info-text-emphasis:#055160;--bs-warning-text-emphasis:#664d03;--bs-danger-text-emphasis:#58151c;--bs-light-text-emphasis:#495057;--bs-dark-text-emphasis:#495057;--bs-primary-bg-subtle:#cfe2ff;--bs-secondary-bg-subtle:#e2e3e5;--bs-success-bg-subtle:#d1e7dd;--bs-info-bg-subtle:#cff4fc;--bs-warning-bg-subtle:#fff3cd;--bs-danger-bg-subtle:#f8d7da;--bs-light-bg-subtle:#fcfcfd;--bs-dark-bg-subtle:#ced4da;--bs-primary-border-subtle:#9ec5fe;--bs-secondary-border-subtle:#c4c8cb;--bs-success-border-subtle:#a3cfbb;--bs-info-border-subtle:#9eeaf9;--bs-warning-border-subtle:#ffe69c;--bs-danger-border-subtle:#f1aeb5;--bs-light-border-subtle:#e9ecef;--bs-dark-border-subtle:#adb5bd;--bs-white-rgb:255,255,255;--bs-black-rgb:0,0,0;--bs-font-sans-serif:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--bs-font-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--bs-gradient:linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));--bs-body-font-family:var(--bs-font-sans-serif);--bs-body-font-size:1rem;--bs-body-font-weight:400;--bs-body-line-height:1.5;--bs-body-color:#212529;--bs-body-color-rgb:33,37,41;--bs-body-bg:#fff;--bs-body-bg-rgb:255,255,255;--bs-emphasis-color:#000;--bs-emphasis-color-rgb:0,0,0;--bs-secondary-color:rgba(33, 37, 41, 0.75);--bs-secondary-color-rgb:33,37,41;--bs-secondary-bg:#e9ecef;--bs-secondary-bg-rgb:233,236,239;--bs-tertiary-color:rgba(33, 37, 41, 0.5);--bs-tertiary-color-rgb:33,37,41;--bs-tertiary-bg:#f8f9fa;--bs-tertiary-bg-rgb:248,249,250;--bs-heading-color:inherit;--bs-link-color:#0d6efd;--bs-link-color-rgb:13,110,253;--bs-link-decoration:underline;--bs-link-hover-color:#0a58ca;--bs-link-hover-color-rgb:10,88,202;--bs-code-color:#d63384;--bs-highlight-bg:#fff3cd;--bs-border-width:1px;--bs-border-style:solid;--bs-border-color:#dee2e6;--bs-border-color-translucent:rgba(0, 0, 0, 0.175);--bs-border-radius:0.375rem;--bs-border-radius-sm:0.25rem;--bs-border-radius-lg:0.5rem;--bs-border-radius-xl:1rem;--bs-border-radius-xxl:2rem;--bs-border-radius-2xl:var(--bs-border-radius-xxl);--bs-border-radius-pill:50rem;--bs-box-shadow:0 0.5rem 1rem rgba(0, 0, 0, 0.15);--bs-box-shadow-sm:0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);--bs-box-shadow-lg:0 1rem 3rem rgba(0, 0, 0, 0.175);--bs-box-shadow-inset:inset 0 1px 2px rgba(0, 0, 0, 0.075);--bs-focus-ring-width:0.25rem;--bs-focus-ring-opacity:0.25;--bs-focus-ring-color:rgba(13, 110, 253, 0.25);--bs-form-valid-color:#198754;--bs-form-valid-border-color:#198754;--bs-form-invalid-color:#dc3545;--bs-form-invalid-border-color:#dc3545}[data-bs-theme=dark]{color-scheme:dark;--bs-body-color:#adb5bd;--bs-body-color-rgb:173,181,189;--bs-body-bg:#212529;--bs-body-bg-rgb:33,37,41;--bs-emphasis-color:#fff;--bs-emphasis-color-rgb:255,255,255;--bs-secondary-color:rgba(173, 181, 189, 0.75);--bs-secondary-color-rgb:173,181,189;--bs-secondary-bg:#343a40;--bs-secondary-bg-rgb:52,58,64;--bs-tertiary-color:rgba(173, 181, 189, 0.5);--bs-tertiary-color-rgb:173,181,189;--bs-tertiary-bg:#2b3035;--bs-tertiary-bg-rgb:43,48,53;--bs-primary-text-emphasis:#6ea8fe;--bs-secondary-text-emphasis:#a7acb1;--bs-success-text-emphasis:#75b798;--bs-info-text-emphasis:#6edff6;--bs-warning-text-emphasis:#ffda6a;--bs-danger-text-emphasis:#ea868f;--bs-light-text-emphasis:#f8f9fa;--bs-dark-text-emphasis:#dee2e6;--bs-primary-bg-subtle:#031633;--bs-secondary-bg-subtle:#161719;--bs-success-bg-subtle:#051b11;--bs-info-bg-subtle:#032830;--bs-warning-bg-subtle:#332701;--bs-danger-bg-subtle:#2c0b0e;--bs-light-bg-subtle:#343a40;--bs-dark-bg-subtle:#1a1d20;--bs-primary-border-subtle:#084298;--bs-secondary-border-subtle:#41464b;--bs-success-border-subtle:#0f5132;--bs-info-border-subtle:#087990;--bs-warning-border-subtle:#997404;--bs-danger-border-subtle:#842029;--bs-light-border-subtle:#495057;--bs-dark-border-subtle:#343a40;--bs-heading-color:inherit;--bs-link-color:#6ea8fe;--bs-link-hover-color:#8bb9fe;--bs-link-color-rgb:110,168,254;--bs-link-hover-color-rgb:139,185,254;--bs-code-color:#e685b5;--bs-border-color:#495057;--bs-border-color-translucent:rgba(255, 255, 255, 0.15);--bs-form-valid-color:#75b798;--bs-form-valid-border-color:#75b798;--bs-form-invalid-color:#ea868f;--bs-form-invalid-border-color:#ea868f}*,::after,::before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:var(--bs-body-font-family);font-size:var(--bs-body-font-size);font-weight:var(--bs-body-font-weight);line-height:var(--bs-body-line-height);color:var(--bs-body-color);text-align:var(--bs-body-text-align);background-color:var(--bs-body-bg);-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}hr{margin:1rem 0;color:inherit;border:0;border-top:var(--bs-border-width) solid;opacity:.25}h1,h2,h3{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2;color:var(--bs-heading-color)}h1{font-size:calc(1.375rem + 1.5vw)}@media (min-width:1200px){h1{font-size:2.5rem}}h2{font-size:calc(1.325rem + .9vw)}@media (min-width:1200px){h2{font-size:2rem}}h3{font-size:calc(1.3rem + .6vw)}@media (min-width:1200px){h3{font-size:1.75rem}}p{margin-top:0;margin-bottom:1rem}address{margin-bottom:1rem;font-style:normal;line-height:inherit}ul{padding-left:2rem}ul{margin-top:0;margin-bottom:1rem}ul ul{margin-bottom:0}strong{font-weight:bolder}a{color:rgba(var(--bs-link-color-rgb),var(--bs-link-opacity,1));text-decoration:underline}a:hover{--bs-link-color-rgb:var(--bs-link-hover-color-rgb)}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}img{vertical-align:middle}button{border-radius:0}button:focus:not(:focus-visible){outline:0}button{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button{text-transform:none}[role=button]{cursor:pointer}[list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator{display:none!important}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){cursor:pointer}::-moz-focus-inner{padding:0;border-style:none}::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-fields-wrapper,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-text,::-webkit-datetime-edit-year-field{padding:0}::-webkit-inner-spin-button{height:auto}[type=search]{outline-offset:-2px;-webkit-appearance:textfield}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-color-swatch-wrapper{padding:0}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}::file-selector-button{font:inherit;-webkit-appearance:button}iframe{border:0}summary{display:list-item;cursor:pointer}[hidden]{display:none!important}.container{--bs-gutter-x:1.5rem;--bs-gutter-y:0;width:100%;padding-right:calc(var(--bs-gutter-x) * .5);padding-left:calc(var(--bs-gutter-x) * .5);margin-right:auto;margin-left:auto}@media (min-width:576px){.container{max-width:540px}}@media (min-width:768px){.container{max-width:720px}}@media (min-width:992px){.container{max-width:960px}}@media (min-width:1200px){.container{max-width:1140px}}@media (min-width:1400px){.container{max-width:1320px}}:root{--bs-breakpoint-xs:0;--bs-breakpoint-sm:576px;--bs-breakpoint-md:768px;--bs-breakpoint-lg:992px;--bs-breakpoint-xl:1200px;--bs-breakpoint-xxl:1400px}.row{--bs-gutter-x:1.5rem;--bs-gutter-y:0;display:flex;flex-wrap:wrap;margin-top:calc(-1 * var(--bs-gutter-y));margin-right:calc(-.5 * var(--bs-gutter-x));margin-left:calc(-.5 * var(--bs-gutter-x))}.row>*{flex-shrink:0;width:100%;max-width:100%;padding-right:calc(var(--bs-gutter-x) * .5);padding-left:calc(var(--bs-gutter-x) * .5);margin-top:var(--bs-gutter-y)}.g-5{--bs-gutter-x:3rem}.g-5{--bs-gutter-y:3rem}@media (min-width:992px){.col-lg-5{flex:0 0 auto;width:41.66666667%}.col-lg-7{flex:0 0 auto;width:58.33333333%}}.collapsing{height:0;overflow:hidden;transition:height .35s ease}@media (prefers-reduced-motion:reduce){.collapsing{transition:none}}.navbar{--bs-navbar-padding-x:0;--bs-navbar-padding-y:0.5rem;--bs-navbar-color:rgba(var(--bs-emphasis-color-rgb), 0.65);--bs-navbar-hover-color:rgba(var(--bs-emphasis-color-rgb), 0.8);--bs-navbar-disabled-color:rgba(var(--bs-emphasis-color-rgb), 0.3);--bs-navbar-active-color:rgba(var(--bs-emphasis-color-rgb), 1);--bs-navbar-brand-padding-y:0.3125rem;--bs-navbar-brand-margin-end:1rem;--bs-navbar-brand-font-size:1.25rem;--bs-navbar-brand-color:rgba(var(--bs-emphasis-color-rgb), 1);--bs-navbar-brand-hover-color:rgba(var(--bs-emphasis-color-rgb), 1);--bs-navbar-nav-link-padding-x:0.5rem;--bs-navbar-toggler-padding-y:0.25rem;--bs-navbar-toggler-padding-x:0.75rem;--bs-navbar-toggler-font-size:1.25rem;--bs-navbar-toggler-icon-bg:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");--bs-navbar-toggler-border-color:rgba(var(--bs-emphasis-color-rgb), 0.15);--bs-navbar-toggler-border-radius:var(--bs-border-radius);--bs-navbar-toggler-focus-width:0.25rem;--bs-navbar-toggler-transition:box-shadow 0.15s ease-in-out;position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:var(--bs-navbar-padding-y) var(--bs-navbar-padding-x)}.navbar>.container{display:flex;flex-wrap:inherit;align-items:center;justify-content:space-between}.navbar-brand{padding-top:var(--bs-navbar-brand-padding-y);padding-bottom:var(--bs-navbar-brand-padding-y);margin-right:var(--bs-navbar-brand-margin-end);font-size:var(--bs-navbar-brand-font-size);color:var(--bs-navbar-brand-color);text-decoration:none;white-space:nowrap}.navbar-brand:focus,.navbar-brand:hover{color:var(--bs-navbar-brand-hover-color)}@media (min-width:992px){.navbar-expand-lg{flex-wrap:nowrap;justify-content:flex-start}}.navbar[data-bs-theme=dark]{--bs-navbar-color:rgba(255, 255, 255, 0.55);--bs-navbar-hover-color:rgba(255, 255, 255, 0.75);--bs-navbar-disabled-color:rgba(255, 255, 255, 0.25);--bs-navbar-active-color:#fff;--bs-navbar-brand-color:#fff;--bs-navbar-brand-hover-color:#fff;--bs-navbar-toggler-border-color:rgba(255, 255, 255, 0.1);--bs-navbar-toggler-icon-bg:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")}.sticky-top{position:-webkit-sticky;position:sticky;top:0;z-index:1020}.d-flex{display:flex!important}.d-inline-flex{display:inline-flex!important}.align-items-center{align-items:center!important}.mt-4{margin-top:1.5rem!important}.me-1{margin-right:.25rem!important}.me-2{margin-right:.5rem!important}.mb-0{margin-bottom:0!important}.mb-1{margin-bottom:.25rem!important}.mb-2{margin-bottom:.5rem!important}.mb-4{margin-bottom:1.5rem!important}.gap-2{gap:.5rem!important}.fw-semibold{font-weight:600!important}.text-center{text-align:center!important}.text-primary{--bs-text-opacity:1;color:rgba(var(--bs-primary-rgb),var(--bs-text-opacity))!important}</style>
+    <!-- Fuente en carga normal (no diferida): con media=print la Plus Jakarta Sans llegaba tarde y el repintado del H1 disparaba el LCP (palanca LPE) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"></noscript>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="stylesheet" href="/enfermedades/_shared/disease.css">
+
+    <style id="lp-styles">
+    :root{
+        --navy:#0a2e2c;
+        --electric:#0d9e84;
+        --cyan:#2dd4bf;
+        --green:#1DA851;
+        --green-dark:#128C7E;
+        --bg:#f1fbf7;
+        --ink:#142b26;
+        --muted:#5a6b7d;
+        --ease:cubic-bezier(.22,.61,.36,1);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);background:#fff;margin:0;line-height:1.6;padding-bottom:72px}
+    @media(min-width:992px){body{padding-bottom:0}}
+
+    /* ============ HERO ============ */
+    .hero{position:relative;background:linear-gradient(135deg,#0a2e2c 0%,#0c544c 60%,#0d9e84 100%);color:#fff;padding:56px 0 64px;overflow:hidden}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(800px 400px at 80% 10%,rgba(45,212,191,.25),transparent 60%);pointer-events:none}
+    .hero__content{position:relative;z-index:2}
+    .hero__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(45,212,191,.18);border:1px solid rgba(45,212,191,.4);color:#a5f3df;padding:7px 16px;border-radius:999px;font-size:.82rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
+    .hero__badge .dot{width:8px;height:8px;background:#2dd4bf;border-radius:50%;box-shadow:0 0 12px #2dd4bf;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+    section.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:18px;color:#fff}
+    section.hero h1 em{font-style:normal;background:linear-gradient(120deg,#2dd4bf,#a5f3df);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+    .hero__sub{font-size:1.12rem;color:rgba(255,255,255,.85);margin-bottom:24px;max-width:560px;line-height:1.55}
+    .hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:22px}
+    .btn-wa,.btn-cal{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 26px;border-radius:14px;font-weight:800;font-size:1.05rem;text-decoration:none;transition:all .25s var(--ease);box-shadow:0 10px 30px -8px rgba(0,0,0,.4);min-width:220px}
+    .btn-wa{background:var(--green);color:#fff}
+    .btn-wa:hover{background:var(--green-dark);color:#fff;transform:translateY(-2px);box-shadow:0 14px 34px -8px rgba(29,168,81,.5)}
+    .btn-cal{background:#fff;color:var(--navy)}
+    .btn-cal:hover{background:#e6faf4;color:var(--navy);transform:translateY(-2px)}
+    .hero__trust{display:flex;flex-wrap:wrap;gap:18px;font-size:.83rem;color:rgba(255,255,255,.7)}
+    .hero__trust span{display:inline-flex;align-items:center;gap:6px}
+    .hero__trust i{color:#a5f3df}
+
+    /* Card visual a la derecha */
+    .hero__card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:24px;padding:28px;backdrop-filter:blur(12px);position:relative;z-index:2}
+    .hero__card h3{color:#fff;font-weight:800;font-size:1.3rem;margin-bottom:6px}
+    .hero__card .subt{color:#a5f3df;font-size:.85rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
+    .hero__card-list{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+    .hero__card-list li{display:flex;gap:12px;align-items:flex-start;color:#e6faf4;font-size:.95rem}
+    .hero__card-list i{color:#2dd4bf;font-size:1.4rem;flex-shrink:0}
+    .hero__card-list strong{color:#fff;display:block;margin-bottom:2px}
+    /* Grid visual de iconos (mas limpio que lista de bullets) */
+    .hero__visual-grid{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .hero__visual-grid li{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:14px 8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;transition:all .25s var(--ease)}
+    .hero__visual-grid li:hover{background:rgba(255,255,255,.1);border-color:rgba(45,212,191,.4);transform:translateY(-2px)}
+    .hvg__ico{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,rgba(45,212,191,.25),rgba(13,158,132,.25));display:flex;align-items:center;justify-content:center;color:#a5f3df;font-size:1.25rem}
+    .hvg__label{font-size:.78rem;font-weight:700;color:#e6faf4;line-height:1.25;letter-spacing:.2px}
+    .hero__card-foot{margin:14px 0 0;font-size:.72rem;color:rgba(255,255,255,.55);text-align:center;letter-spacing:.3px}
+
+    /* Badge de precio promocional dentro del hero */
+    .hero__price{display:inline-flex;flex-direction:column;align-items:flex-start;gap:6px;background:linear-gradient(135deg,rgba(45,212,191,.15),rgba(13,158,132,.15));border:1px solid rgba(45,212,191,.35);border-radius:16px;padding:14px 20px;margin-bottom:22px;backdrop-filter:blur(8px);position:relative}
+    .hero__price::before{content:'PROMOCIÓN';position:absolute;top:-10px;left:16px;background:linear-gradient(135deg,#2dd4bf,#0d9e84);color:#fff;font-size:.65rem;font-weight:800;letter-spacing:1px;padding:3px 10px;border-radius:999px;box-shadow:0 4px 12px -4px rgba(45,212,191,.6)}
+    .hero__price-label{font-size:.78rem;font-weight:700;color:#a5f3df;letter-spacing:.4px;text-transform:uppercase;margin-top:4px}
+    .hero__price-row{display:flex;align-items:baseline;gap:12px}
+    .hero__price-old{font-size:1.2rem;color:rgba(255,255,255,.55);text-decoration:line-through;text-decoration-color:rgba(255,107,107,.85);text-decoration-thickness:2.5px;font-weight:600}
+    .hero__price-new{font-size:2.4rem;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1;text-shadow:0 2px 12px rgba(45,212,191,.35)}
+
+    /* Iconos de metodos de pago */
+    .pay-row{display:flex;justify-content:center;align-items:center;gap:18px;margin:22px auto 0;flex-wrap:wrap}
+    .pay-row__item{display:inline-flex;flex-direction:column;align-items:center;gap:6px;color:var(--muted);font-size:.72rem;font-weight:700;letter-spacing:.3px;text-transform:uppercase}
+    .pay-row__item i{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,rgba(13,158,132,.08),rgba(45,212,191,.08));border:1px solid rgba(13,158,132,.18);display:flex;align-items:center;justify-content:center;font-size:1.35rem;color:var(--electric);transition:all .25s var(--ease)}
+    .pay-row__item:hover i{transform:translateY(-2px);border-color:var(--electric);background:rgba(13,158,132,.12)}
+
+    /* CTA final con lucecitas premium (orbs + dot pattern) */
+    .cta-inline--lights{position:relative;overflow:hidden;background:linear-gradient(135deg,#06231f 0%,#0a2e2c 35%,#0c544c 70%,#0d9e84 100%)}
+    .cta-inline--lights::before{content:'';position:absolute;inset:-20%;background:
+        radial-gradient(600px 300px at 15% 20%,rgba(45,212,191,.30),transparent 60%),
+        radial-gradient(500px 280px at 85% 80%,rgba(13,158,132,.40),transparent 55%),
+        radial-gradient(400px 240px at 70% 15%,rgba(165,243,223,.20),transparent 60%);
+        animation:ctaOrbs 18s ease-in-out infinite;pointer-events:none;z-index:1}
+    .cta-inline--lights::after{content:'';position:absolute;inset:0;background-image:
+        radial-gradient(circle at 20% 35%,rgba(255,255,255,.06) 0,transparent 1.5px),
+        radial-gradient(circle at 70% 65%,rgba(255,255,255,.05) 0,transparent 1.5px),
+        radial-gradient(circle at 45% 85%,rgba(255,255,255,.06) 0,transparent 1.5px);
+        background-size:40px 40px,60px 60px,80px 80px;
+        opacity:.6;pointer-events:none;z-index:1;
+        mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.4) 100%)}
+    .cta-inline--lights > *{position:relative;z-index:2}
+    @keyframes ctaOrbs{
+        0%,100%{transform:translate(0,0) scale(1)}
+        33%{transform:translate(2%,-1%) scale(1.04)}
+        66%{transform:translate(-2%,1%) scale(.98)}
+    }
+
+    /* ============ SECCIÓN GENÉRICA ============ */
+    section.block{padding:64px 0}
+    .block__head{text-align:center;max-width:720px;margin:0 auto 40px}
+    .block__kicker{display:inline-block;background:rgba(13,158,132,.1);color:var(--electric);padding:6px 14px;border-radius:999px;font-size:.78rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:14px}
+    .block__title{font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:800;letter-spacing:-.02em;color:var(--navy);margin-bottom:12px;line-height:1.2}
+    .block__title em{font-style:normal;color:var(--electric)}
+    .block__lead{font-size:1.05rem;color:var(--muted);line-height:1.65}
+
+    /* ============ PASOS / QUÉ INCLUYE (premium) ============ */
+    .cond{background:linear-gradient(180deg,#fff 0%,#ecfaf4 100%);position:relative;overflow:hidden}
+    .cond::before{content:'';position:absolute;inset:0;background:radial-gradient(700px 360px at 50% -10%,rgba(45,212,191,.08),transparent 60%);pointer-events:none}
+    .cond .container{position:relative;z-index:1}
+    .cond-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    @media(max-width:680px){.cond-grid{grid-template-columns:repeat(2,1fr);gap:12px}}
+    .cond-card{position:relative;background:linear-gradient(180deg,#fff 0%,#f6fdfa 100%);border:1px solid rgba(13,158,132,.12);border-radius:20px;padding:26px 18px 22px;text-align:center;transition:all .35s var(--ease);overflow:hidden;cursor:default;display:flex;flex-direction:column;align-items:center;gap:10px}
+    .cond-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--electric),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+    .cond-card::after{content:'';position:absolute;inset:-1px;border-radius:20px;background:linear-gradient(135deg,rgba(45,212,191,.18),rgba(13,158,132,.18));opacity:0;transition:opacity .35s var(--ease);z-index:-1;filter:blur(14px)}
+    .cond-card:hover{transform:translateY(-6px);border-color:rgba(45,212,191,.4);box-shadow:0 22px 44px -18px rgba(8,44,40,.22)}
+    .cond-card:hover::before{transform:scaleX(1)}
+    .cond-card:hover::after{opacity:1}
+    .cond-card__icon{width:62px;height:62px;border-radius:18px;background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.7rem;margin-bottom:4px;box-shadow:0 10px 24px -10px rgba(13,158,132,.55);transition:transform .35s var(--ease)}
+    .cond-card:hover .cond-card__icon{transform:scale(1.08) rotate(-4deg)}
+    .cond-card h3{font-size:1.05rem;font-weight:800;color:var(--navy);margin:0;letter-spacing:-.01em}
+    .cond-card__tag{display:inline-block;font-size:.68rem;font-weight:800;padding:4px 10px;border-radius:999px;background:rgba(13,158,132,.1);color:var(--electric);letter-spacing:.4px;text-transform:uppercase}
+    .cond-card__tag--featured{background:linear-gradient(135deg,#0984e3,#1e3799);color:#fff;box-shadow:0 6px 14px -4px rgba(230,74,25,.5)}
+
+    /* Boton secundario elegante */
+    .btn-ask-wa{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:14px;font-weight:700;font-size:.97rem;text-decoration:none;color:var(--green-dark);background:rgba(29,168,81,.07);border:1.5px solid rgba(29,168,81,.4);transition:all .25s var(--ease);backdrop-filter:blur(4px)}
+    .btn-ask-wa i{font-size:1.15rem;color:var(--green)}
+    .btn-ask-wa:hover{background:rgba(29,168,81,.14);border-color:var(--green);color:var(--green-dark);transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(29,168,81,.25)}
+
+    /* ============ CTA INLINE ============ */
+    .cta-inline{background:linear-gradient(135deg,var(--navy) 0%,#0c544c 100%);color:#fff;padding:48px 32px;border-radius:24px;text-align:center;position:relative;overflow:hidden}
+    .cta-inline::before{content:'';position:absolute;inset:0;background:radial-gradient(500px 200px at 50% 0%,rgba(45,212,191,.25),transparent 60%);pointer-events:none}
+    .cta-inline > *{position:relative;z-index:2}
+    .cta-inline h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:12px;letter-spacing:-.02em;color:#fff}
+    .cta-inline p{color:rgba(255,255,255,.8);max-width:540px;margin:0 auto 26px;font-size:1.02rem}
+    .cta-inline__btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+
+    /* ============ DOCTOR / E-E-A-T ============ */
+    .doc-card{background:#fff;border:1px solid rgba(13,158,132,.15);border-radius:22px;padding:32px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;box-shadow:0 12px 30px -16px rgba(8,44,40,.15)}
+    .doc-card__avatar{width:140px;height:140px;border-radius:50%;flex-shrink:0;border:3px solid #fff;box-shadow:0 8px 24px -8px rgba(8,44,40,.25);object-fit:cover}
+    .doc-card h3{font-size:1.3rem;font-weight:800;color:var(--navy);margin-bottom:6px}
+    .doc-card .role{color:var(--electric);font-weight:700;font-size:.95rem;margin-bottom:14px}
+    .doc-card__bullets{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:8px}
+    .doc-card__bullets li{display:flex;gap:10px;align-items:flex-start;font-size:.94rem;color:var(--ink);line-height:1.5}
+    .doc-card__bullets i{color:var(--electric);font-size:1.05rem;flex-shrink:0;margin-top:3px}
+    .doc-card__creds{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .doc-card__creds span{background:rgba(13,158,132,.08);color:var(--electric);padding:5px 12px;border-radius:999px;font-size:.78rem;font-weight:600}
+    @media(max-width:700px){.doc-card{grid-template-columns:1fr;text-align:left}.doc-card__avatar{margin:0 auto}.doc-card__creds{justify-content:flex-start}}
+
+    /* ============ UBICACIÓN ============ */
+    .loc{background:linear-gradient(180deg,#fff 0%,var(--bg) 100%)}
+    .loc-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:stretch;max-width:1080px;margin:0 auto}
+    @media(max-width:880px){.loc-grid{grid-template-columns:1fr}}
+    .loc-map{border-radius:20px;overflow:hidden;border:1px solid rgba(13,158,132,.15);box-shadow:0 14px 36px -16px rgba(8,44,40,.18);min-height:340px;background:#e6faf4}
+    .loc-map iframe{display:block;width:100%;height:100%;min-height:340px;border:0}
+    .loc-info{background:#fff;border:1px solid rgba(13,158,132,.15);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:18px;box-shadow:0 10px 28px -16px rgba(8,44,40,.15)}
+    .loc-info h3{font-size:1.15rem;font-weight:800;color:var(--navy);margin:0 0 4px}
+    .loc-info p,.loc-info address{font-size:.95rem;color:var(--muted);margin:0;font-style:normal;line-height:1.55}
+    .loc-row{display:flex;gap:14px;align-items:flex-start}
+    .loc-row__icon{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0}
+    .loc-info .btn-wa{min-width:0;width:100%;margin-top:auto}
+
+    /* ============ FAQ ============ */
+    .faq-item{background:#fff;border:1px solid rgba(13,158,132,.12);border-radius:14px;margin-bottom:12px;overflow:hidden}
+    .faq-item summary{padding:18px 22px;font-weight:700;color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;font-size:1rem;gap:14px}
+    .faq-item summary::-webkit-details-marker{display:none}
+    .faq-item summary::after{content:'+';font-size:1.5rem;color:var(--electric);font-weight:300;transition:transform .25s;flex-shrink:0}
+    .faq-item[open] summary::after{transform:rotate(45deg)}
+    .faq-item__answer{padding:0 22px 20px;color:var(--muted);font-size:.95rem;line-height:1.65}
+    .faq-item__answer strong{color:var(--navy)}
+    .price-pill{display:inline-block;background:rgba(29,168,81,.12);color:var(--green-dark);padding:3px 10px;border-radius:999px;font-weight:800;font-size:.85rem;margin:0 2px}
+
+    /* ============ FOOTER ============ */
+    .lp-footer{background:#072420;color:rgba(255,255,255,.55);padding:32px 0 22px;text-align:center;font-size:.83rem}
+
+    /* ============ STICKY MÓVIL ============ */
+    .sticky-cta{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid rgba(0,0,0,.1);padding:10px 12px;padding-bottom:max(10px,env(safe-area-inset-bottom));display:flex;gap:8px;z-index:90;box-shadow:0 -4px 20px rgba(0,0,0,.08)}
+    .sticky-cta a{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 12px;border-radius:12px;font-weight:800;font-size:.95rem;text-decoration:none}
+    .sticky-cta .sc-wa{background:var(--green);color:#fff}
+    .sticky-cta .sc-cal{background:var(--navy);color:#fff}
+    @media(min-width:992px){.sticky-cta{display:none}}
+
+    /* WhatsApp flotante desktop */
+    .wa-float{position:fixed;bottom:24px;right:24px;width:60px;height:60px;background:var(--green);color:#fff;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:1.8rem;text-decoration:none;box-shadow:0 8px 24px rgba(29,168,81,.45);z-index:90;animation:waPulse 2.4s infinite}
+    @keyframes waPulse{0%,100%{box-shadow:0 8px 24px rgba(29,168,81,.45)}50%{box-shadow:0 8px 30px rgba(29,168,81,.75)}}
+    .wa-float:hover{color:#fff;transform:scale(1.08)}
+    @media(min-width:992px){.wa-float{display:flex}}
+
+    /* ===== Mejoras CRO: confianza en hero, resenas reales, micro-interacciones ===== */
+    .hero__creds{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}
+    .hero__cred{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#e6faf4;padding:7px 13px;border-radius:999px;font-size:.82rem;font-weight:700;text-decoration:none}
+    .hero__cred i{color:#a5f3df}
+    .hero__cred .stars{color:#f5b400;letter-spacing:1px;font-size:.95rem}
+    a.hero__cred:hover{background:rgba(255,255,255,.2);color:#fff}
+    .btn-wa:active,.btn-cal:active,.sticky-cta a:active{transform:scale(.97)}
+    .reveal{opacity:0;transform:translateY(18px)}
+    .reveal.in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
+    @media(prefers-reduced-motion:reduce){.reveal,.reveal.in{opacity:1!important;transform:none!important;transition:none!important}}
+
+    /* CTA: lucecitas (sparkle-field) + linea luminosa */
+    .cta-inline:not(.cta-inline--lights)::before{background:radial-gradient(600px 240px at 50% 0%,rgba(45,212,191,.28),transparent 60%);animation:none}
+    .cta-inline:not(.cta-inline--lights)::after{content:'';position:absolute;top:0;left:12%;right:12%;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 16px rgba(45,212,191,.75);z-index:3}
+    .cta-inline .sparkle-field{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;border-radius:24px}
+    .cta-inline .sparkle-field span{position:absolute;border-radius:50%;background:rgba(190,245,225,.95);opacity:0;animation:cta-twinkle var(--sd,3s) ease-in-out var(--sl,0s) infinite}
+    .cta-inline .sparkle-field span.glow{box-shadow:0 0 9px 3px rgba(116,225,200,.4)}
+    @keyframes cta-twinkle{0%,100%{opacity:0}50%{opacity:.95}}
+    @media(prefers-reduced-motion:reduce){.cta-inline .sparkle-field span{animation:none;opacity:.45}}
+
+    /* Pagina mas compacta (menos scroll) */
+    section.block{padding:46px 0}
+    .hero{padding:40px 0 46px}
+    .block__head{margin-bottom:28px}
+    .cta-inline{padding:40px 28px}
+
+    /* ===== Sección de reseñas reales de Google (copiada del home) ===== */
+    :root{ --cloud:#ecfaf4; --cloud-alt:#f2fcf8; --white:#ffffff; --text:#0e2a24; --text-muted:#64748b; --royal:#0c6f5e; --shadow-sm:0 2px 14px rgba(10,30,26,.07); --shadow-md:0 6px 32px rgba(10,30,26,.09); --sans:'Plus Jakarta Sans',system-ui,sans-serif; }
+    .gbp-rating-widget{display:inline-flex;align-items:center;gap:14px;padding:14px 24px;background:linear-gradient(135deg,#fff 0%,var(--cloud-alt) 100%);border:1px solid rgba(13,158,132,.14);border-radius:100px;box-shadow:var(--shadow-sm);font-family:var(--sans);text-decoration:none;color:var(--text);transition:all .3s var(--ease)}
+    .gbp-rating-widget:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);color:var(--text)}
+    .gbp-rating-widget__num{font-size:1.5rem;font-weight:800;color:var(--navy);line-height:1}
+    .gbp-rating-widget__stars{color:#fbbc04;font-size:1rem;letter-spacing:1px;line-height:1}
+    .gbp-rating-widget__meta{display:flex;flex-direction:column;line-height:1.2}
+    .gbp-rating-widget__source{font-size:.72rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em}
+    .gbp-rating-widget__count{font-size:.82rem;font-weight:600;color:var(--navy)}
+    .testimonial-source-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(13,158,132,.07);border:1px solid rgba(13,158,132,.16);border-radius:100px;padding:6px 18px;font-size:.72rem;font-weight:700;color:var(--electric)}
+    .testimonial-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;height:520px;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 8%,black 92%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,black 8%,black 92%,transparent 100%)}
+    .testimonial-col{display:flex;flex-direction:column;gap:16px;will-change:transform;animation:testimonial-scroll-up var(--t-dur,60s) linear infinite;animation-play-state:paused}
+    .testimonial-col.marquee-on{animation-play-state:running}
+    .testimonial-col--down{animation-direction:reverse}
+    .testimonial-col:hover{animation-play-state:paused}
+    @keyframes testimonial-scroll-up{0%{transform:translateY(0)}100%{transform:translateY(calc(-50% - var(--tgap,8px)))}}
+    .testi-card{background:var(--white);border:1px solid rgba(0,0,0,.06);border-radius:18px;padding:24px;box-shadow:0 2px 12px rgba(10,30,26,.04);transition:all .4s var(--ease);flex-shrink:0}
+    .testi-card:hover{box-shadow:0 12px 40px rgba(10,30,26,.09);border-color:rgba(13,158,132,.15)}
+    .testi-stars{display:flex;gap:2px;margin-bottom:12px}
+    .testi-stars i{color:#f59e0b;font-size:.82rem}
+    .testi-text{font-size:.88rem;line-height:1.7;color:var(--text);font-style:italic;margin:0 0 16px}
+    .testi-author{display:flex;align-items:center;gap:10px}
+    .testi-avatar{width:38px;height:38px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--electric),var(--royal));color:var(--white);font-weight:700;font-size:.95rem;display:flex;align-items:center;justify-content:center}
+    .testi-name{font-weight:700;font-size:.82rem;color:var(--navy);margin:0}
+    .testi-badge{font-size:.68rem;color:var(--text-muted);margin:1px 0 0}
+    @media(max-width:992px){.testimonial-columns{height:440px}}
+    @media(max-width:640px){.testimonial-columns{grid-template-columns:1fr 1fr;gap:10px;height:380px}.testimonial-columns > :nth-child(3){display:none}.testimonial-col{gap:10px}.testi-card{padding:14px;border-radius:14px}.testi-text{font-size:.8rem;line-height:1.6}.testi-name{font-size:.75rem}.testi-badge{font-size:.62rem}.testi-avatar{width:32px;height:32px;font-size:.8rem}}
+
+    /* ===== Específico cesación: solo-vs-plan + qué gana tu cuerpo ===== */
+    .qf-compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:720px;margin:0 auto}
+    @media(max-width:560px){.qf-compare{grid-template-columns:1fr}}
+    .qf-col{border-radius:18px;padding:24px 20px;text-align:center;border:1px solid;display:flex;flex-direction:column;gap:6px}
+    .qf-col--solo{background:#fff;border-color:rgba(230,74,25,.22)}
+    .qf-col--plan{background:linear-gradient(160deg,#0a2e2c 0%,#0c544c 100%);border-color:transparent;color:#fff;box-shadow:0 16px 36px -18px rgba(8,44,40,.35)}
+    .qf-col__lbl{font-size:.72rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase}
+    .qf-col--solo .qf-col__lbl{color:#047857}
+    .qf-col--plan .qf-col__lbl{color:#a5f3df}
+    .qf-col__num{font-size:2.6rem;font-weight:800;line-height:1;letter-spacing:-.02em}
+    .qf-col--solo .qf-col__num{color:var(--navy)}
+    .qf-col--plan .qf-col__num{color:#fff}
+    .qf-col__desc{font-size:.85rem;line-height:1.5}
+    .qf-col--solo .qf-col__desc{color:var(--muted)}
+    .qf-col--plan .qf-col__desc{color:rgba(255,255,255,.82)}
+    .qf-src{text-align:center;font-size:.76rem;color:var(--muted);margin:16px auto 0;max-width:600px;line-height:1.5}
+    .qf-tl{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:960px;margin:0 auto}
+    @media(max-width:680px){.qf-tl{grid-template-columns:1fr 1fr}}
+    .qf-tl__item{background:#fff;border:1px solid rgba(13,158,132,.12);border-radius:16px;padding:20px 16px;text-align:center;box-shadow:0 6px 18px -14px rgba(8,44,40,.2)}
+    .qf-tl__t{display:inline-block;font-size:.72rem;font-weight:800;color:var(--electric);background:rgba(13,158,132,.1);padding:4px 12px;border-radius:999px;margin-bottom:10px}
+    .qf-tl__ico{font-size:1.5rem;color:var(--electric);margin-bottom:6px}
+    .qf-tl__txt{font-size:.84rem;color:var(--ink);line-height:1.45}
+    </style>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
+<script type="application/ld+json" data-promo-schema>
+{"@context": "https://schema.org", "@type": "MedicalBusiness", "name": "Alveos · Dr. William César Lara Vázquez", "medicalSpecialty": "Pulmonary", "url": "https://alveos.mx/promociones/polisomnografia/", "telephone": "+525591708334", "image": "https://alveos.mx/images/dr-william-lara.png", "address": {"@type": "PostalAddress", "streetAddress": "Saturnino Herrán 59, Consultorio 507, Hospital Santa Coleta", "addressLocality": "San José Insurgentes, Benito Juárez", "addressRegion": "CDMX", "postalCode": "03900", "addressCountry": "MX"}, "physician": {"@type": "Physician", "@id": "https://alveos.mx/#physician", "name": "Dr. William César Lara Vázquez", "medicalSpecialty": "Pulmonary"}, "makesOffer": {"@type": "Offer", "itemOffered": {"@type": "MedicalTest", "name": "Polisomnografía a domicilio (tipo II)"}, "price": "12000", "priceCurrency": "MXN", "priceSpecification": {"@type": "PriceSpecification", "price": "12000", "priceCurrency": "MXN"}, "availability": "https://schema.org/InStock"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"MedicalTest","name":"Polisomnografía a domicilio (tipo II)","description":"Polisomnografía tipo II en el domicilio del paciente, con montaje completo colocado por un técnico especializado e interpretación por neumólogo.","offers":[{"@type":"Offer","name":"Polisomnografía a domicilio (promoción)","price":"12000","priceCurrency":"MXN","availability":"https://schema.org/InStock","url":"https://alveos.mx/promociones/polisomnografia/"}],"performer":{"@type":"Physician","@id":"https://alveos.mx/#physician","name":"Dr. William César Lara Vázquez"},"url":"https://alveos.mx/promociones/polisomnografia/"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","@id":"https://alveos.mx/promociones/polisomnografia/#faq","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Es la misma polisomnografía que me indicaron?","acceptedAnswer":{"@type":"Answer","text":"Sí en lo que se registra. Es un estudio tipo II con el montaje completo, incluido el electroencefalograma que mide las fases de sueño, más flujo, esfuerzo, oxígeno, electrocardiograma, movimiento de piernas y posición. La diferencia con el de laboratorio no está en las señales: está en que el técnico coloca el equipo en tu casa y se retira, en vez de vigilarte toda la noche."}},{"@type":"Question","name":"¿Qué incluyen los $12,000?","acceptedAnswer":{"@type":"Answer","text":"El técnico que va a tu domicilio, el equipo, la noche de registro y la interpretación por neumólogo. La consulta se cobra por separado y cuesta $1,500: es la que revisa tu indicación y la que te entrega el resultado con el plan. Se emite factura (CFDI)."}},{"@type":"Question","name":"¿Cuándo tengo el resultado?","acceptedAnswer":{"@type":"Answer","text":"El reporte está en 48 horas. Lo revisa un neumólogo señal por señal, no se firma como lo entrega el software, y en la consulta te explican qué salió y qué sigue."}},{"@type":"Question","name":"¿Y si duermo mal con el equipo puesto?","acceptedAnswer":{"@type":"Answer","text":"Es la duda más razonable, y es justo el motivo para hacerlo en casa: en un laboratorio al equipo se le suman el cuarto ajeno, la cama ajena y el horario ajeno. Si la noche sale técnicamente insuficiente, se repite sin costo adicional."}},{"@type":"Question","name":"¿Hasta dónde llega el técnico?","acceptedAnswer":{"@type":"Answer","text":"A la mayoría de las zonas de la Ciudad de México. Escribe por WhatsApp con tu colonia y te confirman la cobertura y la hora de llegada antes de que agendes."}},{"@type":"Question","name":"¿No me bastaba con un estudio más sencillo?","acceptedAnswer":{"@type":"Answer","text":"Depende de por qué te la indicaron. Si lo único que hace falta es confirmar o descartar apnea obstructiva, hay un estudio en casa más simple y más barato, y te lo van a decir en la valoración. Aquí se realizan los dos, así que la respuesta no depende de cuál convenga vender."}}]}
+</script>
+
+<style id="psg-promo">
+/* Componentes propios de esta landing. Se escriben aparte para no depender de
+   clases que el subset purgado de esta pagina podria no traer. */
+.psgsig{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:6px}
+@media(min-width:768px){.psgsig{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}}
+.psgsig__i{position:relative;background:#fff;border:1px solid rgba(10,22,40,.10);border-radius:14px;padding:14px 13px 13px;box-shadow:0 2px 10px rgba(10,22,40,.04)}
+.psgsig__i--plus{background:linear-gradient(160deg,#f2f9ff,#eaf4ff);border-color:rgba(0,110,220,.24)}
+.psgsig__ico{font-size:1.05rem;color:#0b6bd3;display:block;margin-bottom:5px}
+.psgsig__n{display:block;font-weight:700;font-size:.85rem;color:#0a1628;line-height:1.25;margin-bottom:3px}
+.psgsig__d{display:block;font-size:.75rem;color:#5b6675;line-height:1.42}
+.psgsig__tag{position:absolute;top:9px;right:9px;font-size:.56rem;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:#fff;background:#0b6bd3;padding:2px 6px;border-radius:5px}
+.psgpaso{display:grid;gap:11px;margin-top:6px}
+@media(min-width:820px){.psgpaso{grid-template-columns:repeat(3,1fr)}}
+.psgpaso__c{background:#fff;border:1px solid rgba(10,22,40,.10);border-radius:16px;padding:18px 16px;box-shadow:0 2px 10px rgba(10,22,40,.04)}
+.psgpaso__n{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,#0b6bd3,#1e90ff);color:#fff;font-weight:800;font-size:.86rem;margin-bottom:10px}
+.psgpaso__t{font-size:1rem;font-weight:700;color:#0a1628;margin:0 0 5px}
+.psgpaso__p{font-size:.86rem;color:#5b6675;line-height:1.55;margin:0}
+.psgnota{margin:16px auto 0;max-width:640px;text-align:center;font-size:.83rem;color:#5b6675;line-height:1.55}
+</style>
+    <script src="/assets/base.js" defer></script>
+
+<style>
+/* Resenas reales de Google. Tira con scroll horizontal: en movil ocupa una
+   sola pantalla en vez de apilar 11 tarjetas. Sin marquee automatico: el
+   paciente controla el avance, y no hay animacion infinita comiendo bateria. */
+.rev-strip{margin:18px auto 0;max-width:1100px}
+.rev-strip__track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 4px 14px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.rev-strip__track::-webkit-scrollbar{height:6px}
+.rev-strip__track::-webkit-scrollbar-thumb{background:rgba(9,132,227,.28);border-radius:100px}
+.rev-card{scroll-snap-align:start;flex:0 0 min(84vw,320px);background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:16px;padding:18px 20px;box-shadow:0 2px 12px rgba(10,22,40,.04);display:flex;flex-direction:column;gap:10px}
+.rev-card__stars{color:#fbbc04;font-size:.85rem;letter-spacing:1px;line-height:1}
+.rev-card__text{font-size:.92rem;line-height:1.6;color:var(--text,#0f1d30);margin:0}
+.rev-card__who{display:flex;align-items:center;gap:8px;margin-top:auto;font-size:.82rem;color:var(--text-muted,#64748b)}
+.rev-card__who strong{color:var(--navy,#0a2540);font-weight:700}
+.rev-strip__all{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:4px;font-size:.9rem;font-weight:600;color:var(--electric,#0984e3);text-decoration:none}
+.rev-strip__all:hover,.rev-strip__all:focus-visible{text-decoration:underline}
+@media(prefers-reduced-motion:reduce){.rev-strip__track{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<a class="alv-skip" href="#main">Skip to content</a>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG8Z6FKF" height="0" width="0" style="display:none;visibility:hidden" aria-hidden="true"></iframe></noscript>
+
+<!-- Trust legal oficial -->
+<div class="top-bar-legal text-center fw-semibold" style="font-size:.72rem;letter-spacing:.2px;padding:5px 0">
+    <div class="container" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Cofepris: <a href="https://www.gob.mx/cofepris"  target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">2609142002A00265</a> <span style="opacity:.4;margin:0 4px">·</span> Prof: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action"  target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">12588976</a> <span style="opacity:.4;margin:0 4px">·</span> Esp: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action"  target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">15595809</a> <span style="opacity:.4;margin:0 4px">·</span> <a href="https://conacem.org.mx/buscador"  target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">CNN-2102</a></div>
+</div>
+
+<!-- Navbar oficial (sin menú) -->
+<style>
+.promo-lang2{display:inline-flex;gap:2px;border:1px solid rgba(10,46,44,.35);border-radius:999px;overflow:hidden;margin-left:10px;font-size:.72rem;font-weight:800;vertical-align:middle}
+.promo-lang2 a{padding:2px 9px;color:var(--navy);text-decoration:none;line-height:1.7}
+.promo-lang2 a:not(.active):hover{background:rgba(10,46,44,.08)}
+.promo-lang2 a.active{background:var(--navy)}
+.promo-lang2 a.active{color:#fff}
+
+/* Barra superior en telefonos angostos: sin esto el selector ES|EN se sale
+   del viewport y ensancha el documento (se ve la pagina encogida al hacer
+   zoom-out). Verificado a 360 y 375 px. */
+@media(max-width:575.98px){
+    #mainNav .container{gap:8px!important}
+    #mainNav .navbar-brand{margin-right:0!important}
+    #mainNav .brand-name{font-size:1.15rem}
+    .nav-cta-tail{display:none}
+    .promo-lang2{flex-shrink:0;margin-left:0}
+    .promo-lang2 a{padding:2px 7px}
+}
+
+/* Desborde horizontal en telefonos angostos (medido a 375 y 360 px):
+   .g-5 deja la fila con -24px de margen contra 12px de padding del contenedor,
+   y la barra superior con nowrap no deja bajar el selector de idioma. */
+@media(max-width:575.98px){
+    .row.g-5,.row.g-4{--bs-gutter-x:1.5rem}
+    /* la barra trae flex-wrap:nowrap en atributo style: solo !important gana */
+    #mainNav>.container{flex-wrap:wrap!important;row-gap:6px}
+    #mainNav .navbar-cta{margin-left:auto;min-width:0}
+    .promo-lang2{flex-shrink:0}
+}
+</style>
+<nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:12px">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="/" style="flex-shrink:0">
+            <img src="/images/logo-cuadrado/alveos-logo-72.webp" alt="Logo Alveos" class="navbar-logo" width="36" height="36" decoding="async" style="border-radius:8px;object-fit:cover">
+            <span class="brand-name">ALVEOS</span>
+        </a>
+        <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20la%20promoci%C3%B3n%20de%20polisomnograf%C3%ADa%20a%20domicilio%20de%20%2412%2C000%20con%20el%20Dr.%20Lara%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="navbar-cta d-inline-flex" data-cta="navbar-wa" style="flex-shrink:0;margin-left:auto">
+            <i class="bi bi-whatsapp me-2"></i> Pedir promoción
+        </a>
+        
+    </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<div id="main" tabindex="-1"></div>
+<section class="hero" id="top">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7 hero__content">
+                <div class="hero__badge"><span class="dot"></span> Estudio del sueño completo · a domicilio en CDMX</div>
+                <h1>Polisomnografía completa en tu casa: <em>$12,000</em></h1>
+                <p class="hero__sub">Te indicaron un estudio del sueño completo. Un técnico va a tu domicilio, coloca el montaje entero con electroencefalograma y duermes en tu propia cama. Lo interpreta un neumólogo egresado del INER.</p>
+                <div class="hero__cta">
+                    <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20la%20promoci%C3%B3n%20de%20polisomnograf%C3%ADa%20a%20domicilio%20de%20%2412%2C000%20con%20el%20Dr.%20Lara%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="hero-wa">
+                        <i class="bi bi-whatsapp"></i> Apartar mi estudio por WhatsApp
+                    </a>
+                    <a href="#agendaModal" class="btn-cal" data-cta="hero-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                        <i class="bi bi-calendar-check"></i> Agendar cita
+                    </a>
+                </div>
+                <div class="hero__creds">
+                    <span class="hero__cred"><i class="bi bi-mortarboard-fill"></i> Egresado del INER</span>
+                    <span class="hero__cred"><i class="bi bi-patch-check-fill"></i> Neumólogo Certificado</span>
+                    <a class="hero__cred" href="https://g.page/r/CfXAZim2anDFEBI" target="_blank" rel="noopener noreferrer" data-cta="hero-google-rating"><span class="stars">★</span> 5.0 en Google</a>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="hero__card">
+                    <div class="subt">Tu estudio incluye</div>
+                    <ul class="hero__visual-grid">
+                        <li><span class="hvg__ico"><i class="bi bi-person-badge-fill"></i></span><span class="hvg__label">Técnico a domicilio</span></li>
+                        <li><span class="hvg__ico"><i class="bi bi-activity"></i></span><span class="hvg__label">Montaje con EEG</span></li>
+                        <li><span class="hvg__ico"><i class="bi bi-moon-stars-fill"></i></span><span class="hvg__label">Tus fases de sueño</span></li>
+                        <li><span class="hvg__ico"><i class="bi bi-clipboard2-pulse-fill"></i></span><span class="hvg__label">Reporte en 48 h</span></li>
+                        <li><span class="hvg__ico"><i class="bi bi-lungs-fill"></i></span><span class="hvg__label">Lectura de neumólogo</span></li>
+                        <li><span class="hvg__ico"><i class="bi bi-arrow-repeat"></i></span><span class="hvg__label">Se repite si la noche falla</span></li>
+                    </ul>
+                    <p class="hero__card-foot">Consulta aparte ($1,500) · Previa cita</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ QUE SE REGISTRA ============ -->
+<section class="block cond">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">Qué se registra</span>
+            <h2 class="block__title">Toda la noche, <em>señal por señal</em></h2>
+            <p class="block__sub">Cinco de estas señales no existen en un estudio de sueño simple. Son las que leen el cerebro y el músculo, y las que hacen que esto sea una polisomnografía.</p>
+        </div>
+        <div class="psgsig"><div class="psgsig__i psgsig__i--plus"><span class="psgsig__tag">solo aquí</span><i class="bi bi-activity psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Electroencefalograma</span><span class="psgsig__d">Las fases de sueño, minuto a minuto</span></div><div class="psgsig__i psgsig__i--plus"><span class="psgsig__tag">solo aquí</span><i class="bi bi-eye psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Movimientos oculares</span><span class="psgsig__d">Identifican el sueño REM</span></div><div class="psgsig__i psgsig__i--plus"><span class="psgsig__tag">solo aquí</span><i class="bi bi-soundwave psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Tono muscular del mentón</span><span class="psgsig__d">Separa el REM del sueño profundo</span></div><div class="psgsig__i psgsig__i--plus"><span class="psgsig__tag">solo aquí</span><i class="bi bi-person-walking psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Movimiento de piernas</span><span class="psgsig__d">Detecta las piernas inquietas</span></div><div class="psgsig__i psgsig__i--plus"><span class="psgsig__tag">solo aquí</span><i class="bi bi-heart-pulse psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Electrocardiograma</span><span class="psgsig__d">El ritmo del corazón durante la noche</span></div><div class="psgsig__i"><i class="bi bi-wind psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Flujo nasal y bucal</span><span class="psgsig__d">Cada pausa de la respiración</span></div><div class="psgsig__i"><i class="bi bi-arrows-expand psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Bandas de tórax y abdomen</span><span class="psgsig__d">Separan la apnea obstructiva de la central</span></div><div class="psgsig__i"><i class="bi bi-droplet-half psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Oximetría</span><span class="psgsig__d">Cuánto baja tu oxígeno y por cuánto tiempo</span></div><div class="psgsig__i"><i class="bi bi-arrow-repeat psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Posición y ronquido</span><span class="psgsig__d">Si tus apneas dependen de dormir boca arriba</span></div></div>
+    </div>
+</section>
+
+<!-- ============ COMO ES LA NOCHE ============ -->
+<section class="block">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">Cómo funciona</span>
+            <h2 class="block__title">Tres pasos, y <em>ninguno fuera de tu casa</em></h2>
+        </div>
+        <div class="psgpaso"><div class="psgpaso__c"><span class="psgpaso__n">1</span><h3 class="psgpaso__t">Agendas y te valoran</h3><p class="psgpaso__p">Revisan tu indicación y tus síntomas, y acuerdan contigo la noche y la hora a la que llega el técnico.</p></div><div class="psgpaso__c"><span class="psgpaso__n">2</span><h3 class="psgpaso__t">El técnico monta el estudio en tu casa</h3><p class="psgpaso__p">Coloca el montaje completo, electroencefalograma incluido, con el mismo cuidado de un laboratorio. Toma alrededor de una hora y después se retira.</p></div><div class="psgpaso__c"><span class="psgpaso__n">3</span><h3 class="psgpaso__t">Duermes, y en 48 horas tienes el plan</h3><p class="psgpaso__p">Te duermes a tu hora, en tu cama. A la mañana siguiente se recoge el equipo y el reporte queda listo en 48 horas.</p></div></div>
+        <p class="psgnota">En un laboratorio duermes en una cama y un cuarto que no son tuyos, con el horario del laboratorio. Aquí el equipo va a donde ya duermes.</p>
+    </div>
+</section>
+
+<section class="pricing" aria-labelledby="precios-title" style="background:#fff;padding:48px 0 24px">
+    <div class="container">
+        <div class="block__head" style="margin-bottom:28px">
+            <span class="block__kicker">Costo del estudio</span>
+            <h2 class="block__title" id="precios-title">El estudio completo, <em>con precio dicho</em></h2>
+        </div>
+        <div class="pricing-hero" style="max-width:760px;margin:0 auto">
+            <div class="pricing-hero__card" style="position:relative;background:linear-gradient(160deg,#0a2e2c 0%,#0c544c 60%,#0d9e84 130%);color:#fff;border-radius:24px;padding:36px 32px 30px;box-shadow:0 24px 60px -24px rgba(8,44,40,.5);display:flex;flex-direction:column;align-items:center;gap:18px;overflow:hidden">
+                <span class="pricing-hero__tag" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#2dd4bf,#0d9e84);color:#fff;font-size:.78rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:7px 16px;border-radius:999px;box-shadow:0 6px 18px -4px rgba(45,212,191,.5)"><i class="bi bi-stars"></i> Promoción de internet</span>
+                <div class="pricing-hero__row" style="display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;width:100%">
+                    <div class="pricing-hero__old" style="display:flex;flex-direction:column;align-items:center;gap:4px">
+                        <span class="pricing-hero__old-label" style="font-size:.72rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:rgba(255,255,255,.55)">Precio normal</span>
+                        <span class="pricing-hero__old-amount" style="font-size:1.6rem;font-weight:700;color:rgba(255,255,255,.55);text-decoration:line-through;text-decoration-color:rgba(255,107,107,.85);text-decoration-thickness:3px;letter-spacing:-.01em">$14,000</span>
+                    </div>
+                    <div class="pricing-hero__arrow" style="font-size:1.6rem;color:#a5f3df;opacity:.7"><i class="bi bi-arrow-right"></i></div>
+                    <div class="pricing-hero__new" style="display:flex;flex-direction:column;align-items:center;gap:4px">
+                        <span class="pricing-hero__new-label" style="font-size:.72rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#a5f3df">Pagas hoy</span>
+                        <span class="pricing-hero__new-amount" style="font-size:3.2rem;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1;text-shadow:0 4px 20px rgba(45,212,191,.4)"><span class="cur" style="font-size:1.4rem;font-weight:700;vertical-align:top;margin-right:2px;opacity:.8">$</span>12,000</span>
+                    </div>
+                </div>
+                <p class="pricing-hero__desc pricing-hero__desc--cta" style="font-size:1.05rem;font-weight:700;color:#a5f3df;background:rgba(45,212,191,.12);border:1px solid rgba(45,212,191,.25);border-radius:12px;padding:12px 20px;display:inline-flex;align-items:center;gap:8px;text-align:center"><i class="bi bi-whatsapp"></i> Incluye el técnico a domicilio, el equipo, la noche y la interpretación. La consulta se cobra aparte ($1,500).</p>
+                <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20la%20promoci%C3%B3n%20de%20polisomnograf%C3%ADa%20a%20domicilio%20de%20%2412%2C000%20con%20el%20Dr.%20Lara%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="price-card__cta" data-cta="price-wa" style="align-self:center;padding:14px 28px;font-size:1rem;margin-top:6px;display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:10px;font-weight:800;text-decoration:none;background:var(--green);color:#fff"><i class="bi bi-whatsapp"></i> Apartar mi estudio a $12,000</a>
+            </div>
+        </div>
+        <div class="pay-row" aria-label="Métodos de pago aceptados">
+            <span class="pay-row__item"><i class="bi bi-cash-stack"></i>Efectivo</span>
+            <span class="pay-row__item"><i class="bi bi-bank"></i>Transferencia</span>
+            <span class="pay-row__item"><i class="bi bi-credit-card-2-front-fill"></i>Crédito</span>
+            <span class="pay-row__item"><i class="bi bi-credit-card"></i>Débito</span>
+        </div>
+        <p style="text-align:center;font-size:.82rem;color:var(--muted);margin:18px auto 0;max-width:600px">Precios en pesos mexicanos. Se emite factura (CFDI). Si tu caso se resuelve con un estudio más sencillo, te lo dicen en la valoración antes de que pagues este.</p>
+    </div>
+</section>
+
+
+<!-- ============ DOCTOR / E-E-A-T ============ -->
+<section class="block">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">Quién te atiende</span>
+            <h2 class="block__title">Tu médico <em>especialista</em></h2>
+        </div>
+        <article class="doc-card" style="max-width:880px;margin:0 auto" itemscope itemtype="https://schema.org/Physician">
+            <img src="/images/dr-william-lara-280.webp" alt="Dr. William César Lara Vázquez, neumólogo egresado del INER" class="doc-card__avatar" width="140" height="140" loading="lazy" itemprop="image">
+            <div>
+                <h3 itemprop="name">Dr. William César Lara Vázquez</h3>
+                <div class="role">Médico Neumólogo · Alta Especialidad en EPOC</div>
+                <ul class="doc-card__bullets">
+                    <li><i class="bi bi-mortarboard-fill"></i><span><strong>Neumología</strong>: Instituto Nacional de Enfermedades Respiratorias (INER), centro de referencia nacional.</span></li>
+                    <li><i class="bi bi-lungs-fill"></i><span>Un estudio del sueño se lee entero, no solo su numerito final: por eso lo interpreta un neumólogo y no el software del equipo.</span></li>
+                    <li><i class="bi bi-graph-up-arrow"></i><span><strong>+800 consultas de neumología resueltas personalmente en 2026</strong> en CDMX, con plan explicado a cada paciente.</span></li>
+                    <li><i class="bi bi-patch-check-fill"></i><span><strong>Certificación vigente</strong> por el Consejo Nacional de Neumología (CNN-2102).</span></li>
+                </ul>
+                <div class="doc-card__creds">
+                    <span><i class="bi bi-patch-check-fill"></i> Cédula Prof. 12588976</span>
+                    <span><i class="bi bi-patch-check-fill"></i> Cédula Esp. 15595809</span>
+                    <span><i class="bi bi-patch-check-fill"></i> <a href="https://conacem.org.mx/buscador"  target="_blank" rel="noopener noreferrer" style="color:inherit">CNN-2102</a></span>
+                    <span><i class="bi bi-shield-check"></i> Cofepris 2609142002A00265</span>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- ============ RESEÑAS REALES (Google) ============ -->
+<section class="block">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">Pacientes</span>
+            <h2 class="block__title">Lo que califican quienes ya pasaron a <em>consulta</em></h2>
+        </div>
+        <div class="text-center mb-4" style="display:flex;flex-direction:column;gap:14px;align-items:center;">
+            <a href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer" class="gbp-rating-widget" aria-label="Calificación de 5.0 estrellas con 44 reseñas verificadas en Google. Ver reseñas">
+                <span class="gbp-rating-widget__num">5.0</span>
+                <div class="gbp-rating-widget__meta">
+                    <span class="gbp-rating-widget__stars" aria-hidden="true">★★★★★</span>
+                    <span class="gbp-rating-widget__count">44 reseñas verificadas</span>
+                </div>
+                <span class="gbp-rating-widget__source"><i class="bi bi-google" aria-hidden="true"></i> Google</span>
+            </a>
+            
+
+<div class="testimonial-source-badge"><i class="bi bi-patch-check-fill"></i> Opiniones de pacientes verificados</div>
+<div class="testimonial-columns">
+            <div class="testimonial-col"><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Agradezco la calidez, atención, humanidad, profesionalismo, paciencia y trato del Doctor, da mucha confianza y tiene un conocimiento y manejo total de su especialidad. Recomiendo ampliamente acudir a ser atendidos por tan completos servicios."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Alejandra O.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención, muy profesional"</p><div class="testi-author"><div class="testi-avatar">N</div><div><p class="testi-name">Noemí M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Sin lugar a duda es un excelente Neumólogo, tiene mucha paciencia, explica a detalle, disipa las dudas, ves resultados a la brevedad, da seguridad. Sin lugar a duda lo recomiendo ampliamente. Es un doctor que sabe perfectamente su trabajo, de mucha calidad y excelencia. Estoy más que satisfecha con el tratamiento que le ha prescrito a mi Madre y de estar al pendiente. Me alegro de haber llegado a su consultorio"</p><div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">Jan S.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Chulada de doctor, me siento escuchado, atendido, es profesional y con una preocupación sincera por sus pacientes."</p><div class="testi-author"><div class="testi-avatar">G</div><div><p class="testi-name">Gilberto W.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy profesional el Dr. William. Atento, te explica muy bien sobre tu padecimiento, muy recomendable"</p><div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">José Luis T.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buena atención. Excelente para explicar tu situación médica."</p><div class="testi-author"><div class="testi-avatar">V</div><div><p class="testi-name">Vanessa Z.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Mi esposo tuvo crisis de asma, fue nuestra primera consulta. El doctor explicó a detalle con un lenguaje sencillo, revisó cuidadosamente durante la exploración e hizo pruebas de espirometría durante la consulta, explicó las opciones de tratamiento. Ampliamente recomendable!"</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Aline G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Un médico excelente. Muy bien preparado, extremadamente profesional y muy humano y amable. Lo encontramos en internet. Me trató como si fuéramos familiares. Muy fácil y práctico para agendar. Antes de la cita me solicitó radiografía del pulmón, lo que agilizó el diagnóstico, y pudo dedicar tiempo a revisarme a mí y mis análisis. Muy precavido y sensato en sus recomendaciones. Nos explicó a mí y a mi esposo, que es médico, con gran claridad y detenimiento los resultados de la tomografía. Agradezco su dedicación sincera a mi bienestar."</p><div class="testi-author"><div class="testi-avatar">T</div><div><p class="testi-name">Tere A.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención, fue muy amable y profesional en cuanto a las dudas mías. Definitivamente será mi nuevo neumólogo de confianza, gracias Dr."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Alicia F.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Very kind and generous, he also does check up on you daily until recovery. Great job! I recommend him a lot"</p><div class="testi-author"><div class="testi-avatar">T</div><div><p class="testi-name">Thulie M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buena atención por parte del Dr. Lara, sabe explicar muy bien a sus pacientes. Desde el primer contacto con él y hasta la fecha ha mantenido la comunicación y seguimiento con su paciente. Muy profesional, lo recomiendo 100%."</p><div class="testi-author"><div class="testi-avatar">F</div><div><p class="testi-name">Fabiola G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención, súper personalizada, cuidando cada detalle y siempre al pendiente del paciente"</p><div class="testi-author"><div class="testi-avatar">Y</div><div><p class="testi-name">Yetlanetzy R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El Dr. William, puntual en la cita, nos atendió con mucho esmero, checó con mucho detalle y el diagnóstico muy acertado. Es muy paciente al escuchar, lleva un seguimiento en el proceso de la mejoría de la salud. Un excelente médico, de verdad se recomienda solo."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Adán C.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div></div>
+            <div class="testimonial-col"><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Una atención muy profesional, muy empático y con un dominio amplio en su área de especialización, cabe mencionar que tiene el don de comunicar tu situación en términos sencillos y te otorga el tiempo que requieres, en pocas palabras, altamente recomendable."</p><div class="testi-author"><div class="testi-avatar">I</div><div><p class="testi-name">Ignacio H.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Comprometido con su trabajo, profesión y calidad humana. Excelente Dr."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Alicia M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El doctor Lara es una persona muy humana, empática y sobre todo te da una atención personalizada, siempre contesta tus mensajes preocupándose por tu salud y bienestar. Excelente especialista."</p><div class="testi-author"><div class="testi-avatar">V</div><div><p class="testi-name">Verónica G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención!"</p><div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">J. Alberto M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buen trato del Doctor William, me sentí muy a gusto en su consulta, explica todo a detalle, está al pendiente de todo, muy preparado. Me he sentido mucho mejor con el tratamiento que me recetó. Lo recomiendo ampliamente."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Angélica M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El Dr. William es una persona de altos niveles éticos, me pareció excelente su trato con mi paciente, aparte de que tiene mucho dominio sobre las enfermedades a tratar, muy capaz, muy amable, excelente persona y profesional, gracias."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Adriana H.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente especialista, me tuvo suficiente paciencia para realizarme la espirometría, me explicó muy bien y resolvió mis dudas. Lo recomiendo mucho, es una persona muy amable, ética y profesional"</p><div class="testi-author"><div class="testi-avatar">Y</div><div><p class="testi-name">Yoatzin R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Ha sido una experiencia muy impactante y triste ya que el diagnóstico fue cáncer pulmonar. En cuanto al servicio y conocimiento del doctor me parece excelente, nos dio la noticia de manera veraz y diplomática, con la que tuvimos oportunidad de lidiar con los resultados."</p><div class="testi-author"><div class="testi-avatar">M</div><div><p class="testi-name">María Teresa M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El Dr. William Lara es un excelente especialista, me quedé muy sorprendida de la mejoría que tuve al día siguiente de tomar el tratamiento que me recetó. El Dr. Lara todo el tiempo estuvo al pendiente de mí, lo que da mucha tranquilidad al paciente. Estoy muy agradecida con el Dr. y sin duda será mi médico neumólogo por muchos años más."</p><div class="testi-author"><div class="testi-avatar">R</div><div><p class="testi-name">Rocío</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buen médico, muy amable y siempre pendiente de sus pacientes. Lo recomiendo ampliamente."</p><div class="testi-author"><div class="testi-avatar">R</div><div><p class="testi-name">Rossana R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Mi experiencia con el doctor William ha sido y es muy buena, es buen doctor, amable, respetuoso y le explica bien lo que se necesita saber. Él atiende a mi señora madre, que tiene 95 años, quien tuvo neumonía y él la sacó adelante, gracias!"</p><div class="testi-author"><div class="testi-avatar">L</div><div><p class="testi-name">Lourdes A.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Agradezco la atención y seguimiento en cada consulta. Me explicó el diagnóstico con claridad y obtuve mejoría muy pronto. Es un médico muy profesional. Sin duda lo recomiendo ampliamente."</p><div class="testi-author"><div class="testi-avatar">K</div><div><p class="testi-name">Karla G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El doctor William es excelente, muy humano, profesional y dedicado a sus pacientes. Si un día necesitas un Neumólogo, no dudes en llamarlo."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Adri N.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div></div>
+            <div class="testimonial-col"><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención, una persona muy capacitada, y con todas las herramientas para un gran diagnóstico y explicación, da un gran seguimiento y sus tratamientos son los mejores."</p><div class="testi-author"><div class="testi-avatar">E</div><div><p class="testi-name">Eduardo H.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Una consulta por demás completa! Revisión minuciosa, explicaciones precisas y un trato muy amable y muy profesional. Quedé muy satisfecha con los resultados y con el programa de tratamiento a seguir."</p><div class="testi-author"><div class="testi-avatar">M</div><div><p class="testi-name">Maggy</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención, recomiendo 100%. El doctor William es un profesional y experto en su área."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Abril S.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buena atención"</p><div class="testi-author"><div class="testi-avatar">M</div><div><p class="testi-name">María Esther G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Recomiendo ampliamente al Dr. William, por su amplia experiencia en salud respiratoria, sobre todo por la explicación detallada que da en sus consultas basado en la experiencia y lo acertado en su diagnóstico, que está totalmente sustentado por los análisis y estudios en los cuales se basa para ello. Pero sobre todo quiero resaltar su calidez y empatía al momento de dar su consulta, contestando a todos los cuestionamientos que surgen ante un posible diagnóstico."</p><div class="testi-author"><div class="testi-avatar">S</div><div><p class="testi-name">Selene R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención!"</p><div class="testi-author"><div class="testi-avatar">K</div><div><p class="testi-name">Karina V.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención el Dr. desde la primera consulta, su explicación muy minuciosa y muy paciente a la explicación para mi papá, quedamos muy satisfechos con su diagnóstico certero."</p><div class="testi-author"><div class="testi-avatar">G</div><div><p class="testi-name">Guadalupe M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente trato, muy profesional, explica de manera que se hace entender. Resuelve todas las dudas, ampliamente recomendable"</p><div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">Jorge S.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El doctor es súper amable, me explicó a detalle todo y el tratamiento fue muy efectivo, rápido vi mejoría, altamente recomendable"</p><div class="testi-author"><div class="testi-avatar">L</div><div><p class="testi-name">Liliana G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Si estás buscando a un neumólogo que combine conocimiento, dedicación y un trato genuinamente humano, lo recomiendo sin ninguna duda. Considero que se preocupa genuinamente por tu estado de salud porque lo analiza en su totalidad y te manda mensajes de seguimiento, eso ayuda a sentir una atención más personalizada"</p><div class="testi-author"><div class="testi-avatar">C</div><div><p class="testi-name">Ces R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente Dr. Empático, humano, y muy comprometido con su labor."</p><div class="testi-author"><div class="testi-avatar">S</div><div><p class="testi-name">Sonia de la F.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El tratamiento neumológico funcionó excelente. Gracias a este pude recuperarme de una tos crónica y realizarme una cirugía de ojos. Gracias Dr. William Lara, excelente profesional y súper amable."</p><div class="testi-author"><div class="testi-avatar">T</div><div><p class="testi-name">Teté P.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div></div>
+        </div>
+
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;color:var(--electric);font-weight:600;font-size:.92rem;text-decoration:none;border-bottom:1px solid rgba(13,158,132,.3);padding-bottom:2px">
+                <i class="bi bi-google" aria-hidden="true"></i> Ver todas las reseñas en Google
+            </a>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- ============ FAQ ============ -->
+<section class="block cond">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">Dudas frecuentes</span>
+            <h2 class="block__title">Lo que más preguntan <em>antes de apartar</em></h2>
+        </div>
+        <div class="faq">
+<details class="faq-item"><summary>¿Es la misma polisomnografía que me indicaron?</summary><div class="faq-item__answer"><p>Sí en lo que se registra. Es un estudio tipo II con el montaje completo, incluido el electroencefalograma que mide las fases de sueño, más flujo, esfuerzo, oxígeno, electrocardiograma, movimiento de piernas y posición. La diferencia con el de laboratorio no está en las señales: está en que el técnico coloca el equipo en tu casa y se retira, en vez de vigilarte toda la noche.</p></div></details>
+<details class="faq-item"><summary>¿Qué incluyen los $12,000?</summary><div class="faq-item__answer"><p>El técnico que va a tu domicilio, el equipo, la noche de registro y la interpretación por neumólogo. La consulta se cobra por separado y cuesta $1,500: es la que revisa tu indicación y la que te entrega el resultado con el plan. Se emite factura (CFDI).</p></div></details>
+<details class="faq-item"><summary>¿Cuándo tengo el resultado?</summary><div class="faq-item__answer"><p>El reporte está en 48 horas. Lo revisa un neumólogo señal por señal, no se firma como lo entrega el software, y en la consulta te explican qué salió y qué sigue.</p></div></details>
+<details class="faq-item"><summary>¿Y si duermo mal con el equipo puesto?</summary><div class="faq-item__answer"><p>Es la duda más razonable, y es justo el motivo para hacerlo en casa: en un laboratorio al equipo se le suman el cuarto ajeno, la cama ajena y el horario ajeno. Si la noche sale técnicamente insuficiente, se repite sin costo adicional.</p></div></details>
+<details class="faq-item"><summary>¿Hasta dónde llega el técnico?</summary><div class="faq-item__answer"><p>A la mayoría de las zonas de la Ciudad de México. Escribe por WhatsApp con tu colonia y te confirman la cobertura y la hora de llegada antes de que agendes.</p></div></details>
+<details class="faq-item"><summary>¿No me bastaba con un estudio más sencillo?</summary><div class="faq-item__answer"><p>Depende de por qué te la indicaron. Si lo único que hace falta es confirmar o descartar apnea obstructiva, hay un estudio en casa más simple y más barato, y te lo van a decir en la valoración. Aquí se realizan los dos, así que la respuesta no depende de cuál convenga vender.</p></div></details>
+        </div>
+    </div>
+</section>
+
+<!-- ============ UBICACIÓN ============ -->
+<section class="block loc">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">Dónde te atendemos</span>
+            <h2 class="block__title">Consultorio en <em>Hospital Santa Coleta</em></h2>
+            <p class="block__lead">San José Insurgentes, sur de CDMX. A unos minutos del Periférico Sur, con estacionamiento del hospital.</p>
+        </div>
+        <div class="loc-grid">
+            <div class="loc-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d34785.66899967985!2d-99.18028396495866!3d19.389341285512508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff707b3c048f%3A0xc5706ab62966c0f5!2sDr.%20William%20C%C3%A9sar%20Lara%20V%C3%A1zquez%2C%20Neum%C3%B3logo!5e0!3m2!1sen!2smx!4v1777753629326!5m2!1sen!2smx" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa Consultorio Dr. William Lara - Neumólogo"></iframe>
+            </div>
+            <div class="loc-info">
+                <div class="loc-row">
+                    <div class="loc-row__icon"><i class="bi bi-geo-alt-fill"></i></div>
+                    <div>
+                        <h3>Hospital Santa Coleta</h3>
+                        <address>Saturnino Herrán 59<br>San José Insurgentes, Benito Juárez<br>03900 Ciudad de México, CDMX</address>
+                    </div>
+                </div>
+                <div class="loc-row">
+                    <div class="loc-row__icon"><i class="bi bi-clock-fill"></i></div>
+                    <div>
+                        <h3>Horarios</h3>
+                        <p>Lunes a viernes: 16:00 a 21:00 hrs<br>Sábado y domingo: 12:00 a 16:00 hrs<br><span style="color:var(--electric);font-weight:700">Previa cita</span></p>
+                    </div>
+                </div>
+                <div class="loc-row">
+                    <div class="loc-row__icon"><i class="bi bi-car-front-fill"></i></div>
+                    <div>
+                        <h3>Llegar</h3>
+                        <p>Estacionamiento disponible en el hospital.</p>
+                    </div>
+                </div>
+                <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20la%20promoci%C3%B3n%20de%20polisomnograf%C3%ADa%20a%20domicilio%20de%20%2412%2C000%20con%20el%20Dr.%20Lara%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="loc-wa">
+                    <i class="bi bi-whatsapp"></i> Apartar mi estudio a $12,000
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ CTA FINAL CON LUCECITAS ============ -->
+
+
+<!-- ============ CIERRE ============ -->
+<section class="block" style="padding-bottom:60px">
+    <div class="container">
+        <div class="block__head">
+            <h2 class="block__title">Ya tienes la indicación.<br><em>Falta la noche que la resuelve.</em></h2>
+            <p class="block__sub">Una noche en tu cama, reporte en 48 horas y plan por escrito.</p>
+        </div>
+        <div class="hero__cta" style="justify-content:center">
+            <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20la%20promoci%C3%B3n%20de%20polisomnograf%C3%ADa%20a%20domicilio%20de%20%2412%2C000%20con%20el%20Dr.%20Lara%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="cierre-wa">
+                <i class="bi bi-whatsapp"></i> Apartar mi estudio a $12,000
+            </a>
+            <a href="#agendaModal" class="btn-cal" data-cta="cierre-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                <i class="bi bi-calendar-check"></i> Agendar cita
+            </a>
+        </div>
+    </div>
+</section>
+<footer>
+    <div class="container text-center">
+        <div class="footer-logo-text">ALVEOS</div>
+        <div class="footer-tagline">Neumología de Vanguardia · Ciudad de México</div>
+        <div class="footer-social">
+            <a href="https://www.instagram.com/dr.williamlara/"  target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20la%20promoci%C3%B3n%20de%20polisomnograf%C3%ADa%20a%20domicilio%20de%20%2412%2C000%20con%20el%20Dr.%20Lara%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            <a href="tel:5591708334" aria-label="Teléfono" data-cta="navbar-tel"><i class="bi bi-telephone-fill"></i></a>
+        </div>
+        <hr class="footer-divider">
+        <p class="footer-meta mb-1">Dr. William César Lara Vázquez · Neumólogo · Alta Especialidad en EPOC</p>
+        <p class="footer-meta mb-2"><a href="/aviso-de-privacidad">Aviso de Privacidad</a><span style="color:rgba(255,255,255,.1);margin:0 8px">·</span><a href="/informacion-regulatoria">Información Regulatoria</a></p>
+        <p class="footer-meta mb-2" data-med-disclaimer style="max-width:720px;margin:0 auto 10px;font-size:.74rem;opacity:.7;line-height:1.55;">La información de esta página es de carácter educativo e informativo y no sustituye la consulta, diagnóstico ni tratamiento con un profesional médico. En caso de emergencia respiratoria llame al 911.</p>
+        <p class="footer-meta mb-0">© 2026 ALVEOS. Todos los derechos reservados.</p>
+    </div>
+</footer>
+<script>
+/* Apariciones suaves al hacer scroll (solo transform/opacity; respeta reduce-motion; NO toca el hero/LCP) */
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var els = Array.prototype.slice.call(document.querySelectorAll('.block'));
+  els.forEach(function(el){ el.classList.add('reveal'); });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {rootMargin:'0px 0px -8% 0px', threshold:0.08});
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+<script>
+/* Lucecitas (sparkle-field) en los CTA, mismo efecto y codigo que el home; tras load para no pagar su DOM antes del primer paint */
+window.addEventListener('load', function(){
+  var fields = document.querySelectorAll('.cta-inline .sparkle-field');
+  fields.forEach(function(field){
+    var n = window.innerWidth <= 768 ? 22 : 44;
+    var frag = document.createDocumentFragment();
+    for (var i=0;i<n;i++){
+      var s=document.createElement('span');
+      var size=(Math.random()*2+0.7).toFixed(1);
+      if(size>2.2) s.className='glow';
+      s.style.cssText='width:'+size+'px;height:'+size+'px;left:'+(Math.random()*100).toFixed(2)+'%;top:'+(Math.random()*100).toFixed(2)+'%;--sd:'+(2.5+Math.random()*4).toFixed(2)+'s;--sl:'+(Math.random()*5).toFixed(2)+'s';
+      frag.appendChild(s);
+    }
+    field.appendChild(frag);
+  });
+});
+</script>
+<script>
+/* Marquee de reseñas (columnas que se desplazan), mismo código que el home.
+   Se inicia tras load: clonar tarjetas y leer offsetHeight antes del primer
+   paint costaba Style&Layout en el camino critico del LCP. */
+(function(){
+  var done = false;
+  function initMarquee(){
+    if (done) return; done = true;
+    document.querySelectorAll('.testimonial-col').forEach(function(col, idx) {
+      var pxPerSec = [16.5, 13.5, 18][idx] || 16.5;
+      var origCards = Array.prototype.slice.call(col.querySelectorAll('.testi-card'));
+      if (!origCards.length) return;
+      origCards.forEach(function(c) { col.appendChild(c.cloneNode(true)); });
+      var gap = parseFloat(getComputedStyle(col).rowGap) || 16;
+      var setHeight = 0;
+      origCards.forEach(function(c) { setHeight += c.offsetHeight + gap; });
+      if (setHeight < 200) setHeight = origCards.length * 360;
+      col.style.setProperty('--t-dur', (setHeight / pxPerSec).toFixed(1) + 's');
+      col.style.setProperty('--tgap', (gap / 2) + 'px');
+      if (idx === 1) col.classList.add('testimonial-col--down');
+      col.classList.add('marquee-on');
+    });
+  }
+  function start(){ requestAnimationFrame(function(){ requestAnimationFrame(initMarquee); }); }
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(start); }
+  if (document.readyState === 'complete') { start(); }
+  else { window.addEventListener('load', start); }
+})();
+</script>
+
+<!-- WhatsApp flotante (desktop) -->
+<a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20la%20promoci%C3%B3n%20de%20polisomnograf%C3%ADa%20a%20domicilio%20de%20%2412%2C000%20con%20el%20Dr.%20Lara%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="WhatsApp" data-cta="float-wa"><i class="bi bi-whatsapp"></i></a>
+
+<!-- Sticky CTA (mobile) -->
+<div class="sticky-cta">
+    <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20la%20promoci%C3%B3n%20de%20polisomnograf%C3%ADa%20a%20domicilio%20de%20%2412%2C000%20con%20el%20Dr.%20Lara%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="sc-wa" data-cta="sticky-wa"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+    <a href="tel:5591708334" class="sc-call" data-cta="sticky-call" style="background:var(--electric);color:#fff"><i class="bi bi-telephone-fill"></i> Llamar</a>
+    <a href="#agendaModal" class="sc-cal" data-cta="sticky-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar</a>
+</div>
+
+<!-- Tracking básico de clicks CTA al dataLayer -->
+<script>
+document.addEventListener('click',function(e){
+    var el=e.target.closest('[data-cta]');
+    if(!el)return;
+    window.dataLayer=window.dataLayer||[];
+    window.dataLayer.push({event:'lp_cta_click',cta_id:el.getAttribute('data-cta'),cta_href:el.getAttribute('href')});
+});
+</script>
+
+<!-- Alveos · dataLayer events para GTM -->
+<script>/* alveos-datalayer-v1 */
+(function(){
+  if(!window.dataLayer) window.dataLayer = [];
+  function pageSlug(){
+    var p = location.pathname.replace(/\/+$/, '') || '/';
+    return p === '/' ? 'home' : p.replace(/^\//,'').replace(/\//g,'-');
+  }
+  function push(event, type, label){
+    window.dataLayer.push({
+      event: event,
+      cta_type: type,
+      cta_label: label || '',
+      cta_page: pageSlug()
+    });
+  }
+  document.addEventListener('click', function(e){
+    var el = e.target.closest('a[href]');
+    if(!el) return;
+    var href = el.getAttribute('href') || '';
+    var label = (el.textContent || '').trim().slice(0, 60);
+    if(/wa\.me|api\.whatsapp|chat\.whatsapp/.test(href)){
+      push('cta_click', 'whatsapp', label);
+    } else if(/cal\.com\/dr-william-lara/.test(href)){
+      push('cta_click', 'calcom', label);
+    } else if(href.indexOf('tel:') === 0){
+      push('cta_click', 'phone', label);
+    } else if(href.indexOf('mailto:') === 0){
+      push('cta_click', 'email', label);
+    }
+  }, { passive: true });
+  var marks = [25,50,75,100], hit = {};
+  window.addEventListener('scroll', function(){
+    var h = document.documentElement;
+    var pct = Math.round((window.scrollY + window.innerHeight) / h.scrollHeight * 100);
+    marks.forEach(function(m){
+      if(pct >= m && !hit[m]){ hit[m] = true; push('scroll_depth', 'scroll', String(m)); }
+    });
+  }, { passive: true });
+})();
+</script>
+
+    <script src="/assets/agenda-modal.js" defer></script>
+</body>
+</html>
