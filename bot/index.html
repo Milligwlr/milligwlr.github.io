@@ -47,6 +47,16 @@
   #perfil .quien { flex: 1; min-width: 0; }
   #perfil .quien .n { font-weight: 600; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   #perfil .quien .s { color: var(--tenue); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  /* Distintivo de sesion de INVITADO. El [hidden] explicito es obligatorio:
+     basta con que una regla le de display para que el atributo deje de ocultar. */
+  .inv-badge {
+    display: inline-block; margin-top: 3px; padding: 1px 7px; border-radius: 999px;
+    font-size: 11px; font-weight: 600; line-height: 1.5;
+    background: rgba(255, 183, 87, .18); color: #b26a00;
+    max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .inv-badge[hidden] { display: none; }
+  @media (prefers-color-scheme: dark) { .inv-badge { color: #ffb757; } }
   .icono {
     width: 38px; height: 38px; border-radius: 50%; display: inline-flex;
     align-items: center; justify-content: center; color: var(--tenue); flex: none;
@@ -376,6 +386,7 @@
       <div class="quien">
         <div class="n" id="nombreDr">Cargando…</div>
         <div class="s" id="estadoDr">conectando…</div>
+        <span class="inv-badge" id="badgeInvitado" hidden></span>
       </div>
       <button type="button" class="icono" id="btnRefrescar" title="Actualizar ahora">
         <svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.96 7.96 0 0 0 12 4a8 8 0 1 0 7.73 10h-2.08A6 6 0 1 1 12 6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
@@ -966,6 +977,16 @@
       });
   }
 
+  /* Días que faltan para una fecha aaaa-mm-dd (null si no hay o no se entiende).
+     Se compara a mediodía para que el cambio de horario no reste un día. */
+  function diasParaVencer(ymd) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(ymd || ''))) return null;
+    var p = ymd.split('-');
+    var fin = new Date(+p[0], +p[1] - 1, +p[2], 12, 0, 0);
+    var hoy = new Date(); hoy.setHours(12, 0, 0, 0);
+    return Math.round((fin - hoy) / 86400000);
+  }
+
   /* ---------- render ---------- */
   function pintaTodo() {
     var d = estado.datos;
@@ -973,6 +994,28 @@
     $('nombreDr').textContent = nombreDr;
     $('avatarDr').textContent = iniciales(nombreDr.replace(/^Dr\. /, ''), '');
     $('estadoDr').textContent = 'actualizado ' + horaDe(d.generado) + ' · cada 30 s';
+    // Sesión de INVITADO: el visor muestra los pacientes del anfitrión, así que
+    // sin distintivo un invitado creería estar en su propia cuenta — y el
+    // anfitrión que abriera este enlace por error no lo notaría. No vive dentro
+    // de #estadoDr: ese texto lo reescriben los estados de red.
+    var badgeInv = $('badgeInvitado');
+    if (badgeInv) {
+      if (d.invitado) {
+        // Texto CORTO: en el ancho de un teléfono la barra lateral recorta con
+        // puntos suspensivos, y la primera versión ("… acceso de invitado hasta
+        // el 2026-09-16") perdía justo la fecha. El vencimiento solo aparece
+        // cuando ya es una noticia: en los últimos días.
+        var restan = diasParaVencer(d.invitado.vence);
+        badgeInv.textContent = (restan !== null && restan <= 3)
+          ? '👤 Invitado · ' + (restan <= 0 ? 'vence hoy' : (restan === 1 ? 'vence mañana' : 'vence en ' + restan + ' días'))
+          : '👤 Invitado · ' + (d.invitado.nombre || '');
+        badgeInv.title = 'Sesión de invitado en la agenda de ' + (d.invitado.anfitrion || 'su anfitrión') +
+          (d.invitado.vence ? '. El acceso vence el ' + d.invitado.vence + '.' : '.');
+        badgeInv.hidden = false;
+      } else {
+        badgeInv.hidden = true;
+      }
+    }
     pintaFiltros();
     pintaHoy();
     pintaLista();

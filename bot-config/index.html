@@ -475,7 +475,8 @@
     precios: { titulo: 'Precios de servicios', glifo: '💰', color: 'var(--azul)', sub: 'Se citan al preguntar precio y en las promociones. Si lo deja vacío, el bot dice "precio por confirmar".', orden: 2 },
     vacunas: { titulo: 'Vacunas', glifo: '💉', color: 'var(--rosa)', sub: 'Precios que el bot cita. Si lo deja vacío, dice "por confirmar" (no lo inventa).', orden: 3 },
     textos: { titulo: 'Textos que responde', glifo: '💬', color: 'var(--naranja)', sub: 'Lo que el bot contesta tal cual. Si lo deja vacío, esa pregunta se canaliza con usted.', orden: 4 },
-    cadencia: { titulo: 'Cuándo escribe', glifo: '⏰', color: 'var(--indigo)', sub: 'A qué hora salen los mensajes automáticos.', orden: 5 }
+    cadencia: { titulo: 'Cuándo escribe', glifo: '⏰', color: 'var(--indigo)', sub: 'A qué hora salen los mensajes automáticos.', orden: 5 },
+    invitado: { titulo: 'Invitado', glifo: '👤', color: 'var(--ambar)', sub: 'Un colega que le ayuda unos días: entra al visor con su propia clave y recibe copia de sus avisos.', orden: 7 }
   };
   var CAMPOS_DEF = {
     // interruptores
@@ -1209,6 +1210,78 @@
     var g = seccion(v, '');
     claves.forEach(function (k) { g.appendChild(campoDe(k)); });
     if (gid === 'interruptores') notaBajo(v, 'Los cambios son inmediatos: el bot los usa desde el siguiente mensaje.');
+    if (gid === 'invitado') bloqueInvitado(v);
+  }
+
+  /* ---- Invitado: estado del acceso + generar / revocar clave ----
+     La clave NO viaja en la carga normal del panel (quedaría guardada en este
+     teléfono dentro de panel_cache_v1): el servidor solo la manda en la
+     respuesta de "Generar", y aquí se muestra una vez para copiarla. */
+  function bloqueInvitado(v) {
+    var inv = (estado.datos && estado.datos.invitado) || {};
+    var nombre = (inv.nombre || '').trim() || 'su invitado';
+    var g = seccion(v, 'Acceso al visor');
+    var linea;
+    if (!inv.activo) linea = 'Sin acceso activo. Genere una clave para que ' + nombre + ' pueda entrar.';
+    else if (!inv.vigente) linea = 'La clave de ' + nombre + ' venció el ' + (inv.vence || '') + '. Ya no abre.';
+    else linea = 'Acceso activo' + (inv.desde ? ' desde el ' + inv.desde : '') +
+      (inv.vence ? ' · vence el ' + inv.vence : ' · sin vencimiento') + '.';
+    g.appendChild(filaTexto(linea));
+    g.appendChild(accionBtn(inv.activo ? 'Generar una clave nueva' : 'Generar la clave de acceso',
+      inv.activo ? 'La clave anterior deja de funcionar al instante' : 'Se la podrá mandar por WhatsApp',
+      'escudo', 'var(--verde)', function (btn) {
+        if (btn.dataset.busy) return; btn.dataset.busy = '1';
+        pedir({ invitado: 'nueva' }).then(function (r) {
+          if (!r || !r.ok) { avisa('No se generó: ' + ((r && r.error) || 'intente de nuevo')); return; }
+          muestraClaveInvitado(r);
+        }).catch(function () { avisa('No hay conexión.'); })
+          .then(function () { delete btn.dataset.busy; });
+      }));
+    if (inv.activo) {
+      g.appendChild(accionBtn('Quitarle el acceso', 'La clave deja de abrir de inmediato', 'salir', 'var(--rojo)', function (btn) {
+        if (btn.dataset.busy) return;
+        accionSheet({
+          titulo: 'Quitar el acceso',
+          mensaje: nombre + ' ya no podrá abrir el visor. Podrá darle una clave nueva cuando quiera.',
+          opciones: [{ texto: 'Quitar el acceso', peligro: true, fn: function () {
+            btn.dataset.busy = '1';
+            pedir({ invitado: 'revoca' }).then(function (r) {
+              avisa(r && r.ok ? 'Acceso retirado.' : 'No se pudo: ' + ((r && r.error) || 'intente de nuevo'));
+              carga();
+            }).catch(function () { avisa('No hay conexión.'); })
+              .then(function () { delete btn.dataset.busy; });
+          } }]
+        });
+      }));
+    }
+    notaBajo(v, 'El invitado ve sus conversaciones y puede responderle a los pacientes. ' +
+      'Nunca entra a esta pantalla de configuración ni puede darle órdenes al bot por WhatsApp.');
+  }
+
+  /* La clave se muestra UNA vez. Sin toast: hay que poder copiarla con calma. */
+  function muestraClaveInvitado(r) {
+    var enlace = (r.url || 'https://alveos.mx/bot') + '?key=' + encodeURIComponent(r.clave);
+    var texto = 'Le comparto el acceso al visor de conversaciones del consultorio:\n' + enlace +
+      '\n\nSe abre en el navegador y no caduca la sesión' + (r.vence ? '; el acceso vence el ' + r.vence : '') + '.';
+    accionSheet({
+      titulo: 'Clave lista',
+      mensaje: 'Esta clave se muestra una sola vez. Mándesela ahora a ' + (r.nombre || 'su invitado') +
+        (r.vence ? '. Vence el ' + r.vence : '. Sin vencimiento') + '.',
+      opciones: [
+        { texto: 'Mandarla por WhatsApp', fn: function () {
+          var tel = String((estado.datos && estado.datos.config && estado.datos.config.TEL_INVITADO) || '').replace(/\D/g, '');
+          var wa = 'https://wa.me/' + (tel ? '52' + tel.slice(-10) : '') + '?text=' + encodeURIComponent(texto);
+          window.open(wa, '_blank', 'noopener');
+          carga();
+        } },
+        { texto: 'Copiar el enlace', fn: function () {
+          (navigator.clipboard ? navigator.clipboard.writeText(enlace) : Promise.reject())
+            .then(function () { avisa('Enlace copiado.'); })
+            .catch(function () { window.prompt('Copie el enlace:', enlace); });
+          carga();
+        } }
+      ]
+    });
   }
   function filaTexto(t) { var f = nodo('div', 'fila'); f.appendChild(nodo('div', 'cuerpo', t)); return f; }
 
