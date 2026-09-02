@@ -299,7 +299,11 @@
   #hoja .panel { background: var(--surface); border-radius: 16px; overflow: hidden; margin-bottom: 8px; }
   #hoja .cab { padding: 16px; text-align: center; border-bottom: .5px solid var(--sep); }
   #hoja .cab .ti { font-size: 16px; font-weight: 700; }
-  #hoja .cab .ms { font-size: 13.5px; color: var(--ink-2); margin-top: 5px; line-height: 1.4; }
+  /* pre-line (1-sep-2026): la hoja de la clave del invitado la pone en su
+     propia linea. Sin esto el salto se colapsa y la credencial queda embebida
+     en el parrafo, dificil de leer y de seleccionar. Inocuo para las demas
+     hojas: sus mensajes son de una sola linea. */
+  #hoja .cab .ms { font-size: 13.5px; color: var(--ink-2); margin-top: 5px; line-height: 1.4; white-space: pre-line; }
   #hoja .opt { width: 100%; padding: 15px; font-size: 17px; color: var(--azul); text-align: center; }
   #hoja .opt + .opt { border-top: .5px solid var(--sep); }
   #hoja .opt:active { background: var(--inset); }
@@ -1260,12 +1264,24 @@
 
   /* La clave se muestra UNA vez. Sin toast: hay que poder copiarla con calma. */
   function muestraClaveInvitado(r) {
-    var enlace = (r.url || 'https://alveos.mx/bot') + '?key=' + encodeURIComponent(r.clave);
+    // '#k=' y NO '?key=' (fix 1-sep-2026, revision adversarial). Dos razones:
+    // (1) el visor solo lee el FRAGMENTO — con '?key=' el enlace no dejaba
+    //     entrar a nadie y el invitado veia la puerta pidiendole la clave que
+    //     llevaba delante, en la barra de direcciones;
+    // (2) el fragmento no viaja al servidor, asi que la credencial no queda en
+    //     el log de la pasarela ni en el del hosting.
+    var enlace = (r.url || 'https://alveos.mx/bot') + '#k=' + encodeURIComponent(r.clave);
     var texto = 'Le comparto el acceso al visor de conversaciones del consultorio:\n' + enlace +
-      '\n\nSe abre en el navegador y no caduca la sesión' + (r.vence ? '; el acceso vence el ' + r.vence : '') + '.';
+      '\n\nCon abrirlo entra directo, sin teclear nada' +
+      (r.vence ? '. El acceso vence el ' + r.vence : '') + '.';
     accionSheet({
       titulo: 'Clave lista',
-      mensaje: 'Esta clave se muestra una sola vez. Mándesela ahora a ' + (r.nombre || 'su invitado') +
+      // La CLAVE va a la vista (fix 1-sep-2026): antes solo existia dentro del
+      // enlace de los botones, asi que si el navegador bloqueaba la ventana de
+      // WhatsApp o el Dr. tocaba Cancelar, se perdia — y generar ya habia
+      // matado la anterior. Verla permite copiarla a mano y salvar el paso.
+      mensaje: 'Clave: ' + r.clave + '\n\nSe muestra una sola vez. Mándesela ahora a ' +
+        (r.nombre || 'su invitado') +
         (r.vence ? '. Vence el ' + r.vence : '. Sin vencimiento') + '.',
       opciones: [
         { texto: 'Mandarla por WhatsApp', fn: function () {

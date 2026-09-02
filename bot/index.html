@@ -627,6 +627,31 @@
   // bloqueado, el poll de 30 s y "Actualizar ahora" seguian a ciegas).
   function claveActiva() { return claveGuardada() || estado.clave; }
 
+  // ENLACE DE ACCESO (1-sep-2026). El panel le manda al medico invitado un
+  // enlace que lo deja dentro sin teclear nada. La clave viaja en el
+  // FRAGMENTO (#k=), NUNCA en la query: el fragmento no se manda al servidor,
+  // asi que no aterriza en el log de la pasarela ni en el del hosting — la
+  // misma razon por la que el panel dejo de aceptar credenciales por GET
+  // (Panel.gs, "la query de un GET queda en historiales y en los logs").
+  // Se consume UNA vez y se borra de la barra de direcciones en el acto, para
+  // que no quede a la vista ni se copie sin querer al compartir la pagina.
+  function claveDelEnlace() {
+    var h = '';
+    try { h = String(location.hash || ''); } catch (e) { return ''; }
+    var m = h.match(/[#&]k=([^&]*)/);
+    if (!m) return '';
+    var v = m[1];
+    try { v = decodeURIComponent(v); } catch (e) { /* se usa tal cual */ }
+    // Limpiar SIEMPRE, incluso si la clave viene vacia o rota: lo que no debe
+    // quedarse en la barra es el rastro, no solo la credencial valida.
+    try {
+      history.replaceState(null, '', location.pathname + location.search);
+    } catch (e) {
+      try { location.hash = ''; } catch (e2) { /* best-effort */ }
+    }
+    return String(v || '').trim();
+  }
+
   function nodo(tag, clase, texto) {
     var el = document.createElement(tag);
     if (clase) el.className = clase;
@@ -870,7 +895,7 @@
       ? 'Cargando conversaciones…'
       : 'Acceso restringido. Ingrese la clave que le entregó su asistente; cada doctor ve únicamente a sus pacientes.';
   }
-  function muestraPuerta(conError) {
+  function muestraPuerta(conError, motivo) {
     estado.sesionGen++; // toda respuesta en vuelo de la sesion anterior se descarta
     estado.clave = '';
     limpiaConversacionDOM();
@@ -895,7 +920,10 @@
     puertaCargando(false);
     $('puerta').hidden = false;
     $('app').hidden = true;
-    $('fallo').textContent = 'Clave incorrecta.';
+    // El MOTIVO manda cuando el servidor lo dice (invitado con la clave
+    // vencida o revocada): "Clave incorrecta" le haria teclearla otra vez
+    // creyendo que se equivoco, cuando lo que necesita es pedir una nueva.
+    $('fallo').textContent = (typeof motivo === 'string' && motivo) ? motivo : 'Clave incorrecta.';
     $('fallo').style.display = conError ? 'block' : 'none';
   }
 
@@ -935,10 +963,23 @@
           return;
         }
         if (!datos.ok) {
-          if (datos.error === 'no autorizado') {
+          // CERRAR LA SESION: el 'no autorizado' de siempre, MAS la bandera
+          // explicita `cerrar` (1-sep-2026). Se agrego porque el vencimiento
+          // del invitado devuelve un mensaje humano ("su acceso venció el
+          // …"), que NO es 'no autorizado' literal: caia al throw de abajo,
+          // el visor decia "sin conexión" y la FOTO LOCAL —las conversaciones
+          // de los pacientes— seguia en pantalla y en localStorage
+          // indefinidamente. Es decir, justo el mecanismo que existe para no
+          // depender de que alguien se acuerde de revocar era el que fallaba.
+          // Se compara una BANDERA y no el texto: el proximo mensaje que
+          // alguien redacte no puede volver a abrir este hueco.
+          if (datos.error === 'no autorizado' || datos.cerrar === true) {
             // Borrar solo si la clave fallida sigue siendo la vigente (una
             // clave nueva ya guardada no se sacrifica por el intento viejo).
-            if (claveActiva() === clave) { borraClave(); muestraPuerta(true); }
+            if (claveActiva() === clave) {
+              borraClave();
+              muestraPuerta(true, datos.cerrar === true ? datos.error : '');
+            }
             return;
           }
           throw new Error(datos.error || 'respuesta invalida');
@@ -1882,6 +1923,17 @@
   estado.temporizador = setInterval(function () {
     if (claveActiva() && !document.hidden) carga();
   }, INTERVALO_MS);
+  // Entrada por enlace (#k=): se consume ANTES del primer carga() para que la
+  // sesion arranque ya con esa clave, sin pasar por la puerta.
+  var claveEnlace = claveDelEnlace();
+  if (claveEnlace) {
+    // Clave distinta = sesion distinta. La foto local guardada son chats de
+    // pacientes: no se hereda entre sesiones (el Dr. y el invitado pueden
+    // abrir el visor en el mismo telefono).
+    if (claveEnlace !== claveGuardada()) borraFotoVisor();
+    guardaClave(claveEnlace);
+    puertaCargando(true); // aunque localStorage este bloqueado
+  }
   // Con sesion guardada no se vuelve a pedir la clave: puerta en modo carga.
   if (claveGuardada()) puertaCargando(true);
   carga();
