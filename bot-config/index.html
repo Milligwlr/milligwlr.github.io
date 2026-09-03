@@ -937,12 +937,15 @@
     { id: 'confirmadas', et: 'Citas confirmadas', sub: 'en el periodo' },
     { id: 'resenas', et: 'Reseñas invitadas', sub: 'invitaciones de Google' },
     { id: 'postcitas', et: 'Post-consultas', sub: 'mensajes de seguimiento' },
-    { id: 'abandonos', et: 'Pacientes por recuperar', sub: 'empezaron y no terminaron' }
+    { id: 'abandonos', et: 'Pacientes por recuperar', sub: 'empezaron y no terminaron' },
+    // (2-sep, Fase 4 del plan): calidad del bot. Solo pintan si el servidor los manda.
+    { id: 'comodines', et: 'Sin entender', sub: 'mensajes que el bot no supo responder' },
+    { id: 'diferidos', et: 'Respuestas lentas', sub: 'esperaron al rescate de 5 min' }
   ];
   function valorTile(id, m) {
     var v = m[estado.ventana] || {};
     if (id === 'conversion') return (v.flujos > 0) ? Math.round(100 * (v.reservas || 0) / v.flujos) + '%' : '—';
-    var mapa = { conversaciones: v.conversaciones, flujos: v.flujos, reservas: v.reservas, confirmadas: v.confirmadas, resenas: v.resenas, postcitas: v.postcitas, abandonos: v.abandonos };
+    var mapa = { conversaciones: v.conversaciones, flujos: v.flujos, reservas: v.reservas, confirmadas: v.confirmadas, resenas: v.resenas, postcitas: v.postcitas, abandonos: v.abandonos, comodines: v.comodines, diferidos: v.diferidos };
     var x = mapa[id];
     return x === undefined ? '—' : String(x);
   }
