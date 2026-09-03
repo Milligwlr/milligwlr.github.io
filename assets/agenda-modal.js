@@ -30,8 +30,8 @@
       en: 'the $1,200 spirometry with bronchodilator promotion'
     },
     'poligrafia-respiratoria': {
-      es: 'la promoción de valoración + poligrafía respiratoria a $4,500',
-      en: 'the $4,500 consultation + home sleep study offer'
+      es: 'la promoción de valoración + poligrafía respiratoria a $5,000',
+      en: 'the $5,000 consultation + home sleep study offer'
     },
     'titulacion-presion-positiva': {
       es: 'la promoción de titulación de presión positiva a $3,900',
