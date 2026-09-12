@@ -1051,6 +1051,61 @@
 <script type="application/ld+json" data-promo-schema>
 {"@context": "https://schema.org", "@type": "MedicalBusiness", "name": "Alveos · Dr. William César Lara Vázquez", "medicalSpecialty": "Pulmonary", "url": "https://alveos.mx/promociones/poligrafia-respiratoria/", "telephone": "+525591708334", "image": "https://alveos.mx/images/dr-william-lara.png", "address": {"@type": "PostalAddress", "streetAddress": "Saturnino Herrán 59, Consultorio 507, Hospital Santa Coleta", "addressLocality": "San José Insurgentes, Benito Juárez", "addressRegion": "CDMX", "postalCode": "03900", "addressCountry": "MX"}, "physician": {"@type": "Physician", "@id": "https://alveos.mx/#physician", "name": "Dr. William César Lara Vázquez", "medicalSpecialty": "Pulmonary"}, "makesOffer": {"@type": "Offer", "itemOffered": {"@type": "MedicalProcedure", "name": "Paquete: consulta de neumología + poligrafía respiratoria"}, "price": "5000", "priceCurrency": "MXN", "priceSpecification": {"@type": "PriceSpecification", "price": "5000", "priceCurrency": "MXN"}, "availability": "https://schema.org/InStock"}}
 </script>
+<style id="lp-psg-20260912">
+/* ===== 12-sep-2026: el paciente de Ads viene a agendar. En 375px el boton quedaba a ~1,000px del
+   borde superior (subtitulo largo + escalera de precios + nota). Orden flex SOLO movil, aditivo. ===== */
+.hero__sub--movil{display:none}
+@media(max-width:600px){
+  .hero__content{display:flex;flex-direction:column}
+  .hero__content>*{order:5}
+  .hero__content>.hero__badge{order:0}
+  .hero__content>h1{order:1}
+  .hero__content>.hero__sub{display:none}
+  .hero__content>.hero__sub--movil{display:block;order:2;font-size:1rem;line-height:1.5;color:rgba(255,255,255,.88);margin:0 0 4px}
+  .hero__content>.hero__cta{order:3;margin:2px 0 6px!important}
+  .hero__content>.hero__creds{order:4;margin-bottom:8px}
+  .hero__content>.price-ladder{order:6}
+  .price-tier--promo .price-tier__desc,.price-tier--next .price-tier__desc{display:none}
+  .hero__content>.honesty-note{order:7}
+  .hero__content>.hero__cupo,.hero__content>.hero__bullets{display:none}
+}
+/* Franja polisomnografia: 5 de 8 hilos de la promo pedian PSG y se iban sin respuesta (auditoria 12-sep). */
+.psg-strip{background:#f0f7ff;border-block:1px solid rgba(9,132,227,.14);padding:18px 0}
+.psg-strip__in{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.psg-strip__ic{flex:0 0 auto;width:42px;height:42px;border-radius:12px;background:#0a2540;color:#74b9ff;display:grid;place-items:center;font-size:1.25rem}
+.psg-strip__txt{flex:1 1 280px;min-width:0;color:#0a2540;font-size:.98rem;line-height:1.45}
+.psg-strip__txt b{font-weight:700}
+.psg-strip__txt a{color:#0984e3;text-decoration:underline;text-underline-offset:2px}
+.psg-strip__btn{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;background:#1DA851;color:#fff;font-weight:700;padding:11px 16px;border-radius:100px;text-decoration:none;min-height:44px}
+.psg-strip__btn:hover{background:#178f45;color:#fff}
+@media(max-width:600px){.psg-strip{padding:14px 0}.psg-strip__ic{display:none}.psg-strip__txt{font-size:.93rem}.psg-strip__btn{width:100%;justify-content:center}}
+/* Cabecera compacta en movil (orden del Dr. 12-sep: "odio como se ve todo lleno"): la pila legal + banda +
+   nav + badge ocupaba ~330px antes del titulo. Una linea por pieza, nav en una sola fila, badge fuera. */
+@media(max-width:600px){
+  .top-bar-legal{font-size:.62rem!important;padding:3px 0!important;line-height:1.3}
+  .promo-banner{padding:3px 0!important;font-size:.72rem}
+  .promo-banner__inner{flex-wrap:nowrap;gap:6px;justify-content:space-between}
+  .promo-banner__inner>span:not(.promo-lang2){flex:1 1 auto;min-width:0;font-size:0;text-align:left;white-space:nowrap}
+  .promo-banner__inner>span:not(.promo-lang2)::before{content:'Consulta + poligrafía';font-size:.72rem;margin-right:6px}
+  .promo-lang2{flex:0 0 auto}
+  .hero__content>.hero__creds{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:6px;padding-bottom:4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .hero__content>.hero__creds::-webkit-scrollbar{display:none}
+  .hero__content>.hero__creds>*{flex:0 0 auto;white-space:nowrap}
+  .promo-banner .price-old{display:none}
+  .promo-banner .price-new{font-size:.9rem;padding:1px 7px}
+  .promo-banner>.promo-banner__inner>a{display:none!important} /* redundante: el hero y la barra fija ya tienen el boton */
+  .promo-banner__inner>span:not(.promo-lang2)::before{content:'Consulta + poligrafía';font-size:.74rem;margin-right:8px}
+  .promo-lang2{margin-left:0;font-size:.62rem!important;border-width:1px}
+  .promo-lang2 a{padding:1px 7px!important;line-height:1.4!important;min-height:0!important;font-size:.62rem!important}
+  #mainNav{padding:5px 0!important}
+  #mainNav>.container{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:10px}
+  #mainNav .navbar-logo{width:28px;height:28px}
+  #mainNav .brand-name{font-size:.95rem}
+  #mainNav>.container>a[href*="wa.me"]{padding:7px 12px!important;font-size:.82rem!important;white-space:nowrap;margin:0}
+  .hero{padding-top:22px!important}
+  .hero__content>.hero__badge{display:none}
+}
+</style>
 <style id="mv-movil">
 /* ===== Parches móvil (auditoría jul-2026) ===== */
 
@@ -1162,7 +1217,8 @@
                 <!-- Badge con INER visible en el primer viewport en mobile y desktop -->
                 <div class="hero__badge"><span class="dot"></span> Consulta + poligrafía respiratoria · CDMX</div>
                 <h1>Estudio de apnea del sueño en casa + consulta · <em>$5,000</em></h1>
-                <p class="hero__sub">¿Buscas una clínica del sueño en CDMX? Para la apnea casi nunca hace falta: te valora un neumólogo egresado del INER y él mismo interpreta tu estudio del sueño (poligrafía respiratoria). Duermes una noche en tu propia cama.</p>
+                <p class="hero__sub hero__sub--movil">Duermes una noche en tu cama con un equipo pequeño; un neumólogo del INER lee tu estudio y te da un plan.</p>
+<p class="hero__sub">¿Buscas una clínica del sueño en CDMX? Para la apnea casi nunca hace falta: te valora un neumólogo egresado del INER y él mismo interpreta tu estudio del sueño (poligrafía respiratoria). Duermes una noche en tu propia cama.</p>
 
                 <div class="price-ladder" role="region" aria-label="Opciones y precios">
                     <div class="price-tier price-tier--promo">
@@ -1192,7 +1248,7 @@
                     <i class="bi bi-hand-thumbs-up-fill" aria-hidden="true"></i>
                     <span>Si al valorarte <b>no eres candidato</b> al estudio en casa, te lo digo antes de cobrarte el estudio. Sin sorpresas.</span>
                 </div>
-                <p style="font-size:.8rem;color:rgba(255,255,255,.82);margin:6px 0 0">Cupo limitado: los equipos para el estudio en casa son contados cada semana.</p>
+                <p class="hero__cupo" style="font-size:.8rem;color:rgba(255,255,255,.82);margin:6px 0 0">Cupo limitado: los equipos para el estudio en casa son contados cada semana.</p>
 
                 <div class="hero__cta" style="margin-bottom:18px">
                     <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="hero-wa-top">
@@ -1240,6 +1296,16 @@
             </div>
         </div>
     </div>
+</section>
+
+
+<!-- 12-sep-2026: respuesta directa a quien llega buscando polisomnografia -->
+<section class="psg-strip" aria-label="Polisomnografía a domicilio">
+<div class="container"><div class="psg-strip__in">
+<span class="psg-strip__ic" aria-hidden="true"><i class="bi bi-moon-stars-fill"></i></span>
+<p class="psg-strip__txt" style="margin:0"><b>¿Tu médico te pidió polisomnografía?</b> También la hacemos, a domicilio y con electroencefalograma: <b>$12,000</b> con esta promoción. Si no sabes cuál necesitas, <a href="/promociones/poligrafia-vs-polisomnografia/">compara los dos estudios</a>.</p>
+<a class="psg-strip__btn" href="https://wa.me/522224926718?text=Hola%2C%20quiero%20la%20promoci%C3%B3n%20de%20polisomnograf%C3%ADa%20a%20domicilio%20de%20%2412%2C000%20con%20el%20Dr.%20Lara%20%28alveos.mx%29." target="_blank" rel="noopener" data-cta="psg-strip-wa"><i class="bi bi-whatsapp"></i> Pedir polisomnografía</a>
+</div></div>
 </section>
 
 <!-- ============ SECCIÓN PAREJA ============ -->
