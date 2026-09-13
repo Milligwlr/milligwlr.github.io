@@ -574,7 +574,12 @@
     clave: '',          // copia en memoria: el visor sigue vivo con localStorage bloqueado
     claveReintento: '', // clave tecleada durante un fetch en vuelo: se reintenta al terminar
     sesionGen: 0,       // generacion de sesion: una respuesta tardia de una sesion cerrada se descarta
-    borradores: {} };   // notas de seguimiento a medio escribir, por telefono
+    borradores: {},     // notas de seguimiento a medio escribir, por telefono
+    // (12-sep) visor ligero: sello de cambios de la ultima respuesta completa,
+    // momento de esa respuesta (recarga completa forzada cada 5 min) y la
+    // vista COMPLETA (todos=1) que se pide solo al buscar o filtrar.
+    sello: '', ultimoFull: 0, datosTodos: null, cargandoTodos: false };
+  var FULL_CADA_MS = 5 * 60000;
   try { estado.filtro = localStorage.getItem('visor_filtro') || 'todos'; } catch (e) {}
 
   // ---- Vista principal "reciente" (petición del Dr., 24-jul) ----
@@ -734,12 +739,40 @@
     var d = (estado.datos && estado.datos.doctor) || '';
     return 'visto_' + (d ? d + '_' : '') + k;
   }
-  function vistoDe(k) {
+  // (12-sep) VISTO COMPARTIDO entre dispositivos (reporte del Dr.: "abro el
+  // visor en una u otra computadora y me marca sin leer lo que ya lei").
+  // El servidor manda `visto_srv` por hilo (hoja Vistos, por sesion): '0'
+  // = marcado como no leido en todos lados; un ts = leido hasta ese mensaje.
+  // El marcador local sigue como respaldo (sin red o con la sesion vieja) y
+  // como efecto inmediato mientras el POST aterriza.
+  function vistoDe(k, h) {
+    var loc = '';
     try {
-      return localStorage.getItem(claveVisto(k)) || localStorage.getItem('visto_' + k) || '';
-    } catch (e) { return ''; }
+      loc = localStorage.getItem(claveVisto(k)) || localStorage.getItem('visto_' + k) || '';
+    } catch (e) { loc = ''; }
+    var srv = (h && h.visto_srv !== undefined && h.visto_srv !== null) ? String(h.visto_srv) : null;
+    if (srv === '0') return '';
+    if (srv && (!loc || srv > loc)) return srv;
+    return loc;
   }
-  function marcaVisto(k, ts) { try { if (k && ts) localStorage.setItem(claveVisto(k), ts); } catch (e) {} }
+  function marcaVisto(k, ts, h) {
+    try { if (k && ts) localStorage.setItem(claveVisto(k), ts); } catch (e) {}
+    if (!k || !ts) return;
+    if (h && h.visto_srv === ts) return; // ya esta asi en el servidor
+    if (h) h.visto_srv = ts; // efecto inmediato en este dispositivo
+    enviaVisto(k, ts);
+  }
+  var vistoEnVuelo = {};
+  function enviaVisto(k, v) {
+    var clave = claveActiva();
+    if (!clave || !k) return;
+    var llave = k + '|' + v;
+    if (vistoEnVuelo[llave]) return;
+    vistoEnVuelo[llave] = true;
+    apiVisor({ key: clave, visto: '1', tel: k, v: v })
+      .catch(function () { /* best-effort: el marcador local ya quedo */ })
+      .then(function () { delete vistoEnVuelo[llave]; });
+  }
   // "Lead atendido" (descartar, 12-jul): marcador local POR DOCTOR con el ts
   // del último mensaje entrante al momento de descartar. Si el paciente
   // vuelve a escribir DESPUÉS, el lead REVIVE solo (el marcador queda atrás).
@@ -793,7 +826,7 @@
   /* ---------- seguimiento: predicados y formato de citas ---------- */
   function esNoLeido(h) {
     var ultimoIn = ultimoInDe(h);
-    return !h.interno && !!ultimoIn && ultimoIn > vistoDe(claveHilo(h)) && estado.sel !== claveHilo(h);
+    return !h.interno && !!ultimoIn && ultimoIn > vistoDe(claveHilo(h), h) && estado.sel !== claveHilo(h);
   }
   function esLeadBase_(h) {
     var ultimo = (h.mensajes || [])[(h.mensajes || []).length - 1];
@@ -955,7 +988,14 @@
         $('estadoDr').textContent = 'mostrando lo último guardado — actualizando…';
       }
     }
-    apiVisor({ key: clave })
+    // (12-sep) Poll barato: si ya hay datos frescos (< 5 min) se manda el
+    // sello y el servidor contesta {sin_cambios:true} (~200 bytes) cuando
+    // nada cambio. La primera carga y cada 5 min van completas.
+    var paramsCarga = { key: clave };
+    if (!claveDirecta && estado.datos && estado.sello && (Date.now() - estado.ultimoFull) < FULL_CADA_MS) {
+      paramsCarga.sello = estado.sello;
+    }
+    apiVisor(paramsCarga)
       .then(function (datos) {
         if (gen !== estado.sesionGen) {
           // Sesion cerrada mientras la respuesta volaba (dispositivo
@@ -985,6 +1025,15 @@
           throw new Error(datos.error || 'respuesta invalida');
         }
         estado.clave = clave; // sobrevive con localStorage bloqueado
+        if (datos.sin_cambios) {
+          // Nada nuevo desde el ultimo poll: solo se actualiza la hora.
+          $('puerta').hidden = true;
+          $('app').hidden = false;
+          $('estadoDr').textContent = 'actualizado ' + horaDe(datos.generado) + ' · cada 30 s';
+          return;
+        }
+        estado.sello = String(datos.sello || '');
+        estado.ultimoFull = Date.now();
         guardaFotoVisor(datos);
         // Si el servidor no genero datos nuevos, no hay nada que re-pintar
         // (evita rehacer el DOM y mover el scroll sin necesidad).
@@ -1086,9 +1135,46 @@
     });
   }
 
+  // (12-sep) La respuesta por defecto trae solo los 15 hilos activos. Al
+  // BUSCAR o al usar un filtro que no sea Todos/No leidos se pide UNA vez la
+  // vista completa (todos=1, vale 5 min) y se fusiona: los 15 recientes mandan
+  // (son mas frescos), el resto viene de la completa.
+  function pideTodos() {
+    if (estado.cargandoTodos) return;
+    if (estado.datosTodos && (Date.now() - estado.datosTodos.t) < FULL_CADA_MS) return;
+    var clave = claveActiva();
+    if (!clave) return;
+    estado.cargandoTodos = true;
+    var gen = estado.sesionGen;
+    apiVisor({ key: clave, todos: '1' })
+      .then(function (d) {
+        if (gen !== estado.sesionGen) return;
+        if (d && d.ok && d.hilos) {
+          estado.datosTodos = { t: Date.now(), hilos: d.hilos };
+          pintaLista();
+        }
+      })
+      .catch(function () { /* la vista recortada sigue funcionando */ })
+      .then(function () { estado.cargandoTodos = false; pintaLista(); });
+  }
+  function hilosBase(necesitaTodos) {
+    var recientes = (estado.datos && estado.datos.hilos) || [];
+    if (!necesitaTodos) return recientes;
+    pideTodos();
+    if (!estado.datosTodos) return recientes;
+    var vistos = {};
+    var out = recientes.slice();
+    recientes.forEach(function (h) { vistos[claveHilo(h)] = true; });
+    estado.datosTodos.hilos.forEach(function (h) {
+      var k = claveHilo(h);
+      if (!vistos[k]) { vistos[k] = true; out.push(h); }
+    });
+    return out;
+  }
   function hilosFiltrados() {
     var q = sinAcentos($('q').value.trim());
-    var hilos = (estado.datos && estado.datos.hilos) || [];
+    var necesitaTodos = q.length >= 2 || (estado.filtro !== 'todos' && estado.filtro !== 'noleidos');
+    var hilos = hilosBase(necesitaTodos);
     if (estado.filtro !== 'todos') {
       hilos = hilos.filter(function (h) { return cumpleFiltro(h, estado.filtro); });
     }
@@ -1264,10 +1350,13 @@
     var scrollPrev = cont.scrollTop; // el auto-refresh no debe mover la lista
     cont.textContent = '';
     var hilos = hilosFiltrados();
+    if (estado.cargandoTodos) {
+      cont.appendChild(nodo('div', 'nota-ocultas', 'buscando en todo el historial…'));
+    }
     hilos.forEach(function (h) {
       var k = claveHilo(h);
       var ultimo = h.mensajes[h.mensajes.length - 1];
-      var visto = vistoDe(k);
+      var visto = vistoDe(k, h);
       var ultimoIn = ultimoInDe(h);
       var noLeido = !h.interno && !!ultimoIn && ultimoIn > visto && estado.sel !== k;
       var item = nodo('div', 'item' + (estado.sel === k ? ' activo' : ''));
@@ -1393,7 +1482,7 @@
     estado.sel = k;
     var h = hiloSeleccionado();
     if (h && h.mensajes && h.mensajes.length) {
-      marcaVisto(k, h.mensajes[h.mensajes.length - 1].ts); // antes de pintaLista: apaga el badge
+      marcaVisto(k, h.mensajes[h.mensajes.length - 1].ts, h); // antes de pintaLista: apaga el badge
     }
     document.body.classList.add('chat-abierto');
     pintaFiltros(); // el contador de "No leídos" baja al abrir, no hasta el poll
@@ -1514,7 +1603,7 @@
     msgs.scrollTop = pegadoAbajo ? msgs.scrollHeight : scrollPrev;
     // El hilo abierto se considera leido hasta su ultimo mensaje.
     if (h.mensajes && h.mensajes.length) {
-      marcaVisto(k, h.mensajes[h.mensajes.length - 1].ts);
+      marcaVisto(k, h.mensajes[h.mensajes.length - 1].ts, h);
     }
   }
 
@@ -1902,6 +1991,9 @@
       localStorage.removeItem(claveVisto(k));
       localStorage.removeItem('visto_' + k); // el marcador viejo tambien tapa
     } catch (e) {}
+    // (12-sep) "no leido" tambien en los demas dispositivos.
+    h.visto_srv = '0';
+    enviaVisto(k, '0');
     // Cierra el chat con la misma mecanica del boton Volver (historial Android).
     if (history.state && history.state.chat) history.back();
     else cierraHilo();
