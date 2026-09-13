@@ -551,7 +551,17 @@
         function (j) { clearTimeout(tE); return j; },
         function (err) { clearTimeout(tE); throw err; });
     }
-    return pide(API, 10000).catch(function () { return pide(API_RESPALDO, 20000); });
+    // (13-sep) LECTURAS: UN intento a la pasarela con presupuesto amplio. El
+    // Worker responde desde su cache de borde en < 1 s casi siempre y, cuando
+    // tiene que armar de cero, Apps Script tarda 3-9 s (medido: 7.6-8.5 s la
+    // vista por defecto). Con 10 s el celular abortaba justo antes de recibir
+    // y el respaldo directo arrancaba OTRO armado de 8 s: ese era el "se
+    // tarda mucho". El respaldo directo al /exec entra SOLO si la pasarela
+    // fallo RAPIDO (red caida, 5xx) — tras un timeout no tiene sentido.
+    return pide(API, 30000).catch(function (err) {
+      if (err && err.message === 'tardo demasiado') throw err;
+      return pide(API_RESPALDO, 25000);
+    });
   }
   // Foto local del visor (25-jul (6)): lo último recibido se guarda en el
   // dispositivo y se pinta AL INSTANTE al abrir (clave para datos móviles
@@ -580,6 +590,17 @@
     // vista COMPLETA (todos=1) que se pide solo al buscar o filtrar.
     sello: '', ultimoFull: 0, datosTodos: null, cargandoTodos: false };
   var FULL_CADA_MS = 5 * 60000;
+  // (13-sep) La pasarela sirve desde su cache de borde y avisa en `edge` si
+  // esta buscando novedades en segundo plano: se re-pregunta UNA vez en 6 s
+  // para que lo nuevo aparezca sin esperar al poll de 30 s.
+  var repollTimer = null;
+  function programaRepoll() {
+    if (repollTimer) return;
+    repollTimer = setTimeout(function () {
+      repollTimer = null;
+      if (claveActiva() && !document.hidden) carga();
+    }, 6000);
+  }
   try { estado.filtro = localStorage.getItem('visor_filtro') || 'todos'; } catch (e) {}
 
   // ---- Vista principal "reciente" (petición del Dr., 24-jul) ----
@@ -1025,11 +1046,15 @@
           throw new Error(datos.error || 'respuesta invalida');
         }
         estado.clave = clave; // sobrevive con localStorage bloqueado
+        var buscando = !!(datos.edge && datos.edge.refrescando);
+        var sufijo = buscando ? ' · buscando novedades…' :
+          ((datos.edge && datos.edge.degradado) ? ' · el servidor tarda, reintentando' : ' · cada 30 s');
+        if (buscando) programaRepoll();
         if (datos.sin_cambios) {
           // Nada nuevo desde el ultimo poll: solo se actualiza la hora.
           $('puerta').hidden = true;
           $('app').hidden = false;
-          $('estadoDr').textContent = 'actualizado ' + horaDe(datos.generado) + ' · cada 30 s';
+          $('estadoDr').textContent = 'actualizado ' + horaDe(datos.generado) + sufijo;
           return;
         }
         estado.sello = String(datos.sello || '');
@@ -1041,11 +1066,8 @@
         estado.datos = datos;
         $('puerta').hidden = true;
         $('app').hidden = false;
-        if (sinCambios) {
-          $('estadoDr').textContent = 'actualizado ' + horaDe(datos.generado) + ' · cada 30 s';
-        } else {
-          pintaTodo();
-        }
+        if (!sinCambios) pintaTodo();
+        $('estadoDr').textContent = 'actualizado ' + horaDe(datos.generado) + sufijo;
       })
       .catch(function () {
         if (gen !== estado.sesionGen) return;
