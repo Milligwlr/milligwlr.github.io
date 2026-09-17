@@ -175,6 +175,12 @@
                 col.style.setProperty('--t-dur', (alto / [16.5, 13.5, 18][idx % 3]).toFixed(1) + 's');
                 col.style.setProperty('--tgap', (gap / 2) + 'px');
                 if (idx % 3 === 1) col.classList.add('testimonial-col--down');
+                // 17-sep-2026: las paginas que arrancan el marquee pausado (animation-play-state:paused
+                // en .testimonial-col, y .marquee-on para soltarlo) se quedaban congeladas: este script
+                // clonaba las tarjetas y calculaba la duracion, pero nadie ponia la clase. Lo reporto el
+                // Dr. en la comparativa. Se pone AQUI, tras medir, para que la animacion no arranque antes
+                // de tener su duracion. En las paginas que animan por defecto la clase no cambia nada.
+                col.classList.add('marquee-on');
             });
         }
 

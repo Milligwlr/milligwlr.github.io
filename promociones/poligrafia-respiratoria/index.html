@@ -3285,6 +3285,18 @@ section.doc-band{background:var(--lc-surface);color:var(--lc-navy);border-top:1p
 /* 17-sep-2026: el asterisco del costo aparte de la polisomnografia y su nota. */
 .qe__ast{color:#0773c5;font-weight:600}
 .qe__nota-ast{margin:8px 0 0;font-size:.78rem;line-height:1.45;color:#4a5a70}
+
+/* 17-sep-2026 (orden del Dr.: "no tiene boton que resalte el Agendar cita"): en escritorio la segunda
+   accion deja de ser un enlace subrayado y pasa a boton secundario de contorno, con el mismo alto y radio
+   que el verde. En movil sigue oculta: la barra fija ya lleva Agendar en la misma pantalla. */
+@media (min-width:768px){
+  .hero .hero__cta a.btn-cal.btn-cal,.cta-inline a.btn-cal.btn-cal,.cta-final a.btn-cal.btn-cal,a.btn-cal.btn-cal{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:auto;min-height:52px;
+    width:auto;padding:0 26px;background:#fff;border:1px solid #cfe0f2;border-radius:100px;
+    color:#0a2540;font-weight:600;font-size:1rem;line-height:1.2;text-decoration:none;box-shadow:none}
+  .hero .hero__cta a.btn-cal.btn-cal:hover,a.btn-cal.btn-cal:hover{background:#f2f8ff;border-color:#0773c5;color:#065a9b;text-decoration:none}
+  a.btn-cal.btn-cal:focus-visible{outline:3px solid #0984e3;outline-offset:2px}
+  .hero .hero__cta a.btn-cal.btn-cal i,a.btn-cal.btn-cal i{font-size:1.05rem;color:#0773c5}
+}
 </style>
 <!-- sp-popup (prueba social ficticia con nombres inventados) ELIMINADO por compliance:
      solo se usa la calificación 5.0 real de Google, nunca testimonios inventados. -->
