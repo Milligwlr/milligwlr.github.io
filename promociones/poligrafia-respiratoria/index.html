@@ -195,7 +195,6 @@
     .partner-section{background:linear-gradient(135deg,#f0f8ff 0%,#f0f6ff 100%);border-top:3px solid var(--cyan);padding:56px 0}
     .partner-card{background:#fff;border-radius:22px;padding:36px 40px;box-shadow:0 8px 32px rgba(9,132,227,.1)}
     @media(max-width:768px){.partner-card{padding:24px 20px}}
-    .partner-section .block__kicker{background:rgba(0,206,201,.12);color:#007b76}
     .partner__signs{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:10px}
     .partner__signs li{display:flex;align-items:flex-start;gap:12px;font-size:.97rem;color:var(--ink);line-height:1.5}
     .partner__signs li i{color:var(--cyan);font-size:1.1rem;flex-shrink:0;margin-top:2px}
@@ -581,7 +580,7 @@
         .sb-result__cta{min-height:48px}
         .sb-quiz{gap:8px}
     }
-    /* Escalera de precio: una sola verdad (ancla $6,300 y "Ahorras $1,300" preservados) */
+    /* Precio del paquete en el hero (16-sep-2026): un solo precio con su ancla $6,300 tachada; las tres opciones viven en #precios */
     .price-ladder{display:grid;gap:10px;margin:4px 0 14px;max-width:520px}
     .price-tier{position:relative;border-radius:16px;padding:14px 16px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05)}
     .price-tier__label{font-size:.72rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:rgba(255,255,255,.74);margin-bottom:4px}
@@ -591,30 +590,10 @@
     .price-tier__row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
     .price-tier__big{font-size:2rem;font-weight:800;color:#00cec9;line-height:1;letter-spacing:-.02em}
     .price-tier__was{font-size:.9rem;color:rgba(255,255,255,.62);text-decoration:line-through;font-weight:600}
-    .price-tier__ribbon{position:absolute;top:-10px;right:14px;background:#0984e3;color:#fff;font-size:.66rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:4px 10px;border-radius:999px;box-shadow:0 6px 16px -4px rgba(9,132,227,.55)}
-    .price-tier__math{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;font-size:.9rem;color:#f0f6ff}
-    .price-tier__math b{color:#fff;font-weight:800}
-    .price-tier__eq{color:rgba(255,255,255,.5);font-weight:700}
-    .price-tier--home{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.035);border-style:dashed}
-    .price-tier--home i{font-size:1.3rem;color:#00cec9;flex-shrink:0}
-    .price-tier--home .price-tier__amount{font-weight:800;color:#fff}
-    @media(max-width:480px){.price-tier__big{font-size:1.7rem}.price-tier__ribbon{right:10px;font-size:.6rem}}
-    .price-tier__desc b{color:#fff;font-weight:800}
-    .price-tier--next{background:rgba(9,132,227,.10);border:1px solid rgba(116,185,255,.34)}
-    .price-tier--next .price-tier__label{color:#74b9ff}
-    .price-tier--next .price-tier__desc a{color:#74b9ff;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(116,185,255,.45)}
+    @media(max-width:480px){.price-tier__big{font-size:1.7rem}}
     .honesty-note{display:flex;align-items:flex-start;gap:9px;font-size:.86rem;color:rgba(255,255,255,.88);line-height:1.45;margin:0 0 12px;max-width:520px}
     .honesty-note i{color:#00cec9;font-size:1.05rem;flex-shrink:0;margin-top:1px}
     .honesty-note b{color:#fff;font-weight:800}
-    /* Descarga visual del hero (jul-2026): una sola oferta protagonista; el desglose
-       por separado y a domicilio se colapsa en un <details> discreto (los 4 precios siguen ahi) */
-    .price-fine{max-width:520px}
-    .price-fine summary{list-style:none;display:inline-flex;align-items:center;gap:7px;cursor:pointer;font-size:.84rem;font-weight:600;color:rgba(255,255,255,.72);padding:2px 0;transition:color .2s}
-    .price-fine summary::-webkit-details-marker{display:none}
-    .price-fine summary:hover{color:#fff}
-    .price-fine summary i{font-size:.78rem;color:#74b9ff;transition:transform .2s}
-    .price-fine[open] summary i{transform:rotate(180deg)}
-    .price-fine .price-tier{border:none;background:none;box-shadow:none;padding:8px 0 0}
     /* Escritorio: los bullets duplican la tarjeta "Lo que recibes" -> una sola ubicacion;
        chips de credenciales pasan a linea de texto quieta (menos cajas compitiendo) */
     @media(min-width:992px){
@@ -1065,7 +1044,7 @@
   .hero__content>.hero__cta{order:3;margin:2px 0 6px!important}
   .hero__content>.hero__creds{order:4;margin-bottom:8px}
   .hero__content>.price-ladder{order:6}
-  .price-tier--promo .price-tier__desc,.price-tier--next .price-tier__desc{display:none}
+  .price-tier--promo .price-tier__desc{display:none}
   .hero__content>.honesty-note{order:7}
   .hero__content>.hero__cupo,.hero__content>.hero__bullets{display:none}
 }
@@ -1104,6 +1083,50 @@
   #mainNav>.container>a[href*="wa.me"]{padding:7px 12px!important;font-size:.82rem!important;white-space:nowrap;margin:0}
   .hero{padding-top:22px!important}
   .hero__content>.hero__badge{display:none}
+}
+</style>
+<style id="lp-precios-20260916">
+/* 16-sep-2026: tabla unica de precios bajo el hero. Fallo que la motivo: la primera pantalla mostraba
+   4 cifras distintas y la pagina 8; la landing convertia 11.5% contra 35% la de consulta. Movil = tres
+   renglones con reglas finas (nombre | precio, descripcion de una linea; ~0.45 pantallas); escritorio =
+   tres tarjetas. La primera version media 505px y alargaba la pagina: de ahi las reglas de compactacion. */
+.px3{background:#fff;padding:14px 0 10px;border-bottom:1px solid rgba(10,37,64,.08)}
+.px3__title{font-size:1.15rem;font-weight:800;letter-spacing:-.02em;color:#0a2540;margin:0 0 8px;line-height:1.2;text-align:center}
+.px3__grid{max-width:760px;margin:0 auto;border-top:1px solid rgba(10,37,64,.1)}
+.px3__row{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"name price" "desc desc";column-gap:12px;row-gap:2px;align-items:center;padding:9px 4px;border-bottom:1px solid rgba(10,37,64,.1)}
+.px3__row--promo{background:linear-gradient(90deg,rgba(9,132,227,.07),transparent);border-left:3px solid #0984e3;padding-left:10px;border-radius:0 10px 10px 0}
+.px3__name{grid-area:name;font-weight:800;color:#0a2540;font-size:.95rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap;line-height:1.25}
+.px3__tag{font-size:.58rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#0984e3;padding:2px 7px;border-radius:999px}
+.px3__desc{grid-area:desc;font-size:.8rem;color:#5b6675;line-height:1.4}
+.px3__price{grid-area:price;text-align:right;font-weight:800;font-size:1.2rem;color:#0a2540;letter-spacing:-.02em;line-height:1.05;display:grid;gap:1px;justify-items:end}
+.px3__row--promo .px3__price{color:#0984e3;font-size:1.4rem}
+.px3__was{font-size:.68rem;font-weight:600;color:#8a97a8;text-decoration:line-through;white-space:nowrap}
+.px3__foot{max-width:760px;margin:8px auto 0;font-size:.76rem;color:#5b6675;text-align:center;line-height:1.4}
+.price-tier__more{display:inline-block;margin-top:8px;font-size:.82rem;font-weight:700;color:#74b9ff;text-decoration:none;border-bottom:1px solid rgba(116,185,255,.45)}
+.price-tier__more:hover{color:#fff}
+a.cta-final__price{text-decoration:none}
+a.cta-final__price:hover{color:#fff}
+.osa-thesis__note a{color:inherit;font-weight:700}
+@media(max-width:600px){
+  .price-tier__more{display:none} /* la tabla esta justo debajo del hero */
+  .hero__card figcaption{display:none} /* el alt ya describe la foto; -40px */
+  .psg-strip__txt{font-size:.9rem;line-height:1.4}
+  .psg-strip__in{gap:10px}
+  .hero{padding-bottom:26px!important}
+  /* el bloque "compactacion movil 60+" anexado a bs-lite fija section{padding:30px!important}: hay que igualar el peso */
+  .px3{padding-top:14px!important;padding-bottom:10px!important}
+  .psg-strip{padding-top:12px!important;padding-bottom:12px!important}
+  .px3__tag{display:none} /* la fila ya va resaltada; el chip partia el nombre en dos lineas */
+}
+@media(min-width:768px){
+  .px3{padding:36px 0 30px}
+  .px3__title{font-size:1.5rem;margin-bottom:18px}
+  .px3__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;border-top:0}
+  .px3__row{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:18px;border:1px solid rgba(10,37,64,.1);border-radius:16px}
+  .px3__row--promo{border:1.5px solid rgba(9,132,227,.5);background:linear-gradient(160deg,rgba(9,132,227,.07),rgba(0,206,201,.05));border-radius:16px;padding-left:18px}
+  .px3__price{text-align:left;justify-items:start;font-size:1.6rem;order:-1}
+  .px3__row--promo .px3__price{font-size:1.8rem}
+  .px3__desc{font-size:.88rem}
 }
 </style>
 <style id="mv-movil">
@@ -1176,7 +1199,7 @@
 </style>
 </head>
 <body>
-<a class="alv-skip" href="#main">Skip to content</a>
+<a class="alv-skip" href="#main">Saltar al contenido</a>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG8Z6FKF" height="0" width="0" style="display:none;visibility:hidden" aria-hidden="true"></iframe></noscript>
 
 <!-- Trust legal oficial (idéntico al resto del sitio) -->
@@ -1190,7 +1213,6 @@
         <span class="tag"><i class="bi bi-stars"></i> Promoción</span>
         <span>Consulta + poligrafía con <strong>neumólogo egresado del INER</strong> <span class="price-old">$6,300 por separado</span> <span class="price-new">$5,000</span></span>
         <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" data-cta="promo-banner"><i class="bi bi-whatsapp"></i> Apartar</a>
-        <span class="promo-lang2" role="navigation" aria-label="Language"><a class="active" href="#" aria-current="true">ES</a><a href="/en/promociones/poligrafia-respiratoria/" hreflang="en">EN</a></span>
     </div>
 </div>
 
@@ -1202,6 +1224,9 @@
             <img src="/images/logo-cuadrado/alveos-logo-72.webp" alt="Logo Alveos" class="navbar-logo" width="36" height="36" decoding="async" style="border-radius:8px;object-fit:cover">
             <span class="brand-name">ALVEOS</span>
         </a>
+        <!-- 16-sep-2026: el selector ES|EN vivia en la banda de promocion; la banda se oculta (repetia el
+             $5,000 del h1) y el selector pasa aqui para no perder la ruta a la gemela /en/. -->
+        <span class="promo-lang2" role="navigation" aria-label="Language"><a class="active" href="#" aria-current="true">ES</a><a href="/en/promociones/poligrafia-respiratoria/" hreflang="en">EN</a></span>
         <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="navbar-cta d-inline-flex" data-cta="navbar-wa">
             <i class="bi bi-whatsapp me-2"></i> Pedir promoción
         </a>
@@ -1214,64 +1239,49 @@
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-lg-7 hero__content">
-                <!-- Badge con INER visible en el primer viewport en mobile y desktop -->
-                <div class="hero__badge"><span class="dot"></span> Consulta + poligrafía respiratoria · CDMX</div>
+                <!-- HERO LIMPIO 16-sep-2026 (el Dr., con captura del celular: "mucho texto ... ya no me gusta esa azul
+                     marino, degradado, busca algo mas limpio"). El DOM va en el orden final de lectura, para no
+                     depender de `order` en flex: regla de marca > eyebrow > h1 (lleva la cifra) > ancla tachada >
+                     una frase > boton > nota > enlace > credenciales en una linea. Lo que ya dijo otra parte de la
+                     pagina (bullets, cupo, nota de honestidad en movil, parrafo largo) queda en el DOM y se calla
+                     por CSS en el bloque lp-hero-limpio-20260916. -->
+                <span class="hero__rule" aria-hidden="true"></span>
+                <div class="hero__badge">Poligrafía respiratoria, CDMX</div>
                 <h1>Estudio de apnea del sueño en casa + consulta · <em>$5,000</em></h1>
-                <p class="hero__sub hero__sub--movil">Duermes una noche en tu cama con un equipo pequeño; un neumólogo del INER lee tu estudio y te da un plan.</p>
-<p class="hero__sub">¿Buscas una clínica del sueño en CDMX? Para la apnea casi nunca hace falta: te valora un neumólogo egresado del INER y él mismo interpreta tu estudio del sueño (poligrafía respiratoria). Duermes una noche en tu propia cama.</p>
-
-                <div class="price-ladder" role="region" aria-label="Opciones y precios">
+                <div class="price-ladder" role="region" aria-label="Precio del paquete">
                     <div class="price-tier price-tier--promo">
-                        <span class="price-tier__ribbon">Ahorras $1,300</span>
-                        <div class="price-tier__label"><i class="bi bi-hospital"></i> Paquete en consultorio · esta promo</div>
-                        <div class="price-tier__desc" style="margin-bottom:6px">Por <b>$500 más</b> que el estudio solo, tu consulta de primera vez va incluida: te sale en $500 en vez de $1,800.</div>
+                        <div class="price-tier__label"><i class="bi bi-hospital"></i> Paquete consulta + estudio</div>
+                        <div class="price-tier__desc" style="margin-bottom:6px">Tu consulta de primera vez va incluida: recoges el equipo en tu cita y duermes con él en tu casa.</div>
                         <div class="price-tier__row"><span class="price-tier__big">$5,000</span><span class="price-tier__was">$6,300 por separado</span></div>
+                        <p class="price-tier__movil"><s>$6,300 por separado</s></p>
+                        <a class="price-tier__more" href="#precios">Ver estudio solo y a domicilio</a>
                     </div>
-                    <details class="price-fine">
-                        <summary><i class="bi bi-chevron-down" aria-hidden="true"></i> Ver precios por separado y a domicilio</summary>
-                        <div class="price-tier price-tier--alacarte">
-                            <div class="price-tier__label">Si lo tomas por separado</div>
-                            <div class="price-tier__math"><span>Consulta de 1.ª vez <b>$1,800</b></span><span class="price-tier__eq">+</span><span>estudio <b>$4,500</b></span><span class="price-tier__eq">=</span><b>$6,300</b></div>
-                        </div>
-                        <div class="price-tier price-tier--home">
-                            <i class="bi bi-house-heart-fill" aria-hidden="true"></i>
-                            <div><div class="price-tier__label" style="margin-bottom:2px">¿Prefieres el estudio en tu casa?</div><div class="price-tier__desc">Estudio <span class="price-tier__amount">a domicilio $6,000</span> · consulta aparte.</div></div>
-                        </div>
-                    </details>
-                
-                        <div class="price-tier price-tier--next">
-                            <div class="price-tier__label"><i class="bi bi-clipboard2-check-fill"></i> Después: consulta de resultados · $1,500</div>
-                            <div class="price-tier__desc">Es la consulta donde el estudio se convierte en tratamiento: te explico tu IAH y tu severidad, y sales con un plan por escrito. Presencial o por <a href="/servicios/teleconsulta/">teleconsulta</a>, como te acomode.</div>
-                        </div>
-                    </div>
-                <div class="honesty-note">
-                    <i class="bi bi-hand-thumbs-up-fill" aria-hidden="true"></i>
-                    <span>Si al valorarte <b>no eres candidato</b> al estudio en casa, te lo digo antes de cobrarte el estudio. Sin sorpresas.</span>
                 </div>
-                <p class="hero__cupo" style="font-size:.8rem;color:rgba(255,255,255,.82);margin:6px 0 0">Cupo limitado: los equipos para el estudio en casa son contados cada semana.</p>
+                <p class="hero__sub hero__sub--movil">Duermes en tu cama; un neumólogo lee tu estudio y te da un plan.</p>
+<p class="hero__sub">¿Buscas una clínica del sueño en CDMX? Para la apnea casi nunca hace falta: te valora un neumólogo egresado del INER y él mismo interpreta tu estudio del sueño (poligrafía respiratoria). Duermes una noche en tu propia cama.</p>
 
                 <div class="hero__cta" style="margin-bottom:18px">
                     <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="hero-wa-top">
-                        <i class="bi bi-whatsapp"></i> Apartar mi estudio, $5,000
+                        <i class="bi bi-whatsapp"></i> Apartar mi estudio
                     </a>
+                    <p class="hero__nota">Atención previa cita, sujeta a disponibilidad.</p>
                     <a href="#agendaModal" class="btn-cal" data-cta="hero-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
                         <i class="bi bi-calendar-check"></i> Agendar cita
                     </a>
                 </div>
 
+                <!-- 17-sep-2026 (cierre): credenciales con el MISMO markup en las tres landings de sueno; el separador lo pone
+                     el CSS. "Sabado y domingo" y "Santa Coleta" ya estaban ocultos por CSS (viven en #ubicacion, en el CTA
+                     final y en el pie). La nota de honestidad pasa bajo la tabla de #precios: las hermanas no la llevan
+                     en el hero y aqui alargaba la columna. -->
+                <p class="hero__creds"><span>Egresado del INER</span><span>Neumólogo certificado</span><a href="https://g.page/r/CfXAZim2anDFEBI" target="_blank" rel="noopener noreferrer" data-cta="hero-google-rating">★ 5.0 en Google</a></p>
+                <p class="hero__cupo" style="font-size:.8rem;color:rgba(255,255,255,.82);margin:6px 0 0">Cupo limitado: los equipos para el estudio en casa son contados cada semana.</p>
                 <ul class="hero__bullets">
                     <li><i class="bi bi-house-heart-fill"></i><span>El estudio es en tu casa, una sola noche</span></li>
                     <li><i class="bi bi-box-seam"></i><span>Recoges el equipo en una sola visita</span></li>
                     <li><i class="bi bi-person-badge-fill"></i><span>Lectura personal por neumólogo egresado del INER</span></li>
                     <li><i class="bi bi-stopwatch-fill"></i><span>Reporte y plan en 48 horas</span></li>
                 </ul>
-                <div class="hero__creds">
-                    <span class="hero__cred"><i class="bi bi-mortarboard-fill"></i> Egresado del INER</span>
-                    <span class="hero__cred"><i class="bi bi-patch-check-fill"></i> Neumólogo Certificado</span>
-                    <a class="hero__cred" href="https://g.page/r/CfXAZim2anDFEBI" target="_blank" rel="noopener noreferrer" data-cta="hero-google-rating"><span class="stars">★</span> 5.0 en Google</a>
-                    <span class="hero__cred"><i class="bi bi-calendar-week-fill"></i> Tambi&eacute;n s&aacute;bado y domingo</span>
-                    <span class="hero__cred"><i class="bi bi-geo-alt-fill"></i> Hospital Santa Coleta · Benito Juárez</span>
-                </div>
             </div>
             <div class="col-lg-5">
                 <div class="hero__card">
@@ -1282,7 +1292,7 @@
                              width="640" height="480"
                              alt="Paciente durmiendo en su propia cama, junto a su pareja, con el equipo de poligrafía respiratoria: cánula nasal, banda torácica y oxímetro en el dedo. Estudio del sueño en casa."
                              style="width:100%;height:auto;display:block" fetchpriority="high" decoding="async">
-                        <figcaption style="font-size:.76rem;color:#8ffdec;padding:8px 12px 0;font-weight:600">Estudio del sueño en casa: equipo tipo III que registra tu respiración toda la noche.</figcaption>
+                        <figcaption style="font-size:.76rem;color:#8ffdec;padding:8px 12px 0;font-weight:600">Estudio del sueño en casa con equipo tipo III.</figcaption>
                     </figure>
                     <div class="subt">Lo que recibes</div>
                     <h3>Estudio + lectura + plan</h3>
@@ -1299,11 +1309,40 @@
 </section>
 
 
+<!-- 16-sep-2026: UNA tabla de precios con tres opciones. Antes la primera pantalla mostraba 4 cifras
+     distintas y la pagina 8; convertia 11.5% contra 35% la promo de consulta. Todo enlace "ver precios"
+     apunta aqui. Las cifras son las del panel del bot (estudio solo $4,500, a domicilio $6,000) y el
+     paquete con su ancla de marketing ($6,300 -> $5,000). -->
+<section class="px3" id="precios" aria-labelledby="px3-title">
+<div class="container">
+<h2 class="px3__title" id="px3-title">Tres formas de hacer tu estudio</h2>
+<div class="px3__grid">
+<div class="px3__row px3__row--promo">
+<span class="px3__name">Paquete con consulta <span class="px3__tag">Esta promoción</span></span>
+<span class="px3__price">$5,000<span class="px3__was">$6,300 por separado</span></span>
+<span class="px3__desc">Consulta de 1.ª vez, estudio en tu casa y lectura.</span>
+</div>
+<div class="px3__row">
+<span class="px3__name">Estudio solo</span>
+<span class="px3__price">$4,500</span>
+<span class="px3__desc">Si ya tuviste consulta: equipo, noche y lectura.</span>
+</div>
+<div class="px3__row">
+<span class="px3__name">A domicilio</span>
+<span class="px3__price">$6,000</span>
+<span class="px3__desc">Te llevamos el equipo a tu casa; consulta aparte.</span>
+</div>
+</div>
+<p class="px3__foot">Consulta de resultados aparte: $1,500, presencial o por teleconsulta.</p>
+<p class="px3__nota">Si al valorarte <b>no eres candidato</b> al estudio en casa, te lo digo antes de cobrarte el estudio. Sin sorpresas.</p>
+</div>
+</section>
+
 <!-- 12-sep-2026: respuesta directa a quien llega buscando polisomnografia -->
 <section class="psg-strip" aria-label="Polisomnografía a domicilio">
 <div class="container"><div class="psg-strip__in">
 <span class="psg-strip__ic" aria-hidden="true"><i class="bi bi-moon-stars-fill"></i></span>
-<p class="psg-strip__txt" style="margin:0"><b>¿Tu médico te pidió polisomnografía?</b> También la hacemos, a domicilio y con electroencefalograma: <b>$12,000</b> con esta promoción. Si no sabes cuál necesitas, <a href="/promociones/poligrafia-vs-polisomnografia/">compara los dos estudios</a>.</p>
+<p class="psg-strip__txt" style="margin:0"><b>¿Te pidieron polisomnografía?</b> También la hacemos en tu casa: <a href="/promociones/polisomnografia/">ver la polisomnografía a domicilio</a> o <a href="/promociones/poligrafia-vs-polisomnografia/">comparar los dos estudios</a>.</p>
 <a class="psg-strip__btn" href="https://wa.me/522224926718?text=Hola%2C%20quiero%20la%20promoci%C3%B3n%20de%20polisomnograf%C3%ADa%20a%20domicilio%20de%20%2412%2C000%20con%20el%20Dr.%20Lara%20%28alveos.mx%29." target="_blank" rel="noopener" data-cta="psg-strip-wa"><i class="bi bi-whatsapp"></i> Pedir polisomnografía</a>
 </div></div>
 </section>
@@ -1327,7 +1366,7 @@
                     </ul>
                     <p style="font-size:.97rem;color:var(--muted);margin-bottom:20px;line-height:1.6">El estudio es <strong style="color:var(--navy)">no invasivo</strong> y se hace en casa. Pueden agendarlo juntos en un solo mensaje.</p>
                     <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="btn-partner-wa" data-cta="partner-wa">
-                        <i class="bi bi-whatsapp"></i> Agendar el estudio de sueño, $5,000
+                        <i class="bi bi-whatsapp"></i> Agendar el estudio de sueño
                     </a>
                 </div>
                 <div class="col-lg-4 d-none d-lg-block">
@@ -1355,205 +1394,150 @@
             <p class="sb-lead-movil">Herramienta clínica validada. 8 preguntas de sí o no.</p>
         </div>
 
-        <!-- Perfiles tipicos. SOLO ESCRITORIO (los oculta el bloque lp-stopbang-tablero
-             en movil): sus cuatro mensajes son ya los renglones S, T, O y P del tablero
-             de abajo, donde ademas se pueden contestar. -->
-        <div class="who-grid" style="margin-bottom:26px">
-            <div class="who-card"><div class="who-card__icon"><i class="bi bi-volume-up-fill"></i></div><h3>Roncas fuerte</h3><p>"Me lo dice mi pareja"</p></div>
-            <div class="who-card"><div class="who-card__icon"><i class="bi bi-pause-circle-fill"></i></div><h3>Vieron pausas</h3><p>Te grabaron sin respirar</p></div>
-            <div class="who-card"><div class="who-card__icon"><i class="bi bi-heart-pulse-fill"></i></div><h3>Presión alta</h3><p>Que no baja con pastillas</p></div>
-            <div class="who-card"><div class="who-card__icon"><i class="bi bi-car-front-fill"></i></div><h3>Sueño al manejar</h3><p>O en juntas, comidas, TV</p></div>
-        </div>
+        <!-- 17-sep-2026 (pulido): fuera las cuatro fichas de escritorio (Roncas fuerte, Vieron pausas, Presion alta,
+             Sueno al manejar). Repetian los renglones S, O, P y T del tablero de abajo; en movil ya estaban ocultas. -->
 
-        <!-- ===================== TABLERO STOP-BANG =====================
-             CONTRATO CON EL SCRIPT DE PUNTUACION (nada de esto se toca):
-               - la delegacion de clicks vive en #sb-quiz, asi que los 16 .sb-btn
-                 siguen DENTRO de #sb-quiz;
-               - data-q, data-v y aria-pressed en cada boton;
-               - los id sbq-s .. sbq-g y sbq-*-label, sb-btn-si-b, sb-btn-no-b,
-                 sb-progress-bar, sb-progress-label, sb-bmi-panel, sb-peso, sb-talla,
-                 sb-bmi-result;
-               - las clases .sb-question, .sb-btns, .sb-btn, .sb-letter, .sb-category,
-                 .sb-question__text, .sb-progress, .sb-bmi-toggle, .sb-bmi-panel,
-                 .sb-bmi-calc-btn, .sb-bmi-result.
-             LO QUE SE VE EN CADA RENGLON es una proposicion contestable con Si/No y con
-             su umbral ("Cuello 40 cm o más"), no una categoria suelta ("Circunferencia
-             de cuello") que nadie puede contestar. La pregunta clinica INTEGRA esta en
-             el mismo renglon, colapsada, y se abre con un toque a tamano de lectura.
-             ============================================================ -->
-        <!-- Sin JavaScript el acordeon no puede abrirse: entonces las 8 preguntas
-             clinicas se muestran completas de salida. La seccion queda alta, pero
-             NUNCA queda texto clinico inalcanzable. -->
-        <noscript><style>.sb-board .sb-row__more{height:auto!important}.sb-row__chev{display:none}</style></noscript>
-
+        <!-- ===================== TABLERO STOP-BANG (pase premium 16-sep-2026) =====================
+             CONTRATO CON EL SCRIPT DE PUNTUACION (intacto): la delegacion de clicks vive en #sb-quiz y los
+             16 .sb-btn siguen DENTRO de #sb-quiz con data-q, data-v y aria-pressed; se conservan los id
+             sbq-s..sbq-g, sbq-*-label, sb-btn-si-b, sb-btn-no-b, sb-progress-bar, sb-progress-label, sb-count,
+             sb-bmi-panel, sb-peso, sb-talla, sb-bmi-result y sb-result*, y las clases .sb-question, .sb-btns,
+             .sb-btn, .sb-letter, .sb-category, .sb-question__text, .sb-progress, .sb-bmi-toggle, .sb-bmi-panel,
+             .sb-bmi-calc-btn, .sb-bmi-result.
+             FALLO QUE MOTIVO EL REDISENO (el Dr., 16-sep, con captura del celular): letras en circulo, barra
+             oscura "Toca cada pregunta", chevrones, acordeon y pares Si/No apretados: "el diseno de la escala
+             esta horrible". AHORA: ocho renglones con la pregunta completa en lenguaje de paciente, separados
+             por reglas finas, un solo selector segmentado Si | No por renglon y una linea fina de progreso.
+             .sb-letter y .sb-category siguen en el DOM (el script de tablero pulsa .sb-letter) sin mostrarse.
+             ============================================================================================ -->
         <div class="sb-quiz sb-board" id="sb-quiz" role="group" aria-label="Preguntas del cuestionario STOP-BANG">
 
             <div class="sb-board__head">
-                <span class="sb-board__hint"><i class="bi bi-hand-index-thumb" aria-hidden="true"></i>Toca cada pregunta para leerla completa</span>
-                <span class="sb-board__count" aria-hidden="true"><b id="sb-count">0</b> / 8</span>
-                <!-- El conteo narrado sigue vivo para lector de pantalla; el contador de
-                     al lado ya lo dice con los ojos, por eso deja de gastar un renglon. -->
+                <span class="sb-board__count"><b id="sb-count">0</b> de 8</span>
                 <div class="sb-progress__label sb-sr" id="sb-progress-label" aria-live="polite">0 de 8 preguntas respondidas</div>
                 <div class="sb-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="8" aria-label="Progreso del cuestionario">
                     <div class="sb-progress__bar" id="sb-progress-bar"></div>
                 </div>
             </div>
 
-            <!-- S, Snoring / Ronquido -->
             <div class="sb-question" id="sbq-s" data-qid="s">
-                <button type="button" class="sb-row__ask" aria-expanded="false" aria-controls="sbq-s-more">
-                    <span class="sb-letter" aria-hidden="true">S</span>
-                    <span class="sb-category">Roncas fuerte</span>
-                    <i class="bi bi-chevron-down sb-row__chev" aria-hidden="true"></i>
-                </button>
+                <span class="sb-letter" aria-hidden="true">S</span>
+                <span class="sb-category">Roncas fuerte</span>
+                <p class="sb-question__text" id="sbq-s-label">¿Roncas fuerte, tanto que se oye tras una puerta cerrada?</p>
                 <div class="sb-btns" role="group" aria-labelledby="sbq-s-label">
                     <button class="sb-btn" type="button" data-q="s" data-v="1" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>Sí</span></button>
                     <button class="sb-btn" type="button" data-q="s" data-v="0" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>No</span></button>
                 </div>
-                <div class="sb-row__more" id="sbq-s-more"><div>
-                    <p class="sb-question__text" id="sbq-s-label">¿Roncas fuerte, más fuerte que al hablar, o lo suficiente para escucharse a través de una puerta cerrada?</p>
-                </div></div>
             </div>
-
-            <!-- T, Tired / Cansancio -->
             <div class="sb-question" id="sbq-t" data-qid="t">
-                <button type="button" class="sb-row__ask" aria-expanded="false" aria-controls="sbq-t-more">
-                    <span class="sb-letter" aria-hidden="true">T</span>
-                    <span class="sb-category">Cansancio de día</span>
-                    <i class="bi bi-chevron-down sb-row__chev" aria-hidden="true"></i>
-                </button>
+                <span class="sb-letter" aria-hidden="true">T</span>
+                <span class="sb-category">Cansancio de día</span>
+                <p class="sb-question__text" id="sbq-t-label">¿De día andas cansado o con sueño, aunque hayas dormido?</p>
                 <div class="sb-btns" role="group" aria-labelledby="sbq-t-label">
                     <button class="sb-btn" type="button" data-q="t" data-v="1" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>Sí</span></button>
                     <button class="sb-btn" type="button" data-q="t" data-v="0" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>No</span></button>
                 </div>
-                <div class="sb-row__more" id="sbq-t-more"><div>
-                    <p class="sb-question__text" id="sbq-t-label">¿Te sientes cansado, fatigado o con sueño durante el día con frecuencia, incluso habiendo dormido?</p>
-                </div></div>
             </div>
-
-            <!-- O, Observed / Pausas observadas -->
             <div class="sb-question" id="sbq-o" data-qid="o">
-                <button type="button" class="sb-row__ask" aria-expanded="false" aria-controls="sbq-o-more">
-                    <span class="sb-letter" aria-hidden="true">O</span>
-                    <span class="sb-category">Pausas al dormir</span>
-                    <i class="bi bi-chevron-down sb-row__chev" aria-hidden="true"></i>
-                </button>
+                <span class="sb-letter" aria-hidden="true">O</span>
+                <span class="sb-category">Pausas al dormir</span>
+                <p class="sb-question__text" id="sbq-o-label">¿Te han visto dejar de respirar o atragantarte dormido?</p>
                 <div class="sb-btns" role="group" aria-labelledby="sbq-o-label">
                     <button class="sb-btn" type="button" data-q="o" data-v="1" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>Sí</span></button>
                     <button class="sb-btn" type="button" data-q="o" data-v="0" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>No</span></button>
                 </div>
-                <div class="sb-row__more" id="sbq-o-more"><div>
-                    <p class="sb-question__text" id="sbq-o-label">¿Alguien ha notado que dejas de respirar, o que te atragantas, mientras duermes?</p>
-                </div></div>
             </div>
-
-            <!-- P, Pressure / Presion arterial -->
             <div class="sb-question" id="sbq-p" data-qid="p">
-                <button type="button" class="sb-row__ask" aria-expanded="false" aria-controls="sbq-p-more">
-                    <span class="sb-letter" aria-hidden="true">P</span>
-                    <span class="sb-category">Presión alta</span>
-                    <i class="bi bi-chevron-down sb-row__chev" aria-hidden="true"></i>
-                </button>
+                <span class="sb-letter" aria-hidden="true">P</span>
+                <span class="sb-category">Presión alta</span>
+                <p class="sb-question__text" id="sbq-p-label">¿Tienes presión alta o tomas medicamento para controlarla?</p>
                 <div class="sb-btns" role="group" aria-labelledby="sbq-p-label">
                     <button class="sb-btn" type="button" data-q="p" data-v="1" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>Sí</span></button>
                     <button class="sb-btn" type="button" data-q="p" data-v="0" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>No</span></button>
                 </div>
-                <div class="sb-row__more" id="sbq-p-more"><div>
-                    <p class="sb-question__text" id="sbq-p-label">¿Tienes presión arterial alta o estás siendo tratado con medicamentos para controlarla?</p>
-                </div></div>
             </div>
-
-            <!-- B, BMI / Indice de masa corporal. Unico renglon con una tercera pieza:
-                 la calculadora, que se despliega con el mismo toque del renglon y
-                 conserva intactas las funciones sbToggleBmi() y sbCalcBMI(). -->
             <div class="sb-question" id="sbq-b" data-qid="b">
-                <button type="button" class="sb-row__ask" aria-expanded="false" aria-controls="sbq-b-more">
-                    <span class="sb-letter" aria-hidden="true">B</span>
-                    <span class="sb-category">IMC mayor a 35</span>
-                    <i class="bi bi-chevron-down sb-row__chev" aria-hidden="true"></i>
-                </button>
+                <span class="sb-letter" aria-hidden="true">B</span>
+                <span class="sb-category">IMC mayor a 35</span>
+                <p class="sb-question__text" id="sbq-b-label">¿Tu índice de masa corporal (IMC) es mayor de 35?</p>
                 <div class="sb-btns" role="group" aria-labelledby="sbq-b-label">
                     <button class="sb-btn" type="button" data-q="b" data-v="1" id="sb-btn-si-b" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>Sí</span></button>
                     <button class="sb-btn" type="button" data-q="b" data-v="0" id="sb-btn-no-b" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>No</span></button>
                 </div>
-                <div class="sb-row__more" id="sbq-b-more"><div>
-                    <p class="sb-question__text" id="sbq-b-label">¿Tu índice de masa corporal (IMC) es mayor a 35?</p>
-                    <button type="button" class="sb-bmi-toggle" onclick="sbToggleBmi()" aria-expanded="false" aria-controls="sb-bmi-panel">
-                        <i class="bi bi-calculator" aria-hidden="true"></i> Calcular mi IMC (opcional)
-                    </button>
-                    <div class="sb-bmi-panel" id="sb-bmi-panel" role="region" aria-label="Calculadora de IMC">
-                        <div class="sb-bmi-row">
-                            <input type="number" id="sb-peso" placeholder="Peso (kg)" min="30" max="300" inputmode="decimal" aria-label="Peso en kilogramos">
-                            <input type="number" id="sb-talla" placeholder="Estatura (m)" min="1.0" max="2.5" step="0.01" inputmode="decimal" aria-label="Estatura en metros, por ejemplo 1.70">
-                            <button type="button" class="sb-bmi-calc-btn" onclick="sbCalcBMI()">Calcular mi IMC</button>
-                            <span class="sb-bmi-result" id="sb-bmi-result" aria-live="polite"></span>
-                        </div>
+                <button type="button" class="sb-bmi-toggle" onclick="sbToggleBmi()" aria-expanded="false" aria-controls="sb-bmi-panel"><i class="bi bi-calculator" aria-hidden="true"></i> <span>Calcular mi IMC</span></button>
+                <div class="sb-bmi-panel" id="sb-bmi-panel" role="region" aria-label="Calculadora de IMC">
+                    <div class="sb-bmi-row">
+                        <input type="number" id="sb-peso" placeholder="Peso (kg)" min="30" max="300" inputmode="decimal" aria-label="Peso en kilogramos">
+                        <input type="number" id="sb-talla" placeholder="Estatura (m)" min="1.0" max="2.5" step="0.01" inputmode="decimal" aria-label="Estatura en metros, por ejemplo 1.70">
+                        <button type="button" class="sb-bmi-calc-btn" onclick="sbCalcBMI()">Calcular</button>
+                        <span class="sb-bmi-result" id="sb-bmi-result" aria-live="polite"></span>
                     </div>
-                </div></div>
+                </div>
             </div>
-
-            <!-- A, Age / Edad -->
             <div class="sb-question" id="sbq-a" data-qid="a">
-                <button type="button" class="sb-row__ask" aria-expanded="false" aria-controls="sbq-a-more">
-                    <span class="sb-letter" aria-hidden="true">A</span>
-                    <span class="sb-category">Más de 50 años</span>
-                    <i class="bi bi-chevron-down sb-row__chev" aria-hidden="true"></i>
-                </button>
+                <span class="sb-letter" aria-hidden="true">A</span>
+                <span class="sb-category">Más de 50 años</span>
+                <p class="sb-question__text" id="sbq-a-label">¿Tienes más de 50 años?</p>
                 <div class="sb-btns" role="group" aria-labelledby="sbq-a-label">
                     <button class="sb-btn" type="button" data-q="a" data-v="1" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>Sí</span></button>
                     <button class="sb-btn" type="button" data-q="a" data-v="0" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>No</span></button>
                 </div>
-                <div class="sb-row__more" id="sbq-a-more"><div>
-                    <p class="sb-question__text" id="sbq-a-label">¿Tienes más de 50 años?</p>
-                </div></div>
             </div>
-
-            <!-- N, Neck / Circunferencia de cuello -->
             <div class="sb-question" id="sbq-n" data-qid="n">
-                <button type="button" class="sb-row__ask" aria-expanded="false" aria-controls="sbq-n-more">
-                    <span class="sb-letter" aria-hidden="true">N</span>
-                    <span class="sb-category">Cuello 40 cm o más</span>
-                    <i class="bi bi-chevron-down sb-row__chev" aria-hidden="true"></i>
-                </button>
+                <span class="sb-letter" aria-hidden="true">N</span>
+                <span class="sb-category">Cuello 40 cm o más</span>
+                <p class="sb-question__text" id="sbq-n-label">¿Tu cuello mide más de 40 cm? <small class="sb-question__nota">Talla de camisa 16 o mayor</small></p>
                 <div class="sb-btns" role="group" aria-labelledby="sbq-n-label">
                     <button class="sb-btn" type="button" data-q="n" data-v="1" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>Sí</span></button>
                     <button class="sb-btn" type="button" data-q="n" data-v="0" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>No</span></button>
                 </div>
-                <div class="sb-row__more" id="sbq-n-more"><div>
-                    <p class="sb-question__text" id="sbq-n-label">¿La circunferencia de tu cuello es mayor a 40 cm? (Aproximadamente si usas cuello de camisa 16 pulgadas o mayor)</p>
-                </div></div>
             </div>
-
-            <!-- G, Gender / Sexo biologico -->
             <div class="sb-question" id="sbq-g" data-qid="g">
-                <button type="button" class="sb-row__ask" aria-expanded="false" aria-controls="sbq-g-more">
-                    <span class="sb-letter" aria-hidden="true">G</span>
-                    <span class="sb-category">Soy hombre</span>
-                    <i class="bi bi-chevron-down sb-row__chev" aria-hidden="true"></i>
-                </button>
+                <span class="sb-letter" aria-hidden="true">G</span>
+                <span class="sb-category">Soy hombre</span>
+                <p class="sb-question__text" id="sbq-g-label">¿Eres hombre (sexo masculino al nacer)?</p>
                 <div class="sb-btns" role="group" aria-labelledby="sbq-g-label">
                     <button class="sb-btn" type="button" data-q="g" data-v="1" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>Sí</span></button>
                     <button class="sb-btn" type="button" data-q="g" data-v="0" aria-pressed="false"><i class="bi bi-check-lg" aria-hidden="true"></i><span>No</span></button>
                 </div>
-                <div class="sb-row__more" id="sbq-g-more"><div>
-                    <p class="sb-question__text" id="sbq-g-label">¿Eres hombre (sexo masculino al nacer)?</p>
-                </div></div>
             </div>
         </div><!-- /.sb-quiz -->
 
-        <!-- Resultado (se muestra al responder las 8 preguntas) -->
+        <!-- Resultado (se muestra al responder las 8 preguntas). Recuadro estilo-william #16: rotulo chico,
+             cifra grande en el color del semaforo, nivel a la derecha, una frase y el boton. El icono queda en
+             el DOM porque el script le escribe, pero no se muestra (sin emojis en el contenido). -->
+        <!-- 16-sep-2026 (feedback del Dr. sobre la tarjeta de recomendacion: "mucho texto, no esta justificado o al
+             menos con formato y jerarquia visual"): el parrafo corrido pasa a titulo + una frase + tres renglones
+             rotulo | dato (estilo-william #15/#16). El script de puntuacion no cambia: sigue escribiendo nivel,
+             cifra y la frase (acortada) en los mismos ids; el titulo y los renglones de cada variante viven aqui
+             y se muestran por CSS segun la clase sb-result--low/mid/high que ese script ya pone.
+             bajo (0-2) = mejor una consulta; intermedio y alto (3-8) = apunta a la poligrafia. -->
         <div class="sb-result" id="sb-result" aria-live="assertive" role="region" aria-label="Resultado del cuestionario">
-            <div class="sb-result__icon" id="sb-result-icon">&#128277;</div>
-            <div class="sb-result__level" id="sb-result-level">Riesgo intermedio</div>
-            <div class="sb-result__score" id="sb-result-score">4 de 8 factores presentes</div>
-            <p class="sb-result__message" id="sb-result-message"></p>
-            <div class="sb-result__disclaimer">
-                Este cuestionario es orientativo y no reemplaza la evaluación médica. Solo un neumólogo puede establecer un diagnóstico de apnea del sueño.
+            <div class="sb-result__icon" id="sb-result-icon" aria-hidden="true"></div>
+            <div class="sb-result__top">
+                <div class="sb-result__main">
+                    <span class="sb-result__kicker">Tu resultado</span>
+                    <div class="sb-result__score" id="sb-result-score">0 de 8 factores de riesgo presentes</div>
+                </div>
+                <div class="sb-result__level" id="sb-result-level">Riesgo intermedio</div>
             </div>
+            <h3 class="sb-result__title sb-result__plan sb-result__plan--consulta">Mejor una consulta primero</h3>
+            <h3 class="sb-result__title sb-result__plan sb-result__plan--poli">Tu caso apunta a la poligrafía</h3>
+            <p class="sb-result__message" id="sb-result-message"></p>
+            <ul class="sb-result__rows sb-result__plan sb-result__plan--consulta" aria-label="Qué sigue">
+                <li><span class="sb-result__k">Por qué</span><span class="sb-result__v">Con pocas señales conviene valorar antes de pedir un estudio</span></li>
+                <li><span class="sb-result__k">Qué pasa en consulta</span><span class="sb-result__v">Exploración y, si hace falta, se indica el estudio</span></li>
+                <li><span class="sb-result__k">Siguiente paso</span><span class="sb-result__v">Consulta de valoración</span></li>
+            </ul>
+            <ul class="sb-result__rows sb-result__plan sb-result__plan--poli" aria-label="Qué sigue">
+                <li><span class="sb-result__k">Qué mide</span><span class="sb-result__v">Tu respiración toda la noche</span></li>
+                <li><span class="sb-result__k">Dónde se hace</span><span class="sb-result__v">En tu cama, con el equipo que recoges en consulta</span></li>
+                <li><span class="sb-result__k">Siguiente paso</span><span class="sb-result__v">Consulta + estudio, $5,000</span></li>
+            </ul>
             <a href="#" class="sb-result__cta" id="sb-result-cta"  target="_blank" rel="noopener noreferrer" data-cta="stopbang-wa">
                 <i class="bi bi-whatsapp"></i> Hablar con el Dr. Lara
             </a>
-            <br>
+            <div class="sb-result__disclaimer">Orientativo: no sustituye la valoración médica. Solo un neumólogo puede establecer el diagnóstico de apnea del sueño.</div>
             <button type="button" class="sb-reset-btn" onclick="sbReset()">Reiniciar cuestionario</button>
         </div>
     </div>
@@ -1570,64 +1554,25 @@
         <div class="block__head">
             <span class="block__kicker">Por qué vale la pena hacértelo</span>
             <h2 class="block__title">Por lo que <em>está en juego cada noche</em></h2>
-            <p class="block__lead">Sin tratar, la apnea se asocia con:</p>
-<div class="cpx-chips">
-<span class="cpx-chip"><i class="fas fa-heart-pulse" aria-hidden="true"></i> Presión alta difícil de controlar</span>
-<span class="cpx-chip"><i class="fas fa-droplet" aria-hidden="true"></i> Diabetes tipo 2</span>
-<span class="cpx-chip"><i class="fas fa-wave-square" aria-hidden="true"></i> Fibrilación auricular</span>
-<span class="cpx-chip"><i class="fas fa-heart-crack" aria-hidden="true"></i> Infarto</span>
-<span class="cpx-chip"><i class="fas fa-brain" aria-hidden="true"></i> Evento vascular cerebral</span>
-<span class="cpx-chip"><i class="fas fa-car-burst" aria-hidden="true"></i> Accidentes por sueño al volante</span>
-</div>
-<p class="block__lead" style="margin-top:14px">Cuando se confirma y se atiende, esto es lo que se ha estudiado:</p>
+            <p class="block__lead">Sin tratarla: presión alta, diabetes, arritmias, infarto, embolia y accidentes al volante.</p>
         </div>
-        <div class="osa-grid">
-            <aside class="osa-thesis">
-                <div class="osa-thesis__ic"><i class="bi bi-clipboard2-pulse-fill"></i></div>
-                <h3>Todo empieza por un dato: si la tienes y qué tan grave</h3>
-                <p>Eso es lo que te dice este estudio, y con ese dato el Dr. Lara arma tu tratamiento. <strong>Con la verdad por delante:</strong> el tratamiento no borra todo el riesgo, pero atenderla a tiempo sí está en tus manos.</p>
-                <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="osa-thesis__cta" data-cta="porque-wa"><i class="bi bi-whatsapp"></i> Dar el primer paso, apartar mi estudio $5,000</a>
-                <p class="osa-thesis__note"><i class="bi bi-shield-fill-check" aria-hidden="true"></i> Paso sencillo y no invasivo. La valoración es en consulta con tu neumólogo. ¿Prefieres el estudio en tu casa? A domicilio $6,000, consulta aparte.</p>
-            </aside>
-            <ul class="osa-list">
-                <li class="osa-item">
-                    <span class="osa-item__ic" aria-hidden="true"><i class="bi bi-activity"></i></span>
-                    <div>
-                        <h4>Presión arterial más controlada</h4>
-                        <p>Sobre todo la difícil de controlar con varios medicamentos.</p>
-                    </div>
-                </li>
-                <li class="osa-item">
-                    <span class="osa-item__ic" aria-hidden="true"><i class="bi bi-lightning-charge-fill"></i></span>
-                    <div>
-                        <h4>Menos somnolencia, desde las primeras noches</h4>
-                        <p>Para volver a despertar con la cabeza despejada.</p>
-                    </div>
-                </li>
-                <li class="osa-item">
-                    <span class="osa-item__ic" aria-hidden="true"><i class="bi bi-heart-pulse-fill"></i></span>
-                    <div>
-                        <h4>Menor riesgo cardiovascular estudiado</h4>
-                        <p>En apnea severa tratada, el riesgo se acerca al de quien no la tiene.</p>
-                    </div>
-                </li>
-                <li class="osa-item">
-                    <span class="osa-item__ic" aria-hidden="true"><i class="bi bi-heart-fill"></i></span>
-                    <div>
-                        <h4>Menos arritmias</h4>
-                        <p>Menos fibrilación auricular.</p>
-                    </div>
-                </li>
-                <li class="osa-item">
-                    <span class="osa-item__ic" aria-hidden="true"><i class="bi bi-car-front-fill"></i></span>
-                    <div>
-                        <h4>Menos accidentes al volante</h4>
-                        <p>La somnolencia y los microsueños suelen disminuir.</p>
-                    </div>
-                </li>
+        <!-- 16-sep-2026: la tesis, las 6 fichas de riesgo y el carrusel de 5 tarjetas (1.95 pantallas) pasan a una
+             frase y cinco renglones rotulo | dato con regla fina (estilo-william #15). Mismo texto clinico. -->
+        <div class="enj">
+            <p class="enj__lead">Cuando se confirma y se atiende, esto es lo que se ha estudiado:</p>
+            <ul class="enj__list">
+                <li><span class="enj__k">Presión arterial</span><span class="enj__v">Más controlada, sobre todo la que no cede con varios medicamentos.</span></li>
+                <li><span class="enj__k">Somnolencia</span><span class="enj__v">Menos desde las primeras noches: amaneces despejado.</span></li>
+                <li><span class="enj__k">Riesgo cardiovascular</span><span class="enj__v">Menor y estudiado: en apnea severa tratada se acerca al de quien no la tiene.</span></li>
+                <li><span class="enj__k">Arritmias</span><span class="enj__v">Menos fibrilación auricular.</span></li>
+                <li><span class="enj__k">Accidentes al volante</span><span class="enj__v">Menos: la somnolencia y los microsueños suelen disminuir.</span></li>
             </ul>
+            <p class="enj__thesis">El tratamiento <b>no borra todo el riesgo</b>, pero atenderla a tiempo sí está en tus manos.</p>
+            <div class="enj__actions">
+                <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="btn-wa enj__cta" data-cta="porque-wa"><i class="bi bi-whatsapp"></i> Apartar mi estudio</a>
+            </div>
+            <p class="enj__more">Más a fondo, enfermedad por enfermedad: <a href="/enfermedades/apnea-del-sueno/" data-cta="osa-apnea-link">página de apnea del sueño</a>.</p>
         </div>
-        <p class="osa-more"><i class="bi bi-book-half" aria-hidden="true"></i> ¿Quieres entender a fondo por qué conviene atenderla, enfermedad por enfermedad? <a href="/enfermedades/apnea-del-sueno/" data-cta="osa-apnea-link">Léelo en la página de apnea del sueño</a>.</p>
     </div>
 </section>
 
@@ -1637,97 +1582,51 @@
         <div class="block__head">
             <span class="block__kicker">Ubícate en 30 segundos</span>
             <h2 class="block__title">¿Es este el estudio <em>que necesitas?</em></h2>
-            <p class="block__lead">Muchos llegan pidiendo polisomnografía cuando les basta el estudio en casa. Ubícate rápido aquí, para no gastar de más.</p>
+            <p class="block__lead">Muchos piden polisomnografía cuando les basta el estudio en casa. Ubícate aquí, para no gastar de más.</p>
         </div>
-
-        <!-- Carrusel orbital: las dos rutas viajan sobre una misma orbita y el
-             dedo las arrastra por el circulo. Sin JS quedan apiladas.
-             La foto de la cama salio de la Ruta A a proposito: ya vive en el
-             hero, y el carrusel toma su altura de la tarjeta mas alta. -->
-        <div class="orient-deck" id="orientDeck">
-            <div class="orient-deck__stage" id="orientStage">
-                <div class="orient-carousel" id="orientCarousel">
-                    <!-- RUTA A · protagonista -->
-                    <article class="orient-route orient-route--a" id="orient-a">
-                        <span class="orient-route__badge"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> La mayoría</span>
-                        <div class="orient-route__head">
-                            <span class="orient-route__ic" aria-hidden="true"><i class="bi bi-house-heart-fill"></i></span>
-                            <div>
-                                <div class="orient-route__rt">Ruta A</div>
-                                <h3 class="orient-route__title">Poligrafía respiratoria en casa <span style="font-weight:700;color:var(--electric)">(este estudio)</span></h3>
-                            </div>
-                        </div>
-                        <p class="orient-route__lead">Es tu ruta si eres adulto, con señales claras de apnea y <b>sin</b> enfermedad grave del corazón o el pulmón. Es el perfil <b>más común</b>, y la AASM respalda el estudio en casa para diagnosticarlo.</p>
-                        <ul class="orient-check">
-                            <li><i class="bi bi-check-lg" aria-hidden="true"></i><span>Roncas fuerte.</span></li>
-                            <li><i class="bi bi-check-lg" aria-hidden="true"></i><span>Te han visto <b>dejar de respirar</b> mientras duermes.</span></li>
-                            <li><i class="bi bi-check-lg" aria-hidden="true"></i><span>Amaneces cansado o te gana el sueño de día.</span></li>
-                            <li><i class="bi bi-check-lg" aria-hidden="true"></i><span>No tienes una enfermedad importante del corazón ni del pulmón.</span></li>
-                        </ul>
-                        <div class="orient-seals">
-                            <span class="orient-seal"><i class="bi bi-house-door-fill" aria-hidden="true"></i> Duermes en tu cama</span>
-                            <span class="orient-seal"><i class="bi bi-clipboard2-pulse-fill" aria-hidden="true"></i> Lo interpreta el Dr. Lara</span>
-                            <span class="orient-seal"><i class="bi bi-shield-check" aria-hidden="true"></i> Sin agujas</span>
-                        </div>
-                    </article>
-
-                    <!-- RUTA B · excepción (sobria) -->
-                    <article class="orient-route orient-route--b" id="orient-b">
-                        <span class="orient-route__badge"><i class="bi bi-signpost-2-fill" aria-hidden="true"></i> Casos concretos</span>
-                        <div class="orient-route__head">
-                            <span class="orient-route__ic" aria-hidden="true"><i class="bi bi-hospital"></i></span>
-                            <div>
-                                <div class="orient-route__rt">Ruta B</div>
-                                <h3 class="orient-route__title">Polisomnografía completa <span style="font-weight:700;color:#5a6b7d">(también a domicilio)</span></h3>
-                            </div>
-                        </div>
-                        <p class="orient-route__lead">Conviene el laboratorio, con sensores del cerebro, si algo de esto es tu caso:</p>
-                        <ul class="orient-check">
-                            <li><i class="bi bi-dot" aria-hidden="true"></i><span>Enfermedad grave de corazón, pulmón o neuromuscular.</span></li>
-                            <li><i class="bi bi-dot" aria-hidden="true"></i><span><b>Hipoventilación por obesidad</b>, opioides crónicos, o infarto o embolia previos.</span></li>
-                            <li><i class="bi bi-dot" aria-hidden="true"></i><span>Sospecha de apnea central, piernas inquietas, narcolepsia o insomnio grave.</span></li>
-                            <li><i class="bi bi-dot" aria-hidden="true"></i><span>Poligrafía en casa normal pero con síntomas que siguen.</span></li>
-                        </ul>
-                        <div class="orient-seals orient-seals--b">
-                            <span class="orient-seal"><i class="bi bi-signpost-split-fill" aria-hidden="true"></i> Te digo a dónde ir</span>
-                        </div>
-                    </article>
-                </div>
-                <div class="orient-deck__floor" aria-hidden="true"></div>
+        <!-- 16-sep-2026: el carrusel orbital de dos rutas + tarjeta de confiabilidad (3.02 pantallas) pasa a
+             pastillas + un solo panel vivo (patron d9 aprobado) y una ficha rotulo | dato. Las dos rutas
+             siguen completas en el DOM; solo una se muestra. El script del carrusel queda inerte (no encuentra
+             #orientStage) y no se toca. -->
+        <div class="qe" id="qe">
+            <div class="qe__tabs" role="tablist" aria-label="Las dos rutas" data-lp-tabs>
+                <button type="button" class="qe__tab" role="tab" id="qe-tab-a" aria-selected="true" aria-controls="qe-a"><b>Ruta A</b>Poligrafía en casa</button>
+                <button type="button" class="qe__tab" role="tab" id="qe-tab-b" aria-selected="false" aria-controls="qe-b" tabindex="-1"><b>Ruta B</b>Polisomnografía</button>
             </div>
-            <div class="orient-deck__nav" id="orientNav" role="group" aria-label="Elegir ruta">
-                <button type="button" class="orient-deck__arrow" id="orientPrev" aria-label="Ver la ruta anterior"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
-                <button type="button" class="orient-deck__dot" data-ruta="a" aria-selected="true" aria-controls="orient-a"><i class="bi bi-house-heart-fill" aria-hidden="true"></i> Ruta A</button>
-                <button type="button" class="orient-deck__dot" data-ruta="b" aria-selected="false" aria-controls="orient-b"><i class="bi bi-hospital-fill" aria-hidden="true"></i> Ruta B</button>
-                <button type="button" class="orient-deck__arrow" id="orientNext" aria-label="Ver la ruta siguiente"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+            <div class="qe__panel is-on" id="qe-a" role="tabpanel" aria-labelledby="qe-tab-a">
+                <p class="qe__lead">Es la ruta de la mayoría: adulto con señales claras de apnea y <b>sin</b> enfermedad grave del corazón o el pulmón.</p>
+                <ul class="qe__list">
+                    <li>Roncas fuerte.</li>
+                    <li>Te han visto <b>dejar de respirar</b> mientras duermes.</li>
+                    <li>Amaneces cansado o te gana el sueño de día.</li>
+                    <li>No tienes una enfermedad importante del corazón ni del pulmón.</li>
+                </ul>
+                <p class="qe__seals">Duermes en tu cama <span aria-hidden="true">|</span> Lo interpreta el Dr. Lara <span aria-hidden="true">|</span> Sin agujas</p>
             </div>
-            <p class="orient-deck__hint" id="orientHint">Desliza para comparar las dos rutas.</p>
-            <p class="orient-aside"><i class="bi bi-info-circle-fill" aria-hidden="true"></i> <span>Si tu caso es el de la Ruta B <b>te lo digo de frente</b>: la <a href="/servicios/polisomnografia/">polisomnografía</a> también se hace aquí, a domicilio, y te valoro para definir cuál te toca.</span></p>
-        </div>
-
-        <!-- Confiabilidad: la cifra dentro de la frase que la matiza, y la
-             fuente al pie. Mismo patron que la pagina de servicio. -->
-        <div class="trust-card">
-            <p class="trust-claim"><b>84-91%<small>de exactitud</small></b> <span>cuando ya hay sospecha clara de apnea.</span></p>
-            <p class="trust-caveat">Si la sospecha es baja cae a 70-78%: por eso la valoración previa es la que hace confiable al estudio.</p>
-            <ul class="trust-list">
-                <li><i class="bi bi-journal-check" aria-hidden="true"></i><span>Las guías del sueño <b>(AASM)</b> lo respaldan para el caso típico de apnea.</span></li>
-                <li><i class="bi bi-person-badge-fill" aria-hidden="true"></i><span>El resultado lo decide <b>el Dr. Lara revisando el trazo completo</b>, no el número automático del aparato.</span></li>
-                <li><i class="bi bi-shield-fill-check" aria-hidden="true"></i><span>Si sale negativo y tus síntomas siguen, el paso correcto es la <b>polisomnografía</b>: también se hace aquí, a domicilio.</span></li>
+            <div class="qe__panel" id="qe-b" role="tabpanel" aria-labelledby="qe-tab-b">
+                <p class="qe__lead">Conviene el estudio completo, con sensores del cerebro, si algo de esto es tu caso:</p>
+                <ul class="qe__list">
+                    <li>Enfermedad grave de corazón, pulmón o neuromuscular.</li>
+                    <li><b>Hipoventilación por obesidad</b>, opioides crónicos, o infarto o embolia previos.</li>
+                    <li>Sospecha de apnea central, piernas inquietas, narcolepsia o insomnio grave.</li>
+                    <li>Poligrafía en casa normal pero con síntomas que siguen.</li>
+                </ul>
+                <p class="qe__seals">Si tu caso es este <b>te lo digo de frente</b>: la <a href="/servicios/polisomnografia/">polisomnografía</a> también se hace aquí, a domicilio, y te valoro para definir cuál te toca.</p>
+            </div>
+            <!-- Confiabilidad: la cifra dentro de la frase que la matiza y la fuente al pie (AASM). -->
+            <!-- Cifras cotejadas en texto completo el 2026-09-17 (regla dura 5: el 2026-09-04 se atribuyo a Holland 2014 un umbral que el articulo no contiene). Fuente: Kapur VK et al. Clinical Practice Guideline for Diagnostic Testing for Adult OSA. J Clin Sleep Med 2017;13(3):479-504, doi:10.5664/jcsm.6506. Donde: seccion "Home Sleep Apnea Testing for the Diagnosis of OSA in Adults", Recomendaciones 2 y 3, "Discussion", parrafo "Accuracy", p. 491; datos en la Tabla S39 del suplemento; prevalencias supuestas en la Table 4. Que miden: EXACTITUD (no sensibilidad) de la HSAT tipo 3 frente a PSG, 7 estudios, corte IAH >= 5. Da 84-91% en alto riesgo (prevalencia supuesta 87%) y 70-78% en bajo riesgo (55%). La diferencia viene de la prevalencia supuesta, no del aparato. No presentar 84-91% como exactitud para apnea moderada-grave: con IAH >= 15 en alto riesgo es 65-91% (Tabla S40). -->
+            <div class="qe__stats" aria-label="Exactitud del estudio en casa">
+                <div class="qe__stat"><b>84-91%</b><span>de exactitud para detectar apnea si la sospecha es alta</span></div>
+                <div class="qe__stat"><b>70-78%</b><span>si la sospecha es baja: por eso te valoro antes</span></div>
+            </div>
+            <ul class="qe__facts" aria-label="Quién decide y qué pasa si sale negativo">
+                <li><span class="qe__k">Quién decide el resultado</span><span class="qe__v">El Dr. Lara, revisando el trazo completo</span></li>
+                <li><span class="qe__k">Si sale negativo y tus síntomas siguen</span><span class="qe__v">Polisomnografía, aquí, a domicilio</span></li>
             </ul>
-            <p class="trust-source"><i class="bi bi-bookmark-check-fill" aria-hidden="true"></i> <span>Cifras de la guía de la American Academy of Sleep Medicine.</span></p>
-        </div>
-
-        <div class="orient-close">
-            <p class="orient-close__line">Cuéntame tus síntomas por WhatsApp y <b>te digo qué estudio necesitas</b>, sin que gastes de más.</p>
-            <div class="orient-actions">
-                <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20contarle%20mis%20s%C3%ADntomas%20al%20Dr.%20Lara%20para%20saber%20qu%C3%A9%20estudio%20de%20sue%C3%B1o%20necesito.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29."
-                   target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="triaje-wa">
-                    <i class="bi bi-whatsapp"></i> Contarle mi caso y saber qué estudio necesito
-                </a>
-                <a href="/poligrafia-vs-polisomnografia/" class="orient-pill" data-cta="orient-comparativa">
-                    <i class="bi bi-layout-split" aria-hidden="true"></i> Ver los dos estudios comparados punto por punto
-                </a>
+            <p class="qe__source">Guía AASM 2017 (Kapur et al.): poligrafía tipo 3<br>comparada con polisomnografía, corte IAH de 5 o más.</p>
+            <div class="qe__close">
+                <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20contarle%20mis%20s%C3%ADntomas%20al%20Dr.%20Lara%20para%20saber%20qu%C3%A9%20estudio%20de%20sue%C3%B1o%20necesito.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="triaje-wa"><i class="bi bi-whatsapp"></i> Saber qué estudio necesito</a>
+                <a href="/poligrafia-vs-polisomnografia/" class="qe__link" data-cta="orient-comparativa">Ver los dos estudios comparados punto por punto</a>
             </div>
         </div>
     </div>
@@ -1794,7 +1693,6 @@
         <div class="svc-wow">
             <div class="svc-wow__inner">
                 <div class="svc-wow__badge"><i class="bi bi-bar-chart-fill"></i> Hospital vs domicilio</div>
-                <h3 class="svc-wow__title">Estudio en casa: <em>el mismo diagnóstico</em>, sin la noche en cuarto ajeno</h3>
                 <div class="svc-wow__compare">
                     <div class="svc-wow__col svc-wow__col--bad">
                         <div class="svc-wow__col-lbl">En hospital</div>
@@ -1825,24 +1723,24 @@
             <div class="step3" role="listitem">
                 <div class="step3__node"><i class="bi bi-clipboard2-pulse-fill"></i><span class="step3__num">1</span></div>
                 <div class="step3__body">
-                    <span class="step3__time">Consulta 45 min</span>
                     <h3 class="step3__title">Agenda y valoración</h3>
+                    <span class="step3__time">Consulta 45 min</span>
                     <p class="step3__desc">Escríbeme por WhatsApp, validamos que eres candidato y te valoro en consulta. Te entrego el equipo y te enseño a usarlo en minutos.</p>
                 </div>
             </div>
             <div class="step3" role="listitem">
                 <div class="step3__node"><i class="bi bi-moon-stars-fill"></i><span class="step3__num">2</span></div>
                 <div class="step3__body">
-                    <span class="step3__time">1 noche</span>
                     <h3 class="step3__title">Tu noche en casa</h3>
+                    <span class="step3__time">1 noche</span>
                     <p class="step3__desc">Duermes con el equipo en tu propia cama, una sola noche. Al día siguiente lo devuelves, sin complicaciones.</p>
                 </div>
             </div>
             <div class="step3" role="listitem">
                 <div class="step3__node"><i class="bi bi-file-earmark-medical-fill"></i><span class="step3__num">3</span></div>
                 <div class="step3__body">
-                    <span class="step3__time">48 h</span>
                     <h3 class="step3__title">Reporte y plan claro</h3>
+                    <span class="step3__time">48 h</span>
                     <p class="step3__desc">El Dr. Lara interpreta tu estudio y te explica el plan a seguir: CPAP, dispositivo o hábitos, según tu caso.</p>
                 </div>
             </div>
@@ -1888,7 +1786,7 @@
         <div class="block__head">
             <span class="block__kicker">Hablemos claro</span>
             <h2 class="block__title">¿Buscas una clínica del sueño en CDMX? <em>Quizá no la necesitas</em></h2>
-            <p class="block__lead">Soy neumólogo egresado del INER y trato la apnea del sueño y la hipoventilación por obesidad, los trastornos respiratorios del dormir. El caso típico de apnea no requiere internarse en una clínica del sueño: se confirma con este estudio en tu propia cama y lo interpreto yo, no un software. Y si tu caso pide la polisomnografía completa, te lo digo de frente y se agenda aquí mismo, a domicilio, en el lugar correcto.</p>
+            <p class="block__lead">El caso típico se confirma en tu cama y lo leo yo; la polisomnografía, también aquí.</p>
         </div>
     </div>
 </section>
@@ -1911,7 +1809,6 @@
             </a>
             
 
-<div class="testimonial-source-badge"><i class="bi bi-patch-check-fill"></i> Opiniones de pacientes verificados</div>
 <div class="testimonial-columns" data-marquee role="region" aria-label="Reseñas de pacientes en Google">
             <div class="testimonial-col"><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Agradezco la calidez, atención, humanidad, profesionalismo, paciencia y trato del Doctor, da mucha confianza y tiene un conocimiento y manejo total de su especialidad. Recomiendo ampliamente acudir a ser atendidos por tan completos servicios."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Alejandra O.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención, muy profesional"</p><div class="testi-author"><div class="testi-avatar">N</div><div><p class="testi-name">Noemí M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Sin lugar a duda es un excelente Neumólogo, tiene mucha paciencia, explica a detalle, disipa las dudas, ves resultados a la brevedad, da seguridad. Sin lugar a duda lo recomiendo ampliamente. Es un doctor que sabe perfectamente su trabajo, de mucha calidad y excelencia. Estoy más que satisfecha con el tratamiento que le ha prescrito a mi Madre y de estar al pendiente. Me alegro de haber llegado a su consultorio"</p><div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">Jan S.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Chulada de doctor, me siento escuchado, atendido, es profesional y con una preocupación sincera por sus pacientes."</p><div class="testi-author"><div class="testi-avatar">G</div><div><p class="testi-name">Gilberto W.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy profesional el Dr. William. Atento, te explica muy bien sobre tu padecimiento, muy recomendable"</p><div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">José Luis T.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buena atención. Excelente para explicar tu situación médica."</p><div class="testi-author"><div class="testi-avatar">V</div><div><p class="testi-name">Vanessa Z.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Mi esposo tuvo crisis de asma, fue nuestra primera consulta. El doctor explicó a detalle con un lenguaje sencillo, revisó cuidadosamente durante la exploración e hizo pruebas de espirometría durante la consulta, explicó las opciones de tratamiento. Ampliamente recomendable!"</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Aline G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Un médico excelente. Muy bien preparado, extremadamente profesional y muy humano y amable. Lo encontramos en internet. Me trató como si fuéramos familiares. Muy fácil y práctico para agendar. Antes de la cita me solicitó radiografía del pulmón, lo que agilizó el diagnóstico, y pudo dedicar tiempo a revisarme a mí y mis análisis. Muy precavido y sensato en sus recomendaciones. Nos explicó a mí y a mi esposo, que es médico, con gran claridad y detenimiento los resultados de la tomografía. Agradezco su dedicación sincera a mi bienestar."</p><div class="testi-author"><div class="testi-avatar">T</div><div><p class="testi-name">Tere A.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención, fue muy amable y profesional en cuanto a las dudas mías. Definitivamente será mi nuevo neumólogo de confianza, gracias Dr."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Alicia F.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Very kind and generous, he also does check up on you daily until recovery. Great job! I recommend him a lot"</p><div class="testi-author"><div class="testi-avatar">T</div><div><p class="testi-name">Thulie M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buena atención por parte del Dr. Lara, sabe explicar muy bien a sus pacientes. Desde el primer contacto con él y hasta la fecha ha mantenido la comunicación y seguimiento con su paciente. Muy profesional, lo recomiendo 100%."</p><div class="testi-author"><div class="testi-avatar">F</div><div><p class="testi-name">Fabiola G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención, súper personalizada, cuidando cada detalle y siempre al pendiente del paciente"</p><div class="testi-author"><div class="testi-avatar">Y</div><div><p class="testi-name">Yetlanetzy R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El Dr. William, puntual en la cita, nos atendió con mucho esmero, checó con mucho detalle y el diagnóstico muy acertado. Es muy paciente al escuchar, lleva un seguimiento en el proceso de la mejoría de la salud. Un excelente médico, de verdad se recomienda solo."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Adán C.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div></div>
             <div class="testimonial-col"><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Una atención muy profesional, muy empático y con un dominio amplio en su área de especialización, cabe mencionar que tiene el don de comunicar tu situación en términos sencillos y te otorga el tiempo que requieres, en pocas palabras, altamente recomendable."</p><div class="testi-author"><div class="testi-avatar">I</div><div><p class="testi-name">Ignacio H.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Comprometido con su trabajo, profesión y calidad humana. Excelente Dr."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Alicia M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El doctor Lara es una persona muy humana, empática y sobre todo te da una atención personalizada, siempre contesta tus mensajes preocupándose por tu salud y bienestar. Excelente especialista."</p><div class="testi-author"><div class="testi-avatar">V</div><div><p class="testi-name">Verónica G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención!"</p><div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">J. Alberto M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buen trato del Doctor William, me sentí muy a gusto en su consulta, explica todo a detalle, está al pendiente de todo, muy preparado. Me he sentido mucho mejor con el tratamiento que me recetó. Lo recomiendo ampliamente."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Angélica M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El Dr. William es una persona de altos niveles éticos, me pareció excelente su trato con mi paciente, aparte de que tiene mucho dominio sobre las enfermedades a tratar, muy capaz, muy amable, excelente persona y profesional, gracias."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Adriana H.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente especialista, me tuvo suficiente paciencia para realizarme la espirometría, me explicó muy bien y resolvió mis dudas. Lo recomiendo mucho, es una persona muy amable, ética y profesional"</p><div class="testi-author"><div class="testi-avatar">Y</div><div><p class="testi-name">Yoatzin R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Ha sido una experiencia muy impactante y triste ya que el diagnóstico fue cáncer pulmonar. En cuanto al servicio y conocimiento del doctor me parece excelente, nos dio la noticia de manera veraz y diplomática, con la que tuvimos oportunidad de lidiar con los resultados."</p><div class="testi-author"><div class="testi-avatar">M</div><div><p class="testi-name">María Teresa M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El Dr. William Lara es un excelente especialista, me quedé muy sorprendida de la mejoría que tuve al día siguiente de tomar el tratamiento que me recetó. El Dr. Lara todo el tiempo estuvo al pendiente de mí, lo que da mucha tranquilidad al paciente. Estoy muy agradecida con el Dr. y sin duda será mi médico neumólogo por muchos años más."</p><div class="testi-author"><div class="testi-avatar">R</div><div><p class="testi-name">Rocío</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buen médico, muy amable y siempre pendiente de sus pacientes. Lo recomiendo ampliamente."</p><div class="testi-author"><div class="testi-avatar">R</div><div><p class="testi-name">Rossana R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Mi experiencia con el doctor William ha sido y es muy buena, es buen doctor, amable, respetuoso y le explica bien lo que se necesita saber. Él atiende a mi señora madre, que tiene 95 años, quien tuvo neumonía y él la sacó adelante, gracias!"</p><div class="testi-author"><div class="testi-avatar">L</div><div><p class="testi-name">Lourdes A.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Agradezco la atención y seguimiento en cada consulta. Me explicó el diagnóstico con claridad y obtuve mejoría muy pronto. Es un médico muy profesional. Sin duda lo recomiendo ampliamente."</p><div class="testi-author"><div class="testi-avatar">K</div><div><p class="testi-name">Karla G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El doctor William es excelente, muy humano, profesional y dedicado a sus pacientes. Si un día necesitas un Neumólogo, no dudes en llamarlo."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Adri N.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div></div>
@@ -1924,25 +1821,12 @@
             <a class="rev-block__all" href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer">
                 <i class="bi bi-google" aria-hidden="true"></i> Ver todas las reseñas en Google
             </a>
-            <p class="rev-block__note">Opiniones reales de pacientes en Google, sin editar.</p>
         </div>
     </div>
 </section>
 
-<!-- ============ CTA INLINE (después de testimonios) ============ -->
-<section class="block" style="padding-top:0">
-    <div class="container">
-        <div class="cta-inline">
-            <div class="sparkle-field" aria-hidden="true"></div>
-            <h2>¿Listo para dormir tranquilo?</h2>
-            <p>Una conversación de 2 minutos por WhatsApp es suficiente para resolver dudas, conocer disponibilidad y agendar tu estudio.</p>
-            <div class="cta-inline__btns">
-                <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="mid-wa"><i class="bi bi-whatsapp"></i> Apartar mi estudio de sueño, $5,000</a>
-                <a href="#agendaModal" class="btn-cal" data-cta="mid-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
-            </div>
-        </div>
-    </div>
-</section>
+<!-- 17-sep-2026 (pulido): fuera el CTA intermedio "Listo para dormir tranquilo": mismo boton de WhatsApp (mismo
+     prellenado) y mismo "Agendar cita" que el CTA final "Da el primer paso". Un dato una vez. -->
 
 <!-- ============ FAQ DE OBJECIONES ============ -->
 <section class="block">
@@ -1951,7 +1835,7 @@
             <span class="block__kicker">Dudas frecuentes</span>
             <h2 class="block__title">Lo que más preguntan <em>antes de agendar</em></h2>
         </div>
-        <details class="faq-item"><summary>¿Cuánto cuesta y qué incluye?</summary><div class="faq-item__answer"><strong>$5,000</strong> e incluye todo junto: consulta de neumología, equipo, poligrafía e interpretación por neumólogo egresado del INER. Por separado, a la carta, sumaría alrededor de $6,300 (estudio $4,500 + consulta de primera vez $1,800). ¿Prefieres el estudio a domicilio? Tiene un costo de $6,000, con la consulta agendada aparte, y con ese mismo precio llegamos a la mayoría de las zonas de la CDMX. Pregunta por la promoción cuando escribas. <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" style="color:#047857;font-weight:700" data-cta="faq-wa">Apartar por WhatsApp</a>.</div></details>
+        <details class="faq-item"><summary>¿Cuánto cuesta y qué incluye?</summary><div class="faq-item__answer"><strong>$5,000</strong> e incluye todo junto: consulta de neumología, equipo, poligrafía e interpretación por neumólogo egresado del INER. Por separado, a la carta, sumaría alrededor de $6,300 (estudio $4,500 + consulta de primera vez $1,800). ¿Prefieres el estudio a domicilio? Tiene un costo de $6,000, con la consulta agendada aparte, y con ese mismo precio llegamos a la mayoría de las zonas de la CDMX. Pregunta por la promoción cuando escribas. <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" style="color:#0773c5;font-weight:700" data-cta="faq-wa">Apartar por WhatsApp</a>.</div></details>
         <details class="faq-item"><summary>¿La poligrafía es lo mismo que un estudio del sueño?</summary><div class="faq-item__answer">Sí. La poligrafía respiratoria es un estudio del sueño que se realiza en tu casa (tipo III): registra respiración, oxigenación, ronquido y esfuerzo respiratorio mientras duermes, y es el estudio indicado para diagnosticar apnea obstructiva del sueño. La diferencia con la polisomnografía no es el lugar: la polisomnografía también se realiza en tu casa. La diferencia es el número de sensores y el electroencefalograma, que mide las fases de sueño; si tu caso la necesita, se agenda aquí mismo, a domicilio.</div></details>
         <details class="faq-item"><summary>Busco una clínica del sueño en CDMX, ¿esto me sirve?</summary><div class="faq-item__answer">Si tu tema es el ronquido o la apnea del sueño, sí: aquí encuentras lo que pedirías en una clínica del sueño para ese problema: valoración por neumólogo, estudio del sueño en casa, interpretación y plan de tratamiento con el mismo especialista, en Benito Juárez, CDMX.</div></details>
         <details class="faq-item"><summary>¿Quién trata la apnea del sueño?</summary><div class="faq-item__answer">El neumólogo. Si el estudio confirma apnea, el propio Dr. Lara te indica el tratamiento (CPAP o cambios de hábitos, según tu caso) y lleva el seguimiento, sin referirte a otro médico.</div></details>
@@ -1973,7 +1857,7 @@
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:10px 14px;justify-content:center;align-items:center">
             <span style="display:inline-flex;align-items:center;gap:8px;background:#f0f7ff;border:1px solid rgba(9,132,227,.18);border-radius:999px;padding:8px 16px;font-weight:700;font-size:.88rem;color:var(--navy)"><i class="bi bi-clock-fill" style="color:var(--electric)"></i> L-V 16:00-21:00 · Sáb-Dom 12:00-16:00</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=Dr.+William+C%C3%A9sar+Lara+V%C3%A1zquez+Neum%C3%B3logo+Saturnino+Herr%C3%A1n+59+San+Jos%C3%A9+Insurgentes" target="_blank" rel="noopener noreferrer" data-cta="ubi-maps" style="display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;border-radius:999px;padding:8px 18px;font-weight:700;font-size:.88rem;text-decoration:none"><i class="bi bi-geo-alt-fill"></i> Cómo llegar</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Dr.+William+C%C3%A9sar+Lara+V%C3%A1zquez+Neum%C3%B3logo+Saturnino+Herr%C3%A1n+59+San+Jos%C3%A9+Insurgentes" target="_blank" rel="noopener noreferrer" data-cta="ubi-maps" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:#0773c5;border:1px solid #dfe8f3;border-radius:999px;padding:8px 18px;font-weight:700;font-size:.88rem;text-decoration:none"><i class="bi bi-geo-alt-fill"></i> Cómo llegar</a>
         </div>
     </div>
 </section>
@@ -1985,12 +1869,12 @@
             <div class="sparkle-field" aria-hidden="true"></div>
             <h2>Da el primer paso para dormir tranquilo</h2>
             <p>Un mensaje por WhatsApp basta para ver disponibilidad y apartar tu estudio. Atendemos también sábado y domingo.</p>
-            <div class="cta-final__price"><i class="bi bi-tag-fill" aria-hidden="true"></i> Paquete consulta + estudio <b>$5,000</b> · ahorras $1,300</div>
+            <!-- 17-sep-2026 (cierre): fuera la pastilla de precio "Paquete consulta + estudio, ver precios" y la segunda frase
+                 de tranquilidad (un dato una vez, sin chips); el enlace secundario dice "Agendar cita", igual que en el hero. -->
             <div class="cta-final__actions">
-                <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="final-wa"><i class="bi bi-whatsapp"></i> Apartar mi estudio, $5,000</a>
-                <a href="#agendaModal" class="btn-ghost" data-cta="final-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Prefiero agendar en línea</a>
+                <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="final-wa"><i class="bi bi-whatsapp"></i> Apartar mi estudio</a>
+                <a href="#agendaModal" class="btn-cal" data-cta="final-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
             </div>
-            <p class="cta-final__ease"><i class="bi bi-shield-check" aria-hidden="true"></i> Escribir por WhatsApp no cuesta ni te compromete. Con gusto resolvemos tus dudas antes de tu cita.</p>
         </div>
     </div>
 </section>
@@ -2222,11 +2106,9 @@ window.addEventListener('load', function(){
 <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Contactar por WhatsApp" data-cta="float-wa"><i class="bi bi-whatsapp"></i></a>
 
 <!-- Sticky CTA (mobile) con cintillo de urgencia -->
-<div class="sticky-cta" style="flex-direction:column;gap:6px;padding-top:6px">
-    <div style="font-size:.72rem;font-weight:700;color:#b45c00;background:rgba(255,176,0,.14);border:1px solid rgba(255,176,0,.4);padding:3px 10px;border-radius:999px;letter-spacing:.2px"><i class="bi bi-clock-history" style="margin-right:4px"></i>Atención previa cita, sujeta a disponibilidad</div>
+<div class="sticky-cta">
     <div style="display:flex;gap:8px;width:100%">
         <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="sc-wa" data-cta="sticky-wa" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 12px;border-radius:12px;font-weight:800;font-size:.95rem;text-decoration:none;background:var(--green);color:#fff"><i class="bi bi-whatsapp"></i> WhatsApp</a>
-        <a href="tel:5591708334" class="sc-call" data-cta="sticky-call" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 12px;border-radius:12px;font-weight:800;font-size:.95rem;text-decoration:none;background:var(--electric);color:#fff"><i class="bi bi-telephone-fill"></i> Llamar</a>
         <a href="#agendaModal" class="sc-cal" data-cta="sticky-cal" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 12px;border-radius:12px;font-weight:800;font-size:.95rem;text-decoration:none;background:var(--navy);color:#fff" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar</a>
     </div>
 </div>
@@ -2295,20 +2177,21 @@ document.addEventListener('click',function(e){
     function sbShowResult(){
         var score=Object.values(answers).reduce(function(a,b){return a+b;},0);
         var level, icon, message, waMsg;
+        /* 17-sep-2026: el nivel ya lo dice #sb-result-level; la frase no lo repite ("Riesgo intermedio" salia dos veces) */
         if(score<=2){
             level='Riesgo bajo';
             icon='&#128994;';/* verde */
-            message='Tu puntaje sugiere bajo riesgo de apnea obstructiva del sueño. Si tienes síntomas que te preocupan (ronquidos ocasionales, cansancio puntual), una valoración puede darte tranquilidad.';
+            message='Si algo te preocupa, una valoración te da tranquilidad.';
             waMsg='Hola%20Dr.%20Lara%2C%20hice%20el%20cuestionario%20STOP-BANG%20y%20mi%20resultado%20fue%20riesgo%20bajo%20('+score+'%2F8).%20Me%20gustar%C3%ADa%20saber%20si%20de%20todas%20formas%20me%20conviene%20el%20estudio.';
         } else if(score<=4){
             level='Riesgo intermedio';
             icon='&#128993;';/* amarillo */
-            message='Tu puntaje indica riesgo intermedio de apnea del sueño. Una poligrafía respiratoria puede confirmar o descartar el diagnóstico con precisión.';
+            message='El estudio en casa puede confirmar o descartar la apnea.';
             waMsg='Hola%20Dr.%20Lara%2C%20hice%20el%20cuestionario%20STOP-BANG%20y%20mi%20resultado%20fue%20riesgo%20intermedio%20('+score+'%2F8).%20Quisiera%20informaci%C3%B3n%20sobre%20la%20poligraf%C3%ADa%20a%20%245%2C000.';
         } else {
             level='Riesgo alto';
             icon='&#128308;';/* rojo */
-            message='Tu puntaje indica alto riesgo de apnea obstructiva del sueño. El siguiente paso recomendado es un estudio diagnóstico: la poligrafía respiratoria en casa es la opción más accesible para confirmarlo.';
+            message='El siguiente paso es confirmarlo con el estudio en casa.';
             waMsg='Hola%20Dr.%20Lara%2C%20hice%20el%20cuestionario%20STOP-BANG%20y%20mi%20resultado%20fue%20riesgo%20alto%20('+score+'%2F8).%20Quiero%20agendar%20la%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000.';
         }
         var resultEl=document.getElementById('sb-result');
@@ -2795,6 +2678,602 @@ document.addEventListener('click',function(e){
 @keyframes sbFadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
 </style>
+<style id="lp-premium-20260916">
+/* ===== PASE PREMIUM 16-sep-2026 (aditivo: quitar este bloque revierte el pase) =====
+   Fallo que lo motivo: el Dr. devolvio capturas del celular: "secciones tan llenas de texto, mal
+   organizado, sin que se vea premium" y "el diseno de la escala esta horrible" (STOP-BANG).
+   Reglas: estilo-william (titulos 600 con tracking negativo, reglas finas en vez de cajas, un dato
+   una vez, menos botones, recuadro de resultado #16, renglon rotulo | dato #15) y d8 (ninguna
+   seccion >1.2 pantallas en 375px). Solo --navy/--electric/blanco; sin sombras por tarjeta. */
+section.hero h1,.block__title,.cta-inline h2,.px3__title{font-weight:600;letter-spacing:-.024em}
+.hero__nota{flex-basis:100%;margin:0;font-size:.78rem;line-height:1.35;color:rgba(255,255,255,.66)}
+.price-tier__movil{display:none} /* solo movil; la regla va ANTES del media query para que este gane */
+/* Barra fija: dos acciones; la cinta ambar paso a .hero__nota bajo el boton primario */
+.sticky-cta{gap:10px;padding:10px 16px;padding-bottom:max(10px,env(safe-area-inset-bottom));box-shadow:0 -10px 30px -22px rgba(10,37,64,.35)}
+.sticky-cta a{min-height:48px;border-radius:12px;font-weight:700;font-size:.95rem}
+@media(max-width:991px){body{padding-bottom:calc(74px + env(safe-area-inset-bottom,0px))}}
+/* FAQ: lista con reglas finas, sin cajas */
+.faq-item,.faq-item[open]{background:none;border:0;border-bottom:1px solid rgba(10,37,64,.12);border-radius:0;margin:0;box-shadow:none}
+.faq-item:first-of-type{border-top:1px solid rgba(10,37,64,.12)}
+.faq-item summary{padding:14px 2px;font-weight:600;font-size:.97rem;line-height:1.35;gap:12px}
+.faq-item summary::after{font-size:1.4rem;line-height:1;font-weight:300}
+.faq-item__answer{padding:0 2px 16px;font-size:.93rem;line-height:1.55;color:#3d4d61}
+@media(max-width:600px){
+  .block__kicker{display:none}
+  .hero__content>.hero__badge,.hero__badge{display:none}
+  .hero__cta{display:flex;flex-direction:column;align-items:stretch;gap:6px;margin:0 0 14px!important}
+  .hero__cta .btn-wa{order:1;width:100%;min-width:0;min-height:50px;padding:13px 18px;font-size:1rem;box-shadow:none}
+  .hero__cta .hero__nota{order:2;text-align:center;margin:0}
+  .hero__cta .btn-cal{order:3;width:auto;min-width:0;min-height:40px;align-self:center;padding:6px 4px;background:none;box-shadow:none;color:#fff;font-weight:600;font-size:.9rem;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,.45)}
+  .hero__cta .btn-cal:hover{background:none;transform:none}
+  .hero__cta .btn-cal i{display:none}
+  .hero__creds,.hero__content>.hero__creds{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:0 16px;margin:0 0 12px;padding-bottom:2px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .hero__creds::-webkit-scrollbar{display:none}
+  .hero__cred,a.hero__cred{flex:0 0 auto;white-space:nowrap;background:none;border:0;padding:0;font-size:.8rem;font-weight:600;color:rgba(255,255,255,.78)}
+  /* Hero movil: h1 (ya dice $5,000) > frase > ancla tachada > boton > creds > nota de honestidad.
+     El $5,000 aparece una sola vez en la pantalla; la tabla de tres precios va justo debajo del hero. */
+  .hero__content>.price-ladder{order:3;margin:2px 0 4px;max-width:none}
+  .hero__content>.hero__cta{order:4}
+  .hero__content>.hero__creds{order:5}
+  .hero__content>.honesty-note{order:6;font-size:.8rem;line-height:1.4;margin:0}
+  .price-tier--promo{background:none;border:0;box-shadow:none;padding:0;border-radius:0}
+  .price-tier--promo .price-tier__label,.price-tier--promo .price-tier__row,.price-tier--promo .price-tier__more{display:none}
+  .price-tier__movil{display:block;margin:0;font-size:.86rem;font-weight:500;line-height:1.4;color:rgba(255,255,255,.82)}
+  .price-tier__movil s{color:rgba(255,255,255,.6)}
+  /* tabla de precios: sin franja lateral; la fila de la promo lleva solo un tinte */
+  .px3__row--promo{border-left:0;background:rgba(9,132,227,.06);padding:9px 10px;border-radius:10px}
+  .px3__name,.px3__price,.px3__row--promo .px3__price{font-weight:600}
+}
+
+/* ===== STOP-BANG: ocho renglones, reglas finas, un selector segmentado por renglon ===== */
+#stop-bang{--lp-hair:rgba(10,37,64,.12);--lp-navy:#0a2540;--lp-el:#0984e3;--lp-muted:#5b6675}
+@media(max-width:767px){#stop-bang{padding-top:30px!important;padding-bottom:34px!important}#stop-bang .block__title{font-size:1.4rem}}
+#stop-bang .block__head{margin-bottom:14px}
+#stop-bang .sb-lead-movil{color:var(--lp-muted)}
+#stop-bang .sb-quiz.sb-board,#stop-bang .sb-quiz.sb-board.is-complete{display:block;background:transparent;border:0;border-radius:0;box-shadow:none;overflow:visible;margin:0}
+#stop-bang .sb-board__head{display:flex;flex-direction:column;align-items:flex-end;gap:6px;padding:0 0 2px;background:none;position:static}
+#stop-bang .sb-board__hint{display:none}
+#stop-bang .sb-board__count{font-size:.78rem;font-weight:500;color:var(--lp-muted);letter-spacing:0;line-height:1;font-variant-numeric:tabular-nums}
+#stop-bang .sb-board__count b{font-size:.78rem;font-weight:700;color:var(--lp-navy)}
+#stop-bang .sb-board .sb-progress{position:static;width:100%;height:2px;margin:0;border-radius:0;background:var(--lp-hair);overflow:hidden}
+#stop-bang .sb-board .sb-progress__bar{background:var(--lp-el);border-radius:0}
+#stop-bang .sb-board .sb-question{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:14px;row-gap:0;align-items:center;margin:0;padding:11px 0;background:transparent;border:0;border-bottom:1px solid var(--lp-hair);border-radius:0}
+#stop-bang .sb-board .sb-question:last-child{border-bottom:1px solid var(--lp-hair)}
+#stop-bang .sb-board .sb-question.answered{background:transparent}
+#stop-bang .sb-board .sb-question::before{content:none}
+#stop-bang .sb-board .sb-letter,#stop-bang .sb-board .sb-category{display:none}
+#stop-bang .sb-board .sb-question__text{grid-column:1;grid-row:1;margin:0;padding:0;font-size:1rem;line-height:1.4!important;font-weight:500;color:var(--lp-navy);letter-spacing:-.005em;text-wrap:pretty}
+.sb-question__nota{display:block;font-size:.8rem;font-weight:500;color:#5b6675;margin-top:1px;letter-spacing:0}
+#stop-bang .sb-board .sb-btns{grid-column:2;grid-row:1;position:static;isolation:auto;display:grid;grid-template-columns:1fr 1fr;gap:2px;width:92px;height:42px;padding:2px;margin:0;border-radius:11px;background:#fff;border:1px solid rgba(10,37,64,.22);box-shadow:none;align-self:center}
+#stop-bang .sb-board .sb-btns::after{content:none}
+#stop-bang .sb-board .sb-btn{position:static;height:100%;min-height:0;padding:0;margin:0;border:0;border-radius:8px;background:transparent;color:var(--lp-navy);font-size:.88rem;font-weight:600;letter-spacing:0;display:inline-flex;align-items:center;justify-content:center;gap:0;transition:background .18s var(--ease),color .18s var(--ease),transform .12s var(--ease)}
+#stop-bang .sb-board .sb-btn>.bi{display:none}
+#stop-bang .sb-board .sb-btn.active-si,#stop-bang .sb-board .sb-btn.active-no,#stop-bang .sb-board .sb-btn[aria-pressed="true"]{background:var(--lp-navy);color:#fff;border-color:transparent}
+@media(hover:hover){#stop-bang .sb-board .sb-btn:hover{background:rgba(9,132,227,.08);color:var(--lp-navy)}#stop-bang .sb-board .sb-btn[aria-pressed="true"]:hover{background:var(--lp-navy);color:#fff}}
+#stop-bang .sb-board .sb-btn:focus-visible{outline:2px solid var(--lp-el);outline-offset:2px}
+#stop-bang .sb-bmi-toggle{grid-column:1;grid-row:2;justify-self:start;margin:4px 0 0;min-height:36px;padding:0;font-size:.82rem;font-weight:600;color:var(--lp-el);text-decoration:none;border-bottom:1px solid rgba(9,132,227,.35);display:inline-flex;align-items:center;gap:5px;line-height:1.2}
+#stop-bang .sb-bmi-panel{grid-column:1/-1;grid-row:3;margin:10px 0 2px;padding:0;background:transparent;border-radius:0}
+#stop-bang .sb-bmi-row{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:center}
+#stop-bang .sb-bmi-row input{width:100%;min-height:42px;padding:8px 10px;font-size:16px;border:1px solid rgba(10,37,64,.22);border-radius:10px;background:#fff;color:var(--lp-navy)}
+#stop-bang .sb-bmi-row input:focus-visible{outline:2px solid var(--lp-el);outline-offset:1px}
+#stop-bang .sb-bmi-calc-btn{grid-column:auto;width:auto;min-height:42px;padding:0 14px;background:var(--lp-navy);border-radius:10px;font-size:.86rem;font-weight:600;color:#fff}
+#stop-bang .sb-bmi-result{grid-column:1/-1;font-size:.84rem;font-weight:600;color:var(--lp-navy);line-height:1.35;min-height:0}
+#stop-bang .sb-bmi-result:empty{display:none}
+/* Resultado: recuadro #16 */
+#stop-bang .sb-result,#stop-bang .sb-result--low,#stop-bang .sb-result--mid,#stop-bang .sb-result--high{margin-top:18px;padding:18px 18px 16px;border:1px solid var(--lp-hair);border-radius:16px;background:#fff;text-align:left;box-shadow:none}
+#stop-bang .sb-result__icon{display:none}
+.sb-result__top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid rgba(10,37,64,.12)}
+.sb-result__kicker{display:block;font-size:.76rem;font-weight:600;color:#5b6675;margin-bottom:4px}
+#stop-bang .sb-result__score{margin:0;font-size:.82rem;font-weight:500;color:#5b6675;line-height:1.3}
+.sb-result__num{display:block;font-size:2.1rem;font-weight:600;letter-spacing:-.03em;line-height:1;color:#0a2540;font-variant-numeric:tabular-nums}
+.sb-result__num small{font-size:1rem;font-weight:500;letter-spacing:0;color:#5b6675}
+.sb-result__what{display:block;margin-top:4px}
+#stop-bang .sb-result__level{flex:0 0 auto;margin:0;padding:6px 12px;border-radius:100px;font-size:.82rem;font-weight:700;line-height:1.2;white-space:nowrap;background:rgba(10,37,64,.07);color:#0a2540}
+#stop-bang .sb-result--low .sb-result__num{color:#0b7a55}
+#stop-bang .sb-result--low .sb-result__level{background:rgba(11,122,85,.1);color:#0b7a55}
+#stop-bang .sb-result--mid .sb-result__num{color:#b45c00}
+#stop-bang .sb-result--mid .sb-result__level{background:rgba(180,92,0,.1);color:#b45c00}
+#stop-bang .sb-result--high .sb-result__num{color:#c0392b}
+#stop-bang .sb-result--high .sb-result__level{background:rgba(192,57,43,.1);color:#c0392b}
+#stop-bang .sb-result__message{margin:0 0 14px;max-width:none;text-align:left;color:#0f1d30;font-size:.97rem;line-height:1.5}
+#stop-bang .sb-result__cta{display:flex;width:100%;justify-content:center;min-height:48px;padding:12px 18px;border-radius:12px;box-shadow:none;font-weight:700;font-size:.97rem}
+#stop-bang .sb-result__disclaimer{margin:12px 0 0;padding:0;background:none;border-radius:0;font-style:normal;font-size:.76rem;line-height:1.45;color:#5b6675}
+#stop-bang .sb-reset-btn{margin:6px auto 0;min-height:36px}
+@media(min-width:768px){
+  #stop-bang .sb-board .sb-question{padding:13px 4px;column-gap:20px}
+  #stop-bang .sb-board .sb-btns{width:124px;height:44px}
+  #stop-bang .sb-board .sb-btn{font-size:.92rem}
+  #stop-bang .sb-board .sb-question__text{font-size:1.02rem}
+  #stop-bang .sb-result{padding:22px 24px 20px}
+  #stop-bang .sb-result__cta{width:auto;display:inline-flex;padding:12px 26px}
+}
+
+/* ===== Por lo que esta en juego: un concepto por renglon (estilo-william #15) ===== */
+.enj{max-width:720px;margin:0 auto}
+.enj__lead{margin:0 0 4px;font-size:.92rem;font-weight:600;color:#0a2540}
+.enj__list{list-style:none;margin:0;padding:0;border-top:1px solid rgba(10,37,64,.12)}
+.enj__list li{display:grid;grid-template-columns:minmax(0,34%) minmax(0,1fr);column-gap:14px;align-items:baseline;padding:9px 0;border-bottom:1px solid rgba(10,37,64,.12)}
+.enj__k{font-size:.93rem;font-weight:600;color:#0a2540;line-height:1.3}
+.enj__v{font-size:.9rem;color:#3d4d61;line-height:1.4}
+.enj__thesis{margin:14px 0 12px;font-size:.95rem;line-height:1.5;color:#0f1d30}
+.enj__thesis b{color:#0a2540;font-weight:600}
+.enj__actions{text-align:center}
+.enj__cta{width:100%;min-width:0;box-shadow:none;border-radius:12px;min-height:48px;padding:12px 18px;font-size:.97rem;font-weight:700}
+.enj__more{margin:12px 0 0;font-size:.86rem;color:#5b6675;line-height:1.45;text-align:center}
+.enj__more a{color:#0984e3;font-weight:600}
+@media(min-width:768px){.enj__lead{font-size:1rem}.enj__list li{grid-template-columns:minmax(0,34%) 1fr;padding:13px 4px}.enj__k{font-size:1rem}.enj__v{font-size:.97rem}.enj__thesis{text-align:center}.enj__cta{width:auto;display:inline-flex;padding:13px 28px}}
+
+/* ===== Es este el estudio: pastillas + un solo panel vivo (d9) + ficha rotulo | dato ===== */
+.qe{max-width:720px;margin:0 auto}
+.qe__tabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:3px;border:1px solid rgba(10,37,64,.16);border-radius:12px;background:#fff;margin:0 0 16px}
+.qe__tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-height:48px;padding:6px 8px;border:0;border-radius:9px;background:transparent;color:#0a2540;font-family:inherit;font-size:.84rem;font-weight:500;line-height:1.2;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .2s var(--ease),color .2s var(--ease)}
+.qe__tab b{font-size:.68rem;font-weight:700;letter-spacing:.03em;color:#5b6675}
+.qe__tab[aria-selected="true"]{background:#0a2540;color:#fff}
+.qe__tab[aria-selected="true"] b{color:rgba(255,255,255,.72)}
+.qe__tab:focus-visible{outline:2px solid #0984e3;outline-offset:2px}
+.qe__panel{display:none}
+.qe__panel.is-on{display:block;animation:lpFade .32s var(--ease) both}
+@keyframes lpFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.qe__panel.is-on{animation:none}}
+.qe__lead{margin:0 0 10px;font-size:.95rem;line-height:1.5;color:#0f1d30}
+.qe__lead b{color:#0a2540;font-weight:600}
+.qe__list{list-style:none;margin:0;padding:0;border-top:1px solid rgba(10,37,64,.12)}
+.qe__list li{position:relative;padding:8px 0 8px 18px;border-bottom:1px solid rgba(10,37,64,.12);font-size:.92rem;line-height:1.4;color:#0f1d30}
+.qe__list li::before{content:"";position:absolute;left:3px;top:.74em;width:6px;height:6px;border-radius:50%;background:#0984e3}
+.qe__list b{color:#0a2540;font-weight:600}
+.qe__seals{margin:10px 0 0;font-size:.82rem;color:#5b6675;line-height:1.45}
+.qe__seals a{color:#0984e3;font-weight:600}
+.qe__seals b{color:#0a2540;font-weight:600}
+.qe__stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 0;padding-top:14px;border-top:1px solid rgba(10,37,64,.12)}
+.qe__stat b{display:block;font-size:1.5rem;font-weight:600;letter-spacing:-.02em;line-height:1;color:#0a2540;font-variant-numeric:tabular-nums}
+.qe__stat span{display:block;margin-top:5px;font-size:.78rem;line-height:1.35;color:#5b6675}
+.qe__facts{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid rgba(10,37,64,.12)}
+.qe__facts li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,44%);column-gap:14px;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(10,37,64,.12)}
+.qe__k{font-size:.9rem;font-weight:500;color:#0f1d30;line-height:1.35}
+.qe__k small{display:block;font-size:.78rem;color:#5b6675;margin-top:1px;line-height:1.35}
+.qe__v{font-size:.95rem;font-weight:600;color:#0a2540;text-align:right;line-height:1.3}
+.qe__source{margin:8px 0 0;font-size:.76rem;color:#5b6675;line-height:1.4;text-align:right}
+.qe__close{margin-top:18px;display:flex;flex-direction:column;gap:6px;align-items:center}
+.qe__close .btn-wa{width:100%;min-width:0;box-shadow:none;border-radius:12px;min-height:48px;padding:12px 16px;font-size:.95rem;font-weight:700}
+.qe__link{font-size:.86rem;font-weight:600;color:#0984e3;text-decoration:underline;text-underline-offset:3px;padding:6px 0;min-height:36px;display:inline-flex;align-items:center}
+@media(min-width:768px){.qe__tabs{max-width:480px;margin:0 auto 20px}.qe__tab{font-size:.92rem;min-height:52px}.qe__lead{font-size:1rem}.qe__list li{font-size:.97rem}.qe__stats{grid-template-columns:1fr 1fr;max-width:560px;gap:24px}.qe__stat b{font-size:1.9rem}.qe__stat span{font-size:.88rem}.qe__facts li{padding:12px 4px}.qe__k{font-size:.97rem}.qe__v{font-size:1rem}.qe__close .btn-wa{width:auto;padding:13px 28px}}
+/* ===== Cierre 16-sep-2026 (tarde): anclas, un dato una vez, reglas parejas, secciones <=1.2 en 375 ===== */
+/* 5. Destinos de ancla. Medido: la cabecera sticky (#mainNav) mide 49px en 375 y 75px en 1280. 84px (75+8, y el
+   valor que ya usaba #stop-bang) deja el titulo a la vista al navegar por ancla en cualquier ancho. */
+section[id],#main{scroll-margin-top:84px}
+/* 4. Hero escritorio: el $5,000 salia tres veces (barra de promo, h1 y tarjeta). Un dato una vez: la tarjeta conserva
+   el eyebrow, la frase y el enlace, y calla la cifra. En movil la tarjeta ya no muestra la fila (regla de arriba). */
+@media(min-width:992px){.price-tier--promo .price-tier__row{display:none}}
+/* 3. Escritorio: las losetas de exactitud median 560px y su regla terminaba antes que las de los renglones (720px).
+   La regla va ahora a todo el ancho de la ficha y las losetas siguen compactas (280px cada una). */
+@media(min-width:768px){.qe__stats{max-width:none;grid-template-columns:repeat(2,minmax(0,280px))}}
+/* 1. "Es este el estudio" en 375 media 1.48 (ruta A) y 1.60 (ruta B) pantallas. Todo el contenido sigue en el DOM;
+   en movil se calla lo que ya dijo otra parte de la pagina o lo que no es de la ruta que se mira:
+   - los sellos de la ruta A repiten el hero (tu cama, lo interpreta el Dr., sin agujas);
+   - la entrada de la ruta A repite la lista de abajo y la entrada de la seccion;
+   - "quien decide" ya lo dice el hero movil (un neumologo del INER lee tu estudio);
+   - las cifras de exactitud, el renglon "si sale negativo" y su fuente describen el estudio en casa (ruta A):
+     con la ruta B a la vista se ocultan (el JS de pastillas marca data-lp-on en .qe). */
+@media(max-width:767px){
+  #qe-a .qe__seals,#qe-a .qe__lead{display:none}
+  .qe__facts li:first-child{display:none}
+  .qe[data-lp-on="qe-b"] .qe__stats,.qe[data-lp-on="qe-b"] .qe__facts,.qe[data-lp-on="qe-b"] .qe__source{display:none}
+  .qe__source{font-size:.75rem;margin-top:6px}
+  /* ritmo vertical de la ficha en movil (la ruta A quedaba en 819px = 1.23 pantallas) */
+  .qe__tabs{margin-bottom:12px}
+  .qe__list li{padding:7px 0 7px 18px}
+  .qe__stats{margin-top:16px;padding-top:0;border-top:0} /* la regla de cierre de la lista ya separa; evita la regla doble */
+  .qe__facts{margin-top:8px}
+  .qe__close{margin-top:14px;gap:4px}
+}
+</style>
+<style id="lp-hero-limpio-20260916">
+/* ===== HERO LIMPIO 16-sep-2026 (aditivo: quitar este bloque devuelve el hero navy y la tarjeta de resultado
+   anterior). Fallo que lo motivo: el Dr., con capturas del celular: "en el header igual mucho texto, ya no me
+   gusta esa azul marino, degradado, busca algo mas limpio, pero que cumpla la funcion de resaltar sin ser tan
+   tosco visualmente" y, sobre la tarjeta de resultado del cuestionario, "mucho texto, no esta justificado o al
+   menos con formato y jerarquia visual". Superficie clara y PLANA; el resaltado lo hacen la cifra en electric,
+   un boton primario y una regla fina de marca. Mismo hero en las tres landings de sueno (estilo-william:
+   titulos 600 con tracking negativo, tipo oracion, reglas finas en vez de cajas, un dato una vez).
+   Paleta: navy #0a2540, electric #0984e3, gris #4a5a70, borde #dfe8f3, superficie #f5f9fe. ===== */
+:root{--lh-navy:#0a2540;--lh-el:#0984e3;--lh-gray:#4a5a70;--lh-line:#dfe8f3;--lh-bg:#f5f9fe}
+
+/* --- superficie: plana, sin orbes, sin particulas, sin sombra interior --- */
+.hero,section.hero{background:var(--lh-bg);color:var(--lh-navy);box-shadow:none;padding:40px 0 44px}
+.hero::before,.hero::after{content:none;animation:none}
+.hero:focus-within a:focus-visible{outline-color:var(--lh-el)} /* base.css lo pintaba blanco por el fondo navy */
+
+/* --- texto: regla de marca > eyebrow > h1 (cifra en electric) > ancla tachada > una frase --- */
+.hero__rule{display:block;width:48px;height:3px;border-radius:2px;background:var(--lh-el);margin:0 0 14px}
+.hero__content>.hero__badge,.hero__badge{display:block;background:none;border:0;padding:0;margin:0 0 10px;border-radius:0;font-size:13px;font-weight:600;letter-spacing:.02em;text-transform:none;color:var(--lh-el);line-height:1.3;animation:none}
+.hero__badge .dot{display:none}
+section.hero h1{color:var(--lh-navy);font-weight:600;letter-spacing:-.025em;line-height:1.12;font-size:clamp(1.85rem,6.4vw,2.4rem);margin:0 0 8px;max-width:640px}
+section.hero h1 em{color:var(--lh-el);font-style:normal}
+.hero__content>.price-ladder,.price-ladder{display:block;margin:0 0 14px;max-width:none}
+.price-tier,.price-tier--promo{background:none;border:0;box-shadow:none;padding:0;border-radius:0}
+.price-tier--promo .price-tier__label,.price-tier--promo .price-tier__desc,.price-tier--promo .price-tier__row,.price-tier--promo .price-tier__more{display:none}
+.price-tier__movil{display:block;margin:0;font-size:13px;font-weight:500;line-height:1.4;color:var(--lh-gray);white-space:nowrap}
+.price-tier__movil s{color:var(--lh-gray)}
+.hero__sub:not(.hero__sub--movil){display:none} /* el parrafo largo queda en el DOM; la frase corta se ve en todos los anchos */
+.hero__content>.hero__sub--movil,.hero__sub.hero__sub--movil{display:block;margin:0 0 18px;font-size:1rem;line-height:1.5;color:var(--lh-gray);max-width:520px}
+.hero__cupo,.hero__bullets{display:none}
+
+/* --- boton primario (pill, sin glow), nota, enlace secundario --- */
+.hero__cta,.hero__content>.hero__cta{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin:0 0 16px!important} /* !important: margin-bottom inline en el HTML */
+.hero__cta .btn-wa{order:1;width:auto;min-width:0;min-height:50px;padding:13px 28px;border-radius:100px;box-shadow:none;font-weight:700;font-size:1rem}
+.hero__cta .btn-wa:hover{box-shadow:none;transform:none;background:var(--green-dark)}
+.hero__cta .btn-wa:focus-visible{outline:3px solid var(--lh-el);outline-offset:3px;box-shadow:none}
+.hero__cta .hero__nota{order:2;flex-basis:auto;margin:0;font-size:12.5px;line-height:1.35;color:var(--lh-gray);text-align:left}
+.hero__cta .btn-cal{order:3;width:auto;min-width:0;min-height:40px;align-self:flex-start;padding:4px 0;margin:0;background:none;box-shadow:none;border-radius:0;color:var(--lh-el);font-weight:600;font-size:.92rem;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;text-decoration-color:rgba(9,132,227,.55)}
+.hero__cta .btn-cal:hover{background:none;transform:none;color:var(--lh-navy);text-decoration-color:currentColor}
+.hero__cta .btn-cal:focus-visible{outline:3px solid var(--lh-el);outline-offset:3px;box-shadow:none}
+.hero__cta .btn-cal i{display:none}
+
+/* --- credenciales: UNA linea de texto navy con separador ·, sin chips ni carrusel --- */
+.hero__creds,.hero__content>.hero__creds{display:flex;flex-wrap:wrap;align-items:center;overflow:visible;gap:2px 0;margin:0;padding:0;font-size:13px;line-height:1.4;color:var(--lh-navy)}
+.hero__cred,a.hero__cred{flex:0 0 auto;white-space:nowrap;display:inline-flex;align-items:center;gap:4px;background:none;border:0;padding:0;font-size:13px;font-weight:500;color:var(--lh-navy);text-decoration:none}
+.hero__cred:nth-child(n+4){display:none} /* "sabado y domingo" y "Santa Coleta" ya viven en #ubicacion y en el pie */
+.hero__cred>i{display:none}
+.hero__cred+.hero__cred::before{content:"\00b7";margin:0 7px;color:#8a97a8;font-weight:500}
+.hero__cred .stars{color:#f5b400;font-size:.9rem;letter-spacing:0;line-height:1}
+a.hero__cred:hover{background:none;color:var(--lh-el);text-decoration:underline;text-underline-offset:3px}
+/* nota de honestidad: solo escritorio (en movil el hero lleva solo lo esencial) */
+.honesty-note,.hero__content>.honesty-note{margin:14px 0 0;font-size:.86rem;line-height:1.45;color:var(--lh-gray);max-width:520px}
+.honesty-note i{color:var(--lh-el)}
+.honesty-note b{color:var(--lh-navy);font-weight:600}
+
+/* --- tarjeta derecha (escritorio) y foto: blanco, borde fino, radio 20, sombra minima --- */
+.hero__card,.hero .hero__card{background:#fff;border:1px solid var(--lh-line);border-radius:20px;box-shadow:0 8px 24px rgba(10,37,64,.06);backdrop-filter:none;-webkit-backdrop-filter:none}
+.hero__card figure{border-radius:20px!important;box-shadow:none!important} /* !important: radio y sombra van inline en el HTML */
+.hero__card figcaption{color:var(--lh-gray)!important;font-weight:500!important}
+.hero__card h3{color:var(--lh-navy);font-weight:600;letter-spacing:-.015em}
+.hero__card .subt{color:var(--lh-el);text-transform:none;letter-spacing:.02em;font-size:13px;font-weight:600}
+.hero__card-list li{color:var(--lh-gray)}
+.hero__card-list strong{color:var(--lh-navy);font-weight:600}
+.hero__card-list i{color:var(--lh-el)}
+
+/* --- movil: DOM ya en orden de lectura; se anulan los `order` de los bloques anteriores --- */
+@media(max-width:600px){
+  .hero__content{padding-block:0}
+  .hero__content>*+*{margin-top:0}
+  .hero__content>.hero__rule,.hero__content>.hero__badge,.hero__content>h1,.hero__content>.price-ladder,.hero__content>.hero__sub--movil,.hero__content>.hero__sub,.hero__content>.hero__cta,.hero__content>.hero__creds,.hero__content>.honesty-note,.hero__content>.hero__cupo,.hero__content>.hero__bullets{order:0}
+  .hero__content>.honesty-note{display:none}
+  .hero__rule{margin-bottom:12px}
+  .hero__content>.hero__badge{display:block;margin-bottom:8px}
+  section.hero h1{margin-bottom:6px}
+  .hero__content>.price-ladder{margin:0 0 12px}
+  .hero__content>.hero__sub--movil{margin:0 0 16px}
+  .hero__cta .btn-wa{width:100%}
+  .hero__cta .hero__nota{align-self:stretch;text-align:center}
+  .hero__cta .btn-cal{align-self:center}
+  .hero__creds{margin-top:2px}
+  /* cabecera: el boton de WhatsApp lo lleva la barra fija (una CTA primaria por pantalla).
+     !important porque la utilidad .d-inline-flex del subset de Bootstrap lo fija con !important */
+  #mainNav .navbar-cta{display:none!important}
+}
+@media(max-width:767px){
+  .hero__card,.hero .hero__card{background:none;border:0;box-shadow:none} /* solo queda la foto, con su radio de 20px */
+  .hero .row.g-5{--bs-gutter-y:1.1rem}
+}
+/* Medido: la linea de credenciales a 13px necesita 408px y en 375 hay 351. Por debajo de 440px se parte a
+   proposito ANTES del tercer dato, sin el punto separador huerfano al inicio del renglon. */
+@media(max-width:440px){
+  .hero__cred:nth-child(3){flex-basis:100%}
+  .hero__cred:nth-child(3)::before{content:none}
+}
+@media(min-width:992px){
+  .hero{padding:56px 0 60px}
+  .hero__cred,a.hero__cred{font-size:13px;font-weight:500;color:var(--lh-navy)}
+  .hero__creds{gap:2px 0;margin:0}
+  .hero__sub.hero__sub--movil{margin-bottom:22px}
+  /* el flotante de WhatsApp (right 24px, 60px de ancho) pisaba 2px la ficha (right 1198 en 1280): la ficha cede 14px */
+  .hero .col-lg-5>.hero__card{max-width:calc(100% - 14px)}
+}
+
+/* --- banda de promocion superior: fuera (repetia la cifra del h1). La linea legal negra se conserva. --- */
+.promo-banner{display:none}
+/* --- selector ES|EN: pasa de la banda navy a la cabecera blanca --- */
+#mainNav .promo-lang2{display:inline-flex;margin-left:auto;margin-right:12px;border:1px solid var(--lh-line);border-radius:100px;overflow:hidden;background:#fff;font-size:.72rem;font-weight:600;letter-spacing:.02em;vertical-align:middle}
+#mainNav .promo-lang2 a{display:inline-flex;align-items:center;color:var(--lh-navy);background:transparent;padding:0 11px;min-height:36px;line-height:1;text-decoration:none;margin:0}
+#mainNav .promo-lang2 a.active{background:var(--lh-navy);color:#fff}
+#mainNav .promo-lang2 a:not(.active):hover{background:rgba(9,132,227,.08)}
+@media(max-width:600px){
+  /* !important: lp-psg-20260912 fijo con !important el tamano del selector para la banda navy, que ya no se muestra */
+  #mainNav .promo-lang2{font-size:.72rem!important;margin-right:0}
+  #mainNav .promo-lang2 a{font-size:.72rem!important;padding:0 10px!important;min-height:36px!important;line-height:1!important}
+}
+
+/* --- rotulos en tipo oracion (antes MAYUSCULAS con tracking abierto): mismo tamano chico y peso como jerarquia --- */
+.block__kicker,.hero__card .subt,.price-tier__label,.doc-band__kicker,.svc-wow__badge,.svc-wow__col-lbl,.step3__time,.px3__tag,.orient-route__badge,.orient-route__rt,.trust-claim b small,.compare-col__label,.gbp-rating-widget__source,.price-highlight__from,.price-highlight__save,.tl-step__time{text-transform:none;letter-spacing:.02em}
+.block__kicker{background:none;padding:0;border-radius:0;color:var(--lh-el);font-size:13px;font-weight:600;margin-bottom:12px}
+.svc-wow__col-lbl{letter-spacing:.04em}
+
+/* --- "Tu cama vs un cuarto extrano": media 841px = 1.26 pantallas en 375; aire y un rotulo que repetia el h2 --- */
+@media(max-width:600px){
+  .svc-wow{padding:22px 18px;border-radius:20px}
+  .svc-wow__badge{display:none}
+  .svc-wow__title{margin-bottom:16px}
+  .svc-wow__compare{gap:10px;margin-bottom:12px}
+  .svc-wow__col{padding:14px 16px;border-radius:14px}
+  .svc-wow__foot{padding-top:10px}
+}
+
+/* --- "Calcular mi IMC": el subrayado solo bajo el texto, no bajo el icono --- */
+#stop-bang .sb-bmi-toggle{border-bottom:0;text-decoration:none}
+#stop-bang .sb-bmi-toggle>span{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;text-decoration-color:rgba(9,132,227,.5)}
+
+/* --- resultado del STOP-BANG: tarjeta blanca, titulo + una frase + tres renglones rotulo | dato --- */
+#stop-bang .sb-result,#stop-bang .sb-result--low,#stop-bang .sb-result--mid,#stop-bang .sb-result--high{padding:20px;border:1px solid var(--lh-line);border-radius:16px;background:#fff;box-shadow:none;text-align:left}
+#stop-bang .sb-result__top{padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--lh-line)}
+.sb-result__num{font-size:1.7rem}
+#stop-bang .sb-result__title{margin:0 0 6px;font-size:1.25rem;font-weight:600;letter-spacing:-.02em;line-height:1.25;color:var(--lh-navy);text-wrap:balance}
+#stop-bang .sb-result__message{margin:0 0 12px;font-size:.95rem;line-height:1.5;color:var(--lh-gray)}
+.sb-result__plan{display:none}
+#stop-bang .sb-result--low .sb-result__plan--consulta,#stop-bang .sb-result--mid .sb-result__plan--poli,#stop-bang .sb-result--high .sb-result__plan--poli{display:block}
+.sb-result__rows{list-style:none;margin:0 0 16px;padding:0;border-top:1px solid var(--lh-line)}
+.sb-result__rows li{display:grid;grid-template-columns:minmax(0,36%) minmax(0,1fr);column-gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--lh-line)}
+.sb-result__k{font-size:.9rem;font-weight:600;color:var(--lh-navy);line-height:1.35}
+.sb-result__v{font-size:.9rem;color:var(--lh-gray);line-height:1.4}
+@media(max-width:479px){
+  .sb-result__rows li{grid-template-columns:1fr;row-gap:2px;padding:8px 0}
+  .sb-result__k{font-size:.82rem}
+  .sb-result__v{font-size:.95rem;color:#3d4d61}
+}
+@media(min-width:768px){
+  #stop-bang .sb-result{padding:24px}
+  .sb-result__rows li{grid-template-columns:minmax(0,30%) minmax(0,1fr);padding:11px 0}
+  .sb-result__k,.sb-result__v{font-size:.95rem}
+}
+</style>
+<style id="lp-cierre-20260916">
+/* ===== CIERRE 17-sep-2026: pase final antes de publicar (aditivo: quitar este bloque revierte el estilo; el HTML
+   cambio en credenciales del hero, caption, nota de #precios, CTA final y tres frases del STOP-BANG).
+   Fallos que lo motivaron:
+   1. El verificador tecnico midio el electric #0984e3 en texto chico sobre #f5f9fe/#fff: 3.66:1, reprueba AA.
+   2. El Dr. rechazo "el azul marino degradado, tosco": el hero ya era claro, pero quedaban cinco bloques navy con
+      glow fuera del hero (tarjeta destacada del bento, "Tu cama vs un cuarto extrano", banda del Dr., dos CTA).
+   3. Escritorio: la tarjeta de la foto media 801px y, centrada, hundia la columna de texto a y=321 (hermanas 151-155).
+   4. El resultado del STOP-BANG decia el nivel dos veces (pastilla + frase).
+   Paleta: navy #0a2540; electric #0984e3 solo en cifras >=24px, reglas, iconos y botones; electric de TEXTO #0773c5
+   (4.92:1 sobre #fff, 4.66:1 sobre #f6f9fd); gris #4a5a70; borde #dfe8f3; superficie #f6f9fd.
+   No se borro ninguna regla vieja: todo se sobreescribe aqui (menos riesgo que editar seis bloques anteriores). ===== */
+:root{--electric-text:#0773c5;--lc-navy:#0a2540;--lc-el:#0984e3;--lc-gray:#4a5a70;--lc-line:#dfe8f3;--lc-surface:#f6f9fd}
+
+/* ---------- A. Contraste AA: todo texto electric menor de 24px pasa a --electric-text ---------- */
+.hero__badge,.hero__content>.hero__badge,.hero__cta .btn-cal,.hero__card .subt,
+#stop-bang .sb-bmi-toggle,.enj__more a,.qe__link,.qe__seals a,.psg-strip__txt a,.rev-block__all,.rev-strip__all{color:var(--electric-text)}
+.hero__cta .btn-cal{text-decoration-color:rgba(7,115,197,.55)}
+#stop-bang .sb-bmi-toggle>span{text-decoration-color:rgba(7,115,197,.5)}
+.rev-block__all{border-bottom-color:rgba(7,115,197,.35)}
+/* a 22-23px (movil) los <em> de titulo y la cifra de la fila promo no llegan a "texto grande" */
+@media(max-width:767px){
+  .block__title em,.svc-wow__title em,.px3__row--promo .px3__price{color:var(--electric-text)}
+}
+/* #8a97a8 a 10.9px daba 2.76:1 */
+.px3__was{color:#5b6675}
+/* blanco sobre #0984e3 a 13px = 3.87:1; #0773c5 da 4.92:1 y ya era su :hover (disease.css) */
+#mainNav .navbar-cta{background:var(--electric-text)}
+#mainNav .navbar-cta:hover{background:#065a9b} /* su :hover era justo #0773c5: sin esto el cambio de color al pasar desaparece */
+/* pastillas de texto chico (blanco sobre electric 3.87:1, electric sobre tinte 3.56:1) pasan a rotulo plano */
+.px3__tag,.testimonial-source-badge{background:none;border:0;padding:0;border-radius:0;box-shadow:none;color:var(--electric-text);font-size:13px;font-weight:600;letter-spacing:.02em;text-transform:none}
+
+/* ---------- D. Rotulos de seccion: una sola familia (la del eyebrow del hero) ----------
+   texto plano 13px/600/1.3, --electric-text, tipo oracion, sin pastilla, sin fondo, sin punto.
+   En movil (<=600) siguen ocultos: decision del pase 1 por espacio; display:block aqui los volveria a mostrar. */
+.block__kicker,.doc-band__kicker,.why-feat__chip{display:block;background:none;border:0;padding:0;border-radius:0;box-shadow:none;font-size:13px;font-weight:600;line-height:1.3;letter-spacing:.02em;text-transform:none;color:var(--electric-text)}
+.block__kicker{margin:0 0 10px}
+.block__kicker::before{content:none;animation:none}
+.why-feat__chip i{display:none}
+@media(max-width:600px){.block__kicker{display:none}}
+
+/* ---------- E. Hero: familia exacta ---------- */
+section.hero h1{line-height:1.12}
+.hero__badge,.hero__content>.hero__badge{font-size:13px;font-weight:600;line-height:1.3}
+/* !important: la COMPACTACION MOVIL anexada a bs-lite fija .hero__sub a 1.03rem!important (16.48px medido) */
+.hero__content>.hero__sub--movil,.hero__sub.hero__sub--movil{font-size:16px!important;line-height:1.5!important}
+.hero__cta .btn-wa{height:52px;min-height:52px;padding-top:0;padding-bottom:0}
+.hero__cta .btn-cal{height:40px;min-height:40px;padding-top:0;padding-bottom:0}
+/* credenciales: <p class="hero__creds"> con dos span y un enlace; separador por CSS, alineadas a la izquierda */
+.hero__creds,.hero__content>.hero__creds{display:flex;flex-wrap:wrap;justify-content:flex-start;align-items:center;text-align:left;overflow:visible;gap:2px 0;margin:0;padding:0;font-size:13px;font-weight:500;line-height:1.4;color:var(--lc-navy)}
+.hero__creds>*,.hero__content>.hero__creds>*{flex:0 0 auto;white-space:nowrap;font-size:13px;font-weight:500;color:var(--lc-navy);text-decoration:none;background:none;border:0;padding:0}
+.hero__creds>*+*::before{content:"\00b7";margin:0 7px;color:var(--lc-gray);font-weight:500}
+.hero__creds>a{color:var(--lc-navy);text-decoration:none}
+.hero__creds>a:hover,.hero__creds>a:focus-visible{color:var(--lc-navy);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+/* medido: la linea necesita 408px a 13px; por debajo de 440px el tercer dato va en su renglon, sin punto al inicio */
+@media(max-width:440px){
+  .hero__creds>*:nth-child(3),.hero__content>.hero__creds>*:nth-child(3){flex-basis:100%}
+  .hero__creds>*:nth-child(3)::before{content:none}
+}
+/* tarjeta derecha: solo la foto con un caption de una linea; "Lo que recibes" ya esta abajo (pasos 1-3, bento, cama vs cuarto) */
+.hero__card .subt,.hero__card h3,.hero__card-list{display:none}
+.hero__card figure{margin:0!important} /* !important: margin inline en el HTML */
+.hero__card figcaption{font-size:13px!important;line-height:1.4;padding:10px 4px 0!important;white-space:nowrap} /* !important: estilo inline */
+@media(min-width:992px){
+  /* !important: .align-items-center de bs-lite lleva !important */
+  .hero .row{align-items:flex-start!important}
+  .hero__card,.hero .hero__card{padding:12px 12px 10px}
+}
+
+/* ---------- nota de honestidad bajo la tabla de precios (antes en el hero) ---------- */
+.px3__foot,.px3__nota{max-width:760px;margin:8px auto 0;font-size:13px;line-height:1.45;color:var(--lc-gray);text-align:center}
+.px3__nota{margin-top:4px}
+.px3__nota b{font-weight:600;color:var(--lc-navy)}
+
+/* ---------- B. Fuera el navy degradado fuera del hero ---------- */
+/* B1. tarjeta destacada del bento */
+.why-tile--feat{background:var(--lc-surface);border:1px solid var(--lc-line);color:var(--lc-navy);box-shadow:0 8px 24px rgba(10,37,64,.06)}
+.why-tile--feat::after{content:none}
+.why-tile--feat h3{color:var(--lc-navy);font-weight:600;letter-spacing:-.02em}
+.why-tile--feat p{color:var(--lc-gray)}
+.why-tile--feat .why-ic{background:#fff;border:1px solid var(--lc-line);color:var(--lc-el);box-shadow:none}
+@media(hover:hover) and (pointer:fine){.why-tile--feat:hover{box-shadow:0 8px 24px rgba(10,37,64,.06)}}
+.why-feat__chip{margin:0 0 12px} /* sin pastilla quedaba pegado al icono */
+@media(min-width:561px){.why-tile--feat{justify-content:center}} /* sin el fondo oscuro, el texto arriba dejaba media tarjeta vacia (362px) */
+/* defecto previo: ".why-tile--apoyo > div{flex:1}" tambien estira el icono (es un div) hasta media tarjeta */
+.why-tile--apoyo>.why-ic{flex:0 0 46px}
+
+/* B2. "Tu cama vs un cuarto extrano": superficie blanca, columnas separadas por regla fina, sin cajas internas */
+.svc-wow{background:#fff;border:1px solid var(--lc-line);color:var(--lc-navy);box-shadow:0 8px 24px rgba(10,37,64,.06)}
+.svc-wow::before,.svc-wow::after{content:none;animation:none}
+.svc-wow__badge{display:none} /* pastilla "Hospital vs domicilio": repetia el h2; en movil ya estaba oculta */
+.svc-wow__title{color:var(--lc-navy);font-weight:600;letter-spacing:-.02em}
+/* el em del titulo mide 20.8px en 375 (no es texto grande) y el cyan del bloque navy daria 1.9:1 sobre blanco */
+.svc-wow__title em{color:var(--electric-text)}
+@media(min-width:600px){.svc-wow__title em{color:var(--lc-el)}} /* >=600 el titulo ya pasa de 24px */
+.svc-wow__col,.svc-wow__col--bad,.svc-wow__col--good{background:none;border:0;border-top:1px solid var(--lc-line);border-radius:0;padding:12px 0 2px}
+.svc-wow__col-lbl,.svc-wow__col--bad .svc-wow__col-lbl{font-size:13px;font-weight:600;letter-spacing:.02em;text-transform:none;color:var(--lc-gray)}
+.svc-wow__col--good .svc-wow__col-lbl{color:var(--electric-text)}
+.svc-wow__col-num{font-weight:600}
+.svc-wow__col--bad .svc-wow__col-num{color:var(--lc-navy);opacity:1}
+.svc-wow__col--good .svc-wow__col-num{color:var(--lc-el)}
+.svc-wow__col-desc{color:var(--lc-gray)}
+.svc-wow__foot{color:var(--lc-gray);font-style:normal;border-top:1px solid var(--lc-line)}
+@media(min-width:600px){.svc-wow__compare{gap:0 28px}}
+
+/* B3. Banda "Quien hace tu estudio": la foto se conserva; texto navy/gris, cedulas como texto (sin pastillas) */
+section.doc-band{background:var(--lc-surface);color:var(--lc-navy);border-top:1px solid var(--lc-line);border-bottom:1px solid var(--lc-line)}
+.doc-band::before{content:none}
+.doc-portrait{border:1px solid var(--lc-line);box-shadow:0 8px 24px rgba(10,37,64,.06)}
+.doc-band__kicker{margin:0 0 10px}
+.doc-band__name{color:var(--lc-navy);font-weight:600}
+.doc-band__role{color:var(--lc-gray);font-weight:500}
+.doc-band__line{color:var(--lc-navy);font-weight:500}
+.doc-band__creds{gap:4px 16px}
+.doc-band__creds span{background:none;border:0;padding:0;border-radius:0;color:var(--lc-gray);font-size:13px;font-weight:500}
+.doc-band__creds i{color:var(--lc-el)}
+.doc-band__creds a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(74,90,112,.4)}
+.doc-band__creds a:hover{color:var(--lc-navy)}
+
+/* B4-B5. CTA intermedio y CTA final: superficie clara, regla de marca 48x3, titulo navy, una frase,
+   boton verde + enlace "Agendar cita" (el mismo del hero). Sin glow, sin lucecitas. */
+.cta-inline{background:var(--lc-surface);color:var(--lc-navy);border:1px solid var(--lc-line);border-radius:20px;box-shadow:none}
+.cta-inline::after{content:none}
+.cta-inline::before{content:"";position:static;inset:auto;display:block;width:48px;height:3px;border-radius:2px;background:var(--lc-el);margin:0 auto 16px;animation:none}
+.cta-inline .sparkle-field{display:none}
+.cta-inline h2{color:var(--lc-navy);font-weight:600;letter-spacing:-.024em}
+.cta-inline p{color:var(--lc-gray)}
+.cta-inline__btns,.cta-final__actions{display:flex;flex-direction:column;align-items:center;gap:8px}
+.cta-inline .btn-wa{height:52px;min-height:52px;padding:0 28px;border-radius:100px;box-shadow:none;font-size:1rem;font-weight:700;min-width:0;width:auto}
+.cta-inline .btn-wa:hover{box-shadow:none;transform:none}
+.cta-inline .btn-cal{height:40px;min-height:40px;width:auto;min-width:0;padding:0 4px;background:none;border:0;border-radius:0;box-shadow:none;color:var(--electric-text);font-weight:600;font-size:.92rem;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(7,115,197,.55)}
+.cta-inline .btn-cal i{display:none}
+.cta-inline .btn-cal:hover{background:none;transform:none;color:var(--lc-navy);text-decoration-color:currentColor}
+.cta-inline .btn-cal:focus-visible,.cta-inline .btn-wa:focus-visible{outline:3px solid var(--lc-el);outline-offset:3px;box-shadow:none}
+@media(max-width:767px){.cta-inline .btn-wa{width:100%}}
+
+/* "Por que vale la pena": el degradado #f5fbff -> #eaf4ff bajaba el --electric-text a 4.42:1 (rotulo y enlace); superficie plana */
+.osa-section{background:var(--lc-surface)}
+/* iniciales blancas de las resenas sobre el degradado electric -> royal: 3.87:1 en su parada clara; arranca en --electric-text (4.92:1) */
+.testi-avatar{background:linear-gradient(135deg,var(--electric-text),#1e3799)}
+
+/* ---------- STOP-BANG ---------- */
+/* el nivel es texto de color semantico, sin caja */
+#stop-bang .sb-result .sb-result__level{background:none;padding:0;border-radius:0}
+/* escritorio: la seccion media 1.25 pantallas a 1280x900; menos aire entre renglones */
+@media(min-width:768px){#stop-bang .sb-board .sb-question{padding-top:9px;padding-bottom:9px}}
+</style>
+<style id="lp-pulido-20260917">
+/* ===== PULIDO FINAL 17-sep-2026 (aditivo: quitar este bloque revierte el estilo; el HTML cambio en eyebrow y frase del
+   hero, rotulo de #precios, fichas sobre el STOP-BANG, cifras de exactitud, titulo de "Tu cama vs", pasos, parrafo de
+   clinicas, resenas, CTA intermedio, "Como llegar" y enlace del FAQ).
+   Fallos que lo motivaron (verificadores del pase 3, medidos a 375 y 1280):
+   - teal fuera de marca: 10 elementos a 375 y 18 a 1280 (seccion de pareja, loseta de apoyo, iconos, fila promo, FAQ);
+   - navy solido en la pastilla activa, los circulos 1-2-3, "Como llegar" y el selector ES (el Dr.: "tosco");
+   - tres familias de boton verde (radio 100/14/12 px, alto 48-54, peso 800);
+   - h3 en 800 junto a h2 en 600; resenas en italica, sin tope de renglones y con dos columnas entre 481 y 640 px.
+   Paleta de lp-cierre: navy #0a2540, electric #0984e3, texto azul #0773c5, gris #4a5a70, borde #dfe8f3. ===== */
+
+/* ---------- 1. Hero movil: una accion primaria por pantalla ----------
+   la barra fija inferior ya lleva "Agendar" en la misma pantalla; en escritorio el enlace se queda */
+@media(max-width:767px){.hero__cta .btn-cal{display:none}}
+
+/* ---------- 3. h3 de una sola familia (losetas y pasos venian en 800) ---------- */
+.why-tile h3,.why-tile--feat h3,.step3__title,#stop-bang .sb-result__title{font-weight:600;letter-spacing:-.01em}
+
+/* ---------- 4. Resenas: una regla de texto para las tres landings de sueno ----------
+   !important: la COMPACTACION MOVIL anexada a bs-lite fija .testi-text a 1.03rem/1.5 con !important (<=767) */
+.testi-text{font-size:.92rem!important;line-height:1.6!important;text-align:left;font-style:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:6;line-clamp:6;overflow:hidden}
+@media(max-width:767px){
+  .testimonial-columns{grid-template-columns:1fr}
+  .testimonial-columns>:nth-child(n+2){display:none} /* entre 481 y 767 px se veian dos o tres columnas */
+}
+
+/* ---------- A. Fuera el teal (tono 150-190) ---------- */
+.partner-section{background:#f5f8fc;border-top:0} /* antes: regla cyan de 3px + degradado */
+.partner-card{border:1px solid #dfe8f3;box-shadow:none}
+/* la cita: sin caja ni italica, una regla izquierda de marca */
+.partner-callout{background:none;border:0;border-left:2px solid #0984e3;border-radius:0;padding:2px 0 2px 14px;font-style:normal;color:#4a5a70}
+.partner__signs li i{color:#0984e3}
+.partner-fact{border-color:#dfe8f3;box-shadow:none}
+.partner-fact__ic,.why-ic,.why-tile--apoyo .why-ic{background:#f5f8fc;color:#0984e3;border:1px solid #dfe8f3;box-shadow:none}
+.why-tile--apoyo{background:#fff;border-color:#dfe8f3} /* antes: degradado verde a menta */
+.steps3__fill{background:#0984e3} /* la linea de progreso de los pasos iba de electric a cyan */
+@media(min-width:768px){.px3__row--promo{background:#f5f8fc}}
+/* anillo de foco: era #00cec9 con halo cyan */
+.btn-wa:focus-visible,.btn-partner-wa:focus-visible,.psg-strip__btn:focus-visible,#stop-bang .sb-result__cta:focus-visible,.sticky-cta a:focus-visible{outline:3px solid #0984e3;outline-offset:3px;box-shadow:none}
+
+/* ---------- B. Fuera el navy solido en pastillas, circulos y selector ---------- */
+.qe__tab{border-radius:9px 9px 0 0;color:#4a5a70}
+.qe__tab[aria-selected="true"]{background:#fff;color:#0a2540;font-weight:600;box-shadow:inset 0 -2px 0 #0984e3}
+.qe__tab[aria-selected="true"] b{color:var(--electric-text)}
+.step3__num{background:#fff;color:var(--electric-text);border:1px solid #cfe3f7;box-shadow:none;font-weight:600}
+/* selector ES activo: #0773c5 sobre #eaf3fd da 4.39:1 (reprueba AA a 11.5px); #065a9b, el azul oscuro de marca que ya
+   usa el :hover de la cabecera, da 6.36:1 con el mismo fondo */
+#mainNav .promo-lang2 a.active{background:#eaf3fd;color:#065a9b}
+/* icono de la franja "Te pidieron polisomnografia" (solo >600 px): era un cuadro navy; mismo trato que los iconos de las losetas */
+.psg-strip__ic{background:#f5f8fc;color:#0984e3;border:1px solid #dfe8f3}
+
+/* ---------- C. Botones verdes: una sola familia (la del hero y el CTA final) ---------- */
+.btn-partner-wa,.enj__cta,.qe__close .btn-wa,.psg-strip__btn,#stop-bang .sb-result__cta{border-radius:100px;min-height:52px;padding-top:10px;padding-bottom:10px;font-weight:700;box-shadow:none}
+.btn-partner-wa:hover{box-shadow:none;transform:none}
+@media(max-width:767px){
+  .btn-partner-wa,.enj__cta,.qe__close .btn-wa,.psg-strip__btn,#stop-bang .sb-result__cta{display:flex;width:100%;min-width:0;justify-content:center;margin-left:auto;margin-right:auto}
+}
+
+/* ---------- D. Clinicas del sueno: una oracion, alineada a la izquierda en movil ---------- */
+@media(max-width:767px){#especialista-del-sueno .block__lead{text-align:left}}
+
+/* ---------- E. Menores ---------- */
+/* tabla de precios en movil: la fila promo tenia 10px de padding y radio 10; las otras 4px. $5,000 terminaba 6px antes */
+@media(max-width:767px){.px3__row--promo{padding-left:4px;padding-right:4px;border-left:0;border-radius:0;background:rgba(9,132,227,.06)}}
+.px3__was{display:block;margin-top:2px}
+/* "3 pasos": el tiempo deja de ser pastilla y va como texto chico gris bajo el titulo del paso */
+.step3__title{margin-bottom:2px}
+.step3__time{display:block;background:none;border:0;border-radius:0;padding:0;margin:0 0 8px;font-size:13px;font-weight:500;line-height:1.35;letter-spacing:0;text-transform:none;color:#4a5a70}
+
+/* 17-sep-2026 (verificacion final): la cabecera pegajosa iba en rgba(255,255,255,.88) con blur;
+   al hacer scroll se leia el texto de la pagina por detras del logotipo. Fondo solido + regla fina. */
+#mainNav.navbar.sticky-top{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom:1px solid rgba(15,29,48,.08)}
+/* 17-sep-2026: a 375 las 6 losetas eran un carrusel mudo de 288 px: solo se veia la primera y la
+   segunda quedaba cortada a media palabra. Ahora la siguiente asoma (84vw), el deslizamiento se
+   ancla loseta a loseta y un desvanecido a la derecha avisa de que hay mas. */
+@media (max-width:767px){
+  .why-bento{scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-right:14px;
+    -webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 34px),transparent 100%);
+    mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 34px),transparent 100%)}
+  .why-bento .why-tile{flex:0 0 84vw;max-width:84vw;scroll-snap-align:start}
+}
+
+/* 17-sep-2026 (coherencia de controles): el Si/No pulsado del STOP-BANG y el boton del IMC iban en
+   azul marino solido; el cuestionario hermano de la comparativa ya usa tinte claro con texto azul.
+   Mismo estado elegido en los dos: #eef6fe con texto #0773c5 y borde del mismo azul (4.51:1). */
+#stop-bang .sb-board .sb-btn.active-si,#stop-bang .sb-board .sb-btn.active-no,#stop-bang .sb-board .sb-btn[aria-pressed="true"],#stop-bang .sb-board .sb-btn[aria-pressed="true"]:hover{background:#eef6fe;color:#0773c5;border-color:#0773c5;font-weight:700}
+.sb-bmi-calc-btn{background:#eef6fe;color:#0773c5;border:1px solid #0773c5;font-weight:600}
+.sb-bmi-calc-btn:hover{background:#dceaf9;color:#065a9b;border-color:#065a9b}
+
+/* 17-sep-2026 (escala unica): los botones verdes de la barra fija iban en radio 12 px frente al
+   radio 100 px del resto; misma familia en toda la pagina. */
+.sticky-cta .sc-wa,.sticky-cta .sc-cal{border-radius:100px}
+/* Titulos de seccion a una sola escala (24 px): 'Tres formas...' iba en 18.4, el STOP-BANG y el
+   cierre en 22.4 y la seccion de pareja alineada a la izquierda entre titulos centrados. */
+#precios .px3__title{font-size:1.5rem;line-height:1.18}
+#stop-bang .block__title,.cta-final h2,.cta-inline h2{font-size:1.5rem;line-height:1.18}
+#para-la-pareja .block__title{font-size:1.5rem;text-align:center}
+.doc-band__name{font-size:1.5rem}
+.btn-wa.enj__cta,.qe__close .btn-wa{font-size:1rem}
+/* El radio de los botones de la barra fija va en el atributo style del HTML: hace falta !important. */
+.sticky-cta .sc-wa,.sticky-cta .sc-cal{border-radius:100px!important}
+</style>
 <!-- sp-popup (prueba social ficticia con nombres inventados) ELIMINADO por compliance:
      solo se usa la calificación 5.0 real de Google, nunca testimonios inventados. -->
 
@@ -2996,6 +3475,54 @@ document.addEventListener('click',function(e){
     }
 })();
 
+</script>
+<script id="lp-premium-20260916-js">
+/* Pase premium 16-sep-2026. Capa ADITIVA: no toca el script de puntuacion STOP-BANG ni el del tablero. */
+(function(){
+    /* 1. Pastillas + un solo panel vivo (patron d9). Sin JS queda visible el primer panel (.is-on en el HTML). */
+    function pastillas(root){
+        var tabs=[].slice.call(root.querySelectorAll('[role="tab"]'));
+        if(!tabs.length)return;
+        function muestra(i){
+            tabs.forEach(function(b,k){
+                var on=(k===i);
+                b.setAttribute('aria-selected',on?'true':'false');
+                b.tabIndex=on?0:-1;
+                var p=document.getElementById(b.getAttribute('aria-controls'));
+                if(p)p.classList.toggle('is-on',on);
+            });
+            /* Cierre 16-sep: el CSS movil oculta las cifras del estudio en casa cuando se mira la ruta B */
+            var host=root.closest('.qe');
+            if(host)host.setAttribute('data-lp-on',tabs[i].getAttribute('aria-controls'));
+        }
+        tabs.forEach(function(b,k){
+            b.addEventListener('click',function(){muestra(k);});
+            b.addEventListener('keydown',function(e){
+                var d=(e.key==='ArrowRight')?1:(e.key==='ArrowLeft')?-1:0;
+                if(!d)return;
+                e.preventDefault();
+                var n=(k+d+tabs.length)%tabs.length;
+                muestra(n);
+                tabs[n].focus();
+            });
+        });
+    }
+    [].forEach.call(document.querySelectorAll('[data-lp-tabs]'),pastillas);
+
+    /* 2. Resultado STOP-BANG: el script de puntuacion escribe "4 de 8 factores de riesgo presentes" como
+       texto plano; aqui se parte en cifra grande + rotulo (estilo-william #16) sin tocar ese script. */
+    var score=document.getElementById('sb-result-score');
+    if(score&&('MutationObserver' in window)){
+        var pinta=function(){
+            if(score.firstElementChild)return;
+            var m=/^(\d+)\s+de\s+(\d+)\s*(.*)$/.exec(score.textContent.trim());
+            if(!m)return;
+            score.innerHTML='<b class="sb-result__num">'+m[1]+'<small> de '+m[2]+'</small></b><span class="sb-result__what">'+m[3]+'</span>';
+        };
+        new MutationObserver(pinta).observe(score,{childList:true,characterData:true,subtree:true});
+        pinta();
+    }
+})();
 </script>
 </body>
 </html>

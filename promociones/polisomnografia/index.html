@@ -45,13 +45,13 @@
 
     <style id="lp-styles">
     :root{
-        --navy:#0a2e2c;
-        --electric:#0d9e84;
-        --cyan:#2dd4bf;
+        --navy:#0a1628;
+        --electric:#0984e3;
+        --cyan:#00cec9;
         --green:#1DA851;
-        --green-dark:#128C7E;
-        --bg:#f1fbf7;
-        --ink:#142b26;
+        --green-dark:#189044;
+        --bg:#f8faff;
+        --ink:#0f1d30;
         --muted:#5a6b7d;
         --ease:cubic-bezier(.22,.61,.36,1);
     }
@@ -61,61 +61,61 @@
     @media(min-width:992px){body{padding-bottom:0}}
 
     /* ============ HERO ============ */
-    .hero{position:relative;background:linear-gradient(135deg,#0a2e2c 0%,#0c544c 60%,#0d9e84 100%);color:#fff;padding:56px 0 64px;overflow:hidden}
-    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(800px 400px at 80% 10%,rgba(45,212,191,.25),transparent 60%);pointer-events:none}
+    .hero{position:relative;background:linear-gradient(135deg,#0a1628 0%,#1e3799 60%,#0984e3 100%);color:#fff;padding:56px 0 64px;overflow:hidden}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(800px 400px at 80% 10%,rgba(0,206,201,.25),transparent 60%);pointer-events:none}
     .hero__content{position:relative;z-index:2}
-    .hero__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(45,212,191,.18);border:1px solid rgba(45,212,191,.4);color:#a5f3df;padding:7px 16px;border-radius:999px;font-size:.82rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
-    .hero__badge .dot{width:8px;height:8px;background:#2dd4bf;border-radius:50%;box-shadow:0 0 12px #2dd4bf;animation:pulse 2s infinite}
+    .hero__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,206,201,.18);border:1px solid rgba(0,206,201,.4);color:#8ffdec;padding:7px 16px;border-radius:999px;font-size:.82rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
+    .hero__badge .dot{width:8px;height:8px;background:#00cec9;border-radius:50%;box-shadow:0 0 12px #00cec9;animation:pulse 2s infinite}
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
     section.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:18px;color:#fff}
-    section.hero h1 em{font-style:normal;background:linear-gradient(120deg,#2dd4bf,#a5f3df);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+    section.hero h1 em{font-style:normal;color:var(--electric)}
     .hero__sub{font-size:1.12rem;color:rgba(255,255,255,.85);margin-bottom:24px;max-width:560px;line-height:1.55}
     .hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:22px}
     .btn-wa,.btn-cal{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 26px;border-radius:14px;font-weight:800;font-size:1.05rem;text-decoration:none;transition:all .25s var(--ease);box-shadow:0 10px 30px -8px rgba(0,0,0,.4);min-width:220px}
     .btn-wa{background:var(--green);color:#fff}
     .btn-wa:hover{background:var(--green-dark);color:#fff;transform:translateY(-2px);box-shadow:0 14px 34px -8px rgba(29,168,81,.5)}
     .btn-cal{background:#fff;color:var(--navy)}
-    .btn-cal:hover{background:#e6faf4;color:var(--navy);transform:translateY(-2px)}
+    .btn-cal:hover{background:#f0f6ff;color:var(--navy);transform:translateY(-2px)}
     .hero__trust{display:flex;flex-wrap:wrap;gap:18px;font-size:.83rem;color:rgba(255,255,255,.7)}
     .hero__trust span{display:inline-flex;align-items:center;gap:6px}
-    .hero__trust i{color:#a5f3df}
+    .hero__trust i{color:#8ffdec}
 
     /* Card visual a la derecha */
     .hero__card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:24px;padding:28px;backdrop-filter:blur(12px);position:relative;z-index:2}
     .hero__card h3{color:#fff;font-weight:800;font-size:1.3rem;margin-bottom:6px}
-    .hero__card .subt{color:#a5f3df;font-size:.85rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
+    .hero__card .subt{color:#8ffdec;font-size:.85rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
     .hero__card-list{list-style:none;padding:0;margin:0;display:grid;gap:14px}
-    .hero__card-list li{display:flex;gap:12px;align-items:flex-start;color:#e6faf4;font-size:.95rem}
-    .hero__card-list i{color:#2dd4bf;font-size:1.4rem;flex-shrink:0}
+    .hero__card-list li{display:flex;gap:12px;align-items:flex-start;color:#f0f6ff;font-size:.95rem}
+    .hero__card-list i{color:#00cec9;font-size:1.4rem;flex-shrink:0}
     .hero__card-list strong{color:#fff;display:block;margin-bottom:2px}
     /* Grid visual de iconos (mas limpio que lista de bullets) */
     .hero__visual-grid{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .hero__visual-grid li{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:14px 8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;transition:all .25s var(--ease)}
-    .hero__visual-grid li:hover{background:rgba(255,255,255,.1);border-color:rgba(45,212,191,.4);transform:translateY(-2px)}
-    .hvg__ico{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,rgba(45,212,191,.25),rgba(13,158,132,.25));display:flex;align-items:center;justify-content:center;color:#a5f3df;font-size:1.25rem}
-    .hvg__label{font-size:.78rem;font-weight:700;color:#e6faf4;line-height:1.25;letter-spacing:.2px}
+    .hero__visual-grid li:hover{background:rgba(255,255,255,.1);border-color:rgba(0,206,201,.4);transform:translateY(-2px)}
+    .hvg__ico{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,rgba(0,206,201,.25),rgba(9,132,227,.25));display:flex;align-items:center;justify-content:center;color:#8ffdec;font-size:1.25rem}
+    .hvg__label{font-size:.78rem;font-weight:700;color:#f0f6ff;line-height:1.25;letter-spacing:.2px}
     .hero__card-foot{margin:14px 0 0;font-size:.72rem;color:rgba(255,255,255,.55);text-align:center;letter-spacing:.3px}
 
     /* Badge de precio promocional dentro del hero */
-    .hero__price{display:inline-flex;flex-direction:column;align-items:flex-start;gap:6px;background:linear-gradient(135deg,rgba(45,212,191,.15),rgba(13,158,132,.15));border:1px solid rgba(45,212,191,.35);border-radius:16px;padding:14px 20px;margin-bottom:22px;backdrop-filter:blur(8px);position:relative}
-    .hero__price::before{content:'PROMOCIÓN';position:absolute;top:-10px;left:16px;background:linear-gradient(135deg,#2dd4bf,#0d9e84);color:#fff;font-size:.65rem;font-weight:800;letter-spacing:1px;padding:3px 10px;border-radius:999px;box-shadow:0 4px 12px -4px rgba(45,212,191,.6)}
-    .hero__price-label{font-size:.78rem;font-weight:700;color:#a5f3df;letter-spacing:.4px;text-transform:uppercase;margin-top:4px}
+    .hero__price{display:inline-flex;flex-direction:column;align-items:flex-start;gap:6px;background:linear-gradient(135deg,rgba(0,206,201,.15),rgba(9,132,227,.15));border:1px solid rgba(0,206,201,.35);border-radius:16px;padding:14px 20px;margin-bottom:22px;backdrop-filter:blur(8px);position:relative}
+    .hero__price::before{content:'PROMOCIÓN';position:absolute;top:-10px;left:16px;background:linear-gradient(135deg,#00cec9,#0984e3);color:#fff;font-size:.65rem;font-weight:800;letter-spacing:1px;padding:3px 10px;border-radius:999px;box-shadow:0 4px 12px -4px rgba(0,206,201,.6)}
+    .hero__price-label{font-size:.78rem;font-weight:700;color:#8ffdec;letter-spacing:.4px;text-transform:uppercase;margin-top:4px}
     .hero__price-row{display:flex;align-items:baseline;gap:12px}
     .hero__price-old{font-size:1.2rem;color:rgba(255,255,255,.55);text-decoration:line-through;text-decoration-color:rgba(255,107,107,.85);text-decoration-thickness:2.5px;font-weight:600}
-    .hero__price-new{font-size:2.4rem;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1;text-shadow:0 2px 12px rgba(45,212,191,.35)}
+    .hero__price-new{font-size:2.4rem;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1;text-shadow:0 2px 12px rgba(0,206,201,.35)}
 
     /* Iconos de metodos de pago */
     .pay-row{display:flex;justify-content:center;align-items:center;gap:18px;margin:22px auto 0;flex-wrap:wrap}
     .pay-row__item{display:inline-flex;flex-direction:column;align-items:center;gap:6px;color:var(--muted);font-size:.72rem;font-weight:700;letter-spacing:.3px;text-transform:uppercase}
-    .pay-row__item i{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,rgba(13,158,132,.08),rgba(45,212,191,.08));border:1px solid rgba(13,158,132,.18);display:flex;align-items:center;justify-content:center;font-size:1.35rem;color:var(--electric);transition:all .25s var(--ease)}
-    .pay-row__item:hover i{transform:translateY(-2px);border-color:var(--electric);background:rgba(13,158,132,.12)}
+    .pay-row__item i{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,rgba(9,132,227,.08),rgba(0,206,201,.08));border:1px solid rgba(9,132,227,.18);display:flex;align-items:center;justify-content:center;font-size:1.35rem;color:var(--electric);transition:all .25s var(--ease)}
+    .pay-row__item:hover i{transform:translateY(-2px);border-color:var(--electric);background:rgba(9,132,227,.12)}
 
     /* CTA final con lucecitas premium (orbs + dot pattern) */
-    .cta-inline--lights{position:relative;overflow:hidden;background:linear-gradient(135deg,#06231f 0%,#0a2e2c 35%,#0c544c 70%,#0d9e84 100%)}
+    .cta-inline--lights{position:relative;overflow:hidden;background:linear-gradient(135deg,#0a1628 0%,#0a1628 35%,#1e3799 70%,#0984e3 100%)}
     .cta-inline--lights::before{content:'';position:absolute;inset:-20%;background:
-        radial-gradient(600px 300px at 15% 20%,rgba(45,212,191,.30),transparent 60%),
-        radial-gradient(500px 280px at 85% 80%,rgba(13,158,132,.40),transparent 55%),
-        radial-gradient(400px 240px at 70% 15%,rgba(165,243,223,.20),transparent 60%);
+        radial-gradient(600px 300px at 15% 20%,rgba(0,206,201,.30),transparent 60%),
+        radial-gradient(500px 280px at 85% 80%,rgba(9,132,227,.40),transparent 55%),
+        radial-gradient(400px 240px at 70% 15%,rgba(143,253,236,.20),transparent 60%);
         animation:ctaOrbs 18s ease-in-out infinite;pointer-events:none;z-index:1}
     .cta-inline--lights::after{content:'';position:absolute;inset:0;background-image:
         radial-gradient(circle at 20% 35%,rgba(255,255,255,.06) 0,transparent 1.5px),
@@ -134,27 +134,27 @@
     /* ============ SECCIÓN GENÉRICA ============ */
     section.block{padding:64px 0}
     .block__head{text-align:center;max-width:720px;margin:0 auto 40px}
-    .block__kicker{display:inline-block;background:rgba(13,158,132,.1);color:var(--electric);padding:6px 14px;border-radius:999px;font-size:.78rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:14px}
+    .block__kicker{display:inline-block;background:rgba(9,132,227,.1);color:var(--electric);padding:6px 14px;border-radius:999px;font-size:.78rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:14px}
     .block__title{font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:800;letter-spacing:-.02em;color:var(--navy);margin-bottom:12px;line-height:1.2}
     .block__title em{font-style:normal;color:var(--electric)}
     .block__lead{font-size:1.05rem;color:var(--muted);line-height:1.65}
 
     /* ============ PASOS / QUÉ INCLUYE (premium) ============ */
-    .cond{background:linear-gradient(180deg,#fff 0%,#ecfaf4 100%);position:relative;overflow:hidden}
-    .cond::before{content:'';position:absolute;inset:0;background:radial-gradient(700px 360px at 50% -10%,rgba(45,212,191,.08),transparent 60%);pointer-events:none}
+    .cond{background:linear-gradient(180deg,#fff 0%,#f8faff 100%);position:relative;overflow:hidden}
+    .cond::before{content:'';position:absolute;inset:0;background:radial-gradient(700px 360px at 50% -10%,rgba(0,206,201,.08),transparent 60%);pointer-events:none}
     .cond .container{position:relative;z-index:1}
     .cond-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     @media(max-width:680px){.cond-grid{grid-template-columns:repeat(2,1fr);gap:12px}}
-    .cond-card{position:relative;background:linear-gradient(180deg,#fff 0%,#f6fdfa 100%);border:1px solid rgba(13,158,132,.12);border-radius:20px;padding:26px 18px 22px;text-align:center;transition:all .35s var(--ease);overflow:hidden;cursor:default;display:flex;flex-direction:column;align-items:center;gap:10px}
+    .cond-card{position:relative;background:linear-gradient(180deg,#fff 0%,#f8faff 100%);border:1px solid rgba(9,132,227,.12);border-radius:20px;padding:26px 18px 22px;text-align:center;transition:all .35s var(--ease);overflow:hidden;cursor:default;display:flex;flex-direction:column;align-items:center;gap:10px}
     .cond-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--electric),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
-    .cond-card::after{content:'';position:absolute;inset:-1px;border-radius:20px;background:linear-gradient(135deg,rgba(45,212,191,.18),rgba(13,158,132,.18));opacity:0;transition:opacity .35s var(--ease);z-index:-1;filter:blur(14px)}
-    .cond-card:hover{transform:translateY(-6px);border-color:rgba(45,212,191,.4);box-shadow:0 22px 44px -18px rgba(8,44,40,.22)}
+    .cond-card::after{content:'';position:absolute;inset:-1px;border-radius:20px;background:linear-gradient(135deg,rgba(0,206,201,.18),rgba(9,132,227,.18));opacity:0;transition:opacity .35s var(--ease);z-index:-1;filter:blur(14px)}
+    .cond-card:hover{transform:translateY(-6px);border-color:rgba(0,206,201,.4);box-shadow:0 22px 44px -18px rgba(9,44,84,.22)}
     .cond-card:hover::before{transform:scaleX(1)}
     .cond-card:hover::after{opacity:1}
-    .cond-card__icon{width:62px;height:62px;border-radius:18px;background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.7rem;margin-bottom:4px;box-shadow:0 10px 24px -10px rgba(13,158,132,.55);transition:transform .35s var(--ease)}
+    .cond-card__icon{width:62px;height:62px;border-radius:18px;background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.7rem;margin-bottom:4px;box-shadow:0 10px 24px -10px rgba(9,132,227,.55);transition:transform .35s var(--ease)}
     .cond-card:hover .cond-card__icon{transform:scale(1.08) rotate(-4deg)}
     .cond-card h3{font-size:1.05rem;font-weight:800;color:var(--navy);margin:0;letter-spacing:-.01em}
-    .cond-card__tag{display:inline-block;font-size:.68rem;font-weight:800;padding:4px 10px;border-radius:999px;background:rgba(13,158,132,.1);color:var(--electric);letter-spacing:.4px;text-transform:uppercase}
+    .cond-card__tag{display:inline-block;font-size:.68rem;font-weight:800;padding:4px 10px;border-radius:999px;background:rgba(9,132,227,.1);color:var(--electric);letter-spacing:.4px;text-transform:uppercase}
     .cond-card__tag--featured{background:linear-gradient(135deg,#0984e3,#1e3799);color:#fff;box-shadow:0 6px 14px -4px rgba(230,74,25,.5)}
 
     /* Boton secundario elegante */
@@ -163,32 +163,32 @@
     .btn-ask-wa:hover{background:rgba(29,168,81,.14);border-color:var(--green);color:var(--green-dark);transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(29,168,81,.25)}
 
     /* ============ CTA INLINE ============ */
-    .cta-inline{background:linear-gradient(135deg,var(--navy) 0%,#0c544c 100%);color:#fff;padding:48px 32px;border-radius:24px;text-align:center;position:relative;overflow:hidden}
-    .cta-inline::before{content:'';position:absolute;inset:0;background:radial-gradient(500px 200px at 50% 0%,rgba(45,212,191,.25),transparent 60%);pointer-events:none}
+    .cta-inline{background:linear-gradient(135deg,var(--navy) 0%,#1e3799 100%);color:#fff;padding:48px 32px;border-radius:24px;text-align:center;position:relative;overflow:hidden}
+    .cta-inline::before{content:'';position:absolute;inset:0;background:radial-gradient(500px 200px at 50% 0%,rgba(0,206,201,.25),transparent 60%);pointer-events:none}
     .cta-inline > *{position:relative;z-index:2}
     .cta-inline h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:12px;letter-spacing:-.02em;color:#fff}
     .cta-inline p{color:rgba(255,255,255,.8);max-width:540px;margin:0 auto 26px;font-size:1.02rem}
     .cta-inline__btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
 
     /* ============ DOCTOR / E-E-A-T ============ */
-    .doc-card{background:#fff;border:1px solid rgba(13,158,132,.15);border-radius:22px;padding:32px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;box-shadow:0 12px 30px -16px rgba(8,44,40,.15)}
-    .doc-card__avatar{width:140px;height:140px;border-radius:50%;flex-shrink:0;border:3px solid #fff;box-shadow:0 8px 24px -8px rgba(8,44,40,.25);object-fit:cover}
+    .doc-card{background:#fff;border:1px solid rgba(9,132,227,.15);border-radius:22px;padding:32px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;box-shadow:0 12px 30px -16px rgba(9,44,84,.15)}
+    .doc-card__avatar{width:140px;height:140px;border-radius:50%;flex-shrink:0;border:3px solid #fff;box-shadow:0 8px 24px -8px rgba(9,44,84,.25);object-fit:cover}
     .doc-card h3{font-size:1.3rem;font-weight:800;color:var(--navy);margin-bottom:6px}
     .doc-card .role{color:var(--electric);font-weight:700;font-size:.95rem;margin-bottom:14px}
     .doc-card__bullets{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:8px}
     .doc-card__bullets li{display:flex;gap:10px;align-items:flex-start;font-size:.94rem;color:var(--ink);line-height:1.5}
     .doc-card__bullets i{color:var(--electric);font-size:1.05rem;flex-shrink:0;margin-top:3px}
     .doc-card__creds{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-    .doc-card__creds span{background:rgba(13,158,132,.08);color:var(--electric);padding:5px 12px;border-radius:999px;font-size:.78rem;font-weight:600}
+    .doc-card__creds span{background:rgba(9,132,227,.08);color:var(--electric);padding:5px 12px;border-radius:999px;font-size:.78rem;font-weight:600}
     @media(max-width:700px){.doc-card{grid-template-columns:1fr;text-align:left}.doc-card__avatar{margin:0 auto}.doc-card__creds{justify-content:flex-start}}
 
     /* ============ UBICACIÓN ============ */
     .loc{background:linear-gradient(180deg,#fff 0%,var(--bg) 100%)}
     .loc-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:stretch;max-width:1080px;margin:0 auto}
     @media(max-width:880px){.loc-grid{grid-template-columns:1fr}}
-    .loc-map{border-radius:20px;overflow:hidden;border:1px solid rgba(13,158,132,.15);box-shadow:0 14px 36px -16px rgba(8,44,40,.18);min-height:340px;background:#e6faf4}
+    .loc-map{border-radius:20px;overflow:hidden;border:1px solid rgba(9,132,227,.15);box-shadow:0 14px 36px -16px rgba(9,44,84,.18);min-height:340px;background:#f0f6ff}
     .loc-map iframe{display:block;width:100%;height:100%;min-height:340px;border:0}
-    .loc-info{background:#fff;border:1px solid rgba(13,158,132,.15);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:18px;box-shadow:0 10px 28px -16px rgba(8,44,40,.15)}
+    .loc-info{background:#fff;border:1px solid rgba(9,132,227,.15);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:18px;box-shadow:0 10px 28px -16px rgba(9,44,84,.15)}
     .loc-info h3{font-size:1.15rem;font-weight:800;color:var(--navy);margin:0 0 4px}
     .loc-info p,.loc-info address{font-size:.95rem;color:var(--muted);margin:0;font-style:normal;line-height:1.55}
     .loc-row{display:flex;gap:14px;align-items:flex-start}
@@ -196,7 +196,7 @@
     .loc-info .btn-wa{min-width:0;width:100%;margin-top:auto}
 
     /* ============ FAQ ============ */
-    .faq-item{background:#fff;border:1px solid rgba(13,158,132,.12);border-radius:14px;margin-bottom:12px;overflow:hidden}
+    .faq-item{background:#fff;border:1px solid rgba(9,132,227,.12);border-radius:14px;margin-bottom:12px;overflow:hidden}
     .faq-item summary{padding:18px 22px;font-weight:700;color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;font-size:1rem;gap:14px}
     .faq-item summary::-webkit-details-marker{display:none}
     .faq-item summary::after{content:'+';font-size:1.5rem;color:var(--electric);font-weight:300;transition:transform .25s;flex-shrink:0}
@@ -206,7 +206,7 @@
     .price-pill{display:inline-block;background:rgba(29,168,81,.12);color:var(--green-dark);padding:3px 10px;border-radius:999px;font-weight:800;font-size:.85rem;margin:0 2px}
 
     /* ============ FOOTER ============ */
-    .lp-footer{background:#072420;color:rgba(255,255,255,.55);padding:32px 0 22px;text-align:center;font-size:.83rem}
+    .lp-footer{background:#0a1628;color:rgba(255,255,255,.55);padding:32px 0 22px;text-align:center;font-size:.83rem}
 
     /* ============ STICKY MÓVIL ============ */
     .sticky-cta{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid rgba(0,0,0,.1);padding:10px 12px;padding-bottom:max(10px,env(safe-area-inset-bottom));display:flex;gap:8px;z-index:90;box-shadow:0 -4px 20px rgba(0,0,0,.08)}
@@ -223,8 +223,8 @@
 
     /* ===== Mejoras CRO: confianza en hero, resenas reales, micro-interacciones ===== */
     .hero__creds{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}
-    .hero__cred{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#e6faf4;padding:7px 13px;border-radius:999px;font-size:.82rem;font-weight:700;text-decoration:none}
-    .hero__cred i{color:#a5f3df}
+    .hero__cred{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#f0f6ff;padding:7px 13px;border-radius:999px;font-size:.82rem;font-weight:700;text-decoration:none}
+    .hero__cred i{color:#8ffdec}
     .hero__cred .stars{color:#f5b400;letter-spacing:1px;font-size:.95rem}
     a.hero__cred:hover{background:rgba(255,255,255,.2);color:#fff}
     .btn-wa:active,.btn-cal:active,.sticky-cta a:active{transform:scale(.97)}
@@ -233,11 +233,11 @@
     @media(prefers-reduced-motion:reduce){.reveal,.reveal.in{opacity:1!important;transform:none!important;transition:none!important}}
 
     /* CTA: lucecitas (sparkle-field) + linea luminosa */
-    .cta-inline:not(.cta-inline--lights)::before{background:radial-gradient(600px 240px at 50% 0%,rgba(45,212,191,.28),transparent 60%);animation:none}
-    .cta-inline:not(.cta-inline--lights)::after{content:'';position:absolute;top:0;left:12%;right:12%;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 16px rgba(45,212,191,.75);z-index:3}
+    .cta-inline:not(.cta-inline--lights)::before{background:radial-gradient(600px 240px at 50% 0%,rgba(0,206,201,.28),transparent 60%);animation:none}
+    .cta-inline:not(.cta-inline--lights)::after{content:'';position:absolute;top:0;left:12%;right:12%;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 16px rgba(0,206,201,.75);z-index:3}
     .cta-inline .sparkle-field{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;border-radius:24px}
-    .cta-inline .sparkle-field span{position:absolute;border-radius:50%;background:rgba(190,245,225,.95);opacity:0;animation:cta-twinkle var(--sd,3s) ease-in-out var(--sl,0s) infinite}
-    .cta-inline .sparkle-field span.glow{box-shadow:0 0 9px 3px rgba(116,225,200,.4)}
+    .cta-inline .sparkle-field span{position:absolute;border-radius:50%;background:rgba(220,236,255,.95);opacity:0;animation:cta-twinkle var(--sd,3s) ease-in-out var(--sl,0s) infinite}
+    .cta-inline .sparkle-field span.glow{box-shadow:0 0 9px 3px rgba(143,253,236,.4)}
     @keyframes cta-twinkle{0%,100%{opacity:0}50%{opacity:.95}}
     @media(prefers-reduced-motion:reduce){.cta-inline .sparkle-field span{animation:none;opacity:.45}}
 
@@ -248,23 +248,23 @@
     .cta-inline{padding:40px 28px}
 
     /* ===== Sección de reseñas reales de Google (copiada del home) ===== */
-    :root{ --cloud:#ecfaf4; --cloud-alt:#f2fcf8; --white:#ffffff; --text:#0e2a24; --text-muted:#64748b; --royal:#0c6f5e; --shadow-sm:0 2px 14px rgba(10,30,26,.07); --shadow-md:0 6px 32px rgba(10,30,26,.09); --sans:'Plus Jakarta Sans',system-ui,sans-serif; }
-    .gbp-rating-widget{display:inline-flex;align-items:center;gap:14px;padding:14px 24px;background:linear-gradient(135deg,#fff 0%,var(--cloud-alt) 100%);border:1px solid rgba(13,158,132,.14);border-radius:100px;box-shadow:var(--shadow-sm);font-family:var(--sans);text-decoration:none;color:var(--text);transition:all .3s var(--ease)}
+    :root{ --cloud:#f8faff; --cloud-alt:#f8faff; --white:#ffffff; --text:#0f1d30; --text-muted:#64748b; --royal:#1e3799; --shadow-sm:0 2px 14px rgba(10,22,40,.07); --shadow-md:0 6px 32px rgba(10,22,40,.09); --sans:'Plus Jakarta Sans',system-ui,sans-serif; }
+    .gbp-rating-widget{display:inline-flex;align-items:center;gap:14px;padding:14px 24px;background:linear-gradient(135deg,#fff 0%,var(--cloud-alt) 100%);border:1px solid rgba(9,132,227,.14);border-radius:100px;box-shadow:var(--shadow-sm);font-family:var(--sans);text-decoration:none;color:var(--text);transition:all .3s var(--ease)}
     .gbp-rating-widget:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);color:var(--text)}
     .gbp-rating-widget__num{font-size:1.5rem;font-weight:800;color:var(--navy);line-height:1}
     .gbp-rating-widget__stars{color:#fbbc04;font-size:1rem;letter-spacing:1px;line-height:1}
     .gbp-rating-widget__meta{display:flex;flex-direction:column;line-height:1.2}
     .gbp-rating-widget__source{font-size:.72rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em}
     .gbp-rating-widget__count{font-size:.82rem;font-weight:600;color:var(--navy)}
-    .testimonial-source-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(13,158,132,.07);border:1px solid rgba(13,158,132,.16);border-radius:100px;padding:6px 18px;font-size:.72rem;font-weight:700;color:var(--electric)}
+    .testimonial-source-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(9,132,227,.07);border:1px solid rgba(9,132,227,.16);border-radius:100px;padding:6px 18px;font-size:.72rem;font-weight:700;color:var(--electric)}
     .testimonial-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;height:520px;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 8%,black 92%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,black 8%,black 92%,transparent 100%)}
     .testimonial-col{display:flex;flex-direction:column;gap:16px;will-change:transform;animation:testimonial-scroll-up var(--t-dur,60s) linear infinite;animation-play-state:paused}
     .testimonial-col.marquee-on{animation-play-state:running}
     .testimonial-col--down{animation-direction:reverse}
     .testimonial-col:hover{animation-play-state:paused}
     @keyframes testimonial-scroll-up{0%{transform:translateY(0)}100%{transform:translateY(calc(-50% - var(--tgap,8px)))}}
-    .testi-card{background:var(--white);border:1px solid rgba(0,0,0,.06);border-radius:18px;padding:24px;box-shadow:0 2px 12px rgba(10,30,26,.04);transition:all .4s var(--ease);flex-shrink:0}
-    .testi-card:hover{box-shadow:0 12px 40px rgba(10,30,26,.09);border-color:rgba(13,158,132,.15)}
+    .testi-card{background:var(--white);border:1px solid rgba(0,0,0,.06);border-radius:18px;padding:24px;box-shadow:0 2px 12px rgba(10,22,40,.04);transition:all .4s var(--ease);flex-shrink:0}
+    .testi-card:hover{box-shadow:0 12px 40px rgba(10,22,40,.09);border-color:rgba(9,132,227,.15)}
     .testi-stars{display:flex;gap:2px;margin-bottom:12px}
     .testi-stars i{color:#f59e0b;font-size:.82rem}
     .testi-text{font-size:.88rem;line-height:1.7;color:var(--text);font-style:italic;margin:0 0 16px}
@@ -280,10 +280,10 @@
     @media(max-width:560px){.qf-compare{grid-template-columns:1fr}}
     .qf-col{border-radius:18px;padding:24px 20px;text-align:center;border:1px solid;display:flex;flex-direction:column;gap:6px}
     .qf-col--solo{background:#fff;border-color:rgba(230,74,25,.22)}
-    .qf-col--plan{background:linear-gradient(160deg,#0a2e2c 0%,#0c544c 100%);border-color:transparent;color:#fff;box-shadow:0 16px 36px -18px rgba(8,44,40,.35)}
+    .qf-col--plan{background:linear-gradient(160deg,#0a1628 0%,#1e3799 100%);border-color:transparent;color:#fff;box-shadow:0 16px 36px -18px rgba(9,44,84,.35)}
     .qf-col__lbl{font-size:.72rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase}
-    .qf-col--solo .qf-col__lbl{color:#047857}
-    .qf-col--plan .qf-col__lbl{color:#a5f3df}
+    .qf-col--solo .qf-col__lbl{color:#1e3799}
+    .qf-col--plan .qf-col__lbl{color:#8ffdec}
     .qf-col__num{font-size:2.6rem;font-weight:800;line-height:1;letter-spacing:-.02em}
     .qf-col--solo .qf-col__num{color:var(--navy)}
     .qf-col--plan .qf-col__num{color:#fff}
@@ -293,8 +293,8 @@
     .qf-src{text-align:center;font-size:.76rem;color:var(--muted);margin:16px auto 0;max-width:600px;line-height:1.5}
     .qf-tl{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:960px;margin:0 auto}
     @media(max-width:680px){.qf-tl{grid-template-columns:1fr 1fr}}
-    .qf-tl__item{background:#fff;border:1px solid rgba(13,158,132,.12);border-radius:16px;padding:20px 16px;text-align:center;box-shadow:0 6px 18px -14px rgba(8,44,40,.2)}
-    .qf-tl__t{display:inline-block;font-size:.72rem;font-weight:800;color:var(--electric);background:rgba(13,158,132,.1);padding:4px 12px;border-radius:999px;margin-bottom:10px}
+    .qf-tl__item{background:#fff;border:1px solid rgba(9,132,227,.12);border-radius:16px;padding:20px 16px;text-align:center;box-shadow:0 6px 18px -14px rgba(9,44,84,.2)}
+    .qf-tl__t{display:inline-block;font-size:.72rem;font-weight:800;color:var(--electric);background:rgba(9,132,227,.1);padding:4px 12px;border-radius:999px;margin-bottom:10px}
     .qf-tl__ico{font-size:1.5rem;color:var(--electric);margin-bottom:6px}
     .qf-tl__txt{font-size:.84rem;color:var(--ink);line-height:1.45}
     </style>
@@ -327,6 +327,30 @@
 .psgpaso__t{font-size:1rem;font-weight:700;color:#0a1628;margin:0 0 5px}
 .psgpaso__p{font-size:.86rem;color:#5b6675;line-height:1.55;margin:0}
 .psgnota{margin:16px auto 0;max-width:640px;text-align:center;font-size:.83rem;color:#5b6675;line-height:1.55}
+/* Skip link (WCAG 2.4.1). Esta landing no carga base.css, asi que la regla vive aqui: sin ella el enlace
+   se pintaba en la esquina superior, en ingles (visto 16-sep-2026). */
+.alv-skip{position:absolute;left:8px;top:-100px;z-index:100000;display:inline-block;padding:12px 20px;min-height:44px;background:var(--navy);color:#fff;font:600 1rem/1.25 'Plus Jakarta Sans',system-ui,sans-serif;text-decoration:none;border-radius:0 0 10px 10px;box-shadow:0 8px 32px rgba(9,132,227,.22)}
+.alv-skip:focus{top:0;color:#fff;outline:3px solid var(--electric);outline-offset:2px}
+/* Hero en telefono (16-sep-2026): la barra fija tapaba 48 de los 86px del boton principal al cargar a
+   375x667 (boton de dos lineas + badge de dos lineas + subtitulo de cinco). Botones de una linea y a lo
+   ancho, como en las otras promos; el boton principal termina antes de que empiece la barra. */
+@media(max-width:600px){
+  .hero{padding-top:30px!important}
+  .hero__badge{margin-bottom:12px}
+  .hero h1{font-size:1.7rem;margin-bottom:14px}
+  .hero__sub{font-size:.97rem;line-height:1.55;margin-bottom:16px}
+  .hero__cta{flex-direction:column;gap:10px;margin-bottom:16px}
+  .hero__cta a{width:100%;min-width:0;padding:13px 18px;font-size:.95rem}
+}
+/* Contra que comparas: tres renglones con reglas finas, sin tabla pesada. */
+.cmpq{background:#fff;padding:6px 0 40px}
+.cmpq__title{font-size:1.05rem;font-weight:800;letter-spacing:-.01em;color:var(--navy);text-align:center;margin:0 0 10px}
+.cmpq__list{list-style:none;margin:0 auto;padding:0;max-width:640px;border-top:1px solid rgba(10,37,64,.12)}
+.cmpq__row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:12px;align-items:baseline;padding:10px 4px;border-bottom:1px solid rgba(10,37,64,.12);font-size:.86rem;line-height:1.45}
+.cmpq__k{font-weight:700;color:var(--navy)}
+.cmpq__v{color:var(--muted)}
+.cmpq__row--us .cmpq__k,.cmpq__row--us .cmpq__v{color:var(--electric);font-weight:700}
+@media(min-width:768px){.cmpq{padding:10px 0 56px}.cmpq__row{font-size:.95rem;padding:13px 6px}}
 </style>
     <script src="/assets/base.js" defer></script>
 
@@ -347,21 +371,368 @@
 .rev-strip__all:hover,.rev-strip__all:focus-visible{text-decoration:underline}
 @media(prefers-reduced-motion:reduce){.rev-strip__track{scroll-behavior:auto}}
 </style>
+<style id="lp-premium-20260916">
+/* ===== PASE PREMIUM 16-sep-2026 (aditivo: quitar este bloque revierte el pase) =====
+   Fallo que lo motivo: el Dr. devolvio capturas del celular: "secciones tan llenas de texto, mal
+   organizado, sin que se vea premium". Esta landing ademas venia en verde/teal: aqui se alinea a la
+   paleta de marca de sus dos hermanas (navy #0a1628 / royal #1e3799 / electric #0984e3 / cyan #00cec9).
+   16-sep (pase hero limpio): la paleta ya vive en lp-styles y en los style inline de la ficha de precio;
+   este bloque conserva solo estructura (titulos, barra fija, FAQ, hero movil, cierre pase 3). */
+.cond-card__tag--featured{box-shadow:none}
+.testi-card{border-color:rgba(9,44,84,.07);box-shadow:0 2px 12px rgba(10,22,40,.04)}
+/* Titulos ligeros (estilo-william #1) */
+section.hero h1,.block__title,.cta-inline h2,.cmpq__title{font-weight:600;letter-spacing:-.024em}
+/* Barra fija: dos acciones */
+.sticky-cta{gap:10px;padding:10px 16px;padding-bottom:max(10px,env(safe-area-inset-bottom));box-shadow:0 -10px 30px -22px rgba(10,37,64,.35)}
+.sticky-cta a{min-height:48px;border-radius:12px;font-weight:700;font-size:.95rem}
+@media(max-width:991px){body{padding-bottom:calc(74px + env(safe-area-inset-bottom,0px))}}
+/* FAQ: lista con reglas finas, sin cajas */
+.faq-item,.faq-item[open]{background:none;border:0;border-bottom:1px solid rgba(10,37,64,.12);border-radius:0;margin:0;box-shadow:none}
+.faq-item:first-of-type{border-top:1px solid rgba(10,37,64,.12)}
+.faq-item summary{padding:14px 2px;font-weight:600;font-size:.97rem;line-height:1.35;gap:12px}
+.faq-item summary::after{font-size:1.4rem;line-height:1;font-weight:300}
+.faq-item__answer{padding:0 2px 16px;font-size:.93rem;line-height:1.55;color:#3d4d61}
+@media(max-width:600px){
+  .block__kicker{display:none}
+  .hero__badge{display:none}
+  #mainNav{padding:5px 0!important}
+  #mainNav>.container{flex-wrap:nowrap!important;gap:10px!important}
+  #mainNav .navbar-logo{width:28px;height:28px}
+  #mainNav .brand-name{font-size:.95rem}
+  #mainNav .navbar-cta{padding:7px 12px!important;font-size:.82rem!important;white-space:nowrap}
+  .hero{padding-top:22px!important}
+  .hero__cta{display:flex;flex-direction:column;align-items:stretch;gap:6px;margin:0 0 14px!important}
+  .hero__cta .btn-wa{order:1;width:100%;min-width:0;min-height:50px;padding:13px 18px;font-size:1rem;box-shadow:none}
+  .hero__cta .hero__nota{order:2;text-align:center;margin:0}
+  .hero__cta .btn-cal{order:3;width:auto;min-width:0;min-height:40px;align-self:center;padding:6px 4px;background:none;box-shadow:none;color:#fff;font-weight:600;font-size:.9rem;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,.45)}
+  .hero__cta .btn-cal:hover{background:none;transform:none}
+  .hero__cta .btn-cal i{display:none}
+}
+/* la rejilla "tu estudio incluye" se apilaba bajo el hero en telefono; "señal por señal" ya lo cuenta */
+@media(max-width:991px){.hero .col-lg-5{display:none}}
+/* ===== CIERRE 16-sep-2026 (pase 3) ===== */
+/* Fallos que lo motivaron (medidos a 375x667 con Playwright): cinco secciones pasaban de 1.2 pantallas
+   (senales 1.36, pasos 1.20, precio 1.37, medico 1.44, ubicacion 1.74); ninguna ancla llevaba
+   scroll-margin y el titulo quedaba bajo la cabecera sticky (50 px telefono / 75 px escritorio); el boton
+   de la ficha de ubicacion se partia en dos lineas (86 px); "Agendar cita" del cierre se pintaba blanco
+   sobre blanco; el tercer chip del hero quedaba cortado; los chips del hero en escritorio conservaban un
+   mint #e6faf4 y el hover del boton WhatsApp el teal #128c7e; la ficha de precio traia una caja con icono
+   de WhatsApp que no era enlace. Todo CSS, sin tocar texto ni precios. */
+/* Anclas: cabecera sticky medida en 13 anchos: 50.4 px hasta 600, 77.4 px en 601-991 y 1440, 71-75 px en
+   992-1280; el margen cubre la mas alta mas 8 px de aire */
+[id]{scroll-margin-top:88px}
+/* Restos de tono 150-190 fuera de la marca */
+.btn-wa:hover{background:#189044}
+.psgsig__ico{color:var(--electric)}
+.psgsig__tag{background:var(--electric)}
+.psgsig__i--plus{border-color:rgba(9,132,227,.24)}
+/* Metodos de pago como una linea con icono chico en vez de cuatro cajas (la ficha de precio vive en lp-cierre-20260916) */
+.pay-row{gap:8px 22px;margin-top:18px}
+.pay-row__item{flex-direction:row;gap:7px;text-transform:none;letter-spacing:0;font-size:.84rem;font-weight:600}
+.pay-row__item i{width:auto;height:auto;border:0;background:none;font-size:1.05rem}
+.pay-row__item:hover i{transform:none;background:none}
+@media(max-width:600px){
+  [id]{scroll-margin-top:60px}
+  /* senales: renglones con regla fina (9 tarjetas en 2 columnas = 5 filas y una tarjeta sola al final) */
+  .psgsig{display:block;margin-top:0;border-top:1px solid rgba(10,37,64,.12)}
+  .psgsig__i,.psgsig__i--plus{display:grid;grid-template-columns:24px minmax(0,1fr) auto;column-gap:10px;align-items:center;padding:10px 2px;background:none;border:0;border-bottom:1px solid rgba(10,37,64,.12);border-radius:0;box-shadow:none}
+  .psgsig__ico{grid-column:1;grid-row:1/3;margin:0;font-size:1.05rem;line-height:1}
+  .psgsig__n{grid-column:2;grid-row:1;margin:0;font-size:.92rem;line-height:1.3}
+  .psgsig__d{grid-column:2/4;grid-row:2;font-size:.79rem;line-height:1.4}
+  .psgsig__tag{grid-column:3;grid-row:1;position:static;align-self:center;padding:2px 6px;border-radius:4px;background:rgba(9,132,227,.1);color:var(--electric)}
+  /* pasos: mismos renglones, numero a la izquierda */
+  .psgpaso{gap:0;margin-top:0;border-top:1px solid rgba(10,37,64,.12)}
+  .psgpaso__c{display:grid;grid-template-columns:28px minmax(0,1fr);column-gap:12px;padding:12px 2px 13px;background:none;border:0;border-bottom:1px solid rgba(10,37,64,.12);border-radius:0;box-shadow:none}
+  .psgpaso__n{grid-row:1/3;width:28px;height:28px;border-radius:8px;font-size:.8rem;margin:0}
+  .psgpaso__t{font-size:.97rem;margin:0 0 3px;line-height:1.3}
+  .psgpaso__p{font-size:.86rem;line-height:1.5}
+  .psgnota{margin-top:14px;font-size:.8rem}
+  /* precio: menos relleno de seccion (la ficha vive en lp-cierre-20260916) */
+  section.pricing{padding:36px 0 16px!important}
+  .pay-row{margin-top:14px;gap:6px 18px}
+  /* medico: sin tarjeta, retrato mas chico, credenciales como texto */
+  .doc-card{padding:0;border:0;box-shadow:none;background:none;gap:14px}
+  .doc-card__avatar{width:96px;height:96px;border-width:0;box-shadow:0 8px 24px -10px rgba(9,44,84,.3)}
+  .doc-card h3{font-size:1.12rem;text-align:center}
+  .doc-card .role{font-size:.88rem;margin-bottom:10px;text-align:center}
+  .doc-card__bullets{gap:6px;margin-bottom:10px}
+  .doc-card__bullets li{font-size:.9rem;line-height:1.45}
+  .doc-card__creds{gap:4px 12px;margin-top:8px;justify-content:center}
+  .doc-card__creds span{background:none;padding:0;font-size:.76rem;color:var(--muted)}
+  /* ubicacion: mapa mas bajo, ficha sin caja (renglones con regla fina), boton de una linea */
+  section.loc{padding:36px 0}
+  .loc .block__head{margin-bottom:20px}
+  .loc .block__lead{font-size:.95rem;line-height:1.5}
+  .loc-grid{gap:16px}
+  .loc-map{min-height:180px;border-radius:16px}
+  .loc-map iframe{min-height:180px;height:180px}
+  .loc-info{padding:0;border:0;box-shadow:none;background:none;gap:0;border-radius:0;border-top:1px solid rgba(10,37,64,.12)}
+  .loc-row{padding:11px 0;border-bottom:1px solid rgba(10,37,64,.12);gap:12px}
+  .loc-row__icon{width:32px;height:32px;border-radius:9px;font-size:.95rem}
+  .loc-info h3{font-size:1rem}
+  .loc-info p,.loc-info address{font-size:.9rem;line-height:1.5}
+  .loc-info .btn-wa{margin-top:16px;min-height:50px;padding:13px 16px;font-size:.98rem;box-shadow:none}
+}
+/* ===== fin cierre pase 3 ===== */
+</style>
+<style id="lp-hero-limpio-20260916">
+/* ===== HERO LIMPIO 16-sep-2026 (aditivo: quitar este bloque devuelve el hero navy del pase premium) =====
+   Fallo que lo motivo: el Dr. devolvio dos capturas del celular de las landings de sueno: "en el header
+   igual mucho texto, ya no me gusta esa azul marino, degradado, busca algo mas limpio, pero que cumpla
+   la funcion de resaltar sin ser tan tosco visualmente". El hero pasa a una superficie clara y PLANA
+   (#f5f9fe, sin degradado, sin glow, sin fondo oscuro) con menos texto; el resaltado lo hacen la cifra
+   en azul electrico, un boton primario y una regla fina de marca. Misma especificacion en las tres
+   landings de sueno para que se vean de una sola familia (estilo-william: reglas finas, un dato una vez,
+   titulos 600 con tracking negativo, tipo oracion). Tokens del hero: navy #0a2540, electric #0984e3,
+   gris #4a5a70, borde #dfe8f3, superficie #f5f9fe. */
+.hero{--lp-navy:#0a2540;--lp-electric:#0984e3;--lp-gris:#4a5a70;--lp-borde:#dfe8f3;--lp-surf:#f5f9fe}
+section.hero{background:var(--lp-surf);color:var(--lp-navy);border-bottom:1px solid var(--lp-borde);padding:48px 0 56px}
+section.hero::before{display:none}
+/* 1. detalle de marca: regla de 3 x 48 px */
+.hero__rule{display:block;width:48px;height:3px;border-radius:2px;background:var(--lp-electric);margin:0 0 14px}
+/* 2. eyebrow en tipo oracion, sin pastilla */
+.hero__eyebrow{margin:0 0 10px;font-size:13px;font-weight:600;letter-spacing:.02em;text-transform:none;line-height:1.4;color:var(--lp-electric)}
+/* 3. h1: navy 600, tracking -.025em, maximo 3 lineas a 375; la cifra en electric */
+section.hero h1{font-size:clamp(1.85rem,6.4vw,2.4rem);font-weight:600;letter-spacing:-.025em;line-height:1.15;color:var(--lp-navy);margin:0 0 14px}
+section.hero h1 em{font-style:normal;color:var(--lp-electric);background:none;-webkit-background-clip:initial;background-clip:initial;-webkit-text-fill-color:currentColor}
+/* 4. subtitulo: una frase, gris, 1rem */
+.hero .hero__sub{font-size:1rem;line-height:1.5;color:var(--lp-gris);margin:0 0 20px;max-width:520px}
+/* 5-7. boton primario en pastilla sin glow + nota + "Agendar cita" como enlace (sin boton) */
+.hero .hero__cta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin:0 0 16px}
+.hero .hero__cta .btn-wa{order:1;min-width:0;padding:14px 26px;border-radius:100px;font-size:1rem;font-weight:700;box-shadow:none}
+.hero .hero__cta .btn-wa:hover{box-shadow:none}
+.hero .hero__cta .btn-cal{order:2;min-width:0;min-height:44px;padding:6px 2px;background:none;border:0;box-shadow:none;color:var(--lp-electric);font-size:.95rem;font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(9,132,227,.55)}
+.hero .hero__cta .btn-cal:hover{background:none;transform:none;color:#0770c4;text-decoration-color:currentColor}
+.hero .hero__cta .btn-cal i{display:none}
+.hero .hero__cta .hero__nota{order:3;flex-basis:100%;margin:0;font-size:12.5px;line-height:1.4;color:var(--lp-gris)}
+/* 8. credenciales: viven en lp-cierre-20260916 (markup comun de las tres landings) */
+/* tarjeta derecha (escritorio): blanca, borde fino, radio 20, sin vidrio ni glow; iconos electric sobre la superficie */
+.hero .hero__card{background:#fff;border:1px solid var(--lp-borde);border-radius:20px;padding:26px 26px 22px;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:0 8px 24px rgba(10,37,64,.06)}
+.hero .hero__card .subt{margin:0 0 16px;font-size:13px;font-weight:600;letter-spacing:.02em;text-transform:none;color:var(--lp-electric)}
+.hero .hero__visual-grid{gap:10px}
+.hero .hero__visual-grid li{padding:8px 4px;gap:8px;background:none;border:0;border-radius:0}
+.hero .hero__visual-grid li:hover{background:none;border-color:transparent;transform:none}
+.hero .hvg__ico{width:44px;height:44px;border-radius:12px;background:var(--lp-surf);color:var(--lp-electric)}
+.hero .hvg__label{color:var(--lp-navy);font-weight:600;letter-spacing:0}
+.hero .hero__card-foot{margin:14px 0 0;font-size:.78rem;letter-spacing:0;color:var(--lp-gris)}
+@media(max-width:600px){
+  section.hero{padding-bottom:28px}
+  .hero__rule{margin-bottom:12px}
+  .hero .hero__sub{margin-bottom:18px}
+  .hero .hero__cta{flex-direction:column;align-items:stretch;gap:6px}
+  .hero .hero__cta .btn-wa{order:1;width:100%;min-height:50px;padding:13px 18px}
+  .hero .hero__cta .hero__nota{order:2;text-align:center}
+  .hero .hero__cta .btn-cal{order:3;align-self:center;min-height:40px;padding:6px 4px;font-size:.9rem}
+}
+/* ---- Hallazgos del verificador visual cerrados en este pase ---- */
+/* cabecera sticky en telefono: el boton de WhatsApp ya vive en la barra fija inferior (una CTA primaria por pantalla) */
+@media(max-width:600px){#mainNav .navbar-cta{display:none}}
+/* barra legal: la misma regla que sus hermanas (dos lineas completas a 375, sin recorte) */
+@media(max-width:600px){.top-bar-legal{font-size:.62rem;padding:3px 0;line-height:1.3}}
+/* rotulos en tipo oracion: los kickers de bloque dejan la pastilla y quedan como el eyebrow del hero */
+.block__kicker{padding:0;margin-bottom:10px;border-radius:0;background:none;font-size:13px;font-weight:600;letter-spacing:.02em;text-transform:none;color:var(--electric)}
+.gbp-rating-widget__source{text-transform:none;letter-spacing:0}
+/* subtitulos de bloque en gris, como el resto de subtitulos */
+.block__sub{color:var(--muted)}
+/* viudas en titulos de telefono: el em no se parte cuando cabe; el del cierre va tras <br> y es una frase entera */
+@media(max-width:600px){.block__title em{white-space:nowrap}.block__title br+em{white-space:normal}}
+/* una sola forma de boton en la pagina: pastilla, sin glow (como el hero) */
+.btn-wa,.btn-cal{border-radius:100px;box-shadow:none}
+.btn-wa:hover,.btn-cal:hover{box-shadow:none}
+/* "solo aqui" x5 -> una leyenda y un punto de marca al inicio de esas filas */
+.psgsig__legend{display:flex;align-items:center;gap:8px;margin:0 0 6px;font-size:.78rem;font-weight:600;color:var(--muted)}
+@media(max-width:600px){.psgsig__i,.psgsig__i--plus{padding-top:9px;padding-bottom:9px}}
+.psgsig__dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--electric);flex-shrink:0}
+.psgsig__i--plus .psgsig__n::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--electric);margin-right:7px;vertical-align:middle;position:relative;top:-1px}
+</style>
+<style id="lp-cierre-20260916">
+/* ===== CIERRE FINAL 16-sep-2026 (ultimo pase antes de publicar; misma especificacion en las tres landings de sueno) =====
+   Fallos que lo motivaron (medidos con Playwright a 375x667 DPR 2 y 1280x900: getComputedStyle + formula WCAG):
+   - El electric #0984e3 en texto chico da 3.66:1 sobre #f5f9fe y 3.87:1 sobre blanco (falla AA). --electric-text
+     #0773c5 da 4.65:1 y 4.92:1. El #0984e3 queda para cifras de 24 px o mas, reglas e iconos.
+   - Fuera del hero seguia el navy degradado que el Dr. rechazo ("tosco"): la ficha de precio (351x406 telefono,
+     760x350 escritorio) con glow. Ademas: degradado azul palido en 5 senales de escritorio, numeros de los pasos
+     en degradado, iconos de ubicacion en cajas con degradado, secciones .cond/.loc con degradado y glow radial.
+   - Un dato una vez: tres botones repetian "$12,000"; la tarjeta del hero repetia la consulta ($1,500) y
+     "Previa cita" (ya dicha en la nota del boton). Los botones quedan sin cifra (cambio en el HTML).
+   - Hero: accion en linea en escritorio (boton | enlace) y credenciales centradas en telefono con punto huerfano.
+   Reglas BORRADAS por contradecir este bloque: en lp-premium-20260916 .hero__nota blanca, chips .hero__cred
+   (telefono y >=601), .psgpaso__n en degradado, .pricing-hero__desc--cta blanca, "Agendar cita" con contorno en
+   section.block (escritorio y telefono), la ficha de precio de telefono con !important; en lp-hero-limpio-20260916
+   las credenciales display:block con ::after y las reglas !important de la ficha de precio. */
+:root{--electric-text:#0773c5;--lp-navy:#0a2540;--lp-gris:#4a5a70;--lp-borde:#dfe8f3;--lp-surf2:#f6f9fd}
+
+/* ---- A. contraste: texto electric de menos de 24 px ---- */
+.hero__eyebrow,.hero .hero__card .subt,.block__kicker,.pricing-hero__tag,
+.cmpq__row--us .cmpq__k,.cmpq__row--us .cmpq__v,.doc-card .role{color:var(--electric-text)}
+.testimonial-source-badge{background:none;border:0;border-radius:0;padding:0;font-size:13px;font-weight:600;color:var(--electric-text)}
+/* boton de la cabecera de escritorio: 13 px blanco sobre #0984e3 = 3.87:1 */
+#mainNav .navbar-cta{background:var(--electric-text);box-shadow:none}
+#mainNav .navbar-cta:hover{background:#06609f;box-shadow:none}
+
+/* ---- D. rotulos de seccion: texto plano 13 px 600, tipo oracion (display lo decide lp-premium: oculto en telefono) ---- */
+.block__kicker{padding:0;margin-bottom:10px;background:none;border:0;border-radius:0;font-size:13px;font-weight:600;line-height:1.3;letter-spacing:.02em;text-transform:none}
+
+/* ---- E. hero: familia exacta ---- */
+section.hero h1{line-height:1.12}
+.hero__eyebrow{font-size:13px;font-weight:600;line-height:1.3}
+.hero .hero__sub{font-size:16px}
+.hero .hero__cta .btn-wa{min-height:52px;padding-top:0;padding-bottom:0}
+.hero .hero__cta .hero__nota{order:2;flex-basis:auto}
+/* padding lateral 0: con 2 px el texto del enlace quedaba 2 px a la derecha del boton en escritorio (medido 84 vs 82) */
+.hero .hero__cta .btn-cal{order:3;min-height:40px;padding:6px 0;color:var(--electric-text);text-decoration-color:rgba(7,115,197,.5)}
+.hero .hero__cta .btn-cal:hover{color:#06609f}
+/* bloque de accion APILADO tambien en escritorio: boton -> nota -> enlace */
+@media(min-width:601px){.hero .hero__cta{flex-direction:column;align-items:flex-start;gap:6px}}
+@media(min-width:992px){.hero .row{align-items:flex-start}}
+/* credenciales a la izquierda en todos los anchos; el punto separador nunca abre renglon */
+.hero .hero__creds{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:flex-start;gap:0;margin:2px 0 0;padding:0;overflow:visible;text-align:left;font-size:13px;line-height:1.6;font-weight:500;color:var(--lp-navy)}
+.hero .hero__creds>*{white-space:nowrap}
+.hero .hero__creds>*+*::before{content:'\00b7';display:inline-block;margin:0 8px;color:#9aabbf;font-weight:700;text-decoration:none}
+.hero .hero__creds a{color:var(--lp-navy);text-decoration:none}
+.hero .hero__creds a:hover,.hero .hero__creds a:focus-visible{color:var(--lp-navy);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+@media(max-width:439.98px){
+  .hero .hero__creds>:nth-child(3){flex-basis:100%}
+  .hero .hero__creds>:nth-child(3)::before{content:none;display:none}
+}
+/* 3. "Tu estudio incluye": lista de 6 en 2 columnas, icono de 20 px sin caja, reglas finas entre filas.
+   Columna 1 a su contenido: con dos columnas iguales "Lectura de neumologo" (152 px a 14 px) rebasaba su celda de 150 px a 1280. */
+.hero .hero__card{padding:24px 26px 10px}
+.hero .hero__card .subt{margin:0 0 4px;line-height:1.3}
+.hero .hero__visual-grid{display:grid;grid-template-columns:auto 1fr;column-gap:24px;row-gap:0}
+.hero .hero__visual-grid li{flex-direction:row;align-items:center;justify-content:flex-start;text-align:left;gap:10px;padding:13px 0;background:none;border:0;border-bottom:1px solid var(--lp-borde);border-radius:0;transform:none}
+.hero .hero__visual-grid li:nth-last-child(-n+2){border-bottom:0}
+.hero .hvg__ico{flex:0 0 20px;width:20px;height:20px;border-radius:0;background:none;color:var(--electric);font-size:20px;line-height:1}
+.hero .hvg__label{font-size:14px;font-weight:600;line-height:1.3;letter-spacing:0;white-space:nowrap;color:var(--lp-navy)}
+@media(max-width:1199.98px){
+  .hero .hero__card{padding:22px 18px 8px}
+  .hero .hero__visual-grid{column-gap:12px}
+  .hero .hero__visual-grid li{gap:8px}
+  .hero .hvg__label{font-size:13px}
+}
+
+/* ---- B. superficies claras fuera del hero ---- */
+section.cond,section.loc{background:#fff}
+section.cond::before{display:none}
+.gbp-rating-widget{background:#fff;border-color:var(--lp-borde);box-shadow:none}
+.gbp-rating-widget:hover{box-shadow:0 8px 24px rgba(10,37,64,.06)}
+.testi-avatar{background:#eef4fb;color:var(--lp-navy);font-weight:600}
+
+/* 1. ficha de precio: blanca, borde fino, radio 20; la cifra en electric, el ancla tachada en gris en la misma linea */
+.pricing-hero__card{display:flex;flex-direction:column;align-items:center;gap:14px;padding:30px 32px 28px;text-align:center;background:#fff;color:var(--lp-navy);border:1px solid var(--lp-borde);border-radius:20px;box-shadow:0 8px 24px rgba(10,37,64,.06)}
+.pricing-hero__tag{margin:0;font-size:13px;font-weight:600;line-height:1.3;letter-spacing:0;text-transform:none}
+/* rejilla 2x2: rotulos en el renglon 1 (misma linea base) y cifras en el renglon 2 (misma linea base) */
+.pricing-hero__row{display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto;column-gap:28px;row-gap:2px;align-items:baseline;justify-content:center;text-align:left}
+.pricing-hero__new,.pricing-hero__old{display:contents}
+.pricing-hero__new-label{grid-column:1;grid-row:1}
+.pricing-hero__new-amount{grid-column:1;grid-row:2}
+.pricing-hero__old-label{grid-column:2;grid-row:1}
+.pricing-hero__old-amount{grid-column:2;grid-row:2}
+.pricing-hero__new-label,.pricing-hero__old-label{font-size:13px;font-weight:500;line-height:1.3;letter-spacing:0;text-transform:none;color:var(--lp-gris)}
+.pricing-hero__new-amount{font-size:3.2rem;font-weight:600;letter-spacing:-.03em;line-height:1.05;color:var(--electric)}
+.pricing-hero__old-amount{font-size:1.35rem;font-weight:500;letter-spacing:-.01em;line-height:1.05;color:#5a6b7d;text-decoration:line-through;text-decoration-thickness:1.5px;text-decoration-color:rgba(90,107,125,.75)}
+.pricing-hero__desc{margin:0;max-width:520px;font-size:.95rem;line-height:1.5;color:var(--lp-gris)}
+.pricing-hero__card .price-card__cta{margin-top:4px}
+@media(max-width:600px){
+  .pricing-hero__card{gap:12px;padding:24px 20px 22px}
+  .pricing-hero__row{column-gap:22px}
+  .pricing-hero__new-amount{font-size:2.6rem}
+  .pricing-hero__old-amount{font-size:1.15rem}
+  .pricing-hero__desc{font-size:.93rem}
+  .pricing-hero__card .price-card__cta{align-self:stretch}
+}
+/* botones verdes fuera del hero: la misma forma que el del hero (52 px, pastilla, sin sombra) */
+.pricing-hero__card .btn-wa,.loc-info .btn-wa,section.cierre .hero__cta .btn-wa{min-width:0;min-height:52px;padding:0 28px;font-size:1rem;font-weight:700;border-radius:100px;box-shadow:none}
+
+/* 4. escritorio "senal por senal": lista en columnas sin fondo ni borde, regla fina por item; las 5 exclusivas solo con el punto */
+@media(min-width:601px){
+  .psgsig{gap:0 32px;margin-top:0}
+  .psgsig__i,.psgsig__i--plus{display:grid;grid-template-columns:24px minmax(0,1fr);column-gap:10px;align-items:start;padding:14px 2px;background:none;border:0;border-bottom:1px solid var(--lp-borde);border-radius:0;box-shadow:none}
+  .psgsig__ico{grid-column:1;grid-row:1/3;margin:2px 0 0;font-size:1.05rem;line-height:1}
+  .psgsig__n{grid-column:2;grid-row:1;margin:0 0 2px;font-size:.95rem;line-height:1.3}
+  .psgsig__d{grid-column:2;grid-row:2;font-size:.84rem;line-height:1.45}
+  /* "Tres pasos": misma familia, reglas finas en vez de cajas */
+  .psgpaso{gap:0 32px;margin-top:0}
+  .psgpaso__c{padding:18px 2px 8px;background:none;border:0;border-top:1px solid var(--lp-borde);border-radius:0;box-shadow:none}
+}
+@media(min-width:601px) and (max-width:767.98px){.psgsig__i:nth-child(-n+2){border-top:1px solid var(--lp-borde)}}
+@media(min-width:768px){.psgsig__i:nth-child(-n+3){border-top:1px solid var(--lp-borde)}}
+/* numero del paso: circulo de linea fina, sin degradado (blanco sobre degradado no pasaba AA en 13 px) */
+.psgpaso__n{background:none;border:1px solid rgba(9,132,227,.35);border-radius:50%;box-shadow:none;color:var(--electric-text);font-weight:600}
+
+/* medico: credenciales como texto (eran pildoras con electric 3.51:1 en escritorio); tarjeta de la misma familia */
+.doc-card__creds span{background:none;padding:0;border-radius:0;font-size:.8rem;font-weight:500;color:var(--muted)}
+.doc-card__avatar{box-shadow:0 8px 24px rgba(10,37,64,.06)}
+@media(min-width:601px){
+  .doc-card{border-color:var(--lp-borde);border-radius:20px;box-shadow:0 8px 24px rgba(10,37,64,.06)}
+  .doc-card__creds{gap:4px 16px}
+}
+/* ubicacion: iconos sin caja con degradado; mapa y ficha con borde fino */
+.loc-row__icon{flex:0 0 24px;width:24px;height:auto;padding-top:2px;border-radius:0;background:none;color:var(--electric);font-size:1.15rem;align-items:flex-start;justify-content:flex-start}
+.loc-map{border-color:var(--lp-borde);box-shadow:none}
+@media(min-width:601px){.loc-info{border-color:var(--lp-borde);box-shadow:0 8px 24px rgba(10,37,64,.06)}}
+
+/* CTA final: regla de marca 48x3, titulo navy, una frase, boton verde + enlace "Agendar cita" */
+section.cierre{background:var(--lp-surf2);border-top:1px solid var(--lp-borde)}
+section.cierre .block__head{margin-bottom:22px}
+section.cierre .block__head::before{content:'';display:block;width:48px;height:3px;margin:0 auto 18px;border-radius:2px;background:var(--electric)}
+section.cierre .block__title{color:var(--lp-navy)}
+section.cierre .block__sub{margin:0;color:var(--lp-gris)}
+section.cierre .hero__cta{display:flex;flex-direction:column;align-items:center;gap:6px;margin:0}
+section.cierre .hero__cta .btn-cal{min-width:0;min-height:40px;padding:6px 2px;background:none;border:0;box-shadow:none;color:var(--electric-text);font-size:.95rem;font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(7,115,197,.5)}
+section.cierre .hero__cta .btn-cal:hover{background:none;transform:none;color:#06609f;text-decoration-color:currentColor}
+section.cierre .hero__cta .btn-cal i{display:none}
+/* ===== fin cierre final ===== */
+</style>
+<style id="lp-pulido-20260917">
+/* ===== PULIDO FINAL 17-sep-2026 (aditivo: quitar este bloque revierte el CSS del pulido; misma especificacion en las tres landings de sueno) =====
+   Fallos que lo motivaron (medidos con Playwright a 375x667 DPR 2 y 1280x900, pase 3):
+   - Hero en telefono con dos acciones: boton verde + enlace "Agendar cita", con la barra fija inferior diciendo "Agendar" en la misma pantalla.
+   - h3 en 700 (pasos) y 800 (nombre del medico, ubicacion) junto a h1/h2 en 600.
+   - Resenas a 375 en dos columnas con 141 px de texto: italica centrada de 12.8 px, de 5 a 28 renglones por tarjeta, y
+     "Resena verificada en Google" de 9.9 px partida en dos renglones.
+   - "Contra que comparas": la fila azul en 700 ocupaba 4 renglones a 375 (y repetia $12,000 a 513 px de la ficha de precio).
+   - Metodos de pago a 375: "Debito" quedaba solo en un segundo renglon. */
+/* 1. una accion primaria por pantalla en telefono: "Agendar" ya vive en la barra fija; en escritorio el enlace se conserva */
+@media(max-width:767.98px){.hero .hero__cta .btn-cal{display:none}}
+/* 2. subtitulo del hero sin viuda: sin "del INER" la palabra "neumologo." quedaba sola en el segundo renglon a 1280 */
+.hero .hero__sub{text-wrap:pretty}
+/* 3. h3 de la misma familia que h1/h2 */
+h3,.psgpaso__t,.doc-card h3,.loc-info h3{font-weight:600;letter-spacing:-.01em}
+/* D. comparas: rotulos en 600; la fila propia se distingue por el color, no por el peso */
+.cmpq__k,.cmpq__row--us .cmpq__k,.cmpq__row--us .cmpq__v{font-weight:600}
+/* C. metodos de pago en telefono: 2 x 2 centrado, sin renglon huerfano */
+@media(max-width:600px){.pay-row{display:grid;grid-template-columns:repeat(2,max-content);justify-content:center;gap:8px 20px}}
+/* 4. resenas: una sola regla de texto (sin italica, a la izquierda, recorte a 6 renglones) */
+.testi-card{text-align:left}
+.testi-text{font-size:.92rem;line-height:1.6;font-style:normal;text-align:left;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:6;line-clamp:6;overflow:hidden}
+/* A. telefono: una sola columna (la segunda tambien se oculta; la tercera ya lo estaba) y tarjeta con el aire de escritorio */
+@media(max-width:640px){
+  .testimonial-columns{grid-template-columns:1fr;height:420px}
+  .testimonial-columns > :nth-child(2){display:none}
+  .testi-card{padding:18px 20px}
+  .testi-name{font-size:.82rem}
+  .testi-badge{font-size:.72rem}
+  .testi-avatar{width:36px;height:36px;font-size:.9rem}
+}
+/* ===== fin pulido final ===== */
+</style>
 </head>
 <body>
-<a class="alv-skip" href="#main">Skip to content</a>
+<a class="alv-skip" href="#main">Saltar al contenido</a>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG8Z6FKF" height="0" width="0" style="display:none;visibility:hidden" aria-hidden="true"></iframe></noscript>
 
-<!-- Trust legal oficial -->
-<div class="top-bar-legal text-center fw-semibold" style="font-size:.72rem;letter-spacing:.2px;padding:5px 0">
-    <div class="container" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Cofepris: <a href="https://www.gob.mx/cofepris"  target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">2609142002A00265</a> <span style="opacity:.4;margin:0 4px">·</span> Prof: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action"  target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">12588976</a> <span style="opacity:.4;margin:0 4px">·</span> Esp: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action"  target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">15595809</a> <span style="opacity:.4;margin:0 4px">·</span> <a href="https://conacem.org.mx/buscador"  target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">CNN-2102</a></div>
+<!-- Trust legal oficial (idéntico al resto del sitio; 16-sep-2026: el style inline nowrap+ellipsis
+     recortaba las cedulas en telefono, ahora dos lineas completas a 375 como en sus hermanas) -->
+<div class="top-bar-legal text-center fw-semibold">
+    <div class="container">Aviso Cofepris: <a href="https://www.gob.mx/cofepris"  target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">2609142002A00265</a> &nbsp;|&nbsp; Céd. Prof: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action"  target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">12588976</a> &nbsp;|&nbsp; Céd. Esp: <a href="https://www.cedulaprofesional.sep.gob.mx/cedula/presidencia/indexAvanzada.action"  target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">15595809</a> &nbsp;|&nbsp; <a href="https://conacem.org.mx/buscador"  target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">CNN-2102</a></div>
 </div>
 
 <!-- Navbar oficial (sin menú) -->
 <style>
-.promo-lang2{display:inline-flex;gap:2px;border:1px solid rgba(10,46,44,.35);border-radius:999px;overflow:hidden;margin-left:10px;font-size:.72rem;font-weight:800;vertical-align:middle}
+.promo-lang2{display:inline-flex;gap:2px;border:1px solid rgba(10,37,64,.35);border-radius:999px;overflow:hidden;margin-left:10px;font-size:.72rem;font-weight:800;vertical-align:middle}
 .promo-lang2 a{padding:2px 9px;color:var(--navy);text-decoration:none;line-height:1.7}
-.promo-lang2 a:not(.active):hover{background:rgba(10,46,44,.08)}
+.promo-lang2 a:not(.active):hover{background:rgba(10,37,64,.08)}
 .promo-lang2 a.active{background:var(--navy)}
 .promo-lang2 a.active{color:#fff}
 
@@ -387,6 +758,19 @@
     #mainNav .navbar-cta{margin-left:auto;min-width:0}
     .promo-lang2{flex-shrink:0}
 }
+
+/* 17-sep-2026 (verificacion final): la cabecera pegajosa iba en rgba(255,255,255,.88) con blur;
+   al hacer scroll se leia el texto de la pagina por detras del logotipo. Fondo solido + regla fina. */
+#mainNav.navbar.sticky-top{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom:1px solid rgba(15,29,48,.08)}
+
+/* 17-sep-2026 (escala unica): los botones verdes de la barra fija iban en radio 12 px frente al
+   radio 100 px del resto; misma familia en toda la pagina. */
+.sticky-cta .sc-wa,.sticky-cta .sc-cal{border-radius:100px}
+/* 'Contra que comparas' era un h2 de 16.8 px, mas chico que el texto de su propia tabla. */
+.cmpq__title{font-size:1.6rem;line-height:1.18}
+.sticky-cta .sc-wa,.sticky-cta .sc-cal{border-radius:100px!important}
+/* Misma escala de titulo que sus dos hermanas (24 px). */
+.block__title,.cmpq__title,.cta-final h2,.cta-inline h2{font-size:1.5rem}
 </style>
 <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
     <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:12px">
@@ -394,7 +778,7 @@
             <img src="/images/logo-cuadrado/alveos-logo-72.webp" alt="Logo Alveos" class="navbar-logo" width="36" height="36" decoding="async" style="border-radius:8px;object-fit:cover">
             <span class="brand-name">ALVEOS</span>
         </a>
-        <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20la%20promoci%C3%B3n%20de%20polisomnograf%C3%ADa%20a%20domicilio%20de%20%2412%2C000%20con%20el%20Dr.%20Lara%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="navbar-cta d-inline-flex" data-cta="navbar-wa" style="flex-shrink:0;margin-left:auto">
+        <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20la%20promoci%C3%B3n%20de%20polisomnograf%C3%ADa%20a%20domicilio%20de%20%2412%2C000%20con%20el%20Dr.%20Lara%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="navbar-cta" data-cta="navbar-wa" style="flex-shrink:0;margin-left:auto">
             <i class="bi bi-whatsapp me-2"></i> Pedir promoción
         </a>
         
@@ -405,24 +789,22 @@
 <div id="main" tabindex="-1"></div>
 <section class="hero" id="top">
     <div class="container">
-        <div class="row align-items-center g-5">
+        <div class="row g-5">
             <div class="col-lg-7 hero__content">
-                <div class="hero__badge"><span class="dot"></span> Estudio del sueño completo · a domicilio en CDMX</div>
+                <span class="hero__rule" aria-hidden="true"></span>
+                <p class="hero__eyebrow">Estudio del sueño, CDMX</p>
                 <h1>Polisomnografía completa en tu casa: <em>$12,000</em></h1>
-                <p class="hero__sub">Te indicaron un estudio del sueño completo. Un técnico va a tu domicilio, coloca el montaje entero con electroencefalograma y duermes en tu propia cama. Lo interpreta un neumólogo egresado del INER.</p>
+                <p class="hero__sub">Un técnico instala el montaje completo en tu casa y lo interpreta un neumólogo.</p>
                 <div class="hero__cta">
                     <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20la%20promoci%C3%B3n%20de%20polisomnograf%C3%ADa%20a%20domicilio%20de%20%2412%2C000%20con%20el%20Dr.%20Lara%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="hero-wa">
-                        <i class="bi bi-whatsapp"></i> Apartar mi estudio por WhatsApp
+                        <i class="bi bi-whatsapp"></i> Apartar mi estudio
                     </a>
+                    <p class="hero__nota">Atención previa cita, sujeta a disponibilidad.</p>
                     <a href="#agendaModal" class="btn-cal" data-cta="hero-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
                         <i class="bi bi-calendar-check"></i> Agendar cita
                     </a>
                 </div>
-                <div class="hero__creds">
-                    <span class="hero__cred"><i class="bi bi-mortarboard-fill"></i> Egresado del INER</span>
-                    <span class="hero__cred"><i class="bi bi-patch-check-fill"></i> Neumólogo Certificado</span>
-                    <a class="hero__cred" href="https://g.page/r/CfXAZim2anDFEBI" target="_blank" rel="noopener noreferrer" data-cta="hero-google-rating"><span class="stars">★</span> 5.0 en Google</a>
-                </div>
+                <p class="hero__creds"><span>Egresado del INER</span><span>Neumólogo certificado</span><a href="https://g.page/r/CfXAZim2anDFEBI" target="_blank" rel="noopener noreferrer" data-cta="hero-google-rating">★ 5.0 en Google</a></p>
             </div>
             <div class="col-lg-5">
                 <div class="hero__card">
@@ -435,7 +817,6 @@
                         <li><span class="hvg__ico"><i class="bi bi-lungs-fill"></i></span><span class="hvg__label">Lectura de neumólogo</span></li>
                         <li><span class="hvg__ico"><i class="bi bi-arrow-repeat"></i></span><span class="hvg__label">Factura (CFDI)</span></li>
                     </ul>
-                    <p class="hero__card-foot">Consulta aparte ($1,500) · Previa cita</p>
                 </div>
             </div>
         </div>
@@ -450,7 +831,8 @@
             <h2 class="block__title">Toda la noche, <em>señal por señal</em></h2>
             <p class="block__sub">Cinco de estas señales no existen en un estudio de sueño simple. Son las que leen el cerebro y el músculo, y las que hacen que esto sea una polisomnografía.</p>
         </div>
-        <div class="psgsig"><div class="psgsig__i psgsig__i--plus"><span class="psgsig__tag">solo aquí</span><i class="bi bi-activity psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Electroencefalograma</span><span class="psgsig__d">Las fases de sueño, minuto a minuto</span></div><div class="psgsig__i psgsig__i--plus"><span class="psgsig__tag">solo aquí</span><i class="bi bi-eye psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Movimientos oculares</span><span class="psgsig__d">Identifican el sueño REM</span></div><div class="psgsig__i psgsig__i--plus"><span class="psgsig__tag">solo aquí</span><i class="bi bi-soundwave psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Tono muscular del mentón</span><span class="psgsig__d">Separa el REM del sueño profundo</span></div><div class="psgsig__i psgsig__i--plus"><span class="psgsig__tag">solo aquí</span><i class="bi bi-person-walking psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Movimiento de piernas</span><span class="psgsig__d">Detecta las piernas inquietas</span></div><div class="psgsig__i psgsig__i--plus"><span class="psgsig__tag">solo aquí</span><i class="bi bi-heart-pulse psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Electrocardiograma</span><span class="psgsig__d">El ritmo del corazón durante la noche</span></div><div class="psgsig__i"><i class="bi bi-wind psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Flujo nasal y bucal</span><span class="psgsig__d">Cada pausa de la respiración</span></div><div class="psgsig__i"><i class="bi bi-arrows-expand psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Bandas de tórax y abdomen</span><span class="psgsig__d">Separan la apnea obstructiva de la central</span></div><div class="psgsig__i"><i class="bi bi-droplet-half psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Oximetría</span><span class="psgsig__d">Cuánto baja tu oxígeno y por cuánto tiempo</span></div><div class="psgsig__i"><i class="bi bi-arrow-repeat psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Posición y ronquido</span><span class="psgsig__d">Si tus apneas dependen de dormir boca arriba</span></div></div>
+        <p class="psgsig__legend"><span class="psgsig__dot" aria-hidden="true"></span>Solo en polisomnografía</p>
+        <div class="psgsig"><div class="psgsig__i psgsig__i--plus"><i class="bi bi-activity psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Electroencefalograma</span><span class="psgsig__d">Las fases de sueño, minuto a minuto</span></div><div class="psgsig__i psgsig__i--plus"><i class="bi bi-eye psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Movimientos oculares</span><span class="psgsig__d">Identifican el sueño REM</span></div><div class="psgsig__i psgsig__i--plus"><i class="bi bi-soundwave psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Tono muscular del mentón</span><span class="psgsig__d">Separa el REM del sueño profundo</span></div><div class="psgsig__i psgsig__i--plus"><i class="bi bi-arrows-move psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Movimiento de piernas</span><span class="psgsig__d">Detecta las piernas inquietas</span></div><div class="psgsig__i psgsig__i--plus"><i class="bi bi-heart-pulse psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Electrocardiograma</span><span class="psgsig__d">El ritmo del corazón durante la noche</span></div><div class="psgsig__i"><i class="bi bi-wind psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Flujo nasal y bucal</span><span class="psgsig__d">Cada pausa de la respiración</span></div><div class="psgsig__i"><i class="bi bi-arrows-expand psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Bandas de tórax y abdomen</span><span class="psgsig__d">Separan la apnea obstructiva de la central</span></div><div class="psgsig__i"><i class="bi bi-droplet-half psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Oximetría</span><span class="psgsig__d">Cuánto baja tu oxígeno y por cuánto tiempo</span></div><div class="psgsig__i"><i class="bi bi-arrow-repeat psgsig__ico" aria-hidden="true"></i><span class="psgsig__n">Posición y ronquido</span><span class="psgsig__d">Si tus apneas dependen de dormir boca arriba</span></div></div>
     </div>
 </section>
 
@@ -461,7 +843,7 @@
             <span class="block__kicker">Cómo funciona</span>
             <h2 class="block__title">Tres pasos, y <em>ninguno fuera de tu casa</em></h2>
         </div>
-        <div class="psgpaso"><div class="psgpaso__c"><span class="psgpaso__n">1</span><h3 class="psgpaso__t">Agendas y te valoran</h3><p class="psgpaso__p">Revisan tu indicación y tus síntomas, y acuerdan contigo la noche y la hora a la que llega el técnico.</p></div><div class="psgpaso__c"><span class="psgpaso__n">2</span><h3 class="psgpaso__t">El técnico monta el estudio en tu casa</h3><p class="psgpaso__p">Coloca el montaje completo, electroencefalograma incluido, con el mismo cuidado de un laboratorio. Toma alrededor de una hora y después se retira.</p></div><div class="psgpaso__c"><span class="psgpaso__n">3</span><h3 class="psgpaso__t">Duermes, y en 48 horas tienes el plan</h3><p class="psgpaso__p">Te duermes a tu hora, en tu cama. A la mañana siguiente se recoge el equipo y el reporte queda listo en 48 horas.</p></div></div>
+        <div class="psgpaso"><div class="psgpaso__c"><span class="psgpaso__n">1</span><h3 class="psgpaso__t">Agendas y te valoran</h3><p class="psgpaso__p">Revisan tu indicación y tus síntomas, y acuerdan contigo la noche y la hora a la que llega el técnico.</p></div><div class="psgpaso__c"><span class="psgpaso__n">2</span><h3 class="psgpaso__t">El técnico monta el estudio en tu casa</h3><p class="psgpaso__p">Coloca el montaje completo, electroencefalograma incluido, con el mismo cuidado de un laboratorio. Toma alrededor de una hora y después se retira.</p></div><div class="psgpaso__c"><span class="psgpaso__n">3</span><h3 class="psgpaso__t">Duermes en tu cama y recibes el plan</h3><p class="psgpaso__p">Te duermes a tu hora. A la mañana siguiente se recoge el equipo y el reporte queda listo en 48 horas.</p></div></div>
         <p class="psgnota">En un laboratorio duermes en una cama y un cuarto que no son tuyos, con el horario del laboratorio. Aquí el equipo va a donde ya duermes.</p>
     </div>
 </section>
@@ -473,21 +855,20 @@
             <h2 class="block__title" id="precios-title">El estudio completo, <em>con precio dicho</em></h2>
         </div>
         <div class="pricing-hero" style="max-width:760px;margin:0 auto">
-            <div class="pricing-hero__card" style="position:relative;background:linear-gradient(160deg,#0a2e2c 0%,#0c544c 60%,#0d9e84 130%);color:#fff;border-radius:24px;padding:36px 32px 30px;box-shadow:0 24px 60px -24px rgba(8,44,40,.5);display:flex;flex-direction:column;align-items:center;gap:18px;overflow:hidden">
-                <span class="pricing-hero__tag" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#2dd4bf,#0d9e84);color:#fff;font-size:.78rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:7px 16px;border-radius:999px;box-shadow:0 6px 18px -4px rgba(45,212,191,.5)"><i class="bi bi-stars"></i> Promoción de internet</span>
-                <div class="pricing-hero__row" style="display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;width:100%">
-                    <div class="pricing-hero__old" style="display:flex;flex-direction:column;align-items:center;gap:4px">
-                        <span class="pricing-hero__old-label" style="font-size:.72rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:rgba(255,255,255,.55)">Precio normal</span>
-                        <span class="pricing-hero__old-amount" style="font-size:1.6rem;font-weight:700;color:rgba(255,255,255,.55);text-decoration:line-through;text-decoration-color:rgba(255,107,107,.85);text-decoration-thickness:3px;letter-spacing:-.01em">$14,000</span>
+            <div class="pricing-hero__card">
+                <p class="pricing-hero__tag">Promoción de internet</p>
+                <div class="pricing-hero__row">
+                    <div class="pricing-hero__new">
+                        <span class="pricing-hero__new-label">Pagas hoy</span>
+                        <span class="pricing-hero__new-amount">$12,000</span>
                     </div>
-                    <div class="pricing-hero__arrow" style="font-size:1.6rem;color:#a5f3df;opacity:.7"><i class="bi bi-arrow-right"></i></div>
-                    <div class="pricing-hero__new" style="display:flex;flex-direction:column;align-items:center;gap:4px">
-                        <span class="pricing-hero__new-label" style="font-size:.72rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#a5f3df">Pagas hoy</span>
-                        <span class="pricing-hero__new-amount" style="font-size:3.2rem;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1;text-shadow:0 4px 20px rgba(45,212,191,.4)"><span class="cur" style="font-size:1.4rem;font-weight:700;vertical-align:top;margin-right:2px;opacity:.8">$</span>12,000</span>
+                    <div class="pricing-hero__old">
+                        <span class="pricing-hero__old-label">Precio regular</span>
+                        <span class="pricing-hero__old-amount">$14,000</span>
                     </div>
                 </div>
-                <p class="pricing-hero__desc pricing-hero__desc--cta" style="font-size:1.05rem;font-weight:700;color:#a5f3df;background:rgba(45,212,191,.12);border:1px solid rgba(45,212,191,.25);border-radius:12px;padding:12px 20px;display:inline-flex;align-items:center;gap:8px;text-align:center"><i class="bi bi-whatsapp"></i> Incluye el técnico a domicilio, el equipo, la noche y la interpretación. La consulta se cobra aparte ($1,500).</p>
-                <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20la%20promoci%C3%B3n%20de%20polisomnograf%C3%ADa%20a%20domicilio%20de%20%2412%2C000%20con%20el%20Dr.%20Lara%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="price-card__cta" data-cta="price-wa" style="align-self:center;padding:14px 28px;font-size:1rem;margin-top:6px;display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:10px;font-weight:800;text-decoration:none;background:var(--green);color:#fff"><i class="bi bi-whatsapp"></i> Apartar mi estudio a $12,000</a>
+                <p class="pricing-hero__desc">Incluye el técnico a domicilio, el equipo, la noche y la interpretación. La consulta se cobra aparte ($1,500).</p>
+                <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20la%20promoci%C3%B3n%20de%20polisomnograf%C3%ADa%20a%20domicilio%20de%20%2412%2C000%20con%20el%20Dr.%20Lara%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" class="btn-wa price-card__cta" data-cta="price-wa"><i class="bi bi-whatsapp"></i> Apartar mi estudio</a>
             </div>
         </div>
         <div class="pay-row" aria-label="Métodos de pago aceptados">
@@ -500,6 +881,18 @@
     </div>
 </section>
 
+
+<!-- 16-sep-2026: contra que comparas. Tres renglones con reglas finas, sin marcas ni competidores (texto del Dr.). -->
+<section class="cmpq" aria-labelledby="cmpq-title">
+    <div class="container">
+        <h2 class="cmpq__title" id="cmpq-title">Contra qué comparas</h2>
+        <ul class="cmpq__list">
+            <li class="cmpq__row"><span class="cmpq__k">Polisomnografía en laboratorio</span><span class="cmpq__v">Duermes fuera de casa, con el horario del laboratorio</span></li>
+            <li class="cmpq__row"><span class="cmpq__k">En hospital</span><span class="cmpq__v">Hasta el doble de precio</span></li>
+            <li class="cmpq__row cmpq__row--us"><span class="cmpq__k">En tu cama</span><span class="cmpq__v">Electroencefalograma completo y reporte en 48 h</span></li>
+        </ul>
+    </div>
+</section>
 
 <!-- ============ DOCTOR / E-E-A-T ============ -->
 <section class="block">
@@ -548,7 +941,6 @@
             </a>
             
 
-<div class="testimonial-source-badge"><i class="bi bi-patch-check-fill"></i> Opiniones de pacientes verificados</div>
 <div class="testimonial-columns">
             <div class="testimonial-col"><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Agradezco la calidez, atención, humanidad, profesionalismo, paciencia y trato del Doctor, da mucha confianza y tiene un conocimiento y manejo total de su especialidad. Recomiendo ampliamente acudir a ser atendidos por tan completos servicios."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Alejandra O.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención, muy profesional"</p><div class="testi-author"><div class="testi-avatar">N</div><div><p class="testi-name">Noemí M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Sin lugar a duda es un excelente Neumólogo, tiene mucha paciencia, explica a detalle, disipa las dudas, ves resultados a la brevedad, da seguridad. Sin lugar a duda lo recomiendo ampliamente. Es un doctor que sabe perfectamente su trabajo, de mucha calidad y excelencia. Estoy más que satisfecha con el tratamiento que le ha prescrito a mi Madre y de estar al pendiente. Me alegro de haber llegado a su consultorio"</p><div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">Jan S.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Chulada de doctor, me siento escuchado, atendido, es profesional y con una preocupación sincera por sus pacientes."</p><div class="testi-author"><div class="testi-avatar">G</div><div><p class="testi-name">Gilberto W.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy profesional el Dr. William. Atento, te explica muy bien sobre tu padecimiento, muy recomendable"</p><div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">José Luis T.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buena atención. Excelente para explicar tu situación médica."</p><div class="testi-author"><div class="testi-avatar">V</div><div><p class="testi-name">Vanessa Z.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Mi esposo tuvo crisis de asma, fue nuestra primera consulta. El doctor explicó a detalle con un lenguaje sencillo, revisó cuidadosamente durante la exploración e hizo pruebas de espirometría durante la consulta, explicó las opciones de tratamiento. Ampliamente recomendable!"</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Aline G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Un médico excelente. Muy bien preparado, extremadamente profesional y muy humano y amable. Lo encontramos en internet. Me trató como si fuéramos familiares. Muy fácil y práctico para agendar. Antes de la cita me solicitó radiografía del pulmón, lo que agilizó el diagnóstico, y pudo dedicar tiempo a revisarme a mí y mis análisis. Muy precavido y sensato en sus recomendaciones. Nos explicó a mí y a mi esposo, que es médico, con gran claridad y detenimiento los resultados de la tomografía. Agradezco su dedicación sincera a mi bienestar."</p><div class="testi-author"><div class="testi-avatar">T</div><div><p class="testi-name">Tere A.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención, fue muy amable y profesional en cuanto a las dudas mías. Definitivamente será mi nuevo neumólogo de confianza, gracias Dr."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Alicia F.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Very kind and generous, he also does check up on you daily until recovery. Great job! I recommend him a lot"</p><div class="testi-author"><div class="testi-avatar">T</div><div><p class="testi-name">Thulie M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buena atención por parte del Dr. Lara, sabe explicar muy bien a sus pacientes. Desde el primer contacto con él y hasta la fecha ha mantenido la comunicación y seguimiento con su paciente. Muy profesional, lo recomiendo 100%."</p><div class="testi-author"><div class="testi-avatar">F</div><div><p class="testi-name">Fabiola G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención, súper personalizada, cuidando cada detalle y siempre al pendiente del paciente"</p><div class="testi-author"><div class="testi-avatar">Y</div><div><p class="testi-name">Yetlanetzy R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El Dr. William, puntual en la cita, nos atendió con mucho esmero, checó con mucho detalle y el diagnóstico muy acertado. Es muy paciente al escuchar, lleva un seguimiento en el proceso de la mejoría de la salud. Un excelente médico, de verdad se recomienda solo."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Adán C.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div></div>
             <div class="testimonial-col"><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Una atención muy profesional, muy empático y con un dominio amplio en su área de especialización, cabe mencionar que tiene el don de comunicar tu situación en términos sencillos y te otorga el tiempo que requieres, en pocas palabras, altamente recomendable."</p><div class="testi-author"><div class="testi-avatar">I</div><div><p class="testi-name">Ignacio H.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Comprometido con su trabajo, profesión y calidad humana. Excelente Dr."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Alicia M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El doctor Lara es una persona muy humana, empática y sobre todo te da una atención personalizada, siempre contesta tus mensajes preocupándose por tu salud y bienestar. Excelente especialista."</p><div class="testi-author"><div class="testi-avatar">V</div><div><p class="testi-name">Verónica G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente atención!"</p><div class="testi-author"><div class="testi-avatar">J</div><div><p class="testi-name">J. Alberto M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buen trato del Doctor William, me sentí muy a gusto en su consulta, explica todo a detalle, está al pendiente de todo, muy preparado. Me he sentido mucho mejor con el tratamiento que me recetó. Lo recomiendo ampliamente."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Angélica M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El Dr. William es una persona de altos niveles éticos, me pareció excelente su trato con mi paciente, aparte de que tiene mucho dominio sobre las enfermedades a tratar, muy capaz, muy amable, excelente persona y profesional, gracias."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Adriana H.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Excelente especialista, me tuvo suficiente paciencia para realizarme la espirometría, me explicó muy bien y resolvió mis dudas. Lo recomiendo mucho, es una persona muy amable, ética y profesional"</p><div class="testi-author"><div class="testi-avatar">Y</div><div><p class="testi-name">Yoatzin R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Ha sido una experiencia muy impactante y triste ya que el diagnóstico fue cáncer pulmonar. En cuanto al servicio y conocimiento del doctor me parece excelente, nos dio la noticia de manera veraz y diplomática, con la que tuvimos oportunidad de lidiar con los resultados."</p><div class="testi-author"><div class="testi-avatar">M</div><div><p class="testi-name">María Teresa M.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El Dr. William Lara es un excelente especialista, me quedé muy sorprendida de la mejoría que tuve al día siguiente de tomar el tratamiento que me recetó. El Dr. Lara todo el tiempo estuvo al pendiente de mí, lo que da mucha tranquilidad al paciente. Estoy muy agradecida con el Dr. y sin duda será mi médico neumólogo por muchos años más."</p><div class="testi-author"><div class="testi-avatar">R</div><div><p class="testi-name">Rocío</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Muy buen médico, muy amable y siempre pendiente de sus pacientes. Lo recomiendo ampliamente."</p><div class="testi-author"><div class="testi-avatar">R</div><div><p class="testi-name">Rossana R.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Mi experiencia con el doctor William ha sido y es muy buena, es buen doctor, amable, respetuoso y le explica bien lo que se necesita saber. Él atiende a mi señora madre, que tiene 95 años, quien tuvo neumonía y él la sacó adelante, gracias!"</p><div class="testi-author"><div class="testi-avatar">L</div><div><p class="testi-name">Lourdes A.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"Agradezco la atención y seguimiento en cada consulta. Me explicó el diagnóstico con claridad y obtuve mejoría muy pronto. Es un médico muy profesional. Sin duda lo recomiendo ampliamente."</p><div class="testi-author"><div class="testi-avatar">K</div><div><p class="testi-name">Karla G.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div><div class="testi-card"><div class="testi-stars" aria-label="5 de 5 estrellas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></div><p class="testi-text">"El doctor William es excelente, muy humano, profesional y dedicado a sus pacientes. Si un día necesitas un Neumólogo, no dudes en llamarlo."</p><div class="testi-author"><div class="testi-avatar">A</div><div><p class="testi-name">Adri N.</p><p class="testi-badge"><i class="bi bi-patch-check-fill text-primary me-1"></i>Reseña verificada en Google</p></div></div></div></div>
@@ -558,7 +950,7 @@
         </div>
         
         <div class="text-center mt-4">
-            <a href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;color:var(--electric);font-weight:600;font-size:.92rem;text-decoration:none;border-bottom:1px solid rgba(13,158,132,.3);padding-bottom:2px">
+            <a href="https://share.google/GHzr5AnKmDSKdetn4" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;color:var(--electric-text);font-weight:600;font-size:.92rem;text-decoration:none;border-bottom:1px solid rgba(9,132,227,.3);padding-bottom:2px">
                 <i class="bi bi-google" aria-hidden="true"></i> Ver todas las reseñas en Google
             </a>
         </div>
@@ -591,7 +983,7 @@
         <div class="block__head">
             <span class="block__kicker">Dónde te atendemos</span>
             <h2 class="block__title">Consultorio en <em>Hospital Santa Coleta</em></h2>
-            <p class="block__lead">San José Insurgentes, sur de CDMX. A unos minutos del Periférico Sur, con estacionamiento del hospital.</p>
+            <p class="block__lead">San José Insurgentes, sur de CDMX. A unos minutos del Periférico Sur.</p>
         </div>
         <div class="loc-grid">
             <div class="loc-map">
@@ -609,7 +1001,7 @@
                     <div class="loc-row__icon"><i class="bi bi-clock-fill"></i></div>
                     <div>
                         <h3>Horarios</h3>
-                        <p>Lunes a viernes: 16:00 a 21:00 hrs<br>Sábado y domingo: 12:00 a 16:00 hrs<br><span style="color:var(--electric);font-weight:700">Previa cita</span></p>
+                        <p>Lunes a viernes: 16:00 a 21:00 hrs<br>Sábado y domingo: 12:00 a 16:00 hrs<br><span style="color:var(--electric-text);font-weight:700">Previa cita</span></p>
                     </div>
                 </div>
                 <div class="loc-row">
@@ -620,7 +1012,7 @@
                     </div>
                 </div>
                 <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20la%20promoci%C3%B3n%20de%20polisomnograf%C3%ADa%20a%20domicilio%20de%20%2412%2C000%20con%20el%20Dr.%20Lara%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="loc-wa">
-                    <i class="bi bi-whatsapp"></i> Apartar mi estudio a $12,000
+                    <i class="bi bi-whatsapp"></i> Apartar mi estudio
                 </a>
             </div>
         </div>
@@ -631,7 +1023,7 @@
 
 
 <!-- ============ CIERRE ============ -->
-<section class="block" style="padding-bottom:60px">
+<section class="block cierre" style="padding-bottom:60px">
     <div class="container">
         <div class="block__head">
             <h2 class="block__title">Ya tienes la indicación.<br><em>Falta la noche que la resuelve.</em></h2>
@@ -639,7 +1031,7 @@
         </div>
         <div class="hero__cta" style="justify-content:center">
             <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20la%20promoci%C3%B3n%20de%20polisomnograf%C3%ADa%20a%20domicilio%20de%20%2412%2C000%20con%20el%20Dr.%20Lara%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="cierre-wa">
-                <i class="bi bi-whatsapp"></i> Apartar mi estudio a $12,000
+                <i class="bi bi-whatsapp"></i> Apartar mi estudio
             </a>
             <a href="#agendaModal" class="btn-cal" data-cta="cierre-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
                 <i class="bi bi-calendar-check"></i> Agendar cita
@@ -730,7 +1122,6 @@ window.addEventListener('load', function(){
 <!-- Sticky CTA (mobile) -->
 <div class="sticky-cta">
     <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20la%20promoci%C3%B3n%20de%20polisomnograf%C3%ADa%20a%20domicilio%20de%20%2412%2C000%20con%20el%20Dr.%20Lara%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="sc-wa" data-cta="sticky-wa"><i class="bi bi-whatsapp"></i> WhatsApp</a>
-    <a href="tel:5591708334" class="sc-call" data-cta="sticky-call" style="background:var(--electric);color:#fff"><i class="bi bi-telephone-fill"></i> Llamar</a>
     <a href="#agendaModal" class="sc-cal" data-cta="sticky-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar</a>
 </div>
 
