@@ -683,7 +683,7 @@ section.hero h1 em{color:#0984e3;font-style:normal}
 .hero__cred-sep{color:#9fb0c4;margin:0 3px 0 1px}
 .hero__cred .stars{color:#f5b400;font-size:.9rem;letter-spacing:0}
 /* Las dos filas de precio: un panel blanco con borde fino, misma familia para las dos (mismo borde, mismo rotulo),
-   la cifra en electric y el ancla tachada en una sola linea (antes "$6,300 por / separado" se partia) */
+   la cifra en electric y el ancla tachada en una sola linea (antes "$6,000 por / separado" se partia) */
 .duo{display:block;max-width:560px;margin:0;background:#fff;border:1px solid #dfe8f3;border-radius:16px;overflow:hidden;box-shadow:none}
 .duo .duo__card{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"kind price" "kind was" "desc desc" "btn btn" "more more";column-gap:12px;row-gap:0;align-items:start;padding:11px 14px 10px;border:0;border-radius:0;background:none}
 .duo .duo__card+.duo__card{border-top:1px solid #dfe8f3}
@@ -1043,7 +1043,7 @@ section.hero h1 em{color:#0984e3;font-style:normal}
             <article class="precio precio--pg">
                 <h3 class="precio__kind">Poligrafía</h3>
                 <p class="precio__cifra">$5,000</p>
-                <p class="precio__was"><s>$6,300</s> por separado</p>
+                <p class="precio__was"><s>$6,000</s> por separado</p>
                 <p class="precio__desc">Consulta incluida. Recoges el equipo aquí y duermes en tu casa.</p>
                 <a class="precio__btn" href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" data-cta="hero-duo-pg"><i class="bi bi-whatsapp" aria-hidden="true"></i> Apartar poligrafía</a>
                 <a class="precio__more" href="/promociones/poligrafia-respiratoria/" aria-label="Ver detalles de la poligrafía">Ver detalles</a>
@@ -1125,7 +1125,7 @@ section.hero h1 em{color:#0984e3;font-style:normal}
                     <div class="cmp__row"><dt>Poligrafía<small>Esta promoción</small></dt><dd><b>$5,000</b> el paquete de consulta y estudio, recogiendo el equipo aquí. Te lo llevamos a tu casa por <b>$6,000</b>, consulta aparte.</dd></div>
                     <div class="cmp__row cmp__row--psg"><dt>Polisomnografía<small>Tipo II, en tu casa</small></dt><dd><b>$12,000</b> el estudio, con el técnico que va a tu casa a montarte el equipo. Consulta aparte. <a href="/promociones/polisomnografia/">Ver la polisomnografía a domicilio</a>.</dd></div>
                 </dl>
-                <p class="cmp__verdict">Por separado serían <b>$6,300</b>: estudio $4,500 más consulta de primera vez $1,800.</p>
+                <p class="cmp__verdict">Por separado serían <b>$6,000</b>: estudio $4,500 más consulta $1,500.</p>
             </article>
         </div>
     </div>
@@ -1614,12 +1614,10 @@ window.addEventListener('load', function(){
    (captura del Dr.). Cada ruta lleva una frase (lead, <=90 caracteres) y
    renglones rotulo | dato (estilo-william #15/#16); el precio salio del
    boton y quedo una sola vez, en "Siguiente paso". El algoritmo no cambia.
-   17-sep-2026: NINGUN prellenado de WhatsApp cambia en esta ronda. Un pase
-   intermedio los habia tocado (7 enlaces perdieron "promocion + precio" y la
-   ruta de consulta paso de $1,800 a $1,300); se restauraron uno a uno al texto
-   publicado. PENDIENTE del Dr.: el boton de esa ruta muestra $1,300 (promo de
-   internet) y su mensaje dice $1,800 (primera vez); esa diferencia ya existia
-   y solo el decide cual de los dos precios queda. */
+   17-sep-2026 (orden del Dr. "consulta ya dejalo 1500 siempre en estas paginas
+   de promo"): la valoracion vale $1,500 en las dos rutas, en el texto visible y
+   en el mensaje de WhatsApp. Antes convivian $1,300 a la vista y $1,800 en el
+   mensaje. El ancla por separado pasa a $6,000 ($1,500 + $4,500). */
 (function(){
     var pasos=document.getElementById('decSteps');
     var caja=document.getElementById('decOut');
@@ -1658,10 +1656,10 @@ window.addEventListener('load', function(){
             filas:[
                 ['Qué mide además','Cerebro y músculo, no solo la respiración'],
                 ['Dónde se hace','En tu casa, tipo II: un técnico instala el montaje y se retira'],
-                ['Siguiente paso','Valoración de $1,300 y, si es la tuya, agendarla']
+                ['Siguiente paso','Valoración de $1,500 y, si es la tuya, agendarla']
             ],
             cta:'Empezar por la valoración',
-            wa:'Hola%20Dr.%20Lara%2C%20us%C3%A9%20el%20decisor%20de%20la%20comparativa%20y%20me%20salieron%20se%C3%B1ales%20que%20podr%C3%ADan%20pedir%20polisomnograf%C3%ADa.%20Quisiera%20una%20consulta%20de%20valoraci%C3%B3n%20de%20%241%2C300%20para%20definir%20mi%20estudio%20(alveos.mx).'
+            wa:'Hola%20Dr.%20Lara%2C%20us%C3%A9%20el%20decisor%20de%20la%20comparativa%20y%20me%20salieron%20se%C3%B1ales%20que%20podr%C3%ADan%20pedir%20polisomnograf%C3%ADa.%20Quisiera%20una%20consulta%20de%20valoraci%C3%B3n%20de%20%241%2C500%20para%20definir%20mi%20estudio%20(alveos.mx).'
         },
         duda:{
             ruta:'consulta',
@@ -1672,10 +1670,10 @@ window.addEventListener('load', function(){
             filas:[
                 ['Por qué','Sin esas señales, ningún estudio del sueño se justifica todavía'],
                 ['Qué pasa en consulta','Se ordena el problema y, si hace falta, se indica el estudio'],
-                ['Siguiente paso','Si duermes mal o amaneces cansado, consulta de valoración de $1,300']
+                ['Siguiente paso','Si duermes mal o amaneces cansado, consulta de valoración de $1,500']
             ],
             cta:'Revisar mi caso en consulta',
-            wa:'Hola%20Dr.%20Lara%2C%20us%C3%A9%20el%20decisor%20de%20la%20comparativa%20y%20no%20me%20salieron%20se%C3%B1ales%20claras%2C%20pero%20duermo%20mal.%20Quisiera%20una%20consulta%20de%20valoraci%C3%B3n%20de%20%241%2C800%20(alveos.mx).'
+            wa:'Hola%20Dr.%20Lara%2C%20us%C3%A9%20el%20decisor%20de%20la%20comparativa%20y%20no%20me%20salieron%20se%C3%B1ales%20claras%2C%20pero%20duermo%20mal.%20Quisiera%20una%20consulta%20de%20valoraci%C3%B3n%20de%20%241%2C500%20(alveos.mx).'
         }
     };
 
