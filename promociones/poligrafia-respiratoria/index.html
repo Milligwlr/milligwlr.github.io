@@ -1621,9 +1621,13 @@ a.cta-final__price:hover{color:#fff}
             </div>
             <ul class="qe__facts" aria-label="Quién decide y qué pasa si sale negativo">
                 <li><span class="qe__k">Quién decide el resultado</span><span class="qe__v">El Dr. Lara, revisando el trazo completo</span></li>
-                <li><span class="qe__k">Si sale negativo y tus síntomas siguen</span><span class="qe__v">Polisomnografía, aquí, a domicilio</span></li>
+                <!-- 17-sep-2026: la guia AASM (Kapur 2017, Recomendacion 3, STRONG) pide polisomnografia si una poligrafia
+     sale negativa, no concluyente o tecnicamente inadecuada, sin condicionarlo a que sigan los sintomas.
+     El Dr. pidio que suene a sugerencia y que el costo aparte se marque con un asterisco (orden del 17-sep). -->
+<li><span class="qe__k">Si sale negativa o no concluyente</span><span class="qe__v">Te sugeriría la polisomnografía, también en tu casa<span class="qe__ast">*</span></span></li>
             </ul>
-            <p class="qe__source">Guía AASM 2017 (Kapur et al.): poligrafía tipo 3<br>comparada con polisomnografía, corte IAH de 5 o más.</p>
+            <p class="qe__nota-ast">* Tiene costo aparte: $12,000, no va incluida en el paquete.</p>
+<p class="qe__source">Guía AASM 2017 (Kapur et al.): poligrafía tipo 3<br>comparada con polisomnografía, corte IAH de 5 o más.</p>
             <div class="qe__close">
                 <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20contarle%20mis%20s%C3%ADntomas%20al%20Dr.%20Lara%20para%20saber%20qu%C3%A9%20estudio%20de%20sue%C3%B1o%20necesito.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="triaje-wa"><i class="bi bi-whatsapp"></i> Saber qué estudio necesito</a>
                 <a href="/poligrafia-vs-polisomnografia/" class="qe__link" data-cta="orient-comparativa">Ver los dos estudios comparados punto por punto</a>
@@ -3277,6 +3281,10 @@ section.doc-band{background:var(--lc-surface);color:var(--lc-navy);border-top:1p
 /* 17-sep-2026: el ahorro no va tachado (el tachado es para un precio anterior, no para el ahorro).
    Se usa 'ahorras $1,000' porque el ancla por separado ($6,000) coincide con el precio a domicilio. */
 .px3__save{text-decoration:none}
+
+/* 17-sep-2026: el asterisco del costo aparte de la polisomnografia y su nota. */
+.qe__ast{color:#0773c5;font-weight:600}
+.qe__nota-ast{margin:8px 0 0;font-size:.78rem;line-height:1.45;color:#4a5a70}
 </style>
 <!-- sp-popup (prueba social ficticia con nombres inventados) ELIMINADO por compliance:
      solo se usa la calificación 5.0 real de Google, nunca testimonios inventados. -->
