@@ -967,6 +967,12 @@
     estado.enviando = {};
     // (25-jul (6)) la FOTO local del visor son chats con PII: sale con la sesion.
     borraFotoVisor();
+    // (17-sep) la vista COMPLETA del buscador (hasta 300 hilos) tambien es PII
+    // y vale 5 min: se quedaba en memoria al cerrar sesion, y en una tableta
+    // compartida el siguiente doctor que buscara dentro de esos 5 min veia los
+    // chats del anterior mezclados con los suyos (pideTodos no la re-pedia).
+    estado.datosTodos = null;
+    estado.cargandoTodos = false;
     try {
       var taPuerta = $('compTexto');
       if (taPuerta) taPuerta.value = '';
@@ -1177,11 +1183,26 @@
         }
       })
       .catch(function () { /* la vista recortada sigue funcionando */ })
-      .then(function () { estado.cargandoTodos = false; pintaLista(); });
+      .then(function () {
+        // (17-sep) sesion cerrada mientras volaba: muestraPuerta ya reinicio
+        // la bandera y la lista; no repintar ni pisar la sesion nueva.
+        if (gen !== estado.sesionGen) return;
+        estado.cargandoTodos = false;
+        pintaLista();
+      });
   }
   function hilosBase(necesitaTodos) {
     var recientes = (estado.datos && estado.datos.hilos) || [];
-    if (!necesitaTodos) return recientes;
+    if (!necesitaTodos) {
+      // (17-sep) El chat ABIERTO sigue en la lista aunque no sea de los 15
+      // recientes: recorteVigencia() lo promete ("el chat abierto siempre
+      // visible"), pero solo recorre lo que recibe, y un chat viejo abierto
+      // desde el buscador desaparecia de la lista al borrar la busqueda. Se
+      // agrega SOLO ese hilo: la vista por defecto sigue siendo la ligera.
+      var abierto = buscaHilo(estado.sel);
+      if (abierto && recientes.indexOf(abierto) === -1) return recientes.concat([abierto]);
+      return recientes;
+    }
     pideTodos();
     if (!estado.datosTodos) return recientes;
     var vistos = {};
@@ -1489,14 +1510,28 @@
     cont.scrollTop = scrollPrev;
   }
 
+  // (17-sep) Un hilo por clave entre lo que el visor tiene en memoria: primero
+  // los 15 recientes (mandan: son la copia mas fresca) y, si no esta ahi, la
+  // vista completa (todos=1) que trajo el buscador o un filtro. Reporte del
+  // Dr.: "busco 'gabriela', encuentro el chat, le doy clic y no me lo abre".
+  // hiloSeleccionado() solo miraba los 15 recientes: para un chat viejo
+  // hallado por el buscador devolvia null y pintaConversacion() lo cerraba en
+  // el mismo clic (y cualquier poll completo lo habria cerrado igual).
+  function buscaHilo(k) {
+    if (!k || k === '__sistema__') return null;
+    var fuentes = [(estado.datos && estado.datos.hilos) || [],
+      (estado.datosTodos && estado.datosTodos.hilos) || []];
+    for (var f = 0; f < fuentes.length; f++) {
+      for (var i = 0; i < fuentes[f].length; i++) {
+        if (claveHilo(fuentes[f][i]) === k) return fuentes[f][i];
+      }
+    }
+    return null;
+  }
   function hiloSeleccionado() {
     if (!estado.datos) return null;
     if (estado.sel === '__sistema__') return null;
-    var hilos = estado.datos.hilos || [];
-    for (var i = 0; i < hilos.length; i++) {
-      if (claveHilo(hilos[i]) === estado.sel) return hilos[i];
-    }
-    return null;
+    return buscaHilo(estado.sel);
   }
 
   function abreHilo(k) {
