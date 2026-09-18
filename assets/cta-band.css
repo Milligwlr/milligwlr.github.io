@@ -391,3 +391,10 @@
         transition: none;
     }
 }
+
+/* 17-sep-2026: los dos botones no median lo mismo (62.9 y 66.8 px a 1280) porque el borde iba solo en el de
+   WhatsApp y su icono, mas grande, estiraba la linea. Mismo borde (transparente en el blanco), mismo alto
+   minimo y los iconos sin altura de linea propia: los dos quedan identicos. */
+.cta-band .cta-band__btn{border:1px solid transparent;min-height:60px;box-sizing:border-box}
+.cta-band .cta-band__btn--wa{border-color:rgba(255,255,255,.28)}
+.cta-band .cta-band__btn i{line-height:1;display:inline-block}
