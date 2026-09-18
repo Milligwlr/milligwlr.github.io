@@ -812,10 +812,12 @@ body > section.loc:nth-of-type(9){background:var(--lp-surf2,#f6f9fd)}
   .lp-spot:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(10,37,64,.08)}
 }
 /* b) subrayado de gradiente que crece de 0 a 100% */
-.hero .hero__creds a,.doc-card__creds a,a[href*="share.google"]{background-image:var(--lp-marca);background-repeat:no-repeat;background-position:0 100%;background-size:0 2px;padding-bottom:2px;transition:background-size .3s ease}
-.hero .hero__creds a:hover,.hero .hero__creds a:focus-visible,.doc-card__creds a:hover,.doc-card__creds a:focus-visible,a[href*="share.google"]:hover,a[href*="share.google"]:focus-visible{background-size:100% 2px;text-decoration:none}
-a[href*="share.google"]{border-bottom-color:transparent!important}
-a[href*="share.google"].gbp-rating-widget{background-image:none;padding-bottom:0}
+.doc-card__creds a,a[href*="share.google"]:not(.gbp-rating-widget){background-image:var(--lp-marca);background-repeat:no-repeat;background-position:0 100%;background-size:0 2px;padding-bottom:2px;transition:background-size .3s ease}
+.doc-card__creds a:hover,.doc-card__creds a:focus-visible,a[href*="share.google"]:not(.gbp-rating-widget):hover,a[href*="share.google"]:not(.gbp-rating-widget):focus-visible{background-size:100% 2px;text-decoration:none}
+/* 17-sep-2026: el subrayado de marca se aplicaba tambien al ovalo de Google (su enlace va a share.google): le
+   borraba el borde inferior y el relleno de abajo, y el ovalo se veia cortado (captura del Dr.). Se excluye. */
+a[href*="share.google"]:not(.gbp-rating-widget){border-bottom-color:transparent!important}
+a[href*="share.google"].gbp-rating-widget{background-image:none}
 /* c) reveal de 300 ms, una sola vez. La clase .lp-anim la pone el script: sin JS nada se oculta */
 .lp-anim .hero__rule{transform:scaleX(0);transform-origin:left center;transition:transform .3s ease}
 .lp-anim .hero__rule.lp-in{transform:scaleX(1)}
@@ -826,7 +828,7 @@ a[href*="share.google"].gbp-rating-widget{background-image:none;padding-bottom:0
 @media(prefers-reduced-motion:reduce){
   .lp-spot::after{display:none}
   .lp-spot:hover{transform:none;box-shadow:none}
-  .hero .hero__creds a,.doc-card__creds a,a[href*="share.google"]{transition:none}
+  .doc-card__creds a,a[href*="share.google"]:not(.gbp-rating-widget){transition:none}
   .lp-anim .hero__rule,.lp-anim .block__head::before,.lp-anim .cmpq__title::before,.lp-anim .pricing-hero__card::before{transform:none;transition:none}
   .lp-anim .pricing-hero__new-amount,.lp-anim .gbp-rating-widget__num{opacity:1;transform:none;transition:none}
 }
