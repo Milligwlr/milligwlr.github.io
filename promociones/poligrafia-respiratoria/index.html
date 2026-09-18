@@ -3582,9 +3582,11 @@ section.block.doc-band{background:#0a1628;background-image:none;color:#fff;borde
 @media(prefers-reduced-motion:reduce){.doc-band__aura{animation:none;opacity:.7}}
 
 /* ---------- 3. BANDA DE CIERRE: la del home (assets/cta-band.css) ----------
-   de borde a borde, 96 px de aire en escritorio como el home; en movil 72 px para no pasar de 1.2
-   pantallas. Todo lo demas lo pone el componente. */
-@media(max-width:767px){#ctaFinal{--ctab-pad-y:72px}}
+   de borde a borde, 96 px de aire en escritorio como el home; en movil 64 px, igual que sus dos hermanas.
+   Ojo: el bloque viejo de compactacion movil fuerza section{padding-top:30px!important} en toda la
+   pagina y dejaba la banda con 30 px (se veia apretada y cortaba los anillos; lo midio el verificador
+   el 17-sep). Por eso aqui va con id + clase y !important. */
+@media(max-width:767px){section#ctaFinal.cta-band{padding-top:64px!important;padding-bottom:64px!important}}
 #ctaFinal .cta-band__title{text-wrap:balance}
 
 /* ---------- 4. RESENAS CON MOVIMIENTO REDUCIDO ----------
