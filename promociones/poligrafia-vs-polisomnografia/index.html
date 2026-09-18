@@ -977,6 +977,207 @@ section.hero h1 em{color:#0984e3;font-style:normal}
   .hero .hero__cta a.btn-cal.btn-cal i,a.btn-cal.btn-cal i{font-size:1.05rem;color:#0773c5}
 }
 </style>
+<style id="lp-color-20260917">
+/* ===== PASE DE COLOR 17-sep-2026 (aditivo: quitar este bloque devuelve la pagina en blanco) =====
+   Encargo del Dr., viendo ESTA pagina en vivo: "me agrada que se ve todo mas limpio en el diseno, pero le
+   hace falta un poco mas de color, te fuiste de extremo a extremo, desde una pagina super saturada en
+   colores chillones intensos, a una pagina anemica, casi en blanco, necesito que el color le de dinamismo,
+   elegancia, efecto wow y premium".
+   Lectura operativa: NO se vuelve al hero navy con degradado ni a los bloques oscuros que rechazo ayer
+   ("tosco"). Se conservan el lienzo claro, los textos y la jerarquia. Lo que cambia es que el color deja de
+   ser un detalle en la cifra y entra como SISTEMA, en seis momentos y en pocos sitios:
+     1 regla de marca en gradiente   2 hero con profundidad   3 iconos con cuerpo
+     4 superficies que alternan      5 banda de cierre        6 dinamismo discreto
+   Paleta (la de la marca, ya medida en el sitio): navy #0a2540, electric #0984e3, electric de texto #0773c5,
+   sky #74b9ff, cyan #00cec9, cyan claro #8ffdec, lienzo #f5f9fe, banda #f6f9fd, linea #dfe8f3,
+   texto #4a5a70, dato #3d4d61. El verde #1DA851 esta CONGELADO por el Dr.: ni se toca ni se reutiliza.
+   Contraste: cada texto menor de 24 px se comprobo sobre su fondo EFECTIVO (el pixel pintado, no el token),
+   incluidas las manchas radiales del hero y el gradiente de la banda de cierre. Fallo que obliga a medir el
+   pixel: sobre una mancha radial el token del fondo miente y el azul de 13 px se cae de AA sin avisar. */
+:root{
+    /* C. UN SOLO AZUL DE TEXTO CHICO. Dentro de esta pagina convivian dos (#0773c5 heredado y #065a9b
+       suelto en el antetitulo) y entre las tres landings, tres. Se fija aqui el token y de el sale TODO
+       rotulo, enlace o cifra de menos de 24 px en azul. El valor lo manda el peor fondo de la pagina:
+       el antetitulo cae sobre la mancha radial del hero, cuyo pixel real es rgb(212,233,250); ahi
+       #0773c5 da 4.19:1 y NO llega a AA. #065ca4 da 5.46:1 sobre la mancha, 6.46:1 sobre #f5f9fe y
+       6.83:1 sobre blanco. Fallo que obliga a medir el pixel: sobre la mancha el token del fondo miente. */
+    --electric-text:#065ca4;
+    --g-marca:linear-gradient(90deg,#0a2540 0%,#0984e3 55%,#00cec9 100%);
+    --g-marca-v:linear-gradient(180deg,#0a2540 0%,#0984e3 55%,#00cec9 100%);
+    --chip-bg:rgba(116,185,255,.12);
+    --chip-bd:rgba(9,132,227,.18);
+    --chip-num:linear-gradient(135deg,rgba(9,132,227,.14),rgba(0,206,201,.14));
+    --lp-tinte:#f3f9fe;            /* electric al 5% ya compuesto sobre blanco */
+    --lp-lift:0 10px 24px rgba(10,37,64,.08);
+}
+
+/* ---- 1. REGLA DE MARCA: la firma visual que se repite. De electric plano a gradiente ---- */
+.hero__rule,.lp-rule{background:var(--g-marca);border-radius:2px}
+.block__head::before{content:'';display:block;width:48px;height:3px;border-radius:2px;background:var(--g-marca);margin:0 auto 12px}
+/* La regla de Precios iba pegada a la izquierda con su titulo centrado */
+.precios .lp-rule{margin:0 auto 12px}
+/* El alto que gana la regla se lo devuelve la cabecera del bloque: a 375 px no sobra ni un pixel */
+@media(max-width:600px){
+    .block__head::before{margin-bottom:10px}
+    .block__head{margin-bottom:14px}
+}
+
+/* ---- 2. HERO CON PROFUNDIDAD, sin oscurecerlo: dos manchas radiales muy suaves sobre el mismo lienzo.
+     Sin animacion y sin glow; el texto siempre cae en zona clara. Se usa rgba(...,0) y no transparent
+     porque transparent interpola por negro y deja un halo gris en el borde de la mancha. ---- */
+.hero{background-color:#f5f9fe;background-image:
+    radial-gradient(620px 420px at 92% 4%,rgba(9,132,227,.13),rgba(9,132,227,0) 62%),
+    radial-gradient(520px 380px at 0% 108%,rgba(0,206,201,.09),rgba(0,206,201,0) 60%);
+    background-repeat:no-repeat}
+@media(max-width:600px){
+    /* En 375 px una mancha de 620 px cubre la pantalla entera y deja de leerse como luz de esquina */
+    .hero{background-image:
+        radial-gradient(360px 280px at 100% 0%,rgba(9,132,227,.14),rgba(9,132,227,0) 66%),
+        radial-gradient(320px 250px at -8% 104%,rgba(0,206,201,.10),rgba(0,206,201,0) 62%)}
+}
+/* El antetitulo azul de 13 px sobre la mancha se quedaba en 3.99:1: sale del token unico (ver 0) */
+.hero__eyebrow{color:var(--electric-text)}
+/* A. EL ACENTO DEL h1 SE APAGABA. El degradado de texto terminaba en #0a2540, que es EL MISMO color del
+   resto del titulo: "Cual estudio del sueno es el tuyo" se leia partido, con "es el" en azul y "tuyo"
+   apagandose hacia el navy vecino. Fallo que obliga a la regla: un degradado de texto que acaba en el
+   color del texto de al lado deja de resaltar y solo ensucia el remate. El acento va SOLIDO en electric
+   (38.4 px en escritorio y 29.6 en movil: texto grande, AA pide 3:1 y da 3.1:1 sobre la mancha del hero).
+   Se apagan las cuatro propiedades del recorte, no solo el fondo: si queda -webkit-text-fill-color en
+   transparent el texto desaparece. */
+section.hero h1 em{background:none;background-image:none;-webkit-background-clip:border-box;background-clip:border-box;color:#0984e3;-webkit-text-fill-color:#0984e3}
+
+/* ---- 3. ICONOS CON CUERPO: ningun glifo suelto. Chip de 36 a 40 px, fondo sky al 12%, icono electric y
+     borde del mismo azul al 18%. Los numeros de paso llevan chip con gradiente electric-cyan al 14% ---- */
+.doc-card__bullets li{gap:12px;align-items:flex-start}
+.doc-card__bullets i{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;margin-top:0;border-radius:12px;background:var(--chip-bg);border:1px solid var(--chip-bd);color:#0984e3;font-size:1rem;flex:0 0 auto}
+.hero__card-list li{gap:12px}
+/* D. El paso numerado ya venia con el glifo bi-N-circle-fill, que ES un circulo azul solido; metido
+   ademas en un chip cuadrado quedaba un marco dentro de otro y dos fichas distintas en la misma
+   pantalla. Una sola familia en toda la pagina: el CHIP CUADRADO tintado es la unica ficha de icono
+   y el CIRCULO se reserva al paso numerado. El ancho de 36 px se conserva para no mover la sangria. */
+.hero__card-list i{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:0;border-radius:0;background:none;color:#0984e3;font-size:1.5rem;flex:0 0 auto}
+.lim-item__ic{display:flex;align-items:center;justify-content:center;width:40px;height:40px;padding-top:0;border-radius:12px;background:var(--chip-bg);border:1px solid var(--chip-bd);color:#0984e3;font-size:1.15rem;flex:0 0 auto}
+.dec-out__ic,.dec-out--home .dec-out__ic,.dec-out--lab .dec-out__ic,.dec-out--check .dec-out__ic{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:12px;background:var(--chip-bg);border:1px solid var(--chip-bd);color:#0984e3}
+.dec-out__ic i,.dec-out .dec-out__ic i{font-size:18px;line-height:1}
+/* D. El numero de cada pregunta es el otro paso numerado de la pagina: CIRCULO, no chip cuadrado.
+   Tinte de marca al 14% y cifra en navy (14.6:1); en solido no llegaria a AA a 13.6 px. */
+.dec-q__n{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--chip-num);border:1px solid var(--chip-bd);color:#0a2540;font-size:.85rem;font-weight:700;line-height:1;flex:0 0 auto}
+@media(max-width:600px){
+    .doc-card__bullets i{width:32px;height:32px;border-radius:10px;font-size:.95rem}
+    /* En telefono el icono de "el limite" sigue fuera: devolverlo cuesta 60 px de alto y la seccion se
+       pasa de 1.2 pantallas (regla d8). Se conserva la decision del pase anterior. */
+    .lim-item__ic{display:none}
+}
+
+/* ---- 4. SUPERFICIES QUE ALTERNAN: blanco, banda, blanco... y UNA sola seccion con tinte de marca ---- */
+.cmp-section{background:var(--lp-surface)}
+.dec-section{background:var(--lp-tinte)}
+.block[style*="cloud-alt"]{background:var(--lp-surface)!important}
+/* Cada fila de precio estrena su borde izquierdo de 3 px en gradiente. El pseudo va absoluto a proposito:
+   dentro de un grid, un ::before normal se convierte en item y descoloca las areas. */
+/* E. La barra se comia 16 px de la columna del enlace y a 375 px partia "Apartar polisomnografia" en
+   dos renglones. Baja a 10 px (3 de barra + 7 de aire), que es lo que la barra necesita para leerse. */
+.precio{position:relative;padding-left:10px}
+.precio::before{content:'';position:absolute;left:0;top:12px;bottom:12px;width:3px;border-radius:2px;background:var(--g-marca-v)}
+/* Y el enlace era inline-flex con align-items:center: en cuanto el texto pasaba a dos renglones el
+   icono se centraba entre ambos y quedaba colgando a media altura. Con flex-start y la caja del icono
+   a la altura exacta de un renglon (1.45), el icono se ancla SIEMPRE al primero. El relleno vertical
+   sustituye al min-height y conserva el area de toque de 40 px (9 + 20.9 + 10). */
+a.precio__btn{align-items:flex-start;min-height:0;padding:9px 0 10px;line-height:1.45}
+a.precio__btn i{flex:0 0 auto;line-height:1.45}
+/* Con la barra a 10 px el enlace seguia 7 px corto (necesita 190 y la columna daba 183, porque el ancla
+   "$14,000 precio regular" no se parte y fija la segunda columna en 142). En telefono chico el enlace
+   principal pasa a su propio renglon de punta a punta y "Ver detalles" sube al hueco que ya dejaba la
+   descripcion: mismo numero de filas, la seccion baja de 402 a 388 px y el enlace cabe en UNA linea.
+   Medido a 375: 190 px de ancho, 1 renglon, icono y texto a 9 y 10 px del borde de la caja. */
+@media(max-width:479.98px){
+    .precio{grid-template-areas:"kind cifra" "desc was" "desc more" "btn btn"}
+}
+/* A. Mismo fallo que en el h1 y peor: "$12,000" se leia partido justo en la cifra que decide la compra.
+   La cifra va SOLIDA y el mismo rol lleva el mismo color en toda la pagina y en las tres landings:
+   #0984e3 de 24 px para arriba (texto grande, 3.87:1 sobre blanco) y --electric-text por debajo. */
+.precio__cifra{background:none;background-image:none;-webkit-background-clip:border-box;background-clip:border-box;color:#0984e3;-webkit-text-fill-color:#0984e3}
+/* La misma cifra dentro de la tabla de precios del comparador (panel "Cuanto cuesta y que incluye"):
+   iba en navy y no se distinguia del texto corrido. A 15.5 px es texto chico -> token (6.83:1). */
+#cmp-5 .cmp__row dd b{color:var(--electric-text)}
+@media(min-width:768px){.precio{padding-left:12px}}
+
+/* ---- 5. BANDA DE CIERRE, el efecto wow: el ultimo CTA (y solo ese) pasa a color pleno de marca. Es el
+     unico bloque oscuro de la pagina fuera del pie y la franja legal, y llega cuando el paciente ya leyo
+     todo. Sin glow, sin lucecitas y sin chips de precio: eso era lo "tosco" que el Dr. rechazo.
+     El extremo claro del gradiente es #0b6fc0 y no #0984e3 porque blanco sobre electric da 3.87:1
+     (AA pide 4.5) y sobre #0b6fc0 da 5.2:1.
+     17-sep (verificador): la banda es IDENTICA en las tres landings -> tarjeta de radio 20 px, margen
+     lateral el del contenido (vive dentro de .container: 12 px a 375 y 82 px a 1280, medidos), 80 px de
+     aire hasta el pie, regla de marca en cyan claro, TITULO COMPLETO EN BLANCO (sin segunda linea en
+     menta: partir el titulo en dos colores era lo mismo que apagaba el h1), parrafo en blanco al 95% y
+     boton verde + boton secundario de contorno blanco. Medido sobre el punto MAS CLARO del gradiente
+     (#0b6fc0, esquina inferior derecha): blanco 5.18:1 y blanco al 95% 4.87:1. ---- */
+.cta-inline.cta-final{background:linear-gradient(135deg,#0a2540 0%,#0b6fc0 100%);border:0;color:#fff;border-radius:20px;box-shadow:0 20px 48px -24px rgba(10,37,64,.45)}
+.cta-final .lp-rule{background:#8ffdec}
+.cta-final h2{color:#fff}
+.cta-final p{color:rgba(255,255,255,.95)}
+.cta-final .cta-inline__btns{gap:10px}
+.cta-final .cta-inline__btns a.btn-cal,.cta-final a.btn-cal.btn-cal{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 26px;background:transparent;border:1px solid rgba(255,255,255,.55);border-radius:100px;color:#fff;font-weight:600;font-size:1rem;text-decoration:none;box-shadow:none;transform:none}
+.cta-final .cta-inline__btns a.btn-cal:hover,.cta-final a.btn-cal.btn-cal:hover{background:rgba(255,255,255,.12);border-color:#fff;color:#fff;text-decoration:none;transform:none}
+.cta-final a.btn-cal i,.cta-final .btn-cal i{display:inline;color:#8ffdec;font-size:1.05rem}
+.cta-final a:focus-visible,.cta-final button:focus-visible{outline:3px solid #8ffdec;outline-offset:3px;box-shadow:none}
+@media(max-width:767.98px){
+    .cta-final .cta-inline__btns a.btn-cal,.cta-final a.btn-cal.btn-cal{width:100%}
+}
+
+/* ---- 6. DINAMISMO DISCRETO (estilo 21st.dev): nada rebota, nada parpadea, nada se mueve solo ----
+   (a) spotlight que sigue al cursor y elevacion de 2 px, solo con raton y de 768 px para arriba */
+@media (hover:hover) and (min-width:768px){
+    .precio,.testi-card,.hero__card,.doc-card,.dec-out{transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+    .precio::after,.testi-card::after,.hero__card::after,.doc-card::after,.dec-out::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .25s var(--ease);
+        background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(9,132,227,.10),rgba(9,132,227,0) 70%)}
+    .testi-card,.hero__card,.doc-card,.dec-out{position:relative}
+    .precio.is-spot::after,.testi-card.is-spot::after,.hero__card.is-spot::after,.doc-card.is-spot::after,.dec-out.is-spot::after{opacity:1}
+    .precio:hover,.testi-card:hover,.hero__card:hover{transform:translateY(-2px);box-shadow:var(--lp-lift)}
+    .precio:hover{border-radius:12px;z-index:1}
+}
+/* (b) los enlaces de texto estrenan subrayado de gradiente que crece de 0 a 100% */
+@media (hover:hover){
+    a.precio__btn,a.precio__more,#ubicacion .ubi a.ubi__link,.dec-reset,.hero .hero__creds>a,.cmp__row dd a,.cmp-lane__txt a,#testimonios a[href*="share.google"]:not(.gbp-rating-widget){
+        background-image:var(--g-marca);background-repeat:no-repeat;background-position:0 100%;background-size:0 2px;
+        transition:background-size .28s var(--ease),color .2s var(--ease)}
+    a.precio__btn:hover,a.precio__more:hover,#ubicacion .ubi a.ubi__link:hover,.dec-reset:hover,.hero .hero__creds>a:hover,.cmp__row dd a:hover,.cmp-lane__txt a:hover,#testimonios a[href*="share.google"]:not(.gbp-rating-widget):hover{
+        background-size:100% 2px;text-decoration-color:transparent}
+    #testimonios a[href*="share.google"]:not(.gbp-rating-widget):hover{border-bottom-color:transparent!important}
+    .faq-item summary:hover{color:var(--electric-text)}
+}
+/* C. Los azules de texto chico que quedaban escritos a mano en bloques anteriores (subtitulo de la
+   tarjeta del hero, segunda accion, hover de credenciales y del boton secundario) pasan al token.
+   Se listan aqui y no se corrigen en su bloque para que el pase de color siga siendo reversible.
+   Van ACOTADOS al hero: sin acotar, 'a.btn-cal.btn-cal i' empata en especificidad con
+   '.cta-final a.btn-cal i' y, por ir despues, apagaba a azul oscuro el icono menta del boton
+   secundario de la banda de cierre (medido: quedaba #065ca4 sobre el navy de la banda). */
+.hero__card .subt,.hero__cta .btn-cal,.hero .hero__creds>a:hover,
+.hero .hero__cta a.btn-cal.btn-cal:hover,.hero .hero__cta a.btn-cal.btn-cal i{color:var(--electric-text)}
+/* La pestana activa del comparador cambia el subrayado plano por el de marca, y crece al activarse */
+.cmp__tab{background-image:var(--g-marca);background-repeat:no-repeat;background-position:0 100%;background-size:0 2px;transition:background-size .28s var(--ease),background-color .2s var(--ease),color .2s var(--ease)}
+.cmp__tab[aria-selected="true"]{background-color:#fff;background-size:100% 2px;box-shadow:none}
+/* El punto que separa los dos enlaces legales del pie iba en blanco al 10% sobre el navy del pie: 1.31:1.
+   Es texto de 13 px y cae del gate de contraste. Sube a blanco al 48% (4.81:1 medido sobre el pixel real
+   del pie). Lleva !important porque el color viene de un style en linea dentro del HTML del pie. */
+footer .footer-meta>span[style]{color:rgba(255,255,255,.48)!important}
+
+/* (c) reveal de 300 ms al aparecer, una sola vez. Las clases las pone el JS: sin JS todo nace visible */
+@media (prefers-reduced-motion:no-preference){
+    .hero__rule.lp-rev,.lp-rule.lp-rev{transform:scaleX(0);transform-origin:left center;transition:transform .3s var(--ease)}
+    .hero__rule.lp-in,.lp-rule.lp-in{transform:none}
+    .precios .lp-rule.lp-rev,.cta-final .lp-rule.lp-rev{transform-origin:center}
+    .block__head.lp-rev::before{transform:scaleX(0);transition:transform .3s var(--ease)}
+    .block__head.lp-in::before{transform:none}
+    .precio__cifra.lp-rev{opacity:0;transform:translateY(6px);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+    .precio__cifra.lp-in{opacity:1;transform:none}
+}
+@media (prefers-reduced-motion:reduce){
+    .lp-rev,.lp-in,.block__head.lp-rev::before{transform:none!important;opacity:1!important;transition:none!important}
+    .cmp__tab{transition:none}
+}
+</style>
 </head>
 <body>
 <a class="alv-skip" href="#main">Saltar al contenido</a>
@@ -1845,6 +2046,54 @@ document.addEventListener('click',function(e){
         });
     }
     [].forEach.call(document.querySelectorAll('[data-lp-tabs]'),pastillas);
+})();
+</script>
+<script id="lp-color-20260917-js">
+/* Pase de color 17-sep-2026, momento 6 (dinamismo discreto). Capa ADITIVA: sin este script la pagina
+   se ve igual, solo sin spotlight ni reveal. Con prefers-reduced-motion no se engancha nada. */
+(function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* (c) Reveal de 300 ms, UNA sola vez, en las cifras grandes y en las reglas de marca.
+       Las clases se ponen desde aqui a proposito: si el JS no corre, nada nace invisible. */
+    if (!reduce && 'IntersectionObserver' in window) {
+        var revs = [].slice.call(document.querySelectorAll('.hero__rule,.lp-rule,.block__head,.precio__cifra'));
+        revs.forEach(function(el){ el.classList.add('lp-rev'); });
+        var io = new IntersectionObserver(function(entries){
+            entries.forEach(function(e){
+                if (e.isIntersecting) { e.target.classList.add('lp-in'); io.unobserve(e.target); }
+            });
+        }, {rootMargin:'0px 0px -6% 0px', threshold:0.15});
+        revs.forEach(function(el){ io.observe(el); });
+    }
+
+    /* (a) Spotlight que sigue al cursor en fichas y filas clicables. Un solo listener pasivo para toda la
+       pagina y una escritura por cuadro con rAF: mover --mx/--my por evento tiraba el scroll en movil. */
+    var raton = window.matchMedia && window.matchMedia('(hover:hover) and (min-width:768px)').matches;
+    if (!reduce && raton) {
+        var SEL = '.precio,.testi-card,.hero__card,.doc-card,.dec-out';
+        var actual = null, px = 0, py = 0, pendiente = false;
+        function pinta(){
+            pendiente = false;
+            if (!actual) return;
+            actual.style.setProperty('--mx', px + 'px');
+            actual.style.setProperty('--my', py + 'px');
+        }
+        document.addEventListener('pointermove', function(ev){
+            if (ev.pointerType && ev.pointerType !== 'mouse') return;
+            var t = (ev.target && ev.target.closest) ? ev.target.closest(SEL) : null;
+            if (t !== actual) {
+                if (actual) actual.classList.remove('is-spot');
+                actual = t;
+                if (actual) actual.classList.add('is-spot');
+            }
+            if (!actual) return;
+            var r = actual.getBoundingClientRect();
+            px = Math.round(ev.clientX - r.left);
+            py = Math.round(ev.clientY - r.top);
+            if (!pendiente) { pendiente = true; requestAnimationFrame(pinta); }
+        }, {passive:true});
+    }
 })();
 </script>
 </body>

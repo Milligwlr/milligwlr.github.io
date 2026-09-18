@@ -3298,6 +3298,298 @@ section.doc-band{background:var(--lc-surface);color:var(--lc-navy);border-top:1p
   .hero .hero__cta a.btn-cal.btn-cal i,a.btn-cal.btn-cal i{font-size:1.05rem;color:#0773c5}
 }
 </style>
+<style id="lp-color-20260917">
+/* ===== PASE DE COLOR 17-sep-2026 (aditivo: quitar este bloque devuelve la pagina blanca del pase de limpieza).
+   Fallo que lo motivo (el Dr., viendo la comparativa en vivo): "me agrada que se ve todo mas limpio en el
+   diseno, pero le hace falta un poco mas de color, te fuiste de extremo a extremo, desde una pagina super
+   saturada en colores chillones intensos, a una pagina anemica, casi en blanco; necesito que el color le de
+   dinamismo, elegancia, efecto wow y premium".
+   NO se vuelve al navy con degradado en el hero ni a los bloques oscuros que rechazo ayer ("tosco"): se
+   conserva el lienzo claro y la jerarquia. Lo que cambia es que el color entra como SISTEMA, en pocos sitios:
+   1 regla de marca en gradiente, 2 profundidad del hero, 3 iconos con cuerpo, 4 superficies que alternan,
+   5 banda de cierre de color pleno, 6 dinamismo discreto.
+   Paleta de marca ya medida en el sitio: navy #0a2540, navy profundo #0a1628, electric #0984e3, electric de
+   texto chico #0773c5, sky #74b9ff, cyan #00cec9, cyan claro #8ffdec, lienzo #f5f9fe, banda #f6f9fd,
+   linea #dfe8f3, texto #4a5a70, verde de WhatsApp #1DA851 (CONGELADO, no se toca).
+   El cyan y el sky vuelven SOLO como acento de gradiente sobre superficie clara. Nunca como fondo de bloque
+   ni como texto suelto (sobre blanco el cyan da 1.9:1). ===== */
+:root{
+  --lp-rule:linear-gradient(90deg,#0a2540 0%,#0984e3 52%,#00cec9 100%);
+  --lp-band:#f6f9fd;
+  --lp-tint:#f3f9fe;               /* electric al 5% sobre blanco, calculado */
+  --lp-chip-bg:rgba(116,185,255,.12);
+  --lp-chip-bd:rgba(9,132,227,.18);
+}
+
+/* ---------- MOMENTO 1. Regla de marca con gradiente ----------
+   la firma visual que se repite: 48x3 px, radio 2, navy -> electric -> cyan. Antes era electric plano y solo
+   estaba en el hero y en el cierre; ahora encabeza cada seccion. */
+.hero__rule{background:var(--lp-rule)}
+.block__head::before{content:"";display:block;width:48px;height:3px;border-radius:2px;background:var(--lp-rule);margin:0 auto 14px}
+#precios .px3__title::before{content:"";display:block;width:48px;height:3px;border-radius:2px;background:var(--lp-rule);margin:0 auto 14px}
+/* la seccion de la pareja no tiene .block__head: el rotulo y el titulo son hermanos, asi que la regla cuelga de
+   la columna para quedar ARRIBA del rotulo y no entre los dos. Va pegada a la izquierda porque el titulo lleva
+   text-align:left en el atributo style del HTML. */
+#para-la-pareja .col-lg-8::before{content:"";display:block;width:48px;height:3px;border-radius:2px;background:var(--lp-rule);margin:0 0 14px}
+.doc-band__kicker::before{content:"";display:block;width:48px;height:3px;border-radius:2px;background:var(--lp-rule);margin:0 0 12px}
+.cta-inline::before{background:var(--lp-rule)}
+/* medido a 375: la regla anade 17 px por seccion y "¿Es este el estudio que necesitas?" pasaba de 1.18 a
+   1.20 pantallas. En movil el rotulo de seccion esta oculto, asi que la regla puede ir mas pegada al titulo. */
+@media(max-width:600px){
+  .block__head::before,#precios .px3__title::before,#para-la-pareja .col-lg-8::before{margin-bottom:6px}
+  /* "¿Es este el estudio que necesitas?" era la seccion mas alta a 375 (1.18 pantallas medidas antes del
+     pase). La regla de marca la subia a 1.20, justo en el limite; estos 8 px de aire devuelven la densidad
+     que tenia, sin tocar una sola palabra. */
+  .qe__stats{margin-top:10px} /* el padding-top ya va en 0 en movil: aqui solo se recorta el margen */
+  .qe__nota-ast{margin-top:6px}
+}
+
+/* ---------- MOMENTO 2. Hero con profundidad, sin oscurecerlo ----------
+   dos manchas radiales muy suaves sobre el lienzo claro; sin animacion, sin glow duro. El texto vive en la
+   mitad izquierda alta, donde la mancha electric apenas llega: medido, el gris #4a5a70 conserva 6.9:1. */
+.hero,section.hero{
+  background:
+    radial-gradient(56% 58% at 84% 6%,rgba(9,132,227,.13) 0%,rgba(9,132,227,0) 62%),
+    radial-gradient(52% 52% at 4% 104%,rgba(0,206,201,.09) 0%,rgba(0,206,201,0) 66%),
+    #f5f9fe;
+}
+/* a 375 la columna de texto ocupa el ancho entero: la mancha electric sube a la esquina y se estrecha para no
+   pisar el eyebrow (medido: con la mancha centrada en 84% caia a 4.56:1; asi se queda en 4.9:1) */
+@media(max-width:767px){
+  .hero,section.hero{
+    background:
+      radial-gradient(62% 30% at 100% 0%,rgba(9,132,227,.15) 0%,rgba(9,132,227,0) 68%),
+      radial-gradient(58% 26% at 0% 100%,rgba(0,206,201,.10) 0%,rgba(0,206,201,0) 70%),
+      #f5f9fe;
+  }
+}
+/* CORREGIDO 17-sep-2026 (verificador visual del pase de color): el degradado de texto TERMINABA EN NAVY
+   #0a2540, que es justo el color del resto del titulo; la cifra -el dato que el paciente busca- se leia
+   partida en dos y perdia el resaltado. Regla nueva, un solo rol en toda la pagina y en las tres landings:
+   LA CIFRA VA SOLIDA -> #0984e3 de 24 px para arriba (texto grande, 3.66:1 sobre blanco, AA-grande) y
+   #0773c5 por debajo de 24 px (4.92:1 sobre blanco, AA). Si una cifra grande del cuerpo conserva degradado,
+   va de AZUL A AZUL (#0984e3 -> #0773c5), nunca al navy. El <em> del h1 deja de usar background-clip. */
+section.hero h1 em{color:#0984e3;background:none;-webkit-text-fill-color:currentColor}
+/* tabla de precios: mismo rol, decidido por el tamano real medido. La fila promo mide 22.4 px a 375 y
+   28.8 px a partir de 768. */
+.px3__row--promo .px3__price{color:#0773c5}
+@media(min-width:768px){.px3__row--promo .px3__price{color:#0984e3}}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  /* cifras grandes del cuerpo (24 px a 375, 30.4-46.4 px en escritorio): degradado azul -> azul, con los dos
+     extremos legibles como texto grande; el ojo cae aqui al hojear en el celular */
+  .why-data__num,.qe__stat b{
+    background:linear-gradient(120deg,#0984e3 0%,#0773c5 92%);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+}
+
+/* ---------- MOMENTO 3. Iconos con cuerpo ----------
+   ningun glifo suelto: chip de 36-40 px, fondo sky al 12%, icono electric, borde del mismo azul al 18%. */
+.why-ic,.why-tile--feat .why-ic,.why-tile--apoyo .why-ic,.partner-fact__ic,.psg-strip__ic{
+  background:var(--lp-chip-bg);border:1px solid var(--lp-chip-bd);color:#0984e3;box-shadow:none;
+}
+/* lista de senales de la pareja: el check era un glifo suelto de 18 px */
+.partner__signs li{align-items:center;gap:12px}
+.partner__signs li i{
+  flex:0 0 36px;width:36px;height:36px;margin-top:0;border-radius:11px;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--lp-chip-bg);border:1px solid var(--lp-chip-bd);color:#0773c5;font-size:.95rem;
+}
+/* pasos: el circulo grande es el chip del icono y el numero lleva el gradiente electric -> cyan al 14%
+   (con blanco por debajo: el numero pisa el borde del circulo y un fondo translucido lo dejaba ver) */
+.step3__node{background:var(--lp-chip-bg);border-color:var(--lp-chip-bd)}
+.step3__num{
+  background:linear-gradient(135deg,rgba(9,132,227,.14),rgba(0,206,201,.14)),#fff;
+  color:#0a2540;border:1px solid rgba(9,132,227,.22);font-weight:700;box-shadow:none;
+}
+
+/* ---------- MOMENTO 4. Superficies que alternan ----------
+   antes las 16 secciones eran blanco o casi blanco seguidas: de ahi la pagina "anemica". Ahora alternan
+   blanco y banda, una si y una no, y UNA sola seccion de contenido lleva el tinte de marca. */
+#precios,#por-que-revisarla,#especialista-del-sueno,
+section.block:has(.why-bento),section.block:has(.steps3),section.block:has(.faq-item),
+section.block.benefits:has(.cta-final){background:#fff;background-image:none}
+#para-la-pareja,#que-estudio-necesito,#testimonios,#ubicacion,
+section.block:has(.svc-wow),section.block.doc-band{background:var(--lp-band);background-image:none}
+/* la unica seccion con tinte de marca: el cuestionario, que es donde el paciente actua */
+#stop-bang{background:var(--lp-tint);background-image:none;border-top:1px solid rgba(9,132,227,.10);border-bottom:1px solid rgba(9,132,227,.10)}
+/* la fila de la promo conserva su tinte y estrena el borde izquierdo de 3 px en gradiente */
+.px3__row--promo{position:relative}
+.px3__row--promo::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:0 3px 3px 0;background:linear-gradient(180deg,#0a2540 0%,#0984e3 55%,#00cec9 100%)}
+@media(max-width:767px){
+  .px3__row--promo{padding-left:12px}
+}
+@media(min-width:768px){
+  .px3__row--promo::before{top:12px;bottom:12px}
+}
+
+/* ---------- MOMENTO 5. Banda de cierre: el unico bloque de color pleno ----------
+   va al final, cuando el paciente ya leyo todo. Medido: blanco sobre el extremo claro del degradado.
+   Con #0984e3 daba 3.87:1 (reprueba AA), por eso el extremo claro se oscurece a #0b6fc0 = 5.19:1. */
+.cta-inline.cta-final{
+  background:linear-gradient(135deg,#0a2540 0%,#0b6fc0 100%);
+  border-color:transparent;color:#fff;
+  box-shadow:0 18px 44px -26px rgba(10,37,64,.6);
+}
+.cta-final::before{background:linear-gradient(90deg,#8ffdec 0%,#74b9ff 100%)}
+.cta-final h2,.cta-inline.cta-final h2{color:#fff}
+.cta-final p,.cta-inline.cta-final p{color:rgba(255,255,255,.95)}
+/* el verde de WhatsApp #1DA851 no se toca: encima del degradado se lee igual */
+.cta-final .btn-wa:focus-visible,.cta-final .btn-cal:focus-visible{outline:3px solid #8ffdec;outline-offset:3px}
+/* boton secundario en contorno blanco, en TODOS los anchos: en movil heredaba el enlace azul #0773c5,
+   que sobre el navy quedaba ilegible */
+.cta-final a.btn-cal,.cta-final a.btn-cal.btn-cal{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  height:auto;min-height:52px;padding:0 26px;
+  background:transparent;border:1px solid rgba(255,255,255,.62);border-radius:100px;
+  color:#fff;font-weight:600;font-size:1rem;line-height:1.2;text-decoration:none;box-shadow:none;
+}
+.cta-final a.btn-cal.btn-cal i{display:inline-block;color:#8ffdec;font-size:1.05rem}
+.cta-final a.btn-cal.btn-cal:hover{background:rgba(255,255,255,.12);border-color:#fff;color:#fff}
+@media(max-width:767px){
+  .cta-final a.btn-cal,.cta-final a.btn-cal.btn-cal{width:100%}
+}
+
+/* ---------- MOMENTO 6. Dinamismo discreto ----------
+   (a) spotlight que sigue al cursor, solo escritorio con puntero fino; (b) subrayado de gradiente que crece;
+   (c) reveal de 300 ms, una sola vez. Nada rebota, nada parpadea, nada se mueve solo. */
+@media (hover:hover) and (pointer:fine){
+  .lp-spot{position:relative;transition:transform .25s ease,box-shadow .25s ease}
+  .lp-spot::after{
+    content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0;
+    opacity:0;transition:opacity .25s ease;
+    background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(9,132,227,.10) 0%,rgba(9,132,227,0) 62%);
+  }
+  .lp-spot:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(10,37,64,.08)}
+  .lp-spot:hover::after{opacity:1}
+  .lp-spot>*{position:relative;z-index:1}
+}
+/* (b) enlaces de texto: el subrayado fino se queda siempre (accesibilidad) y el de gradiente crece encima */
+.enj__more a,.qe__link,.qe__seals a,.psg-strip__txt a,.faq-item__answer a,.rev-block__all,.rev-strip__all{
+  text-decoration:none;border-bottom:0;padding-bottom:2px;
+  background-image:linear-gradient(90deg,#0984e3 0%,#00cec9 100%),linear-gradient(90deg,rgba(7,115,197,.34),rgba(7,115,197,.34));
+  background-repeat:no-repeat,no-repeat;
+  background-position:0 100%,0 100%;
+  background-size:0 2px,100% 1px;
+  transition:background-size .3s ease;
+}
+.enj__more a:hover,.qe__link:hover,.qe__seals a:hover,.psg-strip__txt a:hover,.faq-item__answer a:hover,.rev-block__all:hover,.rev-strip__all:hover,
+.enj__more a:focus-visible,.qe__link:focus-visible,.qe__seals a:focus-visible,.psg-strip__txt a:focus-visible,.faq-item__answer a:focus-visible,.rev-block__all:focus-visible,.rev-strip__all:focus-visible{background-size:100% 2px,100% 1px}
+/* (c) reveal: la regla de marca crece y la cifra sube 6 px. La clase lp-anim la pone el JS y solo si el
+   visitante no pidio menos movimiento; sin JS todo se ve completo desde el principio. */
+.lp-anim .block__head::before,.lp-anim #precios .px3__title::before,
+.lp-anim #para-la-pareja .block__title::before,.lp-anim .doc-band__kicker::before{
+  transform:scaleX(0);transform-origin:left center;transition:transform .3s ease;
+}
+.lp-anim .block__head.is-in::before,.lp-anim #precios .px3__title.is-in::before,
+.lp-anim #para-la-pareja .block__title.is-in::before,.lp-anim .doc-band__kicker.is-in::before{transform:scaleX(1)}
+/* las cifras solo a partir de 768: a 375 las losetas 2 y 3 viven en un carrusel horizontal y, si el visitante
+   no lo desliza, una cifra en opacidad 0 se quedaria invisible */
+@media(min-width:768px){
+  .lp-anim .why-data__num,.lp-anim .qe__stat b{opacity:0;transform:translateY(6px);transition:opacity .3s ease,transform .3s ease}
+  .lp-anim .why-data__num.is-in,.lp-anim .qe__stat b.is-in{opacity:1;transform:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .lp-spot::after{display:none}
+  .lp-spot:hover{transform:none;box-shadow:none}
+  .enj__more a,.qe__link,.qe__seals a,.psg-strip__txt a,.faq-item__answer a,.rev-block__all,.rev-strip__all{transition:none}
+  .lp-anim .block__head::before,.lp-anim #precios .px3__title::before,
+  .lp-anim #para-la-pareja .block__title::before,.lp-anim .doc-band__kicker::before{transform:none;transition:none}
+  .lp-anim .why-data__num,.lp-anim .qe__stat b{opacity:1;transform:none;transition:none}
+}
+
+/* ===== CIERRE DE HALLAZGOS DEL VERIFICADOR (17-sep-2026, el mismo dia del pase de color) ==============
+   El color se queda tal cual: lo que sigue solo repara lo que el pase dejo suelto. Cada punto anota el
+   fallo medido que lo motivo, para que no vuelva. ===== */
+
+/* ---------- C. UN SOLO AZUL DE TEXTO CHICO ----------
+   Fallo medido: convivian TRES azules de texto chico entre las tres landings y DOS dentro de esta pagina
+   (#0773c5 en rotulos y enlaces, #065a9b en el selector ES activo, #0a5fb0 en el sufijo de una cifra; ese
+   ultimo daba 4.29:1 a 18.4 px, reprueba AA). Desde aqui el rotulo, el enlace y todo el texto chico azul
+   salen de UN token: --electric-text #065ca4 (6.83:1 sobre blanco, 6.09:1 sobre el tinte #eaf3fd del
+   selector, 6.26:1 sobre el #eef6fe del Si/No del STOP-BANG).
+   La CIFRA no entra aqui: es otro rol y lo fija el punto A (#0984e3 / #0773c5 segun el tamano medido). */
+:root{--electric-text:#065ca4}
+/* los que no pasaban por el token y llevaban su azul a mano */
+.qe__ast,
+#stop-bang .sb-board .sb-btn.active-si,#stop-bang .sb-board .sb-btn.active-no,
+#stop-bang .sb-board .sb-btn[aria-pressed="true"],#stop-bang .sb-board .sb-btn[aria-pressed="true"]:hover,
+.sb-bmi-calc-btn,
+#mainNav .promo-lang2 a.active,
+.why-data__num small{color:var(--electric-text)}
+#stop-bang .sb-board .sb-btn.active-si,#stop-bang .sb-board .sb-btn.active-no,
+#stop-bang .sb-board .sb-btn[aria-pressed="true"],.sb-bmi-calc-btn{border-color:var(--electric-text)}
+/* !important: estos dos enlaces llevan el color en el atributo style del HTML, que este pase no toca */
+.faq-item__answer a[data-cta="faq-wa"],a[data-cta="ubi-maps"]{color:var(--electric-text)!important}
+/* el :hover tenia que seguir notandose: #065a9b quedaba a un pelo del token nuevo */
+#mainNav .navbar-cta:hover{background:#054e8a}
+.sb-bmi-calc-btn:hover{background:#dceaf9;color:#054e8a;border-color:#054e8a}
+@media(min-width:768px){
+  .hero .hero__cta a.btn-cal.btn-cal:hover,a.btn-cal.btn-cal:hover{border-color:var(--electric-text);color:#054e8a}
+  .hero .hero__cta a.btn-cal.btn-cal i,a.btn-cal.btn-cal i{color:var(--electric-text)}
+  /* el secundario del cierre vive sobre el degradado de marca: ahi el icono sigue en cyan claro */
+  .cta-final a.btn-cal.btn-cal i{color:#8ffdec}
+  .cta-final a.btn-cal.btn-cal:hover{border-color:#fff;color:#fff}
+}
+
+/* ---------- D. ICONOS, UNA SOLA FAMILIA ----------
+   Fallo medido (tarjeta "Para quien lo acompana", 1280): las tres palomitas eran CIRCULOS AZULES SOLIDOS
+   (glifo bi-check-circle-fill) al lado de las tres fichas cuadradas tintadas de la misma pantalla: dos
+   familias de icono a un palmo de distancia. El chip cuadrado tintado es la unica ficha de icono de la
+   pagina; el circulo queda reservado al paso numerado (.step3__node con su .step3__num).
+   Se cambia el GLIFO por CSS (palomita simple, bi-check-lg = \f633); el HTML no se toca. */
+.partner__signs li i.bi-check-circle-fill::before{content:"\f633"}
+.partner__signs li i{font-size:1.15rem;color:var(--electric-text)}
+
+/* ---------- E1. LA LINEA DE LOS 3 PASOS NO SE CORTA EN SECO ----------
+   Fallo medido (1280): el relleno llegaba solido hasta x=790 y de ahi la linea seguia en #daedfb, sin
+   transicion; el corte caia justo entre el paso 2 y el 3 y la seccion parecia a medio cargar. El relleno
+   lo mueve el scroll (view-timeline), asi que el corte aparecia en CUALQUIER posicion de lectura.
+   Ahora la linea entera es un degradado real de extremo a extremo y el relleno se desvanece en su propia
+   cola: la mascara viaja con el scaleX, asi que el borde nunca vuelve a ser duro. */
+.steps3__track{background:linear-gradient(90deg,rgba(9,132,227,.26) 0%,rgba(9,132,227,.20) 55%,rgba(0,206,201,.22) 100%)}
+.steps3__fill{
+  background:linear-gradient(90deg,#0984e3 0%,#3aa9d8 100%);
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 52%,rgba(0,0,0,0) 100%);
+  mask-image:linear-gradient(90deg,#000 0%,#000 52%,rgba(0,0,0,0) 100%);
+}
+@media(max-width:767px){
+  /* a 375 la linea es vertical: el degradado y la mascara giran con ella */
+  .steps3__track{background:linear-gradient(180deg,rgba(9,132,227,.26) 0%,rgba(9,132,227,.20) 55%,rgba(0,206,201,.22) 100%)}
+  .steps3__fill{
+    background:linear-gradient(180deg,#0984e3 0%,#3aa9d8 100%);
+    -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 52%,rgba(0,0,0,0) 100%);
+    mask-image:linear-gradient(180deg,#000 0%,#000 52%,rgba(0,0,0,0) 100%);
+  }
+}
+
+/* ---------- E2. EL HERO CIERRA COMO EN LAS OTRAS DOS ----------
+   Fallo medido a 375: bajo las credenciales quedaba lienzo pintado y vacio -29 px antes de la foto (canalon
+   de la reticula + relleno de la ficha) y 36 px despues de la foto (relleno inferior del hero)-. Las dos
+   landings hermanas cierran a 27-29 px de su ultimo renglon; aqui el ultimo elemento es la foto, asi que se
+   recorta el aire de arriba y de abajo. No se toca la foto ni una sola palabra. */
+@media(max-width:767px){
+  .hero .row.g-5{--bs-gutter-y:.75rem}
+  /* !important: el bloque de compactacion movil fija padding:10px!important. Sin ese relleno la foto
+     arranca en el mismo borde que el titulo y las credenciales: una sola columna, sin escalon de 10 px */
+  .hero__card,.hero .hero__card{padding:0!important}
+  .hero,section.hero{padding-bottom:18px!important}       /* !important: lp-precios fija padding-bottom:26px!important */
+}
+
+/* ---------- B. BANDA DE CIERRE: LA MISMA FAMILIA EN LAS TRES ----------
+   Fallo medido: la banda quedaba a 30 px del pie, demasiado cerca para un bloque de color pleno (se leia
+   como si el pie fuera su continuacion). Se conserva el fondo de marca -el efecto que pidio el Dr.- y se
+   fija la familia: tarjeta de radio 20, margen lateral = el del contenido, regla de marca en cyan claro
+   arriba, TITULO COMPLETO EN BLANCO (sin segunda linea en menta), parrafo blanco al 95%, boton verde
+   #1DA851 (congelado) y secundario en contorno blanco. Blanco sobre el extremo claro #0b6fc0: 5.19:1. */
+section.block.benefits:has(.cta-final){padding-top:34px;padding-bottom:44px!important} /* !important: padding-bottom inline en el HTML */
+@media(min-width:768px){
+  section.block.benefits:has(.cta-final){padding-top:52px;padding-bottom:68px!important}
+}
+.cta-inline.cta-final{border-radius:20px}
+.cta-final h2,.cta-inline.cta-final h2,.cta-final h2 em,.cta-final h2 b,.cta-final h2 span{color:#fff;-webkit-text-fill-color:#fff;background:none}
+</style>
 <!-- sp-popup (prueba social ficticia con nombres inventados) ELIMINADO por compliance:
      solo se usa la calificación 5.0 real de Google, nunca testimonios inventados. -->
 
@@ -3546,6 +3838,60 @@ section.doc-band{background:var(--lc-surface);color:var(--lc-navy);border-top:1p
         new MutationObserver(pinta).observe(score,{childList:true,characterData:true,subtree:true});
         pinta();
     }
+})();
+</script>
+<script id="lp-color-20260917-js">
+/* PASE DE COLOR 17-sep-2026, momento 6 (dinamismo discreto).
+   Todo lo visual vive en el bloque de estilo lp-color-20260917; aqui solo van las dos cosas que el CSS no hace
+   solo: donde esta el cursor dentro de la ficha y cuando una seccion entra en pantalla.
+   Fallo que motivo las guardas: sin JS, o con "menos movimiento" pedido por el visitante, la pagina tiene que
+   verse COMPLETA; por eso el estado inicial en CSS es el estado final y este script solo anade clases. */
+(function () {
+    'use strict';
+    var mm = window.matchMedia ? window.matchMedia.bind(window) : null;
+    var menos = mm ? mm('(prefers-reduced-motion: reduce)').matches : false;
+    if (menos) return;
+
+    /* (a) spotlight que sigue al cursor: solo escritorio con puntero fino (en tactil el :hover se queda pegado) */
+    if (mm && mm('(hover: hover) and (pointer: fine)').matches) {
+        /* las resenas quedan fuera a proposito: viven en un marquee que se desplaza y un spotlight que sigue
+           al cursor sobre un elemento en movimiento se lee como un fallo, no como un detalle */
+        var fichas = document.querySelectorAll('.why-tile, .partner-fact, .px3__row');
+        var cola = null, raf = 0;
+        var pintar = function () {
+            raf = 0;
+            if (!cola) return;
+            var d = cola; cola = null;
+            d.el.style.setProperty('--mx', d.x + 'px');
+            d.el.style.setProperty('--my', d.y + 'px');
+        };
+        var mover = function (ev) {
+            var el = ev.currentTarget;
+            var r = el.getBoundingClientRect();
+            cola = { el: el, x: Math.round(ev.clientX - r.left), y: Math.round(ev.clientY - r.top) };
+            if (!raf) raf = window.requestAnimationFrame(pintar);
+        };
+        for (var i = 0; i < fichas.length; i++) {
+            fichas[i].classList.add('lp-spot');
+            fichas[i].addEventListener('pointermove', mover, { passive: true });
+        }
+    }
+
+    /* (c) reveal de 300 ms, una sola vez: la regla de marca crece y la cifra sube. Sin IntersectionObserver
+       no se anade la clase y todo queda visible desde el principio. */
+    if (!('IntersectionObserver' in window)) return;
+    var objetivos = document.querySelectorAll('.block__head, .doc-band__kicker, #precios .px3__title, #para-la-pareja .block__title, .why-data__num, .qe__stat b');
+    if (!objetivos.length) return;
+    document.documentElement.classList.add('lp-anim');
+    var obs = new IntersectionObserver(function (entradas) {
+        for (var k = 0; k < entradas.length; k++) {
+            if (entradas[k].isIntersecting) {
+                entradas[k].target.classList.add('is-in');
+                obs.unobserve(entradas[k].target);
+            }
+        }
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.12 });
+    for (var j = 0; j < objetivos.length; j++) obs.observe(objetivos[j]);
 })();
 </script>
 </body>

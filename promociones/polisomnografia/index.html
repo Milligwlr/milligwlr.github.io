@@ -720,6 +720,177 @@ h3,.psgpaso__t,.doc-card h3,.loc-info h3{font-weight:600;letter-spacing:-.01em}
 <!-- 17-sep-2026: esta pagina cargaba agenda-modal.js SIN su hoja de estilos, asi que el modal de agenda
      salia sin position:fixed ni fondo y se desplegaba dentro del flujo de la pagina. Misma linea que sus hermanas. -->
 <link rel="stylesheet" href="/assets/agenda-modal.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/agenda-modal.css"></noscript>
+<style id="lp-color-20260917">
+/* ===== PASE DE COLOR 17-sep-2026 (aditivo: quitar este bloque devuelve la pagina al blanco del pase limpio) =====
+   Fallo que lo motivo: el Dr. vio la comparativa en vivo y dijo que el pase limpio se fue al otro extremo:
+   "de una pagina super saturada en colores chillones a una pagina anemica, casi en blanco". El lienzo claro
+   y la jerarquia se quedan (el navy con degradado del hero sigue prohibido, lo llamo "tosco" el 16-sep);
+   lo que cambia es que el color entra como SISTEMA en seis momentos y no como un detalle suelto en la cifra.
+   Fallo de contraste que obligo a mover un token: el electric de texto chico #0773c5 daba 4.65:1 sobre
+   #f5f9fe, sin ningun margen para tinta encima (con solo 4% de electric cae a 4.42:1 y reprueba AA). Por eso
+   --electric-text pasa a #065ca4: 6.8:1 sobre blanco, 6.5:1 sobre el lienzo y 5.6:1 bajo la mancha mas
+   cargada del hero. Ningun texto, precio, prellenado de WhatsApp ni afirmacion clinica cambia aqui. */
+:root{
+  --lp-electric:#0984e3;
+  --lp-cyan:#00cec9;
+  --lp-cyan-claro:#8ffdec;
+  --lp-sky:#74b9ff;
+  --electric-text:#065ca4;
+  --lp-marca:linear-gradient(90deg,#0a2540 0%,#0984e3 55%,#00cec9 100%);
+  --lp-chip-bg:rgba(116,185,255,.12);
+  --lp-chip-bd:rgba(9,132,227,.18);
+  --lp-tinte:rgba(9,132,227,.05);
+}
+
+/* ---------- 1. REGLA DE MARCA: la firma que se repite en toda la pagina ---------- */
+.hero__rule{background:var(--lp-marca);border-radius:2px}
+.block__head::before{content:'';display:block;width:48px;height:3px;margin:0 auto 14px;border-radius:2px;background:var(--lp-marca)}
+.cmpq__title::before{content:'';display:block;width:48px;height:3px;margin:0 auto 14px;border-radius:2px;background:var(--lp-marca)}
+.pricing-hero__card::before{content:'';display:block;width:48px;height:3px;border-radius:2px;background:var(--lp-marca)}
+/* en la banda de cierre la regla va en cyan claro: sobre fondo de marca el navy del gradiente desaparece */
+section.cierre .block__head::before{margin:0 auto 18px;background:linear-gradient(90deg,#8ffdec 0%,#00cec9 100%)}
+
+/* ---------- 2. HERO CON PROFUNDIDAD, sin oscurecerlo ---------- */
+/* dos manchas radiales sobre el mismo lienzo #f5f9fe, sin animacion y sin glow duro. El texto queda
+   siempre sobre zona clara: medido en pixeles del render, el punto mas cargado bajo el eyebrow da 5% */
+section.hero{
+  background-color:var(--lp-surf,#f5f9fe);
+  background-image:
+    radial-gradient(640px 330px at 88% 2%, rgba(9,132,227,.16), rgba(9,132,227,0) 62%),
+    radial-gradient(540px 310px at 2% 104%, rgba(0,206,201,.12), rgba(0,206,201,0) 60%);
+  background-repeat:no-repeat;
+}
+/* A. LA CIFRA VA SOLIDA (correccion del 17-sep, tarde).
+   Fallo que lo motivo: el degradado de texto de las cifras terminaba en el navy #0a2540, que es
+   el color del RESTO del titulo. El numero mas importante de la pagina se leia partido en dos y
+   perdia el resaltado justo en la mitad que mas pesa. Sin background-clip:text: electric solido
+   #0984e3 (3.87:1 sobre blanco, AA de texto grande; las dos cifras miden 29 px o mas en todos los
+   anchos) y #0773c5 por debajo de 24 px. Mismo rol, mismo color, en las tres landings de sueno. */
+section.hero h1 em,.pricing-hero__new-amount{
+  background:none;-webkit-background-clip:border-box;background-clip:border-box;
+  -webkit-text-fill-color:currentColor;color:var(--lp-electric)}
+
+/* ---------- 3. ICONOS CON CUERPO ---------- */
+/* tarjeta del hero: una sola columna con chip de 38 px (con dos columnas el chip mas la etiqueta
+   sin cortes rebasaba los 375 px utiles de la tarjeta a 1280) */
+.hero .hero__visual-grid{grid-template-columns:1fr;column-gap:0}
+.hero .hero__visual-grid li{gap:12px;padding:9px 0;border-bottom:1px solid var(--lp-borde)}
+.hero .hero__visual-grid li:last-child{border-bottom:0}
+.hero .hvg__ico{flex:0 0 38px;width:38px;height:38px;border-radius:12px;background:var(--lp-chip-bg);border:1px solid var(--lp-chip-bd);color:var(--lp-electric);font-size:19px;display:flex;align-items:center;justify-content:center}
+/* senales: chip por fila (el punto de color por fila que pidio el Dr. para esta pagina) */
+@media(min-width:601px){
+  .psgsig__i,.psgsig__i--plus{grid-template-columns:36px minmax(0,1fr);column-gap:14px}
+  .psgsig__ico{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:11px;background:var(--lp-chip-bg);border:1px solid var(--lp-chip-bd);color:var(--lp-electric);font-size:1rem;margin:1px 0 0}
+}
+@media(max-width:600px){
+  /* el chip cabe en la misma columna de 24 px: la seccion ya iba a 1.19 pantallas y no puede crecer */
+  .psgsig__ico{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:8px;background:var(--lp-chip-bg);border:1px solid var(--lp-chip-bd);color:var(--lp-electric);font-size:.8rem;margin:0}
+  .psgsig__i,.psgsig__i--plus{padding-top:8px;padding-bottom:8px}
+}
+/* D. UNA SOLA FAMILIA DE FICHAS: el chip cuadrado tintado es la ficha de ICONO y el circulo
+   queda reservado al paso numerado. Antes los dos eran el mismo rectangulo redondeado de 12 px
+   y el numero parecia un icono mas. El relleno sigue siendo el degradado de marca al 14% con la
+   cifra en navy (blanco sobre ese degradado no pasaba AA a 13 px; por eso no se rellena solido). */
+.psgpaso__n{background:linear-gradient(135deg,rgba(9,132,227,.14) 0%,rgba(0,206,201,.14) 100%);border:1px solid var(--lp-chip-bd);border-radius:50%;color:var(--lp-navy);font-weight:700}
+@media(min-width:601px){.psgpaso__n{width:38px;height:38px;font-size:.95rem}}
+@media(max-width:600px){.psgpaso__c{grid-template-columns:34px minmax(0,1fr)}.psgpaso__n{width:34px;height:34px;border-radius:50%;font-size:.88rem}}
+/* ubicacion: iconos de ficha en chip */
+.loc-row__icon{display:flex;align-items:center;justify-content:center;border-radius:12px;background:var(--lp-chip-bg);border:1px solid var(--lp-chip-bd);color:var(--lp-electric)}
+@media(min-width:601px){.loc-row__icon{flex:0 0 40px;width:40px;height:40px;padding-top:0;font-size:1.15rem}}
+@media(max-width:600px){.loc-row__icon{flex:0 0 30px;width:30px;height:30px;padding-top:0;font-size:.9rem}}
+
+/* ---------- 4. SUPERFICIES QUE ALTERNAN ---------- */
+/* blanco y banda, una si una no; y UNA sola seccion de contenido con tinte de marca (electric al 5%).
+   El tinte va en "tres pasos" y no en "senal por senal", que es la seccion pegada al hero: con las dos
+   claras y seguidas el hero y la seccion se leian como una sola mancha de 1,200 px (visto en la captura
+   de pagina completa). Asi el bloque tintado queda con blanco arriba y abajo y se lee como decision. */
+body > section.block:nth-of-type(3){background:var(--lp-tinte)}
+body > section.cmpq:nth-of-type(5){background:var(--lp-surf2,#f6f9fd)}
+body > section.block:nth-of-type(7){background:var(--lp-surf2,#f6f9fd)}
+body > section.loc:nth-of-type(9){background:var(--lp-surf2,#f6f9fd)}
+/* la fila propia de la comparativa: tinte y borde izquierdo de 3 px en gradiente */
+.cmpq__row--us{position:relative;padding-left:14px;background:var(--lp-tinte);border-radius:0 8px 8px 0}
+.cmpq__row--us::before{content:'';position:absolute;left:0;top:5px;bottom:5px;width:3px;border-radius:2px;background:linear-gradient(180deg,#0a2540 0%,#0984e3 55%,#00cec9 100%)}
+
+/* ---------- 5. BANDA DE CIERRE: el unico bloque de color pleno ---------- */
+/* B. UNA SOLA FAMILIA EN LAS TRES LANDINGS. El fondo de marca se queda (es el efecto que pidio
+   el Dr.), pero deja de ir a sangre: la banda es una TARJETA de radio 20 px con el mismo margen
+   lateral que el contenido y con el pie a 60 px, porque a sangre y pegada al footer navy los dos
+   bloques oscuros se leian como uno solo. Dos correcciones mas del verificador: el titulo va
+   COMPLETO en blanco (la segunda linea en menta partia la frase en dos voces) y el boton 2 es de
+   contorno blanco en TODOS los anchos (en telefono seguia siendo un enlace subrayado).
+   El extremo claro del degradado es #0b6fc0 y no #0984e3: con #0984e3 el blanco daba 3.87:1. */
+body > section.cierre:nth-of-type(10){background:#fff;border-top:0;padding-top:52px}
+@media(max-width:600px){body > section.cierre:nth-of-type(10){padding-top:38px}}
+section.cierre > .container{
+  width:calc(100% - 24px);margin-left:auto;margin-right:auto;
+  background:linear-gradient(135deg,#0a2540,#0b6fc0);
+  border-radius:20px;padding:44px 28px 40px;
+  box-shadow:0 18px 44px rgba(10,37,64,.20)}
+@media(max-width:600px){section.cierre > .container{padding:34px 20px 32px;border-radius:20px}}
+section.cierre .block__head{margin-bottom:24px}
+section.cierre .block__title,section.cierre .block__title em{color:#fff}
+section.cierre .block__sub{color:rgba(255,255,255,.95)}
+section.cierre .hero__cta{gap:12px}
+/* el boton 2 sobre la banda: hay que repetir forma y tamano porque la regla del pase limpio
+   (section.cierre .hero__cta .btn-cal, que lo deja como enlace subrayado de 40 px) gana por
+   especificidad al boton de contorno; con solo el color quedaba un enlace con borde */
+section.cierre .hero__cta a.btn-cal.btn-cal{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-width:0;min-height:52px;padding:0 26px;border-radius:100px;font-size:1rem;font-weight:600;line-height:1.2;
+  text-decoration:none;box-shadow:none;background:transparent;border:1px solid rgba(255,255,255,.55);color:#fff}
+section.cierre .hero__cta a.btn-cal.btn-cal:hover{background:rgba(255,255,255,.12);border-color:#fff;color:#fff;text-decoration:none}
+section.cierre .hero__cta a.btn-cal.btn-cal i{display:inline-block;font-size:1.05rem;color:var(--lp-cyan-claro)}
+section.cierre .hero__cta a.btn-cal.btn-cal:focus-visible{outline:3px solid var(--lp-cyan-claro);outline-offset:2px}
+
+/* ---------- 6. DINAMISMO DISCRETO ---------- */
+/* a) spotlight que sigue al cursor, solo escritorio con raton. Al 9% el gris de 12.8 px sigue en 4.9:1 */
+@media(min-width:992px) and (hover:hover) and (pointer:fine){
+  .lp-spot{position:relative;transition:transform .25s ease,box-shadow .25s ease}
+  .lp-spot::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .25s ease;background:radial-gradient(260px circle at var(--mx,50%) var(--my,0%),rgba(9,132,227,.09),rgba(9,132,227,0) 70%)}
+  .lp-spot:hover::after{opacity:1}
+  .lp-spot:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(10,37,64,.08)}
+}
+/* b) subrayado de gradiente que crece de 0 a 100% */
+.hero .hero__creds a,.doc-card__creds a,a[href*="share.google"]{background-image:var(--lp-marca);background-repeat:no-repeat;background-position:0 100%;background-size:0 2px;padding-bottom:2px;transition:background-size .3s ease}
+.hero .hero__creds a:hover,.hero .hero__creds a:focus-visible,.doc-card__creds a:hover,.doc-card__creds a:focus-visible,a[href*="share.google"]:hover,a[href*="share.google"]:focus-visible{background-size:100% 2px;text-decoration:none}
+a[href*="share.google"]{border-bottom-color:transparent!important}
+a[href*="share.google"].gbp-rating-widget{background-image:none;padding-bottom:0}
+/* c) reveal de 300 ms, una sola vez. La clase .lp-anim la pone el script: sin JS nada se oculta */
+.lp-anim .hero__rule{transform:scaleX(0);transform-origin:left center;transition:transform .3s ease}
+.lp-anim .hero__rule.lp-in{transform:scaleX(1)}
+.lp-anim .block__head::before,.lp-anim .cmpq__title::before,.lp-anim .pricing-hero__card::before{transform:scaleX(0);transform-origin:center;transition:transform .3s ease}
+.lp-anim .block__head.lp-in::before,.lp-anim .cmpq__title.lp-in::before,.lp-anim .pricing-hero__card.lp-in::before{transform:scaleX(1)}
+.lp-anim .pricing-hero__new-amount,.lp-anim .gbp-rating-widget__num{opacity:0;transform:translateY(6px);transition:opacity .3s ease,transform .3s ease}
+.lp-anim .pricing-hero__new-amount.lp-in,.lp-anim .gbp-rating-widget__num.lp-in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .lp-spot::after{display:none}
+  .lp-spot:hover{transform:none;box-shadow:none}
+  .hero .hero__creds a,.doc-card__creds a,a[href*="share.google"]{transition:none}
+  .lp-anim .hero__rule,.lp-anim .block__head::before,.lp-anim .cmpq__title::before,.lp-anim .pricing-hero__card::before{transform:none;transition:none}
+  .lp-anim .pricing-hero__new-amount,.lp-anim .gbp-rating-widget__num{opacity:1;transform:none;transition:none}
+}
+/* ---------- 7. UN SOLO AZUL DE TEXTO CHICO ---------- */
+/* C. Todo rotulo de menos de 24 px sale de --electric-text (#065ca4) y de su unico tono de
+   hover. Fallo que lo motivo: .hero__eyebrow traia su propio azul (--lp-electric, #0984e3) de
+   lp-hero-limpio y solo lo tapaba el orden de las hojas; bastaba mover un bloque para que el
+   rotulo del hero volviera a 3.66:1. Aqui queda fijado, no heredado por accidente. */
+:root{--electric-text-hover:#054b87}
+.hero__eyebrow,.block__kicker,.pricing-hero__tag,.doc-card .role,
+.testimonial-source-badge,
+.cmpq__row--us .cmpq__k,.cmpq__row--us .cmpq__v,
+.hero .hero__card .subt{color:var(--electric-text)}
+/* la palomita de la resena verificada venia con .text-primary de Bootstrap (#0d6efd):
+   un tercer azul, ajeno a la marca, junto a los iconos electric de la misma pantalla.
+   Lleva !important porque la utilidad .text-primary de Bootstrap tambien lo lleva: sin
+   el, la regla se escribia y el icono seguia saliendo #0d6efd (medido). */
+.testi-badge i.text-primary{color:var(--lp-electric)!important}
+.hero .hero__cta .btn-cal{color:var(--electric-text);text-decoration-color:rgba(6,92,164,.5)}
+.hero .hero__cta .btn-cal:hover{color:var(--electric-text-hover)}
+#mainNav .navbar-cta{background:var(--electric-text)}
+#mainNav .navbar-cta:hover{background:var(--electric-text-hover)}
+
+/* ===== fin pase de color ===== */
+</style>
 </head>
 <body>
 <a class="alv-skip" href="#main">Saltar al contenido</a>
@@ -1193,5 +1364,58 @@ document.addEventListener('click',function(e){
 </script>
 
     <script src="/assets/agenda-modal.js" defer></script>
+<script id="lp-color-20260917-js">
+/* Pase de color 17-sep-2026: spotlight de escritorio y reveal de reglas y cifras.
+   Sin JS la pagina se ve igual pero estatica: la clase .lp-anim, que es la que esconde
+   las reglas y las cifras antes de revelarlas, solo la pone este script. El plazo de
+   seguridad de 2.5 s existe porque un IntersectionObserver que nunca dispara dejaria
+   una regla de marca invisible para siempre. */
+(function () {
+    'use strict';
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { return; }
+
+    /* a) spotlight que sigue al cursor: solo escritorio con raton, y con rAF para no pintar por evento */
+    var fino = window.matchMedia('(min-width:992px) and (hover:hover) and (pointer:fine)');
+    if (fino.matches) {
+        var fichas = document.querySelectorAll('.hero__card,.pricing-hero__card,.doc-card,.loc-info,.gbp-rating-widget');
+        Array.prototype.forEach.call(fichas, function (ficha) {
+            ficha.classList.add('lp-spot');
+            var pendiente = false, px = 50, py = 0;
+            ficha.addEventListener('pointermove', function (ev) {
+                var r = ficha.getBoundingClientRect();
+                if (!r.width || !r.height) { return; }
+                px = ((ev.clientX - r.left) / r.width) * 100;
+                py = ((ev.clientY - r.top) / r.height) * 100;
+                if (pendiente) { return; }
+                pendiente = true;
+                window.requestAnimationFrame(function () {
+                    pendiente = false;
+                    ficha.style.setProperty('--mx', px.toFixed(1) + '%');
+                    ficha.style.setProperty('--my', py.toFixed(1) + '%');
+                });
+            });
+        });
+    }
+
+    /* c) reveal de 300 ms, una sola vez */
+    var objetivos = document.querySelectorAll('.hero__rule,.block__head,.cmpq__title,.pricing-hero__card,.pricing-hero__new-amount,.gbp-rating-widget__num');
+    if (!objetivos.length) { return; }
+    var mostrarTodo = function () {
+        Array.prototype.forEach.call(objetivos, function (o) { o.classList.add('lp-in'); });
+    };
+    if (!('IntersectionObserver' in window)) { return; }
+    document.documentElement.classList.add('lp-anim');
+    var io = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (e) {
+            if (!e.isIntersecting) { return; }
+            e.target.classList.add('lp-in');
+            io.unobserve(e.target);
+        });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.01 });
+    Array.prototype.forEach.call(objetivos, function (o) { io.observe(o); });
+    window.setTimeout(mostrarTodo, 2500);
+})();
+</script>
 </body>
 </html>
