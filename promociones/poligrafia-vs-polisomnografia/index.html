@@ -177,22 +177,6 @@
     @media(max-width:992px){.testimonial-columns{height:440px}}
     @media(max-width:640px){.testimonial-columns{grid-template-columns:1fr 1fr;gap:10px;height:380px}.testimonial-columns > :nth-child(3){display:none}.testimonial-col{gap:10px}.testi-card{padding:14px;border-radius:14px}.testi-text{font-size:.8rem;line-height:1.6}.testi-name{font-size:.75rem}.testi-badge{font-size:.62rem}.testi-avatar{width:32px;height:32px;font-size:.8rem}}
 
-    /* ============ CTA INLINE / FINAL ============ */
-    .cta-inline{background:linear-gradient(135deg,var(--navy) 0%,#1e3799 100%);color:#fff;padding:40px 28px;border-radius:24px;text-align:center;position:relative;overflow:hidden}
-    .cta-inline::before{content:'';position:absolute;inset:0;background:radial-gradient(600px 240px at 50% 0%,rgba(0,206,201,.28),transparent 60%);pointer-events:none}
-    .cta-inline::after{content:'';position:absolute;top:0;left:12%;right:12%;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 16px rgba(0,206,201,.75);z-index:3}
-    .cta-inline > *{position:relative;z-index:2}
-    .cta-inline h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:12px;letter-spacing:-.02em;color:#fff;text-wrap:balance}
-    .cta-inline p{color:rgba(255,255,255,.8);max-width:540px;margin:0 auto 26px;font-size:1.02rem}
-    .cta-inline__btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-    .cta-final .cta-final__price{display:inline-flex;align-items:center;gap:8px;background:rgba(0,206,201,.14);border:1px solid rgba(127,255,230,.3);color:#8ffdec;border-radius:999px;padding:8px 16px;font-weight:700;font-size:.9rem;margin:2px auto 22px}
-    .cta-final .cta-final__price b{color:#fff;font-weight:800}
-    .cta-inline .sparkle-field{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;border-radius:24px}
-    .cta-inline .sparkle-field span{position:absolute;border-radius:50%;background:rgba(190,225,255,.95);opacity:0;animation:cta-twinkle var(--sd,3s) ease-in-out var(--sl,0s) infinite}
-    .cta-inline .sparkle-field span.glow{box-shadow:0 0 9px 3px rgba(116,185,255,.4)}
-    @keyframes cta-twinkle{0%,100%{opacity:0}50%{opacity:.95}}
-    @media(prefers-reduced-motion:reduce){.cta-inline .sparkle-field span{animation:none;opacity:.45}}
-
     /* ============ FAQ ============ */
     .faq-item{background:#fff;border:1px solid rgba(9,132,227,.12);border-radius:14px;margin-bottom:12px;overflow:hidden}
     .faq-item summary{padding:18px 22px;font-weight:700;color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;font-size:1rem;gap:14px}
@@ -226,16 +210,11 @@
         .hero__card{padding:20px;border-radius:18px}
         .hero__card h3{font-size:1.1rem}
         .hero__card-list li{font-size:.88rem}
-        .cta-inline{padding:34px 22px;border-radius:18px}
-        .cta-inline h2{font-size:1.4rem}
-        .cta-inline p{font-size:.95rem;margin-bottom:20px}
         .faq-item summary{padding:14px 16px;font-size:.95rem}
         .faq-item__answer{padding:0 16px 16px;font-size:.9rem}
         .btn-wa,.btn-cal{padding:13px 18px;font-size:.95rem;min-width:0;width:100%}
         .hero__cta{flex-direction:column;gap:10px}
         .hero__cta a{width:100%}
-        .cta-inline__btns{flex-direction:column}
-        .cta-inline__btns a{width:100%}
         .doc-card{padding:22px}
         .doc-card h3{font-size:1.12rem}
     }
@@ -527,6 +506,7 @@
 }
 </style>
     <link rel="stylesheet" href="/assets/base.css">
+    <link rel="stylesheet" href="/assets/cta-band.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/cta-band.css"></noscript>
     <script src="/assets/base.js" defer></script>
 
 <style id="lp-premium-20260916">
@@ -535,7 +515,7 @@
    organizado, sin que se vea premium". Reglas: estilo-william (titulos 600 con tracking negativo,
    reglas finas en vez de cajas, un dato una vez, menos botones, renglon rotulo | dato #15) y d8
    (ninguna seccion >1.2 pantallas en 375px). Solo --navy/--electric/blanco. */
-section.hero h1,.block__title,.cta-inline h2{font-weight:600;letter-spacing:-.024em}
+section.hero h1,.block__title{font-weight:600;letter-spacing:-.024em}
 .hero__nota{flex-basis:100%;margin:0;font-size:.78rem;line-height:1.35;color:rgba(255,255,255,.66)}
 /* Barra fija: dos acciones; la cinta ambar paso a .hero__nota bajo el boton primario */
 .sticky-cta{gap:10px;padding:10px 16px;padding-bottom:max(10px,env(safe-area-inset-bottom));box-shadow:0 -10px 30px -22px rgba(10,37,64,.35)}
@@ -612,12 +592,7 @@ section.hero h1,.block__title,.cta-inline h2{font-weight:600;letter-spacing:-.02
    5) El decisor quedaba en 1.21 y su caja de resultado (radio 18) no hacia familia con las preguntas (16). */
 section[id],#cmp,#decOut,.dec-q[id]{scroll-margin-top:84px}
 @media(max-width:991px){#decOut{scroll-margin-bottom:84px}}
-/* CTA final: la pastilla de precio se vuelve texto que envuelve; en escritorio sigue en una linea */
 @media(max-width:600px){
-  .cta-final .cta-final__price{display:inline-block;max-width:100%;white-space:normal;line-height:1.5;padding:8px 14px;text-wrap:balance}
-  .cta-final .cta-final__price i{display:none}
-  .cta-final__item{display:block}
-  .cta-final__sep{display:none}
   .doc-card .role{text-wrap:balance}
 }
 /* El limite: de tres cajas a tres renglones con regla fina (estilo-william: reglas en vez de cajas) */
@@ -850,25 +825,8 @@ section.hero h1 em{color:#0984e3;font-style:normal}
 .dec-out__fine{margin:12px 0 0;font-size:12.5px;font-style:normal;line-height:1.4;color:var(--lp-gris)}
 .dec-reset{min-height:40px;margin-top:4px;padding:0;color:var(--lp-gris)}
 
-/* ---- CTA final: superficie clara. Regla de marca, titulo navy, una frase, boton verde y enlace "Agendar cita";
-   sin chips de precio, sin glow, sin lucecitas ---- */
-.cta-inline.cta-final{background:var(--lp-surface);border:1px solid var(--lp-line);border-radius:16px;box-shadow:none;color:var(--lp-navy);padding:48px 40px 40px;text-align:center}
-.cta-inline.cta-final::before,.cta-inline.cta-final::after{content:none;display:none}
-.cta-final .lp-rule{margin:0 auto 16px}
-.cta-final h2{margin:0 0 10px;color:var(--lp-navy);font-weight:600;letter-spacing:-.024em}
-.cta-final p{max-width:520px;margin:0 auto 22px;font-size:1rem;line-height:1.5;color:var(--lp-gris)}
-.cta-final .cta-inline__btns{display:flex;flex-direction:column;align-items:center;gap:6px;width:100%}
-.cta-final .cta-inline__btns a.btn-wa{width:auto;min-width:0;min-height:52px;padding:13px 28px;border-radius:100px;box-shadow:none;font-weight:700;font-size:1rem}
-.cta-final .cta-inline__btns a.btn-wa:hover{box-shadow:0 8px 24px rgba(29,168,81,.22);transform:translateY(-1px)}
-.cta-final .cta-inline__btns a.btn-cal,.cta-final .cta-inline__btns a.btn-cal:hover{width:auto;min-width:0;min-height:40px;padding:4px 0;border:0;border-radius:0;background:none;box-shadow:none;transform:none;color:var(--electric-text);font-weight:600;font-size:.95rem;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(7,115,197,.5)}
-.cta-final .btn-cal i{display:none}
-@media(max-width:768px){
-  .cta-inline.cta-final{padding:32px 18px 26px}
-  .cta-final .cta-inline__btns a.btn-wa{width:100%}
-}
-
 /* Foco visible sobre superficie clara en las piezas nuevas */
-.precios a:focus-visible,.cta-final a:focus-visible,.dec-out a:focus-visible,.dec-out button:focus-visible{outline:3px solid #0984e3;outline-offset:3px;box-shadow:none}
+.precios a:focus-visible,.dec-out a:focus-visible,.dec-out button:focus-visible{outline:3px solid #0984e3;outline-offset:3px;box-shadow:none}
 </style>
 <style id="lp-pulido-20260917">
 /* ===== PULIDO FINAL 17-sep-2026 (aditivo: quitar este bloque revierte el estilo; los textos cambiados no). =====
@@ -960,16 +918,15 @@ section.hero h1 em{color:#0984e3;font-style:normal}
 .sticky-cta .sc-wa,.sticky-cta .sc-cal{border-radius:100px}
 /* 'Precios' era un h2 de 13 px (se leia como rotulo, no como titulo) y el cierre iba en 22.4. */
 #precios h2.lp-kicker{font-size:1.45rem;line-height:1.18;font-weight:600;color:var(--lp-navy,#0a2540);letter-spacing:-.02em;text-align:center;text-transform:none}
-.cta-final h2,.cta-inline h2{font-size:1.45rem;line-height:1.18}
 .sticky-cta .sc-wa,.sticky-cta .sc-cal{border-radius:100px!important}
 /* Misma escala de titulo que sus dos hermanas (24 px). */
-.block__title,#precios h2.lp-kicker,.cta-final h2,.cta-inline h2{font-size:1.5rem}
+.block__title,#precios h2.lp-kicker{font-size:1.5rem}
 
 /* 17-sep-2026 (orden del Dr.: "no tiene boton que resalte el Agendar cita"): en escritorio la segunda
    accion deja de ser un enlace subrayado y pasa a boton secundario de contorno, con el mismo alto y radio
    que el verde. En movil sigue oculta: la barra fija ya lleva Agendar en la misma pantalla. */
 @media (min-width:768px){
-  .hero .hero__cta a.btn-cal.btn-cal,.cta-inline a.btn-cal.btn-cal,.cta-final a.btn-cal.btn-cal,a.btn-cal.btn-cal{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:auto;min-height:52px;
+  .hero .hero__cta a.btn-cal.btn-cal,a.btn-cal.btn-cal{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:auto;min-height:52px;
     width:auto;padding:0 26px;background:#fff;border:1px solid #cfe0f2;border-radius:100px;
     color:#0a2540;font-weight:600;font-size:1rem;line-height:1.2;text-decoration:none;box-shadow:none}
   .hero .hero__cta a.btn-cal.btn-cal:hover,a.btn-cal.btn-cal:hover{background:#f2f8ff;border-color:#0773c5;color:#065a9b;text-decoration:none}
@@ -1102,30 +1059,6 @@ a.precio__btn i{flex:0 0 auto;line-height:1.45}
 #cmp-5 .cmp__row dd b{color:var(--electric-text)}
 @media(min-width:768px){.precio{padding-left:12px}}
 
-/* ---- 5. BANDA DE CIERRE, el efecto wow: el ultimo CTA (y solo ese) pasa a color pleno de marca. Es el
-     unico bloque oscuro de la pagina fuera del pie y la franja legal, y llega cuando el paciente ya leyo
-     todo. Sin glow, sin lucecitas y sin chips de precio: eso era lo "tosco" que el Dr. rechazo.
-     El extremo claro del gradiente es #0b6fc0 y no #0984e3 porque blanco sobre electric da 3.87:1
-     (AA pide 4.5) y sobre #0b6fc0 da 5.2:1.
-     17-sep (verificador): la banda es IDENTICA en las tres landings -> tarjeta de radio 20 px, margen
-     lateral el del contenido (vive dentro de .container: 12 px a 375 y 82 px a 1280, medidos), 80 px de
-     aire hasta el pie, regla de marca en cyan claro, TITULO COMPLETO EN BLANCO (sin segunda linea en
-     menta: partir el titulo en dos colores era lo mismo que apagaba el h1), parrafo en blanco al 95% y
-     boton verde + boton secundario de contorno blanco. Medido sobre el punto MAS CLARO del gradiente
-     (#0b6fc0, esquina inferior derecha): blanco 5.18:1 y blanco al 95% 4.87:1. ---- */
-.cta-inline.cta-final{background:linear-gradient(135deg,#0a2540 0%,#0b6fc0 100%);border:0;color:#fff;border-radius:20px;box-shadow:0 20px 48px -24px rgba(10,37,64,.45)}
-.cta-final .lp-rule{background:#8ffdec}
-.cta-final h2{color:#fff}
-.cta-final p{color:rgba(255,255,255,.95)}
-.cta-final .cta-inline__btns{gap:10px}
-.cta-final .cta-inline__btns a.btn-cal,.cta-final a.btn-cal.btn-cal{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 26px;background:transparent;border:1px solid rgba(255,255,255,.55);border-radius:100px;color:#fff;font-weight:600;font-size:1rem;text-decoration:none;box-shadow:none;transform:none}
-.cta-final .cta-inline__btns a.btn-cal:hover,.cta-final a.btn-cal.btn-cal:hover{background:rgba(255,255,255,.12);border-color:#fff;color:#fff;text-decoration:none;transform:none}
-.cta-final a.btn-cal i,.cta-final .btn-cal i{display:inline;color:#8ffdec;font-size:1.05rem}
-.cta-final a:focus-visible,.cta-final button:focus-visible{outline:3px solid #8ffdec;outline-offset:3px;box-shadow:none}
-@media(max-width:767.98px){
-    .cta-final .cta-inline__btns a.btn-cal,.cta-final a.btn-cal.btn-cal{width:100%}
-}
-
 /* ---- 6. DINAMISMO DISCRETO (estilo 21st.dev): nada rebota, nada parpadea, nada se mueve solo ----
    (a) spotlight que sigue al cursor y elevacion de 2 px, solo con raton y de 768 px para arriba */
 @media (hover:hover) and (min-width:768px){
@@ -1152,7 +1085,8 @@ a.precio__btn i{flex:0 0 auto;line-height:1.45}
    Se listan aqui y no se corrigen en su bloque para que el pase de color siga siendo reversible.
    Van ACOTADOS al hero: sin acotar, 'a.btn-cal.btn-cal i' empata en especificidad con
    '.cta-final a.btn-cal i' y, por ir despues, apagaba a azul oscuro el icono menta del boton
-   secundario de la banda de cierre (medido: quedaba #065ca4 sobre el navy de la banda). */
+   secundario de la banda de cierre (medido: quedaba #065ca4 sobre el navy de la banda). Desde el
+   17-sep esa tarjeta ya no existe (el cierre es la banda del home, lp-color45); el acotado se queda. */
 .hero__card .subt,.hero__cta .btn-cal,.hero .hero__creds>a:hover,
 .hero .hero__cta a.btn-cal.btn-cal:hover,.hero .hero__cta a.btn-cal.btn-cal i{color:var(--electric-text)}
 /* La pestana activa del comparador cambia el subrayado plano por el de marca, y crece al activarse */
@@ -1167,7 +1101,7 @@ footer .footer-meta>span[style]{color:rgba(255,255,255,.48)!important}
 @media (prefers-reduced-motion:no-preference){
     .hero__rule.lp-rev,.lp-rule.lp-rev{transform:scaleX(0);transform-origin:left center;transition:transform .3s var(--ease)}
     .hero__rule.lp-in,.lp-rule.lp-in{transform:none}
-    .precios .lp-rule.lp-rev,.cta-final .lp-rule.lp-rev{transform-origin:center}
+    .precios .lp-rule.lp-rev{transform-origin:center}
     .block__head.lp-rev::before{transform:scaleX(0);transition:transform .3s var(--ease)}
     .block__head.lp-in::before{transform:none}
     .precio__cifra.lp-rev{opacity:0;transform:translateY(6px);transition:opacity .3s var(--ease),transform .3s var(--ease)}
@@ -1177,6 +1111,112 @@ footer .footer-meta>span[style]{color:rgba(255,255,255,.48)!important}
     .lp-rev,.lp-in,.block__head.lp-rev::before{transform:none!important;opacity:1!important;transition:none!important}
     .cmp__tab{transition:none}
 }
+</style>
+<style id="lp-color45-20260917">
+/* ===== COLOR PERCEPTIBLE AL 40-45% (17-sep-2026). Aditivo sobre lp-color-20260917: quitar este bloque devuelve
+   el pase anterior, salvo la banda de cierre y la banda del medico, que son markup nuevo.
+   Ordenes del Dr. del 17-sep, en este orden:
+   1) Con captura de la banda de cierre de su home: "quiero el color perceptible a 40-45%. La banda de cierre esta
+      lo que le sigue de simple. La banda de cierre de mi landing page si esta increible, con efectos y lucecitas,
+      a eso me refiero con diseno premium y dinamico".
+   2) A media ronda: "el hero tambien necesita mas color, pero no tanto como los de mis landing de promociones
+      previas". Sustituye la regla del hero casi blanco (#f5f9fe plano) de lp-hero-limpio y lp-color.
+   Medidor unico (medir_color.py): pixel de COLOR = croma >= 18 o luminancia < 0.25, pagina completa.
+   Antes de este bloque: 17.4% a 375 px y 12.2% a 1280 px; el hero solo (medir_hero.py), 37.1% y 13.8%.
+   Fallo que obliga a medir y no a estimar: un tinte de marca al 8% (rgba(9,132,227,.08) sobre blanco) da croma
+   17.5 y NO cuenta como color; al 10% da 22 y si se percibe. Por eso el tinte de abajo es #e6f1fc.
+   Contraste: todo texto menor de 24 px se comprobo contra el pixel real (manchas, aura y lucecitas incluidas). */
+:root{
+    --lp-cielo:#e6f1fc;   /* electric al ~10% sobre blanco: croma 22, azul que si se percibe */
+    --lp-noche:#0a1628;   /* el navy de la banda de cierre del home */
+}
+
+/* ---- A. HERO: cielo de marca, luminoso, texto oscuro. Capas de arriba a abajo: una luz blanca detras del texto
+     (ahi el fondo baja de croma 18 y el texto gana contraste), la mancha electric de la esquina, sky y cyan abajo
+     y el degradado de cielo. Sin navy, sin texto blanco, sin glow y sin degradado de texto: el "tosco" del 16-sep
+     era el hero azul marino con degradado (85-91% de color medido); este va a la mitad. ---- */
+.hero{background-color:#e3effc;background-image:
+    radial-gradient(34% 56% at 24% 50%,rgba(255,255,255,.92),rgba(255,255,255,0) 100%),
+    radial-gradient(560px 420px at 96% 0%,rgba(9,132,227,.26),rgba(9,132,227,0) 70%),
+    radial-gradient(520px 360px at 64% 108%,rgba(116,185,255,.18),rgba(116,185,255,0) 70%),
+    radial-gradient(460px 340px at 0% 104%,rgba(0,206,201,.16),rgba(0,206,201,0) 70%),
+    linear-gradient(135deg,#dcebfd 0%,#eaf4fe 52%,#dff3f8 100%);
+    background-repeat:no-repeat;border-bottom-color:#cfe2f5}
+@media(max-width:600px){
+    .hero{background-image:
+        radial-gradient(92% 60% at 36% 52%,rgba(255,255,255,.96),rgba(255,255,255,0) 100%),
+        radial-gradient(300px 230px at 100% 0%,rgba(9,132,227,.24),rgba(9,132,227,0) 70%),
+        radial-gradient(280px 200px at 0% 100%,rgba(0,206,201,.16),rgba(0,206,201,0) 70%),
+        linear-gradient(160deg,#dcebfd 0%,#eaf4fe 55%,#dff3f8 100%)}
+}
+/* Lucecitas del componente compartido: pocas (14), electric con halo blanco, a media opacidad y SOLO alrededor
+   de la ficha de escritorio (el campo empieza en la columna de la ficha). Fallo que obliga a acotarlo: con
+   movimiento reducido quedan fijas, y el componente solo aparta las lucecitas del texto de .cta-band-content;
+   sobre el titulo del hero un punto fijo junto a una letra se lee como puntuacion. En movil no hay (el hero es
+   todo texto) y por debajo de 992 px la ficha no se muestra. */
+.hero__luces{position:absolute;top:0;bottom:0;left:56%;right:0;z-index:0;pointer-events:none;opacity:.8;
+    --ctab-star:rgba(9,132,227,.8);--ctab-star-glow:rgba(255,255,255,.95)}
+@media(max-width:991.98px){.hero__luces{display:none}}
+/* La ficha de la derecha gana un filo superior de marca (3 px); el borde de arriba se vuelve transparente
+   para que la linea clara del borde no parta el filo en dos. */
+.hero__card{background:linear-gradient(90deg,#0984e3,#00cec9) 0 0/100% 3px no-repeat border-box,#fff;border-top-color:transparent}
+
+/* ---- B. SUPERFICIES: cielo que se percibe, alternando con blanco. Orden: hero cielo, precios blanco, comparador
+     cielo, decisor blanco, el limite cielo a blanco, medico noche, resenas cielo, FAQ banda clara, ubicacion
+     blanco, cierre noche. ---- */
+.cmp-section{background:var(--lp-cielo)}
+.dec-section{background:#fff}
+#el-limite{background:var(--lp-surface)}
+#testimonios{background:linear-gradient(180deg,var(--lp-cielo) 0%,var(--lp-cielo) 40%,#fff 100%)}
+
+/* ---- C. BANDA INTERMEDIA OSCURA: quien decide contigo. El navy, el aura y las lucecitas de la banda de cierre
+     del home (componente compartido); texto blanco. La ficha del medico pasa a vidrio oscuro para que la banda
+     no se lea como una tarjeta blanca sobre fondo oscuro. ---- */
+#medico.lp-noche{background:var(--lp-noche);color:#fff;text-align:left}
+/* disease.css pinta una linea estatica a media altura en toda .cta-band: aqui cruzaria la ficha */
+#medico.lp-noche::before{content:none}
+#medico>.container{position:relative;z-index:1}
+#medico .block__head{text-align:center}
+#medico .block__head::before{background:linear-gradient(90deg,#0984e3,#00cec9)}
+#medico .block__kicker{color:#74b9ff}
+#medico .block__title{color:#fff}
+/* El acento del titulo va SOLIDO en sky (8.7:1 sobre la noche), la misma regla A de lp-color: nada de
+   degradado de texto fuera del <em> de la banda de cierre, que es el del home tal cual */
+#medico .block__title em{background:none;color:#74b9ff;-webkit-text-fill-color:#74b9ff}
+#medico .block__lead{color:rgba(255,255,255,.74)}
+/* Casi opaca a proposito: en vidrio (blanco al 4.5%) las lucecitas se veian a traves de la ficha y una fija junto
+   a una vineta se leia como un punto mas (visto en captura a 375). Asi solo viven alrededor del contenido. */
+#medico .doc-card{background:rgba(19,32,52,.92);border:1px solid rgba(116,185,255,.22);box-shadow:0 30px 70px -40px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.06)}
+#medico .doc-card h3{color:#fff}
+#medico .doc-card .role{color:#74b9ff}
+#medico .doc-card__bullets li{color:rgba(255,255,255,.8)}
+#medico .doc-card__bullets strong{color:#fff}
+#medico .doc-card__bullets i{background:rgba(116,185,255,.12);border-color:rgba(116,185,255,.3);color:#74b9ff}
+#medico .doc-card__creds span{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.2);color:#cfe6ff}
+#medico .doc-card__avatar{border-color:rgba(255,255,255,.92);box-shadow:0 0 0 6px rgba(116,185,255,.16),0 18px 40px -16px rgba(0,0,0,.6)}
+#medico a:focus-visible{outline:3px solid #74b9ff;outline-offset:3px}
+/* Movimiento reducido: las lucecitas quedan fijas y el componente no las aparta del texto de esta banda.
+   Se enmascaran en la columna del contenido (720 px del titulo, 880 de la ficha) y solo quedan en los
+   margenes laterales; en telefono no queda margen y no se ven. */
+@media (prefers-reduced-motion:reduce){
+    #medico .lp-noche__luces{
+        -webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(50% - 460px),transparent calc(50% - 460px),transparent calc(50% + 460px),#000 calc(50% + 460px));
+        mask-image:linear-gradient(90deg,#000 0,#000 calc(50% - 460px),transparent calc(50% - 460px),transparent calc(50% + 460px),#000 calc(50% + 460px))}
+}
+
+/* ---- D. RESENAS CON MOVIMIENTO REDUCIDO: el bloque de lp-styles soltaba la altura (height:auto) y la seccion
+     media 5.03 pantallas a 375 px y 4.17 a 1280 (tope d8: 1.2). Queda quieta, con la MISMA altura que con
+     movimiento y con desplazamiento propio: todas las resenas siguen al alcance y ninguna se mueve sola. Sin
+     mascara de desvanecido: quieta, dejaba una letra de avatar a medio borrar en el borde (2.0:1 medido). ---- */
+@media (prefers-reduced-motion:reduce){
+    #testimonios .testimonial-columns{height:520px!important;overflow-y:auto!important;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(9,132,227,.4) transparent}
+}
+@media (prefers-reduced-motion:reduce) and (max-width:992px){#testimonios .testimonial-columns{height:440px!important}}
+@media (prefers-reduced-motion:reduce) and (max-width:640px){#testimonios .testimonial-columns{height:420px!important}}
+
+/* ---- E. BANDA DE CIERRE: la del home tal cual (componente). Aqui solo el aire en telefono: con 96 px la banda
+     media casi una pantalla completa a 375; con 64 px queda en la regla d8 con holgura. ---- */
+@media(max-width:600px){#ctaFinal{--ctab-pad-y:64px}}
 </style>
 </head>
 <body>
@@ -1214,6 +1254,7 @@ footer .footer-meta>span[style]{color:rgba(255,255,255,.48)!important}
 <!-- ============ HERO (respuesta directa + promo) ============ -->
 <div id="main" tabindex="-1"></div>
 <section class="hero" id="top">
+    <div class="hero__luces" data-sparkles="14" data-sparkles-mobile="0" aria-hidden="true"></div>
     <div class="container">
         <div class="row g-5">
             <div class="col-lg-7 hero__content">
@@ -1453,8 +1494,12 @@ footer .footer-meta>span[style]{color:rgba(255,255,255,.48)!important}
     </div>
 </section>
 
-<!-- ============ QUIÉN TE ATIENDE (E-E-A-T) ============ -->
-<section class="block" style="background:var(--cloud-alt)">
+<!-- ============ QUIÉN TE ATIENDE (E-E-A-T) ============
+     17-sep-2026: banda intermedia oscura con el lenguaje del cierre del home. Lleva .cta-band solo para
+     heredar el aura y las lucecitas del componente compartido (/assets/cta-band.*); el contenido no cambia. -->
+<section class="block cta-band lp-noche" id="medico" data-spot="off">
+    <div class="cta-band__aura" aria-hidden="true"></div>
+    <div class="cta-band__canvas sparkle-field lp-noche__luces" data-sparkles="36" data-sparkles-mobile="14" aria-hidden="true"></div>
     <div class="container">
         <div class="block__head">
             <span class="block__kicker">Quién decide contigo</span>
@@ -1554,17 +1599,27 @@ footer .footer-meta>span[style]{color:rgba(255,255,255,.48)!important}
     </div>
 </section>
 
-<!-- ============ CTA FINAL ============ -->
-<section class="block" style="padding-bottom:80px">
-    <div class="container">
-        <div class="cta-inline cta-final">
-            <span class="lp-rule" aria-hidden="true"></span>
-            <h2>Deja de comparar y quédate con una respuesta</h2>
-            <p>Mándame tus síntomas por WhatsApp y te digo por cuál de los dos empieza tu caso antes de que pagues nada.</p>
-            <div class="cta-inline__btns">
-                <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="final-wa"><i class="bi bi-whatsapp"></i> Mandar mis síntomas</a>
-                <a href="#agendaModal" class="btn-cal" data-cta="final-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
-            </div>
+<!-- ============ CTA FINAL: la banda de cierre del home ============
+     17-sep-2026, orden del Dr.: "la banda de cierre de mi landing page si esta increible, con efectos y lucecitas".
+     Componente compartido /assets/cta-band.css + .js (un motor, varias puertas): aqui solo va el contenido.
+     Textos, prellenado de WhatsApp y data-cta (final-wa / final-cal) identicos a los de la tarjeta anterior. -->
+<section class="cta-band" id="ctaFinal" aria-labelledby="ctaFinal-titulo">
+    <div class="cta-band__aura" aria-hidden="true"></div>
+    <div class="cta-band__rings" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="cta-band__spot" aria-hidden="true"></div>
+    <div class="cta-band__glow-line" aria-hidden="true"></div>
+    <div class="cta-band__canvas sparkle-field" data-sparkles="44" aria-hidden="true"></div>
+    <div class="cta-band-content">
+        <p class="cta-band__kicker">Poligrafía o polisomnografía</p>
+        <h2 class="cta-band__title" id="ctaFinal-titulo">Deja de comparar y quédate con una <em>respuesta</em></h2>
+        <p class="cta-band__text">Mándame tus síntomas por WhatsApp y te digo por cuál de los dos empieza tu caso antes de que pagues nada.</p>
+        <div class="cta-band__actions">
+            <a href="#agendaModal" class="cta-band__btn" data-cta="final-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                Agendar cita <i class="bi bi-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" class="cta-band__btn cta-band__btn--wa" data-cta="final-wa">
+                <i class="bi bi-whatsapp" aria-hidden="true"></i> Mandar mis síntomas
+            </a>
         </div>
     </div>
 </section>
@@ -1619,24 +1674,6 @@ footer .footer-meta>span[style]{color:rgba(255,255,255,.48)!important}
   }, {rootMargin:'0px 0px -8% 0px', threshold:0.08});
   els.forEach(function(el){ io.observe(el); });
 })();
-</script>
-<script>
-/* Lucecitas (sparkle-field) en los CTA, mismo efecto que el home; tras load para no pagar su DOM antes del primer paint */
-window.addEventListener('load', function(){
-  var fields = document.querySelectorAll('.cta-inline .sparkle-field');
-  fields.forEach(function(field){
-    var n = window.innerWidth <= 768 ? 22 : 44;
-    var frag = document.createDocumentFragment();
-    for (var i=0;i<n;i++){
-      var s=document.createElement('span');
-      var size=(Math.random()*2+0.7).toFixed(1);
-      if(size>2.2) s.className='glow';
-      s.style.cssText='width:'+size+'px;height:'+size+'px;left:'+(Math.random()*100).toFixed(2)+'%;top:'+(Math.random()*100).toFixed(2)+'%;--sd:'+(2.5+Math.random()*4).toFixed(2)+'s;--sl:'+(Math.random()*5).toFixed(2)+'s';
-      frag.appendChild(s);
-    }
-    field.appendChild(frag);
-  });
-});
 </script>
 
 
@@ -2017,6 +2054,7 @@ document.addEventListener('click',function(e){
 </script>
 
     <script src="/assets/agenda-modal.js" defer></script>
+    <script src="/assets/cta-band.js" defer></script>
 <script id="lp-premium-20260916-js">
 /* Pase premium 16-sep-2026. Capa ADITIVA: pastillas + un solo panel vivo (patron d9). Sin JS queda
    visible el primer panel (.is-on en el HTML). */

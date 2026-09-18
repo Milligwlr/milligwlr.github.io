@@ -282,13 +282,6 @@
         .tl-step:not(:last-child){padding-bottom:18px;border-bottom:1px dashed rgba(9,132,227,.2);margin-bottom:8px}
     }
 
-    /* ============ CTA INLINE ============ */
-    .cta-inline{background:linear-gradient(135deg,var(--navy) 0%,#1e3799 100%);color:#fff;padding:48px 32px;border-radius:24px;text-align:center;position:relative;overflow:hidden}
-    .cta-inline::before{content:'';position:absolute;inset:0;background:radial-gradient(500px 200px at 50% 0%,rgba(0,206,201,.25),transparent 60%);pointer-events:none}
-    .cta-inline > *{position:relative;z-index:2}
-    .cta-inline h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:12px;letter-spacing:-.02em;color:#fff}
-    .cta-inline p{color:rgba(255,255,255,.8);max-width:540px;margin:0 auto 26px;font-size:1.02rem}
-    .cta-inline__btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
 
     /* ============ TESTIMONIALS ============ */
     .testimonials-section{background:#fff}
@@ -411,9 +404,6 @@
         .benefit{padding:20px}
         .benefit h3{font-size:1rem}
         .benefit p{font-size:.9rem}
-        .cta-inline{padding:34px 22px;border-radius:18px}
-        .cta-inline h2{font-size:1.4rem}
-        .cta-inline p{font-size:.95rem;margin-bottom:20px}
         .doc-card{padding:22px}
         .doc-card h3{font-size:1.12rem}
         .testimonial-card{padding:18px}
@@ -422,8 +412,6 @@
         .btn-wa,.btn-cal{padding:13px 18px;font-size:.95rem;min-width:0;width:100%}
         .hero__cta{flex-direction:column;gap:10px}
         .hero__cta a{width:100%}
-        .cta-inline__btns{flex-direction:column}
-        .cta-inline__btns a{width:100%}
         /* Compare strip vertical en mobile */
         .compare-strip{grid-template-columns:1fr;margin-bottom:18px}
         .compare-col--vs{writing-mode:horizontal-tb;padding:6px;font-size:.7rem;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1)}
@@ -473,20 +461,11 @@
       .tl-step__desc{max-width:100%}
     }
     @media(max-width:560px){.timeline{grid-template-columns:1fr}}
-    /* CTA: lucecitas (sparkle-field, igual que el home) + linea luminosa */
-    .cta-inline::before{background:radial-gradient(600px 240px at 50% 0%,rgba(0,206,201,.28),transparent 60%);animation:none}
-    .cta-inline::after{content:'';position:absolute;top:0;left:12%;right:12%;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 16px rgba(0,206,201,.75);z-index:3}
-    .cta-inline .sparkle-field{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;border-radius:24px}
-    .cta-inline .sparkle-field span{position:absolute;border-radius:50%;background:rgba(190,225,255,.95);opacity:0;animation:cta-twinkle var(--sd,3s) ease-in-out var(--sl,0s) infinite}
-    .cta-inline .sparkle-field span.glow{box-shadow:0 0 9px 3px rgba(116,185,255,.4)}
-    @keyframes cta-twinkle{0%,100%{opacity:0}50%{opacity:.95}}
-    @media(prefers-reduced-motion:reduce){.cta-inline .sparkle-field span{animation:none;opacity:.45}}
 
     /* Pagina mas compacta (menos scroll) */
     section.block{padding:46px 0}
     .hero{padding:40px 0 46px}
     .block__head{margin-bottom:28px}
-    .cta-inline{padding:40px 28px}
 
     /* ===== Sección de reseñas reales de Google (copiada del home) ===== */
     :root{ --cloud:#f0f6ff; --cloud-alt:#f8faff; --white:#ffffff; --text:#0f1d30; --text-muted:#64748b; --royal:#1e3799; --shadow-sm:0 2px 14px rgba(10,22,40,.07); --shadow-md:0 6px 32px rgba(10,22,40,.09); --sans:'Plus Jakarta Sans',system-ui,sans-serif; }
@@ -530,7 +509,7 @@
     .doc-card,.greviews{box-shadow:var(--e3),var(--ring-hi)}
     .gbp-rating-widget{box-shadow:var(--e1),var(--ring-hi)}
     /* Tipografia refinada: sin orphans/widows (critico en espanol) */
-    section.hero h1,.block__title,.cta-inline h2,.hero__card h3,.tl-step__title,.benefit h3{text-wrap:balance}
+    section.hero h1,.block__title,.hero__card h3,.tl-step__title,.benefit h3{text-wrap:balance}
     .hero__sub,.block__lead,.partner-callout,.benefit p,.tl-step__desc,.faq-item__answer{text-wrap:pretty}
     .hero__sub{line-height:1.62}
     @media(min-width:1200px){section.hero h1{letter-spacing:-.028em}.block__title{letter-spacing:-.024em}}
@@ -723,22 +702,6 @@
                 @keyframes stepsFillV{to{transform:scaleY(1)}}
             }
         }
-    }
-
-    /* ---------- CTA FINAL · WhatsApp primario unico + agenda ghost ---------- */
-    .cta-final .cta-final__price{display:inline-flex;align-items:center;gap:8px;background:rgba(0,206,201,.14);border:1px solid rgba(127,255,230,.3);color:#8ffdec;border-radius:999px;padding:8px 16px;font-weight:700;font-size:.9rem;margin:2px auto 22px}
-    .cta-final .cta-final__price b{color:#fff;font-weight:800}
-    .cta-final__actions{display:flex;flex-direction:column;align-items:center;gap:14px}
-    .cta-final .btn-wa{font-size:1.06rem;padding:17px 30px;min-width:min(360px,92%)}
-    .btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1.5px solid rgba(255,255,255,.34);color:#fff;padding:11px 22px;border-radius:12px;font-weight:700;font-size:.95rem;text-decoration:none;transition:background .25s var(--ease),border-color .25s var(--ease),transform .2s var(--ease)}
-    .btn-ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.55);color:#fff}
-    .btn-ghost:active{transform:scale(.97)}
-    .btn-ghost:focus-visible{outline:3px solid #00cec9;outline-offset:3px;box-shadow:0 0 0 4px rgba(0,206,201,.28)}
-    .cta-final__ease{display:inline-flex;align-items:flex-start;gap:8px;font-size:.86rem;color:rgba(255,255,255,.8);margin:16px auto 0;max-width:460px;line-height:1.5;text-align:left}
-    .cta-final__ease i{color:#00cec9;font-size:1rem;margin-top:2px;flex-shrink:0}
-    @media(max-width:560px){
-        .cta-final .btn-wa{width:100%;min-width:0}
-        .cta-final__ease{font-size:.82rem}
     }
 
     /* ---------- SALUD · por que revisarla (COFEPRIS-safe, esperanzador; anti-grid) ---------- */
@@ -1104,8 +1067,6 @@
 .px3__foot{max-width:760px;margin:8px auto 0;font-size:.76rem;color:#5b6675;text-align:center;line-height:1.4}
 .price-tier__more{display:inline-block;margin-top:8px;font-size:.82rem;font-weight:700;color:#74b9ff;text-decoration:none;border-bottom:1px solid rgba(116,185,255,.45)}
 .price-tier__more:hover{color:#fff}
-a.cta-final__price{text-decoration:none}
-a.cta-final__price:hover{color:#fff}
 .osa-thesis__note a{color:inherit;font-weight:700}
 @media(max-width:600px){
   .price-tier__more{display:none} /* la tabla esta justo debajo del hero */
@@ -1137,7 +1098,6 @@ a.cta-final__price:hover{color:#fff}
     section.block{padding:36px 0}
     .hero{padding:30px 0 38px}
     .block__head{margin-bottom:22px}
-    .cta-inline{padding:32px 20px;border-radius:18px}
 }
 
 /* 2) Banner promo: liga con área táctil digna */
@@ -1178,6 +1138,8 @@ a.cta-final__price:hover{color:#fff}
 }
 </style>
     <link rel="stylesheet" href="/assets/base.css">
+    <!-- 17-sep-2026: banda de cierre compartida con el home (bajo el pliegue: carga no bloqueante, como agenda-modal.css) -->
+    <link rel="stylesheet" href="/assets/cta-band.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/cta-band.css"></noscript>
     <script src="/assets/base.js" defer></script>
 
 <style>
@@ -1236,6 +1198,8 @@ a.cta-final__price:hover{color:#fff}
 <!-- ============ HERO ============ -->
 <div id="main" tabindex="-1"></div>
 <section class="hero" id="top">
+    <!-- 17-sep-2026 (color 40-45): lucecitas del componente compartido (assets/cta-band.js), pocas y fuera de la columna de texto -->
+    <div class="hero__stars" data-sparkles="24" data-sparkles-mobile="6" aria-hidden="true"></div>
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-lg-7 hero__content">
@@ -1756,6 +1720,9 @@ a.cta-final__price:hover{color:#fff}
 <!-- Regla del Dr.: texto minimo, impacto. Retrato vertical grande + nombre + 1 linea + cedulas/folio (obligatorios por compliance).
      Ubicacion (orden del Dr., 14-jul): DESPUES de "Como funciona" (pasos) y antes de las resenas. -->
 <section class="block doc-band">
+    <!-- 17-sep-2026 (color 40-45): banda intermedia oscura con el lenguaje del home: aura que respira + lucecitas del componente -->
+    <div class="doc-band__aura" aria-hidden="true"></div>
+    <div class="doc-band__stars" data-sparkles="36" data-sparkles-mobile="16" aria-hidden="true"></div>
     <div class="container">
         <div class="doc-band__grid">
             <figure class="doc-portrait">
@@ -1867,18 +1834,28 @@ a.cta-final__price:hover{color:#fff}
 </section>
 
 <!-- ============ CTA FINAL ============ -->
-<section class="block benefits" style="padding-bottom:80px">
-    <div class="container">
-        <div class="cta-inline cta-final">
-            <div class="sparkle-field" aria-hidden="true"></div>
-            <h2>Da el primer paso para dormir tranquilo</h2>
-            <p>Un mensaje por WhatsApp basta para ver disponibilidad y apartar tu estudio. Atendemos también sábado y domingo.</p>
-            <!-- 17-sep-2026 (cierre): fuera la pastilla de precio "Paquete consulta + estudio, ver precios" y la segunda frase
-                 de tranquilidad (un dato una vez, sin chips); el enlace secundario dice "Agendar cita", igual que en el hero. -->
-            <div class="cta-final__actions">
-                <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="final-wa"><i class="bi bi-whatsapp"></i> Apartar mi estudio</a>
-                <a href="#agendaModal" class="btn-cal" data-cta="final-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal"><i class="bi bi-calendar-check"></i> Agendar cita</a>
-            </div>
+<!-- 17-sep-2026 (orden del Dr., con captura de la banda de cierre del home: "la banda de cierre de mi landing page si
+     esta increible, con efectos y lucecitas, a eso me refiero con diseno premium y dinamico"): la tarjeta navy->azul
+     se sustituye por la banda COMPARTIDA del home (assets/cta-band.css + assets/cta-band.js), de borde a borde; no se
+     copia en linea para que no se desincronice. Mismos textos, mismo prellenado de WhatsApp y mismos data-cta
+     (final-cal / final-wa) para GTM; el rotulo es nuevo porque la banda del home lo lleva. -->
+<section class="cta-band" id="ctaFinal" aria-labelledby="ctaFinal-title">
+    <div class="cta-band__aura" aria-hidden="true"></div>
+    <div class="cta-band__rings" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="cta-band__spot" aria-hidden="true"></div>
+    <div class="cta-band__glow-line" aria-hidden="true"></div>
+    <div class="cta-band__canvas sparkle-field" data-sparkles="44" aria-hidden="true"></div>
+    <div class="cta-band-content">
+        <p class="cta-band__kicker">Estudio del sueño en casa</p>
+        <h2 class="cta-band__title" id="ctaFinal-title">Da el primer paso para dormir <em>tranquilo</em></h2>
+        <p class="cta-band__text">Un mensaje por WhatsApp basta para ver disponibilidad y apartar tu estudio. Atendemos también sábado y domingo.</p>
+        <div class="cta-band__actions">
+            <a href="#agendaModal" class="cta-band__btn" data-cta="final-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                Agendar cita <i class="bi bi-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" class="cta-band__btn cta-band__btn--wa" data-cta="final-wa">
+                <i class="bi bi-whatsapp" aria-hidden="true"></i> Apartar mi estudio
+            </a>
         </div>
     </div>
 </section>
@@ -1913,24 +1890,6 @@ a.cta-final__price:hover{color:#fff}
   }, {rootMargin:'0px 0px -8% 0px', threshold:0.08});
   els.forEach(function(el){ io.observe(el); });
 })();
-</script>
-<script>
-/* Lucecitas (sparkle-field) en los CTA, mismo efecto y codigo que el home; tras load para no pagar su DOM antes del primer paint */
-window.addEventListener('load', function(){
-  var fields = document.querySelectorAll('.cta-inline .sparkle-field');
-  fields.forEach(function(field){
-    var n = window.innerWidth <= 768 ? 22 : 44;
-    var frag = document.createDocumentFragment();
-    for (var i=0;i<n;i++){
-      var s=document.createElement('span');
-      var size=(Math.random()*2+0.7).toFixed(1);
-      if(size>2.2) s.className='glow';
-      s.style.cssText='width:'+size+'px;height:'+size+'px;left:'+(Math.random()*100).toFixed(2)+'%;top:'+(Math.random()*100).toFixed(2)+'%;--sd:'+(2.5+Math.random()*4).toFixed(2)+'s;--sl:'+(Math.random()*5).toFixed(2)+'s';
-      frag.appendChild(s);
-    }
-    field.appendChild(frag);
-  });
-});
 </script>
 <!-- El marquee de reseñas ya no se clona aquí: lo hace base.js sobre
      [data-marquee] (un solo clon, duración calculada sobre la altura real y
@@ -2689,7 +2648,7 @@ document.addEventListener('click',function(e){
    Reglas: estilo-william (titulos 600 con tracking negativo, reglas finas en vez de cajas, un dato
    una vez, menos botones, recuadro de resultado #16, renglon rotulo | dato #15) y d8 (ninguna
    seccion >1.2 pantallas en 375px). Solo --navy/--electric/blanco; sin sombras por tarjeta. */
-section.hero h1,.block__title,.cta-inline h2,.px3__title{font-weight:600;letter-spacing:-.024em}
+section.hero h1,.block__title,.px3__title{font-weight:600;letter-spacing:-.024em}
 .hero__nota{flex-basis:100%;margin:0;font-size:.78rem;line-height:1.35;color:rgba(255,255,255,.66)}
 .price-tier__movil{display:none} /* solo movil; la regla va ANTES del media query para que este gane */
 /* Barra fija: dos acciones; la cinta ambar paso a .hero__nota bajo el boton primario */
@@ -3148,23 +3107,6 @@ section.doc-band{background:var(--lc-surface);color:var(--lc-navy);border-top:1p
 .doc-band__creds a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(74,90,112,.4)}
 .doc-band__creds a:hover{color:var(--lc-navy)}
 
-/* B4-B5. CTA intermedio y CTA final: superficie clara, regla de marca 48x3, titulo navy, una frase,
-   boton verde + enlace "Agendar cita" (el mismo del hero). Sin glow, sin lucecitas. */
-.cta-inline{background:var(--lc-surface);color:var(--lc-navy);border:1px solid var(--lc-line);border-radius:20px;box-shadow:none}
-.cta-inline::after{content:none}
-.cta-inline::before{content:"";position:static;inset:auto;display:block;width:48px;height:3px;border-radius:2px;background:var(--lc-el);margin:0 auto 16px;animation:none}
-.cta-inline .sparkle-field{display:none}
-.cta-inline h2{color:var(--lc-navy);font-weight:600;letter-spacing:-.024em}
-.cta-inline p{color:var(--lc-gray)}
-.cta-inline__btns,.cta-final__actions{display:flex;flex-direction:column;align-items:center;gap:8px}
-.cta-inline .btn-wa{height:52px;min-height:52px;padding:0 28px;border-radius:100px;box-shadow:none;font-size:1rem;font-weight:700;min-width:0;width:auto}
-.cta-inline .btn-wa:hover{box-shadow:none;transform:none}
-.cta-inline .btn-cal{height:40px;min-height:40px;width:auto;min-width:0;padding:0 4px;background:none;border:0;border-radius:0;box-shadow:none;color:var(--electric-text);font-weight:600;font-size:.92rem;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(7,115,197,.55)}
-.cta-inline .btn-cal i{display:none}
-.cta-inline .btn-cal:hover{background:none;transform:none;color:var(--lc-navy);text-decoration-color:currentColor}
-.cta-inline .btn-cal:focus-visible,.cta-inline .btn-wa:focus-visible{outline:3px solid var(--lc-el);outline-offset:3px;box-shadow:none}
-@media(max-width:767px){.cta-inline .btn-wa{width:100%}}
-
 /* "Por que vale la pena": el degradado #f5fbff -> #eaf4ff bajaba el --electric-text a 4.42:1 (rotulo y enlace); superficie plana */
 .osa-section{background:var(--lc-surface)}
 /* iniciales blancas de las resenas sobre el degradado electric -> royal: 3.87:1 en su parada clara; arranca en --electric-text (4.92:1) */
@@ -3271,7 +3213,7 @@ section.doc-band{background:var(--lc-surface);color:var(--lc-navy);border-top:1p
 /* Titulos de seccion a una sola escala (24 px): 'Tres formas...' iba en 18.4, el STOP-BANG y el
    cierre en 22.4 y la seccion de pareja alineada a la izquierda entre titulos centrados. */
 #precios .px3__title{font-size:1.5rem;line-height:1.18}
-#stop-bang .block__title,.cta-final h2,.cta-inline h2{font-size:1.5rem;line-height:1.18}
+#stop-bang .block__title{font-size:1.5rem;line-height:1.18}
 #para-la-pareja .block__title{font-size:1.5rem;text-align:center}
 .doc-band__name{font-size:1.5rem}
 .btn-wa.enj__cta,.qe__close .btn-wa{font-size:1rem}
@@ -3290,7 +3232,7 @@ section.doc-band{background:var(--lc-surface);color:var(--lc-navy);border-top:1p
    accion deja de ser un enlace subrayado y pasa a boton secundario de contorno, con el mismo alto y radio
    que el verde. En movil sigue oculta: la barra fija ya lleva Agendar en la misma pantalla. */
 @media (min-width:768px){
-  .hero .hero__cta a.btn-cal.btn-cal,.cta-inline a.btn-cal.btn-cal,.cta-final a.btn-cal.btn-cal,a.btn-cal.btn-cal{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:auto;min-height:52px;
+  .hero .hero__cta a.btn-cal.btn-cal,a.btn-cal.btn-cal{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:auto;min-height:52px;
     width:auto;padding:0 26px;background:#fff;border:1px solid #cfe0f2;border-radius:100px;
     color:#0a2540;font-weight:600;font-size:1rem;line-height:1.2;text-decoration:none;box-shadow:none}
   .hero .hero__cta a.btn-cal.btn-cal:hover,a.btn-cal.btn-cal:hover{background:#f2f8ff;border-color:#0773c5;color:#065a9b;text-decoration:none}
@@ -3332,7 +3274,6 @@ section.doc-band{background:var(--lc-surface);color:var(--lc-navy);border-top:1p
    text-align:left en el atributo style del HTML. */
 #para-la-pareja .col-lg-8::before{content:"";display:block;width:48px;height:3px;border-radius:2px;background:var(--lp-rule);margin:0 0 14px}
 .doc-band__kicker::before{content:"";display:block;width:48px;height:3px;border-radius:2px;background:var(--lp-rule);margin:0 0 12px}
-.cta-inline::before{background:var(--lp-rule)}
 /* medido a 375: la regla anade 17 px por seccion y "¿Es este el estudio que necesitas?" pasaba de 1.18 a
    1.20 pantallas. En movil el rotulo de seccion esta oculto, asi que la regla puede ir mas pegada al titulo. */
 @media(max-width:600px){
@@ -3374,15 +3315,9 @@ section.hero h1 em{color:#0984e3;background:none;-webkit-text-fill-color:current
    28.8 px a partir de 768. */
 .px3__row--promo .px3__price{color:#0773c5}
 @media(min-width:768px){.px3__row--promo .px3__price{color:#0984e3}}
-@supports ((-webkit-background-clip:text) or (background-clip:text)){
-  /* cifras grandes del cuerpo (24 px a 375, 30.4-46.4 px en escritorio): degradado azul -> azul, con los dos
-     extremos legibles como texto grande; el ojo cae aqui al hojear en el celular */
-  .why-data__num,.qe__stat b{
-    background:linear-gradient(120deg,#0984e3 0%,#0773c5 92%);
-    -webkit-background-clip:text;background-clip:text;
-    -webkit-text-fill-color:transparent;
-  }
-}
+/* cifras grandes del cuerpo (24 px a 375, 30.4-46.4 px en escritorio): azul electric SOLIDO. Iban en un
+   degradado de azul a azul casi imperceptible, que no decia nada que el solido no diga (hook de diseno, 17-sep). */
+.why-data__num,.qe__stat b{color:#0984e3;background:none;-webkit-text-fill-color:currentColor}
 
 /* ---------- MOMENTO 3. Iconos con cuerpo ----------
    ningun glifo suelto: chip de 36-40 px, fondo sky al 12%, icono electric, borde del mismo azul al 18%. */
@@ -3408,8 +3343,7 @@ section.hero h1 em{color:#0984e3;background:none;-webkit-text-fill-color:current
    antes las 16 secciones eran blanco o casi blanco seguidas: de ahi la pagina "anemica". Ahora alternan
    blanco y banda, una si y una no, y UNA sola seccion de contenido lleva el tinte de marca. */
 #precios,#por-que-revisarla,#especialista-del-sueno,
-section.block:has(.why-bento),section.block:has(.steps3),section.block:has(.faq-item),
-section.block.benefits:has(.cta-final){background:#fff;background-image:none}
+section.block:has(.why-bento),section.block:has(.steps3),section.block:has(.faq-item){background:#fff;background-image:none}
 #para-la-pareja,#que-estudio-necesito,#testimonios,#ubicacion,
 section.block:has(.svc-wow),section.block.doc-band{background:var(--lp-band);background-image:none}
 /* la unica seccion con tinte de marca: el cuestionario, que es donde el paciente actua */
@@ -3424,32 +3358,8 @@ section.block:has(.svc-wow),section.block.doc-band{background:var(--lp-band);bac
   .px3__row--promo::before{top:12px;bottom:12px}
 }
 
-/* ---------- MOMENTO 5. Banda de cierre: el unico bloque de color pleno ----------
-   va al final, cuando el paciente ya leyo todo. Medido: blanco sobre el extremo claro del degradado.
-   Con #0984e3 daba 3.87:1 (reprueba AA), por eso el extremo claro se oscurece a #0b6fc0 = 5.19:1. */
-.cta-inline.cta-final{
-  background:linear-gradient(135deg,#0a2540 0%,#0b6fc0 100%);
-  border-color:transparent;color:#fff;
-  box-shadow:0 18px 44px -26px rgba(10,37,64,.6);
-}
-.cta-final::before{background:linear-gradient(90deg,#8ffdec 0%,#74b9ff 100%)}
-.cta-final h2,.cta-inline.cta-final h2{color:#fff}
-.cta-final p,.cta-inline.cta-final p{color:rgba(255,255,255,.95)}
-/* el verde de WhatsApp #1DA851 no se toca: encima del degradado se lee igual */
-.cta-final .btn-wa:focus-visible,.cta-final .btn-cal:focus-visible{outline:3px solid #8ffdec;outline-offset:3px}
-/* boton secundario en contorno blanco, en TODOS los anchos: en movil heredaba el enlace azul #0773c5,
-   que sobre el navy quedaba ilegible */
-.cta-final a.btn-cal,.cta-final a.btn-cal.btn-cal{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  height:auto;min-height:52px;padding:0 26px;
-  background:transparent;border:1px solid rgba(255,255,255,.62);border-radius:100px;
-  color:#fff;font-weight:600;font-size:1rem;line-height:1.2;text-decoration:none;box-shadow:none;
-}
-.cta-final a.btn-cal.btn-cal i{display:inline-block;color:#8ffdec;font-size:1.05rem}
-.cta-final a.btn-cal.btn-cal:hover{background:rgba(255,255,255,.12);border-color:#fff;color:#fff}
-@media(max-width:767px){
-  .cta-final a.btn-cal,.cta-final a.btn-cal.btn-cal{width:100%}
-}
+/* ---------- MOMENTO 5 (tarjeta de cierre navy->azul): RETIRADO el 17-sep-2026 ----------
+   el cierre es ahora la banda compartida del home (assets/cta-band.css); ver lp-color45-20260917. */
 
 /* ---------- MOMENTO 6. Dinamismo discreto ----------
    (a) spotlight que sigue al cursor, solo escritorio con puntero fino; (b) subrayado de gradiente que crece;
@@ -3528,9 +3438,6 @@ section.block:has(.svc-wow),section.block.doc-band{background:var(--lp-band);bac
 @media(min-width:768px){
   .hero .hero__cta a.btn-cal.btn-cal:hover,a.btn-cal.btn-cal:hover{border-color:var(--electric-text);color:#054e8a}
   .hero .hero__cta a.btn-cal.btn-cal i,a.btn-cal.btn-cal i{color:var(--electric-text)}
-  /* el secundario del cierre vive sobre el degradado de marca: ahi el icono sigue en cyan claro */
-  .cta-final a.btn-cal.btn-cal i{color:#8ffdec}
-  .cta-final a.btn-cal.btn-cal:hover{border-color:#fff;color:#fff}
 }
 
 /* ---------- D. ICONOS, UNA SOLA FAMILIA ----------
@@ -3576,19 +3483,138 @@ section.block:has(.svc-wow),section.block.doc-band{background:var(--lp-band);bac
   .hero__card,.hero .hero__card{padding:0!important}
   .hero,section.hero{padding-bottom:18px!important}       /* !important: lp-precios fija padding-bottom:26px!important */
 }
+</style>
+<style id="lp-color45-20260917">
+/* ===== COLOR PERCEPTIBLE 40-45% (17-sep-2026, segundo pase del dia; aditivo sobre lp-color-20260917).
+   Fallo que lo motivo: con el pase de color de la manana la pagina media 18.3% de pixeles con color a 375 y
+   11.1% a 1280 (medidor unico medir_color.py: croma >= 18 o luminancia < 0.25); el home del Dr. mide 52.9% /
+   50.7%. Orden del Dr., con captura de la banda de cierre del home: "quiero el color perceptible a 40-45%...
+   la banda de cierre de mi landing page si esta increible, con efectos y lucecitas, a eso me refiero con
+   diseno premium y dinamico". Y a media ronda: "el hero tambien necesita mas color, pero no tanto como los de
+   mis landing de promociones previas" (el hero navy con degradado media 85-91% y lo llamo "tosco").
+   Paleta de marca: navy #0a2540, navy profundo #0a1628, electric #0984e3, sky #74b9ff, cyan #00cec9,
+   cyan claro #8ffdec, texto azul chico #065ca4 (--electric-text), gris #4a5a70. Verde #1DA851 congelado. ===== */
 
-/* ---------- B. BANDA DE CIERRE: LA MISMA FAMILIA EN LAS TRES ----------
-   Fallo medido: la banda quedaba a 30 px del pie, demasiado cerca para un bloque de color pleno (se leia
-   como si el pie fuera su continuacion). Se conserva el fondo de marca -el efecto que pidio el Dr.- y se
-   fija la familia: tarjeta de radio 20, margen lateral = el del contenido, regla de marca en cyan claro
-   arriba, TITULO COMPLETO EN BLANCO (sin segunda linea en menta), parrafo blanco al 95%, boton verde
-   #1DA851 (congelado) y secundario en contorno blanco. Blanco sobre el extremo claro #0b6fc0: 5.19:1. */
-section.block.benefits:has(.cta-final){padding-top:34px;padding-bottom:44px!important} /* !important: padding-bottom inline en el HTML */
-@media(min-width:768px){
-  section.block.benefits:has(.cta-final){padding-top:52px;padding-bottom:68px!important}
+/* ---------- 1. HERO: cielo de marca, luminoso, con texto oscuro ----------
+   Medido con medir_hero.py (mismo criterio de pixel): el hero liso #f5f9fe daba 21.9% a 1280 y 35.7% a 375;
+   la meta del Dr. es 45-60% / 50-65% (nunca mas de 70%). Por que un degradado y no un tinte plano: un
+   tinte plano de cielo pinta el 100% del fondo (mide 85-90%, lo mismo que el navy que rechazo); el degradado
+   deja una franja central casi blanca (croma < 18) donde descansa la vista y lleva el color a las esquinas.
+   El texto sigue en navy y gris y la cifra en electric solido: contraste medido sobre el pixel real. */
+section.hero{
+  position:relative;isolation:isolate;
+  background:
+    radial-gradient(48% 70% at 94% 0%,rgba(9,132,227,.26) 0%,rgba(9,132,227,0) 72%),
+    radial-gradient(36% 56% at 0% 0%,rgba(116,185,255,.16) 0%,rgba(116,185,255,0) 70%),
+    radial-gradient(40% 56% at 76% 104%,rgba(0,206,201,.17) 0%,rgba(0,206,201,0) 70%),
+    radial-gradient(40% 52% at 6% 104%,rgba(116,185,255,.15) 0%,rgba(116,185,255,0) 70%),
+    linear-gradient(125deg,#dfebfc 0%,#eff6fe 42%,#f4f9fe 62%,#e4f3f7 100%);
 }
-.cta-inline.cta-final{border-radius:20px}
-.cta-final h2,.cta-inline.cta-final h2,.cta-final h2 em,.cta-final h2 b,.cta-final h2 span{color:#fff;-webkit-text-fill-color:#fff;background:none}
+@media(max-width:767px){
+  /* a 375 la columna de texto ocupa todo el ancho: la mancha electric se queda en la esquina alta y el
+     cyan abajo, detras de la foto */
+  section.hero{
+    background:
+      radial-gradient(70% 32% at 100% 0%,rgba(9,132,227,.26) 0%,rgba(9,132,227,0) 72%),
+      radial-gradient(60% 28% at 0% 100%,rgba(0,206,201,.16) 0%,rgba(0,206,201,0) 72%),
+      radial-gradient(56% 26% at 100% 72%,rgba(116,185,255,.15) 0%,rgba(116,185,255,0) 72%),
+      linear-gradient(160deg,#e0ebfc 0%,#eef5fe 40%,#f4f9fe 62%,#e5f4f7 100%);
+  }
+}
+section.hero>.container{position:relative;z-index:1}
+/* lucecitas del componente compartido (assets/cta-band.js llena todo [data-sparkles]): pocas, electric y
+   blanco, a baja opacidad; enlazan el hero con la banda de cierre. Viven FUERA de la columna de texto:
+   con movimiento reducido quedan fijas y una junto a un signo se leeria como un punto (fallo documentado
+   en cta-band.js, cuyo apartado de texto solo mira dentro de .cta-band-content). */
+.hero__stars{
+  position:absolute;top:0;bottom:0;left:54%;right:0;z-index:0;pointer-events:none;overflow:hidden;opacity:.7;
+  --ctab-star:rgba(9,132,227,.6);--ctab-star-glow:rgba(9,132,227,.18);
+}
+.hero__stars>span:nth-child(3n){background:#fff}
+@media(max-width:991px){
+  /* una sola columna: solo la franja alta derecha, por encima del rotulo (que arranca a 37 px) */
+  .hero__stars{left:auto;bottom:auto;width:46%;height:34px}
+}
+@media(max-width:991px) and (prefers-reduced-motion:reduce){.hero__stars{display:none}}
+/* ficha de la foto (escritorio): filo superior con la regla de marca */
+@media(min-width:768px){
+  .hero .hero__card{position:relative;overflow:hidden}
+  .hero .hero__card::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--lp-rule);z-index:2}
+}
+
+/* ---------- 2. BANDA INTERMEDIA OSCURA: "Quien hace tu estudio" ----------
+   el mismo lenguaje del home (navy profundo, aura que respira, lucecitas, texto blanco) en la seccion de
+   confianza. Una sola. El aura usa los keyframes del componente (ctab-breathe) y las lucecitas su motor:
+   aqui solo va la colocacion. Contraste medido sobre el pixel real (aura incluida). */
+section.block.doc-band{background:#0a1628;background-image:none;color:#fff;border-top:0;border-bottom:0;position:relative;overflow:hidden}
+.doc-band>.container{position:relative;z-index:1}
+.doc-band__aura{
+  position:absolute;top:50%;left:62%;width:min(760px,90vw);aspect-ratio:1;transform:translate(-50%,-50%);
+  border-radius:50%;background:radial-gradient(circle,rgba(9,132,227,.18) 0%,rgba(0,206,201,.08) 38%,transparent 68%);
+  filter:blur(30px);animation:ctab-breathe 7s ease-in-out infinite;z-index:0;pointer-events:none;
+}
+.doc-band__stars{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+/* las lucecitas no pisan el texto (medido: una lucecita fija bajo "El te valora..." bajaba el blanco a 2.3:1
+   sobre su halo). Escritorio: la reticula de 880 px va centrada y la columna de texto ocupa de 50%-124px a
+   50%+440px; la mascara la deja limpia. Movil (una columna): solo la franja del retrato, antes del rotulo. */
+@media(min-width:769px){
+  .doc-band__stars{
+    -webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(50% - 140px),transparent calc(50% - 128px),transparent calc(50% + 450px),#000 calc(50% + 462px));
+    mask-image:linear-gradient(90deg,#000 0,#000 calc(50% - 140px),transparent calc(50% - 128px),transparent calc(50% + 450px),#000 calc(50% + 462px));
+  }
+}
+@media(max-width:768px){
+  .doc-band__stars{bottom:auto;height:300px}
+  /* en una columna el texto va centrado y la regla de marca se quedaba pegada a la izquierda */
+  .doc-band .doc-band__kicker::before{margin-left:auto;margin-right:auto}
+}
+.doc-band .doc-band__kicker{color:#74b9ff}
+.doc-band .doc-band__kicker::before{background:linear-gradient(90deg,#74b9ff 0%,#8ffdec 100%)}
+.doc-band .doc-band__name{color:#fff}
+.doc-band .doc-band__role{color:rgba(255,255,255,.74)}
+.doc-band .doc-band__line{color:#fff}
+.doc-band .doc-band__creds span{color:rgba(255,255,255,.74)}
+.doc-band .doc-band__creds i{color:#74b9ff}
+.doc-band .doc-band__creds a{color:inherit;text-decoration-color:rgba(255,255,255,.45)}
+.doc-band .doc-band__creds a:hover{color:#fff}
+.doc-band a:focus-visible{outline-color:#fff}
+.doc-band .doc-portrait{border-color:rgba(255,255,255,.14);box-shadow:0 28px 60px -30px rgba(9,132,227,.6)}
+@media(prefers-reduced-motion:reduce){.doc-band__aura{animation:none;opacity:.7}}
+
+/* ---------- 3. BANDA DE CIERRE: la del home (assets/cta-band.css) ----------
+   de borde a borde, 96 px de aire en escritorio como el home; en movil 72 px para no pasar de 1.2
+   pantallas. Todo lo demas lo pone el componente. */
+@media(max-width:767px){#ctaFinal{--ctab-pad-y:72px}}
+#ctaFinal .cta-band__title{text-wrap:balance}
+
+/* ---------- 4. RESENAS CON MOVIMIENTO REDUCIDO ----------
+   Fallo medido: con prefers-reduced-motion el bloque lp-styles soltaba la altura del marquee (height:auto)
+   y las 38 resenas quedaban apiladas: 3,437 px a 375 (5.15 pantallas) y 3,793 px a 1280, un muro blanco que
+   rompia la regla de 1.2 pantallas. Ahora la ventana mide lo mismo que el marquee animado (420/440/520 px)
+   y, en vez de moverse sola, se desplaza a mano: todas las resenas siguen al alcance, nada se mueve. */
+@media(prefers-reduced-motion:reduce){
+  .testimonial-columns{height:520px!important;overflow-y:auto!important;overscroll-behavior:contain} /* !important: lp-styles fija height:auto!important y overflow:visible!important */
+}
+@media(prefers-reduced-motion:reduce) and (max-width:992px){.testimonial-columns{height:440px!important}}
+@media(prefers-reduced-motion:reduce) and (max-width:640px){.testimonial-columns{height:420px!important}}
+
+/* ---------- 5. SECCIONES TINTADAS QUE SI SE PERCIBEN, alternando con blanco ----------
+   Fallo medido: la "banda" del pase anterior era #f6f9fd (croma 7): el ojo y el medidor la leian como blanco,
+   y la pagina seguia en 11.1% de color a 1280. Ahora una seccion si y una no lleva cielo de marca: electric
+   al 10% sobre blanco (#e6f2fc, croma 22) que se funde hacia blanco al pie, asi el borde de arriba se marca
+   y el de abajo entra suave en la seccion blanca siguiente. En movil el tinte se funde antes (45% contra
+   80%): la seccion es mas alta que ancha y un bloque azul entero, pantalla tras pantalla, pesaba mas que el
+   mismo tinte en escritorio. Medido con medir_color.py: 43.1% a 375 y 41.8% a 1280 con esta sola palanca
+   sumada a las bandas oscuras. El cuestionario pasa a blanco: sus Si/No son tinte claro y se pierden sobre
+   tinte. Contraste medido en el pixel real (gris #4a5a70 y --electric-text >= 6:1 sobre el tinte). */
+:root{--t45:#e6f2fc;--t45-fin:#f7fbfe;--t45-stop:80%}
+@media(max-width:767px){:root{--t45-stop:45%}}
+#para-la-pareja,#por-que-revisarla,section.block.benefits:has(.why-bento),section.block:has(.steps3),#testimonios,#ubicacion{
+  background:linear-gradient(180deg,var(--t45) 0%,var(--t45) var(--t45-stop),var(--t45-fin) 100%);border-top:0;border-bottom:0;
+}
+#precios,#stop-bang,#que-estudio-necesito,section.block:has(.svc-wow),#especialista-del-sueno,section.block:has(.faq-item){
+  background:#fff;background-image:none;border-top:0;border-bottom:0;
+}
 </style>
 <!-- sp-popup (prueba social ficticia con nombres inventados) ELIMINADO por compliance:
      solo se usa la calificación 5.0 real de Google, nunca testimonios inventados. -->
@@ -3647,6 +3673,7 @@ section.block.benefits:has(.cta-final){padding-top:34px;padding-bottom:44px!impo
 </script>
 
     <script src="/assets/agenda-modal.js" defer></script>
+    <script src="/assets/cta-band.js" defer></script>
 <script id="sb-tablero-20260813-js">
 
 /* ===== TABLERO STOP-BANG: capa de comportamiento ADITIVA (ago-2026) ==============

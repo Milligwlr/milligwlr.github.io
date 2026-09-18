@@ -1,0 +1,393 @@
+/* =========================================================================
+   alveos.mx - BANDA DE CIERRE COMPARTIDA (cta-band.css)
+
+   Por que existe: el 17-sep el Dr. pidio que las landings cierren con la
+   MISMA banda que el home ("con efectos y lucecitas, a eso me refiero con
+   diseno premium y dinamico"). Esa banda vivia en linea dentro de
+   index.html; copiarla a cada landing hubiera dejado N copias que se
+   desincronizan en silencio (regla del Dr.: un motor, varias puertas; y
+   desde el 26-jul lo transversal vive en assets/, no se pega en linea).
+   Este archivo es el motor visual; cta-band.js pone las lucecitas y el foco.
+
+   Fidelidad: cada valor sale de las reglas del home (index.html, bloque
+   "CTA BAND" y los estilos en linea del markup) y se midio contra el home
+   con captura a 1280 y 375 px.
+
+   Blindaje contra las paginas que lo cargan:
+   - disease.css (cargado por las landings) tambien define .cta-band,
+     .cta-band::before y .cta-band__btn. Las reglas internas van con dos
+     clases (.cta-band .x) para ganarle sin depender del orden de carga, y
+     su ::before (una linea luminosa estatica) se apaga cuando la banda
+     trae la suya animada: dos lineas encimadas se veian dobles.
+   - Las landings declaran su propio @keyframes cta-twinkle; si dos hojas
+     usan el mismo nombre gana la ultima y el parpadeo cambia sin aviso.
+     Por eso los keyframes de aqui llevan prefijo ctab-.
+   - No depende de Bootstrap (.container, .fw-bold, .text-white...): la
+     banda trae su propio ancho, tipografia y margenes.
+
+   Parametros (custom properties sobre la seccion .cta-band):
+     --ctab-bg          fondo                     (#0a1628, navy del home)
+     --ctab-pad-y       aire arriba y abajo       (96px)
+     --ctab-accent-a    inicio del degradado <em> (#00cec9)
+     --ctab-accent-b    fin del degradado <em>    (#74b9ff)
+     --ctab-kicker      color de la linea chica   (#74b9ff; el home usa .7
+                                                  de alfa y no pasa AA)
+     --ctab-text        color del parrafo         (rgba(255,255,255,.62); el
+                                                  home usa .55, no pasa AA)
+     --ctab-ink         texto del boton blanco    (#0a1628)
+     --ctab-ink-hover   texto al pasar el cursor  (#1e3799)
+     --ctab-star        color de las lucecitas    (rgba(190,225,255,.95))
+     --ctab-star-glow   halo de las grandes       (rgba(116,185,255,.4))
+     --ctab-ease        curva de transiciones     (cubic-bezier(.16,1,.3,1))
+     --ctab-font        familia tipografica       ('Plus Jakarta Sans', ...)
+   ========================================================================= */
+
+.cta-band {
+    position: relative;
+    overflow: hidden;
+    background: var(--ctab-bg, #0a1628);
+    padding: var(--ctab-pad-y, 96px) 0;
+    text-align: center;
+    font-family: var(--ctab-font, 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif);
+    /* El home hereda 17px / 1.6 del body; aqui se fija para que la altura
+       de botones y lineas no cambie segun la pagina anfitriona. */
+    font-size: 1.0625rem;
+    line-height: 1.6;
+}
+
+/* El home hereda border-box del reset de Bootstrap; en una pagina sin el,
+   el contenido media 24 px mas (width 100% + padding) y se corria a la
+   derecha en 375 px. La banda trae su propio modelo de caja. */
+.cta-band,
+.cta-band *,
+.cta-band *::before,
+.cta-band *::after {
+    box-sizing: border-box;
+}
+
+/* La linea estatica de disease.css se apaga solo si la banda trae la suya */
+.cta-band:has(> .cta-band__glow-line)::before {
+    content: none;
+}
+
+/* ---- Capas de fondo (todas detras del contenido, sin eventos) ---------- */
+.cta-band .cta-band__canvas,
+.cta-band [data-sparkles] {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Linea luminosa horizontal que late a mitad de la banda */
+.cta-band .cta-band__glow-line {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(9, 132, 227, .5) 20%, rgba(116, 185, 255, .6) 50%, rgba(9, 132, 227, .5) 80%, transparent 100%);
+    filter: blur(1px);
+    z-index: 0;
+    opacity: .6;
+    pointer-events: none;
+    animation: ctab-glow-pulse 4s ease-in-out infinite;
+}
+
+@keyframes ctab-glow-pulse {
+    0%, 100% { opacity: .4; filter: blur(1px); }
+    50%      { opacity: .8; filter: blur(2px); }
+}
+
+/* Aura que "respira": inhala y exhala detras del contenido */
+.cta-band .cta-band__aura {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(760px, 90vw);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(9, 132, 227, .16) 0%, rgba(0, 206, 201, .08) 38%, transparent 68%);
+    filter: blur(30px);
+    animation: ctab-breathe 7s ease-in-out infinite;
+    z-index: 0;
+    pointer-events: none;
+}
+
+@keyframes ctab-breathe {
+    0%, 100% { transform: translate(-50%, -50%) scale(.92); opacity: .55; }
+    50%      { transform: translate(-50%, -50%) scale(1.08); opacity: 1; }
+}
+
+/* Anillos de respiracion: ondas concentricas lentas tras los botones */
+.cta-band .cta-band__rings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.cta-band .cta-band__rings span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: 220px;
+    transform: translate(-50%, -50%) scale(.4);
+    border-radius: 50%;
+    border: 1px solid rgba(116, 185, 255, .35);
+    opacity: 0;
+    animation: ctab-ring 6s cubic-bezier(.16, 1, .3, 1) infinite;
+}
+
+.cta-band .cta-band__rings span:nth-child(2) { animation-delay: 2s; }
+.cta-band .cta-band__rings span:nth-child(3) { animation-delay: 4s; }
+
+@keyframes ctab-ring {
+    0%   { transform: translate(-50%, -50%) scale(.4); opacity: 0; }
+    12%  { opacity: .55; }
+    100% { transform: translate(-50%, -50%) scale(3.4); opacity: 0; }
+}
+
+/* Foco de luz que sigue al cursor (solo puntero fino; cta-band.js lo mueve) */
+.cta-band .cta-band__spot {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(circle 340px at var(--cta-mx, 50%) var(--cta-my, 45%), rgba(9, 132, 227, .14), transparent 70%);
+    opacity: 0;
+    transition: opacity .5s var(--ctab-ease, cubic-bezier(.16, 1, .3, 1));
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .cta-band:hover .cta-band__spot { opacity: 1; }
+}
+
+/* ---- Lucecitas ------------------------------------------------------------
+   cta-band.js crea los <span>. Solo se anima opacity (compositor): cero
+   trabajo por cuadro en el hilo principal. Tambien sirve para cualquier
+   [data-sparkles] fuera de la banda. */
+.cta-band .sparkle-field > span,
+[data-sparkles] > span {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--ctab-star, rgba(190, 225, 255, .95));
+    transform: scale(1.7);
+    opacity: 0;
+    animation: ctab-twinkle var(--sd, 3s) ease-in-out var(--sl, 0s) infinite;
+}
+
+.cta-band .sparkle-field > span.glow,
+[data-sparkles] > span.glow {
+    box-shadow: 0 0 9px 3px var(--ctab-star-glow, rgba(116, 185, 255, .4));
+}
+
+@keyframes ctab-twinkle {
+    0%, 100% { opacity: 0; }
+    50%      { opacity: .95; }
+}
+
+/* Fuera de pantalla todo se congela (cta-band.js pone .is-paused) */
+.cta-band.is-paused .cta-band__aura,
+.cta-band.is-paused .cta-band__rings span,
+.cta-band.is-paused .cta-band__glow-line,
+.cta-band.is-paused .sparkle-field > span,
+.cta-band.is-paused [data-sparkles] > span,
+[data-sparkles].is-paused > span {
+    animation-play-state: paused;
+}
+
+/* ---- Contenido ------------------------------------------------------------ */
+/* Mismo ancho que el .container de Bootstrap del home, sin depender de el */
+.cta-band .cta-band-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 0 12px;
+    margin: 0 auto;
+}
+
+@media (min-width: 576px)  { .cta-band .cta-band-content { max-width: 540px; } }
+@media (min-width: 768px)  { .cta-band .cta-band-content { max-width: 720px; } }
+@media (min-width: 992px)  { .cta-band .cta-band-content { max-width: 960px; } }
+@media (min-width: 1200px) { .cta-band .cta-band-content { max-width: 1140px; } }
+@media (min-width: 1400px) { .cta-band .cta-band-content { max-width: 1320px; } }
+
+/* Entrada al llegar: la misma que GSAP da a .reveal en el home
+   (y 40px, escala .97, .9 s power3.out). Solo se arma si cta-band.js
+   confirmo que la banda aun no se ve; sin JS el contenido queda visible. */
+.cta-band.is-armed .cta-band-content {
+    opacity: 0;
+    transform: translateY(40px) scale(.97);
+    transition: opacity .9s cubic-bezier(.215, .61, .355, 1), transform .9s cubic-bezier(.215, .61, .355, 1);
+}
+
+.cta-band.is-armed.is-in .cta-band-content {
+    opacity: 1;
+    transform: none;
+}
+
+/* Contraste medido en el pixel real, barriendo todas las fases de aura,
+   anillos y linea, con y sin el foco del cursor encima (17-sep): los
+   valores del home no pasan AA en su peor cuadro. Linea chica (13 px) con
+   rgba(116,185,255,.7): 3.14:1; parrafo con blanco .55: 4.17:1. Aqui el
+   default ya es el que pasa (alfa minimo medido: .97 y .59); el valor del
+   home sigue disponible con --ctab-kicker / --ctab-text. */
+.cta-band .cta-band__kicker {
+    margin: 0 0 1rem;
+    color: var(--ctab-kicker, #74b9ff);
+    font-size: .82rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.cta-band .cta-band__title {
+    margin: 0 0 1rem;
+    color: #fff;
+    font-family: inherit;
+    font-size: clamp(1.9rem, 4.2vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -.03em;
+    line-height: 1.12;
+}
+
+.cta-band .cta-band__title em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--ctab-accent-a, #00cec9) 0%, var(--ctab-accent-b, #74b9ff) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.cta-band .cta-band__text {
+    max-width: 520px;
+    margin: 0 auto 3rem;
+    color: var(--ctab-text, rgba(255, 255, 255, .62));
+    font-size: 1.08rem;
+    line-height: 1.75;
+}
+
+/* ---- Botones --------------------------------------------------------------- */
+.cta-band .cta-band__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    align-items: center;
+}
+
+.cta-band .cta-band__btn {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    color: var(--ctab-ink, #0a1628) !important;
+    text-decoration: none;
+    padding: 18px 44px;
+    border: 0;
+    border-radius: 100px;
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: -.01em;
+    transition: transform .35s var(--ctab-ease, cubic-bezier(.16, 1, .3, 1)), box-shadow .35s var(--ctab-ease, cubic-bezier(.16, 1, .3, 1)), color .35s var(--ctab-ease, cubic-bezier(.16, 1, .3, 1));
+    box-shadow: 0 4px 24px rgba(255, 255, 255, .15), 0 0 60px rgba(9, 132, 227, .12);
+}
+
+/* Presion (mismo orden que el home: el hover, declarado despues, manda) */
+.cta-band .cta-band__btn:active {
+    transform: scale(.97);
+    transition-duration: .15s;
+}
+
+/* Destello que cruza el boton al pasar el cursor */
+.cta-band .cta-band__btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(105deg, transparent, rgba(9, 132, 227, .12), transparent);
+    transform: skewX(-18deg);
+}
+
+.cta-band .cta-band__btn:hover::before {
+    animation: ctab-sheen .9s var(--ctab-ease, cubic-bezier(.16, 1, .3, 1));
+}
+
+@keyframes ctab-sheen { to { left: 160%; } }
+
+.cta-band .cta-band__btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 10px 40px rgba(255, 255, 255, .22), 0 0 80px rgba(9, 132, 227, .2);
+    color: var(--ctab-ink-hover, #1e3799) !important;
+}
+
+.cta-band .cta-band__btn i { transition: transform .3s var(--ctab-ease, cubic-bezier(.16, 1, .3, 1)); }
+.cta-band .cta-band__btn:hover i { transform: translateX(4px); }
+
+/* Hermano de WhatsApp: contorno fino, icono verde de marca WhatsApp */
+.cta-band .cta-band__btn--wa {
+    background: transparent;
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, .28);
+    box-shadow: none;
+    font-weight: 700;
+}
+
+.cta-band .cta-band__btn--wa:hover {
+    background: rgba(37, 211, 102, .14);
+    border-color: rgba(37, 211, 102, .6);
+    color: #fff !important;
+    box-shadow: 0 10px 32px -8px rgba(37, 211, 102, .35);
+}
+
+.cta-band .cta-band__btn--wa:hover i { transform: scale(1.12); }
+.cta-band .cta-band__btn--wa i { color: #25D366; font-size: 1.15rem; }
+
+/* Sobre navy el anillo de foco azul electrico de base.css no contrasta;
+   en la banda se dibuja blanco (WCAG 2.4.7). */
+.cta-band a:focus-visible {
+    outline-color: #fff;
+}
+
+/* ---- Movimiento reducido ----------------------------------------------------
+   Todo quieto y VISIBLE. Ojo: la regla global de base.css deja cada
+   animacion en .01ms y una vuelta; como el parpadeo termina en opacity 0,
+   sin esta regla las lucecitas desaparecian. Aqui se fijan con la opacidad
+   propia que cta-band.js le da a cada una (--so). */
+@media (prefers-reduced-motion: reduce) {
+    .cta-band .cta-band__aura,
+    .cta-band .cta-band__rings span,
+    .cta-band .cta-band__glow-line,
+    .cta-band .cta-band__btn:hover::before {
+        animation: none;
+    }
+
+    .cta-band .cta-band__rings,
+    .cta-band .cta-band__spot {
+        display: none;
+    }
+
+    .cta-band .cta-band__aura { opacity: .7; }
+
+    .cta-band .sparkle-field > span,
+    [data-sparkles] > span {
+        animation: none;
+        opacity: var(--so, .6);
+    }
+
+    .cta-band.is-armed .cta-band-content {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}

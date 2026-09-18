@@ -642,7 +642,7 @@ section.cond::before{display:none}
   .pricing-hero__card .price-card__cta{align-self:stretch}
 }
 /* botones verdes fuera del hero: la misma forma que el del hero (52 px, pastilla, sin sombra) */
-.pricing-hero__card .btn-wa,.loc-info .btn-wa,section.cierre .hero__cta .btn-wa{min-width:0;min-height:52px;padding:0 28px;font-size:1rem;font-weight:700;border-radius:100px;box-shadow:none}
+.pricing-hero__card .btn-wa,.loc-info .btn-wa{min-width:0;min-height:52px;padding:0 28px;font-size:1rem;font-weight:700;border-radius:100px;box-shadow:none}
 
 /* 4. escritorio "senal por senal": lista en columnas sin fondo ni borde, regla fina por item; las 5 exclusivas solo con el punto */
 @media(min-width:601px){
@@ -671,17 +671,6 @@ section.cond::before{display:none}
 .loc-row__icon{flex:0 0 24px;width:24px;height:auto;padding-top:2px;border-radius:0;background:none;color:var(--electric);font-size:1.15rem;align-items:flex-start;justify-content:flex-start}
 .loc-map{border-color:var(--lp-borde);box-shadow:none}
 @media(min-width:601px){.loc-info{border-color:var(--lp-borde);box-shadow:0 8px 24px rgba(10,37,64,.06)}}
-
-/* CTA final: regla de marca 48x3, titulo navy, una frase, boton verde + enlace "Agendar cita" */
-section.cierre{background:var(--lp-surf2);border-top:1px solid var(--lp-borde)}
-section.cierre .block__head{margin-bottom:22px}
-section.cierre .block__head::before{content:'';display:block;width:48px;height:3px;margin:0 auto 18px;border-radius:2px;background:var(--electric)}
-section.cierre .block__title{color:var(--lp-navy)}
-section.cierre .block__sub{margin:0;color:var(--lp-gris)}
-section.cierre .hero__cta{display:flex;flex-direction:column;align-items:center;gap:6px;margin:0}
-section.cierre .hero__cta .btn-cal{min-width:0;min-height:40px;padding:6px 2px;background:none;border:0;box-shadow:none;color:var(--electric-text);font-size:.95rem;font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(7,115,197,.5)}
-section.cierre .hero__cta .btn-cal:hover{background:none;transform:none;color:#06609f;text-decoration-color:currentColor}
-section.cierre .hero__cta .btn-cal i{display:none}
 /* ===== fin cierre final ===== */
 </style>
 <style id="lp-pulido-20260917">
@@ -720,6 +709,7 @@ h3,.psgpaso__t,.doc-card h3,.loc-info h3{font-weight:600;letter-spacing:-.01em}
 <!-- 17-sep-2026: esta pagina cargaba agenda-modal.js SIN su hoja de estilos, asi que el modal de agenda
      salia sin position:fixed ni fondo y se desplegaba dentro del flujo de la pagina. Misma linea que sus hermanas. -->
 <link rel="stylesheet" href="/assets/agenda-modal.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/agenda-modal.css"></noscript>
+<link rel="stylesheet" href="/assets/cta-band.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/cta-band.css"></noscript>
 <style id="lp-color-20260917">
 /* ===== PASE DE COLOR 17-sep-2026 (aditivo: quitar este bloque devuelve la pagina al blanco del pase limpio) =====
    Fallo que lo motivo: el Dr. vio la comparativa en vivo y dijo que el pase limpio se fue al otro extremo:
@@ -747,8 +737,6 @@ h3,.psgpaso__t,.doc-card h3,.loc-info h3{font-weight:600;letter-spacing:-.01em}
 .block__head::before{content:'';display:block;width:48px;height:3px;margin:0 auto 14px;border-radius:2px;background:var(--lp-marca)}
 .cmpq__title::before{content:'';display:block;width:48px;height:3px;margin:0 auto 14px;border-radius:2px;background:var(--lp-marca)}
 .pricing-hero__card::before{content:'';display:block;width:48px;height:3px;border-radius:2px;background:var(--lp-marca)}
-/* en la banda de cierre la regla va en cyan claro: sobre fondo de marca el navy del gradiente desaparece */
-section.cierre .block__head::before{margin:0 auto 18px;background:linear-gradient(90deg,#8ffdec 0%,#00cec9 100%)}
 
 /* ---------- 2. HERO CON PROFUNDIDAD, sin oscurecerlo ---------- */
 /* dos manchas radiales sobre el mismo lienzo #f5f9fe, sin animacion y sin glow duro. El texto queda
@@ -812,35 +800,8 @@ body > section.loc:nth-of-type(9){background:var(--lp-surf2,#f6f9fd)}
 .cmpq__row--us{position:relative;padding-left:14px;background:var(--lp-tinte);border-radius:0 8px 8px 0}
 .cmpq__row--us::before{content:'';position:absolute;left:0;top:5px;bottom:5px;width:3px;border-radius:2px;background:linear-gradient(180deg,#0a2540 0%,#0984e3 55%,#00cec9 100%)}
 
-/* ---------- 5. BANDA DE CIERRE: el unico bloque de color pleno ---------- */
-/* B. UNA SOLA FAMILIA EN LAS TRES LANDINGS. El fondo de marca se queda (es el efecto que pidio
-   el Dr.), pero deja de ir a sangre: la banda es una TARJETA de radio 20 px con el mismo margen
-   lateral que el contenido y con el pie a 60 px, porque a sangre y pegada al footer navy los dos
-   bloques oscuros se leian como uno solo. Dos correcciones mas del verificador: el titulo va
-   COMPLETO en blanco (la segunda linea en menta partia la frase en dos voces) y el boton 2 es de
-   contorno blanco en TODOS los anchos (en telefono seguia siendo un enlace subrayado).
-   El extremo claro del degradado es #0b6fc0 y no #0984e3: con #0984e3 el blanco daba 3.87:1. */
-body > section.cierre:nth-of-type(10){background:#fff;border-top:0;padding-top:52px}
-@media(max-width:600px){body > section.cierre:nth-of-type(10){padding-top:38px}}
-section.cierre > .container{
-  width:calc(100% - 24px);margin-left:auto;margin-right:auto;
-  background:linear-gradient(135deg,#0a2540,#0b6fc0);
-  border-radius:20px;padding:44px 28px 40px;
-  box-shadow:0 18px 44px rgba(10,37,64,.20)}
-@media(max-width:600px){section.cierre > .container{padding:34px 20px 32px;border-radius:20px}}
-section.cierre .block__head{margin-bottom:24px}
-section.cierre .block__title,section.cierre .block__title em{color:#fff}
-section.cierre .block__sub{color:rgba(255,255,255,.95)}
-section.cierre .hero__cta{gap:12px}
-/* el boton 2 sobre la banda: hay que repetir forma y tamano porque la regla del pase limpio
-   (section.cierre .hero__cta .btn-cal, que lo deja como enlace subrayado de 40 px) gana por
-   especificidad al boton de contorno; con solo el color quedaba un enlace con borde */
-section.cierre .hero__cta a.btn-cal.btn-cal{display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  min-width:0;min-height:52px;padding:0 26px;border-radius:100px;font-size:1rem;font-weight:600;line-height:1.2;
-  text-decoration:none;box-shadow:none;background:transparent;border:1px solid rgba(255,255,255,.55);color:#fff}
-section.cierre .hero__cta a.btn-cal.btn-cal:hover{background:rgba(255,255,255,.12);border-color:#fff;color:#fff;text-decoration:none}
-section.cierre .hero__cta a.btn-cal.btn-cal i{display:inline-block;font-size:1.05rem;color:var(--lp-cyan-claro)}
-section.cierre .hero__cta a.btn-cal.btn-cal:focus-visible{outline:3px solid var(--lp-cyan-claro);outline-offset:2px}
+
+/* (5. la tarjeta de cierre navy->azul se retiro el 17-sep: la sustituye la banda del home, bloque lp-color45-20260917) */
 
 /* ---------- 6. DINAMISMO DISCRETO ---------- */
 /* a) spotlight que sigue al cursor, solo escritorio con raton. Al 9% el gris de 12.8 px sigue en 4.9:1 */
@@ -890,6 +851,131 @@ a[href*="share.google"].gbp-rating-widget{background-image:none;padding-bottom:0
 #mainNav .navbar-cta:hover{background:var(--electric-text-hover)}
 
 /* ===== fin pase de color ===== */
+</style>
+<style id="lp-color45-20260917">
+/* ===== COLOR AL 40-45% 17-sep-2026 (aditivo: quitar este bloque devuelve el pase de color anterior) =====
+   Fallo que lo motivo: el Dr. comparo con la banda de cierre de su home y pidio "el color perceptible a
+   40-45%"; con el medidor unico (pixel con croma >= 18 o luminancia < 0.25, pagina completa) esta landing
+   media 25.7% a 375 y 17.2% a 1280. Despues, a media ronda: "el hero tambien necesita mas color, pero no
+   tanto como los de mis landing de promociones previas" (el navy degradado de antes medía 85-91%).
+   Palancas, en el orden del encargo: cierre = la banda del home (assets/cta-band.css + .js, sin copia
+   local), una banda intermedia oscura en "Quien te atiende", tintes que si se perciben y fichas con color.
+   El hero sigue LUMINOSO: texto navy y gris, cifra en electric solido, boton verde igual. */
+
+/* ---------- 1. HERO: cielo de marca, luminoso ---------- */
+/* Escritorio: el lienzo casi blanco queda bajo la columna de texto (arriba a la izquierda) y el azul
+   crece hacia la ficha. Calibrado con medir_hero.py: 52% de color a 1280 (meta 45-60; el navy de antes, 85-91%). */
+section.hero{
+  background-color:#f0f6fe;
+  background-image:
+    radial-gradient(720px 420px at 100% -4%, rgba(9,132,227,.26), rgba(9,132,227,0) 72%),
+    radial-gradient(640px 330px at 58% 118%, rgba(116,185,255,.18), rgba(116,185,255,0) 70%),
+    radial-gradient(540px 330px at -6% 112%, rgba(0,206,201,.17), rgba(0,206,201,0) 68%),
+    linear-gradient(118deg,#f2f8ff 0%,#eef5fe 30%,#e2eefd 56%,#d9eafc 100%);
+  background-repeat:no-repeat;
+  border-bottom-color:#d3e3f5;
+}
+/* Telefono y tableta (sin ficha): el texto ocupa todo el ancho, asi que el color va a las esquinas con mas
+   intensidad y menos area; el centro, bajo el titulo, se queda claro. Tamanos en % para que escale.
+   Calibrado: 59% a 375 (meta 50-65). */
+@media(max-width:991.98px){
+  section.hero{
+    background-image:
+      radial-gradient(84% 62% at 106% -6%, rgba(9,132,227,.42), rgba(9,132,227,0) 72%),
+      radial-gradient(88% 52% at -8% 108%, rgba(0,206,201,.28), rgba(0,206,201,0) 68%),
+      radial-gradient(80% 46% at 82% 114%, rgba(116,185,255,.26), rgba(116,185,255,0) 70%),
+      linear-gradient(165deg,#f3f8ff 0%,#eff6fe 48%,#e6f1fd 100%);
+  }
+}
+/* lucecitas del componente compartido: pocas, electric y blanco, tenues, lejos de la columna de texto */
+.hero .hero__sparkles{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.75;
+  --ctab-star:rgba(9,132,227,.85);--ctab-star-glow:rgba(9,132,227,.22);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,transparent 44%,#000 60%);
+          mask-image:linear-gradient(90deg,transparent 0%,transparent 44%,#000 60%)}
+.hero .hero__sparkles > span:nth-child(2n){background:#fff}
+.hero > .container{position:relative;z-index:1}
+@media(max-width:600px){
+  .hero .hero__sparkles{
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,transparent 72%,#000 90%);
+            mask-image:linear-gradient(90deg,transparent 0%,transparent 72%,#000 90%)}
+}
+/* ficha "Tu estudio incluye" (escritorio): filo superior de marca */
+.hero .hero__card{position:relative;overflow:hidden;border-color:#d6e5f6;box-shadow:0 18px 44px -22px rgba(9,60,120,.28)}
+.hero .hero__card::before{content:'';position:absolute;left:0;right:0;top:0;height:4px;background:var(--lp-marca);pointer-events:none}
+
+/* ---------- 2. "QUIEN TE ATIENDE": banda intermedia oscura con el lenguaje del home ---------- */
+/* Lleva la clase .cta-band para heredar aura, foco, linea y lucecitas de assets/cta-band.css y .js
+   (un motor, varias puertas); aqui solo se le quita lo que es de cierre: centrado, 96 px y cuerpo 17 px. */
+section.lp-banda-medico{background:#0a1628;padding:64px 0 68px;text-align:left;font-size:1rem;line-height:1.6}
+section.lp-banda-medico > .container{position:relative;z-index:1}
+section.lp-banda-medico .cta-band__glow-line{top:0}
+section.lp-banda-medico .cta-band__aura{width:min(900px,120vw)}
+section.lp-banda-medico .block__head{text-align:center}
+section.lp-banda-medico .block__head::before{background:linear-gradient(90deg,#00cec9 0%,#74b9ff 100%)}
+section.lp-banda-medico .block__kicker{color:#74b9ff}
+section.lp-banda-medico .block__title{color:#fff}
+/* el em en sky solido: el degradado de texto se queda solo en la palabra del cierre (lo pide el componente del home) */
+section.lp-banda-medico .block__title em{color:#74b9ff}
+section.lp-banda-medico .doc-card{background:linear-gradient(160deg,#112640 0%,#0c1b30 100%);border:1px solid rgba(116,185,255,.24);box-shadow:0 30px 70px -30px rgba(0,0,0,.6)}
+section.lp-banda-medico .doc-card h3{color:#fff}
+section.lp-banda-medico .doc-card .role{color:#74b9ff}
+section.lp-banda-medico .doc-card__bullets li{color:rgba(255,255,255,.86)}
+section.lp-banda-medico .doc-card__bullets strong{color:#fff}
+section.lp-banda-medico .doc-card__bullets i{color:#74b9ff}
+section.lp-banda-medico .doc-card__creds span{color:#b3c6dc}
+section.lp-banda-medico .doc-card__creds i{color:#00cec9}
+section.lp-banda-medico .doc-card__avatar{border-color:#fff;box-shadow:0 0 0 5px rgba(116,185,255,.22),0 16px 40px -12px rgba(0,0,0,.6)}
+section.lp-banda-medico a:focus-visible{outline-color:#fff}
+/* Lucecitas lejos del texto. Fallo visto en la captura a 375: sin ficha, una lucecita encima de la C de "EPOC"
+   la convertia en otro signo, y a 1280 una junto al titulo se leia como vineta. El componente solo las aparta
+   del texto con movimiento reducido y solo dentro de .cta-band-content; aqui se enmascara el campo: en
+   escritorio se abre un hueco en el encabezado (la ficha opaca ya las tapa); en telefono el campo se reduce
+   a la franja del retrato, que tiene aire a los lados (el retrato va encima y tapa las que caen detras). */
+@media(min-width:601px){section.lp-banda-medico .sparkle-field{
+  -webkit-mask-image:radial-gradient(460px 120px at 50% 120px,transparent 62%,#000 100%);
+          mask-image:radial-gradient(460px 120px at 50% 120px,transparent 62%,#000 100%)}}
+@media(max-width:600px){
+  section.lp-banda-medico{padding:44px 0 46px}
+  section.lp-banda-medico .doc-card{background:none;border:0;box-shadow:none}
+  section.lp-banda-medico .doc-card__avatar{border:3px solid #fff}
+  /* franja fija en px: el encabezado mide lo mismo de 320 a 600 (titulo 61-90, retrato 118-214, nombre desde 228) */
+  section.lp-banda-medico .sparkle-field{top:98px;bottom:auto;height:124px}
+}
+
+/* ---------- 3. CIERRE: la banda del home, de borde a borde ---------- */
+/* 96 px arriba y abajo en escritorio (el default del componente); en telefono 64 px para no pasar de 1.2 pantallas */
+@media(max-width:600px){#ctaFinal{--ctab-pad-y:64px}}
+/* el footer es del mismo navy: una regla fina separa los dos bloques oscuros */
+#ctaFinal + footer{border-top:1px solid rgba(116,185,255,.14)}
+/* titulo y frase del cierre sin viuda: "resuelve." quedaba sola en el tercer renglon a 375 y ni balance ni
+   pretty actuan con el <br> dentro del titulo (medido); el final de la frase va en un tramo que no se parte. */
+#ctaFinal .lp-nw{white-space:nowrap}
+#ctaFinal .cta-band__text{text-wrap:pretty}
+
+/* ---------- 4. TINTES QUE SI SE PERCIBEN (alternando con blanco) ---------- */
+/* Fallo que lo motivo: el tinte anterior (electric al 5%, #f6f9fd) tenia croma 9-10: el ojo y el medidor
+   lo leian como blanco. Estos cielos tienen croma 20-25. Dos bandas y no mas: "Tres pasos" (entre dos
+   secciones blancas) y "Resenas" (despues de la banda oscura); cada una se desvanece a blanco en su orilla
+   de salida, para que la pagina alterne cielo / blanco / navy sin cortes duros. Selectores por posicion,
+   los mismos del pase de color anterior (el orden de las secciones no cambia). */
+body > section.block:nth-of-type(3){background:linear-gradient(180deg,#e4f0fd 0%,#eaf4fe 60%,#fff 100%)}
+body > section.block:nth-of-type(7){background:linear-gradient(180deg,#e4f0fd 0%,#eaf4fe 62%,#fff 100%)}
+/* en telefono las secciones son mas altas: el cielo de "Tres pasos" se desvanece antes (la meta es 40-45% en los dos anchos) */
+@media(max-width:600px){body > section.block:nth-of-type(3){background:linear-gradient(180deg,#e4f0fd 0%,#eaf4fe 48%,#fff 90%)}}
+
+/* ---------- 5. FICHAS CON COLOR ---------- */
+/* pasos: sobre el cielo, el numero va en circulo blanco con filo electric (antes se perdia en el tinte) */
+.psgpaso__n{background:#fff;border:1.5px solid rgba(9,132,227,.45);color:var(--lp-navy)}
+/* escritorio: cada paso abre con un filo de marca en lugar de la regla gris */
+@media(min-width:601px){
+  .psgpaso__c{border-top:0;background:linear-gradient(90deg,#0984e3 0%,#00cec9 100%) top left/100% 2px no-repeat}
+}
+/* ubicacion (escritorio): la ficha deja el blanco y toma el cielo de marca */
+@media(min-width:601px){
+  .loc-info{background:linear-gradient(160deg,#e6f1fd 0%,#f4f9ff 100%);border-color:#cfe2f7}
+}
+/* ficha de precio: borde de marca en vez del gris */
+.pricing-hero__card{border-color:#cfe2f7}
 </style>
 </head>
 <body>
@@ -974,6 +1060,7 @@ a[href*="share.google"].gbp-rating-widget{background-image:none;padding-bottom:0
 <!-- ============ HERO ============ -->
 <div id="main" tabindex="-1"></div>
 <section class="hero" id="top">
+    <div class="hero__sparkles" data-sparkles="16" data-sparkles-mobile="7" aria-hidden="true"></div>
     <div class="container">
         <div class="row g-5">
             <div class="col-lg-7 hero__content">
@@ -1081,7 +1168,11 @@ a[href*="share.google"].gbp-rating-widget{background-image:none;padding-bottom:0
 </section>
 
 <!-- ============ DOCTOR / E-E-A-T ============ -->
-<section class="block">
+<section class="block cta-band lp-banda-medico">
+    <div class="cta-band__aura" aria-hidden="true"></div>
+    <div class="cta-band__spot" aria-hidden="true"></div>
+    <div class="cta-band__glow-line" aria-hidden="true"></div>
+    <div class="cta-band__canvas sparkle-field" data-sparkles="40" data-sparkles-mobile="18" aria-hidden="true"></div>
     <div class="container">
         <div class="block__head">
             <span class="block__kicker">Quién te atiende</span>
@@ -1205,22 +1296,23 @@ a[href*="share.google"].gbp-rating-widget{background-image:none;padding-bottom:0
     </div>
 </section>
 
-<!-- ============ CTA FINAL CON LUCECITAS ============ -->
-
-
-<!-- ============ CIERRE ============ -->
-<section class="block cierre" style="padding-bottom:60px">
-    <div class="container">
-        <div class="block__head">
-            <h2 class="block__title">Ya tienes la indicación.<br><em>Falta la noche que la resuelve.</em></h2>
-            <p class="block__sub">Una noche en tu cama, reporte interpretado en 2 a 3 semanas y plan por escrito.</p>
-        </div>
-        <div class="hero__cta" style="justify-content:center">
-            <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20la%20promoci%C3%B3n%20de%20polisomnograf%C3%ADa%20a%20domicilio%20de%20%2412%2C000%20con%20el%20Dr.%20Lara%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="cierre-wa">
-                <i class="bi bi-whatsapp"></i> Apartar mi estudio
+<!-- ============ CIERRE: la banda del home (assets/cta-band.css + cta-band.js) ============ -->
+<section class="cta-band" id="ctaFinal" aria-labelledby="cierre-title">
+    <div class="cta-band__aura" aria-hidden="true"></div>
+    <div class="cta-band__rings" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="cta-band__spot" aria-hidden="true"></div>
+    <div class="cta-band__glow-line" aria-hidden="true"></div>
+    <div class="cta-band__canvas sparkle-field" data-sparkles="44" aria-hidden="true"></div>
+    <div class="cta-band-content">
+        <p class="cta-band__kicker">Promoción de internet</p>
+        <h2 class="cta-band__title" id="cierre-title">Ya tienes la indicación.<br>Falta la <em>noche</em> <span class="lp-nw">que la resuelve.</span></h2>
+        <p class="cta-band__text">Una noche en tu cama, reporte interpretado en 2 a 3 semanas y plan por escrito.</p>
+        <div class="cta-band__actions">
+            <a href="#agendaModal" class="cta-band__btn" data-cta="cierre-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
+                Agendar cita <i class="bi bi-arrow-right" aria-hidden="true"></i>
             </a>
-            <a href="#agendaModal" class="btn-cal" data-cta="cierre-cal" data-open-agenda aria-haspopup="dialog" aria-controls="agendaModal">
-                <i class="bi bi-calendar-check"></i> Agendar cita
+            <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20la%20promoci%C3%B3n%20de%20polisomnograf%C3%ADa%20a%20domicilio%20de%20%2412%2C000%20con%20el%20Dr.%20Lara%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" class="cta-band__btn cta-band__btn--wa" data-cta="cierre-wa">
+                <i class="bi bi-whatsapp" aria-hidden="true"></i> Apartar mi estudio
             </a>
         </div>
     </div>
@@ -1253,24 +1345,6 @@ a[href*="share.google"].gbp-rating-widget{background-image:none;padding-bottom:0
   }, {rootMargin:'0px 0px -8% 0px', threshold:0.08});
   els.forEach(function(el){ io.observe(el); });
 })();
-</script>
-<script>
-/* Lucecitas (sparkle-field) en los CTA, mismo efecto y codigo que el home; tras load para no pagar su DOM antes del primer paint */
-window.addEventListener('load', function(){
-  var fields = document.querySelectorAll('.cta-inline .sparkle-field');
-  fields.forEach(function(field){
-    var n = window.innerWidth <= 768 ? 22 : 44;
-    var frag = document.createDocumentFragment();
-    for (var i=0;i<n;i++){
-      var s=document.createElement('span');
-      var size=(Math.random()*2+0.7).toFixed(1);
-      if(size>2.2) s.className='glow';
-      s.style.cssText='width:'+size+'px;height:'+size+'px;left:'+(Math.random()*100).toFixed(2)+'%;top:'+(Math.random()*100).toFixed(2)+'%;--sd:'+(2.5+Math.random()*4).toFixed(2)+'s;--sl:'+(Math.random()*5).toFixed(2)+'s';
-      frag.appendChild(s);
-    }
-    field.appendChild(frag);
-  });
-});
 </script>
 <script>
 /* Marquee de reseñas (columnas que se desplazan), mismo código que el home.
@@ -1364,6 +1438,7 @@ document.addEventListener('click',function(e){
 </script>
 
     <script src="/assets/agenda-modal.js" defer></script>
+    <script src="/assets/cta-band.js" defer></script>
 <script id="lp-color-20260917-js">
 /* Pase de color 17-sep-2026: spotlight de escritorio y reveal de reglas y cifras.
    Sin JS la pagina se ve igual pero estatica: la clase .lp-anim, que es la que esconde
