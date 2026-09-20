@@ -31,6 +31,14 @@ Credenciales en local (ninguna dentro del repo):
 
 Opciones: `--json RUTA` (donde dejar el claro; se niega si la ruta cae dentro del repo), `--sin-ga4` (pruebas), `--hoy YYYY-MM-DD` (fecha de corte para reproducir una corrida).
 
+### Version de la API de Google Ads
+
+Se fija en UN solo lugar: la constante `ADS_API` de `build.py` (hoy `v25`). La variable de entorno `ADS_API_VERSION` la sustituye, para probar la version siguiente sin editar: `ADS_API_VERSION=v26 python scripts/panel-ads/build.py --json /tmp/prueba.json`. Actions no la define, asi que corre con la constante.
+
+Google apaga cada major al ano (v22: 7-oct-2026; v25: ago-2027; tabla en developers.google.com/google-ads/api/docs/sunset-dates). Una version apagada responde HTTP 404 y, como `campanas_config` es consulta nuclear, el build sale con exit 1 y el panel se queda con la fecha vieja.
+
+**Subir de version no es cambiar el string.** Migracion v22 -> v25 del 20-sep-2026: v23 reemplazo `campaign.start_date` por `campaign.start_date_time` y `campanas_config` respondia 400 en v25. Procedimiento que se siguio y que hay que repetir: (1) leer las notas de cada major intermedia; (2) correr las 21 consultas de `consultas_ads()` contra las dos versiones en solo lectura y comparar filas; (3) correr el build completo con la version vieja y con la nueva, mismo `--hoy`, y comparar los dos `datos.json`. Resultado de esa vez: identicos salvo el orden de filas de tres listas sin `ORDER BY` que la pagina no usa, y `acciones_conversion[].tipo`, que en v25 trae el nombre real (`GOOGLE_ANALYTICS_4_QUALIFY_LEAD`) donde v22 decia `UNKNOWN`. El Worker de la capa viva (`_internal/ads-vivo-worker/`) tiene su propia constante y debe subir a la par.
+
 Verificar que lo cifrado descifra y tiene la forma esperada (hace lo mismo que hara el navegador):
 
 ```bash

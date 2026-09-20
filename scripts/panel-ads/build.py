@@ -2,7 +2,7 @@
 """Generador de datos del panel de control de Google Ads (alveos.mx/campana-ads/).
 
 Que hace
-  1. Lee Google Ads (cuenta 6354525352) por REST v22, solo googleAds:search (READ-ONLY).
+  1. Lee Google Ads (cuenta 6354525352) por REST (version en ADS_API), solo googleAds:search (READ-ONLY).
   2. Lee GA4 (propiedad 527758587) por REST v1beta runReport con un JWT RS256 firmado
      con la cuenta de servicio (sin google-auth: solo stdlib + cryptography).
   3. Calcula el bloque "derivado" en Python puro (sin numpy): semanal, 30d vs 30d previos,
@@ -55,7 +55,14 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 # Constantes
 # ----------------------------------------------------------------------------------
 VERSION = 2  # v2 = JSON comprimido con deflate (zlib) ANTES de cifrar; v1 = sin comprimir
-ADS_API = "v22"
+# Version de la API de Google Ads: UNICO lugar donde se fija (ADS_API_VERSION en el entorno la sustituye,
+# para probar la siguiente sin editar). Google apaga cada major al ano: v22 el 7-oct-2026, v25 en ago-2027.
+# Subir de version NO es cambiar este string: en v23 campaign.start_date fue reemplazado por
+# campaign.start_date_time y "campanas_config" (consulta nuclear) respondia 400 en v25: con solo cambiar el
+# string, el build diario habria salido con exit 1 y el panel se habria quedado congelado.
+# Antes de subirla, correr TODAS las consultas de consultas_ads() contra la version nueva y leer las notas
+# de cada major intermedia (developers.google.com/google-ads/api/docs/release-notes).
+ADS_API = os.environ.get("ADS_API_VERSION", "").strip() or "v25"
 CID = "6354525352"
 GA4_PROPERTY = "527758587"
 # Etiquetas cortas por id de campana. Una campana nueva recibe "X<id>" hasta que se agregue aqui.
@@ -189,7 +196,7 @@ class Ads:
         self.errores = []
 
     def search(self, nombre, query, nuclear=False):
-        """googleAds:search con pageToken y SIN pageSize (v22 ya no lo acepta). Devuelve lista de filas."""
+        """googleAds:search con pageToken y SIN pageSize (la API lo rechaza desde v22). Devuelve lista de filas."""
         url = f"https://googleads.googleapis.com/{ADS_API}/customers/{CID}/googleAds:search"
         rows, page = [], None
         while True:
@@ -231,7 +238,7 @@ def consultas_ads(f):
          campaign.target_spend.cpc_bid_ceiling_micros, campaign_budget.amount_micros, campaign_budget.id,
          campaign.geo_target_type_setting.positive_geo_target_type, campaign.advertising_channel_type,
          campaign.network_settings.target_search_network, campaign.network_settings.target_content_network,
-         campaign.start_date
+         campaign.start_date_time
   FROM campaign WHERE campaign.status != 'REMOVED'""",
         "campanas_diario": f"""
   SELECT campaign.id, segments.date, metrics.cost_micros, metrics.impressions, metrics.clicks,
@@ -448,7 +455,9 @@ def normaliza_ads(raw):
             "canal": c.get("advertisingChannelType"),
             "red_busqueda_socios": c.get("networkSettings", {}).get("targetSearchNetwork"),
             "red_display": c.get("networkSettings", {}).get("targetContentNetwork"),
-            "inicio": c.get("startDate"),
+            # v23 cambio start_date ("2026-04-28") por start_date_time ("2026-04-28 21:26:26"): se recorta
+            # a la fecha para que "inicio" conserve la forma que la pagina ya conoce.
+            "inicio": (c.get("startDateTime") or "")[:10] or None,
             "geo": [], "horario": [], "negativos": [], "sitelinks": [], "callouts": [], "assets_otros": [],
         }
     por_id = {v["id"]: k for k, v in camp.items()}
