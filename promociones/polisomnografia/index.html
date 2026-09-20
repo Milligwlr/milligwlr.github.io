@@ -979,6 +979,51 @@ body > section.block:nth-of-type(7){background:linear-gradient(180deg,#e4f0fd 0%
 /* ficha de precio: borde de marca en vez del gris */
 .pricing-hero__card{border-color:#cfe2f7}
 </style>
+<style id="lp-basta-poligrafia-20260920">
+/* PROPUESTA del 20-sep-2026, ESPERA OK DEL DR. Quitar este bloque y la seccion #basta-poligrafia
+   revierte el pase entero.
+   FALLO QUE LO MOTIVA (decision D1, bitacora de Ads 2026-09-20): las 4 keywords transaccionales de
+   polisomnografia daban 12.0 de 53.0 conversiones de C3 (23%) y desde el 17-sep aterrizan aqui,
+   donde la palabra "poligrafia" aparecia 0 veces y los 8 botones piden la PSG de $12,000. La pagina
+   ya dice en su FAQ y bajo la tabla de precios que "hay un estudio en casa mas simple y mas barato",
+   pero no lo nombra, no dice cuanto cuesta y esta dentro de un desplegable al pie. Esto lo hace
+   visible sin desviar a quien SI necesita la polisomnografia.
+   TRAMPA MEDIDA (la mas caro de este pase): CUATRO reglas de esta pagina reparten sus superficies
+   por POSICION de la seccion, no por clase ni por id: `body > section.block:nth-of-type(3)` y `(7)`
+   (bloques lp-color-20260917 y lp-premium), `body > section.cmpq:nth-of-type(5)` y
+   `body > section.loc:nth-of-type(9)`. Insertar una seccion en la posicion 5 corre las tres de
+   abajo: el tinte oscuro del (7) caia sobre la banda del medico, y "Pacientes", "Contra que
+   comparas" y "Ubicacion" perdian su superficie (medido: cmpq y loc pasaron de #f6f9fd a blanco).
+   Se reponen por su numero NUEVO aqui abajo. Si alguien inserta otra seccion, hay que volver a
+   correr estos numeros: la solucion de fondo es cambiar esas cuatro reglas por selectores de id,
+   y eso es un pase aparte con su propia medicion.
+   PALETA: solo tokens ya declarados en la pagina y el tinte de marca #e4f0fd -> #eaf4fe, el mismo
+   de sus otras dos secciones tintadas. */
+body > section.block:nth-of-type(7){background:#0a1628}
+body > section.block:nth-of-type(8){background:linear-gradient(180deg,#e4f0fd 0%,#eaf4fe 62%,#fff 100%)}
+@media(max-width:600px){body > section.block:nth-of-type(8){background:linear-gradient(180deg,#e4f0fd 0%,#eaf4fe 48%,#fff 90%)}}
+body > section.cmpq:nth-of-type(6){background:var(--lp-surf2,#f6f9fd)}
+body > section.loc:nth-of-type(10){background:var(--lp-surf2,#f6f9fd)}
+section.alt-poli{background:linear-gradient(180deg,#e4f0fd 0%,#eaf4fe 62%,#fff 100%);padding:36px 0}
+@media(min-width:768px){section.alt-poli{padding:46px 0}}
+/* TOKENS: esta pagina NO declara --lh-navy-deep, --lh-gray ni --lh-dato (los nombres de d11 §1.1 son
+   los de poligrafia y de la comparativa). Medido: sin ellos, `color:var(--lh-gray)` es invalido al
+   computar y el texto HEREDA el color del padre, sin avisar. Aqui solo se usan tokens que la pagina
+   SI declara (--electric-text #065ca4, --muted #5a6b7d, --green, --lp-surf2) y NO se redeclaran
+   titulo, lead ni renglones: las reglas propias de la pagina ya los dan en la medida de d11
+   (h2 24 px/600 rgb(10,22,40); lead #5a6b7d; cmpq 13.76 px a 375 y 15.2 a 1280). */
+.alt-poli .container{max-width:760px}
+.alt-poli .block__title em{font-style:normal;color:var(--electric-text)}
+.alt-poli .block__lead{margin:0 auto 16px;max-width:60ch}
+.alt-poli .cmpq__list{margin:0 0 18px}
+.alt-poli__cta{display:flex;flex-direction:column;align-items:center;gap:8px}
+.alt-poli__cta .btn-wa{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:auto;
+  min-height:50px;padding:13px 24px;border-radius:100px;background:var(--green);color:#fff;font-weight:700;
+  font-size:1rem;text-decoration:none;box-shadow:none}
+.alt-poli__cta .btn-wa:hover{background:#16893f;color:#fff}
+.alt-poli__cta .btn-wa:focus-visible{outline:3px solid var(--electric-text);outline-offset:3px}
+.alt-poli__nota{margin:0;font-size:12.5px;line-height:1.4;color:var(--muted);text-align:center}
+</style>
 </head>
 <body>
 <a class="alv-skip" href="#main">Saltar al contenido</a>
@@ -1176,6 +1221,32 @@ body > section.block:nth-of-type(7){background:linear-gradient(180deg,#e4f0fd 0%
     </div>
 </section>
 
+
+<!-- ============ Y SI TE BASTA UNA POLIGRAFIA (propuesta D1, 20-sep-2026, ESPERA OK DEL DR.) ============
+     El prellenado de WhatsApp de esta seccion es NUEVO y su origen debe quedar dado de alta antes de
+     publicar (ver _internal/pendientes/): el bot recorta ORIGEN_PROMO desde la palabra "promocion" y
+     se detiene en el primer parentesis, asi que lo que distingue a este lead ("en vez de la
+     polisomnografia") va ANTES del parentesis, y "poligrafia" es lo que hace que promoCatalogo_
+     cotice $5,000 y no guarde silencio. -->
+<section class="block alt-poli" id="basta-poligrafia" aria-labelledby="basta-title">
+    <div class="container">
+        <div class="block__head">
+            <span class="block__kicker">La otra ruta</span>
+            <h2 class="block__title" id="basta-title">¿Y si te basta <em>una poligrafía</em>?</h2>
+        </div>
+        <p class="block__lead">Si solo hay que confirmar o descartar la apnea, en casa hay un estudio más simple y más barato. Te lo dicen en la valoración.</p>
+        <ul class="cmpq__list">
+            <li class="cmpq__row"><span class="cmpq__k">Qué mide</span><span class="cmpq__v">Flujo, esfuerzo, oxígeno, ronquido y posición, toda la noche en tu cama</span></li>
+            <li class="cmpq__row"><span class="cmpq__k">Qué no mide</span><span class="cmpq__v">No lleva electroencefalograma: no ve tus fases de sueño ni las piernas</span></li>
+            <li class="cmpq__row"><span class="cmpq__k">Cuándo alcanza</span><span class="cmpq__v">Cuando la pregunta es si tienes apnea y qué tan grave es</span></li>
+            <li class="cmpq__row cmpq__row--us"><span class="cmpq__k">Paquete con consulta</span><span class="cmpq__v">$5,000: tu consulta, la noche en tu casa y la lectura</span></li>
+        </ul>
+        <div class="alt-poli__cta">
+            <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20saber%20si%20me%20basta%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20en%20vez%20de%20la%20polisomnograf%C3%ADa%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="alt-poli-wa"><i class="bi bi-whatsapp"></i> Preguntar si me basta la poligrafía</a>
+            <p class="alt-poli__nota">Si al valorarte hace falta la polisomnografía completa, es la de arriba: $12,000.</p>
+        </div>
+    </div>
+</section>
 
 <!-- 16-sep-2026: contra que comparas. Tres renglones con reglas finas, sin marcas ni competidores (texto del Dr.). -->
 <section class="cmpq" aria-labelledby="cmpq-title">
