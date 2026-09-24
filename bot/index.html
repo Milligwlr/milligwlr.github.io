@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Chats del asistente — alveos</title>
+<link rel="manifest" href="/bot/manifest.webmanifest">
+<meta name="theme-color" content="#00a884">
+<link rel="apple-touch-icon" href="/bot/icono-192.png">
 <style>
   :root {
     --app-bg: #f0f2f5; --panel: #ffffff; --panel-2: #f0f2f5; --borde: #e9edef;
@@ -526,7 +529,9 @@
         function (j) { clearTimeout(t); return j; },
         function (err) { clearTimeout(t); throw err; });
     }
-    var esEscritura = !!(params && (params.msg || params.seg || params.ren));
+    // (24-sep) visto y diag tambien son escrituras: un solo envio, jamas por
+    // las dos rutas a la vez de la carrera de lecturas.
+    var esEscritura = !!(params && (params.msg || params.seg || params.ren || params.visto || params.diag));
     if (esEscritura) {
       // Camino de siempre: 25 s compartidos; el respaldo solo entra si la
       // pasarela FALLÓ rápido (nunca tras un timeout, para no re-enviar).
@@ -551,17 +556,180 @@
         function (j) { clearTimeout(tE); return j; },
         function (err) { clearTimeout(tE); throw err; });
     }
-    // (13-sep) LECTURAS: UN intento a la pasarela con presupuesto amplio. El
-    // Worker responde desde su cache de borde en < 1 s casi siempre y, cuando
-    // tiene que armar de cero, Apps Script tarda 3-9 s (medido: 7.6-8.5 s la
-    // vista por defecto). Con 10 s el celular abortaba justo antes de recibir
-    // y el respaldo directo arrancaba OTRO armado de 8 s: ese era el "se
-    // tarda mucho". El respaldo directo al /exec entra SOLO si la pasarela
-    // fallo RAPIDO (red caida, 5xx) — tras un timeout no tiene sentido.
-    return pide(API, 30000).catch(function (err) {
-      if (err && err.message === 'tardo demasiado') throw err;
-      return pide(API_RESPALDO, 25000);
+    // LECTURAS: carrera escalonada (VISOR-MOVIL-24SEP, abajo).
+    return lecturaEscalonada(params);
+  }
+
+  // ---- VISOR-MOVIL-24SEP: LECTURAS EN DATOS MOVILES ----
+  // Reporte del Dr. (24-sep): "no puedo abrirlo con datos moviles o a veces ni
+  // carga". Hasta hoy una lectura era UN intento de 30 s a la pasarela
+  // (workers.dev) y el respaldo directo a Google solo entraba si la pasarela
+  // fallaba RAPIDO. Si la red del celular deja la conexion colgada (sin error),
+  // el visor esperaba 30 s, decia "sin conexion" y repetia lo mismo en cada
+  // poll: jamas abria. Ahora la lectura es una CARRERA ESCALONADA: si la primera
+  // ruta no contesta en RUTA_ESPERA_MS arranca la otra en paralelo, gana la
+  // primera respuesta valida y la perdedora se cancela. La ruta que gano se
+  // recuerda 15 min POR RED (la de datos moviles puede ser otra que la del WiFi).
+  // Cada intento deja una linea en un diagnostico local SIN datos de pacientes
+  // (ruta, ms, bytes, tipo de red) que se sube en la siguiente carga buena: asi
+  // se MIDE que ruta falla en el celular en vez de adivinarlo.
+  var RUTA_ESPERA_MS = 4500;
+  var RUTA_TOPE_MS = 25000;
+  var RUTA_RECUERDA_MS = 15 * 60000;
+  var LS_RUTA = 'visor_ruta_v1';
+  var LS_DIAG = 'visor_diag_v1';
+  var DIAG_SUBE_CADA_MS = 10 * 60000;
+  var diagSubido = 0;
+  function redActual() {
+    try {
+      var c = navigator.connection || navigator.mozConnection || navigator.webkitConnection || null;
+      if (!c) return { tipo: '', ect: '', rtt: 0, dl: 0 };
+      return { tipo: String(c.type || ''), ect: String(c.effectiveType || ''),
+        rtt: Number(c.rtt || 0), dl: Number(c.downlink || 0) };
+    } catch (e) { return { tipo: '', ect: '', rtt: 0, dl: 0 }; }
+  }
+  function llaveRed(r) { return (r.tipo || '?') + '/' + (r.ect || '?'); }
+  function anotaDiag(ent) {
+    try {
+      var arr = JSON.parse(localStorage.getItem(LS_DIAG) || '[]');
+      if (!Array.isArray(arr)) arr = [];
+      arr.push(ent);
+      if (arr.length > 60) arr = arr.slice(arr.length - 60);
+      localStorage.setItem(LS_DIAG, JSON.stringify(arr));
+    } catch (e) { /* sin localStorage no hay diagnostico; el visor sigue igual */ }
+  }
+  function rutaRecordada(r) {
+    try {
+      var o = JSON.parse(localStorage.getItem(LS_RUTA) || 'null');
+      if (o && o.via === 'exec' && o.red === llaveRed(r) && Date.now() < Number(o.hasta || 0)) return 'exec';
+    } catch (e) { /* sin memoria: la pasarela primero */ }
+    return 'gas';
+  }
+  function recuerdaRuta(via, r) {
+    try {
+      if (via === 'exec') {
+        localStorage.setItem(LS_RUTA, JSON.stringify({ via: 'exec', red: llaveRed(r), hasta: Date.now() + RUTA_RECUERDA_MS }));
+      } else {
+        localStorage.removeItem(LS_RUTA);
+      }
+    } catch (e) { /* best-effort */ }
+  }
+  /** Un intento de lectura por UNA ruta: {via, promesa, cancela}. La promesa
+   *  resuelve {j, ms, bytes, via} o rechaza con err.tipo (timeout, red, json,
+   *  pasarela, cancelado). */
+  function intentoLectura(via, params) {
+    var base = via === 'exec' ? API_RESPALDO : API;
+    var t0 = Date.now();
+    var ctrl = null, t = null, cancelado = false;
+    try { ctrl = new AbortController(); } catch (e) { ctrl = null; }
+    var promesa = new Promise(function (resolve, reject) {
+      function falla(tipo, st, msg) {
+        var err = new Error(msg || tipo);
+        err.tipo = cancelado ? 'cancelado' : tipo;
+        err.status = st || 0; err.ms = Date.now() - t0; err.via = via; err.cancelado = cancelado;
+        reject(err);
+      }
+      t = setTimeout(function () {
+        if (ctrl) { try { ctrl.abort(); } catch (e) { /* nada */ } }
+        falla('timeout', 0, 'tardo demasiado');
+      }, RUTA_TOPE_MS);
+      fetch(base + '?visor=1', {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(params),
+        signal: ctrl ? ctrl.signal : undefined
+      }).then(function (r) {
+        // text() para medir bytes; json() de respaldo (algunos entornos de
+        // prueba solo exponen json()).
+        if (r && typeof r.text === 'function') {
+          return r.text().then(function (txt) { return { st: r.status, txt: txt }; });
+        }
+        return r.json().then(function (jj) { return { st: r.status || 200, txt: JSON.stringify(jj) }; });
+      }).then(function (o) {
+        clearTimeout(t);
+        var j = null;
+        try { j = JSON.parse(o.txt); } catch (e) { j = null; }
+        if (!j || typeof j !== 'object') { falla('json', o.st, 'respuesta invalida'); return; }
+        // La PASARELA caida responde {ok:false, error:'proxy: ...'}: esa no es
+        // la respuesta del servidor; que gane la otra ruta.
+        if (!j.ok && /^proxy/.test(String(j.error || ''))) { falla('pasarela', o.st, String(j.error)); return; }
+        resolve({ j: j, ms: Date.now() - t0, bytes: o.txt.length, via: via });
+      }).catch(function (err) {
+        clearTimeout(t);
+        falla((err && err.name === 'AbortError') ? 'abortado' : 'red', 0, String((err && err.message) || err));
+      });
     });
+    return {
+      via: via, promesa: promesa,
+      cancela: function () {
+        cancelado = true; clearTimeout(t);
+        if (ctrl) { try { ctrl.abort(); } catch (e) { /* nada */ } }
+      }
+    };
+  }
+  /** Carrera escalonada entre la pasarela y el respaldo directo (ver arriba). */
+  function lecturaEscalonada(params) {
+    return new Promise(function (resolve, reject) {
+      var red = redActual();
+      var primera = rutaRecordada(red);
+      var segunda = primera === 'gas' ? 'exec' : 'gas';
+      var vivos = [], terminado = false, fallidos = 0, timerSeg = null;
+      function lanza(via) {
+        var it = intentoLectura(via, params);
+        vivos.push(it);
+        it.promesa.then(function (x) {
+          anotaDiag({ ts: Date.now(), via: via, prim: primera, r: 'ok', ms: x.ms, b: x.bytes,
+            hit: (x.j.edge && x.j.edge.hit) ? 1 : 0, sc: x.j.sin_cambios ? 1 : 0,
+            red: red.tipo, ect: red.ect, rtt: red.rtt, dl: red.dl });
+          if (terminado) return;
+          terminado = true;
+          clearTimeout(timerSeg);
+          vivos.forEach(function (o) { if (o !== it) o.cancela(); });
+          if (via !== primera) recuerdaRuta(via, red);
+          estado.ultimaVia = via;
+          resolve(x.j);
+        }, function (err) {
+          if (err.cancelado) return; // la perdedora de la carrera: no es una falla
+          anotaDiag({ ts: Date.now(), via: via, prim: primera, r: err.tipo || 'error', ms: err.ms,
+            st: err.status, red: red.tipo, ect: red.ect, rtt: red.rtt, dl: red.dl });
+          if (terminado) return;
+          fallidos++;
+          if (vivos.length < 2) { clearTimeout(timerSeg); lanza(segunda); return; } // fallo rapido: la otra ya
+          if (fallidos >= vivos.length) { terminado = true; reject(err); }
+        });
+      }
+      lanza(primera);
+      timerSeg = setTimeout(function () {
+        if (!terminado && vivos.length < 2) lanza(segunda);
+      }, RUTA_ESPERA_MS);
+    });
+  }
+  /** Sube el diagnostico local (sin datos de pacientes) por la ruta que acaba
+   *  de funcionar, cada 10 min como mucho. */
+  function subeDiag(clave) {
+    var arr = null;
+    try { arr = JSON.parse(localStorage.getItem(LS_DIAG) || '[]'); } catch (e) { arr = null; }
+    if (!Array.isArray(arr) || !arr.length || !clave || (Date.now() - diagSubido) < DIAG_SUBE_CADA_MS) return;
+    diagSubido = Date.now();
+    var lote = arr.slice(-60);
+    var base = estado.ultimaVia === 'exec' ? API_RESPALDO : API;
+    var ctrl = null;
+    try { ctrl = new AbortController(); } catch (e) { ctrl = null; }
+    var tD = setTimeout(function () { if (ctrl) { try { ctrl.abort(); } catch (e) { /* nada */ } } }, 20000);
+    fetch(base + '?visor=1', {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ key: clave, diag: JSON.stringify(lote) }),
+      signal: ctrl ? ctrl.signal : undefined
+    }).then(function (r) { return r.json(); }).then(function (r) {
+      clearTimeout(tD);
+      if (!r || !r.ok) return;
+      try {
+        var ahora = JSON.parse(localStorage.getItem(LS_DIAG) || '[]');
+        // Se quitan solo las lineas subidas (pudieron llegar otras mientras tanto).
+        localStorage.setItem(LS_DIAG, JSON.stringify(Array.isArray(ahora) ? ahora.slice(Math.min(lote.length, ahora.length)) : []));
+      } catch (e) { /* best-effort */ }
+    }).catch(function () { clearTimeout(tD); /* se reintenta en la siguiente carga buena */ });
   }
   // Foto local del visor (25-jul (6)): lo último recibido se guarda en el
   // dispositivo y se pinta AL INSTANTE al abrir (clave para datos móviles
@@ -1052,9 +1220,12 @@
           throw new Error(datos.error || 'respuesta invalida');
         }
         estado.clave = clave; // sobrevive con localStorage bloqueado
+        subeDiag(clave);
         var buscando = !!(datos.edge && datos.edge.refrescando);
         var sufijo = buscando ? ' · buscando novedades…' :
           ((datos.edge && datos.edge.degradado) ? ' · el servidor tarda, reintentando' : ' · cada 30 s');
+        // (24-sep) si la red del celular no llego a la pasarela, se dice.
+        if (estado.ultimaVia === 'exec') sufijo += ' · ruta de respaldo';
         if (buscando) programaRepoll();
         if (datos.sin_cambios) {
           // Nada nuevo desde el ultimo poll: solo se actualiza la hora.
@@ -2083,6 +2254,27 @@
     guardaClave(claveEnlace);
     puertaCargando(true); // aunque localStorage este bloqueado
   }
+  // APP INSTALABLE + CASCARA LOCAL (24-sep-2026): /bot/sw.js guarda SOLO la
+  // pagina (HTML/CSS/JS), jamas conversaciones. Con señal floja el visor abre
+  // desde el telefono y pinta la foto guardada. ?nosw lo quita (interruptor).
+  try {
+    if ('serviceWorker' in navigator) {
+      if (/[?&]nosw\b/.test(String(location.href).split('#')[0])) { // (no es credencial: FE-13)
+        navigator.serviceWorker.getRegistrations().then(function (rs) {
+          rs.forEach(function (r) { r.unregister(); });
+        }).catch(function () { /* nada */ });
+      } else if (location.protocol === 'https:') {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/bot/sw.js', { scope: '/bot/' }).catch(function () { /* nada */ });
+        });
+      }
+    }
+  } catch (eSw) { /* sin service worker el visor funciona igual que antes */ }
+  // Al volver la señal (salir de un tunel, cambiar de WiFi a datos), se
+  // actualiza de inmediato en vez de esperar el siguiente poll de 30 s.
+  window.addEventListener('online', function () {
+    if (claveActiva()) carga();
+  });
   // Con sesion guardada no se vuelve a pedir la clave: puerta en modo carga.
   if (claveGuardada()) puertaCargando(true);
   carga();
