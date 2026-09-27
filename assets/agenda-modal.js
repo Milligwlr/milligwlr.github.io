@@ -2,7 +2,10 @@
    Inyecta el modal de agenda en cualquier página del sitio.
    - Mensaje WhatsApp por defecto cambia según contexto (ES y EN):
      · /promociones/<promo> y /en/promociones/<promo> → menciona la promoción
-       específica y su precio ($1,300 / $1,200 / $4,500 / $3,900)
+       específica y su precio ($1,300 / $1,200 / $5,000 / $3,900)
+     · landings de sueño sin frase propia (/promociones/polisomnografia/ y
+       /promociones/poligrafia-vs-polisomnografia/) → el prellenado EXACTO de
+       sus propios enlaces wa.me (ver PREFILL_LANDING)
      · resto del sitio → "vengo de su sitio web alveos.mx"
    - Conecta cualquier elemento con [data-open-agenda] como trigger del modal.
    - Pushea al dataLayer:
@@ -65,6 +68,46 @@
       : 'Hola Dr. Lara, vengo de su sitio web alveos.mx y me interesa agendar una consulta a domicilio. ¿Podría darme más información sobre la disponibilidad y coordinación?';
   }
 
+  // --- 1a. Landings de sueño: prellenado EXACTO de la propia pagina --------
+  // Fallo que lo motivo (medido 26-sep-2026): estas dos landings no estan en
+  // PROMO_PHRASES, asi que sus 3 botones "Agendar" (incluido el fijo del
+  // celular) abrian un modal que caia al texto por defecto "la promocion de
+  // consulta de neumologia a $1,300": el bot registraba ORIGEN_PROMO de
+  // CONSULTA, ofrecia horarios de consulta y nunca el estudio del sueño.
+  // No se arma con una frase de PROMO_PHRASES: el prellenado de PSG no sigue la
+  // plantilla "vengo de ..." y una frase nueva podria caer en otra rama del
+  // clasificador (una rama POLISOMN antes de POLIGRAF ya rompio el prellenado
+  // D1). Se copian letra por letra los textos de los enlaces wa.me de cada
+  // pagina, ya probados contra el bot (LPSG-1..4 en test-simulador):
+  //   PSG  -> info_poligrafia, pitch de $12,000, botones SUENO|*, LEAD_ORIGEN promo_psg
+  //   VS   -> cita_nueva con ORIGEN_PROMO de poligrafia $5,000, LEAD_ORIGEN promo_poligrafia
+  // 'cita' va al asistente virtual y a "Escribir"; 'domicilio' al bloque de
+  // consulta a domicilio. En PSG es el mismo texto (la PSG ya es a domicilio y
+  // asi conserva la atribucion promo_psg; la plantilla "vengo de ... consulta a
+  // domicilio" caia en la misma rama pero sin atribucion). En VS se deja la
+  // plantilla de domicilio con la frase de poligrafia, identica a la que ya
+  // manda /promociones/poligrafia-respiratoria/: el texto exacto de la pagina
+  // habria mandado a horarios de consultorio a quien pidio consulta a domicilio.
+  // Solo ES (estas landings no tienen gemela EN). Coincidencia por SEGMENTO
+  // exacto, no por indexOf: una futura /promociones/polisomnografia-xxx/ no hereda.
+  var PREFILL_LANDING = {
+    'polisomnografia': {
+      cita: 'Hola, quiero la promoción de polisomnografía a domicilio de $12,000 con el Dr. Lara (alveos.mx).',
+      domicilio: 'Hola, quiero la promoción de polisomnografía a domicilio de $12,000 con el Dr. Lara (alveos.mx).'
+    },
+    'poligrafia-vs-polisomnografia': {
+      cita: 'Hola, quiero agendar una cita con el Dr. Lara. Vengo de la promoción de valoración + poligrafía respiratoria a $5,000 (alveos.mx).',
+      domicilio: 'Hola Dr. Lara, vengo de la promoción de valoración + poligrafía respiratoria a $5,000 y me interesa agendar una consulta a domicilio. ¿Podría darme más información sobre la disponibilidad y coordinación?'
+    }
+  };
+  var mLanding = path.match(/^\/promociones\/([^\/]+)/);
+  var landing = (!isEN && mLanding && Object.prototype.hasOwnProperty.call(PREFILL_LANDING, mLanding[1]))
+    ? PREFILL_LANDING[mLanding[1]] : null;
+  if (landing) {
+    waMessage = landing.cita;
+    waHomeMessage = landing.domicilio;
+  }
+
   var waBase = 'https://wa.me/522224926718?text=';
   var waHref = waBase + encodeURIComponent(waMessage);
   var waHomeHref = waBase + encodeURIComponent(waHomeMessage);
@@ -92,7 +135,7 @@
       ? ' Vengo de la página: ' + tituloCorto + ' (alveos.mx).'
       : ' Vengo de su sitio web alveos.mx.');
   var botHref = 'https://wa.me/522224926718?text=' +
-    encodeURIComponent('Hola, quiero agendar ' + botQue + ' con el Dr. Lara.' + botContexto);
+    encodeURIComponent(landing ? landing.cita : ('Hola, quiero agendar ' + botQue + ' con el Dr. Lara.' + botContexto));
   var botBlock = isEN ? '' : (''
     + '<a class="agenda-block agenda-block--bot" href="' + botHref + '" target="_blank" rel="noopener noreferrer" data-cta="agenda-modal-bot" aria-labelledby="agenda-bot-t agenda-bot-d">'
     +   '<div class="agenda-block__head">'
