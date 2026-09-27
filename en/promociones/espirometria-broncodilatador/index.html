@@ -52,6 +52,11 @@
     @media(max-width:600px){.promo-banner{font-size:.72rem;padding:4px 0}.promo-banner a{font-size:.7rem;padding:1px 8px}}
     .promo-lang2{display:inline-flex;gap:2px;border:1px solid rgba(255,255,255,.6);border-radius:999px;overflow:hidden;margin-left:10px;font-size:.72rem;font-weight:800;vertical-align:middle}
     .promo-lang2 a{padding:2px 9px;color:#fff;text-decoration:none;line-height:1.7}
+    /* 26-sep-2026: el idioma inactivo (ES) heredaba background:#fff de .promo-banner a y quedaba blanco
+       sobre blanco (medido: color y fondo rgb(255,255,255)). Misma correccion que la gemela ES; ademas el
+       hover ya no lo pinta del color del banner (.promo-banner a:hover). */
+    .promo-lang2 a:not(.active){background:transparent!important;margin-left:0!important}
+    .promo-lang2 a:not(.active):hover{color:#fff}
     .promo-lang2 a:not(.active):hover{background:rgba(255,255,255,.22)}
     .promo-lang2 a.active{background:#fff}
     .promo-lang2 a.active{color:#e64a19}
@@ -221,14 +226,6 @@
     .diag-card p{font-size:.91rem;color:var(--muted);margin:0 0 12px;line-height:1.6}
     .diag-card__tag{display:inline-block;font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:999px;letter-spacing:.3px;text-transform:uppercase}
 
-    /* ============ SOCIAL PROOF POPUP ============ */
-    .sp-popup{position:fixed;bottom:90px;left:16px;background:#fff;border:1px solid rgba(9,132,227,.15);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 12px 32px -8px rgba(9,44,84,.2);z-index:80;max-width:280px;transform:translateX(-120%);transition:transform .5s cubic-bezier(.22,.61,.36,1);pointer-events:none}
-    .sp-popup.show{transform:translateX(0)}
-    .sp-popup__avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;font-weight:800;font-size:.88rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-    .sp-popup__text{font-size:.8rem;line-height:1.4;color:var(--ink)}
-    .sp-popup__text strong{display:block;color:var(--navy);font-size:.82rem}
-    .sp-popup__time{font-size:.7rem;color:var(--muted);margin-top:2px}
-    @media(min-width:992px){.sp-popup{bottom:100px;left:24px;max-width:300px}}
 
     /* ============ PREPARATION CHECKLIST ============ */
     .prep{background:linear-gradient(180deg,#fff7f2 0%,#fff 100%)}
@@ -325,7 +322,7 @@
             <div class="col-lg-7 hero__content">
                 <div class="hero__badge"><span class="dot"></span> Spirometry with bronchodilator</div>
                 <h1>Same-day lung diagnosis: <em>$1,200</em>, digital report in 45 minutes</h1>
-                <div class="urgency-strip" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,176,0,.14);border:1px solid rgba(255,176,0,.45);color:#ffd285;padding:7px 14px;border-radius:999px;font-size:.82rem;font-weight:700;letter-spacing:.2px;margin-bottom:18px"><i class="bi bi-clock-history" style="color:#ffb000"></i> Medical appointments available this week, limited slots per session</div>
+                <!-- 26-sep-2026: fuera la franja "limited slots per session": escasez no verificable (regla del Dr.). -->
                 <div class="promo-card">
                     <div class="promo-card__icon"><i class="bi bi-tag-fill"></i></div>
                     <div class="promo-card__body">
@@ -642,9 +639,10 @@
 <!-- Floating WhatsApp (desktop) -->
 <a href="https://wa.me/522224926718?text=Hello%2C%20I%27d%20like%20to%20book%20an%20appointment%20with%20Dr.%20Lara.%20I%27m%20interested%20in%20the%20spirometry%20with%20bronchodilator%20promotion%20at%20%241%2C200.%20I%27m%20coming%20from%20your%20website%20alveos.mx%2Fen."  target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="WhatsApp" data-cta="float-wa"><i class="bi bi-whatsapp"></i></a>
 
-<!-- Sticky CTA (mobile) with urgency strip -->
+<!-- Sticky CTA (mobile). 26-sep-2026: el cintillo decia "Limited slots this week" (escasez no verificable);
+     ahora dice lo mismo que la gemela ES ("Atencion previa cita, sujeta a disponibilidad"). -->
 <div class="sticky-cta" style="flex-direction:column;gap:6px;padding-top:6px">
-    <div style="font-size:.72rem;font-weight:700;color:#b45c00;background:rgba(255,176,0,.14);border:1px solid rgba(255,176,0,.4);padding:3px 10px;border-radius:999px;letter-spacing:.2px"><i class="bi bi-clock-history" style="margin-right:4px"></i>Limited slots this week</div>
+    <div style="font-size:.72rem;font-weight:700;color:#b45c00;background:rgba(255,176,0,.14);border:1px solid rgba(255,176,0,.4);padding:3px 10px;border-radius:999px;letter-spacing:.2px"><i class="bi bi-clock-history" style="margin-right:4px"></i>By appointment, subject to availability</div>
     <div style="display:flex;gap:8px;width:100%">
         <a href="https://wa.me/522224926718?text=Hello%2C%20I%27d%20like%20to%20book%20an%20appointment%20with%20Dr.%20Lara.%20I%27m%20interested%20in%20the%20spirometry%20with%20bronchodilator%20promotion%20at%20%241%2C200.%20I%27m%20coming%20from%20your%20website%20alveos.mx%2Fen."  target="_blank" rel="noopener noreferrer" class="sc-wa" data-cta="sticky-wa" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 12px;border-radius:12px;font-weight:800;font-size:.95rem;text-decoration:none;background:var(--green);color:#fff"><i class="bi bi-whatsapp"></i> WhatsApp</a>
         <a href="tel:5591708334" class="sc-call" data-cta="sticky-call" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 12px;border-radius:12px;font-weight:800;font-size:.95rem;text-decoration:none;background:var(--electric);color:#fff"><i class="bi bi-telephone-fill"></i> Call</a>
@@ -652,15 +650,7 @@
     </div>
 </div>
 
-<!-- Social proof popup -->
-<div class="sp-popup" id="spPopup">
-    <div class="sp-popup__avatar" id="spAvatar">MA</div>
-    <div class="sp-popup__text">
-        <strong id="spName">María A. booked her test</strong>
-        <span id="spMsg">Spirometry with bronchodilator · CDMX</span>
-        <div class="sp-popup__time" id="spTime">2 hours ago</div>
-    </div>
-</div>
+<!-- Popup de prueba social ficticia ELIMINADO por compliance: solo se usa el 5.0 real de Google. -->
 
 <!-- Basic CTA click tracking to the dataLayer (for Ads conversion tracking via GTM) -->
 <script>
@@ -670,30 +660,6 @@ document.addEventListener('click',function(e){
     window.dataLayer=window.dataLayer||[];
     window.dataLayer.push({event:'lp_cta_click',cta_id:el.getAttribute('data-cta'),cta_href:el.getAttribute('href')});
 });
-
-// Social proof popup
-(function(){
-    var notifications=[
-        {avatar:'MA',name:'María A.',msg:'Spirometry with bronchodilator',time:'1 hour ago'},
-        {avatar:'RG',name:'Roberto G.',msg:'Follow-up test for chronic cough',time:'2 hours ago'},
-        {avatar:'LV',name:'Laura V.',msg:'Pre-surgical test · same-day report',time:'3 hours ago'},
-        {avatar:'CM',name:'Carlos M.',msg:'Referred by his pulmonologist',time:'4 hours ago'},
-        {avatar:'SP',name:'Sofía P.',msg:'Spirometry with bronchodilator',time:'5 hours ago'},
-    ];
-    for(var i=notifications.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=notifications[i];notifications[i]=notifications[j];notifications[j]=t;}
-    var idx=0,popup=document.getElementById('spPopup');
-    function show(){
-        var n=notifications[idx%notifications.length];
-        document.getElementById('spAvatar').textContent=n.avatar;
-        document.getElementById('spName').textContent=n.name+' booked their test';
-        document.getElementById('spMsg').textContent=n.msg;
-        document.getElementById('spTime').textContent=n.time;
-        popup.classList.add('show');
-        setTimeout(function(){popup.classList.remove('show');},3000);
-        idx++;
-    }
-    setTimeout(function(){show();setInterval(show,35000);},5000);
-})();
 </script>
 
 

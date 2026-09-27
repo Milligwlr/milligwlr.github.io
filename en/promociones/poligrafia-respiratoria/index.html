@@ -55,6 +55,11 @@
     .promo-banner a:hover{transform:scale(1.05);color:#e64a19}
     .promo-lang2{display:inline-flex;gap:2px;border:1px solid rgba(255,255,255,.6);border-radius:999px;overflow:hidden;margin-left:10px;font-size:.72rem;font-weight:800;vertical-align:middle}
     .promo-lang2 a{padding:2px 9px;color:#fff;text-decoration:none;line-height:1.7}
+    /* 26-sep-2026: el idioma inactivo (ES) heredaba background:#fff de .promo-banner a y quedaba blanco
+       sobre blanco (medido: color y fondo rgb(255,255,255)). Misma correccion que la gemela ES; ademas el
+       hover ya no lo pinta del color del banner (.promo-banner a:hover). */
+    .promo-lang2 a:not(.active){background:transparent!important;margin-left:0!important}
+    .promo-lang2 a:not(.active):hover{color:#fff}
     .promo-lang2 a:not(.active):hover{background:rgba(255,255,255,.22)}
     .promo-lang2 a.active{background:#fff}
     .promo-lang2 a.active{color:#e64a19}
@@ -429,7 +434,7 @@
 <div class="promo-banner">
     <div class="container promo-banner__inner">
         <span class="tag"><i class="bi bi-stars"></i> Offer</span>
-        <span>Consultation + home sleep study with an <strong>INER-trained pulmonologist</strong> <span class="price-old">$6,300</span> <span class="price-new">$5,000</span></span>
+        <span>Consultation + home sleep study with an <strong>INER-trained pulmonologist</strong> <span class="price-old">$6,000 separately</span> <span class="price-new">$5,000</span></span>
         <a href="https://wa.me/522224926718?text=Hello%2C%20I%27d%20like%20to%20book%20an%20appointment%20with%20Dr.%20Lara.%20I%27m%20interested%20in%20the%20respiratory%20polygraphy%20%28sleep%20study%29%20promotion%20at%20%245%2C000.%20I%27m%20coming%20from%20your%20website%20alveos.mx%2Fen."  target="_blank" rel="noopener noreferrer" data-cta="promo-banner"><i class="bi bi-whatsapp"></i> Book now</a>
         <span class="promo-lang2" role="navigation" aria-label="Language"><a href="/promociones/poligrafia-respiratoria/" hreflang="es-MX">ES</a><a class="active" href="#" aria-current="true">EN</a></span>
     </div>
@@ -458,14 +463,17 @@
                 <!-- Badge con INER visible en el primer viewport en mobile y desktop -->
                 <div class="hero__badge"><span class="dot"></span> Home respiratory polygraphy</div>
                 <h1>Sleep apnea test <em>in your own home</em></h1>
-                <div class="urgency-strip" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,176,0,.14);border:1px solid rgba(255,176,0,.45);color:#ffd285;padding:7px 14px;border-radius:999px;font-size:.82rem;font-weight:700;letter-spacing:.2px;margin-bottom:14px"><i class="bi bi-clock-history" style="color:#ffb000"></i> Appointments available this week, limited slots per shift</div>
+                <!-- 26-sep-2026: fuera la franja "limited slots per shift": escasez no verificable (regla del Dr.). -->
                 <p class="hero__sub">Includes a consultation with an INER-trained pulmonologist. A single night, in your own bed.</p>
 
-                <div class="price-highlight" role="text" aria-label="Promotional price 5000 pesos, regular price 6300">
-                    <span class="price-highlight__from">From</span>
+                <!-- 26-sep-2026: ancla alineada con la gemela ES (17-sep, commit 3056c79): en promos la consulta vale
+                     $1,500, asi que por separado son $6,000 (estudio $4,500 + consulta $1,500) y el ahorro es $1,000.
+                     Fuera el "From": el estudio solo cuesta $4,500, "desde $5,000" no era cierto. -->
+                <div class="price-highlight" role="text" aria-label="Package price 5,000 pesos; 6,000 pesos if booked separately; you save 1,000">
+                    <span class="price-highlight__from">Package</span>
                     <span class="price-highlight__new">$5,000</span>
-                    <span class="price-highlight__old">$6,300</span>
-                    <span class="price-highlight__save">Save $1,300</span>
+                    <span class="price-highlight__old">$6,000 separately</span>
+                    <span class="price-highlight__save">Save $1,000</span>
                 </div>
 
 
@@ -493,7 +501,7 @@
                     <div class="subt">What you get</div>
                     <h3>Study + reading + plan</h3>
                     <ul class="hero__card-list">
-                        <li><i class="bi bi-house-door-fill"></i><div><strong>Device delivered to you</strong>I hand you the device in consultation, or we coordinate delivery by courier.</div></li>
+                        <li><i class="bi bi-house-door-fill"></i><div><strong>Device at your consultation</strong>I hand you the device at your appointment; you use it that night at home and return it the next day.</div></li>
                         <li><i class="bi bi-moon-stars-fill"></i><div><strong>One night at home</strong>You sleep with your sensors in your own bed, no stress of an unfamiliar room.</div></li>
                         <li><i class="bi bi-clipboard2-pulse-fill"></i><div><strong>Report by an INER-trained pulmonologist</strong>AHI, severity, oximetry, position: interpreted by a doctor, not by software.</div></li>
                         <li><i class="bi bi-arrow-right-circle-fill"></i><div><strong>A clear treatment plan</strong>I explain your options (CPAP, devices, lifestyle changes) in plain language.</div></li>
@@ -819,8 +827,8 @@
             <div>
                 <h3>Dr. William César Lara Vázquez</h3>
                 <div class="role">Pulmonologist · Advanced Specialty in COPD · INER-trained</div>
-                <p>Trained at the National Institute of Respiratory Diseases (INER), the leading reference institution for pulmonology in Mexico. Personalized care in Mexico City, with direct interpretation of every study and a treatment plan explained in plain language, without outsourcing the reading to software.</p>
-                <p style="margin-top:10px;font-weight:700;color:var(--navy);background:rgba(9,132,227,.08);border-left:3px solid var(--electric);padding:8px 12px;border-radius:8px;font-size:.92rem"><i class="bi bi-graph-up-arrow" style="color:var(--electric);margin-right:4px"></i> 150+ sleep studies personally interpreted in 2025, with a treatment plan explained to each patient.</p>
+                <p>Trained at the National Institute of Respiratory Diseases (INER), Mexico's national referral center for respiratory diseases. Personalized care in Mexico City, with direct interpretation of every study and a treatment plan explained in plain language, without outsourcing the reading to software.</p>
+                <!-- 26-sep-2026: fuera "150+ sleep studies ... in 2025": cifra sin respaldo (la gemela ES quito su "+150 estudios" por inventado el 27-jun, commit 467f3db). -->
                 <div class="doc-card__creds">
                     <span><i class="bi bi-patch-check-fill"></i> Prof. License 12588976</span>
                     <span><i class="bi bi-patch-check-fill"></i> Specialty License 15595809</span>
@@ -839,7 +847,7 @@
             <span class="block__kicker">Frequently asked questions</span>
             <h2 class="block__title">What people ask most <em>before booking</em></h2>
         </div>
-        <details class="faq-item" open><summary>How much does it cost and what's included?</summary><div class="faq-item__answer"><strong>$5,000</strong> ($6,300 if you book them separately) includes: pulmonology consultation, device, polygraphy, and interpretation by an INER-trained pulmonologist. <a href="https://wa.me/522224926718?text=Hello%2C%20I%27d%20like%20to%20book%20an%20appointment%20with%20Dr.%20Lara.%20I%27m%20interested%20in%20the%20respiratory%20polygraphy%20%28sleep%20study%29%20promotion%20at%20%245%2C000.%20I%27m%20coming%20from%20your%20website%20alveos.mx%2Fen."  target="_blank" rel="noopener noreferrer" style="color:#e64a19;font-weight:700" data-cta="faq-wa">Book on WhatsApp</a>.</div></details>
+        <details class="faq-item" open><summary>How much does it cost and what's included?</summary><div class="faq-item__answer"><strong>$5,000</strong> ($6,000 if you book them separately: $4,500 for the study plus $1,500 for the consultation) includes: pulmonology consultation, device, polygraphy, and interpretation by an INER-trained pulmonologist. <a href="https://wa.me/522224926718?text=Hello%2C%20I%27d%20like%20to%20book%20an%20appointment%20with%20Dr.%20Lara.%20I%27m%20interested%20in%20the%20respiratory%20polygraphy%20%28sleep%20study%29%20promotion%20at%20%245%2C000.%20I%27m%20coming%20from%20your%20website%20alveos.mx%2Fen."  target="_blank" rel="noopener noreferrer" style="color:#e64a19;font-weight:700" data-cta="faq-wa">Book on WhatsApp</a>.</div></details>
         <details class="faq-item"><summary>Is an at-home study really valid?</summary><div class="faq-item__answer">Yes. Respiratory polygraphy is a type III study validated by the American Academy of Sleep Medicine (AASM) for diagnosing obstructive sleep apnea in patients with a high clinical suspicion and without serious cardiopulmonary disease. For most people with snoring and typical symptoms, it is enough to confirm or rule out the diagnosis.</div></details>
         <details class="faq-item"><summary>What if I can't sleep with the device?</summary><div class="faq-item__answer">The device is lightweight and most people get used to it within 30 minutes. If the night wasn't enough for a valid study, we repeat it at no extra cost.</div></details>
         <details class="faq-item"><summary>When do I get the results?</summary><div class="faq-item__answer">The report is delivered in consultation within 48 hours of returning the device, with a clear explanation and a treatment plan.</div></details>
@@ -884,9 +892,9 @@
 <!-- WhatsApp flotante (desktop) -->
 <a href="https://wa.me/522224926718?text=Hi%20Dr.%20Lara,%20I%20would%20like%20information%20about%20the%20$5,000%20consultation%20%2B%20home%20sleep%20study%20offer."  target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Contact on WhatsApp" data-cta="float-wa"><i class="bi bi-whatsapp"></i></a>
 
-<!-- Sticky CTA (mobile) con cintillo de urgencia -->
-<div class="sticky-cta" style="flex-direction:column;gap:6px;padding-top:6px">
-    <div style="font-size:.72rem;font-weight:700;color:#b45c00;background:rgba(255,176,0,.14);border:1px solid rgba(255,176,0,.4);padding:3px 10px;border-radius:999px;letter-spacing:.2px"><i class="bi bi-clock-history" style="margin-right:4px"></i>Limited slots this week</div>
+<!-- Sticky CTA (mobile). 26-sep-2026: sin el cintillo "Limited slots this week" (escasez no verificable);
+     la gemela ES tampoco lo lleva. -->
+<div class="sticky-cta" style="flex-direction:column">
     <div style="display:flex;gap:8px;width:100%">
         <a href="https://wa.me/522224926718?text=Hi%20Dr.%20Lara,%20I%20would%20like%20information%20about%20the%20$5,000%20consultation%20%2B%20home%20sleep%20study%20offer."  target="_blank" rel="noopener noreferrer" class="sc-wa" data-cta="sticky-wa" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 12px;border-radius:12px;font-weight:800;font-size:.95rem;text-decoration:none;background:var(--green);color:#fff"><i class="bi bi-whatsapp"></i> WhatsApp</a>
         <a href="tel:5591708334" class="sc-call" data-cta="sticky-call" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 12px;border-radius:12px;font-weight:800;font-size:.95rem;text-decoration:none;background:var(--electric);color:#fff"><i class="bi bi-telephone-fill"></i> Call</a>
@@ -1042,48 +1050,7 @@ document.addEventListener('click',function(e){
 })();
 </script>
 
-<!-- Social proof popup -->
-<style>
-.sp-popup{position:fixed;bottom:90px;left:16px;background:#fff;border:1px solid rgba(9,132,227,.15);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 12px 32px -8px rgba(9,44,84,.2);z-index:80;max-width:280px;transform:translateX(-120%);transition:transform .5s cubic-bezier(.22,.61,.36,1);pointer-events:none}
-.sp-popup.show{transform:translateX(0)}
-.sp-popup__avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#0984e3,#00cec9);color:#fff;font-weight:800;font-size:.88rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.sp-popup__text{font-size:.8rem;line-height:1.4;color:#1a2238}
-.sp-popup__text strong{display:block;color:#0a2540;font-size:.82rem}
-.sp-popup__time{font-size:.7rem;color:#5a6b7d;margin-top:2px}
-@media(min-width:992px){.sp-popup{bottom:100px;left:24px;max-width:300px}}
-</style>
-<div class="sp-popup" id="spPopup">
-    <div class="sp-popup__avatar" id="spAvatar">JP</div>
-    <div class="sp-popup__text">
-        <strong id="spName">Jorge P. booked their study</strong>
-        <span id="spMsg">Home respiratory polygraphy · CDMX</span>
-        <div class="sp-popup__time" id="spTime">1 hour ago</div>
-    </div>
-</div>
-<script>
-(function(){
-    var notifications=[
-        {avatar:'JP',name:'Jorge P.',msg:'Home respiratory polygraphy',time:'1 hour ago'},
-        {avatar:'AN',name:'Ana N.',msg:'At-home sleep apnea test',time:'2 hours ago'},
-        {avatar:'FT',name:'Fernando T.',msg:'Home polygraphy · referred by their doctor',time:'3 hours ago'},
-        {avatar:'CE',name:'Claudia E.',msg:'Snoring and sleepiness · booked the study',time:'4 hours ago'},
-        {avatar:'OM',name:'Oscar M.',msg:'Home respiratory polygraphy',time:'5 hours ago'},
-    ];
-    for(var i=notifications.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=notifications[i];notifications[i]=notifications[j];notifications[j]=t;}
-    var idx=0,popup=document.getElementById('spPopup');
-    function show(){
-        var n=notifications[idx%notifications.length];
-        document.getElementById('spAvatar').textContent=n.avatar;
-        document.getElementById('spName').textContent=n.name+' booked their study';
-        document.getElementById('spMsg').textContent=n.msg;
-        document.getElementById('spTime').textContent=n.time;
-        popup.classList.add('show');
-        setTimeout(function(){popup.classList.remove('show');},3000);
-        idx++;
-    }
-    setTimeout(function(){show();setInterval(show,35000);},5000);
-})();
-</script>
+<!-- Popup de prueba social ficticia ELIMINADO por compliance: solo se usa el 5.0 real de Google. -->
 
 
 <!-- Alveos · dataLayer events para GTM -->

@@ -64,6 +64,11 @@
     .promo-banner a:hover{transform:scale(1.05);color:#e64a19}
     .promo-lang2{display:inline-flex;gap:2px;border:1px solid rgba(255,255,255,.6);border-radius:999px;overflow:hidden;margin-left:10px;font-size:.72rem;font-weight:800;vertical-align:middle}
     .promo-lang2 a{padding:2px 9px;color:#fff;text-decoration:none;line-height:1.7}
+    /* 26-sep-2026: el idioma inactivo (ES) heredaba background:#fff de .promo-banner a y quedaba blanco
+       sobre blanco (medido: color y fondo rgb(255,255,255)). Misma correccion que la gemela ES; ademas el
+       hover ya no lo pinta del color del banner (.promo-banner a:hover). */
+    .promo-lang2 a:not(.active){background:transparent!important;margin-left:0!important}
+    .promo-lang2 a:not(.active):hover{color:#fff}
     .promo-lang2 a:not(.active):hover{background:rgba(255,255,255,.22)}
     .promo-lang2 a.active{background:#fff}
     .promo-lang2 a.active{color:#e64a19}
@@ -277,7 +282,7 @@
             <div class="col-lg-7 hero__content">
                 <div class="hero__badge"><span class="dot"></span> Promotion · CPAP Titration</div>
                 <h1>Find the <em>optimal pressure</em> of your CPAP for obstructive sleep apnea</h1>
-                <div class="urgency-strip" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,176,0,.14);border:1px solid rgba(255,176,0,.45);color:#ffd285;padding:7px 14px;border-radius:999px;font-size:.82rem;font-weight:700;letter-spacing:.2px;margin-bottom:18px"><i class="bi bi-clock-history" style="color:#ffb000"></i> Medical slots available this week, limited devices per shift</div>
+                <!-- 26-sep-2026: fuera la franja "limited devices per shift": escasez no verificable (regla del Dr.). -->
                 <p class="hero__sub">At-home titration with a clinical-grade APAP device over <strong>5 nights</strong>. We determine the exact pressure that controls your respiratory events, no trial pressures, no months of blind adjustments.</p>
                 <div class="promo-card">
                     <div class="promo-card__icon"><i class="bi bi-tag-fill"></i></div>
@@ -404,7 +409,8 @@
                 <h3>Dr. William César Lara Vázquez</h3>
                 <div class="role">Pulmonologist · Advanced Specialty in COPD</div>
                 <p>Graduate of the Instituto Nacional de Enfermedades Respiratorias (INER). Personalized care in CDMX, with direct interpretation of every study and a treatment plan explained in plain language.</p>
-                <p style="margin-top:10px;font-weight:700;color:var(--navy);background:rgba(9,132,227,.08);border-left:3px solid var(--electric);padding:8px 12px;border-radius:8px;font-size:.92rem"><i class="bi bi-graph-up-arrow" style="color:var(--electric);margin-right:4px"></i> 80+ positive pressure titrations personally interpreted in 2025, with documented optimal pressure for each patient.</p>
+                <!-- 26-sep-2026: fuera "80+ positive pressure titrations ... in 2025": cifra sin respaldo documentado, del mismo
+                     molde que el "+150 estudios" que se quito por inventado el 27-jun (commit 467f3db). Si el Dr. la confirma, se restaura. -->
                 <div class="doc-card__creds">
                     <span><i class="bi bi-patch-check-fill"></i> Prof. License 12588976</span>
                     <span><i class="bi bi-patch-check-fill"></i> Specialty License 15595809</span>
@@ -468,9 +474,10 @@
 <!-- Floating WhatsApp (desktop) -->
 <a href="https://wa.me/522224926718?text=Hello%2C%20I%27d%20like%20to%20book%20an%20appointment%20with%20Dr.%20Lara.%20I%27m%20interested%20in%20the%20CPAP%20titration%20promotion%20at%20%243%2C900.%20I%27m%20coming%20from%20your%20website%20alveos.mx%2Fen."  target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="WhatsApp" data-cta="float-wa"><i class="bi bi-whatsapp"></i></a>
 
-<!-- Sticky CTA (mobile) with urgency strip -->
+<!-- Sticky CTA (mobile). 26-sep-2026: el cintillo decia "Limited devices this week" (escasez no verificable);
+     ahora dice lo mismo que la promo ES de espirometria ("Atencion previa cita, sujeta a disponibilidad"). -->
 <div class="sticky-cta" style="flex-direction:column;gap:6px;padding-top:6px">
-    <div style="font-size:.72rem;font-weight:700;color:#b45c00;background:rgba(255,176,0,.14);border:1px solid rgba(255,176,0,.4);padding:3px 10px;border-radius:999px;letter-spacing:.2px"><i class="bi bi-clock-history" style="margin-right:4px"></i>Limited devices this week</div>
+    <div style="font-size:.72rem;font-weight:700;color:#b45c00;background:rgba(255,176,0,.14);border:1px solid rgba(255,176,0,.4);padding:3px 10px;border-radius:999px;letter-spacing:.2px"><i class="bi bi-clock-history" style="margin-right:4px"></i>By appointment, subject to availability</div>
     <div style="display:flex;gap:8px;width:100%">
         <a href="https://wa.me/522224926718?text=Hello%2C%20I%27d%20like%20to%20book%20an%20appointment%20with%20Dr.%20Lara.%20I%27m%20interested%20in%20the%20CPAP%20titration%20promotion%20at%20%243%2C900.%20I%27m%20coming%20from%20your%20website%20alveos.mx%2Fen."  target="_blank" rel="noopener noreferrer" class="sc-wa" data-cta="sticky-wa" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 12px;border-radius:12px;font-weight:800;font-size:.95rem;text-decoration:none;background:var(--green);color:#fff"><i class="bi bi-whatsapp"></i> WhatsApp</a>
         <a href="tel:5591708334" class="sc-call" data-cta="sticky-call" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 12px;border-radius:12px;font-weight:800;font-size:.95rem;text-decoration:none;background:var(--electric);color:#fff"><i class="bi bi-telephone-fill"></i> Call</a>

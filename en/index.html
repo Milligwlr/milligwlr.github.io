@@ -1987,6 +1987,11 @@
             -webkit-hyphens: auto;
         }
         .about__paragraph strong { color: var(--text); font-weight: 700; }
+        /* 26-sep-2026: enlace contextual a la pagina ancla EN-only (fuera de Google desde julio y casi sin
+           enlaces internos). Va dentro del parrafo, sin boton nuevo que alargue la seccion en movil; sin
+           division silabica porque el justificado del parrafo partia el enlace ("pul-monologist").
+           #0773c5 y no --electric (#0984e3): este mide 3.9:1 sobre blanco y no pasa AA en texto de 16.8 px. */
+        .about__paragraph a { color: #0773c5; font-weight: 700; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; hyphens: manual; -webkit-hyphens: manual; }
         /* Commitment block, styled quote */
         .about__commitment {
             position: relative;
@@ -4013,7 +4018,7 @@
                         <span class="about__label reveal">About me</span>
                         <h2 class="about__name reveal">Dr. William César<br><span class="last">Lara Vázquez</span></h2>
                         <p class="about__subtitle reveal">High-Specialty Pulmonologist</p>
-                        <p class="about__paragraph reveal">My training at the <strong>National Institute of Respiratory Diseases (INER)</strong> and my ongoing <span class="about__highlight">High Specialty in COPD</span> allow me to offer you a rigorous, up-to-date diagnosis, in a practice where every patient receives the time and attention they need.</p>
+                        <p class="about__paragraph reveal">My training at the <strong>National Institute of Respiratory Diseases (INER)</strong> and my ongoing <span class="about__highlight">High Specialty in COPD</span> allow me to offer you a rigorous, up-to-date diagnosis, in a practice where every patient receives the time and attention they need. I also see patients in English: <a href="/en/english-speaking-pulmonologist-mexico-city/"><span style="white-space:nowrap">English-speaking</span> pulmonologist in Mexico City</a>.</p>
                         <div class="about__commitment reveal">
                             My commitment to you is clear: <strong>to listen without rushing</strong>, explain without jargon and build a treatment plan tailored to <em>your life and your pace</em>. Because every breath counts, and every patient is unique.
                         </div>
