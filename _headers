@@ -11,3 +11,9 @@ https://prueba.alveos.mx/*
 # Igual que GitHub Pages: el panel descarga sus datos cifrados como binario.
 /campana-ads/datos.enc
   Content-Type: application/octet-stream
+
+# Los .txt con acentos declaran UTF-8 (Workers los servia como text/plain a secas; GitHub Pages si ponia charset).
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+/robots.txt
+  Content-Type: text/plain; charset=utf-8

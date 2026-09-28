@@ -25,4 +25,11 @@ if [ -n "$bad" ]; then
   exit 1
 fi
 
+# Toda carpeta nueva con index.html necesita su 301 en _redirects: sin la linea, Cloudflare
+# responde 307 (temporal) en /carpeta y Google no consolida la senal. Lee el _redirects STAGED.
+git diff --cached --name-only --diff-filter=A | grep -E '/index\.html$' | while IFS= read -r f; do
+  ruta="/${f%/index.html}"
+  git show :_redirects | grep -q -F "$ruta $ruta/ 301" || { echo "ERROR: falta en _redirects la linea: $ruta $ruta/ 301" >&2; exit 1; }
+done || exit 1
+
 exit 0

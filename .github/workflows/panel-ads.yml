@@ -58,3 +58,14 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "chore(panel-ads): datos cifrados del dia"
           git push origin HEAD:AP-Claude
+          # Publicacion (Workers Builds -> alveos.mx): esperar hasta 5 min a que el sitio sirva ESTE meta.json.
+          # Si no llega, el job falla y GitHub avisa por correo: el sitio seguiria vivo pero con datos viejos.
+          esperado=$(python -c "import json;print(json.load(open('campana-ads/meta.json'))['generado'])")
+          vivo=""
+          for i in $(seq 1 30); do
+            sleep 10
+            vivo=$(curl -s https://alveos.mx/campana-ads/meta.json | python -c "import sys,json;print(json.load(sys.stdin).get('generado',''))" 2>/dev/null || true)
+            if [ "$vivo" = "$esperado" ]; then echo "Publicado en alveos.mx: $vivo"; exit 0; fi
+          done
+          echo "ERROR: alveos.mx sigue sirviendo meta.json viejo ($vivo) 5 min despues del push; revisar Workers Builds del Worker alveos-mx" >&2
+          exit 1
