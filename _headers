@@ -1,0 +1,13 @@
+# Las direcciones de prueba no deben indexarse (duplicarian el sitio en Google).
+https://alveos-mx.alveos-neumo.workers.dev/*
+  X-Robots-Tag: noindex, nofollow
+https://prueba.alveos.mx/*
+  X-Robots-Tag: noindex, nofollow
+
+# Igual que GitHub Pages: los archivos publicos se pueden leer desde otros sitios.
+/*
+  Access-Control-Allow-Origin: *
+
+# Igual que GitHub Pages: el panel descarga sus datos cifrados como binario.
+/campana-ads/datos.enc
+  Content-Type: application/octet-stream

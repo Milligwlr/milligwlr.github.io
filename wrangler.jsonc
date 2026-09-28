@@ -1,0 +1,14 @@
+// Hosting de alveos.mx en Cloudflare Workers (archivos estaticos, sin codigo).
+// Existe porque Telcel bloquea a ratos las 4 IPs de GitHub Pages (medido el 27-sep-2026
+// desde el celular del Dr. y por OONI desde dic-2025); el repo sigue en GitHub.
+{
+  "name": "alveos-mx",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": ".",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  },
+  "workers_dev": true,
+  "preview_urls": false
+}
