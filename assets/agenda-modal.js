@@ -79,7 +79,7 @@
   // clasificador (una rama POLISOMN antes de POLIGRAF ya rompio el prellenado
   // D1). Se copian letra por letra los textos de los enlaces wa.me de cada
   // pagina, ya probados contra el bot (LPSG-1..4 en test-simulador):
-  //   PSG  -> info_poligrafia, pitch de $12,000, botones SUENO|*, LEAD_ORIGEN promo_psg
+  //   PSG  -> info_poligrafia, pitch de $13,000, botones SUENO|*, LEAD_ORIGEN promo_psg
   //   VS   -> cita_nueva con ORIGEN_PROMO de poligrafia $5,000, LEAD_ORIGEN promo_poligrafia
   // 'cita' va al asistente virtual y a "Escribir"; 'domicilio' al bloque de
   // consulta a domicilio. En PSG es el mismo texto (la PSG ya es a domicilio y
@@ -92,8 +92,8 @@
   // exacto, no por indexOf: una futura /promociones/polisomnografia-xxx/ no hereda.
   var PREFILL_LANDING = {
     'polisomnografia': {
-      cita: 'Hola, quiero la promoción de polisomnografía a domicilio de $12,000 con el Dr. Lara (alveos.mx).',
-      domicilio: 'Hola, quiero la promoción de polisomnografía a domicilio de $12,000 con el Dr. Lara (alveos.mx).'
+      cita: 'Hola, quiero la promoción de polisomnografía a domicilio de $13,000 con el Dr. Lara (alveos.mx).',
+      domicilio: 'Hola, quiero la promoción de polisomnografía a domicilio de $13,000 con el Dr. Lara (alveos.mx).'
     },
     'poligrafia-vs-polisomnografia': {
       cita: 'Hola, quiero agendar una cita con el Dr. Lara. Vengo de la promoción de valoración + poligrafía respiratoria a $5,000 (alveos.mx).',

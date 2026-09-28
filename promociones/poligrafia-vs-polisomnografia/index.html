@@ -584,7 +584,7 @@ section.hero h1,.block__title{font-weight:600;letter-spacing:-.024em}
    Fallos que lo motivan (medidos a 375x667 y 1280x900 antes del parche):
    1) Ninguna seccion con id llevaba scroll-margin-top: el titulo quedaba bajo la cabecera sticky
       (49 px en movil, 75 px en escritorio) al saltar a #decisor (boton "Empezar de nuevo") o a un ancla.
-   2) La pastilla de precio del CTA final (inline-flex) media 374 px en un cuadro de 305 px: "$12,000"
+   2) La pastilla de precio del CTA final (inline-flex) media 374 px en un cuadro de 305 px: "$13,000"
       salia cortado a "$12," y el rotulo se partia en tres renglones.
    3) "Lo que una comparativa no te puede decir" media 1.47 pantallas y "El criterio" 1.40 (tope 1.2):
       tres cajas con icono y una caja de cierre; cajas con radios distintos (16 y 14) en la misma pantalla.
@@ -1050,7 +1050,7 @@ a.precio__btn i{flex:0 0 auto;line-height:1.45}
 @media(max-width:479.98px){
     .precio{grid-template-areas:"kind cifra" "desc was" "desc more" "btn btn"}
 }
-/* A. Mismo fallo que en el h1 y peor: "$12,000" se leia partido justo en la cifra que decide la compra.
+/* A. Mismo fallo que en el h1 y peor: "$13,000" se leia partido justo en la cifra que decide la compra.
    La cifra va SOLIDA y el mismo rol lleva el mismo color en toda la pagina y en las tres landings:
    #0984e3 de 24 px para arriba (texto grande, 3.87:1 sobre blanco) y --electric-text por debajo. */
 .precio__cifra{background:none;background-image:none;-webkit-background-clip:border-box;background-clip:border-box;color:#0984e3;-webkit-text-fill-color:#0984e3}
@@ -1252,7 +1252,7 @@ footer .footer-meta>span[style]{color:rgba(255,255,255,.48)!important}
 <div class="promo-banner">
     <div class="container promo-banner__inner">
         <span class="tag"><i class="bi bi-stars"></i> Promoción</span>
-        <span>Los dos estudios del sueño, <strong>en tu casa</strong><span class="promo-banner__ext"> · poligrafía con consulta <strong>$5,000</strong> · polisomnografía <strong>$12,000</strong></span></span>
+        <span>Los dos estudios del sueño, <strong>en tu casa</strong><span class="promo-banner__ext"> · poligrafía con consulta <strong>$5,000</strong> · polisomnografía <strong>$13,000</strong></span></span>
         <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" data-cta="promo-banner"><i class="bi bi-whatsapp"></i> Apartar</a>
     </div>
 </div>
@@ -1324,7 +1324,7 @@ footer .footer-meta>span[style]{color:rgba(255,255,255,.48)!important}
             </article>
             <article class="precio precio--psg">
                 <h3 class="precio__kind">Polisomnografía</h3>
-                <p class="precio__cifra">$12,000</p>
+                <p class="precio__cifra">$13,000</p>
                 <p class="precio__was"><s>$14,000</s> precio regular</p>
                 <p class="precio__desc">Tipo II, consulta aparte. Un técnico monta todo en tu cama.</p>
                 <a class="precio__btn" href="https://wa.me/522224926718?text=Hola%2C%20quiero%20la%20promoci%C3%B3n%20de%20polisomnograf%C3%ADa%20a%20domicilio%20de%20%2412%2C000%20con%20el%20Dr.%20Lara%20%28alveos.mx%29." target="_blank" rel="noopener noreferrer" data-cta="hero-duo-psg"><i class="bi bi-whatsapp" aria-hidden="true"></i> Apartar polisomnografía</a>
@@ -1397,7 +1397,7 @@ footer .footer-meta>span[style]{color:rgba(255,255,255,.48)!important}
                 <h3 class="cmp__title">Cuánto cuesta y qué incluye</h3>
                 <dl class="cmp__pair">
                     <div class="cmp__row"><dt>Poligrafía<small>Esta promoción</small></dt><dd><b>$5,000</b> el paquete de consulta y estudio, recogiendo el equipo aquí. Te lo llevamos a tu casa por <b>$6,000</b>, consulta aparte.</dd></div>
-                    <div class="cmp__row cmp__row--psg"><dt>Polisomnografía<small>Tipo II, en tu casa</small></dt><dd><b>$12,000</b> el estudio, con el técnico que va a tu casa a montarte el equipo. Consulta aparte. <a href="/promociones/polisomnografia/">Ver la polisomnografía a domicilio</a>.</dd></div>
+                    <div class="cmp__row cmp__row--psg"><dt>Polisomnografía<small>Tipo II, en tu casa</small></dt><dd><b>$13,000</b> el estudio, con el técnico que va a tu casa a montarte el equipo. Consulta aparte. <a href="/promociones/polisomnografia/">Ver la polisomnografía a domicilio</a>.</dd></div>
                 </dl>
                 <p class="cmp__verdict">Por separado serían <b>$6,000</b>: estudio $4,500 más consulta $1,500.</p>
             </article>
@@ -1593,7 +1593,7 @@ footer .footer-meta>span[style]{color:rgba(255,255,255,.48)!important}
         <details class="faq-item"><summary>¿Puedo pedir directamente la poligrafía sin consulta?</summary><div class="faq-item__answer">No, y es a propósito. La exactitud de la poligrafía depende de que la sospecha de apnea esté bien establecida antes: sin esa valoración previa el resultado se vuelve mucho menos confiable, incluso con el mismo equipo. La consulta es lo que convierte un registro en un diagnóstico, y por eso va incluida en el paquete.</div></details>
         <details class="faq-item"><summary>Mi médico me pidió polisomnografía. ¿Vengo aquí o no?</summary><div class="faq-item__answer">Vienes aquí: la polisomnografía también se hace aquí, tipo II y en tu propia casa. Un técnico va a tu domicilio, te coloca el montaje completo, incluido el electroencefalograma, y se retira; tú duermes solo, en tu cama, y el reporte interpretado se entrega en 2 a 3 semanas. Si tu caso efectivamente la necesita, la valoración lo confirma y se agenda. Si resulta que se responde con la poligrafía, te lo digo.</div></details>
         <details class="faq-item"><summary>¿Qué pasa si empiezo por la poligrafía y me equivoco?</summary><div class="faq-item__answer">No se pierde el camino. La poligrafía tiende a quedarse corta antes que a exagerar, así que un resultado positivo es firme. Si sale normal y los síntomas siguen apuntando a apnea, el paso siguiente es justamente la polisomnografía, y aquí mismo se agenda. Lo que no puede pasar es que te quedes sin respuesta.</div></details>
-        <details class="faq-item"><summary>¿Qué diferencia hay en el precio y en la factura?</summary><div class="faq-item__answer">De los dos estudios se emite factura (CFDI) con la indicación médica para que la presentes a tu aseguradora; el reembolso depende de tu póliza. La poligrafía es el paquete de $5,000 con la consulta incluida; la polisomnografía en tu casa son $12,000 el estudio, con la consulta aparte. Los dos se cobran y se facturan aquí.</div></details>
+        <details class="faq-item"><summary>¿Qué diferencia hay en el precio y en la factura?</summary><div class="faq-item__answer">De los dos estudios se emite factura (CFDI) con la indicación médica para que la presentes a tu aseguradora; el reembolso depende de tu póliza. La poligrafía es el paquete de $5,000 con la consulta incluida; la polisomnografía en tu casa son $13,000 el estudio, con la consulta aparte. Los dos se cobran y se facturan aquí.</div></details>
         <details class="faq-item"><summary>Vivo solo. ¿Puedo hacerme cualquiera de los dos igual?</summary><div class="faq-item__answer">Sí, los dos. La poligrafía se entrega configurada y son pocos sensores: se te explica paso a paso cómo colocártelos antes de dormir; si alguno se desconecta durante la noche el registro suele seguir siendo útil, y si la poligrafía no resulta valorable, se repite. En la polisomnografía ni siquiera te la pones tú: va un técnico a tu domicilio, deja montado todo el estudio y se retira, así que duermes solo de todas formas.</div></details>
         <details class="faq-item"><summary>Vi tablas en internet que dicen otra cosa. ¿A quién le hago caso?</summary><div class="faq-item__answer">Casi todas esas tablas siguen oponiendo la casa contra el laboratorio, y aquí eso no aplica: los dos estudios se hacen en tu casa. Lo que de verdad los separa es qué mide cada uno, y de ahí, a quién le toca. La misma poligrafía sirve muy bien en una persona con ronquido, pausas presenciadas y somnolencia, y sirve poco en alguien con insuficiencia cardiaca avanzada. El equipo no cambia entre un caso y otro: lo que cambia es a quién se le aplica. Eso es justo lo que ninguna tabla puede saber de ti y sí puede establecer una valoración.</div></details>
         <details class="faq-item"><summary>¿Cuánto tarda cada camino en darme una respuesta?</summary><div class="faq-item__answer">La poligrafía suele ser el camino corto: se agenda la consulta, te llevas el equipo esa misma tarde, duermes una noche con él y lo devuelves al día siguiente. La polisomnografía también se agenda aquí, aunque hay que coordinar al técnico que va a tu domicilio a montar el estudio completo, y su reporte interpretado tarda de 2 a 3 semanas. Esa diferencia de tiempos es real y conviene tenerla en cuenta, pero no debería ser el motivo para elegir: si tu caso pide polisomnografía, esperar lo que haya que esperar sigue siendo lo correcto.</div></details>
