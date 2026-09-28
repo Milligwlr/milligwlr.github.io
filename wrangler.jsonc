@@ -10,5 +10,7 @@
     "html_handling": "auto-trailing-slash"
   },
   "workers_dev": true,
-  "preview_urls": false
+  "preview_urls": false,
+  // Ruta sobre el registro proxied del dominio: el Worker responde y GitHub ya no se consulta.
+  "routes": [{ "pattern": "alveos.mx/*", "zone_name": "alveos.mx" }]
 }
