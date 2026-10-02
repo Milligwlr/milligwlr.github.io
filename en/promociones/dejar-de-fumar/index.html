@@ -358,6 +358,15 @@
     .promo-lang2{flex-shrink:0}
 }
 </style>
+<style id="lp-h1-home-20261001">
+/* 1-oct-2026 tipografia del H1 como el hero del home (orden del Dr.): 800, tracking -0.035em, interlineado 1.08,
+   el acento en cian-electric-violeta. El hero de esta pagina es OSCURO: el degradado navy del home
+   seria invisible sobre el, asi que el resto del titulo queda en blanco. Fallback del acento: cian solido. */
+section.hero h1{font-weight:800;letter-spacing:-.035em;line-height:1.08}
+section.hero h1 em{font-style:normal}
+@supports (-webkit-background-clip:text) or (background-clip:text){
+section.hero h1 em{font-style:normal;background:linear-gradient(135deg,#00cec9 0%,#0984e3 40%,#6c5ce7 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}}
+</style>
 <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
     <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:12px">
         <a class="navbar-brand d-flex align-items-center gap-2" href="/en/" style="flex-shrink:0">

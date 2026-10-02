@@ -726,6 +726,67 @@
 .promo-banner a:hover{transform:scale(1.05);color:#047857}
 @media(max-width:600px){.promo-banner{font-size:.72rem;padding:4px 0}.promo-banner a{font-size:.7rem;padding:1px 8px}}
 </style>
+<style id="lp-h1-home-20261001">
+/* 1-oct-2026 tipografia del H1 como el hero del home (orden del Dr.): 800, tracking -0.035em, interlineado 1.08,
+   el acento en cian-electric-violeta. El hero de esta pagina es OSCURO: el degradado navy del home
+   seria invisible sobre el, asi que el resto del titulo queda en blanco. Fallback del acento: cian solido. */
+section.hero h1{font-weight:800;letter-spacing:-.035em;line-height:1.08}
+section.hero h1 em{font-style:normal}
+@supports (-webkit-background-clip:text) or (background-clip:text){
+section.hero h1 em{font-style:normal;background:linear-gradient(135deg,#00cec9 0%,#0984e3 40%,#6c5ce7 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}}
+</style>
+<style id="lp-hero-claro-20261001">
+/* 1-oct-2026 (el Dr.: "mejora el diseno, esta muy obscuro"). El hero y la franja promo eran navy degradado;
+   pasan a la superficie clara de las landings de sueno aprobadas (cielo de marca en las esquinas, texto
+   navy, H1 con el degradado del home). Solo presentacion: textos, cifras y enlaces identicos a HEAD. */
+.promo-banner{background:#e6f1fc;color:#0a2540;border-bottom:1px solid #d3e3f5}
+.promo-banner .price-old{color:#5b6675;opacity:1}
+.promo-banner .price-new{color:#065ca4}
+.promo-banner a{background:#1DA851;color:#fff}
+.promo-banner a:hover{color:#fff}
+section.hero{color:#0a2540;border-bottom:1px solid #d3e3f5;background-color:#f0f6fe;
+  background-image:radial-gradient(720px 420px at 100% -4%,rgba(9,132,227,.26),rgba(9,132,227,0) 72%),radial-gradient(640px 330px at 58% 118%,rgba(116,185,255,.18),rgba(116,185,255,0) 70%),radial-gradient(540px 330px at -6% 112%,rgba(0,206,201,.17),rgba(0,206,201,0) 68%),linear-gradient(118deg,#f2f8ff 0%,#eef5fe 30%,#e2eefd 56%,#d9eafc 100%);background-repeat:no-repeat}
+@media(max-width:991.98px){section.hero{background-image:radial-gradient(84% 62% at 106% -6%,rgba(9,132,227,.42),rgba(9,132,227,0) 72%),radial-gradient(88% 52% at -8% 108%,rgba(0,206,201,.28),rgba(0,206,201,0) 68%),radial-gradient(80% 46% at 82% 114%,rgba(116,185,255,.26),rgba(116,185,255,0) 70%),linear-gradient(165deg,#f3f8ff 0%,#eff6fe 48%,#e6f1fd 100%)}}
+section.hero::before{display:none}
+.hero-fx--aurora,.hero-fx--haz{opacity:.35}
+.hero-fx--motas i.lejos{background:rgba(9,132,227,.30)}
+.hero-fx--motas i.cerca{background:#fff;box-shadow:0 0 8px rgba(9,132,227,.55)}
+.hero__badge{background:#fff;border-color:#cfe0f3;color:#065ca4}
+.hero__badge .dot{background:#0984e3;box-shadow:0 0 10px rgba(9,132,227,.6)}
+section.hero h1{color:#0a1628}
+@supports (-webkit-background-clip:text) or (background-clip:text){
+section.hero h1{background:linear-gradient(135deg,#0a1628 0%,#1e3799 55%,#0984e3 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}}
+.hero__sub{color:#4a5a70}
+.btn-wa,.btn-cal{box-shadow:0 12px 28px -14px rgba(10,37,64,.45)}
+.btn-cal{background:#fff;color:#0a2540;border:1.5px solid #cfe0f3}
+.btn-cal:hover{background:#f5f9fe;border-color:#0984e3}
+/* chips: una sola fila de confianza en claro, sin apilar */
+.hero__creds{gap:6px 8px;margin:0 0 14px}
+.hero__cred{background:rgba(255,255,255,.75);border:1px solid #dfe8f3;color:#0a2540;padding:5px 11px;font-size:.78rem;font-weight:600}
+.hero__cred i{color:#0984e3}
+a.hero__cred:hover{background:#fff;color:#0a2540}
+.hero__creds{flex-wrap:nowrap}.hero__cred{white-space:nowrap;padding:5px 10px}
+@media(max-width:575.98px){.hero__creds{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}.hero__creds::-webkit-scrollbar{display:none}.hero__cred{flex:0 0 auto}}
+.hero__card{background:rgba(255,255,255,.82);border-color:#dfe8f3;box-shadow:0 18px 40px -24px rgba(10,37,64,.35)}
+.hero__card .subt{color:#065ca4}
+.hero__visual-grid li{background:#fff;border-color:#e3ecf6}
+.hero__visual-grid li:hover{background:#fff;border-color:#9cc7ef}
+.hvg__ico{background:#e6f1fc;color:#0984e3}
+.hvg__label{color:#0a2540}
+.hero__card-foot{color:#5b6675}
+</style>
+<style id="lp-precio-cons-20261001">
+/* 1-oct-2026 (orden del Dr.): "neumologo egresado del INER"; el precio sale del H1 a una ficha como la de
+   la poligrafia, y debe quedar claro: primera vez $1,800 regular -> $1,300 con promocion; subsecuentes $1,500. */
+section.hero .lp-precio-cons{display:inline-block;margin:2px 0 16px;padding:12px 18px 12px;background:#fff;border:1px solid #dfe8f3;border-radius:16px;box-shadow:0 10px 28px -16px rgba(10,37,64,.35);color:#5b6675;line-height:1.25}
+.lp-precio-cons__fila{display:flex;align-items:center;gap:14px}
+.lp-precio-cons__det{display:flex;flex-direction:column;font-size:14px;font-weight:600;color:#0a2540}
+.lp-precio-cons__det s{font-weight:500;color:#5b6675;text-decoration-thickness:1.5px;text-decoration-color:rgba(91,102,117,.75)}
+.lp-precio-cons__sub{margin:10px 0 0;padding-top:9px;border-top:1px solid #e6edf5;font-size:14px;color:#4a5a70}
+.lp-precio-cons .hero__precio-num{font-size:clamp(2.1rem,8vw,2.6rem);font-weight:800;letter-spacing:-.035em;line-height:1;color:#0984e3}
+@supports (-webkit-background-clip:text) or (background-clip:text){
+.lp-precio-cons .hero__precio-num{background:linear-gradient(135deg,#00cec9 0%,#0984e3 40%,#6c5ce7 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}}
+</style>
 <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
     <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:12px">
         <a class="navbar-brand d-flex align-items-center gap-2" href="/" style="flex-shrink:0">
@@ -758,7 +819,8 @@
         <div class="row align-items-center g-5">
             <div class="col-lg-7 hero__content">
                 <div class="hero__badge"><span class="dot"></span> Neumología · Sur de CDMX</div>
-                <h1>Consulta de neumología en CDMX con neumólogo del INER: <em>$1,300</em></h1>
+                <h1>Consulta de neumología en CDMX con neumólogo egresado del INER</h1>
+                <div class="lp-precio-cons"><div class="lp-precio-cons__fila"><span class="hero__precio-num">$1,300</span><span class="lp-precio-cons__det">Primera consulta con promoción<s>Precio regular $1,800</s></span></div><p class="lp-precio-cons__sub">Consultas subsecuentes: $1,500</p></div>
                 <p class="hero__sub">Diagnóstico claro y plan de tratamiento explicado, en una sola consulta.</p>
                 <div class="hero__cta">
                     <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20consulta%20de%20neumolog%C3%ADa%20a%20%241%2C300%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" class="btn-wa" data-cta="hero-wa">

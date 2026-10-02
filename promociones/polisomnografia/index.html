@@ -1111,6 +1111,15 @@ section.alt-poli{background:linear-gradient(180deg,#e4f0fd 0%,#eaf4fe 62%,#fff 1
 @media(max-width:575px){.hero .hero__creds{gap:6px}.hero .hero__creds>*{min-height:32px;padding:4px 10px 4px 4px;font-size:12.5px;gap:6px}
   .hero .hero__creds>* i{flex-basis:22px;width:22px;height:22px;font-size:11px}}
 </style>
+<style id="lp-h1-home-20261001">
+/* 1-oct-2026 tipografia del H1 como el hero del home (orden del Dr.): 800, tracking -0.035em, interlineado 1.08,
+   degradado navy-royal-electric y el acento en cian-electric-violeta. Fallback navy solido. */
+section.hero h1{font-weight:800;letter-spacing:-.035em;line-height:1.08;color:#0a1628}
+section.hero h1 em{font-style:normal;color:#0984e3}
+@supports (-webkit-background-clip:text) or (background-clip:text){
+section.hero h1{background:linear-gradient(135deg,#0a1628 0%,#1e3799 55%,#0984e3 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+section.hero h1 em{font-style:normal;background:linear-gradient(135deg,#00cec9 0%,#0984e3 40%,#6c5ce7 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}}
+</style>
 <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
     <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:12px">
         <a class="navbar-brand d-flex align-items-center gap-2" href="/" style="flex-shrink:0">

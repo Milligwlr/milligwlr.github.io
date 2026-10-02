@@ -230,6 +230,15 @@
 
     /* GTM */
     </style>
+<style id="lp-h1-home-20261001">
+/* 1-oct-2026 tipografia del H1 como el hero del home (orden del Dr.): 800, tracking -0.035em, interlineado 1.08,
+   el acento en cian-electric-violeta. El hero de esta pagina es OSCURO: el degradado navy del home
+   seria invisible sobre el, asi que el resto del titulo queda en blanco. Fallback del acento: cian solido. */
+section.hero h1{font-weight:800;letter-spacing:-.035em;line-height:1.08}
+section.hero h1 em{font-style:normal}
+@supports (-webkit-background-clip:text) or (background-clip:text){
+section.hero h1 em{font-style:normal;background:linear-gradient(135deg,#00cec9 0%,#0984e3 40%,#6c5ce7 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}}
+</style>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MG8Z6FKF');</script>
     <link rel="stylesheet" href="/assets/agenda-modal.css">
 <script type="application/ld+json" data-promo-schema>
