@@ -330,6 +330,18 @@
 @keyframes lpOro{0%,100%{opacity:0;transform:translate3d(0,0,0) scale(.6);filter:brightness(1)}40%{opacity:.85;transform:translate3d(2px,-4px,0) scale(1)}50%{opacity:1;transform:translate3d(3px,-6px,0) scale(1.6);filter:brightness(1.6)}60%{opacity:.85;transform:translate3d(4px,-8px,0) scale(1)}}
 @media(prefers-reduced-motion:reduce){.lp-fx-spark,.hero__fx-spark{animation:none!important;opacity:.6!important}}
 </style>
+<style id="lp-oro-fino-20261001">
+/* 1-oct-2026 (el Dr.: "tan finas y deslumbrantes como mi CTA de espirometria"). Mismo metodo que el
+   sparkle-field del CTA: puntos de 0.8-2.6 px que SOLO destellan (opacidad 0 -> 1 -> 0, sin viajar) y halo
+   solo en los mayores. Color oro: el hero es cielo claro; el azul/blanco del CTA se pierde sobre azul claro
+   y el oro es el complementario del azul, el que mas resalta. */
+.lp-fx-spark,.hero__fx-spark{width:1.4px!important;height:1.4px!important;border-radius:50%;background:#f7c948!important;box-shadow:0 0 3px 1px rgba(240,170,20,.75)!important;animation-name:lpTwinkleFino!important;animation-timing-function:ease-in-out!important;animation-iteration-count:infinite!important;transform:none!important}
+.lp-fx-spark:nth-child(3n),.hero__fx-spark:nth-child(3n){width:1px!important;height:1px!important;box-shadow:0 0 2px 1px rgba(240,170,20,.7)!important}
+.lp-fx-spark:nth-child(4n),.hero__fx-spark:nth-child(4n){width:2px!important;height:2px!important}
+.lp-fx-spark:nth-child(7n),.hero__fx-spark:nth-child(7n){width:2.6px!important;height:2.6px!important;background:#fff4cf!important;box-shadow:0 0 6px 2px rgba(245,180,30,.85),0 0 12px 3px rgba(245,180,30,.35)!important}
+@keyframes lpTwinkleFino{0%,100%{opacity:0}45%{opacity:1}55%{opacity:.95}}
+@media(prefers-reduced-motion:reduce){.lp-fx-spark,.hero__fx-spark{animation:none!important;opacity:.6}}
+</style>
 </head>
 <body>
 <a class="alv-skip" href="#main">Skip to content</a>
