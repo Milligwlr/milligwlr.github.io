@@ -8,7 +8,7 @@
 - **Consulta:** Hospital Santa Coleta, Consultorio 507 — mencionar SOLO en sección de contacto, NO en contenido clínico de las páginas de enfermedades.
 - **Redes:** Instagram @dr.williamlara | X: @Milligw
 - **WhatsApp:** +52 55 9170 8334
-- **Email:** dr.william.lara.neumologo@gmail.com
+- **Email:** dr.williamlara@alveos.mx
 - **Cal.com:** https://cal.com/dr-william-lara/agendar-cita
 
 ## Repo
