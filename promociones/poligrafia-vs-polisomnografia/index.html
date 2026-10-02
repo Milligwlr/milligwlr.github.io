@@ -1247,6 +1247,47 @@ section.hero h1 em{font-style:normal;color:#0984e3}
 section.hero h1{background:linear-gradient(135deg,#0a1628 0%,#1e3799 55%,#0984e3 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 section.hero h1 em{font-style:normal;background:linear-gradient(135deg,#00cec9 0%,#0984e3 40%,#6c5ce7 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}}
 </style>
+<style id="lp-lucecitas-20261001">
+/* 1-oct-2026, orden del Dr.: la atmosfera del hero de espirometria (reticula + 2 manchas + chispas)
+   en todos los heros de promocion, con 130% mas chispas (4 -> 9). Las lucecitas previas generadas por JS
+   se ocultan para que queden 9 chispas visibles en total y no se dupliquen. Todo absolute: 0px de altura. */
+.lp-fx{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.lp-host>.container{position:relative;z-index:2}
+.lp-host .hero__stars,.lp-host .hero__luces,.lp-host .hero__sparkles,.lp-host .hero-fx--motas{display:none!important}
+.lp-fx-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,206,201,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(0,206,201,.09) 1px,transparent 1px);background-size:46px 46px;-webkit-mask-image:radial-gradient(ellipse 85% 65% at 50% 45%,#000 25%,transparent 78%);mask-image:radial-gradient(ellipse 85% 65% at 50% 45%,#000 25%,transparent 78%);opacity:.75}
+.lp-fx-blob{position:absolute;top:-18%;right:-14%;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(0,206,201,.42),transparent 68%);filter:blur(46px);animation:lpBlob 13s ease-in-out infinite}
+.lp-fx-blob--2{top:auto;right:auto;bottom:-22%;left:-16%;width:300px;height:300px;background:radial-gradient(circle,rgba(9,132,227,.5),transparent 68%);animation-duration:17s;animation-direction:reverse}
+@keyframes lpBlob{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-26px,18px) scale(1.09)}66%{transform:translate(18px,-14px) scale(.94)}}
+.lp-fx-spark{position:absolute;width:6px;height:6px;border-radius:50%;background:#00cec9;box-shadow:0 0 14px 2px rgba(0,206,201,.7);opacity:0;animation:lpSpark 8s ease-in-out infinite}
+.lp-fx-spark--b{background:#74b9ff;box-shadow:0 0 14px 2px rgba(116,185,255,.7)}
+.lp-fx-spark--c{background:#0984e3;box-shadow:0 0 14px 2px rgba(9,132,227,.7)}
+@keyframes lpSpark{0%,100%{transform:translate(0,0);opacity:0}12%,88%{opacity:.8}50%{transform:translate(18px,-28px);opacity:1}}
+/* hero claro: reticula y manchas mas tenues para no ensuciar la superficie */
+.lp-fx--claro .lp-fx-grid{opacity:.5}
+.lp-fx--claro .lp-fx-blob{opacity:.35}
+@media(prefers-reduced-motion:reduce){.lp-fx-blob,.lp-fx-spark{animation:none}.lp-fx-spark{opacity:.5}}
+</style>
+<style id="lp-oro-franja-20261001">
+/* polvo de oro (orden del Dr. 1-oct): las chispas azules no se leian como premium */
+.lp-fx-spark,.hero__fx-spark{width:3px!important;height:3px!important;border-radius:50%!important;background:#ffd76a radial-gradient(circle,#fffbe8 0%,#ffd76a 45%,#e6a817 100%)!important;box-shadow:0 0 0 .5px #d99a0b,0 0 6px 1px rgba(255,205,90,.95),0 0 14px 3px rgba(230,168,23,.45)!important;animation-name:lpOro!important;animation-timing-function:ease-in-out!important;animation-iteration-count:infinite!important;animation-duration:4.2s!important;filter:brightness(1.1)}
+.lp-fx-spark:nth-of-type(3n+1),.hero__fx-spark:nth-of-type(3n+1){width:2.5px!important;height:2.5px!important;animation-duration:3.4s!important}
+.lp-fx-spark:nth-of-type(3n),.hero__fx-spark:nth-of-type(3n){width:3.5px!important;height:3.5px!important;animation-duration:5.6s!important}
+@keyframes lpOro{0%,100%{opacity:0;transform:translate3d(0,0,0) scale(.6);filter:brightness(1)}40%{opacity:.85;transform:translate3d(2px,-4px,0) scale(1)}50%{opacity:1;transform:translate3d(3px,-6px,0) scale(1.6);filter:brightness(1.6)}60%{opacity:.85;transform:translate3d(4px,-8px,0) scale(1)}}
+@media(prefers-reduced-motion:reduce){.lp-fx-spark,.hero__fx-spark{animation:none!important;opacity:.6!important}}
+/* franja delgada: el Dr. la vio "muy alta y tosca" (1-oct); un renglon, sin boton */
+.promo-banner{background:#eef5fd!important;background-image:none!important;color:#0a2540!important;border-bottom:1px solid #dbe7f5!important;box-shadow:none!important;padding:6px 0!important;font-size:13px!important;line-height:20px!important;font-weight:500!important;text-align:center}
+.promo-banner::before,.promo-banner::after{display:none!important}
+.promo-banner__inner{display:flex!important;flex-wrap:nowrap!important;align-items:center;justify-content:center;gap:0 12px!important;white-space:nowrap;min-width:0}
+.promo-banner__inner>span:not(.promo-lang2){min-width:0;overflow:hidden;text-overflow:ellipsis}
+.promo-banner strong{font-weight:600;color:#0a2540}
+.promo-banner .price-old{color:#5b6675!important;opacity:1!important;font-weight:500!important;margin-left:4px}
+.promo-banner .price-new,.promo-banner b{color:#065ca4!important;font-weight:800!important;font-size:13px!important;margin-left:4px}
+.promo-banner .promo-lang2{display:inline-flex;flex:none;gap:0;border:0!important;border-radius:0;margin-left:0;font-size:11px!important;font-weight:600;background:none!important}
+.promo-banner .promo-lang2 a{min-height:0!important;min-width:0!important;display:inline!important;background:none!important;color:#5b6675!important;padding:0 2px!important;line-height:20px;border-radius:0!important;text-decoration:none;font-size:11px!important;transform:none!important}
+.promo-banner .promo-lang2 a+a::before{content:"\00b7";margin-right:4px;color:#5b6675}
+.promo-banner .promo-lang2 a.active{color:#0a2540!important;font-weight:700}
+@media(max-width:599px){.promo-banner{font-size:11.5px!important}.promo-banner__inner{padding-left:10px!important;padding-right:10px!important;gap:0 8px!important}.promo-banner .price-new{font-size:11.5px!important}.promo-banner__ext{display:none!important}}
+</style>
 </head>
 <body>
 <a class="alv-skip" href="#main">Saltar al contenido</a>
@@ -1260,9 +1301,7 @@ section.hero h1 em{font-style:normal;background:linear-gradient(135deg,#00cec9 0
 <!-- Banner promoción (visible y prominente en mobile) -->
 <div class="promo-banner">
     <div class="container promo-banner__inner">
-        <span class="tag"><i class="bi bi-stars"></i> Promoción</span>
         <span>Los dos estudios del sueño, <strong>en tu casa</strong><span class="promo-banner__ext"> · poligrafía con consulta <strong>$5,000</strong> · polisomnografía <strong>$13,000</strong></span></span>
-        <a href="https://wa.me/522224926718?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20Dr.%20Lara.%20Vengo%20de%20la%20promoci%C3%B3n%20de%20valoraci%C3%B3n%20%2B%20poligraf%C3%ADa%20respiratoria%20a%20%245%2C000%20%28alveos.mx%29."  target="_blank" rel="noopener noreferrer" data-cta="promo-banner"><i class="bi bi-whatsapp"></i> Apartar</a>
     </div>
 </div>
 
@@ -1282,7 +1321,20 @@ section.hero h1 em{font-style:normal;background:linear-gradient(135deg,#00cec9 0
 
 <!-- ============ HERO (respuesta directa + promo) ============ -->
 <div id="main" tabindex="-1"></div>
-<section class="hero" id="top">
+<section class="lp-host hero" id="top">
+    <div class="lp-fx lp-fx--claro" aria-hidden="true">
+        <div class="lp-fx-blob"></div>
+        <div class="lp-fx-blob lp-fx-blob--2"></div>
+        <span class="lp-fx-spark" style="top:14%;left:6%;animation-delay:0s"></span>
+        <span class="lp-fx-spark lp-fx-spark--b" style="top:62%;left:3%;animation-delay:0.9s"></span>
+        <span class="lp-fx-spark lp-fx-spark--c" style="top:8%;right:30%;animation-delay:1.8s"></span>
+        <span class="lp-fx-spark" style="top:30%;right:5%;animation-delay:2.7s"></span>
+        <span class="lp-fx-spark lp-fx-spark--b" style="top:86%;left:38%;animation-delay:3.6s"></span>
+        <span class="lp-fx-spark lp-fx-spark--c" style="top:72%;right:12%;animation-delay:4.5s"></span>
+        <span class="lp-fx-spark" style="top:4%;left:44%;animation-delay:5.4s"></span>
+        <span class="lp-fx-spark lp-fx-spark--b" style="top:46%;right:2%;animation-delay:6.3s"></span>
+        <span class="lp-fx-spark lp-fx-spark--c" style="top:92%;left:12%;animation-delay:7.2s"></span><span class="lp-fx-spark" style="top:89%;left:63%;width:3px;height:3px;animation-delay:1.3s;animation-duration:4.8s"></span><span class="lp-fx-spark lp-fx-spark--b" style="top:32%;left:75%;width:2.5px;height:2.5px;animation-delay:0.5s;animation-duration:3.4s"></span><span class="lp-fx-spark lp-fx-spark--c" style="top:43%;left:19%;width:2px;height:2px;animation-delay:4.3s;animation-duration:3.8s"></span><span class="lp-fx-spark" style="top:22%;left:63%;width:3px;height:3px;animation-delay:3.1s;animation-duration:3.8s"></span><span class="lp-fx-spark lp-fx-spark--b" style="top:30%;left:17%;width:2.5px;height:2.5px;animation-delay:4.0s;animation-duration:5.6s"></span><span class="lp-fx-spark lp-fx-spark--c" style="top:52%;left:4%;width:3px;height:3px;animation-delay:5.5s;animation-duration:4.8s"></span><span class="lp-fx-spark" style="top:18%;left:16%;width:3px;height:3px;animation-delay:2.4s;animation-duration:3.8s"></span><span class="lp-fx-spark lp-fx-spark--b" style="top:15%;left:60%;width:2.5px;height:2.5px;animation-delay:2.6s;animation-duration:4.8s"></span><span class="lp-fx-spark lp-fx-spark--c" style="top:76%;left:91%;width:2.5px;height:2.5px;animation-delay:3.5s;animation-duration:3.4s"></span><span class="lp-fx-spark" style="top:22%;left:7%;width:2px;height:2px;animation-delay:5.3s;animation-duration:5.6s"></span><span class="lp-fx-spark lp-fx-spark--b" style="top:39%;left:42%;width:3.5px;height:3.5px;animation-delay:4.0s;animation-duration:3.4s"></span><span class="lp-fx-spark lp-fx-spark--c" style="top:75%;left:16%;width:3px;height:3px;animation-delay:0.7s;animation-duration:4.2s"></span><span class="lp-fx-spark" style="top:32%;left:82%;width:2.5px;height:2.5px;animation-delay:0.8s;animation-duration:4.8s"></span><span class="lp-fx-spark lp-fx-spark--b" style="top:71%;left:69%;width:2.5px;height:2.5px;animation-delay:1.8s;animation-duration:3.4s"></span><span class="lp-fx-spark lp-fx-spark--c" style="top:51%;left:69%;width:2.5px;height:2.5px;animation-delay:4.4s;animation-duration:4.2s"></span><span class="lp-fx-spark" style="top:10%;left:68%;width:2px;height:2px;animation-delay:6.1s;animation-duration:4.2s"></span><span class="lp-fx-spark lp-fx-spark--b" style="top:62%;left:40%;width:3px;height:3px;animation-delay:6.9s;animation-duration:3.4s"></span><span class="lp-fx-spark lp-fx-spark--c" style="top:12%;left:26%;width:2.5px;height:2.5px;animation-delay:0.7s;animation-duration:3.8s"></span><span class="lp-fx-spark" style="top:21%;left:56%;width:3px;height:3px;animation-delay:5.7s;animation-duration:3.8s"></span><span class="lp-fx-spark lp-fx-spark--b" style="top:64%;left:61%;width:2px;height:2px;animation-delay:6.1s;animation-duration:5.6s"></span><span class="lp-fx-spark lp-fx-spark--c" style="top:4%;left:47%;width:2px;height:2px;animation-delay:4.1s;animation-duration:3.8s"></span><span class="lp-fx-spark" style="top:72%;left:43%;width:3px;height:3px;animation-delay:6.7s;animation-duration:4.8s"></span><span class="lp-fx-spark lp-fx-spark--b" style="top:62%;left:85%;width:2.5px;height:2.5px;animation-delay:1.1s;animation-duration:4.2s"></span><span class="lp-fx-spark lp-fx-spark--c" style="top:61%;left:71%;width:2px;height:2px;animation-delay:0.6s;animation-duration:3.4s"></span><span class="lp-fx-spark" style="top:31%;left:68%;width:3px;height:3px;animation-delay:1.8s;animation-duration:5.6s"></span><span class="lp-fx-spark lp-fx-spark--b" style="top:34%;left:18%;width:3.5px;height:3.5px;animation-delay:5.0s;animation-duration:3.4s"></span><span class="lp-fx-spark lp-fx-spark--c" style="top:23%;left:29%;width:3px;height:3px;animation-delay:0.5s;animation-duration:5.6s"></span><span class="lp-fx-spark" style="top:23%;left:6%;width:2.5px;height:2.5px;animation-delay:0.5s;animation-duration:3.4s"></span><span class="lp-fx-spark lp-fx-spark--b" style="top:32%;left:72%;width:2px;height:2px;animation-delay:4.4s;animation-duration:4.2s"></span><span class="lp-fx-spark lp-fx-spark--c" style="top:32%;left:77%;width:3.5px;height:3.5px;animation-delay:1.7s;animation-duration:5.6s"></span><span class="lp-fx-spark" style="top:69%;left:11%;width:2.5px;height:2.5px;animation-delay:6.6s;animation-duration:3.4s"></span><span class="lp-fx-spark lp-fx-spark--b" style="top:46%;left:40%;width:3px;height:3px;animation-delay:6.4s;animation-duration:4.8s"></span><span class="lp-fx-spark lp-fx-spark--c" style="top:87%;left:58%;width:3.5px;height:3.5px;animation-delay:7.0s;animation-duration:3.8s"></span><span class="lp-fx-spark" style="top:89%;left:68%;width:2px;height:2px;animation-delay:1.9s;animation-duration:5.6s"></span><span class="lp-fx-spark lp-fx-spark--b" style="top:75%;left:61%;width:2.5px;height:2.5px;animation-delay:7.0s;animation-duration:4.8s"></span><span class="lp-fx-spark lp-fx-spark--c" style="top:46%;left:77%;width:3px;height:3px;animation-delay:4.4s;animation-duration:5.6s"></span><span class="lp-fx-spark" style="top:49%;left:11%;width:3px;height:3px;animation-delay:1.9s;animation-duration:3.8s"></span><span class="lp-fx-spark lp-fx-spark--b" style="top:41%;left:34%;width:2.5px;height:2.5px;animation-delay:0.0s;animation-duration:4.2s"></span><span class="lp-fx-spark lp-fx-spark--c" style="top:19%;left:15%;width:2px;height:2px;animation-delay:0.3s;animation-duration:3.4s"></span><span class="lp-fx-spark" style="top:6%;left:32%;width:3.5px;height:3.5px;animation-delay:3.9s;animation-duration:4.2s"></span><span class="lp-fx-spark lp-fx-spark--b" style="top:46%;left:7%;width:3px;height:3px;animation-delay:4.5s;animation-duration:4.8s"></span>
+    </div>
     <div class="hero__luces" data-sparkles="14" data-sparkles-mobile="0" aria-hidden="true"></div>
     <div class="container">
         <div class="row g-5">
