@@ -980,8 +980,23 @@
     }
     return '';
   }
+  // Clara-IA en sombra (8-oct-2026): la fila out tipo 'ia_sombra' es una propuesta NO
+  // enviada (el paciente no la recibio). Sin esto, quedaba como "ultimo mensaje" del
+  // hilo: apagaba el chip 'lead' del paciente que sigue sin respuesta y la lista la
+  // previsualizaba con la palomita de enviado. El ultimo mensaje REAL la salta.
+  function esSombraIA(m) {
+    return !!m && m.dir === 'out' && m.tipo === 'ia_sombra';
+  }
+  function ultimoRealDe(h) {
+    var ms = h.mensajes || [];
+    for (var i = ms.length - 1; i >= 0; i--) {
+      if (!esSombraIA(ms[i])) return ms[i];
+    }
+    return ms[ms.length - 1];
+  }
   function previewDe(m) {
     var t = String(m.texto || '').replace(/\n\[Botones: [^\]]*\]$/, '').replace(/\s+/g, ' ').trim();
+    if (esSombraIA(m)) return '✨ ' + t;
     return (m.dir === 'out' ? '✓ ' : '') + t;
   }
   function esMarcador(texto) {
@@ -1018,7 +1033,7 @@
     return !h.interno && !!ultimoIn && ultimoIn > vistoDe(claveHilo(h), h) && estado.sel !== claveHilo(h);
   }
   function esLeadBase_(h) {
-    var ultimo = (h.mensajes || [])[(h.mensajes || []).length - 1];
+    var ultimo = ultimoRealDe(h);   // ignora la propuesta de Clara-IA en sombra (no enviada)
     return !h.interno && h.tiene_cita_futura === false && !!ultimo && ultimo.dir === 'in';
   }
   function esLead(h) {
@@ -1569,7 +1584,7 @@
     }
     hilos.forEach(function (h) {
       var k = claveHilo(h);
-      var ultimo = h.mensajes[h.mensajes.length - 1];
+      var ultimo = ultimoRealDe(h);   // la fila ia_sombra no es el ultimo mensaje real
       var visto = vistoDe(k, h);
       var ultimoIn = ultimoInDe(h);
       var noLeido = !h.interno && !!ultimoIn && ultimoIn > visto && estado.sel !== k;
