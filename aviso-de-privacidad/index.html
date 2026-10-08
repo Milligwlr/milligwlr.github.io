@@ -169,7 +169,7 @@
     <h1>Aviso de Privacidad</h1>
     <p>Dr. William César Lara Vázquez · Neumólogo · CDMX</p>
     <div class="hero__meta">
-      <span><i class="bi bi-calendar3" aria-hidden="true"></i> Última actualización: 1 de octubre de 2026</span>
+      <span><i class="bi bi-calendar3" aria-hidden="true"></i> Última actualización: 7 de octubre de 2026</span>
       <span><i class="bi bi-clipboard2-check" aria-hidden="true"></i> LFPDPPP + Reforma 2025</span>
     </div>
   </div>
@@ -281,6 +281,7 @@
         <li>Coordinar la atención con otros especialistas cuando sea necesario para su salud</li>
         <li>Confirmar, reagendar o cancelar citas médicas</li>
         <li>Enviarle por WhatsApp <strong>recordatorios de sus citas</strong> mediante un asistente automatizado del consultorio, y registrar su respuesta (confirmar o solicitar cambio de fecha). Estos mensajes son de logística: no contienen diagnósticos, resultados ni motivo de consulta</li>
+        <li>Responder por WhatsApp sus <strong>dudas informativas sobre los estudios del sueño</strong> (qué incluyen, cómo se realizan, costos publicados y logística) mediante el asistente automatizado del consultorio. Para redactar esas respuestas el asistente puede apoyarse en un servicio de procesamiento de lenguaje de <strong>Anthropic PBC</strong>, al que se envía <strong>únicamente el texto de su pregunta, sin su nombre, número de teléfono ni ningún otro dato que le identifique</strong>. Las respuestas nunca contienen diagnósticos ni indicaciones de tratamiento</li>
         <li>Dar seguimiento a su evolución clínica por medios electrónicos (WhatsApp, correo)</li>
       </ul>
 
@@ -297,6 +298,7 @@
       </div>
 
       <p><strong>Limitación de uso o divulgación.</strong> Además de su derecho de oposición, usted puede solicitar su inscripción en el listado de exclusión del consultorio para dejar de recibir cualquier comunicación con fines distintos a su atención médica (información de salud, nuevos servicios e invitaciones a reseña). Para inscribirse, escriba a <a href="mailto:dr.williamlara@alveos.mx">dr.williamlara@alveos.mx</a> con el asunto "Listado de exclusión" o responda <strong>BAJA</strong> a cualquier mensaje del asistente de WhatsApp. Le confirmaremos la inscripción por el mismo medio.</p>
+      <p><strong>Tratamiento automatizado.</strong> El asistente de WhatsApp funciona con reglas fijas del consultorio y, únicamente para redactar respuestas a dudas informativas, con un sistema automatizado de lenguaje. Ninguna decisión que produzca efectos jurídicos o que le afecte de manera significativa (diagnóstico, tratamiento o cobro) se toma sin intervención del médico. En cualquier momento puede pedir ser atendido directamente por el médico escribiendo "hablar con el doctor", y puede oponerse al tratamiento automatizado por los medios de la sección 6.</p>
     </section>
 
     <!-- 4. SISTEMAS -->
@@ -330,8 +332,13 @@
               <td>Comunicación directa y envío de recordatorios de cita e invitación a reseña mediante el asistente automatizado del consultorio</td>
             </tr>
             <tr>
+              <td><strong>Anthropic PBC</strong><br><small>API de Claude (EE. UU.)</small></td>
+              <td>Solo el texto de la pregunta que usted escribe sobre los estudios del sueño, sin nombre, número de teléfono ni identificadores (puede incluir información de salud que usted mencione) <span class="tag tag--sensitive">Sensibles</span></td>
+              <td>Redacción de respuestas a dudas informativas por el asistente de WhatsApp. Anthropic no utiliza estos datos para entrenar sus modelos y los elimina en un plazo máximo de 30 días</td>
+            </tr>
+            <tr>
               <td><strong>Google Apps Script / Sheets / Calendar</strong><br><small>Google LLC</small></td>
-              <td>Nombre, número de teléfono, fecha y estado de la cita (agendada, recordada, confirmada, reagendada). El texto libre que usted escriba por WhatsApp <strong>no se almacena</strong>; solo se reenvía al médico para atenderle <span class="tag tag--regular">Ordinarios</span></td>
+              <td>Nombre, número de teléfono, fecha y estado de la cita (agendada, recordada, confirmada, reagendada) y los mensajes que usted intercambia con el asistente de WhatsApp, que se conservan para dar continuidad a su atención durante el plazo indicado abajo (pueden incluir información de salud) <span class="tag tag--sensitive">Sensibles</span></td>
               <td>Motor del asistente de citas: leer la agenda, enviar los recordatorios y registrar su respuesta</td>
             </tr>
             <tr>
@@ -348,7 +355,7 @@
         </table>
       </div>
 
-      <p><strong>Plazo de conservación de los registros del asistente.</strong> Los registros generados por el asistente de citas (nombre, número de teléfono, fecha y estado de la cita) se conservan durante un máximo de doce (12) meses contados a partir de la fecha de la cita y después se suprimen de manera segura. Si usted responde <strong>BAJA</strong>, su número se conserva únicamente en la lista de exclusión, con el solo fin de garantizar que no vuelva a recibir mensajes.</p>
+      <p><strong>Plazo de conservación de los registros del asistente.</strong> Los registros generados por el asistente de citas (nombre, número de teléfono, fecha y estado de la cita, y los mensajes intercambiados) se conservan durante un máximo de doce (12) meses contados a partir de la fecha de la cita y después se suprimen de manera segura. Si usted responde <strong>BAJA</strong>, su número se conserva únicamente en la lista de exclusión, con el solo fin de garantizar que no vuelva a recibir mensajes.</p>
 
       <div class="box box--navy">
         <div class="box__title"><i class="bi bi-shield-lock-fill" aria-hidden="true"></i> Medidas de seguridad</div>
@@ -363,11 +370,11 @@
       <ul>
         <li><strong>Otros médicos especialistas:</strong> únicamente cuando usted lo solicite o cuando sea médicamente necesario para su atención y con su conocimiento.</li>
         <li><strong>Autoridades sanitarias:</strong> IMSS, ISSSTE, Secretaría de Salud u otras autoridades, cuando sea requerido por ley (enfermedades de notificación obligatoria, etc.).</li>
-        <li><strong>Proveedores de servicio:</strong> Nimbo, Cal.com, Meta Platforms (WhatsApp Cloud API, para el envío de los recordatorios y la comunicación) y Google LLC (Google Apps Script, Sheets, Calendar y Drive, para el motor del asistente de citas y los datos de facturación) actúan como <strong>encargados</strong> del tratamiento bajo sus propias políticas de privacidad. No utilizan sus datos para fines distintos a los contratados.</li>
+        <li><strong>Proveedores de servicio:</strong> Nimbo, Cal.com, Meta Platforms (WhatsApp Cloud API, para el envío de los recordatorios y la comunicación), Google LLC (Google Apps Script, Sheets, Calendar y Drive, para el motor del asistente de citas y los datos de facturación) y Anthropic PBC (procesamiento automatizado de lenguaje para responder dudas informativas por WhatsApp; recibe únicamente el texto de la pregunta, sin identificadores) actúan como <strong>encargados</strong> del tratamiento bajo sus propias políticas de privacidad. No utilizan sus datos para fines distintos a los contratados.</li>
         <li><strong>Autoridad fiscal:</strong> los datos contenidos en su factura se transmiten al Servicio de Administración Tributaria (SAT) a través de un proveedor autorizado de certificación, por obligación legal.</li>
       </ul>
-      <p><strong>Alojamiento fuera de México.</strong> Los proveedores mencionados (Nimbo, Cal.com, Meta Platforms y Google LLC) pueden almacenar la información en servidores ubicados fuera de México. Se trata de remisiones a encargados del tratamiento, obligados a tratar sus datos únicamente conforme a las instrucciones del responsable y a este aviso; el responsable sigue siendo el obligado frente a usted en todo momento.</p>
-      <p>Las entregas de datos a los proveedores que actúan como encargados (Nimbo, Cal.com, Meta Platforms y Google LLC) son remisiones y no constituyen transferencias conforme al Reglamento de la LFPDPPP, por lo que no requieren su consentimiento. Las transferencias a otros médicos, a autoridades sanitarias y a la autoridad fiscal descritas en esta sección tampoco lo requieren, por actualizar los supuestos del artículo 37 de la LFPDPPP (atención médica, obligación legal y cumplimiento de la relación jurídica).</p>
+      <p><strong>Alojamiento fuera de México.</strong> Los proveedores mencionados (Nimbo, Cal.com, Meta Platforms, Google LLC y Anthropic PBC) pueden almacenar la información en servidores ubicados fuera de México. Se trata de remisiones a encargados del tratamiento, obligados a tratar sus datos únicamente conforme a las instrucciones del responsable y a este aviso; el responsable sigue siendo el obligado frente a usted en todo momento.</p>
+      <p>Las entregas de datos a los proveedores que actúan como encargados (Nimbo, Cal.com, Meta Platforms, Google LLC y Anthropic PBC) son remisiones y no constituyen transferencias conforme al Reglamento de la LFPDPPP, por lo que no requieren su consentimiento. Las transferencias a otros médicos, a autoridades sanitarias y a la autoridad fiscal descritas en esta sección tampoco lo requieren, por actualizar los supuestos del artículo 37 de la LFPDPPP (atención médica, obligación legal y cumplimiento de la relación jurídica).</p>
     </section>
 
     <!-- 6. DERECHOS ARCO -->
