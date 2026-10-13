@@ -956,7 +956,7 @@ section.hero .lp-precio-esp{display:inline-block;margin:2px 0 16px;padding:12px 
         <div class="block__head">
             <span class="block__kicker">Antes de venir</span>
             <h2 class="block__title">¿Cuándo suspendo <em>mi inhalador</em>?</h2>
-            <p class="block__lead">Dime cuál usas y cuándo es tu cita. Tiempos de ATS/ERS 2019.</p>
+            <p class="block__lead">Dime cuál usas y cuándo es tu cita. Tiempos del consultorio, basados en ATS/ERS 2019.</p>
         </div>
 
         <div class="prep2" id="prep2">
@@ -971,7 +971,10 @@ section.hero .lp-precio-esp{display:inline-block;margin:2px 0 16px;padding:12px 
                 <button type="button" class="med" role="radio" aria-checked="false" data-h="24" data-tipo="un broncodilatador de accion larga">
                     <b>Acción larga</b><small>salmeterol, formoterol (LABA)</small>
                 </button>
-                <button type="button" class="med" role="radio" aria-checked="false" data-h="36" data-tipo="un broncodilatador ultra-prolongado">
+                <!-- C23 (13-oct-2026, decision del Dr.): tabla unica de preparacion, la misma
+                     que manda el bot (INSTRUCCIONES_ESPIROMETRIA). Ultra-prolongado pasa de 36 h a
+                     48 h: con 36 h el paciente recibia aqui una hora y por WhatsApp otra. -->
+                <button type="button" class="med" role="radio" aria-checked="false" data-h="48" data-tipo="un broncodilatador ultra-prolongado">
                     <b>Ultra-larga</b><small>indacaterol, olodaterol</small>
                 </button>
                 <button type="button" class="med" role="radio" aria-checked="false" data-h="48" data-tipo="un anticolinergico de accion larga">
@@ -1061,20 +1064,20 @@ section.hero .lp-precio-esp{display:inline-block;margin:2px 0 16px;padding:12px 
         <details class="faq-item"><summary>¿Quién interpreta mi espirometría?</summary><div class="faq-item__answer">El propio Dr. Lara interpreta personalmente cada estudio bajo criterios ATS/ERS 2019, firma el reporte y te lo explica; el precio está publicado desde el inicio.</div></details>
 
         <details class="faq-item" id="faq-broncodilatadores"><summary>¿Cuánto tiempo debo suspender mis inhaladores antes del estudio?</summary><div class="faq-item__answer">
-        <p style="margin-bottom:10px">Depende del tipo de broncodilatador (guías ATS/ERS 2019):</p>
+        <p style="margin-bottom:10px">Depende del tipo de broncodilatador (tabla del consultorio, basada en las guías ATS/ERS 2019):</p>
         <table class="faq-table">
             <thead><tr><th>Tipo de medicamento</th><th>Suspender</th><th>Principios activos</th></tr></thead>
             <tbody>
-                <tr><td>SABA (acción corta)</td><td>4-6 horas antes</td><td>broncodilatador de rescate (SABA: salbutamol)</td></tr>
+                <tr><td>SABA (acción corta)</td><td>6 horas antes</td><td>broncodilatador de rescate (SABA: salbutamol)</td></tr>
                 <tr><td>SAMA (anticolinérgico corto)</td><td>12 horas antes</td><td>anticolinérgico de acción corta (SAMA: bromuro de ipratropio)</td></tr>
                 <tr><td>LABA (acción larga)</td><td>24 horas antes</td><td>broncodilatador de acción prolongada (LABA: salmeterol, formoterol), solo o combinado con corticoide inhalado</td></tr>
-                <tr><td>Ultra-LABA (ultra-larga)</td><td>36 horas antes</td><td>broncodilatador ultra-prolongado (ultra-LABA: indacaterol, olodaterol)</td></tr>
-                <tr><td>LAMA (anticolinérgico largo)</td><td>36-48 horas antes</td><td>anticolinérgico de acción prolongada (LAMA: tiotropio, glicopirronio, umeclidinio)</td></tr>
+                <tr><td>Ultra-LABA (ultra-larga)</td><td>48 horas antes</td><td>broncodilatador ultra-prolongado (ultra-LABA: indacaterol, olodaterol)</td></tr>
+                <tr><td>LAMA (anticolinérgico largo)</td><td>48 horas antes</td><td>anticolinérgico de acción prolongada (LAMA: tiotropio, glicopirronio, umeclidinio)</td></tr>
             </tbody>
         </table>
         <ul style="padding-left:18px;margin:12px 0">
             <li>Los corticoesteroides inhalados y el montelukast <strong>NO se suspenden</strong>; en tratamientos combinados rige el componente de acción más larga.</li>
-            <li>No tomar café, té ni refrescos con cafeína ni fumar 4 horas antes; trae tus inhaladores (caja o foto). No requiere ayuno.</li>
+            <li>No tomar café, té ni refrescos con cafeína 4 horas antes; no fumar ni vapear 1 hora antes (idealmente 24 horas); sin comida abundante 2 horas antes ni ejercicio intenso 1 hora antes; trae tus inhaladores (la lista, la caja o una foto). No requiere ayuno.</li>
         </ul>
         <p style="margin:12px 0 6px"><a href="https://wa.me/522224926718?text=Hola%20Dr.%20Lara,%20vengo%20de%20la%20promoci%C3%B3n%20de%20espirometr%C3%ADa%20con%20broncodilatador%20a%20$1,200.%20Tomo%20[nombre%20del%20medicamento],%20%C2%BFcu%C3%A1nto%20tiempo%20lo%20suspendo%20antes%20de%20la%20espirometr%C3%ADa%3F"  target="_blank" rel="noopener noreferrer" style="color:#047857;font-weight:700"><i class="bi bi-whatsapp"></i> Consultar mi medicamento por WhatsApp</a></p>
         <p style="font-size:.8rem;color:var(--muted);margin:0"><em>Tabla basada en ATS/ERS 2019: Standardization of Spirometry 2019 Update (American Thoracic Society / European Respiratory Society).</em></p>
